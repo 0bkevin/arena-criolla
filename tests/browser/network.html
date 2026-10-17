@@ -73,6 +73,13 @@
       network.error,
       "",
     );
+    receive({ type: "error", message: "Un personaje fue retirado." });
+    receive({ type: "room", room: room("A".repeat(32)) });
+    check(
+      "Una actualización de la misma sala conserva su error de validación",
+      network.error,
+      "Un personaje fue retirado.",
+    );
 
     receive({ type: "opponent-left" });
     receive({ type: "room", room: room("A".repeat(32)) });

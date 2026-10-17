@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="es">
+  <meta charset="utf-8" /><title>Regresión de transporte</title>
+  <div id="root"></div>
+  <pre id="results">Ejecutando…</pre>
+  <script type="module">
+    import React from "react";
+    import { createRoot } from "react-dom/client";
+    import { flushSync } from "react-dom";
+    import { useArenaNetwork } from "/src/network.ts";
+    import { createMatch, emptyInput } from "/shared/engine.ts";
+    const native = {
+      WebSocket: window.WebSocket,
+      setTimeout: window.setTimeout,
+      setInterval: window.setInterval,
+      clearTimeout: window.clearTimeout,
+      clearInterval: window.clearInterval,
+      dateNow: Date.now,
+    };
+    const nativePerformanceNow = Object.getOwnPropertyDescriptor(
+      performance,
+      "now",
+    );
+    let now = 0,
+      nextTimer = 1;
+    Object.defineProperty(performance, "now", {
+      configurable: true,
+      value: () => now,
+    });
+    const timers = new Map();
+    const schedule = (callback, delay, repeat) => {
+      const id = nextTimer++;
+      timers.set(id, { callback, at: now + delay, repeat });
+      return id;
+    };
+    window.setTimeout = (fn, delay) => schedule(fn, delay || 0, 0);
+    window.setInterval = (fn, delay) => schedule(fn, delay || 1, delay || 1);
+    window.clearTimeout = window.clearInterval = (id) => timers.delete(id);
+    Date.now = () => now;
+    function advance(ms) {
+      const target = now + ms;
+      for (let n = 0; n < 10000; n++) {
+        const due = [...timers]
+          .filter(([, t]) => t.at <= target)
+          .sort((a, b) => a[1].at - b[1].at)[0];
+        if (!due) break;
+        const [id, t] = due;
+        now = t.at;
+        if (t.repeat) t.at += t.repeat;
+        else timers.delete(id);
+        flushSync(() => t.callback());
+      }
+      now = target;
+    }
+    const sockets = [];
+    class FixtureSocket {
+      static OPEN = 1;
+      static CONNECTING = 0;
+      static CLOSING = 2;
+      static CLOSED = 3;
+      readyState = 0;
+      bufferedAmount = 0;
+      sent = [];
+      closeRequested = false;
+      constructor() {
+        sockets.push(this);
+      }
+      send(raw) {
+        if (this.readyState !== 1) throw new Error("socket not open");
+        this.sent.push(JSON.parse(raw));
+      }
+      close() {
+        this.closeRequested = true;
+        this.readyState = 2;
+      }
+      open() {
+        this.readyState = 1;
+        this.onopen?.();
+      }
+      receive(message) {
+        this.onmessage?.({ data: JSON.stringify(message) });
+      }
+    }
+    window.WebSocket = FixtureSocket;
+    let network;
+    const results = [];
+    function check(name, actual, expected) {
+      results.push({ name, passed: actual === expected, actual, expected });
+    }
+    function mount(onResult = () => {}) {
+      function Harness() {
+        network = useArenaNetwork(onResult);
+        return React.createElement("output", null, network.error);
+      }
+      const root = createRoot(document.getElementById("root"));
+      flushSync(() => root.render(React.createElement(Harness)));
+      const socket = sockets.at(-1);
+      flushSync(() => socket.open());
+      return {
+        root,
+        socket,
+        receive: (message) => flushSync(() => socket.receive(message)),
+        close: () => flushSync(() => root.unmount()),
+      };
+    }
+    const match = () =>
+      createMatch(
+        "caracas",
+        [
+          { name: "QA A", fighter: "zavarce", wins: 0 },
+          { name: "QA B", fighter: "capriles", wins: 0 },
+        ],
+        crypto.randomUUID(),
+      );
+    let f = mount();
+    let threw = false;
+    try {
+      f.receive(null);
+    } catch {
+      threw = true;
+    }
+    check("JSON null no rompe el receptor", threw, false);
+    threw = false;
+    try {
+      f.receive({ type: "state" });
+    } catch {
+      threw = true;
+    }
+    check("Un estado incompleto no rompe el receptor", threw, false);
+    f.close();
+    const completed = [];
+    f = mount((state, index) => completed.push({ id: state.id, index }));
+    const state = match();
+    f.receive({ type: "start", state, index: 0 });
+    const final = structuredClone(state);
+    final.phase = "finished";
+    final.winner = 0;
+    f.receive({ type: "state", state: final });
+    f.receive({ type: "state", state: final });
+    f.receive({ type: "opponent-left" });
+    check(
+      "El resultado se entrega sin esperar un frame y solo una vez",
+      completed.length,
+      1,
+    );
+    check("Se conserva la identidad del ganador", completed[0]?.id, state.id);
+    f.close();
+    f = mount();
+    const old = f.socket;
+    f.receive({ type: "welcome", id: "old-peer" });
+    f.receive({ type: "opponent-left" });
+    advance(8100);
+    check(
+      "Un socket silencioso se retira aunque no emita close",
+      old.closeRequested,
+      true,
+    );
+    check("La conexión deja de figurar como activa", network.connected, false);
+    check(
+      "Se descarta el aviso de la sala anterior al desconectar",
+      network.opponentLeft,
+      false,
+    );
+    advance(1500);
+    const replacement = sockets.at(-1);
+    check(
+      "Reconecta sin esperar el handshake close",
+      replacement !== old,
+      true,
+    );
+    if (replacement !== old) {
+      flushSync(() => replacement.open());
+      flushSync(() => replacement.receive({ type: "welcome", id: "new-peer" }));
+      f.receive({ type: "welcome", id: "obsolete-peer" });
+      check(
+        "Los callbacks del socket anterior no pisan la sesión nueva",
+        network.id,
+        "new-peer",
+      );
+    }
+    f.close();
+    f = mount();
+    for (let i = 0; i < 6; i++) {
+      advance(i === 0 ? 2000 : 1950);
+      const ping = f.socket.sent.at(-1);
+      advance(50);
+      f.receive({ type: "pong", sentAt: ping?.sentAt });
+    }
+    check(
+      "Los pongs mantienen viva una conexión sana",
+      f.socket.closeRequested,
+      false,
+    );
+    check("El RTT se mide con el eco real del ping", network.latencyMs, 50);
+    f.close();
+    f = mount();
+    for (let i = 0; i < 4; i++) {
+      f.receive({ type: "rooms", rooms: [], online: 2 });
+      advance(2000);
+    }
+    check(
+      "El tráfico descendente no oculta una caída del canal de ida",
+      f.socket.closeRequested,
+      true,
+    );
+    f.close();
+    f = mount();
+    now += 60_000;
+    for (const timer of timers.values()) if (timer.at < now) timer.at = now;
+    advance(0);
+    check(
+      "Reanudar timers suspendidos permite comprobar la conexión antes de cerrarla",
+      f.socket.closeRequested,
+      false,
+    );
+    f.close();
+    f = mount();
+    f.receive({ type: "welcome", id: "backoff-peer" });
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const current = sockets.at(-1);
+      flushSync(() => current.onclose?.());
+      const delay = Math.min(
+        ...[...timers.values()].map((timer) => timer.at - now),
+      );
+      check(
+        `El backoff aumenta tras cierre inmediato ${attempt + 1}`,
+        delay >= 800 * 2 ** attempt && delay <= 1200 * 2 ** attempt,
+        true,
+      );
+      advance(delay);
+      const next = sockets.at(-1);
+      flushSync(() => next.open());
+      flushSync(() => next.receive({ type: "welcome", id: "backoff-peer" }));
+    }
+    f.close();
+    f = mount();
+    f.socket.bufferedAmount = 128000;
+    const before = f.socket.sent.length;
+    let sent;
+    flushSync(() => {
+      sent = network.send({
+        type: "input",
+        matchId: "current",
+        input: emptyInput(),
+      });
+    });
+    check(
+      "Una cola de salida saturada no acumula más controles",
+      f.socket.sent.length,
+      before,
+    );
+    check("El envío saturado informa que no se completó", sent, false);
+    check("La conexión saturada se retira", f.socket.closeRequested, true);
+    f.close();
+    window.networkResilience = {
+      passed: results.every((r) => r.passed),
+      checks: results,
+    };
+    document.getElementById("results").textContent = JSON.stringify(
+      window.networkResilience,
+      null,
+      2,
+    );
+    document.title =
+      (window.networkResilience.passed ? "PASS" : "FAIL") + " transporte";
+    window.WebSocket = native.WebSocket;
+    window.setTimeout = native.setTimeout;
+    window.setInterval = native.setInterval;
+    window.clearTimeout = native.clearTimeout;
+    window.clearInterval = native.clearInterval;
+    Date.now = native.dateNow;
+    if (nativePerformanceNow)
+      Object.defineProperty(performance, "now", nativePerformanceNow);
+    else delete performance.now;
+  </script>
+</html>

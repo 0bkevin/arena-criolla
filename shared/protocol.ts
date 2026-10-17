@@ -18,6 +18,7 @@ export interface RoomView {
   host: string;
 }
 export type ClientMessage =
+  | { type: "ping"; sentAt: number }
   | { type: "list" }
   | {
       type: "create";
@@ -36,10 +37,11 @@ export type ClientMessage =
     }
   | { type: "select"; fighter?: FighterId; stage?: StageId; wins?: number }
   | { type: "ready"; ready: boolean }
-  | { type: "input"; input: Input }
+  | { type: "input"; matchId: string; input: Input }
   | { type: "rematch" }
   | { type: "leave" };
 export type ServerMessage =
+  | { type: "pong"; sentAt: number }
   | { type: "community"; characters: CommunityCharacter[] }
   | { type: "welcome"; id: string }
   | { type: "rooms"; rooms: RoomView[]; online: number }

@@ -314,7 +314,7 @@ test("adversarial v31: malformed frames and concurrent rooms stay isolated and r
     peers[0].socket.send("{");
     await peers[0].wait("error", (message) => message.message.includes("leer"));
     peers[0].socket.send(
-      JSON.stringify({ type: "input", input: { right: true, actions: {} } }),
+      JSON.stringify({ type: "input", matchId: first.id, input: { right: true, actions: {} } }),
     );
     await new Promise((resolve) => setTimeout(resolve, 70));
     assert.equal(first.players[0].x, 330);
@@ -322,7 +322,7 @@ test("adversarial v31: malformed frames and concurrent rooms stay isolated and r
 
     const move = emptyInput();
     move.right = true;
-    peers[0].send({ type: "input", input: move });
+    peers[0].send({ type: "input", matchId: first.id, input: move });
     await new Promise((resolve) => setTimeout(resolve, 120));
     assert.ok(first.players[0].x > 330);
     assert.equal(states[1].players[0].x, 330);

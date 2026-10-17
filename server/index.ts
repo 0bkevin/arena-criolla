@@ -23,16 +23,19 @@ import type {
   ServerMessage,
 } from "../shared/protocol";
 import { FixedStepTicker } from "./ticker";
+import { INPUT_TIMEOUT_MS } from "../shared/network";
 
 interface Client {
   id: string;
   socket: WebSocket;
   room: string | null;
   input: Input;
+  inputAt: number;
   alive: boolean;
   messages: number;
   controls: number;
   lists: number;
+  pings: number;
   window: number;
 }
 interface Room {
@@ -53,6 +56,9 @@ const cleanWins = (value: unknown) =>
   Number.isFinite(value)
     ? Math.min(9999, Math.max(0, Math.floor(Number(value))))
     : 0;
+const releaseHeld = (input: Input) => {
+  input.left = input.right = input.block = input.down = false;
+};
 
 export async function makeArenaServer(
   options: {
@@ -200,6 +206,7 @@ export async function makeArenaServer(
     }
     room.clients.forEach((c) => {
       c.input = emptyInput();
+      c.inputAt = performance.now();
     });
     const [first, second] = room.view.players;
     room.state = createMatch(room.view.stage, [first, second], randomUUID());
@@ -256,11 +263,13 @@ export async function makeArenaServer(
       socket,
       room: null,
       input: emptyInput(),
+      inputAt: performance.now(),
       alive: true,
       messages: 0,
       controls: 0,
       lists: 0,
-      window: Date.now(),
+      pings: 0,
+      window: performance.now(),
     };
     clients.set(client.id, client);
     send(client, { type: "welcome", id: client.id });
@@ -278,13 +287,21 @@ export async function makeArenaServer(
     });
     socket.on("message", (raw) => {
       const now = Date.now();
-      if (now - client.window >= 1000) {
-        client.window = now;
+      const messageAt = performance.now();
+      if (messageAt - client.window >= 1000) {
+        client.window = messageAt;
         client.messages = 0;
         client.controls = 0;
         client.lists = 0;
+        client.pings = 0;
       }
-      if (++client.messages > 180) return;
+      // Allow a bounded burst after network jitter. Never silently discard the
+      // final release: sustained excess closes the peer and releases its input.
+      if (++client.messages > 360) {
+        releaseHeld(client.input);
+        client.socket.close(1008, "Demasiados mensajes.");
+        return;
+      }
       let message: ClientMessage;
       try {
         message = JSON.parse(raw.toString());
@@ -298,6 +315,15 @@ export async function makeArenaServer(
         typeof message.type !== "string"
       )
         return;
+      if (message.type === "ping") {
+        if (
+          ++client.pings <= 5 &&
+          Number.isFinite(message.sentAt) &&
+          message.sentAt >= 0
+        )
+          send(client, { type: "pong", sentAt: message.sentAt });
+        return;
+      }
       if (
         (message.type === "select" ||
           message.type === "ready" ||
@@ -430,6 +456,7 @@ export async function makeArenaServer(
         }
       }
       if (message.type === "input" && current.view.status === "playing") {
+        if (message.matchId !== current.state?.id) return;
         const input = message.input;
         if (
           !input ||
@@ -449,6 +476,7 @@ export async function makeArenaServer(
           safe.actions[action] = n;
         }
         client.input = safe;
+        client.inputAt = performance.now();
       }
       if (message.type === "rematch" && current.view.status === "finished") {
         const player = current.view.players.find((p) => p.id === client.id)!;
@@ -474,6 +502,10 @@ export async function makeArenaServer(
           room.clients.length !== 2
         )
           return;
+        for (const client of room.clients) {
+          if (performance.now() - client.inputAt >= INPUT_TIMEOUT_MS)
+            releaseHeld(client.input);
+        }
         stepMatch(room.state, [room.clients[0].input, room.clients[1].input]);
         if (tick % 2 === 0 || room.state.phase === "finished")
           room.clients.forEach((c) =>

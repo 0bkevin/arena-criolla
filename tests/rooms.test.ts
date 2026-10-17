@@ -108,12 +108,13 @@ test("anonymous rooms synchronize two players, validate inputs, rematch, and rec
     });
     const input = emptyInput();
     input.right = true;
-    a.send({ type: "input", input });
+    a.send({ type: "input", matchId: first.state.id, input });
     const moved = await a.wait("state", (m) => m.state.players[0].x > 335);
     assert.ok(moved.state.players[0].x > 335);
     const prior = server.clients.get(aWelcome.id)!.input.actions.light;
     a.send({
       type: "input",
+      matchId: first.state.id,
       input: { ...input, actions: { ...input.actions, light: -4 } },
     });
     await new Promise((resolve) => setTimeout(resolve, 30));
@@ -221,8 +222,8 @@ test("anonymous rooms synchronize Lele's launched trap reflected by Dudamel", as
     state.players[1].x = 630;
     const input = emptyInput();
     input.actions.special++;
-    a.send({ type: "input", input });
-    b.send({ type: "input", input });
+    a.send({ type: "input", matchId: state.id, input });
+    b.send({ type: "input", matchId: state.id, input });
     const [left, right] = await Promise.all([
       a.wait("state", (m) =>
         m.state.projectiles.some((p) => p.kind === "prank" && p.owner === 1),

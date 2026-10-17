@@ -89,7 +89,11 @@ export function App({
   const fighterSearchInput = useRef<HTMLInputElement>(null);
   const setupPanel = useRef<HTMLElement>(null);
   const [setupVisible, setSetupVisible] = useState(true);
-  const network = useArenaNetwork();
+  const recordedResults = useRef(new Set<string>());
+  const pendingProgress = useRef<Progress | null>(null);
+  const network = useArenaNetwork((state, index) =>
+    recordResult(state, index, false),
+  );
   useEffect(() => {
     if (!isFighter(fighter)) {
       setFighter("zavarce");
@@ -323,8 +327,15 @@ export function App({
     );
     window.scrollTo({ top: 0, behavior: "instant" });
   };
-  const recordResult = (state: MatchState, index: number) => {
-    const saved = structuredClone(progressRef.current);
+  function recordResult(
+    state: MatchState,
+    index: number,
+    localDuel = mode === "local",
+  ) {
+    if (recordedResults.current.has(state.id)) return;
+    recordedResults.current.add(state.id);
+    // Another tab can have completed a match since this component mounted.
+    const saved = structuredClone(pendingProgress.current ?? readProgress());
     const local = state.players[index];
     const won = state.winner === index;
     saved.played++;
@@ -332,7 +343,7 @@ export function App({
     if (won)
       saved.wins[local.config.fighter] =
         (Number(saved.wins[local.config.fighter]) || 0) + 1;
-    if (mode === "local" && state.winner === 1) {
+    if (localDuel && state.winner === 1) {
       const second = state.players[1];
       saved.wins[second.config.fighter] =
         (Number(saved.wins[second.config.fighter]) || 0) + 1;
@@ -346,8 +357,8 @@ export function App({
     saved.recent = saved.recent.slice(0, 8);
     progressRef.current = saved;
     setProgress(saved);
-    saveProgress(saved);
-  };
+    pendingProgress.current = saveProgress(saved) ? null : saved;
+  }
   const exit = () => {
     setLocalMatch(null);
     if (network.room) network.send({ type: "leave" });
@@ -485,7 +496,9 @@ export function App({
           difficulty={difficulty}
           remote={network.state}
           localIndex={network.match?.index || 0}
-          onInput={(input) => network.send({ type: "input", input })}
+          onInput={(input) =>
+            network.send({ type: "input", matchId: active.id, input })
+          }
           onExit={exit}
           onResult={recordResult}
           onRematch={() => {

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+  <meta charset="utf-8" />
+  <title>Conexión WebSocket real</title>
+  <div id="root"></div>
+  <script type="module">
+    import React from "react";
+    import { createRoot } from "react-dom/client";
+    import { useArenaNetwork } from "/src/network.ts";
+    // Native WebSocket, clocks and timers. Use qa-network-proxy.ts to drop TCP
+    // traffic outside the browser and observe the hook recovering on its own.
+    function Harness() {
+      const network = useArenaNetwork();
+      window.networkReal = {
+        connected: network.connected,
+        id: network.id,
+        latencyMs: network.latencyMs,
+        error: network.error,
+      };
+      const history = (window.networkTransitions ??= []);
+      if (
+        history.at(-1)?.connected !== network.connected ||
+        history.at(-1)?.id !== network.id
+      )
+        history.push({ at: new Date().toISOString(), ...window.networkReal });
+      return React.createElement(
+        "pre",
+        null,
+        JSON.stringify(window.networkReal, null, 2),
+      );
+    }
+    createRoot(document.getElementById("root")).render(
+      React.createElement(Harness),
+    );
+  </script>
+</html>
