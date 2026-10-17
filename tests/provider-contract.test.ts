@@ -44,12 +44,14 @@ async function upstream(
     "OPENAI_BASE_URL",
     "OPENAI_IMAGE_MODEL",
     "OPENAI_DESIGN_MODEL",
+    "ARENA_CREATOR_ENABLED",
   ];
   const saved = keys.map((key) => [key, process.env[key]] as const);
   process.env.OPENAI_API_KEY = "fixture-not-a-real-key";
   process.env.OPENAI_BASE_URL = `http://127.0.0.1:${address.port}/v1`;
   process.env.OPENAI_IMAGE_MODEL = "gpt-image-2";
   process.env.OPENAI_DESIGN_MODEL = "gpt-4.1-mini";
+  process.env.ARENA_CREATOR_ENABLED = "true";
   const provider = openAIProvider()!;
   return {
     photo,
@@ -68,6 +70,29 @@ async function upstream(
     },
   };
 }
+
+test("production generation can be held disabled with a configured key", () => {
+  const saved = process.env.ARENA_CREATOR_ENABLED;
+  const key = process.env.OPENAI_API_KEY;
+  try {
+    process.env.OPENAI_API_KEY = "fixture-not-a-real-key";
+    delete process.env.ARENA_CREATOR_ENABLED;
+    assert.equal(
+      openAIProvider(),
+      null,
+      "A configured key alone must never enable paid generation.",
+    );
+    process.env.ARENA_CREATOR_ENABLED = "false";
+    assert.equal(openAIProvider(), null);
+    process.env.ARENA_CREATOR_ENABLED = "typo";
+    assert.throws(openAIProvider, /must be true or false/);
+  } finally {
+    if (saved === undefined) delete process.env.ARENA_CREATOR_ENABLED;
+    else process.env.ARENA_CREATOR_ENABLED = saved;
+    if (key === undefined) delete process.env.OPENAI_API_KEY;
+    else process.env.OPENAI_API_KEY = key;
+  }
+});
 
 test(
   "installed OpenAI SDK sends schema-checked Responses and transparent image-edit requests",
@@ -117,6 +142,7 @@ test(
       const responseRequest = JSON.parse(requests[0].body);
       assert.equal(responseRequest.text.format.strict, true);
       assert.equal(responseRequest.model, "gpt-4.1-mini");
+      assert.equal(responseRequest.store, false);
       assert.match(
         responseRequest.input[0].content[1].image_url,
         /^data:image\/jpeg;base64,/,

@@ -1,8 +1,15 @@
 import express, { type Request, type Response } from "express";
 import multer from "multer";
 import sharp from "sharp";
-import { randomUUID } from "node:crypto";
-import { mkdir, writeFile, rm, access, rename } from "node:fs/promises";
+import { createHash, randomUUID } from "node:crypto";
+import {
+  mkdir,
+  writeFile,
+  rm,
+  access,
+  rename,
+  readFile,
+} from "node:fs/promises";
 import path from "node:path";
 import { z } from "zod";
 import { CreatorDatabase, type StoredCharacter } from "./database";
@@ -20,6 +27,7 @@ import { SpriteValidationError } from "./sprites";
 import { buildCreatorGraph } from "./pipeline";
 import { openAIProvider, type CharacterProvider } from "./provider";
 import { CreatorWorker, creatorLimits, type CreatorLimits } from "./worker";
+import { CharacterInputSchema as InputSchema } from "./input";
 import {
   registerCommunityCharacter,
   unregisterCommunityCharacter,
@@ -31,12 +39,6 @@ import type {
 } from "../../shared/creator";
 import type { FighterId } from "../../shared/content";
 
-const InputSchema = z.object({
-  name: z.string().trim().min(2).max(24),
-  description: z.string().trim().min(10).max(240),
-  style: z.enum(["agile", "technical", "power"]),
-  color: z.string().regex(/^#[0-9a-f]{6}$/i),
-});
 const SignUp = z.object({
   name: z.string().trim().min(2).max(24),
   email: z.string().trim().toLowerCase().email().max(254),
@@ -45,6 +47,22 @@ const SignUp = z.object({
 const SignIn = SignUp.omit({ name: true });
 const busy = new Set(["queued", "designing", "drawing", "packing", "testing"]);
 const maxBytes = 8 * 1024 * 1024;
+async function normalizePhoto(buffer: Buffer) {
+  const photo = sharp(buffer, { limitInputPixels: 20_000_000 });
+  const metadata = await photo.metadata();
+  if (!["jpeg", "png", "webp"].includes(metadata.format ?? ""))
+    throw new Error("Unsupported photo encoding");
+  return photo
+    .rotate()
+    .resize({
+      width: 1600,
+      height: 1600,
+      fit: "inside",
+      withoutEnlargement: true,
+    })
+    .jpeg({ quality: 88 })
+    .toBuffer();
+}
 export interface CreatorOptions {
   dataDir?: string;
   databasePath?: string;
@@ -131,8 +149,21 @@ export function makeCreatorService(options: CreatorOptions = {}) {
     const user = currentUser(req, db);
     if (!user)
       res.status(401).json({
+        code: "SESSION_REQUIRED",
         error: "Entra a tu cuenta para crear y administrar tus personajes.",
       });
+    if (
+      user &&
+      req.get("X-Creator-Owner") &&
+      req.get("X-Creator-Owner") !== user.id
+    ) {
+      res.status(409).json({
+        code: "SESSION_CHANGED",
+        error:
+          "La sesión cambió en otra pestaña. Vuelve a entrar para recuperar tu borrador.",
+      });
+      return null;
+    }
     return user || null;
   };
   const own = (req: Request, res: Response) => {
@@ -334,6 +365,7 @@ export function makeCreatorService(options: CreatorOptions = {}) {
     }
   });
   router.post("/auth/signout", (req, res) => {
+    if (req.get("X-Creator-Owner") && !requireUser(req, res)) return;
     const token = sessionToken(req);
     if (token) db.deleteSession(tokenHash(token));
     clearSession(res, secure);
@@ -374,12 +406,105 @@ export function makeCreatorService(options: CreatorOptions = {}) {
         ["image/jpeg", "image/png", "image/webp"].includes(file.mimetype),
       ),
   });
+  const recoverCreation = (
+    owner: string,
+    requestKey: string,
+    res: Response,
+    payloadHash?: string,
+  ) => {
+    const receipt = db.creationReceipt(owner, requestKey);
+    if (!receipt) return false;
+    const existing = receipt.character_id
+      ? db.character(receipt.character_id)
+      : undefined;
+    if (!existing || existing.status === "archived") {
+      res.status(410).json({
+        code: "CREATION_REMOVED",
+        error:
+          "Esta solicitud ya fue descartada o su personaje fue eliminado. Prepara un borrador nuevo.",
+      });
+    } else if (
+      payloadHash !== undefined &&
+      receipt.payload_hash !== payloadHash
+    ) {
+      res.status(409).json({
+        code: "REQUEST_KEY_REUSED",
+        error:
+          "Esta solicitud corresponde a otro borrador. Recupera la creación guardada antes de cambiarla.",
+      });
+    } else {
+      res
+        .status(busy.has(existing.status) ? 202 : 200)
+        .json({ character: db.view(existing) });
+    }
+    return true;
+  };
+  // Closing a pending draft must also fence a POST whose upload is still in flight.
+  router.delete("/creator/requests/:key", (req, res) => {
+    const user = requireUser(req, res);
+    if (!user) return;
+    const parsed = z.uuid().safeParse(req.params.key);
+    if (!parsed.success) {
+      res.status(400).json({ error: "La solicitud no es válida." });
+      return;
+    }
+    const key = parsed.data.toLowerCase();
+    if (
+      !db.discardCreationRequest(
+        user.id,
+        key,
+        limits.dailyAttempts * 4,
+        limits.dailyUserAttempts * 4,
+      )
+    ) {
+      res.status(429).set("Retry-After", "3600").json({
+        error:
+          "Se alcanzó el límite de borradores descartados de hoy. Vuelve más tarde.",
+      });
+      return;
+    }
+    const receipt = db.creationReceipt(user.id, key)!;
+    const row = receipt.character_id
+      ? db.character(receipt.character_id)
+      : undefined;
+    res.json({
+      character: row && row.status !== "archived" ? db.view(row) : null,
+    });
+  });
   router.post(
     "/creator/characters",
     (req, res, next) => {
       const user = requireUser(req, res);
       if (!user) return;
-      if (!provider) {
+      const requestKey = req.get("Idempotency-Key")?.toLowerCase();
+      if (requestKey !== undefined) {
+        if (!z.uuid().safeParse(requestKey).success) {
+          res.status(400).json({
+            error:
+              "La solicitud de creación no es válida. Vuelve a abrir el taller.",
+          });
+          return;
+        }
+        // An empty POST is an authenticated recovery query, including when paid
+        // generation is disabled. Multipart replays are checked against the body.
+        if (
+          !req.get("transfer-encoding") &&
+          Number(req.get("content-length") || 0) === 0 &&
+          recoverCreation(user.id, requestKey, res)
+        )
+          return;
+      }
+      res.locals.creationRequestKey = requestKey || null;
+      const replay = requestKey && db.creationReceipt(user.id, requestKey);
+      if (
+        replay &&
+        (!replay.character_id ||
+          db.character(replay.character_id)?.status === "archived")
+      ) {
+        recoverCreation(user.id, requestKey!, res);
+        return;
+      }
+      if (!provider && !replay) {
         res.status(503).json({
           error:
             "El taller de personajes todavía no está disponible. Vuelve pronto.",
@@ -389,8 +514,8 @@ export function makeCreatorService(options: CreatorOptions = {}) {
       const owned = db.owned(user.id);
       if (
         uploading.has(user.id) ||
-        owned.some((row) => busy.has(row.status)) ||
-        owned.length >= 12
+        (!replay && owned.some((row) => busy.has(row.status))) ||
+        (!replay && owned.length >= 12)
       ) {
         res.status(409).json({
           error:
@@ -400,7 +525,11 @@ export function makeCreatorService(options: CreatorOptions = {}) {
         });
         return;
       }
-      if (!workshopAvailable(res) || !generationBudget(user.id, res)) return;
+      if (
+        !replay &&
+        (!workshopAvailable(res) || !generationBudget(user.id, res))
+      )
+        return;
       if (uploading.size >= limits.uploads) {
         res.status(503).set("Retry-After", "5").json({
           error:
@@ -445,6 +574,42 @@ export function makeCreatorService(options: CreatorOptions = {}) {
           });
           return;
         }
+        const payloadHash = createHash("sha256").update(
+          JSON.stringify(parsed.data),
+        );
+        for (const file of files)
+          payloadHash.update(createHash("sha256").update(file.buffer).digest());
+        const fingerprint = payloadHash.digest("hex");
+        const requestKey = res.locals.creationRequestKey as string | null;
+        const legacy = requestKey
+          ? db.creationReceipt(user.id, requestKey)
+          : undefined;
+        if (legacy?.character_id && !legacy.payload_hash) {
+          const existing = db.character(legacy.character_id);
+          if (
+            existing &&
+            JSON.stringify(parsed.data) ===
+              JSON.stringify(JSON.parse(existing.input))
+          ) {
+            const savedPhotos = JSON.parse(existing.photos) as string[];
+            try {
+              let matches = savedPhotos.length === files.length;
+              for (let i = 0; matches && i < files.length; i++)
+                matches = (await normalizePhoto(files[i].buffer)).equals(
+                  await readFile(savedPhotos[i]),
+                );
+              if (matches)
+                db.bindCreationFingerprint(user.id, requestKey!, fingerprint);
+            } catch {
+              /* Bodyless recovery remains available for unavailable legacy photos. */
+            }
+          }
+        }
+        if (
+          requestKey &&
+          recoverCreation(user.id, requestKey, res, fingerprint)
+        )
+          return;
         const id = "custom_" + randomUUID().replaceAll("-", "");
         folder = path.join(dataDir, "uploads", id);
         await mkdir(folder, { recursive: true });
@@ -452,22 +617,7 @@ export function makeCreatorService(options: CreatorOptions = {}) {
         for (let index = 0; index < files.length; index++) {
           const target = path.join(folder, `${index}.jpg`);
           try {
-            const photo = sharp(files[index].buffer, {
-              limitInputPixels: 20_000_000,
-            });
-            const metadata = await photo.metadata();
-            if (!["jpeg", "png", "webp"].includes(metadata.format ?? ""))
-              throw new Error("Unsupported photo encoding");
-            await photo
-              .rotate()
-              .resize({
-                width: 1600,
-                height: 1600,
-                fit: "inside",
-                withoutEnlargement: true,
-              })
-              .jpeg({ quality: 88 })
-              .toFile(target);
+            await writeFile(target, await normalizePhoto(files[index].buffer));
           } catch {
             await rm(folder, { recursive: true, force: true });
             res.status(400).json({
@@ -487,6 +637,14 @@ export function makeCreatorService(options: CreatorOptions = {}) {
           await rm(folder, { recursive: true, force: true });
           return;
         }
+        // A discard may arrive while sharp is decoding the photos.
+        if (
+          requestKey &&
+          recoverCreation(user.id, requestKey, res, fingerprint)
+        ) {
+          await rm(folder, { recursive: true, force: true });
+          return;
+        }
         let row: StoredCharacter | undefined;
         if (
           !generationBudget(user.id, res, true, () => {
@@ -495,6 +653,8 @@ export function makeCreatorService(options: CreatorOptions = {}) {
               user.id,
               parsed.data as CharacterInput,
               photos,
+              res.locals.creationRequestKey,
+              fingerprint,
             );
           })
         ) {

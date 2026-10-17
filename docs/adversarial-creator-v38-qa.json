@@ -1,0 +1,152 @@
+{
+  "recordedAt": "2026-10-17T17:06:40.676067+00:00",
+  "baseline": "1c226d9a68bd2fd51ae281d39bc83c66a8f997f1",
+  "status": "passed_deployed",
+  "reviewers": {
+    "spec": "docs/adversarial-creator-v38-spec.json",
+    "standards": "docs/adversarial-creator-v38-standards.json",
+    "independentFollowup": "docs/adversarial-creator-v38-followup.json"
+  },
+  "findings": {
+    "groupsFixed": 13,
+    "standards": 6,
+    "spec": 7,
+    "unresolvedConfirmed": 0,
+    "severity": {
+      "P1": 7,
+      "P2": 6
+    }
+  },
+  "validation": {
+    "fullTestsPassed": 612,
+    "creatorTestsPassed": 86,
+    "newRegressionTests": 30,
+    "build": "passed",
+    "diffCheck": "passed",
+    "oracleArm64NativeAndAdversarialTestsPassed": 28,
+    "oracleBuilds": "passed",
+    "sqliteMigration": "passed",
+    "sqliteIntegrity": "ok",
+    "foreignKeys": "ok",
+    "baseCharacterAssets": "passed for all41 fighters"
+  },
+  "browser": {
+    "url": "http://localhost:5182/create",
+    "provider": "Deterministic external fixture; no paid calls",
+    "cases": [
+      {
+        "name": "Cross-tab account switch",
+        "red": "A-labelled UI submitted private A draft/photo into B-owned job custom_45397bfd6168426a93d5c4d58a593767",
+        "green": "Real signout/signinB event immediately hides old form/photos; signing back intoA restores original draft/photo; no design/draw calls",
+        "passed": true
+      },
+      {
+        "name": "Stale tab CAS conflict",
+        "green": "A saves newer name/photo; staleB save shows conflict; explicit recovery restores A version andphoto",
+        "passed": true
+      },
+      {
+        "name": "Persisted submission never reaches network, then tab closes",
+        "green": "Returning preserves submitted UUID, locks edits and offers check/discard; discard fences delayed same-key POST with410 and zero design/draw calls",
+        "passed": true
+      },
+      {
+        "name": "Accepted POST acknowledgement lost; close mid-drawing; finish while absent",
+        "green": "Return shows same job; next return after completion shows one ready fighter; bodyless replay returns sameid200",
+        "id": "custom_201b8441f081447ea558502be00837f7",
+        "designCalls": 1,
+        "drawCalls": 1,
+        "passed": true
+      },
+      {
+        "name": "Delayed initial auth callback after cross-tab session change",
+        "green": "Independent reviewer held both StrictMode initial promises with valid private draft/photo positive control; stale resolutions left auth screen/zero photos",
+        "passed": true
+      }
+    ],
+    "artifact": "docs/screenshots/adversarial-creator-v38-recovery.png"
+  },
+  "oracle": {
+    "publicTarget": "arena-criolla:creator-v38",
+    "privateTarget": "arena-criolla:codex-operator-v6",
+    "automaticVisitorGenerationEnabled": false,
+    "publicImageDigest": "sha256:14c02279452c6c5a9f09da9d51974b323046d3290df7e23e1027fc0c3b18ea3e",
+    "privateImageDigest": "sha256:dec7ead3d375f1d7adf07957e9b3aa9a83397f4f6701fd4f9f94b5dd3fad60bb",
+    "health": "healthy",
+    "release": "/opt/arena-criolla/releases/creator-v38-20261017",
+    "rollback": "/opt/arena-criolla/backups/creator-v38-20261017",
+    "dataBackup": "/var/backups/arena-criolla/arena-criolla-20261017T170413Z.tar.gz",
+    "temporaryProductionAccountRemoved": true,
+    "productionPaidAttempts": 0,
+    "publicSmoke": {
+      "draftAndUpperBodyPhotoAfterReload": "passed",
+      "wrongOwnerHttpStatus": 409,
+      "wrongOwnerCode": "SESSION_CHANGED",
+      "cancelPendingHttpStatus": 200,
+      "uppercaseLateReplayHttpStatus": 410,
+      "disabledAdmissionHttpStatus": 503,
+      "ownedCharacters": 0,
+      "artifact": "docs/screenshots/adversarial-creator-v38-production.png",
+      "cleanLoadConsoleErrors": 0,
+      "cleanLoadFailedRequests": 0
+    }
+  },
+  "limits": [
+    "Finite upstream Codex transport reconnection is not controlled by app retry logic.",
+    "Semantic likeness/anatomy/pose intent still requires visual review.",
+    "Private filesystem/configuration ownership assumes a trusted operator; no isolation guarantee against malicious same-UID writers."
+  ],
+  "liveLunaGeneration": {
+    "attempted": true,
+    "status": "passed_from_fresh_job_without_manual_recovery",
+    "image": "arena-criolla:codex-operator-v6",
+    "id": "custom_f5b9d99a25724463bba1e795ad8295ff",
+    "job": "/var/lib/arena-codex/jobs/qa-adversarial-v38-upper-body-20261017",
+    "reference": "Upper-body scikit-image astronaut fixture; incomplete reference accepted",
+    "sourceDimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "sourceSha256": "0b92ac26278a36568df67de4dd29d84d497827ad9eead26d0ea2aa2084410096",
+    "packedDimensions": {
+      "width": 2048,
+      "height": 1024
+    },
+    "frames": 8,
+    "transparent": true,
+    "exactDuplicatesRejected": true,
+    "packingValidation": "passed",
+    "combatValidation": "passed on both sides",
+    "visualReview": {
+      "completeFigures": true,
+      "consistentOutfit": true,
+      "rightFacing": true,
+      "expectedPoseOrder": true
+    },
+    "artifact": "docs/screenshots/codex-adversarial-v38-luna-high.png",
+    "publishedToGame": false,
+    "exactCreditDeductionMeasured": false,
+    "automaticWorkflowRetries": 0,
+    "phases": [
+      {
+        "phase": "design",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "high",
+        "session": "01a14ad2-3d6f-7401-b25e-bff0fa5668e8",
+        "modelToolCalls": 0,
+        "imageGenerationAvailable": false
+      },
+      {
+        "phase": "drawing instruction",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "high",
+        "session": "01a14ad2-5ca4-7161-b501-3d633fb3673e",
+        "modelToolCalls": 1,
+        "imageToolCalls": 1,
+        "shellCommands": 0,
+        "mcpCalls": 0,
+        "imageGenerationAvailable": true
+      }
+    ]
+  }
+}

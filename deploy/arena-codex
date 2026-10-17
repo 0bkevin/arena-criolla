@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Private, manually invoked operator tool. No app secrets, database or web ports.
+operator_data=/var/lib/arena-codex
+operator_image=arena-criolla:codex-operator-v6
+
+case "${1:-}" in
+  doctor|login|generate|pack|version) ;;
+  *)
+    cat <<'USAGE'
+Usage: sudo arena-codex doctor | login | version
+       sudo arena-codex generate --input /operator/inputs/character.json --photo /operator/photos/photo.jpg --job /operator/jobs/new-character
+       sudo arena-codex pack --job /operator/jobs/existing-character
+
+Host files in /var/lib/arena-codex appear under /operator in the container.
+This is a private operator workflow using ChatGPT sign-in, with no API fallback.
+Generation uses GPT-6 Luna with high reasoning and ChatGPT allowance, then credits.
+USAGE
+    exit 2
+    ;;
+esac
+
+if [[ ! -d "$operator_data" ]]; then
+  echo 'Install the private operator environment first.' >&2
+  exit 1
+fi
+
+operator_identity=$(stat -c '%u:%g' "$operator_data")
+docker_options=(
+  run --rm --init
+  --user "$operator_identity"
+  --read-only
+  --cap-drop ALL
+  --security-opt no-new-privileges:true
+  --pids-limit 128
+  --memory 2g
+  --cpus 1
+  --log-driver none
+  --tmpfs /tmp:rw,nosuid,nodev,size=536870912,mode=1777
+  --mount "type=bind,src=$operator_data,dst=/operator"
+  --env HOME=/operator
+  --env CODEX_HOME=/operator/.codex
+  --env ARENA_CODEX_PATH=/usr/local/bin/codex
+  --env ARENA_CREATOR_ENABLED=false
+  --env ARENA_CODEX_BILLING_POLICY=chatgpt-plan-and-credits
+)
+if [[ -t 0 && -t 1 ]]; then
+  docker_options+=(-it)
+fi
+
+if [[ "$1" == version ]]; then
+  exec docker "${docker_options[@]}" --network none \
+    --entrypoint /usr/local/bin/codex "$operator_image" --version
+fi
+exec docker "${docker_options[@]}" "$operator_image" "$@"

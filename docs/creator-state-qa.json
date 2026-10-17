@@ -1,0 +1,116 @@
+{
+  "recordedAt": "2026-10-17T16:46:16.795069+00:00",
+  "status": "passed",
+  "implementation": {
+    "draftStorage": "IndexedDB per Arena account on the same browser profile",
+    "photos": "Stored as browser blobs, never in localStorage or a public asset URL",
+    "acceptedJobs": "SQLite on Oracle persistent data volume",
+    "submissionRecovery": "Persisted UUID sent as Idempotency-Key, scoped by authenticated owner",
+    "returnTriggers": [
+      "page load",
+      "window focus",
+      "online",
+      "pageshow",
+      "visibility change"
+    ],
+    "serverInterruption": "Explicit owner continuation; no automatic paid drawing retry"
+  },
+  "browser": {
+    "tool": "T3 collaborative browser",
+    "profile": "Default",
+    "localUrl": "http://localhost:5182/create",
+    "publicUrl": "https://arena.kevinbravo.com/create",
+    "providerForRunningJobTests": "External deterministic fixture using a previously validated generated PNG; zero model billing",
+    "cases": [
+      {
+        "name": "Unsent draft survives an actual tab close and new tab",
+        "passed": true,
+        "restored": [
+          "name",
+          "description",
+          "upper-body photo",
+          "technical style",
+          "blue color"
+        ]
+      },
+      {
+        "name": "Server accepts creation but browser never receives its response",
+        "passed": true,
+        "technique": "Hold POST response unresolved after native fetch completes, then close the tab",
+        "recoveredId": "custom_c63469ab1b0249a8a4eeeda06cc331f0"
+      },
+      {
+        "name": "Return during drawing restores the existing job and clears the matching submitted draft",
+        "passed": true
+      },
+      {
+        "name": "Drawing finishes while tab is closed; returning shows ready fighter",
+        "passed": true,
+        "designCalls": 1,
+        "drawingCalls": 1
+      },
+      {
+        "name": "Replay the accepted request after completion without submitting photos again",
+        "passed": true,
+        "httpStatus": 200,
+        "newModelCalls": 0
+      },
+      {
+        "name": "Switch accounts, reject another account request key, then log back into original account",
+        "passed": true,
+        "isolated": ["draft input", "photo blobs", "owned jobs"],
+        "otherOwnerReplayStatus": 400
+      },
+      {
+        "name": "Lose progress-fetch connection and return online",
+        "passed": true,
+        "kept": ["draft", "photo", "ready job"],
+        "immediateOnlineRefresh": true
+      },
+      {
+        "name": "Public production draft and upper-body photo survive closing and reopening site",
+        "passed": true,
+        "deployment": "creator-v36; same frontend bundle in creator-v37"
+      },
+      {
+        "name": "Discard saved production draft",
+        "passed": true
+      },
+      {
+        "name": "Disabled public generation rejects admission before paid work",
+        "passed": true,
+        "httpStatus": 503,
+        "temporaryProductionAccountRemoved": true,
+        "modelAttempts": 0
+      }
+    ],
+    "artifacts": [
+      "docs/screenshots/creator-state-recovery.png",
+      "docs/screenshots/creator-state-production.png"
+    ]
+  },
+  "httpRegression": {
+    "test": "returning to a submitted creation recovers the same job without another model request, including after restart",
+    "passed": true,
+    "assertions": [
+      "Same id while drawing",
+      "One drawing request",
+      "Replay ready job after server restart with provider disabled",
+      "Owner scoping",
+      "Malformed request UUID rejected"
+    ]
+  },
+  "checks": {
+    "fullSuitePassed": 582,
+    "creatorSuitePassed": 56,
+    "productionBuild": "passed",
+    "oracleOfflineCodexTestsPassed": 13,
+    "databaseMigrationOnCopyOfProduction": "passed",
+    "sqliteIntegrity": "ok"
+  },
+  "limitations": [
+    "An unsubmitted draft is local to one browser profile; clearing site data, eviction or another device can remove it.",
+    "In-flight creation browser tests use a fixture provider. Real ChatGPT-backed Luna generation is tested separately as a private Oracle operator workflow.",
+    "Public automatic generation remains disabled pending API billing and an actual staged API generation."
+  ]
+}

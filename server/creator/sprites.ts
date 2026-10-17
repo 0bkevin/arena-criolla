@@ -1,5 +1,6 @@
 import sharp, { type Sharp, type Metadata } from "sharp";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile, rename, rm } from "node:fs/promises";
+import { randomUUID, createHash } from "node:crypto";
 import path from "node:path";
 import type { SpriteGeometry } from "../../shared/creator";
 
@@ -37,7 +38,7 @@ export async function packCharacterSprites(
     );
   let data: Buffer;
   try {
-    data = await image.ensureAlpha().raw().toBuffer();
+    data = await image.toColourspace("srgb").ensureAlpha().raw().toBuffer();
   } catch {
     signal?.throwIfAborted();
     throw new SpriteValidationError(
@@ -56,6 +57,7 @@ export async function packCharacterSprites(
     cell = 512,
     baseline = 482;
   const crops = [];
+  const signatures = new Set<string>();
   for (let frame = 0; frame < 8; frame++) {
     signal?.throwIfAborted();
     const left = (frame % 4) * tileW,
@@ -84,12 +86,26 @@ export async function packCharacterSprites(
       throw new SpriteValidationError(
         `La pose ${frame + 1} está vacía o recortada. Vuelve a generar las poses.`,
       );
-    crops.push({
+    const crop = {
       left: left + minX,
       top: top + minY,
       width: maxX - minX + 1,
       height: maxY - minY + 1,
-    });
+    };
+    const pixels = Buffer.alloc(crop.width * crop.height * 4);
+    for (let y = 0; y < crop.height; y++)
+      for (let x = 0; x < crop.width; x++) {
+        const offset = ((crop.top + y) * width + crop.left + x) * 4;
+        if (data[offset + 3] >= 40)
+          data.copy(pixels, (y * crop.width + x) * 4, offset, offset + 4);
+      }
+    const signature = `${crop.width}:${crop.height}:${createHash("sha256").update(pixels).digest("hex")}`;
+    if (signatures.has(signature))
+      throw new SpriteValidationError(
+        "Las ocho poses deben ser distintas; hay una pose repetida.",
+      );
+    signatures.add(signature);
+    crops.push(crop);
   }
   // One scale for the whole atlas preserves body proportions and jump height.
   const scale = Math.min(
@@ -128,17 +144,21 @@ export async function packCharacterSprites(
     .toBuffer();
   signal?.throwIfAborted();
   await mkdir(folder, { recursive: true });
-  await writeFile(path.join(folder, "sprite.png"), png);
+  await writeAsset(path.join(folder, "sprite.png"), png);
   signal?.throwIfAborted();
-  await sharp(png)
-    .webp({ lossless: true, effort: 6 })
-    .toFile(path.join(folder, "sprite.webp"));
+  await writeAsset(
+    path.join(folder, "sprite.webp"),
+    await sharp(png).webp({ lossless: true, effort: 6 }).toBuffer(),
+  );
   signal?.throwIfAborted();
-  await sharp(png)
-    .extract({ left: 0, top: 0, width: cell, height: cell })
-    .resize(384, 384)
-    .webp({ lossless: true })
-    .toFile(path.join(folder, "portrait.webp"));
+  await writeAsset(
+    path.join(folder, "portrait.webp"),
+    await sharp(png)
+      .extract({ left: 0, top: 0, width: cell, height: cell })
+      .resize(384, 384)
+      .webp({ lossless: true })
+      .toBuffer(),
+  );
   signal?.throwIfAborted();
   const geometry = {
     width: cell * 4,
@@ -149,9 +169,19 @@ export async function packCharacterSprites(
     bodyHeight: frames[0].height,
     frames,
   };
-  await writeFile(
+  await writeAsset(
     path.join(folder, "geometry.json"),
     JSON.stringify(geometry, null, 2) + "\n",
   );
   return geometry;
+}
+
+async function writeAsset(file: string, contents: Buffer | string) {
+  const temporary = path.join(path.dirname(file), `.asset-${randomUUID()}.tmp`);
+  try {
+    await writeFile(temporary, contents, { mode: 0o600, flag: "wx" });
+    await rename(temporary, file);
+  } finally {
+    await rm(temporary, { force: true });
+  }
 }

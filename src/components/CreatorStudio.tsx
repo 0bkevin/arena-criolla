@@ -17,7 +17,12 @@ import {
   X,
   Zap,
 } from "lucide-react";
-import { creatorApi } from "../creator-api";
+import {
+  creatorApi,
+  CreatorRequestError,
+  creatorSessionEvent,
+} from "../creator-api";
+import { useCreatorDraft } from "../creator-draft";
 import { registerCommunityCharacter } from "../../shared/community";
 import { createMatch, type MatchState } from "../../shared/engine";
 import type {
@@ -75,13 +80,27 @@ export function CreatorStudio({
   const [accountName, setAccountName] = useState(""),
     [email, setEmail] = useState(""),
     [password, setPassword] = useState("");
-  const [name, setName] = useState(""),
-    [description, setDescription] = useState(""),
-    [style, setStyle] = useState<FightingStyle>("agile"),
-    [color, setColor] = useState(colors[0]);
-  const [photos, setPhotos] = useState<File[]>([]),
-    [previews, setPreviews] = useState<string[]>([]);
-  const [records, setRecords] = useState<CreatorCharacter[]>([]),
+  const {
+    draft,
+    ready: draftReady,
+    status: draftStatus,
+    update: updateDraft,
+    persist: persistDraft,
+    clear: clearDraft,
+    reload: reloadDraft,
+  } = useCreatorDraft(user?.id, user?.name);
+  const { name, description, style, color, photos } = draft;
+  const setName = (name: string) => updateDraft({ name });
+  const setDescription = (description: string) => updateDraft({ description });
+  const setStyle = (style: FightingStyle) => updateDraft({ style });
+  const setColor = (color: string) => updateDraft({ color });
+  const setPhotos = (change: File[] | ((current: File[]) => File[])) =>
+    updateDraft((current) => ({
+      photos: typeof change === "function" ? change(current.photos) : change,
+    }));
+  const [previews, setPreviews] = useState<string[]>([]);
+  const [storedRecords, setRecords] = useState<CreatorCharacter[]>([]),
+    [recordsOwner, setRecordsOwner] = useState<string>(),
     [capabilities, setCapabilities] = useState<CreatorCapabilities | null>(
       null,
     );
@@ -91,69 +110,109 @@ export function CreatorStudio({
   const [notice, setNotice] = useState(""),
     [trial, setTrial] = useState<MatchState | null>(null);
   const [trialHelp, setTrialHelp] = useState(false);
+  const [connectionLost, setConnectionLost] = useState(false);
+  const ownerRef = useRef(user?.id);
+  ownerRef.current = user?.id;
+  const refreshSequence = useRef(0);
+  const sessionEpoch = useRef(0);
+  const authenticating = useRef(false);
+  const submissionActive = useRef(false);
+  const records = recordsOwner === user?.id ? storedRecords : [];
   const generating = records.some((record) => busyStatuses.has(record.status));
   const fileInput = useRef<HTMLInputElement>(null),
     createForm = useRef<HTMLFormElement>(null);
   const alive = useRef(true);
-  const accountId = useRef<string | null>(null);
-  const accountEpoch = useRef(0);
+  const currentSession = (epoch: number) =>
+    alive.current && sessionEpoch.current === epoch;
   const updateAccount = (next: CreatorUser | null) => {
-    const nextId = next?.id ?? null;
-    if (accountId.current !== nextId) {
-      accountId.current = nextId;
-      accountEpoch.current++;
-      setName(next?.name ?? "");
-      setDescription("");
-      setStyle("agile");
-      setColor(colors[0]);
-      setPhotos([]);
-      setRecords([]);
-      setTrial(null);
-      setTrialHelp(false);
+    if (ownerRef.current !== next?.id) {
+      ++sessionEpoch.current;
+      ownerRef.current = next?.id;
       setAccountName("");
       setEmail("");
       setPassword("");
       setError("");
       setNotice("");
-      setSubmitting(false);
-      setPendingAction("");
+      setTrial(null);
+      setTrialHelp(false);
     }
     setUser(next);
   };
-  const currentAccount = (epoch: number) =>
-    alive.current && accountEpoch.current === epoch;
   useEffect(() => {
     alive.current = true;
     return () => {
       alive.current = false;
     };
   }, []);
+  const sessionFailure = (failure: unknown, owner: string | undefined) => {
+    if (
+      !(failure instanceof CreatorRequestError) ||
+      (failure.status !== 401 && failure.code !== "SESSION_CHANGED") ||
+      ownerRef.current !== owner
+    )
+      return false;
+    updateAccount(null);
+    setError(
+      "La sesión terminó o cambió en otra pestaña. Entra de nuevo para recuperar tu borrador.",
+    );
+    return true;
+  };
+  useEffect(() => {
+    const changed = (event: StorageEvent) => {
+      if (event.key !== creatorSessionEvent) return;
+      ++sessionEpoch.current;
+      authenticating.current = false;
+      updateAccount(null);
+      setLoading(false);
+      setSubmitting(false);
+      submissionActive.current = false;
+      setError(
+        "La sesión cambió en otra pestaña. Entra de nuevo para recuperar tu borrador.",
+      );
+    };
+    window.addEventListener("storage", changed);
+    return () => window.removeEventListener("storage", changed);
+  }, []);
+  useEffect(() => {
+    setSubmitting(false);
+    submissionActive.current = false;
+    setPendingAction("");
+    setNotice("");
+    setTrial(null);
+    setRecords([]);
+    setRecordsOwner(undefined);
+    setConnectionLost(false);
+    ++refreshSequence.current;
+  }, [user?.id]);
   useEffect(() => {
     let active = true;
     let sequence = 0;
-    const checkSession = (initial = false) => {
+    const checkSession = () => {
+      if (authenticating.current) return;
       const request = ++sequence;
-      const epoch = accountEpoch.current;
+      const generation = sessionEpoch.current;
       void creatorApi
         .session()
         .then((data) => {
-          if (active && request === sequence && currentAccount(epoch))
+          if (active && request === sequence && currentSession(generation)) {
             updateAccount(data.user);
+            setLoading(false);
+          }
         })
         .catch((e) => {
-          if (active && request === sequence && currentAccount(epoch))
+          if (active && request === sequence && currentSession(generation))
             setError(e.message);
         })
         .finally(() => {
-          if (active && initial) setLoading(false);
+          if (active && request === sequence && currentSession(generation))
+            setLoading(false);
         });
     };
-    checkSession(true);
-    const focus = () => checkSession();
+    checkSession();
     const visible = () => {
       if (!document.hidden) checkSession();
     };
-    window.addEventListener("focus", focus);
+    window.addEventListener("focus", checkSession);
     document.addEventListener("visibilitychange", visible);
     void creatorApi
       .capabilities()
@@ -161,7 +220,7 @@ export function CreatorStudio({
       .catch(() => {});
     return () => {
       active = false;
-      window.removeEventListener("focus", focus);
+      window.removeEventListener("focus", checkSession);
       document.removeEventListener("visibilitychange", visible);
     };
   }, []);
@@ -171,13 +230,40 @@ export function CreatorStudio({
     return () => urls.forEach((url) => URL.revokeObjectURL(url));
   }, [photos]);
   const refresh = async () => {
-    const epoch = accountEpoch.current;
-    const data = await creatorApi.mine();
-    if (!currentAccount(epoch)) return;
+    const owner = ownerRef.current;
+    if (!owner) return;
+    const generation = sessionEpoch.current;
+    const sequence = ++refreshSequence.current;
+    const data = await creatorApi.mine(owner);
+    if (
+      !currentSession(generation) ||
+      ownerRef.current !== owner ||
+      sequence !== refreshSequence.current
+    )
+      return;
     for (const record of data.characters)
       if (record.character) registerCommunityCharacter(record.character, false);
     setRecords(data.characters);
+    setRecordsOwner(owner);
+    setConnectionLost(false);
   };
+  useEffect(() => {
+    if (
+      !draftReady ||
+      !records.some((record) => record.requestKey === draft.requestKey)
+    )
+      return;
+    const generation = sessionEpoch.current;
+    const owner = user?.id;
+    void clearDraft(draft.requestKey)
+      .then(() => {
+        if (currentSession(generation) && ownerRef.current === owner)
+          setNotice(
+            "Recuperamos tu creación. El progreso sigue guardado en Mis luchadores.",
+          );
+      })
+      .catch(() => {});
+  }, [draftReady, draft.requestKey, records, clearDraft]);
   useEffect(() => {
     if (!user) {
       setRecords([]);
@@ -186,20 +272,31 @@ export function CreatorStudio({
     let active = true;
     const tick = () => {
       if (active && !document.hidden)
-        void refresh().catch((e) => {
-          if (active) setError(e.message);
+        void refresh().catch((error) => {
+          if (active && !sessionFailure(error, user.id))
+            setConnectionLost(true);
         });
     };
     tick();
     const timer = setInterval(tick, generating ? 2500 : 15_000);
+    window.addEventListener("focus", tick);
+    window.addEventListener("online", tick);
+    window.addEventListener("pageshow", tick);
+    document.addEventListener("visibilitychange", tick);
     return () => {
       active = false;
       clearInterval(timer);
+      window.removeEventListener("focus", tick);
+      window.removeEventListener("online", tick);
+      window.removeEventListener("pageshow", tick);
+      document.removeEventListener("visibilitychange", tick);
     };
   }, [user?.id, generating]);
   const authenticate = async (event: FormEvent) => {
     event.preventDefault();
-    const epoch = accountEpoch.current;
+    if (authenticating.current) return;
+    authenticating.current = true;
+    const generation = ++sessionEpoch.current;
     setError("");
     setSubmitting(true);
     try {
@@ -207,17 +304,23 @@ export function CreatorStudio({
         accountMode === "signup"
           ? await creatorApi.signUp(accountName, email, password)
           : await creatorApi.signIn(email, password);
-      if (!currentAccount(epoch)) return;
+      if (!currentSession(generation)) return;
+      authenticating.current = false;
       updateAccount(data.user);
+      setLoading(false);
       setPassword("");
     } catch (e) {
-      if (currentAccount(epoch))
-        setError(e instanceof Error ? e.message : "No pudimos entrar.");
+      if (!currentSession(generation)) return;
+      setError(e instanceof Error ? e.message : "No pudimos entrar.");
     } finally {
-      if (currentAccount(epoch)) setSubmitting(false);
+      if (currentSession(generation)) {
+        authenticating.current = false;
+        setSubmitting(false);
+      }
     }
   };
   const addPhotos = (files: File[]) => {
+    if (submitting || draft.submitted) return;
     setError("");
     if (
       files.some(
@@ -244,54 +347,116 @@ export function CreatorStudio({
   };
   const submit = async (event: FormEvent) => {
     event.preventDefault();
-    const epoch = accountEpoch.current;
+    if (submissionActive.current || !user) return;
+    const generation = sessionEpoch.current;
+    submissionActive.current = true;
     setError("");
     setSubmitting(true);
+    const owner = user?.id;
     try {
       if (!photos.length)
         throw new Error("Añade al menos una foto para crear tu personaje.");
+      const saved = await persistDraft();
+      if (!currentSession(generation) || ownerRef.current !== owner) return;
       const body = new FormData();
-      body.set("name", name.trim());
-      body.set("description", description.trim());
-      body.set("style", style);
-      body.set("color", color);
-      photos.forEach((photo) => body.append("photos", photo));
-      const { character } = await creatorApi.create(body);
-      if (!currentAccount(epoch)) return;
-      setRecords((current) => [character, ...current]);
-      setPhotos([]);
+      body.set("name", saved.name.trim());
+      body.set("description", saved.description.trim());
+      body.set("style", saved.style);
+      body.set("color", saved.color);
+      saved.photos.forEach((photo) => body.append("photos", photo));
+      const { character } = await creatorApi.create(
+        body,
+        saved.requestKey,
+        owner,
+      );
+      if (!currentSession(generation) || ownerRef.current !== owner) return;
+      setRecordsOwner(owner);
+      setRecords((current) => [
+        character,
+        ...current.filter((record) => record.id !== character.id),
+      ]);
+      void clearDraft(saved.requestKey).catch(() => {});
       setNotice(
         "¡Vamos! Puedes quedarte aquí o volver después. Tu progreso queda guardado.",
       );
     } catch (e) {
-      if (currentAccount(epoch))
-        setError(
-          e instanceof Error ? e.message : "No pudimos crear el personaje.",
-        );
+      if (!currentSession(generation) || ownerRef.current !== owner) return;
+      if (sessionFailure(e, owner)) return;
+      if (e instanceof CreatorRequestError && e.code === "CREATION_REMOVED")
+        await clearDraft(draft.requestKey).catch(() => {});
+      void refresh().catch(() => {});
+      setError(
+        e instanceof Error ? e.message : "No pudimos crear el personaje.",
+      );
     } finally {
-      if (currentAccount(epoch)) setSubmitting(false);
+      if (currentSession(generation) && ownerRef.current === owner) {
+        submissionActive.current = false;
+        setSubmitting(false);
+      }
     }
   };
   const act = async (id: string, action: "publish" | "retry" | "remove") => {
-    const epoch = accountEpoch.current;
+    const owner = user?.id;
+    if (!owner) return;
+    const generation = sessionEpoch.current;
     setError("");
     setPendingAction(id + action);
     try {
-      if (action === "remove") await creatorApi.remove(id);
-      else await creatorApi[action](id);
-      if (!currentAccount(epoch)) return;
+      if (action === "remove") await creatorApi.remove(id, owner);
+      else await creatorApi[action](id, owner);
+      if (!currentSession(generation) || ownerRef.current !== owner) return;
       await refresh();
-      if (!currentAccount(epoch)) return;
+      if (!currentSession(generation) || ownerRef.current !== owner) return;
       if (action !== "retry") await onCatalogChange();
-      if (currentAccount(epoch) && action === "publish")
+      if (
+        action === "publish" &&
+        currentSession(generation) &&
+        ownerRef.current === owner
+      )
         setNotice("Publicado. Tu personaje ya está disponible para todos.");
     } catch (e) {
-      if (currentAccount(epoch))
+      if (
+        !currentSession(generation) ||
+        ownerRef.current !== owner ||
+        sessionFailure(e, owner)
+      )
+        return;
+      setError(
+        e instanceof Error ? e.message : "No pudimos completar la acción.",
+      );
+    } finally {
+      if (currentSession(generation) && ownerRef.current === owner)
+        setPendingAction("");
+    }
+  };
+  const discard = async () => {
+    const owner = user?.id;
+    if (!owner || submissionActive.current) return;
+    const generation = sessionEpoch.current;
+    submissionActive.current = true;
+    setSubmitting(true);
+    try {
+      if (draft.submitted)
+        await creatorApi.discardRequest(draft.requestKey, owner);
+      if (!currentSession(generation) || ownerRef.current !== owner) return;
+      await clearDraft(draft.requestKey);
+      await refresh();
+    } catch (error) {
+      if (
+        currentSession(generation) &&
+        ownerRef.current === owner &&
+        !sessionFailure(error, owner)
+      )
         setError(
-          e instanceof Error ? e.message : "No pudimos completar la acción.",
+          error instanceof Error
+            ? error.message
+            : "No pudimos descartar el borrador.",
         );
     } finally {
-      if (currentAccount(epoch)) setPendingAction("");
+      if (currentSession(generation) && ownerRef.current === owner) {
+        submissionActive.current = false;
+        setSubmitting(false);
+      }
     }
   };
   const tryFighter = (record: CreatorCharacter) => {
@@ -351,15 +516,12 @@ export function CreatorStudio({
           <button
             className="creator-account"
             onClick={() => {
-              const epoch = accountEpoch.current;
-              void creatorApi
-                .signOut()
-                .then(() => {
-                  if (currentAccount(epoch)) updateAccount(null);
-                })
-                .catch((e) => {
-                  if (currentAccount(epoch)) setError(e.message);
-                });
+              const owner = user.id;
+              updateAccount(null);
+              const generation = sessionEpoch.current;
+              void creatorApi.signOut(owner).catch((e) => {
+                if (currentSession(generation)) setError(e.message);
+              });
             }}
             aria-label="Cerrar sesión"
           >
@@ -502,171 +664,234 @@ export function CreatorStudio({
                 {notice}
               </p>
             )}
+            {connectionLost && (
+              <p className="creator-notice" role="status">
+                No pudimos actualizar el progreso. Reintentaremos al volver la
+                conexión.
+              </p>
+            )}
             <div className="creator-layout">
-              <form className="creator-form" onSubmit={submit} ref={createForm}>
-                <div className="creator-section-title">
-                  <span>01</span>
-                  <h2>Así te ves</h2>
-                  <small>1–3 fotos</small>
+              {!draftReady ? (
+                <div className="creator-loading" role="status">
+                  <LoaderCircle className="creator-spinner" /> Recuperando tu
+                  borrador…
                 </div>
-                <div
-                  className={`creator-upload ${photos.length ? "has-photos" : ""}`}
-                  onDragOver={(e) => e.preventDefault()}
-                  onDrop={drop}
+              ) : (
+                <form
+                  className="creator-form"
+                  onSubmit={submit}
+                  ref={createForm}
                 >
-                  <input
-                    ref={fileInput}
-                    className="creator-file-input"
-                    type="file"
-                    accept="image/jpeg,image/png,image/webp"
-                    multiple
-                    aria-label="Subir fotos de referencia"
-                    onChange={(e) => {
-                      addPhotos(Array.from(e.target.files || []));
-                      e.target.value = "";
-                    }}
-                  />
-                  {photos.length ? (
-                    <div className="creator-photo-grid">
-                      {previews.map((url, index) => (
-                        <div className="creator-photo" key={url}>
-                          <img
-                            src={url}
-                            alt={`Tu foto de referencia ${index + 1}`}
-                          />
+                  <div className="creator-section-title">
+                    <span>01</span>
+                    <h2>Así te ves</h2>
+                    <small>1–3 fotos</small>
+                  </div>
+                  <div
+                    className={`creator-upload ${photos.length ? "has-photos" : ""}`}
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={drop}
+                  >
+                    <input
+                      ref={fileInput}
+                      className="creator-file-input"
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp"
+                      multiple
+                      disabled={submitting || draft.submitted}
+                      aria-label="Subir fotos de referencia"
+                      onChange={(e) => {
+                        addPhotos(Array.from(e.target.files || []));
+                        e.target.value = "";
+                      }}
+                    />
+                    {photos.length ? (
+                      <div className="creator-photo-grid">
+                        {previews.map((url, index) => (
+                          <div className="creator-photo" key={url}>
+                            <img
+                              src={url}
+                              alt={`Tu foto de referencia ${index + 1}`}
+                            />
+                            <button
+                              type="button"
+                              disabled={submitting || draft.submitted}
+                              aria-label={`Quitar foto ${index + 1}`}
+                              onClick={() =>
+                                setPhotos((current) =>
+                                  current.filter((_, i) => i !== index),
+                                )
+                              }
+                            >
+                              <X size={14} />
+                            </button>
+                          </div>
+                        ))}
+                        {photos.length < 3 && (
                           <button
                             type="button"
-                            aria-label={`Quitar foto ${index + 1}`}
-                            onClick={() =>
-                              setPhotos((current) =>
-                                current.filter((_, i) => i !== index),
-                              )
-                            }
+                            disabled={submitting || draft.submitted}
+                            className="creator-photo-add"
+                            onClick={() => fileInput.current?.click()}
+                            aria-label="Añadir otra foto"
                           >
-                            <X size={14} />
+                            <Plus size={24} />
                           </button>
-                        </div>
-                      ))}
-                      {photos.length < 3 && (
-                        <button
-                          type="button"
-                          className="creator-photo-add"
-                          onClick={() => fileInput.current?.click()}
-                          aria-label="Añadir otra foto"
-                        >
-                          <Plus size={24} />
-                        </button>
-                      )}
-                    </div>
-                  ) : (
-                    <button
-                      type="button"
-                      className="creator-upload-action"
-                      onClick={() => fileInput.current?.click()}
-                    >
-                      <ImagePlus size={30} />
-                      <strong>Sube tus fotos</strong>
-                      <span>O arrástralas aquí</span>
-                    </button>
-                  )}
-                </div>
-                <p className="creator-hint">
-                  Rostro visible y buena luz. Tus fotos son privadas; se
-                  comparte el personaje que publiques.
-                </p>
-                <div className="creator-section-title">
-                  <span>02</span>
-                  <h2>Así eres tú</h2>
-                </div>
-                <label>
-                  Nombre en la arena
-                  <input
-                    required
-                    minLength={2}
-                    maxLength={24}
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Tu nombre o tu apodo"
-                  />
-                </label>
-                <label>
-                  Cuéntanos un poquito
-                  <textarea
-                    required
-                    minLength={10}
-                    maxLength={240}
-                    rows={3}
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Soy diseñador, salsero y fan de las arepas. Casi siempre llevo lentes y una chaqueta azul."
-                  />
-                  <span className="creator-counter">
-                    {description.length}/240
-                  </span>
-                </label>
-                <fieldset className="creator-style">
-                  <legend>¿Cómo quieres pelear?</legend>
-                  <div>
-                    {styles.map((item) => (
+                        )}
+                      </div>
+                    ) : (
                       <button
                         type="button"
-                        key={item.id}
-                        aria-pressed={style === item.id}
-                        onClick={() => setStyle(item.id)}
+                        disabled={submitting || draft.submitted}
+                        className="creator-upload-action"
+                        onClick={() => fileInput.current?.click()}
                       >
-                        <span>{item.icon}</span>
-                        <strong>{item.name}</strong>
-                        <small>{item.hint}</small>
+                        <ImagePlus size={30} />
+                        <strong>Sube tus fotos</strong>
+                        <span>O arrástralas aquí</span>
+                      </button>
+                    )}
+                  </div>
+                  <p className="creator-hint">
+                    Rostro visible y buena luz. Puede ser una selfie o una foto
+                    de medio cuerpo; completamos la ropa que no se vea. Tus
+                    fotos son privadas; se comparte el personaje que publiques.
+                  </p>
+                  <div className="creator-section-title">
+                    <span>02</span>
+                    <h2>Así eres tú</h2>
+                  </div>
+                  <label>
+                    Nombre en la arena
+                    <input
+                      required
+                      minLength={2}
+                      maxLength={24}
+                      value={name}
+                      disabled={submitting || draft.submitted}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Tu nombre o tu apodo"
+                    />
+                  </label>
+                  <label>
+                    Cuéntanos un poquito
+                    <textarea
+                      required
+                      minLength={10}
+                      maxLength={240}
+                      rows={3}
+                      value={description}
+                      disabled={submitting || draft.submitted}
+                      onChange={(e) => setDescription(e.target.value)}
+                      placeholder="Soy diseñador, salsero y fan de las arepas. Casi siempre llevo lentes y una chaqueta azul."
+                    />
+                    <span className="creator-counter">
+                      {description.length}/240
+                    </span>
+                  </label>
+                  <fieldset className="creator-style">
+                    <legend>¿Cómo quieres pelear?</legend>
+                    <div>
+                      {styles.map((item) => (
+                        <button
+                          type="button"
+                          disabled={submitting || draft.submitted}
+                          key={item.id}
+                          aria-pressed={style === item.id}
+                          onClick={() => setStyle(item.id)}
+                        >
+                          <span>{item.icon}</span>
+                          <strong>{item.name}</strong>
+                          <small>{item.hint}</small>
+                        </button>
+                      ))}
+                    </div>
+                  </fieldset>
+                  <fieldset className="creator-colors">
+                    <legend>Tu toque de color</legend>
+                    {colors.map((value) => (
+                      <button
+                        type="button"
+                        disabled={submitting || draft.submitted}
+                        key={value}
+                        style={{ backgroundColor: value }}
+                        aria-label={`Elegir color ${value}`}
+                        aria-pressed={color === value}
+                        onClick={() => setColor(value)}
+                      >
+                        {color === value && <Check size={15} />}
                       </button>
                     ))}
-                  </div>
-                </fieldset>
-                <fieldset className="creator-colors">
-                  <legend>Tu toque de color</legend>
-                  {colors.map((value) => (
+                  </fieldset>
+                  {capabilities && !capabilities.generationAvailable && (
+                    <p className="creator-service-note">
+                      El taller todavía no está disponible para generar
+                      personajes. Puedes preparar tu idea y volver pronto.
+                    </p>
+                  )}
+                  <button
+                    className="creator-primary"
+                    disabled={
+                      submitting ||
+                      generating ||
+                      draftStatus === "conflict" ||
+                      (!draft.submitted && !capabilities?.generationAvailable)
+                    }
+                  >
+                    {submitting ? (
+                      <LoaderCircle className="creator-spinner" size={18} />
+                    ) : (
+                      <>
+                        <PixelIcon kind="gamepad" size={20} />
+                        {generating
+                          ? "Tu personaje está en camino"
+                          : draft.submitted
+                            ? "Comprobar mi creación"
+                            : "Crear mi luchador"}
+                        <ArrowRight size={18} />
+                      </>
+                    )}
+                  </button>
+                  <p className="creator-hint creator-timing">
+                    {draft.submitted
+                      ? "La creación pudo empezar. Comprueba el resultado o descarta este borrador antes de editarlo."
+                      : "Tarda unos minutos. Puedes volver después; tu progreso queda guardado."}
+                  </p>
+                  <p className="creator-hint" role="status" aria-live="polite">
+                    {draftStatus === "saved"
+                      ? "Borrador guardado en este dispositivo."
+                      : draftStatus === "saving"
+                        ? "Guardando borrador…"
+                        : draftStatus === "conflict"
+                          ? "El borrador cambió en otra pestaña. Recupera la versión guardada antes de continuar."
+                          : draftStatus === "unavailable"
+                            ? "No pudimos guardar el borrador en este dispositivo. Revisa el espacio del navegador."
+                            : "Tu borrador se guarda en este dispositivo."}
+                  </p>
+                  {draftStatus === "conflict" && (
                     <button
                       type="button"
-                      key={value}
-                      style={{ backgroundColor: value }}
-                      aria-label={`Elegir color ${value}`}
-                      aria-pressed={color === value}
-                      onClick={() => setColor(value)}
+                      className="creator-account"
+                      onClick={() => void reloadDraft()}
                     >
-                      {color === value && <Check size={15} />}
+                      Recuperar borrador guardado
                     </button>
-                  ))}
-                </fieldset>
-                {capabilities && !capabilities.generationAvailable && (
-                  <p className="creator-service-note">
-                    El taller todavía no está disponible para generar
-                    personajes. Puedes preparar tu idea y volver pronto.
-                  </p>
-                )}
-                <button
-                  className="creator-primary"
-                  disabled={
-                    submitting ||
-                    generating ||
-                    !capabilities?.generationAvailable
-                  }
-                >
-                  {submitting ? (
-                    <LoaderCircle className="creator-spinner" size={18} />
-                  ) : (
-                    <>
-                      <PixelIcon kind="gamepad" size={20} />
-                      {generating
-                        ? "Tu personaje está en camino"
-                        : "Crear mi luchador"}
-                      <ArrowRight size={18} />
-                    </>
                   )}
-                </button>
-                <p className="creator-hint creator-timing">
-                  Tarda unos minutos. Puedes volver después; tu progreso queda
-                  guardado.
-                </p>
-              </form>
+                  {(draft.submitted ||
+                    description ||
+                    photos.length > 0 ||
+                    name !== user.name) && (
+                    <button
+                      type="button"
+                      className="creator-account"
+                      disabled={submitting}
+                      onClick={() => void discard()}
+                    >
+                      Descartar borrador <Trash2 size={14} />
+                    </button>
+                  )}
+                </form>
+              )}
               <aside className="creator-workbench" aria-label="Mis luchadores">
                 <div className="creator-section-title">
                   <h2>Mis luchadores</h2>
