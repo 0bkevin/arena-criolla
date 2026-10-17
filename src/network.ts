@@ -1,4 +1,5 @@
 import { syncCommunityCatalog } from "../shared/community";
+import { creatorRequest } from "./creator-api";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type {
   ClientMessage,
@@ -55,7 +56,11 @@ export function useArenaNetwork(
   const [connected, setConnected] = useState(false);
   const [id, setId] = useState("");
   const [account, setAccount] = useState<ArenaAccount | null>(null);
-  const identity = useRef(identityRevision);
+  const [sessionRevision, setSessionRevision] = useState(0);
+  const identity = useRef({
+    external: identityRevision,
+    session: sessionRevision,
+  });
   const [rankingResult, setRankingResult] = useState<RankingReceipt | null>(
     null,
   );
@@ -75,8 +80,14 @@ export function useArenaNetwork(
   } | null>(null);
   const [opponentLeft, setOpponentLeft] = useState(false);
   useEffect(() => {
-    if (identity.current !== identityRevision) {
-      identity.current = identityRevision;
+    if (
+      identity.current.external !== identityRevision ||
+      identity.current.session !== sessionRevision
+    ) {
+      identity.current = {
+        external: identityRevision,
+        session: sessionRevision,
+      };
       rememberMatch(null);
       rememberAbandon(null);
       setRecoveringRanked(false);
@@ -96,6 +107,23 @@ export function useArenaNetwork(
     let currentRoom: RoomView | null = null;
     let currentMatch: { id: string; index: number } | null = null;
     let completedId = "";
+    let sessionProbe: {
+      controller: AbortController;
+      timer: ReturnType<typeof setTimeout>;
+    } | null = null;
+    let inspectSession = () => {};
+    const cancelSessionProbe = () => {
+      if (!sessionProbe) return;
+      clearTimeout(sessionProbe.timer);
+      sessionProbe.controller.abort();
+      sessionProbe = null;
+    };
+    const focus = () => inspectSession();
+    const visible = () => {
+      if (document.visibilityState === "visible") inspectSession();
+    };
+    window.addEventListener("focus", focus);
+    document.addEventListener("visibilitychange", visible);
     const detach = (ws: WebSocket) => {
       ws.onopen = ws.onclose = ws.onmessage = ws.onerror = null;
       try {
@@ -107,6 +135,7 @@ export function useArenaNetwork(
     const retire = (ws: WebSocket) => {
       if (disposed || socket.current !== ws) return;
       socket.current = null;
+      cancelSessionProbe();
       clearInterval(monitor);
       detach(ws);
       currentRoom = null;
@@ -146,7 +175,42 @@ export function useArenaNetwork(
       let lastMonitor = lastReceived;
       const pendingPings = new Set<number>();
       let welcomed = false;
+      let accountId: string | null = null;
       const active = () => !disposed && socket.current === ws;
+      inspectSession = () => {
+        if (!active() || !welcomed) return;
+        // A new focus may follow another tab changing the cookie while an old
+        // request is in flight. Only the latest probe can describe that cookie.
+        cancelSessionProbe();
+        const controller = new AbortController();
+        const probe = {
+          controller,
+          timer: setTimeout(() => controller.abort(), 10_000),
+        };
+        sessionProbe = probe;
+        void creatorRequest<{ user: ArenaAccount | null }>(
+          "/api/auth/session",
+          { signal: controller.signal },
+        )
+          .then(({ user }) => {
+            // Cookies can change in another tab while the old session remains
+            // valid on this socket. Switch transports only after HTTP confirms
+            // a different account; connection failures must preserve recovery.
+            if (
+              active() &&
+              !controller.signal.aborted &&
+              (user?.id ?? null) !== accountId
+            )
+              setSessionRevision((revision) => revision + 1);
+          })
+          .catch(() => {
+            /* A failed probe does not prove a session change. */
+          })
+          .finally(() => {
+            clearTimeout(probe.timer);
+            if (sessionProbe === probe) sessionProbe = null;
+          });
+      };
       monitor = setInterval(() => {
         if (!active()) return;
         const now = performance.now();
@@ -226,6 +290,7 @@ export function useArenaNetwork(
         }
         if (message.type === "welcome" && typeof message.id === "string") {
           welcomed = true;
+          accountId = message.account?.id ?? null;
           setId(message.id);
           setAccount(message.account ?? null);
         }
@@ -352,6 +417,9 @@ export function useArenaNetwork(
     connect();
     return () => {
       disposed = true;
+      window.removeEventListener("focus", focus);
+      document.removeEventListener("visibilitychange", visible);
+      cancelSessionProbe();
       clearTimeout(reconnect);
       clearInterval(monitor);
       retireSocket.current = null;
@@ -359,7 +427,7 @@ export function useArenaNetwork(
       socket.current = null;
       if (ws) detach(ws);
     };
-  }, [identityRevision]);
+  }, [identityRevision, sessionRevision]);
   const send = useCallback((message: ClientMessage) => {
     const ws = socket.current;
     if (!ws || ws.readyState !== WebSocket.OPEN) {
