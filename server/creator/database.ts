@@ -22,6 +22,13 @@ export interface StoredCharacter {
   character: string | null;
   created_at: number;
   updated_at: number;
+  request_key: string | null;
+}
+export interface CreationReceipt {
+  owner_id: string;
+  request_key: string;
+  character_id: string | null;
+  payload_hash: string | null;
 }
 export class CreatorDatabase {
   readonly db: DatabaseSync;
@@ -38,6 +45,30 @@ export class CreatorDatabase {
       CREATE TABLE IF NOT EXISTS generation_attempts(owner_id TEXT NOT NULL REFERENCES users(id),started_at INTEGER NOT NULL);
       CREATE INDEX IF NOT EXISTS generation_attempts_time ON generation_attempts(started_at);
     `);
+    const columns = this.db.prepare("PRAGMA table_info(characters)").all();
+    if (!columns.some((column) => column.name === "request_key"))
+      this.db.exec("ALTER TABLE characters ADD COLUMN request_key TEXT");
+    this.db.exec(
+      "CREATE UNIQUE INDEX IF NOT EXISTS characters_request_key ON characters(owner_id,request_key)",
+    );
+    // Receipts outlive a deleted fighter. A late/replayed POST cannot buy it again.
+    this.db.exec(`CREATE TABLE IF NOT EXISTS creation_requests(
+      owner_id TEXT NOT NULL REFERENCES users(id),request_key TEXT NOT NULL COLLATE NOCASE,
+      character_id TEXT,payload_hash TEXT,created_at INTEGER NOT NULL DEFAULT 0,PRIMARY KEY(owner_id,request_key));
+      INSERT OR IGNORE INTO creation_requests(owner_id,request_key,character_id)
+      SELECT owner_id,lower(request_key),id FROM characters WHERE request_key IS NOT NULL ORDER BY created_at;`);
+    if (
+      !this.db
+        .prepare("PRAGMA table_info(creation_requests)")
+        .all()
+        .some((column) => column.name === "created_at")
+    )
+      this.db.exec(
+        "ALTER TABLE creation_requests ADD COLUMN created_at INTEGER NOT NULL DEFAULT 0",
+      );
+    this.db.exec(
+      "CREATE INDEX IF NOT EXISTS creation_requests_time ON creation_requests(created_at)",
+    );
   }
   createUser(user: CreatorUser, passwordHash: string) {
     this.db
@@ -85,11 +116,13 @@ export class CreatorDatabase {
     owner: string,
     input: CharacterInput,
     photos: string[],
+    requestKey: string | null = null,
+    payloadHash: string | null = null,
   ) {
     const now = Date.now();
     this.db
       .prepare(
-        "INSERT INTO characters(id,owner_id,input,photos,status,message,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?)",
+        "INSERT INTO characters(id,owner_id,input,photos,status,message,created_at,updated_at,request_key) VALUES(?,?,?,?,?,?,?,?,?)",
       )
       .run(
         id,
@@ -100,7 +133,14 @@ export class CreatorDatabase {
         "Tu personaje está en la cola.",
         now,
         now,
+        requestKey,
       );
+    if (requestKey)
+      this.db
+        .prepare(
+          "INSERT INTO creation_requests(owner_id,request_key,character_id,payload_hash,created_at) VALUES(?,?,?,?,?)",
+        )
+        .run(owner, requestKey.toLowerCase(), id, payloadHash, now);
     return this.character(id)!;
   }
   generationBudget(
@@ -140,6 +180,54 @@ export class CreatorDatabase {
     return this.db
       .prepare("SELECT * FROM characters WHERE id=?")
       .get(id) as unknown as StoredCharacter | undefined;
+  }
+  characterByRequestKey(owner: string, requestKey: string) {
+    return this.db
+      .prepare(
+        "SELECT * FROM characters WHERE owner_id=? AND request_key=? COLLATE NOCASE",
+      )
+      .get(owner, requestKey) as unknown as StoredCharacter | undefined;
+  }
+  creationReceipt(owner: string, requestKey: string) {
+    return this.db
+      .prepare(
+        "SELECT * FROM creation_requests WHERE owner_id=? AND request_key=?",
+      )
+      .get(owner, requestKey) as unknown as CreationReceipt | undefined;
+  }
+  bindCreationFingerprint(
+    owner: string,
+    requestKey: string,
+    payloadHash: string,
+  ) {
+    this.db
+      .prepare(
+        "UPDATE creation_requests SET payload_hash=? WHERE owner_id=? AND request_key=? AND payload_hash IS NULL",
+      )
+      .run(payloadHash, owner, requestKey);
+  }
+  discardCreationRequest(
+    owner: string,
+    requestKey: string,
+    globalLimit: number,
+    userLimit: number,
+  ) {
+    if (this.creationReceipt(owner, requestKey)) return true;
+    const counts = this.db
+      .prepare(
+        "SELECT COUNT(*) AS total,COALESCE(SUM(owner_id=?),0) AS owned FROM creation_requests WHERE character_id IS NULL AND created_at>?",
+      )
+      .get(owner, Date.now() - 24 * 60 * 60 * 1000) as {
+      total: number;
+      owned: number;
+    };
+    if (counts.total >= globalLimit || counts.owned >= userLimit) return false;
+    this.db
+      .prepare(
+        "INSERT INTO creation_requests(owner_id,request_key,created_at) VALUES(?,?,?)",
+      )
+      .run(owner, requestKey.toLowerCase(), Date.now());
+    return true;
   }
   owned(owner: string) {
     return this.db
@@ -200,6 +288,7 @@ export class CreatorDatabase {
   view(row: StoredCharacter): CreatorCharacter {
     return {
       id: row.id,
+      ...(row.request_key ? { requestKey: row.request_key } : {}),
       input: JSON.parse(row.input),
       status: row.status,
       progress: row.progress,

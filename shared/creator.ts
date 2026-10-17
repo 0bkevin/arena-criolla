@@ -51,6 +51,7 @@ export interface CommunityCharacter {
 }
 export interface CreatorCharacter {
   id: string;
+  requestKey?: string;
   input: CharacterInput;
   status: CreationStatus;
   progress: number;

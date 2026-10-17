@@ -97,7 +97,11 @@ async function setup(
       user: (await response.json()).user,
     };
   };
-  const upload = async (cookie: string, style = "agile") => {
+  const upload = async (
+    cookie: string,
+    style = "agile",
+    requestKey?: string,
+  ) => {
     const body = new FormData();
     body.set("name", "Pana Azul");
     body.set("description", "Soy diseñador y fan de las arepas.");
@@ -113,7 +117,15 @@ async function setup(
       new Blob([new Uint8Array(photo)], { type: "image/jpeg" }),
       "photo.jpg",
     );
-    return request("/api/creator/characters", { method: "POST", body }, cookie);
+    return request(
+      "/api/creator/characters",
+      {
+        method: "POST",
+        body,
+        headers: requestKey ? { "Idempotency-Key": requestKey } : {},
+      },
+      cookie,
+    );
   };
   const ready = async (cookie: string, id: string) => {
     const until = Date.now() + 6000;
@@ -370,6 +382,76 @@ test("sessions and published characters survive a server restart", async () => {
   } finally {
     unregisterCommunityCharacter(id);
     await second.server.close();
+  }
+});
+
+test("returning to a submitted creation recovers the same job without another model request, including after restart", async () => {
+  let release!: () => void;
+  let started!: () => void;
+  let drawings = 0;
+  const drawing = new Promise<void>((resolve) => {
+    started = resolve;
+  });
+  const gate = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  const first = await setup({
+    design: async () => design,
+    draw: async () => {
+      drawings++;
+      started();
+      await gate;
+      return fixtureAtlas();
+    },
+  });
+  let second: Awaited<ReturnType<typeof setup>> | undefined;
+  try {
+    const account = await first.signup();
+    const key = "b18b1352-0163-4a0d-8099-7eb7bcc9bf24";
+    const created = await first.upload(account.cookie, "agile", key);
+    assert.equal(created.status, 202);
+    const id = (await created.json()).character.id;
+    await drawing;
+    const recovered = await first.upload(account.cookie, "agile", key);
+    assert.equal(recovered.status, 202);
+    assert.equal((await recovered.json()).character.id, id);
+    const mine = await (
+      await first.request("/api/creator/characters", {}, account.cookie)
+    ).json();
+    assert.equal(mine.characters.length, 1);
+    assert.equal(mine.characters[0].requestKey, key);
+    const other = await first.signup("Otro", "other-recovery@example.test");
+    const wrongOwner = await first.request(
+      "/api/creator/characters",
+      {
+        method: "POST",
+        headers: { "Idempotency-Key": key },
+      },
+      other.cookie,
+    );
+    assert.equal(wrongOwner.status, 400);
+    assert.equal(first.server.creator.db.owned(other.user.id).length, 0);
+    const invalidKey = await first.upload(
+      account.cookie,
+      "agile",
+      "not-a-uuid",
+    );
+    assert.equal(invalidKey.status, 400);
+    assert.equal(drawings, 1);
+    release();
+    assert.equal((await first.ready(account.cookie, id)).status, "ready");
+    await first.server.close();
+    second = await setup(null, first.folder);
+    const replayed = await second.upload(account.cookie, "agile", key);
+    assert.equal(replayed.status, 200);
+    const restored = (await replayed.json()).character;
+    assert.equal(restored.id, id);
+    assert.equal(restored.status, "ready");
+    assert.equal(drawings, 1);
+  } finally {
+    release();
+    await first.server.close();
+    await second?.server.close();
   }
 });
 
