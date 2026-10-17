@@ -4,8 +4,10 @@ import {
   arenaBounds,
   arenaCanvasSize,
   sceneryCover,
+  sceneryTiles,
 } from "../src/game/viewport";
 import { WORLD } from "../shared/engine";
+import { ARENA_VIEW } from "../shared/arena";
 import { STAGES, platformsAtTick } from "../shared/content";
 
 test("immersive landscape viewports retain the complete arena with uniform fighter scale", () => {
@@ -23,9 +25,9 @@ test("immersive landscape viewports retain the complete arena with uniform fight
       Math.abs(width / size.width - height / size.height) < 0.001,
       "sprites must not stretch",
     );
-    assert.ok(bounds.x <= 0 && bounds.y <= 0);
-    assert.ok(bounds.x + bounds.width >= WORLD.width);
-    assert.ok(bounds.y + bounds.height >= WORLD.height);
+    assert.ok(bounds.x <= WORLD.x && bounds.y <= WORLD.y);
+    assert.ok(bounds.x + bounds.width >= WORLD.x + WORLD.width);
+    assert.ok(bounds.y + bounds.height >= WORLD.y + WORLD.height);
     for (const stage of STAGES)
       for (const platform of platformsAtTick(stage.id, 100)) {
         assert.ok(
@@ -56,7 +58,7 @@ test("scenery covers the entire expanded viewport without gaps or distortion", (
   }
 });
 
-test("desktop and the portrait orientation gate retain the original canvas size", () => {
+test("desktop and the portrait orientation gate retain the complete world size", () => {
   for (const [width, height, immersive] of [
     [1920, 1080, false],
     [390, 844, true],
@@ -64,7 +66,56 @@ test("desktop and the portrait orientation gate retain the original canvas size"
     [Infinity, 390, true],
   ] as const)
     assert.deepEqual(arenaCanvasSize(width, height, immersive), {
-      width: WORLD.width,
-      height: WORLD.height,
+      width: ARENA_VIEW.width,
+      height: ARENA_VIEW.height,
     });
+});
+
+test("mirrored scenery covers recovery and resized views without gaps or changing scale", () => {
+  for (const source of [
+    [1080, 640],
+    [540, 320],
+  ]) {
+    const cover = sceneryCover(
+      ...(source as [number, number]),
+      arenaBounds(WORLD.width, WORLD.height),
+    );
+    for (const bounds of [
+      { x: -275, y: -141, width: 1455, height: 808 },
+      { x: -195, y: -141, width: 1455, height: 808 },
+      { x: -1000, y: -800, width: 3100, height: 2500 },
+    ]) {
+      const tiles = sceneryTiles(cover, bounds);
+      for (const tile of tiles) {
+        assert.equal(tile.width, cover.width);
+        assert.equal(tile.height, cover.height);
+      }
+      for (let row = 0; row <= 20; row++) {
+        for (let column = 0; column <= 20; column++) {
+          const x = bounds.x + (bounds.width * column) / 20;
+          const y = bounds.y + (bounds.height * row) / 20;
+          assert.ok(
+            tiles.some(
+              (tile) =>
+                x >= tile.x &&
+                x <= tile.x + tile.width &&
+                y >= tile.y &&
+                y <= tile.y + tile.height,
+            ),
+          );
+        }
+      }
+      // Adjacent mirrored copies meet at the same source edge in both axes.
+      for (const tile of tiles) {
+        const right = tiles.find(
+          (next) => next.x === tile.x + tile.width && next.y === tile.y,
+        );
+        const below = tiles.find(
+          (next) => next.y === tile.y + tile.height && next.x === tile.x,
+        );
+        if (right) assert.notEqual(tile.mirrorX, right.mirrorX);
+        if (below) assert.notEqual(tile.mirrorY, below.mirrorY);
+      }
+    }
+  }
 });

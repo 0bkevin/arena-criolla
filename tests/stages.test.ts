@@ -4,6 +4,7 @@ import { stat, readFile } from "node:fs/promises";
 import { STAGES, platformsAtTick, type StageId } from "../shared/content";
 import {
   createMatch,
+  cpuInput,
   emptyInput,
   stepMatch,
   WORLD,
@@ -33,6 +34,94 @@ function rider(stage: StageId) {
   const inputs: [Input, Input] = [emptyInput(), emptyInput()];
   return { state, inputs, p, index };
 }
+
+test("every stage supports fighters at both ends of the compact floor", () => {
+  assert.ok(WORLD.right - WORLD.left > 940);
+  assert.ok(WORLD.right - WORLD.left <= 1100);
+  for (const stage of STAGES) {
+    const state = createMatch(stage.id, [
+      { name: "Left", fighter: "zavarce", wins: 0 },
+      { name: "Right", fighter: "javier", wins: 0 },
+    ]);
+    state.phase = "playing";
+    state.players[0].x = WORLD.left + 30;
+    state.players[1].x = WORLD.right - 30;
+    const inputs: [Input, Input] = [emptyInput(), emptyInput()];
+    for (let tick = 0; tick < 120; tick++) stepMatch(state, inputs);
+    for (const player of state.players) {
+      assert.equal(player.stocks, 2, stage.id);
+      assert.equal(player.y, WORLD.floor, stage.id);
+      assert.equal(player.grounded, true, stage.id);
+    }
+    state.players[0].x = WORLD.x - 121;
+    stepMatch(state, inputs);
+    assert.equal(state.players[0].stocks, 1, stage.id);
+    state.players[1].x = WORLD.x + WORLD.width + 121;
+    stepMatch(state, inputs);
+    assert.equal(state.players[1].stocks, 1, stage.id);
+  }
+});
+
+test("CPU recognizes the expanded safe floor and still recovers at its new edges", () => {
+  const state = createMatch("poliedro", [
+    { name: "A", fighter: "zavarce", wins: 0 },
+    { name: "CPU", fighter: "javier", wins: 0 },
+  ]);
+  state.phase = "playing";
+  state.tick = 34;
+  for (const x of [WORLD.left + 60, WORLD.right - 60]) {
+    state.players[1].x = x;
+    const input = cpuInput(state, emptyInput(), "normal");
+    assert.equal(input.actions.jump, 0, "safe added floor is not an edge");
+  }
+  for (const x of [WORLD.left + 10, WORLD.right - 10]) {
+    state.players[1].x = x;
+    const input = cpuInput(state, emptyInput(), "normal");
+    assert.equal(
+      input.actions.jump,
+      1,
+      "CPU must still recover at the real edge",
+    );
+  }
+});
+
+test("all platform motion stays within the enlarged floor throughout its cycle", () => {
+  for (const stage of STAGES) {
+    for (let tick = 0; tick <= 1200; tick += 5) {
+      for (const platform of platformsAtTick(stage.id, tick)) {
+        assert.ok(platform.x >= WORLD.left, stage.id);
+        assert.ok(platform.x + platform.width <= WORLD.right, stage.id);
+        assert.ok(platform.y < WORLD.floor, stage.id);
+      }
+    }
+  }
+});
+
+test("projectiles can travel through the additional room on either side", () => {
+  for (const [x, vx] of [
+    [-60, -5],
+    [1140, 5],
+  ]) {
+    const state = createMatch("poliedro", [
+      { name: "A", fighter: "vallenilla", wins: 0 },
+      { name: "B", fighter: "javier", wins: 0 },
+    ]);
+    state.phase = "playing";
+    state.projectiles.push({
+      id: 1,
+      owner: 0,
+      x,
+      y: 250,
+      vx,
+      life: 60,
+      kind: "installments",
+      damage: 1,
+    });
+    stepMatch(state, [emptyInput(), emptyInput()]);
+    assert.equal(state.projectiles.length, 1);
+    assert.equal(state.projectiles[0].x, x + vx);
+  }
+});
 test("a horizontal gondola carries a fighter without sliding or falling", () => {
   const { state, inputs, p, index } = rider("merida");
   const startX = p.x;

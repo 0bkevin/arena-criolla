@@ -135,6 +135,8 @@ test("Lele intro consumes actions and stays still until the shared timeline comp
 
 function cpuFight() {
   const r = setup(0, 420, 3); let cpu = emptyInput(); const started = new Set<string>(), landed = new Set<string>();
+  // Exercise the special explicitly; later AI choices depend on arena geometry.
+  r.inputs[0].actions.special++;
   for (let n = 0; n < 6200 && r.state.phase !== "finished"; n++) {
     const dx = r.rival.x - r.player.x; r.inputs[0].left = n >= 180 && dx < -85; r.inputs[0].right = n >= 180 && dx > 85;
     r.inputs[0].block = n >= 180 && r.rival.attack === "heavy" && Math.abs(dx) < 190 && r.state.tick % 100 < 30;
@@ -142,7 +144,7 @@ function cpuFight() {
       const action = Math.abs(dx) < 230 && r.player.energy >= 75 ? "super" : Math.abs(dx) > 170 && Math.abs(dx) < 340 && r.player.energy >= 25 ? "special" : Math.abs(dx) < 145 ? (r.state.tick % 3 ? "light" : "heavy") : null;
       if (action) r.inputs[0].actions[action]++;
     }
-    if ((r.rival.y < r.player.y - 60 || r.player.x < 120 || r.player.x > 960) && r.player.jumps < 2 && r.state.tick % 34 === 0) r.inputs[0].actions.jump++;
+    if ((r.rival.y < r.player.y - 60 || r.player.x < WORLD.left + 50 || r.player.x > WORLD.right - 50) && r.player.jumps < 2 && r.state.tick % 34 === 0) r.inputs[0].actions.jump++;
     cpu = cpuInput(r.state, cpu, "normal"); r.inputs[1] = cpu; r.advance(1);
     if (r.player.attack) started.add(r.player.attack); for (const e of r.state.effects) if (e.kind === "hit" && e.owner === 0) landed.add(e.impact!);
     for (const p of r.state.players) assert.ok(Number.isFinite(p.x) && Number.isFinite(p.y) && p.hp >= 0 && p.hp <= 100);

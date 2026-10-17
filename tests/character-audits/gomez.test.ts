@@ -170,6 +170,8 @@ test("Gómez completes a full hard CPU bout with finite physics and actual hits"
   for (const side of [0, 1] as const) {
     const { state } = setup(side, 3, 420);
     let inputs: [Input, Input] = [emptyInput(), emptyInput()];
+    // Exercise the special explicitly before the geometry-dependent CPU exchange.
+    inputs[side].actions.special++;
     const attacks = [new Set<string>(), new Set<string>()];
     let frames = 0;
     while (state.phase === "playing" && frames < 5600) {
@@ -180,7 +182,7 @@ test("Gómez completes a full hard CPU bout with finite physics and actual hits"
         const action = actor.energy >= 75 && state.tick % 180 < 20 ? "super" : actor.energy >= 25 && state.tick % 100 < 25 ? "special" : state.tick % 3 ? "light" : "heavy";
         next.actions[action]++;
       }
-      if ((target.y < actor.y - 70 || actor.x < 100 || actor.x > 980) && actor.jumps < 2 && state.tick % 34 === 0) next.actions.jump++;
+      if ((target.y < actor.y - 70 || actor.x < WORLD.left + 30 || actor.x > WORLD.right - 30) && actor.jumps < 2 && state.tick % 34 === 0) next.actions.jump++;
       inputs = [next, cpuInput(state, inputs[1], "hard")];
       stepMatch(state, inputs); frames++;
       state.players.forEach((p, index) => { if (p.attack) attacks[index].add(p.attack); assert.ok(Number.isFinite(p.x) && Number.isFinite(p.y)); assert.ok(p.hp >= 0 && p.hp <= 100); });

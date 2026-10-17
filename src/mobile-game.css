@@ -29,7 +29,7 @@
   display: none;
 }
 #root:fullscreen .game-page:not(.is-touch):not(.is-intro) {
-  max-width: min(calc(100vw - 32px), calc((100dvh - 150px) * 1.6875));
+  max-width: min(calc(100vw - 32px), calc((100dvh - 150px) * 1.8));
   margin: 0 auto;
 }
 html:has(.game-page.is-touch),
