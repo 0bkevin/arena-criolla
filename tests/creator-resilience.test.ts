@@ -25,11 +25,11 @@ const design = {
     string,
   ],
 };
-async function atlas() {
+async function atlas(crossing = false) {
   const shapes = Array.from(
     { length: 8 },
     (_, i) =>
-      `<rect x="${(i % 4) * 384 + 140}" y="${Math.floor(i / 4) * 512 + 50}" width="100" height="400" rx="20" fill="#669bff"/>`,
+      `<rect x="${crossing && i === 3 ? 1150 : (i % 4) * 384 + 140}" y="${Math.floor(i / 4) * 512 + 50}" width="${100 + i * 2}" height="400" rx="20" fill="#669bff"/>`,
   ).join("");
   return sharp(
     Buffer.from(
@@ -109,6 +109,43 @@ async function create(fixture: Awaited<ReturnType<typeof setup>>) {
   }
   return character.id as string;
 }
+
+test("the visitor pipeline recovers a complete silhouette crossing a grid line without another image request", async () => {
+  const image = await atlas(true);
+  let draws = 0;
+  const f = await setup({
+    design: async () => design,
+    draw: async () => {
+      draws++;
+      return image;
+    },
+  });
+  try {
+    const id = await create(f);
+    const row = f.server.creator.db.character(id)!;
+    assert.equal(row.status, "ready");
+    assert.equal(draws, 1);
+    assert.deepEqual(
+      await readFile(row.source_path!),
+      image,
+      "The original generated response remains cached.",
+    );
+    const audit = JSON.parse(
+      await readFile(
+        path.join(f.folder, "characters", id, "normalization.json"),
+        "utf8",
+      ),
+    );
+    assert.equal(audit.frames[3].minX, 1150);
+    assert.equal(audit.frames.length, 8);
+    assert.equal(
+      (await f.request(`/api/community/assets/${id}/sprite.webp`)).status,
+      200,
+    );
+  } finally {
+    await f.close();
+  }
+});
 
 test("generation budget is atomic and survives deletion and database reopen", async () => {
   const folder = await mkdtemp(path.join(os.tmpdir(), "arena-budget-v31-"));

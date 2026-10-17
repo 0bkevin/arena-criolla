@@ -87,7 +87,7 @@ async function fixtureAtlas() {
   for (let n = 0; n < 8; n++) {
     const x = (n % 4) * 384 + 192;
     const y = Math.floor(n / 4) * 512;
-    shapes += `<g fill="#6084b8"><circle cx="${x}" cy="${y + 92}" r="35"/><rect x="${x - 36}" y="${y + 115}" width="72" height="220"/><rect x="${x - 55}" y="${y + 145}" width="110" height="30"/><rect x="${x - 36}" y="${y + 325}" width="26" height="100"/><rect x="${x + 10}" y="${y + 325}" width="26" height="100"/></g>`;
+    shapes += `<g fill="#6084b8"><circle cx="${x}" cy="${y + 92}" r="35"/><rect x="${x - 36}" y="${y + 115}" width="72" height="220"/><rect x="${x - 55}" y="${y + 145}" width="${110 + n * 2}" height="30"/><rect x="${x - 36}" y="${y + 325}" width="26" height="100"/><rect x="${x + 10}" y="${y + 325}" width="26" height="100"/></g>`;
   }
   return sharp(
     Buffer.from(
@@ -681,7 +681,7 @@ test("a provider result arriving after the job deadline cannot save or advance t
     concurrency: 1,
     capacity: 2,
     uploads: 1,
-    jobTimeoutMs: 40,
+    jobTimeoutMs: 250,
     uploadTimeoutMs: 3_000,
     dailyAttempts: 10,
     dailyUserAttempts: 4,
@@ -691,7 +691,23 @@ test("a provider result arriving after the job deadline cannot save or advance t
     const created = await upload(fixture.base, cookie, await photo());
     assert.equal(created.status, 202);
     const id = (await created.json()).character.id as string;
-    await drawStarted;
+    let startupTimeout: ReturnType<typeof setTimeout> | undefined;
+    try {
+      await Promise.race([
+        drawStarted,
+        new Promise<never>((_resolve, reject) => {
+          startupTimeout = setTimeout(
+            () =>
+              reject(
+                new Error("Drawing did not start before the test deadline."),
+              ),
+            1_000,
+          );
+        }),
+      ]);
+    } finally {
+      clearTimeout(startupTimeout);
+    }
     const until = Date.now() + 1_000;
     while (
       fixture.server.creator.db.character(id)?.status !== "failed" &&

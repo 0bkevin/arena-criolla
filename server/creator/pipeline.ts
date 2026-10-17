@@ -20,6 +20,7 @@ import type {
 import { INTRO_TOTAL_TICKS, presentationById } from "../../shared/presentation";
 import { REST } from "../../shared/choreography";
 import { packCharacterSprites, SpriteValidationError } from "./sprites";
+import { normalizeGeneratedAtlas } from "./normalize-atlas";
 import { abortable } from "./worker";
 import {
   DesignSchema,
@@ -256,11 +257,29 @@ export function buildCreatorGraph(
       });
       let geometry: SpriteGeometry;
       try {
-        geometry = await packCharacterSprites(
-          await readFile(state.source),
-          path.join(dataDir, "characters", state.id),
-          config.signal,
-        );
+        const source = await readFile(state.source);
+        const folder = path.join(dataDir, "characters", state.id);
+        try {
+          geometry = await packCharacterSprites(source, folder, config.signal);
+        } catch (error) {
+          config.signal?.throwIfAborted();
+          if (!(error instanceof SpriteValidationError)) throw error;
+          // Recover complete, disjoint figures that cross only internal tile
+          // lines. Missing, merged and canvas-cropped silhouettes still fail.
+          const normalized = await normalizeGeneratedAtlas(
+            source,
+            config.signal,
+          );
+          geometry = await packCharacterSprites(
+            normalized.png,
+            folder,
+            config.signal,
+          );
+          await writeFile(
+            path.join(folder, "normalization.json"),
+            JSON.stringify(normalized.audit, null, 2) + "\n",
+          );
+        }
       } catch (error) {
         config.signal?.throwIfAborted();
         if (error instanceof SpriteValidationError)

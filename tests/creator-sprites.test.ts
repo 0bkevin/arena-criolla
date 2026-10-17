@@ -34,7 +34,7 @@ async function atlas(
     if (n !== options.missing) {
       const x = (n % 4) * 384 + (n === options.clipped ? 0 : 140),
         y = Math.floor(n / 4) * 512 + 40;
-      shapes += `<rect x="${x}" y="${y}" width="100" height="400" rx="25" fill="#6483ac"/>`;
+      shapes += `<rect x="${x}" y="${y}" width="${100 + n * 2}" height="400" rx="25" fill="#6483ac"/>`;
     }
   return sharp(
     Buffer.from(

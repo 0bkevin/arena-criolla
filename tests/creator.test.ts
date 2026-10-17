@@ -27,7 +27,7 @@ async function fixtureAtlas() {
   for (let n = 0; n < 8; n++) {
     const x = (n % 4) * 384 + 192,
       y = Math.floor(n / 4) * 512;
-    shapes += `<g fill="#6084b8"><circle cx="${x}" cy="${y + 92}" r="35"/><rect x="${x - 36}" y="${y + 115}" width="72" height="220"/><rect x="${x - 55}" y="${y + 145}" width="110" height="30"/><rect x="${x - 36}" y="${y + 325}" width="26" height="100"/><rect x="${x + 10}" y="${y + 325}" width="26" height="100"/></g>`;
+    shapes += `<g fill="#6084b8"><circle cx="${x}" cy="${y + 92}" r="35"/><rect x="${x - 36}" y="${y + 115}" width="72" height="220"/><rect x="${x - 55}" y="${y + 145}" width="${110 + n * 2}" height="30"/><rect x="${x - 36}" y="${y + 325}" width="26" height="100"/><rect x="${x + 10}" y="${y + 325}" width="26" height="100"/></g>`;
   }
   return sharp(
     Buffer.from(
