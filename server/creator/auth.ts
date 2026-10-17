@@ -19,7 +19,7 @@ export async function verifyPassword(password: string, encoded: string) {
     actual.length === reference.length && timingSafeEqual(actual, reference)
   );
 }
-export function sessionToken(req: Request) {
+export function sessionToken(req: Pick<Request, "headers">) {
   const value = req.headers.cookie
     ?.split(";")
     .map((x) => x.trim())
@@ -29,7 +29,10 @@ export function sessionToken(req: Request) {
 }
 export const tokenHash = (token: string) =>
   createHash("sha256").update(token).digest("hex");
-export function currentUser(req: Request, db: CreatorDatabase) {
+export function currentUser(
+  req: Pick<Request, "headers">,
+  db: CreatorDatabase,
+) {
   const token = sessionToken(req);
   return token ? db.session(tokenHash(token)) : undefined;
 }

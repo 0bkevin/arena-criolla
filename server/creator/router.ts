@@ -50,6 +50,7 @@ export interface CreatorOptions {
   provider?: CharacterProvider | null;
   secureCookies?: boolean;
   onCatalogChange?: (characters: CommunityCharacter[]) => void;
+  onSessionEnd?: (hash: string) => void;
   limits?: Partial<CreatorLimits>;
 }
 
@@ -335,7 +336,11 @@ export function makeCreatorService(options: CreatorOptions = {}) {
   });
   router.post("/auth/signout", (req, res) => {
     const token = sessionToken(req);
-    if (token) db.deleteSession(tokenHash(token));
+    if (token) {
+      const hash = tokenHash(token);
+      db.deleteSession(hash);
+      options.onSessionEnd?.(hash);
+    }
     clearSession(res, secure);
     res.json({ ok: true });
   });
