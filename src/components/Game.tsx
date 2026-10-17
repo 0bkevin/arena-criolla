@@ -41,7 +41,10 @@ import {
   stopAmbience,
   setAmbiencePaused,
   setSoundView,
+  syncVictoryMusic,
+  stopVictoryMusic,
 } from "../audio";
+import { victoryById, VICTORY_DURATION_MS } from "../game/victory";
 import { Portrait } from "./Portrait";
 import { TouchControls } from "./TouchControls";
 import { enterLandscape, hasTouchInput, leaveLandscape } from "../game/mobile";
@@ -94,6 +97,7 @@ export function Game(props: Props) {
   const [assets, setAssets] = useState<Assets | null>(null);
   const [assetError, setAssetError] = useState("");
   const [view, setView] = useState(initial);
+  const [resultReady, setResultReady] = useState(false);
   const [fullscreenError, setFullscreenError] = useState("");
   useEffect(() => {
     const element = canvas.current,
@@ -217,6 +221,7 @@ export function Game(props: Props) {
         return;
       if (down && document.querySelector("dialog[open]")) return;
       if (down && blockedRef.current) return;
+      if (introView.current.phase === "finished") return;
       if (event.code === "Escape" && down && !event.repeat) {
         setPaused((value) => {
           pausedRef.current = !value;
@@ -252,7 +257,7 @@ export function Game(props: Props) {
     const keyUp = (event: KeyboardEvent) => handler(event, false);
     const blur = () => {
       release();
-      if (mode !== "online") {
+      if (mode !== "online" && introView.current.phase !== "finished") {
         pausedRef.current = true;
         setPaused(true);
       }
@@ -286,6 +291,9 @@ export function Game(props: Props) {
     let lastSend = 0;
     let lastEffect = -1;
     let camera: ArenaCamera | undefined;
+    let victoryElapsed = 0;
+    let victoryStarted = false;
+    let finaleComplete = false;
     const playedIntroductions = new Set<number>();
     let lastCountdown = -1;
     const motionPreference = window.matchMedia(
@@ -313,7 +321,7 @@ export function Game(props: Props) {
         gamepads.update(inputs.current, mode === "local" ? 2 : 1);
       if (mode === "online") {
         if (remote?.current?.id === initial.id) state = remote.current;
-        if (now - lastSend > 45) {
+        if (state.phase !== "finished" && now - lastSend > 45) {
           callbacks.current.onInput?.(inputs.current[0]);
           lastSend = now;
         }
@@ -327,6 +335,31 @@ export function Game(props: Props) {
         }
       }
       syncAmbiencePause(state.phase);
+      if (state.phase === "finished") {
+        if (!victoryStarted) {
+          victoryStarted = true;
+          releaseInputs();
+          stopReactions();
+          pausedRef.current = false;
+          setPaused(false);
+        } else if (!quiet) {
+          victoryElapsed = Math.min(
+            VICTORY_DURATION_MS,
+            victoryElapsed + elapsed,
+          );
+        }
+        syncVictoryMusic(
+          typeof state.winner === "number"
+            ? state.players[state.winner].config.fighter
+            : "draw",
+          victoryElapsed,
+          quiet,
+        );
+        if (victoryElapsed >= VICTORY_DURATION_MS && !finaleComplete) {
+          finaleComplete = true;
+          setResultReady(true);
+        }
+      }
       if (
         state.phase === "intro" &&
         !pausedRef.current &&
@@ -492,14 +525,17 @@ export function Game(props: Props) {
         now,
         motionPreference.matches,
         camera,
+        victoryElapsed,
       );
-      if (now - lastUI > 80 || state.phase === "finished") {
+      if (
+        now - lastUI > 80 ||
+        (state.phase === "finished" && !resultSent.current)
+      ) {
         setView(structuredClone(state));
         lastUI = now;
       }
       if (state.phase === "finished" && !resultSent.current) {
         resultSent.current = true;
-        sound("win");
         callbacks.current.onResult(
           structuredClone(state),
           mode === "online" ? localIndex : 0,
@@ -515,6 +551,7 @@ export function Game(props: Props) {
       cancelAnimationFrame(raf);
       stopReactions();
       stopAmbience();
+      stopVictoryMusic();
     };
   }, [assets, initial.id, mode, difficulty, remote, localIndex]);
   useEffect(() => {
@@ -522,7 +559,10 @@ export function Game(props: Props) {
     if (paused || portraitBlocked) setReactionsPaused(true);
   }, [paused, portraitBlocked, view.phase]);
   useEffect(() => {
-    const visibility = () => syncAmbiencePause();
+    const visibility = () => {
+      syncAmbiencePause();
+      if (document.hidden) stopVictoryMusic();
+    };
     document.addEventListener("visibilitychange", visibility);
     return () => document.removeEventListener("visibilitychange", visibility);
   }, []);
@@ -556,11 +596,13 @@ export function Game(props: Props) {
   const presenting = view.phase === "intro" ? introActor(view.tick) : null;
   const intro = view.phase === "intro";
   const cinematic = intro && presenting !== null;
+  const celebrating = view.phase === "finished" && !resultReady;
 
   return (
     <main
-      className={`game-page page-width${intro ? " is-intro" : ""}${cinematic ? " is-cinematic" : ""}${device.touch ? " is-touch" : ""}${paused ? " is-paused" : ""}${view.phase === "finished" ? " is-finished" : ""}`}
+      className={`game-page page-width${intro ? " is-intro" : ""}${cinematic ? " is-cinematic" : ""}${device.touch ? " is-touch" : ""}${paused ? " is-paused" : ""}${celebrating ? " is-celebrating" : ""}${resultReady ? " is-finished" : ""}`}
       data-phase={view.phase}
+      data-result-ready={resultReady}
     >
       {!intro && (
         <div className="game-topline">
@@ -626,7 +668,7 @@ export function Game(props: Props) {
           height={ARENA_VIEW.height}
           aria-label={`Combate entre ${view.players[0].config.name} y ${view.players[1].config.name} en ${stage.name}`}
         />
-        {!cinematic && (
+        {!cinematic && view.phase !== "finished" && (
           <div className="match-hud">
             {view.players.map((p, i) => {
               const def = fighterById(p.config.fighter);
@@ -677,7 +719,7 @@ export function Game(props: Props) {
             </div>
           </div>
         )}
-        {!cinematic && (
+        {!cinematic && view.phase !== "finished" && (
           <span className="arena-location">
             {stage.location} <span> / </span> {stage.name}
           </span>
@@ -749,7 +791,25 @@ export function Game(props: Props) {
             </div>
           </div>
         )}
-        {view.phase === "finished" && (
+        {celebrating && (
+          <div
+            className="victory-announcement"
+            role="status"
+            aria-live="polite"
+          >
+            <span className="eyebrow">
+              <Trophy size={16} aria-hidden="true" />
+              {winnerDef ? "¡VICTORIA!" : "¡EMPATE!"}
+            </span>
+            <strong>{winnerDef?.name ?? "Quedaron tablas"}</strong>
+            <span className="victory-signature">
+              {winnerDef
+                ? victoryById(winnerDef.id).name
+                : "Una pausa antes de la revancha"}
+            </span>
+          </div>
+        )}
+        {view.phase === "finished" && resultReady && (
           <div className="game-overlay result-overlay">
             <div className="result-card">
               <div className="result-art">

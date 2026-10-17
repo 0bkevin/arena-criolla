@@ -69,7 +69,7 @@ function incoming(x: number, direction = -1): Projectile {
 }
 
 test("sixteen individually researched culture figures have original sprites and distinct specials", () => {
-  assert.equal(FIGHTERS.length, 41);
+  assert.equal(FIGHTERS.length, 46);
   assert.equal(research.fighters.length, 16);
   assert.deepEqual(new Set(research.fighters.map((f) => f.id)), new Set(added));
   for (const id of added) {

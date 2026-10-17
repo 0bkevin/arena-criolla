@@ -1,6 +1,7 @@
 import type { FighterId } from "./content";
 import { PRESENTATIONS } from "./presentation";
 import { DEFAULT_ENTRANCE_FIGHTERS } from "./entrance-actions";
+import { FOUNDER_CHOREOGRAPHIES } from "./founder-choreography";
 
 export interface Gesture {
   at: number;
@@ -97,6 +98,7 @@ function routine(
 // relative to the head centre, after normalizing the original atlas direction.
 // These are theatrical adaptations of public personas, never claimed as real rituals.
 export const CHOREOGRAPHIES: Record<FighterId, Choreography> = {
+  ...FOUNDER_CHOREOGRAPHIES,
   zavarce: routine(
     "Consulta, confirma y señala",
     [

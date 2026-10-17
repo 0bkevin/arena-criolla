@@ -17,7 +17,9 @@ import {
 } from "../../shared/presentation";
 import { drawPresentation } from "./presentation-renderer";
 import { drawIntroCinematic } from "./intro-renderer";
+import { drawVictory } from "./victory-renderer";
 import { drawCultureProjectile, drawCultureSpecial } from "./culture-renderer";
+import { drawFounderProjectile, drawFounderSpecial } from "./founder-renderer";
 import {
   drawFolkloreProjectile,
   drawFolkloreSpecial,
@@ -32,6 +34,7 @@ export function renderMatch(
   time: number,
   reducedMotion = false,
   camera?: ArenaCamera,
+  victoryElapsed = 0,
 ) {
   const { width, height } = ctx.canvas;
   ctx.clearRect(0, 0, width, height);
@@ -57,6 +60,11 @@ export function renderMatch(
   const bg = assets.stages[state.stage];
   const stage = stageById(state.stage);
   drawStage(ctx, stage, bg, state.tick, bounds);
+  if (state.phase === "finished") {
+    ctx.restore();
+    drawVictory(ctx, state, assets, victoryElapsed, reducedMotion);
+    return;
+  }
   for (const projectile of state.projectiles) {
     const color = fighterById(
       state.players[projectile.owner].config.fighter,
@@ -75,6 +83,7 @@ export function renderMatch(
     ctx.strokeStyle = "#ffffff";
     ctx.lineWidth = 2;
     if (
+      drawFounderProjectile(ctx, projectile) ||
       drawCultureProjectile(ctx, projectile) ||
       drawFolkloreProjectile(ctx, projectile)
     ) {
@@ -257,6 +266,7 @@ export function renderMatch(
       ctx.lineWidth = 3;
       ctx.globalAlpha = Math.max(0, 1 - Math.abs(progress) / 18);
       drawFolkloreSpecial(ctx, def.ability, p, state.players[1 - i], progress);
+      drawFounderSpecial(ctx, def.ability, p, state.players[1 - i], progress);
       drawCultureSpecial(
         ctx,
         def.ability,

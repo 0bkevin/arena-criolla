@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fundadores — Arena Criolla</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; color: var(--foreground, #eaf0ff); font: 14px var(--font-sans, system-ui), sans-serif; }
+      .tools { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+      label { color: var(--muted-foreground, #a8b2c6); font-size: 12px; }
+      select, button { border: 1px solid var(--border, #35435a); background: var(--card, #182338); color: inherit; border-radius: 7px; padding: 8px 10px; font: inherit; cursor: pointer; }
+      .grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+      article { grid-column: span 2; min-width: 0; border: 1px solid var(--border, #35435a); border-top: 3px solid var(--color); border-radius: 12px; padding: 16px; background: var(--card, #111b2d); }
+      article:nth-last-child(-n+2) { grid-column: span 3; }
+      canvas { display: block; width: 100%; height: 210px; object-fit: contain; background: radial-gradient(ellipse at 50% 85%, color-mix(in srgb, var(--color) 15%, transparent), transparent 70%); }
+      h2 { margin: 12px 0 5px; font-size: 15px; line-height: 1.25; }
+      .company { color: var(--color); font-size: 12px; font-weight: 700; }
+      .special { margin: 9px 0 12px; color: var(--muted-foreground, #a8b2c6); font-size: 11px; }
+      details { color: var(--muted-foreground, #a8b2c6); font-size: 11px; }
+      summary { cursor: pointer; }
+      a { display: block; color: inherit; margin-top: 7px; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+      footer { margin-top: 12px; color: var(--muted-foreground, #a8b2c6); font-size: 11px; line-height: 1.5; }
+      @media(max-width: 520px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } article, article:nth-last-child(-n+2) { grid-column: auto; } article:last-child { grid-column: span 2; } h2 { font-size: 14px; } }
+    </style>
+  </head>
+  <body>
+    <div class="tools">
+      <label for="pose">Explorar las poses</label>
+      <select id="pose">
+        <option value="0">Listo</option><option value="1">Bloqueo</option>
+        <option value="2">Carrera · 1</option><option value="3">Carrera · 2</option>
+        <option value="4">Salto</option><option value="5">Puño</option>
+        <option value="6">Patada</option><option value="7">Reacción</option>
+      </select>
+      <button id="facing" type="button">Cambiar orientación</button>
+    </div>
+    <div class="grid" id="roster"></div>
+    <footer>Cinco personas, seis empresas: Juan José Pocaterra representa a Vikua y La Wawa. Ocho poses por personaje, con entradas, especiales y celebraciones propias. Las acciones son ficción del juego.</footer>
+    <script id="character-data" type="application/json">[{"id":"enrique","name":"Enrique Rivas","company":"Fina","color":"#b59bff","special":"Balance en cadena","image":"/assets/enrique-v2.webp","cellWidth":443.5,"bodyHeight":432,"frames":[{"minX":46,"minY":14,"maxX":401,"maxY":446,"pixels":64486},{"minX":491,"minY":17,"maxX":857,"maxY":447,"pixels":64845},{"minX":962,"minY":15,"maxX":1307,"maxY":448,"pixels":67347},{"minX":1373,"minY":20,"maxX":1755,"maxY":447,"pixels":60069},{"minX":76,"minY":446,"maxX":359,"maxY":769,"pixels":54092},{"minX":439,"minY":451,"maxX":872,"maxY":870,"pixels":67907},{"minX":931,"minY":447,"maxX":1395,"maxY":875,"pixels":64474},{"minX":1435,"minY":453,"maxX":1740,"maxY":870,"pixels":64769}],"sources":["https://www.finapartner.com/nuestra-historia/","https://es.linkedin.com/posts/enriquerivasz_venezuelastartupsummit-activity-7252886615197462529-fdwF","https://es.linkedin.com/posts/enriquerivasz_el-otro-d%C3%ADa-estaba-en-un-podcast-y-me-preguntaron-activity-7371731396769533952-zpyC"]},{"id":"jesus","name":"Jesús Castillo","company":"Kontigo","color":"#ff9b54","special":"Transferencia de vuelta","image":"/assets/jesus-v2.webp","cellWidth":443.5,"bodyHeight":427,"frames":[{"minX":46,"minY":12,"maxX":384,"maxY":439,"pixels":55706},{"minX":486,"minY":12,"maxX":827,"maxY":439,"pixels":56695},{"minX":914,"minY":13,"maxX":1275,"maxY":440,"pixels":61472},{"minX":1360,"minY":12,"maxX":1746,"maxY":440,"pixels":55507},{"minX":82,"minY":442,"maxX":355,"maxY":774,"pixels":50556},{"minX":427,"minY":447,"maxX":864,"maxY":868,"pixels":63866},{"minX":923,"minY":443,"maxX":1384,"maxY":871,"pixels":58563},{"minX":1438,"minY":451,"maxX":1730,"maxY":871,"pixels":57598}],"sources":["https://www.kontigo.com/quienes-somos","https://elestimulo.com/elinteres/empresas/2026-04-17/la-ambicion-de-kontigo/","https://elestimulo.com/elinteres/empresas/2026-04-17/la-ambicion-de-kontigo/"]},{"id":"carlos","name":"Carlos García Ottati","company":"Kavak","color":"#76b9ff","special":"Arranque de motor","image":"/assets/carlos-v2.webp","cellWidth":443.5,"bodyHeight":429,"frames":[{"minX":39,"minY":11,"maxX":385,"maxY":440,"pixels":58074},{"minX":486,"minY":10,"maxX":847,"maxY":439,"pixels":60095},{"minX":939,"minY":11,"maxX":1288,"maxY":440,"pixels":64055},{"minX":1382,"minY":11,"maxX":1759,"maxY":438,"pixels":56792},{"minX":80,"minY":441,"maxX":370,"maxY":764,"pixels":53261},{"minX":412,"minY":442,"maxX":866,"maxY":869,"pixels":67041},{"minX":926,"minY":441,"maxX":1374,"maxY":868,"pixels":58769},{"minX":1422,"minY":447,"maxX":1737,"maxY":872,"pixels":62743}],"sources":["https://www.kavak.com/ar/empleos","https://www.bloomberglinea.com/2022/12/16/ceo-de-kavak-regresa-a-dirigir-la-startup-en-mexico-tras-despido-de-country-manager/","https://www.forbes.com/sites/forbesinternational/2022/07/23/how-this-mexico-based-used-car-seller-became-the-most-valuable-startup-in-latin-america/"]},{"id":"victor","name":"Víctor Cárdenas","company":"Slash","color":"#ffab87","special":"Corte de saldo","image":"/assets/victor-v2.webp","cellWidth":443.5,"bodyHeight":427,"frames":[{"minX":48,"minY":12,"maxX":381,"maxY":439,"pixels":55172},{"minX":492,"minY":12,"maxX":834,"maxY":437,"pixels":56285},{"minX":934,"minY":12,"maxX":1281,"maxY":439,"pixels":60422},{"minX":1370,"minY":12,"maxX":1741,"maxY":437,"pixels":53991},{"minX":83,"minY":438,"maxX":355,"maxY":766,"pixels":49395},{"minX":433,"minY":450,"maxX":859,"maxY":867,"pixels":61859},{"minX":925,"minY":441,"maxX":1376,"maxY":872,"pixels":57592},{"minX":1428,"minY":454,"maxX":1730,"maxY":869,"pixels":58052}],"sources":["https://www.slash.com/company/about","https://www.slash.com/products/global-usd","https://www.coindesk.com/business/2025/08/05/u-s-neobank-slash-debuts-stablecoin-with-stripe-s-bridge-for-global-business-payments/"]},{"id":"juan","name":"Juan José Pocaterra","company":"Vikua · La Wawa","color":"#78d7ce","special":"Red de ciudad","image":"/assets/juan-v2.webp","cellWidth":443.5,"bodyHeight":428,"frames":[{"minX":36,"minY":10,"maxX":379,"maxY":438,"pixels":56789},{"minX":490,"minY":10,"maxX":834,"maxY":438,"pixels":57510},{"minX":953,"minY":9,"maxX":1293,"maxY":439,"pixels":61459},{"minX":1381,"minY":9,"maxX":1758,"maxY":437,"pixels":55491},{"minX":74,"minY":439,"maxX":355,"maxY":780,"pixels":55422},{"minX":427,"minY":447,"maxX":868,"maxY":869,"pixels":65451},{"minX":914,"minY":442,"maxX":1374,"maxY":872,"pixels":61627},{"minX":1432,"minY":455,"maxX":1733,"maxY":870,"pixels":60608}],"sources":["https://www.linkedin.com/in/juanpocaterra/","https://noticias.com.ve/ingenio-venezolano/vikua-ciudades-inteligentes-creadas-por-venezolanos/","https://www.linkedin.com/posts/lawawa_mobility-latamtech-culturalshift-activity-7448474913939689473-YByM"]}]</script>
+    <script>
+      const characters = JSON.parse(document.getElementById("character-data").textContent);
+      let facing = 1;
+      const actors = characters.map((character) => {
+        const card = document.createElement("article");
+        card.style.setProperty("--color", character.color);
+        card.innerHTML = `<canvas width="400" height="440" aria-label="Poses de ${character.name}"></canvas><h2>${character.name}</h2><div class="company">${character.company}</div><div class="special">${character.special}</div><details><summary>3 fotos de referencia revisadas</summary>${character.sources.map((source,i) => `<a href="${source}" target="_blank" rel="noreferrer">Fuente de la foto ${i+1} ↗</a>`).join("")}</details>`;
+        document.getElementById("roster").append(card);
+        const image = new Image();
+        const actor = { character, image, canvas: card.querySelector("canvas") };
+        image.onload = () => paint(actor);
+        image.onerror = () => console.error("No se pudo cargar " + character.name);
+        image.src = character.image;
+        return actor;
+      });
+      function paint({ character, image, canvas }) {
+        if (!image.complete || !image.naturalWidth) return;
+        const ctx = canvas.getContext("2d");
+        const index = Number(document.getElementById("pose").value);
+        const frame = character.frames[index];
+        const height = 355;
+        const scale = height / character.bodyHeight;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save();
+        ctx.translate(canvas.width / 2, 412);
+        ctx.scale(facing, 1);
+        ctx.drawImage(image, frame.minX, frame.minY, frame.maxX-frame.minX+1, frame.maxY-frame.minY+1,
+          -(frame.maxX-frame.minX+1)*scale/2,
+          index === 4 ? -height : -(frame.maxY-frame.minY+1)*scale,
+          (frame.maxX-frame.minX+1)*scale, (frame.maxY-frame.minY+1)*scale);
+        ctx.restore();
+      }
+      document.getElementById("pose").onchange = () => actors.forEach(paint);
+      document.getElementById("facing").onclick = () => { facing *= -1; actors.forEach(paint); };
+    </script>
+  </body>
+</html>

@@ -1063,5 +1063,135 @@
     "displayHeight": 154,
     "portraitScale": 0.6,
     "portraitLift": 0.035
+  },
+  {
+    "id": "enrique",
+    "sprite": "enrique-v2",
+    "category": "culture",
+    "name": "Enrique Rivas",
+    "shortName": "Enrique",
+    "title": "El balance de Fina",
+    "role": "CONTROL",
+    "color": "#b59bff",
+    "description": "Cofundador de Fina. Ordena la arena con dos paquetes de balance separados; su chaqueta violeta recuerda la identidad de la plataforma.",
+    "speed": 4.7,
+    "damage": 0.98,
+    "armor": 1,
+    "stats": [
+      3,
+      3,
+      5
+    ],
+    "ability": "ledger",
+    "special": "Balance en cadena",
+    "combos": [
+      "Cuenta clara",
+      "Cierre de caja",
+      "Balance a favor"
+    ]
+  },
+  {
+    "id": "jesus",
+    "sprite": "jesus-v2",
+    "category": "culture",
+    "name": "Jesús Castillo",
+    "shortName": "Jesús",
+    "title": "Kontigo sin fronteras",
+    "role": "CONTROL",
+    "color": "#ff9b54",
+    "description": "Cofundador de Kontigo. Gorra naranja y polo oscuro, como en sus entrevistas. Envía un aro de transferencia que regresa y exige medir el bloqueo.",
+    "speed": 5.2,
+    "damage": 0.95,
+    "armor": 1.01,
+    "stats": [
+      3,
+      4,
+      4
+    ],
+    "ability": "settlement",
+    "special": "Transferencia de vuelta",
+    "combos": [
+      "Saldo disponible",
+      "Cruce de fronteras",
+      "Liquidación total"
+    ]
+  },
+  {
+    "id": "carlos",
+    "sprite": "carlos-v2",
+    "category": "culture",
+    "name": "Carlos García Ottati",
+    "shortName": "Carlos",
+    "title": "El arranque de Kavak",
+    "role": "POTENCIA",
+    "color": "#76b9ff",
+    "description": "Fundador de Kavak. Cabello castaño hacia atrás y chaqueta oscura de taller. Acelera en una embestida corta que termina en un impacto firme.",
+    "speed": 5.1,
+    "damage": 1.03,
+    "armor": 0.98,
+    "stats": [
+      4,
+      4,
+      3
+    ],
+    "ability": "ignition",
+    "special": "Arranque de motor",
+    "combos": [
+      "Primera marcha",
+      "Cambio de velocidad",
+      "Llegada a la meta"
+    ]
+  },
+  {
+    "id": "victor",
+    "sprite": "victor-v2",
+    "category": "culture",
+    "name": "Víctor Cárdenas",
+    "shortName": "Víctor",
+    "title": "La diagonal de Slash",
+    "role": "VELOCIDAD",
+    "color": "#ffab87",
+    "description": "Cofundador de Slash. Camiseta negra y cabello corto, como en sus entrevistas. Acorta la distancia con un paso instantáneo y un corte diagonal de luz.",
+    "speed": 5.6,
+    "damage": 0.94,
+    "armor": 1.03,
+    "stats": [
+      3,
+      5,
+      3
+    ],
+    "ability": "slash",
+    "special": "Corte de saldo",
+    "combos": [
+      "Línea directa",
+      "Cruce diagonal",
+      "Cierre en Slash"
+    ]
+  },
+  {
+    "id": "juan",
+    "sprite": "juan-v2",
+    "category": "culture",
+    "name": "Juan José Pocaterra",
+    "shortName": "Juan José",
+    "title": "Vikua y La Wawa",
+    "role": "CONTROL",
+    "color": "#78d7ce",
+    "description": "Cofundador de Vikua y CEO de La Wawa. Barba corta y camisa azul clara. Conecta los nodos de una ciudad en movimiento: su red frena los pies del rival, y saltar permite evitarla.",
+    "speed": 4.7,
+    "damage": 0.98,
+    "armor": 0.98,
+    "stats": [
+      3,
+      3,
+      5
+    ],
+    "ability": "grid",
+    "special": "Red de ciudad",
+    "combos": [
+      "Primer nodo",
+      "Ruta compartida",
+      "Ciudad en movimiento"
+    ]
   }
 ]

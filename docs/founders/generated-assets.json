@@ -1,0 +1,51 @@
+{
+  "tool": "image_gen.imagegen",
+  "transparentBackground": true,
+  "characters": [
+    {
+      "id": "carlos",
+      "sprite": "carlos-v2",
+      "source": "assets/source/carlos-v2.png",
+      "runtime": "public/assets/carlos-v2.webp",
+      "generationPath": "/home/ubuntu/.codex/generated_images/01a14abb-f445-7580-b5d4-87a42b23590e/exec-951140ca-1469-4558-9990-ae5a590b4420.png",
+      "faceReferences": 3,
+      "notes": "Short current hairstyle correction and contour cleanup."
+    },
+    {
+      "id": "victor",
+      "sprite": "victor-v2",
+      "source": "assets/source/victor-v2.png",
+      "runtime": "public/assets/victor-v2.webp",
+      "generationPath": "/home/ubuntu/.codex/generated_images/01a14abb-f445-7580-b5d4-87a42b23590e/exec-506248e3-8353-4617-aac4-eab19ffb94aa.png",
+      "faceReferences": 3,
+      "notes": "Contour cleanup preserving the original likeness and poses."
+    },
+    {
+      "id": "enrique",
+      "sprite": "enrique-v2",
+      "source": "assets/source/enrique-v2.png",
+      "runtime": "public/assets/enrique-v2.webp",
+      "generationPath": "/home/ubuntu/.codex/generated_images/01a14abb-f445-7580-b5d4-87a42b23590e/exec-0a77bfb8-2fea-4087-8aca-032634d2b09e.png",
+      "faceReferences": 3,
+      "notes": "Contour cleanup preserving the original likeness and poses."
+    },
+    {
+      "id": "jesus",
+      "sprite": "jesus-v2",
+      "source": "assets/source/jesus-v2.png",
+      "runtime": "public/assets/jesus-v2.webp",
+      "generationPath": "/home/ubuntu/.codex/generated_images/01a14abb-f445-7580-b5d4-87a42b23590e/exec-613cf523-af2f-4ceb-884a-4735e756c4c7.png",
+      "faceReferences": 3,
+      "notes": "Contour cleanup preserving the original likeness and poses."
+    },
+    {
+      "id": "juan",
+      "sprite": "juan-v2",
+      "source": "assets/source/juan-v2.png",
+      "runtime": "public/assets/juan-v2.webp",
+      "generationPath": "/home/ubuntu/.codex/generated_images/01a14abb-f445-7580-b5d4-87a42b23590e/exec-87426eb2-cb56-4ca1-8087-61c522f238ba.png",
+      "faceReferences": 3,
+      "notes": "Contour cleanup preserving the original likeness and poses."
+    }
+  ]
+}

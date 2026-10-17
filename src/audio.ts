@@ -4,6 +4,8 @@ import { CULTURE_SOUNDS } from "./game/culture-sounds";
 import { presentationById } from "../shared/presentation";
 import { WORLD } from "../shared/arena";
 import { MUSIC_SECONDS, writeArcadeMusic } from "./game/arcade-music";
+import { VICTORY_DURATION_MS } from "./game/victory-types";
+import { writeVictoryMusic } from "./game/victory-music";
 
 type SoundKind =
   | "select"
@@ -29,6 +31,10 @@ let effectsBus: GainNode | null = null;
 let reactionsBus: GainNode | null = null;
 let musicBus: GainNode | null = null;
 let musicBuffer: AudioBuffer | null = null;
+let victoryBuffer: { fighter: FighterId | "draw"; buffer: AudioBuffer } | null =
+  null;
+let victorySource: AudioBufferSourceNode | null = null;
+let victoryGain: GainNode | null = null;
 const MUSIC_GAIN = 0.12;
 let enabled = true;
 let reactionsPaused = false;
@@ -68,8 +74,10 @@ export function setReactionsPaused(paused: boolean) {
 }
 export function setSound(value: boolean) {
   enabled = value;
-  if (!value) stopReactions();
-  else if (context || ambienceStage) {
+  if (!value) {
+    stopReactions();
+    stopVictoryMusic();
+  } else if (context || ambienceStage) {
     initAudio();
     if (ambienceStage) startAmbience(ambienceStage);
   }
@@ -131,6 +139,52 @@ export function stopAmbience() {
   activeAmbienceStage = null;
   ambienceStage = null;
   soundView = { left: WORLD.left, right: WORLD.right };
+}
+
+export function stopVictoryMusic() {
+  if (victorySource) {
+    victorySource.stop();
+    victorySource.disconnect();
+    victorySource = null;
+  }
+  victoryGain?.disconnect();
+  victoryGain = null;
+}
+
+/** Resume from the cinematic clock after mute, a dialog or a hidden tab. */
+export function syncVictoryMusic(
+  fighter: FighterId | "draw",
+  elapsedMs: number,
+  paused: boolean,
+) {
+  if (paused || !enabled || elapsedMs >= VICTORY_DURATION_MS) {
+    stopVictoryMusic();
+    return;
+  }
+  if (victorySource) return;
+  initAudio();
+  if (!context || !musicBus || context.state !== "running") return;
+  if (victoryBuffer?.fighter !== fighter) {
+    const buffer = context.createBuffer(
+      2,
+      Math.ceil((context.sampleRate * VICTORY_DURATION_MS) / 1000),
+      context.sampleRate,
+    );
+    writeVictoryMusic(
+      buffer.getChannelData(0),
+      buffer.getChannelData(1),
+      context.sampleRate,
+      fighter,
+    );
+    victoryBuffer = { fighter, buffer };
+  }
+  victorySource = context.createBufferSource();
+  victorySource.buffer = victoryBuffer.buffer;
+  victoryGain = context.createGain();
+  victoryGain.gain.value = 2.8;
+  victorySource.connect(victoryGain);
+  victoryGain.connect(musicBus);
+  victorySource.start(0, Math.max(0, elapsedMs / 1000));
 }
 export function setAmbiencePaused(paused: boolean) {
   if (ambiencePaused === paused) return;

@@ -1995,6 +1995,35 @@ kbd {
   height: 100%;
   object-fit: contain;
 }
+.victory-announcement {
+  position: absolute;
+  inset: 8% 4% auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(5px, 1.2vw, 12px);
+  text-align: center;
+  pointer-events: none;
+  color: #f8f3df;
+  text-shadow: 0 2px 12px #050b1e;
+}
+.victory-announcement .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffe29a;
+  font-size: clamp(10px, 1.4vw, 17px);
+  letter-spacing: 0.24em;
+}
+.victory-announcement > strong {
+  font-family: var(--display);
+  font-size: clamp(22px, 4.5vw, 58px);
+  line-height: 1.05;
+}
+.victory-signature {
+  font-size: clamp(10px, 1.2vw, 15px);
+  color: #ccd4e2;
+}
 .match-hud {
   position: absolute;
   top: 22px;

@@ -1,0 +1,53 @@
+import type { Technique } from "./techniques";
+
+// Fictional business-themed specials use the existing shared combat simulation.
+export const FOUNDER_TECHNIQUES = {
+  ledger: {
+    startup: 12,
+    recovery: 48,
+    range: 540,
+    height: 130,
+    damage: 8,
+    force: 5,
+    pulses: [0, 15],
+    projectile: { speed: 8.5, life: 70, radius: 17 },
+  },
+  settlement: {
+    startup: 10,
+    recovery: 46,
+    range: 500,
+    height: 135,
+    damage: 12,
+    force: 6,
+    projectile: { speed: 9, life: 68, returnAfter: 26, radius: 18 },
+  },
+  ignition: {
+    startup: 10,
+    recovery: 44,
+    range: 175,
+    height: 120,
+    damage: 17,
+    force: 9,
+    dash: { speed: 17, ticks: 10, invincibility: 4, brake: 0.4 },
+  },
+  slash: {
+    startup: 14,
+    recovery: 45,
+    range: 165,
+    height: 155,
+    damage: 16,
+    force: 8,
+    blink: { reach: 175, gap: 85, invincibility: 5 },
+  },
+  grid: {
+    startup: 19,
+    recovery: 52,
+    range: 270,
+    height: 70,
+    damage: 13,
+    force: 5,
+    aimed: true,
+    groundOnly: true,
+    snare: 27,
+  },
+} satisfies Record<string, Technique>;

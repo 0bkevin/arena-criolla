@@ -2706,6 +2706,326 @@
         "playsOnce": true,
         "singleGesture": "docs/entrances-v24/single-gestures.json"
       }
+    },
+    "enrique": {
+      "id": "enrique",
+      "realName": "Enrique Rivas",
+      "sprite": "enrique-v2",
+      "portraitReference": "assets/references/founders/enrique/enrique-fina-official.webp",
+      "portrayal": "Enrique Rivas, cofundador y ceo de fina. Cofundador de Fina. Ordena la arena con dos paquetes de balance separados; su chaqueta violeta recuerda la identidad de la plataforma. Las poses, gestos, efectos y ataques son adaptaciones ficticias de videojuego.",
+      "sources": [
+        {
+          "title": "www.finapartner.com — referencia visual",
+          "url": "https://www.finapartner.com/nuestra-historia/"
+        },
+        {
+          "title": "es.linkedin.com — referencia visual",
+          "url": "https://es.linkedin.com/posts/enriquerivasz_venezuelastartupsummit-activity-7252886615197462529-fdwF"
+        },
+        {
+          "title": "es.linkedin.com — referencia visual",
+          "url": "https://es.linkedin.com/posts/enriquerivasz_el-otro-d%C3%ADa-estaba-en-un-podcast-y-me-preguntaron-activity-7371731396769533952-zpyC"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/founders/enrique/enrique-fina-official.webp",
+          "url": "https://www.finapartner.com/wp-content/uploads/2026/09/Enrique.webp",
+          "sourcePage": "https://www.finapartner.com/nuestra-historia/",
+          "viewed": true,
+          "note": "Current company portrait, image served from Fina’s September 2026 media directory.",
+          "research": "docs/founders/research-fina-kontigo.md"
+        },
+        {
+          "file": "assets/references/founders/enrique/enrique-vss-post-1.jpg",
+          "url": "https://media.licdn.com/dms/image/v2/D4E22AQGfmgyfNdR3hA/feedshare-image-high-res/feedshare-image-high-res/0/1729222918036?e=2147483647&v=beta&t=-ULFoZkb__UQKUIHZaUD6dzKr2tCdzpZSb5jT_QPozg",
+          "sourcePage": "https://es.linkedin.com/posts/enriquerivasz_venezuelastartupsummit-activity-7252886615197462529-fdwF",
+          "viewed": true,
+          "note": "Startup Summit stage; image URL timestamp is 18 October 2024.",
+          "research": "docs/founders/research-fina-kontigo.md"
+        },
+        {
+          "file": "assets/references/founders/enrique/enrique-podcast-post.jpg",
+          "url": "https://media.licdn.com/dms/image/v2/D4E22AQGsZrX7sCG92Q/feedshare-shrink_800/B4EZk2moKDHgAg-/0/1757557723599?e=2147483647&v=beta&t=rqPccrRuyO8fozFbc0GBPHvFDyLzumLpkofHkFkLRMk",
+          "sourcePage": "https://es.linkedin.com/posts/enriquerivasz_el-otro-d%C3%ADa-estaba-en-un-podcast-y-me-preguntaron-activity-7371731396769533952-zpyC",
+          "viewed": true,
+          "note": "Team image posted with a podcast reflection; not itself a podcast frame.",
+          "research": "docs/founders/research-fina-kontigo.md"
+        }
+      ],
+      "identityReview": {
+        "checkedAt": "2026-10-17",
+        "role": "Cofundador y CEO de Fina",
+        "source": "https://www.finapartner.com/nuestra-historia/"
+      },
+      "entranceReview": {
+        "durationMs": 2800,
+        "playsOnce": true,
+        "fictionalAdaptation": true,
+        "rig": "shared/founder-choreography.ts"
+      },
+      "victoryReview": {
+        "durationMs": 3500,
+        "playsOnce": true,
+        "profile": "src/game/victories-founders.ts"
+      }
+    },
+    "jesus": {
+      "id": "jesus",
+      "realName": "Jesús Castillo",
+      "sprite": "jesus-v2",
+      "portraitReference": "assets/references/founders/jesus/jesus-kontigo-official.webp",
+      "portrayal": "Jesús Castillo, cofundador y ceo de kontigo. Cofundador de Kontigo. Gorra naranja y polo oscuro, como en sus entrevistas. Envía un aro de transferencia que regresa y exige medir el bloqueo. Las poses, gestos, efectos y ataques son adaptaciones ficticias de videojuego.",
+      "sources": [
+        {
+          "title": "www.kontigo.com — referencia visual",
+          "url": "https://www.kontigo.com/quienes-somos"
+        },
+        {
+          "title": "elestimulo.com — referencia visual",
+          "url": "https://elestimulo.com/elinteres/empresas/2026-04-17/la-ambicion-de-kontigo/"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/founders/jesus/jesus-kontigo-official.webp",
+          "url": "https://www.kontigo.com/images/team/jesus.webp",
+          "sourcePage": "https://www.kontigo.com/quienes-somos",
+          "viewed": true,
+          "note": "Current official team portrait.",
+          "research": "docs/founders/research-fina-kontigo.md"
+        },
+        {
+          "file": "assets/references/founders/jesus/jesus-interview-elestimulo-1.webp",
+          "url": "https://media.elestimulo.com/uploads/2026/04/jesus-castillo-kontigo-1a.webp",
+          "sourcePage": "https://elestimulo.com/elinteres/empresas/2026-04-17/la-ambicion-de-kontigo/",
+          "viewed": true,
+          "note": "Work-session image accompanying the interview, published 17 April 2026.",
+          "research": "docs/founders/research-fina-kontigo.md"
+        },
+        {
+          "file": "assets/references/founders/jesus/jesus-interview-elestimulo-2.webp",
+          "url": "https://media.elestimulo.com/uploads/2026/04/jesus-castillo-kontigo-2a-1024x597.webp",
+          "sourcePage": "https://elestimulo.com/elinteres/empresas/2026-04-17/la-ambicion-de-kontigo/",
+          "viewed": true,
+          "note": "Interview being filmed, published 17 April 2026.",
+          "research": "docs/founders/research-fina-kontigo.md"
+        }
+      ],
+      "identityReview": {
+        "checkedAt": "2026-10-17",
+        "role": "Cofundador y CEO de Kontigo",
+        "source": "https://www.kontigo.com/quienes-somos"
+      },
+      "entranceReview": {
+        "durationMs": 2800,
+        "playsOnce": true,
+        "fictionalAdaptation": true,
+        "rig": "shared/founder-choreography.ts"
+      },
+      "victoryReview": {
+        "durationMs": 3500,
+        "playsOnce": true,
+        "profile": "src/game/victories-founders.ts"
+      }
+    },
+    "carlos": {
+      "id": "carlos",
+      "realName": "Carlos García Ottati",
+      "sprite": "carlos-v2",
+      "portraitReference": "assets/references/founders/carlos/01-kavak-ceo.webp",
+      "portrayal": "Carlos García Ottati, fundador y ceo de kavak. Fundador de Kavak. Cabello castaño hacia atrás y chaqueta oscura de taller. Acelera en una embestida corta que termina en un impacto firme. Las poses, gestos, efectos y ataques son adaptaciones ficticias de videojuego.",
+      "sources": [
+        {
+          "title": "www.kavak.com — referencia visual",
+          "url": "https://www.kavak.com/ar/empleos"
+        },
+        {
+          "title": "www.bloomberglinea.com — referencia visual",
+          "url": "https://www.bloomberglinea.com/2022/12/16/ceo-de-kavak-regresa-a-dirigir-la-startup-en-mexico-tras-despido-de-country-manager/"
+        },
+        {
+          "title": "www.forbes.com — referencia visual",
+          "url": "https://www.forbes.com/sites/forbesinternational/2022/07/23/how-this-mexico-based-used-car-seller-became-the-most-valuable-startup-in-latin-america/"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/founders/carlos/01-kavak-ceo.webp",
+          "url": "https://images.prd.kavak.io/assets/images/landing-pages-ui/ceo-carlos-garcia.webp",
+          "sourcePage": "https://www.kavak.com/ar/empleos",
+          "viewed": true,
+          "note": "Current careers page, accessed 2026-10-17; image itself undated. Inspected: short brown hair, clean-shaven, no glasses, dark blazer and white crew-neck shirt, dark blue studio background. High identity confidence: first-party image caption and matching current CEO role.",
+          "research": "docs/founders/research-kavak-slash.md"
+        },
+        {
+          "file": "assets/references/founders/carlos/02-bloomberglinea-workshop.jpg",
+          "url": "https://cloudfront-us-east-1.images.arcpublishing.com/bloomberglinea/RRB62RBFARBTXKHNFTQKP3CL64.jpg",
+          "sourcePage": "https://www.bloomberglinea.com/2022/12/16/ceo-de-kavak-regresa-a-dirigir-la-startup-en-mexico-tras-despido-de-country-manager/",
+          "viewed": true,
+          "note": "Published 2022-12-16. Inspected: light brown hair worn long and tied back, clean-shaven, no glasses, black Kavak-branded zip jacket over a dark checked shirt; workshop/car setting. High identity confidence: image is attached to a story specifically about Kavak’s CEO and matches the brand-marked company portrait.",
+          "research": "docs/founders/research-kavak-slash.md"
+        },
+        {
+          "file": "assets/references/founders/carlos/03-forbes-portrait.jpg",
+          "url": "https://imageio.forbes.com/specials-images/imageserve/62d84b7e0228b24156c1ec8f/header/0x0.jpg?format=jpg&height=1080&width=1080",
+          "sourcePage": "https://www.forbes.com/sites/forbesinternational/2022/07/23/how-this-mexico-based-used-car-seller-became-the-most-valuable-startup-in-latin-america/",
+          "viewed": true,
+          "note": "Article published 2022-07-23. Inspected: shoulder-length light brown hair, clean-shaven, no glasses, black crew-neck shirt, blue textured backdrop. High identity confidence from the article caption.",
+          "research": "docs/founders/research-kavak-slash.md"
+        }
+      ],
+      "identityReview": {
+        "checkedAt": "2026-10-17",
+        "role": "Fundador y CEO de Kavak",
+        "source": "https://www.kavak.com/ar/empleos"
+      },
+      "entranceReview": {
+        "durationMs": 2800,
+        "playsOnce": true,
+        "fictionalAdaptation": true,
+        "rig": "shared/founder-choreography.ts"
+      },
+      "victoryReview": {
+        "durationMs": 3500,
+        "playsOnce": true,
+        "profile": "src/game/victories-founders.ts"
+      }
+    },
+    "victor": {
+      "id": "victor",
+      "realName": "Víctor Cárdenas Codriansky",
+      "sprite": "victor-v2",
+      "portraitReference": "assets/references/founders/victor/01-slash-executive.jpg",
+      "portrayal": "Víctor Cárdenas Codriansky, cofundador y ceo de slash. Cofundador de Slash. Camiseta negra y cabello corto, como en sus entrevistas. Acorta la distancia con un paso instantáneo y un corte diagonal de luz. Las poses, gestos, efectos y ataques son adaptaciones ficticias de videojuego.",
+      "sources": [
+        {
+          "title": "www.slash.com — referencia visual",
+          "url": "https://www.slash.com/company/about"
+        },
+        {
+          "title": "www.slash.com — referencia visual",
+          "url": "https://www.slash.com/products/global-usd"
+        },
+        {
+          "title": "www.coindesk.com — referencia visual",
+          "url": "https://www.coindesk.com/business/2025/08/05/u-s-neobank-slash-debuts-stablecoin-with-stripe-s-bridge-for-global-business-payments/"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/founders/victor/01-slash-executive.jpg",
+          "url": "https://www.slash.com/_next/static/media/victor.50595a2c.jpg",
+          "sourcePage": "https://www.slash.com/company/about",
+          "viewed": true,
+          "note": "Current page, accessed 2026-10-17; image undated. Inspected: short dark brown hair, light stubble, no glasses, white collared shirt against dark gray background. High identity confidence: first-party executive portrait and explicit caption.",
+          "research": "docs/founders/research-kavak-slash.md"
+        },
+        {
+          "file": "assets/references/founders/victor/02-slash-video.jpg",
+          "url": "https://cdn.sanity.io/images/dwq00h7i/production/8a427a69f4c7be9ab6c2dd8d9f320ef8b739075f-1920x1080.jpg?auto=format&fit=crop&h=1082&q=95&rect=2%2C0%2C1916%2C1080&w=1920",
+          "sourcePage": "https://www.slash.com/products/global-usd",
+          "viewed": true,
+          "note": "Product/announcement video still; page accessed 2026-10-17. Inspected: short dark hair, clean-shaven or very light stubble, no glasses, black crew-neck shirt in a modern office; Slash mark is orange/coral. High identity confidence: first-party Slash page and on-image name/title.",
+          "research": "docs/founders/research-kavak-slash.md"
+        },
+        {
+          "file": "assets/references/founders/victor/03-coindesk-founders.jpg",
+          "url": "https://cdn.sanity.io/images/s3y3vcno/production/3cf079b3ee5333f395dda4b926313128361bdccc-1440x960.jpg?auto=format",
+          "sourcePage": "https://www.coindesk.com/business/2025/08/05/u-s-neobank-slash-debuts-stablecoin-with-stripe-s-bridge-for-global-business-payments/",
+          "viewed": true,
+          "note": "Article published 2025-08-05. Inspected: Victor is the person on the right, with short dark hair, light stubble, no glasses, and a black crew-neck shirt; Kevin Bai is also in frame on the left. High identity confidence: the article caption names both founders and the image matches the first-party portrait.",
+          "research": "docs/founders/research-kavak-slash.md"
+        }
+      ],
+      "identityReview": {
+        "checkedAt": "2026-10-17",
+        "role": "Cofundador y CEO de Slash",
+        "source": "https://www.slash.com/company/about"
+      },
+      "entranceReview": {
+        "durationMs": 2800,
+        "playsOnce": true,
+        "fictionalAdaptation": true,
+        "rig": "shared/founder-choreography.ts"
+      },
+      "victoryReview": {
+        "durationMs": 3500,
+        "playsOnce": true,
+        "profile": "src/game/victories-founders.ts"
+      }
+    },
+    "juan": {
+      "id": "juan",
+      "realName": "Juan José Pocaterra Mendoza",
+      "sprite": "juan-v2",
+      "portraitReference": "assets/references/founders/juan/juan_linkedin_portrait.jpg",
+      "portrayal": "Juan José Pocaterra Mendoza, cofundador de Vikua y CEO de La Wawa. Cabello oscuro ondulado corto, barba recortada y camisa azul clara, basados en tres retratos y fotos de eventos verificados. Sus gestos y ataques de red urbana son adaptaciones ficticias de videojuego.",
+      "sources": [
+        {
+          "title": "Cofundador y CEO de Vikua",
+          "url": "https://www.weforum.org/people/juan-jose-pocaterra/"
+        },
+        {
+          "title": "www.linkedin.com — referencia visual",
+          "url": "https://www.linkedin.com/in/juanpocaterra/"
+        },
+        {
+          "title": "noticias.com.ve — referencia visual",
+          "url": "https://noticias.com.ve/ingenio-venezolano/vikua-ciudades-inteligentes-creadas-por-venezolanos/"
+        },
+        {
+          "title": "www.linkedin.com — referencia visual",
+          "url": "https://www.linkedin.com/posts/lawawa_mobility-latamtech-culturalshift-activity-7448474913939689473-YByM"
+        },
+        {
+          "title": "Juan José Pocaterra — publicación sobre el encuentro de Latam at Silicon Valley que lo identifica como CEO de Wawa",
+          "url": "https://www.linkedin.com/posts/juanpocaterra_a-full-week-of-latam-tech-conversations-in-activity-7450075472631205888-jzX_"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/founders/juan/juan_linkedin_portrait.jpg",
+          "url": "https://media.licdn.com/dms/image/v2/D4E03AQFfLgTZrIBnyw/profile-displayphoto-scale_200_200/B4EZxCRwhuJ4AY-/0/1770638481174?e=2147483647&v=beta&t=HWCgKteA6Xl4ck4V4Oc2fnD_83DbXLmonQQ6ZDMGaCQ",
+          "sourcePage": "https://www.linkedin.com/in/juanpocaterra/",
+          "viewed": true,
+          "note": "Profile image URL is dated February 2026. Clear head-and-shoulders portrait: short dark hair, dark eyes, medium-light/olive skin, oval-to-square face, close dark beard and mustache, no glasses. Black crewneck and black blazer; arms crossed. High confidence for current face/hair and facial hair.",
+          "research": "docs/founders/research-vikua-wawa.md"
+        },
+        {
+          "file": "assets/references/founders/juan/juan_vikua_founders.jpg",
+          "url": "https://noticias.com.ve/wp-content/uploads/2018/06/Vikua-696x464.jpeg",
+          "sourcePage": "https://noticias.com.ve/ingenio-venezolano/vikua-ciudades-inteligentes-creadas-por-venezolanos/",
+          "viewed": true,
+          "note": "Published June 2018. Solo office portrait in front of Vikua's urban-design chalkboard. Short dark hair, no glasses, little or no beard in this older image, light blue button-down. Good company-workplace and early-career reference; appearance is dated.",
+          "research": "docs/founders/research-vikua-wawa.md"
+        },
+        {
+          "file": "assets/references/founders/juan/juan_wawa_panel_2.jpg",
+          "url": "https://media.licdn.com/dms/image/v2/D4E22AQFYU7DDxrGYeQ/feedshare-shrink_800/B4EZ14pcdzIgAc-/0/1775845624517?e=2147483647&v=beta&t=aMlhFxv746ma36qoTqxgOUwyrWgRmSwCZL5fR1Yiotc",
+          "sourcePage": "https://www.linkedin.com/posts/lawawa_mobility-latamtech-culturalshift-activity-7448474913939689473-YByM",
+          "viewed": true,
+          "note": "Posted in 2026. Juan is seated in a panel/interview setting, wearing a tan cap and jacket, glasses, and a dark striped shirt. Short dark hair and beard are visible. Useful event clothing and glasses reference; the cap is event wear, not a uniform.",
+          "research": "docs/founders/research-vikua-wawa.md"
+        }
+      ],
+      "identityReview": {
+        "checkedAt": "2026-10-17",
+        "role": "Cofundador y CEO de Vikua y La Wawa",
+        "source": "https://www.weforum.org/people/juan-jose-pocaterra/",
+        "wawaSource": "https://www.linkedin.com/posts/juanpocaterra_a-full-week-of-latam-tech-conversations-in-activity-7450075472631205888-jzX_"
+      },
+      "entranceReview": {
+        "durationMs": 2800,
+        "playsOnce": true,
+        "fictionalAdaptation": true,
+        "rig": "shared/founder-choreography.ts"
+      },
+      "victoryReview": {
+        "durationMs": 3500,
+        "playsOnce": true,
+        "profile": "src/game/victories-founders.ts"
+      }
     }
   },
   "soundMode": "generic-combat-reactions"

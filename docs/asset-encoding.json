@@ -298,5 +298,35 @@
     "sourceBytes": 1281567,
     "outputBytes": 809818,
     "saved": "37%"
+  },
+  {
+    "name": "carlos-v2.png",
+    "sourceBytes": 1280059,
+    "outputBytes": 821450,
+    "saved": "36%"
+  },
+  {
+    "name": "victor-v2.png",
+    "sourceBytes": 1218388,
+    "outputBytes": 805096,
+    "saved": "34%"
+  },
+  {
+    "name": "enrique-v2.png",
+    "sourceBytes": 1382117,
+    "outputBytes": 921254,
+    "saved": "33%"
+  },
+  {
+    "name": "jesus-v2.png",
+    "sourceBytes": 1193839,
+    "outputBytes": 776320,
+    "saved": "35%"
+  },
+  {
+    "name": "juan-v2.png",
+    "sourceBytes": 1292158,
+    "outputBytes": 864174,
+    "saved": "33%"
   }
 ]
