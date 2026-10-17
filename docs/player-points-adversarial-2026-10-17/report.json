@@ -1,0 +1,207 @@
+{
+  "date": "2026-10-17",
+  "review": {
+    "base": "a093de123e3503b236e6bdc29789425ee153bb6b",
+    "reviewedHead": "ff26bb1",
+    "implementationCommits": [
+      "99760ce",
+      "ff26bb1"
+    ],
+    "fixCommit": "ab1920623672b776d62c4e0dc28443e11fa5d6df",
+    "method": "Dos revisores independientes (Standards y Spec), reproducción antes de los arreglos, regresiones en el componente/hook real con T3 Preview y repetición con perfiles independientes.",
+    "sources": [
+      "Conversación del usuario: puntaje de jugadores autenticados y revisión adversarial con correcciones.",
+      "README.md: Ranking global",
+      "docs/player-points-2026-10-17/report.json"
+    ],
+    "scope": "Puntaje por cuenta y su integración con identidad, ranking, persistencia y recuperación. Sin cambios de audio, escenarios, infraestructura o dependencias."
+  },
+  "standards": {
+    "findings": [
+      {
+        "id": "S1",
+        "severity": "P2",
+        "status": "fixed",
+        "file": "src/player-ranking.ts (versión revisada, línea 39)",
+        "finding": "AbortSignal.any/timeout evaluados fuera de la cadena Promise podían lanzar TypeError y desmontar la app si faltaban esas APIs.",
+        "origin": "Nuevo en los cambios de puntaje.",
+        "reproduction": "En el navegador, eliminar ambas APIs y montar el hook con una cuenta autenticada. Antes: ErrorBoundary captura la excepción; después: carga 3 puntos.",
+        "fix": "src/ranking-api.ts usa AbortController y temporizador de diez segundos, con limpieza en éxito, error y cancelación."
+      }
+    ],
+    "documentedStandardsBreaches": 0,
+    "materialCodeSmells": 0,
+    "worstFinding": "P2 S1, corregido",
+    "serverConclusion": "Sin fallo nuevo identificado en fórmula de puntos, autoridad, atomicidad, recibos o idempotencia."
+  },
+  "spec": {
+    "findings": [
+      {
+        "id": "F1",
+        "severity": "P2",
+        "status": "fixed",
+        "files": [
+          "src/components/RankingDialog.tsx",
+          "src/network.ts"
+        ],
+        "finding": "Cookie cambiada en otra pestaña: cabecera y WebSocket de A, perfil e historial de B mostrados como clasificación propia.",
+        "origin": "El diálogo ya carecía de validación; las nuevas superficies de puntos heredaban la incoherencia. La cabecera rechazaba el perfil, pero no recuperaba la identidad.",
+        "reproduction": "Dos pestañas Default para probar cambio de cuenta, sin simular dos jugadores. Registrar A, sustituir cookie por B desde la segunda pestaña y volver a la primera. Repro real en real-flow.json.",
+        "fix": "Validación compartida de userId y ocultación síncrona de datos ajenos; comprobación de sesión al foco/visibilidad y sustitución del transporte solo si HTTP confirma otra cuenta."
+      },
+      {
+        "id": "F2",
+        "severity": "P2",
+        "status": "fixed",
+        "files": [
+          "src/components/RankingDialog.tsx",
+          "src/ranking-api.ts"
+        ],
+        "finding": "Una consulta del ranking sin respuesta mantenía Cargando y Actualizar deshabilitado indefinidamente.",
+        "origin": "Mecanismo previo del diálogo, heredado por la nueva visualización de puntos.",
+        "reproduction": "Resolver ranking público y mantener /api/ranking/me pendiente. Antes: no sale de Cargando; después: límite de diez segundos, error y reintento. Confirmado también sin acelerar el reloj.",
+        "fix": "Lecturas de ranking acotadas con cancelación y limpieza; se cancela la consulta compañera al fallar Promise.all."
+      },
+      {
+        "id": "F3",
+        "severity": "P2",
+        "status": "fixed",
+        "files": [
+          "src/player-ranking.ts",
+          "src/components/RankingDialog.tsx"
+        ],
+        "finding": "Tras recuperar foco, cabecera actualizaba puntos pero el diálogo abierto conservaba su copia anterior.",
+        "origin": "La garantía nueva de refresco solo estaba aplicada a la cabecera.",
+        "reproduction": "Perfil inicial 3 puntos, siguiente respuesta 6; recuperar foco con diálogo abierto. Antes permanece3; después muestra6.",
+        "fix": "Ambas superficies utilizan el mismo disparador de foco/visibilidad y las mismas lecturas validadas."
+      }
+    ],
+    "worstFinding": "P2 F1/F2/F3, corregidos",
+    "scopeCreep": "No se cambió la fórmula 3/1/0 ni el orden por victorias."
+  },
+  "followupReview": {
+    "finding": "El primer arreglo ignoraba un foco nuevo si ya había una consulta de sesión pendiente; la respuesta anterior podía dejar la cuenta equivocada o provocar un cambio prematuro.",
+    "status": "fixed before final commit",
+    "fix": "Cada foco cancela y sustituye la consulta anterior. Su respuesta y finally no pueden alterar la nueva consulta.",
+    "independentChecksPassed": 14,
+    "regression": "ranking-adversarial.html: foco durante petición anterior, respuesta cancelada tardía, sesión HTTP fallida y conservación del marcador de recuperación."
+  },
+  "validation": {
+    "npmTest": {
+      "passed": 566,
+      "failed": 0,
+      "durationMs": 12821.164211
+    },
+    "build": {
+      "passed": true,
+      "warning": "Aviso existente de bundle mayor de 500 kB."
+    },
+    "targetedIntegration": {
+      "passed": 15,
+      "failed": 0,
+      "ledger": {
+        "accounts": 7,
+        "verifiedResults": 160,
+        "conflictingRetries": 160,
+        "restartHalfway": true
+      }
+    },
+    "browser": {
+      "passed": true,
+      "checks": 139,
+      "adversarialChecks": 21,
+      "previousRegressionChecks": 118,
+      "artifacts": [
+        "adversarial-before.json",
+        "probe-race-before.json",
+        "adversarial-after.json",
+        "browser-regressions.json"
+      ]
+    },
+    "localSqliteLock": {
+      "healthMs": 2.1,
+      "otherRoomHz": 59.95,
+      "note": "Medición local, no latencia WAN."
+    },
+    "realFlow": {
+      "profiles": [
+        "Default",
+        "Incognito"
+      ],
+      "players": [
+        "QA Adversarial C",
+        "QA Adversarial D"
+      ],
+      "matchId": "4ec919a7-20f2-4e29-86da-ea75a631d15c",
+      "finishedBy": "combat",
+      "sameFinalState": true,
+      "pointsEarned": [
+        3,
+        0
+      ],
+      "persistentTotals": [
+        3,
+        0
+      ],
+      "arenaSocketCut": {
+        "path": "/ws",
+        "frozenTick": 4108,
+        "after200Ms": 4108,
+        "resumedTick": 4115,
+        "sameMatch": true
+      },
+      "deadline": {
+        "configuredMs": 10000,
+        "observedFromInjectionMs": 11586,
+        "retryEnabled": true,
+        "retryLoadedCorrectTotal": true
+      },
+      "crossTabLogout": {
+        "scoreHidden": true,
+        "privateProfileStatus": 401
+      },
+      "artifact": "real-flow.json"
+    }
+  },
+  "qaAccounts": [
+    {
+      "email": "qa-adversarial-a-20261017@example.test",
+      "name": "QA Adversarial A",
+      "purpose": "Cambio de cuenta dentro del mismo perfil, no prueba de dos personas.",
+      "localOnly": true
+    },
+    {
+      "email": "qa-adversarial-b-20261017@example.test",
+      "name": "QA Adversarial B",
+      "purpose": "Cambio de cuenta dentro del mismo perfil, no prueba de dos personas.",
+      "localOnly": true
+    },
+    {
+      "email": "qa-adversarial-c-20261017@example.test",
+      "name": "QA Adversarial C",
+      "purpose": "Pelea real con perfiles de cookies independientes.",
+      "localOnly": true
+    },
+    {
+      "email": "qa-adversarial-d-20261017@example.test",
+      "name": "QA Adversarial D",
+      "purpose": "Pelea real con perfiles de cookies independientes.",
+      "localOnly": true
+    }
+  ],
+  "cleanup": {
+    "browserTabsClosed": 5,
+    "activeSessionLogoutStatus": 401,
+    "unusedLocalQaSessionsRevoked": 2,
+    "remainingLocalQaSessions": 0,
+    "temporaryServerStopped": true,
+    "port5192HasListener": false
+  },
+  "limitations": [
+    "Validación local con Chromium/T3; no despliegue en arena.kevinbravo.com, teléfono físico ni medición WAN.",
+    "Ausencia de APIs simulada en los hooks de ranking; no constituye certificación de toda la aplicación en navegadores antiguos.",
+    "Se mantienen los límites previos de un solo proceso, sin Elo/temporadas ni detección de partidas pactadas.",
+    "No es una garantía de ausencia absoluta de errores fuera del alcance probado."
+  ],
+  "unresolvedFindings": []
+}

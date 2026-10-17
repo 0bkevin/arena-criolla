@@ -1,0 +1,76 @@
+{
+  "passed": false,
+  "checks": [
+    {
+      "name": "No se desmonta la app sin AbortSignal.any/timeout",
+      "passed": false,
+      "actual": 1,
+      "expected": 0
+    },
+    {
+      "name": "El puntaje carga sin esas APIs opcionales",
+      "passed": false,
+      "expected": 3
+    },
+    {
+      "name": "El ranking rechaza el perfil de otra cuenta",
+      "passed": false,
+      "actual": false,
+      "expected": true
+    },
+    {
+      "name": "El historial ajeno no se representa",
+      "passed": false,
+      "actual": false,
+      "expected": true
+    },
+    {
+      "name": "La identidad HTTP distinta se informa",
+      "passed": false,
+      "actual": false,
+      "expected": true
+    },
+    {
+      "name": "Una consulta colgada termina con error",
+      "passed": false,
+      "actual": false,
+      "expected": true
+    },
+    {
+      "name": "La consulta colgada permite reintentar",
+      "passed": false,
+      "actual": true,
+      "expected": false
+    },
+    {
+      "name": "El ranking muestra el total inicial",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "El diálogo abierto se actualiza al recuperar foco",
+      "passed": false,
+      "actual": false,
+      "expected": true
+    },
+    {
+      "name": "Un cambio real de cookie retira el WebSocket de la cuenta anterior",
+      "passed": false,
+      "actual": 1,
+      "expected": 3
+    },
+    {
+      "name": "El cambio de sesión abre un transporte nuevo",
+      "passed": false,
+      "actual": 1,
+      "expected": 2
+    },
+    {
+      "name": "La cuenta visible coincide con la nueva sesión",
+      "passed": false,
+      "actual": "qa-a",
+      "expected": "qa-b"
+    }
+  ]
+}

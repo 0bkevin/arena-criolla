@@ -1,0 +1,24 @@
+✔ ranked rooms require distinct authenticated accounts and ignore browser names/wins (260.607896ms)
+✔ ranked disconnect freezes the match, authenticates resume and keeps new action counters usable (322.990559ms)
+✔ ranked grace expiry records a loss once while both absent players void the match (828.750566ms)
+ranking SQLite lock: health=2.10ms, other room=59.95Hz
+✔ ranking writes retry through a database lock without delaying health or losing the final result (909.341536ms)
+✔ authenticated websocket handshakes reject foreign origins and logout invalidates the game connection (109.475713ms)
+✔ resume replaces an old live transport without a false forfeit, and authenticated recovery can explicitly abandon (229.016239ms)
+✔ repeated disconnects share a finite recovery budget instead of freezing an opponent indefinitely (2136.91857ms)
+✔ ranking request bursts are bounded and recover without blocking the arena (106.766215ms)
+✔ ranked results commit once, keep both players consistent and survive a restart (142.896518ms)
+✔ interrupted matches are void, draws count for both and a player cannot enter two active matches (134.071287ms)
+✔ a locked ranking database does not block the main event loop and can retry safely (576.098071ms)
+✔ a failure between player updates rolls back the match and both statistics (77.311194ms)
+✔ existing accounts receive points from their saved statistics without rewriting them (92.080113ms)
+✔ top100 excludes lower positions while a player's own rank and twenty latest matches remain available (88.496517ms)
+✔ mixed verified results conserve each account's points across conflicting retries and restart (710.2854ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5605.238528

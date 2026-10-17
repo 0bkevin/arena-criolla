@@ -1,0 +1,205 @@
+{
+  "identityBefore": {
+    "header": "QA Adversarial A\nPuntaje no disponible",
+    "self": "QA Adversarial B · Sin clasificar\n0 puntos · 0 victorias · 0 derrotas · 0 empates · 0 partidas",
+    "history": "Tus últimas partidas\n\nTus clasificatorias aparecerán aquí. Las partidas casuales y el progreso anterior del navegador no cuentan para el ranking."
+  },
+  "identityAfter": {
+    "header": "QA Adversarial C\n0 pts",
+    "self": "QA Adversarial C · Sin clasificar\n0 puntos · 0 victorias · 0 derrotas · 0 empates · 0 partidas",
+    "profile": {
+      "entry": {
+        "userId": "3550d0f5-3a43-4bf0-bea2-6a2f74d46f08",
+        "name": "QA Adversarial C",
+        "position": null,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "played": 0,
+        "winRate": 0,
+        "points": 0
+      },
+      "history": []
+    }
+  },
+  "combatProbe503": {
+    "id": "4ec919a7-20f2-4e29-86da-ea75a631d15c",
+    "tickBefore": 1544,
+    "tickAfter": 1554,
+    "sameConnectionObserved": true,
+    "resumeMarkerPreserved": true
+  },
+  "postResultProbe503": {
+    "matchId": "4ec919a7-20f2-4e29-86da-ea75a631d15c",
+    "tickBefore": 5335,
+    "tickAfter": 5335,
+    "path": "/ws",
+    "sameArenaSocket": true,
+    "resume": null,
+    "header": "QA Adversarial C\n3 pts"
+  },
+  "arenaSocketCut": {
+    "closed": true,
+    "matchId": "4ec919a7-20f2-4e29-86da-ea75a631d15c",
+    "path": "/ws"
+  },
+  "opponentFrozen": {
+    "id": "4ec919a7-20f2-4e29-86da-ea75a631d15c",
+    "before": 4108,
+    "after": 4108,
+    "text": "ARENACRIOLLA\nJugar\nLuchadores\nCrear luchador\nCómo jugar\nQA Adversarial D\n0 pts\nV0.1\nEn línea\nSalir (cuenta como derrota)\nMULTIJUGADOR EN LÍNEA\nEsperando reconexión de tu pana. La pelea está detenida; cada jugador dispone de hasta 10 segundos acumulados de recuperación por partida.\nP1\nQA Adversarial C\nVicente\n100\n100%\nP2\nQA Adversarial D\nVicente\n100\n100%\n31\n2 VIDAS\nCARACAS / Altamira al atardecer\nA\nD\nMover\nW\nSaltar\nJ\nLigero\nK\nFuerte\nL\nEspecial\nU\nBloquear\n⇧\nEsquivar\nI\nDefinitiva\nTodos los controles\n\nBaja la vida del rival para lanzarlo más lejos. Fuera de la plataforma, usa tu doble salto para volver.\n\nHECHO PARA ECHAR UN PIQUE.\nParodia arcade · Habilidades ficticias\nRanking global"
+  },
+  "resumed": {
+    "id": "4ec919a7-20f2-4e29-86da-ea75a631d15c",
+    "tick": 4115,
+    "socketOpen": true,
+    "header": "QA Adversarial C\n0 pts"
+  },
+  "finalDefault": {
+    "header": "QA Adversarial C\n3 pts",
+    "result": "Resultado guardado en el ranking.\n+3 puntos para tu cuenta\nVer ranking e historial",
+    "state": {
+      "id": "4ec919a7-20f2-4e29-86da-ea75a631d15c",
+      "phase": "finished",
+      "winner": 0,
+      "tick": 5335,
+      "players": [
+        {
+          "name": "QA Adversarial C",
+          "hp": 39.59559999999999,
+          "stocks": 2,
+          "hits": 15,
+          "peakCombo": 7
+        },
+        {
+          "name": "QA Adversarial D",
+          "hp": 0,
+          "stocks": 0,
+          "hits": 9,
+          "peakCombo": 4
+        }
+      ]
+    },
+    "receipt": {
+      "matchId": "4ec919a7-20f2-4e29-86da-ea75a631d15c",
+      "status": "saved",
+      "reason": "combat",
+      "outcome": "win",
+      "pointsEarned": 3
+    },
+    "profile": {
+      "entry": {
+        "userId": "3550d0f5-3a43-4bf0-bea2-6a2f74d46f08",
+        "name": "QA Adversarial C",
+        "wins": 1,
+        "losses": 0,
+        "draws": 0,
+        "played": 1,
+        "points": 3,
+        "winRate": 100,
+        "position": 1
+      },
+      "history": [
+        {
+          "matchId": "4ec919a7-20f2-4e29-86da-ea75a631d15c",
+          "startedAt": 1792247574708,
+          "finishedAt": 1792247665769,
+          "stage": "caracas",
+          "fighter": "zavarce",
+          "opponentFighter": "zavarce",
+          "opponent": "QA Adversarial D",
+          "outcome": "win",
+          "reason": "combat",
+          "hits": 15,
+          "peakCombo": 7,
+          "pointsEarned": 3
+        }
+      ]
+    }
+  },
+  "finalIncognito": {
+    "header": "QA Adversarial D\n0 pts",
+    "result": "Resultado guardado en el ranking.\n+0 puntos para tu cuenta\nVer ranking e historial",
+    "state": {
+      "id": "4ec919a7-20f2-4e29-86da-ea75a631d15c",
+      "phase": "finished",
+      "winner": 0,
+      "tick": 5335,
+      "players": [
+        {
+          "name": "QA Adversarial C",
+          "hp": 39.59559999999999,
+          "stocks": 2,
+          "hits": 15,
+          "peakCombo": 7
+        },
+        {
+          "name": "QA Adversarial D",
+          "hp": 0,
+          "stocks": 0,
+          "hits": 9,
+          "peakCombo": 4
+        }
+      ]
+    },
+    "receipt": {
+      "matchId": "4ec919a7-20f2-4e29-86da-ea75a631d15c",
+      "status": "saved",
+      "reason": "combat",
+      "outcome": "loss",
+      "pointsEarned": 0
+    },
+    "profile": {
+      "entry": {
+        "userId": "358f624f-99b2-4972-92ca-cda259227919",
+        "name": "QA Adversarial D",
+        "wins": 0,
+        "losses": 1,
+        "draws": 0,
+        "played": 1,
+        "points": 0,
+        "winRate": 0,
+        "position": 2
+      },
+      "history": [
+        {
+          "matchId": "4ec919a7-20f2-4e29-86da-ea75a631d15c",
+          "startedAt": 1792247574708,
+          "finishedAt": 1792247665769,
+          "stage": "caracas",
+          "fighter": "zavarce",
+          "opponentFighter": "zavarce",
+          "opponent": "QA Adversarial C",
+          "outcome": "loss",
+          "reason": "combat",
+          "hits": 9,
+          "peakCombo": 4,
+          "pointsEarned": 0
+        }
+      ]
+    }
+  },
+  "realDeadline": {
+    "alert": "La consulta tardó demasiado. Vuelve a intentarlo.",
+    "retryEnabled": true,
+    "elapsedMs": 11586
+  },
+  "retry": {
+    "self": "#1 · QA Adversarial C\n3 puntos · 1 victoria · 0 derrotas · 0 empates · 1 partida",
+    "history": "Tus últimas partidas\nVictoria\n+3 pts\nvs. QA Adversarial D\n\nVicente vs. Vicente · Combate\n\n17/10/2026, 14:34:25 · 15 golpes · Racha 7",
+    "rows": [
+      "#1\tQA Adversarial C (tú)\t3\t1\t0\t0\t100.0%",
+      "#2\tQA Adversarial D\t0\t0\t1\t0\t0.0%"
+    ]
+  },
+  "crossTabLogout": {
+    "header": "Iniciar sesión",
+    "scoreHidden": true,
+    "privateProfileStatus": 401
+  },
+  "incognitoLogout": {
+    "logoutStatus": 200,
+    "privateProfileStatus": 401
+  },
+  "instrumentationNote": "El corte documentado se realizó sobre el socket cuya URL tiene pathname /ws. Un primer intento alcanzó el HMR de Vite y recargó la página; se descartó como evidencia de pausa y se corrigió el observador para filtrar exclusivamente /ws."
+}

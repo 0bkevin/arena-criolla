@@ -1,0 +1,117 @@
+{
+  "passed": false,
+  "checks": [
+    {
+      "name": "No se desmonta la app sin AbortSignal.any/timeout",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "El puntaje carga sin esas APIs opcionales",
+      "passed": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "El ranking rechaza el perfil de otra cuenta",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "El historial ajeno no se representa",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "La identidad HTTP distinta se informa",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Una consulta colgada termina con error",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "La consulta colgada permite reintentar",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "El ranking muestra el total inicial",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "El diálogo abierto se actualiza al recuperar foco",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Un cambio real de cookie retira el WebSocket de la cuenta anterior",
+      "passed": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "El cambio de sesión abre un transporte nuevo",
+      "passed": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "La cuenta visible coincide con la nueva sesión",
+      "passed": true,
+      "actual": "qa-b",
+      "expected": "qa-b"
+    },
+    {
+      "name": "Un fallo HTTP no retira una pelea válida",
+      "passed": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "Un fallo HTTP conserva la recuperación clasificatoria",
+      "passed": true,
+      "actual": "qa-probe-recovery",
+      "expected": "qa-probe-recovery"
+    },
+    {
+      "name": "Un foco nuevo comprueba la cookie actual aunque haya otra petición pendiente",
+      "passed": false,
+      "actual": 1,
+      "expected": 2
+    },
+    {
+      "name": "La consulta anterior queda cancelada",
+      "passed": false,
+      "actual": false,
+      "expected": true
+    },
+    {
+      "name": "Una respuesta anterior cancelada no cambia de cuenta",
+      "passed": false,
+      "expected": "qa-b"
+    },
+    {
+      "name": "La respuesta anterior no provoca una derrota por desconexión",
+      "passed": false,
+      "actual": 3,
+      "expected": 1
+    },
+    {
+      "name": "Excepción",
+      "passed": false,
+      "actual": "TypeError: Cannot read properties of undefined (reading 'resolve')"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+✔ desktop and the portrait orientation gate retain the original canvas size (0.873858ms)
+ℹ tests 566
+ℹ suites 0
+ℹ pass 566
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12821.164211
