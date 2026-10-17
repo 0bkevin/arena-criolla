@@ -1,7 +1,7 @@
 {
   "zavarce": {
-    "introName": "Confirma y señala el pedido",
-    "selectionName": "Confirma y señala el pedido",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 0,
     "frameFacing": [
       1,
@@ -13,9 +13,9 @@
       1,
       1
     ],
-    "introStyle": "phone",
-    "selectionStyle": "phone",
-    "prop": "phone",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
+    "prop": "none",
     "color": "#a8a0f3",
     "durationMs": 2800,
     "introBeats": [
@@ -31,8 +31,8 @@
       {
         "at": 0.14,
         "frame": 0,
-        "dx": 0.00462,
-        "dy": -0.002574,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -40,8 +40,8 @@
       {
         "at": 0.5,
         "frame": 0,
-        "dx": 0.021,
-        "dy": -0.0117,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -49,8 +49,8 @@
       {
         "at": 0.76,
         "frame": 0,
-        "dx": 0.00735,
-        "dy": -0.004095,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -87,8 +87,8 @@
       {
         "at": 0.14,
         "frame": 0,
-        "dx": 0.002079,
-        "dy": -0.0011583,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -96,8 +96,8 @@
       {
         "at": 0.5,
         "frame": 0,
-        "dx": 0.00945,
-        "dy": -0.005265000000000001,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -105,8 +105,8 @@
       {
         "at": 0.76,
         "frame": 0,
-        "dx": 0.0033075,
-        "dy": -0.00184275,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -132,8 +132,8 @@
     ]
   },
   "vallenilla": {
-    "introName": "Presenta una tarjeta",
-    "selectionName": "Presenta una tarjeta",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 0,
     "frameFacing": [
       1,
@@ -145,9 +145,9 @@
       1,
       1
     ],
-    "introStyle": "card",
-    "selectionStyle": "card",
-    "prop": "card",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
+    "prop": "none",
     "color": "#e6ed7a",
     "durationMs": 2800,
     "introBeats": [
@@ -163,8 +163,8 @@
       {
         "at": 0.14,
         "frame": 0,
-        "dx": 0.00429,
-        "dy": -0.0037179999999999995,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -172,8 +172,8 @@
       {
         "at": 0.5,
         "frame": 0,
-        "dx": 0.0195,
-        "dy": -0.0169,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -181,8 +181,8 @@
       {
         "at": 0.76,
         "frame": 0,
-        "dx": 0.0068249999999999995,
-        "dy": -0.005914999999999999,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -219,8 +219,8 @@
       {
         "at": 0.14,
         "frame": 0,
-        "dx": 0.0019305000000000001,
-        "dy": -0.0016730999999999998,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -228,8 +228,8 @@
       {
         "at": 0.5,
         "frame": 0,
-        "dx": 0.008775,
-        "dy": -0.007605,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -237,8 +237,8 @@
       {
         "at": 0.76,
         "frame": 0,
-        "dx": 0.0030712499999999998,
-        "dy": -0.0026617499999999996,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -264,8 +264,8 @@
     ]
   },
   "javier": {
-    "introName": "Cruza los brazos y mira al rival",
-    "selectionName": "Cruza los brazos y mira al rival",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 0,
     "frameFacing": [
       1,
@@ -277,8 +277,8 @@
       1,
       1
     ],
-    "introStyle": "joke",
-    "selectionStyle": "joke",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
     "prop": "none",
     "color": "#ff96bd",
     "durationMs": 2800,
@@ -294,27 +294,27 @@
       },
       {
         "at": 0.14,
-        "frame": 1,
-        "dx": 0.00528,
-        "dy": -0.003432,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 1,
-        "dx": 0.024,
-        "dy": -0.015600000000000001,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 1,
-        "dx": 0.0084,
-        "dy": -0.0054600000000000004,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -350,27 +350,27 @@
       },
       {
         "at": 0.14,
-        "frame": 1,
-        "dx": 0.002376,
-        "dy": -0.0015444,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 1,
-        "dx": 0.0108,
-        "dy": -0.00702,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 1,
-        "dx": 0.00378,
-        "dy": -0.0024570000000000004,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -396,8 +396,8 @@
     ]
   },
   "capriles": {
-    "introName": "Saludo casual",
-    "selectionName": "Saludo casual",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 0,
     "frameFacing": [
       1,
@@ -409,8 +409,8 @@
       1,
       1
     ],
-    "introStyle": "greet",
-    "selectionStyle": "greet",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
     "prop": "none",
     "color": "#80b8ff",
     "durationMs": 2800,
@@ -427,8 +427,8 @@
       {
         "at": 0.14,
         "frame": 0,
-        "dx": 0.003465,
-        "dy": -0.00286,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -436,8 +436,8 @@
       {
         "at": 0.5,
         "frame": 0,
-        "dx": 0.01575,
-        "dy": -0.013000000000000001,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -445,8 +445,8 @@
       {
         "at": 0.76,
         "frame": 0,
-        "dx": 0.0055125,
-        "dy": -0.00455,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -483,8 +483,8 @@
       {
         "at": 0.14,
         "frame": 0,
-        "dx": 0.00155925,
-        "dy": -0.0012870000000000002,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -492,8 +492,8 @@
       {
         "at": 0.5,
         "frame": 0,
-        "dx": 0.0070875,
-        "dy": -0.005850000000000001,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -501,8 +501,8 @@
       {
         "at": 0.76,
         "frame": 0,
-        "dx": 0.002480625,
-        "dy": -0.0020475000000000003,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -528,8 +528,8 @@
     ]
   },
   "renny": {
-    "introName": "Bienvenida con la palma abierta",
-    "selectionName": "Bienvenida con la palma abierta",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -541,8 +541,8 @@
       1,
       1
     ],
-    "introStyle": "broadcast",
-    "selectionStyle": "present",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
     "prop": "none",
     "color": "#ffc76a",
     "durationMs": 2800,
@@ -558,27 +558,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.005775000000000001,
-        "dy": -0.003432,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.026250000000000002,
-        "dy": -0.015600000000000001,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.0091875,
-        "dy": -0.0054600000000000004,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -614,27 +614,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0025987500000000004,
-        "dy": -0.0015444,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.011812500000000002,
-        "dy": -0.00702,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.004134375,
-        "dy": -0.0024570000000000004,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -660,8 +660,8 @@
     ]
   },
   "gomez": {
-    "introName": "Saludo solemne",
-    "selectionName": "Saludo solemne",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 0,
     "frameFacing": [
       1,
@@ -673,8 +673,8 @@
       1,
       1
     ],
-    "introStyle": "inspect",
-    "selectionStyle": "inspect",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
     "prop": "none",
     "color": "#c9ae78",
     "durationMs": 2800,
@@ -691,8 +691,8 @@
       {
         "at": 0.14,
         "frame": 0,
-        "dx": 0.00363,
-        "dy": -0.002288,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -700,8 +700,8 @@
       {
         "at": 0.5,
         "frame": 0,
-        "dx": 0.0165,
-        "dy": -0.010400000000000001,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -709,8 +709,8 @@
       {
         "at": 0.76,
         "frame": 0,
-        "dx": 0.005775,
-        "dy": -0.00364,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -747,8 +747,8 @@
       {
         "at": 0.14,
         "frame": 0,
-        "dx": 0.0016335,
-        "dy": -0.0010296,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -756,8 +756,8 @@
       {
         "at": 0.5,
         "frame": 0,
-        "dx": 0.007425,
-        "dy": -0.004680000000000001,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -765,8 +765,8 @@
       {
         "at": 0.76,
         "frame": 0,
-        "dx": 0.00259875,
-        "dy": -0.0016380000000000001,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -1056,8 +1056,8 @@
     ]
   },
   "emilio": {
-    "introName": "Reverencia cómica",
-    "selectionName": "Reverencia cómica",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       -1,
@@ -1069,8 +1069,8 @@
       1,
       1
     ],
-    "introStyle": "present",
-    "selectionStyle": "joke",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
     "prop": "none",
     "color": "#bd98ef",
     "durationMs": 2800,
@@ -1086,27 +1086,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.006104999999999999,
-        "dy": -0.004576,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.027749999999999997,
-        "dy": -0.020800000000000003,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.009712499999999999,
-        "dy": -0.00728,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -1142,27 +1142,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0027472499999999997,
-        "dy": -0.0020592,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.012487499999999999,
-        "dy": -0.009360000000000002,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.0043706249999999995,
-        "dy": -0.0032760000000000003,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -1188,8 +1188,8 @@
     ]
   },
   "maite": {
-    "introName": "Saludo de gala",
-    "selectionName": "Saludo de gala",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -1201,9 +1201,9 @@
       1,
       1
     ],
-    "introStyle": "present",
-    "selectionStyle": "present",
-    "prop": "microphone",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
+    "prop": "none",
     "color": "#f19bca",
     "durationMs": 2800,
     "introBeats": [
@@ -1218,27 +1218,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.00528,
-        "dy": -0.003432,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.024,
-        "dy": -0.015600000000000001,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.0084,
-        "dy": -0.0054600000000000004,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -1274,27 +1274,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.002376,
-        "dy": -0.0015444,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.0108,
-        "dy": -0.00702,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.00378,
-        "dy": -0.0024570000000000004,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -1452,8 +1452,8 @@
     ]
   },
   "puma": {
-    "introName": "Invita al público con la mano",
-    "selectionName": "Invita al público con la mano",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -1465,8 +1465,8 @@
       1,
       1
     ],
-    "introStyle": "greet",
-    "selectionStyle": "present",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
     "prop": "none",
     "color": "#9ac5ed",
     "durationMs": 2800,
@@ -1482,27 +1482,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.00462,
-        "dy": -0.003146,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.021,
-        "dy": -0.0143,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.00735,
-        "dy": -0.005005,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -1538,27 +1538,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.002079,
-        "dy": -0.0014157,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.00945,
-        "dy": -0.006435000000000001,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.0033075,
-        "dy": -0.00225225,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -1584,8 +1584,8 @@
     ]
   },
   "chataing": {
-    "introName": "Pide un segundo con la palma",
-    "selectionName": "Pide un segundo con la palma",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -1597,9 +1597,9 @@
       1,
       1
     ],
-    "introStyle": "broadcast",
-    "selectionStyle": "joke",
-    "prop": "microphone",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
+    "prop": "none",
     "color": "#91d3d7",
     "durationMs": 2800,
     "introBeats": [
@@ -1614,27 +1614,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.00429,
-        "dy": -0.003575,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.0195,
-        "dy": -0.01625,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.0068249999999999995,
-        "dy": -0.0056875,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -1670,27 +1670,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0019305000000000001,
-        "dy": -0.0016087500000000002,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.008775,
-        "dy": -0.0073125,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.0030712499999999998,
-        "dy": -0.002559375,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -1716,8 +1716,8 @@
     ]
   },
   "george": {
-    "introName": "Gesto de remate",
-    "selectionName": "Gesto de remate",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       -1,
@@ -1729,9 +1729,9 @@
       1,
       1
     ],
-    "introStyle": "joke",
-    "selectionStyle": "joke",
-    "prop": "microphone",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
+    "prop": "none",
     "color": "#d5a787",
     "durationMs": 2800,
     "introBeats": [
@@ -1746,27 +1746,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.005939999999999999,
-        "dy": -0.00429,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.026999999999999996,
-        "dy": -0.0195,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.009449999999999998,
-        "dy": -0.0068249999999999995,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -1802,27 +1802,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0026729999999999996,
-        "dy": -0.0019305000000000001,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.01215,
-        "dy": -0.008775,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.004252499999999999,
-        "dy": -0.0030712499999999998,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -1848,8 +1848,8 @@
     ]
   },
   "mcm": {
-    "introName": "Saludo de encuentro",
-    "selectionName": "Saludo de encuentro",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -1861,8 +1861,8 @@
       1,
       1
     ],
-    "introStyle": "greet",
-    "selectionStyle": "greet",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
     "prop": "none",
     "color": "#75bfea",
     "durationMs": 2800,
@@ -1878,27 +1878,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.003960000000000001,
-        "dy": -0.002717,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.018000000000000002,
-        "dy": -0.01235,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.0063,
-        "dy": -0.0043225,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -1934,27 +1934,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0017820000000000004,
-        "dy": -0.00122265,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.008100000000000001,
-        "dy": -0.0055575,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.0028350000000000003,
-        "dy": -0.001945125,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -2244,8 +2244,8 @@
     ]
   },
   "reynaldo": {
-    "introName": "Invitación llanera",
-    "selectionName": "Invitación llanera",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -2257,9 +2257,9 @@
       1,
       1
     ],
-    "introStyle": "present",
-    "selectionStyle": "present",
-    "prop": "microphone",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
+    "prop": "none",
     "color": "#e7ae62",
     "durationMs": 2800,
     "introBeats": [
@@ -2274,27 +2274,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0049499999999999995,
-        "dy": -0.003861,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.0225,
-        "dy": -0.01755,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.007875,
-        "dy": -0.0061424999999999995,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -2330,27 +2330,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0022275,
-        "dy": -0.00173745,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.010125,
-        "dy": -0.0078975,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.00354375,
-        "dy": -0.0027641249999999997,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -2508,8 +2508,8 @@
     ]
   },
   "danny": {
-    "introName": "Un paso urbano",
-    "selectionName": "Un paso urbano",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -2521,8 +2521,8 @@
       1,
       1
     ],
-    "introStyle": "dance",
-    "selectionStyle": "dance",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
     "prop": "none",
     "color": "#67d5e9",
     "durationMs": 2800,
@@ -2538,27 +2538,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.008250000000000002,
-        "dy": -0.006578,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.037500000000000006,
-        "dy": -0.0299,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.013125000000000001,
-        "dy": -0.010464999999999999,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -2594,27 +2594,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.003712500000000001,
-        "dy": -0.0029601,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.016875000000000005,
-        "dy": -0.013455,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.005906250000000001,
-        "dy": -0.00470925,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -2640,8 +2640,8 @@
     ]
   },
   "nacho": {
-    "introName": "Un paso lateral",
-    "selectionName": "Un paso lateral",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -2653,8 +2653,8 @@
       1,
       1
     ],
-    "introStyle": "dance",
-    "selectionStyle": "dance",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
     "prop": "none",
     "color": "#aab2e1",
     "durationMs": 2800,
@@ -2670,27 +2670,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.009075,
-        "dy": -0.005434,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.04125,
-        "dy": -0.0247,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.014437499999999999,
-        "dy": -0.008645,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -2726,27 +2726,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.00408375,
-        "dy": -0.0024453,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.018562500000000003,
-        "dy": -0.011115,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.006496875,
-        "dy": -0.00389025,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -2772,8 +2772,8 @@
     ]
   },
   "sarcos": {
-    "introName": "Bienvenida con los brazos abiertos",
-    "selectionName": "Bienvenida con los brazos abiertos",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -2785,9 +2785,9 @@
       1,
       1
     ],
-    "introStyle": "present",
-    "selectionStyle": "present",
-    "prop": "microphone",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
+    "prop": "none",
     "color": "#ffae75",
     "durationMs": 2800,
     "introBeats": [
@@ -2802,27 +2802,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.006104999999999999,
-        "dy": -0.003861,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.027749999999999997,
-        "dy": -0.01755,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.009712499999999999,
-        "dy": -0.0061424999999999995,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -2858,27 +2858,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0027472499999999997,
-        "dy": -0.00173745,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.012487499999999999,
-        "dy": -0.0078975,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.0043706249999999995,
-        "dy": -0.0027641249999999997,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -2904,8 +2904,8 @@
     ]
   },
   "yordano": {
-    "introName": "Invitación del cantautor",
-    "selectionName": "Invitación del cantautor",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -2917,8 +2917,8 @@
       1,
       1
     ],
-    "introStyle": "greet",
-    "selectionStyle": "greet",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
     "prop": "none",
     "color": "#8bd3cd",
     "durationMs": 2800,
@@ -2934,27 +2934,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.004125000000000001,
-        "dy": -0.003432,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.018750000000000003,
-        "dy": -0.015600000000000001,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.006562500000000001,
-        "dy": -0.0054600000000000004,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -2990,27 +2990,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0018562500000000005,
-        "dy": -0.0015444,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.008437500000000002,
-        "dy": -0.00702,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.0029531250000000005,
-        "dy": -0.0024570000000000004,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3036,8 +3036,8 @@
     ]
   },
   "lila": {
-    "introName": "Saludo de diva",
-    "selectionName": "Saludo de diva",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -3049,9 +3049,9 @@
       1,
       1
     ],
-    "introStyle": "present",
-    "selectionStyle": "present",
-    "prop": "stars",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
+    "prop": "none",
     "color": "#f6ce78",
     "durationMs": 2800,
     "introBeats": [
@@ -3066,27 +3066,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.005775000000000001,
-        "dy": -0.003432,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.026250000000000002,
-        "dy": -0.015600000000000001,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.0091875,
-        "dy": -0.0054600000000000004,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3122,27 +3122,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0025987500000000004,
-        "dy": -0.0015444,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.011812500000000002,
-        "dy": -0.00702,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.004134375,
-        "dy": -0.0024570000000000004,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3168,8 +3168,8 @@
     ]
   },
   "rummy": {
-    "introName": "Saludo llanero",
-    "selectionName": "Saludo llanero",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -3181,9 +3181,9 @@
       1,
       1
     ],
-    "introStyle": "hat",
-    "selectionStyle": "dance",
-    "prop": "hat",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
+    "prop": "none",
     "color": "#b3c6ef",
     "durationMs": 2800,
     "introBeats": [
@@ -3198,27 +3198,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.005939999999999999,
-        "dy": -0.004004000000000001,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.026999999999999996,
-        "dy": -0.0182,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.009449999999999998,
-        "dy": -0.00637,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3254,27 +3254,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0026729999999999996,
-        "dy": -0.0018018000000000003,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.01215,
-        "dy": -0.008190000000000001,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.004252499999999999,
-        "dy": -0.0028665,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3300,8 +3300,8 @@
     ]
   },
   "chiqui": {
-    "introName": "Saludo de pasarela",
-    "selectionName": "Saludo de pasarela",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -3313,9 +3313,9 @@
       1,
       1
     ],
-    "introStyle": "present",
-    "selectionStyle": "present",
-    "prop": "card",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
+    "prop": "none",
     "color": "#8cacff",
     "durationMs": 2800,
     "introBeats": [
@@ -3330,27 +3330,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.005939999999999999,
-        "dy": -0.004004000000000001,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.026999999999999996,
-        "dy": -0.0182,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.009449999999999998,
-        "dy": -0.00637,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3386,27 +3386,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0026729999999999996,
-        "dy": -0.0018018000000000003,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.01215,
-        "dy": -0.008190000000000001,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.004252499999999999,
-        "dy": -0.0028665,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3432,8 +3432,8 @@
     ]
   },
   "norkys": {
-    "introName": "Giro de hombros",
-    "selectionName": "Giro de hombros",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -3445,8 +3445,8 @@
       1,
       1
     ],
-    "introStyle": "present",
-    "selectionStyle": "greet",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
     "prop": "none",
     "color": "#fa9cb5",
     "durationMs": 2800,
@@ -3462,27 +3462,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0062699999999999995,
-        "dy": -0.004004000000000001,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.028499999999999998,
-        "dy": -0.0182,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.009974999999999998,
-        "dy": -0.00637,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3518,27 +3518,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0028215,
-        "dy": -0.0018018000000000003,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.012825,
-        "dy": -0.008190000000000001,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.004488749999999999,
-        "dy": -0.0028665,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3564,8 +3564,8 @@
     ]
   },
   "gabriela": {
-    "introName": "Saludo de actriz",
-    "selectionName": "Saludo de actriz",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -3577,9 +3577,9 @@
       1,
       1
     ],
-    "introStyle": "present",
-    "selectionStyle": "present",
-    "prop": "light",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
+    "prop": "none",
     "color": "#c7b6eb",
     "durationMs": 2800,
     "introBeats": [
@@ -3594,27 +3594,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.00561,
-        "dy": -0.003432,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.025500000000000002,
-        "dy": -0.015600000000000001,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.008925,
-        "dy": -0.0054600000000000004,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3650,27 +3650,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.0025245000000000003,
-        "dy": -0.0015444,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.011475,
-        "dy": -0.00702,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.004016250000000001,
-        "dy": -0.0024570000000000004,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3696,8 +3696,8 @@
     ]
   },
   "amanda": {
-    "introName": "Mirada y gesto dramático",
-    "selectionName": "Mirada y gesto dramático",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -3709,8 +3709,8 @@
       1,
       1
     ],
-    "introStyle": "inspect",
-    "selectionStyle": "inspect",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
     "prop": "none",
     "color": "#d8a4e3",
     "durationMs": 2800,
@@ -3727,8 +3727,8 @@
       {
         "at": 0.14,
         "frame": 1,
-        "dx": 0.003960000000000001,
-        "dy": -0.002717,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3736,8 +3736,8 @@
       {
         "at": 0.5,
         "frame": 1,
-        "dx": 0.018000000000000002,
-        "dy": -0.01235,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3745,8 +3745,8 @@
       {
         "at": 0.76,
         "frame": 1,
-        "dx": 0.0063,
-        "dy": -0.0043225,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3783,8 +3783,8 @@
       {
         "at": 0.14,
         "frame": 1,
-        "dx": 0.0017820000000000004,
-        "dy": -0.00122265,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3792,8 +3792,8 @@
       {
         "at": 0.5,
         "frame": 1,
-        "dx": 0.008100000000000001,
-        "dy": -0.0055575,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3801,8 +3801,8 @@
       {
         "at": 0.76,
         "frame": 1,
-        "dx": 0.0028350000000000003,
-        "dy": -0.001945125,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -3960,8 +3960,8 @@
     ]
   },
   "giuseppe": {
-    "introName": "Presentación de su idea",
-    "selectionName": "Presentación de su idea",
+    "introName": "Se yergue y cruza los brazos",
+    "selectionName": "Se yergue y cruza los brazos",
     "battleFrame": 1,
     "frameFacing": [
       1,
@@ -3973,9 +3973,9 @@
       1,
       1
     ],
-    "introStyle": "inspect",
-    "selectionStyle": "card",
-    "prop": "card",
+    "introStyle": "defiant",
+    "selectionStyle": "defiant",
+    "prop": "none",
     "color": "#60e4b4",
     "durationMs": 2800,
     "introBeats": [
@@ -3990,27 +3990,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.00462,
-        "dy": -0.003146,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.021,
-        "dy": -0.0143,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.00735,
-        "dy": -0.005005,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -4046,27 +4046,27 @@
       },
       {
         "at": 0.14,
-        "frame": 0,
-        "dx": 0.002079,
-        "dy": -0.0014157,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.5,
-        "frame": 0,
-        "dx": 0.00945,
-        "dy": -0.006435000000000001,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1
       },
       {
         "at": 0.76,
-        "frame": 0,
-        "dx": 0.0033075,
-        "dy": -0.00225225,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
         "rotate": 0,
         "scaleX": 1,
         "scaleY": 1

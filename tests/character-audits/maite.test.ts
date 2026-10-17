@@ -25,7 +25,7 @@ test("Maite retains her researched identity, spotlight and one-shot greeting in 
   assert.equal(f.name, "Maite Delgado"); assert.equal(f.ability, "spotlight"); assert.equal(f.special, "Luz de escenario");
   assert.deepEqual(f.combos, ["Primera entrada", "Cambio de cámara", "Gran final"]);
   assert.equal(TECHNIQUES.spotlight.aimed, true); assert.equal(TECHNIQUES.spotlight.startup, 15);
-  assert.equal(p.introStyle, "present"); assert.equal(p.selectionStyle, "present"); assert.equal(p.prop, "microphone"); assert.equal(p.battleFrame, 1);
+  assert.equal(p.introStyle, "defiant"); assert.equal(p.selectionStyle, "defiant"); assert.equal(p.prop, "none"); assert.equal(p.battleFrame, 1);
   assert.equal(selectionProgress("maite", 2800), 1); assert.equal(selectionProgress("maite", 5600), 1);
   assert.equal(samplePose(p.selectionBeats, 1).frame, 1); assert.equal(samplePose(p.introBeats, 1).frame, 1);
   for (let frame = 0; frame < 8; frame++) for (const facing of [1, -1]) assert.equal(normalizedFacing("maite", frame, facing), facing);

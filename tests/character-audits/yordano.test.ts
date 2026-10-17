@@ -25,7 +25,7 @@ test("Yordano preserves researched identity, three timed drops and one-shot pres
   assert.equal(f.name, "Yordano"); assert.equal(f.ability, "fountain"); assert.equal(f.special, "Manantial en tres tiempos");
   assert.deepEqual(f.combos, ["Agua clara", "Ida y vuelta", "Tres tiempos"]);
   assert.deepEqual(TECHNIQUES.fountain.pulses, [0, 13, 26]);
-  assert.equal(p.introStyle, "greet"); assert.equal(p.selectionStyle, "greet"); assert.equal(p.battleFrame, 1);
+  assert.equal(p.introStyle, "defiant"); assert.equal(p.selectionStyle, "defiant"); assert.equal(p.battleFrame, 1);
   assert.equal(selectionProgress("yordano", 2800), 1); assert.equal(selectionProgress("yordano", 5600), 1);
   for (const beats of [p.introBeats, p.selectionBeats]) { const last = samplePose(beats, 1); assert.equal(last.frame, 1); assert.equal(last.dx, 0); assert.equal(last.dy, 0); }
   for (let frame = 0; frame < 8; frame++) for (const facing of [1, -1]) assert.equal(normalizedFacing("yordano", frame, facing), facing);

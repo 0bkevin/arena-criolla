@@ -31,7 +31,7 @@ test("Nacho retains his researched identity, three syncopated steps, one-shot se
   assert.deepEqual(TECHNIQUES.syncopate.pulses, [0, 14, 28]);
   assert.equal(TECHNIQUES.syncopate.dash?.speed, 14);
   assert.deepEqual(TECHNIQUES.syncopate.steps, [{ pulse: 1, speed: -10, ticks: 5 }, { pulse: 2, speed: 17, ticks: 7, lift: -4 }]);
-  assert.equal(presentationById("nacho").introStyle, "dance");
+  assert.equal(presentationById("nacho").introStyle, "defiant");
   assert.equal(presentationById("nacho").battleFrame, 1);
   assert.equal(selectionProgress("nacho", 2800), 1); assert.equal(selectionProgress("nacho", 5600), 1);
   for (let frame = 0; frame < 8; frame++) for (const facing of [1, -1]) assert.equal(normalizedFacing("nacho", frame, facing), facing);

@@ -25,7 +25,7 @@ test("Chataing retains his researched identity, returning microphone and one-sho
   assert.equal(f.name, "Luis Chataing"); assert.equal(f.ability, "static"); assert.equal(f.special, "Micrófono de vuelta");
   assert.deepEqual(f.combos, ["Pregunta directa", "Repregunta", "Cierre al aire"]);
   assert.deepEqual(TECHNIQUES.static.projectile, { speed: 10, life: 75, returnAfter: 24 });
-  assert.equal(p.prop, "microphone"); assert.equal(p.battleFrame, 1);
+  assert.equal(p.prop, "none"); assert.equal(p.battleFrame, 1);
   assert.equal(selectionProgress("chataing", 2800), 1); assert.equal(selectionProgress("chataing", 5600), 1);
   for (const beats of [p.introBeats, p.selectionBeats]) assert.equal(samplePose(beats, 1).frame, 1);
   for (let frame = 0; frame < 8; frame++) for (const facing of [1, -1]) assert.equal(normalizedFacing("chataing", frame, facing), facing);

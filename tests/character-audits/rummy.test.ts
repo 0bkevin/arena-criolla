@@ -32,7 +32,7 @@ test("Rummy retains her dossier identity, four advancing grounded pulses, one-sh
   assert.deepEqual(t.pulses, [0, 10, 20, 30]); assert.equal(t.startup, 9); assert.equal(t.recovery, 46);
   assert.equal(t.groundOnly, true); assert.equal(t.radial, true); assert.equal(t.finisherForce, 8);
   assert.equal(t.dash?.speed, 6); assert.equal(t.dash?.ticks, 24); assert.equal(t.dash?.brake, 0.65);
-  assert.equal(presentationById("rummy").introStyle, "hat"); assert.equal(presentationById("rummy").selectionStyle, "dance");
+  assert.equal(presentationById("rummy").introStyle, "defiant"); assert.equal(presentationById("rummy").selectionStyle, "defiant");
   assert.equal(presentationById("rummy").battleFrame, 1);
   assert.equal(selectionProgress("rummy", 2800), 1); assert.equal(selectionProgress("rummy", 5600), 1);
   for (let frame = 0; frame < 8; frame++) for (const facing of [1, -1]) assert.equal(normalizedFacing("rummy", frame, facing), facing);

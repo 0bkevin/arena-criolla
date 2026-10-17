@@ -29,7 +29,7 @@ test("Danny retains his researched identity, bounded growing sound bubble, one-s
   assert.equal(f.name, "Danny Ocean"); assert.equal(f.ability, "crescendo"); assert.equal(f.special, "Onda Reflexa");
   assert.deepEqual(f.combos, ["Pulso suave", "Cambio de marea", "Onda Reflexa"]);
   assert.equal(TECHNIQUES.crescendo.startup, 19); assert.deepEqual(TECHNIQUES.crescendo.projectile, {speed:4.8,life:100,radius:12,growth:0.65,maxRadius:48});
-  assert.equal(presentationById("danny").introStyle, "dance");
+  assert.equal(presentationById("danny").introStyle, "defiant");
   assert.equal(presentationById("danny").battleFrame, 1);
   assert.equal(selectionProgress("danny", 2800), 1); assert.equal(selectionProgress("danny", 5600), 1);
   for (let frame = 0; frame < 8; frame++) for (const facing of [1, -1]) assert.equal(normalizedFacing("danny", frame, facing), facing);

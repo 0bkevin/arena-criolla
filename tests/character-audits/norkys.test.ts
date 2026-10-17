@@ -25,7 +25,7 @@ test("Norkys retains identity, two radial pivot pulses, and one-shot presentatio
   assert.equal(f.name, "Norkys Batista"); assert.equal(f.ability, "pivot"); assert.equal(f.special, "Pivote de escena");
   assert.deepEqual(f.combos, ["Cambio de perfil", "Giro de escena", "Pivote doble"]);
   assert.deepEqual(TECHNIQUES.pivot.pulses, [0, 15]); assert.equal(TECHNIQUES.pivot.radial, true);
-  assert.equal(p.introName, "Giro de hombros"); assert.equal(p.battleFrame, 1);
+  assert.equal(p.introName, "Se yergue y cruza los brazos"); assert.equal(p.battleFrame, 1);
   assert.equal(selectionProgress("norkys", 2800), 1); assert.equal(selectionProgress("norkys", 5600), 1);
   for (const beats of [p.introBeats, p.selectionBeats]) {
     assert.equal(samplePose(beats, 1).frame, 1); assert.deepEqual(samplePose(beats, 1), samplePose(beats, 2));

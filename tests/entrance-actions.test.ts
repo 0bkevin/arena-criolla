@@ -3,11 +3,113 @@ import assert from "node:assert/strict";
 import { FIGHTERS } from "../shared/content";
 import { CHOREOGRAPHIES, REST, sampleGesture } from "../shared/choreography";
 import {
+  DEFAULT_ENTRANCE_ACTION,
+  DEFAULT_ENTRANCE_FIGHTERS,
   ENTRANCE_ACTIONS,
   sampleEntranceAction,
 } from "../shared/entrance-actions";
-import { selectionProgress } from "../shared/presentation";
+import { presentationById, selectionProgress } from "../shared/presentation";
 import manifest from "../shared/entrance-assets.json";
+import sharp from "sharp";
+
+test("all 24 default fighters have matching profiles, actions, and dedicated artwork", () => {
+  const expected = [...DEFAULT_ENTRANCE_FIGHTERS].sort();
+  assert.equal(expected.length, 24);
+  assert.equal(new Set(expected).size, 24);
+  for (const style of ["introStyle", "selectionStyle"] as const)
+    assert.deepEqual(
+      FIGHTERS.filter(
+        (fighter) => presentationById(fighter.id)[style] === "defiant",
+      )
+        .map((fighter) => fighter.id)
+        .sort(),
+      expected,
+    );
+  assert.deepEqual(
+    Object.entries(ENTRANCE_ACTIONS)
+      .filter(([, action]) => action === DEFAULT_ENTRANCE_ACTION)
+      .map(([id]) => id)
+      .sort(),
+    expected,
+  );
+  assert.deepEqual(
+    Object.entries(manifest)
+      .filter(([, asset]) => asset.file.endsWith("-defiant-entrance"))
+      .map(([id]) => id)
+      .sort(),
+    expected,
+  );
+});
+
+test("default entrances straighten, fold once, hold, and release into the original guard", () => {
+  for (const id of DEFAULT_ENTRANCE_FIGHTERS) {
+    const profile = presentationById(id);
+    assert.equal(profile.introStyle, "defiant", id);
+    assert.equal(profile.selectionStyle, "defiant", id);
+    assert.equal(profile.prop, "none", `${id}: obsolete prop overlay`);
+    for (const beats of [profile.introBeats, profile.selectionBeats])
+      for (const beat of beats) {
+        assert.equal(beat.frame, profile.battleFrame, id);
+        assert.equal(beat.dx, 0, `${id}: residual sway`);
+        assert.equal(beat.dy, 0, `${id}: residual bounce`);
+      }
+    const phases = DEFAULT_ENTRANCE_ACTION.frames
+      .map((frame) => frame.phase)
+      .filter((phase, index, all) => phase !== all[index - 1]);
+    assert.deepEqual(phases, ["straighten", "fold", "hold", "release"]);
+    for (const progress of [0.48, 0.6, 0.75]) {
+      const sample = sampleEntranceAction(id, progress)!;
+      assert.equal(sample.current.phase, "hold", id);
+      assert.equal(sample.current.frame, 5, id);
+    }
+    assert.ok((0.76 - 0.48) * profile.durationMs >= 750, id);
+    assert.equal(sampleEntranceAction(id, 0), null, id);
+    for (const progress of [0.9, 1, 2, 100])
+      assert.equal(sampleEntranceAction(id, progress), null, id);
+  }
+  for (const id of ["oscar", "dudamel"] as const)
+    assert.notEqual(ENTRANCE_ACTIONS[id], DEFAULT_ENTRANCE_ACTION);
+});
+
+test("every default entrance ships six transparent poses and a rebuildable PNG source", async () => {
+  for (const id of DEFAULT_ENTRANCE_FIGHTERS) {
+    const asset = manifest[id];
+    assert.equal(asset.frames.length, 6, id);
+    const image = sharp(`public/assets/${asset.file}.webp`);
+    const meta = await image.metadata();
+    assert.equal(meta.width, asset.width, id);
+    assert.equal(meta.height, asset.height, id);
+    assert.ok(meta.hasAlpha, id);
+    const source = sharp(`assets/source/${asset.file}.png`);
+    const sourceMeta = await source.metadata();
+    assert.equal(sourceMeta.width, asset.width, `${id}: source width`);
+    assert.equal(sourceMeta.height, asset.height, `${id}: source height`);
+    // Asset preparation must reproduce the same silhouettes used at runtime.
+    assert.deepEqual(
+      await source.extractChannel("alpha").raw().toBuffer(),
+      await image.clone().extractChannel("alpha").raw().toBuffer(),
+      `${id}: source/runtime alpha mismatch`,
+    );
+    for (const frame of asset.frames) {
+      assert.ok(frame.x >= frame.slotX && frame.y >= frame.slotY, id);
+      assert.ok(frame.x + frame.width < frame.slotX + asset.cell, id);
+      assert.ok(frame.y + frame.height < frame.slotY + asset.cell, id);
+      const stats = await image
+        .clone()
+        .extract({
+          left: frame.x,
+          top: frame.y,
+          width: frame.width,
+          height: frame.height,
+        })
+        .stats();
+      assert.ok(stats.channels[3].max > 200, `${id}: empty pose`);
+      assert.equal(stats.channels[3].min, 0, `${id}: opaque background`);
+    }
+    for (const key of ENTRANCE_ACTIONS[id]!.frames)
+      assert.ok(asset.frames[key.frame], `${id}: missing action frame`);
+  }
+});
 
 test("selection finishes once and stays in guard across later replay-sized intervals", () => {
   for (const f of FIGHTERS) {

@@ -30,7 +30,7 @@ test("Reynaldo retains researched llanero identity and one-shot presentation in 
   assert.deepEqual(f.combos, ["Paso del llano", "Vuelta sabanera", "Caballo de oro"]);
   assert.equal(TECHNIQUES.lasso.projectile?.pulls, true); assert.equal(TECHNIQUES.lasso.projectile?.slowTicks, 25);
   assert.equal(TECHNIQUES.lasso.projectile?.returnAfter, 28);
-  assert.equal(presentationById("reynaldo").introStyle, "present"); assert.equal(presentationById("reynaldo").prop, "microphone");
+  assert.equal(presentationById("reynaldo").introStyle, "defiant"); assert.equal(presentationById("reynaldo").prop, "none");
   assert.equal(presentationById("reynaldo").battleFrame, 1);
   assert.equal(selectionProgress("reynaldo", 2800), 1); assert.equal(selectionProgress("reynaldo", 5600), 1);
   for (let frame = 0; frame < 8; frame++) for (const facing of [1, -1]) assert.equal(normalizedFacing("reynaldo", frame, facing), facing);

@@ -29,7 +29,7 @@ test("Sarcos retains his researched identity, two prize bounces, one-shot select
   assert.equal(f.name, "Daniel Sarcos"); assert.equal(f.ability, "jackpot"); assert.equal(f.special, "Premio sensacional");
   assert.deepEqual(f.combos, ["Calienta el show", "Doble sorpresa", "Premio mayor"]);
   assert.deepEqual(TECHNIQUES.jackpot.projectile, { speed: 6, life: 110, initialVy: -6, gravity: 0.35, bounces: 2, blastRadius: 85 });
-  assert.equal(presentationById("sarcos").introStyle, "present");
+  assert.equal(presentationById("sarcos").introStyle, "defiant");
   assert.equal(presentationById("sarcos").battleFrame, 1);
   assert.equal(selectionProgress("sarcos", 2800), 1); assert.equal(selectionProgress("sarcos", 5600), 1);
   for (let frame = 0; frame < 8; frame++) for (const facing of [1, -1]) assert.equal(normalizedFacing("sarcos", frame, facing), facing);
