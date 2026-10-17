@@ -4,6 +4,8 @@ import { mkdtemp, writeFile, rm } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { makeArenaServer } from "../server/index";
+import { STAGES } from "../shared/content";
+import { WORLD } from "../shared/engine";
 import {
   deterministicCreatorProvider,
   referencePhoto,
@@ -23,6 +25,9 @@ const server = await makeArenaServer({
 });
 server.creator.router.get("/qa/fixture", (_req, res) => {
   res.json({ provider: "deterministic", production });
+});
+server.creator.router.get("/qa/stages", (_req, res) => {
+  res.json({ stages: STAGES, world: WORLD });
 });
 const port = Number(process.env.ARENA_QA_PORT) || 5380;
 server.http.listen(port, "127.0.0.1", () => {
