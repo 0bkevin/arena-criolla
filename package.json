@@ -12,8 +12,8 @@
     "assets:og": "node scripts/generate-og-image.mjs",
     "check:assets": "node scripts/validate-character-assets.mjs",
     "test:accounts": "tsx --test tests/accounts.test.ts tests/creator-api.test.ts",
-    "test:creator": "tsx --test tests/accounts.test.ts tests/creator-api.test.ts tests/creator.test.ts tests/creator-sprites.test.ts tests/creator-resilience.test.ts tests/adversarial-creator-v31.test.ts tests/provider-contract.test.ts tests/adversarial-creator-state-v38.test.ts",
-    "test:adversarial": "tsx --test tests/adversarial-creator-v31.test.ts tests/adversarial-game-v31.test.ts tests/creator-resilience.test.ts tests/provider-contract.test.ts tests/scheduler.test.ts tests/adversarial-creator-state-v38.test.ts",
+    "test:creator": "tsx --test tests/accounts.test.ts tests/creator-api.test.ts tests/creator.test.ts tests/creator-sprites.test.ts tests/creator-resilience.test.ts tests/adversarial-creator-v31.test.ts tests/provider-contract.test.ts tests/adversarial-creator-state-v38.test.ts tests/creator-draft-v38.test.ts tests/creator-api-v38.test.ts",
+    "test:adversarial": "tsx --test tests/adversarial-creator-v31.test.ts tests/adversarial-game-v31.test.ts tests/creator-resilience.test.ts tests/provider-contract.test.ts tests/scheduler.test.ts tests/adversarial-creator-state-v38.test.ts tests/creator-draft-v38.test.ts tests/creator-api-v38.test.ts",
     "test:characters": "tsx --test tests/character-audits/*.test.ts"
   },
   "dependencies": {
@@ -38,6 +38,7 @@
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@types/ws": "^8.18.0",
+    "fake-indexeddb": "^6.2.6",
     "prettier": "^3.9.9",
     "typescript": "^5.9.0"
   }
