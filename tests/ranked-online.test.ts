@@ -219,15 +219,21 @@ test("ranked rooms require distinct authenticated accounts and ignore browser na
     ]);
     assert.equal(savedA.result.outcome, "win");
     assert.equal(savedB.result.outcome, "loss");
+    assert.equal(savedA.result.pointsEarned, 3);
+    assert.equal(savedB.result.pointsEarned, 0);
     const board = await (await f.request("/api/ranking")).json();
     assert.equal(board.entries[0].userId, f.accounts[0].user.id);
     assert.equal(board.entries[0].wins, 1);
+    assert.equal(board.entries[0].points, 3);
+    assert.equal(board.entries[1].points, 0);
     assert.equal(board.entries[1].losses, 1);
     assert.equal(JSON.stringify(board).includes("email"), false);
     const profile = await (
       await f.request("/api/ranking/me", f.accounts[0].cookie)
     ).json();
     assert.equal(profile.history[0].matchId, a.state.id);
+    assert.equal(profile.entry.points, 3);
+    assert.equal(profile.history[0].pointsEarned, 3);
     assert.equal((await f.request("/api/ranking/me")).status, 401);
     assert.equal(
       (

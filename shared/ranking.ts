@@ -1,6 +1,7 @@
 import type { FighterId, StageId } from "./content";
 
 export const RANKED_RECONNECT_MS = 10_000;
+export const RANKED_POINTS = { win: 3, draw: 1, loss: 0, void: 0 } as const;
 export interface ArenaAccount {
   id: string;
   name: string;
@@ -14,6 +15,7 @@ export interface RankingEntry {
   draws: number;
   played: number;
   winRate: number;
+  points: number;
 }
 export type RankingReason =
   | "combat"
@@ -33,12 +35,14 @@ export interface RankingHistoryEntry {
   reason: RankingReason;
   hits: number;
   peakCombo: number;
+  pointsEarned: number;
 }
 export interface RankingReceipt {
   matchId: string;
   status: "saved" | "pending" | "void";
   reason?: RankingReason;
   outcome?: RankingHistoryEntry["outcome"];
+  pointsEarned?: number;
 }
 export interface RankedStart {
   matchId: string;

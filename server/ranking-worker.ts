@@ -1,5 +1,6 @@
 import { parentPort, workerData } from "node:worker_threads";
 import { DatabaseSync } from "node:sqlite";
+import { RANKED_POINTS } from "../shared/ranking.ts";
 import type {
   RankedFinish,
   RankedStart,
@@ -108,18 +109,20 @@ function receipt(userId: string, matchId: string): RankingReceipt | null {
   if (!row || (row.user0 !== userId && row.user1 !== userId)) return null;
   if (row.status === "playing") return { matchId, status: "pending" };
   const slot = row.user0 === userId ? 0 : 1;
+  const outcome =
+    row.status === "void"
+      ? "void"
+      : row.winner === null
+        ? "draw"
+        : row.winner === slot
+          ? "win"
+          : "loss";
   return {
     matchId,
     status: row.status === "void" ? "void" : "saved",
     reason: row.reason,
-    outcome:
-      row.status === "void"
-        ? "void"
-        : row.winner === null
-          ? "draw"
-          : row.winner === slot
-            ? "win"
-            : "loss",
+    outcome,
+    pointsEarned: RANKED_POINTS[outcome],
   };
 }
 function finish(result: RankedFinish) {
@@ -160,6 +163,7 @@ function finish(result: RankedFinish) {
   });
 }
 const ranked = `SELECT p.user_id AS userId,p.name,s.wins,s.losses,s.draws,s.played,
+  s.wins*${RANKED_POINTS.win}+s.draws*${RANKED_POINTS.draw} AS points,
   100.0*s.wins/s.played AS winRate,
   ROW_NUMBER() OVER(ORDER BY s.wins DESC,1.0*s.wins/s.played DESC,s.played DESC,p.user_id ASC) AS position
   FROM ranked_stats s JOIN ranked_profiles p ON p.user_id=s.user_id WHERE s.played>0`;
@@ -180,6 +184,7 @@ function profile(user: { id: string; name: string }) {
   const history: RankingHistoryEntry[] = rows.map((row) => {
     const slot = row.user0 === user.id ? 0 : 1;
     const metrics = JSON.parse(row.metrics)[slot];
+    const result = receipt(user.id, row.id)!;
     return {
       matchId: row.id,
       startedAt: row.started_at,
@@ -188,10 +193,11 @@ function profile(user: { id: string; name: string }) {
       fighter: slot ? row.fighter1 : row.fighter0,
       opponentFighter: slot ? row.fighter0 : row.fighter1,
       opponent: slot ? row.name0 : row.name1,
-      outcome: receipt(user.id, row.id)!.outcome!,
+      outcome: result.outcome!,
       reason: row.reason,
       hits: metrics.hits,
       peakCombo: metrics.peakCombo,
+      pointsEarned: result.pointsEarned!,
     };
   });
   return {
@@ -204,6 +210,7 @@ function profile(user: { id: string; name: string }) {
       draws: 0,
       played: 0,
       winRate: 0,
+      points: 0,
     },
     history,
   };

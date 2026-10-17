@@ -51,6 +51,8 @@ test("ranked results commit once, keep both players consistent and survive a res
     const receipts = await store.request("finish", result);
     assert.equal(receipts[0].receipt.outcome, "win");
     assert.equal(receipts[1].receipt.outcome, "loss");
+    assert.equal(receipts[0].receipt.pointsEarned, 3);
+    assert.equal(receipts[1].receipt.pointsEarned, 0);
     await Promise.all(
       Array.from({ length: 12 }, () =>
         store.request("finish", { ...result, winner: 1 }),
@@ -59,6 +61,10 @@ test("ranked results commit once, keep both players consistent and survive a res
     const profileA = await store.request("profile", a);
     const profileB = await store.request("profile", b);
     assert.equal(profileA.entry.wins, 1);
+    assert.equal(profileA.entry.points, 3);
+    assert.equal(profileB.entry.points, 0);
+    assert.equal(profileA.history[0].pointsEarned, 3);
+    assert.equal(profileB.history[0].pointsEarned, 0);
     assert.equal(profileA.entry.played, 1);
     assert.equal(profileB.entry.losses, 1);
     assert.equal(profileB.entry.played, 1);
@@ -98,6 +104,8 @@ test("interrupted matches are void, draws count for both and a player cannot ent
     store = new RankingStore(join(dir, "arena.sqlite"));
     const interrupted = await store.request("profile", a);
     assert.equal(interrupted.entry.played, 0);
+    assert.equal(interrupted.entry.points, 0);
+    assert.equal(interrupted.history[0].pointsEarned, 0);
     assert.equal(interrupted.history[0].outcome, "void");
     assert.equal(interrupted.history[0].reason, "server_restart");
     await store.request("begin", start("draw"));
@@ -110,6 +118,9 @@ test("interrupted matches are void, draws count for both and a player cannot ent
       right = await store.request("profile", b);
     assert.equal(left.entry.draws, 1);
     assert.equal(right.entry.draws, 1);
+    assert.equal(left.entry.points, 1);
+    assert.equal(right.entry.points, 1);
+    assert.equal(left.history[0].pointsEarned, 1);
     assert.equal(left.entry.played, 1);
     assert.equal(right.entry.played, 1);
     assert.equal((await store.request("board", null)).entries.length, 2);
@@ -175,6 +186,7 @@ test("a failure between player updates rolls back the match and both statistics"
     );
     assert.equal((await store.request("profile", a)).entry.played, 0);
     assert.equal((await store.request("profile", b)).entry.played, 0);
+    assert.equal((await store.request("profile", a)).entry.points, 0);
     assert.equal(
       (await store.request("receipt", { userId: a.id, matchId: "atomic" }))
         ?.status,
@@ -190,6 +202,62 @@ test("a failure between player updates rolls back the match and both statistics"
     assert.equal((await store.request("profile", b)).entry.losses, 1);
   } finally {
     db?.close();
+    await store.close();
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+test("existing accounts receive points from their saved statistics without rewriting them", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "arena-ranking-points-"));
+  const file = join(dir, "arena.sqlite");
+  const legacy = new DatabaseSync(file);
+  legacy.exec(`
+    CREATE TABLE ranked_profiles(user_id TEXT PRIMARY KEY,name TEXT NOT NULL);
+    CREATE TABLE ranked_stats(
+      user_id TEXT PRIMARY KEY REFERENCES ranked_profiles(user_id),
+      wins INTEGER NOT NULL DEFAULT 0,losses INTEGER NOT NULL DEFAULT 0,
+      draws INTEGER NOT NULL DEFAULT 0,played INTEGER NOT NULL DEFAULT 0
+    );
+    INSERT INTO ranked_profiles VALUES('qa-a','QA A'),('qa-b','QA B');
+    INSERT INTO ranked_stats VALUES('qa-a',2,3,1,6),('qa-b',0,2,4,6);
+  `);
+  legacy.close();
+  const store = new RankingStore(file);
+  try {
+    const before = await store.request("profile", a);
+    assert.equal(before.entry.points, 7);
+    assert.equal((await store.request("profile", b)).entry.points, 4);
+    assert.equal(
+      (await store.request("profile", { id: "qa-new", name: "QA Nueva" })).entry
+        .points,
+      0,
+    );
+    await store.request("begin", start("qa-forfeit-points"));
+    const finish = {
+      matchId: "qa-forfeit-points",
+      winner: 1 as const,
+      reason: "forfeit" as const,
+    };
+    const receipts = await store.request("finish", finish);
+    assert.equal(receipts[1].receipt.pointsEarned, 3);
+    await store.request("finish", finish);
+    const afterA = await store.request("profile", a),
+      afterB = await store.request("profile", b);
+    assert.equal(afterA.entry.points, 7);
+    assert.equal(afterB.entry.points, 7);
+    assert.equal(afterB.entry.wins, 1);
+    assert.equal(afterB.entry.draws, 4);
+    assert.equal(afterB.entry.played, 7);
+    assert.deepEqual(
+      (await store.request("board", null)).entries.map(
+        ({ userId, points }) => ({ userId, points }),
+      ),
+      [
+        { userId: a.id, points: 7 },
+        { userId: b.id, points: 7 },
+      ],
+    );
+  } finally {
     await store.close();
     await rm(dir, { recursive: true, force: true });
   }
