@@ -77,7 +77,9 @@ export function RankingDialog({
     <Modal title="Ranking global" wide onClose={onClose}>
       <p className="modal-intro">
         Victorias en clasificatorias verificadas por el servidor. Desempates por
-        porcentaje de victorias, partidas jugadas y un orden estable de cuenta.
+        porcentaje de victorias, partidas jugadas y un orden estable de cuenta.{" "}
+        Puntaje acumulado: victoria +3, empate +1, derrota +0. Las anuladas no
+        suman.
       </p>
       <div className="ranking-toolbar">
         <span>TOP 100</span>
@@ -105,9 +107,10 @@ export function RankingDialog({
                   : `${me.name} · Sin clasificar`}
               </strong>
               <span>
-                {me.wins} {me.wins === 1 ? "victoria" : "victorias"} ·{" "}
-                {me.losses} {me.losses === 1 ? "derrota" : "derrotas"} ·{" "}
-                {me.draws} {me.draws === 1 ? "empate" : "empates"} · {me.played}{" "}
+                {me.points} puntos · {me.wins}{" "}
+                {me.wins === 1 ? "victoria" : "victorias"} · {me.losses}{" "}
+                {me.losses === 1 ? "derrota" : "derrotas"} · {me.draws}{" "}
+                {me.draws === 1 ? "empate" : "empates"} · {me.played}{" "}
                 {me.played === 1 ? "partida" : "partidas"}
               </span>
             </div>
@@ -127,6 +130,7 @@ export function RankingDialog({
                   <tr>
                     <th scope="col">Posición</th>
                     <th scope="col">Jugador</th>
+                    <th scope="col">Puntos</th>
                     <th scope="col">Victorias</th>
                     <th scope="col">Derrotas</th>
                     <th scope="col">Empates</th>
@@ -146,6 +150,7 @@ export function RankingDialog({
                         {entry.name}
                         {entry.userId === account?.id ? " (tú)" : ""}
                       </th>
+                      <td>{entry.points}</td>
                       <td>{entry.wins}</td>
                       <td>{entry.losses}</td>
                       <td>{entry.draws}</td>
@@ -175,6 +180,7 @@ export function RankingDialog({
                         <strong className={`ranking-outcome ${match.outcome}`}>
                           {resultLabels[match.outcome]}
                         </strong>
+                        <span>+{match.pointsEarned} pts</span>
                         <span>vs. {match.opponent}</span>
                       </div>
                       <p>

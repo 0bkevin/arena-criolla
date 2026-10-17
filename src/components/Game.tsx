@@ -785,6 +785,13 @@ export function Game(props: Props) {
                       : props.rankingResult?.status === "void"
                         ? "Partida anulada. No cuenta para el ranking."
                         : "Guardando el resultado en el ranking. Si tarda, se reintentará automáticamente."}
+                    {props.rankingResult?.status === "saved" &&
+                      props.rankingResult.pointsEarned !== undefined && (
+                        <strong>
+                          +{props.rankingResult.pointsEarned} puntos para tu
+                          cuenta
+                        </strong>
+                      )}
                     {props.onRanking && (
                       <button className="text-button" onClick={props.onRanking}>
                         Ver ranking e historial
