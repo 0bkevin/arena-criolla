@@ -1,0 +1,327 @@
+{
+  "initialA": {
+    "header": "QA Puntos A\n0 pts",
+    "profile": {
+      "entry": {
+        "userId": "35d2f216-400a-4c94-8901-3a99ad77336e",
+        "name": "QA Puntos A",
+        "position": null,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "played": 0,
+        "winRate": 0,
+        "points": 0
+      },
+      "history": []
+    },
+    "board": {
+      "entries": [
+        {
+          "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+          "name": "QA Ranking B",
+          "wins": 2,
+          "losses": 1,
+          "draws": 0,
+          "played": 3,
+          "points": 6,
+          "winRate": 66.66666666666667,
+          "position": 1
+        },
+        {
+          "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+          "name": "QA Ranking A",
+          "wins": 1,
+          "losses": 2,
+          "draws": 0,
+          "played": 3,
+          "points": 3,
+          "winRate": 33.333333333333336,
+          "position": 2
+        }
+      ]
+    }
+  },
+  "initialB": {
+    "header": "QA Puntos B\n0 pts",
+    "profile": {
+      "entry": {
+        "userId": "ded3f935-e21d-4bfc-b976-06c2f816d934",
+        "name": "QA Puntos B",
+        "position": null,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "played": 0,
+        "winRate": 0,
+        "points": 0
+      },
+      "history": []
+    }
+  },
+  "finalA": {
+    "header": "QA Puntos A\n3 pts",
+    "resultText": "Resultado guardado en el ranking.+3 puntos para tu cuenta\nVer ranking e historial",
+    "state": {
+      "id": "34d8c265-7049-4e6f-afae-09d62ad8b952",
+      "phase": "finished",
+      "winner": 0,
+      "tick": 2701,
+      "players": [
+        {
+          "name": "QA Puntos A",
+          "hp": 53.018799999999985,
+          "stocks": 2,
+          "hits": 9,
+          "peakCombo": 3
+        },
+        {
+          "name": "QA Puntos B",
+          "hp": 0,
+          "stocks": 0,
+          "hits": 7,
+          "peakCombo": 3
+        }
+      ]
+    },
+    "receipt": {
+      "matchId": "34d8c265-7049-4e6f-afae-09d62ad8b952",
+      "status": "saved",
+      "reason": "combat",
+      "outcome": "win",
+      "pointsEarned": 3
+    },
+    "profile": {
+      "entry": {
+        "userId": "35d2f216-400a-4c94-8901-3a99ad77336e",
+        "name": "QA Puntos A",
+        "wins": 1,
+        "losses": 0,
+        "draws": 0,
+        "played": 1,
+        "points": 3,
+        "winRate": 100,
+        "position": 2
+      },
+      "history": [
+        {
+          "matchId": "34d8c265-7049-4e6f-afae-09d62ad8b952",
+          "startedAt": 1792246868717,
+          "finishedAt": 1792246914526,
+          "stage": "caracas",
+          "fighter": "zavarce",
+          "opponentFighter": "zavarce",
+          "opponent": "QA Puntos B",
+          "outcome": "win",
+          "reason": "combat",
+          "hits": 9,
+          "peakCombo": 3,
+          "pointsEarned": 3
+        }
+      ]
+    }
+  },
+  "finalB": {
+    "header": "QA Puntos B\n0 pts",
+    "resultText": "Resultado guardado en el ranking.+0 puntos para tu cuenta\nVer ranking e historial",
+    "state": {
+      "id": "34d8c265-7049-4e6f-afae-09d62ad8b952",
+      "phase": "finished",
+      "winner": 0,
+      "tick": 2701,
+      "players": [
+        {
+          "name": "QA Puntos A",
+          "hp": 53.018799999999985,
+          "stocks": 2,
+          "hits": 9,
+          "peakCombo": 3
+        },
+        {
+          "name": "QA Puntos B",
+          "hp": 0,
+          "stocks": 0,
+          "hits": 7,
+          "peakCombo": 3
+        }
+      ]
+    },
+    "receipt": {
+      "matchId": "34d8c265-7049-4e6f-afae-09d62ad8b952",
+      "status": "saved",
+      "reason": "combat",
+      "outcome": "loss",
+      "pointsEarned": 0
+    },
+    "profile": {
+      "entry": {
+        "userId": "ded3f935-e21d-4bfc-b976-06c2f816d934",
+        "name": "QA Puntos B",
+        "wins": 0,
+        "losses": 1,
+        "draws": 0,
+        "played": 1,
+        "points": 0,
+        "winRate": 0,
+        "position": 4
+      },
+      "history": [
+        {
+          "matchId": "34d8c265-7049-4e6f-afae-09d62ad8b952",
+          "startedAt": 1792246868717,
+          "finishedAt": 1792246914526,
+          "stage": "caracas",
+          "fighter": "zavarce",
+          "opponentFighter": "zavarce",
+          "opponent": "QA Puntos A",
+          "outcome": "loss",
+          "reason": "combat",
+          "hits": 7,
+          "peakCombo": 3,
+          "pointsEarned": 0
+        }
+      ]
+    }
+  },
+  "reload": {
+    "header": "QA Puntos A\n3 pts",
+    "session": "35d2f216-400a-4c94-8901-3a99ad77336e",
+    "profile": {
+      "entry": {
+        "userId": "35d2f216-400a-4c94-8901-3a99ad77336e",
+        "name": "QA Puntos A",
+        "wins": 1,
+        "losses": 0,
+        "draws": 0,
+        "played": 1,
+        "points": 3,
+        "winRate": 100,
+        "position": 2
+      },
+      "history": [
+        {
+          "matchId": "34d8c265-7049-4e6f-afae-09d62ad8b952",
+          "startedAt": 1792246868717,
+          "finishedAt": 1792246914526,
+          "stage": "caracas",
+          "fighter": "zavarce",
+          "opponentFighter": "zavarce",
+          "opponent": "QA Puntos B",
+          "outcome": "win",
+          "reason": "combat",
+          "hits": 9,
+          "peakCombo": 3,
+          "pointsEarned": 3
+        }
+      ]
+    }
+  },
+  "restartA": {
+    "header": "QA Puntos A\n3 pts",
+    "profile": {
+      "entry": {
+        "userId": "35d2f216-400a-4c94-8901-3a99ad77336e",
+        "name": "QA Puntos A",
+        "wins": 1,
+        "losses": 0,
+        "draws": 0,
+        "played": 1,
+        "points": 3,
+        "winRate": 100,
+        "position": 2
+      },
+      "history": [
+        {
+          "matchId": "34d8c265-7049-4e6f-afae-09d62ad8b952",
+          "startedAt": 1792246868717,
+          "finishedAt": 1792246914526,
+          "stage": "caracas",
+          "fighter": "zavarce",
+          "opponentFighter": "zavarce",
+          "opponent": "QA Puntos B",
+          "outcome": "win",
+          "reason": "combat",
+          "hits": 9,
+          "peakCombo": 3,
+          "pointsEarned": 3
+        }
+      ]
+    }
+  },
+  "restartB": {
+    "header": "QA Puntos B\n0 pts",
+    "profile": {
+      "entry": {
+        "userId": "ded3f935-e21d-4bfc-b976-06c2f816d934",
+        "name": "QA Puntos B",
+        "wins": 0,
+        "losses": 1,
+        "draws": 0,
+        "played": 1,
+        "points": 0,
+        "winRate": 0,
+        "position": 4
+      },
+      "history": [
+        {
+          "matchId": "34d8c265-7049-4e6f-afae-09d62ad8b952",
+          "startedAt": 1792246868717,
+          "finishedAt": 1792246914526,
+          "stage": "caracas",
+          "fighter": "zavarce",
+          "opponentFighter": "zavarce",
+          "opponent": "QA Puntos A",
+          "outcome": "loss",
+          "reason": "combat",
+          "hits": 7,
+          "peakCombo": 3,
+          "pointsEarned": 0
+        }
+      ]
+    }
+  },
+  "account": {
+    "dialog": "Tu cuenta\n\nHas entrado como QA Puntos A. Tus clasificatorias se guardan en esta cuenta.\n\n3 puntos\n1 victoria · 0 empates · 0 derrotas\n\n3 puntos por victoria, 1 por empate y 0 por derrota. Solo cuentan las clasificatorias verificadas; las anuladas no suman.\n\nVer ranking e historial\nCerrar sesión",
+    "header": "QA Puntos A\n3 pts"
+  },
+  "accountB": {
+    "account": "Tu cuenta\n\nHas entrado como QA Puntos B. Tus clasificatorias se guardan en esta cuenta.\n\n0 puntos\n0 victorias · 0 empates · 1 derrota\n\n3 puntos por victoria, 1 por empate y 0 por derrota. Solo cuentan las clasificatorias verificadas; las anuladas no suman.\n\nVer ranking e historial\nCerrar sesión"
+  },
+  "readFailure": {
+    "dialog": "Tu cuenta\n\nHas entrado como QA Puntos A. Tus clasificatorias se guardan en esta cuenta.\n\nNo pudimos cargar tu puntaje. Inténtalo de nuevo.\n\nReintentar puntaje\n\n3 puntos por victoria, 1 por empate y 0 por derrota. Solo cuentan las clasificatorias verificadas; las anuladas no suman.\n\nVer ranking e historial\nCerrar sesión",
+    "header": "QA Puntos A\nPuntaje no disponible"
+  },
+  "retryAndMobile": {
+    "header": "QA Puntos A\n3 pts",
+    "score": "3 puntos\n1 victoria · 0 empates · 0 derrotas",
+    "width": 390,
+    "documentWidth": 390,
+    "button": {
+      "x": 242.5,
+      "y": 0.5,
+      "width": 57.5,
+      "height": 44,
+      "top": 0.5,
+      "right": 300,
+      "bottom": 44.5,
+      "left": 242.5
+    }
+  },
+  "mobileRanking": {
+    "dialog": "Ranking global\n\nVictorias en clasificatorias verificadas por el servidor. Desempates por porcentaje de victorias, partidas jugadas y un orden estable de cuenta. Puntaje acumulado: victoria +3, empate +1, derrota +0. Las anuladas no suman.\n\nTOP 100\nActualizar ranking\n#2 · QA Puntos A\n3 puntos · 1 victoria · 0 derrotas · 0 empates · 1 partida\nClasificación global por victorias\nPosición\tJugador\tPuntos\tVictorias\tDerrotas\tEmpates\t% victorias\n#1\tQA Ranking B\t6\t2\t1\t0\t66.7%\n#2\tQA Puntos A (tú)\t3\t1\t0\t0\t100.0%\n#3\tQA Ranking A\t3\t1\t2\t0\t33.3%\n#4\tQA Puntos B\t0\t0\t1\t0\t0.0%\nTus últimas partidas\nVictoria\n+3 pts\nvs. QA Puntos B\n\nVicente vs. Vicente · Combate\n\n17/10/2026, 14:21:54 · 9 golpes · Racha 3",
+    "width": 390,
+    "documentWidth": 390,
+    "tableWidth": 463,
+    "tableViewport": 310
+  },
+  "logoutA": {
+    "header": "Iniciar sesión",
+    "privateProfileStatus": 401,
+    "scoreHidden": true
+  },
+  "logoutB": {
+    "header": "Iniciar sesión",
+    "privateProfileStatus": 401,
+    "scoreHidden": true
+  }
+}

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+  <meta charset="utf-8" />
+  <title>Regresión del puntaje de cuenta</title>
+  <div id="root"></div>
+  <pre id="results">Ejecutando…</pre>
+  <script type="module">
+    import React from "react";
+    import { createRoot } from "react-dom/client";
+    import { flushSync } from "react-dom";
+    import { usePlayerRanking } from "/src/player-ranking.ts";
+    const nativeFetch = window.fetch,
+      requests = [],
+      checks = [];
+    let ranking;
+    const a = { id: "qa-a", name: "QA A" },
+      b = { id: "qa-b", name: "QA B" };
+    // Deliberately ignore abort to exercise late responses after identity changes.
+    window.fetch = (url, options) =>
+      url === "/api/ranking/me"
+        ? new Promise((resolve, reject) =>
+            requests.push({ resolve, reject, options }),
+          )
+        : nativeFetch(url, options);
+    function Harness({ account, revision = 0 }) {
+      ranking = usePlayerRanking(account, revision);
+      return null;
+    }
+    const root = createRoot(document.getElementById("root"));
+    const settle = () => new Promise((resolve) => setTimeout(resolve, 25));
+    const render = async (account, revision = 0) => {
+      flushSync(() =>
+        root.render(React.createElement(Harness, { account, revision })),
+      );
+      await settle();
+    };
+    const reply = async (request, user, points) => {
+      request.resolve(
+        new Response(
+          JSON.stringify({
+            entry: { userId: user.id, name: user.name, points },
+          }),
+          { headers: { "Content-Type": "application/json" } },
+        ),
+      );
+      await settle();
+    };
+    const check = (name, actual, expected = true) =>
+      checks.push({ name, passed: actual === expected, actual, expected });
+    try {
+      await render(null);
+      check("Invitado no consulta puntaje privado", requests.length, 0);
+      check("Invitado no muestra puntaje", ranking.entry, null);
+      await render(a);
+      check("La cuenta nueva espera el total del servidor", ranking.loading);
+      await reply(requests.at(-1), a, 3);
+      check("Muestra el puntaje persistido", ranking.entry.points, 3);
+      await render(a, 1);
+      check("Un recibo guardado consulta el total de nuevo", ranking.loading);
+      await reply(requests.at(-1), a, 6);
+      check(
+        "El resultado no depende de sumar desde el cliente",
+        ranking.entry.points,
+        6,
+      );
+      await render(a, 2);
+      const staleA = requests.at(-1);
+      await render(b);
+      const currentB = requests.at(-1);
+      check(
+        "Cambiar de cuenta oculta el puntaje anterior",
+        ranking.entry,
+        null,
+      );
+      check(
+        "La petición de la cuenta anterior queda cancelada",
+        staleA.options.signal.aborted,
+      );
+      await reply(staleA, a, 99);
+      check(
+        "Una respuesta tardía no filtra puntos entre cuentas",
+        ranking.entry,
+        null,
+      );
+      await reply(currentB, b, 1);
+      check(
+        "La segunda cuenta conserva su propio total",
+        ranking.entry.points,
+        1,
+      );
+      flushSync(() => ranking.refresh());
+      await settle();
+      const afterLogout = requests.at(-1);
+      await render(null);
+      await reply(afterLogout, b, 44);
+      check(
+        "Cerrar sesión borra puntos incluso con respuestas pendientes",
+        ranking.entry,
+        null,
+      );
+      await render(a);
+      requests.at(-1).reject(new Error("QA connection failure"));
+      await settle();
+      check("Un fallo no inventa cero puntos", ranking.entry, null);
+      check("El fallo permite informar y reintentar", Boolean(ranking.error));
+      flushSync(() => ranking.refresh());
+      await settle();
+      await reply(requests.at(-1), a, 6);
+      check("Reintentar recupera el total real", ranking.entry.points, 6);
+      const beforeFocus = requests.length;
+      window.dispatchEvent(new Event("focus"));
+      await settle();
+      check(
+        "Volver a la pestaña actualiza cambios de otra sesión",
+        requests.length,
+        beforeFocus + 1,
+      );
+      await reply(requests.at(-1), a, 9);
+      check(
+        "El total de otra sesión sustituye el anterior",
+        ranking.entry.points,
+        9,
+      );
+      await render({ ...a });
+      check("Reconectar la misma cuenta vuelve a consultar", ranking.loading);
+      await reply(requests.at(-1), a, 12);
+      check(
+        "La reconexión recibe el total actualizado",
+        ranking.entry.points,
+        12,
+      );
+      flushSync(() => ranking.refresh());
+      await settle();
+      await reply(requests.at(-1), b, 55);
+      check(
+        "Una cookie cambiada en otra pestaña no mezcla cuentas",
+        ranking.entry,
+        null,
+      );
+      check(
+        "La identidad HTTP distinta se informa como fallo de consulta",
+        Boolean(ranking.error),
+      );
+    } catch (error) {
+      checks.push({ name: "Excepción", passed: false, actual: String(error) });
+    } finally {
+      flushSync(() => root.unmount());
+      window.fetch = nativeFetch;
+      window.playerRankingRegression = {
+        passed: checks.every((check) => check.passed),
+        checks,
+      };
+      document.getElementById("results").textContent = JSON.stringify(
+        window.playerRankingRegression,
+        null,
+        2,
+      );
+    }
+  </script>
+</html>

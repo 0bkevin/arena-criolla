@@ -104,7 +104,7 @@ export function ArcadeLobby(props: Props) {
     (player) => player.id === network.id,
   );
   const host = network.room?.host === network.id;
-  const stageLocked = Boolean(network.room && !host);
+  const stageLocked = Boolean(network.room && (!host || network.room.starting));
   const pickingRival = target === "p2" && mode !== "online";
   const activeFighter = pickingRival ? rival : fighter;
   const surpriseFighter = () => {
@@ -762,7 +762,10 @@ export function ArcadeLobby(props: Props) {
           )}
           <button
             className="arcade-start primary-button fight-button"
-            disabled={mode === "online" && !network.connected}
+            disabled={
+              mode === "online" &&
+              (!network.connected || network.room?.starting === true)
+            }
             onClick={
               network.room
                 ? () => props.onReady(!ownRoomPlayer?.ready)
@@ -774,18 +777,25 @@ export function ArcadeLobby(props: Props) {
               size={20}
             />
             <span>
-              {network.room
-                ? ownRoomPlayer?.ready
-                  ? "¡LISTO!"
-                  : "¡ESTOY LISTO!"
-                : mode === "online"
-                  ? "BUSCAR SALAS"
-                  : "¡A DARLE!"}
+              {network.room?.starting
+                ? "PREPARANDO…"
+                : network.room
+                  ? ownRoomPlayer?.ready
+                    ? "¡LISTO!"
+                    : "¡ESTOY LISTO!"
+                  : mode === "online"
+                    ? "BUSCAR SALAS"
+                    : "¡A DARLE!"}
             </span>
             <PixelIcon kind="arrow" size={20} />
           </button>
           {network.room && (
             <div className="ready-room-players">
+              {network.room.ranked && (
+                <span className="ranked-room-label">
+                  CLASIFICATORIA · TODOS LOS COMBOS DISPONIBLES
+                </span>
+              )}
               {network.room.players.map((p) => (
                 <span key={p.id} className={p.ready ? "ready" : ""}>
                   <span className="ready-player-dot" />

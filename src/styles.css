@@ -1335,6 +1335,14 @@ button {
 .notice-banner > span {
   flex: 1;
 }
+.arena-wrap > .network-notice {
+  position: absolute;
+  top: 60px;
+  left: 12px;
+  right: 12px;
+  z-index: 35;
+  background: #102036;
+}
 .toast {
   position: fixed;
   bottom: 24px;

@@ -1,0 +1,72 @@
+{
+  "antes": {
+    "passed": false,
+    "checks": [
+      {
+        "name": "El error del servidor se muestra",
+        "passed": true,
+        "actual": "No encontramos esa sala. Revisa el código.",
+        "expected": "No encontramos esa sala. Revisa el código."
+      },
+      {
+        "name": "Entrar en una sala válida elimina el error anterior",
+        "passed": false,
+        "actual": "No encontramos esa sala. Revisa el código.",
+        "expected": ""
+      },
+      {
+        "name": "El aviso de salida sigue visible mientras falta el rival",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "El aviso desaparece cuando el rival vuelve a entrar",
+        "passed": false,
+        "actual": true,
+        "expected": false
+      },
+      {
+        "name": "Salir de la sala descarta el aviso de la sala anterior",
+        "passed": false,
+        "actual": true,
+        "expected": false
+      }
+    ]
+  },
+  "despues": {
+    "passed": true,
+    "checks": [
+      {
+        "name": "El error del servidor se muestra",
+        "passed": true,
+        "actual": "No encontramos esa sala. Revisa el código.",
+        "expected": "No encontramos esa sala. Revisa el código."
+      },
+      {
+        "name": "Entrar en una sala válida elimina el error anterior",
+        "passed": true,
+        "actual": "",
+        "expected": ""
+      },
+      {
+        "name": "El aviso de salida sigue visible mientras falta el rival",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "El aviso desaparece cuando el rival vuelve a entrar",
+        "passed": true,
+        "actual": false,
+        "expected": false
+      },
+      {
+        "name": "Salir de la sala descarta el aviso de la sala anterior",
+        "passed": true,
+        "actual": false,
+        "expected": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="es">
+  <meta charset="utf-8" />
+  <title>Regresión de selección y revancha online</title>
+  <div id="root"></div>
+  <pre id="results">Ejecutando…</pre>
+  <script type="module">
+    import React from "react";
+    import { createRoot } from "react-dom/client";
+    import { flushSync } from "react-dom";
+    import { App } from "/src/App.tsx";
+    import { createMatch } from "/shared/engine.ts";
+    import "/src/styles.css";
+    import "/src/lobby.css";
+    import "/src/arcade-theme.css";
+    import "/src/mobile-game.css";
+
+    // This fixture exercises the real App and hook with explicit protocol events.
+    // It is separate from the two-profile matches with a native WebSocket.
+    const keys = ["arena-progress-v1", "arena-name", "arena-sound"];
+    const previous = keys.map((key) => [key, localStorage.getItem(key)]);
+    const native = {
+      WebSocket: window.WebSocket,
+      raf: window.requestAnimationFrame,
+      cancel: window.cancelAnimationFrame,
+      matchMedia: window.matchMedia,
+    };
+    const touch = new URLSearchParams(location.search).has("touch");
+    if (touch)
+      window.matchMedia = (query) => {
+        const media = native.matchMedia.call(window, query);
+        if (query === "(pointer: coarse)")
+          Object.defineProperty(media, "matches", { value: true });
+        return media;
+      };
+    const queued = new Map();
+    let frame = 0;
+    window.requestAnimationFrame = (callback) => {
+      queued.set(++frame, callback);
+      return frame;
+    };
+    window.cancelAnimationFrame = (id) => queued.delete(id);
+    const sent = [];
+    let socket;
+    class FixtureSocket {
+      static OPEN = 1;
+      readyState = 1;
+      bufferedAmount = 0;
+      constructor() {
+        socket = this;
+      }
+      send(value) {
+        sent.push(JSON.parse(value));
+      }
+      close() {
+        this.readyState = 3;
+      }
+    }
+    window.WebSocket = FixtureSocket;
+    localStorage.setItem("arena-sound", "false");
+    const root = createRoot(document.getElementById("root"));
+    const checks = [];
+    const check = (name, actual, expected = true) =>
+      checks.push({ name, passed: actual === expected, actual, expected });
+    const receive = (message) =>
+      flushSync(() => socket.onmessage({ data: JSON.stringify(message) }));
+    const click = (element) => {
+      if (!element) throw new Error("Missing fixture control");
+      flushSync(() => element.click());
+    };
+    const byText = (text) =>
+      [...document.querySelectorAll("button")].find(
+        (button) => button.textContent.trim() === text,
+      );
+    const selection = () =>
+      document.querySelector(".contender-p1 .contender-identity")?.textContent;
+    const openCapriles = () => {
+      click(byText("Luchadores"));
+      click(
+        [...document.querySelectorAll(".roster-grid button")].find((button) =>
+          button.textContent.includes("Capriles"),
+        ),
+      );
+    };
+    const room = {
+      code: "A".repeat(32),
+      host: "qa-a",
+      name: "QA flow",
+      stage: "caracas",
+      status: "waiting",
+      players: [
+        { id: "qa-a", name: "QA A", fighter: "zavarce", wins: 0, ready: false },
+        { id: "qa-b", name: "QA B", fighter: "javier", wins: 0, ready: false },
+      ],
+    };
+    try {
+      flushSync(() => root.render(React.createElement(App)));
+      flushSync(() => socket.onopen());
+      receive({ type: "welcome", id: "qa-a" });
+      click(document.getElementById("mode-online"));
+      receive({ type: "room", room });
+      openCapriles();
+      click(byText("Elegir a Capriles"));
+      check(
+        "La elección se envía al servidor",
+        sent.at(-1)?.fighter,
+        "capriles",
+      );
+      check(
+        "Antes de confirmar se muestra el luchador de la sala",
+        selection()?.includes("Zavarce"),
+      );
+      receive({ type: "error", message: "Estás eligiendo demasiado rápido." });
+      receive({ type: "room", room });
+      check(
+        "Una elección rechazada conserva el luchador confirmado",
+        selection()?.includes("Zavarce"),
+      );
+      check(
+        "El error de selección se muestra",
+        document.body.textContent.includes("demasiado rápido"),
+      );
+      openCapriles();
+      click(byText("Elegir a Capriles"));
+      check(
+        "El reintento limpia el aviso anterior",
+        !document.body.textContent.includes("demasiado rápido"),
+      );
+      room.players[0].fighter = "capriles";
+      receive({ type: "room", room });
+      check(
+        "La confirmación actualiza el luchador visible",
+        selection()?.includes("Capriles"),
+      );
+      room.players[0].fighter = "zavarce";
+      receive({ type: "room", room });
+      const state = createMatch("caracas", room.players, crypto.randomUUID());
+      receive({ type: "start", state, index: 0 });
+      room.status = "playing";
+      receive({ type: "room", room });
+      openCapriles();
+      const locked = byText("Termina la pelea para elegir");
+      check("No se permite elegir luchador en combate", locked?.disabled);
+      const before = sent.filter((m) => m.type === "select").length;
+      click(locked);
+      check(
+        "El control bloqueado no envía una elección",
+        sent.filter((m) => m.type === "select").length,
+        before,
+      );
+      click(document.querySelector('dialog [aria-label="Cerrar"]'));
+      receive({ type: "opponent-left" });
+      room.status = "waiting";
+      room.players = room.players.slice(0, 1);
+      receive({ type: "room", room });
+      check(
+        "Al salir el rival se mantiene el luchador de la sala",
+        selection()?.includes("Zavarce"),
+      );
+
+      const final = structuredClone(state);
+      final.phase = "finished";
+      final.winner = 0;
+      receive({ type: "start", state: final, index: 0 });
+      room.status = "finished";
+      room.players = state.players.map((p, index) => ({
+        ...p.config,
+        id: index ? "qa-b" : "qa-a",
+        ready: false,
+      }));
+      receive({ type: "room", room });
+      click(byText("¡Revancha!"));
+      check("La revancha se solicita", sent.at(-1)?.type, "rematch");
+      check(
+        "No se anuncia espera sin confirmación",
+        Boolean(byText("¡Revancha!") && !byText("¡Revancha!").disabled),
+      );
+      receive({ type: "error", message: "QA: no se pudo aceptar la revancha" });
+      receive({ type: "room", room });
+      check(
+        "La revancha rechazada se puede reintentar",
+        Boolean(byText("¡Revancha!") && !byText("¡Revancha!").disabled),
+      );
+      const alert = document.querySelector('[role="alert"]');
+      check(
+        "El error aparece dentro del resultado",
+        Boolean(document.querySelector(".result-info")?.contains(alert)),
+      );
+      alert?.scrollIntoView({ block: "center" });
+      const rect = alert?.getBoundingClientRect();
+      const hit =
+        rect &&
+        document.elementFromPoint(
+          rect.x + rect.width / 2,
+          rect.y + rect.height / 2,
+        );
+      check(
+        "El aviso es visible y no queda detrás del juego",
+        Boolean(hit && alert.contains(hit)),
+      );
+      const reachable = (element) => {
+        element?.scrollIntoView({ block: "center" });
+        const rect = element?.getBoundingClientRect();
+        const hit =
+          rect &&
+          document.elementFromPoint(
+            rect.x + rect.width / 2,
+            rect.y + rect.height / 2,
+          );
+        return Boolean(hit && element.contains(hit));
+      };
+      check(
+        "Reintentar revancha queda accesible",
+        reachable(byText("¡Revancha!")),
+      );
+      check("Cerrar aviso queda accesible", reachable(byText("Cerrar aviso")));
+      check(
+        "Se usa la presentación táctil solicitada",
+        document.querySelector(".game-page")?.classList.contains("is-touch"),
+        touch,
+      );
+      click(byText("¡Revancha!"));
+      check(
+        "Reintentar elimina el error anterior",
+        !document.querySelector('[role="alert"]'),
+      );
+      room.players[0].ready = true;
+      receive({ type: "room", room });
+      check(
+        "Solo el ACK activa la espera",
+        byText("Esperando a tu pana…")?.disabled,
+      );
+      const next = createMatch(
+        "caracas",
+        state.players.map((p) => p.config),
+        crypto.randomUUID(),
+      );
+      receive({ type: "start", state: next, index: 0 });
+      room.status = "playing";
+      receive({ type: "room", room });
+      check(
+        "Una nueva pelea quita la espera y el resultado anterior",
+        !byText("Esperando a tu pana…") &&
+          !document.querySelector(".result-overlay"),
+      );
+    } catch (error) {
+      checks.push({
+        name: "Fixture completes",
+        passed: false,
+        error: String(error),
+        stack: error.stack,
+      });
+    } finally {
+      window.onlineFlowRegression = {
+        passed: checks.every((item) => item.passed),
+        touch,
+        checks,
+      };
+      flushSync(() => root.unmount());
+      for (const [key, value] of previous) {
+        if (value === null) localStorage.removeItem(key);
+        else localStorage.setItem(key, value);
+      }
+      window.WebSocket = native.WebSocket;
+      window.requestAnimationFrame = native.raf;
+      window.cancelAnimationFrame = native.cancel;
+      window.matchMedia = native.matchMedia;
+      document.getElementById("results").textContent = JSON.stringify(
+        window.onlineFlowRegression,
+        null,
+        2,
+      );
+      document.title = `${window.onlineFlowRegression.passed ? "PASS" : "FAIL"} flujo online ${touch ? "táctil" : "desktop"}`;
+    }
+  </script>
+</html>

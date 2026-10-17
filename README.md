@@ -89,7 +89,27 @@ En móvil aparecen botones táctiles. También hay controles de mando estándar:
 
 Cada pelea tiene dos vidas por jugador y 90 segundos. El daño aumenta el empuje. Un especial cuesta 25 de energía; golpear y recibir golpes recarga la barra. Los combos se desbloquean por personaje: J → K desde el inicio, J → J → K con una victoria, definitiva I con tres victorias y 75 de energía. La secuencia se completa en 2,5 segundos, dejando terminar la recuperación de cada ataque.
 
-El progreso se guarda en `localStorage`, en el navegador usado. No es una clasificación global ni una identidad verificada. El ranking global se deja pendiente. Las victorias de la CPU no desbloquean combos para el jugador.
+El progreso casual se guarda en `localStorage`, en el navegador usado. Las victorias de la CPU no desbloquean combos para el jugador. Ese progreso anterior no se importa al ranking global.
+
+## Ranking global
+
+Desde la arena puedes iniciar sesión o crear una cuenta; es la misma cuenta que usa el taller. En «Buscar salas», activa «Clasificatoria · Cuenta para el ranking» al crear una sala. Ambos participantes necesitan sesiones válidas y cuentas distintas. Las salas clasificatorias pueden ser públicas o por invitación. Los invitados siguen pudiendo jugar casuales sin cuenta.
+
+Las clasificatorias usan todos los combos desbloqueados para ambos jugadores. El servidor ignora los nombres y victorias enviados por el navegador: identifica la cuenta mediante su sesión y fija las condiciones del combate. Una cuenta solo puede ocupar una sala clasificatoria activa. Al terminar se guardan los resultados del servidor y se actualizan los dos jugadores en una única transacción; cada identificador de partida se cuenta una vez.
+
+«Ranking global» muestra los primeros cien por victorias, desempata por porcentaje de victorias, partidas jugadas y orden estable del identificador de cuenta. Tu posición se muestra aunque esté fuera del Top 100. También puedes consultar tus veinte últimas clasificatorias, incluidas anulaciones y derrotas por abandono. El nombre de cuenta es público en la clasificación; los correos y sesiones no se exponen.
+
+Cada cuenta acumula **3 puntos por victoria, 1 por empate y 0 por derrota** en clasificatorias verificadas; las anuladas y las casuales no suman. El total se calcula a partir de las estadísticas persistidas, por lo que incluye las clasificatorias anteriores sin migrar datos ni volver a acreditarlas. Aparece junto al nombre al iniciar sesión, en «Tu cuenta» y en la clasificación; el resultado y el historial muestran los puntos obtenidos en esa partida. El orden del ranking sigue siendo por victorias. El total se consulta de nuevo al recibir un resultado guardado, reconectar o volver a la pestaña; un fallo de consulta muestra puntaje no disponible y permite reintentar, sin inventar un cero ni sumar desde el navegador.
+
+La cabecera y el diálogo de ranking verifican que el perfil recibido pertenezca a la cuenta visible. Sus consultas vencen a los diez segundos y permiten reintentar; no requieren `AbortSignal.any` ni `AbortSignal.timeout`. Al volver a una pestaña, el WebSocket comprueba la sesión HTTP: si otra pestaña cambió la cuenta, sustituye la conexión y descarta los datos de la identidad anterior. Solo la consulta más reciente puede provocar ese cambio; un fallo HTTP conserva la conexión y la recuperación de la partida. El diálogo abierto también actualiza su clasificación al recuperar foco.
+
+Salir de una clasificatoria ya iniciada cuenta como derrota, también durante la presentación. Si se corta la conexión, la simulación se detiene. Cada jugador dispone de diez segundos acumulados de recuperación por partida, contados desde que el servidor detecta cada desconexión; reconectar no renueva ese presupuesto. El navegador solicita la misma partida con la cuenta autenticada al reconectar o recargar; una conexión nueva sustituye la anterior sin crear otra pelea ni repetir acciones antiguas. Si el rival no vuelve, se registra abandono; si ambos desaparecen, se anula. Reiniciar el servidor anula las partidas en curso. La recuperación ofrece abandonar explícitamente para volver a otros modos.
+
+Las tablas `ranked_profiles`, `ranked_matches` y `ranked_stats` se crean automáticamente en el mismo SQLite persistente. Un worker de Node 24 hace las consultas y escrituras fuera del hilo de simulación. Los resultados pendientes reintentan el guardado; la interfaz solo anuncia «guardado» después del commit. Una interrupción anterior al commit puede anular esa partida al reiniciar, pero nunca acredita un resultado que no quedó persistido. Respalda el volumen de datos existente; no se necesita otro servicio para esta implementación de un solo proceso.
+
+`GET /api/ranking` es público y `GET /api/ranking/me` requiere sesión; no existe un endpoint para enviar victorias desde el cliente. Los WebSockets con cookies requieren un `Origin` del mismo host y las sesiones cerradas o caducadas pierden acceso. `npm test` incluye transacciones, duplicados, Top 100, historial, bloqueos de SQLite, autenticación, abandono y recuperación con sockets reales; `/tests/browser/ranked-network.html` prueba las transiciones del hook con transporte controlado durante desarrollo.
+
+Esta primera versión clasifica por victorias, sin Elo, temporadas ni emparejamiento automático. No incluye detección de partidas pactadas o de varias cuentas de una misma persona; exigir cuentas distintas evita competir contra la propia cuenta, pero no elimina esa forma de abuso.
 
 ## Producción
 
@@ -107,7 +127,15 @@ docker build -t arena-criolla .
 docker run --rm -p 5173:5173 --env-file .env -v arena-data:/app/data arena-criolla
 ```
 
-Las salas viven en memoria, expiran por inactividad y se eliminan al quedar vacías. Reiniciar el servidor cierra las partidas existentes. Esta versión usa un único proceso; persiste cuentas y personajes en SQLite; no incluye ranking, espectadores, emparejamiento competitivo, rollback ni escalado entre instancias. La simulación de combate corre en el servidor a 60 Hz y envía estados a 30 Hz. Los resultados y movimientos se resuelven allí; los desbloqueos iniciales proceden del progreso local de cada invitado y no se consideran verificables para un futuro ranking.
+Las salas viven en memoria, expiran por inactividad y se eliminan al quedar vacías. Reiniciar el servidor cierra las partidas existentes. Esta versión usa un único proceso; persiste cuentas, personajes y ranking en SQLite; no incluye espectadores, emparejamiento competitivo, rollback ni escalado entre instancias. La simulación de combate corre en el servidor a 60 Hz y envía estados a 30 Hz. Los resultados y movimientos se resuelven allí. Los desbloqueos casuales proceden del progreso local; las clasificatorias fijan los mismos desbloqueos para ambos.
+
+Cada input identifica su partida: un paquete atrasado o la limpieza de controles de una pelea anterior no afectan la revancha. Si pasan un segundo sin inputs, el servidor suelta las direcciones, el bloqueo y la bajada, conservando los contadores de acciones. Admite ráfagas acotadas de hasta 360 mensajes por segundo; un exceso sostenido cierra la conexión con código 1008 en lugar de descartar silenciosamente la liberación de un control.
+
+El cliente envía ping/pong de aplicación cada dos segundos. Tras ocho segundos sin respuesta, comprobados cada dos segundos mientras el navegador ejecuta sus temporizadores, retira la conexión y reintenta con espera creciente y variación aleatoria hasta diez segundos. No espera al cierre de un socket bloqueado; también retira conexiones cuya cola de salida supera 64 KiB. Al volver de una suspensión del navegador, prueba el enlace de nuevo antes de declararlo perdido. En casuales reconectar permite volver a entrar en la sala; en clasificatorias se intenta reanudar el combate durante el margen descrito arriba. Cliente y servidor deben actualizarse juntos porque el protocolo incluye identidad, recuperación y recibos de ranking.
+
+El resultado online se guarda al recibir el estado final, sin depender de un frame de dibujo, y se cuenta una sola vez por partida durante la sesión. La escritura lee el progreso local más reciente para conservar resultados guardados antes por otras pestañas; si el almacenamiento falla, la sesión sigue acumulando progreso en memoria. Esto sigue siendo progreso de navegador, sin sincronización por cuenta ni una transacción distribuida entre pestañas que escriban exactamente al mismo tiempo. El ranking y su historial son independientes y se guardan por cuenta en el servidor.
+
+`npm exec -- tsx scripts/qa-network-benchmark.ts` mide localmente el eco autoritativo con 100 ms artificiales por dirección y la cadencia de cien salas con doscientas conexiones. Las fixtures `tests/browser/network*.html` se ejecutan con el servidor de desarrollo y T3 Preview. `scripts/qa-network-proxy.ts` permite cortar tráfico TCP local sin propagar FIN para verificar fallos de enlace silenciosos; no debe usarse como proxy de producción.
 
 ## Revisión individual del elenco v28
 

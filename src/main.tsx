@@ -6,6 +6,7 @@ import "./lobby.css";
 import "./arcade-theme.css";
 import "./creator.css";
 import "./mobile-game.css";
+import "./ranking.css";
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

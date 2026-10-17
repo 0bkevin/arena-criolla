@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="es">
+  <meta charset="utf-8" />
+  <title>Revisión adversarial de ranking e identidad</title>
+  <div id="root"></div>
+  <pre id="results">Ejecutando…</pre>
+  <script type="module">
+    import React from "react";
+    import { createRoot } from "react-dom/client";
+    import { flushSync } from "react-dom";
+    import { usePlayerRanking } from "/src/player-ranking.ts";
+    import { useArenaNetwork } from "/src/network.ts";
+    import { RankingDialog } from "/src/components/RankingDialog.tsx";
+    import { createMatch } from "/shared/engine.ts";
+    const nativeFetch = window.fetch,
+      nativeSocket = window.WebSocket;
+    const nativeTimer = window.setTimeout,
+      nativeAny = AbortSignal.any,
+      nativeTimeout = AbortSignal.timeout;
+    const checks = [],
+      sockets = [];
+    const resumeKey = "arena-ranked-resume-v1";
+    const previousResume = sessionStorage.getItem(resumeKey);
+    sessionStorage.removeItem(resumeKey);
+    let score,
+      net,
+      caught = 0,
+      request;
+    const a = { id: "qa-a", name: "QA A" },
+      b = { id: "qa-b", name: "QA B" };
+    const entry = (user, points) => ({
+      userId: user.id,
+      name: user.name,
+      position: 1,
+      wins: 1,
+      losses: 0,
+      draws: 0,
+      played: 1,
+      winRate: 100,
+      points,
+    });
+    const json = (body) =>
+      Promise.resolve(
+        new Response(JSON.stringify(body), {
+          headers: { "Content-Type": "application/json" },
+        }),
+      );
+    window.fetch = (url, options) =>
+      request?.(url, options) ?? nativeFetch(url, options);
+    const settle = (ms = 60) =>
+      new Promise((resolve) => nativeTimer(resolve, ms));
+    const check = (name, actual, expected = true) =>
+      checks.push({ name, passed: actual === expected, actual, expected });
+    class Boundary extends React.Component {
+      state = { failed: false };
+      static getDerivedStateFromError() {
+        return { failed: true };
+      }
+      componentDidCatch() {
+        caught++;
+      }
+      render() {
+        return this.state.failed ? null : this.props.children;
+      }
+    }
+    function Score() {
+      score = usePlayerRanking(a, 0);
+      return null;
+    }
+    function Network() {
+      net = useArenaNetwork();
+      return null;
+    }
+    class Socket {
+      static OPEN = 1;
+      readyState = 1;
+      bufferedAmount = 0;
+      constructor() {
+        sockets.push(this);
+      }
+      send(data) {
+        const m = JSON.parse(data);
+        if (m.type === "ping")
+          queueMicrotask(() =>
+            this.onmessage?.({
+              data: JSON.stringify({ type: "pong", sentAt: m.sentAt }),
+            }),
+          );
+      }
+      close() {
+        this.readyState = 3;
+        this.onclose?.();
+      }
+    }
+    const root = createRoot(document.getElementById("root"));
+    let key = 0;
+    const render = async (node) => {
+      flushSync(() =>
+        root.render(React.createElement(Boundary, { key: key++ }, node)),
+      );
+      await settle();
+    };
+    const dialog = () =>
+      React.createElement(RankingDialog, {
+        account: a,
+        revision: 0,
+        onClose() {},
+      });
+    const receive = (socket, message) =>
+      flushSync(() => socket.onmessage?.({ data: JSON.stringify(message) }));
+    const open = (socket, account) => {
+      flushSync(() => socket.onopen?.());
+      receive(socket, { type: "welcome", id: crypto.randomUUID(), account });
+    };
+    try {
+      request = (url) =>
+        url === "/api/ranking/me"
+          ? json({ entry: entry(a, 3), history: [] })
+          : undefined;
+      AbortSignal.any = undefined;
+      AbortSignal.timeout = undefined;
+      await render(React.createElement(Score));
+      check("No se desmonta la app sin AbortSignal.any/timeout", caught, 0);
+      check(
+        "El puntaje carga sin esas APIs opcionales",
+        score?.entry?.points,
+        3,
+      );
+      AbortSignal.any = nativeAny;
+      AbortSignal.timeout = nativeTimeout;
+      await render(null);
+
+      request = (url) =>
+        url === "/api/ranking"
+          ? json({ entries: [entry(a, 3)] })
+          : url === "/api/ranking/me"
+            ? json({
+                entry: entry(b, 99),
+                history: [
+                  {
+                    matchId: "private-b",
+                    startedAt: 1,
+                    finishedAt: 2,
+                    stage: "caracas",
+                    fighter: "zavarce",
+                    opponentFighter: "capriles",
+                    opponent: "QA ONLY B HISTORY",
+                    outcome: "win",
+                    reason: "combat",
+                    hits: 2,
+                    peakCombo: 1,
+                    pointsEarned: 3,
+                  },
+                ],
+              })
+            : undefined;
+      await render(dialog());
+      check(
+        "El ranking rechaza el perfil de otra cuenta",
+        !document.querySelector(".ranking-self")?.textContent.includes("QA B"),
+      );
+      check(
+        "El historial ajeno no se representa",
+        !document
+          .querySelector(".ranking-history")
+          ?.textContent.includes("QA ONLY B HISTORY"),
+      );
+      check(
+        "La identidad HTTP distinta se informa",
+        Boolean(document.querySelector('[role="alert"]')),
+      );
+      await render(null);
+
+      window.setTimeout = (callback, delay, ...args) =>
+        nativeTimer(callback, delay === 10000 ? 30 : delay, ...args);
+      request = (url, options) =>
+        url === "/api/ranking"
+          ? json({ entries: [entry(a, 3)] })
+          : url === "/api/ranking/me"
+            ? new Promise((_, reject) => {
+                options.signal.addEventListener(
+                  "abort",
+                  () => reject(new DOMException("QA deadline", "AbortError")),
+                  { once: true },
+                );
+              })
+            : undefined;
+      await render(dialog());
+      await settle(80);
+      check(
+        "Una consulta colgada termina con error",
+        Boolean(document.querySelector('[role="alert"]')),
+      );
+      check(
+        "La consulta colgada permite reintentar",
+        document.querySelector(".ranking-toolbar button")?.disabled,
+        false,
+      );
+      window.setTimeout = nativeTimer;
+      await render(null);
+
+      let total = 3;
+      request = (url) =>
+        url === "/api/ranking"
+          ? json({ entries: [entry(a, total)] })
+          : url === "/api/ranking/me"
+            ? json({ entry: entry(a, total), history: [] })
+            : undefined;
+      await render(dialog());
+      check(
+        "El ranking muestra el total inicial",
+        document
+          .querySelector(".ranking-self")
+          ?.textContent.includes("3 puntos"),
+      );
+      total = 6;
+      window.dispatchEvent(new Event("focus"));
+      await settle();
+      check(
+        "El diálogo abierto se actualiza al recuperar foco",
+        document
+          .querySelector(".ranking-self")
+          ?.textContent.includes("6 puntos"),
+      );
+      await render(null);
+
+      window.WebSocket = Socket;
+      request = (url) =>
+        url === "/api/auth/session" ? json({ user: b }) : undefined;
+      await render(React.createElement(Network));
+      const first = sockets.at(-1);
+      open(first, a);
+      window.dispatchEvent(new Event("focus"));
+      await settle();
+      check(
+        "Un cambio real de cookie retira el WebSocket de la cuenta anterior",
+        first.readyState,
+        3,
+      );
+      check("El cambio de sesión abre un transporte nuevo", sockets.length, 2);
+      if (sockets.length === 2) open(sockets.at(-1), b);
+      check(
+        "La cuenta visible coincide con la nueva sesión",
+        net.account?.id,
+        b.id,
+      );
+      const second = sockets.at(-1);
+      const match = createMatch(
+        "caracas",
+        [
+          { name: "QA A", fighter: "zavarce", wins: 3 },
+          { name: "QA B", fighter: "capriles", wins: 3 },
+        ],
+        "qa-probe-recovery",
+      );
+      receive(second, { type: "start", state: match, index: 0, ranked: true });
+      request = (url) =>
+        url === "/api/auth/session"
+          ? Promise.resolve(
+              new Response(JSON.stringify({ error: "QA unavailable" }), {
+                status: 503,
+              }),
+            )
+          : undefined;
+      window.dispatchEvent(new Event("focus"));
+      await settle();
+      check("Un fallo HTTP no retira una pelea válida", second.readyState, 1);
+      check(
+        "Un fallo HTTP conserva la recuperación clasificatoria",
+        sessionStorage.getItem(resumeKey),
+        match.id,
+      );
+      const probes = [];
+      request = (url, options) =>
+        url === "/api/auth/session"
+          ? new Promise((resolve) =>
+              probes.push({ resolve, signal: options.signal }),
+            )
+          : undefined;
+      window.dispatchEvent(new Event("focus"));
+      await settle();
+      window.dispatchEvent(new Event("focus"));
+      await settle();
+      check(
+        "Un foco nuevo comprueba la cookie actual aunque haya otra petición pendiente",
+        probes.length,
+        2,
+      );
+      check("La consulta anterior queda cancelada", probes[0].signal.aborted);
+      probes[0].resolve(new Response(JSON.stringify({ user: a })));
+      await settle();
+      check(
+        "Una respuesta anterior cancelada no cambia de cuenta",
+        net.account?.id,
+        b.id,
+      );
+      check(
+        "La respuesta anterior no provoca una derrota por desconexión",
+        second.readyState,
+        1,
+      );
+      probes[1].resolve(new Response(JSON.stringify({ user: a })));
+      await settle();
+      check(
+        "La respuesta de la cookie actual sí sustituye la conexión",
+        sockets.length,
+        3,
+      );
+      check(
+        "Cambiar de cuenta elimina el marcador de la cuenta anterior",
+        sessionStorage.getItem(resumeKey),
+        null,
+      );
+      open(sockets.at(-1), a);
+      check(
+        "La cuenta del último foco queda sincronizada",
+        net.account?.id,
+        a.id,
+      );
+    } catch (error) {
+      checks.push({ name: "Excepción", passed: false, actual: String(error) });
+    } finally {
+      flushSync(() => root.unmount());
+      window.fetch = nativeFetch;
+      window.WebSocket = nativeSocket;
+      window.setTimeout = nativeTimer;
+      AbortSignal.any = nativeAny;
+      AbortSignal.timeout = nativeTimeout;
+      if (previousResume === null) sessionStorage.removeItem(resumeKey);
+      else sessionStorage.setItem(resumeKey, previousResume);
+      window.rankingAdversarial = {
+        passed: checks.every((check) => check.passed),
+        checks,
+      };
+      document.getElementById("results").textContent = JSON.stringify(
+        window.rankingAdversarial,
+        null,
+        2,
+      );
+    }
+  </script>
+</html>

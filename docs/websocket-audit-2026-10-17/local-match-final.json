@@ -1,0 +1,159 @@
+{
+  "id": "c7a03945-9e9c-41ea-9845-e57444a52e38",
+  "stage": "caracas",
+  "tick": 1024,
+  "remaining": 4848,
+  "phase": "finished",
+  "winner": 0,
+  "players": [
+    {
+      "config": {
+        "id": "f858ebf4-2fa9-4548-8a73-2fe9dcab5e07",
+        "name": "QA Wire A",
+        "fighter": "zavarce",
+        "ready": true,
+        "wins": 0
+      },
+      "x": 214.33885121625335,
+      "y": 554,
+      "vx": -3.3987165557030745,
+      "vy": 0,
+      "facing": -1,
+      "hp": 86.5768,
+      "stocks": 2,
+      "energy": 100,
+      "grounded": true,
+      "supportPlatform": -1,
+      "dropThrough": 0,
+      "jumps": 0,
+      "blocking": false,
+      "attack": null,
+      "attackTick": 32,
+      "attackHit": true,
+      "countered": false,
+      "cooldown": 0,
+      "stun": 0,
+      "slowTicks": 0,
+      "rootTicks": 0,
+      "invincible": 0,
+      "dash": 0,
+      "lastActions": {
+        "jump": 0,
+        "light": 9,
+        "heavy": 5,
+        "special": 5,
+        "dash": 0,
+        "super": 0
+      },
+      "history": [
+        {
+          "action": "light",
+          "tick": 936
+        },
+        {
+          "action": "light",
+          "tick": 963
+        },
+        {
+          "action": "heavy",
+          "tick": 991
+        }
+      ],
+      "combo": "Pedido confirmado",
+      "comboTick": 991,
+      "comboBonus": 3,
+      "hits": 9,
+      "peakCombo": 5,
+      "streak": 5,
+      "lastHitTick": 1001
+    },
+    {
+      "config": {
+        "id": "e3d37fcd-ce7c-4d3b-951c-4a9e37b688f4",
+        "name": "QA Wire B",
+        "fighter": "zavarce",
+        "ready": true,
+        "wins": 0
+      },
+      "x": -131.90286644843928,
+      "y": 585.2,
+      "vx": -12.549653333333335,
+      "vy": 7.279999999999998,
+      "facing": 1,
+      "hp": 0,
+      "stocks": 0,
+      "energy": 100,
+      "grounded": false,
+      "supportPlatform": null,
+      "dropThrough": 0,
+      "jumps": 0,
+      "blocking": false,
+      "attack": null,
+      "attackTick": 10,
+      "attackHit": false,
+      "countered": false,
+      "cooldown": 3,
+      "stun": 3,
+      "slowTicks": 0,
+      "rootTicks": 0,
+      "invincible": 0,
+      "dash": 0,
+      "lastActions": {
+        "jump": 0,
+        "light": 5,
+        "heavy": 3,
+        "special": 3,
+        "dash": 0,
+        "super": 0
+      },
+      "history": [
+        {
+          "action": "special",
+          "tick": 812
+        },
+        {
+          "action": "heavy",
+          "tick": 959
+        }
+      ],
+      "combo": "Pedido confirmado",
+      "comboTick": 758,
+      "comboBonus": 0,
+      "hits": 1,
+      "peakCombo": 1,
+      "streak": 1,
+      "lastHitTick": 817
+    }
+  ],
+  "projectiles": [],
+  "effects": [
+    {
+      "id": 12,
+      "x": 169.28881355156082,
+      "y": 474,
+      "kind": "hit",
+      "color": "#a8a0f3",
+      "life": 3,
+      "duration": 26,
+      "owner": 0,
+      "impact": "heavy",
+      "strength": 1.35,
+      "direction": -1
+    },
+    {
+      "id": 13,
+      "x": 30,
+      "y": 525.2,
+      "kind": "ringout",
+      "color": "#a8a0f3",
+      "life": 40,
+      "duration": 40,
+      "owner": 1,
+      "strength": 1.8,
+      "direction": -1
+    }
+  ],
+  "nextId": 14,
+  "shake": 0.028659650432124057,
+  "hitstop": 0
+}

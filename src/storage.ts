@@ -49,7 +49,10 @@ export function readProgress(): Progress {
 export function saveProgress(progress: Progress) {
   try {
     localStorage.setItem("arena-progress-v1", JSON.stringify(progress));
-  } catch {}
+    return true;
+  } catch {
+    return false;
+  }
 }
 export function getPreference<T>(key: string, fallback: T): T {
   try {

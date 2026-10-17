@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "Invitado no consulta puntaje privado",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "Invitado no muestra puntaje",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "La cuenta nueva espera el total del servidor",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Muestra el puntaje persistido",
+      "passed": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "Un recibo guardado consulta el total de nuevo",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "El resultado no depende de sumar desde el cliente",
+      "passed": true,
+      "actual": 6,
+      "expected": 6
+    },
+    {
+      "name": "Cambiar de cuenta oculta el puntaje anterior",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "La petición de la cuenta anterior queda cancelada",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Una respuesta tardía no filtra puntos entre cuentas",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "La segunda cuenta conserva su propio total",
+      "passed": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "Cerrar sesión borra puntos incluso con respuestas pendientes",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "Un fallo no inventa cero puntos",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "El fallo permite informar y reintentar",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Reintentar recupera el total real",
+      "passed": true,
+      "actual": 6,
+      "expected": 6
+    },
+    {
+      "name": "Volver a la pestaña actualiza cambios de otra sesión",
+      "passed": true,
+      "actual": 8,
+      "expected": 8
+    },
+    {
+      "name": "El total de otra sesión sustituye el anterior",
+      "passed": true,
+      "actual": 9,
+      "expected": 9
+    },
+    {
+      "name": "Reconectar la misma cuenta vuelve a consultar",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "La reconexión recibe el total actualizado",
+      "passed": true,
+      "actual": 12,
+      "expected": 12
+    },
+    {
+      "name": "Una cookie cambiada en otra pestaña no mezcla cuentas",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "La identidad HTTP distinta se informa como fallo de consulta",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    }
+  ]
+}

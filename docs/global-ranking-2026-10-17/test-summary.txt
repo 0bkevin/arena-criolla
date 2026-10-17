@@ -1,0 +1,10 @@
+✔ desktop and the portrait orientation gate retain the original canvas size (0.707617ms)
+ℹ tests 564
+ℹ suites 0
+ℹ pass 564
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11606.006999
+ranking SQLite lock: health=2.20ms, other room=59.97Hz

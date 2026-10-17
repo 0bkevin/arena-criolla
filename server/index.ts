@@ -14,34 +14,18 @@ import {
   emptyInput,
   stepMatch,
   type Input,
-  type MatchState,
 } from "../shared/engine";
 import type {
   ClientMessage,
   RoomPlayer,
-  RoomView,
   ServerMessage,
 } from "../shared/protocol";
 import { FixedStepTicker } from "./ticker";
-
-interface Client {
-  id: string;
-  socket: WebSocket;
-  room: string | null;
-  input: Input;
-  alive: boolean;
-  messages: number;
-  controls: number;
-  lists: number;
-  window: number;
-}
-interface Room {
-  view: RoomView;
-  clients: Client[];
-  private: boolean;
-  state: MatchState | null;
-  touched: number;
-}
+import { INPUT_TIMEOUT_MS } from "../shared/network";
+import { currentUser, sessionToken, tokenHash } from "./creator/auth";
+import { RankingStore } from "./ranking";
+import { RankedGames } from "./ranked";
+import type { Client, Room } from "./arena-types";
 const cleanName = (value: unknown) =>
   typeof value === "string"
     ? value
@@ -53,21 +37,27 @@ const cleanWins = (value: unknown) =>
   Number.isFinite(value)
     ? Math.min(9999, Math.max(0, Math.floor(Number(value))))
     : 0;
+const releaseHeld = (input: Input) => {
+  input.left = input.right = input.block = input.down = false;
+};
 
 export async function makeArenaServer(
   options: {
     serveClient?: boolean;
     production?: boolean;
     creator?: CreatorOptions;
+    rankedReconnectMs?: number;
   } = {},
 ) {
   const app = express();
   app.disable("x-powered-by");
   let notifyCommunity = () => {};
+  let endSession = (_hash: string) => {};
   const creator = makeCreatorService({
     ...(options.creator ??
       (options.serveClient === false ? { databasePath: ":memory:" } : {})),
     onCatalogChange: () => notifyCommunity(),
+    onSessionEnd: (hash) => endSession(hash),
   });
   app.use("/api", creator.router);
   const http = createServer(app);
@@ -79,6 +69,7 @@ export async function makeArenaServer(
   const wss = new WebSocketServer({ noServer: true, maxPayload: 4096 });
   const clients = new Map<string, Client>();
   const rooms = new Map<string, Room>();
+  const ranking = new RankingStore(creator.databasePath);
 
   const send = (client: Client, message: ServerMessage) => {
     if (client.socket.readyState !== WebSocket.OPEN) return;
@@ -90,11 +81,7 @@ export async function makeArenaServer(
     }
     client.socket.send(JSON.stringify(message));
   };
-  const sendEncoded = (
-    client: Client,
-    message: string,
-    reliable = false,
-  ) => {
+  const sendEncoded = (client: Client, message: string, reliable = false) => {
     if (client.socket.readyState !== WebSocket.OPEN) return;
     if (client.socket.bufferedAmount >= 256_000) {
       if (reliable) client.socket.terminate();
@@ -122,7 +109,9 @@ export async function makeArenaServer(
     (!id.startsWith("custom_") ||
       creator.db.character(id)?.status === "published");
   const publishRoom = (room: Room) =>
-    room.clients.forEach((c) => send(c, { type: "room", room: room.view }));
+    room.clients.forEach((c) => {
+      if (c.room === room.view.code) send(c, { type: "room", room: room.view });
+    });
   const roomListMessage = () => {
     const list = [...rooms.values()]
       .filter(
@@ -150,7 +139,23 @@ export async function makeArenaServer(
   };
   const error = (client: Client, message: string) =>
     send(client, { type: "error", message });
+  const ranked = new RankedGames({
+    rooms,
+    clients,
+    db: creator.db,
+    store: ranking,
+    send,
+    publishRoom,
+    roomsChanged: scheduleRoomList,
+    allowedFighter,
+    reconnectMs: options.rankedReconnectMs,
+  });
+  endSession = (hash) =>
+    clients.forEach((client) => {
+      if (client.sessionHash === hash) client.socket.terminate();
+    });
   const leave = (client: Client, notify = true) => {
+    if (notify && ranked.leave(client)) return;
     const room = client.room && rooms.get(client.room);
     client.room = null;
     client.input = emptyInput();
@@ -159,6 +164,15 @@ export async function makeArenaServer(
         room.view.status === "playing" || room.view.status === "finished";
       room.clients = room.clients.filter((c) => c.id !== client.id);
       room.view.players = room.view.players.filter((p) => p.id !== client.id);
+      if (room.view.ranked) {
+        room.clients = room.clients.filter(
+          (c) =>
+            c.room === room.view.code && c.socket.readyState === WebSocket.OPEN,
+        );
+        room.view.players = room.view.players.filter((p) =>
+          room.clients.some((c) => c.id === p.id),
+        );
+      }
       room.state = null;
       room.view.status = "waiting";
       room.view.players.forEach((p) => {
@@ -175,8 +189,12 @@ export async function makeArenaServer(
     }
     if (notify) send(client, { type: "left" });
   };
-  const start = (room: Room) => {
-    if (room.clients.length !== 2 || !room.view.players.every((p) => p.ready))
+  const start = async (room: Room) => {
+    if (
+      room.view.starting ||
+      room.clients.length !== 2 ||
+      !room.view.players.every((p) => p.ready)
+    )
       return;
     if (room.view.players.some((player) => !allowedFighter(player.fighter))) {
       room.view.status = "waiting";
@@ -198,15 +216,56 @@ export async function makeArenaServer(
       scheduleRoomList();
       return;
     }
+    const [first, second] = room.view.players;
+    const state = createMatch(
+      room.view.stage,
+      room.view.ranked
+        ? [
+            { ...first, wins: 3 },
+            { ...second, wins: 3 },
+          ]
+        : [first, second],
+      randomUUID(),
+    );
+    if (room.view.ranked) {
+      try {
+        if (!(await ranked.prepare(room, state))) {
+          room.view.players.forEach((player) => {
+            player.ready = false;
+          });
+          publishRoom(room);
+          return;
+        }
+      } catch (failure) {
+        room.view.players.forEach((player) => {
+          player.ready = false;
+        });
+        room.clients.forEach((client) =>
+          error(
+            client,
+            failure instanceof Error
+              ? failure.message
+              : "No pudimos preparar la clasificatoria.",
+          ),
+        );
+        publishRoom(room);
+        return;
+      }
+    }
     room.clients.forEach((c) => {
       c.input = emptyInput();
+      c.inputAt = performance.now();
     });
-    const [first, second] = room.view.players;
-    room.state = createMatch(room.view.stage, [first, second], randomUUID());
+    room.state = state;
     room.view.status = "playing";
     room.touched = Date.now();
     room.clients.forEach((c, index) =>
-      send(c, { type: "start", state: room.state!, index }),
+      send(c, {
+        type: "start",
+        state: room.state!,
+        index,
+        ...(room.view.ranked ? { ranked: true } : {}),
+      }),
     );
     publishRoom(room);
     scheduleRoomList();
@@ -218,6 +277,37 @@ export async function makeArenaServer(
   app.get("/api/rooms", (_req, res) =>
     res.json([...rooms.values()].filter((r) => !r.private).map((r) => r.view)),
   );
+  app.get("/api/ranking", async (_req, res) => {
+    res.set("Cache-Control", "no-store");
+    try {
+      res.json(await ranking.request("board", null));
+    } catch {
+      res
+        .status(503)
+        .json({ error: "El ranking no está disponible. Inténtalo de nuevo." });
+    }
+  });
+  app.get("/api/ranking/me", async (req, res) => {
+    res.set("Cache-Control", "no-store");
+    const user = currentUser(req, creator.db);
+    if (!user) {
+      res
+        .status(401)
+        .json({ error: "Inicia sesión para consultar tu historial." });
+      return;
+    }
+    try {
+      res.json(
+        await ranking.request("profile", { id: user.id, name: user.name }),
+      );
+    } catch {
+      res
+        .status(503)
+        .json({
+          error: "No pudimos consultar tu historial. Inténtalo de nuevo.",
+        });
+    }
+  });
   http.on("upgrade", (request, socket, head) => {
     if (request.url?.split("?")[0] !== "/ws") {
       const protocols = (request.headers["sec-websocket-protocol"] ?? "")
@@ -246,24 +336,46 @@ export async function makeArenaServer(
       );
       return;
     }
+    const origin = request.headers.origin;
+    let trusted = false;
+    try {
+      const parsed = new URL(origin ?? "");
+      trusted =
+        ["http:", "https:"].includes(parsed.protocol) &&
+        parsed.host === request.headers.host &&
+        parsed.origin === origin;
+    } catch {}
+    if ((origin && !trusted) || (sessionToken(request) && !trusted)) {
+      socket.end(
+        "HTTP/1.1 403 Forbidden\r\nConnection: close\r\nContent-Length: 0\r\n\r\n",
+        () => socket.destroy(),
+      );
+      return;
+    }
     wss.handleUpgrade(request, socket, head, (ws) =>
       wss.emit("connection", ws, request),
     );
   });
-  wss.on("connection", (socket) => {
+  wss.on("connection", (socket, request) => {
+    const user = currentUser(request, creator.db);
+    const token = sessionToken(request);
     const client: Client = {
       id: randomUUID(),
       socket,
       room: null,
       input: emptyInput(),
+      inputAt: performance.now(),
       alive: true,
       messages: 0,
       controls: 0,
       lists: 0,
-      window: Date.now(),
+      pings: 0,
+      window: performance.now(),
+      account: user ? { id: user.id, name: user.name } : null,
+      sessionHash: token ? tokenHash(token) : null,
     };
     clients.set(client.id, client);
-    send(client, { type: "welcome", id: client.id });
+    send(client, { type: "welcome", id: client.id, account: client.account });
     sendEncoded(client, communityPayload(), true);
     publishList(client);
     scheduleRoomList();
@@ -273,18 +385,26 @@ export async function makeArenaServer(
     socket.on("error", () => {});
     socket.on("close", () => {
       clients.delete(client.id);
-      leave(client, false);
+      if (!ranked.disconnect(client)) leave(client, false);
       scheduleRoomList();
     });
     socket.on("message", (raw) => {
       const now = Date.now();
-      if (now - client.window >= 1000) {
-        client.window = now;
+      const messageAt = performance.now();
+      if (messageAt - client.window >= 1000) {
+        client.window = messageAt;
         client.messages = 0;
         client.controls = 0;
         client.lists = 0;
+        client.pings = 0;
       }
-      if (++client.messages > 180) return;
+      // Allow a bounded burst after network jitter. Never silently discard the
+      // final release: sustained excess closes the peer and releases its input.
+      if (++client.messages > 360) {
+        releaseHeld(client.input);
+        client.socket.close(1008, "Demasiados mensajes.");
+        return;
+      }
       let message: ClientMessage;
       try {
         message = JSON.parse(raw.toString());
@@ -298,14 +418,26 @@ export async function makeArenaServer(
         typeof message.type !== "string"
       )
         return;
-      if (
-        (message.type === "select" ||
-          message.type === "ready" ||
-          message.type === "rematch") &&
-        ++client.controls > 30
-      )
+      if (message.type === "ping") {
+        if (
+          ++client.pings <= 5 &&
+          Number.isFinite(message.sentAt) &&
+          message.sentAt >= 0
+        )
+          send(client, { type: "pong", sentAt: message.sentAt });
         return;
+      }
       const current = client.room ? rooms.get(client.room) : undefined;
+      const acceptControl = () => {
+        if (++client.controls <= 30) return true;
+        error(
+          client,
+          "Estás eligiendo demasiado rápido. Espera un momento y vuelve a intentarlo.",
+        );
+        if (client.controls === 31 && current)
+          send(client, { type: "room", room: current.view });
+        return false;
+      };
       if (message.type === "list") {
         if (++client.lists > 5) return;
         publishList(client);
@@ -315,10 +447,49 @@ export async function makeArenaServer(
         leave(client);
         return;
       }
+      if (
+        message.type === "resume" &&
+        typeof message.matchId === "string" &&
+        message.matchId.length <= 100
+      ) {
+        void ranked
+          .resume(client, message.matchId)
+          .catch(() =>
+            send(client, {
+              type: "resume-unavailable",
+              message: "No pudimos recuperar esa pelea. Consulta el ranking.",
+            }),
+          );
+        return;
+      }
+      if (
+        message.type === "abandon" &&
+        typeof message.matchId === "string" &&
+        message.matchId.length <= 100
+      ) {
+        void ranked
+          .abandon(client, message.matchId)
+          .catch(() =>
+            error(
+              client,
+              "No pudimos confirmar el abandono. Reintentaremos al reconectar.",
+            ),
+          );
+        return;
+      }
       if (message.type === "create") {
+        const rankedRoom = message.ranked === true;
         if (current) {
           error(client, "Primero sal de tu sala actual.");
           return;
+        }
+        if (rankedRoom) {
+          try {
+            ranked.canEnter(client);
+          } catch (failure) {
+            error(client, (failure as Error).message);
+            return;
+          }
         }
         if (!allowedFighter(message.fighter) || !isStage(message.stage)) {
           error(client, "Elige un luchador y un escenario válidos.");
@@ -332,13 +503,16 @@ export async function makeArenaServer(
         do {
           code = randomBytes(16).toString("hex").toUpperCase();
         } while (rooms.has(code));
-        const name = cleanName(message.name);
+        const name = cleanName(
+          rankedRoom ? client.account!.name : message.name,
+        );
         const player: RoomPlayer = {
           id: client.id,
           name,
           fighter: message.fighter,
           ready: false,
-          wins: cleanWins(message.wins),
+          wins: rankedRoom ? 0 : cleanWins(message.wins),
+          ...(rankedRoom ? { connected: true } : {}),
         };
         const room: Room = {
           view: {
@@ -348,6 +522,7 @@ export async function makeArenaServer(
             players: [player],
             status: "waiting",
             host: client.id,
+            ...(rankedRoom ? { ranked: true } : {}),
           },
           clients: [client],
           private: Boolean(message.private),
@@ -376,13 +551,24 @@ export async function makeArenaServer(
           error(client, "Esa sala está ocupada. Crea una nueva o elige otra.");
           return;
         }
+        if (room.view.ranked) {
+          try {
+            ranked.canEnter(client, room);
+          } catch (failure) {
+            error(client, (failure as Error).message);
+            return;
+          }
+        }
         room.clients.push(client);
         room.view.players.push({
           id: client.id,
-          name: cleanName(message.name),
+          name: cleanName(
+            room.view.ranked ? client.account!.name : message.name,
+          ),
           fighter: message.fighter,
           ready: false,
-          wins: cleanWins(message.wins),
+          wins: room.view.ranked ? 0 : cleanWins(message.wins),
+          ...(room.view.ranked ? { connected: true } : {}),
         });
         room.touched = now;
         client.room = room.view.code;
@@ -391,30 +577,45 @@ export async function makeArenaServer(
         return;
       }
       if (!current) return;
+      if (
+        current.view.starting &&
+        ["select", "ready", "rematch"].includes(message.type)
+      ) {
+        error(
+          client,
+          "La clasificatoria se está preparando. Espera un momento.",
+        );
+        return;
+      }
       if (message.type === "select" && current.view.status === "waiting") {
         const player = current.view.players.find((p) => p.id === client.id)!;
-        let changed = false;
-        if (allowedFighter(message.fighter)) {
-          const wins = cleanWins(message.wins);
-          if (player.fighter !== message.fighter || player.wins !== wins) {
-            player.fighter = message.fighter;
-            player.wins = wins;
+        const nextFighter = allowedFighter(message.fighter)
+          ? message.fighter
+          : player.fighter;
+        const nextWins = current.view.ranked
+          ? player.wins
+          : allowedFighter(message.fighter)
+            ? cleanWins(message.wins)
+            : player.wins;
+        const nextStage =
+          client.id === current.view.host && isStage(message.stage)
+            ? message.stage
+            : current.view.stage;
+        const fighterChange =
+          player.fighter !== nextFighter || player.wins !== nextWins;
+        const stageChange = current.view.stage !== nextStage;
+        if ((fighterChange || stageChange) && acceptControl()) {
+          if (fighterChange) {
+            player.fighter = nextFighter;
+            player.wins = nextWins;
             player.ready = false;
-            changed = true;
           }
-        }
-        if (
-          client.id === current.view.host &&
-          isStage(message.stage) &&
-          current.view.stage !== message.stage
-        ) {
-          current.view.stage = message.stage;
-          current.view.players.forEach((p) => {
-            p.ready = false;
-          });
-          changed = true;
-        }
-        if (changed) {
+          if (stageChange) {
+            current.view.stage = nextStage;
+            current.view.players.forEach((p) => {
+              p.ready = false;
+            });
+          }
           publishRoom(current);
           scheduleRoomList();
         }
@@ -422,14 +623,15 @@ export async function makeArenaServer(
       if (message.type === "ready" && current.view.status === "waiting") {
         if (typeof message.ready !== "boolean") return;
         const player = current.view.players.find((p) => p.id === client.id)!;
-        if (player.ready !== message.ready) {
+        if (player.ready !== message.ready && acceptControl()) {
           player.ready = message.ready;
           publishRoom(current);
           scheduleRoomList();
-          if (message.ready) start(current);
+          if (message.ready) void start(current);
         }
       }
       if (message.type === "input" && current.view.status === "playing") {
+        if (message.matchId !== current.state?.id) return;
         const input = message.input;
         if (
           !input ||
@@ -449,12 +651,23 @@ export async function makeArenaServer(
           safe.actions[action] = n;
         }
         client.input = safe;
+        client.inputAt = performance.now();
       }
       if (message.type === "rematch" && current.view.status === "finished") {
+        if (
+          current.view.ranked &&
+          current.view.players.some((p) => p.connected === false)
+        ) {
+          error(
+            client,
+            "Tu rival salió. Vuelve a la selección para buscar otra pelea.",
+          );
+          return;
+        }
         const player = current.view.players.find((p) => p.id === client.id)!;
-        if (!player.ready) {
+        if (!player.ready && acceptControl()) {
           player.ready = true;
-          if (current.view.players.every((p) => p.ready)) start(current);
+          if (current.view.players.every((p) => p.ready)) void start(current);
           else publishRoom(current);
         }
       }
@@ -474,12 +687,21 @@ export async function makeArenaServer(
           room.clients.length !== 2
         )
           return;
+        if (room.view.reconnectUntil) return;
+        for (const client of room.clients) {
+          if (performance.now() - client.inputAt >= INPUT_TIMEOUT_MS)
+            releaseHeld(client.input);
+        }
         stepMatch(room.state, [room.clients[0].input, room.clients[1].input]);
         if (tick % 2 === 0 || room.state.phase === "finished")
           room.clients.forEach((c) =>
             send(c, { type: "state", state: room.state! }),
           );
         if (room.state.phase === "finished") {
+          if (room.view.ranked) {
+            ranked.complete(room);
+            return;
+          }
           room.view.status = "finished";
           room.view.players.forEach((p, index) => {
             p.ready = false;
@@ -492,7 +714,8 @@ export async function makeArenaServer(
   }, 1000 / 60);
   const heartbeat = setInterval(() => {
     clients.forEach((c) => {
-      if (!c.alive) c.socket.terminate();
+      if (!c.alive || (c.account && !ranked.authenticated(c)))
+        c.socket.terminate();
       else {
         c.alive = false;
         c.socket.ping();
@@ -552,21 +775,30 @@ export async function makeArenaServer(
     creator,
     clients,
     rooms,
-    close: () => closing ??= (async () => {
-      creator.stop();
-      clients.forEach((c) => c.socket.terminate());
-      // Stop accepting connections first, but retain SQLite until in-flight auth,
-      // uploads and catalog writes finish. Bound keep-alive/slow-client shutdown.
-      const closed = new Promise<void>((resolve) => http.close(() => resolve()));
-      const deadline = setTimeout(() => connections.forEach((socket) => socket.destroy()), 5_000);
-      try {
-        await vite?.close();
-        await closed;
-        await creator.close();
-      } finally {
-        clearTimeout(deadline);
-      }
-    })(),
+    ranking,
+    close: () =>
+      (closing ??= (async () => {
+        creator.stop();
+        const rankedClosed = ranked.close();
+        clients.forEach((c) => c.socket.terminate());
+        // Stop accepting connections first, but retain SQLite until in-flight auth,
+        // uploads and catalog writes finish. Bound keep-alive/slow-client shutdown.
+        const closed = new Promise<void>((resolve) =>
+          http.close(() => resolve()),
+        );
+        const deadline = setTimeout(
+          () => connections.forEach((socket) => socket.destroy()),
+          5_000,
+        );
+        try {
+          await vite?.close();
+          await closed;
+          await rankedClosed;
+          await creator.close();
+        } finally {
+          clearTimeout(deadline);
+        }
+      })()),
   };
 }
 

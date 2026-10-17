@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+  <meta charset="utf-8" />
+  <title>Regresión de resultados sin frames</title>
+  <div id="root"></div>
+  <pre id="results">Ejecutando…</pre>
+  <script type="module">
+    import React from "react";
+    import { createRoot } from "react-dom/client";
+    import { flushSync } from "react-dom";
+    import { App } from "/src/App.tsx";
+    import { createMatch } from "/shared/engine.ts";
+    const key = "arena-progress-v1",
+      previous = localStorage.getItem(key);
+    const native = {
+      WebSocket: window.WebSocket,
+      raf: window.requestAnimationFrame,
+      cancel: window.cancelAnimationFrame,
+    };
+    const queued = new Map();
+    let frame = 0,
+      framesExecuted = 0;
+    window.requestAnimationFrame = (callback) => {
+      queued.set(++frame, callback);
+      return frame;
+    };
+    window.cancelAnimationFrame = (id) => queued.delete(id);
+    const sockets = [];
+    class FixtureSocket {
+      static OPEN = 1;
+      readyState = 1;
+      bufferedAmount = 0;
+      constructor() {
+        sockets.push(this);
+      }
+      send() {}
+      close() {
+        this.readyState = 3;
+        this.onclose?.();
+      }
+    }
+    window.WebSocket = FixtureSocket;
+    localStorage.removeItem(key);
+    const root = createRoot(document.getElementById("root"));
+    flushSync(() => root.render(React.createElement(App)));
+    const socket = sockets.at(-1);
+    const receive = (message) =>
+      flushSync(() => socket.onmessage({ data: JSON.stringify(message) }));
+    flushSync(() => socket.onopen());
+    receive({ type: "welcome", id: "qa-result" });
+    const makeMatch = () =>
+      createMatch(
+        "caracas",
+        [
+          { name: "QA A", fighter: "zavarce", wins: 0 },
+          { name: "QA B", fighter: "capriles", wins: 0 },
+        ],
+        crypto.randomUUID(),
+      );
+    const state = makeMatch();
+    receive({ type: "start", state, index: 0 });
+    const final = structuredClone(state);
+    final.phase = "finished";
+    final.winner = 0;
+    final.players[0].peakCombo = 6;
+    receive({ type: "state", state: final });
+    receive({ type: "opponent-left" });
+    let progress = JSON.parse(localStorage.getItem(key) || "null");
+    const checks = [];
+    const check = (name, actual, expected) =>
+      checks.push({ name, passed: actual === expected, actual, expected });
+    check(
+      "Se guarda la victoria aunque el rival salga antes de RAF",
+      progress?.wins.zavarce,
+      1,
+    );
+    check("El resultado se registra como una partida", progress?.played, 1);
+    check(
+      "Se conserva el mejor combo del estado final",
+      progress?.bestCombo,
+      6,
+    );
+    receive({ type: "start", state, index: 0 });
+    receive({ type: "state", state: final });
+    receive({ type: "opponent-left" });
+    check(
+      "El mismo matchId no se registra dos veces",
+      JSON.parse(localStorage.getItem(key) || "null")?.played,
+      1,
+    );
+    const next = makeMatch();
+    receive({ type: "start", state: next, index: 1 });
+    localStorage.setItem(
+      key,
+      JSON.stringify({
+        wins: { zavarce: 3 },
+        played: 5,
+        bestCombo: 9,
+        recent: [],
+      }),
+    );
+    next.phase = "finished";
+    next.winner = 1;
+    receive({ type: "state", state: next });
+    progress = JSON.parse(localStorage.getItem(key) || "null");
+    check(
+      "El guardado usa los resultados más recientes de otra pestaña",
+      progress?.played,
+      6,
+    );
+    check(
+      "Se conservan victorias previas del otro luchador",
+      progress?.wins.zavarce,
+      3,
+    );
+    check(
+      "Se acredita la victoria al índice local correcto",
+      progress?.wins.capriles,
+      1,
+    );
+    check("Se conserva la mejor racha anterior", progress?.bestCombo, 9);
+    check("La prueba no ejecuta ningún frame", framesExecuted, 0);
+    const nativeSetItem = Storage.prototype.setItem;
+    Storage.prototype.setItem = function (storageKey, value) {
+      if (storageKey === key)
+        throw new DOMException("QA quota", "QuotaExceededError");
+      return nativeSetItem.call(this, storageKey, value);
+    };
+    for (let i = 0; i < 2; i++) {
+      const failed = makeMatch();
+      receive({ type: "start", state: failed, index: 0 });
+      failed.phase = "finished";
+      failed.winner = 0;
+      receive({ type: "state", state: failed });
+    }
+    Storage.prototype.setItem = nativeSetItem;
+    const recovered = makeMatch();
+    receive({ type: "start", state: recovered, index: 0 });
+    recovered.phase = "finished";
+    recovered.winner = 0;
+    receive({ type: "state", state: recovered });
+    progress = JSON.parse(localStorage.getItem(key) || "null");
+    check(
+      "Los resultados se acumulan en memoria si falla localStorage",
+      progress?.played,
+      9,
+    );
+    check(
+      "Se recuperan las victorias al poder guardar otra vez",
+      progress?.wins.zavarce,
+      6,
+    );
+    window.resultRegression = { passed: checks.every((c) => c.passed), checks };
+    flushSync(() => root.unmount());
+    if (previous === null) localStorage.removeItem(key);
+    else localStorage.setItem(key, previous);
+    window.WebSocket = native.WebSocket;
+    window.requestAnimationFrame = native.raf;
+    window.cancelAnimationFrame = native.cancel;
+    document.getElementById("results").textContent = JSON.stringify(
+      window.resultRegression,
+      null,
+      2,
+    );
+    document.title =
+      (window.resultRegression.passed ? "PASS" : "FAIL") +
+      " resultados sin frames";
+  </script>
+</html>

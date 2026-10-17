@@ -1,0 +1,176 @@
+.arena-account-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-height: 44px;
+  max-width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.arena-account-button > span,
+.arena-account-button > small {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.arena-account-button > small {
+  color: var(--lime);
+  font-size: 10px;
+}
+.account-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 18px 0;
+}
+.account-tabs button {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ffffff25;
+  border-radius: 8px;
+}
+.account-tabs [aria-selected="true"] {
+  border-color: var(--lime);
+  color: var(--lime);
+}
+.arena-account-form {
+  display: grid;
+  gap: 18px;
+}
+.arena-account-form label {
+  display: grid;
+  gap: 8px;
+}
+.arena-account-form input {
+  width: 100%;
+  min-height: 44px;
+}
+.ranking-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 20px 0;
+}
+.ranking-toolbar > span {
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--lime);
+}
+.ranking-self {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid #ffd45a55;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background: #ffd45a0a;
+}
+.ranking-self > span {
+  font-size: 12px;
+  color: var(--muted);
+}
+.ranking-table-wrap {
+  overflow-x: auto;
+}
+.ranking-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12px;
+  text-align: left;
+}
+.ranking-table th,
+.ranking-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #ffffff16;
+}
+.ranking-table thead {
+  color: var(--muted);
+}
+.ranking-table .is-you {
+  background: #ffd45a12;
+  color: var(--lime);
+}
+.ranking-history {
+  margin-top: 28px;
+}
+.ranking-history ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ranking-history li {
+  padding: 14px 0;
+  border-bottom: 1px solid #ffffff16;
+}
+.ranking-history li > div {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.ranking-history p {
+  margin: 8px 0;
+  font-size: 12px;
+}
+.ranking-history small {
+  color: var(--muted);
+}
+.ranking-outcome.win {
+  color: #a6e6aa;
+}
+.ranking-outcome.loss {
+  color: #ffb4ae;
+}
+.ranking-empty,
+.ranking-signin {
+  margin: 20px 0;
+}
+.ranking-signin {
+  border-top: 1px solid #ffffff16;
+  padding-top: 16px;
+}
+.ranking-signin p {
+  margin-bottom: 14px;
+}
+.ranked-result-status {
+  padding: 12px;
+  border: 1px solid #ffd45a40;
+  border-radius: 8px;
+  margin: 14px 0;
+  font-size: 12px;
+}
+.ranked-result-status > button {
+  display: block;
+  margin-top: 10px;
+  min-height: 44px;
+}
+.ranked-result-status > strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--lime);
+}
+.ranked-room-label {
+  color: var(--lime);
+}
+.ranked-recovery {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.ranked-recovery p {
+  max-width: 640px;
+  line-height: 1.7;
+  margin: 20px 0;
+}
+@media (max-width: 600px) {
+  .arena-account-button {
+    max-width: 84px;
+    font-size: 10px;
+  }
+  .ranking-toolbar {
+    align-items: flex-start;
+  }
+  .ranking-table th,
+  .ranking-table td {
+    padding: 10px 8px;
+  }
+}

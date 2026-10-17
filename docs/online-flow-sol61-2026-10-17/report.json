@@ -1,0 +1,113 @@
+{
+  "date": "2026-10-17",
+  "branch": "t3/verificar-multijugador-online",
+  "baseCommit": "e41c22e",
+  "fixCommit": "c52b2b87836722ca5bb51eb5f666a40cd8048b52",
+  "cleanup": "Salas locales: 0 antes del cierre. Pestañas propias cerradas y servidor temporal 5191 detenido.",
+  "requestedReviewModel": "gpt-6.1-sol",
+  "scope": "Nueva auditoría independiente de todo el flujo online y resolución de cada hallazgo confirmado, complementando la revisión profunda anterior de conexiones y latencia.",
+  "findings": [
+    {
+      "id": "OF-1",
+      "severity": "P2",
+      "status": "resuelto",
+      "problem": "30 select idénticos consumían el presupuesto y el servidor descartaba silenciosamente la siguiente selección y listo/cancelación/revancha.",
+      "before": "30 select zavarce + select capriles + ready true: servidor zavarce/no listo, sin error; repro y test fallaron antes del arreglo.",
+      "fix": "Se contabilizan solo cambios efectivos. Cada control rechazado recibe error; el primer rechazo de la ventana devuelve la sala autoritativa. El límite global y backpressure siguen vigentes.",
+      "files": [
+        "server/index.ts",
+        "tests/rooms.test.ts"
+      ]
+    },
+    {
+      "id": "OF-2",
+      "severity": "P2",
+      "status": "resuelto",
+      "problem": "Elegir un luchador desde el catálogo durante una pelea cambiaba solo la selección local; al salir el rival la UI mostraba un luchador distinto del configurado en sala.",
+      "before": "Repro DOM del agente: Capriles visible, sala zavarce, ningún select enviado.",
+      "fix": "La selección online visible procede de la sala confirmada. Elegir durante la pelea queda bloqueado; la selección local conserva la última elección confirmada al abandonar sala.",
+      "files": [
+        "src/App.tsx",
+        "tests/browser/online-flow.html"
+      ]
+    },
+    {
+      "id": "OF-3",
+      "severity": "P2",
+      "status": "resuelto",
+      "problem": "Revancha activaba Esperando antes de confirmación; un rechazo mantenía el botón deshabilitado y el error se ocultaba durante Game.",
+      "before": "Repro DOM del agente: ready=false, botón Esperando deshabilitado, error ausente del DOM.",
+      "fix": "La espera depende del ready confirmado. Errores visibles dentro del juego y resultado; reintento habilitado tras rechazo y aviso anterior limpiado al enviar un nuevo control. Aviso y controles alcanzables en táctil.",
+      "files": [
+        "src/App.tsx",
+        "src/network.ts",
+        "src/components/Game.tsx",
+        "src/styles.css",
+        "tests/browser/online-flow.html"
+      ]
+    }
+  ],
+  "verification": {
+    "npmTest": {
+      "passed": 551,
+      "failed": 0,
+      "durationMs": 9572.589377
+    },
+    "build": {
+      "passed": true,
+      "existingWarning": "Bundle mayor de 500 kB."
+    },
+    "focusedRealWebsocketTests": {
+      "passed": 9,
+      "failed": 0
+    },
+    "appFixtures": {
+      "desktop": 20,
+      "touch844x390": 20,
+      "passed": true
+    },
+    "previousFixtures": {
+      "roomNotices": 6,
+      "transport": 19,
+      "results": 11,
+      "passed": true
+    },
+    "realTwoProfileMatch": {
+      "passed": true,
+      "matchId": "e24cc408-b536-4e07-8c58-2f8fd3ad2df9",
+      "winner": "QA Sol61 A (Capriles)",
+      "hits": [
+        9,
+        2
+      ],
+      "peakCombos": [
+        5,
+        2
+      ],
+      "identicalFinalState": true,
+      "persistedAfterReload": true,
+      "rematchSameNewId": true,
+      "opponentDepartureRecovered": true,
+      "cancelledRematchCounted": false
+    },
+    "independentReviewer": "Aprueba los tres arreglos y la corrección del aviso táctil. Reejecutó 9 tests de sockets reales y comprobó desktop/touch con preview de T3."
+  },
+  "artifacts": {
+    "regressions": "browser-regressions.json",
+    "match": "real-match.json",
+    "screenshots": [
+      "default-result.png",
+      "incognito-result.png"
+    ],
+    "tests": "test-summary.txt"
+  },
+  "accounts": "No se crearon cuentas autenticadas nuevas en esta ronda. QA Sol61 A/B son apodos de pruebas para las salas anónimas; las cuentas QA existentes y el login real están documentados en ../online-multiplayer-qa-2026-10-17/report.json.",
+  "limitations": [
+    "Los arreglos están solo en el worktree y commits locales; no están desplegados en arena.kevinbravo.com.",
+    "Ranking global sigue anunciado como PRONTO. El resultado y desbloqueos se persisten en este navegador, sin historial central de partidas.",
+    "La reconexión de transporte no reanuda la misma pelea. Las mediciones de pérdida, RTT artificial y carga de la revisión anterior constan en ../websocket-audit-2026-10-17/report.json; no equivalen a medir todas las redes WAN.",
+    "Touch probado mediante tamaño de viewport y media query coarse en Chromium, sin dispositivo móvil físico.",
+    "Una revisión y sus regresiones no garantizan la ausencia absoluta de defectos."
+  ],
+  "safety": "Sin cambios de audio, escenarios, infraestructura, publicación o despliegue. El único servidor usado para los nuevos repros fue local."
+}

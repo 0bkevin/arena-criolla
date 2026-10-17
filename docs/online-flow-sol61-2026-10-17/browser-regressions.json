@@ -1,0 +1,496 @@
+{
+  "review": {
+    "model": "gpt-6.1-sol",
+    "agent": "/root/online_flow_sol61",
+    "review": "Implementación completa y revisión independiente de los arreglos; sin objeciones confirmadas pendientes."
+  },
+  "desktop": {
+    "passed": true,
+    "touch": false,
+    "checks": [
+      {
+        "name": "La elección se envía al servidor",
+        "passed": true,
+        "actual": "capriles",
+        "expected": "capriles"
+      },
+      {
+        "name": "Antes de confirmar se muestra el luchador de la sala",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "Una elección rechazada conserva el luchador confirmado",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "El error de selección se muestra",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "El reintento limpia el aviso anterior",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "La confirmación actualiza el luchador visible",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "No se permite elegir luchador en combate",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "El control bloqueado no envía una elección",
+        "passed": true,
+        "actual": 2,
+        "expected": 2
+      },
+      {
+        "name": "Al salir el rival se mantiene el luchador de la sala",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "La revancha se solicita",
+        "passed": true,
+        "actual": "rematch",
+        "expected": "rematch"
+      },
+      {
+        "name": "No se anuncia espera sin confirmación",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "La revancha rechazada se puede reintentar",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "El error aparece dentro del resultado",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "El aviso es visible y no queda detrás del juego",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "Reintentar revancha queda accesible",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "Cerrar aviso queda accesible",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "Se usa la presentación táctil solicitada",
+        "passed": true,
+        "actual": false,
+        "expected": false
+      },
+      {
+        "name": "Reintentar elimina el error anterior",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "Solo el ACK activa la espera",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "Una nueva pelea quita la espera y el resultado anterior",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      }
+    ]
+  },
+  "touch": {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "passed": true,
+    "touch": true,
+    "checks": [
+      {
+        "name": "La elección se envía al servidor",
+        "passed": true,
+        "actual": "capriles",
+        "expected": "capriles"
+      },
+      {
+        "name": "Antes de confirmar se muestra el luchador de la sala",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "Una elección rechazada conserva el luchador confirmado",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "El error de selección se muestra",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "El reintento limpia el aviso anterior",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "La confirmación actualiza el luchador visible",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "No se permite elegir luchador en combate",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "El control bloqueado no envía una elección",
+        "passed": true,
+        "actual": 2,
+        "expected": 2
+      },
+      {
+        "name": "Al salir el rival se mantiene el luchador de la sala",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "La revancha se solicita",
+        "passed": true,
+        "actual": "rematch",
+        "expected": "rematch"
+      },
+      {
+        "name": "No se anuncia espera sin confirmación",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "La revancha rechazada se puede reintentar",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "El error aparece dentro del resultado",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "El aviso es visible y no queda detrás del juego",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "Reintentar revancha queda accesible",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "Cerrar aviso queda accesible",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "Se usa la presentación táctil solicitada",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "Reintentar elimina el error anterior",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "Solo el ACK activa la espera",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "Una nueva pelea quita la espera y el resultado anterior",
+        "passed": true,
+        "actual": true,
+        "expected": true
+      }
+    ]
+  },
+  "previousRegressions": {
+    "rooms": {
+      "passed": true,
+      "checks": [
+        {
+          "name": "El error del servidor se muestra",
+          "passed": true,
+          "actual": "No encontramos esa sala. Revisa el código.",
+          "expected": "No encontramos esa sala. Revisa el código."
+        },
+        {
+          "name": "Entrar en una sala válida elimina el error anterior",
+          "passed": true,
+          "actual": "",
+          "expected": ""
+        },
+        {
+          "name": "Una actualización de la misma sala conserva su error de validación",
+          "passed": true,
+          "actual": "Un personaje fue retirado.",
+          "expected": "Un personaje fue retirado."
+        },
+        {
+          "name": "El aviso de salida sigue visible mientras falta el rival",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "El aviso desaparece cuando el rival vuelve a entrar",
+          "passed": true,
+          "actual": false,
+          "expected": false
+        },
+        {
+          "name": "Salir de la sala descarta el aviso de la sala anterior",
+          "passed": true,
+          "actual": false,
+          "expected": false
+        }
+      ]
+    },
+    "transport": {
+      "passed": true,
+      "checks": [
+        {
+          "name": "JSON null no rompe el receptor",
+          "passed": true,
+          "actual": false,
+          "expected": false
+        },
+        {
+          "name": "Un estado incompleto no rompe el receptor",
+          "passed": true,
+          "actual": false,
+          "expected": false
+        },
+        {
+          "name": "El resultado se entrega sin esperar un frame y solo una vez",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "Se conserva la identidad del ganador",
+          "passed": true,
+          "actual": "22e795e7-66ec-464f-8d9f-aab4f7f02c7c",
+          "expected": "22e795e7-66ec-464f-8d9f-aab4f7f02c7c"
+        },
+        {
+          "name": "Un socket silencioso se retira aunque no emita close",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "La conexión deja de figurar como activa",
+          "passed": true,
+          "actual": false,
+          "expected": false
+        },
+        {
+          "name": "Se descarta el aviso de la sala anterior al desconectar",
+          "passed": true,
+          "actual": false,
+          "expected": false
+        },
+        {
+          "name": "Reconecta sin esperar el handshake close",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "Los callbacks del socket anterior no pisan la sesión nueva",
+          "passed": true,
+          "actual": "new-peer",
+          "expected": "new-peer"
+        },
+        {
+          "name": "Los pongs mantienen viva una conexión sana",
+          "passed": true,
+          "actual": false,
+          "expected": false
+        },
+        {
+          "name": "El RTT se mide con el eco real del ping",
+          "passed": true,
+          "actual": 50,
+          "expected": 50
+        },
+        {
+          "name": "El tráfico descendente no oculta una caída del canal de ida",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "Reanudar timers suspendidos permite comprobar la conexión antes de cerrarla",
+          "passed": true,
+          "actual": false,
+          "expected": false
+        },
+        {
+          "name": "El backoff aumenta tras cierre inmediato 1",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "El backoff aumenta tras cierre inmediato 2",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "El backoff aumenta tras cierre inmediato 3",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "Una cola de salida saturada no acumula más controles",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "El envío saturado informa que no se completó",
+          "passed": true,
+          "actual": false,
+          "expected": false
+        },
+        {
+          "name": "La conexión saturada se retira",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        }
+      ]
+    },
+    "results": {
+      "passed": true,
+      "checks": [
+        {
+          "name": "Se guarda la victoria aunque el rival salga antes de RAF",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "El resultado se registra como una partida",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "Se conserva el mejor combo del estado final",
+          "passed": true,
+          "actual": 6,
+          "expected": 6
+        },
+        {
+          "name": "El mismo matchId no se registra dos veces",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "El guardado usa los resultados más recientes de otra pestaña",
+          "passed": true,
+          "actual": 6,
+          "expected": 6
+        },
+        {
+          "name": "Se conservan victorias previas del otro luchador",
+          "passed": true,
+          "actual": 3,
+          "expected": 3
+        },
+        {
+          "name": "Se acredita la victoria al índice local correcto",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "Se conserva la mejor racha anterior",
+          "passed": true,
+          "actual": 9,
+          "expected": 9
+        },
+        {
+          "name": "La prueba no ejecuta ningún frame",
+          "passed": true,
+          "actual": 0,
+          "expected": 0
+        },
+        {
+          "name": "Los resultados se acumulan en memoria si falla localStorage",
+          "passed": true,
+          "actual": 9,
+          "expected": 9
+        },
+        {
+          "name": "Se recuperan las victorias al poder guardar otra vez",
+          "passed": true,
+          "actual": 6,
+          "expected": 6
+        }
+      ]
+    }
+  }
+}
