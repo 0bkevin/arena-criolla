@@ -1,0 +1,104 @@
+{
+  "date": "2026-10-17",
+  "implementationCommit": "99760ce370a4858e0671b6ede7201b5d23857b1b",
+  "scope": "Puntaje persistente por cuenta autenticada en clasificatorias verificadas. Solo validación local, sin despliegue.",
+  "rules": {
+    "win": 3,
+    "draw": 1,
+    "loss": 0,
+    "void": 0,
+    "casual": 0,
+    "rankingOrder": "Victorias; no se cambió a orden por puntos."
+  },
+  "implementation": [
+    "Total calculado desde victorias y empates persistidos; incluye partidas anteriores sin migración ni contador duplicado.",
+    "Puntaje en cabecera, cuenta y tabla; puntos ganados en recibo confirmado e historial.",
+    "Consulta al autenticar, recibir recibo, reconectar o recuperar foco. Aborta/ignora respuestas de cuentas anteriores y valida identidad del perfil HTTP.",
+    "Fallo de consulta muestra puntaje no disponible; reintento en Tu cuenta, sin convertir fallos en cero."
+  ],
+  "tests": {
+    "automated": {
+      "passed": 565,
+      "failed": 0,
+      "durationMs": 12012.067652
+    },
+    "build": {
+      "passed": true,
+      "warning": "Aviso existente de bundle mayor de 500 kB."
+    },
+    "hook": {
+      "passed": true,
+      "checks": 20,
+      "artifact": "hook-regression.json"
+    },
+    "realFlow": {
+      "profiles": [
+        "Default",
+        "Incognito"
+      ],
+      "sameFinalMatchId": "34d8c265-7049-4e6f-afae-09d62ad8b952",
+      "matchFinishedBy": "combat",
+      "pointsEarned": [
+        3,
+        0
+      ],
+      "persistedTotals": [
+        3,
+        0
+      ],
+      "pageReload": true,
+      "serverRestart": true,
+      "mobile": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "accountButtonHeight": 44,
+        "rankingTableScroll": true
+      },
+      "readFailure503ThenRetry": true,
+      "logoutVerified401": true,
+      "artifact": "real-flow.json"
+    }
+  },
+  "qaAccounts": [
+    {
+      "name": "QA Puntos A",
+      "email": "qa-points-a-20261017@example.test",
+      "id": "35d2f216-400a-4c94-8901-3a99ad77336e",
+      "profile": "Default",
+      "purpose": "Cuenta de prueba local; no corresponde a una persona real."
+    },
+    {
+      "name": "QA Puntos B",
+      "email": "qa-points-b-20261017@example.test",
+      "id": "ded3f935-e21d-4bfc-b976-06c2f816d934",
+      "profile": "Incognito",
+      "purpose": "Cuenta de prueba local; no corresponde a una persona real."
+    }
+  ],
+  "previousQaData": {
+    "unchanged": true,
+    "expectedPoints": {
+      "QA Ranking A": 3,
+      "QA Ranking B": 6
+    },
+    "note": "Leídos de las estadísticas conservadas de la revisión previa."
+  },
+  "limitations": [
+    "Sin despliegue en arena.kevinbravo.com.",
+    "Empates, anulaciones, abandonos y duplicados cubiertos por integración; la prueba nueva con dos perfiles terminó por combate.",
+    "Móvil verificado con viewport Chromium; sin teléfono físico ni medición WAN.",
+    "Una consulta de total fallida requiere reintento, volver a la pestaña o reconexión.",
+    "Se conserva el alcance anterior: sin Elo, temporadas ni detección de partidas pactadas."
+  ],
+  "environmentIncident": "El proceso temporal de QA se detuvo con señal SIGTERM durante la verificación, sin diagnóstico confirmado del origen. Se reinició con el mismo SQLite y se repitieron las comprobaciones de persistencia, fallo de consulta y móvil con éxito. No se registró como fallo de puntuación.",
+  "cleanup": "Sesiones QA cerradas y verificadas con HTTP 401. Contraseñas aleatorias usadas únicamente para los formularios y no conservadas en evidencia. Las tres pestañas propias están cerradas y el servidor temporal está detenido; puerto 5191 sin listener.",
+  "artifacts": [
+    "account-desktop.png",
+    "account-mobile.png",
+    "ranking-desktop.png",
+    "ranking-mobile.png",
+    "ranked-result.png",
+    "test-summary.txt"
+  ]
+}
