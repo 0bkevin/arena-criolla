@@ -1,5 +1,6 @@
 import { platformsAtTick, type StageDefinition } from "../../shared/content";
 import { WORLD } from "../../shared/engine";
+import { arenaBounds, sceneryCover } from "./viewport";
 
 const pixel = (
   ctx: CanvasRenderingContext2D,
@@ -192,23 +193,40 @@ export function drawStage(
   stage: StageDefinition,
   image: HTMLImageElement,
   tick: number,
+  bounds = arenaBounds(WORLD.width, WORLD.height),
 ) {
   const { width, height, floor, left, right } = WORLD;
   ctx.save();
   ctx.imageSmoothingEnabled = stage.artStyle !== "pixel";
-  ctx.drawImage(image, 0, 0, width, height);
+  const cover = sceneryCover(width, height, bounds);
+  ctx.drawImage(image, cover.x, cover.y, cover.width, cover.height);
   ctx.restore();
-  const shade = ctx.createLinearGradient(0, 0, 0, height);
+  const shade = ctx.createLinearGradient(
+    0,
+    bounds.y,
+    0,
+    bounds.y + bounds.height,
+  );
   shade.addColorStop(0, "#10121850");
   shade.addColorStop(0.3, "#10121805");
   shade.addColorStop(1, "#10121825");
   ctx.fillStyle = shade;
-  ctx.fillRect(0, 0, width, height);
+  ctx.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
   environment(ctx, stage, tick);
   const [top, dark, detail] = materials[stage.theme];
   ctx.fillStyle = "#090e18b0";
-  ctx.fillRect(0, floor + 3, left, height - floor);
-  ctx.fillRect(right, floor + 3, width - right, height - floor);
+  ctx.fillRect(
+    bounds.x,
+    floor + 3,
+    left - bounds.x,
+    bounds.y + bounds.height - floor,
+  );
+  ctx.fillRect(
+    right,
+    floor + 3,
+    bounds.x + bounds.width - right,
+    bounds.y + bounds.height - floor,
+  );
   if (stage.artStyle === "pixel") {
     pixel(ctx, left, floor, right - left, 6, top);
     pixel(ctx, left, floor + 6, right - left, 26, dark);

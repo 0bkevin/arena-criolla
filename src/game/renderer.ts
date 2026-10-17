@@ -1,10 +1,11 @@
 import { fighterById, stageById } from "../../shared/content";
-import { WORLD, type MatchState } from "../../shared/engine";
+import type { MatchState } from "../../shared/engine";
 import { TECHNIQUES } from "../../shared/techniques";
 import { drawSprite, type preloadAssets } from "./assets";
 import { drawStage } from "./stage-renderer";
 import { drawImpact } from "./effects-renderer";
 import { drawCuatro } from "./combat-props";
+import { arenaBounds } from "./viewport";
 import {
   entranceProgress,
   introActor,
@@ -27,13 +28,18 @@ export function renderMatch(
   time: number,
   reducedMotion = false,
 ) {
-  const { width, height } = WORLD;
+  const { width, height } = ctx.canvas;
   ctx.clearRect(0, 0, width, height);
   if (state.phase === "intro" && state.tick < INTRO_COUNTDOWN_START) {
-    drawIntroCinematic(ctx, state, assets.sprites, reducedMotion);
+    drawIntroCinematic(ctx, state, assets.sprites, reducedMotion, {
+      width,
+      height,
+    });
     return;
   }
   ctx.save();
+  const bounds = arenaBounds(width, height);
+  ctx.translate(-bounds.x, -bounds.y);
   if (state.shake > 0.3)
     ctx.translate(
       Math.sin(time * 0.07) * state.shake,
@@ -41,7 +47,7 @@ export function renderMatch(
     );
   const bg = assets.stages[state.stage];
   const stage = stageById(state.stage);
-  drawStage(ctx, stage, bg, state.tick);
+  drawStage(ctx, stage, bg, state.tick, bounds);
   for (const projectile of state.projectiles) {
     const color = fighterById(
       state.players[projectile.owner].config.fighter,
@@ -348,7 +354,7 @@ export function renderMatch(
     )
   ) {
     ctx.fillStyle = "#fff2d90c";
-    ctx.fillRect(0, 0, width, height);
+    ctx.fillRect(bounds.x, bounds.y, width, height);
   }
   state.effects.forEach((e) => drawImpact(ctx, e));
   ctx.restore();

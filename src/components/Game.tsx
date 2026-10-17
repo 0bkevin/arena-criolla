@@ -44,6 +44,7 @@ import {
 import { Portrait } from "./Portrait";
 import { TouchControls } from "./TouchControls";
 import { enterLandscape, hasTouchInput, leaveLandscape } from "../game/mobile";
+import { arenaCanvasSize } from "../game/viewport";
 
 export type GameMode = "practice" | "local" | "online";
 interface Props {
@@ -87,6 +88,21 @@ export function Game(props: Props) {
   const [assetError, setAssetError] = useState("");
   const [view, setView] = useState(initial);
   const [fullscreenError, setFullscreenError] = useState("");
+  useEffect(() => {
+    const element = canvas.current,
+      container = wrapper.current;
+    if (!element || !container) return;
+    const resize = () => {
+      const bounds = container.getBoundingClientRect();
+      const size = arenaCanvasSize(bounds.width, bounds.height, device.touch);
+      if (element.width !== size.width) element.width = size.width;
+      if (element.height !== size.height) element.height = size.height;
+    };
+    resize();
+    const observer = new ResizeObserver(resize);
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [device.touch]);
   useEffect(() => {
     if (!fullscreenError) return;
     const timer = setTimeout(() => setFullscreenError(""), 2500);
@@ -484,8 +500,8 @@ export function Game(props: Props) {
         <div className="game-topline">
           <button
             className="text-button"
-            onClick={props.onExit}
             aria-label="Volver a la selección"
+            onClick={props.onExit}
           >
             <ArrowLeft size={16} />{" "}
             {device.touch ? "Selección" : "Volver a la selección"}
