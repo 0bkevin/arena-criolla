@@ -1,0 +1,612 @@
+{
+  "environment": "Servidor local 5191, Default e Incognito independientes, WebSockets nativos; observador pasivo de mensajes. Entradas mediante eventos de teclado, sin alterar el motor ni los resultados.",
+  "qaIdentities": [
+    {
+      "profile": "Default",
+      "nickname": "QA Sol61 A",
+      "testIdentity": true
+    },
+    {
+      "profile": "Incognito",
+      "nickname": "QA Sol61 B",
+      "testIdentity": true
+    }
+  ],
+  "interrupted": {
+    "matchId": "ece9169b-b191-401e-9067-bf94212a0b7f",
+    "reason": "Reinicio del servidor de desarrollo/recarga de Vite durante un último ajuste. No se contabilizó ni se presenta como pelea finalizada."
+  },
+  "default": {
+    "baseline": {
+      "wins": {
+        "zavarce": 1
+      },
+      "played": 1,
+      "bestCombo": 5,
+      "recent": [
+        {
+          "fighter": "zavarce",
+          "rival": "zavarce",
+          "won": true,
+          "date": "2026-10-17T13:11:18.545Z"
+        }
+      ]
+    },
+    "events": [
+      {
+        "type": "start",
+        "id": "e24cc408-b536-4e07-8c58-2f8fd3ad2df9"
+      }
+    ],
+    "state": {
+      "id": "e24cc408-b536-4e07-8c58-2f8fd3ad2df9",
+      "stage": "caracas",
+      "tick": 1798,
+      "remaining": 4079,
+      "phase": "finished",
+      "winner": 0,
+      "players": [
+        {
+          "config": {
+            "id": "a8b24dca-74c9-45ca-bd68-43ee3e19fe83",
+            "name": "QA Sol61 A",
+            "fighter": "capriles",
+            "ready": true,
+            "wins": 0
+          },
+          "x": 1115.2154702063742,
+          "y": 652.8,
+          "vx": 5.634846326532719,
+          "vy": 9.879999999999995,
+          "facing": 1,
+          "hp": 86.57679999999999,
+          "stocks": 1,
+          "energy": 100,
+          "grounded": false,
+          "supportPlatform": null,
+          "dropThrough": 0,
+          "jumps": 0,
+          "blocking": false,
+          "attack": "light",
+          "attackTick": 5,
+          "attackHit": false,
+          "countered": false,
+          "cooldown": 17,
+          "stun": 0,
+          "slowTicks": 0,
+          "rootTicks": 0,
+          "invincible": 0,
+          "dash": 0,
+          "lastActions": {
+            "jump": 6,
+            "light": 98,
+            "heavy": 49,
+            "special": 0,
+            "dash": 1,
+            "super": 0
+          },
+          "history": [
+            {
+              "action": "light",
+              "tick": 1747
+            },
+            {
+              "action": "light",
+              "tick": 1770
+            },
+            {
+              "action": "light",
+              "tick": 1794
+            }
+          ],
+          "combo": "",
+          "comboTick": 0,
+          "comboBonus": 0,
+          "hits": 9,
+          "peakCombo": 5,
+          "streak": 4,
+          "lastHitTick": 1775
+        },
+        {
+          "config": {
+            "id": "c75fa91f-4c9e-4d40-9bc6-e82cc6921aec",
+            "name": "QA Sol61 B",
+            "fighter": "zavarce",
+            "ready": true,
+            "wins": 0
+          },
+          "x": 1202.0419409703131,
+          "y": 639.8449999999999,
+          "vx": 3.21132205854197,
+          "vy": 9.554999999999996,
+          "facing": -1,
+          "hp": 0,
+          "stocks": 0,
+          "energy": 100,
+          "grounded": false,
+          "supportPlatform": null,
+          "dropThrough": 0,
+          "jumps": 0,
+          "blocking": false,
+          "attack": null,
+          "attackTick": 12,
+          "attackHit": true,
+          "countered": false,
+          "cooldown": 0,
+          "stun": 0,
+          "slowTicks": 0,
+          "rootTicks": 0,
+          "invincible": 0,
+          "dash": 0,
+          "lastActions": {
+            "jump": 0,
+            "light": 25,
+            "heavy": 0,
+            "special": 0,
+            "dash": 0,
+            "super": 0
+          },
+          "history": [
+            {
+              "action": "light",
+              "tick": 1591
+            },
+            {
+              "action": "light",
+              "tick": 1642
+            },
+            {
+              "action": "light",
+              "tick": 1692
+            }
+          ],
+          "combo": "",
+          "comboTick": 0,
+          "comboBonus": 0,
+          "hits": 2,
+          "peakCombo": 2,
+          "streak": 2,
+          "lastHitTick": 1647
+        }
+      ],
+      "projectiles": [],
+      "effects": [
+        {
+          "id": 12,
+          "x": 1074.9079046435447,
+          "y": 474.04499999999996,
+          "kind": "hit",
+          "color": "#80b8ff",
+          "life": 3,
+          "duration": 26,
+          "owner": 0,
+          "impact": "light",
+          "strength": 0.85,
+          "direction": 1
+        },
+        {
+          "id": 13,
+          "x": 1050,
+          "y": 579.8449999999999,
+          "kind": "ringout",
+          "color": "#a8a0f3",
+          "life": 40,
+          "duration": 40,
+          "owner": 1,
+          "strength": 1.8,
+          "direction": 1
+        }
+      ],
+      "nextId": 14,
+      "shake": 0.020817475940172758,
+      "hitstop": 0
+    },
+    "room": {
+      "code": "D5D971EE2AF062C734C8EE603CC942A0",
+      "name": "La sala de QA Sol61 A",
+      "stage": "caracas",
+      "players": [
+        {
+          "id": "a8b24dca-74c9-45ca-bd68-43ee3e19fe83",
+          "name": "QA Sol61 A",
+          "fighter": "capriles",
+          "ready": false,
+          "wins": 1
+        },
+        {
+          "id": "c75fa91f-4c9e-4d40-9bc6-e82cc6921aec",
+          "name": "QA Sol61 B",
+          "fighter": "zavarce",
+          "ready": false,
+          "wins": 0
+        }
+      ],
+      "status": "finished",
+      "host": "a8b24dca-74c9-45ca-bd68-43ee3e19fe83"
+    },
+    "progress": {
+      "wins": {
+        "zavarce": 1,
+        "capriles": 1
+      },
+      "played": 2,
+      "bestCombo": 5,
+      "recent": [
+        {
+          "fighter": "capriles",
+          "rival": "zavarce",
+          "won": true,
+          "date": "2026-10-17T13:27:12.878Z"
+        },
+        {
+          "fighter": "zavarce",
+          "rival": "zavarce",
+          "won": true,
+          "date": "2026-10-17T13:11:18.545Z"
+        }
+      ]
+    },
+    "result": "LA VICTORIA ES TUYA\nQA Sol61 A gana.\n\nCapriles Radonski se lleva la arena. ¿Vamos con la revancha?\n\n9\nGolpes conectados\n5\nMejor racha\nNuevo combo desbloqueado para Capriles\n¡Revancha!\nVolver a la selección"
+  },
+  "incognito": {
+    "baseline": null,
+    "events": [
+      {
+        "type": "start",
+        "id": "e24cc408-b536-4e07-8c58-2f8fd3ad2df9"
+      }
+    ],
+    "state": {
+      "id": "e24cc408-b536-4e07-8c58-2f8fd3ad2df9",
+      "stage": "caracas",
+      "tick": 1798,
+      "remaining": 4079,
+      "phase": "finished",
+      "winner": 0,
+      "players": [
+        {
+          "config": {
+            "id": "a8b24dca-74c9-45ca-bd68-43ee3e19fe83",
+            "name": "QA Sol61 A",
+            "fighter": "capriles",
+            "ready": true,
+            "wins": 0
+          },
+          "x": 1115.2154702063742,
+          "y": 652.8,
+          "vx": 5.634846326532719,
+          "vy": 9.879999999999995,
+          "facing": 1,
+          "hp": 86.57679999999999,
+          "stocks": 1,
+          "energy": 100,
+          "grounded": false,
+          "supportPlatform": null,
+          "dropThrough": 0,
+          "jumps": 0,
+          "blocking": false,
+          "attack": "light",
+          "attackTick": 5,
+          "attackHit": false,
+          "countered": false,
+          "cooldown": 17,
+          "stun": 0,
+          "slowTicks": 0,
+          "rootTicks": 0,
+          "invincible": 0,
+          "dash": 0,
+          "lastActions": {
+            "jump": 6,
+            "light": 98,
+            "heavy": 49,
+            "special": 0,
+            "dash": 1,
+            "super": 0
+          },
+          "history": [
+            {
+              "action": "light",
+              "tick": 1747
+            },
+            {
+              "action": "light",
+              "tick": 1770
+            },
+            {
+              "action": "light",
+              "tick": 1794
+            }
+          ],
+          "combo": "",
+          "comboTick": 0,
+          "comboBonus": 0,
+          "hits": 9,
+          "peakCombo": 5,
+          "streak": 4,
+          "lastHitTick": 1775
+        },
+        {
+          "config": {
+            "id": "c75fa91f-4c9e-4d40-9bc6-e82cc6921aec",
+            "name": "QA Sol61 B",
+            "fighter": "zavarce",
+            "ready": true,
+            "wins": 0
+          },
+          "x": 1202.0419409703131,
+          "y": 639.8449999999999,
+          "vx": 3.21132205854197,
+          "vy": 9.554999999999996,
+          "facing": -1,
+          "hp": 0,
+          "stocks": 0,
+          "energy": 100,
+          "grounded": false,
+          "supportPlatform": null,
+          "dropThrough": 0,
+          "jumps": 0,
+          "blocking": false,
+          "attack": null,
+          "attackTick": 12,
+          "attackHit": true,
+          "countered": false,
+          "cooldown": 0,
+          "stun": 0,
+          "slowTicks": 0,
+          "rootTicks": 0,
+          "invincible": 0,
+          "dash": 0,
+          "lastActions": {
+            "jump": 0,
+            "light": 25,
+            "heavy": 0,
+            "special": 0,
+            "dash": 0,
+            "super": 0
+          },
+          "history": [
+            {
+              "action": "light",
+              "tick": 1591
+            },
+            {
+              "action": "light",
+              "tick": 1642
+            },
+            {
+              "action": "light",
+              "tick": 1692
+            }
+          ],
+          "combo": "",
+          "comboTick": 0,
+          "comboBonus": 0,
+          "hits": 2,
+          "peakCombo": 2,
+          "streak": 2,
+          "lastHitTick": 1647
+        }
+      ],
+      "projectiles": [],
+      "effects": [
+        {
+          "id": 12,
+          "x": 1074.9079046435447,
+          "y": 474.04499999999996,
+          "kind": "hit",
+          "color": "#80b8ff",
+          "life": 3,
+          "duration": 26,
+          "owner": 0,
+          "impact": "light",
+          "strength": 0.85,
+          "direction": 1
+        },
+        {
+          "id": 13,
+          "x": 1050,
+          "y": 579.8449999999999,
+          "kind": "ringout",
+          "color": "#a8a0f3",
+          "life": 40,
+          "duration": 40,
+          "owner": 1,
+          "strength": 1.8,
+          "direction": 1
+        }
+      ],
+      "nextId": 14,
+      "shake": 0.020817475940172758,
+      "hitstop": 0
+    },
+    "room": {
+      "code": "D5D971EE2AF062C734C8EE603CC942A0",
+      "name": "La sala de QA Sol61 A",
+      "stage": "caracas",
+      "players": [
+        {
+          "id": "a8b24dca-74c9-45ca-bd68-43ee3e19fe83",
+          "name": "QA Sol61 A",
+          "fighter": "capriles",
+          "ready": false,
+          "wins": 1
+        },
+        {
+          "id": "c75fa91f-4c9e-4d40-9bc6-e82cc6921aec",
+          "name": "QA Sol61 B",
+          "fighter": "zavarce",
+          "ready": false,
+          "wins": 0
+        }
+      ],
+      "status": "finished",
+      "host": "a8b24dca-74c9-45ca-bd68-43ee3e19fe83"
+    },
+    "progress": {
+      "wins": {},
+      "played": 1,
+      "bestCombo": 2,
+      "recent": [
+        {
+          "fighter": "zavarce",
+          "rival": "capriles",
+          "won": false,
+          "date": "2026-10-17T13:27:12.878Z"
+        }
+      ]
+    },
+    "result": "ESTA SE LA LLEVÓ TU RIVAL\nQA Sol61 A gana.\n\nCapriles Radonski se lleva la arena. ¿Vamos con la revancha?\n\n2\nGolpes conectados\n2\nMejor racha\n¡Revancha!\nVolver a la selección"
+  },
+  "identicalFinalState": true,
+  "lockedChoice": {
+    "locked": true,
+    "phase": "finished",
+    "match": "e24cc408-b536-4e07-8c58-2f8fd3ad2df9",
+    "players": [
+      {
+        "fighter": "capriles",
+        "hp": 86.57679999999999,
+        "stocks": 1,
+        "hits": 9
+      },
+      {
+        "fighter": "zavarce",
+        "hp": 0,
+        "stocks": 0,
+        "hits": 2
+      }
+    ]
+  },
+  "rematchAck": {
+    "selfReady": true,
+    "waiting": true,
+    "roomStatus": "finished"
+  },
+  "rematchDefault": {
+    "phase": "intro",
+    "match": "49c4abdd-8015-4de1-a0bc-aba1a8e53b2c",
+    "roomStatus": "playing",
+    "players": [
+      {
+        "id": "a8b24dca-74c9-45ca-bd68-43ee3e19fe83",
+        "name": "QA Sol61 A",
+        "fighter": "capriles",
+        "ready": true,
+        "wins": 1
+      },
+      {
+        "id": "c75fa91f-4c9e-4d40-9bc6-e82cc6921aec",
+        "name": "QA Sol61 B",
+        "fighter": "zavarce",
+        "ready": true,
+        "wins": 0
+      }
+    ],
+    "errors": []
+  },
+  "rematchIncognito": {
+    "phase": "intro",
+    "match": "49c4abdd-8015-4de1-a0bc-aba1a8e53b2c",
+    "roomStatus": "playing",
+    "players": [
+      {
+        "id": "a8b24dca-74c9-45ca-bd68-43ee3e19fe83",
+        "name": "QA Sol61 A",
+        "fighter": "capriles",
+        "ready": true,
+        "wins": 1
+      },
+      {
+        "id": "c75fa91f-4c9e-4d40-9bc6-e82cc6921aec",
+        "name": "QA Sol61 B",
+        "fighter": "zavarce",
+        "ready": true,
+        "wins": 0
+      }
+    ],
+    "errors": []
+  },
+  "departure": {
+    "room": {
+      "code": "D5D971EE2AF062C734C8EE603CC942A0",
+      "name": "La sala de QA Sol61 A",
+      "stage": "caracas",
+      "players": [
+        {
+          "id": "c75fa91f-4c9e-4d40-9bc6-e82cc6921aec",
+          "name": "QA Sol61 B",
+          "fighter": "zavarce",
+          "ready": false,
+          "wins": 0
+        }
+      ],
+      "status": "waiting",
+      "host": "c75fa91f-4c9e-4d40-9bc6-e82cc6921aec"
+    },
+    "selection": "VELOCIDADVicente ZavarceLa ruta exprés",
+    "notice": "Tu pana salió. Puedes invitarlo de nuevo o buscar otra pelea.",
+    "events": [
+      {
+        "type": "start",
+        "id": "e24cc408-b536-4e07-8c58-2f8fd3ad2df9"
+      },
+      {
+        "type": "start",
+        "id": "49c4abdd-8015-4de1-a0bc-aba1a8e53b2c"
+      },
+      {
+        "type": "opponent-left"
+      }
+    ],
+    "progress": {
+      "wins": {},
+      "played": 1,
+      "bestCombo": 2,
+      "recent": [
+        {
+          "fighter": "zavarce",
+          "rival": "capriles",
+          "won": false,
+          "date": "2026-10-17T13:27:12.878Z"
+        }
+      ]
+    }
+  },
+  "persistedAfterReload": {
+    "default": {
+      "wins": {
+        "zavarce": 1,
+        "capriles": 1
+      },
+      "played": 2,
+      "bestCombo": 5,
+      "recent": [
+        {
+          "fighter": "capriles",
+          "rival": "zavarce",
+          "won": true,
+          "date": "2026-10-17T13:27:12.878Z"
+        },
+        {
+          "fighter": "zavarce",
+          "rival": "zavarce",
+          "won": true,
+          "date": "2026-10-17T13:11:18.545Z"
+        }
+      ]
+    },
+    "incognito": {
+      "wins": {},
+      "played": 1,
+      "bestCombo": 2,
+      "recent": [
+        {
+          "fighter": "zavarce",
+          "rival": "capriles",
+          "won": false,
+          "date": "2026-10-17T13:27:12.878Z"
+        }
+      ]
+    }
+  }
+}
