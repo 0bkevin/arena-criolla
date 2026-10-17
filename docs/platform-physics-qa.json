@@ -1,0 +1,1217 @@
+{
+  "checkedAt": "2026-10-17T16:02:51Z",
+  "scope": "Adversarial platform physics and interaction review across all nine stages, all 20 elevated surfaces, all five moving platforms, the shared floor, CPU pursuit and online replication.",
+  "commits": [
+    {
+      "id": "c0e0bd2",
+      "change": "CPU descent, second-jump pursuit and platform interaction regression matrix"
+    },
+    {
+      "id": "c9779f6",
+      "change": "Rendered collision surfaces and networked rider transitions"
+    },
+    {
+      "id": "148d193",
+      "change": "Reproducible browser walkthrough with actual controls"
+    }
+  ],
+  "environment": {
+    "node": "24.20.0",
+    "development": "http://localhost:5390",
+    "production": "http://localhost:5391",
+    "browser": "T3 collaborative browser, separate owner-controlled tabs and profiles",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "fixture": "Isolated journey-qa-server.ts; no AI generation requests. /api/qa/stages exposes the actual stage definitions only in the QA harness."
+  },
+  "findings": [
+    {
+      "issue": "CPU waits on an elevated platform when its rival stands below.",
+      "before": {
+        "command": "node --import tsx --test --test-name-pattern='CPU descends' tests/platform-physics.test.ts",
+        "result": "FAILED: caracas: CPU remains stranded at y=392 after 240 simulated frames."
+      },
+      "cause": "The CPU never generated the down input for one-way platforms.",
+      "fix": "Request a drop when standing on an elevated surface with a nearby rival sufficiently below; reset the request off the surface.",
+      "after": "All 20 surfaces, three difficulty levels: the CPU requests down, reaches the floor and releases down. A production browser fight also captured the CPU's real drop-through transition."
+    },
+    {
+      "issue": "CPU cannot reach some rivals waiting on platforms.",
+      "before": {
+        "command": "node --import tsx --test --test-name-pattern='CPU can climb' tests/platform-physics.test.ts",
+        "unreachable": [
+          "caracas:0",
+          "caracas:1",
+          "guaira:0",
+          "merida:2",
+          "coro:1"
+        ]
+      },
+      "cause": "After the first jump reduced the vertical gap, the old 70-pixel condition suppressed a needed second jump.",
+      "fix": "Allow the second jump near or after the first jump's apex while the rival is still above.",
+      "after": "105 pursuit scenarios passed: 20 surfaces in three difficulties, with four start phases for every moving surface. The production browser fight captured both fighters standing on the Altamira balcony."
+    }
+  ],
+  "physics": {
+    "collisionChanges": "No changes to collision geometry, gravity, jump strength, platform motion, damage knockback or floor dimensions were needed for the tested cases.",
+    "matrix": {
+      "elevatedPlatforms": 20,
+      "movingPlatforms": 5,
+      "stages": 9,
+      "playerSlots": 2,
+      "startConfigurations": 120,
+      "interactionsPerConfiguration": [
+        "landing from above resets both jumps",
+        "ascending through the underside does not land",
+        "jumping detaches support",
+        "brief down press reaches the floor without reattaching",
+        "walking off left edge releases support",
+        "walking off right edge releases support"
+      ],
+      "fullMovingCycles": 10,
+      "riderTicks": 4440,
+      "mainFloorRecoveryCases": 18,
+      "cpuDescentScenarios": 60,
+      "cpuAscentScenarios": 105,
+      "heavyHitDetachMechanisms": 5,
+      "visibleSurfaceTolerance": "At most one world pixel from collision geometry due to deliberate pixel rounding; samples include quarter-cycle turnarounds and full-cycle return."
+    }
+  },
+  "browser": {
+    "method": "Select stages and start actual games through the UI. Drive keyboard controls, inspect read-only component state and actual canvas output. Never write player coordinates, HP, stocks, timers, support state or simulation ticks.",
+    "stages": [
+      {
+        "id": "caracas",
+        "name": "Altamira al atardecer",
+        "environment": "development",
+        "passed": true,
+        "platforms": [
+          {
+            "index": 0,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "caracas: aterrizar y viajar en plataforma 0",
+                "passed": true,
+                "proof": {
+                  "tick": 658,
+                  "feet": 392,
+                  "surface": 392,
+                  "horizontalTravel": 8.459875289190677e-8
+                }
+              },
+              {
+                "step": "caracas: saltar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "caracas: bajar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "caracas: descenso completo 0",
+                "passed": true,
+                "proof": {
+                  "tick": 754,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "caracas: aterrizar y viajar en plataforma 1",
+                "passed": true,
+                "proof": {
+                  "tick": 981,
+                  "feet": 392,
+                  "surface": 392,
+                  "horizontalTravel": -1.3602402759715915e-8
+                }
+              },
+              {
+                "step": "caracas: saltar libera soporte 1",
+                "passed": true
+              },
+              {
+                "step": "caracas: bajar libera soporte 1",
+                "passed": true
+              },
+              {
+                "step": "caracas: descenso completo 1",
+                "passed": true,
+                "proof": {
+                  "tick": 1075,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "guaira",
+        "name": "El malecón",
+        "environment": "development",
+        "passed": true,
+        "platforms": [
+          {
+            "index": 0,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "guaira: aterrizar y viajar en plataforma 0",
+                "passed": true,
+                "proof": {
+                  "tick": 676,
+                  "feet": 380,
+                  "surface": 380,
+                  "horizontalTravel": 5.034848982177209e-9
+                }
+              },
+              {
+                "step": "guaira: saltar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "guaira: bajar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "guaira: descenso completo 0",
+                "passed": true,
+                "proof": {
+                  "tick": 776,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "canaima",
+        "name": "Salto Ángel",
+        "environment": "development",
+        "passed": true,
+        "platforms": [
+          {
+            "index": 0,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "canaima: aterrizar y viajar en plataforma 0",
+                "passed": true,
+                "proof": {
+                  "tick": 672,
+                  "feet": 405,
+                  "surface": 405,
+                  "horizontalTravel": 1.8570460724731674e-9
+                }
+              },
+              {
+                "step": "canaima: saltar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "canaima: bajar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "canaima: descenso completo 0",
+                "passed": true,
+                "proof": {
+                  "tick": 776,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "canaima: aterrizar y viajar en plataforma 1",
+                "passed": true,
+                "proof": {
+                  "tick": 1031,
+                  "feet": 405,
+                  "surface": 405,
+                  "horizontalTravel": 1.2953762507095234e-7
+                }
+              },
+              {
+                "step": "canaima: saltar libera soporte 1",
+                "passed": true
+              },
+              {
+                "step": "canaima: bajar libera soporte 1",
+                "passed": true
+              },
+              {
+                "step": "canaima: descenso completo 1",
+                "passed": true,
+                "proof": {
+                  "tick": 1130,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "kind": "moving y",
+            "checks": [
+              {
+                "step": "canaima: aterrizar y viajar en plataforma 2",
+                "passed": true,
+                "proof": {
+                  "tick": 1321,
+                  "feet": 341.517,
+                  "surface": 341.517,
+                  "horizontalTravel": -1.2288512607483426e-7
+                }
+              },
+              {
+                "step": "canaima: saltar libera soporte 2",
+                "passed": true
+              },
+              {
+                "step": "canaima: bajar libera soporte 2",
+                "passed": true
+              },
+              {
+                "step": "canaima: descenso completo 2",
+                "passed": true,
+                "proof": {
+                  "tick": 1422,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "maracaibo",
+        "name": "Puente de Maracaibo",
+        "environment": "development",
+        "passed": true,
+        "platforms": [
+          {
+            "index": 0,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "maracaibo: aterrizar y viajar en plataforma 0",
+                "passed": true,
+                "proof": {
+                  "tick": 659,
+                  "feet": 410,
+                  "surface": 410,
+                  "horizontalTravel": -3.9179326449811924e-9
+                }
+              },
+              {
+                "step": "maracaibo: saltar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "maracaibo: bajar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "maracaibo: descenso completo 0",
+                "passed": true,
+                "proof": {
+                  "tick": 757,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "maracaibo: aterrizar y viajar en plataforma 1",
+                "passed": true,
+                "proof": {
+                  "tick": 997,
+                  "feet": 410,
+                  "surface": 410,
+                  "horizontalTravel": 5.1052211347268894e-9
+                }
+              },
+              {
+                "step": "maracaibo: saltar libera soporte 1",
+                "passed": true
+              },
+              {
+                "step": "maracaibo: bajar libera soporte 1",
+                "passed": true
+              },
+              {
+                "step": "maracaibo: descenso completo 1",
+                "passed": true,
+                "proof": {
+                  "tick": 1094,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "kind": "moving y",
+            "checks": [
+              {
+                "step": "maracaibo: aterrizar y viajar en plataforma 2",
+                "passed": true,
+                "proof": {
+                  "tick": 1282,
+                  "feet": 353.756,
+                  "surface": 353.756,
+                  "horizontalTravel": 7.349967745540198e-9
+                }
+              },
+              {
+                "step": "maracaibo: saltar libera soporte 2",
+                "passed": true
+              },
+              {
+                "step": "maracaibo: bajar libera soporte 2",
+                "passed": true
+              },
+              {
+                "step": "maracaibo: descenso completo 2",
+                "passed": true,
+                "proof": {
+                  "tick": 1379,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "merida",
+        "name": "Teleférico de Mérida",
+        "environment": "development",
+        "passed": true,
+        "platforms": [
+          {
+            "index": 0,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "merida: aterrizar y viajar en plataforma 0",
+                "passed": true,
+                "proof": {
+                  "tick": 981,
+                  "feet": 420,
+                  "surface": 420,
+                  "horizontalTravel": -0.00012276878476313868
+                }
+              },
+              {
+                "step": "merida: saltar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "merida: bajar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "merida: descenso completo 0",
+                "passed": true,
+                "proof": {
+                  "tick": 1077,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "merida: aterrizar y viajar en plataforma 1",
+                "passed": true,
+                "proof": {
+                  "tick": 1326,
+                  "feet": 420,
+                  "surface": 420,
+                  "horizontalTravel": 3.9750602809363045e-9
+                }
+              },
+              {
+                "step": "merida: saltar libera soporte 1",
+                "passed": true
+              },
+              {
+                "step": "merida: bajar libera soporte 1",
+                "passed": true
+              },
+              {
+                "step": "merida: descenso completo 1",
+                "passed": true,
+                "proof": {
+                  "tick": 1422,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "kind": "moving x",
+            "checks": [
+              {
+                "step": "merida: aterrizar y viajar en plataforma 2",
+                "passed": true,
+                "proof": {
+                  "tick": 668,
+                  "feet": 365,
+                  "surface": 365,
+                  "horizontalTravel": 46.73600401578301
+                }
+              },
+              {
+                "step": "merida: saltar libera soporte 2",
+                "passed": true
+              },
+              {
+                "step": "merida: bajar libera soporte 2",
+                "passed": true
+              },
+              {
+                "step": "merida: descenso completo 2",
+                "passed": true,
+                "proof": {
+                  "tick": 770,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "roques",
+        "name": "Los Roques",
+        "environment": "development",
+        "passed": true,
+        "platforms": [
+          {
+            "index": 0,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "roques: aterrizar y viajar en plataforma 0",
+                "passed": true,
+                "proof": {
+                  "tick": 964,
+                  "feet": 410,
+                  "surface": 410,
+                  "horizontalTravel": -3.0905530934433045e-7
+                }
+              },
+              {
+                "step": "roques: saltar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "roques: bajar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "roques: descenso completo 0",
+                "passed": true,
+                "proof": {
+                  "tick": 1060,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "roques: aterrizar y viajar en plataforma 1",
+                "passed": true,
+                "proof": {
+                  "tick": 1295,
+                  "feet": 410,
+                  "surface": 410,
+                  "horizontalTravel": 8.656343197799288e-9
+                }
+              },
+              {
+                "step": "roques: saltar libera soporte 1",
+                "passed": true
+              },
+              {
+                "step": "roques: bajar libera soporte 1",
+                "passed": true
+              },
+              {
+                "step": "roques: descenso completo 1",
+                "passed": true,
+                "proof": {
+                  "tick": 1388,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "kind": "moving y",
+            "checks": [
+              {
+                "step": "roques: aterrizar y viajar en plataforma 2",
+                "passed": true,
+                "proof": {
+                  "tick": 688,
+                  "feet": 462.337,
+                  "surface": 462.337,
+                  "horizontalTravel": 1.3076260074740276e-9
+                }
+              },
+              {
+                "step": "roques: saltar libera soporte 2",
+                "passed": true
+              },
+              {
+                "step": "roques: bajar libera soporte 2",
+                "passed": true
+              },
+              {
+                "step": "roques: descenso completo 2",
+                "passed": true,
+                "proof": {
+                  "tick": 778,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "valencia",
+        "name": "Plaza de noche",
+        "environment": "production",
+        "passed": true,
+        "platforms": [
+          {
+            "index": 0,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "valencia: aterrizar y viajar en plataforma 0",
+                "passed": true,
+                "proof": {
+                  "tick": 971,
+                  "feet": 418,
+                  "surface": 418,
+                  "horizontalTravel": -3.60682861355599e-9
+                }
+              },
+              {
+                "step": "valencia: saltar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "valencia: bajar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "valencia: descenso completo 0",
+                "passed": true,
+                "proof": {
+                  "tick": 1066,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "valencia: aterrizar y viajar en plataforma 1",
+                "passed": true,
+                "proof": {
+                  "tick": 675,
+                  "feet": 345,
+                  "surface": 345,
+                  "horizontalTravel": -1.9031938336411258e-7
+                }
+              },
+              {
+                "step": "valencia: saltar libera soporte 1",
+                "passed": true
+              },
+              {
+                "step": "valencia: bajar libera soporte 1",
+                "passed": true
+              },
+              {
+                "step": "valencia: descenso completo 1",
+                "passed": true,
+                "proof": {
+                  "tick": 776,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "valencia: aterrizar y viajar en plataforma 2",
+                "passed": true,
+                "proof": {
+                  "tick": 1326,
+                  "feet": 418,
+                  "surface": 418,
+                  "horizontalTravel": -2.1937148630968295e-7
+                }
+              },
+              {
+                "step": "valencia: saltar libera soporte 2",
+                "passed": true
+              },
+              {
+                "step": "valencia: bajar libera soporte 2",
+                "passed": true
+              },
+              {
+                "step": "valencia: descenso completo 2",
+                "passed": true,
+                "proof": {
+                  "tick": 1421,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "coro",
+        "name": "Médanos de Coro",
+        "environment": "production",
+        "passed": true,
+        "platforms": [
+          {
+            "index": 0,
+            "kind": "static",
+            "checks": [
+              {
+                "step": "coro: aterrizar y viajar en plataforma 0",
+                "passed": true,
+                "proof": {
+                  "tick": 1018,
+                  "feet": 425,
+                  "surface": 425,
+                  "horizontalTravel": -9.112284260481829e-10
+                }
+              },
+              {
+                "step": "coro: saltar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "coro: bajar libera soporte 0",
+                "passed": true
+              },
+              {
+                "step": "coro: descenso completo 0",
+                "passed": true,
+                "proof": {
+                  "tick": 1113,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "kind": "moving x",
+            "checks": [
+              {
+                "step": "coro: aterrizar y viajar en plataforma 1",
+                "passed": true,
+                "proof": {
+                  "tick": 722,
+                  "feet": 385,
+                  "surface": 385,
+                  "horizontalTravel": -66.9440138849227
+                }
+              },
+              {
+                "step": "coro: saltar libera soporte 1",
+                "passed": true
+              },
+              {
+                "step": "coro: bajar libera soporte 1",
+                "passed": true
+              },
+              {
+                "step": "coro: descenso completo 1",
+                "passed": true,
+                "proof": {
+                  "tick": 818,
+                  "feet": 554,
+                  "support": -1,
+                  "stocks": 2
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "poliedro",
+        "name": "Poliedro de Caracas",
+        "environment": "production",
+        "passed": true,
+        "platforms": [],
+        "floorChecks": [
+          {
+            "step": "poliedro: bajar no atraviesa el suelo principal",
+            "pass": true,
+            "details": {}
+          },
+          {
+            "step": "poliedro: doble salto vuelve al suelo",
+            "pass": true,
+            "details": {}
+          },
+          {
+            "step": "poliedro: caminar fuera del suelo cae y reaparece",
+            "pass": true,
+            "details": {
+              "state": {
+                "tick": 689,
+                "players": [
+                  {
+                    "x": 325.716589568,
+                    "y": 265.2,
+                    "vx": -1.6449208320000002,
+                    "vy": 2.08,
+                    "grounded": false,
+                    "support": null,
+                    "jumps": 0,
+                    "stocks": 1
+                  },
+                  {
+                    "x": 548.5997837063094,
+                    "y": 554,
+                    "vx": 7.029983843659331e-16,
+                    "vy": 0,
+                    "grounded": true,
+                    "support": -1,
+                    "jumps": 0,
+                    "stocks": 2
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "visualSpotChecks": [
+      "Maracaibo: elevated walkway and moving maintenance lift",
+      "Mérida: fighter standing on the moving cabin roof",
+      "Coro: fighter riding the sliding platform",
+      "Los Roques: fighter standing on the rocking raft"
+    ],
+    "cpuChecks": [
+      {
+        "step": "caracas: CPU alcanza al jugador en la plataforma",
+        "pass": true,
+        "details": {
+          "state": {
+            "tick": 651,
+            "players": [
+              {
+                "x": -68.41260562687364,
+                "y": 660.3199999999998,
+                "vx": -2.2795597498048483,
+                "vy": 17.15999999999999,
+                "grounded": false,
+                "support": null,
+                "jumps": 0,
+                "stocks": 2
+              },
+              {
+                "x": 206.29123540134435,
+                "y": 392,
+                "vx": -4.950750317351258,
+                "vy": 0,
+                "grounded": true,
+                "support": 0,
+                "jumps": 0,
+                "stocks": 2
+              }
+            ]
+          }
+        }
+      },
+      {
+        "step": "caracas: CPU alcanza al jugador en la plataforma",
+        "pass": true,
+        "details": {
+          "state": {
+            "tick": 649,
+            "players": [
+              {
+                "x": 234.59693489054175,
+                "y": 392,
+                "vx": -4.927487490692281e-8,
+                "vy": 0,
+                "grounded": true,
+                "support": 0,
+                "jumps": 0,
+                "stocks": 2
+              },
+              {
+                "x": 277.5969348905418,
+                "y": 392,
+                "vx": -0.846463171307849,
+                "vy": 0,
+                "grounded": true,
+                "support": 0,
+                "jumps": 0,
+                "stocks": 2
+              }
+            ]
+          }
+        }
+      },
+      {
+        "step": "caracas: CPU solicita bajar de la plataforma",
+        "pass": true,
+        "details": {
+          "state": {
+            "tick": 676,
+            "players": [
+              {
+                "x": 124.23409285451132,
+                "y": 491.395,
+                "vx": -2.4872074926978334,
+                "vy": 10.074999999999996,
+                "grounded": false,
+                "support": null,
+                "jumps": 0,
+                "stocks": 2
+              },
+              {
+                "x": 219.23793498515383,
+                "y": 395.52,
+                "vx": -5.21513803471309,
+                "vy": 0.52,
+                "grounded": false,
+                "support": null,
+                "jumps": 0,
+                "stocks": 2
+              }
+            ]
+          }
+        }
+      },
+      {
+        "step": "caracas: CPU desciende para perseguir al jugador",
+        "pass": true,
+        "details": {
+          "state": {
+            "tick": 846,
+            "players": [
+              {
+                "x": 347.87906448062625,
+                "y": 554,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": -1,
+                "jumps": 0,
+                "stocks": 1
+              },
+              {
+                "x": 396.3365829865373,
+                "y": 554,
+                "vx": 0.6063909451012469,
+                "vy": 0,
+                "grounded": true,
+                "support": -1,
+                "jumps": 0,
+                "stocks": 2
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "online": {
+    "automated": "tests/rooms.test.ts: two real WebSocket clients agree on carry, down, floor landing and jumping for all five moving mechanisms. These integration tests explicitly set initial rider fixtures on the server, then send real protocol inputs.",
+    "browser": {
+      "match": "ba379e8a-ace4-4506-848b-10f2310b4ec4",
+      "sameMatch": true,
+      "compared": 99,
+      "mismatches": 0,
+      "geometryErrors": 0,
+      "minimumY": 346,
+      "maximumY": 428.177,
+      "horizontalDrift": 0,
+      "first": {
+        "tick": 2226,
+        "hash": "ba6e3217c7f8c7972c2b5ebb855c3957a8688d1f7b832b5a468d169ef25f325c",
+        "y": 361.334,
+        "x": 543.2479748105424,
+        "support": 2,
+        "grounded": true
+      },
+      "last": {
+        "tick": 2422,
+        "hash": "aefd17378fae4387ecec504ed899b2349092cdfd3575ce68a6c3a55d1b1fd8fc",
+        "y": 428.177,
+        "x": 543.2479748105424,
+        "support": 2,
+        "grounded": true
+      },
+      "boarding": {
+        "step": "maracaibo: subir a plataforma en combate activo",
+        "pass": true,
+        "details": {
+          "state": {
+            "tick": 656,
+            "players": [
+              {
+                "x": 543.2479749647541,
+                "y": 457.561,
+                "vx": -8.303724278413025e-8,
+                "vy": 0,
+                "grounded": true,
+                "support": 2,
+                "jumps": 0,
+                "stocks": 2
+              },
+              {
+                "x": 750,
+                "y": 554,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": -1,
+                "jumps": 0,
+                "stocks": 2
+              }
+            ]
+          }
+        }
+      },
+      "observedUntilTick": 2420,
+      "minimumCompleteCycles": 3,
+      "dropOwner": {
+        "step": "Online: descenso termina en suelo sin perder vidas",
+        "pass": true,
+        "details": {
+          "state": {
+            "id": "ba379e8a-ace4-4506-848b-10f2310b4ec4",
+            "phase": "playing",
+            "tick": 2450,
+            "remaining": 3460,
+            "winner": null,
+            "players": [
+              {
+                "name": "Plataformas Host",
+                "fighter": "zavarce",
+                "wins": 0,
+                "x": 543.2479748105424,
+                "y": 554,
+                "hp": 100,
+                "stocks": 2,
+                "hits": 0,
+                "energy": 100
+              },
+              {
+                "name": "Plataformas Rival",
+                "fighter": "javier",
+                "wins": 0,
+                "x": 750,
+                "y": 554,
+                "hp": 100,
+                "stocks": 2,
+                "hits": 0,
+                "energy": 100
+              }
+            ]
+          }
+        }
+      },
+      "dropRival": {
+        "step": "Online: rival observa al jugador en suelo con dos vidas",
+        "pass": true,
+        "details": {
+          "state": {
+            "id": "ba379e8a-ace4-4506-848b-10f2310b4ec4",
+            "phase": "playing",
+            "tick": 4568,
+            "remaining": 1342,
+            "winner": null,
+            "players": [
+              {
+                "name": "Plataformas Host",
+                "fighter": "zavarce",
+                "wins": 0,
+                "x": 543.2479748105424,
+                "y": 554,
+                "hp": 100,
+                "stocks": 2,
+                "hits": 0,
+                "energy": 100
+              },
+              {
+                "name": "Plataformas Rival",
+                "fighter": "javier",
+                "wins": 0,
+                "x": 750,
+                "y": 554,
+                "hp": 100,
+                "stocks": 2,
+                "hits": 0,
+                "energy": 100
+              }
+            ]
+          }
+        }
+      }
+    },
+    "errors": {
+      "host": [],
+      "guest": []
+    }
+  },
+  "verification": {
+    "baseline": {
+      "focusedCommand": "node --import tsx --test tests/stages.test.ts tests/engine.test.ts",
+      "passed": 25,
+      "fullSuiteFromPreviousReview": 591
+    },
+    "newTests": 27,
+    "focused": {
+      "command": "node --import tsx --test tests/platform-physics.test.ts tests/platform-rendering.test.ts",
+      "passed": 26,
+      "failed": 0
+    },
+    "network": {
+      "command": "node --import tsx --test --test-name-pattern='online riders' tests/rooms.test.ts",
+      "passed": 1,
+      "mechanisms": 5,
+      "failed": 0
+    },
+    "full": {
+      "command": "npm test",
+      "passed": 618,
+      "failed": 0
+    },
+    "build": {
+      "command": "npm run build",
+      "passed": true,
+      "note": "Existing Vite large-chunk warning remains."
+    },
+    "whitespace": {
+      "command": "git diff --check",
+      "passed": true
+    }
+  },
+  "reproduction": {
+    "commands": [
+      "npm run build",
+      "ARENA_QA_PORT=5391 node --import tsx scripts/journey-qa-server.ts --production"
+    ],
+    "browser": [
+      "Open / in an isolated browser tab and evaluate scripts/journey-browser-probe.js, then scripts/platforms-browser-audit.js.",
+      "Run __platformAudit.start(stageId) for each id in __platformAudit.stages. Inspect __platformAudit.job; do not await long browser jobs through a tool with a 15-second evaluation limit.",
+      "Optional: set __platformAudit.holdForReview=true before starting. The game pauses on the first selected platform; inspect the canvas and call __platformAudit.continue() to resume.",
+      "Run __platformAudit.startPractice('caracas') to observe CPU climbing and dropping. Normal attacks and stock losses are allowed; the regression checks pursuit and actual drop-through.",
+      "For online review, create/join/ready through both actual browser UIs, then call startBoard('maracaibo',2) in the host tab. Compare complete socket states at matching ticks while idle on the lift, then briefly press S to descend."
+    ]
+  },
+  "correctedHarnessChecks": [
+    {
+      "case": "CPU browser fight",
+      "initial": "Required both fighters to retain two stocks throughout an active fight.",
+      "observation": "The CPU correctly knocked the unattended player off a platform. Both later reached the floor, but the extra stock assertion failed.",
+      "correction": "Check the CPU's real drop-through transition and subsequent floor landing; combat damage is allowed. The revised production run passed."
+    },
+    {
+      "case": "Long browser evaluation",
+      "initial": "The first full Valencia run exceeded the preview tool's 15-second evaluation limit.",
+      "correction": "Rerun via tracked asynchronous jobs and explicit visual checkpoints. The complete production Valencia run passed all three platforms."
+    }
+  ],
+  "limits": [
+    "Automated fixtures deliberately preset starting positions; the interactive browser walkthrough uses normal UI controls without simulation edits.",
+    "This verifies sampled interactions and cycles, not every possible input sequence, network condition or physical device.",
+    "Public WAN latency, touch hardware and physical controllers were not revalidated in this keyboard-focused stage review."
+  ]
+}
