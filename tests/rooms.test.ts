@@ -4,7 +4,7 @@ import { WebSocket } from "ws";
 import { makeArenaServer } from "../server/index";
 import { emptyInput } from "../shared/engine";
 import type { ServerMessage } from "../shared/protocol";
-import { FIGHTERS, STAGES } from "../shared/content";
+import { FIGHTERS, STAGES, platformsAtTick } from "../shared/content";
 
 class TestClient {
   messages: ServerMessage[] = [];
@@ -276,6 +276,90 @@ test("all nine stages synchronize movement and special attacks over real sockets
           (player) => Number.isFinite(player.x) && Number.isFinite(player.y),
         ),
       );
+    } finally {
+      await match.close();
+    }
+  }
+});
+
+test("online riders agree on moving-platform carry, jumping and dropping through all five mechanisms", async () => {
+  for (const stage of STAGES.filter((s) => s.platforms.some((p) => p.motion))) {
+    const match = await onlineMatch(stage.id);
+    try {
+      const state = match.active.state!;
+      const index = stage.platforms.findIndex((p) => p.motion);
+      const rider = state.players[0];
+      const placeRider = () => {
+        const platform = platformsAtTick(stage.id, state.tick)[index];
+        Object.assign(rider, {
+          x: platform.x + platform.width / 2,
+          y: platform.y,
+          vx: 0,
+          vy: 0,
+          grounded: true,
+          supportPlatform: index,
+          jumps: 0,
+          dropThrough: 0,
+        });
+        state.players[1].x = 50;
+        return state.tick;
+      };
+      const start = placeRider();
+      const carried = await match.a.wait(
+        "state",
+        (m) => m.state.tick >= start + 10,
+      );
+      const remote = await match.b.wait(
+        "state",
+        (m) => m.state.tick === carried.state.tick,
+      );
+      assert.deepEqual(carried.state, remote.state, stage.id);
+      const surface = platformsAtTick(stage.id, carried.state.tick)[index];
+      assert.equal(carried.state.players[0].supportPlatform, index);
+      assert.equal(carried.state.players[0].y, surface.y);
+      assert.ok(
+        Math.abs(carried.state.players[0].x - surface.x - surface.width / 2) <
+          0.002,
+      );
+
+      const input = emptyInput();
+      input.down = true;
+      match.a.send({ type: "input", matchId: state.id, input });
+      const dropped = await match.a.wait(
+        "state",
+        (m) => m.state.players[0].dropThrough > 0,
+      );
+      assert.equal(dropped.state.players[0].supportPlatform, null);
+      assert.equal(dropped.state.players[0].grounded, false);
+      input.down = false;
+      match.a.send({ type: "input", matchId: state.id, input });
+      const landed = await match.a.wait(
+        "state",
+        (m) =>
+          m.state.tick > dropped.state.tick &&
+          m.state.players[0].supportPlatform === -1,
+      );
+      const landedRemote = await match.b.wait(
+        "state",
+        (m) => m.state.tick === landed.state.tick,
+      );
+      assert.deepEqual(landed.state, landedRemote.state, stage.id + " floor");
+      assert.equal(landed.state.players[0].stocks, 2);
+
+      const jumpTick = placeRider();
+      input.actions.jump++;
+      match.a.send({ type: "input", matchId: state.id, input });
+      const jumped = await match.a.wait(
+        "state",
+        (m) => m.state.tick > jumpTick && m.state.players[0].jumps === 1,
+      );
+      assert.equal(jumped.state.players[0].supportPlatform, null);
+      assert.ok(jumped.state.players[0].vy < 0);
+      const jumpedRemote = await match.b.wait(
+        "state",
+        (m) => m.state.tick === jumped.state.tick,
+      );
+      assert.deepEqual(jumped.state, jumpedRemote.state, stage.id + " jump");
     } finally {
       await match.close();
     }
