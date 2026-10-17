@@ -1,0 +1,1720 @@
+{
+  "checkedAt": "2026-10-17T15:46:41Z",
+  "scope": "Adversarial step-by-step account-to-combat review, including real complete creator, CPU, local and online fights.",
+  "commits": [
+    {
+      "id": "cb90dee",
+      "change": "Isolated journey server, deterministic provider and browser probe"
+    },
+    { "id": "2a7e768", "change": "Fresh private trial and rematch identities" },
+    { "id": "0532acf", "change": "Recoverable image and sprite loads" },
+    { "id": "4be9e55", "change": "Opponent departure notice lifecycle" },
+    { "id": "2cfbe76", "change": "Typed saved preference recovery" }
+  ],
+  "reproduce": {
+    "start": [
+      "npm run build",
+      "ARENA_QA_PORT=5381 node --import tsx scripts/journey-qa-server.ts --production"
+    ],
+    "isolation": "The server creates a temporary database and a reference.jpg fixture, prints their location, and removes them on SIGINT/SIGTERM. The QA-only /api/qa/fixture marker is not added to the application server.",
+    "browser": [
+      "Open http://localhost:5381/create in two independently authenticated sessions. Evaluate scripts/journey-browser-probe.js in each tab before walking the UI.",
+      "Use disposable accounts, sign out and sign in through the real forms. Upload the printed synthetic JPEG. Include [qa-fail-once] in the description to exercise failed-job recovery with Continuar.",
+      "Finish a private trial using real controls; __journeyAudit.startBot() can dispatch normal keyboard events. Evaluate scripts/trial-rematch-regression.js only after the result is visible.",
+      "Signed into the workshop without an active trial, evaluate scripts/asset-recovery-browser.js. It guards against the real generation provider, creates a new synthetic character, fails its image requests, and retries. It leaves the recovered trial open.",
+      "In the arena lobby outside any room or fight, evaluate scripts/opponent-rejoin-regression.js. It creates a private room, uses real socket peers to leave/rejoin twice, and checks the actual notice after rejoining and exiting.",
+      "In the arena lobby outside any room or fight, evaluate scripts/storage-recovery-regression.js. It injects an invalid saved name, remounts through actual navigation, checks the fight form, and restores the prior value.",
+      "For a complete online fight, use the real create/join/ready buttons on both tabs. __journeyAudit.startBot([0]) controls the host; startBot([1]) controls the guest. Read state and compare complete server snapshots at identical ticks. No engine state writes are needed."
+    ],
+    "automated": [
+      "node --import tsx --test tests/storage.test.ts tests/asset-recovery.test.ts",
+      "npm test",
+      "npm run build",
+      "npm run check:assets"
+    ]
+  },
+  "environment": {
+    "node": "24.20.0",
+    "browser": "T3 collaborative browser",
+    "development": "http://localhost:5380",
+    "production": "http://localhost:5381",
+    "accounts": "Disposable owner and rival accounts with separately verified authenticated identities; isolated temporary SQLite databases.",
+    "generation": "Real upload, queue, LangGraph pipeline, atlas processing and publication; only design/art generation uses tests/fixtures/creator-provider.ts. No paid AI calls.",
+    "controls": "Real keyboard events and synthetic touch PointerEvents through the actual UI. Probe reads engine/component state; it never edits HP, positions, stocks, timers, winners or match state.",
+    "viewports": [
+      {
+        "width": 1280,
+        "height": 800
+      },
+      {
+        "width": 390,
+        "height": 844
+      }
+    ]
+  },
+  "fixes": [
+    {
+      "issue": "Creator trial rematch stayed on the finished result.",
+      "cause": "Both initial and rematch createMatch calls used the default id local; React retained the finished Game instance.",
+      "change": "Assign a fresh UUID to every private trial and rematch.",
+      "regression": "scripts/trial-rematch-regression.js",
+      "before": {
+        "step": "11 Revancha de prueba inicia una partida nueva",
+        "pass": false,
+        "details": {
+          "initialId": "local",
+          "state": {
+            "id": "local",
+            "phase": "finished",
+            "tick": 1176,
+            "remaining": 4686,
+            "winner": 1,
+            "players": [
+              {
+                "name": "Luchador Recorrido",
+                "fighter": "custom_92ed2a45514c4c638210b3ad6cef02e9",
+                "wins": 3,
+                "x": 146.03745468844514,
+                "y": 804.9899999999994,
+                "hp": 0,
+                "stocks": 0,
+                "hits": 9,
+                "energy": 33.85999999999942
+              },
+              {
+                "name": "CPU",
+                "fighter": "zavarce",
+                "wins": 0,
+                "x": 192.70415810302046,
+                "y": 554,
+                "hp": 47.57199999999999,
+                "stocks": 1,
+                "hits": 3,
+                "energy": 100
+              }
+            ]
+          },
+          "resultStillVisible": true
+        }
+      },
+      "after": {
+        "step": "La revancha del taller reinicia partida, salud y vidas",
+        "pass": true,
+        "details": {
+          "previousId": "e0e05690-7d81-4805-bbbe-74a6ed135587",
+          "nextId": "f68ddcb3-d602-4385-9e60-54d35aca1657",
+          "phase": "intro",
+          "resultVisible": false
+        }
+      }
+    },
+    {
+      "issue": "A temporary failed image request blocked every later trial attempt until a full reload.",
+      "cause": "Image and sprite caches retained rejected promises.",
+      "change": "Evict only failed loads, keeping in-flight and successful load sharing.",
+      "regression": [
+        "tests/asset-recovery.test.ts",
+        "scripts/asset-recovery-browser.js"
+      ],
+      "before": {
+        "step": "17 Reintentar recupera los recursos sin recargar la página",
+        "pass": false,
+        "details": {
+          "overlay": "No se pudieron cargar los personajes. Vuelve a intentar.",
+          "resourceStatus": 200
+        }
+      },
+      "after": {
+        "step": "Recursos recuperados al reintentar sin recargar la página",
+        "pass": true,
+        "details": {
+          "failures": 2,
+          "name": "Recurso QA 18f08d",
+          "id": "custom_9ae30625c2fa4952a730a2f55f7aafff"
+        }
+      }
+    },
+    {
+      "issue": "The opponent-left notice survived the opponent rejoining and leaving the room for CPU mode.",
+      "cause": "The hook cleared this flag only on match start, leaving stale state after room recovery or exit.",
+      "change": "Clear on a full room, confirmed exit and local connection loss.",
+      "regression": "scripts/opponent-rejoin-regression.js",
+      "before": {
+        "rejoined": false,
+        "left": false
+      },
+      "after": {
+        "step": "Aviso de salida se limpia al regresar el rival y abandonar la sala",
+        "pass": true,
+        "details": {
+          "rejoined": true,
+          "left": true
+        }
+      }
+    },
+    {
+      "issue": "A valid JSON object saved as the player name broke the fight button with trim is not a function.",
+      "cause": "getPreference returned parsed values without checking the expected type.",
+      "change": "Recover mismatched primitive preference types to their defaults; preserve valid strings and booleans, including false.",
+      "regression": [
+        "tests/storage.test.ts",
+        "scripts/storage-recovery-regression.js"
+      ],
+      "before": {
+        "input": "[object Object]",
+        "error": "Uncaught TypeError: f.trim is not a function",
+        "automated": "1 of 2 tests failed before the fix"
+      },
+      "after": {
+        "step": "Un apodo guardado corrupto recupera el formulario sin romper el botón de pelear",
+        "pass": true,
+        "details": {
+          "value": "",
+          "error": "Pon tu apodo y entramos a la arena."
+        }
+      }
+    }
+  ],
+  "onlineSynchronization": {
+    "sameMatch": true,
+    "commonTicks": 80,
+    "mismatches": [],
+    "match": {
+      "id": "2f46dee4-c521-49b4-9980-c1dc6a581a4d",
+      "phase": "finished",
+      "tick": 1643,
+      "remaining": 4226,
+      "winner": 1,
+      "players": [
+        {
+          "name": "Anfitrión QA",
+          "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+          "wins": 1,
+          "x": 1179.4803988432056,
+          "y": 805.16,
+          "hp": 0,
+          "stocks": 0,
+          "hits": 8,
+          "energy": 68.48999999999927
+        },
+        {
+          "name": "Invitado QA",
+          "fighter": "zavarce",
+          "wins": 0,
+          "x": 937.5647834749417,
+          "y": 554,
+          "hp": 85.6384,
+          "stocks": 1,
+          "hits": 3,
+          "energy": 89.64499999999984
+        }
+      ]
+    },
+    "comparison": "SHA-256 of the entire JSON server state at identical ticks, independently collected from both sockets.",
+    "samples": [
+      {
+        "tick": 1488,
+        "host": "5e2437e456503c874d0a6b157a749a3cea560efc017de29414eefa4ffab43aad",
+        "guest": "5e2437e456503c874d0a6b157a749a3cea560efc017de29414eefa4ffab43aad"
+      },
+      {
+        "tick": 1527,
+        "host": "f466e90c68b1a0811acc4876d6718a29ece093ee1094ab5ac91ae299bb54493a",
+        "guest": "f466e90c68b1a0811acc4876d6718a29ece093ee1094ab5ac91ae299bb54493a"
+      },
+      {
+        "tick": 1567,
+        "host": "dbbd26798227783a7e1d5e5159cd6c29c3515a8d35e11e6ce974f004cca9aa1a",
+        "guest": "dbbd26798227783a7e1d5e5159cd6c29c3515a8d35e11e6ce974f004cca9aa1a"
+      },
+      {
+        "tick": 1605,
+        "host": "af92daf8f21bca381110953b9a647f4afc3de28d6bf04197c1e92ab73bda4366",
+        "guest": "af92daf8f21bca381110953b9a647f4afc3de28d6bf04197c1e92ab73bda4366"
+      }
+    ]
+  },
+  "verification": {
+    "baselineTests": 587,
+    "fullSuite": {
+      "command": "npm test",
+      "passed": 591,
+      "failed": 0
+    },
+    "focused": {
+      "command": "node --import tsx --test tests/storage.test.ts tests/asset-recovery.test.ts",
+      "passed": 4,
+      "failed": 0
+    },
+    "build": {
+      "command": "npm run build",
+      "passed": true,
+      "note": "Existing Vite large-chunk warning remains."
+    },
+    "assets": {
+      "command": "npm run check:assets",
+      "passed": true
+    },
+    "whitespace": {
+      "command": "git diff --check",
+      "passed": true
+    },
+    "browserErrorsInFinalRegressionSessions": {
+      "host": [],
+      "guest": []
+    }
+  },
+  "walkthrough": [
+    {
+      "environment": "development",
+      "session": "creator owner",
+      "checks": [
+        {
+          "step": "01 Registro abre taller y sesión real",
+          "pass": true,
+          "details": {
+            "user": "Cuenta Recorrido QA"
+          }
+        },
+        {
+          "step": "02 Salida revoca acceso privado",
+          "pass": true,
+          "details": {
+            "status": 401
+          }
+        },
+        {
+          "step": "03 Iniciar sesión restaura al propietario",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "04 Crear sin foto falla sin iniciar un trabajo",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "05 Archivo no admitido se rechaza sin retener fotos",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "06 Foto válida muestra previsualización local",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "07 Fallo de proveedor conserva trabajo recuperable",
+          "pass": true,
+          "details": {
+            "id": "custom_92ed2a45514c4c638210b3ad6cef02e9",
+            "status": "failed"
+          }
+        },
+        {
+          "step": "08 Continuar termina el grafo sin publicar el borrador",
+          "pass": true,
+          "details": {
+            "status": "ready",
+            "frames": 8
+          }
+        },
+        {
+          "step": "09 Probar abre combate privado con los combos habilitados",
+          "pass": true,
+          "details": {
+            "state": {
+              "id": "local",
+              "phase": "intro",
+              "tick": 0,
+              "remaining": 5400,
+              "winner": null,
+              "players": [
+                {
+                  "name": "Luchador Recorrido",
+                  "fighter": "custom_92ed2a45514c4c638210b3ad6cef02e9",
+                  "wins": 3,
+                  "x": 330,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                },
+                {
+                  "name": "CPU",
+                  "fighter": "zavarce",
+                  "wins": 0,
+                  "x": 750,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                }
+              ]
+            }
+          }
+        },
+        {
+          "step": "10 Combate de prueba llega al resultado con golpes y vidas consumidas",
+          "pass": true,
+          "details": {
+            "state": {
+              "id": "local",
+              "phase": "finished",
+              "tick": 1176,
+              "remaining": 4686,
+              "winner": 1,
+              "players": [
+                {
+                  "name": "Luchador Recorrido",
+                  "fighter": "custom_92ed2a45514c4c638210b3ad6cef02e9",
+                  "wins": 3,
+                  "x": 146.03745468844514,
+                  "y": 804.9899999999994,
+                  "hp": 0,
+                  "stocks": 0,
+                  "hits": 9,
+                  "energy": 33.85999999999942
+                },
+                {
+                  "name": "CPU",
+                  "fighter": "zavarce",
+                  "wins": 0,
+                  "x": 192.70415810302046,
+                  "y": 554,
+                  "hp": 47.57199999999999,
+                  "stocks": 1,
+                  "hits": 3,
+                  "energy": 100
+                }
+              ]
+            }
+          }
+        },
+        {
+          "step": "La revancha del taller reinicia partida, salud y vidas",
+          "pass": true,
+          "details": {
+            "previousId": "59b9e56a-e1ac-450c-9da3-b9fd40909512",
+            "nextId": "029f8e13-f432-47a3-b9b4-d93b87c8e598",
+            "phase": "intro",
+            "resultVisible": false
+          }
+        },
+        {
+          "step": "12 Ayuda detiene combate local y libera movimiento",
+          "pass": true,
+          "details": {
+            "tick": 529
+          }
+        },
+        {
+          "step": "13 Pausa explícita detiene la simulación",
+          "pass": true,
+          "details": {
+            "tick": 540
+          }
+        },
+        {
+          "step": "14 Salir de prueba regresa al borrador privado",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "15 Publicar añade el luchador al catálogo compartido",
+          "pass": true,
+          "details": {
+            "id": "custom_92ed2a45514c4c638210b3ad6cef02e9",
+            "notice": "Publicado. Tu personaje ya está disponible para todos."
+          }
+        },
+        {
+          "step": "16 Fallo de recursos muestra salida y el recurso vuelve a estar disponible",
+          "pass": true,
+          "details": {
+            "httpStatus": 200
+          }
+        }
+      ]
+    },
+    {
+      "environment": "production",
+      "session": "owner: trial, local and online",
+      "checks": [
+        {
+          "step": "P01 Sesión autenticada en build de producción",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "P02 iniciar sesión desde el formulario restaura la cuenta correcta",
+          "pass": true,
+          "details": {
+            "status": 200,
+            "user": "Host Producción QA",
+            "cookieVisible": false
+          }
+        },
+        {
+          "step": "Recursos recuperados al reintentar sin recargar la página",
+          "pass": true,
+          "details": {
+            "failures": 2,
+            "name": "Recurso QA 203145",
+            "id": "custom_10f37930aa3545e497422e26a8fa2d13"
+          }
+        },
+        {
+          "step": "La revancha del taller reinicia partida, salud y vidas",
+          "pass": true,
+          "details": {
+            "previousId": "e0e05690-7d81-4805-bbbe-74a6ed135587",
+            "nextId": "f68ddcb3-d602-4385-9e60-54d35aca1657",
+            "phase": "intro",
+            "resultVisible": false
+          }
+        },
+        {
+          "step": "P04 publicación aparece en catálogo y prueba privada no altera progreso",
+          "pass": true,
+          "details": {
+            "id": "custom_10f37930aa3545e497422e26a8fa2d13",
+            "record": "EN LA ARENA\nRecurso QA 203145\n\nPaso de prueba\n\nProbar",
+            "progress": null
+          }
+        },
+        {
+          "step": "L01 apodo vacío de P2 bloquea pelea y enfoca campo",
+          "pass": true,
+          "details": {
+            "error": "Tu pana también necesita un apodo."
+          }
+        },
+        {
+          "step": "L02 local usa nombres personajes y escenario elegidos",
+          "pass": true,
+          "details": {
+            "match": {
+              "id": "1ebd7f56-917e-4c0d-beb0-711a07840938",
+              "phase": "intro",
+              "tick": 0,
+              "remaining": 5400,
+              "winner": null,
+              "players": [
+                {
+                  "name": "Local P1 QA",
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "wins": 0,
+                  "x": 330,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                },
+                {
+                  "name": "Local P2 QA",
+                  "fighter": "zavarce",
+                  "wins": 0,
+                  "x": 750,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                }
+              ]
+            },
+            "stage": "poliedro"
+          }
+        },
+        {
+          "step": "L03 ambos esquemas de teclado mueven jugadores independientes",
+          "pass": true,
+          "details": {
+            "before": [
+              {
+                "x": 330,
+                "y": 554,
+                "energy": 35.139999999999986
+              },
+              {
+                "x": 750,
+                "y": 554,
+                "energy": 35.139999999999986
+              }
+            ],
+            "after": [
+              {
+                "name": "Local P1 QA",
+                "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                "wins": 0,
+                "x": 515.1316074640253,
+                "y": 554,
+                "hp": 100,
+                "stocks": 2,
+                "hits": 0,
+                "energy": 36.399999999999864
+              },
+              {
+                "name": "Local P2 QA",
+                "fighter": "zavarce",
+                "wins": 0,
+                "x": 576.812367211073,
+                "y": 554,
+                "hp": 100,
+                "stocks": 2,
+                "hits": 0,
+                "energy": 36.399999999999864
+              }
+            ]
+          }
+        },
+        {
+          "step": "L04 bloqueo P1 se refleja sin bloquear P2",
+          "pass": true,
+          "details": {
+            "blocking": [true, false]
+          }
+        },
+        {
+          "step": "L05 salto P2 no salta P1",
+          "pass": true,
+          "details": {
+            "y": [554, 497.8]
+          }
+        },
+        {
+          "step": "L06 especial consume energía y activa ataque de P1",
+          "pass": true,
+          "details": {
+            "energy": 11.064999999999849,
+            "attack": "special"
+          }
+        },
+        {
+          "step": "L07 pausa local congela reloj y ambos jugadores",
+          "pass": true,
+          "details": {
+            "tick": 769,
+            "after": 769
+          }
+        },
+        {
+          "step": "L08 pelea local completa registra una sola victoria real",
+          "pass": true,
+          "details": {
+            "match": {
+              "id": "1ebd7f56-917e-4c0d-beb0-711a07840938",
+              "phase": "finished",
+              "tick": 962,
+              "remaining": 4920,
+              "winner": 0,
+              "players": [
+                {
+                  "name": "Local P1 QA",
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "wins": 0,
+                  "x": 316.95729569416176,
+                  "y": 471.11999999999995,
+                  "hp": 100,
+                  "stocks": 1,
+                  "hits": 4,
+                  "energy": 49.88999999999878
+                },
+                {
+                  "name": "Local P2 QA",
+                  "fighter": "zavarce",
+                  "wins": 0,
+                  "x": -118.07258841837255,
+                  "y": 811.9199999999998,
+                  "hp": 0,
+                  "stocks": 0,
+                  "hits": 2,
+                  "energy": 67.81999999999846
+                }
+              ]
+            },
+            "progress": {
+              "wins": {
+                "custom_10f37930aa3545e497422e26a8fa2d13": 1
+              },
+              "played": 1,
+              "bestCombo": 4,
+              "recent": [
+                {
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "rival": "zavarce",
+                  "won": true,
+                  "date": "2026-10-17T15:40:23.100Z"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "step": "L09 revancha local restablece estado y mantiene ganador desbloqueado",
+          "pass": true,
+          "details": {
+            "match": {
+              "id": "e4c0ea5e-acd4-4021-967e-ff247f6c6e10",
+              "phase": "intro",
+              "tick": 2,
+              "remaining": 5400,
+              "winner": null,
+              "players": [
+                {
+                  "name": "Local P1 QA",
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "wins": 1,
+                  "x": 330,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                },
+                {
+                  "name": "Local P2 QA",
+                  "fighter": "zavarce",
+                  "wins": 0,
+                  "x": 750,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                }
+              ]
+            }
+          }
+        },
+        {
+          "step": "O03 crear sala privada usando personaje publicado",
+          "pass": true,
+          "details": {
+            "room": {
+              "code": "2C5DEBA1A33438A9C7CF7CD65E287C3A",
+              "name": "La sala de Anfitrión QA",
+              "stage": "poliedro",
+              "players": [
+                {
+                  "id": "6f7c1411-d5b1-4708-afdd-153536605966",
+                  "name": "Anfitrión QA",
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "ready": false,
+                  "wins": 1
+                }
+              ],
+              "status": "waiting",
+              "host": "6f7c1411-d5b1-4708-afdd-153536605966"
+            }
+          }
+        },
+        {
+          "step": "O09 cambiar escenario sincroniza y revoca listos",
+          "pass": true,
+          "details": {
+            "room": {
+              "code": "2C5DEBA1A33438A9C7CF7CD65E287C3A",
+              "name": "La sala de Anfitrión QA",
+              "stage": "guaira",
+              "players": [
+                {
+                  "id": "6f7c1411-d5b1-4708-afdd-153536605966",
+                  "name": "Anfitrión QA",
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "ready": false,
+                  "wins": 1
+                },
+                {
+                  "id": "cfe0a45d-eaee-4386-a2ce-42ab4d1fe60b",
+                  "name": "Invitado QA",
+                  "fighter": "zavarce",
+                  "ready": false,
+                  "wins": 0
+                }
+              ],
+              "status": "waiting",
+              "host": "6f7c1411-d5b1-4708-afdd-153536605966"
+            }
+          }
+        },
+        {
+          "step": "O11 anfitrión ve mismo combate y selección del servidor",
+          "pass": true,
+          "details": {
+            "match": {
+              "id": "2f46dee4-c521-49b4-9980-c1dc6a581a4d",
+              "phase": "intro",
+              "tick": 268,
+              "remaining": 5400,
+              "winner": null,
+              "players": [
+                {
+                  "name": "Anfitrión QA",
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "wins": 1,
+                  "x": 330,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                },
+                {
+                  "name": "Invitado QA",
+                  "fighter": "zavarce",
+                  "wins": 0,
+                  "x": 750,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                }
+              ]
+            }
+          }
+        },
+        {
+          "step": "O12 selección y revancha durante partida no alteran combate",
+          "pass": true,
+          "details": {
+            "room": {
+              "code": "2C5DEBA1A33438A9C7CF7CD65E287C3A",
+              "name": "La sala de Anfitrión QA",
+              "stage": "guaira",
+              "players": [
+                {
+                  "id": "6f7c1411-d5b1-4708-afdd-153536605966",
+                  "name": "Anfitrión QA",
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "ready": true,
+                  "wins": 1
+                },
+                {
+                  "id": "cfe0a45d-eaee-4386-a2ce-42ab4d1fe60b",
+                  "name": "Invitado QA",
+                  "fighter": "zavarce",
+                  "ready": true,
+                  "wins": 0
+                }
+              ],
+              "status": "playing",
+              "host": "6f7c1411-d5b1-4708-afdd-153536605966"
+            }
+          }
+        },
+        {
+          "step": "O13 controles del anfitrión mueven sólo P1",
+          "pass": true,
+          "details": {
+            "before": [330, 750],
+            "after": [440.731977871923, 750],
+            "tick": 548
+          }
+        },
+        {
+          "step": "O15 pausa online avisa y servidor continúa con entrada neutral",
+          "pass": true,
+          "details": {
+            "before": 934,
+            "after": 948,
+            "copy": "En línea el combate continúa. Vuelve antes de que tu rival aproveche."
+          }
+        },
+        {
+          "step": "O16 derrota online coincide con resultado y progreso local",
+          "pass": true,
+          "details": {
+            "match": {
+              "id": "2f46dee4-c521-49b4-9980-c1dc6a581a4d",
+              "phase": "finished",
+              "tick": 1643,
+              "remaining": 4226,
+              "winner": 1,
+              "players": [
+                {
+                  "name": "Anfitrión QA",
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "wins": 1,
+                  "x": 1179.4803988432056,
+                  "y": 805.16,
+                  "hp": 0,
+                  "stocks": 0,
+                  "hits": 8,
+                  "energy": 68.48999999999927
+                },
+                {
+                  "name": "Invitado QA",
+                  "fighter": "zavarce",
+                  "wins": 0,
+                  "x": 937.5647834749417,
+                  "y": 554,
+                  "hp": 85.6384,
+                  "stocks": 1,
+                  "hits": 3,
+                  "energy": 89.64499999999984
+                }
+              ]
+            },
+            "progress": {
+              "wins": {
+                "custom_10f37930aa3545e497422e26a8fa2d13": 1
+              },
+              "played": 2,
+              "bestCombo": 7,
+              "recent": [
+                {
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "rival": "zavarce",
+                  "won": false,
+                  "date": "2026-10-17T15:41:32.791Z"
+                },
+                {
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "rival": "zavarce",
+                  "won": true,
+                  "date": "2026-10-17T15:40:23.100Z"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "step": "O17 revancha unilateral espera al rival sin reiniciar ni duplicar resultado",
+          "pass": true,
+          "details": {
+            "waiting": "Esperando a tu pana…"
+          }
+        },
+        {
+          "step": "R02 retiro conserva combate activo y elimina selección pública",
+          "pass": true,
+          "details": {
+            "match": {
+              "id": "3f4435a0-148a-4e19-85eb-63d0fb92f898",
+              "phase": "finished",
+              "tick": 2942,
+              "remaining": 2950,
+              "winner": 1,
+              "players": [
+                {
+                  "name": "Anfitrión QA",
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "wins": 1,
+                  "x": -64.46475010166179,
+                  "y": 811.3349999999998,
+                  "hp": 0,
+                  "stocks": 0,
+                  "hits": 0,
+                  "energy": 100
+                },
+                {
+                  "name": "Invitado QA",
+                  "fighter": "zavarce",
+                  "wins": 1,
+                  "x": -56.66992877345117,
+                  "y": 616.3999999999999,
+                  "hp": 100,
+                  "stocks": 1,
+                  "hits": 4,
+                  "energy": 100
+                }
+              ]
+            },
+            "assetPolicy": "Arte previamente publicado sigue disponible para peleas activas"
+          }
+        },
+        {
+          "step": "R04 anfitrión sustituye selección retirada en su interfaz",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "D01 perder conexión retira combate local sin resultado inventado",
+          "pass": true,
+          "details": {
+            "message": false,
+            "played": 3
+          }
+        },
+        {
+          "step": "D03 reconexión automática permite volver a entrar en la misma sala",
+          "pass": true,
+          "details": {
+            "room": {
+              "code": "2C5DEBA1A33438A9C7CF7CD65E287C3A",
+              "name": "La sala de Anfitrión QA",
+              "stage": "guaira",
+              "players": [
+                {
+                  "id": "cfe0a45d-eaee-4386-a2ce-42ab4d1fe60b",
+                  "name": "Invitado QA",
+                  "fighter": "zavarce",
+                  "ready": false,
+                  "wins": 2
+                },
+                {
+                  "id": "3a8fc2a4-49fd-4724-a0fa-65dd2a5fb556",
+                  "name": "Anfitrión QA",
+                  "fighter": "zavarce",
+                  "ready": false,
+                  "wins": 0
+                }
+              ],
+              "status": "waiting",
+              "host": "cfe0a45d-eaee-4386-a2ce-42ab4d1fe60b"
+            }
+          }
+        },
+        {
+          "step": "D05 abandonar sala vuelve al modo CPU sin partida activa",
+          "pass": true,
+          "details": {}
+        }
+      ]
+    },
+    {
+      "environment": "production",
+      "session": "rival: CPU and online",
+      "checks": [
+        {
+          "step": "P01 Sesión autenticada en build de producción",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "C01 apodo en blanco impide empezar y recibe foco",
+          "pass": true,
+          "details": {
+            "error": "Pon tu apodo y entramos a la arena."
+          }
+        },
+        {
+          "step": "C02 selección independiente de P1 CPU y dificultad",
+          "pass": true,
+          "details": {
+            "p1": "Javier Hala Madrid",
+            "p2": "Vicente Zavarce",
+            "difficulty": "Normal"
+          }
+        },
+        {
+          "step": "C03 inicia CPU con selección y dificultad reales",
+          "pass": true,
+          "details": {
+            "mode": "practice",
+            "difficulty": "easy",
+            "match": {
+              "id": "647f6ab0-dc86-40da-801d-938c0c5a42de",
+              "phase": "intro",
+              "tick": 0,
+              "remaining": 5400,
+              "winner": null,
+              "players": [
+                {
+                  "name": "Peleador CPU QA",
+                  "fighter": "javier",
+                  "wins": 0,
+                  "x": 330,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                },
+                {
+                  "name": "CPU",
+                  "fighter": "zavarce",
+                  "wins": 0,
+                  "x": 750,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                }
+              ]
+            }
+          }
+        },
+        {
+          "step": "C04 pelea CPU completa registra victoria una sola vez y desbloquea combo",
+          "pass": true,
+          "details": {
+            "match": {
+              "id": "647f6ab0-dc86-40da-801d-938c0c5a42de",
+              "phase": "finished",
+              "tick": 1367,
+              "remaining": 4477,
+              "winner": 0,
+              "players": [
+                {
+                  "name": "Peleador CPU QA",
+                  "fighter": "javier",
+                  "wins": 0,
+                  "x": 947.2624147051937,
+                  "y": 554,
+                  "hp": 45.7808,
+                  "stocks": 2,
+                  "hits": 12,
+                  "energy": 100
+                },
+                {
+                  "name": "CPU",
+                  "fighter": "zavarce",
+                  "wins": 0,
+                  "x": 1271.7728540432447,
+                  "y": 610.1600000000001,
+                  "hp": 0,
+                  "stocks": 0,
+                  "hits": 6,
+                  "energy": 100
+                }
+              ]
+            },
+            "progress": {
+              "wins": {
+                "javier": 1
+              },
+              "played": 1,
+              "bestCombo": 4,
+              "recent": [
+                {
+                  "fighter": "javier",
+                  "rival": "zavarce",
+                  "won": true,
+                  "date": "2026-10-17T15:40:13.017Z"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "step": "C05 resultado visible no duplica progreso",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "C06 revancha CPU cambia id reinicia y conserva desbloqueo",
+          "pass": true,
+          "details": {
+            "old": "647f6ab0-dc86-40da-801d-938c0c5a42de",
+            "match": {
+              "id": "54d5ed61-fd21-4e5e-ab9b-f1ae04c26579",
+              "phase": "intro",
+              "tick": 6,
+              "remaining": 5400,
+              "winner": null,
+              "players": [
+                {
+                  "name": "Peleador CPU QA",
+                  "fighter": "javier",
+                  "wins": 1,
+                  "x": 330,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                },
+                {
+                  "name": "CPU",
+                  "fighter": "zavarce",
+                  "wins": 0,
+                  "x": 750,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                }
+              ]
+            }
+          }
+        },
+        {
+          "step": "C07 abandonar revancha no suma pelea ni victoria",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "O01 código incompleto se rechaza antes de enviar join",
+          "pass": true,
+          "details": {
+            "error": "El código de sala debe tener 32 caracteres hexadecimales."
+          }
+        },
+        {
+          "step": "O02 código inexistente recibe error recuperable",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "O04 sala privada ausente del listado público",
+          "pass": true,
+          "details": {
+            "listed": 0
+          }
+        },
+        {
+          "step": "O05 entrar con código une ambos jugadores y bloquea escenario al invitado",
+          "pass": true,
+          "details": {
+            "room": {
+              "code": "2C5DEBA1A33438A9C7CF7CD65E287C3A",
+              "name": "La sala de Anfitrión QA",
+              "stage": "poliedro",
+              "players": [
+                {
+                  "id": "6f7c1411-d5b1-4708-afdd-153536605966",
+                  "name": "Anfitrión QA",
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "ready": false,
+                  "wins": 1
+                },
+                {
+                  "id": "cfe0a45d-eaee-4386-a2ce-42ab4d1fe60b",
+                  "name": "Invitado QA",
+                  "fighter": "javier",
+                  "ready": false,
+                  "wins": 1
+                }
+              ],
+              "status": "waiting",
+              "host": "6f7c1411-d5b1-4708-afdd-153536605966"
+            },
+            "locked": 9
+          }
+        },
+        {
+          "step": "O06 servidor también rechaza cambio de escenario del invitado",
+          "pass": true,
+          "details": {
+            "stage": "poliedro"
+          }
+        },
+        {
+          "step": "O07 tercer jugador no puede entrar a sala completa",
+          "pass": true,
+          "details": {
+            "error": "Esa sala está ocupada. Crea una nueva o elige otra.",
+            "players": 2
+          }
+        },
+        {
+          "step": "O08 cambiar luchador revoca listo del jugador",
+          "pass": true,
+          "details": {
+            "room": {
+              "code": "2C5DEBA1A33438A9C7CF7CD65E287C3A",
+              "name": "La sala de Anfitrión QA",
+              "stage": "poliedro",
+              "players": [
+                {
+                  "id": "6f7c1411-d5b1-4708-afdd-153536605966",
+                  "name": "Anfitrión QA",
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "ready": false,
+                  "wins": 1
+                },
+                {
+                  "id": "cfe0a45d-eaee-4386-a2ce-42ab4d1fe60b",
+                  "name": "Invitado QA",
+                  "fighter": "zavarce",
+                  "ready": false,
+                  "wins": 0
+                }
+              ],
+              "status": "waiting",
+              "host": "6f7c1411-d5b1-4708-afdd-153536605966"
+            }
+          }
+        },
+        {
+          "step": "O10 dos listos inician partida del servidor con índice P2",
+          "pass": true,
+          "details": {
+            "props": [
+              "initial",
+              "mode",
+              "difficulty",
+              "remote",
+              "localIndex",
+              "onInput",
+              "onExit",
+              "onResult",
+              "onRematch",
+              "rematchWaiting",
+              "onHelp"
+            ],
+            "localIndex": 1,
+            "match": {
+              "id": "2f46dee4-c521-49b4-9980-c1dc6a581a4d",
+              "phase": "intro",
+              "tick": 0,
+              "remaining": 5400,
+              "winner": null,
+              "players": [
+                {
+                  "name": "Anfitrión QA",
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "wins": 1,
+                  "x": 330,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                },
+                {
+                  "name": "Invitado QA",
+                  "fighter": "zavarce",
+                  "wins": 0,
+                  "x": 750,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                }
+              ]
+            }
+          }
+        },
+        {
+          "step": "O14 controles P2 con P1 estabilizado",
+          "pass": true,
+          "details": {
+            "before": [441.5999999999996, 645.5999999999998],
+            "after": [441.5999999999996, 578.9412778515045],
+            "tick": 926
+          }
+        },
+        {
+          "step": "O18 victoria online concede progreso y combo al P2 correcto",
+          "pass": true,
+          "details": {
+            "match": {
+              "id": "2f46dee4-c521-49b4-9980-c1dc6a581a4d",
+              "phase": "finished",
+              "tick": 1643,
+              "remaining": 4226,
+              "winner": 1,
+              "players": [
+                {
+                  "name": "Anfitrión QA",
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "wins": 1,
+                  "x": 1179.4803988432056,
+                  "y": 805.16,
+                  "hp": 0,
+                  "stocks": 0,
+                  "hits": 8,
+                  "energy": 68.48999999999927
+                },
+                {
+                  "name": "Invitado QA",
+                  "fighter": "zavarce",
+                  "wins": 0,
+                  "x": 937.5647834749417,
+                  "y": 554,
+                  "hp": 85.6384,
+                  "stocks": 1,
+                  "hits": 3,
+                  "energy": 89.64499999999984
+                }
+              ]
+            },
+            "progress": {
+              "wins": {
+                "javier": 1,
+                "zavarce": 1
+              },
+              "played": 2,
+              "bestCombo": 4,
+              "recent": [
+                {
+                  "fighter": "zavarce",
+                  "rival": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "won": true,
+                  "date": "2026-10-17T15:41:32.764Z"
+                },
+                {
+                  "fighter": "javier",
+                  "rival": "zavarce",
+                  "won": true,
+                  "date": "2026-10-17T15:40:13.017Z"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "step": "O19 revancha bilateral inicia nuevo combate con desbloqueo P2",
+          "pass": true,
+          "details": {
+            "old": "2f46dee4-c521-49b4-9980-c1dc6a581a4d",
+            "match": {
+              "id": "3f4435a0-148a-4e19-85eb-63d0fb92f898",
+              "phase": "intro",
+              "tick": 1,
+              "remaining": 5400,
+              "winner": null,
+              "players": [
+                {
+                  "name": "Anfitrión QA",
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "wins": 1,
+                  "x": 330,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                },
+                {
+                  "name": "Invitado QA",
+                  "fighter": "zavarce",
+                  "wins": 1,
+                  "x": 750,
+                  "y": 554,
+                  "hp": 100,
+                  "stocks": 2,
+                  "hits": 0,
+                  "energy": 35
+                }
+              ]
+            }
+          }
+        },
+        {
+          "step": "M01 controles táctiles mueven P2 y pointercancel suelta movimiento",
+          "pass": true,
+          "details": {
+            "before": 750,
+            "after": 674.661041462988,
+            "settled": 674.6001466938568,
+            "viewport": {
+              "width": 390,
+              "height": 844
+            }
+          }
+        },
+        {
+          "step": "R03 revancha con personaje retirado vuelve a selección segura",
+          "pass": true,
+          "details": {
+            "room": {
+              "code": "2C5DEBA1A33438A9C7CF7CD65E287C3A",
+              "name": "La sala de Anfitrión QA",
+              "stage": "guaira",
+              "players": [
+                {
+                  "id": "6f7c1411-d5b1-4708-afdd-153536605966",
+                  "name": "Anfitrión QA",
+                  "fighter": "zavarce",
+                  "ready": false,
+                  "wins": 0
+                },
+                {
+                  "id": "cfe0a45d-eaee-4386-a2ce-42ab4d1fe60b",
+                  "name": "Invitado QA",
+                  "fighter": "zavarce",
+                  "ready": false,
+                  "wins": 2
+                }
+              ],
+              "status": "waiting",
+              "host": "6f7c1411-d5b1-4708-afdd-153536605966"
+            },
+            "notice": "Un personaje fue retirado. Elijan sus luchadores y marquen listo de nuevo."
+          }
+        },
+        {
+          "step": "D02 rival sale vuelve a selección y transfiere anfitrión",
+          "pass": true,
+          "details": {
+            "room": {
+              "code": "2C5DEBA1A33438A9C7CF7CD65E287C3A",
+              "name": "La sala de Anfitrión QA",
+              "stage": "guaira",
+              "players": [
+                {
+                  "id": "cfe0a45d-eaee-4386-a2ce-42ab4d1fe60b",
+                  "name": "Invitado QA",
+                  "fighter": "zavarce",
+                  "ready": false,
+                  "wins": 2
+                }
+              ],
+              "status": "waiting",
+              "host": "cfe0a45d-eaee-4386-a2ce-42ab4d1fe60b"
+            },
+            "stageLocked": 0
+          }
+        },
+        {
+          "step": "N01 búsqueda vacía ofrece recuperación",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "N02 recuperación restaura catálogo y selección",
+          "pass": true,
+          "details": {}
+        }
+      ]
+    },
+    {
+      "environment": "production final build",
+      "session": "owner: regression scripts and round trip",
+      "checks": [
+        {
+          "step": "Aviso de salida se limpia al regresar el rival y abandonar la sala",
+          "pass": true,
+          "details": {
+            "rejoined": true,
+            "left": true
+          }
+        },
+        {
+          "step": "Un apodo guardado corrupto recupera el formulario sin romper el botón de pelear",
+          "pass": true,
+          "details": {
+            "value": "",
+            "error": "Pon tu apodo y entramos a la arena."
+          }
+        },
+        {
+          "step": "F01 recargar conserva progreso de peleas sin duplicarlo",
+          "pass": true,
+          "details": {
+            "progress": {
+              "wins": {
+                "custom_10f37930aa3545e497422e26a8fa2d13": 1
+              },
+              "played": 3,
+              "bestCombo": 7,
+              "recent": [
+                {
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "rival": "zavarce",
+                  "won": false,
+                  "date": "2026-10-17T15:42:32.668Z"
+                },
+                {
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "rival": "zavarce",
+                  "won": false,
+                  "date": "2026-10-17T15:41:32.791Z"
+                },
+                {
+                  "fighter": "custom_10f37930aa3545e497422e26a8fa2d13",
+                  "rival": "zavarce",
+                  "won": true,
+                  "date": "2026-10-17T15:40:23.100Z"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "step": "F02 recarga y navegación conservan sesión correcta",
+          "pass": true,
+          "details": {
+            "user": "Host Producción QA"
+          }
+        },
+        {
+          "step": "F03 crear sala pública aparece en listado HTTP",
+          "pass": true,
+          "details": {
+            "code": "615880B846034E7A4109FB5B46A4855D"
+          }
+        },
+        {
+          "step": "F05 invitación contiene origen y código íntegro de la sala",
+          "pass": true,
+          "details": {
+            "url": "http://localhost:5381/?sala=615880B846034E7A4109FB5B46A4855D",
+            "notice": "Enlace copiado. Mándaselo a tu pana."
+          }
+        },
+        {
+          "step": "F09 volver al taller conserva sesión y retiro del personaje",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "F10 atrás del navegador vuelve a selección sin combate o sala fantasma",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "F11 adelante del navegador restaura taller de cuenta actual",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "Recursos recuperados al reintentar sin recargar la página",
+          "pass": true,
+          "details": {
+            "failures": 2,
+            "name": "Recurso QA 18f08d",
+            "id": "custom_9ae30625c2fa4952a730a2f55f7aafff"
+          }
+        },
+        {
+          "step": "F12 prueba privada tiene propietario autenticado",
+          "pass": true,
+          "details": {
+            "status": 200
+          }
+        },
+        {
+          "step": "F13 sesión revocada durante prueba privada devuelve acceso y elimina datos del formulario",
+          "pass": true,
+          "details": {
+            "logout": 200,
+            "privateRecord": 401,
+            "trial": false
+          }
+        },
+        {
+          "step": "F15 sesión cerrada no permite leer borrador ni fotos ni sprite privado",
+          "pass": true,
+          "details": {
+            "statuses": [401, 401, 404]
+          }
+        }
+      ]
+    },
+    {
+      "environment": "production final build",
+      "session": "rival: public room",
+      "checks": [
+        {
+          "step": "F04 entrar a sala pública mediante Unirme conecta dos jugadores",
+          "pass": true,
+          "details": {
+            "room": {
+              "code": "615880B846034E7A4109FB5B46A4855D",
+              "name": "La sala de Sala Pública QA",
+              "stage": "caracas",
+              "players": [
+                {
+                  "id": "497980b3-c279-4ec9-bc7c-fc17d70a761b",
+                  "name": "Sala Pública QA",
+                  "fighter": "zavarce",
+                  "ready": false,
+                  "wins": 0
+                },
+                {
+                  "id": "2e8219ea-e4e3-4820-b5e0-0d227a959e31",
+                  "name": "Invitado Público QA",
+                  "fighter": "zavarce",
+                  "ready": false,
+                  "wins": 2
+                }
+              ],
+              "status": "waiting",
+              "host": "497980b3-c279-4ec9-bc7c-fc17d70a761b"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "environment": "production final build",
+      "session": "rival: invite and private authorization",
+      "checks": [
+        {
+          "step": "F06 enlace abre online y precarga código correcto",
+          "pass": true,
+          "details": {}
+        },
+        {
+          "step": "F07 formulario de invitación permite volver a sala",
+          "pass": true,
+          "details": {
+            "room": {
+              "code": "615880B846034E7A4109FB5B46A4855D",
+              "name": "La sala de Sala Pública QA",
+              "stage": "caracas",
+              "players": [
+                {
+                  "id": "497980b3-c279-4ec9-bc7c-fc17d70a761b",
+                  "name": "Sala Pública QA",
+                  "fighter": "zavarce",
+                  "ready": false,
+                  "wins": 0
+                },
+                {
+                  "id": "993f6f82-fc4f-4a99-91a5-2a6309bcbcfe",
+                  "name": "Invitado Público QA",
+                  "fighter": "zavarce",
+                  "ready": false,
+                  "wins": 2
+                }
+              ],
+              "status": "waiting",
+              "host": "497980b3-c279-4ec9-bc7c-fc17d70a761b"
+            }
+          }
+        },
+        {
+          "step": "F08 invitación a sala vacía eliminada informa código inválido",
+          "pass": true,
+          "details": {
+            "message": "No encontramos esa sala. Revisa el código."
+          }
+        },
+        {
+          "step": "F14 otra cuenta no puede leer fotos sprites ni publicar un borrador privado",
+          "pass": true,
+          "details": {
+            "user": "Rival Producción QA",
+            "statuses": [404, 404, 404, 404]
+          }
+        }
+      ]
+    }
+  ],
+  "correctedTestExpectations": [
+    {
+      "case": "Online guest movement",
+      "initial": "Required the released host to remain at exactly the same x immediately.",
+      "observation": {
+        "step": "O14 mismos controles del invitado mueven sólo P2",
+        "pass": false,
+        "details": {
+          "before": [441.2332606508874, 750],
+          "after": [441.59999788197274, 645.9430787459439],
+          "tick": 578
+        }
+      },
+      "correction": "Released movement decelerates with real friction. Reran after the host stabilized, observed movement of only the guest and passed."
+    },
+    {
+      "case": "Retired published art",
+      "initial": "Expected a previously public sprite to become HTTP 404 immediately.",
+      "observation": "The sprite correctly stayed HTTP 200 while discovery removed the character.",
+      "correction": "The explicit retirement contract keeps published art for active matches. Verified completion, removal from selection, and blocked rematch requiring fresh choices."
+    }
+  ],
+  "relatedEvidence": [
+    "docs/accounts-runtime-qa.json",
+    "docs/pvp-runtime-qa.json"
+  ],
+  "limits": [
+    "This is tested coverage, not a proof that every possible sequence or environment is correct.",
+    "Deterministic synthetic art does not validate the live AI provider's availability, likeness, or visual output.",
+    "Loopback HTTP browser testing does not validate public HTTPS deployment, WAN latency, physical controllers, or physical mobile hardware.",
+    "Progress is intentionally local to the browser; authentication protects creator records and reference photos. Previously published art is retained after retirement for existing matches."
+  ]
+}
