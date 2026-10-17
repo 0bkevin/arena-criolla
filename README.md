@@ -100,6 +100,8 @@ npm start
 
 `PORT` configura el puerto (5173 por defecto). Cliente, `/api/health`, `/api/rooms` y `/ws` se sirven desde el mismo origen. El alojamiento debe admitir un proceso Node persistente y conexiones WebSocket; un alojamiento exclusivamente estático no sirve las salas. Con HTTPS, el cliente usa automáticamente WSS.
 
+Configura `ARENA_PUBLIC_URL` con el origen público completo (por ejemplo, `https://arena.example`, sin rutas) al desplegar detrás de un proxy. El servidor lo utiliza para las URLs canónicas, Open Graph, Twitter y `/sitemap.xml`; sin esta variable utiliza el origen de la petición. Los metadatos se sirven en el HTML inicial para que funcionen sin JavaScript. `/robots.txt` anuncia el sitemap. La imagen social de 1200 × 630 está en `public/assets/og-arena-criolla.png`; `npm run assets:og` la regenera con los escenarios, luchadores y fuentes originales del lobby.
+
 También se incluye un Dockerfile:
 
 ```bash
