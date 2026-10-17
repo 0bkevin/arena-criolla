@@ -9,6 +9,7 @@
     "start": "NODE_ENV=production tsx server/index.ts",
     "test": "tsx --test tests/*.test.ts tests/character-audits/*.test.ts",
     "assets": "node scripts/prepare-assets.mjs",
+    "assets:og": "node scripts/generate-og-image.mjs",
     "check:assets": "node scripts/validate-character-assets.mjs",
     "test:accounts": "tsx --test tests/accounts.test.ts tests/creator-api.test.ts",
     "test:creator": "tsx --test tests/accounts.test.ts tests/creator-api.test.ts tests/creator.test.ts tests/creator-sprites.test.ts tests/creator-resilience.test.ts tests/adversarial-creator-v31.test.ts tests/provider-contract.test.ts",

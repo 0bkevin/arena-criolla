@@ -5,6 +5,13 @@ import { createServer } from "node:http";
 import { randomBytes, randomUUID } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { readFile } from "node:fs/promises";
+import {
+  publicSiteOrigin,
+  requestSiteOrigin,
+  renderSiteHtml,
+  siteSitemap,
+} from "./seo";
 import { WebSocket, WebSocketServer } from "ws";
 import { isFighter, isStage } from "../shared/content";
 import { isRoomCode, normalizeRoomCode } from "../shared/room-code";
@@ -65,6 +72,10 @@ export async function makeArenaServer(
 ) {
   const app = express();
   app.disable("x-powered-by");
+  const configuredOrigin =
+    options.serveClient === false
+      ? undefined
+      : publicSiteOrigin(process.env.ARENA_PUBLIC_URL);
   let notifyCommunity = () => {};
   const creator = makeCreatorService({
     ...(options.creator ??
@@ -537,12 +548,27 @@ export async function makeArenaServer(
   let vite:
     Awaited<ReturnType<(typeof import("vite"))["createServer"]>> | undefined;
   if (options.serveClient !== false) {
+    app.get("/robots.txt", (req, res) => {
+      const origin = requestSiteOrigin(req, configuredOrigin);
+      res
+        .type("text/plain")
+        .send(`User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}/sitemap.xml\n`);
+    });
+    app.get("/sitemap.xml", (req, res) => {
+      res
+        .type("application/xml")
+        .send(siteSitemap(requestSiteOrigin(req, configuredOrigin)));
+    });
+    app.get("/index.html", (_req, res) => res.redirect(308, "/"));
     if (options.production) {
       const dist = path.resolve("dist");
-      app.use(express.static(dist));
-      app.get("/{*path}", (_req, res) =>
-        res.sendFile(path.join(dist, "index.html"), { dotfiles: "allow" }),
-      );
+      const template = await readFile(path.join(dist, "index.html"), "utf8");
+      app.use(express.static(dist, { index: false }));
+      app.get("/{*path}", (req, res) => {
+        res
+          .type("html")
+          .send(renderSiteHtml(template, requestSiteOrigin(req, configuredOrigin), req.path));
+      });
     } else {
       const { createServer: createViteServer } = await import("vite");
       vite = await createViteServer({
@@ -562,9 +588,18 @@ export async function makeArenaServer(
             ],
           },
         },
-        appType: "spa",
+        appType: "custom",
       });
       app.use(vite.middlewares);
+      app.get("/{*path}", async (req, res) => {
+        const template = await readFile(path.resolve("index.html"), "utf8");
+        const html = renderSiteHtml(
+          template,
+          requestSiteOrigin(req, configuredOrigin),
+          req.path,
+        );
+        res.type("html").send(await vite!.transformIndexHtml(req.originalUrl, html));
+      });
     }
   }
   let closing: Promise<void> | null = null;
