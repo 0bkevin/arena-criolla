@@ -45,6 +45,7 @@ import { Portrait } from "./Portrait";
 import { TouchControls } from "./TouchControls";
 import { enterLandscape, hasTouchInput, leaveLandscape } from "../game/mobile";
 import { arenaCanvasSize } from "../game/viewport";
+import type { RankingReceipt } from "../../shared/ranking";
 
 export type GameMode = "practice" | "local" | "online";
 interface Props {
@@ -60,6 +61,11 @@ interface Props {
   rematchWaiting?: boolean;
   networkError?: string;
   onDismissNetworkError?: () => void;
+  ranked?: boolean;
+  rankingResult?: RankingReceipt | null;
+  reconnectUntil?: number;
+  rematchAvailable?: boolean;
+  onRanking?: () => void;
   onHelp: () => void;
 }
 
@@ -82,6 +88,8 @@ export function Game(props: Props) {
   const portraitBlocked = device.touch && device.portrait;
   const blockedRef = useRef(portraitBlocked);
   blockedRef.current = portraitBlocked;
+  const networkPausedRef = useRef(Boolean(props.reconnectUntil));
+  networkPausedRef.current = Boolean(props.reconnectUntil);
   const callbacks = useRef(props);
   callbacks.current = props;
   const pausedRef = useRef(false);
@@ -131,6 +139,9 @@ export function Game(props: Props) {
       });
   };
   useEffect(() => {
+    if (props.reconnectUntil) releaseInputs();
+  }, [props.reconnectUntil]);
+  useEffect(() => {
     const update = () =>
       setDevice({ touch: hasTouchInput(), portrait: innerHeight > innerWidth });
     const coarse = matchMedia("(pointer: coarse)");
@@ -170,7 +181,8 @@ export function Game(props: Props) {
     if (
       introView.current.phase !== "intro" ||
       introView.current.tick >= INTRO_COUNTDOWN_START ||
-      pausedRef.current
+      pausedRef.current ||
+      networkPausedRef.current
     )
       return;
     applyControl(inputs.current[0], "dash", true);
@@ -204,7 +216,7 @@ export function Game(props: Props) {
       )
         return;
       if (down && document.querySelector("dialog[open]")) return;
-      if (down && blockedRef.current) return;
+      if (down && (blockedRef.current || networkPausedRef.current)) return;
       if (event.code === "Escape" && down && !event.repeat) {
         setPaused((value) => {
           pausedRef.current = !value;
@@ -293,6 +305,7 @@ export function Game(props: Props) {
       if (
         !pausedRef.current &&
         !blockedRef.current &&
+        !networkPausedRef.current &&
         !dialogOpen &&
         state.phase !== "finished"
       )
@@ -472,6 +485,7 @@ export function Game(props: Props) {
     if (
       pausedRef.current ||
       blockedRef.current ||
+      networkPausedRef.current ||
       view.phase !== "playing" ||
       document.querySelector("dialog[open]")
     )
@@ -508,11 +522,19 @@ export function Game(props: Props) {
         <div className="game-topline">
           <button
             className="text-button"
-            aria-label="Volver a la selección"
+            aria-label={
+              props.ranked && view.phase !== "finished"
+                ? "Abandonar clasificatoria (cuenta como derrota)"
+                : "Volver a la selección"
+            }
             onClick={props.onExit}
           >
             <ArrowLeft size={16} />{" "}
-            {device.touch ? "Selección" : "Volver a la selección"}
+            {props.ranked && view.phase !== "finished"
+              ? "Salir (cuenta como derrota)"
+              : device.touch
+                ? "Selección"
+                : "Volver a la selección"}
           </button>
           <span className="game-mode">
             <span className="live-dot" />
@@ -561,6 +583,13 @@ export function Game(props: Props) {
         className={`arena-wrap${cinematic ? " cinematic-active" : ""}`}
         ref={wrapper}
       >
+        {props.reconnectUntil && view.phase !== "finished" && (
+          <div className="notice-banner network-notice" role="status">
+            Esperando reconexión de tu pana. La pelea está detenida; cada
+            jugador dispone de hasta 10 segundos acumulados de recuperación por
+            partida.
+          </div>
+        )}
         <canvas
           ref={canvas}
           className="arena-canvas"
@@ -677,17 +706,27 @@ export function Game(props: Props) {
           <div className="game-overlay">
             <div className="pause-card">
               <span className="eyebrow">UN RESPIRO</span>
-              <h2>{mode === "online" ? "La pelea sigue" : "Pausa, pana."}</h2>
+              <h2>
+                {props.reconnectUntil
+                  ? "Esperando a tu pana"
+                  : mode === "online"
+                    ? "La pelea sigue"
+                    : "Pausa, pana."}
+              </h2>
               <p>
-                {mode === "online"
-                  ? "En línea el combate continúa. Vuelve antes de que tu rival aproveche."
-                  : "Recarga el ánimo y vuelve a la arena."}
+                {props.reconnectUntil
+                  ? "El combate está detenido durante el margen de reconexión."
+                  : mode === "online"
+                    ? "En línea el combate continúa. Vuelve antes de que tu rival aproveche."
+                    : "Recarga el ánimo y vuelve a la arena."}
               </p>
               <button className="primary-button" onClick={togglePause}>
                 <Play size={18} /> Continuar
               </button>
               <button className="secondary-button" onClick={props.onExit}>
-                Salir del combate
+                {props.ranked
+                  ? "Abandonar (cuenta como derrota)"
+                  : "Salir del combate"}
               </button>
             </div>
           </div>
@@ -739,14 +778,32 @@ export function Game(props: Props) {
                     </div>
                   )}
                 {networkNotice}
-                <button
-                  className="primary-button"
-                  disabled={props.rematchWaiting}
-                  onClick={props.onRematch}
-                >
-                  <RotateCcw size={17} />
-                  {props.rematchWaiting ? "Esperando a tu pana…" : "¡Revancha!"}
-                </button>
+                {props.ranked && (
+                  <div className="ranked-result-status" role="status">
+                    {props.rankingResult?.status === "saved"
+                      ? `Resultado guardado en el ranking${props.rankingResult.reason === "forfeit" ? " · Por abandono" : ""}.`
+                      : props.rankingResult?.status === "void"
+                        ? "Partida anulada. No cuenta para el ranking."
+                        : "Guardando el resultado en el ranking. Si tarda, se reintentará automáticamente."}
+                    {props.onRanking && (
+                      <button className="text-button" onClick={props.onRanking}>
+                        Ver ranking e historial
+                      </button>
+                    )}
+                  </div>
+                )}
+                {props.rematchAvailable !== false && (
+                  <button
+                    className="primary-button"
+                    disabled={props.rematchWaiting}
+                    onClick={props.onRematch}
+                  >
+                    <RotateCcw size={17} />
+                    {props.rematchWaiting
+                      ? "Esperando a tu pana…"
+                      : "¡Revancha!"}
+                  </button>
+                )}
                 <button className="text-button" onClick={props.onExit}>
                   Volver a la selección <ArrowRight size={15} />
                 </button>
@@ -831,7 +888,9 @@ export function Game(props: Props) {
               <Expand size={18} /> Jugar en horizontal
             </button>
             <button className="text-button" onClick={props.onExit}>
-              Volver a la selección
+              {props.ranked && view.phase !== "finished"
+                ? "Abandonar (cuenta como derrota)"
+                : "Volver a la selección"}
             </button>
           </div>
         </div>
