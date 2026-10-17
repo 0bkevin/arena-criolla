@@ -56,6 +56,8 @@ export function useArenaNetwork() {
         }
         if (message.type === "room") {
           setRoom(message.room);
+          setError("");
+          if (message.room.players.length === 2) setOpponentLeft(false);
           if (message.room.status === "waiting") {
             setMatch(null);
             state.current = null;
@@ -72,6 +74,7 @@ export function useArenaNetwork() {
         if (message.type === "left") {
           setRoom(null);
           setMatch(null);
+          setOpponentLeft(false);
           state.current = null;
         }
         if (message.type === "opponent-left") {

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+  <meta charset="utf-8" />
+  <title>Regresión de avisos de salas</title>
+  <div id="root"></div>
+  <pre id="results">Ejecutando…</pre>
+  <script type="module">
+    import React from "react";
+    import { createRoot } from "react-dom/client";
+    import { flushSync } from "react-dom";
+    import { useArenaNetwork } from "/src/network.ts";
+
+    // Run through T3 Preview against npm run dev:
+    // /tests/browser/network.html, then inspect window.networkRegression.
+    // Only this fixture replaces the transport. The hook and React are real.
+    const sockets = [];
+    const NativeWebSocket = window.WebSocket;
+    class FixtureSocket {
+      static OPEN = 1;
+      readyState = 1;
+      constructor() {
+        sockets.push(this);
+      }
+      send() {}
+      close() {
+        this.readyState = 3;
+        this.onclose?.();
+      }
+    }
+    window.WebSocket = FixtureSocket;
+    let network;
+    function Harness() {
+      network = useArenaNetwork();
+      return React.createElement("output", null, network.error);
+    }
+    const root = createRoot(document.getElementById("root"));
+    flushSync(() => root.render(React.createElement(Harness)));
+    const socket = sockets.at(-1);
+    const receive = (message) =>
+      flushSync(() => socket.onmessage({ data: JSON.stringify(message) }));
+    flushSync(() => socket.onopen());
+    const player = (id) => ({
+      id,
+      name: id,
+      fighter: "zavarce",
+      ready: false,
+      wins: 0,
+    });
+    const room = (code, count = 1) => ({
+      code,
+      name: "Sala QA",
+      host: "a",
+      stage: "caracas",
+      status: "waiting",
+      players: [player("a"), ...(count === 2 ? [player("b")] : [])],
+    });
+    const checks = [];
+    const check = (name, actual, expected) =>
+      checks.push({ name, passed: actual === expected, actual, expected });
+
+    receive({
+      type: "error",
+      message: "No encontramos esa sala. Revisa el código.",
+    });
+    check(
+      "El error del servidor se muestra",
+      network.error,
+      "No encontramos esa sala. Revisa el código.",
+    );
+    receive({ type: "room", room: room("A".repeat(32)) });
+    check(
+      "Entrar en una sala válida elimina el error anterior",
+      network.error,
+      "",
+    );
+
+    receive({ type: "opponent-left" });
+    receive({ type: "room", room: room("A".repeat(32)) });
+    check(
+      "El aviso de salida sigue visible mientras falta el rival",
+      network.opponentLeft,
+      true,
+    );
+    receive({ type: "room", room: room("A".repeat(32), 2) });
+    check(
+      "El aviso desaparece cuando el rival vuelve a entrar",
+      network.opponentLeft,
+      false,
+    );
+
+    receive({ type: "opponent-left" });
+    receive({ type: "left" });
+    check(
+      "Salir de la sala descarta el aviso de la sala anterior",
+      network.opponentLeft,
+      false,
+    );
+
+    window.networkRegression = {
+      passed: checks.every((c) => c.passed),
+      checks,
+    };
+    document.getElementById("results").textContent = JSON.stringify(
+      window.networkRegression,
+      null,
+      2,
+    );
+    document.title = `${window.networkRegression.passed ? "PASS" : "FAIL"} avisos de salas`;
+    flushSync(() => root.unmount());
+    window.WebSocket = NativeWebSocket;
+  </script>
+</html>
