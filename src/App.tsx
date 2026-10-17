@@ -28,6 +28,7 @@ import {
   ROOM_CODE_LENGTH,
 } from "../shared/room-code";
 import { useArenaNetwork } from "./network";
+import { usePlayerRanking } from "./player-ranking";
 import {
   getPreference,
   readProgress,
@@ -104,6 +105,10 @@ export function App({
   const network = useArenaNetwork(
     (state, index) => recordResult(state, index, false),
     identityRevision,
+  );
+  const playerRanking = usePlayerRanking(
+    network.account,
+    network.rankingRevision,
   );
   useEffect(() => {
     if (network.account)
@@ -489,7 +494,16 @@ export function App({
                 : "Tu cuenta y tus clasificatorias"
             }
           >
-            {network.account?.name ?? "Iniciar sesión"}
+            <span>{network.account?.name ?? "Iniciar sesión"}</span>
+            {network.account && (
+              <small>
+                {playerRanking.entry
+                  ? `${playerRanking.entry.points} pts`
+                  : playerRanking.loading
+                    ? "Cargando puntos…"
+                    : "Puntaje no disponible"}
+              </small>
+            )}
           </button>
           {!active && (
             <button
@@ -849,6 +863,8 @@ export function App({
       {modal === "account" && (
         <AccountDialog
           account={network.account}
+          ranking={playerRanking}
+          onRanking={() => setModal("ranking")}
           onClose={() => setModal(null)}
           onChanged={(account) => {
             if (account)

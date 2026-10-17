@@ -1,8 +1,22 @@
 .arena-account-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-height: 44px;
   max-width: 130px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.arena-account-button > span,
+.arena-account-button > small {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.arena-account-button > small {
+  color: var(--lime);
+  font-size: 10px;
 }
 .account-tabs {
   display: flex;
@@ -129,6 +143,11 @@
   display: block;
   margin-top: 10px;
   min-height: 44px;
+}
+.ranked-result-status > strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--lime);
 }
 .ranked-room-label {
   color: var(--lime);
