@@ -300,10 +300,14 @@ export function CreatorStudio({
     beginMobilePlay();
     registerCommunityCharacter(record.character, false);
     setTrial(
-      createMatch("caracas", [
-        { fighter: record.character.id, name: record.input.name, wins: 3 },
-        { fighter: "zavarce", name: "CPU", wins: 0 },
-      ]),
+      createMatch(
+        "caracas",
+        [
+          { fighter: record.character.id, name: record.input.name, wins: 3 },
+          { fighter: "zavarce", name: "CPU", wins: 0 },
+        ],
+        crypto.randomUUID(),
+      ),
     );
     window.scrollTo({ top: 0 });
   };
@@ -325,6 +329,7 @@ export function CreatorStudio({
                   (typeof trial.players)[0]["config"],
                   (typeof trial.players)[1]["config"],
                 ],
+                crypto.randomUUID(),
               ),
             )
           }
