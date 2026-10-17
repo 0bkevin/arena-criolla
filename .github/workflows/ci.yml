@@ -26,6 +26,7 @@ jobs:
           trap 'docker logs "$container"; docker rm --force --volumes "$container"' EXIT
           port=$(docker port "$container" 5173/tcp | cut -d: -f2)
           base="http://127.0.0.1:$port"
-          curl --fail --retry 15 --retry-delay 1 --retry-connrefused "$base/api/health"
+          # Docker can reset connections before the application is listening.
+          curl --fail --retry 15 --retry-delay 1 --retry-all-errors --retry-max-time 30 --connect-timeout 2 --max-time 3 "$base/api/health"
           curl --fail "$base/create" --output /dev/null
           curl --fail "$base/api/creator/capabilities"

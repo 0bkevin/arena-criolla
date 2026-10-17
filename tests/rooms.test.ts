@@ -4,7 +4,7 @@ import { WebSocket } from "ws";
 import { makeArenaServer } from "../server/index";
 import { emptyInput } from "../shared/engine";
 import type { ServerMessage } from "../shared/protocol";
-import { FIGHTERS, STAGES } from "../shared/content";
+import { FIGHTERS, STAGES, platformsAtTick } from "../shared/content";
 
 class TestClient {
   messages: ServerMessage[] = [];
@@ -39,6 +39,332 @@ class TestClient {
     throw new Error(`Timed out waiting for ${type}`);
   }
 }
+
+async function onlineMatch(stage: (typeof STAGES)[number]["id"] = "poliedro") {
+  const server = await makeArenaServer({ serveClient: false });
+  await new Promise<void>((resolve) =>
+    server.http.listen(0, "127.0.0.1", resolve),
+  );
+  const address = server.http.address();
+  assert.ok(address && typeof address === "object");
+  const url = `ws://127.0.0.1:${address.port}/ws`;
+  const a = new TestClient(url);
+  const b = new TestClient(url);
+  const [welcome] = await Promise.all([a.wait("welcome"), b.wait("welcome")]);
+  a.send({
+    type: "create",
+    name: "Host",
+    fighter: "zavarce",
+    stage,
+    wins: 0,
+    private: true,
+  });
+  const { room } = await a.wait("room");
+  b.send({
+    type: "join",
+    code: room.code,
+    name: "Guest",
+    fighter: "vallenilla",
+    wins: 0,
+  });
+  await a.wait("room", (message) => message.room.players.length === 2);
+  a.send({ type: "ready", ready: true });
+  b.send({ type: "ready", ready: true });
+  await Promise.all([a.wait("start"), b.wait("start")]);
+  const active = server.rooms.get(room.code)!;
+  active.state!.phase = "playing";
+  active.state!.players.forEach((player) => {
+    player.invincible = 0;
+  });
+  return {
+    server,
+    a,
+    b,
+    active,
+    client: server.clients.get(welcome.id)!,
+    close: async () => {
+      a.socket.terminate();
+      b.socket.terminate();
+      await server.close();
+    },
+  };
+}
+
+test("stalled online input releases held controls without replaying actions, then recovers", async () => {
+  const match = await onlineMatch();
+  try {
+    const input = emptyInput();
+    input.left = true;
+    input.block = true;
+    input.down = true;
+    input.actions.light = 1;
+    match.a.send({ type: "input", matchId: match.active.state!.id, input });
+    const held = await match.a.wait(
+      "state",
+      (message) => message.state.players[0].blocking,
+    );
+    const released = await match.a.wait(
+      "state",
+      (message) =>
+        message.state.tick > held.state.tick &&
+        !message.state.players[0].blocking,
+    );
+    assert.equal(match.client.input.left, false);
+    assert.equal(match.client.input.right, false);
+    assert.equal(match.client.input.down, false);
+    assert.equal(match.client.input.block, false);
+    assert.equal(
+      match.client.input.actions.light,
+      1,
+      "expiry preserves consumed action counters",
+    );
+    assert.equal(match.active.state!.players[0].hits, 0);
+
+    input.left = false;
+    input.right = true;
+    input.block = false;
+    input.down = false;
+    const x = match.active.state!.players[0].x;
+    match.a.send({ type: "input", matchId: match.active.state!.id, input });
+    await match.a.wait(
+      "state",
+      (message) =>
+        message.state.tick > released.state.tick &&
+        message.state.players[0].x > x + 8,
+    );
+    assert.equal(match.client.input.right, true, "fresh input resumes control");
+    assert.equal(
+      match.active.state!.players[0].attack,
+      null,
+      "old attack is not replayed",
+    );
+  } finally {
+    await match.close();
+  }
+});
+
+test("older action counters cannot trigger a second jump or overwrite held controls", async () => {
+  const match = await onlineMatch();
+  try {
+    const input = emptyInput();
+    input.actions.jump = 1;
+    match.a.send({ type: "input", matchId: match.active.state!.id, input });
+    await match.a.wait(
+      "state",
+      (message) => message.state.players[0].jumps === 1,
+    );
+    const older = emptyInput();
+    older.right = true;
+    match.a.send({
+      type: "input",
+      matchId: match.active.state!.id,
+      input: older,
+    });
+    await new Promise((resolve) => setTimeout(resolve, 70));
+    assert.equal(match.client.input.actions.jump, 1);
+    assert.equal(match.client.input.right, false);
+    assert.equal(match.active.state!.players[0].jumps, 1);
+    input.actions.jump = 2;
+    match.a.send({ type: "input", matchId: match.active.state!.id, input });
+    await match.a.wait(
+      "state",
+      (message) => message.state.players[0].jumps === 2,
+    );
+  } finally {
+    await match.close();
+  }
+});
+
+test("rematches reject previous-match input and accept the first fresh action", async () => {
+  const match = await onlineMatch();
+  try {
+    const previousId = match.active.state!.id;
+    const input = emptyInput();
+    input.actions.jump = 1;
+    match.a.send({ type: "input", matchId: previousId, input });
+    await match.a.wait(
+      "state",
+      (message) => message.state.players[0].jumps === 1,
+    );
+    match.active.state!.players[1].stocks = 1;
+    match.active.state!.players[1].hp = 0;
+    await match.a.wait(
+      "state",
+      (message) => message.state.phase === "finished",
+    );
+    match.a.send({ type: "rematch" });
+    match.b.send({ type: "rematch" });
+    const [next, peer] = await Promise.all([
+      match.a.wait("start"),
+      match.b.wait("start"),
+    ]);
+    assert.deepEqual(next.state, peer.state);
+    assert.notEqual(next.state.id, previousId);
+    input.right = true;
+    input.actions.jump = 5;
+    match.a.send({ type: "input", matchId: previousId, input });
+    match.a.send({ type: "input", input });
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    assert.deepEqual(match.client.input, emptyInput());
+    match.active.state!.phase = "playing";
+    input.actions.jump = 1;
+    match.a.send({ type: "input", matchId: next.state.id, input });
+    const jumped = await match.a.wait(
+      "state",
+      (message) =>
+        message.state.id === next.state.id &&
+        message.state.players[0].jumps === 1,
+    );
+    assert.ok(jumped.state.players[0].x > 330);
+    assert.equal(jumped.state.players[0].config.wins, 1);
+  } finally {
+    await match.close();
+  }
+});
+
+test("online double knockouts synchronize a draw and award neither player a win", async () => {
+  const match = await onlineMatch();
+  try {
+    match.active.state!.players.forEach((player) => {
+      player.stocks = 1;
+      player.hp = 0;
+    });
+    const [a, b] = await Promise.all([
+      match.a.wait("state", (message) => message.state.phase === "finished"),
+      match.b.wait("state", (message) => message.state.phase === "finished"),
+    ]);
+    assert.equal(a.state.winner, "draw");
+    assert.deepEqual(a.state, b.state);
+    assert.deepEqual(
+      match.active.view.players.map((player) => player.wins),
+      [0, 0],
+    );
+    match.a.send({ type: "rematch" });
+    match.b.send({ type: "rematch" });
+    const next = await match.a.wait("start");
+    assert.ok(
+      next.state.players.every(
+        (player) => player.stocks === 2 && player.config.wins === 0,
+      ),
+    );
+  } finally {
+    await match.close();
+  }
+});
+
+test("all nine stages synchronize movement and special attacks over real sockets", async () => {
+  for (const stage of STAGES) {
+    const match = await onlineMatch(stage.id);
+    try {
+      const input = emptyInput();
+      input.right = true;
+      input.actions.special = 1;
+      match.a.send({ type: "input", matchId: match.active.state!.id, input });
+      const a = await match.a.wait(
+        "state",
+        (message) => message.state.players[0].x > 340,
+      );
+      const b = await match.b.wait(
+        "state",
+        (message) => message.state.tick === a.state.tick,
+      );
+      assert.equal(a.state.stage, stage.id);
+      assert.deepEqual(a.state, b.state, stage.id);
+      assert.equal(a.state.players[0].lastActions.special, 1);
+      assert.ok(
+        a.state.players.every(
+          (player) => Number.isFinite(player.x) && Number.isFinite(player.y),
+        ),
+      );
+    } finally {
+      await match.close();
+    }
+  }
+});
+
+test("online riders agree on moving-platform carry, jumping and dropping through all five mechanisms", async () => {
+  for (const stage of STAGES.filter((s) => s.platforms.some((p) => p.motion))) {
+    const match = await onlineMatch(stage.id);
+    try {
+      const state = match.active.state!;
+      const index = stage.platforms.findIndex((p) => p.motion);
+      const rider = state.players[0];
+      const placeRider = () => {
+        const platform = platformsAtTick(stage.id, state.tick)[index];
+        Object.assign(rider, {
+          x: platform.x + platform.width / 2,
+          y: platform.y,
+          vx: 0,
+          vy: 0,
+          grounded: true,
+          supportPlatform: index,
+          jumps: 0,
+          dropThrough: 0,
+        });
+        state.players[1].x = 50;
+        return state.tick;
+      };
+      const start = placeRider();
+      const carried = await match.a.wait(
+        "state",
+        (m) => m.state.tick >= start + 10,
+      );
+      const remote = await match.b.wait(
+        "state",
+        (m) => m.state.tick === carried.state.tick,
+      );
+      assert.deepEqual(carried.state, remote.state, stage.id);
+      const surface = platformsAtTick(stage.id, carried.state.tick)[index];
+      assert.equal(carried.state.players[0].supportPlatform, index);
+      assert.equal(carried.state.players[0].y, surface.y);
+      assert.ok(
+        Math.abs(carried.state.players[0].x - surface.x - surface.width / 2) <
+          0.002,
+      );
+
+      const input = emptyInput();
+      input.down = true;
+      match.a.send({ type: "input", matchId: state.id, input });
+      const dropped = await match.a.wait(
+        "state",
+        (m) => m.state.players[0].dropThrough > 0,
+      );
+      assert.equal(dropped.state.players[0].supportPlatform, null);
+      assert.equal(dropped.state.players[0].grounded, false);
+      input.down = false;
+      match.a.send({ type: "input", matchId: state.id, input });
+      const landed = await match.a.wait(
+        "state",
+        (m) =>
+          m.state.tick > dropped.state.tick &&
+          m.state.players[0].supportPlatform === -1,
+      );
+      const landedRemote = await match.b.wait(
+        "state",
+        (m) => m.state.tick === landed.state.tick,
+      );
+      assert.deepEqual(landed.state, landedRemote.state, stage.id + " floor");
+      assert.equal(landed.state.players[0].stocks, 2);
+
+      const jumpTick = placeRider();
+      input.actions.jump++;
+      match.a.send({ type: "input", matchId: state.id, input });
+      const jumped = await match.a.wait(
+        "state",
+        (m) => m.state.tick > jumpTick && m.state.players[0].jumps === 1,
+      );
+      assert.equal(jumped.state.players[0].supportPlatform, null);
+      assert.ok(jumped.state.players[0].vy < 0);
+      const jumpedRemote = await match.b.wait(
+        "state",
+        (m) => m.state.tick === jumped.state.tick,
+      );
+      assert.deepEqual(jumped.state, jumpedRemote.state, stage.id + " jump");
+    } finally {
+      await match.close();
+    }
+  }
+});
 
 test("anonymous rooms synchronize two players, validate inputs, rematch, and recover from disconnect", async () => {
   const server = await makeArenaServer({ serveClient: false });
@@ -108,12 +434,13 @@ test("anonymous rooms synchronize two players, validate inputs, rematch, and rec
     });
     const input = emptyInput();
     input.right = true;
-    a.send({ type: "input", input });
+    a.send({ type: "input", matchId: active.state!.id, input });
     const moved = await a.wait("state", (m) => m.state.players[0].x > 335);
     assert.ok(moved.state.players[0].x > 335);
     const prior = server.clients.get(aWelcome.id)!.input.actions.light;
     a.send({
       type: "input",
+      matchId: active.state!.id,
       input: { ...input, actions: { ...input.actions, light: -4 } },
     });
     await new Promise((resolve) => setTimeout(resolve, 30));
@@ -221,8 +548,8 @@ test("anonymous rooms synchronize Lele's launched trap reflected by Dudamel", as
     state.players[1].x = 630;
     const input = emptyInput();
     input.actions.special++;
-    a.send({ type: "input", input });
-    b.send({ type: "input", input });
+    a.send({ type: "input", matchId: state.id, input });
+    b.send({ type: "input", matchId: state.id, input });
     const [left, right] = await Promise.all([
       a.wait("state", (m) =>
         m.state.projectiles.some((p) => p.kind === "prank" && p.owner === 1),

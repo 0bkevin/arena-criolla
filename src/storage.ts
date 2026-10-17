@@ -53,9 +53,10 @@ export function saveProgress(progress: Progress) {
 }
 export function getPreference<T>(key: string, fallback: T): T {
   try {
-    return (
-      JSON.parse(localStorage.getItem(`arena-${key}`) || "null") ?? fallback
-    );
+    const value = JSON.parse(localStorage.getItem(`arena-${key}`) || "null");
+    return value !== null && typeof value === typeof fallback
+      ? value
+      : fallback;
   } catch {
     return fallback;
   }

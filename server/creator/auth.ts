@@ -2,9 +2,11 @@ import { createHash, randomBytes, scrypt, timingSafeEqual } from "node:crypto";
 import { promisify } from "node:util";
 import type { Request, Response } from "express";
 import type { CreatorDatabase } from "./database";
+import type { CreatorUser } from "../../shared/creator";
 
 const derive = promisify(scrypt);
 const COOKIE = "arena_session";
+const SESSION_MS = 30 * 24 * 60 * 60 * 1000;
 export async function hashPassword(password: string) {
   const salt = randomBytes(16).toString("hex");
   const hash = (await derive(password, salt, 64)) as Buffer;
@@ -40,17 +42,31 @@ export function createSession(
   secure: boolean,
 ) {
   const token = randomBytes(32).toString("hex");
-  db.saveSession(
-    tokenHash(token),
-    userId,
-    Date.now() + 30 * 24 * 60 * 60 * 1000,
-  );
+  db.saveSession(tokenHash(token), userId, Date.now() + SESSION_MS);
+  setSessionCookie(res, token, secure);
+}
+export function createAccountSession(
+  res: Response,
+  db: CreatorDatabase,
+  user: CreatorUser,
+  passwordHash: string,
+  secure: boolean,
+) {
+  const token = randomBytes(32).toString("hex");
+  // Publish the cookie only after both account and session have committed.
+  db.createAccount(user, passwordHash, {
+    tokenHash: tokenHash(token),
+    expiresAt: Date.now() + SESSION_MS,
+  });
+  setSessionCookie(res, token, secure);
+}
+function setSessionCookie(res: Response, token: string, secure: boolean) {
   res.cookie(COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
     secure,
     path: "/",
-    maxAge: 30 * 24 * 60 * 60 * 1000,
+    maxAge: SESSION_MS,
   });
 }
 export function clearSession(res: Response, secure: boolean) {

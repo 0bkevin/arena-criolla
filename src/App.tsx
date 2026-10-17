@@ -485,7 +485,9 @@ export function App({
           difficulty={difficulty}
           remote={network.state}
           localIndex={network.match?.index || 0}
-          onInput={(input) => network.send({ type: "input", input })}
+          onInput={(input) =>
+            network.send({ type: "input", matchId: active.id, input })
+          }
           onExit={exit}
           onResult={recordResult}
           onRematch={() => {

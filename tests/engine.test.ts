@@ -149,6 +149,65 @@ test("timeout uses remaining stocks and health, including a true draw", () => {
   assert.equal(second.state.winner, "draw");
 });
 
+test("simultaneous final-stock knockouts and ringouts end in a draw", () => {
+  for (const cause of ["health", "ringout"] as const) {
+    const { state, inputs } = setup();
+    state.players.forEach((player) => {
+      player.stocks = 1;
+      if (cause === "health") player.hp = 0;
+      else player.y = WORLD.y + WORLD.height + 180;
+    });
+    stepMatch(state, inputs);
+    assert.equal(state.phase, "finished", cause);
+    assert.equal(state.winner, "draw", cause);
+    assert.deepEqual(
+      state.players.map((player) => player.stocks),
+      [0, 0],
+    );
+  }
+});
+
+test("simultaneous stock losses count both players before choosing a winner", () => {
+  for (const survivor of [0, 1]) {
+    const { state, inputs } = setup();
+    state.players.forEach((player, index) => {
+      player.stocks = index === survivor ? 2 : 1;
+      player.hp = 0;
+    });
+    stepMatch(state, inputs);
+    assert.equal(state.winner, survivor);
+    assert.equal(state.players[survivor].stocks, 1);
+    assert.equal(state.players[survivor].hp, 100);
+    assert.equal(state.players[1 - survivor].stocks, 0);
+  }
+});
+
+test("projectile knockouts resolve before timeout, including simultaneous final hits", () => {
+  for (const owners of [[0], [1], [0, 1]]) {
+    const { state, inputs } = setup();
+    state.remaining = 1;
+    state.players.forEach((player) => {
+      player.stocks = 1;
+      player.hp = 1;
+    });
+    state.projectiles = owners.map((owner) => ({
+      id: state.nextId++,
+      owner,
+      x: state.players[1 - owner].x,
+      y: state.players[1 - owner].y - 70,
+      vx: 0,
+      life: 30,
+      kind: "note",
+      damage: 10,
+    }));
+    stepMatch(state, inputs);
+    assert.equal(state.phase, "finished");
+    assert.equal(state.winner, owners.length === 2 ? "draw" : owners[0]);
+    for (const owner of owners)
+      assert.equal(state.players[1 - owner].stocks, 0);
+  }
+});
+
 test("all active characters execute their individual specials with finite physics", () => {
   for (const fighter of FIGHTERS) {
     const { state, inputs } = setup();

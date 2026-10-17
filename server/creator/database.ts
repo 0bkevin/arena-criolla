@@ -44,6 +44,21 @@ export class CreatorDatabase {
       .prepare("INSERT INTO users VALUES(?,?,?,?,?)")
       .run(user.id, user.name, user.email, passwordHash, Date.now());
   }
+  createAccount(
+    user: CreatorUser,
+    passwordHash: string,
+    session: { tokenHash: string; expiresAt: number },
+  ) {
+    this.db.exec("BEGIN IMMEDIATE");
+    try {
+      this.createUser(user, passwordHash);
+      this.saveSession(session.tokenHash, user.id, session.expiresAt);
+      this.db.exec("COMMIT");
+    } catch (error) {
+      this.db.exec("ROLLBACK");
+      throw error;
+    }
+  }
   userByEmail(email: string) {
     return this.db.prepare("SELECT * FROM users WHERE email=?").get(email) as
       (CreatorUser & { password_hash: string }) | undefined;

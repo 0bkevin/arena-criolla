@@ -9,6 +9,10 @@ export async function creatorRequest<T>(
   url: string,
   options: RequestInit = {},
 ): Promise<T> {
+  const connectionError = () =>
+    new Error(
+      "No pudimos conectar con el taller. Revisa tu conexión y vuelve a intentar.",
+    );
   const response = await fetch(url, {
     credentials: "same-origin",
     ...options,
@@ -18,12 +22,20 @@ export async function creatorRequest<T>(
         : {}),
       ...options.headers,
     },
+  }).catch(() => {
+    throw connectionError();
   });
-  const body = await response
-    .json()
-    .catch(() => ({ error: "No pudimos conectar con el taller." }));
+  const body = await response.json().catch(() => {
+    throw connectionError();
+  });
+  if (!body || typeof body !== "object" || Array.isArray(body))
+    throw connectionError();
   if (!response.ok)
-    throw new Error(body.error || "No pudimos completar esa acción.");
+    throw new Error(
+      typeof body.error === "string" && body.error
+        ? body.error
+        : "No pudimos completar esa acción.",
+    );
   return body as T;
 }
 export const creatorApi = {

@@ -331,8 +331,6 @@ function loseStock(s: MatchState, i: number) {
   );
   if (p.stocks <= 0) {
     p.hp = 0;
-    s.phase = "finished";
-    s.winner = 1 - i;
     return;
   }
   p.x = i === 0 ? 330 : 750;
@@ -884,14 +882,6 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
       p.vx *= 0.89;
       p.recoilVx = (p.recoilVx ?? 0) * 0.89;
     }
-    if (
-      p.hp <= 0 ||
-      p.x < WORLD.x - 120 ||
-      p.x > WORLD.x + WORLD.width + 120 ||
-      p.y > WORLD.y + WORLD.height + 140
-    )
-      loseStock(s, i);
-    if (s.winner !== null) return;
   }
   const [a, b] = s.players;
   if (
@@ -904,6 +894,24 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     const push = (43 - Math.abs(a.x - b.x)) / 2;
     a.x -= sign * push;
     b.x += sign * push;
+    // Body separation can push a fighter beyond the surface checked above.
+    for (const p of s.players) {
+      if (!p.grounded) continue;
+      const support =
+        p.supportPlatform === -1
+          ? { x: WORLD.left, width: WORLD.right - WORLD.left }
+          : p.supportPlatform === null
+            ? undefined
+            : stagePlatforms[p.supportPlatform];
+      if (
+        !support ||
+        p.x < support.x - 5 ||
+        p.x > support.x + support.width + 5
+      ) {
+        p.grounded = false;
+        p.supportPlatform = null;
+      }
+    }
   }
   s.projectiles = s.projectiles.filter((projectile) => {
     projectile.age = (projectile.age || 0) + 1;
@@ -1024,6 +1032,22 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
       projectile.x < WORLD.x + WORLD.width + 50
     );
   });
+  // Resolve the whole tick, including projectiles, before deciding the result.
+  // Both players can lose a stock together; iteration order must not pick a winner.
+  s.players.forEach((p, i) => {
+    if (
+      p.hp <= 0 ||
+      p.x < WORLD.x - 120 ||
+      p.x > WORLD.x + WORLD.width + 120 ||
+      p.y > WORLD.y + WORLD.height + 140
+    )
+      loseStock(s, i);
+  });
+  const [first, second] = s.players;
+  if (first.stocks <= 0 || second.stocks <= 0) {
+    s.phase = "finished";
+    s.winner = first.stocks <= 0 ? (second.stocks <= 0 ? "draw" : 1) : 0;
+  }
   resolveTimeout(s);
 }
 
@@ -1049,6 +1073,12 @@ export function cpuInput(
   const dx = other.x - p.x;
   next.left = dx < -86;
   next.right = dx > 86;
+  next.down =
+    p.grounded &&
+    p.supportPlatform !== null &&
+    p.supportPlatform >= 0 &&
+    other.y > p.y + 80 &&
+    Math.abs(dx) < 180;
   next.block =
     difficulty !== "easy" &&
     (other.attack === "heavy" || other.attack === "special") &&
@@ -1091,7 +1121,10 @@ export function cpuInput(
     next.actions.special++;
   }
   if (
-    (other.y < p.y - 70 || p.x < WORLD.left + 30 || p.x > WORLD.right - 30) &&
+    (other.y < p.y - 70 ||
+      (p.jumps === 1 && !p.grounded && other.y < p.y && p.vy > -2) ||
+      p.x < WORLD.left + 30 ||
+      p.x > WORLD.right - 30) &&
     p.jumps < 2 &&
     s.tick % 34 === 0
   )

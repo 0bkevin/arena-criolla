@@ -1,0 +1,3474 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-10-17",
+  "status": "complete",
+  "request": "Independent adversarial interactive review of character physics across arenas, with fixes for reproduced defects.",
+  "reviewedBase": "98f5eb3",
+  "fixCommit": "7355023",
+  "stressCommit": "aec7d58",
+  "method": {
+    "browser": "T3 collaborative preview, private agent-owned tabs",
+    "interactiveMutation": "Normal UI clicks and keyboard controls only. Fighter coordinates, HP, stocks and simulation ticks are never assigned by the browser harness.",
+    "observation": "Stable traversal checks read Game's React UI snapshot, updated about every 100 ms. The one-tick edge regression retains Game's first unmodified structuredClone and observes the existing projectile-array assignment after body separation on every live physical step; original function/descriptor are restored in finally.",
+    "controls": {
+      "P1": "A/D, W, S, J/K/L, ShiftLeft, U",
+      "P2": "ArrowLeft/ArrowRight, ArrowUp/ArrowDown, Digit2/Digit3, Enter, Digit0"
+    },
+    "selection": "Every match selects both named fighters through the visible roster search and arena through its selector, then verifies the actual fighter IDs and stage in the created match.",
+    "guard": "Elevated traversal specials guard the unattended opponent with U/0 and wait for long-lived projectiles. Deliberate contact sessions leave the target unguarded; floor-only specials may make ordinary combat contact.",
+    "rosterBasis": "Shared gravity 0.52 and jump velocities −12.8/−11; roster has no separate mass parameter. Selected actual speed extremes 3.5–6.3, incoming-damage multipliers 0.86–1.07, dash/brake, reverse dash, vertical lift, staged steps, blink, ground snare, gravity/bounce and returning/pulling projectiles.",
+    "reportPrecision": "Coordinates are rounded to three decimals for readability; assertions used original values. SHA-256 hashes were calculated over the full unrounded JSON received by each client, not these summarized snapshots. Ride arrays are [tick,x,y]. Representative special frames use representativeKeyFrameColumns."
+  },
+  "selectedRoster": [
+    {
+      "id": "capriles",
+      "name": "Capriles Radonski",
+      "speed": 6.2,
+      "damageMultiplier": 0.88,
+      "damageReceivedMultiplier": 1.02,
+      "ability": "sprint",
+      "movement": {
+        "dash": {
+          "speed": 16,
+          "ticks": 12,
+          "invincibility": 10,
+          "brake": 0.3
+        }
+      }
+    },
+    {
+      "id": "gomez",
+      "name": "Juan Vicente Gómez",
+      "speed": 3.5,
+      "damageMultiplier": 1.2,
+      "damageReceivedMultiplier": 0.86,
+      "ability": "command",
+      "movement": {}
+    },
+    {
+      "id": "oscar",
+      "name": "Óscar D’León",
+      "speed": 5.1,
+      "damageMultiplier": 1.01,
+      "damageReceivedMultiplier": 0.97,
+      "ability": "salsa",
+      "movement": {
+        "lift": -12
+      }
+    },
+    {
+      "id": "mcm",
+      "name": "María Corina Machado",
+      "speed": 5.6,
+      "damageMultiplier": 0.92,
+      "damageReceivedMultiplier": 0.99,
+      "ability": "rally",
+      "movement": {
+        "dash": {
+          "speed": 13,
+          "ticks": 14,
+          "invincibility": 5,
+          "lift": -6.5,
+          "brake": 0.3
+        }
+      }
+    },
+    {
+      "id": "reynaldo",
+      "name": "Reynaldo Armas",
+      "speed": 4.5,
+      "damageMultiplier": 1.06,
+      "damageReceivedMultiplier": 0.93,
+      "ability": "lasso",
+      "movement": {
+        "projectile": {
+          "speed": 10,
+          "life": 55,
+          "pulls": true,
+          "slowTicks": 25,
+          "returnAfter": 28
+        }
+      }
+    },
+    {
+      "id": "nacho",
+      "name": "Nacho",
+      "speed": 5.5,
+      "damageMultiplier": 0.95,
+      "damageReceivedMultiplier": 1.02,
+      "ability": "syncopate",
+      "movement": {
+        "dash": {
+          "speed": 14,
+          "ticks": 6,
+          "invincibility": 2,
+          "brake": 0.7
+        },
+        "steps": [
+          {
+            "pulse": 1,
+            "speed": -10,
+            "ticks": 5
+          },
+          {
+            "pulse": 2,
+            "speed": 17,
+            "ticks": 7,
+            "lift": -4
+          }
+        ]
+      }
+    },
+    {
+      "id": "sarcos",
+      "name": "Daniel Sarcos",
+      "speed": 4.7,
+      "damageMultiplier": 1.02,
+      "damageReceivedMultiplier": 0.98,
+      "ability": "jackpot",
+      "movement": {
+        "projectile": {
+          "speed": 6,
+          "life": 110,
+          "initialVy": -6,
+          "gravity": 0.35,
+          "bounces": 2,
+          "blastRadius": 85
+        }
+      }
+    },
+    {
+      "id": "chiqui",
+      "name": "Chiquinquirá Delgado",
+      "speed": 5.7,
+      "damageMultiplier": 0.93,
+      "damageReceivedMultiplier": 1.04,
+      "ability": "runway",
+      "movement": {
+        "dash": {
+          "speed": 23,
+          "ticks": 7,
+          "invincibility": 3,
+          "brake": 0.5
+        }
+      }
+    },
+    {
+      "id": "norkys",
+      "name": "Norkys Batista",
+      "speed": 5.4,
+      "damageMultiplier": 0.95,
+      "damageReceivedMultiplier": 1.01,
+      "ability": "pivot",
+      "movement": {
+        "dash": {
+          "speed": -7,
+          "ticks": 7,
+          "lift": -13,
+          "invincibility": 2,
+          "brake": 0.78
+        }
+      }
+    },
+    {
+      "id": "sayona",
+      "name": "La Sayona",
+      "speed": 5.8,
+      "damageMultiplier": 0.95,
+      "damageReceivedMultiplier": 1.04,
+      "ability": "haunt",
+      "movement": {
+        "blink": {
+          "reach": 210,
+          "gap": 86,
+          "invincibility": 7
+        }
+      }
+    },
+    {
+      "id": "momoy",
+      "name": "El Momoy",
+      "speed": 4.5,
+      "damageMultiplier": 0.97,
+      "damageReceivedMultiplier": 0.93,
+      "ability": "roots",
+      "movement": {
+        "snare": 38
+      }
+    },
+    {
+      "id": "tioconejo",
+      "name": "Tío Conejo",
+      "speed": 6.3,
+      "damageMultiplier": 0.88,
+      "damageReceivedMultiplier": 1.07,
+      "ability": "trickster",
+      "movement": {
+        "dash": {
+          "speed": -12,
+          "ticks": 9,
+          "invincibility": 4,
+          "lift": -8,
+          "brake": 0.8
+        },
+        "projectile": {
+          "speed": 10,
+          "life": 70,
+          "initialVy": -1,
+          "gravity": 0.24,
+          "bounces": 1
+        }
+      }
+    }
+  ],
+  "baselineInteractive": {
+    "server": "development localhost:5392",
+    "caseCount": 9,
+    "characterStageCombinations": 18,
+    "assertions": 184,
+    "errors": [],
+    "cases": [
+      {
+        "stage": "caracas",
+        "platform": 0,
+        "fighters": ["gomez", "tioconejo"],
+        "matchId": "f1f98aeb-15ae-42cb-a55c-d78f6f26206d",
+        "pass": true,
+        "checkCount": 20
+      },
+      {
+        "stage": "guaira",
+        "platform": 0,
+        "fighters": ["capriles", "norkys"],
+        "matchId": "915ae498-c40d-43bd-8a67-f0a0072b40af",
+        "pass": true,
+        "checkCount": 22
+      },
+      {
+        "stage": "valencia",
+        "platform": 1,
+        "fighters": ["mcm", "oscar"],
+        "matchId": "99b9aed2-0352-42e9-9972-9dd3100e8ca7",
+        "pass": true,
+        "checkCount": 22
+      },
+      {
+        "stage": "canaima",
+        "platform": 2,
+        "fighters": ["nacho", "sayona"],
+        "matchId": "b719b137-07e9-4fac-bf36-555611d3e528",
+        "pass": true,
+        "checkCount": 22
+      },
+      {
+        "stage": "maracaibo",
+        "platform": 2,
+        "fighters": ["chiqui", "momoy"],
+        "matchId": "9e2ee6a0-cf4f-4559-b9a8-7f28f24247f8",
+        "pass": true,
+        "checkCount": 22
+      },
+      {
+        "stage": "merida",
+        "platform": 2,
+        "fighters": ["tioconejo", "gomez"],
+        "matchId": "9c01ff68-4d15-4978-a0b3-c1152600ccb5",
+        "pass": true,
+        "checkCount": 22
+      },
+      {
+        "stage": "coro",
+        "platform": 1,
+        "fighters": ["norkys", "capriles"],
+        "matchId": "328e67d0-7d8e-41bb-98d0-798c42cf61d4",
+        "pass": true,
+        "checkCount": 22
+      },
+      {
+        "stage": "roques",
+        "platform": 2,
+        "fighters": ["sarcos", "reynaldo"],
+        "matchId": "56b9527b-1bde-46ed-aea3-2b0cfa7b0c12",
+        "pass": true,
+        "checkCount": 22
+      },
+      {
+        "stage": "poliedro",
+        "platform": null,
+        "fighters": ["mcm", "nacho"],
+        "matchId": "bfe52aac-adb1-4890-8ebe-a294537d0c8d",
+        "pass": true,
+        "checkCount": 10
+      }
+    ],
+    "engineRevision": "98f5eb3"
+  },
+  "confirmedFinding": {
+    "id": "body-contact-retained-invalid-support",
+    "severity": "medium",
+    "symptom": "Body separation could move a grounded fighter past the support's five-unit tolerance while leaving grounded=true/supportPlatform unchanged until another collision step; opposing inputs could sustain this beyond a single tick.",
+    "cause": "Support was computed before body-separation adjustments and was not revalidated afterwards.",
+    "fix": "Revalidate support after body separation, clearing grounded/supportPlatform immediately when the final x leaves its surface. Preserve the fighter's resulting position, velocity and ordinary next-step gravity.",
+    "regressions": {
+      "file": "tests/platform-body-contact.test.ts",
+      "tests": 2,
+      "scenarios": 176,
+      "coverage": "Both slots, both edges, all nine main floors and 20 elevated surfaces; four phases for each of five moving mechanisms."
+    },
+    "browserRed": {
+      "bundle": "index-B2sIGrnp.js",
+      "server": "production localhost:5393",
+      "matchId": "7189dce5-3c37-4d63-b876-c275bb026cd2",
+      "expectedResult": "red; actual defect detected",
+      "sampleCount": 29,
+      "violations": [
+        {
+          "tick": 679,
+          "phase": "playing",
+          "players": [
+            {
+              "fighter": "mcm",
+              "x": 1012.1,
+              "y": 554,
+              "vx": 5.6,
+              "vy": 0,
+              "grounded": true,
+              "support": -1,
+              "jumps": 0,
+              "stocks": 2,
+              "hp": 100,
+              "energy": 40.915,
+              "attack": null,
+              "attackTick": 0,
+              "stun": 0,
+              "facing": 1,
+              "rootTicks": 0,
+              "slowTicks": 0,
+              "dropThrough": 0
+            },
+            {
+              "fighter": "nacho",
+              "x": 1055.1,
+              "y": 554,
+              "vx": 0,
+              "vy": 0,
+              "grounded": true,
+              "support": -1,
+              "jumps": 0,
+              "stocks": 2,
+              "hp": 100,
+              "energy": 40.915,
+              "attack": null,
+              "attackTick": 0,
+              "stun": 0,
+              "facing": -1,
+              "rootTicks": 0,
+              "slowTicks": 0,
+              "dropThrough": 0
+            }
+          ],
+          "projectiles": []
+        }
+      ],
+      "initial": {
+        "tick": 602,
+        "phase": "playing",
+        "players": [
+          {
+            "fighter": "mcm",
+            "x": 632.4,
+            "y": 554,
+            "vx": 0,
+            "vy": 0,
+            "grounded": true,
+            "support": -1,
+            "jumps": 0,
+            "stocks": 2,
+            "hp": 100,
+            "energy": 38.22,
+            "attack": null,
+            "attackTick": 0,
+            "stun": 0,
+            "facing": 1,
+            "rootTicks": 0,
+            "slowTicks": 0,
+            "dropThrough": 0
+          },
+          {
+            "fighter": "nacho",
+            "x": 1014,
+            "y": 554,
+            "vx": 0,
+            "vy": 0,
+            "grounded": true,
+            "support": -1,
+            "jumps": 0,
+            "stocks": 2,
+            "hp": 100,
+            "energy": 38.22,
+            "attack": null,
+            "attackTick": 0,
+            "stun": 0,
+            "facing": -1,
+            "rootTicks": 0,
+            "slowTicks": 0,
+            "dropThrough": 0
+          }
+        ],
+        "projectiles": []
+      },
+      "trajectory": [
+        {
+          "tick": 671,
+          "x": 1032.7,
+          "y": 554,
+          "grounded": true,
+          "support": -1,
+          "vy": 0
+        },
+        {
+          "tick": 678,
+          "x": 1052.3,
+          "y": 554,
+          "grounded": true,
+          "support": -1,
+          "vy": 0
+        },
+        {
+          "tick": 685,
+          "x": 1071.9,
+          "y": 564.92,
+          "grounded": false,
+          "support": null,
+          "vy": 3.12
+        },
+        {
+          "tick": 692,
+          "x": 1091.5,
+          "y": 601.32,
+          "grounded": false,
+          "support": null,
+          "vy": 6.76
+        },
+        {
+          "tick": 699,
+          "x": 1102.7,
+          "y": 663.2,
+          "grounded": false,
+          "support": null,
+          "vy": 10.4
+        }
+      ]
+    },
+    "browserGreen": {
+      "bundle": "index-BU8rGRKG.js",
+      "server": "production localhost:5393; local simulation uses new bundle",
+      "matchId": "0cd0e6dc-8af0-4e20-9b1b-973f329c253f",
+      "captureMode": "each physical step, after body separation",
+      "pass": true,
+      "before": {
+        "tick": 595,
+        "phase": "playing",
+        "players": [
+          {
+            "fighter": "mcm",
+            "x": 604.4,
+            "y": 554,
+            "vx": 0,
+            "vy": 0,
+            "grounded": true,
+            "support": -1,
+            "jumps": 0,
+            "stocks": 2,
+            "hp": 100,
+            "energy": 37.975,
+            "attack": null,
+            "attackTick": 0,
+            "stun": 0,
+            "facing": 1,
+            "rootTicks": 0,
+            "slowTicks": 0,
+            "dropThrough": 0
+          },
+          {
+            "fighter": "nacho",
+            "x": 1019.5,
+            "y": 554,
+            "vx": 0,
+            "vy": 0,
+            "grounded": true,
+            "support": -1,
+            "jumps": 0,
+            "stocks": 2,
+            "hp": 100,
+            "energy": 37.975,
+            "attack": null,
+            "attackTick": 0,
+            "stun": 0,
+            "facing": -1,
+            "rootTicks": 0,
+            "slowTicks": 0,
+            "dropThrough": 0
+          }
+        ],
+        "projectiles": []
+      },
+      "firstOutside": {
+        "tick": 676,
+        "phase": "playing",
+        "players": [
+          {
+            "fighter": "mcm",
+            "x": 1012.05,
+            "y": 554,
+            "vx": 5.6,
+            "vy": 0,
+            "grounded": true,
+            "support": -1,
+            "jumps": 0,
+            "stocks": 2,
+            "hp": 100,
+            "energy": 40.81,
+            "attack": null,
+            "attackTick": 0,
+            "stun": 0,
+            "facing": 1,
+            "rootTicks": 0,
+            "slowTicks": 0,
+            "dropThrough": 0
+          },
+          {
+            "fighter": "nacho",
+            "x": 1055.05,
+            "y": 554,
+            "vx": 0,
+            "vy": 0,
+            "grounded": false,
+            "support": null,
+            "jumps": 0,
+            "stocks": 2,
+            "hp": 100,
+            "energy": 40.81,
+            "attack": null,
+            "attackTick": 0,
+            "stun": 0,
+            "facing": -1,
+            "rootTicks": 0,
+            "slowTicks": 0,
+            "dropThrough": 0
+          }
+        ],
+        "projectiles": []
+      },
+      "sampleCount": 27,
+      "violationCount": 0,
+      "assertions": 3,
+      "result": "At the first sampled physical step outside x=1055, the victim immediately has grounded=false/support=null; next-step gravity remains ordinary.",
+      "trajectory": [
+        {
+          "tick": 668,
+          "x": 1032.65,
+          "y": 554,
+          "grounded": true,
+          "support": -1,
+          "vy": 0
+        },
+        {
+          "tick": 674,
+          "x": 1049.45,
+          "y": 554,
+          "grounded": true,
+          "support": -1,
+          "vy": 0
+        },
+        {
+          "tick": 681,
+          "x": 1069.05,
+          "y": 561.8,
+          "grounded": false,
+          "support": null,
+          "vy": 2.6
+        },
+        {
+          "tick": 688,
+          "x": 1088.65,
+          "y": 594.56,
+          "grounded": false,
+          "support": null,
+          "vy": 6.24
+        },
+        {
+          "tick": 694,
+          "x": 1102.65,
+          "y": 642.92,
+          "grounded": false,
+          "support": null,
+          "vy": 9.36
+        }
+      ]
+    }
+  },
+  "complementaryStress": {
+    "script": "scripts/character-physics-stress.ts",
+    "command": "node --import tsx scripts/character-physics-stress.ts /tmp/character-physics.json",
+    "red": {
+      "seed": 20261017,
+      "roster": 41,
+      "stages": 9,
+      "runs": 369,
+      "steps": 389632,
+      "elevatedLandings": 2102,
+      "specialsObserved": 1081,
+      "finished": 359,
+      "edgeOverhangSamples": 18,
+      "violationCount": 18
+    },
+    "green": {
+      "seed": 20261017,
+      "roster": 41,
+      "stages": 9,
+      "runs": 369,
+      "steps": 389663,
+      "elevatedLandings": 2074,
+      "specialsObserved": 1083,
+      "finished": 359,
+      "edgeOverhangSamples": 0,
+      "violationCount": 0
+    },
+    "examples": [
+      {
+        "stage": "canaima",
+        "fighter": "capriles",
+        "opponent": "gualberto",
+        "slot": 2,
+        "support": 1,
+        "surface": {
+          "x": 771,
+          "y": 405,
+          "width": 180
+        },
+        "samples": [
+          {
+            "tick": 1143,
+            "x": 765.518,
+            "y": 405,
+            "grounded": true,
+            "vy": 0,
+            "otherX": 808.518
+          },
+          {
+            "tick": 1144,
+            "x": 764.852,
+            "y": 405,
+            "grounded": true,
+            "vy": 0,
+            "otherX": 807.852
+          },
+          {
+            "tick": 1145,
+            "x": 764.297,
+            "y": 405,
+            "grounded": true,
+            "vy": 0,
+            "otherX": 807.297
+          },
+          {
+            "tick": 1146,
+            "x": 763.814,
+            "y": 405,
+            "grounded": true,
+            "vy": 0,
+            "otherX": 806.814
+          },
+          {
+            "tick": 1147,
+            "x": 763.378,
+            "y": 405,
+            "grounded": true,
+            "vy": 0,
+            "otherX": 806.378
+          },
+          {
+            "tick": 1148,
+            "x": 762.972,
+            "y": 405,
+            "grounded": true,
+            "vy": 0,
+            "otherX": 805.972
+          },
+          {
+            "tick": 1149,
+            "x": 762.587,
+            "y": 405,
+            "grounded": true,
+            "vy": 0,
+            "otherX": 805.587
+          },
+          {
+            "tick": 1150,
+            "x": 762.214,
+            "y": 405,
+            "grounded": true,
+            "vy": 0,
+            "otherX": 805.214
+          },
+          {
+            "tick": 1151,
+            "x": 761.849,
+            "y": 405,
+            "grounded": true,
+            "vy": 0,
+            "otherX": 804.849
+          }
+        ]
+      },
+      {
+        "stage": "merida",
+        "fighter": "vallenilla",
+        "opponent": "mcm",
+        "slot": 2,
+        "support": 1,
+        "surface": {
+          "x": 778,
+          "y": 420,
+          "width": 184
+        },
+        "samples": [
+          {
+            "tick": 1042,
+            "x": 771.5,
+            "y": 420,
+            "grounded": true,
+            "vy": 0,
+            "otherX": 814.5
+          },
+          {
+            "tick": 1043,
+            "x": 772.632,
+            "y": 420,
+            "grounded": true,
+            "vy": 0,
+            "otherX": 815.632
+          }
+        ]
+      }
+    ],
+    "policy": "Seeded reactive input policy from natural createMatch introductions. Both variants are deterministic individually; the policy responds to changed positions, so red/green are not identical input replays.",
+    "budget": "2400 stepMatch calls per match. 359 finish naturally; 10 reach the input budget."
+  },
+  "verification": {
+    "tests": 620,
+    "passed": 620,
+    "failed": 0,
+    "build": "npm run build passed; existing Vite bundle-size warning",
+    "syntax": "node --check scripts/character-platforms-browser-audit.js passed",
+    "formatting": "Prettier check passed",
+    "browserAssertions": {
+      "baselineBeforeFix": 184,
+      "correctedTraversal": 186,
+      "correctedContacts": 30,
+      "correctedEdgePush": 3,
+      "totalCorrected": 219,
+      "expectedRedProductRun": 1
+    },
+    "browserErrors": []
+  },
+  "limits": [
+    "Interactive traversal covers 12 of 41 built-in characters, 18 distinct character/stage combinations and both slots across the matrix; it is not all 369 UI combinations or every selected character in both slots.",
+    "This round's deliberate inputs use desktop keyboard controls. Gamepad/touch behaviors are not retested by this matrix.",
+    "Specific special techniques and body contact are tested; no claim of exhaustive move/pair/phase coverage.",
+    "Prior QA reports cover account and room flows; this review adds character-specific physics evidence.",
+    "The online server publishes every two simulation ticks; exact one-tick support release is established by the separate live local observer and regression matrix."
+  ],
+  "reproduce": [
+    "npm run build",
+    "ARENA_QA_PORT=5393 node --import tsx scripts/journey-qa-server.ts --production",
+    "In a T3 collaborative preview tab at localhost:5393, evaluate scripts/journey-browser-probe.js, then scripts/character-platforms-browser-audit.js. Trim file contents; await installation only, not the long-running jobs.",
+    "Call __characterPhysics.startBatch([0,1,2,3,4,5,6,7,8]) and poll .job until complete.",
+    "Run __characterPhysics.startContact(4,'heavy',[0,1]), then (4,'special',[1]), then (6,'heavy',[0,1]), then (7,'special',[1]); wait for .job between calls.",
+    "Run __characterPhysics.startEdgePush(); the corrected build must produce zero violations and capture a victim outside x=1055 with grounded=false/support=null.",
+    "node --import tsx scripts/character-physics-stress.ts /tmp/character-physics.json"
+  ],
+  "online": {
+    "date": "2026-10-17",
+    "environment": {
+      "url": "http://localhost:5394",
+      "production": true,
+      "serverStartedAfterFix": true,
+      "engineFix": "7355023",
+      "bundle": "index-BU8rGRKG.js",
+      "profiles": ["incognito", "default"]
+    },
+    "method": "Both browser profiles joined the same private room through UI. Only normal keyboard controls moved fighters. Capture stores WebSocket states and compares SHA-256 of full JSON at matching ticks; the protocol samples every two simulation ticks, rather than every physical step.",
+    "room": {
+      "code": "B865FF6AC6A77F5B797275D0A1F6A99F",
+      "name": "La sala de Empujón online MCM",
+      "stage": "poliedro",
+      "players": [
+        {
+          "id": "6631be6f-12b3-4e03-9056-fc53c82cda70",
+          "name": "Empujón online MCM",
+          "fighter": "mcm",
+          "ready": false,
+          "wins": 0
+        }
+      ],
+      "status": "waiting",
+      "host": "6631be6f-12b3-4e03-9056-fc53c82cda70"
+    },
+    "comparison": {
+      "matchId": "1dda40dc-8943-451d-844c-c4a9529932f4",
+      "range": [2501, 2611],
+      "samplesA": 56,
+      "samplesB": 56,
+      "common": 56,
+      "mismatches": [],
+      "violationsA": [],
+      "violationsB": [],
+      "first": 2567,
+      "last": 2611,
+      "errorsA": [],
+      "errorsB": []
+    },
+    "clients": [
+      {
+        "matchId": "1dda40dc-8943-451d-844c-c4a9529932f4",
+        "localIndex": 0,
+        "bundle": "http://localhost:5394/assets/index-BU8rGRKG.js",
+        "hashSamples": 56,
+        "firstHash": {
+          "tick": 2501,
+          "hash": "0127f8634eca74cb039e9598163da545c6470318aafc1c185979ca89838f73eb"
+        },
+        "lastHash": {
+          "tick": 2611,
+          "hash": "2272a73db7f19e7f85a63744286f2bb95dfc0a04de1ee979bffc10f05e6212ed"
+        },
+        "firstOutside": {
+          "id": "1dda40dc-8943-451d-844c-c4a9529932f4",
+          "stage": "poliedro",
+          "tick": 2567,
+          "players": [
+            {
+              "fighter": "mcm",
+              "x": 1013.85,
+              "y": 554,
+              "grounded": true,
+              "support": -1,
+              "stocks": 2
+            },
+            {
+              "fighter": "nacho",
+              "x": 1056.85,
+              "y": 554,
+              "grounded": false,
+              "support": null,
+              "stocks": 2
+            }
+          ]
+        },
+        "violations": [],
+        "errors": []
+      },
+      {
+        "matchId": "1dda40dc-8943-451d-844c-c4a9529932f4",
+        "localIndex": 1,
+        "bundle": "http://localhost:5394/assets/index-BU8rGRKG.js",
+        "hashSamples": 56,
+        "firstHash": {
+          "tick": 2501,
+          "hash": "0127f8634eca74cb039e9598163da545c6470318aafc1c185979ca89838f73eb"
+        },
+        "lastHash": {
+          "tick": 2611,
+          "hash": "2272a73db7f19e7f85a63744286f2bb95dfc0a04de1ee979bffc10f05e6212ed"
+        },
+        "firstOutside": {
+          "id": "1dda40dc-8943-451d-844c-c4a9529932f4",
+          "stage": "poliedro",
+          "tick": 2567,
+          "players": [
+            {
+              "fighter": "mcm",
+              "x": 1013.85,
+              "y": 554,
+              "grounded": true,
+              "support": -1,
+              "stocks": 2
+            },
+            {
+              "fighter": "nacho",
+              "x": 1056.85,
+              "y": 554,
+              "grounded": false,
+              "support": null,
+              "stocks": 2
+            }
+          ]
+        },
+        "violations": [],
+        "errors": []
+      }
+    ],
+    "harnessCorrection": "The first guest parking attempt reached x990 because host x330 plus the intentional maximum retreat separation660 prevented x1020. Moving the host to x700 allowed guest parking at x1017.5; no engine state was changed.",
+    "limitation": "This online check validates published states for the fixed case. The independent local browser observer and engine regression cover the exact physical step.",
+    "cleanup": {
+      "host": {
+        "inFight": false,
+        "inRoom": false
+      },
+      "guest": {
+        "inFight": false,
+        "inRoom": false
+      }
+    }
+  },
+  "harnessCommit": "91d0f4b",
+  "verdict": "One reproducible physics defect was fixed: body separation retained support beyond a ledge. The corrected build passes all recorded interactive, engine and online checks below.",
+  "correctedInteractive": {
+    "engineRevision": "7355023",
+    "bundle": "index-BU8rGRKG.js",
+    "server": "production localhost:5393; local matches",
+    "caseCount": 9,
+    "uniqueCharacterStageCombinations": 18,
+    "characters": 12,
+    "assertions": 186,
+    "cases": [
+      {
+        "stage": "caracas",
+        "platform": 0,
+        "fighters": ["gomez", "tioconejo"],
+        "matchId": "27a3561b-cf65-4ddd-90eb-0537377dd3e9",
+        "pass": true,
+        "checkCount": 22,
+        "actors": [
+          {
+            "slot": 1,
+            "fighter": "gomez",
+            "doubleJump": {
+              "tick": 568,
+              "jumps": 2,
+              "vy": -7.88
+            },
+            "ride": {
+              "from": [622, 266.876, 392],
+              "to": [646, 266.876, 392],
+              "support": 0,
+              "jumps": 0,
+              "actualCarryX": 0,
+              "expectedCarryX": 0,
+              "motion": null
+            },
+            "jumpDetaches": {
+              "tick": 652,
+              "vy": -9.68,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 712,
+              "y": 392,
+              "support": 0,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [266.876, 266.876],
+                "y": [392, 392],
+                "support": [0]
+              }
+            },
+            "dropToFloor": {
+              "tick": 911,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [977, 983],
+              "deltaX": 84
+            },
+            "edge": {
+              "outside": {
+                "tick": 1218,
+                "x": 22.386,
+                "y": 554.52,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 1290,
+                "y": 554,
+                "support": -1,
+                "stocks": 2
+              }
+            }
+          },
+          {
+            "slot": 2,
+            "fighter": "tioconejo",
+            "doubleJump": {
+              "tick": 1356,
+              "jumps": 2,
+              "vy": -7.88
+            },
+            "ride": {
+              "from": [1411, 288.307, 392],
+              "to": [1435, 288.31, 392],
+              "support": 0,
+              "jumps": 0,
+              "actualCarryX": 0.004,
+              "expectedCarryX": 0,
+              "motion": null
+            },
+            "jumpDetaches": {
+              "tick": 1441,
+              "vy": -9.68,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 1501,
+              "y": 392,
+              "support": 0,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [297.576, 453.693],
+                "y": [334.72, 554],
+                "support": [0, null, -1]
+              }
+            },
+            "dropToFloor": {
+              "tick": 1669,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [1729, 1735],
+              "deltaX": -84
+            },
+            "edge": {
+              "outside": {
+                "tick": 1887,
+                "x": 1084.794,
+                "y": 561.8,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 1959,
+                "y": 554,
+                "support": -1,
+                "stocks": 2
+              }
+            }
+          }
+        ]
+      },
+      {
+        "stage": "guaira",
+        "platform": 0,
+        "fighters": ["capriles", "norkys"],
+        "matchId": "3f5dbe1c-e652-400a-a3e6-c12b92a91989",
+        "pass": true,
+        "checkCount": 22,
+        "actors": [
+          {
+            "slot": 1,
+            "fighter": "capriles",
+            "doubleJump": {
+              "tick": 582,
+              "jumps": 2,
+              "vy": -7.88
+            },
+            "ride": {
+              "from": [636, 536.578, 380],
+              "to": [660, 536.578, 380],
+              "support": 0,
+              "jumps": 0,
+              "actualCarryX": 0,
+              "expectedCarryX": 0,
+              "motion": null
+            },
+            "jumpDetaches": {
+              "tick": 666,
+              "vy": -9.68,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 726,
+              "y": 380,
+              "support": 0,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [536.578, 735.435],
+                "y": [380, 554],
+                "support": [0, null, -1]
+              }
+            },
+            "dropToFloor": {
+              "tick": 896,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [980, 986],
+              "deltaX": 84
+            },
+            "edge": {
+              "outside": {
+                "tick": 1155,
+                "x": 10.139,
+                "y": 557.12,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 1228,
+                "y": 554,
+                "support": -1,
+                "stocks": 2
+              }
+            }
+          },
+          {
+            "slot": 2,
+            "fighter": "norkys",
+            "doubleJump": {
+              "tick": 1288,
+              "jumps": 2,
+              "vy": -7.88
+            },
+            "ride": {
+              "from": [1342, 535.723, 380],
+              "to": [1366, 535.723, 380],
+              "support": 0,
+              "jumps": 0,
+              "actualCarryX": 0,
+              "expectedCarryX": 0,
+              "motion": null
+            },
+            "jumpDetaches": {
+              "tick": 1372,
+              "vy": -9.68,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 1427,
+              "y": 380,
+              "support": 0,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [535.723, 609.555],
+                "y": [224, 380],
+                "support": [0, null]
+              }
+            },
+            "dropToFloor": {
+              "tick": 1623,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [1662, 1671],
+              "deltaX": -126
+            },
+            "edge": {
+              "outside": {
+                "tick": 1833,
+                "x": 1079.126,
+                "y": 561.8,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 1899,
+                "y": 554,
+                "support": -1,
+                "stocks": 2
+              }
+            }
+          }
+        ]
+      },
+      {
+        "stage": "valencia",
+        "platform": 1,
+        "fighters": ["mcm", "oscar"],
+        "matchId": "1b23b54e-812b-406b-a550-7dacda7ada87",
+        "pass": true,
+        "checkCount": 22,
+        "actors": [
+          {
+            "slot": 1,
+            "fighter": "mcm",
+            "doubleJump": {
+              "tick": 591,
+              "jumps": 2,
+              "vy": -8.4
+            },
+            "ride": {
+              "from": [643, 536.844, 345],
+              "to": [665, 536.844, 345],
+              "support": 1,
+              "jumps": 0,
+              "actualCarryX": 0,
+              "expectedCarryX": 0,
+              "motion": null
+            },
+            "jumpDetaches": {
+              "tick": 670,
+              "vy": -10.2,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 727,
+              "y": 345,
+              "support": 1,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [536.844, 724.415],
+                "y": [307.82, 554],
+                "support": [1, null, -1]
+              }
+            },
+            "dropToFloor": {
+              "tick": 887,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [966, 971],
+              "deltaX": 70
+            },
+            "edge": {
+              "outside": {
+                "tick": 1140,
+                "x": -1.464,
+                "y": 561.8,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 1199,
+                "y": 418,
+                "support": 0,
+                "stocks": 2
+              }
+            }
+          },
+          {
+            "slot": 2,
+            "fighter": "oscar",
+            "doubleJump": {
+              "tick": 1256,
+              "jumps": 2,
+              "vy": -7.88
+            },
+            "ride": {
+              "from": [1304, 535.849, 345],
+              "to": [1330, 535.849, 345],
+              "support": 1,
+              "jumps": 0,
+              "actualCarryX": 0,
+              "expectedCarryX": 0,
+              "motion": null
+            },
+            "jumpDetaches": {
+              "tick": 1335,
+              "vy": -10.2,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 1393,
+              "y": 345,
+              "support": 1,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [535.849, 535.849],
+                "y": [213, 345],
+                "support": [1, null]
+              }
+            },
+            "dropToFloor": {
+              "tick": 1580,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [1631, 1636],
+              "deltaX": -70
+            },
+            "edge": {
+              "outside": {
+                "tick": 1803,
+                "x": 1065.808,
+                "y": 557.12,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 1862,
+                "y": 418,
+                "support": 2,
+                "stocks": 2
+              }
+            }
+          }
+        ]
+      },
+      {
+        "stage": "canaima",
+        "platform": 2,
+        "fighters": ["nacho", "sayona"],
+        "matchId": "83c66602-8d65-4c7b-bdca-6f28a8bebc2d",
+        "pass": true,
+        "checkCount": 22,
+        "actors": [
+          {
+            "slot": 1,
+            "fighter": "nacho",
+            "doubleJump": {
+              "tick": 585,
+              "jumps": 2,
+              "vy": -7.88
+            },
+            "ride": {
+              "from": [633, 544.693, 336.06],
+              "to": [730, 544.693, 387.641],
+              "support": 2,
+              "jumps": 0,
+              "actualCarryX": 0,
+              "expectedCarryX": 0,
+              "motion": {
+                "axis": "y",
+                "range": 44,
+                "period": 360
+              }
+            },
+            "jumpDetaches": {
+              "tick": 736,
+              "vy": -9.68,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 797,
+              "y": 422.872,
+              "support": 2,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [544.693, 745.285],
+                "y": [423.672, 554],
+                "support": [2, null, -1]
+              }
+            },
+            "dropToFloor": {
+              "tick": 965,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [1055, 1061],
+              "deltaX": 84
+            },
+            "edge": {
+              "outside": {
+                "tick": 1244,
+                "x": -8.129,
+                "y": 568.56,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 1304,
+                "y": 405,
+                "support": 0,
+                "stocks": 2
+              }
+            }
+          },
+          {
+            "slot": 2,
+            "fighter": "sayona",
+            "doubleJump": {
+              "tick": 1358,
+              "jumps": 2,
+              "vy": -7.88
+            },
+            "ride": {
+              "from": [1406, 535.415, 355.396],
+              "to": [1503, 535.415, 419.204],
+              "support": 2,
+              "jumps": 0,
+              "actualCarryX": 0,
+              "expectedCarryX": 0,
+              "motion": {
+                "axis": "y",
+                "range": 44,
+                "period": 360
+              }
+            },
+            "jumpDetaches": {
+              "tick": 1509,
+              "vy": -9.68,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 1569,
+              "y": 414.194,
+              "support": 2,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [331.71, 535.415],
+                "y": [408.21, 554],
+                "support": [2, null, -1]
+              }
+            },
+            "dropToFloor": {
+              "tick": 1736,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [1830, 1836],
+              "deltaX": -84
+            },
+            "edge": {
+              "outside": {
+                "tick": 1997,
+                "x": 1088.38,
+                "y": 564.92,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 2056,
+                "y": 405,
+                "support": 1,
+                "stocks": 2
+              }
+            }
+          }
+        ]
+      },
+      {
+        "stage": "maracaibo",
+        "platform": 2,
+        "fighters": ["chiqui", "momoy"],
+        "matchId": "36fecd73-f692-4bd9-957e-e6df65ac9c2b",
+        "pass": true,
+        "checkCount": 22,
+        "actors": [
+          {
+            "slot": 1,
+            "fighter": "chiqui",
+            "doubleJump": {
+              "tick": 597,
+              "jumps": 2,
+              "vy": -7.88
+            },
+            "ride": {
+              "from": [658, 542.916, 456.424],
+              "to": [757, 542.916, 380.201],
+              "support": 2,
+              "jumps": 0,
+              "actualCarryX": 0,
+              "expectedCarryX": 0,
+              "motion": {
+                "axis": "y",
+                "range": 64,
+                "period": 480
+              }
+            },
+            "jumpDetaches": {
+              "tick": 763,
+              "vy": -9.68,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 818,
+              "y": 348.636,
+              "support": 2,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [542.916, 726.916],
+                "y": [346.548, 554],
+                "support": [2, null, -1]
+              }
+            },
+            "dropToFloor": {
+              "tick": 987,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [1074, 1080],
+              "deltaX": 84
+            },
+            "edge": {
+              "outside": {
+                "tick": 1252,
+                "x": 13.057,
+                "y": 557.12,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 1309,
+                "y": 410,
+                "support": 0,
+                "stocks": 2
+              }
+            }
+          },
+          {
+            "slot": 2,
+            "fighter": "momoy",
+            "doubleJump": {
+              "tick": 1376,
+              "jumps": 2,
+              "vy": -7.36
+            },
+            "ride": {
+              "from": [1435, 540.559, 405.814],
+              "to": [1532, 540.559, 469.749],
+              "support": 2,
+              "jumps": 0,
+              "actualCarryX": 0,
+              "expectedCarryX": 0,
+              "motion": {
+                "axis": "y",
+                "range": 64,
+                "period": 480
+              }
+            },
+            "jumpDetaches": {
+              "tick": 1537,
+              "vy": -10.2,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 1594,
+              "y": 467.765,
+              "support": 2,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [540.559, 540.559],
+                "y": [404.979, 465.426],
+                "support": [2]
+              }
+            },
+            "dropToFloor": {
+              "tick": 1797,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [1857, 1864],
+              "deltaX": -98
+            },
+            "edge": {
+              "outside": {
+                "tick": 2054,
+                "x": 1062.279,
+                "y": 555.56,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 2125,
+                "y": 554,
+                "support": -1,
+                "stocks": 2
+              }
+            }
+          }
+        ]
+      },
+      {
+        "stage": "merida",
+        "platform": 2,
+        "fighters": ["tioconejo", "gomez"],
+        "matchId": "ce279322-5f54-46f5-b0ba-a9b1ecc5ffb2",
+        "pass": true,
+        "checkCount": 22,
+        "actors": [
+          {
+            "slot": 1,
+            "fighter": "tioconejo",
+            "doubleJump": {
+              "tick": 567,
+              "jumps": 2,
+              "vy": -7.88
+            },
+            "ride": {
+              "from": [620, 569.097, 365],
+              "to": [715, 673.595, 365],
+              "support": 2,
+              "jumps": 0,
+              "actualCarryX": 104.499,
+              "expectedCarryX": 104.497,
+              "motion": {
+                "axis": "x",
+                "range": 144,
+                "period": 600
+              }
+            },
+            "jumpDetaches": {
+              "tick": 720,
+              "vy": -10.72,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 775,
+              "y": 365,
+              "support": 2,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [521.024, 679.146],
+                "y": [308.56, 554],
+                "support": [2, null, -1]
+              }
+            },
+            "dropToFloor": {
+              "tick": 925,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [965, 970],
+              "deltaX": 70
+            },
+            "edge": {
+              "outside": {
+                "tick": 1125,
+                "x": 6.807,
+                "y": 559.2,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 1185,
+                "y": 420,
+                "support": 0,
+                "stocks": 2
+              }
+            }
+          },
+          {
+            "slot": 2,
+            "fighter": "gomez",
+            "doubleJump": {
+              "tick": 1245,
+              "jumps": 2,
+              "vy": -8.4
+            },
+            "ride": {
+              "from": [1297, 651.488, 365],
+              "to": [1392, 659.398, 365],
+              "support": 2,
+              "jumps": 0,
+              "actualCarryX": 7.91,
+              "expectedCarryX": 7.91,
+              "motion": {
+                "axis": "x",
+                "range": 144,
+                "period": 600
+              }
+            },
+            "jumpDetaches": {
+              "tick": 1397,
+              "vy": -10.72,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 1452,
+              "y": 365,
+              "support": 2,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [514.431, 610.723],
+                "y": [365, 365],
+                "support": [2]
+              }
+            },
+            "dropToFloor": {
+              "tick": 1632,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [1727, 1732],
+              "deltaX": -70
+            },
+            "edge": {
+              "outside": {
+                "tick": 1947,
+                "x": 1063.053,
+                "y": 557.12,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 2007,
+                "y": 420,
+                "support": 1,
+                "stocks": 2
+              }
+            }
+          }
+        ]
+      },
+      {
+        "stage": "coro",
+        "platform": 1,
+        "fighters": ["norkys", "capriles"],
+        "matchId": "d381452d-10c2-4f64-9ed0-c797883bc586",
+        "pass": true,
+        "checkCount": 22,
+        "actors": [
+          {
+            "slot": 1,
+            "fighter": "norkys",
+            "doubleJump": {
+              "tick": 633,
+              "jumps": 2,
+              "vy": -8.92
+            },
+            "ride": {
+              "from": [688, 713.98, 385],
+              "to": [785, 559.888, 385],
+              "support": 1,
+              "jumps": 0,
+              "actualCarryX": -154.092,
+              "expectedCarryX": -154.091,
+              "motion": {
+                "axis": "x",
+                "range": 133,
+                "period": 480
+              }
+            },
+            "jumpDetaches": {
+              "tick": 790,
+              "vy": -10.72,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 845,
+              "y": 385,
+              "support": 1,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [454.523, 527.579],
+                "y": [229.52, 554],
+                "support": [1, null, -1]
+              }
+            },
+            "dropToFloor": {
+              "tick": 995,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [1025, 1030],
+              "deltaX": 70
+            },
+            "edge": {
+              "outside": {
+                "tick": 1200,
+                "x": 14.282,
+                "y": 557.12,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 1260,
+                "y": 425,
+                "support": 0,
+                "stocks": 2
+              }
+            }
+          },
+          {
+            "slot": 2,
+            "fighter": "capriles",
+            "doubleJump": {
+              "tick": 1305,
+              "jumps": 2,
+              "vy": -8.4
+            },
+            "ride": {
+              "from": [1360, 537.168, 385],
+              "to": [1455, 678.296, 385],
+              "support": 1,
+              "jumps": 0,
+              "actualCarryX": 141.128,
+              "expectedCarryX": 141.128,
+              "motion": {
+                "axis": "x",
+                "range": 133,
+                "period": 480
+              }
+            },
+            "jumpDetaches": {
+              "tick": 1460,
+              "vy": -10.72,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 1515,
+              "y": 385,
+              "support": 1,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [573.063, 764.902],
+                "y": [385, 554],
+                "support": [1, null, -1]
+              }
+            },
+            "dropToFloor": {
+              "tick": 1665,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [1705, 1710],
+              "deltaX": -70
+            },
+            "edge": {
+              "outside": {
+                "tick": 1855,
+                "x": 1060.201,
+                "y": 554.52,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 1925,
+                "y": 554,
+                "support": -1,
+                "stocks": 2
+              }
+            }
+          }
+        ]
+      },
+      {
+        "stage": "roques",
+        "platform": 2,
+        "fighters": ["sarcos", "reynaldo"],
+        "matchId": "e91a30d0-cefa-43da-9fa3-44de7ca8584a",
+        "pass": true,
+        "checkCount": 22,
+        "actors": [
+          {
+            "slot": 1,
+            "fighter": "sarcos",
+            "doubleJump": {
+              "tick": 588,
+              "jumps": 2,
+              "vy": -8.4
+            },
+            "ride": {
+              "from": [648, 541.893, 460.198],
+              "to": [743, 541.893, 447.629],
+              "support": 2,
+              "jumps": 0,
+              "actualCarryX": 0,
+              "expectedCarryX": 0,
+              "motion": {
+                "axis": "y",
+                "range": 18,
+                "period": 300
+              }
+            },
+            "jumpDetaches": {
+              "tick": 748,
+              "vy": -10.72,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 803,
+              "y": 428.877,
+              "support": 2,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [541.893, 541.893],
+                "y": [427.016, 436.328],
+                "support": [2]
+              }
+            },
+            "dropToFloor": {
+              "tick": 976,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [1031, 1036],
+              "deltaX": 70
+            },
+            "edge": {
+              "outside": {
+                "tick": 1221,
+                "x": 23.901,
+                "y": 554.52,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 1291,
+                "y": 554,
+                "support": -1,
+                "stocks": 2
+              }
+            }
+          },
+          {
+            "slot": 2,
+            "fighter": "reynaldo",
+            "doubleJump": {
+              "tick": 1351,
+              "jumps": 2,
+              "vy": -8.4
+            },
+            "ride": {
+              "from": [1411, 535.484, 427.768],
+              "to": [1506, 535.484, 447.256],
+              "support": 2,
+              "jumps": 0,
+              "actualCarryX": 0,
+              "expectedCarryX": 0,
+              "motion": {
+                "axis": "y",
+                "range": 18,
+                "period": 300
+              }
+            },
+            "jumpDetaches": {
+              "tick": 1511,
+              "vy": -10.72,
+              "grounded": false,
+              "support": null
+            },
+            "reland": {
+              "tick": 1571,
+              "y": 462.937,
+              "support": 2,
+              "jumps": 0
+            },
+            "special": {
+              "pass": true,
+              "movementCheck": true,
+              "range": {
+                "x": [535.484, 535.484],
+                "y": [448.373, 462.996],
+                "support": [2]
+              }
+            },
+            "dropToFloor": {
+              "tick": 1746,
+              "y": 554,
+              "support": -1,
+              "stocks": 2
+            },
+            "dash": {
+              "ticks": [1801, 1806],
+              "deltaX": -70
+            },
+            "edge": {
+              "outside": {
+                "tick": 1986,
+                "x": 1074.19,
+                "y": 561.8,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 2056,
+                "y": 554,
+                "support": -1,
+                "stocks": 2
+              }
+            }
+          }
+        ]
+      },
+      {
+        "stage": "poliedro",
+        "platform": null,
+        "fighters": ["mcm", "nacho"],
+        "matchId": "6dd5a1ab-bd43-45e1-8915-3f54623a90c7",
+        "pass": true,
+        "checkCount": 10,
+        "actors": [
+          {
+            "slot": 1,
+            "fighter": "mcm",
+            "doubleJump": null,
+            "ride": null,
+            "jumpDetaches": null,
+            "reland": null,
+            "special": {
+              "pass": true,
+              "movementCheck": null,
+              "range": {
+                "x": [163.466, 351.038],
+                "y": [516.82, 554],
+                "support": [-1, null]
+              }
+            },
+            "dropToFloor": null,
+            "dash": {
+              "ticks": [548, 553],
+              "deltaX": 70
+            },
+            "edge": {
+              "outside": {
+                "tick": 723,
+                "x": 6.47,
+                "y": 559.2,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 793,
+                "y": 554,
+                "support": -1,
+                "stocks": 2
+              }
+            }
+          },
+          {
+            "slot": 2,
+            "fighter": "nacho",
+            "doubleJump": null,
+            "ride": null,
+            "jumpDetaches": null,
+            "reland": null,
+            "special": {
+              "pass": true,
+              "movementCheck": null,
+              "range": {
+                "x": [719.182, 919.796],
+                "y": [540.92, 554],
+                "support": [-1, null]
+              }
+            },
+            "dropToFloor": null,
+            "dash": {
+              "ticks": [902, 907],
+              "deltaX": -55.658
+            },
+            "edge": {
+              "outside": {
+                "tick": 1067,
+                "x": 1074.171,
+                "y": 559.2,
+                "grounded": false,
+                "support": null
+              },
+              "recovered": {
+                "tick": 1137,
+                "y": 554,
+                "support": -1,
+                "stocks": 2
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "representativeTechniques": [
+    {
+      "fighter": "gomez",
+      "stage": "caracas",
+      "slot": 1,
+      "matchId": "27a3561b-cf65-4ddd-90eb-0537377dd3e9",
+      "passed": true,
+      "movementCheck": true,
+      "before": {
+        "tick": 712,
+        "x": 266.876,
+        "y": 392,
+        "energy": 42.07
+      },
+      "observedSamples": 14,
+      "range": {
+        "x": [266.876, 266.876],
+        "y": [392, 392],
+        "support": [0]
+      },
+      "keyFrames": [
+        [718, 266.876, 392, 0, 0, 0, true, 6],
+        [797, 266.876, 392, 0, 0, 0, true, 49]
+      ],
+      "energyDropObserved": 24.79
+    },
+    {
+      "fighter": "tioconejo",
+      "stage": "caracas",
+      "slot": 2,
+      "matchId": "27a3561b-cf65-4ddd-90eb-0537377dd3e9",
+      "passed": true,
+      "movementCheck": true,
+      "before": {
+        "tick": 1501,
+        "x": 297.502,
+        "y": 392,
+        "energy": 43.49
+      },
+      "observedSamples": 14,
+      "range": {
+        "x": [297.576, 453.693],
+        "y": [334.72, 554],
+        "support": [0, null, -1]
+      },
+      "keyFrames": [
+        [1507, 297.576, 392, 0.007, 0, 0, true, 6],
+        [1513, 345.586, 365.2, 12, -5.92, null, false, 12],
+        [1525, 443.519, 334.72, 2.517, 0.32, null, false, 24],
+        [1585, 453.693, 554, 0, 0, -1, true, 43]
+      ],
+      "energyDropObserved": 24.79
+    },
+    {
+      "fighter": "capriles",
+      "stage": "guaira",
+      "slot": 1,
+      "matchId": "3f5dbe1c-e652-400a-a3e6-c12b92a91989",
+      "passed": true,
+      "movementCheck": true,
+      "before": {
+        "tick": 726,
+        "x": 536.578,
+        "y": 380,
+        "energy": 42.56
+      },
+      "observedSamples": 14,
+      "range": {
+        "x": [536.578, 735.435],
+        "y": [380, 554],
+        "support": [0, null, -1]
+      },
+      "keyFrames": [
+        [732, 536.578, 380, 0, 0, 0, true, 6],
+        [738, 600.578, 380, 16, 0, 0, true, 12],
+        [793, 735.435, 554, 0, 0, -1, true, 40],
+        [811, 735.435, 554, 0, 0, -1, true, 40]
+      ],
+      "energyDropObserved": 24.79
+    },
+    {
+      "fighter": "norkys",
+      "stage": "guaira",
+      "slot": 2,
+      "matchId": "3f5dbe1c-e652-400a-a3e6-c12b92a91989",
+      "passed": true,
+      "movementCheck": true,
+      "before": {
+        "tick": 1427,
+        "x": 535.723,
+        "y": 380,
+        "energy": 40.745
+      },
+      "observedSamples": 14,
+      "range": {
+        "x": [535.723, 609.555],
+        "y": [224, 380],
+        "support": [0, null]
+      },
+      "keyFrames": [
+        [1433, 535.723, 380, 0, 0, 0, true, 6],
+        [1439, 570.723, 322.8, 7, -10.4, null, false, 12],
+        [1458, 609.177, 224, 0.102, -0.52, null, false, 31],
+        [1512, 609.555, 380, 0, 0, 0, true, 45]
+      ],
+      "energyDropObserved": 24.79
+    },
+    {
+      "fighter": "mcm",
+      "stage": "valencia",
+      "slot": 1,
+      "matchId": "1b23b54e-812b-406b-a550-7dacda7ada87",
+      "passed": true,
+      "movementCheck": true,
+      "before": {
+        "tick": 727,
+        "x": 536.844,
+        "y": 345,
+        "energy": 42.595
+      },
+      "observedSamples": 14,
+      "range": {
+        "x": [536.844, 724.415],
+        "y": [307.82, 554],
+        "support": [1, null, -1]
+      },
+      "keyFrames": [
+        [732, 536.844, 345, 0, 0, 1, true, 5],
+        [737, 549.844, 339.02, 13, -5.98, null, false, 10],
+        [747, 679.844, 307.82, 13, -0.78, null, false, 20],
+        [798, 724.415, 554, 0, 0, -1, true, 43],
+        [803, 724.415, 554, 0, 0, -1, true, 43]
+      ],
+      "energyDropObserved": 24.825
+    },
+    {
+      "fighter": "oscar",
+      "stage": "valencia",
+      "slot": 2,
+      "matchId": "1b23b54e-812b-406b-a550-7dacda7ada87",
+      "passed": true,
+      "movementCheck": true,
+      "before": {
+        "tick": 1393,
+        "x": 535.849,
+        "y": 345,
+        "energy": 41.105
+      },
+      "observedSamples": 14,
+      "range": {
+        "x": [535.849, 535.849],
+        "y": [213, 345],
+        "support": [1, null]
+      },
+      "keyFrames": [
+        [1398, 535.849, 345, 0, 0, 1, true, 5],
+        [1424, 535.849, 213, 0, 0.48, null, false, 31],
+        [1466, 535.849, 345, 0, 0, 1, true, 39]
+      ],
+      "energyDropObserved": 24.825
+    },
+    {
+      "fighter": "nacho",
+      "stage": "canaima",
+      "slot": 1,
+      "matchId": "83c66602-8d65-4c7b-bdca-6f28a8bebc2d",
+      "passed": true,
+      "movementCheck": true,
+      "before": {
+        "tick": 797,
+        "x": 544.693,
+        "y": 422.872,
+        "energy": 45.045
+      },
+      "observedSamples": 14,
+      "range": {
+        "x": [544.693, 745.285],
+        "y": [423.672, 554],
+        "support": [2, null, -1]
+      },
+      "keyFrames": [
+        [803, 544.693, 423.672, 0, 0, 2, true, 6],
+        [809, 628.693, 424.513, 14, 0.52, null, false, 12],
+        [821, 619.477, 471.313, -10, 6.76, null, false, 24],
+        [881, 745.285, 554, 0, 0, -1, true, 49]
+      ],
+      "energyDropObserved": 24.79
+    },
+    {
+      "fighter": "sayona",
+      "stage": "canaima",
+      "slot": 2,
+      "matchId": "83c66602-8d65-4c7b-bdca-6f28a8bebc2d",
+      "passed": true,
+      "movementCheck": true,
+      "before": {
+        "tick": 1569,
+        "x": 535.415,
+        "y": 414.194,
+        "energy": 46.025
+      },
+      "observedSamples": 14,
+      "range": {
+        "x": [331.71, 535.415],
+        "y": [408.21, 554],
+        "support": [2, null, -1]
+      },
+      "keyFrames": [
+        [1575, 535.415, 411.113, 0, 0, 2, true, 6],
+        [1581, 331.71, 408.21, 0, 0.52, null, false, 12],
+        [1651, 331.71, 554, 0, 0, -1, true, 46]
+      ],
+      "energyDropObserved": 24.79
+    },
+    {
+      "fighter": "chiqui",
+      "stage": "maracaibo",
+      "slot": 1,
+      "matchId": "36fecd73-f692-4bd9-957e-e6df65ac9c2b",
+      "passed": true,
+      "movementCheck": true,
+      "before": {
+        "tick": 818,
+        "x": 542.916,
+        "y": 348.636,
+        "energy": 45.78
+      },
+      "observedSamples": 14,
+      "range": {
+        "x": [542.916, 726.916],
+        "y": [346.548, 554],
+        "support": [2, null, -1]
+      },
+      "keyFrames": [
+        [824, 542.916, 347.399, 0, 0, 2, true, 6],
+        [830, 588.916, 346.548, 23, 0, 2, true, 12],
+        [906, 726.916, 554, 0, 0, -1, true, 38]
+      ],
+      "energyDropObserved": 24.79
+    },
+    {
+      "fighter": "momoy",
+      "stage": "maracaibo",
+      "slot": 2,
+      "matchId": "36fecd73-f692-4bd9-957e-e6df65ac9c2b",
+      "passed": true,
+      "movementCheck": true,
+      "before": {
+        "tick": 1594,
+        "x": 540.559,
+        "y": 467.765,
+        "energy": 46.745
+      },
+      "observedSamples": 14,
+      "range": {
+        "x": [540.559, 540.559],
+        "y": [404.979, 465.426],
+        "support": [2]
+      },
+      "keyFrames": [
+        [1600, 540.559, 465.426, 0, 0, 2, true, 6],
+        [1686, 540.559, 404.979, 0, 0, 2, true, 50]
+      ],
+      "energyDropObserved": 24.79
+    },
+    {
+      "fighter": "sarcos",
+      "stage": "roques",
+      "slot": 1,
+      "matchId": "e91a30d0-cefa-43da-9fa3-44de7ca8584a",
+      "passed": true,
+      "movementCheck": true,
+      "before": {
+        "tick": 803,
+        "x": 541.893,
+        "y": 428.877,
+        "energy": 45.255
+      },
+      "observedSamples": 14,
+      "range": {
+        "x": [541.893, 541.893],
+        "y": [427.016, 436.328],
+        "support": [2]
+      },
+      "keyFrames": [
+        [808, 541.893, 428.129, 0, 0, 2, true, 5],
+        [823, 541.893, 427.016, 0, 0, 2, true, 20],
+        [876, 541.893, 436.328, 0, 0, 2, true, 54]
+      ],
+      "energyDropObserved": 24.825
+    },
+    {
+      "fighter": "reynaldo",
+      "stage": "roques",
+      "slot": 2,
+      "matchId": "e91a30d0-cefa-43da-9fa3-44de7ca8584a",
+      "passed": true,
+      "movementCheck": true,
+      "before": {
+        "tick": 1571,
+        "x": 535.484,
+        "y": 462.937,
+        "energy": 39.265
+      },
+      "observedSamples": 14,
+      "range": {
+        "x": [535.484, 535.484],
+        "y": [448.373, 462.996],
+        "support": [2]
+      },
+      "keyFrames": [
+        [1576, 535.484, 462.996, 0, 0, 2, true, 5],
+        [1641, 535.484, 448.373, 0, 0, 2, true, 49]
+      ],
+      "energyDropObserved": 24.825
+    }
+  ],
+  "projectileObservation": {
+    "method": "Read-only analysis of emitted projectile samples from the actual keyboard special traces. Twenty sampled intervals match the discrete gravity equations within 0.002; the returning lasso reverses horizontal direction.",
+    "checks": [
+      {
+        "stage": "caracas",
+        "fighter": "tioconejo",
+        "gravity": 0.24,
+        "comparedIntervals": 5,
+        "errors": [],
+        "returnObserved": false,
+        "keyFrames": [
+          {
+            "tick": 1513,
+            "projectiles": [
+              {
+                "kind": "trickster",
+                "x": 209.586,
+                "y": 315.4,
+                "vx": -10,
+                "vy": -0.04,
+                "owner": 1
+              }
+            ]
+          },
+          {
+            "tick": 1531,
+            "projectiles": [
+              {
+                "kind": "trickster",
+                "x": 29.586,
+                "y": 355.72,
+                "vx": -10,
+                "vy": 4.28,
+                "owner": 1
+              }
+            ]
+          },
+          {
+            "tick": 1543,
+            "projectiles": [
+              {
+                "kind": "trickster",
+                "x": -90.414,
+                "y": 425.8,
+                "vx": -10,
+                "vy": 7.16,
+                "owner": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "stage": "merida",
+        "fighter": "tioconejo",
+        "gravity": 0.24,
+        "comparedIntervals": 8,
+        "errors": [],
+        "returnObserved": false,
+        "keyFrames": [
+          {
+            "tick": 785,
+            "projectiles": [
+              {
+                "kind": "trickster",
+                "x": 745.156,
+                "y": 288.72,
+                "vx": 10,
+                "vy": -0.52,
+                "owner": 0
+              }
+            ]
+          },
+          {
+            "tick": 805,
+            "projectiles": [
+              {
+                "kind": "trickster",
+                "x": 945.156,
+                "y": 328.72,
+                "vx": 10,
+                "vy": 4.28,
+                "owner": 0
+              }
+            ]
+          },
+          {
+            "tick": 825,
+            "projectiles": [
+              {
+                "kind": "trickster",
+                "x": 1145.156,
+                "y": 464.72,
+                "vx": 10,
+                "vy": 9.08,
+                "owner": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "stage": "roques",
+        "fighter": "sarcos",
+        "gravity": 0.35,
+        "comparedIntervals": 7,
+        "errors": [],
+        "returnObserved": false,
+        "keyFrames": [
+          {
+            "tick": 823,
+            "projectiles": [
+              {
+                "kind": "jackpot",
+                "x": 607.893,
+                "y": 336.163,
+                "vx": 6,
+                "vy": -4.95,
+                "owner": 0
+              }
+            ]
+          },
+          {
+            "tick": 843,
+            "projectiles": [
+              {
+                "kind": "jackpot",
+                "x": 727.893,
+                "y": 310.663,
+                "vx": 6,
+                "vy": 2.05,
+                "owner": 0
+              }
+            ]
+          },
+          {
+            "tick": 858,
+            "projectiles": [
+              {
+                "kind": "jackpot",
+                "x": 817.893,
+                "y": 383.413,
+                "vx": 6,
+                "vy": 7.3,
+                "owner": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "stage": "roques",
+        "fighter": "reynaldo",
+        "gravity": 0,
+        "comparedIntervals": 0,
+        "errors": [],
+        "returnObserved": true,
+        "keyFrames": [
+          {
+            "tick": 1591,
+            "projectiles": [
+              {
+                "kind": "lasso",
+                "x": 447.484,
+                "y": 387.337,
+                "vx": -10,
+                "vy": 0,
+                "owner": 1
+              }
+            ]
+          },
+          {
+            "tick": 1616,
+            "projectiles": [
+              {
+                "kind": "lasso",
+                "x": 237.484,
+                "y": 387.337,
+                "vx": 10,
+                "vy": 0,
+                "owner": 1
+              }
+            ]
+          },
+          {
+            "tick": 1641,
+            "projectiles": [
+              {
+                "kind": "lasso",
+                "x": 487.484,
+                "y": 387.337,
+                "vx": 10,
+                "vy": 0,
+                "owner": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "limits": "These samples do not cover complete bounce lifetimes or every projectile/opponent/platform interaction."
+  },
+  "contactSessions": {
+    "bundle": "index-BU8rGRKG.js",
+    "sessions": 4,
+    "assertions": 30,
+    "cases": [
+      {
+        "stage": "maracaibo",
+        "platform": 2,
+        "kind": "heavy",
+        "fighters": ["chiqui", "momoy"],
+        "matchId": "2ed63361-5d50-46dc-a31c-09ffa30356d2",
+        "pass": true,
+        "checkCount": 9,
+        "checks": [
+          {
+            "step": "maracaibo: heavy contact: selection is reflected in actual match",
+            "pass": true
+          },
+          {
+            "step": "maracaibo: heavy contact: P1 second jump registers",
+            "pass": true
+          },
+          {
+            "step": "maracaibo: heavy contact: P2 second jump registers",
+            "pass": true
+          },
+          {
+            "step": "maracaibo: heavy contact: P1 contact starts with both fighters supported",
+            "pass": true
+          },
+          {
+            "step": "maracaibo: heavy contact: P1 heavy detaches victim and preserves attacker support",
+            "pass": true
+          },
+          {
+            "step": "maracaibo: heavy contact: P1 second jump registers",
+            "pass": true
+          },
+          {
+            "step": "maracaibo: heavy contact: P2 second jump registers",
+            "pass": true
+          },
+          {
+            "step": "maracaibo: heavy contact: P2 contact starts with both fighters supported",
+            "pass": true
+          },
+          {
+            "step": "maracaibo: heavy contact: P2 heavy detaches victim and preserves attacker support",
+            "pass": true
+          }
+        ],
+        "impacts": [
+          {
+            "step": "maracaibo: heavy contact: P1 heavy detaches victim and preserves attacker support",
+            "actorSlot": 1,
+            "targetSlot": 2,
+            "before": {
+              "tick": 789,
+              "actor": {
+                "fighter": "chiqui",
+                "x": 500.717,
+                "y": 359.74,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 2,
+                "hp": 100,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              },
+              "target": {
+                "fighter": "momoy",
+                "x": 574.125,
+                "y": 359.74,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 2,
+                "hp": 100,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              }
+            },
+            "observedSamples": 15,
+            "firstDamage": {
+              "tick": 801,
+              "attackerSupport": 2,
+              "target": {
+                "fighter": "momoy",
+                "x": 583.124,
+                "y": 349.48,
+                "vx": 8.999,
+                "vy": -4.68,
+                "grounded": false,
+                "support": null,
+                "hp": 88.756,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 26
+              }
+            },
+            "last": {
+              "tick": 859,
+              "target": {
+                "fighter": "momoy",
+                "x": 831.766,
+                "y": 410,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 1,
+                "hp": 88.756,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              }
+            },
+            "maxRootTicks": 0,
+            "maxSlowTicks": 0
+          },
+          {
+            "step": "maracaibo: heavy contact: P2 heavy detaches victim and preserves attacker support",
+            "actorSlot": 2,
+            "targetSlot": 1,
+            "before": {
+              "tick": 1174,
+              "actor": {
+                "fighter": "momoy",
+                "x": 576.569,
+                "y": 431.364,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 2,
+                "hp": 88.756,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              },
+              "target": {
+                "fighter": "chiqui",
+                "x": 500.717,
+                "y": 431.364,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 2,
+                "hp": 100,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              }
+            },
+            "observedSamples": 15,
+            "firstDamage": {
+              "tick": 1186,
+              "attackerSupport": 2,
+              "target": {
+                "fighter": "chiqui",
+                "x": 491.552,
+                "y": 416.983,
+                "vx": -9.166,
+                "vy": -4.68,
+                "grounded": false,
+                "support": null,
+                "hp": 86.886,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 26
+              }
+            },
+            "last": {
+              "tick": 1244,
+              "target": {
+                "fighter": "chiqui",
+                "x": 202.363,
+                "y": 554,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": -1,
+                "hp": 86.886,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              }
+            },
+            "maxRootTicks": 0,
+            "maxSlowTicks": 0
+          }
+        ],
+        "rootEscape": [],
+        "final": {
+          "tick": 1274,
+          "stocks": [2, 2]
+        }
+      },
+      {
+        "stage": "maracaibo",
+        "platform": 2,
+        "kind": "special",
+        "fighters": ["chiqui", "momoy"],
+        "matchId": "302e17fe-47bf-4ef0-803b-72c549efaab1",
+        "pass": true,
+        "checkCount": 7,
+        "checks": [
+          {
+            "step": "maracaibo: special contact: selection is reflected in actual match",
+            "pass": true
+          },
+          {
+            "step": "maracaibo: special contact: P1 second jump registers",
+            "pass": true
+          },
+          {
+            "step": "maracaibo: special contact: P2 second jump registers",
+            "pass": true
+          },
+          {
+            "step": "maracaibo: special contact: P2 contact starts with both fighters supported",
+            "pass": true
+          },
+          {
+            "step": "maracaibo: special contact: Momoy roots the actual victim on the moving surface",
+            "pass": true
+          },
+          {
+            "step": "maracaibo: special contact: root remains active immediately before escape input",
+            "pass": true
+          },
+          {
+            "step": "maracaibo: special contact: fresh jump breaks roots after hit recovery",
+            "pass": true
+          }
+        ],
+        "impacts": [
+          {
+            "step": "maracaibo: special contact: Momoy roots the actual victim on the moving surface",
+            "actorSlot": 2,
+            "targetSlot": 1,
+            "before": {
+              "tick": 799,
+              "actor": {
+                "fighter": "momoy",
+                "x": 575.799,
+                "y": 354.998,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 2,
+                "hp": 100,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              },
+              "target": {
+                "fighter": "chiqui",
+                "x": 501.055,
+                "y": 354.998,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 2,
+                "hp": 100,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              }
+            },
+            "observedSamples": 7,
+            "firstDamage": {
+              "tick": 818,
+              "attackerSupport": 2,
+              "target": {
+                "fighter": "chiqui",
+                "x": 501.055,
+                "y": 348.636,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 2,
+                "hp": 87.894,
+                "stocks": 2,
+                "rootTicks": 38,
+                "slowTicks": 0,
+                "stun": 13
+              }
+            },
+            "last": {
+              "tick": 831,
+              "target": {
+                "fighter": "chiqui",
+                "x": 501.055,
+                "y": 346.444,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 2,
+                "hp": 87.894,
+                "stocks": 2,
+                "rootTicks": 25,
+                "slowTicks": 0,
+                "stun": 0
+              }
+            },
+            "maxRootTicks": 38,
+            "maxSlowTicks": 0
+          }
+        ],
+        "rootEscape": [
+          {
+            "step": "maracaibo: special contact: root remains active immediately before escape input",
+            "pass": true,
+            "state": {
+              "tick": 831,
+              "target": {
+                "fighter": "chiqui",
+                "x": 501.055,
+                "y": 346.444,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 2,
+                "hp": 87.894,
+                "stocks": 2,
+                "rootTicks": 25,
+                "slowTicks": 0,
+                "stun": 0
+              }
+            }
+          },
+          {
+            "step": "maracaibo: special contact: fresh jump breaks roots after hit recovery",
+            "pass": true,
+            "state": {
+              "tick": 836,
+              "target": {
+                "fighter": "chiqui",
+                "x": 501.055,
+                "y": 290.151,
+                "vx": 0,
+                "vy": -10.2,
+                "grounded": false,
+                "support": null,
+                "hp": 87.894,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              }
+            }
+          }
+        ],
+        "final": {
+          "tick": 916,
+          "stocks": [2, 2]
+        }
+      },
+      {
+        "stage": "coro",
+        "platform": 1,
+        "kind": "heavy",
+        "fighters": ["norkys", "capriles"],
+        "matchId": "5a0540ed-0639-4beb-bf44-37dfec03a2ea",
+        "pass": true,
+        "checkCount": 9,
+        "checks": [
+          {
+            "step": "coro: heavy contact: selection is reflected in actual match",
+            "pass": true
+          },
+          {
+            "step": "coro: heavy contact: P1 second jump registers",
+            "pass": true
+          },
+          {
+            "step": "coro: heavy contact: P2 second jump registers",
+            "pass": true
+          },
+          {
+            "step": "coro: heavy contact: P1 contact starts with both fighters supported",
+            "pass": true
+          },
+          {
+            "step": "coro: heavy contact: P1 heavy detaches victim and preserves attacker support",
+            "pass": true
+          },
+          {
+            "step": "coro: heavy contact: P1 second jump registers",
+            "pass": true
+          },
+          {
+            "step": "coro: heavy contact: P2 second jump registers",
+            "pass": true
+          },
+          {
+            "step": "coro: heavy contact: P2 contact starts with both fighters supported",
+            "pass": true
+          },
+          {
+            "step": "coro: heavy contact: P2 heavy detaches victim and preserves attacker support",
+            "pass": true
+          }
+        ],
+        "impacts": [
+          {
+            "step": "coro: heavy contact: P1 heavy detaches victim and preserves attacker support",
+            "actorSlot": 1,
+            "targetSlot": 2,
+            "before": {
+              "tick": 839,
+              "actor": {
+                "fighter": "norkys",
+                "x": 497.504,
+                "y": 385,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 1,
+                "hp": 100,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              },
+              "target": {
+                "fighter": "capriles",
+                "x": 565.031,
+                "y": 385,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 1,
+                "hp": 100,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              }
+            },
+            "observedSamples": 15,
+            "firstDamage": {
+              "tick": 851,
+              "attackerSupport": 1,
+              "target": {
+                "fighter": "capriles",
+                "x": 575.516,
+                "y": 380.32,
+                "vx": 9.12,
+                "vy": -4.68,
+                "grounded": false,
+                "support": null,
+                "hp": 87.403,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 26
+              }
+            },
+            "last": {
+              "tick": 909,
+              "target": {
+                "fighter": "capriles",
+                "x": 873.241,
+                "y": 554,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": -1,
+                "hp": 87.403,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              }
+            },
+            "maxRootTicks": 0,
+            "maxSlowTicks": 0
+          },
+          {
+            "step": "coro: heavy contact: P2 heavy detaches victim and preserves attacker support",
+            "actorSlot": 2,
+            "targetSlot": 1,
+            "before": {
+              "tick": 1149,
+              "actor": {
+                "fighter": "capriles",
+                "x": 765.388,
+                "y": 385,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 1,
+                "hp": 87.403,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              },
+              "target": {
+                "fighter": "norkys",
+                "x": 698.574,
+                "y": 385,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 1,
+                "hp": 100,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              }
+            },
+            "observedSamples": 15,
+            "firstDamage": {
+              "tick": 1166,
+              "attackerSupport": 1,
+              "target": {
+                "fighter": "norkys",
+                "x": 619.546,
+                "y": 363.16,
+                "vx": -9.027,
+                "vy": -1.56,
+                "grounded": false,
+                "support": null,
+                "hp": 88.446,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 20
+              }
+            },
+            "last": {
+              "tick": 1231,
+              "target": {
+                "fighter": "norkys",
+                "x": 379.008,
+                "y": 554,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": -1,
+                "hp": 88.446,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              }
+            },
+            "maxRootTicks": 0,
+            "maxSlowTicks": 0
+          }
+        ],
+        "rootEscape": [],
+        "final": {
+          "tick": 1261,
+          "stocks": [2, 2]
+        }
+      },
+      {
+        "stage": "roques",
+        "platform": 2,
+        "kind": "special",
+        "fighters": ["sarcos", "reynaldo"],
+        "matchId": "46929f8d-f884-4a95-b24c-1c35e8288b0a",
+        "pass": true,
+        "checkCount": 5,
+        "checks": [
+          {
+            "step": "roques: special contact: selection is reflected in actual match",
+            "pass": true
+          },
+          {
+            "step": "roques: special contact: P1 second jump registers",
+            "pass": true
+          },
+          {
+            "step": "roques: special contact: P2 second jump registers",
+            "pass": true
+          },
+          {
+            "step": "roques: special contact: P2 contact starts with both fighters supported",
+            "pass": true
+          },
+          {
+            "step": "roques: special contact: P2 special contacts victim",
+            "pass": true
+          }
+        ],
+        "impacts": [
+          {
+            "step": "roques: special contact: P2 special contacts victim",
+            "actorSlot": 2,
+            "targetSlot": 1,
+            "before": {
+              "tick": 803,
+              "actor": {
+                "fighter": "reynaldo",
+                "x": 578.623,
+                "y": 428.877,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 2,
+                "hp": 100,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              },
+              "target": {
+                "fighter": "sarcos",
+                "x": 502.539,
+                "y": 428.877,
+                "vx": 0,
+                "vy": 0,
+                "grounded": true,
+                "support": 2,
+                "hp": 100,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              }
+            },
+            "observedSamples": 12,
+            "firstDamage": {
+              "tick": 820,
+              "attackerSupport": 2,
+              "target": {
+                "fighter": "sarcos",
+                "x": 502.539,
+                "y": 427.099,
+                "vx": 6.762,
+                "vy": -3.9,
+                "grounded": false,
+                "support": null,
+                "hp": 88.573,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 25,
+                "stun": 21
+              }
+            },
+            "last": {
+              "tick": 860,
+              "target": {
+                "fighter": "sarcos",
+                "x": 585.001,
+                "y": 431.623,
+                "vx": 0.001,
+                "vy": 0,
+                "grounded": true,
+                "support": 2,
+                "hp": 88.573,
+                "stocks": 2,
+                "rootTicks": 0,
+                "slowTicks": 0,
+                "stun": 0
+              }
+            },
+            "maxRootTicks": 0,
+            "maxSlowTicks": 25
+          }
+        ],
+        "rootEscape": [],
+        "final": {
+          "tick": 905,
+          "stocks": [2, 2]
+        }
+      }
+    ]
+  },
+  "harnessCorrections": [
+    {
+      "issue": "The first dash check assumed rightward motion.",
+      "evidence": "P2 was idle and automatically faced the rival to its left; its real dash moved left at vx=-14.",
+      "resolution": "Check actual dash displacement and active dash state without assuming a fixed facing direction.",
+      "classification": "Harness expectation; no product fix."
+    },
+    {
+      "issue": "Early parking commands directed both fighters through one another.",
+      "evidence": "Guaira stopped at the ordinary 43-unit body separation.",
+      "resolution": "Keep their relative order while parking; choose the actor's corresponding outer edge for recovery.",
+      "classification": "Harness control policy; no product fix."
+    },
+    {
+      "issue": "An unattended rival was hit by Sayona's actual blink special during traversal.",
+      "evidence": {
+        "stage": "canaima",
+        "matchId": "690f8218-3d48-401b-aa65-94bf639b1096",
+        "target": "nacho",
+        "hpAfterHit": 85.465,
+        "initialKnockbackVx": -8.13,
+        "finalStocks": 1
+      },
+      "resolution": "Preserve this as legitimate contact/knockback evidence; guard the unattended rival and allow projectile expiry in isolated traversal cases.",
+      "classification": "Harness stock-preservation assumption; expected combat behavior."
+    },
+    {
+      "issue": "The first edge check sampled the UI clone at approximately six-tick intervals and missed the transient defect.",
+      "resolution": "Do not use that coarse passing run as absence-of-bug evidence. Retain the unmodified local simulation clone and observe each physical step; require outside-support samples.",
+      "classification": "Observation gap. The later live RED detects the real product defect."
+    },
+    {
+      "issue": "The first attempted property observer was attached to the UI clone and recorded zero physical steps.",
+      "resolution": "Fail the evidence precondition, retain the actual advancing simulation identity, and restore all observation hooks in finally.",
+      "classification": "Harness instrumentation; no product fix."
+    },
+    {
+      "issue": "An edge repro initially parked too close and let P2 coast off before the push.",
+      "resolution": "Park at x=1020 by ordinary steering and require two stocks plus valid initial support before starting the pusher.",
+      "classification": "Harness setup failure; excluded from red/green counts."
+    },
+    {
+      "issue": "A root escape check could otherwise wait until the effect expired naturally.",
+      "resolution": "Stop capture while rootTicks>0/stun=0, assert active roots immediately before the fresh jump, then verify airborne state and rootTicks=0.",
+      "evidence": {
+        "before": {
+          "tick": 831,
+          "rootTicks": 25,
+          "stun": 0,
+          "support": 2
+        },
+        "after": {
+          "tick": 836,
+          "rootTicks": 0,
+          "support": null,
+          "vy": -10.2
+        }
+      },
+      "classification": "Harness assertion strengthened before the valid contact run."
+    }
+  ],
+  "visualInspection": {
+    "method": "Actual game canvas copied to 600x334 JPEG for inspection without the pause overlay.",
+    "reviewed": [
+      "Nacho on Canaima's vertical rock",
+      "Gómez on Mérida's horizontal cabin roof",
+      "Norkys on Coro's moving platform",
+      "Sarcos on Los Roques' raft",
+      "Chiqui/Momoy together on Maracaibo's lift",
+      "Norkys/Capriles together on Coro's platform",
+      "Sarcos/Reynaldo together on Los Roques' raft"
+    ],
+    "result": "Observed support surfaces and fighter placements agree visually in these captures; numeric collision/render regressions cover geometry separately."
+  },
+  "cleanup": {
+    "local": {
+      "inFight": false,
+      "inRoom": false,
+      "heldControlsReleased": true
+    },
+    "online": {
+      "host": {
+        "inFight": false,
+        "inRoom": false
+      },
+      "guest": {
+        "inFight": false,
+        "inRoom": false
+      }
+    },
+    "temporaryServers": "5392/5393 were stopped with SIGTERM after evidence was saved; both exited with code 0. The companion online server 5394 also exited with code 0. No deployment or push."
+  },
+  "representativeKeyFrameColumns": [
+    "tick",
+    "x",
+    "y",
+    "vx",
+    "vy",
+    "support",
+    "grounded",
+    "attackTick"
+  ]
+}

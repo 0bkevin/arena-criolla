@@ -98,6 +98,65 @@ test("controller release and disconnect preserve an independently held touch con
   }
 });
 
+test("disconnecting P1's controller preserves P2's controls and assigns replacements to P1", () => {
+  const inputs = makeInputs();
+  const sources: [ControlSources, ControlSources] = [
+    new ControlSources(inputs[0]),
+    new ControlSources(inputs[1]),
+  ];
+  const controls = new GamepadControls(sources);
+  const pad = (index: number) => ({
+    index,
+    connected: true,
+    axes: [0, 0],
+    buttons: Array.from({ length: 16 }, () => ({ pressed: false })),
+  });
+  const first = pad(0),
+    second = pad(1);
+  let pads: (ReturnType<typeof pad> | null)[] = [first, second];
+  const original = Object.getOwnPropertyDescriptor(navigator, "getGamepads");
+  Object.defineProperty(navigator, "getGamepads", {
+    configurable: true,
+    value: () => pads,
+  });
+  try {
+    first.axes[0] = 1;
+    second.axes[0] = -1;
+    controls.update(inputs, 2);
+    assert.equal(inputs[0].right, true);
+    assert.equal(inputs[1].left, true);
+    // Browsers retain a hole when a gamepad disconnects.
+    pads[0] = null;
+    second.buttons[2].pressed = true;
+    controls.update(inputs, 2);
+    assert.equal(
+      inputs[0].right,
+      false,
+      "the disconnected controller releases its hold",
+    );
+    assert.equal(inputs[0].left, false, "P2 must not take over P1");
+    assert.equal(inputs[1].left, true);
+    assert.deepEqual(
+      inputs.map((input) => input.actions.light),
+      [0, 1],
+    );
+    second.buttons[2].pressed = false;
+    controls.update(inputs, 2);
+    const replacement = pad(2);
+    replacement.buttons[0].pressed = true;
+    pads = [null, second, replacement];
+    controls.update(inputs, 2);
+    assert.deepEqual(
+      inputs.map((input) => input.actions.jump),
+      [1, 0],
+    );
+    assert.equal(inputs[1].left, true);
+  } finally {
+    if (original) Object.defineProperty(navigator, "getGamepads", original);
+    else Reflect.deleteProperty(navigator, "getGamepads");
+  }
+});
+
 for (const control of [
   "jump",
   "light",

@@ -309,12 +309,7 @@ export function Game(props: Props) {
       const quiet = isGameQuiet();
       setReactionsPaused(pausedRef.current || blockedRef.current || dialogOpen);
       if (dialogOpen) sources.current.forEach((source) => source.clear());
-      if (
-        !pausedRef.current &&
-        !blockedRef.current &&
-        !dialogOpen &&
-        state.phase !== "finished"
-      )
+      if (!quiet && state.phase !== "finished")
         gamepads.update(inputs.current, mode === "local" ? 2 : 1);
       if (mode === "online") {
         if (remote?.current?.id === initial.id) state = remote.current;
