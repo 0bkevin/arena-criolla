@@ -44,42 +44,48 @@ body:has(.game-page.is-touch) {
   --play-bottom: max(8px, env(safe-area-inset-bottom));
   --play-left: max(10px, env(safe-area-inset-left));
   --play-right: max(10px, env(safe-area-inset-right));
-  --play-header: 44px;
   --touch-size: clamp(44px, 12dvh, 56px);
   position: fixed;
   inset: 0;
   z-index: 20;
-  display: flex;
-  flex-direction: column;
+  display: block;
   width: 100%;
   max-width: none;
   height: 100dvh;
   min-height: 0;
   margin: 0;
-  padding: var(--play-top) var(--play-right) var(--play-bottom) var(--play-left);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  overflow: hidden;
   background: #081322;
   user-select: none;
 }
 .game-page.is-touch .game-topline {
+  position: absolute;
+  top: var(--play-top);
+  left: var(--play-left);
+  right: var(--play-right);
   flex: none;
-  height: var(--play-header);
+  height: 44px;
   min-height: 44px;
   flex-wrap: nowrap;
   margin: 0;
   gap: 8px;
   padding: 0;
   z-index: 8;
+  pointer-events: none;
 }
 .game-page.is-touch .game-topline > .text-button {
+  width: 44px;
+  justify-content: center;
   min-height: 44px;
-  font-size: 11px;
-  gap: 6px;
+  font-size: 0;
+  gap: 0;
+  padding: 0;
 }
 .game-page.is-touch .game-mode {
-  order: 0;
-  width: auto;
-  margin: 0;
-  font-size: 8px;
+  display: none;
 }
 .game-page.is-touch .game-tools {
   gap: 4px;
@@ -87,6 +93,14 @@ body:has(.game-page.is-touch) {
 .game-page.is-touch .game-tools .icon-button {
   width: 44px;
   height: 44px;
+}
+.game-page.is-touch .game-topline button {
+  pointer-events: auto;
+  border-radius: 12px;
+  background: #08132275;
+}
+.game-page.is-touch:not(.is-paused) .game-tools > :not(:last-child) {
+  display: none;
 }
 .game-page.is-touch .game-tools .icon-button svg {
   width: 19px;
@@ -96,35 +110,44 @@ body:has(.game-page.is-touch) {
   min-width: 44px;
   height: 44px;
 }
-.game-page.is-touch .arena-wrap {
+.arcade-app .game-page.is-touch .arena-wrap {
+  position: absolute;
+  inset: 0;
   flex: none;
-  width: min(
-    100%,
-    calc(
-      (100dvh - var(--play-header) - var(--play-top) - var(--play-bottom)) *
-        1.6875
-    )
-  );
+  width: 100%;
+  height: 100%;
   max-width: 100%;
-  max-height: calc(
-    100dvh - var(--play-header) - var(--play-top) - var(--play-bottom)
-  );
+  max-height: none;
   min-width: 0;
   min-height: 0;
-  aspect-ratio: 1080 / 640;
-  margin: auto;
-  border: 1px solid #43576c;
-  border-radius: 8px;
+  aspect-ratio: auto;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
   box-shadow: none;
 }
 .game-page.is-touch .arena-canvas {
   touch-action: none;
+  object-fit: fill;
+}
+.game-page.is-touch .arena-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: calc(var(--play-top) + 88px);
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(#081322b0, #08132200);
+}
+.game-page.is-touch.is-intro .arena-wrap::after {
+  display: none;
 }
 .game-page.is-touch .match-hud {
-  top: 10px;
-  left: 12px;
-  right: 12px;
-  gap: 58px;
+  top: calc(var(--play-top) + 4px);
+  left: calc(var(--play-left) + 54px);
+  right: calc(var(--play-right) + 54px);
+  gap: 76px;
+  z-index: 2;
 }
 .game-page.is-touch .hud-label {
   gap: 5px;
@@ -200,7 +223,7 @@ body:has(.game-page.is-touch) {
   border: 1px solid #adc5e65c;
   border-radius: 14px;
   color: #edf2fa;
-  background: #10233acc;
+  background: #10233a9e;
   box-shadow: 0 3px 0 #050e1b8c;
   transition:
     transform 80ms,
@@ -264,12 +287,21 @@ body:has(.game-page.is-touch) {
   border-color: #ffd45a88;
   color: #ffdc79;
 }
-.game-page.is-touch.is-intro {
-  --play-header: 0px;
-}
 .game-page.is-touch .game-overlay {
-  padding: 12px;
+  padding: max(12px, var(--play-top)) max(12px, var(--play-right))
+    max(12px, var(--play-bottom)) max(12px, var(--play-left));
   overflow-y: auto;
+}
+.game-page.is-touch .skip-entrances {
+  top: var(--play-top);
+  right: var(--play-right);
+}
+.game-page.is-touch .cinematic-name {
+  left: max(5%, var(--play-left));
+}
+.game-page.is-touch .cinematic-name-1 {
+  left: auto;
+  right: max(5%, var(--play-right));
 }
 .game-page.is-touch.is-finished .arena-wrap {
   flex: 1;
