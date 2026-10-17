@@ -331,8 +331,6 @@ function loseStock(s: MatchState, i: number) {
   );
   if (p.stocks <= 0) {
     p.hp = 0;
-    s.phase = "finished";
-    s.winner = 1 - i;
     return;
   }
   p.x = i === 0 ? 330 : 750;
@@ -884,14 +882,6 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
       p.vx *= 0.89;
       p.recoilVx = (p.recoilVx ?? 0) * 0.89;
     }
-    if (
-      p.hp <= 0 ||
-      p.x < WORLD.x - 120 ||
-      p.x > WORLD.x + WORLD.width + 120 ||
-      p.y > WORLD.y + WORLD.height + 140
-    )
-      loseStock(s, i);
-    if (s.winner !== null) return;
   }
   const [a, b] = s.players;
   if (
@@ -1024,6 +1014,22 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
       projectile.x < WORLD.x + WORLD.width + 50
     );
   });
+  // Resolve the whole tick, including projectiles, before deciding the result.
+  // Both players can lose a stock together; iteration order must not pick a winner.
+  s.players.forEach((p, i) => {
+    if (
+      p.hp <= 0 ||
+      p.x < WORLD.x - 120 ||
+      p.x > WORLD.x + WORLD.width + 120 ||
+      p.y > WORLD.y + WORLD.height + 140
+    )
+      loseStock(s, i);
+  });
+  const [first, second] = s.players;
+  if (first.stocks <= 0 || second.stocks <= 0) {
+    s.phase = "finished";
+    s.winner = first.stocks <= 0 ? (second.stocks <= 0 ? "draw" : 1) : 0;
+  }
   resolveTimeout(s);
 }
 
