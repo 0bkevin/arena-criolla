@@ -1055,6 +1055,12 @@ export function cpuInput(
   const dx = other.x - p.x;
   next.left = dx < -86;
   next.right = dx > 86;
+  next.down =
+    p.grounded &&
+    p.supportPlatform !== null &&
+    p.supportPlatform >= 0 &&
+    other.y > p.y + 80 &&
+    Math.abs(dx) < 180;
   next.block =
     difficulty !== "easy" &&
     (other.attack === "heavy" || other.attack === "special") &&
@@ -1097,7 +1103,10 @@ export function cpuInput(
     next.actions.special++;
   }
   if (
-    (other.y < p.y - 70 || p.x < WORLD.left + 30 || p.x > WORLD.right - 30) &&
+    (other.y < p.y - 70 ||
+      (p.jumps === 1 && !p.grounded && other.y < p.y && p.vy > -2) ||
+      p.x < WORLD.left + 30 ||
+      p.x > WORLD.right - 30) &&
     p.jumps < 2 &&
     s.tick % 34 === 0
   )
