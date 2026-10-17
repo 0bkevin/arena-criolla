@@ -1,0 +1,233 @@
+{
+  "recordedAt": "2026-10-17T17:06:40.676067+00:00",
+  "status": "private_luna_high_adversarial_generation_verified",
+  "requestedBilling": "ChatGPT subscription allowance followed by existing ChatGPT/Codex credits, as authorized by the owner; no API fallback",
+  "installation": {
+    "host": "Oracle production VM",
+    "architecture": "arm64",
+    "image": "arena-criolla:codex-operator-v6",
+    "imageDigest": "sha256:dec7ead3d375f1d7adf07957e9b3aa9a83397f4f6701fd4f9f94b5dd3fad60bb",
+    "cliVersion": "0.162.1",
+    "sdkVersion": "0.162.1",
+    "release": "/opt/arena-codex/releases/operator-v6-20261017",
+    "command": "/usr/local/bin/arena-codex",
+    "privateData": "/var/lib/arena-codex",
+    "privateDataOwner": "arena-codex",
+    "privateDirectoryMode": "0700",
+    "publishedPorts": [],
+    "publicVisitorIntegration": false,
+    "gameDatabaseMounted": false,
+    "gameApiSecretMounted": false,
+    "dockerSocketMounted": false
+  },
+  "validation": {
+    "shellSyntax": "passed",
+    "arm64CliVersion": "passed",
+    "arm64OfflineTestsPassed": 28,
+    "offlineTestsNetwork": "none",
+    "missingLoginRejectedBeforeFirstSignIn": true,
+    "typecheck": "passed",
+    "launcherDoesNotConsumeNoninteractiveSshInput": true,
+    "productionHealthHttpStatus": 200,
+    "productionHealth": "ok",
+    "publicCapabilitiesHttpStatus": 200,
+    "publicGenerationAvailable": false,
+    "gameRestartRequired": false,
+    "gameImage": "arena-criolla:creator-v38",
+    "modelFlagsOnBothPhases": "gpt-6-luna; model_reasoning_effort=high",
+    "threadScopedReceiptRecovery": "passed",
+    "wholeSilhouetteRowCrossing": "passed",
+    "adversarialReview": "docs/adversarial-creator-v38-qa.json",
+    "shellToolsEnabled": false,
+    "hooksEnabled": false,
+    "pluginsEnabled": false,
+    "inheritedMcpServers": "enumerated internally and disabled by exact-name overrides; fail closed",
+    "designImageGeneration": false,
+    "drawingImageGeneration": true,
+    "unboundedConnectionRetries": false
+  },
+  "authentication": {
+    "loginMethod": "ChatGPT device-code sign-in",
+    "loginStarted": true,
+    "loginVerified": true,
+    "credentialFileMode": "0600",
+    "workspaceCredentialsCopied": false,
+    "apiKeysForwarded": false
+  },
+  "billingPolicy": {
+    "requested": "chatgpt-plan-and-credits",
+    "supportedByPublishedCodexSettings": true,
+    "currentBehavior": "Use ChatGPT sign-in; included allowance is consumed before available credits",
+    "subscriptionAllowanceMayBeUsed": true,
+    "apiFallbackEnabled": false,
+    "exactCreditDeductionMeasured": false,
+    "source": "https://learn.chatgpt.com/docs/pricing#how-does-image-generation-count-toward-usage-limits"
+  },
+  "remaining": [
+    "Automatic visitor generation remains outside this private operator installation.",
+    "Exact usage and credit deductions must be viewed in the owner's ChatGPT usage dashboard.",
+    "Finite built-in Codex HTTP/SSE retries cannot be overridden under reserved openai provider; the app does not automatically repeat a turn or replacement job."
+  ],
+  "historicalCreditsOnlyGuard": {
+    "wrapperCreditsOnlyRejectionExitCode": 78,
+    "nativeEntryPointCreditsOnlyRejectionExitCode": 1,
+    "billingGuardCreatedNoGenerationJob": true
+  },
+  "previousLiveGenerationOnOracle": {
+    "attempted": true,
+    "status": "passed_before_credits_only_requirement",
+    "image": "arena-criolla:codex-operator-v1",
+    "id": "custom_cdd6efeaf5b6428d8d6bce90b5f8b135",
+    "reference": "Upper-body crop of the scikit-image astronaut test fixture",
+    "referenceDimensions": {
+      "width": 390,
+      "height": 335
+    },
+    "sourceDimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "sourceSha256": "a37cc81d637149365a57aedf401672d9e3d03e499554d3310ff415369d091dc4",
+    "packedDimensions": {
+      "width": 2048,
+      "height": 1024
+    },
+    "frames": 8,
+    "transparent": true,
+    "packingValidation": "passed",
+    "combatValidation": "passed on both sides",
+    "visualReview": {
+      "completeFigures": true,
+      "consistentOutfit": true,
+      "rightFacing": true,
+      "expectedPoseOrder": true
+    },
+    "artifact": "docs/screenshots/codex-operator-oracle-upper-body.png",
+    "publishedToGame": false,
+    "exactCreditDeductionMeasured": false,
+    "subscriptionAllowanceConsumed": "unknown; the test may have consumed included allowance",
+    "creditsConsumed": "unknown",
+    "modelRequestsAfterCreditsOnlyRequirement": 0
+  },
+  "liveGenerationOnOracle": {
+    "attempted": true,
+    "status": "passed_from_fresh_job_without_manual_recovery",
+    "image": "arena-criolla:codex-operator-v6",
+    "id": "custom_f5b9d99a25724463bba1e795ad8295ff",
+    "job": "/var/lib/arena-codex/jobs/qa-adversarial-v38-upper-body-20261017",
+    "reference": "Upper-body scikit-image astronaut fixture; incomplete reference accepted",
+    "sourceDimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "sourceSha256": "0b92ac26278a36568df67de4dd29d84d497827ad9eead26d0ea2aa2084410096",
+    "packedDimensions": {
+      "width": 2048,
+      "height": 1024
+    },
+    "frames": 8,
+    "transparent": true,
+    "exactDuplicatesRejected": true,
+    "packingValidation": "passed",
+    "combatValidation": "passed on both sides",
+    "visualReview": {
+      "completeFigures": true,
+      "consistentOutfit": true,
+      "rightFacing": true,
+      "expectedPoseOrder": true
+    },
+    "artifact": "docs/screenshots/codex-adversarial-v38-luna-high.png",
+    "publishedToGame": false,
+    "exactCreditDeductionMeasured": false,
+    "automaticWorkflowRetries": 0,
+    "phases": [
+      {
+        "phase": "design",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "high",
+        "session": "01a14ad2-3d6f-7401-b25e-bff0fa5668e8",
+        "modelToolCalls": 0,
+        "imageGenerationAvailable": false
+      },
+      {
+        "phase": "drawing instruction",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "high",
+        "session": "01a14ad2-5ca4-7161-b501-3d633fb3673e",
+        "modelToolCalls": 1,
+        "imageToolCalls": 1,
+        "shellCommands": 0,
+        "mcpCalls": 0,
+        "imageGenerationAvailable": true
+      }
+    ]
+  },
+  "correctionsFoundByLiveTesting": [
+    {
+      "issue": "Luna called the image tool but returned generatedImagePath:null",
+      "fix": "Accept exactly one fresh native PNG in that completed thread directory; reject other sessions, old files, symlinks and ambiguity",
+      "regressionTest": "passed"
+    },
+    {
+      "issue": "Complete jump silhouette extended eight pixels across an internal row divider",
+      "fix": "Reposition the complete connected silhouette; retain eight unique ordered cells and canvas-edge/fragmentation checks",
+      "regressionTest": "passed",
+      "repackedWithoutModelRequest": true,
+      "recoveredId": "custom_ed12e3cba5cb4649bf4b3ecce4243d25"
+    }
+  ],
+  "priorLiveGenerations": [
+    {
+      "attempted": true,
+      "status": "passed_from_fresh_job_without_manual_recovery",
+      "image": "arena-criolla:codex-operator-v5",
+      "id": "custom_734b8fb86aa8460e9afc9ccaf811683f",
+      "job": "/var/lib/arena-codex/jobs/qa-luna-high-final-20261017",
+      "reference": "Upper-body crop of the scikit-image astronaut test fixture",
+      "referenceDimensions": {
+        "width": 390,
+        "height": 335
+      },
+      "phases": [
+        {
+          "phase": "design",
+          "model": "gpt-6-luna",
+          "reasoningEffort": "high",
+          "verifiedFrom": "Codex turn_context",
+          "session": "01a14ac1-44ff-73b0-ad6f-35771bbff271"
+        },
+        {
+          "phase": "drawing instruction",
+          "model": "gpt-6-luna",
+          "reasoningEffort": "high",
+          "verifiedFrom": "Codex turn_context",
+          "session": "01a14ac1-5b68-7e23-8bbe-ece963115ced"
+        }
+      ],
+      "imageRenderer": "built-in gpt-image-2",
+      "sourceDimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "sourceSha256": "1b0b1b47a45c46a9f40b0708a046cdbda08bc3cacbdcedbadc75702f529da582",
+      "packedDimensions": {
+        "width": 2048,
+        "height": 1024
+      },
+      "frames": 8,
+      "transparent": true,
+      "packingValidation": "passed",
+      "combatValidation": "passed on both sides",
+      "visualReview": {
+        "completeFigures": true,
+        "consistentOutfit": true,
+        "rightFacing": true,
+        "expectedPoseOrder": true
+      },
+      "artifact": "docs/screenshots/codex-operator-oracle-luna-high.png",
+      "publishedToGame": false,
+      "exactCreditDeductionMeasured": false,
+      "automaticRetries": 0
+    }
+  ]
+}

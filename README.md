@@ -25,13 +25,13 @@ Abre `http://localhost:5173`. El servidor escucha en todas las interfaces: para 
 - **Con un pana:** dos jugadores en el mismo teclado o con dos mandos.
 - **En línea:** crea una sala pública o privada, comparte la invitación y ambos marcan «Estoy listo». Cada persona usa los controles del jugador 1 en su dispositivo.
 
-Las salas y las partidas en red funcionan en el servidor Node por WebSocket, sin cuentas. Para que personas de distintas redes entren con una URL pública, hay que desplegar este servidor; el proyecto todavía no está publicado en Internet.
+Las salas y las partidas en red funcionan en el servidor Node por WebSocket, sin cuentas. El servidor está desplegado en Oracle y disponible en https://arena.kevinbravo.com/.
 
 ## Crear tu propio luchador
 
 `/create` abre el taller. Crear cuenta o entrar requiere solo nombre, correo y contraseña; jugar, usar salas y elegir personajes publicados sigue abierto a invitados.
 
-Para activar la generación, copia `.env.example` a `.env` y configura `OPENAI_API_KEY` **solo en el servidor**. Reinicia `npm run dev`. Los modelos se pueden configurar con `OPENAI_DESIGN_MODEL` y `OPENAI_IMAGE_MODEL`; por defecto usa `gpt-4.1-mini` para el diseño y `gpt-image-2` para el atlas. Requiere acceso a esos modelos en tu cuenta de API. Sin clave, el taller muestra su estado de disponibilidad y no acepta trabajos de generación.
+Para activar la generación, copia `.env.example` a `.env` y configura `OPENAI_API_KEY` **solo en el servidor**. Después de comprobar acceso y saldo de API, cambia `ARENA_CREATOR_ENABLED=true` y reinicia `npm run dev`. Los modelos se pueden configurar con `OPENAI_DESIGN_MODEL` y `OPENAI_IMAGE_MODEL`; por defecto usa `gpt-4.1-mini` para el diseño y `gpt-image-2` para el atlas. Requiere acceso a esos modelos en tu cuenta de API. Sin clave o con la generación desactivada, el taller muestra su estado de disponibilidad y no acepta trabajos de generación.
 
 1. Sube entre una y tres fotos JPG, PNG o WebP (máximo 8 MB cada una).
 2. Escribe un nombre y una descripción corta (10–240 caracteres); elige Ágil, Técnico o Potente y un color.
@@ -54,7 +54,7 @@ flowchart LR
 
 La IA define apariencia, saludo y nombres de movimientos. La física utiliza tres recetas existentes y equilibradas; no ejecuta código generado. El atlas debe tener transparencia, ocho poses completas, márgenes y orientación hacia la derecha. Un atlas inválido queda como trabajo fallido y puede volver a dibujarse al continuar. El diseño y los archivos ya completados se reutilizan. Tras un reinicio, los trabajos interrumpidos esperan que su dueño pulse **Continuar**, para evitar repetir automáticamente una petición de imagen con costo. No genera voces: mantiene las reacciones genéricas y efectos de combate del juego.
 
-SQLite guarda cuentas, sesiones, propiedad, estados y definiciones. `ARENA_DATA_DIR` (por defecto `data/creator/`) contiene `arena.sqlite`, fotos privadas en `uploads/`, atlas y `character.json` por luchador en `characters/`, y el catálogo `community.json`. Esta carpeta está excluida de Git y del contexto Docker. Debe ser persistente y escribible; respalda la base y los archivos juntos. Las fotos solo las puede leer su dueño, también durante el desarrollo: el servidor bloquea las URLs directas de archivos privados. La carpeta de datos debe estar fuera de `public/` y `dist/`. Al eliminar un borrador se eliminan sus archivos; al retirar uno publicado desaparece del selector y se borran sus fotos, conservando el arte publicado para las peleas ya iniciadas.
+El taller guarda el borrador y sus fotos en IndexedDB por cuenta, en el mismo dispositivo. Al volver recupera los trabajos guardados en el servidor; una clave de solicitud persistente evita repetir una creación ya aceptada. Un reinicio durante una llamada pagada espera una continuación manual. SQLite guarda cuentas, sesiones, propiedad, estados y definiciones. `ARENA_DATA_DIR` (por defecto `data/creator/`) contiene `arena.sqlite`, fotos privadas en `uploads/`, atlas y `character.json` por luchador en `characters/`, y el catálogo `community.json`. Esta carpeta está excluida de Git y del contexto Docker. Debe ser persistente y escribible; respalda la base y los archivos juntos. Las fotos solo las puede leer su dueño, también durante el desarrollo: el servidor bloquea las URLs directas de archivos privados. La carpeta de datos debe estar fuera de `public/` y `dist/`. Al eliminar un borrador se eliminan sus archivos; al retirar uno publicado desaparece del selector y se borran sus fotos, conservando el arte publicado para las peleas ya iniciadas.
 
 Las contraseñas usan scrypt con sal individual y las sesiones usan cookies HttpOnly. El servidor comprueba propiedad en cada acción y limita creaciones a doce visibles y una activa por usuario. Es una implementación de un solo proceso: no incluye verificación por correo, recuperación de contraseña ni un servicio distribuido de trabajos.
 
@@ -65,6 +65,12 @@ SQLite conserva una cuota móvil de 24 horas: cincuenta intentos globales y seis
 Si falla también la escritura que registra un error de generación, el taller se detiene sin cerrar las partidas. `/api/creator/capabilities` pasa a indicar que no está disponible. Corrige el almacenamiento y reinicia el proceso para recuperarlo; supervisa ese endpoint y los registros además de `/api/health`, que indica disponibilidad de la arena. Una imagen completamente guardada se reutiliza aunque falle el registro de su ruta en SQLite. Un timeout no puede demostrar si el proveedor cobró una petición interrumpida, y el usuario decide si continúa.
 
 `npm run test:creator` comprueba el grafo real con un proveedor determinista de prueba, autenticación, privacidad, reinicios, sprites y publicación por WebSocket. Estas pruebas no llaman a la API de generación ni validan la semejanza de una imagen producida por el modelo real.
+
+Para preparar personajes de forma privada con la sesión de ChatGPT, `npm run creator:codex -- doctor` comprueba el acceso y `npm run creator:codex -- login` inicia el acceso por navegador. El flujo de Codex SDK valida referencias parciales, genera el atlas, comprueba las poses y prueba el combate. Solo el paquete de arte terminado se importa a `prod-tst`, como borrador del dueño indicado. El servidor del juego no recibe credenciales de ChatGPT. Consulta [la guía de generación e importación](docs/creator-codex.md) para comandos, revisión visual y recuperación de fallos.
+
+En el servidor Oracle, la sesión de ChatGPT y una generación real del [generador privado del operador](docs/codex-operator-oracle.md) ya se verificaron. El dueño autoriza usar primero la cuota de su suscripción y luego sus créditos. Ambos turnos de razonamiento usan `gpt-6-luna` con esfuerzo `high`; la herramienta de imágenes dibuja con `gpt-image-2`. El contenedor sigue separado del juego, sin recurrir a la clave de API ni procesar solicitudes públicas.
+
+La generación automática para visitantes en producción usa la API del servidor y su saldo de OpenAI Platform. `ARENA_CREATOR_ENABLED=false` permite instalar la clave y preparar el despliegue sin admitir generaciones hasta superar una prueba real. La configuración, límites, activación y recuperación están en [la guía de producción](docs/production-creator.md).
 
 `npm run test:adversarial` añade sobrecarga, peticiones simultáneas, entradas inválidas, errores de SQLite, resultados tardíos, recuperación de imágenes, coherencia del catálogo, aislamiento de salas y el adaptador OpenAI contra un servidor HTTP local. Los informes independientes de Luna con razonamiento extra alto están en `docs/adversarial-v31/`. El workflow `.github/workflows/ci.yml` ejecuta pruebas, validación de assets, compilación y un arranque HTTP del contenedor; no prueba cuentas reales de OpenAI, dispositivos físicos ni escalado distribuido.
 
@@ -108,6 +114,8 @@ También se incluye un Dockerfile:
 docker build -t arena-criolla .
 docker run --rm -p 5173:5173 --env-file .env -v arena-data:/app/data arena-criolla
 ```
+
+`deploy/prod-tst.compose.yaml` levanta una instancia de pruebas con `NODE_ENV=production`, su propia base SQLite y archivos en `/var/lib/arena-criolla-prod-tst/`, y el puerto privado `127.0.0.1:35174`. Crea esa carpeta con dueño `1000:1000` y permisos `700`; configura `OPENAI_API_KEY` en `/etc/arena-criolla-prod-tst/server.env` con permisos `600`. Ejecuta `sudo docker compose -f deploy/prod-tst.compose.yaml up -d --build --wait` desde el repositorio en el servidor. Esta instancia admite una generación simultánea y diez intentos diarios. Para rotar la clave, edita ese archivo y ejecuta el mismo comando con `--force-recreate`. El endpoint de capacidades confirma configuración; una generación real es necesaria para comprobar acceso y saldo del proveedor.
 
 Las salas viven en memoria, expiran por inactividad y se eliminan al quedar vacías. Reiniciar el servidor cierra las partidas existentes. Esta versión usa un único proceso; persiste cuentas y personajes en SQLite; no incluye ranking, espectadores, emparejamiento competitivo, rollback ni escalado entre instancias. La simulación de combate corre en el servidor a 60 Hz y envía estados a 30 Hz. Los resultados y movimientos se resuelven allí; los desbloqueos iniciales proceden del progreso local de cada invitado y no se consideran verificables para un futuro ranking.
 

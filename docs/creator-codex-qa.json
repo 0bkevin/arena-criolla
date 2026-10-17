@@ -1,0 +1,175 @@
+{
+  "testedAt": "2026-10-17T15:42:25.243Z",
+  "environment": "Private native Codex generation plus isolated Oracle prod-tst import",
+  "status": "passed",
+  "authentication": {
+    "method": "existing ChatGPT sign-in",
+    "apiKeysForwarded": false,
+    "credentialsCopiedToOracle": false,
+    "exactCreditDeductionMeasured": false
+  },
+  "versions": {
+    "sdk": "0.162.1",
+    "cli": "0.162.1"
+  },
+  "referenceSource": {
+    "url": "https://raw.githubusercontent.com/scikit-image/scikit-image/v0.19.3/skimage/data/astronaut.png",
+    "description": "Public astronaut portrait used as upper-body, face-only and side-cropped test fixtures; no private user photographs were used."
+  },
+  "tests": {
+    "creatorPassed": 50,
+    "productionBuild": "passed",
+    "format": "passed",
+    "liveServiceChecks": 11,
+    "fullSuitePassed": 576
+  },
+  "cases": [
+    {
+      "reference": "upper-body",
+      "inputDimensions": {
+        "width": 390,
+        "height": 335
+      },
+      "id": "custom_6fe8e84a92a54f299cdf074ffb9f75f4",
+      "sourceSha256": "c783ee9c9f57f530784894fe5664ca92f8304f4578b37e7343e822b16fc4c3d6",
+      "bundle": "data/creator-codex/qa/upper-body-v4/bundle/",
+      "outputDimensions": {
+        "width": 2048,
+        "height": 1024
+      },
+      "frames": 8,
+      "originalSilhouettes": 8,
+      "visualReview": {
+        "completeFigures": true,
+        "consistentOutfit": true,
+        "rightFacing": true,
+        "expectedPoseOrder": true
+      },
+      "gameplayValidation": "passed on both sides",
+      "stagingStatus": "published"
+    },
+    {
+      "reference": "face-only",
+      "inputDimensions": {
+        "width": 175,
+        "height": 192
+      },
+      "id": "custom_a848fe6ce6264be1834daae9d3bc0bdc",
+      "sourceSha256": "af460780985abdd4b049e363e3cc3e40a954caae0a081e0a15ffb61716a1770a",
+      "bundle": "data/creator-codex/qa/face-only/bundle/",
+      "outputDimensions": {
+        "width": 2048,
+        "height": 1024
+      },
+      "frames": 8,
+      "originalSilhouettes": 8,
+      "visualReview": {
+        "completeFigures": true,
+        "consistentOutfit": true,
+        "rightFacing": true,
+        "expectedPoseOrder": true
+      },
+      "gameplayValidation": "passed on both sides",
+      "stagingStatus": "published"
+    },
+    {
+      "reference": "side-cropped",
+      "inputDimensions": {
+        "width": 280,
+        "height": 420
+      },
+      "id": "custom_ad9ae5255dd340aaae11f953da4faa19",
+      "sourceSha256": "5bf04b7dc8ee1edb4a4dd6137ba46947fa9e7b95ec48eb6a235d3d2f062f322e",
+      "bundle": "data/creator-codex/qa/side-cropped/bundle/",
+      "outputDimensions": {
+        "width": 2048,
+        "height": 1024
+      },
+      "frames": 8,
+      "originalSilhouettes": 8,
+      "visualReview": {
+        "completeFigures": true,
+        "consistentOutfit": true,
+        "rightFacing": true,
+        "expectedPoseOrder": true
+      },
+      "gameplayValidation": "passed on both sides",
+      "stagingStatus": "published"
+    }
+  ],
+  "checks": [
+    {
+      "name": "upper-body: imported draft is private and has no transferred reference photos",
+      "passed": true
+    },
+    {
+      "name": "upper-body: only the owner can publish; publication exposes valid assets",
+      "passed": true
+    },
+    {
+      "name": "face-only: imported draft is private and has no transferred reference photos",
+      "passed": true
+    },
+    {
+      "name": "face-only: only the owner can publish; publication exposes valid assets",
+      "passed": true
+    },
+    {
+      "name": "side-cropped: imported draft is private and has no transferred reference photos",
+      "passed": true
+    },
+    {
+      "name": "side-cropped: only the owner can publish; publication exposes valid assets",
+      "passed": true
+    },
+    {
+      "name": "anonymous catalog includes all three generated characters",
+      "passed": true
+    },
+    {
+      "name": "upper-body: two anonymous peers start and advance a match with the real generated fighter",
+      "passed": true
+    },
+    {
+      "name": "face-only: two anonymous peers start and advance a match with the real generated fighter",
+      "passed": true
+    },
+    {
+      "name": "side-cropped: two anonymous peers start and advance a match with the real generated fighter",
+      "passed": true
+    },
+    {
+      "name": "public production still has no generated test characters and generation remains disabled",
+      "passed": true
+    }
+  ],
+  "recovery": {
+    "schemaValidationFailures": 2,
+    "upperBodyImageAttempts": 2,
+    "initialStrictGridRejection": true,
+    "fix": "Isolate eight complete alpha silhouettes, preserve pixels and relative scale, then apply the strict sprite packer. Missing, merged, fragmented and canvas-cropped figures remain rejected.",
+    "modelRetryPolicy": "No automatic retries; layout retry was deliberate during implementation."
+  },
+  "browser": {
+    "case": "face-only",
+    "flow": "Private draft Probar -> CPU match; countdown renders complete character against built-in opponent",
+    "consoleErrors": 0,
+    "screenshot": "docs/screenshots/creator-codex-face-only-prod-tst.png"
+  },
+  "persistence": {
+    "stagingRestart": "passed",
+    "ownerSession": "preserved",
+    "publishedCharacters": 3,
+    "sqliteIntegrity": "ok",
+    "containerHealth": "healthy"
+  },
+  "runtime": {
+    "codexSdkInstalledInGameContainer": false,
+    "importer": "operator-only; no HTTP endpoint"
+  },
+  "limitations": [
+    "Three crops of one public test subject, all using the agile style; not a broad likeness benchmark.",
+    "Automated geometry checks do not establish likeness, anatomy or animation quality; the three sprite sheets were also inspected visually.",
+    "The existing public API-key image generation route remains dependent on Platform billing."
+  ]
+}
