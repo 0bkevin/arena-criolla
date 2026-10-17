@@ -1,6 +1,36 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { MUSIC_SECONDS, writeArcadeMusic } from "../src/game/arcade-music";
+import { writeVictoryMusic } from "../src/game/victory-music";
+import { VICTORY_DURATION_MS } from "../src/game/victory-types";
+
+test("victory fanfares finish in 3.5 seconds with finite stereo audio and a silent release", () => {
+  for (const fighter of [
+    "oscar",
+    "ali",
+    "silbon",
+    "tioconejo",
+    "draw",
+  ] as const)
+    for (const rate of [22050, 48000]) {
+      const left = new Float32Array(
+        Math.ceil((rate * VICTORY_DURATION_MS) / 1000),
+      );
+      const right = new Float32Array(left.length);
+      writeVictoryMusic(left, right, rate, fighter);
+      for (const channel of [left, right]) {
+        let peak = 0;
+        for (const sample of channel) {
+          assert.ok(Number.isFinite(sample));
+          peak = Math.max(peak, Math.abs(sample));
+        }
+        assert.ok(peak > 0.04 && peak < 0.8, `${fighter}: peak=${peak}`);
+        assert.equal(channel[0], 0);
+        assert.ok(Math.abs(channel.at(-1)!) < 0.0001, "no click at the ending");
+      }
+      assert.notDeepEqual(left, right, "the fanfare has a stereo spread");
+    }
+});
 
 test("original arcade music stays quiet, finite and continuous at the loop seam", () => {
   for (const rate of [22050, 48000]) {
@@ -69,14 +99,16 @@ test("music mute, pause, stage changes and cleanup never stack background loops"
     started = false;
     stopped = false;
     destination: Node | undefined;
+    offset = 0;
     connect(node: Node) {
       this.destination = node;
     }
     disconnect() {
       this.destination = undefined;
     }
-    start() {
+    start(_when = 0, offset = 0) {
       this.started = true;
+      this.offset = offset;
     }
     stop() {
       this.stopped = true;
@@ -184,8 +216,55 @@ test("music mute, pause, stage changes and cleanup never stack background loops"
       pans.at(-1)!.pan.value < -0.5,
       "panning follows the camera, not the fixed arena center",
     );
+    const beforeVictory = sources.length;
+    audio.syncVictoryMusic("oscar", 0, false);
+    const fanfare = sources.at(-1)!;
+    assert.equal(sources.length, beforeVictory + 1);
+    assert.equal(fanfare.loop, false);
+    assert.equal(fanfare.offset, 0);
+    audio.syncVictoryMusic("oscar", 500, false);
+    assert.equal(
+      sources.length,
+      beforeVictory + 1,
+      "render frames never stack fanfares",
+    );
+    audio.syncVictoryMusic("oscar", 1000, true);
+    assert.equal(fanfare.stopped, true);
+    assert.equal(fanfare.destination, undefined);
+    audio.syncVictoryMusic("oscar", 1100, false);
+    assert.equal(sources.at(-1)!.offset, 1.1, "resume at the visual clock");
+    audio.setSound(false);
+    assert.equal(sources.at(-1)!.stopped, true);
+    audio.syncVictoryMusic("oscar", 1200, false);
+    assert.equal(
+      sources.length,
+      beforeVictory + 2,
+      "muted finale stays silent",
+    );
+    audio.setSound(true);
+    audio.syncVictoryMusic("oscar", 1300, false);
+    assert.equal(
+      sources.at(-1)!.offset,
+      1.3,
+      "unmute never replays the opening",
+    );
+    audio.syncVictoryMusic("oscar", VICTORY_DURATION_MS, false);
+    assert.equal(sources.at(-1)!.stopped, true);
+    audio.syncVictoryMusic("oscar", VICTORY_DURATION_MS + 1000, false);
+    assert.equal(sources.length, beforeVictory + 3, "results stay silent");
+    audio.syncVictoryMusic("ali", 0, false);
+    assert.equal(
+      sources.at(-1)!.offset,
+      0,
+      "next match starts a fresh fanfare",
+    );
+    assert.notEqual(sources.at(-1)!.buffer, fanfare.buffer);
+    audio.stopVictoryMusic();
+    audio.stopVictoryMusic();
+    assert.equal(sources.at(-1)!.stopped, true);
   } finally {
     audio.stopAmbience();
+    audio.stopVictoryMusic();
     if (previous) Object.defineProperty(globalThis, "AudioContext", previous);
     else Reflect.deleteProperty(globalThis, "AudioContext");
   }

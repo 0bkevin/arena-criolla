@@ -1,5 +1,6 @@
 import type { Ability } from "./content";
 import { CULTURE_TECHNIQUES } from "./culture-techniques";
+import { FOUNDER_TECHNIQUES } from "./founder-techniques";
 
 export interface Technique {
   startup: number;
@@ -64,6 +65,7 @@ export interface Technique {
 // Timings are simulation frames (60 Hz), shared by local and network combat.
 export const TECHNIQUES: Record<Ability, Technique> = {
   ...CULTURE_TECHNIQUES,
+  ...FOUNDER_TECHNIQUES,
   courier: {
     startup: 6,
     recovery: 37,

@@ -1,4 +1,5 @@
 import type { Ability } from "../../shared/content";
+import { FOUNDER_SOUNDS } from "./founder-sounds";
 
 interface CultureSound {
   notes: number[];
@@ -12,6 +13,7 @@ interface CultureSound {
 
 // Original short arcade cues. These contain no recordings, speech or song samples.
 export const CULTURE_SOUNDS: Partial<Record<Ability, CultureSound>> = {
+  ...FOUNDER_SOUNDS,
   strum: {
     notes: [196, 294, 392, 587],
     wave: "triangle",

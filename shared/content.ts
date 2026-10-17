@@ -1,7 +1,11 @@
 import fighterData from "./fighters.json";
 import stageData from "./stages.json";
 
+export type FounderFighterId =
+  "enrique" | "jesus" | "carlos" | "victor" | "juan";
+
 export type BuiltInFighterId =
+  | FounderFighterId
   | "zavarce"
   | "vallenilla"
   | "javier"
@@ -96,7 +100,12 @@ export type Ability =
   | "mirror"
   | "curtain"
   | "prank"
-  | "audit";
+  | "audit"
+  | "ledger"
+  | "settlement"
+  | "ignition"
+  | "slash"
+  | "grid";
 
 export interface FighterDefinition {
   id: FighterId;

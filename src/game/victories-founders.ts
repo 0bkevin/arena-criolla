@@ -1,0 +1,67 @@
+import type { FounderFighterId } from "../../shared/content";
+import type { VictoryProfile } from "./victory-types";
+
+export const FOUNDER_VICTORIES = {
+  enrique: {
+    name: "Balance a favor",
+    frame: 0,
+    movement: "plant",
+    gesture: { head: -0.1, front: -0.25, frontY: -0.035, back: 0.08 },
+    lift: 0.025,
+    travel: 0.015,
+    twist: -0.025,
+    music: "strings",
+  },
+  jesus: {
+    name: "Victoria sin fronteras",
+    frame: 4,
+    movement: "hop",
+    gesture: { head: 0.11, front: -0.22, back: -0.15, lean: -0.035 },
+    lift: 0.11,
+    travel: 0.045,
+    twist: 0.045,
+    music: "percussion",
+  },
+  carlos: {
+    name: "Llegada a la meta",
+    frame: 0,
+    movement: "rise",
+    gesture: {
+      head: -0.07,
+      front: -0.27,
+      frontX: 0.025,
+      back: 0.13,
+      lean: -0.03,
+    },
+    lift: 0.055,
+    travel: 0.03,
+    twist: 0.035,
+    music: "brass",
+  },
+  victor: {
+    name: "Cierre en diagonal",
+    frame: 0,
+    movement: "sway",
+    gesture: {
+      head: 0.09,
+      front: -0.3,
+      frontX: 0.035,
+      back: 0.06,
+      lean: 0.025,
+    },
+    lift: 0.03,
+    travel: 0.035,
+    twist: -0.055,
+    music: "percussion",
+  },
+  juan: {
+    name: "Todos los nodos conectados",
+    frame: 0,
+    movement: "plant",
+    gesture: { head: -0.12, front: -0.24, frontY: -0.04, back: -0.14 },
+    lift: 0.02,
+    travel: 0.01,
+    twist: 0.025,
+    music: "strings",
+  },
+} satisfies Record<FounderFighterId, VictoryProfile>;

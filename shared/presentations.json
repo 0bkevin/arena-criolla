@@ -5410,5 +5410,665 @@
         "scaleY": 1
       }
     ]
+  },
+  "enrique": {
+    "introName": "Revisa y confirma el balance",
+    "selectionName": "Confirma el cierre de Fina",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "card",
+    "selectionStyle": "card",
+    "prop": "none",
+    "color": "#b59bff",
+    "durationMs": 2800,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.22,
+        "frame": 0,
+        "dx": 0.012,
+        "dy": -0.006,
+        "rotate": 0.012,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.5,
+        "frame": 0,
+        "dx": 0.025,
+        "dy": -0.015,
+        "rotate": 0.025,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.76,
+        "frame": 0,
+        "dx": 0.008,
+        "dy": -0.004,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.22,
+        "frame": 0,
+        "dx": 0.0054,
+        "dy": -0.0027,
+        "rotate": 0.0054,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.5,
+        "frame": 0,
+        "dx": 0.011250000000000001,
+        "dy": -0.00675,
+        "rotate": 0.011250000000000001,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.76,
+        "frame": 0,
+        "dx": 0.0036000000000000003,
+        "dy": -0.0018000000000000002,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ]
+  },
+  "jesus": {
+    "introName": "Confirma una transferencia",
+    "selectionName": "Saluda desde Kontigo",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "phone",
+    "selectionStyle": "phone",
+    "prop": "none",
+    "color": "#ff9b54",
+    "durationMs": 2800,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.22,
+        "frame": 0,
+        "dx": 0.012,
+        "dy": -0.006,
+        "rotate": -0.012,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.5,
+        "frame": 0,
+        "dx": 0.027000000000000003,
+        "dy": -0.015,
+        "rotate": -0.025,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.76,
+        "frame": 0,
+        "dx": 0.008,
+        "dy": -0.004,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.22,
+        "frame": 0,
+        "dx": 0.0054,
+        "dy": -0.0027,
+        "rotate": -0.0054,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.5,
+        "frame": 0,
+        "dx": 0.012150000000000001,
+        "dy": -0.00675,
+        "rotate": -0.011250000000000001,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.76,
+        "frame": 0,
+        "dx": 0.0036000000000000003,
+        "dy": -0.0018000000000000002,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ]
+  },
+  "carlos": {
+    "introName": "Gira la llave y marca la salida",
+    "selectionName": "Prepara la próxima marcha",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "salute",
+    "selectionStyle": "salute",
+    "prop": "none",
+    "color": "#76b9ff",
+    "durationMs": 2800,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.22,
+        "frame": 0,
+        "dx": 0.012,
+        "dy": -0.006,
+        "rotate": 0.012,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.5,
+        "frame": 0,
+        "dx": 0.029,
+        "dy": -0.015,
+        "rotate": 0.025,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.76,
+        "frame": 0,
+        "dx": 0.008,
+        "dy": -0.004,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.22,
+        "frame": 0,
+        "dx": 0.0054,
+        "dy": -0.0027,
+        "rotate": 0.0054,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.5,
+        "frame": 0,
+        "dx": 0.01305,
+        "dy": -0.00675,
+        "rotate": 0.011250000000000001,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.76,
+        "frame": 0,
+        "dx": 0.0036000000000000003,
+        "dy": -0.0018000000000000002,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ]
+  },
+  "victor": {
+    "introName": "Traza la diagonal de Slash",
+    "selectionName": "Marca el próximo paso",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "present",
+    "selectionStyle": "present",
+    "prop": "none",
+    "color": "#ffab87",
+    "durationMs": 2800,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.22,
+        "frame": 0,
+        "dx": 0.012,
+        "dy": -0.006,
+        "rotate": -0.012,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.5,
+        "frame": 0,
+        "dx": 0.031,
+        "dy": -0.015,
+        "rotate": -0.025,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.76,
+        "frame": 0,
+        "dx": 0.008,
+        "dy": -0.004,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.22,
+        "frame": 0,
+        "dx": 0.0054,
+        "dy": -0.0027,
+        "rotate": -0.0054,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.5,
+        "frame": 0,
+        "dx": 0.01395,
+        "dy": -0.00675,
+        "rotate": -0.011250000000000001,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.76,
+        "frame": 0,
+        "dx": 0.0036000000000000003,
+        "dy": -0.0018000000000000002,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ]
+  },
+  "juan": {
+    "introName": "Conecta Vikua y pone en marcha La Wawa",
+    "selectionName": "Marca la próxima ruta",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "inspect",
+    "selectionStyle": "inspect",
+    "prop": "none",
+    "color": "#78d7ce",
+    "durationMs": 2800,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.22,
+        "frame": 0,
+        "dx": 0.012,
+        "dy": -0.006,
+        "rotate": 0.012,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.5,
+        "frame": 0,
+        "dx": 0.033,
+        "dy": -0.015,
+        "rotate": 0.025,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.76,
+        "frame": 0,
+        "dx": 0.008,
+        "dy": -0.004,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.22,
+        "frame": 0,
+        "dx": 0.0054,
+        "dy": -0.0027,
+        "rotate": 0.0054,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.5,
+        "frame": 0,
+        "dx": 0.01485,
+        "dy": -0.00675,
+        "rotate": 0.011250000000000001,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.76,
+        "frame": 0,
+        "dx": 0.0036000000000000003,
+        "dy": -0.0018000000000000002,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ]
   }
 }
