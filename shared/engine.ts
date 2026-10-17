@@ -894,6 +894,24 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     const push = (43 - Math.abs(a.x - b.x)) / 2;
     a.x -= sign * push;
     b.x += sign * push;
+    // Body separation can push a fighter beyond the surface checked above.
+    for (const p of s.players) {
+      if (!p.grounded) continue;
+      const support =
+        p.supportPlatform === -1
+          ? { x: WORLD.left, width: WORLD.right - WORLD.left }
+          : p.supportPlatform === null
+            ? undefined
+            : stagePlatforms[p.supportPlatform];
+      if (
+        !support ||
+        p.x < support.x - 5 ||
+        p.x > support.x + support.width + 5
+      ) {
+        p.grounded = false;
+        p.supportPlatform = null;
+      }
+    }
   }
   s.projectiles = s.projectiles.filter((projectile) => {
     projectile.age = (projectile.age || 0) + 1;
