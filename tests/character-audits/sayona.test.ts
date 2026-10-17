@@ -104,7 +104,7 @@ test("blink gap, strict melee reach and stage clamp are bounded on both sides", 
     assert.equal(r.player.hits,gap<330?1:0);
     emit("range",{side,gap,origin,target,blinkX:r.player.x,distance,hits:r.player.hits,hp:r.rival.hp,attackTick:r.player.attackTick});
   }
-  for(const [side,x,target] of [[0,980,710],[1,100,370]] as const) {
+  for(const [side,x,target] of [[0,WORLD.right-30,WORLD.right-300],[1,WORLD.left+30,WORLD.left+300]] as const) {
     const r=setup(side,500);r.player.x=x;r.rival.x=target;
     r.player.y=500;r.player.grounded=false;r.player.supportPlatform=null;r.player.facing=side===0?1:-1;
     r.inputs[side].actions.special++;r.advance(12);
@@ -120,7 +120,7 @@ test("the blink and its melee collision retain the chosen facing when the rival 
     r.player.y=500;r.player.grounded=false;r.player.supportPlatform=null;r.player.facing=-forward;
     r.inputs[side].actions.special++;r.advance(12);
     assert.equal(r.player.facing,-forward);
-    close(r.player.x,gap===80?origin:side===0?WORLD.left:WORLD.right);
+    close(r.player.x,gap===80?origin:Math.max(WORLD.left,Math.min(WORLD.right,origin-forward*210)));
     assert.equal(r.player.hits,0);assert.equal(r.rival.hp,100);
     emit("rear-target",{side,gap,origin,target:r.rival.x,facing:r.player.facing,blinkX:r.player.x,hits:r.player.hits});
   }

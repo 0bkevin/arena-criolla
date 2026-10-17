@@ -165,8 +165,9 @@ test("Knoche's elixir slows only unblocked hits and wears off", () => {
   guarded.until(() => guarded.match.effects.some((e) => e.kind === "block"));
   assert.equal(guarded.match.players[1].hp, 100);
   assert.equal(guarded.match.players[1].slowTicks, 0);
-  const slow = special("knoche");
-  const normal = special("knoche");
+  // Compare speed with room to move before the shared retreat boundary.
+  const slow = special("knoche", 750);
+  const normal = special("knoche", 750);
   for (const run of [slow, normal]) {
     run.inputs[0].actions.special = 0;
     run.inputs[1].right = true;

@@ -117,8 +117,8 @@ test("Nacho syncopate range probes exercise real pulse collisions on both sides"
     if (side === 0) mirroredStarts.set(gap, { x: r.player.x, targetX: r.rival.x, vx: r.player.vx, targetVx: r.rival.vx });
     else {
       const mirror = mirroredStarts.get(gap)!;
-      close(r.player.x + mirror.x, WORLD.width);
-      close(r.rival.x + mirror.targetX, WORLD.width);
+      close(r.player.x + mirror.x, WORLD.x * 2 + WORLD.width);
+      close(r.rival.x + mirror.targetX, WORLD.x * 2 + WORLD.width);
       close(r.player.vx + mirror.vx, 0);
       close(r.rival.vx + mirror.targetVx, 0);
     }

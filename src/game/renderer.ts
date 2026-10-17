@@ -5,7 +5,11 @@ import { drawSprite, type preloadAssets } from "./assets";
 import { drawStage } from "./stage-renderer";
 import { drawImpact } from "./effects-renderer";
 import { drawCuatro } from "./combat-props";
-import { arenaBounds } from "./viewport";
+import {
+  advanceArenaCamera,
+  cameraBounds,
+  type ArenaCamera,
+} from "./arena-camera";
 import {
   entranceProgress,
   introActor,
@@ -27,6 +31,7 @@ export function renderMatch(
   assets: Assets,
   time: number,
   reducedMotion = false,
+  camera?: ArenaCamera,
 ) {
   const { width, height } = ctx.canvas;
   ctx.clearRect(0, 0, width, height);
@@ -38,9 +43,13 @@ export function renderMatch(
     return;
   }
   ctx.save();
-  const bounds = arenaBounds(width, height);
+  const framing =
+    camera ??
+    advanceArenaCamera(undefined, state, width, height, 0, reducedMotion);
+  const bounds = cameraBounds(framing, width, height);
+  ctx.scale(framing.zoom, framing.zoom);
   ctx.translate(-bounds.x, -bounds.y);
-  if (state.shake > 0.3)
+  if (!reducedMotion && state.shake > 0.3)
     ctx.translate(
       Math.sin(time * 0.07) * state.shake,
       Math.cos(time * 0.08) * state.shake * 0.4,
