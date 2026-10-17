@@ -1,0 +1,348 @@
+{
+  "fecha": "2026-10-17",
+  "sitio": "https://arena.kevinbravo.com",
+  "rama": "t3/verificar-multijugador-online",
+  "commitBase": "5a42aff",
+  "conclusion": "El flujo de sala pública, combate completo, resultado y revancha funciona con dos perfiles independientes. El progreso es local al navegador; el ranking global y el historial persistido por cuenta no están implementados. Se observaron avisos obsoletos y sobrescritura de progreso entre pestañas del mismo perfil.",
+  "metodo": {
+    "navegador": "T3 collaborative preview; preview_status seguido de preview_open con Default e Incognito",
+    "perfiles": [
+      {
+        "perfil": "Default",
+        "cuenta": {
+          "id": "f36fb641-7838-4dff-a914-5aa2e05e9805",
+          "name": "QA Online A",
+          "email": "qa-online-a-20261017@example.test"
+        }
+      },
+      {
+        "perfil": "Incognito",
+        "cuenta": {
+          "id": "b2516c94-14dc-4ae0-b482-405e8792ec76",
+          "name": "QA Online B",
+          "email": "qa-online-b-20261017@example.test"
+        }
+      }
+    ],
+    "cuentasExistentes": "No había sesiones autenticadas ni credenciales de QA de producción en el checkout. Solo .env.example y fixtures efímeros de tests con dominios example.test.",
+    "autenticacion": "Se crearon dos cuentas identificadas como QA, se cerró sesión y se volvió a entrar con correo/contraseña en cada perfil. /api/auth/session confirmó usuarios distintos. No apareció OAuth.",
+    "secretos": "Contraseñas aleatorias para estas cuentas; no se guardan credenciales ni cookies en este informe o en el repo.",
+    "combate": "Eventos de teclado en cada página, con movimiento y ataques; observación pasiva del WebSocket. No se escribieron estados del motor ni se forzó el resultado.",
+    "aislamiento": "Default e Incognito tienen cookies y localStorage separados. La prueba online usó estos dos perfiles. Default comparte almacenamiento con otras pestañas de ese perfil utilizadas por otras pruebas."
+  },
+  "verificaciones": [
+    {
+      "caso": "Inicio de sesión independiente",
+      "estado": "correcto",
+      "detalle": "QA Online A y QA Online B se autenticaron simultáneamente; cookies distintas por perfil y respuestas /api/auth/session con IDs distintos."
+    },
+    {
+      "caso": "Crear sala pública y descubrirla",
+      "estado": "correcto",
+      "detalle": "A creó la sala y B la encontró en SALAS ABIERTAS."
+    },
+    {
+      "caso": "Entrar y marcar listo",
+      "estado": "correcto",
+      "detalle": "B entró por Unirme; ambos vieron 2/2 y marcaron listo."
+    },
+    {
+      "caso": "Combate completo",
+      "estado": "correcto",
+      "detalle": "Dos jugadores en red, mismo matchId, índices 0 y 1, movimiento, daño, combos y eliminación hasta finished."
+    },
+    {
+      "caso": "Resultado sincronizado",
+      "estado": "correcto",
+      "detalle": "El estado final completo recibido por ambos perfiles es idéntico. A ve victoria; B ve derrota."
+    },
+    {
+      "caso": "Score y desbloqueo",
+      "estado": "correcto",
+      "detalle": "A: 13 golpes, mejor racha 6, 1 vida y 74.245 HP; B: 12 golpes, mejor racha 4, 0 vidas y 0 HP. Victoria de Zavarce y nuevo combo de A."
+    },
+    {
+      "caso": "Revancha",
+      "estado": "correcto",
+      "detalle": "A quedó esperando al rival; al aceptar B comenzó otro matchId con la victoria previa de A en la configuración del servidor."
+    },
+    {
+      "caso": "Persistencia de B tras recarga",
+      "estado": "correcto",
+      "detalle": "arena-progress-v1 conserva 1 partida, 0 victorias, racha 4 y derrota Vallenilla contra Zavarce después de recargar. La sesión del taller también sobrevivió."
+    },
+    {
+      "caso": "Persistencia de A con otras pestañas",
+      "estado": "fallo observado",
+      "detalle": "La victoria y racha 6 se escribieron a las 12:20:14Z. A las 12:20:29Z el snapshot local fue sustituido por otro de peleas contra CPU, con wins vacío y sin el resultado online, mientras otras pruebas usaban Default. La escritura desde otra pestaña es la explicación compatible con el código; no se capturó el emisor de ese evento. No se atribuyen esas peleas CPU a este hilo."
+    },
+    {
+      "caso": "Historial por cuenta",
+      "estado": "no implementado",
+      "detalle": "La identidad del taller no se usa en el protocolo de salas. El esquema SQLite persiste usuarios, sesiones, personajes e intentos de generación; no partidas. src/storage.ts y App.recordResult guardan progreso local."
+    },
+    {
+      "caso": "Ranking global",
+      "estado": "no implementado",
+      "detalle": "El botón Ranking PRONTO abre La próxima ronda y anuncia una clasificación futura; no existe tabla de ranking verificable."
+    },
+    {
+      "caso": "Código incompleto",
+      "estado": "correcto",
+      "detalle": "ABC muestra El código de sala debe tener 32 caracteres hexadecimales."
+    },
+    {
+      "caso": "Código inexistente",
+      "estado": "correcto",
+      "detalle": "32 ceros muestra No encontramos esa sala. Revisa el código."
+    },
+    {
+      "caso": "Error obsoleto tras entrar en sala válida",
+      "estado": "corregido solo localmente",
+      "detalle": "Producción conserva el error al entrar luego por Unirme. El arreglo limpia el error al recibir room."
+    },
+    {
+      "caso": "Reconexión de transporte",
+      "estado": "correcto con limitación",
+      "detalle": "Se cerró únicamente el WebSocket propio de B con código 4000 durante la revancha activa. Cerró a las 12:20:35.908Z y abrió a las 12:20:36.944Z (1036 ms); recibió un nuevo ID. A volvió a sala 1/2 con aviso de salida. B volvió al lobby; la sesión autenticada se conservó."
+    },
+    {
+      "caso": "Reanudar la misma pelea",
+      "estado": "no disponible",
+      "detalle": "La desconexión cancela la pelea; no conserva slot ni estado para reanudar. B pudo volver a entrar manualmente por código a la misma sala, que quedó en waiting 2/2."
+    },
+    {
+      "caso": "Aviso de rival ausente tras reingreso",
+      "estado": "corregido solo localmente",
+      "detalle": "Producción mantiene Tu pana salió aun cuando vuelve a haber 2/2. Se limpia al recibir room con dos jugadores y al abandonar la sala."
+    }
+  ],
+  "combate": {
+    "sala": "FD763B95D3B6BB3C2828072E2352898A",
+    "matchId": "1efdd7f7-3e6a-4c9f-9e24-d69fc8517280",
+    "finalTick": 1732,
+    "ganador": "QA Online A",
+    "estadoFinalIdentico": true,
+    "estadosRecibidos": {
+      "Default": 910,
+      "Incognito": 910
+    },
+    "resultadoPorPerfil": {
+      "Default": {
+        "wins": {
+          "zavarce": 1
+        },
+        "played": 3,
+        "bestCombo": 6,
+        "recent": [
+          {
+            "fighter": "zavarce",
+            "rival": "vallenilla",
+            "won": true,
+            "date": "2026-10-17T12:20:14.457Z"
+          },
+          {
+            "fighter": "zavarce",
+            "rival": "javier",
+            "won": false,
+            "date": "2026-10-17T12:19:16.040Z"
+          },
+          {
+            "fighter": "zavarce",
+            "rival": "javier",
+            "won": false,
+            "date": "2026-10-17T12:17:48.988Z"
+          }
+        ]
+      },
+      "Incognito": {
+        "wins": {},
+        "played": 1,
+        "bestCombo": 4,
+        "recent": [
+          {
+            "fighter": "vallenilla",
+            "rival": "zavarce",
+            "won": false,
+            "date": "2026-10-17T12:20:14.432Z"
+          }
+        ]
+      }
+    },
+    "progresoAnterior": {
+      "Default": {
+        "wins": {},
+        "played": 3,
+        "bestCombo": 0,
+        "recent": [
+          {
+            "fighter": "zavarce",
+            "rival": "javier",
+            "won": false,
+            "date": "2026-10-17T12:19:30.335Z"
+          },
+          {
+            "fighter": "zavarce",
+            "rival": "javier",
+            "won": false,
+            "date": "2026-10-17T12:18:43.206Z"
+          },
+          {
+            "fighter": "zavarce",
+            "rival": "javier",
+            "won": false,
+            "date": "2026-10-17T12:18:01.681Z"
+          }
+        ]
+      },
+      "Incognito": null
+    },
+    "revanchaMatchId": "9caf04bc-f61e-4d67-914a-f0f57ff6830c",
+    "persistenciaPosterior": {
+      "Default": {
+        "at": "2026-10-17T12:24:59.098Z",
+        "session": {
+          "user": {
+            "id": "f36fb641-7838-4dff-a914-5aa2e05e9805",
+            "name": "QA Online A",
+            "email": "qa-online-a-20261017@example.test"
+          }
+        },
+        "progress": {
+          "wins": {},
+          "played": 6,
+          "bestCombo": 0,
+          "recent": [
+            {
+              "fighter": "zavarce",
+              "rival": "javier",
+              "won": false,
+              "date": "2026-10-17T12:24:57.670Z"
+            },
+            {
+              "fighter": "zavarce",
+              "rival": "javier",
+              "won": false,
+              "date": "2026-10-17T12:23:39.825Z"
+            },
+            {
+              "fighter": "zavarce",
+              "rival": "javier",
+              "won": false,
+              "date": "2026-10-17T12:20:29.690Z"
+            },
+            {
+              "fighter": "zavarce",
+              "rival": "javier",
+              "won": false,
+              "date": "2026-10-17T12:19:30.335Z"
+            },
+            {
+              "fighter": "zavarce",
+              "rival": "javier",
+              "won": false,
+              "date": "2026-10-17T12:18:43.206Z"
+            },
+            {
+              "fighter": "zavarce",
+              "rival": "javier",
+              "won": false,
+              "date": "2026-10-17T12:18:01.681Z"
+            }
+          ]
+        },
+        "health": {
+          "status": "ok",
+          "rooms": 0,
+          "players": 7
+        }
+      },
+      "Incognito": {
+        "at": "2026-10-17T12:25:00.981Z",
+        "session": {
+          "user": {
+            "id": "b2516c94-14dc-4ae0-b482-405e8792ec76",
+            "name": "QA Online B",
+            "email": "qa-online-b-20261017@example.test"
+          }
+        },
+        "progress": {
+          "wins": {},
+          "played": 1,
+          "bestCombo": 4,
+          "recent": [
+            {
+              "fighter": "vallenilla",
+              "rival": "zavarce",
+              "won": false,
+              "date": "2026-10-17T12:20:14.432Z"
+            }
+          ]
+        },
+        "health": {
+          "status": "ok",
+          "rooms": 0,
+          "players": 7
+        }
+      }
+    }
+  },
+  "arreglo": {
+    "archivo": "src/network.ts",
+    "commit": "93b53c0982de3307da29ff31476df1af9aed3df7",
+    "causa": "Los eventos room y left actualizaban la sala sin descartar avisos pertenecientes a un estado anterior.",
+    "cambios": [
+      "Limpiar el error tras un evento room válido.",
+      "Quitar el aviso de rival ausente cuando vuelven a estar los dos jugadores.",
+      "Descartar el aviso al abandonar la sala."
+    ],
+    "regression": "tests/browser/network.html",
+    "reproducir": "npm run dev; abrir /tests/browser/network.html con T3 Preview; esperar window.networkRegression y comprobar passed === true.",
+    "antes": "2 de 5 comprobaciones pasan; fallan las tres transiciones de aviso.",
+    "despues": "5 de 5 comprobaciones pasan con React y useArenaNetwork reales; transporte simulado solo en la fixture.",
+    "servidorRealLocal": {
+      "passed": true,
+      "scenario": "real server opponent leaves and rejoins",
+      "text": "a ruta exprés\n\nMovimientos\nP2\nTU PANA\n▸\nVELOCIDAD\nVicente Zavarce\n\nLa ruta exprés\n\nMovimientos\nP1\nTÚ\nELIGIENDO P1\nTodos\n41\nCultura\n31\nLeyendas\n10\n01\nP1\nP2\nVicente Zavarce\n02\nPedro Vallenilla\n03\nJavier Hala Madrid\n04\nCapriles Radonski\n05\nRenny Ottolina\n06\nJuan Vicente Gómez\n07\nSimón Díaz\n08\nEr Conde del Guácharo\n09\nEmilio Lovera\n10\nMaite Delgado\n1–10 de 41PÁG. 1/5\nLuchador seleccionado para P1: Vicente Zavarce.\n02\n¿DÓNDE SE PRENDE?\nAltamira al atardecer\nVer mapa\n01\nAltamira\n02\nLa Guaira\n03\nValencia\n04\nSalto Ángel\n05\nMaracaibo\n06\nMérida\n07\nCoro\n08\nLos Roques\n09\nPoliedro\nROUND 01\n¿LISTOS, PANAS?\nCÓDIGO DE SALA\n0141E42FD75B97DF07B6AE0DCEE69032\n2/2 PANAS EN LA SALA\nInvitar\n¡ESTOY LISTO!\nQA Local A (tú) · ELIGIENDO\nQA Local B · ELIGIENDO\nSalir de la sala\nSin cuentas. Solo tu apodo y ganas de jugar.\n¿Cómo se juega?\nHECHO PARA ECHAR UN PIQUE.\nParodia arcade · Habilidades ficticias\nRanking\nPRONTO"
+    },
+    "validacion": [
+      "8/8 tests de rooms.test.ts y adversarial-game-v31.test.ts correctos.",
+      "npm run build correcto (TypeScript y Vite); aviso existente de bundle superior a 500 KB.",
+      "Prettier correcto para los archivos modificados; git diff --check correcto."
+    ],
+    "despliegue": "No publicado, no desplegado; producción continúa con los fallos observados."
+  },
+  "limites": [
+    "La victoria de Default no puede considerarse persistida de forma estable: el snapshot fue sustituido durante otras pruebas del mismo perfil. La causa probable es App.recordResult guardando su copia en memoria sin fusionar actualizaciones de otras pestañas; no se hizo una reproducción aislada de esa causalidad. El arreglo de avisos no cambia ese comportamiento.",
+    "El historial local guarda personajes, victoria/derrota y fecha; no conserva matchId ni todos los golpes, HP o score de la pelea. La cuenta del taller no sincroniza progreso.",
+    "La desconexión probada es cierre del WebSocket propio, no pérdida silenciosa de conectividad, reinicio del servidor ni restauración de la misma pelea.",
+    "Prueba en navegador de escritorio automatizado; no son dos personas físicas ni dos redes geográficas. Se condujeron las dos sesiones reales desde T3 Preview.",
+    "T3 Preview tuvo desconexiones temporales de su host y algunos timeouts de interacción. Se inspeccionó el estado al recuperar la conexión; no se contaron operaciones fallidas como éxitos.",
+    "No se modificaron audio, escenarios ni infraestructura; no se generaron ni publicaron personajes."
+  ],
+  "limpieza": {
+    "salasProduccionAlFinal": 0,
+    "sesionesQA": "Cerradas al terminar; credenciales temporales eliminadas de las páginas.",
+    "cuentasQA": "Las dos cuentas de prueba permanecen creadas en producción con correos example.test; no se publicaron personajes."
+  },
+  "evidencia": {
+    "estadoFinal": "match-final.json",
+    "regresion": "network-regression.json",
+    "capturas": [
+      "default-result.png",
+      "incognito-result.png",
+      "ranking-pending.png",
+      "incognito-progress.png"
+    ],
+    "video": "/home/ubuntu/.t3/userdata/attachments/mcp-921886a0-2851-419a-8fd5-aaf8a25642ef-967c9507-6f64-4b40-8037-aee817023ae7-mp4.mp4",
+    "videoBytes": 2901612,
+    "referenciasRepo": [
+      "src/network.ts",
+      "src/storage.ts",
+      "src/App.tsx",
+      "server/index.ts",
+      "server/creator/database.ts",
+      "README.md"
+    ]
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "id": "1efdd7f7-3e6a-4c9f-9e24-d69fc8517280",
+  "stage": "caracas",
+  "tick": 1732,
+  "remaining": 4091,
+  "phase": "finished",
+  "winner": 0,
+  "players": [
+    {
+      "config": {
+        "id": "1bde0416-e61f-4519-bffc-e6d304569c61",
+        "name": "QA Online A",
+        "fighter": "zavarce",
+        "ready": true,
+        "wins": 0
+      },
+      "x": -58.65947201897275,
+      "y": 697.5199999999999,
+      "vx": -5.799990960493553,
+      "vy": 11.959999999999994,
+      "facing": -1,
+      "hp": 74.24499999999999,
+      "stocks": 1,
+      "energy": 100,
+      "grounded": false,
+      "supportPlatform": null,
+      "dropThrough": 0,
+      "jumps": 0,
+      "blocking": false,
+      "attack": "light",
+      "attackTick": 18,
+      "attackHit": true,
+      "countered": false,
+      "cooldown": 4,
+      "stun": 0,
+      "slowTicks": 0,
+      "rootTicks": 0,
+      "invincible": 0,
+      "dash": 0,
+      "lastActions": {
+        "jump": 1,
+        "light": 19,
+        "heavy": 9,
+        "special": 9,
+        "dash": 0,
+        "super": 0
+      },
+      "history": [
+        {
+          "action": "heavy",
+          "tick": 1630
+        },
+        {
+          "action": "light",
+          "tick": 1685
+        },
+        {
+          "action": "light",
+          "tick": 1715
+        }
+      ],
+      "combo": "Pedido confirmado",
+      "comboTick": 1630,
+      "comboBonus": 0,
+      "hits": 13,
+      "peakCombo": 6,
+      "streak": 6,
+      "lastHitTick": 1720
+    },
+    {
+      "config": {
+        "id": "bea8f67b-f0b1-4150-b7d8-42062178eafa",
+        "name": "QA Online B",
+        "fighter": "vallenilla",
+        "ready": true,
+        "wins": 0
+      },
+      "x": -120.17782953255656,
+      "y": 669.2149999999998,
+      "vx": -7.22448,
+      "vy": 3.835,
+      "facing": 1,
+      "hp": 0,
+      "stocks": 0,
+      "energy": 100,
+      "grounded": false,
+      "supportPlatform": null,
+      "dropThrough": 0,
+      "jumps": 1,
+      "blocking": false,
+      "attack": null,
+      "attackTick": 20,
+      "attackHit": true,
+      "countered": false,
+      "cooldown": 5,
+      "stun": 5,
+      "slowTicks": 0,
+      "rootTicks": 0,
+      "invincible": 0,
+      "dash": 0,
+      "lastActions": {
+        "jump": 3,
+        "light": 11,
+        "heavy": 5,
+        "special": 5,
+        "dash": 0,
+        "super": 0
+      },
+      "history": [
+        {
+          "action": "light",
+          "tick": 1637
+        },
+        {
+          "action": "light",
+          "tick": 1686
+        }
+      ],
+      "combo": "Cuota inicial",
+      "comboTick": 1351,
+      "comboBonus": 0,
+      "hits": 12,
+      "peakCombo": 4,
+      "streak": 4,
+      "lastHitTick": 1496
+    }
+  ],
+  "projectiles": [],
+  "effects": [
+    {
+      "id": 51,
+      "x": -26.259589532556557,
+      "y": 579.9199999999997,
+      "kind": "hit",
+      "color": "#a8a0f3",
+      "life": 14,
+      "duration": 26,
+      "owner": 0,
+      "impact": "light",
+      "strength": 0.85,
+      "direction": -1
+    },
+    {
+      "id": 52,
+      "x": 30,
+      "y": 590,
+      "kind": "ringout",
+      "color": "#e6ed7a",
+      "life": 40,
+      "duration": 40,
+      "owner": 1,
+      "strength": 1.8,
+      "direction": -1
+    }
+  ],
+  "nextId": 53,
+  "shake": 0.24234731611996826,
+  "hitstop": 0
+}
