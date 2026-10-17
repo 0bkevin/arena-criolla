@@ -71,10 +71,10 @@ function portraitCenter(image: HTMLImageElement, frame: SpriteFrame): number {
 }
 
 export function loadImage(id: string): Promise<HTMLImageElement> {
-  if (!images.has(id))
+  if (!images.has(id)) {
     images.set(
       id,
-      new Promise((resolve, reject) => {
+      new Promise<HTMLImageElement>((resolve, reject) => {
         const image = new Image();
         image.src = id.startsWith("custom_")
           ? `/api/community/assets/${id}/sprite.webp`
@@ -84,10 +84,13 @@ export function loadImage(id: string): Promise<HTMLImageElement> {
           reject(new Error(`No se pudo cargar el asset ${id}.`));
       }),
     );
+    // Failed requests must not poison later attempts from a new fight.
+    void images.get(id)!.catch(() => images.delete(id));
+  }
   return images.get(id)!;
 }
 export function loadSprite(id: FighterId): Promise<SpriteAsset> {
-  if (!sprites.has(id))
+  if (!sprites.has(id)) {
     sprites.set(
       id,
       loadImage(fighterById(id).sprite).then(async (image) => {
@@ -239,6 +242,8 @@ export function loadSprite(id: FighterId): Promise<SpriteAsset> {
         };
       }),
     );
+    void sprites.get(id)!.catch(() => sprites.delete(id));
+  }
   return sprites.get(id)!;
 }
 export function spriteFrameSource(sprite: SpriteAsset, frame: number) {
