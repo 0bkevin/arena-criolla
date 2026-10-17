@@ -1,0 +1,34 @@
+{
+  "createdAt": "2026-10-17T13:09:30.574Z",
+  "nodeVersion": "v24.20.0",
+  "environment": "Local synthetic tests; no external traffic or deployment.",
+  "latency": {
+    "oneWayDelayMs": 100,
+    "nominalNetworkRttMs": 200,
+    "actionEchoSamplesMs": [
+      218.652155, 213.15641400000004, 224.8582849999998, 214.09836399999995,
+      217.45132300000023, 206.87424599999986, 224.86093100000016,
+      208.02812799999992, 225.0122580000002, 208.5305659999999, 224.352754,
+      210.53481899999997
+    ],
+    "minMs": 206.87424599999986,
+    "maxMs": 225.0122580000002,
+    "meanMs": 216.36752025,
+    "measures": "Input send to authoritative state receipt; excludes canvas rendering and perception."
+  },
+  "load": {
+    "rooms": 100,
+    "players": 200,
+    "sampleMs": 3046.894222,
+    "minTickHz": 60.06115955015914,
+    "maxTickHz": 60.06115955015914,
+    "healthSamplesMs": [
+      21.17474300000049, 4.096078000000489, 3.5402500000000146,
+      11.926099999999678, 2.7147959999992963, 3.2822419999993144
+    ],
+    "stateFrames": 18400,
+    "stateBytes": 26626010,
+    "stateBytesPerSecond": 8738737.895049905,
+    "fixture": "Stationary fighters, direct loopback sockets; not a WAN or worst-case effects benchmark."
+  }
+}

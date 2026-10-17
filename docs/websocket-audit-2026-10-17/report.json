@@ -1,0 +1,276 @@
+{
+  "fecha": "2026-10-17",
+  "rama": "t3/verificar-multijugador-online",
+  "baseRevision": "592f94d",
+  "commitArreglo": "4825c0c7e2c04c8362938d53ebdd6cae5f006d5b",
+  "objetivo": "Revisión profunda de WebSocket, conexiones, latencia y sincronización con un agente independiente, reproducción de fallos y corrección de todos los hallazgos confirmados en el worktree.",
+  "conclusion": "Todos los hallazgos confirmados de esta revisión se corrigieron localmente. La revisión independiente final no dejó objeciones pendientes confirmadas. No se publicó ni desplegó nada.",
+  "revisionIndependiente": {
+    "agente": "websocket_audit",
+    "modelo": "Heredado del agente principal",
+    "alcance": "Revisión de solo lectura y reproducciones independientes; al final añadió únicamente el benchmark portable autorizado.",
+    "primeraRevision": [
+      "Inputs sin caducidad",
+      "Inputs de pelea anterior aceptados en revancha",
+      "Liberación descartada al superar 180 mensajes/s",
+      "Final perdido si sale el rival antes de RAF",
+      "WebSocket cliente OPEN después de un blackhole real de 30 s",
+      "Aviso de rival ausente heredado tras reconectar"
+    ],
+    "regresionesDetectadasDuranteRevision": [
+      "Watchdog cerraba conexiones sanas al reanudar timers suspendidos",
+      "Releer storage al guardar perdía acumulación en memoria si setItem fallaba"
+    ],
+    "cierre": "Ambas regresiones adicionales corregidas y comprobadas por el revisor; sin hallazgos confirmados pendientes.",
+    "validacionIndependiente": {
+      "transporte": 16,
+      "resultados": 11,
+      "integracionWebSocket": 5,
+      "estado": "todas pasan"
+    },
+    "diferenciaValidacionFinal": "El agente principal añadió tres comprobaciones de backoff, llevando el fixture de transporte final a 19."
+  },
+  "hallazgos": [
+    {
+      "id": "WS-01",
+      "severidad": "P1",
+      "fallo": "Controles mantenidos indefinidamente sin nuevos inputs",
+      "reproAntes": "Socket real abierto, right=true después de 1800 ms sin controles; los pong nativos permiten que una pestaña con JS suspendido siga conectada.",
+      "arreglo": "Lease monotónico de 1000 ms en servidor para direcciones, bloqueo y bajada. Conserva contadores de acciones para no repetir ataques.",
+      "evidencia": "tests/network-resilience.test.ts"
+    },
+    {
+      "id": "WS-02",
+      "severidad": "P2",
+      "fallo": "Un input de la pelea anterior afecta la revancha",
+      "reproAntes": "Dash antiguo salta la intro nueva a tick 363 y mantiene una dirección.",
+      "arreglo": "Cada input lleva matchId; servidor solo acepta la partida actual. La limpieza de Game anterior conserva su ID anterior.",
+      "evidencia": "Regresión Node y revancha con dos perfiles: nueva intro tick 4, dash 0."
+    },
+    {
+      "id": "WS-03",
+      "severidad": "P2",
+      "fallo": "La liberación final de una ráfaga se descarta",
+      "reproAntes": "180 inputs held + uno neutral: right seguía true 1200 ms después.",
+      "arreglo": "Ráfagas acotadas hasta 360 mensajes/s; sobrepasar el límite duro cierra con 1008 y suelta held. Presupuestos de listas/controles/heartbeat siguen acotados.",
+      "evidencia": "Regresiones con 181 paquetes sin perder la liberación y 361 paquetes cerrados con 1008."
+    },
+    {
+      "id": "WS-04",
+      "severidad": "P2",
+      "fallo": "Resultado recibido se pierde antes del siguiente frame",
+      "reproAntes": "App y Game reales; llega state.finished y luego opponent-left con RAF suspendido. Se desmonta Game y no se guarda progreso.",
+      "arreglo": "El hook entrega el final inmediatamente. App deduplica por matchId; el callback posterior de Game no duplica el resultado.",
+      "evidencia": "tests/browser/network-result.html y pelea completa con dos perfiles: played=1 tras final y recarga."
+    },
+    {
+      "id": "WS-05",
+      "severidad": "P2",
+      "fallo": "Conexión aparentemente abierta tras caída silenciosa",
+      "reproAntes": "Blackhole TCP descendente 30099.75 ms; servidor elimina el peer pero WebSocket cliente sigue OPEN sin close.",
+      "arreglo": "Ping/pong de aplicación cada 2 s, watchdog de 8 s comprobado cada 2 s, retiro sin esperar close, callbacks antiguos descartados y backoff con jitter hasta 10 s. Vigila el eco incluso si siguen llegando mensajes descendentes.",
+      "evidencia": "tcp-blackhole.json: corte real TCP detectado en 8231 ms; recuperación con ID nuevo y RTT válido."
+    },
+    {
+      "id": "WS-06",
+      "severidad": "P3",
+      "fallo": "Aviso de rival ausente heredado de conexión anterior",
+      "reproAntes": "opponent-left, close/reconnect y una nueva sala de un jugador conservaban el aviso viejo.",
+      "arreglo": "Limpiar identidad, sala, online, latencia y avisos al retirar conexión; limpiar aviso al cambiar de sala. Los errores de validación de la misma sala se conservan.",
+      "evidencia": "Fixtures de avisos y transporte."
+    },
+    {
+      "id": "WS-07",
+      "severidad": "P2",
+      "fallo": "Primera versión del watchdog cerraba al reanudar una pestaña suspendida",
+      "reproAntes": "Salto de reloj de 10–60 s sin callbacks; conexión sana se cerraba sin sonda fresca.",
+      "arreglo": "Detectar retraso del monitor, descartar sondas anteriores y dar una ventana para una nueva sonda tras reanudar.",
+      "evidencia": "Fixture de transporte con 60 s sin temporizadores."
+    },
+    {
+      "id": "WS-08",
+      "severidad": "P2",
+      "fallo": "Primera lectura de progreso reciente perdía acumulación cuando fallaba storage",
+      "reproAntes": "Dos finales con setItem fallando mostraban una sola partida/victoria.",
+      "arreglo": "saveProgress devuelve éxito; guardar snapshot pendiente en memoria y acumular sobre él hasta que pueda persistirse.",
+      "evidencia": "Dos finales con cuota simulada más uno al recuperar almacenamiento: se conservan las tres partidas."
+    }
+  ],
+  "defensasAdicionales": [
+    "Mensajes JSON null y mensajes state sin estado se ignoran sin excepción.",
+    "Cola de salida del cliente limitada a 64 KiB; una cola saturada se retira en vez de acumular más inputs antiguos.",
+    "El backoff no se reinicia solo por onopen: requiere welcome y diez segundos saludables; tres intentos fallidos verifican espera creciente.",
+    "Caducidad y presupuestos del servidor y watchdog del cliente usan reloj monotónico.",
+    "Al guardar progreso normal se relee el snapshot persistido más reciente para conservar resultados previos de otras pestañas."
+  ],
+  "validacion": {
+    "npmTest": {
+      "pruebas": 550,
+      "pasan": 550,
+      "fallan": 0,
+      "duracionMs": 12550.147065
+    },
+    "navegador": {
+      "avisos": 6,
+      "transporte": 19,
+      "resultadosSinRAF": 11,
+      "todasPasan": true,
+      "metodo": "React/hook/App reales. Fixtures deterministas solo sustituyen transporte, relojes o RAF cuando el caso lo requiere; la prueba TCP y la pelea usan WebSocket nativo."
+    },
+    "build": "npm run build correcto: TypeScript y Vite. Permanece el aviso de bundle mayor de 500 KB.",
+    "scripts": "TypeScript estricto de ambos scripts QA correcto; benchmark portable ejecutado de principio a fin.",
+    "formato": "Prettier de archivos nuevos/modificados relevantes y git diff --check correctos.",
+    "controlesPrevios": "Permisos/capacidad/aislamiento, validación, frames sobredimensionados, saturación de mensajes críticos y ticker mantienen sus regresiones existentes."
+  },
+  "mediciones": {
+    "produccion": "production-rtt.json: 25 ping/pong RFC a 1 Hz desde este entorno, una conexión y ninguna sala nueva. p50 1.189 ms, p95 1.350 ms, máximo 1.861 ms. No representa otras geografías o redes móviles.",
+    "benchmarkLocal": "benchmark.json: latencia y carga ejecutadas secuencialmente con bases en memoria y loopback. No se hizo carga en producción.",
+    "latenciaArtificial": {
+      "porDireccionMs": 100,
+      "rttNominalMs": 200,
+      "ecoMinMs": 206.87424599999986,
+      "ecoMaxMs": 225.0122580000002,
+      "ecoMedioMs": 216.36752025,
+      "muestras": 12
+    },
+    "cargaLocal": {
+      "salas": 100,
+      "conexiones": 200,
+      "cadenciaHz": 60.06115955015914,
+      "muestraMs": 3046.894222,
+      "healthTrasPrimerRequestMinMs": 2.7147959999992963,
+      "healthTrasPrimerRequestMaxMs": 11.926099999999678,
+      "primerHealthMs": 21.17474300000049,
+      "traficoEstadosBytesPorSegundo": 8738737.895049905
+    },
+    "enlaceSilencioso": {
+      "deteccionMs": 8231,
+      "reconexionTrasRestaurarMs": 866,
+      "identidadNueva": true,
+      "archivo": "tcp-blackhole.json"
+    }
+  },
+  "peleaFinal": {
+    "entorno": "Local, servidor corregido, T3 Preview Default e Incognito; dos sesiones separadas.",
+    "cuentas": "Apodos QA Wire A y QA Wire B; salas anónimas. No se crearon otras cuentas de producción en esta revisión.",
+    "matchId": "c7a03945-9e9c-41ea-9845-e57444a52e38",
+    "estadoFinalIdentico": true,
+    "ganador": "QA Wire A",
+    "inputsSinIdentificador": {
+      "Default": 0,
+      "Incognito": 0
+    },
+    "snapshotsFinales": {
+      "Default": {
+        "wins": {
+          "zavarce": 1
+        },
+        "played": 1,
+        "bestCombo": 5,
+        "recent": [
+          {
+            "fighter": "zavarce",
+            "rival": "zavarce",
+            "won": true,
+            "date": "2026-10-17T13:11:18.545Z"
+          }
+        ]
+      },
+      "Incognito": {
+        "wins": {},
+        "played": 1,
+        "bestCombo": 1,
+        "recent": [
+          {
+            "fighter": "zavarce",
+            "rival": "zavarce",
+            "won": false,
+            "date": "2026-10-17T13:11:18.553Z"
+          }
+        ]
+      }
+    },
+    "trasRecarga": {
+      "Default": {
+        "wins": {
+          "zavarce": 1
+        },
+        "played": 1,
+        "bestCombo": 5,
+        "recent": [
+          {
+            "fighter": "zavarce",
+            "rival": "zavarce",
+            "won": true,
+            "date": "2026-10-17T13:11:18.545Z"
+          }
+        ]
+      },
+      "Incognito": {
+        "wins": {},
+        "played": 1,
+        "bestCombo": 1,
+        "recent": [
+          {
+            "fighter": "zavarce",
+            "rival": "zavarce",
+            "won": false,
+            "date": "2026-10-17T13:11:18.553Z"
+          }
+        ]
+      }
+    },
+    "revancha": {
+      "Default": {
+        "matchId": "6da158d9-7a72-4a38-9f90-e3588067d86d",
+        "phase": "intro",
+        "tick": 4,
+        "dash": 0
+      },
+      "Incognito": {
+        "matchId": "6da158d9-7a72-4a38-9f90-e3588067d86d",
+        "phase": "intro",
+        "tick": 4,
+        "dash": 0
+      },
+      "detalle": "Se dejó dash pendiente en el Game anterior. La intro nueva se mantuvo en tick 4 con dash 0."
+    },
+    "evidencia": "local-match-final.json y capturas local-default-result.png / local-incognito-result.png"
+  },
+  "reproducir": {
+    "automatico": "npm test",
+    "build": "npm run build",
+    "benchmark": "npm exec -- tsx scripts/qa-network-benchmark.ts /tmp/arena-network-benchmark.json",
+    "servidorDev": "PORT=5191 ARENA_DATA_DIR=/tmp/arena-network-qa npm run dev",
+    "fixtures": [
+      "/tests/browser/network.html",
+      "/tests/browser/network-resilience.html",
+      "/tests/browser/network-result.html"
+    ],
+    "proxyTCP": "npm exec -- tsx scripts/qa-network-proxy.ts 5191 5192 5193; abrir http://localhost:5192/tests/browser/network-real.html; GET http://127.0.0.1:5193/?mode=down corta bytes/FIN; ?mode=none restaura; window.networkTransitions conserva tiempos e identidades."
+  },
+  "limites": [
+    "Cliente y servidor deben actualizarse juntos por el nuevo campo matchId y el heartbeat de aplicación. Estos cambios no están desplegados.",
+    "No hay prediction, rollback ni reanudación de la misma pelea cancelada. El eco autoritativo medido excluye canvas y percepción; con RTT de 200 ms la respuesta visual no puede ser instantánea.",
+    "El benchmark de carga dura unos tres segundos y usa luchadores estacionarios y sockets loopback; no representa ancho de banda WAN, todas las combinaciones de efectos ni una prueba prolongada.",
+    "El watchdog depende de que JavaScript ejecute temporizadores. Al reanudar una suspensión hace una sonda nueva antes de decidir.",
+    "El progreso continúa siendo local. Releer antes de guardar evita snapshots antiguos en escrituras sucesivas, pero no ofrece una transacción entre pestañas exactamente simultáneas ni historial por cuenta.",
+    "El ranking global sigue pendiente. Esta revisión no añadió ranking, infraestructura ni cambios de audio o escenarios."
+  ],
+  "archivosPrincipales": [
+    "server/index.ts",
+    "shared/network.ts",
+    "shared/protocol.ts",
+    "src/network.ts",
+    "src/App.tsx",
+    "src/storage.ts",
+    "tests/network-resilience.test.ts",
+    "tests/browser/network.html",
+    "tests/browser/network-resilience.html",
+    "tests/browser/network-result.html",
+    "tests/browser/network-real.html",
+    "scripts/qa-network-benchmark.ts",
+    "scripts/qa-network-proxy.ts"
+  ],
+  "estadoPublicacion": "Solo commits locales; sin push, publicación, despliegue o cambios de infraestructura."
+}

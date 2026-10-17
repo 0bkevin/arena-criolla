@@ -1,0 +1,128 @@
+{
+  "before": {
+    "value": {
+      "connected": true,
+      "id": "3cb8b299-1646-4f8a-9b26-f7c41b0fb8de",
+      "latencyMs": 0.7999997138977051,
+      "error": ""
+    },
+    "transitions": [
+      {
+        "at": "2026-10-17T13:09:06.410Z",
+        "connected": false,
+        "id": "",
+        "latencyMs": null,
+        "error": ""
+      },
+      {
+        "at": "2026-10-17T13:09:06.422Z",
+        "connected": true,
+        "id": "",
+        "latencyMs": null,
+        "error": ""
+      },
+      {
+        "at": "2026-10-17T13:09:06.423Z",
+        "connected": true,
+        "id": "3cb8b299-1646-4f8a-9b26-f7c41b0fb8de",
+        "latencyMs": null,
+        "error": ""
+      }
+    ]
+  },
+  "cut": {
+    "mode": "down",
+    "changedAt": 1792242558188,
+    "sockets": 4
+  },
+  "whileCut": {
+    "value": {
+      "connected": false,
+      "id": "",
+      "latencyMs": null,
+      "error": "Se perdió la conexión. Reconectando con la arena…"
+    },
+    "transitions": [
+      {
+        "at": "2026-10-17T13:09:06.410Z",
+        "connected": false,
+        "id": "",
+        "latencyMs": null,
+        "error": ""
+      },
+      {
+        "at": "2026-10-17T13:09:06.422Z",
+        "connected": true,
+        "id": "",
+        "latencyMs": null,
+        "error": ""
+      },
+      {
+        "at": "2026-10-17T13:09:06.423Z",
+        "connected": true,
+        "id": "3cb8b299-1646-4f8a-9b26-f7c41b0fb8de",
+        "latencyMs": null,
+        "error": ""
+      },
+      {
+        "at": "2026-10-17T13:09:26.419Z",
+        "connected": false,
+        "id": "",
+        "latencyMs": null,
+        "error": "Se perdió la conexión. Reconectando con la arena…"
+      }
+    ]
+  },
+  "restore": {
+    "mode": "none",
+    "changedAt": 1792242566492,
+    "sockets": 3
+  },
+  "recovered": {
+    "value": {
+      "connected": true,
+      "id": "3be713f3-0592-4135-9347-d939525af4ab",
+      "latencyMs": 0.9000000953674316,
+      "error": ""
+    },
+    "transitions": [
+      {
+        "at": "2026-10-17T13:09:06.410Z",
+        "connected": false,
+        "id": "",
+        "latencyMs": null,
+        "error": ""
+      },
+      {
+        "at": "2026-10-17T13:09:06.422Z",
+        "connected": true,
+        "id": "",
+        "latencyMs": null,
+        "error": ""
+      },
+      {
+        "at": "2026-10-17T13:09:06.423Z",
+        "connected": true,
+        "id": "3cb8b299-1646-4f8a-9b26-f7c41b0fb8de",
+        "latencyMs": null,
+        "error": ""
+      },
+      {
+        "at": "2026-10-17T13:09:26.419Z",
+        "connected": false,
+        "id": "",
+        "latencyMs": null,
+        "error": "Se perdió la conexión. Reconectando con la arena…"
+      },
+      {
+        "at": "2026-10-17T13:09:27.358Z",
+        "connected": true,
+        "id": "3be713f3-0592-4135-9347-d939525af4ab",
+        "latencyMs": null,
+        "error": ""
+      }
+    ]
+  },
+  "detectedAfterMs": 8231,
+  "recoveredAfterRestoreMs": 866
+}
