@@ -13,7 +13,9 @@
   background: #ffd45a;
   border-color: #ffe9a2;
   color: #102036;
-  transform: scale(0.94);
+  box-shadow:
+    inset 0 2px 10px #8d6b2b80,
+    0 0 9px #ffd45a55;
 }
 .touch-button:disabled {
   opacity: 0.4;
@@ -44,7 +46,7 @@ body:has(.game-page.is-touch) {
   --play-bottom: max(8px, env(safe-area-inset-bottom));
   --play-left: max(10px, env(safe-area-inset-left));
   --play-right: max(10px, env(safe-area-inset-right));
-  --touch-size: clamp(44px, 12dvh, 56px);
+  --touch-size: clamp(48px, 12dvh, 56px);
   position: fixed;
   inset: 0;
   z-index: 20;
@@ -67,8 +69,8 @@ body:has(.game-page.is-touch) {
   left: var(--play-left);
   right: var(--play-right);
   flex: none;
-  height: 44px;
-  min-height: 44px;
+  height: 48px;
+  min-height: 48px;
   flex-wrap: nowrap;
   margin: 0;
   gap: 8px;
@@ -77,9 +79,9 @@ body:has(.game-page.is-touch) {
   pointer-events: none;
 }
 .game-page.is-touch .game-topline > .text-button {
-  width: 44px;
+  width: 48px;
   justify-content: center;
-  min-height: 44px;
+  min-height: 48px;
   font-size: 0;
   gap: 0;
   padding: 0;
@@ -91,8 +93,8 @@ body:has(.game-page.is-touch) {
   gap: 4px;
 }
 .game-page.is-touch .game-tools .icon-button {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
 }
 .game-page.is-touch .game-topline button {
   pointer-events: auto;
@@ -107,8 +109,8 @@ body:has(.game-page.is-touch) {
   height: 19px;
 }
 .app-shell:has(.game-page.is-touch) .modal .icon-button {
-  min-width: 44px;
-  height: 44px;
+  min-width: 48px;
+  height: 48px;
 }
 .arcade-app .game-page.is-touch .arena-wrap {
   position: absolute;
@@ -208,7 +210,7 @@ body:has(.game-page.is-touch) {
 .game-page.is-touch .touch-actions {
   display: grid;
   grid-template-columns: repeat(3, var(--touch-size));
-  gap: 6px;
+  gap: 8px;
   max-width: none;
   pointer-events: auto;
 }
@@ -226,8 +228,9 @@ body:has(.game-page.is-touch) {
   background: #10233a9e;
   box-shadow: 0 3px 0 #050e1b8c;
   transition:
-    transform 80ms,
-    background 80ms;
+    background 80ms,
+    border-color 80ms,
+    box-shadow 80ms;
 }
 .game-page.is-touch .touch-button svg {
   width: 18px;
@@ -240,7 +243,13 @@ body:has(.game-page.is-touch) {
   background: #ffd45a;
   color: #102036;
   border-color: #ffe9a2;
-  box-shadow: 0 1px 0 #9e792b;
+  box-shadow:
+    inset 0 2px 10px #8d6b2b80,
+    0 0 9px #ffd45a55;
+}
+.game-page.is-touch .touch-button:focus-visible {
+  outline: 2px solid #fff0ad;
+  outline-offset: 2px;
 }
 .game-page.is-touch .touch-jump {
   grid-column: 2;
