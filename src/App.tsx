@@ -81,7 +81,6 @@ export function App({
   const [localMatch, setLocalMatch] = useState<MatchState | null>(null);
   const [formError, setFormError] = useState("");
   const [notice, setNotice] = useState("");
-  const [rematchWaiting, setRematchWaiting] = useState(false);
   const [joinCode, setJoinCode] = useState("");
   const [privateRoom, setPrivateRoom] = useState(false);
   const nameInput = useRef<HTMLInputElement>(null);
@@ -104,6 +103,12 @@ export function App({
   }, [_communityRevision, network.communityVersion, fighter, rival]);
 
   const active = localMatch || network.match?.initial;
+  const ownRoomPlayer = network.room?.players.find(
+    (player) => player.id === network.id,
+  );
+  const confirmedFighter = ownRoomPlayer?.fighter ?? fighter;
+  const rematchWaiting =
+    network.room?.status === "finished" && ownRoomPlayer?.ready === true;
   const chosen = fighterById(fighter);
   const chosenStage = stageById(network.room?.stage || stage);
   const wins = Number(progress.wins[fighter]) || 0;
@@ -122,6 +127,10 @@ export function App({
       .toLowerCase()
       .includes(searchTerm),
   );
+
+  useEffect(() => {
+    if (ownRoomPlayer) setFighter(ownRoomPlayer.fighter);
+  }, [ownRoomPlayer?.fighter]);
 
   useEffect(() => {
     if (active || !setupPanel.current) return;
@@ -160,7 +169,6 @@ export function App({
   useEffect(() => {
     if (network.match) {
       setModal(null);
-      setRematchWaiting(false);
       window.scrollTo({ top: 0, behavior: "instant" });
     }
   }, [network.match]);
@@ -187,7 +195,7 @@ export function App({
     fighterSearchInput.current?.focus();
   };
   const selectFighter = (id: FighterId) => {
-    setFighter(id);
+    if (active) return;
     clickSound();
     if (network.room?.status === "waiting")
       network.send({
@@ -195,6 +203,7 @@ export function App({
         fighter: id,
         wins: Number(progress.wins[id]) || 0,
       });
+    else if (!network.room) setFighter(id);
   };
   const selectStage = (id: StageId) => {
     setStage(id);
@@ -362,7 +371,6 @@ export function App({
   const exit = () => {
     setLocalMatch(null);
     if (network.room) network.send({ type: "leave" });
-    setRematchWaiting(false);
   };
   const openRooms = () => {
     setMode("online");
@@ -503,18 +511,17 @@ export function App({
           onResult={recordResult}
           onRematch={() => {
             if (localMatch) startLocal();
-            else {
-              network.send({ type: "rematch" });
-              setRematchWaiting(true);
-            }
+            else network.send({ type: "rematch" });
           }}
           rematchWaiting={rematchWaiting}
+          networkError={localMatch ? undefined : network.error}
+          onDismissNetworkError={() => network.setError("")}
           onHelp={() => setModal("help")}
         />
       ) : (
         <ArcadeLobby
           mode={mode}
-          fighter={fighter}
+          fighter={confirmedFighter}
           rival={rival}
           stage={chosenStage}
           name={name}
@@ -686,6 +693,7 @@ export function App({
           fighter={detail}
           wins={Number(progress.wins[detail]) || 0}
           onClose={() => setDetail(null)}
+          selectionLocked={Boolean(active)}
           onSelect={() => {
             selectFighter(detail);
             setDetail(null);
@@ -966,11 +974,13 @@ function FighterDetail({
   wins,
   onClose,
   onSelect,
+  selectionLocked,
 }: {
   fighter: FighterId;
   wins: number;
   onClose: () => void;
   onSelect: () => void;
+  selectionLocked: boolean;
 }) {
   const f = fighterById(fighter);
   const personality = personalityById(fighter);
@@ -1052,8 +1062,14 @@ function FighterDetail({
               );
             })}
           </div>
-          <button className="primary-button" onClick={onSelect}>
-            Elegir a {f.shortName} <ArrowRight size={17} />
+          <button
+            className="primary-button"
+            onClick={onSelect}
+            disabled={selectionLocked}
+          >
+            {selectionLocked
+              ? "Termina la pelea para elegir"
+              : `Elegir a ${f.shortName}`} <ArrowRight size={17} />
           </button>
         </div>
       </div>

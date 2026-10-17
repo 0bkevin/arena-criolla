@@ -40,6 +40,84 @@ class TestClient {
   }
 }
 
+test("repeated choices do not lose the next fighter or ready action, and excess changes report authoritative state", async () => {
+  const server = await makeArenaServer({ serveClient: false });
+  await new Promise<void>((resolve) =>
+    server.http.listen(0, "127.0.0.1", resolve),
+  );
+  const address = server.http.address();
+  assert.ok(address && typeof address === "object");
+  const peer = new TestClient(`ws://127.0.0.1:${address.port}/ws`);
+  try {
+    const welcome = await peer.wait("welcome");
+    peer.send({
+      type: "create",
+      name: "QA controls",
+      fighter: "zavarce",
+      stage: "caracas",
+      wins: 0,
+      private: true,
+    });
+    const { room } = await peer.wait("room");
+    const client = server.clients.get(welcome.id)!;
+    client.window = performance.now();
+    for (let i = 0; i < 30; i++)
+      peer.send({ type: "select", fighter: "zavarce", wins: 0 });
+    peer.send({ type: "select", fighter: "capriles", wins: 0 });
+    peer.send({ type: "ready", ready: true });
+    const accepted = await peer.wait("room", (m) => m.room.players[0].ready);
+    assert.equal(accepted.room.players[0].fighter, "capriles");
+    assert.equal(
+      peer.messages.some((m) => m.type === "error"),
+      false,
+    );
+
+    peer.messages.length = 0;
+    peer.send({ type: "ready", ready: false });
+    await peer.wait(
+      "room",
+      (m) =>
+        !m.room.players[0].ready && m.room.players[0].fighter === "capriles",
+    );
+    peer.messages.length = 0;
+    client.window = performance.now();
+    client.controls = 0;
+    for (let i = 0; i < 30; i++)
+      peer.send({
+        type: "select",
+        fighter: i % 2 === 0 ? "zavarce" : "capriles",
+        wins: 0,
+      });
+    peer.send({ type: "select", fighter: "zavarce", wins: 0 });
+    peer.send({ type: "ready", ready: true });
+    await peer.wait("error", (m) => m.message.includes("rápido"));
+    await new Promise((resolve) => setTimeout(resolve, 30));
+    const authoritative = server.rooms.get(room.code)!.view;
+    assert.equal(authoritative.players[0].fighter, "capriles");
+    assert.equal(
+      authoritative.players[0].ready,
+      false,
+      "rejected choice must not silently start a different fighter",
+    );
+    const snapshots = peer.messages.filter((m) => m.type === "room");
+    assert.deepEqual(snapshots.at(-1)?.room, authoritative);
+    assert.equal(
+      peer.messages.filter((m) => m.type === "error").length,
+      1,
+      "the rejected ready action must also report an error",
+    );
+
+    client.window -= 1001;
+    peer.send({ type: "ready", ready: true });
+    await peer.wait("room", (m) => m.room.players[0].ready);
+    peer.send({ type: "ready", ready: false });
+    await peer.wait("room", (m) => !m.room.players[0].ready);
+  } finally {
+    peer.socket.terminate();
+    await server.close();
+  }
+});
+
 test("anonymous rooms synchronize two players, validate inputs, rematch, and recover from disconnect", async () => {
   const server = await makeArenaServer({ serveClient: false });
   await new Promise<void>((resolve) =>
@@ -128,6 +206,17 @@ test("anonymous rooms synchronize two players, validate inputs, rematch, and rec
     assert.equal(finalA.state.winner, 0);
     assert.deepEqual(finalA.state, finalB.state);
     assert.equal(active.view.players[0].wins, 1);
+    const hostClient = server.clients.get(aWelcome.id)!;
+    hostClient.window = performance.now();
+    hostClient.controls = 30;
+    a.send({ type: "rematch" });
+    await a.wait("error", (m) => m.message.includes("rápido"));
+    await a.wait(
+      "room",
+      (m) => m.room.status === "finished" && !m.room.players[0].ready,
+    );
+    assert.equal(active.view.players[0].ready, false);
+    hostClient.window -= 1001;
     a.send({ type: "rematch" });
     await a.wait(
       "room",

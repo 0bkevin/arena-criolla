@@ -241,6 +241,12 @@ export function useArenaNetwork(onResult?: ResultHandler) {
     }
     try {
       ws.send(JSON.stringify(message));
+      if (
+        message.type === "select" ||
+        message.type === "ready" ||
+        message.type === "rematch"
+      )
+        setError("");
       return true;
     } catch {
       retireSocket.current?.();

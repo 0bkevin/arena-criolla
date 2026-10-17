@@ -58,6 +58,8 @@ interface Props {
   onResult: (state: MatchState, index: number) => void;
   onRematch: () => void;
   rematchWaiting?: boolean;
+  networkError?: string;
+  onDismissNetworkError?: () => void;
   onHelp: () => void;
 }
 
@@ -490,6 +492,12 @@ export function Game(props: Props) {
   const presenting = view.phase === "intro" ? introActor(view.tick) : null;
   const intro = view.phase === "intro";
   const cinematic = intro && presenting !== null;
+  const networkNotice = props.networkError && (
+    <div className="notice-banner network-notice" role="alert">
+      <span>{props.networkError}</span>
+      <button onClick={props.onDismissNetworkError}>Cerrar aviso</button>
+    </div>
+  );
 
   return (
     <main
@@ -560,6 +568,7 @@ export function Game(props: Props) {
           height={640}
           aria-label={`Combate entre ${view.players[0].config.name} y ${view.players[1].config.name} en ${stage.name}`}
         />
+        {view.phase !== "finished" && networkNotice}
         {!cinematic && (
           <div className="match-hud">
             {view.players.map((p, i) => {
@@ -729,6 +738,7 @@ export function Game(props: Props) {
                       </span>
                     </div>
                   )}
+                {networkNotice}
                 <button
                   className="primary-button"
                   disabled={props.rematchWaiting}

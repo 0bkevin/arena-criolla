@@ -324,14 +324,17 @@ export async function makeArenaServer(
           send(client, { type: "pong", sentAt: message.sentAt });
         return;
       }
-      if (
-        (message.type === "select" ||
-          message.type === "ready" ||
-          message.type === "rematch") &&
-        ++client.controls > 30
-      )
-        return;
       const current = client.room ? rooms.get(client.room) : undefined;
+      const acceptControl = () => {
+        if (++client.controls <= 30) return true;
+        error(
+          client,
+          "Estás eligiendo demasiado rápido. Espera un momento y vuelve a intentarlo.",
+        );
+        if (client.controls === 31 && current)
+          send(client, { type: "room", room: current.view });
+        return false;
+      };
       if (message.type === "list") {
         if (++client.lists > 5) return;
         publishList(client);
@@ -419,28 +422,31 @@ export async function makeArenaServer(
       if (!current) return;
       if (message.type === "select" && current.view.status === "waiting") {
         const player = current.view.players.find((p) => p.id === client.id)!;
-        let changed = false;
-        if (allowedFighter(message.fighter)) {
-          const wins = cleanWins(message.wins);
-          if (player.fighter !== message.fighter || player.wins !== wins) {
-            player.fighter = message.fighter;
-            player.wins = wins;
+        const nextFighter = allowedFighter(message.fighter)
+          ? message.fighter
+          : player.fighter;
+        const nextWins = allowedFighter(message.fighter)
+          ? cleanWins(message.wins)
+          : player.wins;
+        const nextStage =
+          client.id === current.view.host && isStage(message.stage)
+            ? message.stage
+            : current.view.stage;
+        const fighterChange =
+          player.fighter !== nextFighter || player.wins !== nextWins;
+        const stageChange = current.view.stage !== nextStage;
+        if ((fighterChange || stageChange) && acceptControl()) {
+          if (fighterChange) {
+            player.fighter = nextFighter;
+            player.wins = nextWins;
             player.ready = false;
-            changed = true;
           }
-        }
-        if (
-          client.id === current.view.host &&
-          isStage(message.stage) &&
-          current.view.stage !== message.stage
-        ) {
-          current.view.stage = message.stage;
-          current.view.players.forEach((p) => {
-            p.ready = false;
-          });
-          changed = true;
-        }
-        if (changed) {
+          if (stageChange) {
+            current.view.stage = nextStage;
+            current.view.players.forEach((p) => {
+              p.ready = false;
+            });
+          }
           publishRoom(current);
           scheduleRoomList();
         }
@@ -448,7 +454,7 @@ export async function makeArenaServer(
       if (message.type === "ready" && current.view.status === "waiting") {
         if (typeof message.ready !== "boolean") return;
         const player = current.view.players.find((p) => p.id === client.id)!;
-        if (player.ready !== message.ready) {
+        if (player.ready !== message.ready && acceptControl()) {
           player.ready = message.ready;
           publishRoom(current);
           scheduleRoomList();
@@ -480,7 +486,7 @@ export async function makeArenaServer(
       }
       if (message.type === "rematch" && current.view.status === "finished") {
         const player = current.view.players.find((p) => p.id === client.id)!;
-        if (!player.ready) {
+        if (!player.ready && acceptControl()) {
           player.ready = true;
           if (current.view.players.every((p) => p.ready)) start(current);
           else publishRoom(current);
