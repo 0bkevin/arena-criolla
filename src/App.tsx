@@ -51,10 +51,19 @@ import { CriolloArt } from "./components/CriolloArt";
 import { Game, type GameMode } from "./components/Game";
 import { Modal } from "./components/Modal";
 import { Help } from "./components/Help";
+import { AccountDialog } from "./components/AccountDialog";
+import { RankingDialog } from "./components/RankingDialog";
 import { beginMobilePlay, leaveLandscape } from "./game/mobile";
 
 type ModalName =
-  "help" | "fighters" | "stages" | "progress" | "rooms" | "ranking" | null;
+  | "help"
+  | "fighters"
+  | "stages"
+  | "progress"
+  | "rooms"
+  | "ranking"
+  | "account"
+  | null;
 const colorStyle = (color: string): React.CSSProperties =>
   ({ "--fighter-color": color }) as React.CSSProperties;
 
@@ -83,6 +92,8 @@ export function App({
   const [notice, setNotice] = useState("");
   const [joinCode, setJoinCode] = useState("");
   const [privateRoom, setPrivateRoom] = useState(false);
+  const [rankedRoom, setRankedRoom] = useState(false);
+  const [identityRevision, setIdentityRevision] = useState(0);
   const nameInput = useRef<HTMLInputElement>(null);
   const secondNameInput = useRef<HTMLInputElement>(null);
   const fighterSearchInput = useRef<HTMLInputElement>(null);
@@ -90,9 +101,15 @@ export function App({
   const [setupVisible, setSetupVisible] = useState(true);
   const recordedResults = useRef(new Set<string>());
   const pendingProgress = useRef<Progress | null>(null);
-  const network = useArenaNetwork((state, index) =>
-    recordResult(state, index, false),
+  const network = useArenaNetwork(
+    (state, index) => recordResult(state, index, false),
+    identityRevision,
   );
+  useEffect(() => {
+    if (network.account)
+      setName((current) => (current.trim() ? current : network.account!.name));
+    else setRankedRoom(false);
+  }, [network.account?.id]);
   useEffect(() => {
     if (!isFighter(fighter)) {
       setFighter("zavarce");
@@ -168,6 +185,7 @@ export function App({
   ]);
   useEffect(() => {
     if (network.match) {
+      setMode("online");
       setModal(null);
       window.scrollTo({ top: 0, behavior: "instant" });
     }
@@ -445,7 +463,10 @@ export function App({
             Luchadores
           </button>
           {onCreate && (
-            <button onClick={onCreate}>
+            <button
+              onClick={onCreate}
+              disabled={Boolean(active || network.recoveringRanked)}
+            >
               <Plus size={14} />
               <span>Crear luchador</span>
             </button>
@@ -456,6 +477,20 @@ export function App({
           </button>
         </nav>
         <div className="header-right">
+          <button
+            className="text-button arena-account-button"
+            onClick={() => setModal("account")}
+            disabled={Boolean(
+              active || network.room || network.recoveringRanked,
+            )}
+            title={
+              active || network.room
+                ? "Sal de la sala para cambiar de cuenta"
+                : "Tu cuenta y tus clasificatorias"
+            }
+          >
+            {network.account?.name ?? "Iniciar sesión"}
+          </button>
           {!active && (
             <button
               className="icon-button header-progress"
@@ -516,8 +551,36 @@ export function App({
           rematchWaiting={rematchWaiting}
           networkError={localMatch ? undefined : network.error}
           onDismissNetworkError={() => network.setError("")}
+          ranked={network.match?.ranked && !localMatch}
+          rankingResult={localMatch ? null : network.rankingResult}
+          reconnectUntil={localMatch ? undefined : network.room?.reconnectUntil}
+          rematchAvailable={
+            !network.match?.ranked ||
+            Boolean(
+              network.room?.players.length === 2 &&
+              network.room.players.every(
+                (player) => player.connected !== false,
+              ),
+            )
+          }
+          onRanking={() => setModal("ranking")}
           onHelp={() => setModal("help")}
         />
+      ) : network.recoveringRanked ? (
+        <main
+          className="page-width ranked-recovery"
+          aria-label="Recuperando clasificatoria"
+        >
+          <h1>Volviendo a tu pelea…</h1>
+          <p role="status">
+            Reconectando tu cuenta con la misma partida. Tu rival te espera; el
+            margen es de 10 segundos acumulados por jugador y partida, contados
+            desde que el servidor detecta cada desconexión.
+          </p>
+          <button className="secondary-button" onClick={network.abandonResume}>
+            Abandonar clasificatoria · Cuenta como derrota
+          </button>
+        </main>
       ) : (
         <ArcadeLobby
           mode={mode}
@@ -580,7 +643,7 @@ export function App({
         </span>
         <button onClick={() => setModal("ranking")}>
           <Trophy size={13} />
-          Ranking <span>PRONTO</span>
+          Ranking global
         </button>
       </footer>
       {!active && onCreate && (
@@ -774,26 +837,27 @@ export function App({
         </Modal>
       )}
       {modal === "ranking" && (
-        <Modal title="La próxima ronda" onClose={() => setModal(null)}>
-          <div className="coming-soon">
-            <Trophy size={44} />
-            <span className="eyebrow">RANKING GLOBAL</span>
-            <h3>Los mejores tendrán su lugar.</h3>
-            <p>
-              La clasificación por victorias llegará más adelante. Mientras
-              tanto, puedes pelear sin cuentas y desbloquear los combos de tus
-              luchadores favoritos.
-            </p>
-            <button
-              className="primary-button"
-              onClick={() => {
-                setModal("progress");
-              }}
-            >
-              Ver mi progreso <ArrowRight size={16} />
-            </button>
-          </div>
-        </Modal>
+        <RankingDialog
+          account={network.account}
+          revision={network.rankingRevision}
+          onClose={() => setModal(null)}
+          onAccount={
+            !active && !network.room ? () => setModal("account") : undefined
+          }
+        />
+      )}
+      {modal === "account" && (
+        <AccountDialog
+          account={network.account}
+          onClose={() => setModal(null)}
+          onChanged={(account) => {
+            if (account)
+              setName((current) => (current.trim() ? current : account.name));
+            setIdentityRevision((revision) => revision + 1);
+            setModal(null);
+            setRankedRoom(false);
+          }}
+        />
       )}
       {modal === "rooms" && (
         <Modal
@@ -816,17 +880,18 @@ export function App({
             </button>
           </div>
           <p className="modal-intro">
-            Crea una sala, comparte el enlace y jueguen desde donde estén. Sin
-            registro.
+            Crea una sala y comparte el enlace. Puedes jugar casuales sin cuenta
+            o competir en el ranking con tu cuenta.
           </p>
           <div className="lobby-name">
             <label className="field-label" htmlFor="lobby-name">
-              Tu apodo
+              {rankedRoom ? "Tu nombre público de cuenta" : "Tu apodo"}
             </label>
             <input
               id="lobby-name"
               className="plain-input"
-              value={name}
+              value={rankedRoom ? (network.account?.name ?? name) : name}
+              disabled={rankedRoom}
               maxLength={20}
               placeholder="Tu apodo, pana"
               onChange={(e) => {
@@ -854,6 +919,31 @@ export function App({
                 <LockKeyhole size={13} />
                 Solo entrar con código
               </label>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  checked={rankedRoom}
+                  disabled={!network.account}
+                  onChange={(event) => setRankedRoom(event.target.checked)}
+                />
+                <Trophy size={13} /> Clasificatoria · Cuenta para el ranking
+              </label>
+              {rankedRoom ? (
+                <p>
+                  Ambos necesitan cuenta. Todos los combos están disponibles.
+                  Salir cuenta como derrota; hay 10 segundos acumulados para
+                  reconectar en cada partida.
+                </p>
+              ) : (
+                !network.account && (
+                  <button
+                    className="text-button"
+                    onClick={() => setModal("account")}
+                  >
+                    Inicia sesión para competir
+                  </button>
+                )
+              )}
               <button
                 className="primary-button"
                 disabled={!network.connected}
@@ -866,6 +956,7 @@ export function App({
                     stage,
                     wins,
                     private: privateRoom,
+                    ranked: rankedRoom,
                   });
                 }}
               >
@@ -940,6 +1031,7 @@ export function App({
                   <div>
                     <strong>{room.name}</strong>
                     <span>
+                      {room.ranked ? "Clasificatoria · " : "Casual · "}
                       {stageById(room.stage).location} · {room.players.length}/2
                       jugadores
                     </span>
@@ -1069,7 +1161,8 @@ function FighterDetail({
           >
             {selectionLocked
               ? "Termina la pelea para elegir"
-              : `Elegir a ${f.shortName}`} <ArrowRight size={17} />
+              : `Elegir a ${f.shortName}`}{" "}
+            <ArrowRight size={17} />
           </button>
         </div>
       </div>
