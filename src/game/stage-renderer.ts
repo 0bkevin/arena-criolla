@@ -1,6 +1,7 @@
 import { platformsAtTick, type StageDefinition } from "../../shared/content";
 import { WORLD } from "../../shared/engine";
-import { arenaBounds, sceneryCover } from "./viewport";
+import { ARENA_ART } from "../../shared/arena";
+import { arenaBounds, sceneryCover, sceneryTiles } from "./viewport";
 
 const pixel = (
   ctx: CanvasRenderingContext2D,
@@ -195,11 +196,24 @@ export function drawStage(
   tick: number,
   bounds = arenaBounds(WORLD.width, WORLD.height),
 ) {
-  const { width, height, floor, left, right } = WORLD;
+  const { floor, left, right } = WORLD;
   ctx.save();
   ctx.imageSmoothingEnabled = stage.artStyle !== "pixel";
-  const cover = sceneryCover(width, height, bounds);
-  ctx.drawImage(image, cover.x, cover.y, cover.width, cover.height);
+  const cover = sceneryCover(
+    image.naturalWidth || ARENA_ART.width,
+    image.naturalHeight || ARENA_ART.height,
+    arenaBounds(WORLD.width, WORLD.height),
+  );
+  for (const tile of sceneryTiles(cover, bounds)) {
+    ctx.save();
+    ctx.translate(
+      tile.x + (tile.mirrorX ? tile.width : 0),
+      tile.y + (tile.mirrorY ? tile.height : 0),
+    );
+    ctx.scale(tile.mirrorX ? -1 : 1, tile.mirrorY ? -1 : 1);
+    ctx.drawImage(image, 0, 0, tile.width, tile.height);
+    ctx.restore();
+  }
   ctx.restore();
   const shade = ctx.createLinearGradient(
     0,
@@ -212,7 +226,11 @@ export function drawStage(
   shade.addColorStop(1, "#10121825");
   ctx.fillStyle = shade;
   ctx.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+  ctx.save();
+  ctx.translate(cover.x, cover.y);
+  ctx.scale(cover.width / ARENA_ART.width, cover.height / ARENA_ART.height);
   environment(ctx, stage, tick);
+  ctx.restore();
   const [top, dark, detail] = materials[stage.theme];
   ctx.fillStyle = "#090e18b0";
   ctx.fillRect(
@@ -246,6 +264,8 @@ export function drawStage(
   platformsAtTick(stage.id, tick).forEach((platform) => {
     const { x, y, width: w, motion } = platform;
     pixel(ctx, x, y, w, 4, top);
+    // A bright lip separates the playable surface from railings in the scenery.
+    pixel(ctx, x + 2, y, w - 4, 2, stage.color);
     pixel(ctx, x + 2, y + 4, w - 4, 12, dark);
     for (let tile = 8; tile < w - 8; tile += 24)
       pixel(ctx, x + tile, y + 7, 14, 3, detail);

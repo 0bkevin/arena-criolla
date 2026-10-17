@@ -1980,7 +1980,7 @@ kbd {
 }
 .arena-wrap {
   position: relative;
-  aspect-ratio: 1080/640;
+  aspect-ratio: 1440/800;
   border: 1px solid #474750;
   border-radius: 9px;
   overflow: hidden;
@@ -3617,7 +3617,7 @@ kbd {
   flex: 1;
 }
 .game-page {
-  max-width: min(1264px, calc((100dvh - 260px) * 1.6875));
+  max-width: min(1440px, calc((100dvh - 210px) * 1.8));
 }
 .character-identity {
   display: flex;
@@ -3756,7 +3756,7 @@ kbd {
   }
   .game-page {
     padding-top: 8px;
-    max-width: min(1080px, calc((100dvh - 125px) * 1.6875));
+    max-width: min(1440px, calc((100dvh - 125px) * 1.8));
   }
   .game-page:has(.result-overlay) {
     max-width: min(760px, calc(100vw - 32px));
@@ -3864,7 +3864,7 @@ kbd {
   display: none;
 }
 .arcade-app .game-page.is-intro {
-  width: min(calc(100% - 32px), calc((100svh - 32px) * 1.6875));
+  width: min(calc(100% - 32px), calc((100svh - 32px) * 1.8));
   max-width: 1440px;
   min-height: 100svh;
   margin-block: 0;
@@ -3944,7 +3944,7 @@ kbd {
 }
 @media (max-width: 700px) {
   .arcade-app .game-page.is-intro {
-    width: min(calc(100% - 16px), calc((100svh - 16px) * 1.6875));
+    width: min(calc(100% - 16px), calc((100svh - 16px) * 1.8));
     padding: 8px 0;
   }
   .cinematic-name {

@@ -1,12 +1,9 @@
-import {
-  fighterById,
-  stageById,
-  type FighterId,
-  type StageId,
-} from "../shared/content";
+import { fighterById, type FighterId, type StageId } from "../shared/content";
 import { REACTION_CLIPS, type ReactionKind } from "./game/reactions";
 import { CULTURE_SOUNDS } from "./game/culture-sounds";
 import { presentationById } from "../shared/presentation";
+import { WORLD } from "../shared/arena";
+import { MUSIC_SECONDS, writeArcadeMusic } from "./game/arcade-music";
 
 type SoundKind =
   | "select"
@@ -15,6 +12,8 @@ type SoundKind =
   | "jump"
   | "swing"
   | "land"
+  | "step"
+  | "dash"
   | "special"
   | "ringout"
   | "win"
@@ -28,6 +27,9 @@ export interface SoundOptions {
 let context: AudioContext | null = null;
 let effectsBus: GainNode | null = null;
 let reactionsBus: GainNode | null = null;
+let musicBus: GainNode | null = null;
+let musicBuffer: AudioBuffer | null = null;
+const MUSIC_GAIN = 0.12;
 let enabled = true;
 let reactionsPaused = false;
 const reactions = [0, 1].map(() => ({
@@ -43,6 +45,12 @@ let activeAmbienceStage: StageId | null = null;
 let ambienceNodes: AudioNode[] = [];
 let ambienceGain: GainNode | null = null;
 let ambiencePaused = false;
+let soundView = { left: WORLD.left, right: WORLD.right };
+
+export function setSoundView(left: number, right: number) {
+  if (Number.isFinite(left) && Number.isFinite(right) && right > left)
+    soundView = { left, right };
+}
 
 export function stopReactions() {
   for (const reaction of reactions) {
@@ -76,6 +84,11 @@ export function setSound(value: boolean) {
       context.currentTime,
       0.02,
     );
+    musicBus?.gain.setTargetAtTime(
+      value ? MUSIC_GAIN : 0,
+      context.currentTime,
+      0.02,
+    );
   }
 }
 export function initAudio() {
@@ -99,6 +112,9 @@ export function initAudio() {
       reactionsBus = context.createGain();
       reactionsBus.gain.value = 0.7;
       reactionsBus.connect(limiter);
+      musicBus = context.createGain();
+      musicBus.gain.value = MUSIC_GAIN;
+      musicBus.connect(limiter);
     }
     if (context.state === "suspended") void context.resume().catch(() => {});
   } catch {}
@@ -114,8 +130,10 @@ export function stopAmbience() {
   ambienceGain = null;
   activeAmbienceStage = null;
   ambienceStage = null;
+  soundView = { left: WORLD.left, right: WORLD.right };
 }
 export function setAmbiencePaused(paused: boolean) {
+  if (ambiencePaused === paused) return;
   ambiencePaused = paused;
   if (context && ambienceGain)
     ambienceGain.gain.setTargetAtTime(
@@ -128,52 +146,41 @@ export function startAmbience(stage: StageId) {
   ambienceStage = stage;
   if (!enabled) return;
   initAudio();
-  if (!context || !effectsBus || activeAmbienceStage === stage) return;
+  if (!context || !musicBus || activeAmbienceStage === stage) return;
   stopAmbience();
   ambienceStage = stage;
   activeAmbienceStage = stage;
-  const settings = {
-    forest: { frequency: 1700, volume: 0.055, rate: 0.12 },
-    coast: { frequency: 1050, volume: 0.045, rate: 0.15 },
-    wind: { frequency: 760, volume: 0.045, rate: 0.08 },
-    city: { frequency: 450, volume: 0.025, rate: 0.07 },
-    crowd: { frequency: 1500, volume: 0.04, rate: 0.2 },
-  }[stageById(stage).ambience];
-  const noiseBuffer = context.createBuffer(
-    1,
-    context.sampleRate * 3,
-    context.sampleRate,
-  );
-  const samples = noiseBuffer.getChannelData(0);
-  let brown = 0;
-  for (let i = 0; i < samples.length; i++) {
-    brown = (brown + (Math.random() * 2 - 1) * 0.1) / 1.025;
-    samples[i] = brown * 3;
+  if (!musicBuffer) {
+    musicBuffer = context.createBuffer(
+      2,
+      Math.round(context.sampleRate * MUSIC_SECONDS),
+      context.sampleRate,
+    );
+    writeArcadeMusic(
+      musicBuffer.getChannelData(0),
+      musicBuffer.getChannelData(1),
+      context.sampleRate,
+    );
   }
   const source = context.createBufferSource();
-  source.buffer = noiseBuffer;
+  source.buffer = musicBuffer;
   source.loop = true;
-  const filter = context.createBiquadFilter();
-  filter.type = "lowpass";
-  filter.frequency.value = settings.frequency;
-  const swell = context.createGain();
-  swell.gain.value = settings.volume;
-  const lfo = context.createOscillator();
-  lfo.frequency.value = settings.rate;
-  const lfoGain = context.createGain();
-  lfoGain.gain.value = settings.volume * 0.42;
   ambienceGain = context.createGain();
   ambienceGain.gain.value = ambiencePaused ? 0 : 1;
-  source.connect(filter);
-  filter.connect(swell);
-  swell.connect(ambienceGain);
-  lfo.connect(lfoGain);
-  lfoGain.connect(swell.gain);
-  ambienceGain.connect(effectsBus);
-  ambienceNodes = [source, filter, swell, lfo, lfoGain, ambienceGain];
+  source.connect(ambienceGain);
+  ambienceGain.connect(musicBus);
+  ambienceNodes = [source, ambienceGain];
   source.start();
-  lfo.start();
 }
+const stereoPosition = (x = 540) =>
+  Math.max(
+    -0.8,
+    Math.min(
+      0.8,
+      (x - (soundView.left + soundView.right) / 2) /
+        ((soundView.right - soundView.left) / 2),
+    ),
+  );
 function loadReaction(file: string) {
   if (!context) return Promise.resolve(null);
   if (!buffers.has(file)) {
@@ -265,22 +272,19 @@ export function playReaction(
     const source = context.createBufferSource();
     source.buffer = buffer;
     const pan = context.createStereoPanner();
-    pan.pan.value = Math.max(
-      -0.8,
-      Math.min(0.8, ((options.x ?? 540) - 540) / 675),
-    );
+    pan.pan.value = stereoPosition(options.x);
     const envelope = context.createGain();
     const heavy = options.impact === "heavy" || options.impact === "super";
     envelope.gain.value =
       kind === "jump"
-        ? 0.7
+        ? 0.46
         : kind === "attack"
           ? heavy
-            ? 0.95
-            : 0.8
+            ? 0.65
+            : 0.52
           : heavy
-            ? 1.1
-            : 1;
+            ? 0.78
+            : 0.65;
     source.connect(envelope);
     envelope.connect(pan);
     pan.connect(reactionsBus);
@@ -379,15 +383,21 @@ export function sound(
   const weight = fighter ? fighterById(fighter).damage : 1;
   let spatial: AudioNode | null = effectsBus;
   if (
-    ["hit", "block", "swing", "land", "entrance"].includes(kind) &&
+    [
+      "hit",
+      "block",
+      "swing",
+      "land",
+      "step",
+      "dash",
+      "jump",
+      "entrance",
+    ].includes(kind) &&
     context &&
     effectsBus
   ) {
     const pan = context.createStereoPanner();
-    pan.pan.value = Math.max(
-      -0.8,
-      Math.min(0.8, ((options.x ?? 540) - 540) / 675),
-    );
+    pan.pan.value = stereoPosition(options.x);
     pan.connect(effectsBus);
     spatial = pan;
     setTimeout(() => pan.disconnect(), 700);
@@ -439,49 +449,57 @@ export function sound(
     tone(1240, 1320, 0.08, "sine", 0.025, 0.03);
   } else if (kind === "hit") {
     const heavy = options.impact === "heavy" || options.impact === "super";
-    const power = (options.strength ?? (heavy ? 1.3 : 0.85)) * weight;
-    // Low body, midrange punch and a short bright crack. Strong hits have a longer tail.
+    const power = Math.min(
+      1.6,
+      (options.strength ?? (heavy ? 1.3 : 0.85)) * weight,
+    );
+    // Blend the original low punch and short crack with the softer new release.
     tone(
-      heavy ? 100 : 155,
-      34,
-      heavy ? 0.25 : 0.15,
+      heavy ? 115 : 175,
+      heavy ? 40 : 55,
+      heavy ? 0.2 : 0.13,
       "triangle",
-      0.28 * power,
+      0.21 * power,
       0,
       spatial,
     );
-    tone(heavy ? 210 : 310, 65, 0.11, "sine", 0.1 * power, 0.006, spatial);
-    noise(heavy ? 0.19 : 0.1, 1600, 0.27 * power, "bandpass", 0, spatial);
-    noise(0.04, 5700, 0.16 * power, "highpass", 0, spatial);
+    tone(heavy ? 240 : 360, 85, 0.105, "sine", 0.075 * power, 0.006, spatial);
+    noise(heavy ? 0.12 : 0.065, 1400, 0.15 * power, "bandpass", 0, spatial);
+    noise(0.018, 3400, 0.045 * power, "highpass", 0, spatial);
     if (heavy) {
-      noise(0.14, 450, 0.21 * power, "lowpass", 0.015, spatial);
-      tone(70, 28, 0.28, "sine", 0.15 * power, 0.018, spatial);
+      noise(0.1, 400, 0.06 * power, "lowpass", 0.015, spatial);
+      tone(80, 38, 0.18, "sine", 0.07 * power, 0.018, spatial);
     }
   } else if (kind === "block") {
-    tone(830, 550, 0.17, "triangle", 0.13, 0, spatial);
-    tone(1560, 1200, 0.11, "sine", 0.1, 0.012, spatial);
-    tone(2850, 1800, 0.06, "sine", 0.04, 0, spatial);
-    noise(0.08, 5900, 0.14, "highpass", 0, spatial);
+    tone(760, 540, 0.11, "triangle", 0.1, 0, spatial);
+    tone(1480, 1120, 0.07, "sine", 0.04, 0.012, spatial);
+    noise(0.035, 2400, 0.05, "bandpass", 0, spatial);
   } else if (kind === "swing") {
     const heavy = options.impact === "heavy";
     noise(
-      heavy ? 0.2 : 0.115,
-      heavy ? 2100 : 3400,
-      heavy ? 0.13 : 0.085,
+      heavy ? 0.15 : 0.095,
+      heavy ? 1700 : 2400,
+      heavy ? 0.08 : 0.05,
       "bandpass",
       0,
       spatial,
     );
-    tone(heavy ? 190 : 260, 85, 0.12, "sine", 0.035, 0, spatial);
+    tone(heavy ? 190 : 260, 100, 0.1, "sine", 0.025, 0, spatial);
   } else if (kind === "land") {
-    tone(95, 38, 0.1, "sine", 0.085, 0, spatial);
-    noise(0.07, 850, 0.065, "lowpass", 0, spatial);
+    tone(110, 42, 0.095, "sine", 0.065, 0, spatial);
+    noise(0.05, 800, 0.04, "lowpass", 0, spatial);
+  } else if (kind === "step") {
+    tone(100, 70, 0.04, "sine", 0.018, 0, spatial);
+    noise(0.025, 700, 0.015, "lowpass", 0, spatial);
+  } else if (kind === "dash") {
+    tone(180, 100, 0.1, "sine", 0.022, 0, spatial);
+    noise(0.1, 1600, 0.055, "bandpass", 0, spatial);
   } else if (kind === "jump") {
-    noise(0.19, 1800, 0.08);
-    tone(210, 440, 0.15, "sine", 0.05);
+    tone(210, 340, 0.11, "sine", 0.035, 0, spatial);
+    noise(0.08, 1200, 0.04, "bandpass", 0, spatial);
   } else if (kind === "ringout") {
-    tone(330, 45, 0.6, "sawtooth", 0.1);
-    noise(0.5, 1800, 0.11);
+    tone(240, 72, 0.28, "triangle", 0.05);
+    noise(0.16, 1100, 0.05, "bandpass");
   } else if (kind === "win") {
     [392, 494, 587, 784].forEach((f, i) =>
       tone(f, f, 0.36, "triangle", 0.08, i * 0.115),

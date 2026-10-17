@@ -6,14 +6,8 @@ import {
 } from "./content";
 import { TECHNIQUES, type Technique } from "./techniques";
 import { INTRO_COUNTDOWN_START, INTRO_TOTAL_TICKS } from "./presentation";
-
-export const WORLD = {
-  width: 1080,
-  height: 640,
-  floor: 554,
-  left: 70,
-  right: 1010,
-};
+import { MAX_FIGHTER_SEPARATION, WORLD } from "./arena";
+export { WORLD } from "./arena";
 export const ACTIONS = [
   "jump",
   "light",
@@ -48,6 +42,8 @@ export interface PlayerState {
   x: number;
   y: number;
   vx: number;
+  // The part of vx caused by contact, preserved by the voluntary retreat limit.
+  recoilVx?: number;
   vy: number;
   facing: number;
   hp: number;
@@ -143,6 +139,7 @@ function makePlayer(config: PlayerConfig, index: number): PlayerState {
     x: index === 0 ? 330 : 750,
     y: WORLD.floor,
     vx: 0,
+    recoilVx: 0,
     vy: 0,
     facing: index === 0 ? 1 : -1,
     hp: 100,
@@ -266,6 +263,7 @@ function hurt(
   if (target.blocking && target.facing === -direction && target.energy > 3) {
     target.energy = Math.max(0, target.energy - 9);
     target.vx += direction * 1.5;
+    target.recoilVx = (target.recoilVx ?? 0) + direction * 1.5;
     effect(s, x, y, "block", "#c7e8ff", {
       owner: attacker,
       impact,
@@ -278,6 +276,7 @@ function hurt(
   const def = fighterById(target.config.fighter);
   target.hp = Math.max(0, target.hp - damage * def.armor);
   target.vx = direction * force * (1 + (100 - target.hp) / 90);
+  target.recoilVx = target.vx;
   target.vy = -force * 0.65;
   target.grounded = false;
   target.supportPlatform = null;
@@ -320,11 +319,15 @@ function loseStock(s: MatchState, i: number) {
   p.rootTicks = 0;
   effect(
     s,
-    Math.max(30, Math.min(WORLD.width - 30, p.x)),
+    Math.max(WORLD.x + 30, Math.min(WORLD.x + WORLD.width - 30, p.x)),
     Math.min(590, p.y - 60),
     "ringout",
     fighterById(p.config.fighter).color,
-    { owner: i, strength: 1.8, direction: p.x < WORLD.width / 2 ? -1 : 1 },
+    {
+      owner: i,
+      strength: 1.8,
+      direction: p.x < WORLD.x + WORLD.width / 2 ? -1 : 1,
+    },
   );
   if (p.stocks <= 0) {
     p.hp = 0;
@@ -335,6 +338,7 @@ function loseStock(s: MatchState, i: number) {
   p.x = i === 0 ? 330 : 750;
   p.y = 260;
   p.vx = 0;
+  p.recoilVx = 0;
   p.vy = 0;
   p.hp = 100;
   p.grounded = false;
@@ -474,6 +478,7 @@ function updateAttack(s: MatchState, i: number) {
       technique.steps?.find((step) => step.pulse === pulseIndex);
     if (danceStep && !p.rootTicks) {
       p.vx = p.facing * danceStep.speed * (p.slowTicks ? 0.6 : 1);
+      p.recoilVx = 0;
       p.dash = danceStep.ticks;
       if (danceStep.lift) {
         p.vy = danceStep.lift;
@@ -612,6 +617,7 @@ function updateAttack(s: MatchState, i: number) {
         ) {
           other.rootTicks = technique.snare;
           other.vx = 0;
+          other.recoilVx = 0;
           other.vy = 0;
           other.grounded = true;
           other.supportPlatform = supportBefore;
@@ -658,6 +664,7 @@ function applySpecialMovement(s: MatchState, i: number, technique: Technique) {
   }
   if (technique.dash) {
     p.vx = p.facing * technique.dash.speed * (p.slowTicks ? 0.6 : 1);
+    p.recoilVx = 0;
     p.dash = technique.dash.ticks;
     p.invincible = Math.max(p.invincible, technique.dash.invincibility);
   }
@@ -667,6 +674,38 @@ function applySpecialMovement(s: MatchState, i: number, technique: Technique) {
     p.grounded = false;
     p.supportPlatform = null;
   }
+}
+
+function limitRetreat(s: MatchState, origins: number[], carried: number[]) {
+  if (s.players.some((p) => p.stocks <= 0 || p.hp <= 0)) return;
+  const direction = Math.sign(origins[1] - origins[0]) || 1;
+  const next = s.players.map((p) => p.x + p.vx);
+  const excess =
+    (next[1] - next[0]) * direction -
+    Math.max(MAX_FIGHTER_SEPARATION, Math.abs(origins[1] - origins[0]));
+  if (excess <= 0) return;
+  const outward = s.players.map((p, i) =>
+    p.stun > 0
+      ? 0
+      : Math.max(
+          0,
+          (next[i] - origins[i] - carried[i] - (p.recoilVx ?? 0)) *
+            (i === 0 ? -direction : direction),
+        ),
+  );
+  const total = outward[0] + outward[1];
+  if (total <= 0) return;
+  // Share the remaining retreat space fairly; damage and platform carry stay free.
+  s.players.forEach((p, i) => {
+    const away = i === 0 ? -direction : direction;
+    const blocked = (Math.min(excess, total) * outward[i]) / total;
+    const scripted = Math.min(
+      blocked,
+      Math.max(0, (p.x - origins[i] - carried[i]) * away),
+    );
+    p.x -= scripted * away;
+    p.vx -= (blocked - scripted) * away;
+  });
 }
 
 export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
@@ -701,6 +740,8 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     return;
   }
   s.remaining--;
+  const movementOrigins = s.players.map((p) => p.x);
+  const platformCarry = [0, 0];
   const stagePlatforms = platformsAtTick(s.stage, s.tick);
   const priorPlatforms = platformsAtTick(s.stage, s.tick - 1);
   const carriedPlatforms: (number | null)[] = [null, null];
@@ -726,7 +767,8 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
         p.x >= prior.x - 5 &&
         p.x <= prior.x + prior.width + 5
       ) {
-        p.x += current.x - prior.x;
+        platformCarry[i] = current.x - prior.x;
+        p.x += platformCarry[i];
         p.y += current.y - prior.y;
         carriedPlatform = index;
       }
@@ -738,7 +780,10 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     p.invincible = Math.max(0, p.invincible - 1);
     p.dash = Math.max(0, p.dash - 1);
     const brake = TECHNIQUES[def.ability].dash?.brake;
-    if (p.attack === "special" && !p.dash && brake) p.vx *= brake;
+    if (p.attack === "special" && !p.dash && brake) {
+      p.vx *= brake;
+      p.recoilVx = (p.recoilVx ?? 0) * brake;
+    }
     const pressed = (key: Action) => input.actions[key] !== p.lastActions[key];
     p.blocking =
       input.block && p.stun === 0 && !p.attack && p.grounded && p.energy > 0;
@@ -747,10 +792,12 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     if (p.stun === 0) {
       const move = Number(input.right) - Number(input.left);
       if (!p.attack && !p.dash) {
+        const acceleration = p.grounded ? 0.35 : 0.08;
         p.vx +=
           (move * def.speed * (p.blocking ? 0.3 : 1) * (p.slowTicks ? 0.6 : 1) -
             p.vx) *
-          (p.grounded ? 0.35 : 0.08);
+          acceleration;
+        p.recoilVx = (p.recoilVx ?? 0) * (1 - acceleration);
         if (move) p.facing = move;
         else if (p.grounded) p.facing = s.players[1 - i].x >= p.x ? 1 : -1;
       }
@@ -763,6 +810,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
       }
       if (pressed("dash") && p.cooldown === 0 && !p.blocking && !p.rootTicks) {
         p.vx = p.facing * 14 * (p.slowTicks ? 0.6 : 1);
+        p.recoilVx = 0;
         p.dash = 12;
         p.invincible = 8;
         p.cooldown = 30;
@@ -781,11 +829,18 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
   // Otherwise a P1 hit applies knockback one frame earlier than the mirrored P2 hit.
   for (const player of s.players) if (player.attack) player.attackTick++;
   for (let i = 0; i < 2; i++) updateAttack(s, i);
+  // Predict spacing from the movement that roots actually allow this frame.
+  for (const p of s.players) {
+    if (p.rootTicks > 0 && p.grounded) {
+      p.vx = 0;
+      p.recoilVx = 0;
+    }
+  }
+  limitRetreat(s, movementOrigins, platformCarry);
   for (let i = 0; i < 2; i++) {
     const p = s.players[i];
     const input = inputs[i];
     const carriedPlatform = carriedPlatforms[i];
-    if (p.rootTicks > 0 && p.grounded) p.vx = 0;
     const previousY = p.y;
     p.vy += 0.52;
     p.x += p.vx;
@@ -825,12 +880,15 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
         break;
       }
     }
-    if (p.grounded && p.stun > 0) p.vx *= 0.89;
+    if (p.grounded && p.stun > 0) {
+      p.vx *= 0.89;
+      p.recoilVx = (p.recoilVx ?? 0) * 0.89;
+    }
     if (
       p.hp <= 0 ||
-      p.x < -120 ||
-      p.x > WORLD.width + 120 ||
-      p.y > WORLD.height + 140
+      p.x < WORLD.x - 120 ||
+      p.x > WORLD.x + WORLD.width + 120 ||
+      p.y > WORLD.y + WORLD.height + 140
     )
       loseStock(s, i);
     if (s.winner !== null) return;
@@ -943,6 +1001,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
           if (projectile.pulls) {
             const source = s.players[projectile.owner];
             target.vx = (source.x >= target.x ? 1 : -1) * Math.abs(target.vx);
+            target.recoilVx = target.vx;
           }
           if (projectile.slowTicks)
             target.slowTicks = Math.max(target.slowTicks, projectile.slowTicks);
@@ -961,8 +1020,8 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     }
     return (
       projectile.life > 0 &&
-      projectile.x > -50 &&
-      projectile.x < WORLD.width + 50
+      projectile.x > WORLD.x - 50 &&
+      projectile.x < WORLD.x + WORLD.width + 50
     );
   });
   resolveTimeout(s);
@@ -1032,7 +1091,7 @@ export function cpuInput(
     next.actions.special++;
   }
   if (
-    (other.y < p.y - 70 || p.x < 100 || p.x > 980) &&
+    (other.y < p.y - 70 || p.x < WORLD.left + 30 || p.x > WORLD.right - 30) &&
     p.jumps < 2 &&
     s.tick % 34 === 0
   )

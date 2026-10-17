@@ -88,7 +88,7 @@ test("a second jump works in the air; a third is rejected; landing resets it", (
 
 test("crossing the arena boundary costs a stock and the final stock ends the match", () => {
   const { state, inputs } = setup();
-  state.players[1].x = -200;
+  state.players[1].x = WORLD.x - 140;
   stepMatch(state, inputs);
   assert.equal(state.players[1].stocks, 1);
   assert.equal(state.players[1].hp, 100);

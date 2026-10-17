@@ -181,6 +181,8 @@ test("Rummy intro blocks action until the full shared timeline completes", () =>
 
 function cpuFight() {
   const r = setup(0, 420, 3); let cpu = emptyInput(); const started = new Set<string>(), landed = new Set<string>();
+  // Exercise the special explicitly; later AI choices depend on arena geometry.
+  r.inputs[0].actions.special++;
   for (let n = 0; n < 6200 && r.state.phase !== "finished"; n++) {
     const dx = r.rival.x - r.player.x;
     r.inputs[0].left = n >= 180 && dx < -85; r.inputs[0].right = n >= 180 && dx > 85;
@@ -189,7 +191,7 @@ function cpuFight() {
       const action = Math.abs(dx) < 230 && r.player.energy >= 75 ? "super" : Math.abs(dx) < 200 && Math.abs(dx) > 140 && r.player.energy >= 25 ? "special" : Math.abs(dx) < 145 ? (r.state.tick % 3 ? "light" : "heavy") : null;
       if (action) r.inputs[0].actions[action]++;
     }
-    if ((r.rival.y < r.player.y - 60 || r.player.x < 120 || r.player.x > 960) && r.player.jumps < 2 && r.state.tick % 34 === 0) r.inputs[0].actions.jump++;
+    if ((r.rival.y < r.player.y - 60 || r.player.x < WORLD.left + 50 || r.player.x > WORLD.right - 50) && r.player.jumps < 2 && r.state.tick % 34 === 0) r.inputs[0].actions.jump++;
     cpu = cpuInput(r.state, cpu, "normal"); r.inputs[1] = cpu; r.advance(1);
     if (r.player.attack) started.add(r.player.attack);
     for (const e of r.state.effects) if (e.kind === "hit" && e.owner === 0) landed.add(e.impact!);

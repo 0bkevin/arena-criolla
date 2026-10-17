@@ -40,12 +40,19 @@ import {
   startAmbience,
   stopAmbience,
   setAmbiencePaused,
+  setSoundView,
 } from "../audio";
 import { Portrait } from "./Portrait";
 import { TouchControls } from "./TouchControls";
 import { enterLandscape, hasTouchInput, leaveLandscape } from "../game/mobile";
 import { arenaCanvasSize } from "../game/viewport";
 import type { RankingReceipt } from "../../shared/ranking";
+import { ARENA_VIEW } from "../../shared/arena";
+import {
+  advanceArenaCamera,
+  cameraBounds,
+  type ArenaCamera,
+} from "../game/arena-camera";
 
 export type GameMode = "practice" | "local" | "online";
 interface Props {
@@ -121,6 +128,13 @@ export function Game(props: Props) {
   const resultSent = useRef(false);
   const introView = useRef(initial);
   introView.current = view;
+  const isGameQuiet = () =>
+    pausedRef.current ||
+    blockedRef.current ||
+    Boolean(document.querySelector("dialog[open]")) ||
+    document.hidden;
+  const syncAmbiencePause = (phase = introView.current.phase) =>
+    setAmbiencePaused(isGameQuiet() || phase === "finished");
   const releaseInputs = () => {
     sources.current.forEach((source) => source.clear());
     keys.current.clear();
@@ -285,6 +299,7 @@ export function Game(props: Props) {
     let lastUI = 0;
     let lastSend = 0;
     let lastEffect = -1;
+    let camera: ArenaCamera | undefined;
     const playedIntroductions = new Set<number>();
     let lastCountdown = -1;
     const motionPreference = window.matchMedia(
@@ -294,12 +309,18 @@ export function Game(props: Props) {
     const swungAttacks = [-1, -1];
     const groundedStates = initial.players.map((p) => p.grounded);
     const jumpCounts = initial.players.map((p) => p.jumps);
+    const dashStates = initial.players.map((p) => p.dash > 0);
+    const footsteps = initial.players.map((p) => ({
+      tick: initial.tick,
+      x: p.x,
+    }));
     const gamepads = new GamepadControls(sources.current);
     const positions = initial.players.map((p) => ({ x: p.x, y: p.y }));
     const animate = (now: number) => {
       const elapsed = Math.min(100, now - last);
       last = now;
       const dialogOpen = Boolean(document.querySelector("dialog[open]"));
+      const quiet = isGameQuiet();
       setReactionsPaused(pausedRef.current || blockedRef.current || dialogOpen);
       if (dialogOpen) sources.current.forEach((source) => source.clear());
       if (
@@ -325,6 +346,7 @@ export function Game(props: Props) {
           accumulator -= 1000 / 60;
         }
       }
+      syncAmbiencePause(state.phase);
       if (
         state.phase === "intro" &&
         !pausedRef.current &&
@@ -388,6 +410,26 @@ export function Game(props: Props) {
         lastEffect = effect.id;
       }
       state.players.forEach((p, i) => {
+        const dash = p.dash > 0;
+        if (!quiet && state.phase === "playing") {
+          if (dash && !dashStates[i])
+            sound("dash", p.config.fighter, { x: p.x });
+          const step = footsteps[i];
+          if (
+            p.grounded &&
+            !p.stun &&
+            !p.attack &&
+            !dash &&
+            Math.abs(p.vx) > 1 &&
+            state.tick - step.tick >= 16 &&
+            Math.abs(p.x - step.x) >= 32
+          ) {
+            sound("step", p.config.fighter, { x: p.x });
+            step.tick = state.tick;
+            step.x = p.x;
+          }
+        }
+        dashStates[i] = dash;
         if (p.grounded && !groundedStates[i] && state.phase === "playing")
           sound("land", p.config.fighter, { x: p.x });
         groundedStates[i] = p.grounded;
@@ -446,7 +488,31 @@ export function Game(props: Props) {
               }) as MatchState["players"],
             }
           : state;
-      renderMatch(ctx, drawState, assets, now, motionPreference.matches);
+      camera =
+        quiet && camera
+          ? camera
+          : advanceArenaCamera(
+              camera,
+              drawState,
+              ctx.canvas.width,
+              ctx.canvas.height,
+              elapsed,
+              motionPreference.matches,
+            );
+      const audioView = cameraBounds(
+        camera,
+        ctx.canvas.width,
+        ctx.canvas.height,
+      );
+      setSoundView(audioView.x, audioView.x + audioView.width);
+      renderMatch(
+        ctx,
+        drawState,
+        assets,
+        now,
+        motionPreference.matches,
+        camera,
+      );
       if (now - lastUI > 80 || state.phase === "finished") {
         setView(structuredClone(state));
         lastUI = now;
@@ -472,9 +538,14 @@ export function Game(props: Props) {
     };
   }, [assets, initial.id, mode, difficulty, remote, localIndex]);
   useEffect(() => {
-    setAmbiencePaused(paused || portraitBlocked || view.phase === "finished");
+    syncAmbiencePause(view.phase);
     if (paused || portraitBlocked) setReactionsPaused(true);
   }, [paused, portraitBlocked, view.phase]);
+  useEffect(() => {
+    const visibility = () => syncAmbiencePause();
+    document.addEventListener("visibilitychange", visibility);
+    return () => document.removeEventListener("visibilitychange", visibility);
+  }, []);
 
   const togglePause = () => {
     releaseInputs();
@@ -593,8 +664,8 @@ export function Game(props: Props) {
         <canvas
           ref={canvas}
           className="arena-canvas"
-          width={1080}
-          height={640}
+          width={ARENA_VIEW.width}
+          height={ARENA_VIEW.height}
           aria-label={`Combate entre ${view.players[0].config.name} y ${view.players[1].config.name} en ${stage.name}`}
         />
         {view.phase !== "finished" && networkNotice}
