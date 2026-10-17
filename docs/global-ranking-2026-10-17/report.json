@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-17",
+  "branch": "t3/verificar-multijugador-online",
+  "baseCommit": "b495fd9",
+  "implementationCommit": "ee0d492fb0962e2fe81685d44b65fe0e9ea14bdd",
+  "scope": "Primera versión de ranking global por victorias online verificadas, usando las cuentas existentes y SQLite, sin Elo ni temporadas.",
+  "implemented": [
+    "Registro e inicio/cierre de sesión desde la arena, reutilizando el taller.",
+    "Clasificatorias opcionales con dos cuentas distintas y una sala clasificatoria activa por cuenta.",
+    "Identidad de WebSocket validada por cookie; comprobación de Origin, cierre al salir de sesión y comprobación periódica de caducidad.",
+    "Todos los combos habilitados para ambos. Se ignoran victorias y nombres de cliente en clasificatorias.",
+    "Registro de inicio, resultado e historial; transacción atómica y deduplicación por matchId.",
+    "Worker de Node 24 para SQLite, cola de peticiones acotada y reintentos de guardado fuera del hilo de simulación.",
+    "Top 100 público, posición propia incluso fuera del Top 100 y últimas veinte clasificatorias de la cuenta.",
+    "Recibo de guardado confirmado por el servidor en el resultado. CPU, local y casuales no puntúan.",
+    "Recuperación autenticada de la misma pelea tras corte de socket o recarga; bloqueo de inputs durante la espera.",
+    "Diez segundos acumulados de recuperación por jugador y partida, medidos con reloj monotónico. Reconectar no permite detener indefinidamente al rival.",
+    "Derrota al abandonar o agotar recuperación; ambos desconectados y reinicio anulan, sin sumar resultados."
+  ],
+  "verification": {
+    "npmTest": {
+      "passed": 564,
+      "failed": 0,
+      "durationMs": 11606.006999,
+      "newRankingTests": 13
+    },
+    "build": {
+      "passed": true,
+      "warning": "Aviso previo de bundle mayor de 500 kB."
+    },
+    "browserFixtures": {
+      "passed": true,
+      "checks": 98
+    },
+    "realBrowsers": {
+      "profiles": [
+        "Default",
+        "Incognito"
+      ],
+      "signupAndSignIn": true,
+      "wrongPasswordThenRetry": true,
+      "completeRankedMatch": {
+        "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+        "sameFinalState": true,
+        "winner": "QA Ranking A",
+        "hits": [
+          12,
+          1
+        ],
+        "peakCombos": [
+          8,
+          1
+        ]
+      },
+      "socketCut": {
+        "sameMatchRecovered": true,
+        "frozenTick": 1033,
+        "after180Ms": 1033
+      },
+      "fullPageReloadRecoveredSameMatch": true,
+      "explicitExitPersistedForfeit": true,
+      "serverRestartKeptStatisticsAndVoidedActiveMatch": true,
+      "completedCasualDidNotChangeRankingOrHistory": true,
+      "tabClosureWaitedGraceThenPersistedForfeit": true,
+      "freshTabSameAccountReadPersistedHistory": true,
+      "guestCouldReadPublicBoardButNotPrivateHistory": true,
+      "signOutVerified401ForBothAccounts": true
+    },
+    "latencyDuringLockedSQLite": {
+      "healthMs": 2.2,
+      "otherRoomHz": 59.97,
+      "scope": "Medición local en integración con bloqueo real de SQLite; no mide latencia WAN."
+    },
+    "visual": {
+      "desktop": {
+        "width": 1280,
+        "height": 800
+      },
+      "portrait": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390
+      },
+      "touch": {
+        "requestedLandscape": {
+          "width": 844,
+          "height": 390
+        },
+        "actualFullscreenResult": {
+          "width": 400,
+          "height": 300
+        },
+        "rankingButtonReachable": true,
+        "buttonHeight": 44
+      },
+      "physicalMobileTested": false
+    },
+    "review": "Revisión local de identidad, elegibilidad, transacciones, duplicados, recuperación y recursos. Durante la revisión se reprodujo y corrigió la renovación ilimitada del margen de desconexión; la regresión cubre además un salto del reloj de pared."
+  },
+  "persistence": {
+    "storage": "Mismo SQLite que usa la aplicación. Tablas ranked_profiles, ranked_matches y ranked_stats.",
+    "newInfrastructureRequired": false,
+    "runtime": "Node 24, ya utilizado por el Dockerfile existente.",
+    "testData": "Solo datos locales en /tmp/arena-global-ranking-5191; no se usaron servicios ni cuentas de producción."
+  },
+  "artifacts": {
+    "browser": "browser-regressions.json",
+    "flow": "real-flow.json",
+    "tests": "test-summary.txt",
+    "screenshots": [
+      "desktop-ranking.png",
+      "mobile-ranking.png",
+      "default-ranked-result.png",
+      "incognito-ranked-result.png",
+      "touch-disconnect.png",
+      "touch-ranked-result.png"
+    ]
+  },
+  "limitations": [
+    "Los cambios están solo en commits locales; no se publicaron ni desplegaron en arena.kevinbravo.com.",
+    "Clasificación por victorias; no incluye Elo, temporadas, emparejamiento automático ni escalado entre procesos.",
+    "No incluye detección de partidas pactadas o cuentas alternativas de una misma persona; las cuentas existentes no verifican el correo.",
+    "Si el proceso se interrumpe antes de confirmar un resultado pendiente, la siguiente apertura anula la partida en curso. Nunca se anuncia guardado antes del commit.",
+    "Las partidas e identidades de sesión requieren cliente y servidor de la misma versión. Recuperar una pelea solo funciona mientras el servidor conserva esa sala.",
+    "Touch se probó en Chromium con media query coarse y tamaños de viewport; no en teléfono físico ni en todas las redes WAN."
+  ],
+  "cleanup": "Ambas sesiones QA cerradas y verificadas con 401; cero salas locales, pestañas propias cerradas y servidor temporal detenido.",
+  "unchanged": "Sin cambios de audio, escenarios, infraestructura ni dependencias."
+}

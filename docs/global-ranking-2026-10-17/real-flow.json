@@ -1,0 +1,1580 @@
+{
+  "environment": "Servidor local 5191, dos perfiles independientes de T3: Default e Incognito. Cookies distintas. Observación pasiva de mensajes de WebSocket nativo y pulsaciones de teclado; no se alteró el motor ni los resultados de los combates de navegador.",
+  "accounts": [
+    {
+      "name": "QA Ranking A",
+      "email": "qa-ranking-a-20261017@example.test",
+      "profile": "Default",
+      "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+      "qaOnly": true
+    },
+    {
+      "name": "QA Ranking B",
+      "email": "qa-ranking-b-20261017@example.test",
+      "profile": "Incognito",
+      "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+      "qaOnly": true
+    }
+  ],
+  "baseline": [
+    {
+      "board": {
+        "entries": []
+      },
+      "mine": {
+        "entry": {
+          "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+          "name": "QA Ranking A",
+          "position": null,
+          "wins": 0,
+          "losses": 0,
+          "draws": 0,
+          "played": 0,
+          "winRate": 0
+        },
+        "history": []
+      },
+      "profile": "Default"
+    },
+    {
+      "board": {
+        "entries": []
+      },
+      "mine": {
+        "entry": {
+          "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+          "name": "QA Ranking B",
+          "position": null,
+          "wins": 0,
+          "losses": 0,
+          "draws": 0,
+          "played": 0,
+          "winRate": 0
+        },
+        "history": []
+      },
+      "profile": "Incognito"
+    }
+  ],
+  "completedRanked": {
+    "default": {
+      "state": {
+        "id": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+        "stage": "caracas",
+        "tick": 1556,
+        "remaining": 4315,
+        "phase": "finished",
+        "winner": 0,
+        "players": [
+          {
+            "config": {
+              "id": "15db0186-8931-4c70-a906-7ee6ab717ad1",
+              "name": "QA Ranking A",
+              "fighter": "capriles",
+              "ready": true,
+              "wins": 3,
+              "connected": true
+            },
+            "x": -20.817249421907594,
+            "y": 616.3999999999999,
+            "vx": -6.10145342519397,
+            "vy": 7.799999999999997,
+            "facing": -1,
+            "hp": 93.2884,
+            "stocks": 2,
+            "energy": 100,
+            "grounded": false,
+            "supportPlatform": null,
+            "dropThrough": 0,
+            "jumps": 0,
+            "blocking": false,
+            "attack": "light",
+            "attackTick": 11,
+            "attackHit": true,
+            "countered": false,
+            "cooldown": 11,
+            "stun": 0,
+            "slowTicks": 0,
+            "rootTicks": 0,
+            "invincible": 0,
+            "dash": 0,
+            "lastActions": {
+              "jump": 6,
+              "light": 41,
+              "heavy": 21,
+              "special": 0,
+              "dash": 0,
+              "super": 0
+            },
+            "history": [
+              {
+                "action": "light",
+                "tick": 1498
+              },
+              {
+                "action": "light",
+                "tick": 1522
+              },
+              {
+                "action": "light",
+                "tick": 1546
+              }
+            ],
+            "combo": "",
+            "comboTick": 0,
+            "comboBonus": 0,
+            "hits": 12,
+            "peakCombo": 8,
+            "streak": 8,
+            "lastHitTick": 1551
+          },
+          {
+            "config": {
+              "id": "2560db47-7783-452f-9521-60d3f4df05d8",
+              "name": "QA Ranking B",
+              "fighter": "zavarce",
+              "ready": true,
+              "wins": 3,
+              "connected": true
+            },
+            "x": -124.50026796575482,
+            "y": 633.17,
+            "vx": -7.013279999999998,
+            "vy": 0.19499999999999984,
+            "facing": 1,
+            "hp": 0,
+            "stocks": 0,
+            "energy": 100,
+            "grounded": false,
+            "supportPlatform": null,
+            "dropThrough": 0,
+            "jumps": 0,
+            "blocking": false,
+            "attack": null,
+            "attackTick": 5,
+            "attackHit": false,
+            "countered": false,
+            "cooldown": 12,
+            "stun": 12,
+            "slowTicks": 0,
+            "rootTicks": 0,
+            "invincible": 7,
+            "dash": 0,
+            "lastActions": {
+              "jump": 0,
+              "light": 12,
+              "heavy": 0,
+              "special": 0,
+              "dash": 0,
+              "super": 0
+            },
+            "history": [
+              {
+                "action": "light",
+                "tick": 1451
+              },
+              {
+                "action": "light",
+                "tick": 1499
+              },
+              {
+                "action": "light",
+                "tick": 1547
+              }
+            ],
+            "combo": "",
+            "comboTick": 0,
+            "comboBonus": 0,
+            "hits": 1,
+            "peakCombo": 1,
+            "streak": 1,
+            "lastHitTick": 1252
+          }
+        ],
+        "projectiles": [],
+        "effects": [
+          {
+            "id": 13,
+            "x": -82.42058796575485,
+            "y": 559.8,
+            "kind": "hit",
+            "color": "#80b8ff",
+            "life": 21,
+            "duration": 26,
+            "owner": 0,
+            "impact": "light",
+            "strength": 0.85,
+            "direction": -1
+          },
+          {
+            "id": 14,
+            "x": 30,
+            "y": 573.17,
+            "kind": "ringout",
+            "color": "#a8a0f3",
+            "life": 40,
+            "duration": 40,
+            "owner": 1,
+            "strength": 1.8,
+            "direction": -1
+          }
+        ],
+        "nextId": 15,
+        "shake": 1.1556020551680002,
+        "hitstop": 0
+      },
+      "room": {
+        "code": "19EB85AF03B1C363359C4D9870CE94A9",
+        "name": "La sala de QA Ranking A",
+        "stage": "caracas",
+        "players": [
+          {
+            "id": "86ab18b3-d632-4a6d-a953-7a741c62ebd7",
+            "name": "QA Ranking A",
+            "fighter": "capriles",
+            "ready": false,
+            "wins": 1,
+            "connected": true
+          },
+          {
+            "id": "2560db47-7783-452f-9521-60d3f4df05d8",
+            "name": "QA Ranking B",
+            "fighter": "zavarce",
+            "ready": false,
+            "wins": 0,
+            "connected": true
+          }
+        ],
+        "status": "finished",
+        "host": "86ab18b3-d632-4a6d-a953-7a741c62ebd7",
+        "ranked": true
+      },
+      "receipt": {
+        "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+        "status": "saved",
+        "reason": "combat",
+        "outcome": "win"
+      },
+      "events": [
+        {
+          "type": "start",
+          "id": "1d3b541f-0c0d-46d0-930f-796ed6e836f2"
+        },
+        {
+          "type": "start",
+          "id": "1d3b541f-0c0d-46d0-930f-796ed6e836f2"
+        },
+        {
+          "type": "ranked-result",
+          "result": {
+            "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+            "status": "saved",
+            "reason": "combat",
+            "outcome": "win"
+          }
+        }
+      ],
+      "board": {
+        "entries": [
+          {
+            "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+            "name": "QA Ranking A",
+            "wins": 1,
+            "losses": 0,
+            "draws": 0,
+            "played": 1,
+            "winRate": 100,
+            "position": 1
+          },
+          {
+            "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+            "name": "QA Ranking B",
+            "wins": 0,
+            "losses": 1,
+            "draws": 0,
+            "played": 1,
+            "winRate": 0,
+            "position": 2
+          }
+        ]
+      },
+      "mine": {
+        "entry": {
+          "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+          "name": "QA Ranking A",
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "played": 1,
+          "winRate": 100,
+          "position": 1
+        },
+        "history": [
+          {
+            "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+            "startedAt": 1792245541086,
+            "finishedAt": 1792245568492,
+            "stage": "caracas",
+            "fighter": "capriles",
+            "opponentFighter": "zavarce",
+            "opponent": "QA Ranking B",
+            "outcome": "win",
+            "reason": "combat",
+            "hits": 12,
+            "peakCombo": 8
+          }
+        ]
+      },
+      "resultText": "LA VICTORIA ES TUYA\nQA Ranking A gana.\n\nCapriles Radonski se lleva la arena. ¿Vamos con la revancha?\n\n12\nGolpes conectados\n8\nMejor racha\nResultado guardado en el ranking.\nVer ranking e historial\n¡Revancha!\nVolver a la selección",
+      "resumeMarker": null
+    },
+    "incognito": {
+      "state": {
+        "id": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+        "stage": "caracas",
+        "tick": 1556,
+        "remaining": 4315,
+        "phase": "finished",
+        "winner": 0,
+        "players": [
+          {
+            "config": {
+              "id": "15db0186-8931-4c70-a906-7ee6ab717ad1",
+              "name": "QA Ranking A",
+              "fighter": "capriles",
+              "ready": true,
+              "wins": 3,
+              "connected": true
+            },
+            "x": -20.817249421907594,
+            "y": 616.3999999999999,
+            "vx": -6.10145342519397,
+            "vy": 7.799999999999997,
+            "facing": -1,
+            "hp": 93.2884,
+            "stocks": 2,
+            "energy": 100,
+            "grounded": false,
+            "supportPlatform": null,
+            "dropThrough": 0,
+            "jumps": 0,
+            "blocking": false,
+            "attack": "light",
+            "attackTick": 11,
+            "attackHit": true,
+            "countered": false,
+            "cooldown": 11,
+            "stun": 0,
+            "slowTicks": 0,
+            "rootTicks": 0,
+            "invincible": 0,
+            "dash": 0,
+            "lastActions": {
+              "jump": 6,
+              "light": 41,
+              "heavy": 21,
+              "special": 0,
+              "dash": 0,
+              "super": 0
+            },
+            "history": [
+              {
+                "action": "light",
+                "tick": 1498
+              },
+              {
+                "action": "light",
+                "tick": 1522
+              },
+              {
+                "action": "light",
+                "tick": 1546
+              }
+            ],
+            "combo": "",
+            "comboTick": 0,
+            "comboBonus": 0,
+            "hits": 12,
+            "peakCombo": 8,
+            "streak": 8,
+            "lastHitTick": 1551
+          },
+          {
+            "config": {
+              "id": "2560db47-7783-452f-9521-60d3f4df05d8",
+              "name": "QA Ranking B",
+              "fighter": "zavarce",
+              "ready": true,
+              "wins": 3,
+              "connected": true
+            },
+            "x": -124.50026796575482,
+            "y": 633.17,
+            "vx": -7.013279999999998,
+            "vy": 0.19499999999999984,
+            "facing": 1,
+            "hp": 0,
+            "stocks": 0,
+            "energy": 100,
+            "grounded": false,
+            "supportPlatform": null,
+            "dropThrough": 0,
+            "jumps": 0,
+            "blocking": false,
+            "attack": null,
+            "attackTick": 5,
+            "attackHit": false,
+            "countered": false,
+            "cooldown": 12,
+            "stun": 12,
+            "slowTicks": 0,
+            "rootTicks": 0,
+            "invincible": 7,
+            "dash": 0,
+            "lastActions": {
+              "jump": 0,
+              "light": 12,
+              "heavy": 0,
+              "special": 0,
+              "dash": 0,
+              "super": 0
+            },
+            "history": [
+              {
+                "action": "light",
+                "tick": 1451
+              },
+              {
+                "action": "light",
+                "tick": 1499
+              },
+              {
+                "action": "light",
+                "tick": 1547
+              }
+            ],
+            "combo": "",
+            "comboTick": 0,
+            "comboBonus": 0,
+            "hits": 1,
+            "peakCombo": 1,
+            "streak": 1,
+            "lastHitTick": 1252
+          }
+        ],
+        "projectiles": [],
+        "effects": [
+          {
+            "id": 13,
+            "x": -82.42058796575485,
+            "y": 559.8,
+            "kind": "hit",
+            "color": "#80b8ff",
+            "life": 21,
+            "duration": 26,
+            "owner": 0,
+            "impact": "light",
+            "strength": 0.85,
+            "direction": -1
+          },
+          {
+            "id": 14,
+            "x": 30,
+            "y": 573.17,
+            "kind": "ringout",
+            "color": "#a8a0f3",
+            "life": 40,
+            "duration": 40,
+            "owner": 1,
+            "strength": 1.8,
+            "direction": -1
+          }
+        ],
+        "nextId": 15,
+        "shake": 1.1556020551680002,
+        "hitstop": 0
+      },
+      "room": {
+        "code": "19EB85AF03B1C363359C4D9870CE94A9",
+        "name": "La sala de QA Ranking A",
+        "stage": "caracas",
+        "players": [
+          {
+            "id": "86ab18b3-d632-4a6d-a953-7a741c62ebd7",
+            "name": "QA Ranking A",
+            "fighter": "capriles",
+            "ready": false,
+            "wins": 1,
+            "connected": true
+          },
+          {
+            "id": "2560db47-7783-452f-9521-60d3f4df05d8",
+            "name": "QA Ranking B",
+            "fighter": "zavarce",
+            "ready": false,
+            "wins": 0,
+            "connected": true
+          }
+        ],
+        "status": "finished",
+        "host": "86ab18b3-d632-4a6d-a953-7a741c62ebd7",
+        "ranked": true
+      },
+      "receipt": {
+        "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+        "status": "saved",
+        "reason": "combat",
+        "outcome": "loss"
+      },
+      "events": [
+        {
+          "type": "start",
+          "id": "1d3b541f-0c0d-46d0-930f-796ed6e836f2"
+        },
+        {
+          "type": "ranked-result",
+          "result": {
+            "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+            "status": "saved",
+            "reason": "combat",
+            "outcome": "loss"
+          }
+        }
+      ],
+      "board": {
+        "entries": [
+          {
+            "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+            "name": "QA Ranking A",
+            "wins": 1,
+            "losses": 0,
+            "draws": 0,
+            "played": 1,
+            "winRate": 100,
+            "position": 1
+          },
+          {
+            "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+            "name": "QA Ranking B",
+            "wins": 0,
+            "losses": 1,
+            "draws": 0,
+            "played": 1,
+            "winRate": 0,
+            "position": 2
+          }
+        ]
+      },
+      "mine": {
+        "entry": {
+          "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+          "name": "QA Ranking B",
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "played": 1,
+          "winRate": 0,
+          "position": 2
+        },
+        "history": [
+          {
+            "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+            "startedAt": 1792245541086,
+            "finishedAt": 1792245568492,
+            "stage": "caracas",
+            "fighter": "zavarce",
+            "opponentFighter": "capriles",
+            "opponent": "QA Ranking A",
+            "outcome": "loss",
+            "reason": "combat",
+            "hits": 1,
+            "peakCombo": 1
+          }
+        ]
+      },
+      "resultText": "ESTA SE LA LLEVÓ TU RIVAL\nQA Ranking A gana.\n\nCapriles Radonski se lleva la arena. ¿Vamos con la revancha?\n\n1\nGolpes conectados\n1\nMejor racha\nResultado guardado en el ranking.\nVer ranking e historial\n¡Revancha!\nVolver a la selección",
+      "resumeMarker": null
+    },
+    "identicalFinal": true
+  },
+  "transportInterruption": {
+    "frozen": {
+      "match": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+      "before": 1033,
+      "after": 1033,
+      "notice": "Esperando reconexión de tu pana. La pelea está detenida; tiene 10 segundos para volver.",
+      "until": 1792245568321
+    },
+    "resumed": {
+      "before": {
+        "match": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+        "tick": 1033,
+        "hits": 1
+      },
+      "after": {
+        "match": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+        "tick": 1035,
+        "hits": 1
+      },
+      "starts": [
+        {
+          "type": "start",
+          "id": "1d3b541f-0c0d-46d0-930f-796ed6e836f2"
+        },
+        {
+          "type": "start",
+          "id": "1d3b541f-0c0d-46d0-930f-796ed6e836f2"
+        }
+      ],
+      "ranked": true,
+      "account": "QA Ranking A"
+    }
+  },
+  "fullPageReloadResume": {
+    "match": "d112edad-9f4b-4a24-840f-c97b03335fd1",
+    "phase": "intro",
+    "resumeMarker": "d112edad-9f4b-4a24-840f-c97b03335fd1",
+    "account": "QA Ranking A"
+  },
+  "explicitForfeit": {
+    "receipt": {
+      "matchId": "d112edad-9f4b-4a24-840f-c97b03335fd1",
+      "status": "saved",
+      "reason": "forfeit",
+      "outcome": "win"
+    },
+    "state": {
+      "id": "d112edad-9f4b-4a24-840f-c97b03335fd1",
+      "stage": "caracas",
+      "tick": 37,
+      "remaining": 5400,
+      "phase": "finished",
+      "winner": 1,
+      "players": [
+        {
+          "config": {
+            "id": "86ab18b3-d632-4a6d-a953-7a741c62ebd7",
+            "name": "QA Ranking A",
+            "fighter": "capriles",
+            "ready": true,
+            "wins": 3,
+            "connected": true
+          },
+          "x": 330,
+          "y": 554,
+          "vx": 0,
+          "vy": 0,
+          "facing": 1,
+          "hp": 100,
+          "stocks": 2,
+          "energy": 35,
+          "grounded": true,
+          "supportPlatform": -1,
+          "dropThrough": 0,
+          "jumps": 0,
+          "blocking": false,
+          "attack": null,
+          "attackTick": 0,
+          "attackHit": false,
+          "countered": false,
+          "cooldown": 0,
+          "stun": 0,
+          "slowTicks": 0,
+          "rootTicks": 0,
+          "invincible": 90,
+          "dash": 0,
+          "lastActions": {
+            "jump": 0,
+            "light": 0,
+            "heavy": 0,
+            "special": 0,
+            "dash": 0,
+            "super": 0
+          },
+          "history": [],
+          "combo": "",
+          "comboTick": 0,
+          "comboBonus": 0,
+          "hits": 0,
+          "peakCombo": 0,
+          "streak": 0,
+          "lastHitTick": 0
+        },
+        {
+          "config": {
+            "id": "2560db47-7783-452f-9521-60d3f4df05d8",
+            "name": "QA Ranking B",
+            "fighter": "zavarce",
+            "ready": true,
+            "wins": 3,
+            "connected": true
+          },
+          "x": 750,
+          "y": 554,
+          "vx": 0,
+          "vy": 0,
+          "facing": -1,
+          "hp": 100,
+          "stocks": 2,
+          "energy": 35,
+          "grounded": true,
+          "supportPlatform": -1,
+          "dropThrough": 0,
+          "jumps": 0,
+          "blocking": false,
+          "attack": null,
+          "attackTick": 0,
+          "attackHit": false,
+          "countered": false,
+          "cooldown": 0,
+          "stun": 0,
+          "slowTicks": 0,
+          "rootTicks": 0,
+          "invincible": 90,
+          "dash": 0,
+          "lastActions": {
+            "jump": 0,
+            "light": 0,
+            "heavy": 0,
+            "special": 0,
+            "dash": 0,
+            "super": 0
+          },
+          "history": [],
+          "combo": "",
+          "comboTick": 0,
+          "comboBonus": 0,
+          "hits": 0,
+          "peakCombo": 0,
+          "streak": 0,
+          "lastHitTick": 0
+        }
+      ],
+      "projectiles": [],
+      "effects": [],
+      "nextId": 0,
+      "shake": 0,
+      "hitstop": 0
+    },
+    "room": {
+      "code": "19EB85AF03B1C363359C4D9870CE94A9",
+      "name": "La sala de QA Ranking A",
+      "stage": "caracas",
+      "players": [
+        {
+          "id": "309835b5-02f0-4520-b00c-bf7180aa8732",
+          "name": "QA Ranking A",
+          "fighter": "capriles",
+          "ready": false,
+          "wins": 1,
+          "connected": false
+        },
+        {
+          "id": "2560db47-7783-452f-9521-60d3f4df05d8",
+          "name": "QA Ranking B",
+          "fighter": "zavarce",
+          "ready": false,
+          "wins": 1,
+          "connected": true
+        }
+      ],
+      "status": "finished",
+      "host": "309835b5-02f0-4520-b00c-bf7180aa8732",
+      "ranked": true
+    },
+    "board": {
+      "entries": [
+        {
+          "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+          "name": "QA Ranking B",
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "played": 2,
+          "winRate": 50,
+          "position": 1
+        },
+        {
+          "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+          "name": "QA Ranking A",
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "played": 2,
+          "winRate": 50,
+          "position": 2
+        }
+      ]
+    },
+    "mine": {
+      "entry": {
+        "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+        "name": "QA Ranking B",
+        "wins": 1,
+        "losses": 1,
+        "draws": 0,
+        "played": 2,
+        "winRate": 50,
+        "position": 1
+      },
+      "history": [
+        {
+          "matchId": "d112edad-9f4b-4a24-840f-c97b03335fd1",
+          "startedAt": 1792245637145,
+          "finishedAt": 1792245637913,
+          "stage": "caracas",
+          "fighter": "zavarce",
+          "opponentFighter": "capriles",
+          "opponent": "QA Ranking A",
+          "outcome": "win",
+          "reason": "forfeit",
+          "hits": 0,
+          "peakCombo": 0
+        },
+        {
+          "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+          "startedAt": 1792245541086,
+          "finishedAt": 1792245568492,
+          "stage": "caracas",
+          "fighter": "zavarce",
+          "opponentFighter": "capriles",
+          "opponent": "QA Ranking A",
+          "outcome": "loss",
+          "reason": "combat",
+          "hits": 1,
+          "peakCombo": 1
+        }
+      ]
+    },
+    "resultText": "LA VICTORIA ES TUYA\nQA Ranking B gana.\n\nVicente Zavarce se lleva la arena. ¿Vamos con la revancha?\n\n0\nGolpes conectados\n0\nMejor racha\nResultado guardado en el ranking · Por abandono.\nVer ranking e historial\nVolver a la selección"
+  },
+  "serverRestart": {
+    "active": {
+      "match": "78e7b5ca-bcd6-4a7b-a276-a29781e29ac9",
+      "phase": "intro",
+      "room": {
+        "code": "2EB9A21AF51F3A0BFDABAF91955959DE",
+        "name": "La sala de QA Ranking A",
+        "stage": "caracas",
+        "players": [
+          {
+            "id": "309835b5-02f0-4520-b00c-bf7180aa8732",
+            "name": "QA Ranking A",
+            "fighter": "capriles",
+            "ready": true,
+            "wins": 0,
+            "connected": true
+          },
+          {
+            "id": "2560db47-7783-452f-9521-60d3f4df05d8",
+            "name": "QA Ranking B",
+            "fighter": "zavarce",
+            "ready": true,
+            "wins": 0,
+            "connected": true
+          }
+        ],
+        "status": "playing",
+        "host": "309835b5-02f0-4520-b00c-bf7180aa8732",
+        "ranked": true
+      },
+      "counts": [
+        {
+          "type": "ranked-result",
+          "result": {
+            "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+            "status": "saved",
+            "reason": "combat",
+            "outcome": "loss"
+          }
+        },
+        {
+          "type": "ranked-result",
+          "result": {
+            "matchId": "d112edad-9f4b-4a24-840f-c97b03335fd1",
+            "status": "saved",
+            "reason": "forfeit",
+            "outcome": "win"
+          }
+        }
+      ]
+    },
+    "afterDefault": {
+      "board": {
+        "entries": [
+          {
+            "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+            "name": "QA Ranking B",
+            "wins": 1,
+            "losses": 1,
+            "draws": 0,
+            "played": 2,
+            "winRate": 50,
+            "position": 1
+          },
+          {
+            "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+            "name": "QA Ranking A",
+            "wins": 1,
+            "losses": 1,
+            "draws": 0,
+            "played": 2,
+            "winRate": 50,
+            "position": 2
+          }
+        ]
+      },
+      "mine": {
+        "entry": {
+          "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+          "name": "QA Ranking A",
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "played": 2,
+          "winRate": 50,
+          "position": 2
+        },
+        "history": [
+          {
+            "matchId": "78e7b5ca-bcd6-4a7b-a276-a29781e29ac9",
+            "startedAt": 1792245678080,
+            "finishedAt": 1792245678278,
+            "stage": "caracas",
+            "fighter": "capriles",
+            "opponentFighter": "zavarce",
+            "opponent": "QA Ranking B",
+            "outcome": "void",
+            "reason": "server_restart",
+            "hits": 0,
+            "peakCombo": 0
+          },
+          {
+            "matchId": "d112edad-9f4b-4a24-840f-c97b03335fd1",
+            "startedAt": 1792245637145,
+            "finishedAt": 1792245637913,
+            "stage": "caracas",
+            "fighter": "capriles",
+            "opponentFighter": "zavarce",
+            "opponent": "QA Ranking B",
+            "outcome": "loss",
+            "reason": "forfeit",
+            "hits": 0,
+            "peakCombo": 0
+          },
+          {
+            "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+            "startedAt": 1792245541086,
+            "finishedAt": 1792245568492,
+            "stage": "caracas",
+            "fighter": "capriles",
+            "opponentFighter": "zavarce",
+            "opponent": "QA Ranking B",
+            "outcome": "win",
+            "reason": "combat",
+            "hits": 12,
+            "peakCombo": 8
+          }
+        ]
+      },
+      "account": "QA Ranking A",
+      "resumeMarker": null
+    },
+    "afterIncognito": {
+      "board": {
+        "entries": [
+          {
+            "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+            "name": "QA Ranking B",
+            "wins": 1,
+            "losses": 1,
+            "draws": 0,
+            "played": 2,
+            "winRate": 50,
+            "position": 1
+          },
+          {
+            "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+            "name": "QA Ranking A",
+            "wins": 1,
+            "losses": 1,
+            "draws": 0,
+            "played": 2,
+            "winRate": 50,
+            "position": 2
+          }
+        ]
+      },
+      "mine": {
+        "entry": {
+          "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+          "name": "QA Ranking B",
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "played": 2,
+          "winRate": 50,
+          "position": 1
+        },
+        "history": [
+          {
+            "matchId": "78e7b5ca-bcd6-4a7b-a276-a29781e29ac9",
+            "startedAt": 1792245678080,
+            "finishedAt": 1792245678278,
+            "stage": "caracas",
+            "fighter": "zavarce",
+            "opponentFighter": "capriles",
+            "opponent": "QA Ranking A",
+            "outcome": "void",
+            "reason": "server_restart",
+            "hits": 0,
+            "peakCombo": 0
+          },
+          {
+            "matchId": "d112edad-9f4b-4a24-840f-c97b03335fd1",
+            "startedAt": 1792245637145,
+            "finishedAt": 1792245637913,
+            "stage": "caracas",
+            "fighter": "zavarce",
+            "opponentFighter": "capriles",
+            "opponent": "QA Ranking A",
+            "outcome": "win",
+            "reason": "forfeit",
+            "hits": 0,
+            "peakCombo": 0
+          },
+          {
+            "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+            "startedAt": 1792245541086,
+            "finishedAt": 1792245568492,
+            "stage": "caracas",
+            "fighter": "zavarce",
+            "opponentFighter": "capriles",
+            "opponent": "QA Ranking A",
+            "outcome": "loss",
+            "reason": "combat",
+            "hits": 1,
+            "peakCombo": 1
+          }
+        ]
+      },
+      "account": "QA Ranking B",
+      "resumeMarker": null
+    }
+  },
+  "completedCasualExcluded": {
+    "default": {
+      "match": "8434ba14-6eaa-45ca-bb1c-686284cec996",
+      "phase": "finished",
+      "winner": 0,
+      "ranked": false,
+      "receipt": null,
+      "board": {
+        "entries": [
+          {
+            "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+            "name": "QA Ranking B",
+            "wins": 1,
+            "losses": 1,
+            "draws": 0,
+            "played": 2,
+            "winRate": 50,
+            "position": 1
+          },
+          {
+            "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+            "name": "QA Ranking A",
+            "wins": 1,
+            "losses": 1,
+            "draws": 0,
+            "played": 2,
+            "winRate": 50,
+            "position": 2
+          }
+        ]
+      },
+      "mine": {
+        "entry": {
+          "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+          "name": "QA Ranking A",
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "played": 2,
+          "winRate": 50,
+          "position": 2
+        },
+        "history": [
+          {
+            "matchId": "78e7b5ca-bcd6-4a7b-a276-a29781e29ac9",
+            "startedAt": 1792245678080,
+            "finishedAt": 1792245678278,
+            "stage": "caracas",
+            "fighter": "capriles",
+            "opponentFighter": "zavarce",
+            "opponent": "QA Ranking B",
+            "outcome": "void",
+            "reason": "server_restart",
+            "hits": 0,
+            "peakCombo": 0
+          },
+          {
+            "matchId": "d112edad-9f4b-4a24-840f-c97b03335fd1",
+            "startedAt": 1792245637145,
+            "finishedAt": 1792245637913,
+            "stage": "caracas",
+            "fighter": "capriles",
+            "opponentFighter": "zavarce",
+            "opponent": "QA Ranking B",
+            "outcome": "loss",
+            "reason": "forfeit",
+            "hits": 0,
+            "peakCombo": 0
+          },
+          {
+            "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+            "startedAt": 1792245541086,
+            "finishedAt": 1792245568492,
+            "stage": "caracas",
+            "fighter": "capriles",
+            "opponentFighter": "zavarce",
+            "opponent": "QA Ranking B",
+            "outcome": "win",
+            "reason": "combat",
+            "hits": 12,
+            "peakCombo": 8
+          }
+        ]
+      }
+    },
+    "incognito": {
+      "match": "8434ba14-6eaa-45ca-bb1c-686284cec996",
+      "phase": "finished",
+      "winner": 0,
+      "ranked": false,
+      "receipt": null,
+      "board": {
+        "entries": [
+          {
+            "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+            "name": "QA Ranking B",
+            "wins": 1,
+            "losses": 1,
+            "draws": 0,
+            "played": 2,
+            "winRate": 50,
+            "position": 1
+          },
+          {
+            "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+            "name": "QA Ranking A",
+            "wins": 1,
+            "losses": 1,
+            "draws": 0,
+            "played": 2,
+            "winRate": 50,
+            "position": 2
+          }
+        ]
+      },
+      "mine": {
+        "entry": {
+          "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+          "name": "QA Ranking B",
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "played": 2,
+          "winRate": 50,
+          "position": 1
+        },
+        "history": [
+          {
+            "matchId": "78e7b5ca-bcd6-4a7b-a276-a29781e29ac9",
+            "startedAt": 1792245678080,
+            "finishedAt": 1792245678278,
+            "stage": "caracas",
+            "fighter": "zavarce",
+            "opponentFighter": "capriles",
+            "opponent": "QA Ranking A",
+            "outcome": "void",
+            "reason": "server_restart",
+            "hits": 0,
+            "peakCombo": 0
+          },
+          {
+            "matchId": "d112edad-9f4b-4a24-840f-c97b03335fd1",
+            "startedAt": 1792245637145,
+            "finishedAt": 1792245637913,
+            "stage": "caracas",
+            "fighter": "zavarce",
+            "opponentFighter": "capriles",
+            "opponent": "QA Ranking A",
+            "outcome": "win",
+            "reason": "forfeit",
+            "hits": 0,
+            "peakCombo": 0
+          },
+          {
+            "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+            "startedAt": 1792245541086,
+            "finishedAt": 1792245568492,
+            "stage": "caracas",
+            "fighter": "zavarce",
+            "opponentFighter": "capriles",
+            "opponent": "QA Ranking A",
+            "outcome": "loss",
+            "reason": "combat",
+            "hits": 1,
+            "peakCombo": 1
+          }
+        ]
+      }
+    }
+  },
+  "realTabClosedAndTimeout": {
+    "started": {
+      "match": "6f2ab267-1c6d-4cca-a5e2-d4cd30e04eae",
+      "phase": "intro",
+      "ranked": true,
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "touch": true
+    },
+    "final": {
+      "state": {
+        "id": "6f2ab267-1c6d-4cca-a5e2-d4cd30e04eae",
+        "stage": "caracas",
+        "tick": 17,
+        "remaining": 5400,
+        "phase": "finished",
+        "winner": 1,
+        "players": [
+          {
+            "config": {
+              "id": "89f74d31-d393-4d7d-8901-a76c97f17c07",
+              "name": "QA Ranking A",
+              "fighter": "zavarce",
+              "ready": true,
+              "wins": 3,
+              "connected": true
+            },
+            "x": 330,
+            "y": 554,
+            "vx": 0,
+            "vy": 0,
+            "facing": 1,
+            "hp": 100,
+            "stocks": 2,
+            "energy": 35,
+            "grounded": true,
+            "supportPlatform": -1,
+            "dropThrough": 0,
+            "jumps": 0,
+            "blocking": false,
+            "attack": null,
+            "attackTick": 0,
+            "attackHit": false,
+            "countered": false,
+            "cooldown": 0,
+            "stun": 0,
+            "slowTicks": 0,
+            "rootTicks": 0,
+            "invincible": 90,
+            "dash": 0,
+            "lastActions": {
+              "jump": 0,
+              "light": 0,
+              "heavy": 0,
+              "special": 0,
+              "dash": 0,
+              "super": 0
+            },
+            "history": [],
+            "combo": "",
+            "comboTick": 0,
+            "comboBonus": 0,
+            "hits": 0,
+            "peakCombo": 0,
+            "streak": 0,
+            "lastHitTick": 0
+          },
+          {
+            "config": {
+              "id": "b8977858-5a96-49de-8520-68e0752b2e55",
+              "name": "QA Ranking B",
+              "fighter": "zavarce",
+              "ready": true,
+              "wins": 3,
+              "connected": true
+            },
+            "x": 750,
+            "y": 554,
+            "vx": 0,
+            "vy": 0,
+            "facing": -1,
+            "hp": 100,
+            "stocks": 2,
+            "energy": 35,
+            "grounded": true,
+            "supportPlatform": -1,
+            "dropThrough": 0,
+            "jumps": 0,
+            "blocking": false,
+            "attack": null,
+            "attackTick": 0,
+            "attackHit": false,
+            "countered": false,
+            "cooldown": 0,
+            "stun": 0,
+            "slowTicks": 0,
+            "rootTicks": 0,
+            "invincible": 90,
+            "dash": 0,
+            "lastActions": {
+              "jump": 0,
+              "light": 0,
+              "heavy": 0,
+              "special": 0,
+              "dash": 0,
+              "super": 0
+            },
+            "history": [],
+            "combo": "",
+            "comboTick": 0,
+            "comboBonus": 0,
+            "hits": 0,
+            "peakCombo": 0,
+            "streak": 0,
+            "lastHitTick": 0
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "nextId": 0,
+        "shake": 0,
+        "hitstop": 0
+      },
+      "receipt": {
+        "matchId": "6f2ab267-1c6d-4cca-a5e2-d4cd30e04eae",
+        "status": "saved",
+        "reason": "forfeit",
+        "outcome": "win"
+      },
+      "room": {
+        "code": "B89CE51AF7C1A2C6ABC2E690D1C815CF",
+        "name": "La sala de QA Ranking A",
+        "stage": "caracas",
+        "players": [
+          {
+            "id": "89f74d31-d393-4d7d-8901-a76c97f17c07",
+            "name": "QA Ranking A",
+            "fighter": "zavarce",
+            "ready": false,
+            "wins": 0,
+            "connected": false
+          },
+          {
+            "id": "b8977858-5a96-49de-8520-68e0752b2e55",
+            "name": "QA Ranking B",
+            "fighter": "zavarce",
+            "ready": false,
+            "wins": 1,
+            "connected": true
+          }
+        ],
+        "status": "finished",
+        "host": "89f74d31-d393-4d7d-8901-a76c97f17c07",
+        "ranked": true
+      },
+      "board": {
+        "entries": [
+          {
+            "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+            "name": "QA Ranking B",
+            "wins": 2,
+            "losses": 1,
+            "draws": 0,
+            "played": 3,
+            "winRate": 66.66666666666667,
+            "position": 1
+          },
+          {
+            "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+            "name": "QA Ranking A",
+            "wins": 1,
+            "losses": 2,
+            "draws": 0,
+            "played": 3,
+            "winRate": 33.333333333333336,
+            "position": 2
+          }
+        ]
+      },
+      "mine": {
+        "entry": {
+          "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+          "name": "QA Ranking B",
+          "wins": 2,
+          "losses": 1,
+          "draws": 0,
+          "played": 3,
+          "winRate": 66.66666666666667,
+          "position": 1
+        },
+        "history": [
+          {
+            "matchId": "6f2ab267-1c6d-4cca-a5e2-d4cd30e04eae",
+            "startedAt": 1792246082527,
+            "finishedAt": 1792246092816,
+            "stage": "caracas",
+            "fighter": "zavarce",
+            "opponentFighter": "zavarce",
+            "opponent": "QA Ranking A",
+            "outcome": "win",
+            "reason": "forfeit",
+            "hits": 0,
+            "peakCombo": 0
+          },
+          {
+            "matchId": "78e7b5ca-bcd6-4a7b-a276-a29781e29ac9",
+            "startedAt": 1792245678080,
+            "finishedAt": 1792245678278,
+            "stage": "caracas",
+            "fighter": "zavarce",
+            "opponentFighter": "capriles",
+            "opponent": "QA Ranking A",
+            "outcome": "void",
+            "reason": "server_restart",
+            "hits": 0,
+            "peakCombo": 0
+          },
+          {
+            "matchId": "d112edad-9f4b-4a24-840f-c97b03335fd1",
+            "startedAt": 1792245637145,
+            "finishedAt": 1792245637913,
+            "stage": "caracas",
+            "fighter": "zavarce",
+            "opponentFighter": "capriles",
+            "opponent": "QA Ranking A",
+            "outcome": "win",
+            "reason": "forfeit",
+            "hits": 0,
+            "peakCombo": 0
+          },
+          {
+            "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+            "startedAt": 1792245541086,
+            "finishedAt": 1792245568492,
+            "stage": "caracas",
+            "fighter": "zavarce",
+            "opponentFighter": "capriles",
+            "opponent": "QA Ranking A",
+            "outcome": "loss",
+            "reason": "combat",
+            "hits": 1,
+            "peakCombo": 1
+          }
+        ]
+      },
+      "touch": true,
+      "text": "LA VICTORIA ES TUYA\nQA Ranking B gana.\n\nVicente Zavarce se lleva la arena. ¿Vamos con la revancha?\n\n0\nGolpes conectados\n0\nMejor racha\nResultado guardado en el ranking · Por abandono.\nVer ranking e historial\nVolver a la selección"
+    }
+  },
+  "persistedForSameAccountInNewTab": {
+    "board": {
+      "entries": [
+        {
+          "userId": "17d2b60b-4a44-4263-bbeb-461fac0f3c74",
+          "name": "QA Ranking B",
+          "wins": 2,
+          "losses": 1,
+          "draws": 0,
+          "played": 3,
+          "winRate": 66.66666666666667,
+          "position": 1
+        },
+        {
+          "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+          "name": "QA Ranking A",
+          "wins": 1,
+          "losses": 2,
+          "draws": 0,
+          "played": 3,
+          "winRate": 33.333333333333336,
+          "position": 2
+        }
+      ]
+    },
+    "mine": {
+      "entry": {
+        "userId": "8ce60a13-247a-4e3e-9b6f-650d2f396120",
+        "name": "QA Ranking A",
+        "wins": 1,
+        "losses": 2,
+        "draws": 0,
+        "played": 3,
+        "winRate": 33.333333333333336,
+        "position": 2
+      },
+      "history": [
+        {
+          "matchId": "6f2ab267-1c6d-4cca-a5e2-d4cd30e04eae",
+          "startedAt": 1792246082527,
+          "finishedAt": 1792246092816,
+          "stage": "caracas",
+          "fighter": "zavarce",
+          "opponentFighter": "zavarce",
+          "opponent": "QA Ranking B",
+          "outcome": "loss",
+          "reason": "forfeit",
+          "hits": 0,
+          "peakCombo": 0
+        },
+        {
+          "matchId": "78e7b5ca-bcd6-4a7b-a276-a29781e29ac9",
+          "startedAt": 1792245678080,
+          "finishedAt": 1792245678278,
+          "stage": "caracas",
+          "fighter": "capriles",
+          "opponentFighter": "zavarce",
+          "opponent": "QA Ranking B",
+          "outcome": "void",
+          "reason": "server_restart",
+          "hits": 0,
+          "peakCombo": 0
+        },
+        {
+          "matchId": "d112edad-9f4b-4a24-840f-c97b03335fd1",
+          "startedAt": 1792245637145,
+          "finishedAt": 1792245637913,
+          "stage": "caracas",
+          "fighter": "capriles",
+          "opponentFighter": "zavarce",
+          "opponent": "QA Ranking B",
+          "outcome": "loss",
+          "reason": "forfeit",
+          "hits": 0,
+          "peakCombo": 0
+        },
+        {
+          "matchId": "1d3b541f-0c0d-46d0-930f-796ed6e836f2",
+          "startedAt": 1792245541086,
+          "finishedAt": 1792245568492,
+          "stage": "caracas",
+          "fighter": "capriles",
+          "opponentFighter": "zavarce",
+          "opponent": "QA Ranking B",
+          "outcome": "win",
+          "reason": "combat",
+          "hits": 12,
+          "peakCombo": 8
+        }
+      ]
+    },
+    "account": "QA Ranking A"
+  },
+  "timingNote": "Primera clasificatoria y casual se jugaron antes del endurecimiento final del presupuesto acumulado. Después se añadió la regresión con sockets reales y se comprobó la caducidad de una pestaña real con el código final."
+}
