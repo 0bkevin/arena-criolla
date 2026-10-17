@@ -288,3 +288,106 @@ test("top100 excludes lower positions while a player's own rank and twenty lates
     await store.close();
   }
 });
+
+test("mixed verified results conserve each account's points across conflicting retries and restart", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "arena-ranking-adversarial-"));
+  const path = join(dir, "arena.sqlite");
+  let store = new RankingStore(path);
+  const accounts = Array.from({ length: 7 }, (_, i) => ({
+    ...a,
+    id: `qa-ledger-${i}`,
+    name: `QA ledger ${i}`,
+  }));
+  const expected = accounts.map(() => ({
+    wins: 0,
+    losses: 0,
+    draws: 0,
+    played: 0,
+    points: 0,
+  }));
+  let seed = 1729;
+  const random = (n: number) =>
+    (seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) % n;
+  try {
+    for (let index = 0; index < 160; index++) {
+      const left = random(accounts.length),
+        right = (left + 1 + random(accounts.length - 1)) % accounts.length;
+      const winner = ([0, 1, "draw", null] as const)[random(4)];
+      const matchId = `qa-ledger-match-${index}`;
+      await store.request("begin", {
+        ...start(matchId),
+        players: [accounts[left], accounts[right]],
+      });
+      const pending = await store.request("receipt", {
+        userId: accounts[left].id,
+        matchId,
+      });
+      assert.equal(pending?.status, "pending");
+      assert.equal(pending?.pointsEarned, undefined);
+      const result = {
+        matchId,
+        winner,
+        reason:
+          winner === null
+            ? ("both_disconnected" as const)
+            : ("combat" as const),
+      };
+      const receipts = await store.request("finish", result);
+      assert.deepEqual(
+        await store.request("finish", {
+          ...result,
+          winner: winner === 0 ? 1 : 0,
+        }),
+        receipts,
+      );
+      [left, right].forEach((account, slot) => {
+        const points =
+          winner === null ? 0 : winner === "draw" ? 1 : winner === slot ? 3 : 0;
+        assert.equal(receipts[slot].receipt.pointsEarned, points);
+        expected[account].points += points;
+        if (winner !== null) {
+          expected[account].played++;
+          if (winner === "draw") expected[account].draws++;
+          else if (winner === slot) expected[account].wins++;
+          else expected[account].losses++;
+        }
+      });
+      if (index === 79) {
+        await store.close();
+        store = new RankingStore(path);
+      }
+    }
+    const board = (await store.request("board", null)).entries;
+    for (const [index, account] of accounts.entries()) {
+      const profile = await store.request("profile", account);
+      for (const key of [
+        "wins",
+        "losses",
+        "draws",
+        "played",
+        "points",
+      ] as const)
+        assert.equal(
+          profile.entry[key],
+          expected[index][key],
+          `${account.name}: ${key}`,
+        );
+      assert.equal(
+        board.find((row) => row.userId === account.id)?.points,
+        expected[index].points,
+      );
+      assert.ok(
+        profile.history.every(
+          (match) =>
+            match.pointsEarned ===
+            (match.outcome === "win" ? 3 : match.outcome === "draw" ? 1 : 0),
+        ),
+      );
+    }
+    assert.ok(expected.some((account) => account.wins > 0));
+    assert.ok(expected.some((account) => account.draws > 0));
+  } finally {
+    await store.close();
+    await rm(dir, { recursive: true, force: true });
+  }
+});
