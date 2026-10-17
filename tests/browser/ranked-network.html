@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="es">
+  <meta charset="utf-8" />
+  <title>Regresión de recuperación clasificatoria</title>
+  <div id="root"></div>
+  <pre id="results">Ejecutando…</pre>
+  <script type="module">
+    import React from "react";
+    import { createRoot } from "react-dom/client";
+    import { flushSync } from "react-dom";
+    import { useArenaNetwork } from "/src/network.ts";
+    import { createMatch } from "/shared/engine.ts";
+    const keys = ["arena-ranked-resume-v1", "arena-ranked-abandon-v1"];
+    const previous = keys.map((key) => [key, sessionStorage.getItem(key)]);
+    keys.forEach((key) => sessionStorage.removeItem(key));
+    const native = window.WebSocket,
+      sockets = [],
+      checks = [];
+    let net,
+      results = 0;
+    const check = (name, actual, expected = true) =>
+      checks.push({ name, passed: actual === expected, actual, expected });
+    class FixtureSocket {
+      static OPEN = 1;
+      readyState = 1;
+      bufferedAmount = 0;
+      sent = [];
+      constructor() {
+        sockets.push(this);
+      }
+      send(value) {
+        const message = JSON.parse(value);
+        this.sent.push(message);
+        if (message.type === "ping")
+          queueMicrotask(() =>
+            this.onmessage?.({
+              data: JSON.stringify({ type: "pong", sentAt: message.sentAt }),
+            }),
+          );
+      }
+      close() {
+        this.readyState = 3;
+        this.onclose?.();
+      }
+    }
+    window.WebSocket = FixtureSocket;
+    function Harness({ revision = 0 }) {
+      net = useArenaNetwork(() => results++, revision);
+      return null;
+    }
+    const root = createRoot(document.getElementById("root"));
+    const receive = (socket, message) =>
+      flushSync(() => socket.onmessage({ data: JSON.stringify(message) }));
+    const open = (socket) => {
+      flushSync(() => socket.onopen());
+      receive(socket, {
+        type: "welcome",
+        id: `qa-${sockets.length}`,
+        account: { id: "qa-account", name: "QA account" },
+      });
+    };
+    const nextSocket = async (before) => {
+      const end = performance.now() + 12000;
+      while (sockets.length === before && performance.now() < end)
+        await new Promise((resolve) => setTimeout(resolve, 20));
+      if (sockets.length === before)
+        throw new Error("Reconnect did not create a new transport");
+      return sockets.at(-1);
+    };
+    const match = () =>
+      createMatch(
+        "caracas",
+        [
+          { name: "QA A", fighter: "zavarce", wins: 3 },
+          { name: "QA B", fighter: "capriles", wins: 3 },
+        ],
+        crypto.randomUUID(),
+      );
+    try {
+      flushSync(() => root.render(React.createElement(Harness)));
+      let socket = sockets.at(-1);
+      open(socket);
+      check(
+        "Welcome identifica la cuenta del transporte",
+        net.account?.id,
+        "qa-account",
+      );
+      const first = match();
+      receive(socket, { type: "start", state: first, index: 0, ranked: true });
+      check(
+        "La clasificatoria conserva su identificador para recuperar",
+        sessionStorage.getItem(keys[0]),
+        first.id,
+      );
+      check(
+        "El transporte distingue la partida clasificatoria",
+        net.match.ranked,
+      );
+      let before = sockets.length;
+      flushSync(() => socket.onerror());
+      check(
+        "La pérdida activa la pantalla de recuperación",
+        net.recoveringRanked,
+      );
+      check(
+        "La recuperación no pierde la identidad de partida",
+        sessionStorage.getItem(keys[0]),
+        first.id,
+      );
+      socket = await nextSocket(before);
+      open(socket);
+      check(
+        "La conexión nueva solicita la misma partida",
+        socket.sent.find((message) => message.type === "resume")?.matchId,
+        first.id,
+      );
+      receive(socket, { type: "start", state: first, index: 0, ranked: true });
+      check(
+        "La recuperación termina al recibir la partida",
+        net.recoveringRanked,
+        false,
+      );
+      const final = structuredClone(first);
+      final.phase = "finished";
+      final.winner = 0;
+      receive(socket, { type: "state", state: final });
+      receive(socket, { type: "state", state: final });
+      check("El resultado local se entrega una sola vez", results, 1);
+      check(
+        "Un estado final limpia la recuperación pendiente",
+        sessionStorage.getItem(keys[0]),
+        null,
+      );
+      check(
+        "No se anuncia guardado antes del recibo del servidor",
+        net.rankingResult.status,
+        "pending",
+      );
+      receive(socket, {
+        type: "ranked-result",
+        result: {
+          matchId: first.id,
+          status: "saved",
+          outcome: "win",
+          reason: "combat",
+        },
+      });
+      check(
+        "El recibo confirma el guardado",
+        net.rankingResult.status,
+        "saved",
+      );
+      check(
+        "El recibo solicita actualizar la clasificación",
+        net.rankingRevision,
+        1,
+      );
+
+      const second = match();
+      receive(socket, { type: "start", state: second, index: 0, ranked: true });
+      before = sockets.length;
+      flushSync(() => socket.onerror());
+      flushSync(() => net.abandonResume());
+      check(
+        "Abandonar permite volver a los otros modos",
+        net.recoveringRanked,
+        false,
+      );
+      check(
+        "El abandono se conserva hasta confirmar",
+        sessionStorage.getItem(keys[1]),
+        second.id,
+      );
+      socket = await nextSocket(before);
+      open(socket);
+      check(
+        "Se pide abandonar al volver la conexión",
+        socket.sent.find((message) => message.type === "abandon")?.matchId,
+        second.id,
+      );
+      check(
+        "Abandonar no solicita retomar el combate",
+        socket.sent.some((message) => message.type === "resume"),
+        false,
+      );
+      receive(socket, { type: "abandon-accepted", matchId: second.id });
+      check(
+        "La confirmación elimina el abandono pendiente",
+        sessionStorage.getItem(keys[1]),
+        null,
+      );
+
+      const third = match();
+      receive(socket, { type: "start", state: third, index: 0, ranked: true });
+      receive(socket, { type: "session-replaced" });
+      check(
+        "Una pestaña sustituida deja de recuperar la pelea",
+        sessionStorage.getItem(keys[0]),
+        null,
+      );
+      before = sockets.length;
+      flushSync(() => socket.onclose());
+      socket = await nextSocket(before);
+      open(socket);
+      check(
+        "La pestaña anterior no roba de vuelta la partida",
+        socket.sent.some((message) => message.type === "resume"),
+        false,
+      );
+      check(
+        "Se explica dónde continúa la partida",
+        net.error.includes("otra pestaña"),
+      );
+      const fourth = match();
+      receive(socket, { type: "start", state: fourth, index: 0, ranked: true });
+      flushSync(() =>
+        root.render(React.createElement(Harness, { revision: 1 })),
+      );
+      // React commits state scheduled by the identity effect on its next turn.
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      check(
+        "Cambiar de cuenta elimina la recuperación anterior",
+        sessionStorage.getItem(keys[0]),
+        null,
+      );
+      check(
+        "Cambiar de cuenta elimina la identidad del transporte anterior",
+        net.account,
+        null,
+      );
+    } catch (error) {
+      checks.push({
+        name: "Fixture completes",
+        passed: false,
+        error: String(error),
+        stack: error.stack,
+      });
+    } finally {
+      flushSync(() => root.unmount());
+      window.WebSocket = native;
+      previous.forEach(([key, value]) =>
+        value === null
+          ? sessionStorage.removeItem(key)
+          : sessionStorage.setItem(key, value),
+      );
+      window.rankedNetworkRegression = {
+        passed: checks.every((check) => check.passed),
+        checks,
+      };
+      document.getElementById("results").textContent = JSON.stringify(
+        window.rankedNetworkRegression,
+        null,
+        2,
+      );
+      document.title = `${window.rankedNetworkRegression.passed ? "PASS" : "FAIL"} recuperación clasificatoria`;
+    }
+  </script>
+</html>

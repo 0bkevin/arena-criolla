@@ -6,6 +6,7 @@ import type {
   ServerMessage,
 } from "../shared/protocol";
 import type { MatchState } from "../shared/engine";
+import type { ArenaAccount, RankingReceipt } from "../shared/ranking";
 import {
   MAX_CLIENT_BUFFER_BYTES,
   NETWORK_HEARTBEAT_MS,
@@ -13,7 +14,38 @@ import {
 } from "../shared/network";
 
 type ResultHandler = (state: MatchState, index: number) => void;
-export function useArenaNetwork(onResult?: ResultHandler) {
+const RESUME_KEY = "arena-ranked-resume-v1";
+const ABANDON_KEY = "arena-ranked-abandon-v1";
+const resumeHint = () => {
+  try {
+    return sessionStorage.getItem(RESUME_KEY);
+  } catch {
+    return null;
+  }
+};
+const rememberMatch = (id: string | null) => {
+  try {
+    if (id) sessionStorage.setItem(RESUME_KEY, id);
+    else sessionStorage.removeItem(RESUME_KEY);
+  } catch {}
+};
+const pendingAbandon = () => {
+  try {
+    return sessionStorage.getItem(ABANDON_KEY);
+  } catch {
+    return null;
+  }
+};
+const rememberAbandon = (id: string | null) => {
+  try {
+    if (id) sessionStorage.setItem(ABANDON_KEY, id);
+    else sessionStorage.removeItem(ABANDON_KEY);
+  } catch {}
+};
+export function useArenaNetwork(
+  onResult?: ResultHandler,
+  identityRevision = 0,
+) {
   const socket = useRef<WebSocket | null>(null);
   const state = useRef<MatchState | null>(null);
   const resultHandler = useRef(onResult);
@@ -22,6 +54,15 @@ export function useArenaNetwork(onResult?: ResultHandler) {
   const [communityVersion, setCommunityVersion] = useState(0);
   const [connected, setConnected] = useState(false);
   const [id, setId] = useState("");
+  const [account, setAccount] = useState<ArenaAccount | null>(null);
+  const identity = useRef(identityRevision);
+  const [rankingResult, setRankingResult] = useState<RankingReceipt | null>(
+    null,
+  );
+  const [rankingRevision, setRankingRevision] = useState(0);
+  const [recoveringRanked, setRecoveringRanked] = useState(() =>
+    Boolean(resumeHint()),
+  );
   const [rooms, setRooms] = useState<RoomView[]>([]);
   const [room, setRoom] = useState<RoomView | null>(null);
   const [online, setOnline] = useState(0);
@@ -30,13 +71,28 @@ export function useArenaNetwork(onResult?: ResultHandler) {
   const [match, setMatch] = useState<{
     initial: MatchState;
     index: number;
+    ranked: boolean;
   } | null>(null);
   const [opponentLeft, setOpponentLeft] = useState(false);
   useEffect(() => {
+    if (identity.current !== identityRevision) {
+      identity.current = identityRevision;
+      rememberMatch(null);
+      rememberAbandon(null);
+      setRecoveringRanked(false);
+      setConnected(false);
+      setAccount(null);
+      setId("");
+      setRoom(null);
+      setMatch(null);
+      setRankingResult(null);
+      state.current = null;
+    }
     let disposed = false;
     let reconnect: ReturnType<typeof setTimeout>;
     let monitor: ReturnType<typeof setInterval>;
     let attempts = 0;
+    let displaced = false;
     let currentRoom: RoomView | null = null;
     let currentMatch: { id: string; index: number } | null = null;
     let completedId = "";
@@ -58,13 +114,19 @@ export function useArenaNetwork(onResult?: ResultHandler) {
       state.current = null;
       setConnected(false);
       setId("");
+      setAccount(null);
+      setRecoveringRanked(Boolean(resumeHint()));
       setOnline(0);
       setLatencyMs(null);
       setRoom(null);
       setRooms([]);
       setMatch(null);
       setOpponentLeft(false);
-      setError("Se perdió la conexión. Reconectando con la arena…");
+      setError(
+        displaced
+          ? "Tu partida continúa en otra pestaña o dispositivo."
+          : "Se perdió la conexión. Reconectando con la arena…",
+      );
       const delay = Math.min(1000 * 2 ** attempts++, 10_000);
       reconnect = setTimeout(
         connect,
@@ -116,7 +178,24 @@ export function useArenaNetwork(onResult?: ResultHandler) {
         if (!active()) return;
         lastReceived = lastPong = openedAt = performance.now();
         setConnected(true);
-        setError("");
+        if (!displaced) setError("");
+        const abandon = pendingAbandon();
+        if (abandon) {
+          try {
+            ws.send(JSON.stringify({ type: "abandon", matchId: abandon }));
+          } catch {
+            retire(ws);
+            return;
+          }
+        }
+        const resume = resumeHint();
+        if (resume) {
+          try {
+            ws.send(JSON.stringify({ type: "resume", matchId: resume }));
+          } catch {
+            retire(ws);
+          }
+        }
       };
       ws.onerror = () => retire(ws);
       ws.onclose = () => retire(ws);
@@ -148,6 +227,7 @@ export function useArenaNetwork(onResult?: ResultHandler) {
         if (message.type === "welcome" && typeof message.id === "string") {
           welcomed = true;
           setId(message.id);
+          setAccount(message.account ?? null);
         }
         if (message.type === "rooms" && Array.isArray(message.rooms)) {
           setRooms(message.rooms);
@@ -165,6 +245,8 @@ export function useArenaNetwork(onResult?: ResultHandler) {
           if (changedRoom || message.room.players.length === 2)
             setOpponentLeft(false);
           if (message.room.status === "waiting") {
+            rememberMatch(null);
+            setRecoveringRanked(false);
             currentMatch = null;
             setMatch(null);
             state.current = null;
@@ -179,7 +261,21 @@ export function useArenaNetwork(onResult?: ResultHandler) {
           currentMatch = { id: message.state.id, index: message.index };
           completedId = "";
           state.current = message.state;
-          setMatch({ initial: message.state, index: message.index });
+          const ranked = message.ranked === true;
+          setRecoveringRanked(false);
+          rememberMatch(
+            ranked && message.state.phase !== "finished"
+              ? message.state.id
+              : null,
+          );
+          setRankingResult(
+            ranked ? { matchId: message.state.id, status: "pending" } : null,
+          );
+          setMatch({ initial: message.state, index: message.index, ranked });
+          if (message.state.phase === "finished") {
+            completedId = message.state.id;
+            resultHandler.current?.(message.state, message.index);
+          }
           setOpponentLeft(false);
           setError("");
         }
@@ -196,13 +292,41 @@ export function useArenaNetwork(onResult?: ResultHandler) {
             currentMatch
           ) {
             completedId = message.state.id;
+            rememberMatch(null);
             // Persist before another message can unmount Game, even without RAF.
             resultHandler.current?.(message.state, currentMatch.index);
           }
         }
         if (message.type === "error" && typeof message.message === "string")
           setError(message.message);
+        if (
+          message.type === "ranked-result" &&
+          message.result &&
+          typeof message.result.matchId === "string"
+        ) {
+          if (currentMatch?.id === message.result.matchId)
+            setRankingResult(message.result);
+          setRankingRevision((revision) => revision + 1);
+        }
+        if (message.type === "resume-unavailable") {
+          rememberMatch(null);
+          setRecoveringRanked(false);
+          setError(message.message);
+        }
+        if (message.type === "session-replaced") {
+          displaced = true;
+          rememberMatch(null);
+          setRecoveringRanked(false);
+          currentMatch = null;
+          currentRoom = null;
+          state.current = null;
+          setMatch(null);
+          setRoom(null);
+          setError("Tu partida continúa en otra pestaña o dispositivo.");
+        }
         if (message.type === "left") {
+          rememberMatch(null);
+          setRecoveringRanked(false);
           currentRoom = null;
           currentMatch = null;
           setRoom(null);
@@ -211,11 +335,18 @@ export function useArenaNetwork(onResult?: ResultHandler) {
           state.current = null;
         }
         if (message.type === "opponent-left") {
+          rememberMatch(null);
+          setRecoveringRanked(false);
           currentMatch = null;
           setOpponentLeft(true);
           setMatch(null);
           state.current = null;
         }
+        if (
+          message.type === "abandon-accepted" &&
+          message.matchId === pendingAbandon()
+        )
+          rememberAbandon(null);
       };
     };
     connect();
@@ -228,7 +359,7 @@ export function useArenaNetwork(onResult?: ResultHandler) {
       socket.current = null;
       if (ws) detach(ws);
     };
-  }, []);
+  }, [identityRevision]);
   const send = useCallback((message: ClientMessage) => {
     const ws = socket.current;
     if (!ws || ws.readyState !== WebSocket.OPEN) {
@@ -253,10 +384,30 @@ export function useArenaNetwork(onResult?: ResultHandler) {
       return false;
     }
   }, []);
+  const abandonResume = useCallback(() => {
+    const id = resumeHint();
+    if (!id) return;
+    rememberAbandon(id);
+    rememberMatch(null);
+    setRecoveringRanked(false);
+    const ws = socket.current;
+    if (ws?.readyState === WebSocket.OPEN) {
+      try {
+        ws.send(JSON.stringify({ type: "abandon", matchId: id }));
+      } catch {
+        retireSocket.current?.();
+      }
+    }
+  }, []);
   return {
     communityVersion,
     connected,
     id,
+    account,
+    rankingResult,
+    rankingRevision,
+    recoveringRanked,
+    abandonResume,
     rooms,
     room,
     online,
