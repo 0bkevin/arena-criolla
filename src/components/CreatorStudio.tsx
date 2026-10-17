@@ -95,6 +95,33 @@ export function CreatorStudio({
   const fileInput = useRef<HTMLInputElement>(null),
     createForm = useRef<HTMLFormElement>(null);
   const alive = useRef(true);
+  const accountId = useRef<string | null>(null);
+  const accountEpoch = useRef(0);
+  const updateAccount = (next: CreatorUser | null) => {
+    const nextId = next?.id ?? null;
+    if (accountId.current !== nextId) {
+      accountId.current = nextId;
+      accountEpoch.current++;
+      setName(next?.name ?? "");
+      setDescription("");
+      setStyle("agile");
+      setColor(colors[0]);
+      setPhotos([]);
+      setRecords([]);
+      setTrial(null);
+      setTrialHelp(false);
+      setAccountName("");
+      setEmail("");
+      setPassword("");
+      setError("");
+      setNotice("");
+      setSubmitting(false);
+      setPendingAction("");
+    }
+    setUser(next);
+  };
+  const currentAccount = (epoch: number) =>
+    alive.current && accountEpoch.current === epoch;
   useEffect(() => {
     alive.current = true;
     return () => {
@@ -102,15 +129,41 @@ export function CreatorStudio({
     };
   }, []);
   useEffect(() => {
-    void creatorApi
-      .session()
-      .then((data) => setUser(data.user))
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false));
+    let active = true;
+    let sequence = 0;
+    const checkSession = (initial = false) => {
+      const request = ++sequence;
+      const epoch = accountEpoch.current;
+      void creatorApi
+        .session()
+        .then((data) => {
+          if (active && request === sequence && currentAccount(epoch))
+            updateAccount(data.user);
+        })
+        .catch((e) => {
+          if (active && request === sequence && currentAccount(epoch))
+            setError(e.message);
+        })
+        .finally(() => {
+          if (active && initial) setLoading(false);
+        });
+    };
+    checkSession(true);
+    const focus = () => checkSession();
+    const visible = () => {
+      if (!document.hidden) checkSession();
+    };
+    window.addEventListener("focus", focus);
+    document.addEventListener("visibilitychange", visible);
     void creatorApi
       .capabilities()
       .then(setCapabilities)
       .catch(() => {});
+    return () => {
+      active = false;
+      window.removeEventListener("focus", focus);
+      document.removeEventListener("visibilitychange", visible);
+    };
   }, []);
   useEffect(() => {
     const urls = photos.map((photo) => URL.createObjectURL(photo));
@@ -118,8 +171,9 @@ export function CreatorStudio({
     return () => urls.forEach((url) => URL.revokeObjectURL(url));
   }, [photos]);
   const refresh = async () => {
+    const epoch = accountEpoch.current;
     const data = await creatorApi.mine();
-    if (!alive.current) return;
+    if (!currentAccount(epoch)) return;
     for (const record of data.characters)
       if (record.character) registerCommunityCharacter(record.character, false);
     setRecords(data.characters);
@@ -145,6 +199,7 @@ export function CreatorStudio({
   }, [user?.id, generating]);
   const authenticate = async (event: FormEvent) => {
     event.preventDefault();
+    const epoch = accountEpoch.current;
     setError("");
     setSubmitting(true);
     try {
@@ -152,13 +207,14 @@ export function CreatorStudio({
         accountMode === "signup"
           ? await creatorApi.signUp(accountName, email, password)
           : await creatorApi.signIn(email, password);
-      setUser(data.user);
+      if (!currentAccount(epoch)) return;
+      updateAccount(data.user);
       setPassword("");
-      if (!name) setName(data.user.name);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "No pudimos entrar.");
+      if (currentAccount(epoch))
+        setError(e instanceof Error ? e.message : "No pudimos entrar.");
     } finally {
-      setSubmitting(false);
+      if (currentAccount(epoch)) setSubmitting(false);
     }
   };
   const addPhotos = (files: File[]) => {
@@ -188,6 +244,7 @@ export function CreatorStudio({
   };
   const submit = async (event: FormEvent) => {
     event.preventDefault();
+    const epoch = accountEpoch.current;
     setError("");
     setSubmitting(true);
     try {
@@ -200,35 +257,41 @@ export function CreatorStudio({
       body.set("color", color);
       photos.forEach((photo) => body.append("photos", photo));
       const { character } = await creatorApi.create(body);
+      if (!currentAccount(epoch)) return;
       setRecords((current) => [character, ...current]);
       setPhotos([]);
       setNotice(
         "¡Vamos! Puedes quedarte aquí o volver después. Tu progreso queda guardado.",
       );
     } catch (e) {
-      setError(
-        e instanceof Error ? e.message : "No pudimos crear el personaje.",
-      );
+      if (currentAccount(epoch))
+        setError(
+          e instanceof Error ? e.message : "No pudimos crear el personaje.",
+        );
     } finally {
-      setSubmitting(false);
+      if (currentAccount(epoch)) setSubmitting(false);
     }
   };
   const act = async (id: string, action: "publish" | "retry" | "remove") => {
+    const epoch = accountEpoch.current;
     setError("");
     setPendingAction(id + action);
     try {
       if (action === "remove") await creatorApi.remove(id);
       else await creatorApi[action](id);
+      if (!currentAccount(epoch)) return;
       await refresh();
+      if (!currentAccount(epoch)) return;
       if (action !== "retry") await onCatalogChange();
-      if (action === "publish")
+      if (currentAccount(epoch) && action === "publish")
         setNotice("Publicado. Tu personaje ya está disponible para todos.");
     } catch (e) {
-      setError(
-        e instanceof Error ? e.message : "No pudimos completar la acción.",
-      );
+      if (currentAccount(epoch))
+        setError(
+          e instanceof Error ? e.message : "No pudimos completar la acción.",
+        );
     } finally {
-      setPendingAction("");
+      if (currentAccount(epoch)) setPendingAction("");
     }
   };
   const tryFighter = (record: CreatorCharacter) => {
@@ -283,13 +346,15 @@ export function CreatorStudio({
           <button
             className="creator-account"
             onClick={() => {
+              const epoch = accountEpoch.current;
               void creatorApi
                 .signOut()
                 .then(() => {
-                  setUser(null);
-                  setNotice("");
+                  if (currentAccount(epoch)) updateAccount(null);
                 })
-                .catch((e) => setError(e.message));
+                .catch((e) => {
+                  if (currentAccount(epoch)) setError(e.message);
+                });
             }}
             aria-label="Cerrar sesión"
           >
