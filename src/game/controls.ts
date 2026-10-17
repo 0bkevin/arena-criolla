@@ -69,13 +69,30 @@ export class ControlSources {
 }
 export class GamepadControls {
   private previous = [new Set<string>(), new Set<string>()];
+  private assignments = new Map<number, number>();
   constructor(private sources?: [ControlSources, ControlSources]) {}
   update(inputs: [Input, Input], players: number) {
     const pads = navigator.getGamepads?.() || [];
-    let assigned = 0;
-    for (const pad of pads) {
-      if (!pad || assigned >= players) continue;
-      const index = assigned++;
+    const connected = new Map<number, Gamepad>();
+    for (let slot = 0; slot < pads.length; slot++) {
+      const pad = pads[slot];
+      if (pad && pad.connected !== false) connected.set(pad.index ?? slot, pad);
+    }
+    for (const [pad, index] of this.assignments) {
+      if (connected.has(pad) && index < players) continue;
+      this.release(inputs, index);
+      this.assignments.delete(pad);
+    }
+    // Keep surviving controllers on their player when another pad disconnects.
+    for (const pad of connected.keys()) {
+      if (this.assignments.has(pad)) continue;
+      const index = Array.from({ length: players }, (_, i) => i).find(
+        (i) => ![...this.assignments.values()].includes(i),
+      );
+      if (index !== undefined) this.assignments.set(pad, index);
+    }
+    for (const [padIndex, index] of this.assignments) {
+      const pad = connected.get(padIndex)!;
       const input = inputs[index];
       const apply = (control: Control, down: boolean) => {
         if (this.sources) {
@@ -117,13 +134,13 @@ export class GamepadControls {
           apply(control, false);
       this.previous[index] = pressed;
     }
-    for (let index = assigned; index < this.previous.length; index++) {
-      for (const control of this.previous[index]) {
-        if (this.sources) this.sources[index].release(`pad:${control}`);
-        else applyControl(inputs[index], control as Control, false);
-      }
-      this.previous[index].clear();
+  }
+  private release(inputs: [Input, Input], index: number) {
+    for (const control of this.previous[index]) {
+      if (this.sources) this.sources[index].release(`pad:${control}`);
+      else applyControl(inputs[index], control as Control, false);
     }
+    this.previous[index].clear();
   }
 }
 export const makeInputs = (): [Input, Input] => [emptyInput(), emptyInput()];
