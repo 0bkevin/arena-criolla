@@ -29,7 +29,7 @@ test("Gómez retains his identity, solemn selection, and ready facing on both si
   assert.equal(fighter.ability, "command");
   assert.equal(fighter.special, "Paso del general");
   assert.deepEqual(fighter.combos, ["Paso firme", "Orden cerrada", "Golpe de mando"]);
-  assert.equal(presentationById("gomez").introStyle, "inspect");
+  assert.equal(presentationById("gomez").introStyle, "defiant");
   assert.equal(presentationById("gomez").prop, "none");
   assert.equal(selectionProgress("gomez", 2800), 1);
   assert.equal(selectionProgress("gomez", 5600), 1);

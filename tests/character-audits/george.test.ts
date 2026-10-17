@@ -29,7 +29,7 @@ test("George retains his researched identity, two punchline pulses, one-shot sel
   assert.equal(f.name, "George Harris"); assert.equal(f.ability, "punchline"); assert.equal(f.special, "Remate en dos tiempos");
   assert.deepEqual(f.combos, ["Primera fila", "Otra más", "Sala llena"]);
   assert.deepEqual(TECHNIQUES.punchline.pulses, [0, 16]);
-  assert.equal(presentationById("george").introStyle, "joke");
+  assert.equal(presentationById("george").introStyle, "defiant");
   assert.equal(presentationById("george").battleFrame, 1);
   assert.equal(selectionProgress("george", 2800), 1); assert.equal(selectionProgress("george", 5600), 1);
   for (let frame = 0; frame < 8; frame++) for (const facing of [1, -1]) assert.equal(normalizedFacing("george", frame, facing), facing * (frame === 0 ? -1 : 1));

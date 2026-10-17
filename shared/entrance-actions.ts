@@ -1,10 +1,18 @@
-import type { FighterId } from "./content";
+import type { BuiltInFighterId, FighterId } from "./content";
 
 export interface ActionFrame {
   at: number;
   frame: number;
   mirror?: boolean;
-  phase?: "draw" | "sing" | "turn" | "settle";
+  phase?:
+    | "draw"
+    | "sing"
+    | "turn"
+    | "settle"
+    | "straighten"
+    | "fold"
+    | "hold"
+    | "release";
 }
 export interface EntranceAction {
   name: string;
@@ -12,9 +20,58 @@ export interface EntranceAction {
   frames: ActionFrame[];
 }
 
+// Use this entrance for the generic human greetings and prop overlays. Keep
+// the instrument, folklore, and dedicated musical performances individual.
+export const DEFAULT_ENTRANCE_FIGHTERS = [
+  "zavarce",
+  "vallenilla",
+  "javier",
+  "capriles",
+  "renny",
+  "gomez",
+  "emilio",
+  "maite",
+  "puma",
+  "chataing",
+  "george",
+  "mcm",
+  "reynaldo",
+  "danny",
+  "nacho",
+  "sarcos",
+  "yordano",
+  "lila",
+  "rummy",
+  "chiqui",
+  "norkys",
+  "gabriela",
+  "amanda",
+  "giuseppe",
+] as const satisfies readonly BuiltInFighterId[];
+
+export const DEFAULT_ENTRANCE_ACTION: EntranceAction = {
+  name: "Se yergue y cruza los brazos",
+  turns: 0,
+  frames: [
+    { at: 0, frame: 0, phase: "straighten" },
+    { at: 0.09, frame: 1, phase: "straighten" },
+    { at: 0.23, frame: 2, phase: "fold" },
+    { at: 0.32, frame: 3, phase: "fold" },
+    { at: 0.4, frame: 4, phase: "fold" },
+    { at: 0.48, frame: 5, phase: "hold" },
+    { at: 0.76, frame: 4, phase: "release" },
+    { at: 0.8, frame: 3, phase: "release" },
+    { at: 0.84, frame: 2, phase: "release" },
+    { at: 0.87, frame: 0, phase: "release" },
+  ],
+};
+
 // Authored chronology, deliberately without modulo, ping-pong, or replay.
 // Oscar's painted views keep the microphone in the same hand through the turn.
 export const ENTRANCE_ACTIONS: Partial<Record<FighterId, EntranceAction>> = {
+  ...Object.fromEntries(
+    DEFAULT_ENTRANCE_FIGHTERS.map((id) => [id, DEFAULT_ENTRANCE_ACTION]),
+  ),
   oscar: {
     name: "Saca el micrófono, canta y da una vuelta de salsa",
     turns: 1,

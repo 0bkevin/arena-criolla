@@ -29,7 +29,7 @@ test("Renny retains his researched identity, two broadcast pulses, one-shot sele
   assert.equal(f.name, "Renny Ottolina"); assert.equal(f.ability, "broadcast"); assert.equal(f.special, "En cadena");
   assert.deepEqual(f.combos, ["Doble anuncio", "Buenas noches", "El número uno"]);
   assert.deepEqual(TECHNIQUES.broadcast.pulses, [0, 16]);
-  assert.equal(presentationById("renny").introStyle, "broadcast");
+  assert.equal(presentationById("renny").introStyle, "defiant");
   assert.equal(presentationById("renny").battleFrame, 1);
   assert.equal(selectionProgress("renny", 2800), 1); assert.equal(selectionProgress("renny", 5600), 1);
   for (let frame = 0; frame < 8; frame++) for (const facing of [1, -1]) assert.equal(normalizedFacing("renny", frame, facing), facing);

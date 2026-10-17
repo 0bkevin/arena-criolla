@@ -29,7 +29,7 @@ test("Emilio retains his researched identity, two echo pulses, one-shot selectio
   assert.equal(f.name, "Emilio Lovera"); assert.equal(f.ability, "echo"); assert.equal(f.special, "Doble interpretación");
   assert.deepEqual(f.combos, ["Cambio de gesto", "Segunda voz", "Remate de mil caras"]);
   assert.deepEqual(TECHNIQUES.echo.pulses, [0, 16]);
-  assert.equal(presentationById("emilio").introStyle, "present");
+  assert.equal(presentationById("emilio").introStyle, "defiant");
   assert.equal(presentationById("emilio").battleFrame, 1);
   assert.equal(selectionProgress("emilio", 2800), 1); assert.equal(selectionProgress("emilio", 5600), 1);
   for (let frame = 0; frame < 8; frame++) for (const facing of [1, -1]) assert.equal(normalizedFacing("emilio", frame, facing), facing * [-1, 1, 1, 1, -1, 1, 1, 1][frame]);

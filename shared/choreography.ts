@@ -1,5 +1,6 @@
 import type { FighterId } from "./content";
 import { PRESENTATIONS } from "./presentation";
+import { DEFAULT_ENTRANCE_FIGHTERS } from "./entrance-actions";
 
 export interface Gesture {
   at: number;
@@ -1130,6 +1131,10 @@ CHOREOGRAPHIES.oscar.camera = { height: 470, shift: -10 };
 CHOREOGRAPHIES.dudamel.camera = { height: 470, shift: -10 };
 // Leave room for the tall ears throughout Conejo's one-shot hop.
 CHOREOGRAPHIES.tioconejo.camera = { height: 620, shift: 0 };
+// The folded arms belong in the close-up, without the lateral room that the
+// old outstretched greetings needed. Painted entrances own their body motion.
+for (const id of DEFAULT_ENTRANCE_FIGHTERS)
+  CHOREOGRAPHIES[id].camera = { height: 650, shift: 0 };
 
 export function sampleGesture(
   id: FighterId,
@@ -1137,6 +1142,7 @@ export function sampleGesture(
   selection = false,
 ): Gesture {
   const t = Math.max(0, Math.min(1, progress));
+  if (PRESENTATIONS[id].introStyle === "defiant") return { at: t, ...REST };
   const beats = CHOREOGRAPHIES[id].beats;
   const next = beats.findIndex((b) => b.at > t);
   const a = beats[next < 0 ? beats.length - 1 : Math.max(0, next - 1)];

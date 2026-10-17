@@ -29,7 +29,7 @@ test("Puma retains researched identity, one forward roar and one-shot presentati
   assert.equal(f.name, "José Luis Rodríguez"); assert.equal(f.shortName, "El Puma"); assert.equal(f.ability, "roar");
   assert.equal(f.special, "Rugido del Puma"); assert.deepEqual(f.combos, ["Primer rugido", "Crescendo", "Último aplauso"]);
   assert.equal(TECHNIQUES.roar.startup, 16); assert.equal(TECHNIQUES.roar.projectile, undefined); assert.equal(TECHNIQUES.roar.radial, undefined);
-  assert.equal(p.introStyle, "greet"); assert.equal(p.selectionStyle, "present"); assert.equal(p.battleFrame, 1);
+  assert.equal(p.introStyle, "defiant"); assert.equal(p.selectionStyle, "defiant"); assert.equal(p.battleFrame, 1);
   for (const ms of [2800, 5600, 14000]) assert.equal(selectionProgress("puma", ms), 1);
   for (const beats of [p.introBeats, p.selectionBeats]) { const end = samplePose(beats, 1); assert.equal(end.frame, 1); assert.equal(end.dx, 0); assert.equal(end.dy, 0); assert.deepEqual(samplePose(beats, 2), end); }
   assert.deepEqual(sampleGesture("puma", 1), sampleGesture("puma", 2));

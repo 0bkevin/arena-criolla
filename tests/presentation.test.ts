@@ -13,18 +13,21 @@ import {
   samplePose,
 } from "../shared/presentation";
 import { drawSprite, type SpriteAsset } from "../src/game/assets";
-import { ENTRANCE_ACTIONS } from "../shared/entrance-actions";
+import {
+  DEFAULT_ENTRANCE_FIGHTERS,
+  ENTRANCE_ACTIONS,
+} from "../shared/entrance-actions";
 import { CHOREOGRAPHIES } from "../shared/choreography";
 import type { FighterId } from "../shared/content";
 
-test("every fighter has an individual entrance, selection gesture and audited stance", () => {
+test("every fighter has a themed or default entrance and an audited combat stance", () => {
   assert.deepEqual(
     Object.keys(PRESENTATIONS).sort(),
     FIGHTERS.map((f) => f.id).sort(),
   );
   assert.equal(
     new Set(Object.values(PRESENTATIONS).map((p) => p.introName)).size,
-    FIGHTERS.length,
+    FIGHTERS.length - DEFAULT_ENTRANCE_FIGHTERS.length + 1,
   );
   assert.equal(
     new Set(

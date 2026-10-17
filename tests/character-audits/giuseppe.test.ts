@@ -66,8 +66,8 @@ test("Giuseppe retains researched identity, three accelerating wave packets and 
   assert.deepEqual(TECHNIQUES.audit.pulses, [0, 9, 18]);
   assert.equal(TECHNIQUES.audit.projectile?.speed, 4);
   assert.equal(TECHNIQUES.audit.projectile?.maxSpeed, 11);
-  assert.equal(profile.introStyle, "inspect");
-  assert.equal(profile.selectionStyle, "card");
+  assert.equal(profile.introStyle, "defiant");
+  assert.equal(profile.selectionStyle, "defiant");
   assert.equal(profile.battleFrame, 1);
   assert.equal(selectionProgress("giuseppe", 2800), 1);
   assert.equal(selectionProgress("giuseppe", 5600), 1);

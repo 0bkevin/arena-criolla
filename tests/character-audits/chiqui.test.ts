@@ -29,7 +29,7 @@ test("Chiqui retains her documented identity, rapid seven-frame forward dash, on
   assert.equal(f.name, "Chiquinquirá Delgado"); assert.equal(f.ability, "runway"); assert.equal(f.special, "Pasarela relámpago");
   assert.deepEqual(f.combos, ["Paso elegante", "Foco azul", "Cierre de pasarela"]);
   assert.equal(TECHNIQUES.runway.startup, 11); assert.equal(TECHNIQUES.runway.dash?.speed, 23); assert.equal(TECHNIQUES.runway.dash?.brake, 0.5);
-  assert.equal(presentationById("chiqui").introStyle, "present");
+  assert.equal(presentationById("chiqui").introStyle, "defiant");
   assert.equal(presentationById("chiqui").battleFrame, 1);
   assert.equal(selectionProgress("chiqui", 2800), 1); assert.equal(selectionProgress("chiqui", 5600), 1);
   for (const side of [0, 1]) { assert.equal(entranceProgress("chiqui", 510, side), 1); assert.equal(entranceProgress("chiqui", 1020, side), 1); }

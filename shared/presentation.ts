@@ -2,6 +2,7 @@ import type { FighterId } from "./content";
 import definitions from "./presentations.json";
 
 export type PresentationStyle =
+  | "defiant"
   | "greet"
   | "hat"
   | "strum"

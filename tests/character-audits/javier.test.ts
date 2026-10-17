@@ -37,7 +37,7 @@ test("Javier intro gates both sides and settles into the correct ready facing", 
   }
   const presentation = presentationById("javier");
   assert.equal(presentation.battleFrame, 0);
-  assert.equal(samplePose(presentation.introBeats, 0.5).frame, 1);
+  assert.equal(samplePose(presentation.introBeats, 0.5).frame, presentation.battleFrame);
   assert.equal(samplePose(presentation.selectionBeats, 1).frame, 0);
   assert.equal(selectionProgress("javier", 2800), 1);
   for (let frame = 0; frame < 8; frame++) {
