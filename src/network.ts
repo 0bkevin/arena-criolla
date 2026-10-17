@@ -56,6 +56,7 @@ export function useArenaNetwork() {
         }
         if (message.type === "room") {
           setRoom(message.room);
+          if (message.room.players.length === 2) setOpponentLeft(false);
           if (message.room.status === "waiting") {
             setMatch(null);
             state.current = null;
@@ -72,6 +73,7 @@ export function useArenaNetwork() {
         if (message.type === "left") {
           setRoom(null);
           setMatch(null);
+          setOpponentLeft(false);
           state.current = null;
         }
         if (message.type === "opponent-left") {
@@ -86,6 +88,7 @@ export function useArenaNetwork() {
         setRoom(null);
         setRooms([]);
         setMatch(null);
+        setOpponentLeft(false);
         state.current = null;
         setError("Se perdió la conexión. Reconectando con la arena…");
         reconnect = setTimeout(
