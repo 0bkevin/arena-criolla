@@ -13,5 +13,14 @@
     "resolveJsonModule": true,
     "types": ["node"]
   },
-  "include": ["src", "shared", "server", "tests", "vite.config.ts"]
+  "include": [
+    "src",
+    "shared",
+    "server",
+    "tests",
+    "scripts/creator-codex.ts",
+    "scripts/creator-codex",
+    "scripts/creator-import.ts",
+    "vite.config.ts"
+  ]
 }
