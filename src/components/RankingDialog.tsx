@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import type {
   ArenaAccount,
   RankingEntry,
-  RankingHistoryEntry,
+  RankingCommands,
 } from "../../shared/ranking";
 import { fighterById } from "../../shared/content";
-import { creatorRequest } from "../creator-api";
+import { loadPlayerRanking, loadRankingBoard } from "../ranking-api";
+import { useRankingRefresh } from "../player-ranking";
 import { Modal } from "./Modal";
 
 const resultLabels = {
@@ -32,37 +33,34 @@ export function RankingDialog({
   onClose: () => void;
   onAccount?: () => void;
 }) {
-  const [entries, setEntries] = useState<RankingEntry[]>([]),
-    [me, setMe] = useState<RankingEntry | null>(null);
-  const [history, setHistory] = useState<RankingHistoryEntry[]>([]);
+  const [entries, setEntries] = useState<RankingEntry[]>([]);
+  const [profile, setProfile] = useState<
+    RankingCommands["profile"]["result"] | null
+  >(null);
+  const me = profile?.entry.userId === account?.id ? profile?.entry : null;
+  const history = me ? profile!.history : [];
   const [loading, setLoading] = useState(true),
     [error, setError] = useState("");
-  const [refresh, setRefresh] = useState(0);
+  const [refresh, refreshRanking] = useRankingRefresh();
   useEffect(() => {
     let alive = true;
     const controller = new AbortController();
     setLoading(true);
     setError("");
-    setMe(null);
-    setHistory([]);
+    setProfile(null);
     void Promise.all([
-      creatorRequest<{ entries: RankingEntry[] }>("/api/ranking", {
-        signal: controller.signal,
-      }),
+      loadRankingBoard(controller.signal),
       account
-        ? creatorRequest<{
-            entry: RankingEntry;
-            history: RankingHistoryEntry[];
-          }>("/api/ranking/me", { signal: controller.signal })
+        ? loadPlayerRanking(account, controller.signal)
         : Promise.resolve(null),
     ])
       .then(([board, profile]) => {
         if (!alive) return;
         setEntries(board.entries);
-        setMe(profile?.entry ?? null);
-        setHistory(profile?.history ?? []);
+        setProfile(profile);
       })
       .catch((error) => {
+        controller.abort();
         if (alive) setError(error.message);
       })
       .finally(() => {
@@ -72,7 +70,7 @@ export function RankingDialog({
       alive = false;
       controller.abort();
     };
-  }, [account?.id, revision, refresh]);
+  }, [account, revision, refresh]);
   return (
     <Modal title="Ranking global" wide onClose={onClose}>
       <p className="modal-intro">
@@ -86,7 +84,7 @@ export function RankingDialog({
         <button
           className="secondary-button"
           disabled={loading}
-          onClick={() => setRefresh((value) => value + 1)}
+          onClick={refreshRanking}
         >
           Actualizar ranking
         </button>
