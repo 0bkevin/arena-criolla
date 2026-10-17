@@ -11,6 +11,7 @@ import {
   hashPassword,
   verifyPassword,
   createSession,
+  createAccountSession,
   sessionToken,
   tokenHash,
   clearSession,
@@ -294,13 +295,12 @@ export function makeCreatorService(options: CreatorOptions = {}) {
       };
       const encoded = await hashPassword(data.data.password);
       try {
-        db.createUser(user, encoded);
+        createAccountSession(res, db, user, encoded, secure);
       } catch (error) {
         if (!db.userByEmail(data.data.email)) throw error;
         res.status(409).json({ error: "Ese correo ya tiene una cuenta." });
         return;
       }
-      createSession(res, db, user.id, secure);
       res.status(201).json({ user });
     } catch (error) {
       next(error);
