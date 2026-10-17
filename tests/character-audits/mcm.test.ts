@@ -25,7 +25,7 @@ test("MCM retains her identity, unique rally hop and one-shot facing presentatio
   assert.equal(f.name, "María Corina Machado"); assert.equal(f.ability, "rally"); assert.equal(f.special, "Marcha firme");
   assert.deepEqual(f.combos, ["Paso decidido", "Impulso doble", "Hasta el final"]);
   assert.deepEqual(TECHNIQUES.rally.dash, { speed: 13, ticks: 14, invincibility: 5, lift: -6.5, brake: 0.3 });
-  assert.equal(presentation.introStyle, "greet"); assert.equal(presentation.battleFrame, 1);
+  assert.equal(presentation.introStyle, "defiant"); assert.equal(presentation.battleFrame, 1);
   assert.equal(selectionProgress("mcm", 2800), 1); assert.equal(selectionProgress("mcm", 5600), 1);
   assert.equal(presentation.introBeats.at(-1)?.frame, 1); assert.equal(presentation.selectionBeats.at(-1)?.frame, 1);
   for (let frame = 0; frame < 8; frame++) for (const facing of [1, -1]) assert.equal(normalizedFacing("mcm", frame, facing), facing);

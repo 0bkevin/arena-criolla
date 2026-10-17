@@ -29,7 +29,7 @@ test("Gabriela retains her researched identity, two reversed mirror pulses, one-
   assert.equal(f.name, "Gabriela Spanic"); assert.equal(f.ability, "mirror"); assert.equal(f.special, "Doble de novela");
   assert.deepEqual(f.combos, ["Primera toma", "Cambio de papel", "Doble de novela"]);
   assert.deepEqual(TECHNIQUES.mirror.pulses, [0, 18]);
-  assert.equal(presentationById("gabriela").introStyle, "present");
+  assert.equal(presentationById("gabriela").introStyle, "defiant");
   assert.equal(presentationById("gabriela").battleFrame, 1);
   assert.equal(selectionProgress("gabriela", 2800), 1); assert.equal(selectionProgress("gabriela", 5600), 1);
   for (let frame = 0; frame < 8; frame++) for (const facing of [1, -1]) assert.equal(normalizedFacing("gabriela", frame, facing), facing);

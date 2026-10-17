@@ -259,7 +259,7 @@ export function drawPresentation(
     drawSprite(ctx, sprite, profile.battleFrame, 0, 0, height, facing);
   else
     drawArticulatedSprite(ctx, sprite, id, pose.frame, height, facing, gesture);
-  if (!reducedMotion && !dedicated) {
+  if (!reducedMotion && !dedicated && style !== "defiant") {
     ctx.scale(facing, 1);
     accents(
       ctx,

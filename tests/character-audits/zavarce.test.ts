@@ -28,8 +28,8 @@ test("Zavarce content and one-shot presentation retain their identity and facing
   assert.equal(fighter.ability, "courier");
   assert.equal(fighter.special, "Entrega exprés");
   assert.deepEqual(fighter.combos, ["Pedido confirmado", "Ruta directa", "Cohete a domicilio"]);
-  assert.equal(presentationById("zavarce").introStyle, "phone");
-  assert.equal(presentationById("zavarce").prop, "phone");
+  assert.equal(presentationById("zavarce").introStyle, "defiant");
+  assert.equal(presentationById("zavarce").prop, "none");
   assert.equal(selectionProgress("zavarce", 2800), 1);
   assert.equal(selectionProgress("zavarce", 5600), 1);
   for (let frame = 0; frame < 8; frame++) {

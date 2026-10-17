@@ -28,7 +28,7 @@ test("Lila preserves documented identity, five-leaf fan, one-shot presentation a
   assert.equal(TECHNIQUES.cocotero.startup, 16); assert.equal(TECHNIQUES.cocotero.projectile?.count, 5);
   assert.equal(TECHNIQUES.cocotero.projectile?.spread, 2.2);
   const profile = presentationById("lila");
-  assert.equal(profile.battleFrame, 1); assert.equal(profile.introName, "Saludo de diva");
+  assert.equal(profile.battleFrame, 1); assert.equal(profile.introName, "Se yergue y cruza los brazos");
   assert.equal(selectionProgress("lila", 2800), 1); assert.equal(selectionProgress("lila", 5600), 1);
   for (const side of [0, 1]) assert.equal(entranceProgress("lila", INTRO_TOTAL_TICKS, side), 1);
   for (const kind of ["introBeats", "selectionBeats"] as const) {

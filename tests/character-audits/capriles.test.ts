@@ -33,7 +33,7 @@ test("Capriles retains his researched casual identity and mirrored one-shot gree
   assert.equal(fighter.special, "Sprint tricolor");
   assert.deepEqual(fighter.combos, ["Paso a paso", "Carrera de fondo", "Meta tricolor"]);
   assert.equal(presentationById("capriles").battleFrame, 0);
-  assert.equal(presentationById("capriles").introName, "Saludo casual");
+  assert.equal(presentationById("capriles").introName, "Se yergue y cruza los brazos");
   assert.equal(presentationById("capriles").prop, "none");
   assert.equal(selectionProgress("capriles", 2800), 1);
   assert.equal(selectionProgress("capriles", 5600), 1);
