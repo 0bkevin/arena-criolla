@@ -1,0 +1,40 @@
+#9 4.013 npm notice
+#9 4.013 npm notice New major version of npm available! 11.19.1 -> 12.2.0
+#9 4.013 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+#9 4.013 npm notice To update run: npm install -g npm@12.2.0
+#9 4.013 npm notice
+#9 4.014 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-10-17T09_34_12_940Z-debug-0.log
+#9 ERROR: process "/bin/sh -c npm ci --omit=dev && npm cache clean --force" did not complete successfully: exit code: 1
+
+#8 [build 4/6] RUN npm ci
+#8 ERROR: process "/bin/sh -c npm ci" did not complete successfully: exit code: 1
+------
+ > [runtime 4/9] RUN npm ci --omit=dev && npm cache clean --force:
+4.007 npm warn tar TAR_ENTRY_ERROR ENOSPC: no space left on device, write
+4.009 npm warn tar TAR_ENTRY_ERROR ENOSPC: no space left on device, write
+4.013 npm notice
+4.013 npm notice New major version of npm available! 11.19.1 -> 12.2.0
+4.013 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+4.013 npm notice To update run: npm install -g npm@12.2.0
+4.013 npm notice
+4.014 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-10-17T09_34_12_940Z-debug-0.log
+------
+------
+ > [build 4/6] RUN npm ci:
+4.007 npm warn tar TAR_ENTRY_ERROR ENOSPC: no space left on device, write
+4.012 npm notice
+4.012 npm notice New major version of npm available! 11.19.1 -> 12.2.0
+4.012 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+4.012 npm notice To update run: npm install -g npm@12.2.0
+4.012 npm notice
+4.012 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-10-17T09_34_12_940Z-debug-0.log
+------
+Dockerfile:4
+--------------------
+   2 |     WORKDIR /app
+   3 |     COPY package.json package-lock.json ./
+   4 | >>> RUN npm ci
+   5 |     COPY . .
+   6 |     RUN npm run build
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c npm ci" did not complete successfully: exit code: 1
