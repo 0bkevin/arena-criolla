@@ -1,6 +1,23 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { ArenaAccount, RankingEntry } from "../shared/ranking";
-import { creatorRequest } from "./creator-api";
+import { loadPlayerRanking } from "./ranking-api";
+
+export function useRankingRefresh() {
+  const [revision, setRevision] = useState(0);
+  const refresh = useCallback(() => setRevision((value) => value + 1), []);
+  useEffect(() => {
+    const visible = () => {
+      if (document.visibilityState === "visible") refresh();
+    };
+    window.addEventListener("focus", refresh);
+    document.addEventListener("visibilitychange", visible);
+    return () => {
+      window.removeEventListener("focus", refresh);
+      document.removeEventListener("visibilitychange", visible);
+    };
+  }, [refresh]);
+  return [revision, refresh] as const;
+}
 
 // The server owns the total. Never increment it from a local combat result or
 // retain another account's total while a session change is being fetched.
@@ -14,19 +31,7 @@ export function usePlayerRanking(
     loading: boolean;
     error: string;
   } | null>(null);
-  const [refresh, setRefresh] = useState(0);
-  useEffect(() => {
-    const update = () => setRefresh((value) => value + 1);
-    const visible = () => {
-      if (document.visibilityState === "visible") update();
-    };
-    window.addEventListener("focus", update);
-    document.addEventListener("visibilitychange", visible);
-    return () => {
-      window.removeEventListener("focus", update);
-      document.removeEventListener("visibilitychange", visible);
-    };
-  }, []);
+  const [refresh, refreshRanking] = useRankingRefresh();
   useEffect(() => {
     if (!account) {
       setState(null);
@@ -35,11 +40,8 @@ export function usePlayerRanking(
     let alive = true;
     const controller = new AbortController();
     setState({ userId: account.id, entry: null, loading: true, error: "" });
-    void creatorRequest<{ entry: RankingEntry }>("/api/ranking/me", {
-      signal: AbortSignal.any([controller.signal, AbortSignal.timeout(10_000)]),
-    })
+    void loadPlayerRanking(account, controller.signal)
       .then(({ entry }) => {
-        if (entry.userId !== account.id) throw new Error("Session changed");
         if (alive)
           setState({ userId: account.id, entry, loading: false, error: "" });
       })
@@ -62,6 +64,6 @@ export function usePlayerRanking(
     entry: current?.entry ?? null,
     loading: Boolean(account && (!current || current.loading)),
     error: current?.error ?? "",
-    refresh: () => setRefresh((value) => value + 1),
+    refresh: refreshRanking,
   };
 }
