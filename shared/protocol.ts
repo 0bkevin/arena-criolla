@@ -36,7 +36,7 @@ export type ClientMessage =
     }
   | { type: "select"; fighter?: FighterId; stage?: StageId; wins?: number }
   | { type: "ready"; ready: boolean }
-  | { type: "input"; input: Input }
+  | { type: "input"; matchId: string; input: Input }
   | { type: "rematch" }
   | { type: "leave" };
 export type ServerMessage =

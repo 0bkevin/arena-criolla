@@ -29,6 +29,7 @@ interface Client {
   socket: WebSocket;
   room: string | null;
   input: Input;
+  inputAt: number;
   alive: boolean;
   messages: number;
   controls: number;
@@ -42,6 +43,7 @@ interface Room {
   state: MatchState | null;
   touched: number;
 }
+const INPUT_TIMEOUT_MS = 500;
 const cleanName = (value: unknown) =>
   typeof value === "string"
     ? value
@@ -200,6 +202,7 @@ export async function makeArenaServer(
     }
     room.clients.forEach((c) => {
       c.input = emptyInput();
+      c.inputAt = performance.now();
     });
     const [first, second] = room.view.players;
     room.state = createMatch(room.view.stage, [first, second], randomUUID());
@@ -256,6 +259,7 @@ export async function makeArenaServer(
       socket,
       room: null,
       input: emptyInput(),
+      inputAt: performance.now(),
       alive: true,
       messages: 0,
       controls: 0,
@@ -430,6 +434,7 @@ export async function makeArenaServer(
         }
       }
       if (message.type === "input" && current.view.status === "playing") {
+        if (message.matchId !== current.state?.id) return;
         const input = message.input;
         if (
           !input ||
@@ -445,10 +450,16 @@ export async function makeArenaServer(
         safe.down = input.down === true;
         for (const action of ACTIONS) {
           const n = input.actions[action];
-          if (!Number.isSafeInteger(n) || n < 0 || n > 1_000_000_000) return;
+          if (
+            !Number.isSafeInteger(n) ||
+            n < client.input.actions[action] ||
+            n > 1_000_000_000
+          )
+            return;
           safe.actions[action] = n;
         }
         client.input = safe;
+        client.inputAt = performance.now();
       }
       if (message.type === "rematch" && current.view.status === "finished") {
         const player = current.view.players.find((p) => p.id === client.id)!;
@@ -464,7 +475,8 @@ export async function makeArenaServer(
   let tick = 0;
   const ticker = new FixedStepTicker(1000 / 60, 5);
   const gameLoop = setInterval(() => {
-    const due = ticker.advance(performance.now());
+    const now = performance.now();
+    const due = ticker.advance(now);
     for (let step = 0; step < due; step++) {
       tick++;
       rooms.forEach((room) => {
@@ -474,6 +486,15 @@ export async function makeArenaServer(
           room.clients.length !== 2
         )
           return;
+        // A stalled or suspended client must not keep walking or guarding.
+        // Preserve counters so expiring a hold cannot replay an old attack.
+        room.clients.forEach((client) => {
+          if (now - client.inputAt <= INPUT_TIMEOUT_MS) return;
+          client.input.left = false;
+          client.input.right = false;
+          client.input.block = false;
+          client.input.down = false;
+        });
         stepMatch(room.state, [room.clients[0].input, room.clients[1].input]);
         if (tick % 2 === 0 || room.state.phase === "finished")
           room.clients.forEach((c) =>
