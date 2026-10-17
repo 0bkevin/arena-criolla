@@ -1,0 +1,210 @@
+{
+  "auditVersion": 28,
+  "fighterId": "chataing",
+  "name": "Luis Chataing",
+  "auditedDate": "2026-10-13",
+  "sourceRevision": "2273843fe788fb68bfa35d80d9ec87b48f1d2b7e plus current shared working tree",
+  "status": "complete_with_cpu_range_finding",
+  "scope": "Dedicated Chataing audit. Actual shared-engine fights and production sprite/presentation renderers in this agent's own native preview tab. Repository writes limited to this report and tests/character-audits/chataing.test.ts. No runtime edits, art edits, commits or child agents.",
+  "evidenceRead": [
+    "docs/characters-v3/chataing.json",
+    "docs/character-sprite-qa.json",
+    "docs/sprite-qa.json",
+    "shared/fighters.json",
+    "shared/techniques.ts",
+    "shared/engine.ts",
+    "shared/presentation.ts",
+    "shared/presentations.json",
+    "shared/choreography.ts",
+    "src/game/assets.ts",
+    "src/game/gesture-rig.ts",
+    "src/game/presentation-renderer.ts",
+    "src/game/intro-renderer.ts",
+    "src/game/renderer.ts",
+    "src/components/Portrait.tsx",
+    "src/audio.ts",
+    "src/game/reactions.ts",
+    "public/assets/chataing-v3.webp"
+  ],
+  "baselineHashes": {
+    "shared/engine.ts": "b312989fbf51363844c52bfb4e0021793c1371e69b9a782910e033f6e0930d31",
+    "shared/techniques.ts": "596f948c07d685c7e570eeaa4c3919367d0a805ce352ba5aee48a4bcda14c550",
+    "shared/fighters.json": "30611f5f186fc5de17ab2ccfe7646e8fd4343cbcce803e208d2a5c9e045b69b9",
+    "shared/presentations.json": "8a7fbd0de98e62534317f4d5f41f20d4a1180d2960a07c6764aba0082112d8a1",
+    "shared/choreography.ts": "ffe139cd4af2c7a371cb69ec23f36ada6807dd6aa835657599c752dc238cb3b8",
+    "public/assets/chataing-v3.webp": "3fb51d8e201dc9e0dd675f0e7c9fc9ac6118cec2b67a1af557a66f830835eb2c"
+  },
+  "identityAndPortrayal": {
+    "preservedDossier": "Luis Eduardo Chataing Zambrano, adult conductor and humorist. Preserved research identifies a long face, prominent nose, short swept-up dark hair with gray temples, thick black rectangular glasses, short graying beard, dark presenter clothing and handheld microphone.",
+    "visualMatch": "Production atlas retains the glasses, swept-up hair, graying temples and beard, charcoal jacket, black shirt, dark jeans and low shoes. The microphone remains in hand throughout the inspected combat frames. This is the existing arcade adaptation, with no newly researched likeness claims.",
+    "fictionalAdaptation": "Micrófono de vuelta sends a rotating microphone projectile out and back, fitting the preserved outgoing/returning signal concept. Pregunta directa, Repregunta and Cierre al aire retain the established interview/presenter theme.",
+    "audio": "Current source uses generic male effort/pain reaction banks and synthesized selection tones. No real-person dialogue was introduced. The preserved dossier's archival dialogue metadata was read as historical evidence; this audit did not listen to or independently verify that interview recording."
+  },
+  "movementAndStance": {
+    "result": "pass_both_sides",
+    "movement": "From x540, 24 right inputs reach648.5002944163685, then24 left inputs reach549.0994111767881. Both sides face right/left with their movement inputs.",
+    "jump": "First jump reaches y454.6 after10 steps; second jump is accepted; third jump is rejected. Landing restores grounded=true, y554, jumps0 and two stocks on both sides.",
+    "stance": "Frame1 supplies the ready guard. All eight actual production drawSprite frames were inspected in both facings: presenter0, open-palm microphone guard1, run2/3, tucked jump4, punch5, high kick6 and recoil7. Heads, hands, feet and microphones remained coherent; no wrong-facing frame or neighboring shoe fragment was observed.",
+    "atlas": {
+      "imageSize": [
+        1536,
+        1024
+      ],
+      "bodyHeight": 492,
+      "baseline": 505,
+      "qaRows": [
+        4,
+        4
+      ],
+      "qaPassed": true
+    }
+  },
+  "special": {
+    "name": "Micrófono de vuelta",
+    "ability": "static",
+    "result": "pass_outbound_and_return_collisions_both_sides",
+    "configuration": {
+      "startup": 11,
+      "recovery": 44,
+      "nominalRange": 460,
+      "height": 120,
+      "techniqueDamage": 12,
+      "fighterDamageMultiplier": 0.95,
+      "force": 6,
+      "speed": 10,
+      "life": 75,
+      "returnAfter": 24,
+      "energyCost": 25
+    },
+    "outbound": "At gap200, both sides emit one static projectile on combat tick11, hit idle on tick22 and hit a rival holding rear guard while moving away on tick25. Damage is12*.95*1.03=11.742 against Javier, leaving88.258HP. Forward guard produces one block and preserves100HP. Collision consumes the microphone, preventing a second impact.",
+    "energyGate": "100 energy spends25 on activation; energy24 rejects the special on both sides.",
+    "missedFlight": "With Chataing atx400 facing right and Javier atx800, first surviving projectile sample is age1 x458 vx10. It reaches its outbound peak age23 x678; age24 reverses tox668 vx-10. It crosses Chataing's original x without self-damage, continues behind him and last survives at age74 x168 before life expiry. Mirrored side1 uses Chataingx680/Javierx280: x622, x402, x412 and x912 respectively. Chataing remains stationary in these miss probes.",
+    "returnCollisionReproduction": "At intro completion tick510, side0 Chataing startsx400 and Javierx280; side1 mirrors at Chataingx680/Javierx800. Give Chataing one simultaneous forward+special input and release forward after the first step to cast away from the rear rival. Give Javier idle or block plus movement away from the incoming microphone. Idle rear target takes one inward hit at combat tick71; rear guard takes one at combat tick84. Guard toward the incoming shot blocks once and preserves100HP. Knockback follows the actual return velocity (-1 on side0, +1 on side1), not the original cast direction.",
+    "rangeProbes": [
+      {
+        "gap": 280,
+        "hp": 88.258,
+        "hits": 1
+      },
+      {
+        "gap": 319,
+        "hp": 88.258,
+        "hits": 1
+      },
+      {
+        "gap": 320,
+        "hp": 100,
+        "hits": 0
+      },
+      {
+        "gap": 400,
+        "hp": 100,
+        "hits": 0
+      },
+      {
+        "gap": 460,
+        "hp": 100,
+        "hits": 0
+      },
+      {
+        "gap": 500,
+        "hp": 100,
+        "hits": 0
+      }
+    ],
+    "rangeInterpretation": "For a stationary cast, spawn offset48 plus23 outward steps at10 gives peak278; the strict42-pixel collision tolerance gives reach below320. The projectile's return behavior works; the long-distance CPU selection finding is recorded separately."
+  },
+  "attacksAndCombos": {
+    "light": "At gap80 on both sides, one hit deals6.8495HP with outward knockback; front guard prevents HP loss.",
+    "heavy": "At gap80 on both sides, one hit deals12.7205HP with outward knockback; front guard prevents HP loss.",
+    "baseCombo": "Pregunta directa (L→H) connects both attacks with real chase inputs, leaving77.34HP after65 combat ticks on both sides; heavy bonus3.",
+    "advancedCombo": "Repregunta (L→L→H) connects all three attacks with real chase inputs, leaving66.3705HP after109 ticks on both sides; heavy bonus7. Zero wins retains Pregunta directa and bonus3 for the same input history.",
+    "recognitionLimit": "Separate gap140 setup probes intentionally whiff the light attacks and verify existing input-history recognition. Connected-combo probes independently verify every actual strike can land.",
+    "definitive": "Cierre al aire requires three wins and75 energy. At gap200 it activates on tick9 and deals(28*.95+12)*1.03=39.758HP, leaving60.242HP. Zero/two wins and74 energy reject it on both sides. This definitive is the shared melee super rather than another returning projectile."
+  },
+  "cpuFight": {
+    "opponent": "Javier Hala Madrid",
+    "difficulty": "normal",
+    "method": "Real shared-engine fight on poliedro. Finish the510-tick intro, leave Chataing idle180 steps to exercise CPU offense, then use real approach, guard, jump and attack counters. Repeat the entire controller and compare complete final states.",
+    "result": "finished_and_exactly_replayed",
+    "winner": "Chataing",
+    "finalTick": 1179,
+    "remainingFrames": 4692,
+    "started": [
+      "super",
+      "heavy",
+      "light",
+      "special"
+    ],
+    "landed": [
+      "super",
+      "special",
+      "light",
+      "heavy"
+    ],
+    "chataing": {
+      "hp": 84.48,
+      "stocks": 1,
+      "hits": 7,
+      "peakCombo": 6
+    },
+    "javier": {
+      "hp": 0,
+      "stocks": 0,
+      "hits": 2,
+      "peakCombo": 1
+    },
+    "limit": "Deterministic exercised bout, not a balance benchmark. Standard action/guard/combo tests independently cover both player sides."
+  },
+  "introAndSelection": {
+    "result": "production_renderers_visually_checked_both_facings",
+    "name": "Pide un segundo con la palma",
+    "introStyle": "broadcast",
+    "selectionStyle": "joke",
+    "durationMs": 2800,
+    "nativePreviewTab": "tab_2a_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "nativePreviewUrl": "http://localhost:5173/",
+    "method": "First preview_status, then preview_open with reuseExistingTab:false. Imported actual loadSprite/drawSprite/drawPresentation/drawIntroCinematic in an ephemeral canvas in this owned native tab. No repository harness or replacement browser was started.",
+    "observation": "Start/end use open-palm ready frame1. Midpoint uses the relaxed presenter frame0 with one hand near the pocket and microphone at chest; head/arm motion is subtle. Intro accents show broadcast arcs, selection uses small spark accents. Mirrored midpoint maintains face/microphone coherence. Actual split-screen cinematic on both player sides faces the rival. The midpoint is the relaxed presenter stance rather than a prominently raised palm; this was recorded as the existing adaptation, not permission to overwrite art.",
+    "oneShot": "Selection progress clamps to1 at2800ms and remains1 at5600ms. Both final pose beats return toframe1; Portrait schedules animation only while progress<1. The shared510-tick intro gates movement and attacks and establishes rival-facing direction at completion on both sides.",
+    "screenshotPaths": {
+      "combatFramesBothFacings": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61dfl7-631f58cc.png",
+      "introSelectionSamples": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61dptq-3ddf4bac.png",
+      "splitScreenBothPlayerSides": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61e66w-669f5921.png"
+    },
+    "environment": "During the early read phase, preview console recorded a lost Vite connection and ws ERR_CONNECTION_REFUSED, followed by automatic reconnection. Production module imports and all saved visual checks succeeded after recovery. No character-specific failure was inferred from this interruption.",
+    "limitations": "Representative static production samples were inspected. No audio listening, every-frame interpolation review or timed lobby selection capture was performed. Own native tab was closed through t3_preview_close after the screenshots."
+  },
+  "findings": [
+    {
+      "id": "chataing-cpu-outbound-reach",
+      "severity": "low",
+      "component": "shared/engine.ts cpuInput specialInRange",
+      "summary": "CPU treats the returning microphone as an ordinary long-range projectile and casts outside its outbound reach.",
+      "reproduction": "Create poliedro with Javier P1 and Chataing P2; advance intro510 ticks, set Chataingx900/Javierx400 on floor, zero velocities, no attacks, cooldown0 and energy100. Advance90 idle ticks to tick600. cpuInput(state, emptyInput(), 'normal') returns left=true and actions.special=1. Feed that input for120 real engine steps while Javier remains idle.",
+      "expected": "CPU should approach until the microphone can reach its target, then spend25 energy on the special.",
+      "observed": "Target remains100HP and Chataing records0hits; energy becomes79.165 after recovery regeneration. The special launches while gap500. Static stationary reach is strictly below320, but cpuInput accepts any projectile at165<gap<540 and ignores returnAfter.",
+      "recommendation": "Central integrator can account for outbound travel before reversal when deciding projectile special range. Preserve the current return timing and rear collision behavior.",
+      "test": "tests/character-audits/chataing.test.ts: static reach probes record actual outbound limits and CPU choice at gap500"
+    }
+  ],
+  "verification": {
+    "testFile": "tests/character-audits/chataing.test.ts",
+    "command": "npx tsx --test tests/character-audits/chataing.test.ts",
+    "result": {
+      "tests": 9,
+      "passed": 9,
+      "failed": 0
+    },
+    "typecheck": "An initial full npx tsc --noEmit --pretty false completed successfully. A second full check after the range probe encountered only concurrent tests/character-audits/mcm.test.ts tuple errors at lines11 and132, with no Chataing errors. Focused Chataing typecheck uses the repository target/module/strict options.",
+    "focusedTypecheckCommand": "npx tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --strict --skipLibCheck --resolveJsonModule --esModuleInterop --types node tests/character-audits/chataing.test.ts",
+    "sharedHashes": "The six recorded hashes were unchanged between initial inspection and final test/visual checks.",
+    "notRun": [
+      "New web research",
+      "Audio listening",
+      "Full repository test suite",
+      "Build"
+    ],
+    "focusedTypecheckResult": "passed, exit0; no errors"
+  }
+}

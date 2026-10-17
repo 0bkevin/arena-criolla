@@ -1,0 +1,259 @@
+{
+  "auditVersion": 28,
+  "fighterId": "silbon",
+  "name": "El Silbón",
+  "auditedDate": "2026-10-13",
+  "status": "complete_no_reproducible_character_specific_defect",
+  "scope": "Dedicated El Silbón audit. Only this report and tests/character-audits/silbon.test.ts were written in the repository. No runtime edits, commits, servers, or child agents.",
+  "sourceRevision": "2273843fe788fb68bfa35d80d9ec87b48f1d2b7e",
+  "baselineHashes": {
+    "shared/engine.ts": "f9f0a0ad96d986547a48e9073c273038214fda830b44b16726f98762f1a1eeb2",
+    "shared/techniques.ts": "f0210e6f6decad809f216d2b416ce6ed8812b658fedf170c903152aa552f6250",
+    "shared/fighters.json": "30611f5f186fc5de17ab2ccfe7646e8fd4343cbcce803e208d2a5c9e045b69b9",
+    "shared/presentation.ts": "68ff1fb48680fd1c018ea3b95fcbe7a348e6c7e6109cdfc79e040736794fbacf",
+    "shared/presentations.json": "0c03861463a97bb48a9f7eb1e5b00cdd8ab816b7af1e1d4582adc9ef62173e25",
+    "shared/choreography.ts": "ffe139cd4af2c7a371cb69ec23f36ada6807dd6aa835657599c752dc238cb3b8",
+    "src/game/assets.ts": "7e8c53ea36d1e1d47655352145db110ccebf088c54ce3262e8bc29fea364ca56",
+    "public/assets/silbon-v12.webp": "043b6180033b98ca9bdd8b0f7d94784f8ebc492409333c82a58aceaaddac2a7c"
+  },
+  "evidenceRead": [
+    "docs/character-audits-v28/BRIEF.txt",
+    "docs/folklore-v12/research.json (Silbón section)",
+    "docs/character-sprite-qa.json (Silbón section)",
+    "shared/engine.ts",
+    "shared/techniques.ts",
+    "shared/fighters.json",
+    "shared/presentation.ts",
+    "shared/presentations.json",
+    "shared/choreography.ts",
+    "src/game/assets.ts",
+    "src/game/presentation-renderer.ts",
+    "src/game/intro-renderer.ts",
+    "src/game/renderer.ts",
+    "src/game/folklore-renderer.ts",
+    "src/components/Portrait.tsx"
+  ],
+  "identityAndPortrayal": {
+    "preservedDossier": "Llanero legend represented by a hat and sack, with an oscillating accelerating whistle. Preserved Fundación Empresas Polar reference; no new historical claims or broad research.",
+    "reference": {
+      "title": "Fundación Empresas Polar — Mitos y leyendas del estado Portuguesa",
+      "url": "https://bibliofep.fundacionempresaspolar.org/media/1377933/presentacion-introduccion-y-aspectos-generales.pdf"
+    },
+    "visualMatch": "Actual atlas retains the wide straw hat, skeletal face, brown sack with crossed bone marks, ragged olive clothes, neck scarf, dark trousers and boots. This is the established fictional arcade adaptation.",
+    "audioLimit": "No audio listening or real voice identification was performed; this audit makes no voice/dialogue claim."
+  },
+  "movementAndStance": {
+    "result": "pass_both_sides",
+    "movement": {
+      "startX": 540,
+      "rightFrames": 24,
+      "rightX": 635.2145440796703,
+      "subsequentLeftFrames": 24,
+      "leftX": 547.9851975633037,
+      "facing": "Follows right=1 and left=-1; identical results on P1 and P2."
+    },
+    "jump": "First jump reaches y454.6 after10 calls. Second jump is accepted, third is rejected, and landing resets y554, grounded=true, jumps0, stocks2 on both sides.",
+    "stance": "Production drawSprite inspected for all eight frames in both facings: idle0, guard1, run2/3, jump4, light/special5, heavy6 and recoil7. Face and attacks point toward the indicated direction; no missing head, hand, boot or neighboring sprite fragment observed.",
+    "atlas": {
+      "asset": "public/assets/silbon-v12.webp",
+      "imageSize": [
+        1774,
+        887
+      ],
+      "bodyHeight": 411,
+      "frames": 8,
+      "frameFacing": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "qaRows": [
+        4,
+        4
+      ],
+      "qaPassed": true
+    }
+  },
+  "special": {
+    "name": "Silbido errante",
+    "ability": "whistle",
+    "configuration": {
+      "startupFrames": 13,
+      "recoveryFrames": 47,
+      "nominalRange": 570,
+      "height": 140,
+      "baseDamage": 13,
+      "force": 7,
+      "energyCost": 25,
+      "projectile": {
+        "speed": 4,
+        "life": 85,
+        "wave": {
+          "amplitude": 28,
+          "period": 32
+        },
+        "acceleration": 0.22,
+        "maxSpeed": 12
+      }
+    },
+    "idle": "After the510-tick intro: P1 Silbón x180/Javier x460, or P2 Silbón x900/Javier x620; y554, energy100. Increment only Silbón special once. One shot emits at attack tick13 (vx±4.22, age1, life84), hits at tick39, and Javier finishes86.2083 HP. Attacker remains stationary and records one hit.",
+    "frontGuard": "Same setup with rival block=true and no movement: each side retains rival HP100, has exactly one block effect, records no attacker hit, and consumes the shot.",
+    "rearGuard": "Same setup with rival block=true and movement away (right against P1, left against P2): rival faces away, is hit once at tick46, finishes86.2083 HP and produces no block effect.",
+    "energyGate": "Energy24 rejects the special; energy25 accepts and leaves0.035 after the same-frame regeneration/cost. Energy100 is exactly75 immediately after activation on both sides.",
+    "accelerationWaveAndExpiry": "At gap760 with rival invincible1000 solely to avoid collision, real emitted shots retain their forward direction and owner. Each active frame obeys vx=direction*min(12,4+0.22*age), y=479+28*sin(2π*age/32), life=85-age. The speed cap starts at age37/tick49. Last surviving observation is age84/tick96/life1; removal occurs age85/tick97. Each side has84 surviving observations and no hit. No return or homing occurs.",
+    "waveExamples": [
+      {
+        "age": 8,
+        "y": 507
+      },
+      {
+        "age": 16,
+        "y": 479
+      },
+      {
+        "age": 24,
+        "y": 451
+      },
+      {
+        "age": 32,
+        "y": 479
+      }
+    ],
+    "jumpEvasion": "At gap280, activate the special on tick1 and jump the rival on tick13 (after12 calls). Both sides evade, retain HP100 and land; the shot subsequently expires.",
+    "rangeProbes": [
+      {
+        "gap": 25,
+        "hits": 1,
+        "finalHp": 86.2083,
+        "remainingStocks": 2
+      },
+      {
+        "gap": 80,
+        "hits": 1,
+        "finalHp": 86.2083,
+        "remainingStocks": 2
+      },
+      {
+        "gap": 120,
+        "hits": 1,
+        "finalHp": 86.2083,
+        "remainingStocks": 2
+      },
+      {
+        "gap": 520,
+        "hits": 1,
+        "finalHp": 86.2083,
+        "remainingStocks": 2
+      },
+      {
+        "gap": 620,
+        "hits": 1,
+        "finalHp": 86.2083,
+        "remainingStocks": 2
+      },
+      {
+        "gap": 760,
+        "hits": 1,
+        "finalHp": 100,
+        "remainingStocks": 1
+      },
+      {
+        "gap": 820,
+        "hits": 1,
+        "finalHp": 100,
+        "remainingStocks": 1
+      }
+    ],
+    "rangeInterpretation": "Actual projectile reach follows acceleration and lifetime rather than the nominal range field. At gap760/820 the hit knocks Javier off the floor and he respawns, accounting for final HP100 with one fewer stock. No defect inferred from this expected ringout."
+  },
+  "attacksAndCombos": {
+    "light": "At gap80 both sides hit once for7.4263 damage (7*1.03*1.03); forward guard blocks HP loss. Outward knockback is mirrored.",
+    "heavy": "At gap80 both sides hit once for13.7917 damage (13*1.03*1.03); forward guard blocks HP loss. Outward knockback is mirrored.",
+    "baseCombo": "Paso perdido: L→H with real chase inputs lands both strikes on each side; heavy bonus3, final target HP75.692, elapsed67 simulation ticks.",
+    "advancedCombo": "Eco del camino: L→L→H with real chase inputs lands all three on each side at one win; heavy bonus7, final target HP64.1457, elapsed114 ticks. At zero wins the same input chain recognizes only Paso perdido/bonus3.",
+    "recognitionLimit": "Separate out-of-range light inputs verify the existing input-chain recognition behavior. Connected-combo checks independently verify every strike lands; this audit does not request a redesign of whiff recognition.",
+    "super": "Noche sin regreso: at gap200, three wins and energy100, startup9 hits once on both sides for42.0652 damage ((28*1.03+12)*1.03); target HP57.9348. Zero/two wins and three wins with74 energy reject the super. This is the existing shared melee super, with its character-specific combo name."
+  },
+  "cpuFight": {
+    "opponent": "Javier Hala Madrid",
+    "difficulty": "normal",
+    "result": "finished_and_exactly_replayed",
+    "winner": "El Silbón",
+    "finalTick": 1017,
+    "remainingFrames": 4866,
+    "method": "Finish the510-tick intro, use the deterministic controller in the audit test, leave Silbón idle180 calls to exercise CPU offense, then approach/guard/jump and use light/heavy/special/super. Run twice and compare full final states.",
+    "started": [
+      "super",
+      "light",
+      "heavy",
+      "special"
+    ],
+    "landed": [
+      "super",
+      "heavy",
+      "light"
+    ],
+    "silbon": {
+      "hp": 100,
+      "stocks": 1,
+      "hits": 4,
+      "peakCombo": 3
+    },
+    "javier": {
+      "hp": 0,
+      "stocks": 0,
+      "hits": 1,
+      "peakCombo": 1
+    },
+    "limitation": "The special starts but does not land during this complete bout. Dedicated idle, front/rear guard and jump probes separately verify actual whistle collisions. This controller is an exercised fight, not a balance benchmark."
+  },
+  "introAndSelection": {
+    "name": "Acomoda el saco",
+    "styles": [
+      "stalk",
+      "stalk"
+    ],
+    "durationMs": 2800,
+    "result": "visually_checked_both_facings",
+    "oneShot": "One sack adjustment/lean is followed by guard frame1. Selection progress is1 at2800ms and5600ms; intro entrance progress also clamps to1 for each player. Final pose and gesture are identical beyond completion, with all gesture values at rest. Source Portrait stops animation after completion.",
+    "timeline": "All attacks and movement remain blocked through intro tick509; playing starts tick510 and both face the rival.",
+    "visualEvidence": "Native actual drawPresentation contact sheet includes intro and selection in both facings at0,616,1400,2128,2800,5600ms. Production renderMatch/drawIntroCinematic snapshots at P1 tick84 and P2 tick264 show Silbón facing the rival with a complete face, hat and sack. Production whistle snapshots at tick535 show appropriately directed rings on both sides."
+  },
+  "nativePreview": {
+    "available": true,
+    "tabId": "tab_2u_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "openedWithReuseExistingTab": false,
+    "ownTabClosed": true,
+    "method": "Own native T3 preview; direct imports of production assets, presentation renderer, shared engine and match renderer. Saved screenshots were opened and visually inspected.",
+    "screenshots": [
+      {
+        "kind": "all_eight_actual_combat_sprites_both_facings",
+        "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62fip7-8eeb728d.png"
+      },
+      {
+        "kind": "one_shot_intro_and_selection_both_facings",
+        "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62g3cw-981e75ef.png"
+      },
+      {
+        "kind": "production_intro_and_whistle_both_player_sides",
+        "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62gvtw-2d7f8eb8.png"
+      }
+    ],
+    "limits": "Deterministic production-renderer snapshots were used; no manual keyboard play or audio listening. No preview availability or reload limitation occurred."
+  },
+  "validation": {
+    "testCommand": "npx tsx --test tests/character-audits/silbon.test.ts",
+    "tests": 9,
+    "passed": 9,
+    "failed": 0,
+    "typecheckCommand": "npx tsc --noEmit",
+    "typecheck": "pass",
+    "freshProcessRetest": "Final9/9 test run occurred in a fresh tsx process after adding one-shot assertions. No runtime files were edited by this agent."
+  },
+  "findings": []
+}

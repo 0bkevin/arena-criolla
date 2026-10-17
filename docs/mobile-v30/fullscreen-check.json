@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "status": {
+    "fullscreen": "root",
+    "viewport": [
+      844,
+      390
+    ],
+    "controlsInsideFullscreen": true,
+    "controls": [
+      {
+        "control": "left",
+        "within": true
+      },
+      {
+        "control": "right",
+        "within": true
+      },
+      {
+        "control": "jump",
+        "within": true
+      },
+      {
+        "control": "down",
+        "within": true
+      },
+      {
+        "control": "dash",
+        "within": true
+      },
+      {
+        "control": "block",
+        "within": true
+      },
+      {
+        "control": "light",
+        "within": true
+      },
+      {
+        "control": "heavy",
+        "within": true
+      },
+      {
+        "control": "special",
+        "within": true
+      },
+      {
+        "control": "super",
+        "within": true
+      }
+    ]
+  },
+  "helpInFullscreen": true,
+  "exitRestoresFullscreen": true,
+  "physicalDevice": false,
+  "apisMocked": false
+}

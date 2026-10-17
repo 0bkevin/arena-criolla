@@ -1,0 +1,78 @@
+{
+  "version": 12,
+  "tool": "image_gen.imagegen",
+  "assets": [
+    {
+      "id": "silbon",
+      "name": "El Silbón",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-04adddf8-8188-4925-8444-3f2957ce73c6.png",
+      "source": "assets/source/silbon-v12.png",
+      "runtime": "public/assets/silbon-v12.webp"
+    },
+    {
+      "id": "llorona",
+      "name": "La Llorona",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-024ff1db-5986-406e-a35a-c54b607e21b9.png",
+      "source": "assets/source/llorona-v12.png",
+      "runtime": "public/assets/llorona-v12.webp"
+    },
+    {
+      "id": "sayona",
+      "name": "La Sayona",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-51674535-e5f3-4eb7-92d4-1b8cc1ce3056.png",
+      "source": "assets/source/sayona-v12.png",
+      "runtime": "public/assets/sayona-v12.webp"
+    },
+    {
+      "id": "lionza",
+      "name": "María Lionza",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-7e3536f4-34dd-4cce-a021-a48cc7106eaf.png",
+      "source": "assets/source/lionza-v12.png",
+      "runtime": "public/assets/lionza-v12.webp"
+    },
+    {
+      "id": "florentino",
+      "name": "Florentino",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-50c02f1b-9867-4b17-b778-bcb13e24cce3.png",
+      "source": "assets/source/florentino-v12.png",
+      "runtime": "public/assets/florentino-v12.webp"
+    },
+    {
+      "id": "diablo",
+      "name": "El Diablo de los Llanos",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-5348228b-ea57-4817-97ae-155627922904.png",
+      "source": "assets/source/diablo-v12.png",
+      "runtime": "public/assets/diablo-v12.webp"
+    },
+    {
+      "id": "knoche",
+      "name": "Doctor Knoche",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-27cbc09e-d2c8-48dc-a3ba-298cc631b0f5.png",
+      "source": "assets/source/knoche-v12.png",
+      "runtime": "public/assets/knoche-v12.webp"
+    },
+    {
+      "id": "momoy",
+      "name": "El Momoy",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-8c12cbec-1606-45f4-a3fb-3a741ebe8aba.png",
+      "source": "assets/source/momoy-v12.png",
+      "runtime": "public/assets/momoy-v12.webp"
+    },
+    {
+      "id": "tiotigre",
+      "name": "Tío Tigre",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-d401f754-513e-4ef8-b4ba-a0395cba01f8.png",
+      "source": "assets/source/tiotigre-v12.png",
+      "runtime": "public/assets/tiotigre-v12.webp"
+    },
+    {
+      "id": "tioconejo",
+      "name": "Tío Conejo",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-dcc7c233-87f3-4e78-818b-d69fe632f8bd.png",
+      "source": "assets/source/tioconejo-v12.png",
+      "runtime": "public/assets/tioconejo-v12.webp"
+    }
+  ],
+  "promptSet": "docs/folklore-v12/sprite-prompts.json",
+  "culturalSources": "docs/folklore-v12/research.json"
+}

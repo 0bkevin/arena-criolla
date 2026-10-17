@@ -1,0 +1,244 @@
+{
+  "version": 28,
+  "fighterId": "vallenilla",
+  "fighterName": "Pedro Vallenilla",
+  "auditedAt": "2026-10-13",
+  "scope": "Independent audit of Vallenilla only; shared runtime and assets were not changed.",
+  "status": "gameplay-passed-visual-fix-required",
+  "research": {
+    "dossier": "docs/characters-v5/vallenilla/research.json",
+    "identity": "Pedro Julio Vallenilla Sosa, founder and CEO of Cashea according to the preserved dossier.",
+    "referencesInspected": [
+      "assets/references/vallenilla/banca-negocios-interview.jpg",
+      "public/assets/vallenilla-v5.webp"
+    ],
+    "likenessAssessment": "The atlas retains the reference's broad receding forehead, short brown hair, short facial hair, smiling face and light blue checked shirt. No glasses are painted. The fighting poses, credit cards and move names are theatrical game inventions.",
+    "newWebResearch": false,
+    "audioLimitation": "The historical dossier contains original speech provenance; the current game uses generic combat reactions. This audit did not listen to or reattribute audio."
+  },
+  "filesRead": [
+    "shared/fighters.json",
+    "shared/content.ts",
+    "shared/techniques.ts",
+    "shared/engine.ts",
+    "shared/presentations.json",
+    "shared/presentation.ts",
+    "shared/choreography.ts",
+    "shared/entrance-assets.json",
+    "src/game/assets.ts",
+    "src/game/renderer.ts",
+    "src/game/presentation-renderer.ts",
+    "src/game/intro-renderer.ts",
+    "src/game/entrance-renderer.ts",
+    "src/game/controls.ts",
+    "docs/characters-v5/vallenilla/research.json",
+    "docs/character-sprite-qa.json",
+    "docs/entrances-v23/runtime-qa.json",
+    "docs/entrances-v23/final-visual-review.json",
+    "tests/characters.test.ts",
+    "tests/engine.test.ts"
+  ],
+  "runtimeVerification": {
+    "method": "Real deterministic createMatch/stepMatch fights at 60 Hz. Tests clear initial invulnerability and set starting positions/energy, then use normal inputs without changing fighters or positions during each fight. Combo inputs wait for real cooldown and hitstop recovery.",
+    "stage": "guaira",
+    "playerSides": [0, 1],
+    "opponent": "javier",
+    "movement": {
+      "status": "passed-on-both-sides",
+      "p1": {
+        "startX": 330,
+        "xAfter12RightTicks": 376.7057347059963,
+        "xAfter20LeftTicksAndRest": 264.5887543943361
+      },
+      "p2": {
+        "startX": 750,
+        "xAfter12RightTicks": 796.7057347059963,
+        "xAfter20LeftTicksAndRest": 684.5887543943363
+      },
+      "facing": "Right input gives +1; left input gives -1. Resting on the floor turns toward the opponent.",
+      "jump": "First jump reaches y=454.6 after 10 ticks from floor y=554. Second jump registers, third is rejected, and landing restores grounded state and zero jumps."
+    },
+    "normalAttacks": {
+      "status": "passed-on-both-sides",
+      "startingGap": 80,
+      "light": { "hits": 1, "opponentHp": 92.7179, "blockedOpponentHp": 100 },
+      "heavy": { "hits": 1, "opponentHp": 86.4761, "blockedOpponentHp": 100 },
+      "notes": "Facing guard produces block effects and consumes energy. Keeping an action counter unchanged does not retrigger the attack."
+    },
+    "special": {
+      "name": "Tres cuotas",
+      "ability": "installments",
+      "characterSpecificBehavior": "Three separate horizontal credit-card projectiles are spawned by one special, each ten simulation frames apart. Vallenilla remains stationary in the standing launch pose while the cards travel.",
+      "status": "passed-on-both-sides",
+      "energyCost": 25,
+      "rejectedAtStartingEnergy": 24,
+      "spawnTicks": [11, 21, 31],
+      "projectileSpeed": { "p1": 9, "p2": -9 },
+      "projectileDamageBeforeRivalArmor": 6.06,
+      "projectileLifetimeTicks": 72,
+      "midrangeIdle": {
+        "startingGap": 280,
+        "hitTicks": [32, 48, 64],
+        "hits": 3,
+        "opponentHp": 81.2746,
+        "remainingProjectilesAfter150Steps": 0,
+        "sameResultOnP2": true
+      },
+      "otherIdleRangesCheckedThroughNativeEngine": [
+        { "gap": 120, "hitTicks": [14, 30, 47], "hits": 3, "opponentHp": 81.2746 },
+        { "gap": 420, "hitTicks": [47, 63, 80], "hits": 3, "opponentHp": 81.2746 },
+        { "gap": 620, "hitTicks": [69, 86], "hits": 2, "ringoutTick": 121, "opponentStocks": 1 }
+      ],
+      "continuousGuard": {
+        "startingGap": 280,
+        "blockTicks": [32, 42, 52],
+        "blockedPulses": 3,
+        "opponentHp": 100,
+        "opponentEnergyAfter126StepsFrom100": 58.6,
+        "sameResultOnP2": true
+      },
+      "interpretation": "At the long 620-unit edge setup, knockback rings out the idle rival after two hits; the HP reset to 100 is a stock reset, not a failure to damage. At ordinary ranges all three pulses hit. Holding forward-facing guard continuously blocks all three; separate precisely timed guard taps are not required."
+    },
+    "combos": {
+      "status": "passed-on-both-sides",
+      "inputMethod": "Start 80 units apart, hold toward the rival, press each next attack after its normal cooldown and hitstop have recovered.",
+      "basic": {
+        "wins": 0,
+        "inputs": ["light", "heavy"],
+        "name": "Cuota inicial",
+        "bonus": 3,
+        "landedHits": 2,
+        "opponentHp": 76.104
+      },
+      "upgraded": {
+        "wins": 1,
+        "inputs": ["light", "light", "heavy"],
+        "name": "Pago en cadena",
+        "bonus": 7,
+        "landedHits": 3,
+        "opponentHp": 64.7019
+      },
+      "definitive": {
+        "winsRequired": 3,
+        "energyRequired": 75,
+        "name": "Límite aprobado",
+        "startingGap": 160,
+        "landedHits": 1,
+        "opponentHp": 58.5116,
+        "rejectedCases": ["2 wins and 100 energy", "3 wins and 74 energy"],
+        "implementation": "The unlocked definitive is the engine's shared melee super with Vallenilla's name and +12 combo bonus; his three-card special remains the unique move."
+      }
+    },
+    "cpuFight": {
+      "difficulty": "hard",
+      "playerSide": 0,
+      "opponent": "javier",
+      "method": "Normal cpuInput for P2. P1 uses a deterministic distance-based movement/attack script and normal jump recovery logic.",
+      "elapsedStepCalls": 571,
+      "simulationTicks": 528,
+      "phase": "finished",
+      "winner": 0,
+      "attacksStarted": ["special", "light", "heavy"],
+      "attacksThatConnected": ["special", "light"],
+      "vallenilla": { "hp": 100, "stocks": 1, "hits": 13, "peakCombo": 9 },
+      "cpu": { "hp": 0, "stocks": 0, "hits": 0 },
+      "limitation": "This is one deterministic hard-CPU matchup, not a roster-wide balance assessment."
+    },
+    "introGating": {
+      "status": "passed",
+      "totalTicks": 510,
+      "movementAndSpecialBlockedBeforePlaying": true,
+      "openingFacing": [1, -1]
+    }
+  },
+  "visualVerification": {
+    "method": "Native T3 browser preview, using this agent's own tab at http://localhost:5173. Clicked the actual Pedro selection button, inspected the settled lobby portrait, then imported the actual Vite runtime modules into that same tab and rendered deterministic states without changing repository files.",
+    "tabId": "tab_1z_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "nativeScreenshotFilesSaved": false,
+    "checks": [
+      "Actual lobby selection: Pedro's name, role, shirt, face and ready stance match the selected fighter.",
+      "Actual drawPresentation selection poses at progress 0, 0.22, 0.5, 0.76 and 1: one card presentation accent, release and final ready stance; card fades at endpoints.",
+      "Actual renderMatch intro tick 84 for P1 and 264 for P2: card is presented near the forward hand, faces remain readable and mirrored, panel divider does not cut the face.",
+      "Loaded sprite has battleFrame 0, all eight source directions +1, and no dedicated entrance atlas; selection and intro use the articulated fallback with card accent.",
+      "Actual renderMatch special at tick 31 on both sides: three luminous credit cards at separate positions, all flying toward the rival, with the correct left/right launch pose.",
+      "Actual drawSprite reviewed all eight combat frames in both directions: ready, guard, both running frames, tucked jump, punch, high kick, recoil.",
+      "Heavy frame 6 rendered at both normal combat scale and 400px body height: a detached white fragment from another atlas pose appears above the raised foot."
+    ],
+    "stance": "The ready stance keeps fists raised with full body visible. All combat frames mirror correctly toward the opponent.",
+    "limitations": [
+      "The native visual inspection sampled deterministic renderer states; a long manual keyboard playthrough and recorded video were not performed.",
+      "No screenshots were written because this audit's writable scope is its JSON report and test file.",
+      "The preserved sprite QA reports eight valid connected silhouettes and passed=true, but its rectangular runtime crops still include neighboring pixels."
+    ]
+  },
+  "findings": [
+    {
+      "id": "vallenilla-atlas-cross-pose-pixels",
+      "severity": "medium",
+      "category": "visual",
+      "status": "reported-to-parent-not-fixed-in-this-audit",
+      "summary": "The heavy kick draws a floating white shoe fragment because its rectangle includes pixels from the running pose. The running rectangle also includes pixels from the high kick.",
+      "affectedFiles": [
+        "public/assets/vallenilla-v5.webp",
+        "assets/source/vallenilla-v5.png",
+        "src/game/assets.ts",
+        "docs/character-sprite-qa.json"
+      ],
+      "reproduction": [
+        "Choose Pedro Vallenilla and start a local fight.",
+        "Press P1 K or P2 Digit2/Numpad2 to show the heavy high-kick frame.",
+        "Look immediately above the extended shoe: a small detached white fragment appears, mirrored on P2.",
+        "For an unambiguous native reproduction, loadSprite('vallenilla') and call the existing drawSprite with frame 6, body height 400, facing +1 and -1 on a dark canvas."
+      ],
+      "evidence": {
+        "heavyFrame": 6,
+        "heavyRectangle": { "minX": 936, "minY": 445, "maxX": 1373, "maxY": 873 },
+        "runningFrame": 2,
+        "runningRectangle": { "minX": 950, "minY": 10, "maxX": 1284, "maxY": 452 },
+        "runningPixelsInsideHeavyRectangleAtAlpha40OrGreater": 200,
+        "heavyPixelsInsideRunningRectangleAtAlpha40OrGreater": 247,
+        "scanMethod": "Sharp decoded the shipped WebP to RGBA; a four-neighbor alpha>=40 component flood fill reproduced QA silhouette counts, then counted other connected components inside each runtime crop rectangle.",
+        "nativeObservation": "Detached white fragment visibly appears in both normal-scale eight-frame previews and enlarged isolated heavy frames."
+      },
+      "cause": "loadSprite uses connected-component bounds but drawSprite copies the full rectangular region from the original atlas. Component-specific alpha masks are not applied, so the overlapping row bounds admit pixels belonging to another pose.",
+      "recommendedFix": "Create isolated, component-masked frame images at asset load or repack each connected silhouette with padding. Keep the original component pixels for the high kick; simply truncating all second-row crops to y>=453 would remove valid kick-foot pixels.",
+      "regressionCheck": "Both heavy and running frames should contain only their own component pixels, with no white fragment above the heavy foot at 177px or 400px, and preserve the complete shoe on both facing directions."
+    }
+  ],
+  "testsActuallyRun": [
+    {
+      "command": "npx tsx --test tests/character-audits/vallenilla.test.ts",
+      "result": "passed",
+      "tests": 19,
+      "passed": 19,
+      "failed": 0,
+      "covers": "Both player sides, both movement directions, jump limits/landing, light/heavy idle and block, special spawn timing/three midrange hits/all three blocks/energy gate, landed basic/upgraded combos, definitive unlock/cost/damage, intro gating, complete hard-CPU fight."
+    },
+    {
+      "command": "npx tsc --noEmit --moduleResolution Bundler --module ESNext --target ES2022 --lib es2022,dom --types node --allowImportingTsExtensions --skipLibCheck --strict --resolveJsonModule --esModuleInterop tests/character-audits/vallenilla.test.ts",
+      "result": "passed",
+      "covers": "Audit test and its shared runtime imports type-check."
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "result": "blocked-by-unrelated-existing-or-concurrent-error",
+      "error": "server/creator/provider.ts(28,8): error TS1005: ',' expected.",
+      "notes": "Reported to parent. This file is outside the Vallenilla audit's editable scope."
+    },
+    {
+      "command": "Inline Node/Sharp RGBA connected-component scan of public/assets/vallenilla-v5.webp",
+      "result": "confirmed-visual-defect",
+      "covers": "Detected cross-pose pixels in frames 2 and 6 independently of the preserved QA's passed flag."
+    },
+    {
+      "command": "Native T3 preview imported shared/engine.ts and executed single-special fights at gaps 120, 280, 420 and 620 on both sides",
+      "result": "passed-with-expected-edge-ringout",
+      "covers": "All three pulses hit at normal ranges; edge setup damages then rings out."
+    }
+  ],
+  "filesWritten": [
+    "docs/character-audits-v28/vallenilla.json",
+    "tests/character-audits/vallenilla.test.ts"
+  ],
+  "recommendedNextAction": "Fix the atlas crop contamination in shared asset loading or by repacking isolated silhouettes, then rerun the Vallenilla tests and inspect the high kick and running pose on both sides. No Vallenilla-specific combat tuning was required by this audit."
+}

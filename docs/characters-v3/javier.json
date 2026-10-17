@@ -1,0 +1,53 @@
+{
+  "id": "javier",
+  "realName": "Javier David Romero (Javier Hala Madrid)",
+  "sprite": "javier-v2",
+  "portraitReference": "assets/references/javier/version-final-portrait-2021.jpg",
+  "portrayal": "Retratar a Javier como creador venezolano de sketches satíricos que cambia rápido de expresión y personaje. La foto de prensa verifica su rostro y camiseta negra con cadena; el atlas v2 ya conserva esos rasgos y sus ocho poses separadas. En sus propios TikToks también aparece con polos casuales y ropa negra.",
+  "sources": [
+    {
+      "title": "Canal oficial JAVIERHALAMADRID / Canal Oficial",
+      "url": "https://t.me/s/Javierhalamadridd?after=487"
+    },
+    {
+      "title": "Post 490 — sketch de reacción al texto sobre el machismo",
+      "url": "https://t.me/Javierhalamadridd/490"
+    },
+    {
+      "title": "Foto de Javier publicada por Diario Versión Final",
+      "url": "https://diarioversionfinal.com/magazine/influencer-javier-halamadrid-nominado-a-los-premios-juventud-2021/"
+    },
+    {
+      "title": "Canal de YouTube enlazado por el perfil oficial de Telegram",
+      "url": "https://www.youtube.com/c/JavierRomero321"
+    }
+  ],
+  "lines": {
+    "select": {
+      "text": "El pene es un invento patriarcal y machista",
+      "file": "/audio/javier/original-select.mp3",
+      "kind": "original",
+      "sourceUrl": "https://t.me/Javierhalamadridd/490",
+      "sourceMediaUrl": "https://cdn1.telesco.pe/file/600a2796c1.mp4?token=jLxcOBLiInVIWORVrWqBcFIrWhgENQeaOE8Nf9vlN5F2-iZBbYAdx9Uk8w9wnJVpyrlRGdSj7s5mb8Mvc6uSINlAjUchrnJ9bewmh_Bj6BGMHmml19d1Lgzt_hj_XtTVIwMtQa5PZSYoNSB9lrMU7Zsi6jMuDI87yQLd5xcaVzPPIzs1QLEFuw-JYTF9UHmzW5HbFD6kiq905w0iTd3Qq-f5Qli0tGSfETh-gDx8VQDGLon10Lf1XUYA8Rm35i3UhJgjefsX6uVuS8jFufxj8ObX-Wojd9imA72O7GJDPcDrP0CLKRIEGr0jDUuvwEBhJwzEHoy9XCCpuDJ0FUDPjQ",
+      "start": 2.1,
+      "end": 4.7,
+      "verification": "La transcripción Whisper local del post completo identifica «el pene es un invento patriarcal y machista» entre 2.1 y 4.66 s. Al repetir ASR sobre el recorte, el modelo separó y escribió con baja confianza «patriarcal» como «padrer gal». En los fotogramas del mismo intervalo, Javier aparece en primer plano señalando el texto; su rostro y peinado concuerdan con la foto de prensa y otros videos propios (posts 509 y 490). Clip de audio original recortado del video; solo trim, fade corto y normalización de volumen, sin TTS, clonación ni cambio de tono."
+    }
+  },
+  "audioResearch": {
+    "status": "one-original-clip-verified-by-public-source, image comparison and ASR",
+    "limitations": "No se declara escucha humana. La atribución visual se apoya en el video publicado en su canal oficial y en la comparación con su retrato periodístico; ASR confirma el texto en el video completo y ofrece una lectura menos segura del recorte corto. La URL del CDN de Telegram lleva un token temporal; el enlace estable de procedencia es el post oficial.",
+    "processing": "Recorte a mono MP3 de 2.6 s con fade breve y normalización. Sin síntesis, clonación ni alteración de tono."
+  },
+  "distinctiveTraits": [
+    "Copete negro alto peinado hacia atrás y arriba, laterales más cortos.",
+    "Rostro ovalado, frente amplia, cejas marcadas, orejas visibles, nariz redondeada y sonrisa amplia.",
+    "Expresiones cambiantes y señalamiento enfático al reaccionar a textos o videos.",
+    "Camiseta negra y cadena fina plateada en la foto de prensa; vestuario casual variable en sus sketches."
+  ],
+  "suggestedMoves": [
+    "Reacción de cejas elevadas seguida por mirada de incredulidad.",
+    "Señalar al rival mientras encadena una secuencia rápida de golpes.",
+    "Cambio cómico de expresión antes del remate especial."
+  ]
+}

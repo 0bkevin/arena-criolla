@@ -1,0 +1,126 @@
+{
+  "revision": 17,
+  "direction": "Más aire, menos elementos visibles",
+  "date": "2026-10-09T11:18:34.431Z",
+  "changes": [
+    "Márgenes de escritorio de 80 px a 1280 px y separación de 36 px entre arena y colección",
+    "Ocho personajes por página: cuatro columnas en escritorio y tres en móvil",
+    "Se retiran ornamentos, contadores repetidos, vidas del selector y botones de jugador duplicados",
+    "Un único resumen de escenario; Cambiar abre los nueve escenarios",
+    "Dificultad CPU en un selector compacto, con las tres opciones",
+    "Preparación en una fila de escenario, apodo, dificultad y jugar",
+    "Se conservan pixel art, portada Renny–Capriles, amarillo/azul/rojo y los escenarios venezolanos"
+  ],
+  "viewports": [
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "cards": 8,
+      "ctaBottom": 1441.796875,
+      "portraitsFit": true,
+      "page": "1–8 de 41"
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "cards": 8,
+      "ctaBottom": 1441.796875,
+      "portraitsFit": true,
+      "page": "1–8 de 41"
+    },
+    {
+      "width": 600,
+      "scrollWidth": 600,
+      "cards": 8,
+      "ctaBottom": 1441.796875,
+      "portraitsFit": true,
+      "page": "1–8 de 41"
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "cards": 8,
+      "ctaBottom": 1260,
+      "portraitsFit": true,
+      "page": "1–8 de 41"
+    },
+    {
+      "width": 900,
+      "scrollWidth": 900,
+      "cards": 8,
+      "ctaBottom": 786,
+      "portraitsFit": true,
+      "page": "1–8 de 41"
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024,
+      "cards": 8,
+      "ctaBottom": 786,
+      "portraitsFit": true,
+      "page": "1–8 de 41"
+    },
+    {
+      "width": 1280,
+      "scrollWidth": 1280,
+      "cards": 8,
+      "ctaBottom": 786,
+      "portraitsFit": true,
+      "page": "1–8 de 41"
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "cards": 8,
+      "ctaBottom": 785.8134765625,
+      "portraitsFit": true,
+      "page": "1–8 de 41"
+    }
+  ],
+  "flows": "Teclado en cuatro columnas; azar para CPU dentro de Leyendas; seis páginas de ocho; búsqueda sin acentos y sin resultados; validación de apodo; selector de dificultad; CPU; dos jugadores locales; creación y salida de una sala privada; nueve escenarios desde Cambiar; sin errores JavaScript observados.",
+  "mobilePreparation": {
+    "input": {
+      "x": 18,
+      "y": 475.796875,
+      "width": 354,
+      "height": 44,
+      "top": 475.796875,
+      "right": 372,
+      "bottom": 519.796875,
+      "left": 18
+    },
+    "cta": {
+      "x": 168,
+      "y": 557.796875,
+      "width": 204,
+      "height": 46,
+      "top": 557.796875,
+      "right": 372,
+      "bottom": 603.796875,
+      "left": 168
+    },
+    "viewport": 844,
+    "stage": {
+      "x": 18,
+      "y": 363.796875,
+      "width": 354,
+      "height": 68,
+      "top": 363.796875,
+      "right": 372,
+      "bottom": 431.796875,
+      "left": 18
+    },
+    "errors": []
+  },
+  "browser": "Vista compartida de T3 Code, perfil incógnito",
+  "build": {
+    "command": "npm run build",
+    "passed": true
+  },
+  "userStorage": "Se utiliza el perfil incógnito; no se modifica el perfil habitual del usuario.",
+  "screenshots": [
+    "docs/screenshots/airy-arcade-desktop-v17.png",
+    "docs/screenshots/airy-arcade-mobile-v17.png",
+    "docs/screenshots/airy-arcade-prepare-v17.png"
+  ]
+}

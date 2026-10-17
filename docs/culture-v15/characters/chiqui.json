@@ -1,0 +1,50 @@
+{
+  "id": "chiqui",
+  "name": "Chiquinquirá Delgado",
+  "biography": "Presentadora, actriz y modelo venezolana ligada a programas como Mira quién baila. La pasarela sirve como motivo de desplazamiento.",
+  "portraitReference": "assets/references/culture-v15/chiqui/portrait.jpg",
+  "distinctiveTraits": [
+    "Cabello castaño voluminoso con ondas y reflejos, ojos avellana.",
+    "Blusa blanca de su fotografía; pantalón azul y botas se añaden como vestuario arcade."
+  ],
+  "portrayal": "Cabello castaño voluminoso con ondas y reflejos, ojos avellana. Blusa blanca de su fotografía; pantalón azul y botas se añaden como vestuario arcade. Las acciones de pelea son ficción.",
+  "sources": [
+    {
+      "title": "Univision — trayectoria de Chiquinquirá Delgado",
+      "url": "https://www.univision.com/shows/mira-quien-baila/chiqui-delgado-llega-a-los-45-mira-como-ha-cambiado-la-conductora-fotos"
+    },
+    {
+      "title": "Referencia fotográfica inspeccionada — Chiquinquirá Delgado",
+      "url": "https://www.univision.com/temas/chiquinquira-delgado"
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/culture-v15/chiqui/portrait.jpg",
+      "url": "https://st1.uvnimg.com/f8/0a/8f36ffe64feaa04835bc65c65e04/11379048_1587078681556025_73486330_n.jpg",
+      "sourcePage": "https://www.univision.com/temas/chiquinquira-delgado",
+      "viewed": true
+    }
+  ],
+  "gameplay": {
+    "special": "Pasarela relámpago",
+    "ability": "runway",
+    "description": "Ondas castañas, blusa blanca y pantalón azul. Un avance corto y rapidísimo empuja con fuerza y frena al acabar.",
+    "combos": [
+      "Paso elegante",
+      "Foco azul",
+      "Cierre de pasarela"
+    ],
+    "role": "IMPULSO"
+  },
+  "audio": {
+    "realVoice": false,
+    "reactions": "Esfuerzos y dolor genéricos sin palabras",
+    "specialCue": "runway"
+  },
+  "review": {
+    "identityVerified": true,
+    "portraitViewed": true,
+    "biographyReviewed": true
+  }
+}

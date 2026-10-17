@@ -1,0 +1,239 @@
+{
+  "auditVersion": 28,
+  "fighterId": "tiotigre",
+  "name": "Tío Tigre",
+  "auditedDate": "2026-10-13",
+  "status": "complete_no_current_defect_found",
+  "scope": "Dedicated audit. Wrote only this report and tests/character-audits/tiotigre.test.ts. No runtime/art/package edits, commits, new server, or child agents.",
+  "sourceRevision": "2273843fe788fb68bfa35d80d9ec87b48f1d2b7e",
+  "finalVerificationHashes": {
+    "shared/engine.ts": "77916f714c9d0dc048f20964eb4ee9d03fa6267425ed974b38daee7f82c23749",
+    "shared/techniques.ts": "6b0381e7f847289e88636960923ba82722a25ec7a0d4786f72037a7f45942bf1",
+    "shared/fighters.json": "30611f5f186fc5de17ab2ccfe7646e8fd4343cbcce803e208d2a5c9e045b69b9",
+    "shared/presentation.ts": "68ff1fb48680fd1c018ea3b95fcbe7a348e6c7e6109cdfc79e040736794fbacf",
+    "shared/presentations.json": "0c03861463a97bb48a9f7eb1e5b00cdd8ab816b7af1e1d4582adc9ef62173e25",
+    "shared/choreography.ts": "ffe139cd4af2c7a371cb69ec23f36ada6807dd6aa835657599c752dc238cb3b8",
+    "src/game/assets.ts": "7e8c53ea36d1e1d47655352145db110ccebf088c54ce3262e8bc29fea364ca56",
+    "public/assets/tiotigre-v12.webp": "77de7b11324706e36ec12acb8317072d014e3a513a6cbb051aa75fcb34622b92"
+  },
+  "evidenceRead": [
+    "docs/character-audits-v28/BRIEF.txt",
+    "docs/folklore-v12/research.json (tiotigre section)",
+    "docs/character-sprite-qa.json (tiotigre section)",
+    "docs/character-runtime-qa-v12.json",
+    "shared/fighters.json",
+    "shared/techniques.ts",
+    "shared/engine.ts",
+    "shared/presentation.ts",
+    "shared/presentations.json",
+    "shared/choreography.ts",
+    "src/game/assets.ts",
+    "src/game/presentation-renderer.ts",
+    "src/game/renderer.ts",
+    "src/game/intro-renderer.ts",
+    "src/game/folklore-renderer.ts",
+    "src/components/Portrait.tsx"
+  ],
+  "identityAndPortrayal": {
+    "preservedDossier": "Preserved the existing black-striped tiger, green vest, offensive jumping advance, and two separated claw contacts arcade adaptation. No new folklore claims or art changes.",
+    "reference": {
+      "title": "Antonio Arráiz — Tío Tigre y Tío Conejo (edición Ministerio de Cultura, 2011)",
+      "url": "https://eldienteroto.org/wp49/wp-content/uploads/2023/11/Tio-conejo.pdf"
+    },
+    "visualMatch": "Production atlas keeps orange fur, black stripes, green open vest, belt, dark pants/boots, tiger face and tail across all eight poses. Both facings inspected using actual drawSprite.",
+    "audioLimit": "No audio listening or voice/dialogue identification performed; no audio pass claimed."
+  },
+  "movementAndStance": {
+    "result": "pass_both_sides",
+    "movement": {
+      "startX": 540,
+      "rightFrames": 24,
+      "rightX": 655.1431695847178,
+      "subsequentLeftFrames": 24,
+      "leftX": 549.6565179835304,
+      "facing": "right1/left-1 on P1 and P2"
+    },
+    "jump": "First jump reaches y454.6 after10 calls; second jump accepted, third rejected, returns to floor554 with grounded=true, jumps0, stocks2 on both sides.",
+    "manualDash": "Origin180 or900, dash input once: vx±14, dash12, invincible8, cooldown30. After41 calls x373.9999024 or706.0000976, vx±0.000052555; dash/invincibility/cooldown zero, attack null.",
+    "stance": "Idle/ready0, block1, run2/3, jump4, light/special5, heavy6 and recoil7 visually retain correct face direction. No clipped source silhouette or borrowed neighboring fragments observed. Some paired figures overlap in the comparison sheet; this is audit layout spacing.",
+    "atlas": {
+      "asset": "public/assets/tiotigre-v12.webp",
+      "imageSize": [
+        1774,
+        887
+      ],
+      "bodyHeight": 399,
+      "frames": 8,
+      "frameFacing": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "qaRows": [
+        4,
+        4
+      ],
+      "qaPassed": true
+    }
+  },
+  "special": {
+    "name": "Salto de tigre",
+    "ability": "pounce",
+    "configuration": {
+      "startupFrames": 8,
+      "recoveryFrames": 43,
+      "range": 145,
+      "secondPulseRange": 235,
+      "height": 180,
+      "baseDamage": 8,
+      "damageMultiplier": 1.04,
+      "force": 5,
+      "radial": true,
+      "pulses": [
+        0,
+        16
+      ],
+      "energyCost": 25,
+      "dash": {
+        "speed": 18,
+        "ticks": 8,
+        "invincibility": 2,
+        "lift": -9,
+        "brake": 0.8
+      }
+    },
+    "startingSetup": "Complete510 intro ticks on poliedro. P1 Tigre x180/rival Javier x280, or P2 Tigre x900/Javier x800; both y554, energy100. Increment special once at relative tick1.",
+    "idle": "Exactly2 damaging contacts at attack ticks8 and24, each8.5696 damage after Javier armor. HP91.4304 then82.8608. At tick8 actor x198 or882, y545.52/vy-8.48/vx±18/dash8. At tick24 actor x403.2787236 or676.7212764, y480.56; Javier x339.3261118 or740.6738882. The radial second claw still contacts after crossing the rival. No projectile.",
+    "frontGuard": "Rival block=true, movement false. Both claws block: HP100, hits0,2 distinct block effects, actor final x395.9253920 or684.0746080 after100 calls.",
+    "rearGuard": "Rival block=true and moves away (right against P1, left against P2). Both claws damage: HP82.8608/hits2/no blocks. Actor final x417.0287413 or662.9712587.",
+    "braking": "Without contact at gap450, frame15 retains vx±18/dash1; frame16 dash0 and vx±14.4, then multiplies by0.8 each special frame. After76 calls final x395.92539196 or684.07460804, y554, vx magnitude2.3331e-8. No arena crossing or stock loss.",
+    "rangeProbes": [
+      {
+        "gap": 25,
+        "hits": 2
+      },
+      {
+        "gap": 80,
+        "hits": 2
+      },
+      {
+        "gap": 140,
+        "hits": 2
+      },
+      {
+        "gap": 145,
+        "hits": 1
+      },
+      {
+        "gap": 200,
+        "hits": 1
+      },
+      {
+        "gap": 300,
+        "hits": 1
+      },
+      {
+        "gap": 450,
+        "hits": 0
+      }
+    ],
+    "rangeExplanation": "First claw uses strict distance<145 at tick8 before advance. Second uses235 at tick24 after offensive movement. Gaps145/200/300 connect only second claw;450 misses both. Mirrored on both sides. Body separation slightly changes final displacement at contact, so bounded300px assertion includes that behavior.",
+    "energyGate": "Energy24 rejects,25 and100 accept on both sides. Cost25; energy100 is75 immediately after activation. Offensive lift/velocity/brake explicitly asserted."
+  },
+  "attacksAndCombos": {
+    "light": "Gap80, single hit: HP92.5016. Front guard retainsHP100/hits0; mirrored outward knockback.",
+    "heavy": "Gap80, single hit: HP86.0744. Front guard retainsHP100/hits0; mirrored outward knockback.",
+    "baseCombo": "Zarpazo rápido: connected L→H with approach after knockback,2 hits, heavy bonus3, finalHP75.486,64 ticks on both sides.",
+    "advancedCombo": "Rayas en cadena: connected L→L→H with one win,3 hits, bonus7, finalHP63.8676,108 ticks on both sides. At zero wins the same input chain gets base name/bonus3.",
+    "chainRecognition": "Separate out-of-range light inputs verify the existing recognition of input chains including whiffs; connected tests chase and assert every strike lands.",
+    "super": "Dueño del monte:3 wins/energy100, gap200, tick9 single hit leavesHP57.6464/bonus12. Zero/two wins or energy74 reject. Tested P1/P2."
+  },
+  "cpuFight": {
+    "opponent": "Javier Hala Madrid",
+    "difficulty": "normal",
+    "result": "finished_and_exactly_replayed",
+    "winner": "Tío Tigre",
+    "finalTick": 997,
+    "remainingFrames": 4886,
+    "method": "Finish intro then180 controller calls idle to exercise CPU offense; deterministic chase/guard/jump and light/heavy/special/super policy. Two independent real-engine runs compare entire final states and action/effect summaries.",
+    "started": [
+      "super",
+      "light",
+      "heavy",
+      "special"
+    ],
+    "landed": [
+      "super",
+      "heavy",
+      "light"
+    ],
+    "players": [
+      {
+        "fighter": "tiotigre",
+        "hp": 100,
+        "stocks": 1,
+        "hits": 4,
+        "peakCombo": 3
+      },
+      {
+        "fighter": "javier",
+        "hp": 0,
+        "stocks": 0,
+        "hits": 1,
+        "peakCombo": 1
+      }
+    ],
+    "limitation": "Pounce starts but does not land during the completed bout. Dedicated idle/front/rear guard and range probes establish its two real contacts. Controller is an audit exercise, not a balance benchmark."
+  },
+  "introAndSelection": {
+    "name": "Reta con las garras",
+    "styles": [
+      "pounce",
+      "present"
+    ],
+    "durationMs": 2800,
+    "result": "pass_both_facings",
+    "oneShot": "One chest/claw challenge gesture, then holds ready stance frame0. Actual drawPresentation sampled0,616,1400,2128,2800,5600ms for intro/selection facing±1. Completed poses and gestures compare equally at progress1 and2; selection clamps to1 at2800/5600ms. Portrait stops RAF on completion.",
+    "guardInterpretation": "Ready stance frame0 settles with fists raised; explicit blocking uses frame1.",
+    "timeline": "Movement and special inputs are held through tick509 without moving/emitting. Tick510 starts playing with P1 facing1/P2-1.",
+    "productionRenderer": "Actual renderMatch/drawIntroCinematic at P1 tick84 and P2 tick264 gives complete face in rival direction. Actual lifted pounce at absolute tick525/attack15 is rendered on both sides."
+  },
+  "nativePreview": {
+    "available": true,
+    "tabId": "tab_32_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "openedWithReuseExistingTab": false,
+    "ownTabClosed": true,
+    "method": "Own native T3 tab, direct imports of production assets/presentation renderer/shared engine/match renderer; screenshots saved and visually inspected with view_image.",
+    "screenshots": [
+      {
+        "kind": "eight_actual_combat_sprites_both_facings",
+        "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62tdye-397d01db.png"
+      },
+      {
+        "kind": "one_shot_intro_selection_both_facings",
+        "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62t39v-9bde0342.png"
+      },
+      {
+        "kind": "production_intro_and_lifted_pounce_both_sides",
+        "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62tui4-e9774ff0.png"
+      }
+    ],
+    "limits": "Deterministic production snapshots plus real-engine fights, no manual keyboard bout or audio listening. No preview availability/reload interruption occurred."
+  },
+  "validation": {
+    "testCommand": "npx tsx --test tests/character-audits/tiotigre.test.ts",
+    "tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "typecheckCommand": "npx tsc --noEmit",
+    "typecheck": "pass",
+    "freshProcessRetest": "Final10/10 run was a fresh tsx process; no shared runtime edits during audit. Initial overly narrow220px displacement assertion was corrected to300px after observing symmetric body separation; this was a test expectation, not a runtime defect."
+  },
+  "findings": [],
+  "outstandingFindings": []
+}

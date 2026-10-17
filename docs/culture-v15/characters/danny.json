@@ -1,0 +1,50 @@
+{
+  "id": "danny",
+  "name": "Danny Ocean",
+  "biography": "Cantante y compositor venezolano de pop y ritmos urbanos, reconocido por Me Rehúso. Su estética casual se combina con una onda sonora creciente.",
+  "portraitReference": "assets/references/culture-v15/danny/portrait.jpg",
+  "distinctiveTraits": [
+    "Cabello oscuro desordenado, bigote fino y perilla pequeña; rostro alargado.",
+    "Cortaviento oscuro con cuello alto de su retrato promocional."
+  ],
+  "portrayal": "Cabello oscuro desordenado, bigote fino y perilla pequeña; rostro alargado. Cortaviento oscuro con cuello alto de su retrato promocional. Las acciones de pelea son ficción.",
+  "sources": [
+    {
+      "title": "Danny Ocean — perfil de artista en Apple Music",
+      "url": "https://music.apple.com/us/artist/danny-ocean/1248515752"
+    },
+    {
+      "title": "Referencia fotográfica inspeccionada — Danny Ocean",
+      "url": "https://www.ticketmaster.com/danny-ocean-tickets/artist/2696886"
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/culture-v15/danny/portrait.jpg",
+      "url": "https://s1.ticketm.net/dam/a/339/20f8ce33-d853-4b4f-9631-b7333ca52339_RETINA_PORTRAIT_3_2.jpg",
+      "sourcePage": "https://www.ticketmaster.com/danny-ocean-tickets/artist/2696886",
+      "viewed": true
+    }
+  ],
+  "gameplay": {
+    "special": "Onda Reflexa",
+    "ability": "crescendo",
+    "description": "Melena despeinada y cortaviento azul. Lanza una burbuja sonora lenta que aumenta de tamaño al avanzar.",
+    "combos": [
+      "Pulso suave",
+      "Cambio de marea",
+      "Onda Reflexa"
+    ],
+    "role": "PRESIÓN"
+  },
+  "audio": {
+    "realVoice": false,
+    "reactions": "Esfuerzos y dolor genéricos sin palabras",
+    "specialCue": "crescendo"
+  },
+  "review": {
+    "identityVerified": true,
+    "portraitViewed": true,
+    "biographyReviewed": true
+  }
+}

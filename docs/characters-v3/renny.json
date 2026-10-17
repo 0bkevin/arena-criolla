@@ -1,0 +1,68 @@
+{
+  "id": "renny",
+  "realName": "Renaldo José Ottolina Pinto",
+  "sprite": "renny-v3",
+  "portraitReference": "assets/references/renny/photo-1960s.jpg",
+  "portrayal": "Presentador, locutor, productor y publicista venezolano. Representarlo como figura adulta de los años setenta, con cara larga y estrecha, nariz recta, sonrisa amplia, cabello oscuro peinado hacia atrás con raya lateral, entradas leves, sin barba y gafas negras rectangulares. El traje claro, camisa y corbata evocan su imagen de anfitrión televisivo documentada en archivo; las poses de combate son una licencia humorística del juego.",
+  "sources": [
+    {
+      "title": "Retrato de Renny Ottolina alrededor de los años sesenta, Wikimedia Commons (CC0)",
+      "url": "https://commons.wikimedia.org/wiki/File:Renny_Ottolina_circa_1960s.jpg"
+    },
+    {
+      "title": "Renny Ottolina en el estudio de El Show de Renny, Wikimedia Commons (CC BY-SA 4.0)",
+      "url": "https://commons.wikimedia.org/wiki/File:Renny_Ottolina.jpg"
+    },
+    {
+      "title": "Entrevista política a Renny Ottolina en Radio Continente, grabada en cassette en 1977 (historia archivística y republicaciones)",
+      "url": "https://karakenio.wordpress.com/2012/03/09/entrevista-politica-a-renny-ottolina-en-1977/"
+    },
+    {
+      "title": "Así lo dijo Renny Ottolina 3, episodio de Renny Ottolina a 34 años de su muerte; archivo radial de 52 segundos",
+      "url": "https://www.ivoox.com/en/asi-lo-dijo-renny-ottolina-3-audios-mp3_rf_1111292_1.html"
+    }
+  ],
+  "lines": {
+    "select": {
+      "text": "Por la forma como se maneja el país",
+      "file": "/audio/renny/original-select.mp3",
+      "kind": "original",
+      "sourceUrl": "https://www.ivoox.com/en/asi-lo-dijo-renny-ottolina-3-audios-mp3_rf_1111292_1.html",
+      "sourceMediaUrl": "https://ivoox.com/listen_mn_1111292_1.mp3",
+      "start": 30,
+      "end": 32.05,
+      "verification": "El episodio iVoox está catalogado como «Así lo dijo Renny Ottolina 3» dentro de «Renny Ottolina a 34 años de su muerte» y su descripción contiene la frase completa. ASR local del fragmento de 30–32.05 s captó «Por la forma… se maneja el país» y el comienzo de la frase siguiente; sirve como cotejo aproximado del contenido, no como prueba independiente de identidad. La atribución se apoya en el contexto archivístico y los metadatos del episodio; la fuente no incluye una imagen sincronizada del hablante."
+    }
+  },
+  "audioResearch": {
+    "status": "original-archival-clip",
+    "limitations": [
+      "Se encontró y recortó una frase de un archivo radial breve atribuido a Renny Ottolina en iVoox. La página presenta título, serie y cita contextual coincidentes; el ASR solo ayuda a cotejar aproximadamente las palabras y no demuestra quién habla.",
+      "La entrevista de Radio Continente de 1977 tiene una historia de procedencia publicada por quien la rescató de un cassette familiar, pero sus republicaciones actuales de YouTube requieren autenticación en este entorno y no se usaron para el clip.",
+      "La pieza iVoox no tiene video del hablante; por ello la identidad se basa en su atribución archivística, metadatos y descripción, no en sincronía labial. No se sintetizó, clonó ni alteró el timbre o el tono; solo se recortó, suavizó el inicio/final y normalizó el volumen."
+    ]
+  },
+  "distinctiveTraits": [
+    "Rostro largo y estrecho, nariz recta y expresión vivaz, con sonrisa amplia al presentar.",
+    "Cabello oscuro peinado hacia atrás con raya lateral y entradas leves; rostro afeitado.",
+    "Gafas negras de montura rectangular, rasgo visible en fotografías de estudio y retratos archivísticos.",
+    "Traje de presentador de televisión, camisa clara y corbata; gestualidad de manos abierta y enfática."
+  ],
+  "suggestedMoves": [
+    "Dos pulsos al aire",
+    "En cadena",
+    "Doble anuncio",
+    "Buenas noches",
+    "El Número Uno"
+  ],
+  "photos": [
+    {
+      "file": "assets/references/renny/photo-1960s.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Renny_Ottolina_circa_1960s.jpg"
+    },
+    {
+      "file": "assets/references/renny/photo-commons.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Renny_Ottolina.jpg"
+    }
+  ]
+}

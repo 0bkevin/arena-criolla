@@ -1,0 +1,127 @@
+{
+  "version": 18,
+  "browser": "Chromium local aislado tras desconexión de preview nativo",
+  "checks": [
+    "Layout sin desbordamiento ni nombres recortados a 320",
+    "Layout sin desbordamiento ni nombres recortados a 390",
+    "Layout sin desbordamiento ni nombres recortados a 600",
+    "Layout sin desbordamiento ni nombres recortados a 768",
+    "Layout sin desbordamiento ni nombres recortados a 900",
+    "Layout sin desbordamiento ni nombres recortados a 1024",
+    "Inicio visible a 1024",
+    "Layout sin desbordamiento ni nombres recortados a 1280",
+    "Inicio visible a 1280",
+    "Layout sin desbordamiento ni nombres recortados a 1440",
+    "Inicio visible a 1440",
+    "Giuseppe y las 31 figuras culturales siguen disponibles",
+    "Dificultad Candela seleccionada",
+    "CPU inicia combate",
+    "Dos jugadores locales entran con sus apodos",
+    "Sala privada anónima creada",
+    "Escenario del anfitrión sincronizado; invitado bloqueado",
+    "Multijugador inicia en ambos clientes",
+    "Preparar deja apodo e inicio visibles en móvil",
+    "Mapa móvil tiene nueve escenarios y cabe en pantalla",
+    "Movimiento reducido respetado",
+    "Sin errores JavaScript en flujos de pelea y salas"
+  ],
+  "widths": [
+    {
+      "width": 320,
+      "height": 800,
+      "documentWidth": 320,
+      "columns": 3,
+      "startBottom": 1696.09375,
+      "clippedNames": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "columns": 3,
+      "startBottom": 1735.09375,
+      "clippedNames": []
+    },
+    {
+      "width": 600,
+      "height": 800,
+      "documentWidth": 600,
+      "columns": 3,
+      "startBottom": 1735.09375,
+      "clippedNames": []
+    },
+    {
+      "width": 768,
+      "height": 800,
+      "documentWidth": 768,
+      "columns": 5,
+      "startBottom": 1351.09375,
+      "clippedNames": []
+    },
+    {
+      "width": 900,
+      "height": 800,
+      "documentWidth": 900,
+      "columns": 5,
+      "startBottom": 1351.09375,
+      "clippedNames": []
+    },
+    {
+      "width": 1024,
+      "height": 800,
+      "documentWidth": 1024,
+      "columns": 5,
+      "startBottom": 788,
+      "clippedNames": []
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "documentWidth": 1280,
+      "columns": 5,
+      "startBottom": 790,
+      "clippedNames": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "documentWidth": 1440,
+      "columns": 5,
+      "startBottom": 841,
+      "clippedNames": []
+    }
+  ],
+  "errors": [],
+  "date": "2026-10-09T11:34:51.354Z",
+  "design": {
+    "restores": "v13 night arcade composition from user-provided screenshot",
+    "reference": "docs/screenshots/night-arcade-desktop-v13.png",
+    "roster": 41,
+    "pageSize": 10,
+    "stages": 9,
+    "hero": "Renny Ottolina vs Capriles Radonski",
+    "scopedTo": "lobby"
+  },
+  "nativeBrowserFlows": [
+    "Independent P1/CPU selection of Silbón and Llorona; ten folklore characters.",
+    "Eight viewport widths without horizontal overflow or clipped names; nine thumbnails loaded.",
+    "Mobile Preparar scrolls to visible name and start controls and hides dock.",
+    "Mobile gallery opens nine stages without dialog overflow; Escape closes.",
+    "Inline stage selection updates shared scenery; Home and Enter select first stage.",
+    "41-character roster uses five pages (10/10/10/10/1); last next button disabled.",
+    "Accent-insensitive search finds Chiquinquirá; empty result disables random and Escape clears.",
+    "Five-column keyboard navigation (ArrowDown then Enter) selects Gómez without changing CPU.",
+    "Empty nickname keeps lobby and focuses name; CPU difficulty buttons switch to Candela and match starts."
+  ],
+  "validation": {
+    "productionBuild": "passed",
+    "typescript": "passed",
+    "browserChecks": 22
+  },
+  "screenshots": [
+    "docs/screenshots/restored-night-arcade-desktop-v18.png",
+    "docs/screenshots/restored-night-arcade-mobile-v18.png",
+    "docs/screenshots/restored-night-arcade-prepare-v18.png"
+  ],
+  "storage": "Native checks used the existing incognito tab; fallback used new isolated contexts."
+}

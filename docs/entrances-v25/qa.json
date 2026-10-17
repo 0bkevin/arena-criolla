@@ -1,0 +1,78 @@
+{
+  "version": 25,
+  "scope": "Oscar's microphone/salsa entrance; Dudamel checked for regression",
+  "tests": {
+    "passed": 75,
+    "failed": 0
+  },
+  "build": "passed",
+  "assets": {
+    "oscarPoses": 16,
+    "dimensions": [
+      2048,
+      2048
+    ],
+    "opaqueCellEdges": 0,
+    "dudamelMetadataUnchanged": true
+  },
+  "runtime": {
+    "fighters": [
+      "oscar",
+      "dudamel"
+    ],
+    "cinematicRenders": 72,
+    "finiteCameras": 64,
+    "errors": [],
+    "finalGuardPixelExact": true,
+    "reducedMotionPixelExact": true,
+    "actualOscarPoseBoundsBothSides": {
+      "framesChecked": 32,
+      "clipped": []
+    }
+  },
+  "selection": {
+    "portraits": [
+      {
+        "fighter": "oscar",
+        "motion": "selection",
+        "frame": "1",
+        "facing": "1",
+        "progress": "1"
+      },
+      {
+        "fighter": "dudamel",
+        "motion": "selection",
+        "frame": "1",
+        "facing": "-1",
+        "progress": "1"
+      }
+    ],
+    "heldGuard": true
+  },
+  "visualReview": {
+    "sheet": "assets/source/oscar-entrance-v25.png",
+    "microphone": "drawn from jacket, raised to mouth, retained through compact salsa pivot, stowed before guard",
+    "chronology": "draw → sing → one turn → settle",
+    "mirroredQuarterPoses": false,
+    "voiceAudioAdded": false
+  },
+  "recording": {
+    "tool": "T3 Code native preview recording",
+    "file": "docs/entrances-v25/oscar-microfono-salsa.mp4",
+    "sizeBytes": 2029696,
+    "match": "Oscar P1 vs Dudamel P2",
+    "includes": "Actual game cinematic, countdown and return to fighting guard",
+    "durationSeconds": 11.559567,
+    "visuallyVerifiedAtSeconds": {
+      "drawingMicrophone": 2.3,
+      "singing": 2.8,
+      "turn": 3.4,
+      "facingGuardAfterCountdown": 10.8
+    }
+  },
+  "previewMobile": {
+    "width": 390,
+    "scrollWidth": 390,
+    "overflow": false
+  }
+}

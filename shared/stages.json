@@ -1,0 +1,158 @@
+[
+  {
+    "id": "caracas",
+    "name": "Altamira al atardecer",
+    "location": "CARACAS",
+    "time": "18:30",
+    "color": "#e8b77c",
+    "theme": "plaza",
+    "ambience": "city",
+    "description": "Dos balcones para pelear sobre la plaza.",
+    "platforms": [
+      { "x": 210, "y": 392, "width": 170 },
+      { "x": 705, "y": 392, "width": 170 }
+    ]
+  },
+  {
+    "id": "guaira",
+    "name": "El malecón",
+    "location": "LA GUAIRA",
+    "time": "16:00",
+    "color": "#6adacb",
+    "theme": "pier",
+    "ambience": "coast",
+    "description": "Una plataforma central frente al mar.",
+    "platforms": [{ "x": 415, "y": 380, "width": 250 }]
+  },
+  {
+    "id": "valencia",
+    "name": "Plaza de noche",
+    "location": "VALENCIA",
+    "time": "23:45",
+    "color": "#b69cff",
+    "theme": "plaza",
+    "ambience": "city",
+    "description": "Tres alturas entre las luces de la ciudad.",
+    "platforms": [
+      { "x": 140, "y": 418, "width": 170 },
+      { "x": 455, "y": 345, "width": 170 },
+      { "x": 775, "y": 418, "width": 170 }
+    ]
+  },
+  {
+    "id": "canaima",
+    "name": "Salto Ángel",
+    "location": "CANAIMA · BOLÍVAR",
+    "time": "07:30",
+    "color": "#86e7b4",
+    "artStyle": "pixel",
+    "theme": "jungle",
+    "ambience": "forest",
+    "description": "Rocas con musgo, niebla y una plataforma que sube y baja.",
+    "platforms": [
+      { "x": 155, "y": 405, "width": 185 },
+      { "x": 740, "y": 405, "width": 185 },
+      {
+        "x": 455,
+        "y": 380,
+        "width": 170,
+        "motion": { "axis": "y", "range": 44, "period": 360 }
+      }
+    ]
+  },
+  {
+    "id": "maracaibo",
+    "name": "Puente de Maracaibo",
+    "location": "LAGO DE MARACAIBO · ZULIA",
+    "time": "19:10",
+    "color": "#ffc982",
+    "artStyle": "pixel",
+    "theme": "bridge",
+    "ambience": "coast",
+    "description": "Un elevador de mantenimiento entre pasarelas; barcos cruzan el lago.",
+    "platforms": [
+      { "x": 170, "y": 410, "width": 185 },
+      { "x": 725, "y": 410, "width": 185 },
+      {
+        "x": 465,
+        "y": 410,
+        "width": 150,
+        "motion": { "axis": "y", "range": 64, "period": 480 }
+      }
+    ]
+  },
+  {
+    "id": "merida",
+    "name": "Teleférico de Mérida",
+    "location": "PICO ESPEJO · MÉRIDA",
+    "time": "10:00",
+    "color": "#99dffd",
+    "artStyle": "pixel",
+    "theme": "snow",
+    "ambience": "wind",
+    "description": "Una cabina transporta a los luchadores entre dos balcones nevados.",
+    "platforms": [
+      { "x": 145, "y": 420, "width": 190 },
+      { "x": 745, "y": 420, "width": 190 },
+      {
+        "x": 450,
+        "y": 365,
+        "width": 180,
+        "motion": { "axis": "x", "range": 145, "period": 600 }
+      }
+    ]
+  },
+  {
+    "id": "coro",
+    "name": "Médanos de Coro",
+    "location": "CORO · FALCÓN",
+    "time": "17:15",
+    "color": "#ffcc80",
+    "artStyle": "pixel",
+    "theme": "sand",
+    "ambience": "wind",
+    "description": "Arena al viento y una tarima que se desliza sobre las dunas.",
+    "platforms": [
+      { "x": 140, "y": 425, "width": 185 },
+      {
+        "x": 555,
+        "y": 385,
+        "width": 180,
+        "motion": { "axis": "x", "range": 135, "period": 480 }
+      }
+    ]
+  },
+  {
+    "id": "roques",
+    "name": "Los Roques",
+    "location": "ARCHIPIÉLAGO LOS ROQUES",
+    "time": "14:00",
+    "color": "#84eee4",
+    "artStyle": "pixel",
+    "theme": "pier",
+    "ambience": "coast",
+    "description": "Una balsa se mece entre los muelles, con veleros y aves en movimiento.",
+    "platforms": [
+      { "x": 180, "y": 410, "width": 180 },
+      { "x": 720, "y": 410, "width": 180 },
+      {
+        "x": 465,
+        "y": 445,
+        "width": 150,
+        "motion": { "axis": "y", "range": 18, "period": 300 }
+      }
+    ]
+  },
+  {
+    "id": "poliedro",
+    "name": "Poliedro de Caracas",
+    "location": "LA RINCONADA · CARACAS",
+    "time": "21:00",
+    "color": "#f4a1e7",
+    "artStyle": "pixel",
+    "theme": "concert",
+    "ambience": "crowd",
+    "description": "Pelea a ras del suelo bajo focos móviles y un público que vibra.",
+    "platforms": []
+  }
+]

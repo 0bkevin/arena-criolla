@@ -1,0 +1,60 @@
+{
+  "id": "zavarce",
+  "nombre": "Vicente Zavarce",
+  "investigacion": {
+    "identidad": "Las páginas editoriales de Startupeable y Semilla.VC lo presentan como CEO y cofundador de Yummy. La entrevista de Rest of World también lo identifica como fundador de la empresa.",
+    "fuentesPrimariasYEditoriales": [
+      {
+        "titulo": "Vicente Zavarce, Yummy | Fundraising y Expansión desde “Mercados Pequeños”, Adquisición y Retención, y Visión de Super App [Ep. 55]",
+        "url": "https://startupeable.com/yummy/",
+        "nota": "La página identifica a Zavarce como CEO y cofundador y presenta la entrevista en español. El episodio dispone de audio directo del feed RSS de Startupeable."
+      },
+      {
+        "titulo": "RSS oficial de Startupeable",
+        "url": "https://feeds.captivate.fm/startupeable/",
+        "mediaUrl": "https://episodes.captivate.fm/episode/fdb51fa0-137a-46b7-95a2-d97a5d705e75.mp3",
+        "nota": "El elemento del feed coincide con el episodio 055 de Vicente Zavarce y aporta el MP3 editorial. El archivo recuperado incluía publicidad dinámica antes del episodio; los tiempos registrados se refieren a esta descarga concreta."
+      },
+      {
+        "titulo": "Vicente Zavarce, Yummy (YC S21) Founder & CEO Semilla.VC Interview",
+        "url": "https://semillavc.podbean.com/e/vincente-zavarce-yummy-yc-s21-founder-ceo-semillavc-interview/",
+        "nota": "Semilla.VC presenta una conversación con Vicente Zavarce, fundador y CEO de Yummy. El episodio está en inglés y no se usó para la voz del juego."
+      },
+      {
+        "titulo": "The man who built Venezuela’s only delivery app",
+        "url": "https://restofworld.org/2020/the-man-behind-venezuelas-only-delivery-app/",
+        "nota": "Entrevista de Rest of World con Zavarce; acredita las fotografías principales como cortesía de Yummy."
+      },
+      {
+        "titulo": "Vicente Zavarce — perfil de Rest of World",
+        "url": "https://restofworld.org/profile/vicente-zavarce/",
+        "nota": "Retrato frontal de Vicente con chaqueta Yummy Rocket, descargado como referencia secundaria."
+      },
+      {
+        "titulo": "Vicente Zavarce — Ocean Drive",
+        "url": "https://www.misrevistas.com/oceandrive/notas/28377/vicente-zavarce",
+        "nota": "Perfil editorial adicional con fotografías en atuendo Yummy."
+      }
+    ],
+    "observacionVisual": {
+      "metodo": "Inspección visual directa de los archivos locales descargados con view_image.",
+      "rasgos": [
+        "Rostro ovalado de proporciones regulares, mandíbula y mentón moderados, nariz recta y cejas oscuras relativamente densas.",
+        "Cabello castaño muy oscuro, corto a medio, abundante y peinado hacia atrás con volumen en la parte superior.",
+        "Barba y bigote oscuros recortados, conectados y de densidad media; el contorno cubre mandíbula y mentón.",
+        "En la imagen de Startupeable lleva lentes ópticos negros rectangulares y camiseta negra lisa; en el retrato Yummy Rocket no usa lentes y lleva chaqueta clara con detalles morados sobre una camiseta negra.",
+        "Las expresiones visibles son una sonrisa amplia en el retrato Yummy Rocket y una pose pensativa con mano en el mentón en la portada de Startupeable."
+      ],
+      "referencias": [
+        "assets/references/zavarce/startupeable-vicente.png",
+        "assets/references/zavarce/restofworld-2022-vicente.png"
+      ]
+    },
+    "audio": {
+      "estado": "fragmento original en español obtenido del feed editorial de Startupeable; episodio y respuesta atribuidos por el contexto de la presentación; verificación ASR local; no se afirma escucha humana ni sincronía visual",
+      "frase": "Todo bien, todo bien. Gracias por el espacio y por tenerme.",
+      "contexto": "El presentador dice «Hola, Vicente. ¿Qué tal? Bienvenido al podcast. ¿Cómo estás?» inmediatamente antes. La respuesta de 385.80–388.64 s coincide en el ASR local del episodio y en una segunda transcripción local del recorte. La ficha del editor identifica el episodio como conversación con Vicente Zavarce.",
+      "limitaciones": "YouTube no permitió descargar el episodio en esta sesión porque exigió inicio de sesión. El RSS oficial de Startupeable sí proporcionó el MP3. El archivo descargado tenía una inserción publicitaria variable antes de la conversación; los tiempos del recorte se miden desde el inicio de la versión local recuperada. La identidad se atribuye por la presentación y el contexto editorial, no por identificación biométrica de voz."
+    }
+  }
+}

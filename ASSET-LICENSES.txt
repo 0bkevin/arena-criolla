@@ -1,0 +1,54 @@
+Arena Criolla licensing and asset distribution
+
+Copyright (C) 2026 Kevin Braov and contributors.
+
+Original project code and original project materials are licensed under the
+GNU General Public License, version 3 only (SPDX: GPL-3.0-only). See LICENSE.
+This includes the project-created artwork in assets/source/, public/assets/,
+and the generated-art directories retained under assets/references/.
+AI-generated artwork and its preparation are documented in README.md and docs/.
+This license covers only rights held by the project contributors.
+
+Third-party sound recordings retain CC0-1.0:
+
+  qubodup - 15 vocal male strain/hurt/pain/jump sounds
+  https://opengameart.org/content/15-vocal-male-strainhurtpainjump-sounds
+
+  cicifyre - Female RPG Voice Starter Pack, Type 2
+  https://opengameart.org/content/female-rpg-voice-starter-pack
+
+The selected originals are in assets/references/audio-reactions-v8/.
+Processed clips are in public/audio/arcade/.
+Processing, provenance, durations and checksums are in docs/audio-provenance.json.
+CC0-1.0: https://creativecommons.org/publicdomain/zero/1.0/
+
+Bundled fonts retain the SIL Open Font License 1.1:
+
+  Barlow Condensed: public/fonts/OFL-barlow-condensed.txt
+  DM Sans:         public/fonts/OFL-dm-sans.txt
+  Pixelify Sans:   public/fonts/OFL-pixelify-sans.txt
+
+Dependencies retain their respective licenses. package-lock.json records
+dependency versions and their available license metadata; installed packages
+contain their own license notices.
+
+Publication layout
+
+  public/                 Ready-to-use game art, sound and fonts.
+  assets/source/          Editable PNG atlases and stage artwork.
+  assets/references/      Only selected generated artwork and CC0 sound originals.
+  docs/                   Research links, prompts, audits and game captures.
+
+A normal clone contains everything needed to install, build and play.
+No Google Drive download or Git LFS setup is required for this publication.
+Optional large, redistributable asset packs belong in versioned GitHub Releases.
+
+Downloaded research photos, interview recordings, copied reference thumbnails
+and retired asset archives are excluded from the public repository and its
+initial published history. Their source links remain in the research reports.
+Keeping a research citation does not relicense the referenced third-party work.
+Historical preview pages may refer to these omitted local files.
+
+Private creator accounts, sessions, uploaded photos and generated user storage
+under data/ are excluded. .env files and API credentials are also excluded;
+.env.example contains configuration names without credentials.

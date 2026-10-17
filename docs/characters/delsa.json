@@ -1,0 +1,457 @@
+{
+  "id": "delsa",
+  "resolvedName": "Delsa Solórzano",
+  "displayName": "Delsa Solórzano",
+  "identityResolution": {
+    "confidence": "high",
+    "officialProfile": "https://encuentrociudadano.org/quienes-somos/",
+    "evidence": "El sitio del partido identifica a Delsa Solórzano como fundadora y dirigente; su portada actual nombra su presidencia y enlaza @delsasolorzano. Las entrevistas y fotografías muestran a la misma persona.",
+    "verifiedAt": "2026-10-08"
+  },
+  "sources": [
+    {
+      "url": "https://encuentrociudadano.org/quienes-somos/",
+      "title": "Quiénes Somos — Encuentro Ciudadano",
+      "kind": "official-party-profile"
+    },
+    {
+      "url": "https://encuentrociudadano.org/",
+      "title": "Encuentro Ciudadano — sitio oficial y enlaces a redes",
+      "kind": "official-site"
+    },
+    {
+      "url": "https://encuentrociudadano.org/nacionales/delsa-solorzano-abrir-los-portales-es-un-paso-garantizar-la-libertad-de-expresion-es-la-tarea-aun-pendiente/",
+      "title": "Delsa Solórzano sobre libertad de expresión — 17 septiembre 2026",
+      "kind": "official-first-person-quotation"
+    },
+    {
+      "url": "https://elestimulo.com/politica/2023-02-11/delsa-solorzano-primaria-oposicion-elecciones-venezuela/",
+      "title": "Delsa Solórzano: Venezuela está lista para ser dirigida por una mujer — El Estímulo",
+      "kind": "original-interview-and-photographs"
+    },
+    {
+      "url": "https://cronica.uno/delsa-solorzano-apunta-a-la-presidencia-con-la-promesa-de-libertad-a-los-presos-politicos-como-su-primer-decreto/",
+      "title": "Delsa Solórzano promete libertad y justicia — Crónica.Uno, marzo 2023",
+      "kind": "original-interview-and-photographs"
+    },
+    {
+      "url": "https://fedecamarasradio.com/programas/solorzano-venezuela-rostro-mujer/",
+      "title": "Marca País con Delsa Solórzano — Fedecámaras Radio, 3 julio 2018",
+      "kind": "original-radio-interview-source"
+    },
+    {
+      "url": "https://eldiario.com/2020/12/05/delsa-an-guaido-seguira-elecciones-legitimas/",
+      "title": "Entrevista con Delsa Solórzano — El Diario, 5 diciembre 2020",
+      "kind": "original-interview-and-slogan-context"
+    },
+    {
+      "url": "https://www.dailymotion.com/video/x9334xc",
+      "title": "30/30 — 28 de julio 2024, Televicentro",
+      "kind": "public-video-candidate-and-published-transcript"
+    },
+    {
+      "url": "https://www.instagram.com/delsasolorzano/",
+      "title": "@delsasolorzano — perfil público identificado por su partido",
+      "kind": "official-social-profile"
+    }
+  ],
+  "referenceImages": [
+    {
+      "path": "assets/references/delsa/official-2026-09-17.jpeg",
+      "url": "https://encuentrociudadano.org/wp-content/uploads/2026/09/WhatsApp-Image-2026-09-17-at-2.11.12-PM-e1789670791220.jpeg",
+      "sourceUrl": "https://encuentrociudadano.org/nacionales/delsa-solorzano-abrir-los-portales-es-un-paso-garantizar-la-libertad-de-expresion-es-la-tarea-aun-pendiente/",
+      "role": "Primary real face, skin tone, age, hair and speaking gesture; photograph published by the official site in September 2026, capture date not verified.",
+      "viewed": true
+    },
+    {
+      "path": "assets/references/delsa/elestimulo-portrait-2023.jpg",
+      "url": "https://media.elestimulo.com/uploads/2023/02/EE-Delsa-4-1024x683.jpg",
+      "sourceUrl": "https://elestimulo.com/politica/2023-02-11/delsa-solorzano-primaria-oposicion-elecciones-venezuela/",
+      "role": "Real face and expressive hand gestures. Black-and-white interview photograph by Alejandro Cremades, February 2023.",
+      "viewed": true
+    },
+    {
+      "path": "assets/references/delsa/cronica-fullbody-2023.jpg",
+      "url": "https://cronica.uno/wp-content/uploads/2023/03/Delsa-Solorzano-scaled.jpg",
+      "sourceUrl": "https://cronica.uno/delsa-solorzano-apunta-a-la-presidencia-con-la-promesa-de-libertad-a-los-presos-politicos-como-su-primer-decreto/",
+      "role": "Pale-blue textured blazer, white round-neck shirt, long straight hair and natural adult build. Photograph by Tairy Gamboa, March 2023; lower body partly outside the frame.",
+      "viewed": true
+    }
+  ],
+  "visual": {
+    "face": "Rostro adulto ovalado, mejillas moderadamente llenas y mandíbula suave. Ojos grandes abiertos, iris oscuro y párpados superiores marcados; cejas negras definidas y arqueadas. Nariz relativamente larga, punta redondeada y base de las aletas ancha. Boca de labios llenos, especialmente el inferior. La fotografía oficial de 2026 conserva líneas adultas alrededor de ojos y boca; el atlas evita el mentón afilado y la cara juvenil genérica de V1.",
+    "hair": "Cabello negro largo, liso y denso, con raya ligeramente lateral; cae por debajo del pecho en las referencias. El movimiento del cabello durante los ataques es una adaptación de animación.",
+    "outfit": "Blazer celeste claro de textura tipo tweed y camiseta blanca de cuello redondo, verificados en Crónica.Uno. En la foto oficial de 2026 lleva camisa azul clara. El pantalón azul marino y los zapatos negros bajos del atlas son vestuario de juego: las tres referencias no verifican su calzado y ropa completa de cintura para abajo. No se afirma que el blazer turquesa de V1 fuera su vestuario característico.",
+    "gestures": [
+      {
+        "description": "Mano extendida delante del torso para subrayar un argumento, palma de lado y mirada concentrada hacia el interlocutor.",
+        "sourceUrl": "https://encuentrociudadano.org/wp-content/uploads/2026/09/WhatsApp-Image-2026-09-17-at-2.11.12-PM-e1789670791220.jpeg",
+        "verification": "observed-photo"
+      },
+      {
+        "description": "Las dos manos abiertas forman un espacio frente al pecho mientras explica; dedos separados y expresión oral firme.",
+        "sourceUrl": "https://media.elestimulo.com/uploads/2023/02/EE-Delsa-4-1024x683.jpg",
+        "verification": "observed-photo"
+      },
+      {
+        "description": "Manos entrelazadas frente al regazo, hombros rectos y expresión seria en retrato.",
+        "sourceUrl": "https://cronica.uno/wp-content/uploads/2023/03/Delsa-Solorzano-scaled.jpg",
+        "verification": "observed-photo"
+      }
+    ],
+    "changesFromV1": "Se cambió el blazer turquesa por el celeste fotografiado y se rehízo el rostro usando fotografías reales: cara más ovalada, ojos más abiertos, boca más llena y cabello negro. Se descartaron dos generaciones que seguían demasiado la cara genérica del atlas anterior."
+  },
+  "quotes": [
+    {
+      "id": "expresion",
+      "text": "Libertad de expresión es un derecho humano.",
+      "sourceUrl": "https://encuentrociudadano.org/nacionales/delsa-solorzano-abrir-los-portales-es-un-paso-garantizar-la-libertad-de-expresion-es-la-tarea-aun-pendiente/",
+      "verified": true,
+      "context": "Fragmento de su declaración en X reproducida por el sitio oficial de Encuentro Ciudadano, 17 septiembre 2026.",
+      "kind": "official-written-statement"
+    },
+    {
+      "id": "escuchada",
+      "text": "El primer reto es que logres ser escuchada.",
+      "sourceUrl": "https://elestimulo.com/politica/2023-02-11/delsa-solorzano-primaria-oposicion-elecciones-venezuela/",
+      "verified": true,
+      "context": "Respuesta sobre la dificultad de ser mujer en la política venezolana, entrevista original publicada el 11 febrero 2023.",
+      "kind": "original-interview"
+    },
+    {
+      "id": "politica-humana",
+      "text": "la política es un acto humano",
+      "sourceUrl": "https://cronica.uno/delsa-solorzano-apunta-a-la-presidencia-con-la-promesa-de-libertad-a-los-presos-politicos-como-su-primer-decreto/",
+      "verified": true,
+      "context": "Fragmento de su respuesta sobre el contacto directo con la gente; entrevista del 8 marzo publicada el 12 marzo 2023.",
+      "kind": "original-interview-fragment"
+    },
+    {
+      "id": "justicia",
+      "text": "yo me refiero a justicia y no a venganza",
+      "sourceUrl": "https://cronica.uno/delsa-solorzano-apunta-a-la-presidencia-con-la-promesa-de-libertad-a-los-presos-politicos-como-su-primer-decreto/",
+      "verified": true,
+      "context": "Fragmento de su respuesta sobre reparación y justicia transicional, en la misma entrevista de marzo 2023.",
+      "kind": "original-interview-fragment"
+    },
+    {
+      "id": "todos-necesarios",
+      "text": "todos somos necesarios",
+      "sourceUrl": "https://fedecamarasradio.com/programas/solorzano-venezuela-rostro-mujer/",
+      "verified": true,
+      "context": "Declaración resumida por el medio que realizó la entrevista para Marca País, 3 julio 2018. Comprobada en el texto del medio, sin haber validado el segundo exacto del audio.",
+      "kind": "radio-interview-written-quotation"
+    }
+  ],
+  "sloganContext": {
+    "text": "Mis respetos",
+    "sourceUrl": "https://eldiario.com/2020/12/05/delsa-an-guaido-seguira-elecciones-legitimas/",
+    "verified": true,
+    "attribution": "Homenaje del papagayo de Rafael Araujo a Delsa, mencionado por ella en la entrevista. No se presenta como una muletilla inventada por Delsa."
+  },
+  "voice": {
+    "description": "No se obtuvo un medio reproducible sin login para evaluación auditiva y extracción. No se afirma un timbre escuchado ni se clona su voz. Para la interpretación arcade se propone voz femenina adulta, dicción firme y acento venezolano, como actuación propia del juego.",
+    "status": "no-usable-original-sample-obtained",
+    "candidates": [
+      {
+        "url": "https://www.dailymotion.com/video/x9334xc",
+        "title": "Televicentro 30/30 — intervención pública de Delsa, 28 julio 2024",
+        "timestamp": "00:06:38–00:06:47",
+        "text": "Hoy Venezuela ya sabe lo que pasó.",
+        "sourceUrl": "https://www.dailymotion.com/video/x9334xc",
+        "verification": "published-transcript-only; audio and precise clip boundaries not verified",
+        "downloadStatus": "El endpoint público player/metadata/video/x9334xc respondió DM016 / 403: el propietario limita el reproductor a Dailymotion; no devolvió calidades ni una URL multimedia."
+      },
+      {
+        "url": "https://api.soundcloud.com/tracks/466763580",
+        "title": "Delsa Solórzano en Marca País — Fedecámaras Radio, julio 2018",
+        "timestamp": null,
+        "text": null,
+        "sourceUrl": "https://fedecamarasradio.com/programas/solorzano-venezuela-rostro-mujer/",
+        "verification": "candidate linked by the original radio-interview article",
+        "downloadStatus": "El artículo publica el ID de SoundCloud. No se extrajo un archivo ni se verificó una ventana hablada."
+      },
+      {
+        "url": "https://www.instagram.com/reel/Ddui3YiN0gG/",
+        "title": "Entrevista de la presidenta de Encuentro Ciudadano enlazada en su sitio oficial",
+        "timestamp": null,
+        "text": null,
+        "sourceUrl": "https://encuentrociudadano.org/",
+        "verification": "official-site linked candidate; clip not downloaded",
+        "downloadStatus": "Se deja como candidato de revisión; no se utilizó para extraer una muestra ni describir un timbre auditivamente."
+      }
+    ],
+    "usableSamples": [],
+    "existingAudio": "Los archivos select.mp3, special.mp3 y win.mp3 presentes en public/audio/delsa no fueron creados ni atribuidos como muestras originales por esta investigación.",
+    "downloadAttempts": [
+      {
+        "url": "https://www.dailymotion.com/player/metadata/video/x9334xc",
+        "method": "public metadata request without login/cookies",
+        "result": "DM016 / HTTP 403; qualities empty"
+      }
+    ]
+  },
+  "gameLines": {
+    "select": {
+      "text": "La política es un acto humano.",
+      "kind": "verified-quote-fragment",
+      "quoteId": "politica-humana",
+      "performance": "Fragmento con mayúscula inicial y punto. Si se sintetiza, identificar como interpretación arcade, no audio original."
+    },
+    "special": {
+      "text": "¡Derecho de réplica!",
+      "kind": "fictional-game-line",
+      "verified": false
+    },
+    "win": {
+      "text": "¡La defensa se impone!",
+      "kind": "fictional-game-line",
+      "verified": false
+    }
+  },
+  "recommended": {
+    "title": "La Defensora",
+    "description": "La abogada de Encuentro Ciudadano entra con cabello negro largo y el blazer celeste de sus retratos. Su estilo de pelea usa defensa firme y contraataques; la réplica se vuelve un escudo arcade.",
+    "special": {
+      "name": "Derecho de réplica",
+      "description": "Escudo breve que absorbe presión y abre una ventana para responder. Mecánica ficticia del juego inspirada en su perfil de defensora de derechos humanos.",
+      "kind": "fictional-game-mechanic"
+    },
+    "combos": [
+      {
+        "name": "Alegato doble",
+        "sequence": [
+          "puñetazo",
+          "puñetazo",
+          "especial"
+        ],
+        "kind": "fictional-game-mechanic"
+      },
+      {
+        "name": "Réplica firme",
+        "sequence": [
+          "bloqueo",
+          "puñetazo",
+          "patada"
+        ],
+        "kind": "fictional-game-mechanic"
+      },
+      {
+        "name": "Defensa ciudadana",
+        "sequence": [
+          "salto",
+          "patada",
+          "especial"
+        ],
+        "kind": "fictional-game-mechanic"
+      }
+    ]
+  },
+  "sprite": {
+    "source": "assets/source/delsa-v2.png",
+    "runtime": "public/assets/delsa-v2.webp",
+    "previousSource": "assets/source/delsa.png",
+    "previousRuntime": "public/assets/delsa.webp",
+    "tool": "built-in image_gen.imagegen",
+    "promptFile": "docs/characters/delsa-prompt.txt",
+    "prompt": "Generate a BRAND NEW transparent editorial caricature animation atlas FROM THE THREE REAL PHOTOGRAPHS ONLY. Do not recreate any prior cartoon woman's face. The real subject is Delsa Solórzano, age 54. This must look obviously like Delsa, not a generic brunette. Use the actual photographs as direct face references. Her defining face: large rounded rather than narrow eyes, closely spaced strongly arched eyebrows, very prominent rounded broad nose with distinctly broad nostril base, full rounded mouth and particularly full lower lip, mature full cheeks, subtle folds next to mouth, softly rounded chin. Her face is full and oval, not a pointed triangle. Long straight jet-black hair with off-center part. Natural adult light olive complexion. Keep facial caricature grounded in her real prominent rounded nose, her big rounded eyes and her full lips. Draw her in a warm editorial cartoon with a readable slightly oversized head (approximately one fifth of standing height), natural average adult body, strong clean black ink contours and flat sophisticated cel shading. No anime beauty face. Powder-blue textured blazer, white round-neck tee, dark navy trousers, small pale stud earrings, black low-heeled closed shoes, identical throughout. Primary reference 1 September-2026 official photo defines the face and age; reference 2 interview confirms face and gestures; reference 3 defines powder-blue blazer and actual build. Make a landscape sheet 2048 by 1024, with exactly eight complete isolated full-body figures, FOUR COLUMNS and TWO ROWS. No boundaries or grid, only transparent space. Every body faces RIGHT at three-quarter angle. Strictly center one full figure per cell with generous padding (70 px within a 512x512 cell) and ample clear gaps, all hair hands legs and shoes fully inside image. Same body scale and identity in every pose; standing feet align on baseline within each row. Top row: ready guard / crossed-arm defensive block / running right left leg forward / running right right leg forward. Bottom row: jumping knees tucked / straight right-hand punch / high rightward side kick with one planted leg / recoil backwards still facing right. Exactly eight disconnected connected-body silhouettes. Every limb attached, no fragments or effects. True transparent background. No text, logos, watercolor background, cast shadow, floor, panels, grid, trails or extra limbs. Prioritize portrait likeness over conventional glamorous game art.",
+    "finalRefinementPrompt": "Use case: precise-object-edit. The FIRST image is the chosen transparent 8-pose atlas of Delsa. PRESERVE HER EXACT FACE, adult age, facial features, long black hair, pale-blue blazer, white shirt, navy pants, low black shoes and the existing editorial ink/cel-shading technique. The second image is her real portrait: preserve the likeness already achieved. Make ONLY TWO practical animation-layout corrections. (A) Reduce each whole body uniformly to 82 percent of its current size and recenter it in its existing 4-column by 2-row cell, leaving much more transparent padding above heads, below shoes and between the two rows. All eight bodies must remain the same scale as each other. Establish consistent feet baseline in each row. Full figures and all extremities remain visible. (B) In TOP ROW FOURTH POSITION, make the opposite stride to top-row third position: the leg currently extended forward should be drawn bending behind her and the leg currently bent behind should extend forward; opposite arm counter-swing too. All bodies face screen RIGHT. Do not mirror or reverse Delsa's facing direction. Keep top-row first ready guard, second crossed-forearm block, third run A, fourth run B. Keep bottom row tucked jump, right-hand punch, rightward side kick, recoil. EXACTLY eight connected-body silhouettes, four columns and two rows, genuine transparent background. No graphics outside the eight characters; no labels, text, grid, floor, shadows, sparks, motion trails or detached fragments. Do not alter her face or outfit.",
+    "styleReference": "assets/source/delsa.png — sólo estilo en los primeros ensayos; su identidad dibujada fue descartada.",
+    "generationReferences": [
+      "assets/references/delsa/official-2026-09-17.jpeg",
+      "assets/references/delsa/elestimulo-portrait-2023.jpg",
+      "assets/references/delsa/cronica-fullbody-2023.jpg"
+    ],
+    "generation": {
+      "attempts": 4,
+      "identityAttemptsRejected": 2,
+      "selectedIdentityGeneration": "exec-88354757-1465-4a1c-ad47-0e5637cd6119.png",
+      "selectedFinalGeneration": "exec-4be16045-904d-4695-bf39-8e9fcb3ef4b2.png",
+      "finalOperation": "Built-in refinement reduced body scale for transparent gutters and created a distinct second running step."
+    },
+    "validation": {
+      "path": "assets/source/delsa-v2.png",
+      "width": 1774,
+      "height": 887,
+      "hasAlpha": true,
+      "alphaThreshold": 40,
+      "areaThreshold": 4000,
+      "componentCount": 8,
+      "rowCounts": [
+        4,
+        4
+      ],
+      "transparentFraction": 0.7856797865701368,
+      "noBorderTouches": true,
+      "components": [
+        {
+          "minX": 138,
+          "maxX": 361,
+          "minY": 105,
+          "maxY": 448,
+          "area": 37081
+        },
+        {
+          "minX": 577,
+          "maxX": 753,
+          "minY": 105,
+          "maxY": 447,
+          "area": 33273
+        },
+        {
+          "minX": 966,
+          "maxX": 1218,
+          "minY": 120,
+          "maxY": 448,
+          "area": 39391
+        },
+        {
+          "minX": 1435,
+          "maxX": 1654,
+          "minY": 119,
+          "maxY": 449,
+          "area": 37440
+        },
+        {
+          "minX": 138,
+          "maxX": 349,
+          "minY": 518,
+          "maxY": 786,
+          "area": 31797
+        },
+        {
+          "minX": 544,
+          "maxX": 823,
+          "minY": 516,
+          "maxY": 839,
+          "area": 36948
+        },
+        {
+          "minX": 961,
+          "maxX": 1292,
+          "minY": 516,
+          "maxY": 846,
+          "area": 35072
+        },
+        {
+          "minX": 1435,
+          "maxX": 1664,
+          "minY": 518,
+          "maxY": 842,
+          "area": 39572
+        }
+      ],
+      "rows": [
+        4,
+        4
+      ],
+      "runtimeComponentContractPassed": true,
+      "visualInspection": "Eight full bodies face right at three-quarter angle; same long black hair, pale-blue blazer, white shirt and navy trousers. Face is based on real official and interview photos. No detached effects, grid or cropped extremities.",
+      "frameOrder": [
+        "idle",
+        "block",
+        "runA",
+        "runB",
+        "jump",
+        "punch",
+        "highKick",
+        "hurt"
+      ],
+      "runtime": {
+        "path": "public/assets/delsa-v2.webp",
+        "width": 1774,
+        "height": 887,
+        "hasAlpha": true,
+        "alphaThreshold": 40,
+        "areaThreshold": 4000,
+        "componentCount": 8,
+        "rowCounts": [
+          4,
+          4
+        ],
+        "transparentFraction": 0.7856797865701368,
+        "noBorderTouches": true,
+        "components": [
+          {
+            "minX": 138,
+            "maxX": 361,
+            "minY": 105,
+            "maxY": 448,
+            "area": 37081
+          },
+          {
+            "minX": 577,
+            "maxX": 753,
+            "minY": 105,
+            "maxY": 447,
+            "area": 33273
+          },
+          {
+            "minX": 966,
+            "maxX": 1218,
+            "minY": 120,
+            "maxY": 448,
+            "area": 39391
+          },
+          {
+            "minX": 1435,
+            "maxX": 1654,
+            "minY": 119,
+            "maxY": 449,
+            "area": 37440
+          },
+          {
+            "minX": 138,
+            "maxX": 349,
+            "minY": 518,
+            "maxY": 786,
+            "area": 31797
+          },
+          {
+            "minX": 544,
+            "maxX": 823,
+            "minY": 516,
+            "maxY": 839,
+            "area": 36948
+          },
+          {
+            "minX": 961,
+            "maxX": 1292,
+            "minY": 516,
+            "maxY": 846,
+            "area": 35072
+          },
+          {
+            "minX": 1435,
+            "maxX": 1664,
+            "minY": 518,
+            "maxY": 842,
+            "area": 39572
+          }
+        ]
+      },
+      "webp": {
+        "quality": 90,
+        "alphaQuality": 100
+      },
+      "preservedV1": true,
+      "interRowGap": 66,
+      "feetBaselineRanges": {
+        "top": [
+          447,
+          449
+        ],
+        "bottomGrounded": [
+          839,
+          846
+        ]
+      },
+      "limitations": [
+        "La herramienta devolvió 1774×887 aunque el prompt solicitó 2048×1024; el cargador admite dimensiones variables.",
+        "Con el baseline global actual, las poses terrestres de la segunda fila se elevan unos 46–53 px de atlas. Conviene normalizar posición por cuadro durante la integración.",
+        "Pantalones azul marino y zapatos negros son adaptación del juego, porque el calzado no aparece en las referencias utilizadas.",
+        "Las dos carreras son pasos distinguibles; el segundo pliega más el pie trasero."
+      ]
+    }
+  }
+}

@@ -1,0 +1,1045 @@
+{
+  "auditVersion": 28,
+  "fighterId": "oscar",
+  "name": "Óscar D’León",
+  "auditedDate": "2026-10-13T02:00:46.916793+00:00",
+  "status": "complete_gameplay_and_native_visual_pass",
+  "scope": "Dedicated Oscar audit. Repository writes only this report and tests/character-audits/oscar.test.ts. No runtime, art, dossier, audio or other-character edits; no new server, commits, child agents or external research.",
+  "sourceRevision": "2273843fe788fb68bfa35d80d9ec87b48f1d2b7e",
+  "sourceHashes": {
+    "shared/engine.ts": "b312989fbf51363844c52bfb4e0021793c1371e69b9a782910e033f6e0930d31",
+    "shared/techniques.ts": "596f948c07d685c7e570eeaa4c3919367d0a805ce352ba5aee48a4bcda14c550",
+    "shared/fighters.json": "30611f5f186fc5de17ab2ccfe7646e8fd4343cbcce803e208d2a5c9e045b69b9",
+    "shared/presentation.ts": "68ff1fb48680fd1c018ea3b95fcbe7a348e6c7e6109cdfc79e040736794fbacf",
+    "shared/presentations.json": "8a7fbd0de98e62534317f4d5f41f20d4a1180d2960a07c6764aba0082112d8a1",
+    "shared/choreography.ts": "ffe139cd4af2c7a371cb69ec23f36ada6807dd6aa835657599c752dc238cb3b8",
+    "shared/entrance-actions.ts": "517e717166810b8c125e519fb30890119f26ffe1a7883754ca1369e91b2afcf8",
+    "shared/entrance-assets.json": "fc58245d1853ea2875bb53835735f6010adb6098a5ef07ac82ce560c1104a6d8",
+    "src/game/assets.ts": "ad5b574b631cdf553810fe18e6fc2fab875635c5717cb53df7eb020df1775b0c",
+    "src/game/renderer.ts": "1758cf5884e95f310495985860a68a657d08a4bdc1b6c9394136d38953d0650c",
+    "src/game/entrance-renderer.ts": "b006bbdacb4324dcf8cd21a6531779970f8fdff897d03a57f39cc8e6c62e0b7e",
+    "public/assets/oscar-v3.webp": "16ac8d91bc04ba36054990217bd7444736e822eb98fc6cfda731a32481300d46",
+    "public/assets/oscar-entrance-v25.webp": "373311c95b63852c9220b90c6e7b9843edd5d6cc7178ef5b2da64526a568b4ec"
+  },
+  "evidenceRead": [
+    "docs/character-audits-v28/BRIEF.txt",
+    "docs/characters-v3/oscar.json",
+    "docs/character-sprite-qa.json",
+    "docs/entrances-v25/qa.json",
+    "shared/fighters.json",
+    "shared/techniques.ts",
+    "shared/engine.ts",
+    "shared/presentation.ts",
+    "shared/presentations.json",
+    "shared/choreography.ts",
+    "shared/entrance-actions.ts",
+    "shared/entrance-assets.json",
+    "src/game/assets.ts",
+    "src/game/renderer.ts",
+    "src/game/intro-renderer.ts",
+    "src/game/presentation-renderer.ts",
+    "src/game/entrance-renderer.ts",
+    "src/audio.ts"
+  ],
+  "identityAndPortrayal": {
+    "preservedDossier": "Óscar Emilio León Simosa portrayed as the established stage sonero; source research is retained from docs/characters-v3/oscar.json.",
+    "visualMatch": "All eight combat poses and 16 painted entrance poses preserve the bald head, broad black moustache, rounded smiling face, black jacket, gold tiger shirt/necklace, dark sparkling trousers and closed stage shoes. They retain the existing arcade adaptation.",
+    "audio": "No dialogue or audio was added. Static runtime inspection finds the shared effort/pain reaction route. Audio playback and original archived clip attribution were not audited."
+  },
+  "movementAndStance": {
+    "result": "pass_both_sides",
+    "startX": 540,
+    "after24RightInputs": 652.9288778619349,
+    "after24LeftInputs": 549.470815714616,
+    "facingFollowsMovement": true,
+    "jump": "Actual first jump reaches y454.6 after 10 calls. Second jump is accepted; third is rejected. Landing restores grounded=true, y554 and jumps=0 on both sides.",
+    "visualFrames": "Actual production drawSprite renders all eight frames in both facings: idle, block, runA, runB, jump, punch, highKick and hurt. Silhouettes, heads, hands and feet are complete; the high kick points to the rival and hurt leans away. The running frames are similar static poses; this audit does not assert detailed temporal gait quality.",
+    "atlas": {
+      "width": 1536,
+      "height": 1024,
+      "qaPassed": true,
+      "components": 8,
+      "rows": [
+        4,
+        4
+      ],
+      "frameFacing": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    }
+  },
+  "special": {
+    "name": "Giro del sonero",
+    "ability": "salsa",
+    "result": "pass_both_sides_front_and_behind",
+    "configuration": {
+      "startup": 8,
+      "recovery": 39,
+      "range": 140,
+      "height": 225,
+      "damage": 16,
+      "force": 8,
+      "radial": true,
+      "lift": -12,
+      "energyCost": 25
+    },
+    "reproduction": "After the actual 510-tick intro on poliedro, Oscar begins x400 (P1) or x680 (P2), rival 80 pixels in front or behind, both at floor554 with energy100. One directional input fixes Oscar facing and increments special. Rival is idle, blocking toward Oscar or blocking away. Direction inputs stop after the tick8 impact; no artificial attack or damage state is injected.",
+    "observed": "Startup8 applies the lift and one radial contact. Idle/rear guard take 16.6448 damage against Javier (16*1.01*1.03), HP83.3552 and exactly one hit. Front guard records exactly one block and HP100 even with the rival behind Oscar. No projectiles. Oscar reaches minimum y421.52 and returns out of attack; no looping collision.",
+    "energyGate": "Energy24 rejects; energy25 accepts with 0.035 remaining after passive regeneration; energy100 immediately becomes75 before hit rewards.",
+    "range": "On both sides, stationary gaps80/139 hit once, gaps140/200 miss; strict less-than140 horizontal reach is confirmed.",
+    "aerial": "After a real jump and12 engine calls, the actor or target is y440.96. Starting special then connects once on both sides, confirming aerial reach without forced airborne states.",
+    "visual": "Production renderMatch at tick519 shows the raised actor, curved salsa arc and actual hit impact in both orientations; the special uses the existing combat punch sprite plus the radial effect rather than the entrance atlas."
+  },
+  "attacksAndCombos": {
+    "light": "Both sides: gap80, 7.2821 damage, HP92.7179, outward knockback, one hit. Front guard prevents damage.",
+    "heavy": "Both sides: gap80,13.5239 damage, HP86.4761, outward knockback, one hit. Front guard prevents damage.",
+    "baseCombo": "Actual chase inputs connect L→H on both sides: Paso de salsa,2 hits, target76.104 HP after64 calls; bonus3.",
+    "advancedCombo": "Actual chase inputs connect L→L→H on both sides: Síncopa doble,3 hits, target64.7019 HP after108 calls; needs at least1 win and bonus7.",
+    "whiffRecognition": "At gap140 preceding lights whiff, but input-chain recognition still names Paso de salsa with0 wins or Síncopa doble with1 win. This is the existing intentional recognition design; separately connected fights verify every strike can land.",
+    "super": "Cierre del sonero needs3 wins and75 energy. At gap200, startup9 hits once for41.4884 damage, HP58.5116. Wins0/2 and energy74 reject; exact75/100 accept on both sides."
+  },
+  "cpuFights": {
+    "opponent": "Javier Hala Madrid",
+    "difficulty": "normal",
+    "method": "Complete shared intro; start real Oscar special at gap120; let CPU react during180 calls, then issue chase/block/jump/light/heavy/special/super inputs. CPU policy for P1 opponent reads a temporarily exchanged player tuple; all match steps use the actual original tuple and real engine. Two whole bouts per side compare complete final state exactly.",
+    "result": "finished_and_deterministically_replayed_both_sides",
+    "bouts": [
+      {
+        "side": 0,
+        "winner": 1,
+        "tick": 1258,
+        "remaining": 4617,
+        "started": [
+          "special",
+          "super",
+          "heavy",
+          "light"
+        ],
+        "landed": [
+          "special",
+          "super",
+          "light",
+          "heavy"
+        ],
+        "players": [
+          {
+            "fighter": "oscar",
+            "hp": 0,
+            "stocks": 0,
+            "hits": 5,
+            "peakCombo": 3
+          },
+          {
+            "fighter": "javier",
+            "hp": 100,
+            "stocks": 1,
+            "hits": 4,
+            "peakCombo": 1
+          }
+        ]
+      },
+      {
+        "side": 1,
+        "winner": 1,
+        "tick": 1049,
+        "remaining": 4832,
+        "started": [
+          "special",
+          "super",
+          "heavy",
+          "light"
+        ],
+        "landed": [
+          "special",
+          "super",
+          "light",
+          "heavy"
+        ],
+        "players": [
+          {
+            "fighter": "javier",
+            "hp": 0,
+            "stocks": 0,
+            "hits": 2,
+            "peakCombo": 1
+          },
+          {
+            "fighter": "oscar",
+            "hp": 100,
+            "stocks": 1,
+            "hits": 5,
+            "peakCombo": 3
+          }
+        ]
+      }
+    ],
+    "limitation": "Scripted controls are collision/replay coverage, not a balance benchmark."
+  },
+  "introAndSelection": {
+    "result": "pass_native_production_renderer_both_facings",
+    "name": "Saca el micrófono, canta y da una vuelta de salsa",
+    "durationMs": 2800,
+    "authoredFrames": 16,
+    "turns": 1,
+    "mirroredQuarterPoses": false,
+    "observed": "The 16 authored frames advance draw→sing→one turn→settle without backward replay. The microphone stays in the same painted hand through the single turn, is stowed, and combat guard1 holds. Both whole-facing variants were visually inspected using production drawPresentation; no added swaying/trails occur.",
+    "guardChecks": "Native pixel comparison: final progress1 equals progress2 and reduced-motion progress0.5 guard on both sides. selectionProgress stays1 at2800/5600/60000ms. The shared-engine intro prevents movement/attacks until510 ticks, then both actors face the rival.",
+    "cinematicChecks": "Actual production renderMatch cinematics inspected at Oscar P1 ticks44 (sing) and96 (back turn), and Oscar P2 ticks224/276. Head, microphone and turn silhouette remain inside each panel.",
+    "nativePreview": {
+      "url": "http://localhost:5173/",
+      "tabId": "tab_29_3d2ead87-813d-4915-a28a-5a44312bba47",
+      "ownedNewTab": true,
+      "closed": true,
+      "closeTool": "mcp__t3_code__t3_preview_close"
+    },
+    "screenshots": {
+      "combatEightFramesBothFacings": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv618ds1-726b5951.png",
+      "entranceSixteenFramesBothFacingsAndHeldGuard": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv618tof-e7119a89.png",
+      "actualCinematicAndSpecialBothSides": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv619bu4-db9b81e4.png"
+    },
+    "limitations": "Native hot reload cleared a browser import cache once (window.oscarAudit undefined); atomic imports/rendering recovered and all recorded final captures succeeded. Static authored poses and deterministic cinematic/attack samples were reviewed, not an uninterrupted app-click recording or audio synchronization."
+  },
+  "findings": [],
+  "recommendation": "Preserve approved v25 microphone→sing→one salsa turn and final guard. No reproducible Oscar-specific defect established in the focused current-engine audit.",
+  "verification": {
+    "testFile": "tests/character-audits/oscar.test.ts",
+    "command": "npx tsx --test tests/character-audits/oscar.test.ts",
+    "result": {
+      "tests": 8,
+      "passed": 8,
+      "failed": 0
+    },
+    "freshFinalProcess": true,
+    "focusedTypecheck": {
+      "command": "npx tsc --noEmit --target ES2022 --lib ES2022,DOM,DOM.Iterable --module ESNext --moduleResolution Bundler --strict --esModuleInterop --skipLibCheck --resolveJsonModule --types node tests/character-audits/oscar.test.ts",
+      "exitCode": 0
+    },
+    "fullRepositoryTypecheckAttempt": {
+      "command": "npx tsc --noEmit",
+      "result": "Blocked by unrelated concurrent files at attempt time; no Oscar errors.",
+      "observedErrors": [
+        "src/components/CreatorStudio.tsx(262,25): Cannot find name setTrialHelp.",
+        "tests/character-audits/simon.test.ts(83,146): number | undefined is not assignable to number."
+      ]
+    },
+    "evidenceRecords": [
+      {
+        "character": "oscar",
+        "check": "presentation",
+        "evidence": {
+          "intro": "Saca el micrófono, canta y da una vuelta de salsa",
+          "durationMs": 2800,
+          "frames": 16,
+          "turns": 1,
+          "technique": {
+            "startup": 8,
+            "recovery": 39,
+            "range": 140,
+            "height": 225,
+            "damage": 16,
+            "force": 8,
+            "radial": true,
+            "lift": -12
+          }
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "movement",
+        "evidence": {
+          "side": 0,
+          "start": 540,
+          "right": 652.9288778619349,
+          "left": 549.470815714616,
+          "firstY": 454.59999999999997,
+          "finalY": 554,
+          "stocks": 2
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "movement",
+        "evidence": {
+          "side": 1,
+          "start": 540,
+          "right": 652.9288778619349,
+          "left": 549.470815714616,
+          "firstY": 454.59999999999997,
+          "finalY": 554,
+          "stocks": 2
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "ordinary-attack",
+        "evidence": {
+          "side": 0,
+          "action": "light",
+          "guard": false,
+          "hp": 92.7179,
+          "hits": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "ordinary-attack",
+        "evidence": {
+          "side": 0,
+          "action": "light",
+          "guard": true,
+          "hp": 100,
+          "hits": 0
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "ordinary-attack",
+        "evidence": {
+          "side": 0,
+          "action": "heavy",
+          "guard": false,
+          "hp": 86.4761,
+          "hits": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "ordinary-attack",
+        "evidence": {
+          "side": 0,
+          "action": "heavy",
+          "guard": true,
+          "hp": 100,
+          "hits": 0
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "ordinary-attack",
+        "evidence": {
+          "side": 1,
+          "action": "light",
+          "guard": false,
+          "hp": 92.7179,
+          "hits": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "ordinary-attack",
+        "evidence": {
+          "side": 1,
+          "action": "light",
+          "guard": true,
+          "hp": 100,
+          "hits": 0
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "ordinary-attack",
+        "evidence": {
+          "side": 1,
+          "action": "heavy",
+          "guard": false,
+          "hp": 86.4761,
+          "hits": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "ordinary-attack",
+        "evidence": {
+          "side": 1,
+          "action": "heavy",
+          "guard": true,
+          "hp": 100,
+          "hits": 0
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "special",
+        "evidence": {
+          "side": 0,
+          "location": "front",
+          "guard": "idle",
+          "impacts": [
+            {
+              "tick": 8,
+              "hp": 83.3552,
+              "playerY": 542.52,
+              "targetY": 549.32
+            }
+          ],
+          "minimumY": 421.5199999999998,
+          "hp": 83.3552,
+          "hits": 1,
+          "blockCount": 0
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "special",
+        "evidence": {
+          "side": 0,
+          "location": "front",
+          "guard": "front",
+          "impacts": [],
+          "minimumY": 421.5199999999998,
+          "hp": 100,
+          "hits": 0,
+          "blockCount": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "special",
+        "evidence": {
+          "side": 0,
+          "location": "front",
+          "guard": "rear",
+          "impacts": [
+            {
+              "tick": 8,
+              "hp": 83.3552,
+              "playerY": 542.52,
+              "targetY": 549.32
+            }
+          ],
+          "minimumY": 421.5199999999998,
+          "hp": 83.3552,
+          "hits": 1,
+          "blockCount": 0
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "special",
+        "evidence": {
+          "side": 0,
+          "location": "behind",
+          "guard": "idle",
+          "impacts": [
+            {
+              "tick": 8,
+              "hp": 83.3552,
+              "playerY": 542.52,
+              "targetY": 549.32
+            }
+          ],
+          "minimumY": 421.5199999999998,
+          "hp": 83.3552,
+          "hits": 1,
+          "blockCount": 0
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "special",
+        "evidence": {
+          "side": 0,
+          "location": "behind",
+          "guard": "front",
+          "impacts": [],
+          "minimumY": 421.5199999999998,
+          "hp": 100,
+          "hits": 0,
+          "blockCount": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "special",
+        "evidence": {
+          "side": 0,
+          "location": "behind",
+          "guard": "rear",
+          "impacts": [
+            {
+              "tick": 8,
+              "hp": 83.3552,
+              "playerY": 542.52,
+              "targetY": 549.32
+            }
+          ],
+          "minimumY": 421.5199999999998,
+          "hp": 83.3552,
+          "hits": 1,
+          "blockCount": 0
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "special",
+        "evidence": {
+          "side": 1,
+          "location": "front",
+          "guard": "idle",
+          "impacts": [
+            {
+              "tick": 8,
+              "hp": 83.3552,
+              "playerY": 542.52,
+              "targetY": 554
+            }
+          ],
+          "minimumY": 421.5199999999998,
+          "hp": 83.3552,
+          "hits": 1,
+          "blockCount": 0
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "special",
+        "evidence": {
+          "side": 1,
+          "location": "front",
+          "guard": "front",
+          "impacts": [],
+          "minimumY": 421.5199999999998,
+          "hp": 100,
+          "hits": 0,
+          "blockCount": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "special",
+        "evidence": {
+          "side": 1,
+          "location": "front",
+          "guard": "rear",
+          "impacts": [
+            {
+              "tick": 8,
+              "hp": 83.3552,
+              "playerY": 542.52,
+              "targetY": 554
+            }
+          ],
+          "minimumY": 421.5199999999998,
+          "hp": 83.3552,
+          "hits": 1,
+          "blockCount": 0
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "special",
+        "evidence": {
+          "side": 1,
+          "location": "behind",
+          "guard": "idle",
+          "impacts": [
+            {
+              "tick": 8,
+              "hp": 83.3552,
+              "playerY": 542.52,
+              "targetY": 554
+            }
+          ],
+          "minimumY": 421.5199999999998,
+          "hp": 83.3552,
+          "hits": 1,
+          "blockCount": 0
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "special",
+        "evidence": {
+          "side": 1,
+          "location": "behind",
+          "guard": "front",
+          "impacts": [],
+          "minimumY": 421.5199999999998,
+          "hp": 100,
+          "hits": 0,
+          "blockCount": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "special",
+        "evidence": {
+          "side": 1,
+          "location": "behind",
+          "guard": "rear",
+          "impacts": [
+            {
+              "tick": 8,
+              "hp": 83.3552,
+              "playerY": 542.52,
+              "targetY": 554
+            }
+          ],
+          "minimumY": 421.5199999999998,
+          "hp": 83.3552,
+          "hits": 1,
+          "blockCount": 0
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "range-probe",
+        "evidence": {
+          "side": 0,
+          "gap": 80,
+          "hp": 83.3552,
+          "hits": 1,
+          "stocks": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "range-probe",
+        "evidence": {
+          "side": 0,
+          "gap": 139,
+          "hp": 83.3552,
+          "hits": 1,
+          "stocks": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "range-probe",
+        "evidence": {
+          "side": 0,
+          "gap": 140,
+          "hp": 100,
+          "hits": 0,
+          "stocks": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "range-probe",
+        "evidence": {
+          "side": 0,
+          "gap": 200,
+          "hp": 100,
+          "hits": 0,
+          "stocks": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "aerial-special",
+        "evidence": {
+          "side": 0,
+          "airborne": "actor",
+          "startingY": [
+            440.96,
+            554
+          ],
+          "hp": 83.3552,
+          "hits": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "aerial-special",
+        "evidence": {
+          "side": 0,
+          "airborne": "rival",
+          "startingY": [
+            554,
+            440.96
+          ],
+          "hp": 83.3552,
+          "hits": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "range-probe",
+        "evidence": {
+          "side": 1,
+          "gap": 80,
+          "hp": 83.3552,
+          "hits": 1,
+          "stocks": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "range-probe",
+        "evidence": {
+          "side": 1,
+          "gap": 139,
+          "hp": 83.3552,
+          "hits": 1,
+          "stocks": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "range-probe",
+        "evidence": {
+          "side": 1,
+          "gap": 140,
+          "hp": 100,
+          "hits": 0,
+          "stocks": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "range-probe",
+        "evidence": {
+          "side": 1,
+          "gap": 200,
+          "hp": 100,
+          "hits": 0,
+          "stocks": [
+            2,
+            2
+          ]
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "aerial-special",
+        "evidence": {
+          "side": 1,
+          "airborne": "actor",
+          "startingY": [
+            440.96,
+            554
+          ],
+          "hp": 83.3552,
+          "hits": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "aerial-special",
+        "evidence": {
+          "side": 1,
+          "airborne": "rival",
+          "startingY": [
+            554,
+            440.96
+          ],
+          "hp": 83.3552,
+          "hits": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "combo-gate",
+        "evidence": {
+          "side": 0,
+          "wins": 0,
+          "combo": "Paso de salsa",
+          "hp": 83.3861,
+          "hits": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "combo-gate",
+        "evidence": {
+          "side": 0,
+          "wins": 1,
+          "combo": "Síncopa doble",
+          "hp": 79.2661,
+          "hits": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "connected-combo",
+        "evidence": {
+          "side": 0,
+          "combo": "Paso de salsa",
+          "hits": 2,
+          "hp": 76.104,
+          "elapsed": 64
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "connected-combo",
+        "evidence": {
+          "side": 0,
+          "combo": "Síncopa doble",
+          "hits": 3,
+          "hp": 64.7019,
+          "elapsed": 108
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "super-gate",
+        "evidence": {
+          "side": 0,
+          "wins": 0,
+          "energy": 100,
+          "hp": 100,
+          "attackerEnergy": 100,
+          "combo": ""
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "super-gate",
+        "evidence": {
+          "side": 0,
+          "wins": 2,
+          "energy": 100,
+          "hp": 100,
+          "attackerEnergy": 100,
+          "combo": ""
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "super-gate",
+        "evidence": {
+          "side": 0,
+          "wins": 3,
+          "energy": 74,
+          "hp": 100,
+          "attackerEnergy": 74.31499999999997,
+          "combo": ""
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "super-gate",
+        "evidence": {
+          "side": 0,
+          "wins": 3,
+          "energy": 75,
+          "hp": 58.511599999999994,
+          "attackerEnergy": 13.314999999999996,
+          "combo": "Cierre del sonero"
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "super-gate",
+        "evidence": {
+          "side": 0,
+          "wins": 3,
+          "energy": 100,
+          "hp": 58.511599999999994,
+          "attackerEnergy": 38.28,
+          "combo": "Cierre del sonero"
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "combo-gate",
+        "evidence": {
+          "side": 1,
+          "wins": 0,
+          "combo": "Paso de salsa",
+          "hp": 83.3861,
+          "hits": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "combo-gate",
+        "evidence": {
+          "side": 1,
+          "wins": 1,
+          "combo": "Síncopa doble",
+          "hp": 79.2661,
+          "hits": 1
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "connected-combo",
+        "evidence": {
+          "side": 1,
+          "combo": "Paso de salsa",
+          "hits": 2,
+          "hp": 76.104,
+          "elapsed": 64
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "connected-combo",
+        "evidence": {
+          "side": 1,
+          "combo": "Síncopa doble",
+          "hits": 3,
+          "hp": 64.7019,
+          "elapsed": 108
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "super-gate",
+        "evidence": {
+          "side": 1,
+          "wins": 0,
+          "energy": 100,
+          "hp": 100,
+          "attackerEnergy": 100,
+          "combo": ""
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "super-gate",
+        "evidence": {
+          "side": 1,
+          "wins": 2,
+          "energy": 100,
+          "hp": 100,
+          "attackerEnergy": 100,
+          "combo": ""
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "super-gate",
+        "evidence": {
+          "side": 1,
+          "wins": 3,
+          "energy": 74,
+          "hp": 100,
+          "attackerEnergy": 74.31499999999997,
+          "combo": ""
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "super-gate",
+        "evidence": {
+          "side": 1,
+          "wins": 3,
+          "energy": 75,
+          "hp": 58.511599999999994,
+          "attackerEnergy": 13.314999999999996,
+          "combo": "Cierre del sonero"
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "super-gate",
+        "evidence": {
+          "side": 1,
+          "wins": 3,
+          "energy": 100,
+          "hp": 58.511599999999994,
+          "attackerEnergy": 38.28,
+          "combo": "Cierre del sonero"
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "cpu-fight",
+        "evidence": {
+          "side": 0,
+          "winner": 1,
+          "tick": 1258,
+          "remaining": 4617,
+          "started": [
+            "special",
+            "super",
+            "heavy",
+            "light"
+          ],
+          "landed": [
+            "special",
+            "super",
+            "light",
+            "heavy"
+          ],
+          "players": [
+            {
+              "fighter": "oscar",
+              "hp": 0,
+              "stocks": 0,
+              "hits": 5,
+              "peakCombo": 3
+            },
+            {
+              "fighter": "javier",
+              "hp": 100,
+              "stocks": 1,
+              "hits": 4,
+              "peakCombo": 1
+            }
+          ]
+        }
+      },
+      {
+        "character": "oscar",
+        "check": "cpu-fight",
+        "evidence": {
+          "side": 1,
+          "winner": 1,
+          "tick": 1049,
+          "remaining": 4832,
+          "started": [
+            "special",
+            "super",
+            "heavy",
+            "light"
+          ],
+          "landed": [
+            "special",
+            "super",
+            "light",
+            "heavy"
+          ],
+          "players": [
+            {
+              "fighter": "javier",
+              "hp": 0,
+              "stocks": 0,
+              "hits": 2,
+              "peakCombo": 1
+            },
+            {
+              "fighter": "oscar",
+              "hp": 100,
+              "stocks": 1,
+              "hits": 5,
+              "peakCombo": 3
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

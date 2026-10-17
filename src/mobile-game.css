@@ -1,0 +1,371 @@
+.touch-button {
+  touch-action: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+.touch-button > span {
+  font:
+    700 7px/1 "DM Sans",
+    sans-serif;
+  letter-spacing: 0;
+}
+.touch-button.is-pressed {
+  background: #ffd45a;
+  border-color: #ffe9a2;
+  color: #102036;
+  transform: scale(0.94);
+}
+.touch-button:disabled {
+  opacity: 0.4;
+}
+#root:fullscreen {
+  background: #081322;
+  overflow: auto;
+}
+#root:fullscreen:has(.game-page) .site-header,
+#root:fullscreen:has(.game-page) .site-footer {
+  display: none;
+}
+#root:fullscreen .game-page:not(.is-touch):not(.is-intro) {
+  max-width: min(calc(100vw - 32px), calc((100dvh - 150px) * 1.6875));
+  margin: 0 auto;
+}
+html:has(.game-page.is-touch),
+body:has(.game-page.is-touch) {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+.app-shell:has(.game-page.is-touch) > .site-header,
+.app-shell:has(.game-page.is-touch) > .site-footer {
+  display: none;
+}
+.arcade-app .game-page.is-touch {
+  --play-top: max(4px, env(safe-area-inset-top));
+  --play-bottom: max(8px, env(safe-area-inset-bottom));
+  --play-left: max(10px, env(safe-area-inset-left));
+  --play-right: max(10px, env(safe-area-inset-right));
+  --play-header: 44px;
+  --touch-size: clamp(44px, 12dvh, 56px);
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  min-height: 0;
+  margin: 0;
+  padding: var(--play-top) var(--play-right) var(--play-bottom) var(--play-left);
+  background: #081322;
+  user-select: none;
+}
+.game-page.is-touch .game-topline {
+  flex: none;
+  height: var(--play-header);
+  min-height: 44px;
+  flex-wrap: nowrap;
+  margin: 0;
+  gap: 8px;
+  padding: 0;
+  z-index: 8;
+}
+.game-page.is-touch .game-topline > .text-button {
+  min-height: 44px;
+  font-size: 11px;
+  gap: 6px;
+}
+.game-page.is-touch .game-mode {
+  order: 0;
+  width: auto;
+  margin: 0;
+  font-size: 8px;
+}
+.game-page.is-touch .game-tools {
+  gap: 4px;
+}
+.game-page.is-touch .game-tools .icon-button {
+  width: 44px;
+  height: 44px;
+}
+.game-page.is-touch .game-tools .icon-button svg {
+  width: 19px;
+  height: 19px;
+}
+.app-shell:has(.game-page.is-touch) .modal .icon-button {
+  min-width: 44px;
+  height: 44px;
+}
+.game-page.is-touch .arena-wrap {
+  flex: none;
+  width: min(
+    100%,
+    calc(
+      (100dvh - var(--play-header) - var(--play-top) - var(--play-bottom)) *
+        1.6875
+    )
+  );
+  max-width: 100%;
+  max-height: calc(
+    100dvh - var(--play-header) - var(--play-top) - var(--play-bottom)
+  );
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 1080 / 640;
+  margin: auto;
+  border: 1px solid #43576c;
+  border-radius: 8px;
+  box-shadow: none;
+}
+.game-page.is-touch .arena-canvas {
+  touch-action: none;
+}
+.game-page.is-touch .match-hud {
+  top: 10px;
+  left: 12px;
+  right: 12px;
+  gap: 58px;
+}
+.game-page.is-touch .hud-label {
+  gap: 5px;
+  margin-bottom: 5px;
+}
+.game-page.is-touch .hud-label strong {
+  font-size: 11px;
+}
+.game-page.is-touch .player-number {
+  font-size: 7px;
+}
+.game-page.is-touch .hud-character {
+  display: none;
+}
+.game-page.is-touch .match-clock {
+  top: -1px;
+}
+.game-page.is-touch .match-clock > strong {
+  font-size: 25px;
+}
+.game-page.is-touch .match-clock > span {
+  font-size: 6px;
+}
+.game-page.is-touch .health-track {
+  height: 14px;
+}
+.game-page.is-touch .health-track > span {
+  font-size: 8px;
+}
+.game-page.is-touch .hud-bottom {
+  gap: 5px;
+  margin-top: 5px;
+  font-size: 8px;
+}
+.game-page.is-touch .energy-track {
+  height: 5px;
+}
+.game-page.is-touch .arena-location,
+.game-page.is-touch .game-controls-bar,
+.game-page.is-touch .game-tip {
+  display: none;
+}
+.game-page.is-touch .touch-controls {
+  position: absolute;
+  bottom: var(--play-bottom);
+  left: var(--play-left);
+  right: var(--play-right);
+  z-index: 7;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0;
+  gap: 16px;
+  pointer-events: none;
+  touch-action: none;
+}
+.game-page.is-touch .touch-directions,
+.game-page.is-touch .touch-actions {
+  display: grid;
+  grid-template-columns: repeat(3, var(--touch-size));
+  gap: 6px;
+  max-width: none;
+  pointer-events: auto;
+}
+.game-page.is-touch .touch-button {
+  width: var(--touch-size);
+  height: var(--touch-size);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border: 1px solid #adc5e65c;
+  border-radius: 14px;
+  color: #edf2fa;
+  background: #10233acc;
+  box-shadow: 0 3px 0 #050e1b8c;
+  transition:
+    transform 80ms,
+    background 80ms;
+}
+.game-page.is-touch .touch-button svg {
+  width: 18px;
+  height: 18px;
+}
+.game-page.is-touch .touch-button > span {
+  font-size: 8px;
+}
+.game-page.is-touch .touch-button.is-pressed {
+  background: #ffd45a;
+  color: #102036;
+  border-color: #ffe9a2;
+  box-shadow: 0 1px 0 #9e792b;
+}
+.game-page.is-touch .touch-jump {
+  grid-column: 2;
+  grid-row: 1;
+}
+.game-page.is-touch .touch-left {
+  grid-column: 1;
+  grid-row: 2;
+}
+.game-page.is-touch .touch-right {
+  grid-column: 3;
+  grid-row: 2;
+}
+.game-page.is-touch .touch-down {
+  grid-column: 2;
+  grid-row: 3;
+}
+.game-page.is-touch .touch-dash {
+  grid-column: 1;
+  grid-row: 3;
+}
+.game-page.is-touch .touch-block {
+  grid-column: 1;
+  grid-row: 1;
+}
+.game-page.is-touch .touch-super {
+  grid-column: 3;
+  grid-row: 1;
+}
+.game-page.is-touch .touch-light {
+  grid-column: 1;
+  grid-row: 2;
+}
+.game-page.is-touch .touch-heavy {
+  grid-column: 2;
+  grid-row: 2;
+}
+.game-page.is-touch .touch-special {
+  grid-column: 3;
+  grid-row: 2;
+}
+.game-page.is-touch .touch-special,
+.game-page.is-touch .touch-super {
+  border-color: #ffd45a88;
+  color: #ffdc79;
+}
+.game-page.is-touch.is-intro {
+  --play-header: 0px;
+}
+.game-page.is-touch .game-overlay {
+  padding: 12px;
+  overflow-y: auto;
+}
+.game-page.is-touch.is-finished .arena-wrap {
+  flex: 1;
+  width: 100%;
+  max-height: none;
+  aspect-ratio: auto;
+  margin: 0;
+  border: none;
+}
+.game-page.is-touch.is-finished .arena-canvas,
+.game-page.is-touch.is-finished .match-hud {
+  display: none;
+}
+.game-page.is-touch .result-overlay {
+  position: absolute;
+}
+.game-page.is-touch .result-card {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  max-width: 100%;
+  padding: 16px;
+}
+.game-page.is-touch .result-art {
+  display: none;
+}
+.game-page.is-touch .result-info h2 {
+  font-size: 28px;
+  margin-top: 6px;
+}
+.game-page.is-touch .result-info .primary-button,
+.game-page.is-touch .pause-card .primary-button {
+  min-height: 44px;
+}
+.game-page.is-touch .result-info > .text-button,
+.game-page.is-touch .pause-card > .secondary-button {
+  min-height: 44px;
+}
+.game-page.is-touch .inline-message {
+  position: absolute;
+  z-index: 9;
+  top: calc(var(--play-top) + 44px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 10px;
+  max-width: calc(100% - 24px);
+  background: #102036;
+  border-radius: 6px;
+  text-align: center;
+}
+.orientation-gate {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #081322;
+  overflow-y: auto;
+}
+.orientation-card {
+  max-width: 340px;
+  text-align: center;
+}
+.orientation-card > svg {
+  color: #ffd45a;
+  transform: rotate(90deg);
+  margin-bottom: 22px;
+}
+.orientation-card h2 {
+  font:
+    italic 800 34px/1.1 "Barlow Condensed",
+    sans-serif;
+  color: #fff0c3;
+}
+.orientation-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #a8b9cf;
+  margin: 16px 0 24px;
+}
+.orientation-card > button {
+  min-height: 44px;
+  width: 100%;
+}
+.orientation-card > .text-button {
+  justify-content: center;
+  margin-top: 14px;
+  font-size: 12px;
+}
+@media (max-width: 700px) {
+  .game-page.is-touch .game-mode {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .game-page.is-touch .touch-button {
+    transition: none;
+  }
+}

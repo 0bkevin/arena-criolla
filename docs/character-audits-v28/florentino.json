@@ -1,0 +1,233 @@
+{
+  "auditVersion": 28,
+  "fighterId": "florentino",
+  "name": "Florentino",
+  "auditedDate": "2026-10-13",
+  "status": "complete_no_reproducible_character_specific_defect",
+  "scope": "Dedicated Florentino audit. Repository writes are limited to this report and tests/character-audits/florentino.test.ts. No runtime, art, package, commit, server or child-agent changes.",
+  "sourceRevision": "2273843fe788fb68bfa35d80d9ec87b48f1d2b7e",
+  "sourceHashes": {
+    "shared/engine.ts": "77916f714c9d0dc048f20964eb4ee9d03fa6267425ed974b38daee7f82c23749",
+    "shared/techniques.ts": "6b0381e7f847289e88636960923ba82722a25ec7a0d4786f72037a7f45942bf1",
+    "shared/fighters.json": "30611f5f186fc5de17ab2ccfe7646e8fd4343cbcce803e208d2a5c9e045b69b9",
+    "shared/presentation.ts": "68ff1fb48680fd1c018ea3b95fcbe7a348e6c7e6109cdfc79e040736794fbacf",
+    "shared/presentations.json": "0c03861463a97bb48a9f7eb1e5b00cdd8ab816b7af1e1d4582adc9ef62173e25",
+    "shared/choreography.ts": "ffe139cd4af2c7a371cb69ec23f36ada6807dd6aa835657599c752dc238cb3b8",
+    "src/game/assets.ts": "7e8c53ea36d1e1d47655352145db110ccebf088c54ce3262e8bc29fea364ca56",
+    "public/assets/florentino-v12.webp": "6179ca2c8b3b68670efac48194d4a40859802108237fde247ea24f11f02a2cdd"
+  },
+  "evidenceRead": [
+    "docs/character-audits-v28/BRIEF.txt",
+    "docs/folklore-v12/research.json (Florentino section)",
+    "docs/character-sprite-qa.json (Florentino section)",
+    "shared/fighters.json",
+    "shared/techniques.ts",
+    "shared/engine.ts",
+    "shared/presentation.ts",
+    "shared/presentations.json",
+    "shared/choreography.ts",
+    "src/game/assets.ts",
+    "src/game/presentation-renderer.ts",
+    "src/game/entrance-renderer.ts",
+    "src/game/intro-renderer.ts",
+    "src/game/renderer.ts",
+    "src/components/Portrait.tsx"
+  ],
+  "identityAndPortrayal": {
+    "preservedDossier": "Llanero coplero in liquiliqui and sombrero with a cuatro over the shoulder. His contrapunteo adaptation sends a note that follows rival height while retaining horizontal direction. Existing reference preserved; no new broad historical research or likeness edits.",
+    "reference": {
+      "title": "Cambridge — The Devil and Florentino, estudio del contrapunteo venezolano",
+      "url": "https://www.cambridge.org/core/journals/comparative-studies-in-society-and-history/article/devil-and-florentino-specters-of-petropopulism-in-venezuela/2213650405212C781D1EAF12866681B6"
+    },
+    "visualMatch": "Actual combat atlas retains the cream liquiliqui, broad straw hat, red neck scarf, brown boots and carried cuatro. Face, limbs, clothing and instrument remain complete across all eight actual poses and both facings.",
+    "audioLimit": "Audio listening was not performed; no real-person voice/dialogue claim is made."
+  },
+  "movementAndStance": {
+    "result": "pass_both_sides",
+    "walk": {
+      "startX": 540,
+      "rightFrames": 24,
+      "rightX": 652.9288778619349,
+      "subsequentLeftFrames": 24,
+      "leftX": 549.470815714616,
+      "facing": "right=1, left=-1; identical P1/P2 movement"
+    },
+    "jump": "First jump reaches y454.6 after10 calls; second jump is accepted, third is rejected. Landing restores y554, grounded=true and jumps0 on both sides.",
+    "manualDash": "Starting x180/P1 or900/P2, a dash input grants dash12, invincible8, cooldown30 and vx±14. After40 additional calls, x373.999902/P1 or706.000098/P2, dash0, invincible0, cooldown0 and |vx|0.000052555.",
+    "atlas": {
+      "asset": "public/assets/florentino-v12.webp",
+      "imageSize": [
+        1774,
+        887
+      ],
+      "bodyHeight": 423,
+      "frames": 8,
+      "frameFacing": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "qaRows": [
+        4,
+        4
+      ],
+      "qaPassed": true
+    },
+    "visual": "Production drawSprite for idle0, guard1, walking2/3, jump4, light/special5, heavy6 and recoil7 was inspected in both facings. Attacks and face point in the indicated direction; no clipping or neighboring sprite fragment was observed."
+  },
+  "special": {
+    "name": "Copla certera",
+    "ability": "verse",
+    "configuration": {
+      "startupFrames": 14,
+      "recoveryFrames": 46,
+      "nominalRange": 580,
+      "height": 190,
+      "baseDamage": 11,
+      "force": 5.5,
+      "energyCost": 25,
+      "projectile": {
+        "speed": 8,
+        "life": 74,
+        "homing": 2.8
+      }
+    },
+    "idle": "After the510-tick intro: P1 Florentino x180/Javier x460 or P2 Florentino x900/Javier x620; both y554, energy100. Increment only Florentino special once. One note emits at attack tick14, age1/life73, vx±8 and damage10.67. It hits once at tick37, leaving Javier89.0099 HP and outward vx±6.171617. Florentino stays at his original x.",
+    "frontGuard": "Same setup, rival block=true with no movement. Both sides keep rival HP100, produce exactly one block effect, register no attacker hit and consume the note.",
+    "rearGuard": "Same setup, rival block=true and movement away (right against P1, left against P2). Rival faces away; note hits once at tick46 for10.9901 effective damage, leaves89.0099 HP and produces no block effect.",
+    "energyGate": "Starting energy24 rejects; energy25 accepts and leaves0.035 after same-frame regeneration/cost. Energy100 leaves exactly75 immediately after activation.",
+    "trackingAndDirectionProbe": {
+      "setup": "P1 Florentino x180/Javier x900; mirrored P2 Florentino x900/Javier x180; y554, energy100. Rival invincible1000 only isolates trajectory from collisions. Florentino special on tick1; rival jump inputs on ticks16 and33. On tick26 set rival x100/P1 or980/P2 to put the rival behind the emitter.",
+      "assertion": "Every live frame of the actual emitted note obeys x=previousX+8*originalDirection and y=previousY+clamp(actualTargetY-75-previousY,-2.8,2.8). Owner, original direction and vx±8 remain constant after rival crossing. Tracking moves up during the jumps and down during landing.",
+      "samplesP1": [
+        {
+          "tick": 14,
+          "age": 1,
+          "x": 236,
+          "y": 479,
+          "targetY": 554,
+          "life": 73
+        },
+        {
+          "tick": 33,
+          "age": 20,
+          "x": 388,
+          "y": 428.6,
+          "targetX": 100,
+          "targetY": 405.48,
+          "life": 54
+        },
+        {
+          "tick": 53,
+          "age": 40,
+          "x": 548,
+          "y": 372.6,
+          "targetX": 100,
+          "targetY": 305.08,
+          "life": 34
+        },
+        {
+          "tick": 86,
+          "age": 73,
+          "x": 812,
+          "y": 364.2,
+          "targetX": 100,
+          "targetY": 554,
+          "life": 1
+        }
+      ],
+      "mirroredP2": "Same y, targetY, age and lifetime; x844 at age1,692 at age20,532 at age40,268 at age73; vx=-8 throughout, rival x980 after crossing.",
+      "boundedExpiry": "First appears at tick14; final surviving observation age73/tick86/life1; removed at tick87, age74. No persistent projectile, hit, turnback or horizontal pursuit remains."
+    }
+  },
+  "attacksAndCombos": {
+    "light": "At gap80 on both sides, one hit leaves93.0063 HP (7*.97*1.03 damage); forward guard preserves100 HP and records no hit.",
+    "heavy": "At gap80 on both sides, one hit leaves87.0117 HP (13*.97*1.03 damage); forward guard preserves100 HP and records no hit.",
+    "baseCombo": "Verso primero: L→H with actual approach inputs connects both strikes on each side; heavy bonus3, final rival HP76.928, elapsed64 ticks.",
+    "advancedCombo": "Copla enlazada: L→L→H with actual approach inputs connects all three strikes on each side at one win; heavy bonus7, final rival HP65.8143, elapsed108 ticks.",
+    "recognitionGate": "At gap140, two whiffed lights followed by heavy recognize Verso primero/bonus3 at zero wins and Copla enlazada/bonus7 at one win. Independent connected-combo checks verify real hits. Input-chain recognition including whiffs remains the existing design.",
+    "super": "Contrapunteo final at gap200, wins3 and energy75/100 connects once at startup9 on both sides, bonus12, effective damage40.3348, rival HP59.6652. Wins0/2 or wins3 with74 energy reject the super."
+  },
+  "cpuFight": {
+    "opponent": "Javier Hala Madrid",
+    "difficulty": "normal",
+    "result": "finished_and_exactly_replayed",
+    "winner": "Javier",
+    "finalTick": 1078,
+    "remainingFrames": 4802,
+    "method": "Real engine, complete510-tick intro, deterministic controller in the audit test. Florentino opens with special, allows180 calls for CPU offense, then approaches, guards, jumps and attacks. Run twice and compare full final match states.",
+    "started": [
+      "special",
+      "super",
+      "heavy",
+      "light"
+    ],
+    "landed": [
+      "special",
+      "super",
+      "heavy",
+      "light"
+    ],
+    "florentino": {
+      "hp": 0,
+      "stocks": 0,
+      "hits": 6,
+      "peakCombo": 4
+    },
+    "javier": {
+      "hp": 100,
+      "stocks": 1,
+      "hits": 2,
+      "peakCombo": 2
+    },
+    "limitation": "Scripted deterministic fight exercises offense and defense; it is not a balance benchmark or manual keyboard bout."
+  },
+  "introAndSelection": {
+    "name": "Invita al contrapunteo",
+    "styles": {
+      "intro": "present",
+      "selection": "strum"
+    },
+    "durationMs": 2800,
+    "oneShot": "One hand invitation/accent returns to the ready fighting stance, battle frame0. Selection progress clamps to1 at2800ms and5600ms; final choreography has zero front/back rotation and is identical at progress1 and2. Actual Portrait stops its animation when progress reaches1.",
+    "timeline": "Movement and special remain blocked through intro tick509. Playing begins tick510 with P1 facing1 and P2 facing-1.",
+    "visual": "Actual drawPresentation snapshots in both facings at0,784,1400,2128,2800,5600ms show a single motion and identical settled endpoints. Production renderMatch/drawIntroCinematic at P1 tick84 and P2 tick264 keeps hat, face and cuatro complete and faces the rival."
+  },
+  "nativePreview": {
+    "available": true,
+    "tabId": "tab_2y_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "openedWithReuseExistingTab": false,
+    "ownTabClosed": true,
+    "method": "Own native T3 preview tab; imported production asset loader, drawSprite, presentation renderer, shared engine and match renderer. All saved screenshots were opened and visually inspected.",
+    "screenshots": [
+      {
+        "kind": "all_eight_actual_combat_sprites_both_facings",
+        "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62nfce-3d018a51.png"
+      },
+      {
+        "kind": "one_shot_intro_and_selection_both_facings",
+        "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62ony6-f8c83484.png"
+      },
+      {
+        "kind": "production_intro_and_tracking_note_both_player_sides",
+        "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62p7g5-74e965f0.png"
+      }
+    ],
+    "limits": "Deterministic production-renderer snapshots were used. No manual keyboard play or audio listening. Native preview was available without reload interruptions."
+  },
+  "validation": {
+    "testCommand": "npx tsx --test tests/character-audits/florentino.test.ts",
+    "tests": 9,
+    "passed": 9,
+    "failed": 0,
+    "typecheckCommand": "npx tsc --noEmit",
+    "typecheck": "pass",
+    "freshProcessRetest": "Final9/9 run was executed in a fresh tsx process after the final assertion edit. No runtime files were edited by this agent."
+  },
+  "findings": []
+}

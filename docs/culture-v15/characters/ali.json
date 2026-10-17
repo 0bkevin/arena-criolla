@@ -1,0 +1,50 @@
+{
+  "id": "ali",
+  "name": "Alí Primera",
+  "biography": "Cantautor venezolano vinculado a la nueva canción. La guitarra y la expresividad de sus recitales guían este personaje.",
+  "portraitReference": "assets/references/culture-v15/ali/portrait.jpg",
+  "distinctiveTraits": [
+    "Melena rizada oscura y barba abundante con algunas canas.",
+    "Camisa clara de rayas verticales y guitarra naranja observadas en recital."
+  ],
+  "portrayal": "Melena rizada oscura y barba abundante con algunas canas. Camisa clara de rayas verticales y guitarra naranja observadas en recital. Las acciones de pelea son ficción.",
+  "sources": [
+    {
+      "title": "Fundación Alí Primera — vida y trayectoria",
+      "url": "https://aliprimera.com/vida-de-al%C3%AD-primera"
+    },
+    {
+      "title": "Referencia fotográfica inspeccionada — Alí Primera",
+      "url": "https://www.saberesafricanos.net/noticias/cultura/989-presidente-maduro-enaltecio-el-legado-musical-de-ali-primera.html"
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/culture-v15/ali/portrait.jpg",
+      "url": "https://saberesafricanos.net/images/2016/10/Primera-cantor-bolivariano.jpg",
+      "sourcePage": "https://www.saberesafricanos.net/noticias/cultura/989-presidente-maduro-enaltecio-el-legado-musical-de-ali-primera.html",
+      "viewed": true
+    }
+  ],
+  "gameplay": {
+    "special": "Rasgueo del pueblo",
+    "ability": "strum",
+    "description": "Guitarra naranja y camisa a rayas. Envía tres ondas rasantes a intervalos: saltar permite evitarlas.",
+    "combos": [
+      "Primer acorde",
+      "Cuerda firme",
+      "Rasgueo del pueblo"
+    ],
+    "role": "DISTANCIA"
+  },
+  "audio": {
+    "realVoice": false,
+    "reactions": "Esfuerzos y dolor genéricos sin palabras",
+    "specialCue": "strum"
+  },
+  "review": {
+    "identityVerified": true,
+    "portraitViewed": true,
+    "biographyReviewed": true
+  }
+}

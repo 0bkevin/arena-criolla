@@ -1,0 +1,19 @@
+{
+  "name": "Arena Criolla",
+  "short_name": "Arena Criolla",
+  "lang": "es",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#081322",
+  "theme_color": "#081322",
+  "icons": [
+    {
+      "src": "/assets/arena-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

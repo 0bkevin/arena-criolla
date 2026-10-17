@@ -1,0 +1,207 @@
+{
+  "version": 5,
+  "checkedAt": "2026-10-08T18:24:51.126Z",
+  "activeRoster": [
+    "zavarce",
+    "vallenilla",
+    "javier",
+    "capriles",
+    "renny",
+    "gomez",
+    "simon",
+    "conde",
+    "emilio",
+    "maite",
+    "oscar",
+    "puma",
+    "chataing",
+    "george",
+    "mcm"
+  ],
+  "replaced": {
+    "john": "zavarce",
+    "kilometro": "vallenilla"
+  },
+  "archive": "assets/archive/v5-retired",
+  "checks": {
+    "tests": {
+      "passed": 28,
+      "failed": 0,
+      "command": "npm test",
+      "includes": [
+        "Avance y protección temporal de Entrega exprés",
+        "Tres emisiones separadas de Tres cuotas, daño y caducidad",
+        "Los quince especiales con física finita",
+        "Salas WebSocket aceptan los quince luchadores y rechazan los cuatro retirados",
+        "Plataformas móviles y nueve escenarios deterministas"
+      ]
+    },
+    "build": {
+      "command": "npm run build",
+      "passed": true
+    },
+    "atlas": {
+      "command": "npm run check:assets",
+      "fighters": 15,
+      "poses": 120,
+      "alpha": true,
+      "completeSilhouettes": true,
+      "pngWebpSilhouetteParity": true
+    },
+    "browser": {
+      "rosterCount": 15,
+      "retiredCards": false,
+      "badgePresent": false,
+      "sprites": [
+        {
+          "id": "zavarce",
+          "frames": 8,
+          "width": 1774,
+          "bodyHeight": 426
+        },
+        {
+          "id": "vallenilla",
+          "frames": 8,
+          "width": 1774,
+          "bodyHeight": 443
+        },
+        {
+          "id": "javier",
+          "frames": 8,
+          "width": 1774,
+          "bodyHeight": 393
+        },
+        {
+          "id": "capriles",
+          "frames": 8,
+          "width": 2048,
+          "bodyHeight": 484
+        },
+        {
+          "id": "renny",
+          "frames": 8,
+          "width": 1774,
+          "bodyHeight": 439
+        },
+        {
+          "id": "gomez",
+          "frames": 8,
+          "width": 2048,
+          "bodyHeight": 457
+        },
+        {
+          "id": "simon",
+          "frames": 8,
+          "width": 1772,
+          "bodyHeight": 382
+        },
+        {
+          "id": "conde",
+          "frames": 8,
+          "width": 1774,
+          "bodyHeight": 433
+        },
+        {
+          "id": "emilio",
+          "frames": 8,
+          "width": 1536,
+          "bodyHeight": 489
+        },
+        {
+          "id": "maite",
+          "frames": 8,
+          "width": 1536,
+          "bodyHeight": 488
+        },
+        {
+          "id": "oscar",
+          "frames": 8,
+          "width": 1536,
+          "bodyHeight": 455
+        },
+        {
+          "id": "puma",
+          "frames": 8,
+          "width": 1536,
+          "bodyHeight": 486
+        },
+        {
+          "id": "chataing",
+          "frames": 8,
+          "width": 1536,
+          "bodyHeight": 492
+        },
+        {
+          "id": "george",
+          "frames": 8,
+          "width": 1536,
+          "bodyHeight": 481
+        },
+        {
+          "id": "mcm",
+          "frames": 8,
+          "width": 1774,
+          "bodyHeight": 440
+        }
+      ],
+      "localFight": {
+        "fighters": [
+          "zavarce",
+          "vallenilla"
+        ],
+        "stage": "merida",
+        "initialHealth": [
+          100,
+          100
+        ],
+        "observedHealth": [
+          82,
+          100
+        ],
+        "mode": "local",
+        "pausedBeforeExit": true
+      },
+      "audio": {
+        "decoded": [
+          {
+            "id": "zavarce",
+            "cue": "select",
+            "file": "/audio/zavarce/original-select.mp3",
+            "status": 200,
+            "duration": 2.84,
+            "rms": 0.12048009719412711,
+            "peak": 0.5081721544265747
+          },
+          {
+            "id": "vallenilla",
+            "cue": "select",
+            "file": "/audio/vallenilla/original-select.mp3",
+            "status": 200,
+            "duration": 2.88,
+            "rms": 0.12639898784451906,
+            "peak": 0.8220454454421997
+          },
+          {
+            "id": "vallenilla",
+            "cue": "special",
+            "file": "/audio/vallenilla/original-special.mp3",
+            "status": 200,
+            "duration": 3.78,
+            "rms": 0.11727117072542231,
+            "peak": 0.9060462713241577
+          }
+        ],
+        "originalBufferStartDurations": [
+          2.88,
+          2.84,
+          2.84,
+          3.78
+        ],
+        "humanListeningClaim": false
+      },
+      "preferencesRestored": true
+    }
+  },
+  "currentGallery": "docs/character-preview.html",
+  "prompts": "docs/characters-v5/sprite-prompts.json"
+}

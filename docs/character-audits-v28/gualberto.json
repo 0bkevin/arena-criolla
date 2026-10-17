@@ -1,0 +1,240 @@
+{
+  "auditVersion": 28,
+  "fighterId": "gualberto",
+  "name": "Gualberto Ibarreto",
+  "auditedDate": "2026-10-13",
+  "sourceRevision": "2273843fe788fb68bfa35d80d9ec87b48f1d2b7e",
+  "status": "complete_no_reproducible_character_specific_defect",
+  "scope": "Dedicated Gualberto audit using the preserved dossier, actual shared-engine fights and this agent's own native preview tab. Only this report and tests/character-audits/gualberto.test.ts were written in the repository; no runtime edits, art edits, commits or child agents.",
+  "evidenceRead": [
+    "docs/culture-v15/characters/gualberto.json",
+    "assets/references/culture-v15/gualberto/portrait.jpg",
+    "docs/character-sprite-qa.json",
+    "shared/fighters.json",
+    "shared/techniques.ts",
+    "shared/culture-techniques.ts",
+    "shared/engine.ts",
+    "shared/presentation.ts",
+    "shared/presentations.json",
+    "shared/choreography.ts",
+    "shared/entrance-assets.json",
+    "src/game/assets.ts",
+    "src/game/renderer.ts",
+    "src/game/presentation-renderer.ts",
+    "src/game/intro-renderer.ts",
+    "src/game/entrance-renderer.ts",
+    "src/game/culture-renderer.ts",
+    "src/components/Portrait.tsx",
+    "src/audio.ts",
+    "src/game/reactions.ts",
+    "src/game/culture-sounds.ts"
+  ],
+  "baselineHashes": {
+    "shared/engine.ts": "402ab4dd11397617e6d96c03289328d2c4025b87cc14617acf1cf5ca2083de7e",
+    "shared/techniques.ts": "596f948c07d685c7e570eeaa4c3919367d0a805ce352ba5aee48a4bcda14c550",
+    "shared/culture-techniques.ts": "6c43364d4cd9984c56aeeb5fd68dc5c4f5bb3b5e3343e13adaa78b83734425aa",
+    "shared/fighters.json": "30611f5f186fc5de17ab2ccfe7646e8fd4343cbcce803e208d2a5c9e045b69b9",
+    "shared/presentations.json": "8a7fbd0de98e62534317f4d5f41f20d4a1180d2960a07c6764aba0082112d8a1",
+    "shared/choreography.ts": "ffe139cd4af2c7a371cb69ec23f36ada6807dd6aa835657599c752dc238cb3b8",
+    "public/assets/gualberto-v15.webp": "e82349ee2166f41518bdcc9d3f8d09ef37b22a32d896c19c4b3c0bcf18673ff8"
+  },
+  "identityAndPortrayal": {
+    "preservedDossier": "Venezuelan interpreter of eastern musical forms including galerón, malagueña and polo. The cuatro, audience-facing gestures, clean-shaven mature face, pronounced nose and broad smile are the preserved design basis; no new biographical research was performed.",
+    "visualMatch": "Inspected the preserved photograph and actual production sprite renderer. The arcade adaptation retains the straw hat, yellow polo with dark/red/white stripes, clean-shaven mature face, broad smile and cuatro at the hip. The instrument remains coherent across the combat poses and the presentation samples.",
+    "fictionalAdaptation": "Tremolo oriental, Cerecita, Galerón cruzado and Doble tremolo follow the established musician design; fighting actions are fictional adaptations.",
+    "audio": "The dossier specifies realVoice=false and generic wordless effort/pain reactions. Source inspection confirms the generic male reaction bank and synthesized triangle-wave tremolo cue. Audio playback and audiovisual synchronization were not independently reviewed."
+  },
+  "movementAndStance": {
+    "result": "pass_both_sides",
+    "movement": "Starting x540, 24 right inputs reach641.8574192480195; 24 subsequent left inputs reach548.5423043700457. Facing follows movement. Both player sides reproduce these results.",
+    "jump": "First jump reaches y454.6 after10 calls. A second jump is accepted, a third is rejected and landing restores grounded=true, y554 and jumps0 with both stocks retained on both sides.",
+    "sprites": "All eight frames were drawn by production loadSprite/drawSprite in both directions: cuatro greeting0, guard1, running2/3, tucked jump4, punch5, high kick6 and recoil7. Heads, hands, shoes and silhouettes remained intact in representative samples. No facing reversal or borrowed limb was observed.",
+    "atlas": {
+      "imageSize": [
+        1774,
+        887
+      ],
+      "bodyHeight": 429,
+      "baseline": 440,
+      "qaRows": [
+        4,
+        4
+      ],
+      "qaPassed": true,
+      "runtimeFrameCount": 8
+    }
+  },
+  "special": {
+    "name": "Tremolo oriental",
+    "ability": "tremolo",
+    "result": "pass_outbound_and_return_both_sides",
+    "configuration": {
+      "startupFrames": 10,
+      "recoveryFrames": 45,
+      "nominalRange": 380,
+      "height": 160,
+      "damageBase": 9,
+      "fighterDamageMultiplier": 0.98,
+      "force": 5,
+      "projectileCount": 2,
+      "speed": 7.5,
+      "initialVerticalSpeeds": [
+        -1.5,
+        1.5
+      ],
+      "returnAfterAge": 22,
+      "projectileLife": 64,
+      "energyCost": 25
+    },
+    "distinctBehavior": "Two notes emit simultaneously, move apart vertically and reverse their horizontal velocity at age22. Their vertical velocities remain unchanged; the return is horizontal rather than a homing reunion at the actor. The actor remains stationary.",
+    "reproSetup": "Create poliedro match Gualberto versus Javier, advance510 neutral intro calls, set Gualberto x360 on side0 or x720 on side1, rival120 pixels in the facing direction, both energy100. Increment actions.special once and run120 stepMatch calls.",
+    "idle": "Both notes are visible at call10 with y477.5/480.5 and damage8.82. Outbound hits at calls14/29 (simulation offsets14/26 due to hitstop) reduce Javier to90.9154 then81.8308 HP; both sides register two hits.",
+    "forwardGuard": "Holding grounded block toward Gualberto blocks both outbound notes. Both sides retain HP100 and record two block effects with zero attacker hits.",
+    "rearGuard": "Holding block plus movement away from Gualberto points the guard away from outbound notes. Both hit at calls16/31 (simulation offsets16/28), finalHP81.8308 with no block effects, on both sides.",
+    "separationAndReturn": "At noncontact gap280, age21 appears at call30: side0 notesx565.5, side1x514.5, y447.5/510.5, separation63. At age22/call31, side0x558 and side1x522 with horizontal velocity reversed and y446/512, separation66. Both expire at age64/call73, actor x unchanged and rival HP100.",
+    "returnThroughActualJump": "At gap120, increment rival jump and Gualberto special together. The rival avoids outbound collisions, then the returning upper note hits at call38 while descending at y452.92. HP90.9154 and knockback points toward Gualberto on both sides. This uses real jump input, not a mocked collision.",
+    "isolatedReturnGuard": "To isolate inbound guard behavior, use the same gap120 setup with rival.invincible=32, the normal engine timer. Idle and block facing the actor each take two return hits at calls36/51 (simulation offsets36/48), finalHP81.8308. Block plus movement toward the arriving return note blocks twice, finalHP100. Both player sides pass; inward knockback confirms reversed incoming direction. The initial invulnerability is a deliberate test setup rather than a claim about an ordinary idle opponent.",
+    "energyGate": "Energy24 rejects special on both sides. Exactly25 activates it and leaves0.035 after normal per-tick regeneration. Starting100 spends25 before hit rewards.",
+    "rangeProbes": [
+      {
+        "gap": 80,
+        "hits": 2,
+        "hp": 81.8308
+      },
+      {
+        "gap": 120,
+        "hits": 2,
+        "hp": 81.8308
+      },
+      {
+        "gap": 180,
+        "hits": 1,
+        "hp": 90.9154
+      },
+      {
+        "gap": 220,
+        "hits": 1,
+        "hp": 90.9154
+      },
+      {
+        "gap": 247,
+        "hits": 1,
+        "hp": 90.9154
+      },
+      {
+        "gap": 248,
+        "hits": 0,
+        "hp": 100
+      },
+      {
+        "gap": 280,
+        "hits": 0,
+        "hp": 100
+      },
+      {
+        "gap": 380,
+        "hits": 0,
+        "hp": 100
+      }
+    ],
+    "rangeInterpretation": "Range probes reproduce on both sides with both stocks retained. Horizontal turnaround limits reach to205.5 pixels from actor plus the42-pixel collision allowance, so gap247 hits and248 misses. Nominal technique range380 is not the projectile reach. Midrange one-hit results follow knockback, invulnerability and the return path, rather than a missing second emission."
+  },
+  "attacksAndCombos": {
+    "light": "Both sides connect once at gap80 for7.0658 damage, with outward knockback. Facing block prevents HP loss.",
+    "heavy": "Both sides connect once at gap80 for13.1222 damage, with outward knockback. Facing block prevents HP loss.",
+    "baseCombo": "Cerecita (L→H) connects both strikes with real chase inputs after knockback, finalHP76.722, elapsed66 simulation ticks, heavy bonus3.",
+    "advancedCombo": "Galerón cruzado (L→L→H) at one win connects all three strikes with real chase inputs, finalHP65.5362, elapsed111 simulation ticks, heavy bonus7. Zero wins retain Cerecita and bonus3.",
+    "recognitionLimit": "Separate out-of-range light probes still name and buff the final heavy because recognition uses input history, including whiffs. Connected-combo checks verify each strike lands; this existing design was preserved.",
+    "definitive": "Doble tremolo requires three wins and75 energy. Zero/two wins or74 energy reject it. At exactly75 or100 energy it hits once on both sides at gap200/startup9 for40.6232 damage: (28*0.98+12)*1.03, finalHP59.3768. The definitive currently uses the shared close-range super rather than another returning projectile."
+  },
+  "cpuFight": {
+    "opponent": "Javier Hala Madrid",
+    "difficulty": "normal",
+    "method": "After the510-tick intro, start a real special at gap220, then hold Gualberto idle through180 calls to exercise CPU offense. Continue approach, block, jump and attack inputs through the entire bout. Repeat from identical initial state and compare the full final state.",
+    "result": "finished_and_exactly_replayed",
+    "winner": "Gualberto",
+    "finalTick": 1017,
+    "remainingFrames": 4862,
+    "started": [
+      "special",
+      "super",
+      "light",
+      "heavy"
+    ],
+    "landed": [
+      "special",
+      "super",
+      "heavy",
+      "light"
+    ],
+    "gualberto": {
+      "hp": 100,
+      "stocks": 1,
+      "hits": 6,
+      "peakCombo": 3
+    },
+    "javier": {
+      "hp": 0,
+      "stocks": 0,
+      "hits": 1,
+      "peakCombo": 1
+    },
+    "limitation": "This deterministic controller exercises the character and opponent; it is not a balance benchmark."
+  },
+  "introAndSelection": {
+    "result": "visually_checked",
+    "name": "Saludo con el cuatro",
+    "introStyle": "strum",
+    "selectionStyle": "hat",
+    "durationMs": 2800,
+    "dedicatedEntranceAtlas": false,
+    "nativePreviewTab": "tab_2e_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "nativePreviewUrl": "http://localhost:5173/",
+    "tabClosed": true,
+    "actualAppChecks": "Selected Gualberto through ordinary second-page roster control and started a CPU match. Saved the selected lobby and actual initial split-screen entrance. Selection canvas reached progress1/frame1, confirming the completed pose holds guard.",
+    "controlledChecks": "An ephemeral overlay in the owned native tab imported production loadSprite, drawSprite and drawPresentation. Inspected all eight combat frames in both directions, plus intro and selection at0/.5/1 and mirrored midpoint. Also imported production drawIntroCinematic and inspected Gualberto on side0 at tick84 and side1 at tick264.",
+    "observation": "The midpoint retains a coherent cuatro-playing pose with music-note accents in the intro and a small hat accent during selection. Start/end are guard1. Both cinematic samples face the rival with head, hands and instrument visible; the cinematic deliberately crops the lower body. No clipping, facing inversion or duplicate instrument was observed in these samples.",
+    "oneShot": "selectionProgress clamps to1 at2800ms and stays1 at5600ms. Portrait stops requesting selection animation frames when completed. Both player sides reject movement and special inputs through the full510-tick intro, then face the rival.",
+    "screenshotPaths": {
+      "selectedLobby": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61jroq-4dc087ad.png",
+      "combatFramesBothDirections": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61kiqh-d5196bc0.png",
+      "introAndSelectionSamples": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61kx7d-cfafafd1.png",
+      "actualInitialEntrance": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61kyae-0188bf71.png",
+      "cinematicBothSides": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61leqh-f289587f.png"
+    },
+    "transientFailure": "Initial native page reload lost the Vite WebSocket and modules with ERR_CONNECTION_REFUSED around02:05:48 UTC. Reloading the same owned tab restored the app. No server or alternate browser system was started by this agent.",
+    "limitations": "Representative static animation samples and the ordinary initial cinematic were inspected; every interpolation frame and audio playback were not independently reviewed. All screenshots were saved and the owned native tab was closed."
+  },
+  "findings": [],
+  "recommendation": "Retain Gualberto's current behavior and presentation. No reproducible Gualberto-specific defect from this focused audit justifies a runtime change.",
+  "verification": {
+    "testFile": "tests/character-audits/gualberto.test.ts",
+    "command": "npx tsx --test tests/character-audits/gualberto.test.ts",
+    "result": {
+      "tests": 10,
+      "passed": 10,
+      "failed": 0
+    },
+    "typecheck": {
+      "command": "npx tsc --noEmit",
+      "exitCode": 0
+    },
+    "sharedFilesStableDuringFinalTest": true,
+    "checksActuallyRun": [
+      "Movement/facing/double jump/landing both sides",
+      "Light/heavy hits and front guards both sides",
+      "Paired emissions and vertical separation",
+      "Outbound idle/front/rear guard scenarios both sides",
+      "Age22 horizontal turnaround and age64 expiry both sides",
+      "Real-jump inbound collision both sides",
+      "Return-facing guards and reversed knockback both sides",
+      "Return reach boundary and stock preservation both sides",
+      "Special energy gates both sides",
+      "Whiff recognition plus fully connected base/advanced combos both sides",
+      "Super win/energy gates both sides",
+      "Intro action gate both sides",
+      "Complete normal CPU bout with full-state deterministic replay",
+      "Own native-preview sprites and one-shot presentations both directions"
+    ]
+  }
+}

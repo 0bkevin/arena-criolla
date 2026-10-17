@@ -1,0 +1,2381 @@
+[
+  {
+    "id": "zavarce",
+    "name": "Vicente Zavarce",
+    "introName": "Ruta confirmada",
+    "selectionName": "Chequeo de pedido",
+    "observedGesture": "El retrato de Rest of World muestra sonrisa frontal y chaqueta Yummy Rocket; la entrevista original de Startupeable documenta su trabajo en la superapp. No se verificó un gesto de saludo exclusivo o habitual.",
+    "adaptationNote": "Consulta breve de teléfono y dos asentimientos inventados para el juego, inspirados en el contexto de delivery; no atribuirle este ritual real. Frame1 palma levantada sirve como confirmación visual, frame 0 vuelve a guardia.",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "phone",
+    "selectionStyle": "phone",
+    "prop": "phone",
+    "color": "#a8a0f3",
+    "durationMs": 1900,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.14,
+        "frame": 0,
+        "dx": -0.018,
+        "dy": 0.007,
+        "rotate": -0.012,
+        "scaleX": 0.98,
+        "scaleY": 0.985
+      },
+      {
+        "at": 0.29,
+        "frame": 0,
+        "dx": -0.012,
+        "dy": 0.014,
+        "rotate": -0.026,
+        "scaleX": 0.98,
+        "scaleY": 0.975
+      },
+      {
+        "at": 0.43,
+        "frame": 1,
+        "dx": 0.012,
+        "dy": -0.008,
+        "rotate": 0.024,
+        "scaleX": 1,
+        "scaleY": 1.015
+      },
+      {
+        "at": 0.53,
+        "frame": 1,
+        "dx": 0.009,
+        "dy": 0.004,
+        "rotate": 0.012,
+        "scaleX": 1,
+        "scaleY": 0.99
+      },
+      {
+        "at": 0.65,
+        "frame": 1,
+        "dx": 0.015,
+        "dy": -0.007,
+        "rotate": 0.017,
+        "scaleX": 1,
+        "scaleY": 1.014
+      },
+      {
+        "at": 0.83,
+        "frame": 0,
+        "dx": 0.006,
+        "dy": 0,
+        "rotate": 0.006,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 0,
+        "dx": -0.008,
+        "dy": 0.006,
+        "rotate": -0.012,
+        "scaleX": 1,
+        "scaleY": 0.99
+      },
+      {
+        "at": 0.36,
+        "frame": 1,
+        "dx": 0.006,
+        "dy": -0.006,
+        "rotate": 0.012,
+        "scaleX": 1,
+        "scaleY": 1.012
+      },
+      {
+        "at": 0.52,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0.004,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 0.99
+      },
+      {
+        "at": 0.69,
+        "frame": 0,
+        "dx": 0.004,
+        "dy": -0.004,
+        "rotate": 0.006,
+        "scaleX": 1,
+        "scaleY": 1.008
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "Startupeable — entrevista en español con Vicente Zavarce, CEO y cofundador de Yummy",
+        "url": "https://startupeable.com/yummy/",
+        "note": "Entrevista original con enlace al video JNyszhMrNLw; contexto de delivery/superapp; no se afirma haber observado un ritual corporal en video."
+      },
+      {
+        "title": "Rest of World — perfil y retrato de Vicente Zavarce",
+        "url": "https://restofworld.org/profile/vicente-zavarce/",
+        "note": "Retrato cortesía de Yummy inspeccionado localmente: sonrisa y chaqueta; evidencia visual de vestuario y expresión."
+      }
+    ]
+  },
+  {
+    "id": "vallenilla",
+    "name": "Pedro Vallenilla",
+    "introName": "En tres tiempos",
+    "selectionName": "Cuotas en orden",
+    "observedGesture": "El retrato editorial de Banca y Negocios muestra sonrisa directa y camisa a cuadros; Startupeable identifica a Pedro como cofundador de Cashea. Las fuentes no verifican un saludo personal de tres gestos.",
+    "adaptationNote": "Tres pequeños asentimientos espaciados y una tarjeta pixelada evocan el sistema de cuotas de Cashea. El ritmo triple y la tarjeta son adaptación ficticia; no se utiliza audio de entrevistas ni se presenta como ademán real.",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "card",
+    "selectionStyle": "card",
+    "prop": "card",
+    "color": "#e6ed7a",
+    "durationMs": 2100,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.14,
+        "frame": 1,
+        "dx": 0.008,
+        "dy": 0.008,
+        "rotate": 0.008,
+        "scaleX": 1,
+        "scaleY": 0.98
+      },
+      {
+        "at": 0.25,
+        "frame": 1,
+        "dx": 0.008,
+        "dy": -0.006,
+        "rotate": 0.008,
+        "scaleX": 1,
+        "scaleY": 1.012
+      },
+      {
+        "at": 0.39,
+        "frame": 1,
+        "dx": 0.014,
+        "dy": 0.007,
+        "rotate": 0.016,
+        "scaleX": 1,
+        "scaleY": 0.982
+      },
+      {
+        "at": 0.51,
+        "frame": 1,
+        "dx": 0.014,
+        "dy": -0.007,
+        "rotate": 0.016,
+        "scaleX": 1,
+        "scaleY": 1.014
+      },
+      {
+        "at": 0.65,
+        "frame": 1,
+        "dx": 0.02,
+        "dy": 0.007,
+        "rotate": 0.023,
+        "scaleX": 1,
+        "scaleY": 0.982
+      },
+      {
+        "at": 0.79,
+        "frame": 0,
+        "dx": 0.009,
+        "dy": -0.006,
+        "rotate": 0.01,
+        "scaleX": 1,
+        "scaleY": 1.012
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.16,
+        "frame": 1,
+        "dx": 0.004,
+        "dy": 0.004,
+        "rotate": 0.004,
+        "scaleX": 1,
+        "scaleY": 0.99
+      },
+      {
+        "at": 0.31,
+        "frame": 1,
+        "dx": 0.004,
+        "dy": -0.004,
+        "rotate": 0.004,
+        "scaleX": 1,
+        "scaleY": 1.009
+      },
+      {
+        "at": 0.49,
+        "frame": 0,
+        "dx": 0.008,
+        "dy": 0.004,
+        "rotate": 0.008,
+        "scaleX": 1,
+        "scaleY": 0.99
+      },
+      {
+        "at": 0.67,
+        "frame": 0,
+        "dx": 0.008,
+        "dy": -0.004,
+        "rotate": 0.008,
+        "scaleX": 1,
+        "scaleY": 1.009
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "Startupeable — entrevista en video y audio a Pedro Vallenilla, CEO y cofundador de Cashea (14 de mayo de 2025)",
+        "url": "https://startupeable.com/cashea/",
+        "note": "Entrevista original y video DkNspJCHjf8; identidad y actividad en Cashea, no prueba de ritual físico."
+      },
+      {
+        "title": "Banca y Negocios — entrevista y retrato de Pedro Vallenilla Sosa",
+        "url": "https://www.bancaynegocios.com/exclusivo-cashea-un-fenomeno-social-que-aspira-duplicar-su-mercado-en-2026/",
+        "note": "Entrevista original y retrato inspeccionado: sonrisa frontal, camisa de cuadros y postura erguida."
+      }
+    ]
+  },
+  {
+    "id": "javier",
+    "name": "Javier Hala Madrid",
+    "introName": "La reacción maracucha",
+    "selectionName": "¿Y esta vaina?",
+    "observedGesture": "El fotograma local del sketch oficial Telegram 509 muestra cejas expresivas, mirada lateral y personaje de comedia; el canal publica reacciones cortas y sketches. El retrato de Versión Final confirma sonrisa, copete y camiseta negra.",
+    "adaptationNote": "Dos inclinaciones de cabeza a distinta velocidad y una pausa de incredulidad sugieren sus reacciones de cámara. No animar el frame 1 de brazos cruzados como saludo ni usar frames de golpe; la inclinación y los tiempos son ficción.",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "joke",
+    "selectionStyle": "joke",
+    "prop": "none",
+    "color": "#ff96bd",
+    "durationMs": 1900,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.13,
+        "frame": 0,
+        "dx": -0.012,
+        "dy": 0,
+        "rotate": -0.075,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.28,
+        "frame": 0,
+        "dx": -0.012,
+        "dy": 0,
+        "rotate": -0.075,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.37,
+        "frame": 0,
+        "dx": 0.018,
+        "dy": -0.01,
+        "rotate": 0.082,
+        "scaleX": 1,
+        "scaleY": 1.018
+      },
+      {
+        "at": 0.47,
+        "frame": 0,
+        "dx": 0.018,
+        "dy": -0.01,
+        "rotate": 0.082,
+        "scaleX": 1,
+        "scaleY": 1.018
+      },
+      {
+        "at": 0.59,
+        "frame": 0,
+        "dx": -0.006,
+        "dy": 0.008,
+        "rotate": -0.045,
+        "scaleX": 1,
+        "scaleY": 0.985
+      },
+      {
+        "at": 0.79,
+        "frame": 0,
+        "dx": 0.009,
+        "dy": -0.005,
+        "rotate": 0.025,
+        "scaleX": 1,
+        "scaleY": 1.008
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.17,
+        "frame": 0,
+        "dx": -0.008,
+        "dy": 0,
+        "rotate": -0.052,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.4,
+        "frame": 0,
+        "dx": -0.008,
+        "dy": 0,
+        "rotate": -0.052,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.54,
+        "frame": 0,
+        "dx": 0.012,
+        "dy": -0.004,
+        "rotate": 0.048,
+        "scaleX": 1,
+        "scaleY": 1.007
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": 0.012,
+        "dy": -0.004,
+        "rotate": 0.048,
+        "scaleX": 1,
+        "scaleY": 1.007
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "JAVIERHALAMADRID — canal oficial y sketch509",
+        "url": "https://t.me/s/Javierhalamadridd?after=487",
+        "note": "Canal oficial accesible; el fotograma local telegram-509-frame-16s500.jpg fue inspeccionado: cejas y mirada lateral en sketch."
+      },
+      {
+        "title": "Foto de Javier publicada por Diario Versión Final",
+        "url": "https://diarioversionfinal.com/magazine/influencer-javier-halamadrid-nominado-a-los-premios-juventud-2021/",
+        "note": "Retrato de prensa e identificación de Javier Romero/Hala Madrid; no documenta una coreografía de pelea."
+      }
+    ]
+  },
+  {
+    "id": "capriles",
+    "name": "Capriles Radonski",
+    "introName": "Saludo de encuentro",
+    "selectionName": "Pulso de campaña",
+    "observedGesture": "En el post oficial del 24 de septiembre de 2026 conversa con vecinos con gorra gris, chemise, lentes y taza. En los clips publicados el 15 de septiembre su rostro y las manos acompañan la conversación. La foto del usuario guía la sonrisa, gorra tricolor y camisa gris de la versión casual del juego.",
+    "adaptationNote": "Sonrisa, leve asentimiento y transición a guardia como adaptación arcade ficticia, sin afirmar que sea un ritual documentado. V22 conserva la gorra tricolor y camisa gris solicitadas, con rostro revisado desde varias fotografías. Todas las poses miran a la derecha y se reflejan para P2.",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "greet",
+    "selectionStyle": "greet",
+    "prop": "none",
+    "color": "#80b8ff",
+    "durationMs": 2000,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.16,
+        "frame": 0,
+        "dx": 0.012,
+        "dy": 0,
+        "rotate": 0.008,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.3,
+        "frame": 1,
+        "dx": 0.025,
+        "dy": -0.008,
+        "rotate": 0.018,
+        "scaleX": 1,
+        "scaleY": 1.015
+      },
+      {
+        "at": 0.45,
+        "frame": 1,
+        "dx": 0.025,
+        "dy": -0.008,
+        "rotate": 0.018,
+        "scaleX": 1,
+        "scaleY": 1.015
+      },
+      {
+        "at": 0.57,
+        "frame": 1,
+        "dx": 0.018,
+        "dy": 0.01,
+        "rotate": 0.014,
+        "scaleX": 1,
+        "scaleY": 0.98
+      },
+      {
+        "at": 0.68,
+        "frame": 1,
+        "dx": 0.02,
+        "dy": -0.003,
+        "rotate": 0.012,
+        "scaleX": 1,
+        "scaleY": 1.007
+      },
+      {
+        "at": 0.83,
+        "frame": 0,
+        "dx": 0.009,
+        "dy": 0,
+        "rotate": 0.006,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.2,
+        "frame": 0,
+        "dx": 0.004,
+        "dy": -0.004,
+        "rotate": 0.004,
+        "scaleX": 1,
+        "scaleY": 1.009
+      },
+      {
+        "at": 0.39,
+        "frame": 1,
+        "dx": 0.008,
+        "dy": 0,
+        "rotate": 0.008,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.55,
+        "frame": 1,
+        "dx": 0.008,
+        "dy": 0.005,
+        "rotate": 0.008,
+        "scaleX": 1,
+        "scaleY": 0.99
+      },
+      {
+        "at": 0.73,
+        "frame": 0,
+        "dx": 0.004,
+        "dy": -0.003,
+        "rotate": 0.004,
+        "scaleX": 1,
+        "scaleY": 1.005
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "Henrique Capriles — visita publicada en su Instagram oficial",
+        "url": "https://www.instagram.com/p/Ddr8Tz5RAAM/",
+        "kind": "official-video",
+        "publishedAt": "2026-09-24T22:21:25.000Z",
+        "inspectedFramesSeconds": [
+          7,
+          27
+        ],
+        "note": "Video original de 46.37 s. Fecha verificada en el elemento time del post y fotogramas inspeccionados en navegador. Gorra gris, lentes ópticos, chemise verde oscuro, jeans y taza; la gorra tricolor y camisa gris del juego provienen de la referencia del usuario, no de este clip."
+      },
+      {
+        "title": "Entrevista con Román Lozinski — clips publicados por Caraota Digital",
+        "url": "https://tucaraotadigital.com/venezuela/apoyara-a-maria-corina-el-perlazo-de-capriles-sobre-la-posible-fecha-para-las-elecciones-presidenciales/",
+        "kind": "published-video-clips",
+        "publishedAt": "2026-09-15",
+        "inspectedFramesSeconds": [
+          3,
+          8
+        ],
+        "note": "Dos clips descargados y fotogramas inspeccionados: rostro maduro alargado, sienes grises, lentes, camisa verde y chaqueta negra; manos y rostro expresivos al hablar. Se verifica fecha de publicación; no se dispone de metadatos independientes de fecha de grabación."
+      },
+      {
+        "title": "Cazadores de Fake News — verifica la procedencia del video del 24 de septiembre",
+        "url": "https://storage.googleapis.com/qurium/www.cazadoresdefakenews.info/video-de-capriles-sin-camisa-y-con-sombrero-de-pirata-creado-con-ia.html",
+        "kind": "video-provenance-verification",
+        "publishedAt": "2026-09-29",
+        "note": "Vincula el post original de hcapriles y distingue el material auténtico con chemise y gorra de una edición falsa; no se utiliza esa edición como referencia."
+      },
+      {
+        "title": "Henrique Capriles: Los venezolanos no nos vamos a conformar solo con un reacomodo en el poder — El País",
+        "url": "https://elpais.com/america/2026-01-25/henrique-capriles-los-venezolanos-no-nos-vamos-a-conformar-solo-con-un-reacomodo-en-el-poder.html",
+        "note": "Entrevista y retrato fotográfico original de 2026 inspeccionado; referencia de porte y ropa."
+      },
+      {
+        "title": "Henrique Capriles Radonski in Margarita International Airport — Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_Radonski_in_Margarita_International_Airport.JPG",
+        "note": "Fotografía original de Wilfredor de 2012, consultada como referencia histórica; la gorra no se añade a la apariencia actual."
+      }
+    ],
+    "assetReview": {
+      "sprite": "capriles-v22",
+      "reviewedAt": "2026-10-09",
+      "frameFacing": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "battleFrame": 0,
+      "notes": "Parecido facial contrastado con vistas real frontal, oblicua y lateral. Ocho poses conservan rostro y atuendo; puño y patada hacia el rival."
+    }
+  },
+  {
+    "id": "renny",
+    "name": "Renny Ottolina",
+    "introName": "Se abre el show",
+    "selectionName": "El presentador",
+    "observedGesture": "La fotografía de estudio muestra a Renny erguido junto a una cámara de televisión, una mano extendida sobre la cámara y la otra gesticulando a altura del pecho. Su retrato de los sesenta confirma gafas y traje.",
+    "adaptationNote": "Frame0 de palma abierta recrea la presencia de presentador documentada; leve barrido del torso, pausa para el público y regreso a frame 1 de guardia. El micrófono pixelado es un recurso de presentación, no un objeto afirmado en esa fotografía.",
+    "battleFrame": 1,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "broadcast",
+    "selectionStyle": "present",
+    "prop": "microphone",
+    "color": "#ffc76a",
+    "durationMs": 2200,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.13,
+        "frame": 0,
+        "dx": -0.014,
+        "dy": -0.005,
+        "rotate": -0.025,
+        "scaleX": 1,
+        "scaleY": 1.01
+      },
+      {
+        "at": 0.29,
+        "frame": 0,
+        "dx": -0.005,
+        "dy": -0.007,
+        "rotate": -0.012,
+        "scaleX": 1,
+        "scaleY": 1.012
+      },
+      {
+        "at": 0.44,
+        "frame": 0,
+        "dx": 0.024,
+        "dy": -0.009,
+        "rotate": 0.038,
+        "scaleX": 1,
+        "scaleY": 1.016
+      },
+      {
+        "at": 0.61,
+        "frame": 0,
+        "dx": 0.024,
+        "dy": -0.009,
+        "rotate": 0.038,
+        "scaleX": 1,
+        "scaleY": 1.016
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": 0.012,
+        "dy": 0.006,
+        "rotate": 0.024,
+        "scaleX": 1,
+        "scaleY": 0.989
+      },
+      {
+        "at": 0.86,
+        "frame": 1,
+        "dx": 0.004,
+        "dy": -0.004,
+        "rotate": 0.006,
+        "scaleX": 1,
+        "scaleY": 1.006
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.19,
+        "frame": 0,
+        "dx": -0.006,
+        "dy": -0.004,
+        "rotate": -0.016,
+        "scaleX": 1,
+        "scaleY": 1.008
+      },
+      {
+        "at": 0.38,
+        "frame": 0,
+        "dx": 0.012,
+        "dy": -0.005,
+        "rotate": 0.023,
+        "scaleX": 1,
+        "scaleY": 1.01
+      },
+      {
+        "at": 0.58,
+        "frame": 0,
+        "dx": 0.012,
+        "dy": -0.005,
+        "rotate": 0.023,
+        "scaleX": 1,
+        "scaleY": 1.01
+      },
+      {
+        "at": 0.78,
+        "frame": 1,
+        "dx": 0.004,
+        "dy": 0.004,
+        "rotate": 0.006,
+        "scaleX": 1,
+        "scaleY": 0.991
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "Renny Ottolina en el estudio de El Show de Renny, Wikimedia Commons (CC BY-SA 4.0)",
+        "url": "https://commons.wikimedia.org/wiki/File:Renny_Ottolina.jpg",
+        "note": "Fotografía archivística de estudio inspeccionada: mano extendida y gesto a altura del pecho. Fecha de subida no equivale a fecha de captura."
+      },
+      {
+        "title": "Retrato de Renny Ottolina alrededor de los años sesenta, Wikimedia Commons (CC0)",
+        "url": "https://commons.wikimedia.org/wiki/File:Renny_Ottolina_circa_1960s.jpg",
+        "note": "Retrato archivístico inspeccionado para gafas, traje y rostro; no proporciona movimiento temporal."
+      }
+    ]
+  },
+  {
+    "id": "gomez",
+    "name": "Juan Vicente Gómez",
+    "introName": "Porte de archivo",
+    "selectionName": "Inspección solemne",
+    "observedGesture": "El retrato histórico militar de 1928 muestra mirada seria, torso erguido, gorra y correaje; la fotografía Bain de 1910 conserva el bigote y el porte formal. Son imágenes estáticas, sin un saludo de combate registrado.",
+    "adaptationNote": "Endereza el torso lentamente, hace una pausa rígida y una inclinación breve del mentón representada por rotación de todo el sprite. No se inventa un saludo militar observado ni se añaden frases; guardia frame 0 es ficción de juego.",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "inspect",
+    "selectionStyle": "inspect",
+    "prop": "none",
+    "color": "#c9ae78",
+    "durationMs": 2100,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.16,
+        "frame": 0,
+        "dx": 0,
+        "dy": -0.004,
+        "rotate": 0,
+        "scaleX": 0.995,
+        "scaleY": 1.016
+      },
+      {
+        "at": 0.31,
+        "frame": 0,
+        "dx": 0,
+        "dy": -0.007,
+        "rotate": 0,
+        "scaleX": 0.99,
+        "scaleY": 1.028
+      },
+      {
+        "at": 0.47,
+        "frame": 0,
+        "dx": 0,
+        "dy": -0.007,
+        "rotate": 0,
+        "scaleX": 0.99,
+        "scaleY": 1.028
+      },
+      {
+        "at": 0.6,
+        "frame": 0,
+        "dx": 0.003,
+        "dy": 0.006,
+        "rotate": 0.025,
+        "scaleX": 1,
+        "scaleY": 0.987
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": 0.003,
+        "dy": 0.006,
+        "rotate": 0.025,
+        "scaleX": 1,
+        "scaleY": 0.987
+      },
+      {
+        "at": 0.89,
+        "frame": 0,
+        "dx": 0.001,
+        "dy": -0.002,
+        "rotate": 0.006,
+        "scaleX": 1,
+        "scaleY": 1.007
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.24,
+        "frame": 0,
+        "dx": 0,
+        "dy": -0.003,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1.009
+      },
+      {
+        "at": 0.43,
+        "frame": 0,
+        "dx": 0,
+        "dy": -0.003,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1.009
+      },
+      {
+        "at": 0.62,
+        "frame": 0,
+        "dx": 0.002,
+        "dy": 0.004,
+        "rotate": 0.015,
+        "scaleX": 1,
+        "scaleY": 0.993
+      },
+      {
+        "at": 0.79,
+        "frame": 0,
+        "dx": 0.002,
+        "dy": 0.004,
+        "rotate": 0.015,
+        "scaleX": 1,
+        "scaleY": 0.993
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "Gómez, 1928 restored (Wikimedia Commons)",
+        "url": "https://commons.wikimedia.org/wiki/File:G%C3%B3mez,_1928_restored.jpg",
+        "note": "Retrato de archivo de 1928 inspeccionado: porte serio, uniforme y gorra; no prueba de gesto dinámico."
+      },
+      {
+        "title": "Bain News Service — retrato 1910 de Juan Vicente Gómez",
+        "url": "https://commons.wikimedia.org/wiki/File:Gen._Juan_V._Gomez,_Pres%27t_Venez._LCCN2014695965.jpg",
+        "note": "Copia accesible de fotografía primaria LOC2014695965; identidad y porte formal. La ficha LOC directa no respondió en esta revisión."
+      }
+    ]
+  },
+  {
+    "id": "simon",
+    "name": "Simón Díaz",
+    "introName": "Un saludo llanero",
+    "selectionName": "Compás de Tío Simón",
+    "observedGesture": "La fotografía oficial muestra a Simón sonriente con sombrero y liqui-liqui claro, abrazando un cuatro vertical junto al pecho. Su sitio oficial documenta su relación con la tonada y la animación cultural.",
+    "adaptationNote": "Un cuatro pixelado y tres balanceos amables evocan esa referencia; no se pretende reproducir una ejecución musical concreta. Se usa frame 0 para el saludo y frame 1 para guardia. El atlas no posee dedos ni un frame de rasgueo literal.",
+    "battleFrame": 1,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "strum",
+    "selectionStyle": "strum",
+    "prop": "cuatro",
+    "color": "#e0a55f",
+    "durationMs": 2200,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.14,
+        "frame": 0,
+        "dx": -0.018,
+        "dy": -0.003,
+        "rotate": -0.045,
+        "scaleX": 1,
+        "scaleY": 1.007
+      },
+      {
+        "at": 0.29,
+        "frame": 0,
+        "dx": 0.015,
+        "dy": -0.006,
+        "rotate": 0.036,
+        "scaleX": 1,
+        "scaleY": 1.011
+      },
+      {
+        "at": 0.42,
+        "frame": 0,
+        "dx": -0.016,
+        "dy": -0.002,
+        "rotate": -0.042,
+        "scaleX": 1,
+        "scaleY": 1.006
+      },
+      {
+        "at": 0.57,
+        "frame": 0,
+        "dx": 0.02,
+        "dy": -0.005,
+        "rotate": 0.045,
+        "scaleX": 1,
+        "scaleY": 1.011
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": -0.006,
+        "dy": 0.004,
+        "rotate": -0.014,
+        "scaleX": 1,
+        "scaleY": 0.992
+      },
+      {
+        "at": 0.88,
+        "frame": 1,
+        "dx": 0.006,
+        "dy": -0.003,
+        "rotate": 0.008,
+        "scaleX": 1,
+        "scaleY": 1.006
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.2,
+        "frame": 0,
+        "dx": -0.011,
+        "dy": -0.002,
+        "rotate": -0.032,
+        "scaleX": 1,
+        "scaleY": 1.005
+      },
+      {
+        "at": 0.39,
+        "frame": 0,
+        "dx": 0.012,
+        "dy": -0.003,
+        "rotate": 0.03,
+        "scaleX": 1,
+        "scaleY": 1.007
+      },
+      {
+        "at": 0.6,
+        "frame": 0,
+        "dx": -0.009,
+        "dy": -0.002,
+        "rotate": -0.026,
+        "scaleX": 1,
+        "scaleY": 1.005
+      },
+      {
+        "at": 0.8,
+        "frame": 1,
+        "dx": 0.005,
+        "dy": 0.002,
+        "rotate": 0.011,
+        "scaleX": 1,
+        "scaleY": 0.996
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "Simón Díaz — sitio oficial y retrato con cuatro",
+        "url": "https://simondiaz.com/",
+        "note": "Fuente oficial accesible; fotografía local official-photo.jpg inspeccionada: cuatro abrazado, sombrero y sonrisa."
+      },
+      {
+        "title": "Biografía oficial de Simón Díaz",
+        "url": "https://simondiaz.com/biografia/",
+        "note": "Biografía oficial: músico, tonadas y labor cultural; no afirma un ritual físico exclusivo."
+      }
+    ]
+  },
+  {
+    "id": "conde",
+    "name": "Er Conde del Guácharo",
+    "introName": "Buenas, sombrero",
+    "selectionName": "La pausa del Conde",
+    "observedGesture": "La foto de escenario de Venevisión muestra sombrero tricolor, camisa estampada, micrófono y dedo extendido hacia el espectador; la foto de NTN24 confirma su personaje escénico y vestuario.",
+    "adaptationNote": "Se inclina con el sombrero, sostiene una pausa cómica y abre la palma frame 1 antes de ponerse en guardia. La inclinación de sombrero es adaptación; no debe dibujarse un segundo sombrero sobre el que ya lleva.",
+    "battleFrame": 1,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "hat",
+    "selectionStyle": "joke",
+    "prop": "hat",
+    "color": "#8bd3ac",
+    "durationMs": 2050,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.12,
+        "frame": 0,
+        "dx": -0.004,
+        "dy": 0.006,
+        "rotate": -0.026,
+        "scaleX": 1,
+        "scaleY": 0.988
+      },
+      {
+        "at": 0.29,
+        "frame": 0,
+        "dx": -0.01,
+        "dy": 0.012,
+        "rotate": -0.068,
+        "scaleX": 1,
+        "scaleY": 0.977
+      },
+      {
+        "at": 0.43,
+        "frame": 0,
+        "dx": -0.01,
+        "dy": 0.012,
+        "rotate": -0.068,
+        "scaleX": 1,
+        "scaleY": 0.977
+      },
+      {
+        "at": 0.55,
+        "frame": 1,
+        "dx": 0.008,
+        "dy": -0.007,
+        "rotate": 0.031,
+        "scaleX": 1,
+        "scaleY": 1.015
+      },
+      {
+        "at": 0.69,
+        "frame": 1,
+        "dx": 0.008,
+        "dy": -0.007,
+        "rotate": 0.031,
+        "scaleX": 1,
+        "scaleY": 1.015
+      },
+      {
+        "at": 0.84,
+        "frame": 1,
+        "dx": 0.003,
+        "dy": 0.004,
+        "rotate": 0.01,
+        "scaleX": 1,
+        "scaleY": 0.992
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.16,
+        "frame": 0,
+        "dx": -0.005,
+        "dy": 0.005,
+        "rotate": -0.024,
+        "scaleX": 1,
+        "scaleY": 0.99
+      },
+      {
+        "at": 0.36,
+        "frame": 0,
+        "dx": -0.005,
+        "dy": 0.005,
+        "rotate": -0.024,
+        "scaleX": 1,
+        "scaleY": 0.99
+      },
+      {
+        "at": 0.56,
+        "frame": 1,
+        "dx": 0.007,
+        "dy": -0.005,
+        "rotate": 0.027,
+        "scaleX": 1,
+        "scaleY": 1.012
+      },
+      {
+        "at": 0.74,
+        "frame": 1,
+        "dx": 0.007,
+        "dy": -0.005,
+        "rotate": 0.027,
+        "scaleX": 1,
+        "scaleY": 1.012
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "Buenas Buenas, el nuevo tema de Er Conde del Guácharo (foto de escenario)",
+        "url": "https://noticiasvenevision.com/noticias/entretenimiento/buenas-buenas-el-nuevo-tema-de-er-conde-del-guacharo",
+        "note": "Foto de escenario inspeccionada: sombrero, gesto con dedo extendido y micrófono; publicación del canal Venevisión."
+      },
+      {
+        "title": "Comediante Er Conde del Guácharo fue operado de emergencia (foto en escena)",
+        "url": "https://www.ntn24.com/noticias-entretenimiento/comediante-er-conde-del-guacharo-fue-operado-de-emergencia-95234",
+        "note": "Fotografía publicada de su personaje escénico; contexto de identidad, no coreografía de saludo."
+      }
+    ]
+  },
+  {
+    "id": "emilio",
+    "name": "Emilio Lovera",
+    "introName": "Mil caras, una entrada",
+    "selectionName": "La pausa rochelera",
+    "observedGesture": "La fotografía de Tomás Lovera publicada por El Estímulo lo muestra con mano abierta, dedos extendidos y mirada expresiva, sosteniendo micrófono al hablar en escena; la entrevista de Diario Las Américas documenta el trabajo con personajes.",
+    "adaptationNote": "Abre la palma frame 0 con orientación normalizada, inclina el torso, hace dos pausas a distinta altura y termina en guardia frame 1. No usar frame 4 (salto) ni frame 7 (dolor) como bienvenida; el gesto deriva de la foto, los tiempos son ficción.",
+    "battleFrame": 1,
+    "frameFacing": [
+      -1,
+      1,
+      1,
+      1,
+      -1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "present",
+    "selectionStyle": "joke",
+    "prop": "microphone",
+    "color": "#bd98ef",
+    "durationMs": 2150,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.12,
+        "frame": 0,
+        "dx": -0.013,
+        "dy": -0.005,
+        "rotate": -0.055,
+        "scaleX": 1,
+        "scaleY": 1.013
+      },
+      {
+        "at": 0.26,
+        "frame": 0,
+        "dx": -0.013,
+        "dy": -0.005,
+        "rotate": -0.055,
+        "scaleX": 1,
+        "scaleY": 1.013
+      },
+      {
+        "at": 0.38,
+        "frame": 0,
+        "dx": 0.016,
+        "dy": 0.004,
+        "rotate": 0.067,
+        "scaleX": 1,
+        "scaleY": 0.991
+      },
+      {
+        "at": 0.49,
+        "frame": 0,
+        "dx": 0.016,
+        "dy": 0.004,
+        "rotate": 0.067,
+        "scaleX": 1,
+        "scaleY": 0.991
+      },
+      {
+        "at": 0.62,
+        "frame": 0,
+        "dx": 0.006,
+        "dy": -0.007,
+        "rotate": 0.028,
+        "scaleX": 1,
+        "scaleY": 1.015
+      },
+      {
+        "at": 0.84,
+        "frame": 1,
+        "dx": 0.003,
+        "dy": 0.003,
+        "rotate": 0.008,
+        "scaleX": 1,
+        "scaleY": 0.994
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.17,
+        "frame": 0,
+        "dx": -0.009,
+        "dy": 0,
+        "rotate": -0.041,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.4,
+        "frame": 0,
+        "dx": -0.009,
+        "dy": 0,
+        "rotate": -0.041,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.55,
+        "frame": 0,
+        "dx": 0.011,
+        "dy": -0.004,
+        "rotate": 0.046,
+        "scaleX": 1,
+        "scaleY": 1.009
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": 0.011,
+        "dy": -0.004,
+        "rotate": 0.046,
+        "scaleX": 1,
+        "scaleY": 1.009
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "Radio Cuarentena — foto escénica de Emilio Lovera por Tomás Lovera",
+        "url": "https://elestimulo.com/destacados/2020-09-02/estrellas-de-la-rochela-regresan-con-radio-cuarentena-via-web/",
+        "note": "Foto primaria de Tomás Lovera inspeccionada localmente: mano abierta extendida y micrófono."
+      },
+      {
+        "title": "El comediante Emilio Lovera trae sus mil caras a Miami — Diario Las Américas",
+        "url": "https://www.diariolasamericas.com/el-comediante-emilio-lovera-trae-sus-mil-caras-miami-n2914162",
+        "note": "Entrevista original y retrato del comediante; información sobre variedad de personajes, no ritual de pelea."
+      }
+    ]
+  },
+  {
+    "id": "maite",
+    "name": "Maite Delgado",
+    "introName": "Se abre la gala",
+    "selectionName": "Saludo al Poliedro",
+    "observedGesture": "El fotograma de la publicación de Venevisión del Miss Venezuela 2022 muestra a Maite erguida con el micrófono cerca de la boca y vestido rojo con plumas; la fuente oficial del certamen identifica su función de animadora.",
+    "adaptationNote": "Frame0 reproduce el porte de presentadora, con ligera reverencia y pausa para el público; vuelve a frame 1 de guardia sin audio del saludo. No usar frame 4 de puño arriba y salto como si fuera el saludo televisivo documentado.",
+    "battleFrame": 1,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "present",
+    "selectionStyle": "present",
+    "prop": "microphone",
+    "color": "#f19bca",
+    "durationMs": 2200,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.14,
+        "frame": 0,
+        "dx": -0.009,
+        "dy": -0.005,
+        "rotate": -0.022,
+        "scaleX": 1,
+        "scaleY": 1.015
+      },
+      {
+        "at": 0.32,
+        "frame": 0,
+        "dx": 0.007,
+        "dy": -0.008,
+        "rotate": 0.018,
+        "scaleX": 1,
+        "scaleY": 1.025
+      },
+      {
+        "at": 0.48,
+        "frame": 0,
+        "dx": 0.007,
+        "dy": -0.008,
+        "rotate": 0.018,
+        "scaleX": 1,
+        "scaleY": 1.025
+      },
+      {
+        "at": 0.61,
+        "frame": 0,
+        "dx": 0.013,
+        "dy": 0.009,
+        "rotate": 0.045,
+        "scaleX": 1,
+        "scaleY": 0.98
+      },
+      {
+        "at": 0.73,
+        "frame": 0,
+        "dx": 0.01,
+        "dy": 0.003,
+        "rotate": 0.023,
+        "scaleX": 1,
+        "scaleY": 0.994
+      },
+      {
+        "at": 0.89,
+        "frame": 1,
+        "dx": 0.003,
+        "dy": -0.003,
+        "rotate": 0.006,
+        "scaleX": 1,
+        "scaleY": 1.008
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.22,
+        "frame": 0,
+        "dx": -0.005,
+        "dy": -0.003,
+        "rotate": -0.015,
+        "scaleX": 1,
+        "scaleY": 1.009
+      },
+      {
+        "at": 0.4,
+        "frame": 0,
+        "dx": 0.006,
+        "dy": -0.004,
+        "rotate": 0.017,
+        "scaleX": 1,
+        "scaleY": 1.013
+      },
+      {
+        "at": 0.6,
+        "frame": 0,
+        "dx": 0.006,
+        "dy": -0.004,
+        "rotate": 0.017,
+        "scaleX": 1,
+        "scaleY": 1.013
+      },
+      {
+        "at": 0.8,
+        "frame": 1,
+        "dx": 0.003,
+        "dy": 0.003,
+        "rotate": 0.008,
+        "scaleX": 1,
+        "scaleY": 0.994
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "Venevisión — saludo de Maite en Miss Venezuela 2022",
+        "url": "https://twitter.com/venevision/status/1593034739761414144",
+        "note": "Video oficial previamente archivado; fotograma local missvenezuela-2022-greeting-38s.jpg inspeccionado. El acceso directo de X puede requerir sesión."
+      },
+      {
+        "title": "Maite Delgado será la animadora oficial del Miss Venezuela 2024, fuente oficial de Miss Venezuela",
+        "url": "https://www.missvenezuela.com/noticias/maite-delgado-sera-la-animadora-oficial-del-miss-venezuela-2024",
+        "note": "Fuente oficial Miss Venezuela: identidad y rol de animadora."
+      },
+      {
+        "title": "Miss Venezuela 2022: cobertura contemporánea de El Diario con el video de Venevisión y el saludo transcrito",
+        "url": "https://eldiario.com/2022/11/16/miss-venezuela-2022-en-el-poliedro-de-caracas/",
+        "note": "Cobertura contemporánea accesible con inserción del video oficial; contexto del saludo en el Poliedro."
+      }
+    ]
+  },
+  {
+    "id": "oscar",
+    "name": "Óscar D’León",
+    "introName": "La arena tiene clave",
+    "selectionName": "Pasito del sonero",
+    "observedGesture": "El reportaje original de Telemadrid documenta su presencia en el Botánico 2025; el fotograma backstage inspeccionado muestra una conversación sonriente. La fotografía Latin Grammy 2021 confirma su presencia escénica; estos materiales no prueban un paso coreografiado concreto.",
+    "adaptationNote": "Dos desplazamientos laterales cortos alternados con balanceo de torso y palma frame 0 evocan al sonero; el pasito es ficción inspirada en su desempeño salsero, no copia de una coreografía. Sin canción ni voz original.",
+    "battleFrame": 1,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "dance",
+    "selectionStyle": "dance",
+    "prop": "microphone",
+    "color": "#ea806d",
+    "durationMs": 2100,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.12,
+        "frame": 0,
+        "dx": -0.025,
+        "dy": 0.006,
+        "rotate": -0.04,
+        "scaleX": 1,
+        "scaleY": 0.985
+      },
+      {
+        "at": 0.25,
+        "frame": 0,
+        "dx": -0.025,
+        "dy": -0.006,
+        "rotate": -0.04,
+        "scaleX": 1,
+        "scaleY": 1.012
+      },
+      {
+        "at": 0.39,
+        "frame": 0,
+        "dx": 0.027,
+        "dy": 0.006,
+        "rotate": 0.046,
+        "scaleX": 1,
+        "scaleY": 0.985
+      },
+      {
+        "at": 0.53,
+        "frame": 0,
+        "dx": 0.027,
+        "dy": -0.008,
+        "rotate": 0.046,
+        "scaleX": 1,
+        "scaleY": 1.016
+      },
+      {
+        "at": 0.67,
+        "frame": 0,
+        "dx": -0.014,
+        "dy": 0.004,
+        "rotate": -0.025,
+        "scaleX": 1,
+        "scaleY": 0.99
+      },
+      {
+        "at": 0.82,
+        "frame": 1,
+        "dx": 0.008,
+        "dy": -0.003,
+        "rotate": 0.012,
+        "scaleX": 1,
+        "scaleY": 1.005
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.17,
+        "frame": 0,
+        "dx": -0.017,
+        "dy": 0.003,
+        "rotate": -0.03,
+        "scaleX": 1,
+        "scaleY": 0.992
+      },
+      {
+        "at": 0.34,
+        "frame": 0,
+        "dx": -0.017,
+        "dy": -0.004,
+        "rotate": -0.03,
+        "scaleX": 1,
+        "scaleY": 1.009
+      },
+      {
+        "at": 0.52,
+        "frame": 0,
+        "dx": 0.019,
+        "dy": 0.003,
+        "rotate": 0.033,
+        "scaleX": 1,
+        "scaleY": 0.992
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": 0.019,
+        "dy": -0.005,
+        "rotate": 0.033,
+        "scaleX": 1,
+        "scaleY": 1.011
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "Óscar d’Leon llega a Las Noches del Botánico de Madrid — entrevista de Telemadrid (22 julio 2025)",
+        "url": "https://www.telemadrid.es/programas/madrid-directo/Oscar-dLeon-llega-a-Las-Noches-del-Botanico-de-Madrid-2-2799940019--20250722084105.html",
+        "note": "Reportaje original de Telemadrid y fotograma local backstage inspeccionado; contexto musical y expresión, no prueba del paso propuesto."
+      },
+      {
+        "title": "Óscar D'León en homenaje a Rubén Blades en los Latin Grammy 2021 — foto de Tony Dandrades, Commons CC BY 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:%C3%93scar_D%27Le%C3%B3n_2021.jpg",
+        "note": "Fotografía de Tony Dandrades en Latin Grammy 2021; referencia escénica de primera mano."
+      }
+    ]
+  },
+  {
+    "id": "puma",
+    "name": "José Luis Rodríguez",
+    "introName": "El escenario espera",
+    "selectionName": "Porte del Puma",
+    "observedGesture": "Las entrevistas originales de TVN y Hoy Día/Telemundo lo identifican como cantante y entrevistado; los retratos locales muestran su porte sereno. El fotograma de Hoy Día contiene manos fuera de encuadre, por lo que no prueba un ademán exclusivo.",
+    "adaptationNote": "Palma ofrecida de frame 0, inclinación pausada y regreso a frame 1 transmiten serenidad de cantante. El gesto hacia el público es adaptación estilizada y no se atribuye a una escena real concreta ni se utilizan poses de dolor.",
+    "battleFrame": 1,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "greet",
+    "selectionStyle": "present",
+    "prop": "microphone",
+    "color": "#9ac5ed",
+    "durationMs": 2150,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.17,
+        "frame": 0,
+        "dx": -0.006,
+        "dy": -0.003,
+        "rotate": -0.013,
+        "scaleX": 1,
+        "scaleY": 1.009
+      },
+      {
+        "at": 0.34,
+        "frame": 0,
+        "dx": 0.016,
+        "dy": -0.007,
+        "rotate": 0.031,
+        "scaleX": 1,
+        "scaleY": 1.019
+      },
+      {
+        "at": 0.52,
+        "frame": 0,
+        "dx": 0.016,
+        "dy": -0.007,
+        "rotate": 0.031,
+        "scaleX": 1,
+        "scaleY": 1.019
+      },
+      {
+        "at": 0.64,
+        "frame": 0,
+        "dx": 0.012,
+        "dy": 0.007,
+        "rotate": 0.039,
+        "scaleX": 1,
+        "scaleY": 0.985
+      },
+      {
+        "at": 0.77,
+        "frame": 0,
+        "dx": 0.007,
+        "dy": 0.002,
+        "rotate": 0.016,
+        "scaleX": 1,
+        "scaleY": 0.997
+      },
+      {
+        "at": 0.9,
+        "frame": 1,
+        "dx": 0.002,
+        "dy": -0.002,
+        "rotate": 0.004,
+        "scaleX": 1,
+        "scaleY": 1.005
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.25,
+        "frame": 0,
+        "dx": 0.005,
+        "dy": -0.003,
+        "rotate": 0.012,
+        "scaleX": 1,
+        "scaleY": 1.008
+      },
+      {
+        "at": 0.43,
+        "frame": 0,
+        "dx": 0.01,
+        "dy": -0.005,
+        "rotate": 0.024,
+        "scaleX": 1,
+        "scaleY": 1.012
+      },
+      {
+        "at": 0.61,
+        "frame": 0,
+        "dx": 0.01,
+        "dy": -0.005,
+        "rotate": 0.024,
+        "scaleX": 1,
+        "scaleY": 1.012
+      },
+      {
+        "at": 0.8,
+        "frame": 1,
+        "dx": 0.004,
+        "dy": 0.003,
+        "rotate": 0.009,
+        "scaleX": 1,
+        "scaleY": 0.994
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "Un ícono que estará el Olmué 2024: conversamos con el Puma Rodríguez — TVN (26 diciembre 2023)",
+        "url": "https://www.tvn.cl/programas/buenos-dias-a-todos/espectaculos-y-tv/un-icono-que-estara-el-olmue-2024-conversamos-con-el-puma-rodriguez",
+        "note": "Entrevista original de TVN del 26/12/2023; identidad, presencia y contexto de cantante."
+      },
+      {
+        "title": "José Luis Rodríguez explica por qué siempre será 'El Puma' — Hoy Día, Telemundo (10 junio 2024)",
+        "url": "https://www.telemundo.com/shows/hoy-dia/television/video/jose-luis-rodriguez-explica-por-que-siempre-sera-el-puma-tmvo12679877",
+        "note": "Video original Hoy Día/Telemundo; fotograma local revisado como referencia limitada, no prueba de saludo de manos."
+      }
+    ]
+  },
+  {
+    "id": "chataing",
+    "name": "Luis Chataing",
+    "introName": "Un momento, panas",
+    "selectionName": "La pausa del entrevistador",
+    "observedGesture": "El fotograma de La Última muestra a Chataing sonriendo y acercando una mano a la cámara; su colección promocional identifica el contexto de presentador/humorista y gafas. El fotograma no representa un saludo completo ni postura de pelea.",
+    "adaptationNote": "Frame0 con micrófono cerca del pecho, medio asentimiento, pausa y palma de frame 1 sugieren la preparación de una intervención. La secuencia es adaptación de escenario; no afirmar que tocándose las gafas sea una costumbre documentada.",
+    "battleFrame": 1,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "broadcast",
+    "selectionStyle": "joke",
+    "prop": "microphone",
+    "color": "#91d3d7",
+    "durationMs": 2000,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.13,
+        "frame": 0,
+        "dx": -0.009,
+        "dy": 0.004,
+        "rotate": -0.025,
+        "scaleX": 1,
+        "scaleY": 0.991
+      },
+      {
+        "at": 0.3,
+        "frame": 0,
+        "dx": -0.009,
+        "dy": 0.004,
+        "rotate": -0.025,
+        "scaleX": 1,
+        "scaleY": 0.991
+      },
+      {
+        "at": 0.42,
+        "frame": 0,
+        "dx": 0.006,
+        "dy": -0.006,
+        "rotate": 0.02,
+        "scaleX": 1,
+        "scaleY": 1.015
+      },
+      {
+        "at": 0.57,
+        "frame": 1,
+        "dx": 0.014,
+        "dy": -0.004,
+        "rotate": 0.028,
+        "scaleX": 1,
+        "scaleY": 1.009
+      },
+      {
+        "at": 0.7,
+        "frame": 1,
+        "dx": 0.014,
+        "dy": -0.004,
+        "rotate": 0.028,
+        "scaleX": 1,
+        "scaleY": 1.009
+      },
+      {
+        "at": 0.86,
+        "frame": 1,
+        "dx": 0.005,
+        "dy": 0.003,
+        "rotate": 0.008,
+        "scaleX": 1,
+        "scaleY": 0.994
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.16,
+        "frame": 0,
+        "dx": -0.005,
+        "dy": 0.003,
+        "rotate": -0.014,
+        "scaleX": 1,
+        "scaleY": 0.994
+      },
+      {
+        "at": 0.4,
+        "frame": 0,
+        "dx": -0.005,
+        "dy": 0.003,
+        "rotate": -0.014,
+        "scaleX": 1,
+        "scaleY": 0.994
+      },
+      {
+        "at": 0.58,
+        "frame": 1,
+        "dx": 0.008,
+        "dy": -0.003,
+        "rotate": 0.018,
+        "scaleX": 1,
+        "scaleY": 1.008
+      },
+      {
+        "at": 0.77,
+        "frame": 1,
+        "dx": 0.008,
+        "dy": -0.003,
+        "rotate": 0.018,
+        "scaleX": 1,
+        "scaleY": 1.008
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "Luis Chataing en La Última con Carla Angola",
+        "url": "https://www.youtube.com/watch?v=uiGFHrQ-I10",
+        "note": "Fotograma local photo-official-video.jpg inspeccionado: sonrisa y mano acercada a cámara. YouTube no devolvió video accesible en esta revisión."
+      },
+      {
+        "title": "Luis Chataing, promotional portrait collection",
+        "url": "https://esunchiste.com/collections/luis-chataing",
+        "note": "Colección promocional accesible, retratos de Chataing y contexto escénico."
+      },
+      {
+        "title": "Meridiano interview portrait, ‘Luis Chataing muestra su lado más sensible…’",
+        "url": "https://meridiano.net/farandula/luis-chataing-muestra-su-lado-mas-sensible-al-hablar-de-lo-mucho-que-extrana-venezuela-202463011200",
+        "note": "Entrevista editorial accesible de 2024 sobre su trayectoria y vínculo con Venezuela."
+      }
+    ]
+  },
+  {
+    "id": "george",
+    "name": "George Harris",
+    "introName": "Se acomoda el show",
+    "selectionName": "Pausa para el remate",
+    "observedGesture": "La foto escénica original del reportaje de El País lo muestra con micrófono de mano, mirada al público, cuerpo erguido y vestuario negro; el sitio oficial identifica su espectáculo de stand-up. La foto no muestra una entrada coreografiada.",
+    "adaptationNote": "Palma abierta frame 0 normalizada, inclinación hacia el público y pausa larga antes de guardia frame 1 evocan el ritmo del stand-up. No utilizar frame 7 de dolor como risa ni frame 4 de salto para saludar; el remate es solo visual, sin voz.",
+    "battleFrame": 1,
+    "frameFacing": [
+      -1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "joke",
+    "selectionStyle": "joke",
+    "prop": "microphone",
+    "color": "#d5a787",
+    "durationMs": 2050,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.13,
+        "frame": 0,
+        "dx": -0.012,
+        "dy": 0,
+        "rotate": -0.038,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.29,
+        "frame": 0,
+        "dx": 0.017,
+        "dy": -0.006,
+        "rotate": 0.059,
+        "scaleX": 1,
+        "scaleY": 1.014
+      },
+      {
+        "at": 0.43,
+        "frame": 0,
+        "dx": 0.017,
+        "dy": -0.006,
+        "rotate": 0.059,
+        "scaleX": 1,
+        "scaleY": 1.014
+      },
+      {
+        "at": 0.62,
+        "frame": 0,
+        "dx": 0.017,
+        "dy": -0.006,
+        "rotate": 0.059,
+        "scaleX": 1,
+        "scaleY": 1.014
+      },
+      {
+        "at": 0.74,
+        "frame": 0,
+        "dx": -0.003,
+        "dy": 0.007,
+        "rotate": -0.015,
+        "scaleX": 1,
+        "scaleY": 0.985
+      },
+      {
+        "at": 0.87,
+        "frame": 1,
+        "dx": 0.004,
+        "dy": -0.003,
+        "rotate": 0.007,
+        "scaleX": 1,
+        "scaleY": 1.006
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.2,
+        "frame": 0,
+        "dx": 0.01,
+        "dy": -0.003,
+        "rotate": 0.035,
+        "scaleX": 1,
+        "scaleY": 1.007
+      },
+      {
+        "at": 0.39,
+        "frame": 0,
+        "dx": 0.01,
+        "dy": -0.003,
+        "rotate": 0.035,
+        "scaleX": 1,
+        "scaleY": 1.007
+      },
+      {
+        "at": 0.61,
+        "frame": 0,
+        "dx": 0.01,
+        "dy": -0.003,
+        "rotate": 0.035,
+        "scaleX": 1,
+        "scaleY": 1.007
+      },
+      {
+        "at": 0.78,
+        "frame": 1,
+        "dx": -0.003,
+        "dy": 0.005,
+        "rotate": -0.009,
+        "scaleX": 1,
+        "scaleY": 0.99
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "George Harris — Sitio Oficial",
+        "url": "https://elgeorgeharris.com/",
+        "note": "Sitio oficial accesible con espectáculo y retrato; referencia de identidad y escena."
+      },
+      {
+        "title": "George Harris: ‘El humor te ayuda a superar el duelo migratorio’ — EL PAÍS",
+        "url": "https://elpais.com/us/entretenimiento/2025-08-18/george-harris-el-humor-te-ayuda-a-superar-el-duelo-migratorio.html",
+        "note": "Reportaje con fotografía de actuación inspeccionada localmente: micrófono, mirada al público y cuerpo erguido; no coreografía verificada."
+      }
+    ]
+  }
+]

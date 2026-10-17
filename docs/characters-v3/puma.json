@@ -1,0 +1,106 @@
+{
+  "id": "puma",
+  "realName": "José Luis Rodríguez González",
+  "sprite": "puma-v3",
+  "portraitReference": "assets/references/puma/tvn-olmue-2024.jpg",
+  "portrayal": "Cantante venezolano de presencia serena y teatral. Las referencias actuales muestran el cabello plateado, ondulado y abundante peinado hacia atrás, cejas marcadas, nariz recta y rostro maduro de piel cálida. En TVN lleva una prenda oscura con cuello alto abierto; una entrevista EFE/NTN24 lo muestra con camisa azul marino, chaleco de cuadros y cadena. El atlas conserva la chaqueta elegante oscura y camisa abierta como adaptación escénica de esas prendas fotografiadas. El pantalón carbón y los zapatos pulidos completan el vestuario por decisión de diseño. Sus manos abiertas evocan el gesto de un cantante que conversa con el público; los golpes y patadas son una licencia ficticia del juego. El rugido es un efecto de juego que dibuja un cono de empuje, separado de toda voz original.",
+  "sources": [
+    {
+      "title": "Un ícono que estará el Olmué 2024: conversamos con el Puma Rodríguez — TVN (26 diciembre 2023)",
+      "url": "https://www.tvn.cl/programas/buenos-dias-a-todos/espectaculos-y-tv/un-icono-que-estara-el-olmue-2024-conversamos-con-el-puma-rodriguez"
+    },
+    {
+      "title": "‘El Puma’ José Luis Rodríguez dio su versión de los hechos tras escándalo en aeropuerto en Ecuador — NTN24/EFE (2025)",
+      "url": "https://www.ntn24.com/noticias-entretenimiento/el-puma-jose-luis-rodriguez-dio-su-version-de-los-hechos-tras-escandalo-en-aeropuerto-en-ecuador-592395"
+    },
+    {
+      "title": "José Luis Rodríguez explica por qué siempre será 'El Puma' — Hoy Día, Telemundo (10 junio 2024)",
+      "url": "https://www.telemundo.com/shows/hoy-dia/television/video/jose-luis-rodriguez-explica-por-que-siempre-sera-el-puma-tmvo12679877"
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/puma/tvn-olmue-2024.jpg",
+      "url": "https://www.tvn.cl/tvn/site/artic/20231226/imag/foto_0000000720231226125507/EL_PUMA.jpg"
+    },
+    {
+      "file": "assets/references/puma/ntn24-efe-2025.jpg",
+      "url": "https://intn24.lalr.co/cms/2025/11/26194209/Jose-Luis-Rodriguez-El-Puma-cantante-venezolano-Foto-EFE.jpg?w=1024"
+    },
+    {
+      "file": "assets/references/puma/telemundo-frame-20s.jpg",
+      "url": "https://www.telemundo.com/shows/hoy-dia/television/video/jose-luis-rodriguez-explica-por-que-siempre-sera-el-puma-tmvo12679877"
+    },
+    {
+      "file": "assets/references/puma/telemundo-frame-30s.jpg",
+      "url": "https://www.telemundo.com/shows/hoy-dia/television/video/jose-luis-rodriguez-explica-por-que-siempre-sera-el-puma-tmvo12679877"
+    },
+    {
+      "file": "assets/references/puma/telemundo-frame-9s.jpg",
+      "url": "https://www.telemundo.com/shows/hoy-dia/television/video/jose-luis-rodriguez-explica-por-que-siempre-sera-el-puma-tmvo12679877"
+    }
+  ],
+  "distinctiveTraits": [
+    "Cabello plateado, ondulado y peinado hacia atrás desde la frente, con volumen sobre las sienes y la nuca.",
+    "Rostro maduro y alargado, cejas oscuras expresivas, nariz recta prominente y pliegues suaves de expresión.",
+    "Piel cálida de tono medio claro y porte sereno, con mirada directa y gesto de cantante experimentado.",
+    "Chaqueta de escenario oscura, camisa negra abierta al cuello y cadena plateada discreta; conjunto inspirado en prendas actuales fotografiadas.",
+    "Palma abierta y brazo extendido como gesto de interlocución con el público, tomado de su presencia de cantante y entrevistado."
+  ],
+  "suggestedMoves": [
+    "Primer rugido: un gesto de cantante proyecta un cono de empuje corto; el rugido es un efecto de juego, no una voz atribuida al artista.",
+    "Crescendo: dos conos de empuje sucesivos con un paso lateral y una mano abierta hacia el rival.",
+    "Último aplauso: una palma amplia desvía el avance y remata con un golpe corto hacia delante.",
+    "Gesto de escenario: marca el ritmo con una mano mientras mantiene la otra cerca del pecho, evocando su oficio real de cantante."
+  ],
+  "lines": {
+    "select": {
+      "text": "No quiero ser gato, siempre soy Puma.",
+      "file": "/audio/puma/original-select.mp3",
+      "kind": "original",
+      "sourceUrl": "https://www.telemundo.com/shows/hoy-dia/television/video/jose-luis-rodriguez-explica-por-que-siempre-sera-el-puma-tmvo12679877",
+      "sourceMediaUrl": "http://link.theplatform.com/s/0L7ZPC/media/Yo1YUkoruZqn?format=redirect",
+      "start": 30.5,
+      "end": 32.3,
+      "verification": "La página de Hoy Día/Telemundo identifica a José Luis Rodríguez. El artista aparece en primer plano y hablando en este tramo, dentro del segmento que explica por qué siempre será El Puma; se guardó el fotograma de 30 s. ASR local del contexto sitúa la frase entre 30.60 y 32.18 s. El recorte conserva la frase completa con un margen breve, dura 1.80 s y no altera tono, timbre ni velocidad. ASR comprueba palabras, no identidad acústica ni escucha humana."
+    },
+    "special": {
+      "text": "hay que ser inflexible",
+      "file": "/audio/puma/original-special.mp3",
+      "kind": "original",
+      "sourceUrl": "https://www.telemundo.com/shows/hoy-dia/television/video/jose-luis-rodriguez-explica-por-que-siempre-sera-el-puma-tmvo12679877",
+      "sourceMediaUrl": "http://link.theplatform.com/s/0L7ZPC/media/Yo1YUkoruZqn?format=redirect",
+      "start": 10.08,
+      "end": 12.02,
+      "verification": "La página de Hoy Día/Telemundo identifica a José Luis Rodríguez. En el plano de 9 s el artista empieza la respuesta junto a otro concursante que escucha; la frase continúa sobre el plano del grupo de 10 s. El contexto ASR enlaza ese turno con las palabras de 10.08–12.02 s. Se guardaron ambos fotogramas para documentar la atribución visual y el cambio de plano. ASR comprueba palabras y tiempos, no identidad acústica ni escucha humana. Recorte hablado de 1.94 s sin alteración de tono, timbre ni velocidad."
+    },
+    "win": {
+      "text": "Como el gato, el gato hace su necesidad",
+      "file": "/audio/puma/original-win.mp3",
+      "kind": "original",
+      "sourceUrl": "https://www.telemundo.com/shows/hoy-dia/television/video/jose-luis-rodriguez-explica-por-que-siempre-sera-el-puma-tmvo12679877",
+      "sourceMediaUrl": "http://link.theplatform.com/s/0L7ZPC/media/Yo1YUkoruZqn?format=redirect",
+      "start": 19.22,
+      "end": 22.4,
+      "verification": "Fragmento hablado del mismo video de Hoy Día/Telemundo. José Luis Rodríguez aparece en cámara durante el pasaje y el ASR local sitúa el texto en 19.22–22.40 s; el fotograma guardado en torno a 20 s da contexto visual. ASR coteja palabras y tiempos pero no prueba identidad acústica ni equivale a escucha humana. Recorte de 3.18 s, sin cambio de timbre, tono o velocidad."
+    }
+  },
+  "audioResearch": {
+    "status": "verified-original-clips",
+    "limitations": "Tres recortes hablados del video de Telemundo con José Luis Rodríguez identificado. Los turnos de select y win lo muestran hablando; special continúa una respuesta suya sobre un plano del grupo. Los fotogramas de 9, 10, 20 y 30 s documentan el contexto. ASR solo coteja palabras y tiempos. Sin cambio de tono, timbre o velocidad. Los textos finales suman 19 palabras de la fuente.",
+    "review": "La revisión de integración acortó select a una frase completa de 1.80 s y añadió el fotograma previo a special para documentar el turno del artista."
+  },
+  "atlasReview": {
+    "poseOrder": [
+      "idle",
+      "block",
+      "runA",
+      "runB",
+      "jump",
+      "punch",
+      "highKick",
+      "hurt"
+    ],
+    "correction": "Atlas editorial cel-shaded generado con dos fotos reales inspeccionadas como referencias de identidad. Revisión visual confirma edad, nariz, cejas, cabello ondulado plateado hacia atrás, chaqueta oscura y ocho figuras completas separadas sobre transparencia alfa; la transparencia se verificó con el validador del proyecto."
+  }
+}

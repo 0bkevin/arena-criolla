@@ -1,0 +1,164 @@
+{
+  "id": "capriles",
+  "realName": "Henrique Capriles Radonski",
+  "sprite": "capriles-v21",
+  "portraitReference": "assets/references/capriles/user-casual-tricolor.png",
+  "portrayal": "Versión casual solicitada por el usuario: gorra tricolor con estrellas blancas, camisa gris de botones con mangas recogidas, jeans y tenis blancos. Rostro delgado y alargado, nariz prominente, cejas oscuras y sonrisa amplia; sin lentes, siguiendo la foto adjunta. Los videos recientes sirven para contrastar el rostro adulto y vestimenta casual, pero muestran otras prendas y lentes. Las poses de pelea y el saludo son adaptaciones ficticias arcade.",
+  "sources": [
+    {
+      "title": "Henrique Capriles — visita publicada en su Instagram oficial",
+      "url": "https://www.instagram.com/p/Ddr8Tz5RAAM/",
+      "kind": "official-video",
+      "publishedAt": "2026-09-24T22:21:25.000Z",
+      "inspectedFramesSeconds": [
+        7,
+        27
+      ],
+      "note": "Video original de 46.37 s. Fecha verificada en el elemento time del post y fotogramas inspeccionados en navegador. Gorra gris, lentes ópticos, chemise verde oscuro, jeans y taza; la gorra tricolor y camisa gris del juego provienen de la referencia del usuario, no de este clip."
+    },
+    {
+      "title": "Entrevista con Román Lozinski — clips publicados por Caraota Digital",
+      "url": "https://tucaraotadigital.com/venezuela/apoyara-a-maria-corina-el-perlazo-de-capriles-sobre-la-posible-fecha-para-las-elecciones-presidenciales/",
+      "kind": "published-video-clips",
+      "publishedAt": "2026-09-15",
+      "inspectedFramesSeconds": [
+        3,
+        8
+      ],
+      "note": "Dos clips descargados y fotogramas inspeccionados: rostro maduro alargado, sienes grises, lentes, camisa verde y chaqueta negra; manos y rostro expresivos al hablar. Se verifica fecha de publicación; no se dispone de metadatos independientes de fecha de grabación."
+    },
+    {
+      "title": "Cazadores de Fake News — verifica la procedencia del video del 24 de septiembre",
+      "url": "https://storage.googleapis.com/qurium/www.cazadoresdefakenews.info/video-de-capriles-sin-camisa-y-con-sombrero-de-pirata-creado-con-ia.html",
+      "kind": "video-provenance-verification",
+      "publishedAt": "2026-09-29",
+      "note": "Vincula el post original de hcapriles y distingue el material auténtico con chemise y gorra de una edición falsa; no se utiliza esa edición como referencia."
+    },
+    {
+      "title": "Henrique Capriles: Los venezolanos no nos vamos a conformar solo con un reacomodo en el poder — El País",
+      "url": "https://elpais.com/america/2026-01-25/henrique-capriles-los-venezolanos-no-nos-vamos-a-conformar-solo-con-un-reacomodo-en-el-poder.html",
+      "kind": "published-interview-and-photographs",
+      "note": "La entrevista nombra a Capriles y acredita las fotos de Gaby Oraa (oficina, 23 de enero de 2026) y Miguel Gutiérrez/EFE (rueda de prensa, 19 de enero)."
+    },
+    {
+      "title": "Henrique Capriles Radonski in Margarita International Airport — Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_Radonski_in_Margarita_International_Airport.JPG",
+      "kind": "photographic-reference",
+      "note": "Fotografía de Wilfredor/Wilfredo Rodríguez, fechada el 26 de agosto de 2012; consultada para confirmar el rostro y contexto de la gorra tricolor, cuyo estilo tricolor se adopta en v21 a petición del usuario."
+    },
+    {
+      "title": "Rueda de prensa de Capriles Radonski 2 — Canal Comunidad en iVoox",
+      "url": "https://www.ivoox.com/rueda-prensa-capriles-radonski-2-audios-mp3_rf_1138310_1.html",
+      "kind": "archival-press-conference-audio",
+      "note": "La página identifica el audio como rueda de prensa del candidato Henrique Capriles Radonski. La ficha lo fecha el 29 de marzo de 2012 y da una duración de 26:24."
+    }
+  ],
+  "distinctiveTraits": [
+    "Gorra azul y roja con acento amarillo en la visera y estrellas blancas, siguiendo la referencia aportada por el usuario.",
+    "Camisa gris informal con mangas recogidas, jeans y tenis blancos; rostro sin lentes, nariz alargada, cejas oscuras y sonrisa característica.",
+    "Los videos de septiembre muestran gorra gris/chemise o chaqueta y lentes; la combinación tricolor/gris es una elección visual explícita del usuario.",
+    "Ocho poses completas orientadas a la derecha; el motor refleja la orientación para mirar al rival."
+  ],
+  "suggestedMoves": [
+    {
+      "name": "Paso de campaña",
+      "description": "Avanza con paso ágil y guardia ligera; recurso ficticio de juego inspirado en su silueta delgada."
+    },
+    {
+      "name": "Defensa abierta",
+      "description": "Bloqueo compacto con las manos levantadas; animación de combate ficticia."
+    },
+    {
+      "name": "Línea directa",
+      "description": "Puñetazo recto hacia delante; nombre de fantasía sin cita política asociada."
+    },
+    {
+      "name": "Cambio de ritmo",
+      "description": "Patada lateral alta con apoyo estable; movimiento completamente ficticio."
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/capriles/user-casual-tricolor.png",
+      "url": "/assets/references/capriles/user-casual-tricolor.png",
+      "kind": "user-supplied-style-reference",
+      "date": null,
+      "note": "Fecha no aportada; no se presenta como fotografía de los últimos tres meses.",
+      "viewed": true
+    },
+    {
+      "file": "assets/references/capriles/elpais-portrait-2026.jpg",
+      "url": "https://imagenes.elpais.com/resizer/v2/W6UBVWNI3ZEB3MI2N2MA6MP3NM.jpg?auth=29698deb776ca477f50ded700fb3b8e2f3f53cd256c028899f2804455825992b&width=1200",
+      "sourcePage": "https://elpais.com/america/2026-01-25/henrique-capriles-los-venezolanos-no-nos-vamos-a-conformar-solo-con-un-reacomodo-en-el-poder.html",
+      "date": "2026-01-23",
+      "credit": "Gaby Oraa",
+      "viewed": true
+    },
+    {
+      "file": "assets/references/capriles/commons-tricolor-2012.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Henrique_Capriles_Radonski_in_Margarita_International_Airport.JPG",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_Radonski_in_Margarita_International_Airport.JPG",
+      "date": "2012-08-26",
+      "credit": "Wilfredor / Wilfredo Rodríguez",
+      "license": "CC BY-SA 3.0",
+      "viewed": true
+    }
+  ],
+  "encoding": {
+    "runtimeAtlas": [
+      1774,
+      887
+    ],
+    "source": "assets/source/capriles-v21.png",
+    "webp": "public/assets/capriles-v21.webp",
+    "lossless": true,
+    "effort": 6,
+    "validation": {
+      "status": "passed",
+      "command": "npm run check:assets",
+      "result": "Ocho figuras aisladas, alfa transparente, PNG y WebP con idénticos componentes; cuatro poses por fila."
+    }
+  },
+  "recentVideoReview": {
+    "reviewedAt": "2026-10-09",
+    "window": {
+      "from": "2026-07-09",
+      "through": "2026-10-09"
+    },
+    "sources": [
+      {
+        "title": "Henrique Capriles — visita publicada en su Instagram oficial",
+        "url": "https://www.instagram.com/p/Ddr8Tz5RAAM/",
+        "kind": "official-video",
+        "publishedAt": "2026-09-24T22:21:25.000Z",
+        "inspectedFramesSeconds": [
+          7,
+          27
+        ],
+        "note": "Video original de 46.37 s. Fecha verificada en el elemento time del post y fotogramas inspeccionados en navegador. Gorra gris, lentes ópticos, chemise verde oscuro, jeans y taza; la gorra tricolor y camisa gris del juego provienen de la referencia del usuario, no de este clip."
+      },
+      {
+        "title": "Entrevista con Román Lozinski — clips publicados por Caraota Digital",
+        "url": "https://tucaraotadigital.com/venezuela/apoyara-a-maria-corina-el-perlazo-de-capriles-sobre-la-posible-fecha-para-las-elecciones-presidenciales/",
+        "kind": "published-video-clips",
+        "publishedAt": "2026-09-15",
+        "inspectedFramesSeconds": [
+          3,
+          8
+        ],
+        "note": "Dos clips descargados y fotogramas inspeccionados: rostro maduro alargado, sienes grises, lentes, camisa verde y chaqueta negra; manos y rostro expresivos al hablar. Se verifica fecha de publicación; no se dispone de metadatos independientes de fecha de grabación."
+      }
+    ],
+    "frameEvidence": [
+      "assets/references/capriles/recent-2026/2026-09-15-gestures-frame8.png",
+      "assets/references/capriles/recent-2026/2026-09-24-instagram-frame7.png",
+      "assets/references/capriles/recent-2026/2026-09-24-instagram-frame27.png"
+    ],
+    "stylePriority": "Foto proporcionada por el usuario. No se atribuye la gorra tricolor concreta a los videos recientes."
+  },
+  "generation": {
+    "mode": "built-in image_gen",
+    "prompt": "docs/characters-v21/capriles-prompt.txt",
+    "replaces": "capriles-v3"
+  }
+}

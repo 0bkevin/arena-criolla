@@ -1,0 +1,365 @@
+{
+  "build": "passed",
+  "tests": 41,
+  "flows": [
+    "P2 picker selects Pedro without changing P1 Vicente",
+    "Stage selection updates full cabinet background",
+    "Pagination displays 10 / 10 / 5 fighters and disables last next button",
+    "Accent-insensitive search finds Simón; empty search shows recovery and Escape clears",
+    "Leyendas collection shows ten additions",
+    "ArrowRight moves focus, Enter selects without editing the other player",
+    "P1 El Silbón versus CPU La Llorona selection",
+    "Move detail modal opens and Escape closes",
+    "CPU match starts with Silbón and Llorona on selected Canaima stage; lobby theme scoped away from gameplay; returns to lobby",
+    "Local mode exposes second player's name, removes CPU difficulty, and starts two-player match",
+    "Online mode shows anonymous room browser",
+    "Private anonymous room creation exposes invitation code and waiting opponent; room exit returns to selection",
+    "320px Leyendas roster keeps all ten names readable without overflow",
+    "Mobile bolt control opens move detail with scrolling dialog",
+    "Preparar scrolls to settings and hides fixed dock while start is visible",
+    "Mobile map opens nine stages within viewport",
+    "Culture page 2 shows the final five original fighters at 320px without clipped names"
+  ],
+  "started": "2026-10-08T21:15:21.813Z",
+  "version": 13,
+  "date": "2026-10-08",
+  "design": {
+    "direction": "Arcade de esquina al atardecer",
+    "agent": "/root/arcade_personality_v13",
+    "model": "gpt-6.1-sol (inherited)",
+    "review": "Agent reviewed both the previous UI and actual new 1280×800 screenshot; contrast and center veil feedback applied.",
+    "themeFile": "src/arcade-theme.css",
+    "changes": [
+      "Shared pixel landscape fades when stage changes",
+      "Open portrait bays with warm P1/P2 light, floor shadows and large decorative player numbers",
+      "Angled name plaques and condensed display typography",
+      "Recessed roster sockets, four selection brackets, hover sheen and press feedback",
+      "Gold beveled primary action; dark mode rail and stage filmstrip",
+      "Tricolor accents, eight stars, Renny versus Capriles marquee",
+      "Mobile move controls expose labelled 44px icon buttons; compact portrait bays and setup shortcut"
+    ]
+  },
+  "viewports": [
+    {
+      "width": 320,
+      "height": 800,
+      "documentWidth": 320,
+      "columns": 3,
+      "startBottom": 1568.390625,
+      "startVisible": false,
+      "clippedNames": [],
+      "modeHeights": [
+        54,
+        54,
+        54
+      ],
+      "smallTouchControls": [],
+      "portraitHeight": 212,
+      "dockPresent": true
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "documentWidth": 360,
+      "columns": 3,
+      "startBottom": 1568.390625,
+      "startVisible": false,
+      "clippedNames": [],
+      "modeHeights": [
+        54,
+        54,
+        54
+      ],
+      "smallTouchControls": [],
+      "portraitHeight": 212,
+      "dockPresent": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "columns": 3,
+      "startBottom": 1584.390625,
+      "startVisible": false,
+      "clippedNames": [],
+      "modeHeights": [
+        54,
+        54,
+        54
+      ],
+      "smallTouchControls": [],
+      "portraitHeight": 212,
+      "dockPresent": true
+    },
+    {
+      "width": 700,
+      "height": 900,
+      "documentWidth": 700,
+      "columns": 3,
+      "startBottom": 1579,
+      "startVisible": false,
+      "clippedNames": [],
+      "modeHeights": [
+        54,
+        54,
+        54
+      ],
+      "smallTouchControls": [],
+      "portraitHeight": 212,
+      "dockPresent": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "documentWidth": 768,
+      "columns": 5,
+      "startBottom": 1126.1875,
+      "startVisible": false,
+      "clippedNames": [],
+      "modeHeights": [
+        44,
+        44,
+        44
+      ],
+      "smallTouchControls": [],
+      "portraitHeight": 167.59375,
+      "dockPresent": true
+    },
+    {
+      "width": 900,
+      "height": 800,
+      "documentWidth": 900,
+      "columns": 5,
+      "startBottom": 1119.59375,
+      "startVisible": false,
+      "clippedNames": [],
+      "modeHeights": [
+        44,
+        44,
+        44
+      ],
+      "smallTouchControls": [],
+      "portraitHeight": 167.59375,
+      "dockPresent": true
+    },
+    {
+      "width": 1024,
+      "height": 800,
+      "documentWidth": 1024,
+      "columns": 5,
+      "startBottom": 782.59375,
+      "startVisible": true,
+      "clippedNames": [],
+      "modeHeights": [
+        38,
+        38,
+        38
+      ],
+      "smallTouchControls": [],
+      "portraitHeight": 325.59375,
+      "dockPresent": false
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "documentWidth": 1280,
+      "columns": 5,
+      "startBottom": 784.59375,
+      "startVisible": true,
+      "clippedNames": [],
+      "modeHeights": [
+        38,
+        38,
+        38
+      ],
+      "smallTouchControls": [],
+      "portraitHeight": 327.59375,
+      "dockPresent": false
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "documentWidth": 1440,
+      "columns": 5,
+      "startBottom": 784.59375,
+      "startVisible": true,
+      "clippedNames": [],
+      "modeHeights": [
+        38,
+        38,
+        38
+      ],
+      "smallTouchControls": [],
+      "portraitHeight": 327.59375,
+      "dockPresent": false
+    }
+  ],
+  "cultureViewports": [
+    {
+      "width": 320,
+      "height": 800,
+      "documentWidth": 320,
+      "columns": 3,
+      "startBottom": 1571.171875,
+      "startVisible": false,
+      "clippedNames": [],
+      "modeHeights": [
+        54,
+        54,
+        54
+      ],
+      "touchControls": []
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "documentWidth": 360,
+      "columns": 3,
+      "startBottom": 1571.171875,
+      "startVisible": false,
+      "clippedNames": [],
+      "modeHeights": [
+        54,
+        54,
+        54
+      ],
+      "touchControls": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "columns": 3,
+      "startBottom": 1595.171875,
+      "startVisible": false,
+      "clippedNames": [],
+      "modeHeights": [
+        54,
+        54,
+        54
+      ],
+      "touchControls": []
+    },
+    {
+      "width": 700,
+      "height": 900,
+      "documentWidth": 700,
+      "columns": 3,
+      "startBottom": 1579,
+      "startVisible": false,
+      "clippedNames": [],
+      "modeHeights": [
+        54,
+        54,
+        54
+      ],
+      "touchControls": []
+    },
+    {
+      "width": 1024,
+      "height": 800,
+      "documentWidth": 1024,
+      "columns": 5,
+      "startBottom": 782.59375,
+      "startVisible": true,
+      "clippedNames": [],
+      "modeHeights": [
+        38,
+        38,
+        38
+      ],
+      "touchControls": [
+        "Ver movimientos de Vicente Zavarce",
+        "P1 TÚ",
+        "CPU RIVAL",
+        "Buscar luchador",
+        "Todos25",
+        "Cultura15",
+        "Leyendas10",
+        "Página anterior de luchadores",
+        "Página siguiente de luchadores",
+        "Ver movimientos de Javier Hala Madrid"
+      ]
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "documentWidth": 1280,
+      "columns": 5,
+      "startBottom": 784.59375,
+      "startVisible": true,
+      "clippedNames": [],
+      "modeHeights": [
+        38,
+        38,
+        38
+      ],
+      "touchControls": [
+        "Ver movimientos de Vicente Zavarce",
+        "P1 TÚ",
+        "CPU RIVAL",
+        "Buscar luchador",
+        "Todos25",
+        "Cultura15",
+        "Leyendas10",
+        "Página anterior de luchadores",
+        "Página siguiente de luchadores",
+        "Ver movimientos de Javier Hala Madrid"
+      ]
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "documentWidth": 1440,
+      "columns": 5,
+      "startBottom": 784.59375,
+      "startVisible": true,
+      "clippedNames": [],
+      "modeHeights": [
+        38,
+        38,
+        38
+      ],
+      "touchControls": [
+        "Ver movimientos de Vicente Zavarce",
+        "P1 TÚ",
+        "CPU RIVAL",
+        "Buscar luchador",
+        "Todos25",
+        "Cultura15",
+        "Leyendas10",
+        "Página anterior de luchadores",
+        "Página siguiente de luchadores",
+        "Ver movimientos de Javier Hala Madrid"
+      ]
+    }
+  ],
+  "assets": {
+    "stageThumbnailsLoaded": 9,
+    "rosterPortraitCanvases": 10
+  },
+  "storage": {
+    "preservedExactly": true,
+    "qaStorageWriteGuardRemoved": true,
+    "preferencesReloaded": true
+  },
+  "reducedMotion": {
+    "cssRuleVerified": true,
+    "mediaEmulated": false
+  },
+  "browserErrors": [],
+  "validation": {
+    "unitAndNetworkTests": 41,
+    "passed": 41,
+    "failed": 0,
+    "productionBuild": "passed"
+  },
+  "screenshots": {
+    "night-arcade-before-v13.png": "docs/screenshots/night-arcade-before-v13.png",
+    "night-arcade-desktop-v13.png": "docs/screenshots/night-arcade-desktop-v13.png",
+    "night-arcade-mobile-v13.png": "docs/screenshots/night-arcade-mobile-v13.png",
+    "night-arcade-tablet-v13.png": "docs/screenshots/night-arcade-tablet-v13.png",
+    "night-arcade-cpu-v13.png": "docs/screenshots/night-arcade-cpu-v13.png"
+  },
+  "note": "Phone and tablet layouts scroll and provide a fixed Preparar shortcut. The start button is visible without scrolling at 1024×800, 1280×800 and 1440×900. No changes to combat rules, sprites or audio."
+}

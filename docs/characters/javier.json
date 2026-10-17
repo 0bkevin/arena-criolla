@@ -1,0 +1,450 @@
+{
+  "id": "javier",
+  "resolvedName": "Javier David Romero, conocido como Javier Hala Madrid",
+  "identityResolution": {
+    "status": "resolved",
+    "requestedSpelling": "Javier Alamadrid",
+    "displayName": "Javier Hala Madrid",
+    "finding": "La atribución a Javier Romero sí corresponde al creador venezolano de sátira política; el retrato previo era poco fiel.",
+    "method": "El canal oficial enlaza YouTube JavierRomero321 y X javierito321. La entrevista periodística identifica al creador como Javier David Romero. La fotografía de Versión Final y sus propios videos coinciden visualmente.",
+    "primaryProfile": "https://t.me/Javierhalamadridd",
+    "fullSurnameNote": "Una entrevista distribuida por ABNewswire da el nombre ampliado Javier David Romero Galué. El dossier usa la identificación periodística más corta.",
+    "checkedAt": "2026-10-08"
+  },
+  "sources": [
+    {
+      "url": "https://t.me/s/Javierhalamadridd?after=487",
+      "title": "JAVIERHALAMADRID / Canal Oficial — perfil, publicaciones y enlaces a sus otras cuentas",
+      "kind": "primary-official-channel"
+    },
+    {
+      "url": "https://www.youtube.com/c/JavierRomero321",
+      "title": "Javier Romero — canal enlazado desde Telegram oficial",
+      "kind": "primary-profile-linked-from-official-channel",
+      "access": "La herramienta devolvió solo el pie de YouTube; no se descargó media de este canal."
+    },
+    {
+      "url": "https://www.miamiherald.com/news/nation-world/world/americas/venezuela/article228613844.html",
+      "title": "Venezuelan comedian Javier Hala Madrid prefers laughter to tears",
+      "kind": "journalistic-interview-identity-verification"
+    },
+    {
+      "url": "https://diarioversionfinal.com/magazine/influencer-javier-halamadrid-nominado-a-los-premios-juventud-2021/",
+      "title": "Influencer Javier Halamadrid nominado a los Premios Juventud 2021",
+      "kind": "news-real-photo-reference"
+    },
+    {
+      "url": "https://www.abnewswire.com/pressreleases/javier-hala-madrid-its-better-to-give-than-to-receive_477530.html",
+      "title": "Javier Hala Madrid — It’s better to give than to receive",
+      "kind": "press-release-interview-secondary-quote-evidence"
+    },
+    {
+      "url": "https://t.me/Javierhalamadridd/488",
+      "title": "Post 488 — reacción sobre gente trikitando",
+      "kind": "primary-official-video-and-caption"
+    },
+    {
+      "url": "https://t.me/Javierhalamadridd/490",
+      "title": "Post 490 — reacción al doctor",
+      "kind": "primary-official-video-and-caption"
+    },
+    {
+      "url": "https://t.me/Javierhalamadridd/493",
+      "title": "Post 493 — la estrategia fallida",
+      "kind": "primary-official-video-and-caption"
+    },
+    {
+      "url": "https://t.me/Javierhalamadridd/506",
+      "title": "Post 506 — sketch con reacción de sorpresa",
+      "kind": "primary-official-video-and-caption"
+    },
+    {
+      "url": "https://t.me/Javierhalamadridd/509",
+      "title": "Post 509 — sketch antes de ir a la iglesia y dentro de ella",
+      "kind": "primary-official-video"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=9SJXB9ojwp4",
+      "title": "Javier Hala Madrid en Viviana Gibelli TV — enlace compartido en su canal oficial",
+      "kind": "public-interview-candidate",
+      "access": "YouTube no proporcionó contenido accesible a la herramienta; no se eludió la restricción."
+    }
+  ],
+  "referenceImages": [
+    {
+      "path": "assets/references/javier/version-final-portrait-2021.jpg",
+      "url": "https://diarioversionfinal.com/wp-content/uploads/2021/06/javier_hala_madrid-1.jpg",
+      "pageUrl": "https://diarioversionfinal.com/magazine/influencer-javier-halamadrid-nominado-a-los-premios-juventud-2021/",
+      "role": "identity-and-shirt-reference-used-by-imagegen",
+      "viewed": true
+    },
+    {
+      "path": "assets/references/javier/telegram-avatar.jpg",
+      "url": "https://t.me/Javierhalamadridd",
+      "role": "official-profile-comparison-only; comedic disguise, not an outfit template",
+      "viewed": true
+    },
+    {
+      "path": "assets/references/javier/telegram-509-frame-16s500.jpg",
+      "url": "https://t.me/Javierhalamadridd/509",
+      "timestamp": "00:16.500",
+      "role": "gesture/performance reference only; towel and glasses are a sketch disguise",
+      "viewed": true
+    },
+    {
+      "path": "assets/references/javier/telegram-509-frame-18s500.jpg",
+      "url": "https://t.me/Javierhalamadridd/509",
+      "timestamp": "00:18.500",
+      "role": "primary-video facial comparison and alternative casual outfit; not used by imagegen",
+      "viewed": true
+    }
+  ],
+  "visual": {
+    "face": "Rostro ovalado y alargado, frente amplia con líneas expresivas, orejas prominentes, cejas oscuras que suben al centro, ojos algo entornados, nariz larga de punta redondeada, mejillas largas, mentón redondeado y sonrisa ancha con dientes superiores visibles. El diseño enfatiza estos rasgos de la foto real.",
+    "hair": "Negro, abundante arriba, copete alto peinado hacia arriba y atrás, laterales cortos. El v1 reducía el peinado a un corte genérico demasiado plano.",
+    "outfit": "Camiseta negra de cuello redondo y cadena plateada fina verificadas en la foto de Versión Final. Jeans negros y zapatillas blancas completan el diseño de juego; el retrato no verifica el vestuario inferior. Los videos muestran también polo azul, ropa deportiva gris y disfraces sencillos de sketch.",
+    "gestures": [
+      {
+        "description": "Cejas fruncidas y luego elevadas, mirada de costado y boca abierta al reaccionar.",
+        "sourceUrl": "https://t.me/Javierhalamadridd/488",
+        "evidence": "Video público inspeccionado visualmente en varias imágenes de 0–18 s."
+      },
+      {
+        "description": "Giros de cabeza, cambios rápidos de expresión y gesticulación abierta al interpretar varios personajes.",
+        "sourceUrl": "https://t.me/Javierhalamadridd/509",
+        "evidence": "Video público inspeccionado visualmente en varias imágenes de 0–29 s."
+      },
+      {
+        "description": "Toalla sobre la cabeza y gafas para encarnar personajes de sus sketches.",
+        "sourceUrl": "https://t.me/Javierhalamadridd/506",
+        "evidence": "Video público completo de unos 9 s inspeccionado visualmente. Es accesorio de actuación; no se añadió al luchador."
+      }
+    ],
+    "previousSpriteComparison": "El v1 representaba un joven genérico con mandíbula angular, copete corto y sonrisa idealizada. V2 usa la foto real para frente, cejas, nariz, orejas, sonrisa y pelo, y reduce el aspecto de superhéroe.",
+    "designChoices": "Proporciones de caricatura editorial y movimientos de combate ficticios para el videojuego."
+  },
+  "quotes": [
+    {
+      "text": "Mialma",
+      "sourceUrl": "https://www.abnewswire.com/pressreleases/javier-hala-madrid-its-better-to-give-than-to-receive_477530.html",
+      "verified": true,
+      "context": "Muletilla reportada en una entrevista distribuida como comunicado. No se verificó un segundo preciso de audio.",
+      "evidenceType": "reported-recurring-word"
+    },
+    {
+      "text": "Malayo",
+      "sourceUrl": "https://www.abnewswire.com/pressreleases/javier-hala-madrid-its-better-to-give-than-to-receive_477530.html",
+      "verified": true,
+      "context": "Muletilla reportada en la misma entrevista; no equivale a un guion hablado con timestamp.",
+      "evidenceType": "reported-recurring-word"
+    },
+    {
+      "text": "Marginal",
+      "sourceUrl": "https://www.abnewswire.com/pressreleases/javier-hala-madrid-its-better-to-give-than-to-receive_477530.html",
+      "verified": true,
+      "context": "Palabra recurrente reportada en la entrevista.",
+      "evidenceType": "reported-recurring-word"
+    },
+    {
+      "text": "DEJEN DE TRIKITAR",
+      "sourceUrl": "https://t.me/Javierhalamadridd/488",
+      "verified": true,
+      "context": "Fragmento textual exacto de la leyenda oficial del post 488, visible también en la página pública del canal. No es transcripción verificada de voz.",
+      "evidenceType": "official-written-caption"
+    },
+    {
+      "text": "De verdad doctor?",
+      "sourceUrl": "https://t.me/Javierhalamadridd/490",
+      "verified": true,
+      "context": "Leyenda escrita oficial del post 490, sin sus emojis. No es transcripción verificada de voz.",
+      "evidenceType": "official-written-caption"
+    },
+    {
+      "text": "Salió mal la estrategia",
+      "sourceUrl": "https://t.me/Javierhalamadridd/493",
+      "verified": true,
+      "context": "Leyenda escrita oficial del post 493, sin su emoji.",
+      "evidenceType": "official-written-caption"
+    },
+    {
+      "text": "A ver, a ver, que pasó aquí?",
+      "sourceUrl": "https://t.me/Javierhalamadridd/506",
+      "verified": true,
+      "context": "Leyenda escrita oficial del post 506, conservando su grafía. No se afirma que estas palabras coincidan con su audio.",
+      "evidenceType": "official-written-caption"
+    }
+  ],
+  "voice": {
+    "description": "Fuente de voz pública: Javier interpretando personajes en sus propios sketches. El uso coloquial zuliano se documenta en sus muletillas escritas y en la entrevista. Timbre, ritmo, texto hablado e identidad acústica del recorte permanecen pendientes de audición: este entorno no acepta entrada de audio y no tiene transcripción local instalada.",
+    "candidates": [
+      {
+        "url": "https://t.me/Javierhalamadridd/509",
+        "title": "Sketch antes de ir a la iglesia — post oficial 509",
+        "timestamp": "00:00.500–00:02.500",
+        "text": null,
+        "samplePath": "public/audio/javier/reference-509-00m00s500.ogg",
+        "durationSeconds": 2,
+        "downloaded": true,
+        "speakerVerifiedByListening": false,
+        "textVerified": false,
+        "readyForRuntime": false,
+        "note": "Recorte ORIGINAL público, sin login, clonación ni API de pago. Fuente de investigación hasta verificar por oído qué se dice y quién habla; el volumen original alcanza 0 dBFS."
+      },
+      {
+        "url": "https://t.me/Javierhalamadridd/506",
+        "title": "Reacción al sketch con cielo de fondo — post oficial 506",
+        "timestamp": "00:06.000–00:08.000",
+        "text": null,
+        "downloaded": true,
+        "speakerVerifiedByListening": false,
+        "textVerified": false,
+        "note": "El video muestra a Javier actuando, pero no se auditó si su pista sonora es voz propia o audio usado para el sketch."
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=9SJXB9ojwp4",
+        "title": "Entrevista con Viviana Gibelli, compartida por Javier en Telegram",
+        "timestamp": null,
+        "text": null,
+        "downloaded": false,
+        "textVerified": false,
+        "note": "Candidato útil de voz natural. YouTube no entregó media accesible a la herramienta."
+      }
+    ],
+    "usableSamples": [],
+    "samplePolicy": "El OGG está guardado para revisión, pero no se considera muestra de diálogo verificada ni está recomendado para activación automática. Las voces arcade genéricas deben identificarse como sintéticas; no imitar ni clonar la identidad vocal real."
+  },
+  "gameLines": {
+    "select": {
+      "text": "¡Mialma, llegué a la arena!",
+      "kind": "fictitious-game-line",
+      "verified": false,
+      "note": "Línea original del juego inspirada en una muletilla documentada; no atribuir esta oración a Javier."
+    },
+    "special": {
+      "text": "DEJEN DE TRIKITAR",
+      "kind": "verified-written-quote",
+      "sourceUrl": "https://t.me/Javierhalamadridd/488",
+      "verified": true,
+      "note": "Cita de leyenda escrita, no muestra ni transcripción de su voz."
+    },
+    "win": {
+      "text": "Salió mal la estrategia",
+      "kind": "verified-written-quote",
+      "sourceUrl": "https://t.me/Javierhalamadridd/493",
+      "verified": true,
+      "note": "Cita de leyenda escrita, aplicada al contexto ficticio de combate."
+    }
+  },
+  "recommended": {
+    "kind": "fictitious-parody-game-design",
+    "title": "El remate maracucho",
+    "description": "Ceja levantada, respuesta rápida y un remate de sátira. Pelea con fintas y movimientos expresivos inspirados en sus reacciones de cámara.",
+    "special": "Reacción maracucha",
+    "combos": [
+      "Finta de ceja",
+      "Réplica al instante",
+      "Remate de mialma"
+    ],
+    "note": "Títulos, movimientos y combos son propuestas ficticias de diseño; no son citas ni acciones reales."
+  },
+  "sprite": {
+    "source": "assets/source/javier-v2.png",
+    "runtime": "public/assets/javier-v2.webp",
+    "runtimeUrl": "/assets/javier-v2.webp",
+    "preservedPreviousSource": "assets/source/javier.png",
+    "preservedPreviousRuntime": "public/assets/javier.webp",
+    "tool": "built-in image_gen.imagegen only",
+    "identityReferences": [
+      "assets/references/javier/version-final-portrait-2021.jpg"
+    ],
+    "styleReference": "assets/source/delsa.png",
+    "prompt": "docs/characters/javier-prompt.txt",
+    "promptText": "Use case: stylized-concept\nAsset type: transparent 2D fighting-game sprite atlas for Arena Criolla.\nPrimary request: Exactly EIGHT full-body illustrations of the SAME real man, Javier David Romero, known as Javier Hala Madrid, the Venezuelan humorist and political satirist from Maracaibo. Make a clearly recognizable editorial caricature whose likeness is faithfully copied from the REAL PHOTO reference, not a generic handsome arcade man.\nInput images: Image 1, version-final-portrait-2021.jpg, is the ONLY identity and costume reference: copy his real face, head shape, hairstyle, black crew-neck shirt and delicate silver chain. Image 2, delsa.png, is ONLY a reference for clean outlined cel-shaded illustration style and a 4-by-2 sprite layout. Do not copy Delsa's face, hair, body or clothes.\nIdentity: Adult man around thirty, lean ordinary build with natural arms rather than a bodybuilder. Light-medium olive skin. Distinct elongated oval face, broad high forehead with subtle expressive crease lines, high black quiff swept upward and back with close short sides (NOT flat cropped hair), prominent ears, dark expressive eyebrows rising in the middle, slightly hooded almond eyes, a long rounded fleshy nose, long cheeks, rounded chin, clean-shaven face with very faint natural stubble. Wide mouth and characteristic toothy smile with pronounced curved cheek lines. His face/head is slightly enlarged for an editorial caricature, and immediately matches the photo. Preserve that specific nose, long face, ears, forehead and elevated hair in every pose. Expressions: amused sarcastic smile, raised expressive eyebrow; guarded focus; pained grimace for hit.\nOutfit: Simple BLACK short-sleeved crew-neck shirt, thin SILVER chain attached around neck, fitted charcoal-black jeans, plain white low-top sneakers. Consistent same outfit in all eight poses. No flag, no football jersey, no hat, no glasses. Lower-body outfit is a sensible game continuation of the photo.\nStyle/medium: polished modern hand-illustrated Venezuelan arcade editorial caricature, strong clean dark outlines, crisp detailed cel shading, lively readable expressions; no pixel art, no photorealism. Keep likeness; avoid generic anime face or idealized superhero jaw.\nComposition/framing: ONE 2048 by 1024 landscape image. FOUR equal columns and TWO equal rows. Exactly eight large separate COMPLETE bodies, one centered per cell, with at least 35 pixels of clear transparent space between ANY extremities of different characters and wide margins to all edges. Every body and head faces SCREEN-RIGHT in three-quarter side view, even hurt and jump. Same identity, head scale, torso scale and relative body proportions across all eight figures. Full heads, hands, legs and shoes visible. Standing/running/punch/kick/hurt planted feet share the same row baseline; jump floats above it. All eight silhouettes must be physically disconnected. Closed hands attach to arms; necklace attaches to torso. Each pose must be one connected silhouette.\nTop row from left to right: (1) idle ready guard, slightly relaxed skeptical smile, both hands raised; (2) defensive block with forearms crossed in front of body; (3) running RIGHT, left leg forward and right leg back; (4) running RIGHT, right leg forward and left leg back, visibly distinct inverse stride.\nBottom row from left to right: (5) jumping RIGHT with knees tucked, hands up; (6) straight RIGHTWARD right-handed punch, extended fist entirely inside its cell; (7) high RIGHTWARD side kick, entire long extended leg and white shoe inside its cell with generous gap before next figure; (8) recoiling in pain while still facing RIGHT, back leaning away, expressive surprised-pained face, hands open.\nScene/backdrop: ACTUAL transparent background / transparent alpha. No background fill, no checkerboard graphic, no floor, no cast shadow.\nText: none.\nConstraints: Exactly 8 bodies. 4 on top, 4 on bottom. Each face must closely match the real photographed man. No cut-off extremities, no overlaps, no grid, no captions, no panels, no effects, no detached objects, no floating particles, no ground shadow, no motion trails, no duplicated or extra limbs.\n\nSECOND BUILT-IN IMAGEGEN PASS — selected final atlas\nUse case: precise-object-edit\nAsset type: transparent 2D fighting game sprite atlas.\nImage 1 is the sprite atlas EDIT TARGET. Image 2 is the REAL IDENTITY reference of Javier Hala Madrid and must keep his likeness accurate.\nPrimary request: Improve ONLY sprite spacing and alignment of Image 1, keeping the recognizable same man's face, high black swept-back quiff, long oval face, eyebrows, large ears, rounded nose, smile, black shirt, silver necklace, charcoal jeans and white sneakers, and the same crisp cel-shaded outlined arcade style.\nLayout: exactly EIGHT complete separate bodies in FOUR columns by TWO rows, in the original pose order: top idle, crossed-arm block, run A, run B; bottom tucked-knee jump, right punch, right high side kick, hurt. Every body including hurt faces RIGHT. Preserve all eight faces and outfits and keep same relative head/body proportions. Each pose must be one connected silhouette.\nCritical alignment correction: Reduce all eight figures equally by about 12 percent so every cell has generous real transparent space around the head, hands and feet. Do not let any body touch the image boundary or a neighboring row. Leave at least 45 pixels of clear transparent margin on EVERY image edge and a wide transparent horizontal corridor BETWEEN rows. The feet for every grounded pose occupy exactly the same relative vertical coordinate in their row: 90 percent of cell height. Thus bottom-row punch/kick/hurt feet share the same baseline, exactly one row height below the top-row idle baseline. Jump floats above the baseline. All sprite torsos and heads remain the same size throughout the atlas.\nImprove run B just enough to show the other leg striding forward while the first is behind, contrasting clearly with run A.\nNo other changes. No grid, no panels, no text, no shadows, no floor, no background, no effects, no motion trail, no detached object, no duplicated limbs. ACTUAL transparent alpha.\n",
+    "passes": 2,
+    "validation": {
+      "source": {
+        "path": "assets/source/javier-v2.png",
+        "width": 1774,
+        "height": 887,
+        "format": "png",
+        "hasAlpha": true,
+        "transparentPixels": 1155564,
+        "transparentFraction": 0.7343731133280543,
+        "opaquePixels": 2059,
+        "meanVisibleAlpha": 247.02445499423968,
+        "threshold": 40,
+        "minAreaExclusive": 4000,
+        "componentCount": 8,
+        "topRowCount": 4,
+        "bottomRowCount": 4,
+        "passed": true,
+        "components": [
+          {
+            "minX": 67,
+            "maxX": 371,
+            "minY": 60,
+            "maxY": 453,
+            "count": 46560
+          },
+          {
+            "minX": 507,
+            "maxX": 807,
+            "minY": 59,
+            "maxY": 454,
+            "count": 43720
+          },
+          {
+            "minX": 926,
+            "maxX": 1259,
+            "minY": 68,
+            "maxY": 454,
+            "count": 50190
+          },
+          {
+            "minX": 1355,
+            "maxX": 1708,
+            "minY": 64,
+            "maxY": 454,
+            "count": 48356
+          },
+          {
+            "minX": 106,
+            "maxX": 307,
+            "minY": 484,
+            "maxY": 799,
+            "count": 38115
+          },
+          {
+            "minX": 488,
+            "maxX": 841,
+            "minY": 485,
+            "maxY": 853,
+            "count": 46299
+          },
+          {
+            "minX": 950,
+            "maxX": 1326,
+            "minY": 482,
+            "maxY": 856,
+            "count": 42748
+          },
+          {
+            "minX": 1462,
+            "maxX": 1717,
+            "minY": 488,
+            "maxY": 856,
+            "count": 43366
+          }
+        ]
+      },
+      "runtime": {
+        "path": "public/assets/javier-v2.webp",
+        "width": 1774,
+        "height": 887,
+        "format": "webp",
+        "hasAlpha": true,
+        "transparentPixels": 1155564,
+        "transparentFraction": 0.7343731133280543,
+        "opaquePixels": 2059,
+        "meanVisibleAlpha": 247.02445499423968,
+        "threshold": 40,
+        "minAreaExclusive": 4000,
+        "componentCount": 8,
+        "topRowCount": 4,
+        "bottomRowCount": 4,
+        "passed": true,
+        "components": [
+          {
+            "minX": 67,
+            "maxX": 371,
+            "minY": 60,
+            "maxY": 453,
+            "count": 46560
+          },
+          {
+            "minX": 507,
+            "maxX": 807,
+            "minY": 59,
+            "maxY": 454,
+            "count": 43720
+          },
+          {
+            "minX": 926,
+            "maxX": 1259,
+            "minY": 68,
+            "maxY": 454,
+            "count": 50190
+          },
+          {
+            "minX": 1355,
+            "maxX": 1708,
+            "minY": 64,
+            "maxY": 454,
+            "count": 48356
+          },
+          {
+            "minX": 106,
+            "maxX": 307,
+            "minY": 484,
+            "maxY": 799,
+            "count": 38115
+          },
+          {
+            "minX": 488,
+            "maxX": 841,
+            "minY": 485,
+            "maxY": 853,
+            "count": 46299
+          },
+          {
+            "minX": 950,
+            "maxX": 1326,
+            "minY": 482,
+            "maxY": 856,
+            "count": 42748
+          },
+          {
+            "minX": 1462,
+            "maxX": 1717,
+            "minY": 488,
+            "maxY": 856,
+            "count": 43366
+          }
+        ]
+      },
+      "encoding": {
+        "quality": 90,
+        "alphaQuality": 100
+      },
+      "checkedAt": "2026-10-08",
+      "visualReview": {
+        "likeness": "Improved: recognizable high forehead, long oval face, quiff, ears, rounded nose and specific smile from real reference.",
+        "poseOrder": [
+          "idle",
+          "block",
+          "runA",
+          "runB",
+          "jump",
+          "punch",
+          "highKick",
+          "hurt"
+        ],
+        "padding": "Clear margin and separate silhouettes in both rows; no cut extremities.",
+        "baseline": "Grounded pose baselines are consistent within each row, but relative row baselines differ; integration should register grounded frames by each component maxY.",
+        "runCycle": "Upper run A and B vary arms and torso but retain very similar leg stride; acceptable two-frame run, no true inverse leg cycle."
+      }
+    },
+    "integration": {
+      "groundedFrames": "El integrador confirmó que cada pose terrestre ya ancla su propio pie (maxY del componente).",
+      "jumpFrame": "El integrador conserva la altura de cabeza para el salto.",
+      "status": "resolved-in-shared-loader-by-parent-agent"
+    }
+  },
+  "limitations": [
+    "Las referencias visuales seleccionadas son de 2021 y sirven para un retrato reconocible de su personaje público; no afirman documentar todos los cambios de apariencia posteriores.",
+    "La camiseta y cadena se verifican en foto; jeans y zapatillas son continuación artística del diseño de combate.",
+    "La generación integrada devolvió 1774×887, con relación 2:1 y estructura 4×2. PNG y WebP conservan alfa real y cumplen los ocho componentes del contrato.",
+    "La línea base relativa del atlas difiere entre filas; el integrador confirmó que el cargador ya ancla cada pose terrestre por su propio pie y mantiene altura del salto. Las dos carreras conservan piernas similares y cambian brazos/torso.",
+    "No se auditó el audio por oído. El recorte público se conserva como candidato de investigación, separado de diálogo verificado."
+  ]
+}

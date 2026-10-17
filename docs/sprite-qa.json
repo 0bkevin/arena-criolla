@@ -1,0 +1,431 @@
+{
+  "method": "Análisis de componentes conexos del canal alfa de los seis atlas; ocho siluetas completas, ordenadas en dos filas. Revisión visual de los originales y del juego en navegador.",
+  "sprites": [
+    {
+      "id": "delsa",
+      "bodyHeight": 433,
+      "frames": [
+        {
+          "x": 75,
+          "y": 5,
+          "width": 293,
+          "height": 434,
+          "slotX": 0,
+          "slotY": 0
+        },
+        {
+          "x": 516,
+          "y": 11,
+          "width": 301,
+          "height": 428,
+          "slotX": 443.5,
+          "slotY": 0
+        },
+        {
+          "x": 918,
+          "y": 12,
+          "width": 381,
+          "height": 421,
+          "slotX": 887,
+          "slotY": 0
+        },
+        {
+          "x": 1359,
+          "y": 10,
+          "width": 364,
+          "height": 425,
+          "slotX": 1330.5,
+          "slotY": 0
+        },
+        {
+          "x": 78,
+          "y": 446,
+          "width": 283,
+          "height": 322,
+          "slotX": 0,
+          "slotY": 443.5
+        },
+        {
+          "x": 477,
+          "y": 449,
+          "width": 398,
+          "height": 424,
+          "slotX": 443.5,
+          "slotY": 443.5
+        },
+        {
+          "x": 903,
+          "y": 450,
+          "width": 434,
+          "height": 423,
+          "slotX": 887,
+          "slotY": 443.5
+        },
+        {
+          "x": 1382,
+          "y": 472,
+          "width": 345,
+          "height": 401,
+          "slotX": 1330.5,
+          "slotY": 443.5
+        }
+      ],
+      "ok": true
+    },
+    {
+      "id": "john",
+      "bodyHeight": 432,
+      "frames": [
+        {
+          "x": 57,
+          "y": 5,
+          "width": 331,
+          "height": 433,
+          "slotX": 0,
+          "slotY": 0
+        },
+        {
+          "x": 497,
+          "y": 7,
+          "width": 336,
+          "height": 431,
+          "slotX": 443.5,
+          "slotY": 0
+        },
+        {
+          "x": 924,
+          "y": 10,
+          "width": 381,
+          "height": 425,
+          "slotX": 887,
+          "slotY": 0
+        },
+        {
+          "x": 1369,
+          "y": 6,
+          "width": 374,
+          "height": 430,
+          "slotX": 1330.5,
+          "slotY": 0
+        },
+        {
+          "x": 102,
+          "y": 445,
+          "width": 243,
+          "height": 331,
+          "slotX": 0,
+          "slotY": 443.5
+        },
+        {
+          "x": 466,
+          "y": 445,
+          "width": 418,
+          "height": 426,
+          "slotX": 443.5,
+          "slotY": 443.5
+        },
+        {
+          "x": 945,
+          "y": 447,
+          "width": 420,
+          "height": 425,
+          "slotX": 887,
+          "slotY": 443.5
+        },
+        {
+          "x": 1431,
+          "y": 466,
+          "width": 311,
+          "height": 410,
+          "slotX": 1330.5,
+          "slotY": 443.5
+        }
+      ],
+      "ok": true
+    },
+    {
+      "id": "kilometro",
+      "bodyHeight": 427,
+      "frames": [
+        {
+          "x": 50,
+          "y": 8,
+          "width": 323,
+          "height": 428,
+          "slotX": 0,
+          "slotY": 0
+        },
+        {
+          "x": 491,
+          "y": 8,
+          "width": 324,
+          "height": 427,
+          "slotX": 443.5,
+          "slotY": 0
+        },
+        {
+          "x": 913,
+          "y": 9,
+          "width": 366,
+          "height": 426,
+          "slotX": 887,
+          "slotY": 0
+        },
+        {
+          "x": 1358,
+          "y": 9,
+          "width": 380,
+          "height": 425,
+          "slotX": 1330.5,
+          "slotY": 0
+        },
+        {
+          "x": 100,
+          "y": 442,
+          "width": 245,
+          "height": 335,
+          "slotX": 0,
+          "slotY": 443.5
+        },
+        {
+          "x": 461,
+          "y": 445,
+          "width": 393,
+          "height": 426,
+          "slotX": 443.5,
+          "slotY": 443.5
+        },
+        {
+          "x": 917,
+          "y": 445,
+          "width": 398,
+          "height": 427,
+          "slotX": 887,
+          "slotY": 443.5
+        },
+        {
+          "x": 1413,
+          "y": 454,
+          "width": 312,
+          "height": 417,
+          "slotX": 1330.5,
+          "slotY": 443.5
+        }
+      ],
+      "ok": true
+    },
+    {
+      "id": "javier",
+      "bodyHeight": 428,
+      "frames": [
+        {
+          "x": 66,
+          "y": 8,
+          "width": 303,
+          "height": 429,
+          "slotX": 0,
+          "slotY": 0
+        },
+        {
+          "x": 512,
+          "y": 7,
+          "width": 303,
+          "height": 430,
+          "slotX": 443.5,
+          "slotY": 0
+        },
+        {
+          "x": 925,
+          "y": 8,
+          "width": 365,
+          "height": 426,
+          "slotX": 887,
+          "slotY": 0
+        },
+        {
+          "x": 1367,
+          "y": 9,
+          "width": 377,
+          "height": 425,
+          "slotX": 1330.5,
+          "slotY": 0
+        },
+        {
+          "x": 52,
+          "y": 447,
+          "width": 342,
+          "height": 325,
+          "slotX": 0,
+          "slotY": 443.5
+        },
+        {
+          "x": 476,
+          "y": 449,
+          "width": 397,
+          "height": 422,
+          "slotX": 443.5,
+          "slotY": 443.5
+        },
+        {
+          "x": 933,
+          "y": 454,
+          "width": 412,
+          "height": 416,
+          "slotX": 887,
+          "slotY": 443.5
+        },
+        {
+          "x": 1450,
+          "y": 471,
+          "width": 271,
+          "height": 401,
+          "slotX": 1330.5,
+          "slotY": 443.5
+        }
+      ],
+      "ok": true
+    },
+    {
+      "id": "lacava",
+      "bodyHeight": 431,
+      "frames": [
+        {
+          "x": 62,
+          "y": 6,
+          "width": 326,
+          "height": 432,
+          "slotX": 0,
+          "slotY": 0
+        },
+        {
+          "x": 503,
+          "y": 12,
+          "width": 330,
+          "height": 426,
+          "slotX": 443.5,
+          "slotY": 0
+        },
+        {
+          "x": 909,
+          "y": 14,
+          "width": 397,
+          "height": 421,
+          "slotX": 887,
+          "slotY": 0
+        },
+        {
+          "x": 1360,
+          "y": 16,
+          "width": 382,
+          "height": 420,
+          "slotX": 1330.5,
+          "slotY": 0
+        },
+        {
+          "x": 77,
+          "y": 451,
+          "width": 287,
+          "height": 321,
+          "slotX": 0,
+          "slotY": 443.5
+        },
+        {
+          "x": 476,
+          "y": 450,
+          "width": 417,
+          "height": 416,
+          "slotX": 443.5,
+          "slotY": 443.5
+        },
+        {
+          "x": 938,
+          "y": 454,
+          "width": 407,
+          "height": 418,
+          "slotX": 887,
+          "slotY": 443.5
+        },
+        {
+          "x": 1422,
+          "y": 465,
+          "width": 314,
+          "height": 406,
+          "slotX": 1330.5,
+          "slotY": 443.5
+        }
+      ],
+      "ok": true
+    },
+    {
+      "id": "capriles",
+      "bodyHeight": 427,
+      "frames": [
+        {
+          "x": 51,
+          "y": 10,
+          "width": 325,
+          "height": 428,
+          "slotX": 0,
+          "slotY": 0
+        },
+        {
+          "x": 498,
+          "y": 11,
+          "width": 334,
+          "height": 426,
+          "slotX": 443.5,
+          "slotY": 0
+        },
+        {
+          "x": 909,
+          "y": 11,
+          "width": 399,
+          "height": 427,
+          "slotX": 887,
+          "slotY": 0
+        },
+        {
+          "x": 1359,
+          "y": 11,
+          "width": 382,
+          "height": 426,
+          "slotX": 1330.5,
+          "slotY": 0
+        },
+        {
+          "x": 46,
+          "y": 441,
+          "width": 322,
+          "height": 331,
+          "slotX": 0,
+          "slotY": 443.5
+        },
+        {
+          "x": 471,
+          "y": 439,
+          "width": 441,
+          "height": 434,
+          "slotX": 443.5,
+          "slotY": 443.5
+        },
+        {
+          "x": 942,
+          "y": 435,
+          "width": 419,
+          "height": 440,
+          "slotX": 887,
+          "slotY": 443.5
+        },
+        {
+          "x": 1424,
+          "y": 452,
+          "width": 297,
+          "height": 421,
+          "slotX": 1330.5,
+          "slotY": 443.5
+        }
+      ],
+      "ok": true
+    }
+  ]
+}

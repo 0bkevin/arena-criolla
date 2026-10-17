@@ -1,0 +1,36 @@
+{
+  "version": 21,
+  "character": "capriles",
+  "date": "2026-10-09",
+  "browser": "T3 native collaborative browser",
+  "sprite": "http://localhost:5173/assets/capriles-v21.webp",
+  "frames": 8,
+  "cameras": 16,
+  "renders": 28,
+  "dimensions": [
+    1774,
+    887
+  ],
+  "roster": 41,
+  "tests": {
+    "passed": 68,
+    "failed": 0
+  },
+  "build": "passed",
+  "assetValidation": {
+    "roster": 41,
+    "framesPerCharacter": 8,
+    "pngWebp": "matching silhouettes and alpha"
+  },
+  "recording": "docs/characters-v21/renny-capriles-casual.mp4",
+  "voiceMode": "generic reactions and impacts only",
+  "mobile": {
+    "width": 390,
+    "documentWidth": 390,
+    "cinematicNames": [
+      "Renny Ottolina",
+      "Capriles Radonski"
+    ],
+    "hudHiddenDuringCloseup": true
+  }
+}

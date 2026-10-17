@@ -1,0 +1,219 @@
+{
+  "version": 28,
+  "fighterId": "javier",
+  "fighterName": "Javier Hala Madrid",
+  "auditedAt": "2026-10-13",
+  "status": "complete-with-visual-polish-finding",
+  "scope": "Dedicated Javier audit only. No shared runtime, assets, package files, or other fighters were changed.",
+  "evidence": {
+    "preservedDossiers": [
+      "docs/characters-v3/javier.json",
+      "docs/characters/javier.json"
+    ],
+    "runtimeSourcesReviewed": [
+      "shared/fighters.json",
+      "shared/techniques.ts",
+      "shared/engine.ts",
+      "shared/presentations.json",
+      "shared/presentation.ts",
+      "shared/choreography.ts",
+      "src/game/assets.ts",
+      "src/game/renderer.ts",
+      "src/game/presentation-renderer.ts",
+      "src/components/Portrait.tsx",
+      "src/game/reactions.ts",
+      "docs/character-manifest.json"
+    ],
+    "spriteQaReviewed": [
+      "docs/character-sprite-qa.json",
+      "docs/sprite-qa.json",
+      "docs/entrances-v23/final-visual-review.json"
+    ],
+    "imagesActuallyViewed": [
+      "public/assets/javier-v2.webp",
+      "assets/references/javier/version-final-portrait-2021.jpg"
+    ],
+    "newWebResearch": false,
+    "identityAssessment": "The retained reference and current atlas agree on the tall black quiff, expressive eyebrows, visible ears, broad smile, black shirt, and thin silver chain. Jeans and sneakers remain fictional design continuations. The crossed-arm reaction and combat moves are fictional adaptations, not claims about real fighting habits."
+  },
+  "tests": {
+    "file": "tests/character-audits/javier.test.ts",
+    "command": "npx tsx --test tests/character-audits/javier.test.ts",
+    "lastRunExitCode": 0,
+    "testsPassed": 13,
+    "testsFailed": 0,
+    "method": "Actual deterministic createMatch/stepMatch simulation through the full 510-tick intro, followed by combat. Focused range checks arrange initial positions; completed CPU bouts use continuous inputs and actual CPU decisions. Both player sides are covered. Each complete CPU bout was repeated and the final states compared deeply.",
+    "coverage": [
+      "Intro gates movement and attacks, then sets correct inward facing",
+      "Movement right and left, neutral facing, and dash on both sides",
+      "First jump, second jump, rejection of third jump, and landing on both sides",
+      "Light and heavy startup, damage, knockback, and one-hit behavior on both sides",
+      "Special versus idle and correctly facing guard at 130-pixel range on both sides",
+      "Special hits behind Javier when he turns away during startup",
+      "Special hits at 169 pixels and misses at 171 pixels",
+      "Special costs 25 energy, lifts Javier, creates no projectile, recovers, and rejects insufficient energy",
+      "Basic J-to-K input chain and upgraded J-to-J-to-K input-chain recognition",
+      "Definitive gated below three wins and below 75 energy",
+      "Unlocked definitive name, damage, and energy on both sides",
+      "Completed P1 Javier versus hard CPU bout and completed P2 CPU Javier bout",
+      "CPU Javier selects and connects his radial special in a controlled close-range opportunity"
+    ]
+  },
+  "combatResults": {
+    "movement": {
+      "configuredSpeed": 5.3,
+      "rightDisplacementAfter20Frames": 96.1589268302973,
+      "leftThenNeutralReturnsToStartWithin": 0.000001,
+      "dashSpeedMagnitude": 14,
+      "bothSidesEquivalent": true
+    },
+    "normalAttacksAgainstZavarce": {
+      "lightStartupFrame": 6,
+      "lightDamage": 6.9258,
+      "heavyStartupFrame": 11,
+      "heavyDamage": 12.8622,
+      "hitsPerAttack": 1
+    },
+    "special": {
+      "displayName": "Reacción maracucha",
+      "ability": "spin",
+      "startupFrame": 9,
+      "recoveryFrames": 40,
+      "rangeExclusive": 170,
+      "heightToleranceExclusive": 185,
+      "energyCost": 25,
+      "baseDamage": 16,
+      "damageAgainstZavarce": 15.8304,
+      "force": 8,
+      "radial": true,
+      "liftVelocityBeforeGravity": -9,
+      "actorYAtFirstActiveFrame": 545.52,
+      "actorVyAtFirstActiveFrame": -8.48,
+      "projectilesCreated": 0,
+      "idleTargetHpAfterHit": 84.1696,
+      "guardedTargetHpAfterHit": 100,
+      "guardedTargetEnergyFrom60AtActiveFrame": 49.92000000000002,
+      "characterSpecificBehavior": "A single close-range radial launch strike hits the opponent on either side, then Javier rises and lands. It does not shoot, teleport, counter, or dash across the stage. Blocking denies health damage and costs defender energy."
+    },
+    "combos": {
+      "basic": "Finta de ceja",
+      "basicInput": "J → K",
+      "basicBonus": 3,
+      "advanced": "Réplica al instante",
+      "advancedInput": "J → J → K",
+      "advancedUnlockWins": 1,
+      "advancedBonus": 7,
+      "definitive": "Remate de mialma",
+      "definitiveInput": "I",
+      "definitiveUnlockWins": 3,
+      "definitiveEnergyCost": 75,
+      "definitiveDamageAgainstZavarce": 39.9432,
+      "stationaryAdvancedSequenceObservation": "At initial gap 25, light, 25 frames, light, 25 frames, heavy recognizes the advanced input chain and lands two actual hits. First-hit knockback puts the second light outside its range; the heavy reconnects. Advanced target HP is 73.072 versus 77.152 at zero wins. Movement/chase inputs maintain range for a hit chain. This is an input-chain versus hit-chain distinction, not a broken Javier unlock or a request for combo redesign."
+    },
+    "completedBouts": [
+      {
+        "javierSide": 0,
+        "opponent": "zavarce",
+        "opponentController": "cpuInput hard",
+        "winner": "javier",
+        "combatStepCalls": 642,
+        "finalTick": 1104,
+        "javierHp": 87.4134,
+        "javierStocks": 1,
+        "javierHits": 11,
+        "javierPeakCombo": 6,
+        "javierSpecialsStarted": 4
+      },
+      {
+        "javierSide": 1,
+        "javierController": "cpuInput hard",
+        "opponent": "zavarce",
+        "winner": "javier",
+        "combatStepCalls": 242,
+        "finalTick": 738,
+        "javierHp": 100,
+        "javierStocks": 1,
+        "javierHits": 0,
+        "javierSpecialsStarted": 0,
+        "interpretation": "The scripted courier opponent loses its stocks to ringouts. This finished bout verifies deterministic completion and finite physics; it does not establish Javier CPU offensive effectiveness. A separate CPU close-range opportunity test verifies his special starts and hits."
+      }
+    ]
+  },
+  "nativeVisualChecks": {
+    "tool": "Native T3 collaborative Chromium preview",
+    "url": "http://localhost:5173/",
+    "ownTabId": "tab_1y_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "rootTabOperated": false,
+    "actualLobbySelectionClicked": true,
+    "selectionTrace": {
+      "method": "Clicked the actual Javier fighter button and sampled the actual Portrait canvas dataset every 200 ms for 3.2 seconds.",
+      "observedFrames": [0, 1],
+      "firstObservedCrossedArmFrameAtMs": 600,
+      "returnedToReadyFrameAtMs": 2600,
+      "finalProgress": 1,
+      "finalFrame": 0
+    },
+    "introSnapshots": [
+      { "side": 0, "tick": 45 },
+      { "side": 0, "tick": 105 },
+      { "side": 1, "tick": 225 },
+      { "side": 1, "tick": 285 }
+    ],
+    "selectionSnapshots": [
+      { "side": 0, "progress": 0 },
+      { "side": 0, "progress": 0.5 },
+      { "side": 1, "progress": 0.5 },
+      { "side": 1, "progress": 1 }
+    ],
+    "specialSnapshots": [
+      { "side": 0, "attackTick": 9 },
+      { "side": 0, "attackTick": 15 },
+      { "side": 1, "attackTick": 9 },
+      { "side": 1, "attackTick": 15 }
+    ],
+    "snapshotMethod": "Imported the actual game modules in this audit's browser tab, painted actual renderMatch snapshots of intro states and engine-stepped specials, and inspected native preview screenshots. Additional selection and eight-pose sheets used the actual drawPresentation/drawSprite loader and renderer. No screenshots were written to the repository.",
+    "allEightRuntimeFramesViewed": true,
+    "likenessAndFacing": "The smile changes to an incredulous crossed-arm expression, then returns to ready guard. P2 mirrors correctly. Hair, face, shirt and chain remain recognizable. No severe face deformation, duplicated props, or cut limbs were observed in the sampled frames.",
+    "currentAtlas": {
+      "path": "public/assets/javier-v2.webp",
+      "width": 1774,
+      "height": 887,
+      "hasAlpha": true,
+      "manifestPassed": true,
+      "runtimeFrames": 8,
+      "loaderBodyHeight": 393,
+      "groundedFeet": "The loader anchors each grounded frame by its own silhouette baseline. The tucked jump retains head height."
+    },
+    "limitations": [
+      "Intro and special visual judgments concern inspected deterministic stills, not a continuously watched full fight.",
+      "The actual selection canvas was sampled across its complete one-shot duration; intermediate subframe smoothness was not exhaustively reviewed.",
+      "The shared development server restarted during this audit. Initial connection failures and one blank reload were resolved by reopening this audit's own tab after server recovery.",
+      "Audio was not audited by ear. Runtime selection uses a generic UI sound and generic combat reactions; the old v3 original-select path is historical and not current dialogue."
+    ]
+  },
+  "findings": [
+    {
+      "id": "javier-special-pose-readability",
+      "severity": "low",
+      "kind": "actionable-visual-polish",
+      "status": "reported-to-parent",
+      "sources": ["src/game/renderer.ts:148", "src/game/renderer.ts:269"],
+      "observation": "Javier's radial lift special uses crossed-arm frame 1 for the first three attack ticks, then the same straight-punch frame 5 for the rest of the attack. Native snapshots at attackTick 9 and 15 confirm that he rises while holding a straight punch. A pink ellipse communicates the radial effect, but his body has no visible turn or character-specific reaction sequence. The ellipse branch is also used by salsa.",
+      "reproduction": "Finish the intro on Caracas, place Javier and idle Zavarce 130 pixels apart, give Javier at least 25 energy, press special and inspect attack ticks 9 and 15. Repeat with Javier as P2.",
+      "recommendedFix": "Give the spin ability an authored pose progression or body-turn sequence that reads as Javier's expressive rising remate, using the existing jump, kick, and punch poses where suitable. Preserve his face and the passing damage, range, radial hit, and lift behavior."
+    },
+    {
+      "id": "javier-run-stride-similarity",
+      "severity": "low",
+      "kind": "inherited-atlas-limitation",
+      "status": "documented-existing-limitation",
+      "observation": "Run A and B change arms and torso but retain nearly the same leading-leg stride. The native eight-frame sheet confirms the preserved dossier's observation. Movement and frame facing work correctly.",
+      "recommendedFix": "If a future Javier atlas revision is authorized, alternate the lead leg in run B while preserving the current face, proportions, and transparent silhouette layout."
+    }
+  ],
+  "runtimeFixesMade": [],
+  "filesCreated": [
+    "docs/character-audits-v28/javier.json",
+    "tests/character-audits/javier.test.ts"
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "auditVersion": 28,
+  "fighterId": "tioconejo",
+  "name": "Tío Conejo",
+  "auditedDate": "2026-10-13",
+  "status": "complete_no_current_defect_found",
+  "scope": "Dedicated audit. Wrote only this report and tests/character-audits/tioconejo.test.ts. No runtime, art, package, commits, server or child-agent changes.",
+  "sourceRevision": "2273843fe788fb68bfa35d80d9ec87b48f1d2b7e",
+  "finalVerificationHashes": {
+    "shared/engine.ts": "77916f714c9d0dc048f20964eb4ee9d03fa6267425ed974b38daee7f82c23749",
+    "shared/techniques.ts": "6b0381e7f847289e88636960923ba82722a25ec7a0d4786f72037a7f45942bf1",
+    "shared/fighters.json": "30611f5f186fc5de17ab2ccfe7646e8fd4343cbcce803e208d2a5c9e045b69b9",
+    "shared/presentation.ts": "68ff1fb48680fd1c018ea3b95fcbe7a348e6c7e6109cdfc79e040736794fbacf",
+    "shared/presentations.json": "0c03861463a97bb48a9f7eb1e5b00cdd8ab816b7af1e1d4582adc9ef62173e25",
+    "shared/choreography.ts": "f1b5eeb90be7ef2b683b1ccdecf5cab49bd5c06e06b0f0d8b14f6304e9a8df54",
+    "src/game/assets.ts": "7e8c53ea36d1e1d47655352145db110ccebf088c54ce3262e8bc29fea364ca56",
+    "public/assets/tioconejo-v12.webp": "bea4f7df567e454ce37be8f90ff526c5d10c1b2c7d302949b177b600af00d8cd"
+  },
+  "evidenceRead": [
+    "docs/character-audits-v28/BRIEF.txt",
+    "docs/folklore-v12/research.json (tioconejo)",
+    "docs/character-sprite-qa.json (tioconejo)",
+    "shared/fighters.json",
+    "shared/techniques.ts",
+    "shared/engine.ts",
+    "shared/presentation.ts",
+    "shared/presentations.json",
+    "shared/choreography.ts",
+    "src/game/assets.ts",
+    "src/game/presentation-renderer.ts",
+    "src/game/intro-renderer.ts",
+    "src/game/renderer.ts",
+    "src/game/folklore-renderer.ts",
+    "src/components/Portrait.tsx"
+  ],
+  "identityAndPortrayal": {
+    "preservedDossier": "Preserved the original folklore arcade adaptation: long-eared white rabbit, sky-blue vest, red neckerchief, ochre trousers, evasive retreat and a single bouncing carrot. No new folklore claims or art alterations.",
+    "reference": {
+      "title": "Antonio Arráiz — Tío Tigre y Tío Conejo (edición Ministerio de Cultura, 2011)",
+      "url": "https://eldienteroto.org/wp49/wp-content/uploads/2023/11/Tio-conejo.pdf"
+    },
+    "visualMatch": "All eight actual runtime poses retain rabbit face, long ears, blue vest, red scarf, ochre trousers, furry paws/feet and attached tail. Both facings were inspected.",
+    "audioLimit": "No audio listening or dialogue identification performed; no audio pass claimed."
+  },
+  "movementAndStance": {
+    "result": "pass_both_sides",
+    "movement": {
+      "startX": 540,
+      "rightFrames": 24,
+      "rightX": 679.5003785353313,
+      "subsequentLeftFrames": 24,
+      "leftX": 551.6992429415852,
+      "facing": "right1/left-1 on P1/P2"
+    },
+    "jump": "First jump y454.6 after10 calls; second accepted, third rejected; lands on floor554, grounded=true, jumps0, stocks2.",
+    "manualDash": "Single dash vx±14/dash12/invincible8/cooldown30; origins360/720, after41 calls x553.9999024/526.0000976, vx magnitude0.000052555.",
+    "stance": "Frame0 ready with fists raised,1 block,2/3 alternating runs,4 tucked jump,5 strike,6 high kick,7 recoil. All sixteen facing/frame combinations show intact silhouettes, paws and ears; no borrowed neighboring fragments.",
+    "atlas": {
+      "asset": "public/assets/tioconejo-v12.webp",
+      "size": [
+        1774,
+        887
+      ],
+      "bodyHeight": 427,
+      "frames": 8,
+      "frameFacing": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "qaPassed": true,
+      "qaRows": [
+        4,
+        4
+      ]
+    }
+  },
+  "special": {
+    "name": "Brinco tramposo",
+    "ability": "trickster",
+    "configuration": {
+      "startupFrames": 9,
+      "recoveryFrames": 43,
+      "energyCost": 25,
+      "baseDamage": 12,
+      "damageMultiplier": 0.88,
+      "force": 6,
+      "dash": {
+        "speed": -12,
+        "ticks": 9,
+        "invincibility": 4,
+        "lift": -8,
+        "brake": 0.8
+      },
+      "projectile": {
+        "speed": 10,
+        "life": 70,
+        "initialVy": -1,
+        "gravity": 0.24,
+        "bounces": 1
+      }
+    },
+    "startingSetup": "poliedro, finish510 intro ticks; Conejo P1 x360/rival Javier x640 or Conejo P2 x720/Javier x440, both y554/energy100. Increment special once at relative tick1.",
+    "retreat": "At tick9 actor x348/732,y546.52,vy-7.48,vx-12/+12,dash9,invincible4. At tick18 dash0/vx-9.6/+9.6,y502.6. Minimum grounded-launch hop y496.4:57.6px above floor. Final x204.0777167/875.9222833:155.9222833px backward. Lands and brakes to near zero without stock loss at central starts.",
+    "emission": "Exactly one carrot at tick9: owner-directed vx±10, age1/life69/bounces1, y478.24, x418/662, damage10.56. One projectile ID across recovery.",
+    "idle": "One hit at relative tick28, Javier hp89.1232/hits1; projectile disappears and no repeat hit occurs.",
+    "frontGuard": "block=true/movement=false: one block, hp100/hits0; carrot disappears.",
+    "rearGuard": "block=true plus right against P1 or left against P2: one hit tick32, hp89.1232/hits1/no blocks.",
+    "groundBounce": "Against invincible distant Javier at gap500, one bounce at age26/relative tick34, x668/412,y533,vy-3.93,life44,bounces0. Last visible age58/tick66/life12; removed at age59/tick67 on second ground contact. No second rebound.",
+    "lifetimeCap": "From actor y200/grounded=false, target invincible1000/gap500: emission tick9, one bounce, last visible age69/tick77/life1, removed on next update at age70/tick78. Both sides tested.",
+    "jumpAvoidance": "Gap280: target jumps before controller calls0,10,15,20,25 avoid completely on both sides. Jump input at call30 comes after carrot hit tick28 and cannot undo damage. Projectile uses trajectory/body overlap; airborne targets are not categorically immune.",
+    "energyGate": "Energy24 rejects;25 and100 accept on both sides;100 becomes75 immediately. Evasive movement, short lift and brake are asserted.",
+    "edgeBehavior": "Initial x180/900 backward-hop probe left the floor and lost a stock before respawn. Central x360/720 probes preserve both stocks. Arena edge retreat risk is expected platform/ringout behavior, not a defect."
+  },
+  "attacksAndCombos": {
+    "light": "Gap80, single hit hp93.6552; front guard hp100/hits0.",
+    "heavy": "Gap80, single hit hp88.2168; front guard hp100/hits0.",
+    "baseCombo": "Patas ligeras: connected light→heavy with chase after knockback,2 hits, bonus3, hp78.782,62 relative ticks on P1/P2.",
+    "advancedCombo": "Finta del camino: connected light→light→heavy with one win,3 hits, bonus7,hp68.3172,102 ticks on P1/P2. Same input chain at zero wins receives base combo/bonus3.",
+    "chainRecognition": "Separate gap140 light whiffs confirm existing input-chain recognition; connected combo tests chase to keep every strike in range.",
+    "super": "La última picardía: wins3 and energy75/100 accepted, gap200/tick9 single hit,hp62.2608/bonus12. Wins0/2 or energy74 reject; both sides tested."
+  },
+  "cpuFight": {
+    "opponent": "Javier Hala Madrid",
+    "difficulty": "normal",
+    "result": "finished_and_exactly_replayed",
+    "winner": "Tío Conejo",
+    "winnerIndex": 0,
+    "finalTick": 1086,
+    "remainingFrames": 4781,
+    "method": "180 initial controller calls idle exercise CPU offense, followed by deterministic chase/guard/jump/attacks. Early special priority ensures unique attack starts. Two independent real-engine runs compare entire final states and attack summaries.",
+    "started": [
+      "special",
+      "heavy",
+      "light",
+      "super"
+    ],
+    "landed": [
+      "special",
+      "light",
+      "heavy",
+      "super"
+    ],
+    "players": [
+      {
+        "fighter": "tioconejo",
+        "hp": 92.7347,
+        "stocks": 1,
+        "hits": 7,
+        "peakCombo": 5
+      },
+      {
+        "fighter": "javier",
+        "hp": 0,
+        "stocks": 0,
+        "hits": 4,
+        "peakCombo": 3
+      }
+    ],
+    "limitation": "Automated audit fight is a coverage exercise, not a balance benchmark."
+  },
+  "introAndSelection": {
+    "name": "Un brinco travieso",
+    "durationMs": 2800,
+    "styles": [
+      "hop",
+      "hop"
+    ],
+    "oneShot": "Actual drawPresentation snapshots at progress0/.25/.5/.75/1/2 for intro and selection, facing±1. One hop then holds ready stance frame0. samplePose/sampleGesture clamp at1; selectionProgress at2800 and5600ms is1. Portrait RAF stops on completion.",
+    "guardInterpretation": "Frame0 ready with raised fists is final combat stance; explicit blocking uses frame1.",
+    "timeline": "Inputs do not move or emit during509 intro ticks; tick510 starts playing and faces rival on both sides.",
+    "productionRenderer": "Actual renderMatch/drawIntroCinematic rechecked after root camera correction at P1 ticks0,42,84,126,168 and P2 ticks180,222,264,306,348. Both long ear tips remain completely visible and the face points at the rival. The reported midpoint clipping is resolved. Real special at attackTick18 was also rendered on both sides."
+  },
+  "nativePreview": {
+    "available": true,
+    "tabId": "tab_34_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "openedWithReuseExistingTab": false,
+    "ownTabClosed": true,
+    "method": "Own native T3 preview at localhost5173; imported actual assets/presentation/shared engine/match renderer. Saved screenshots and inspected with view_image.",
+    "screenshots": [
+      {
+        "kind": "eight_actual_combat_sprites_both_facings",
+        "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62wmt3-669fcff9.png"
+      },
+      {
+        "kind": "one_shot_intro_selection_both_facings",
+        "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62xqvp-fe7f7c31.png"
+      },
+      {
+        "kind": "production_intro_and_backward_hop_carrot_both_sides",
+        "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62zgc6-ef3af3ca.png"
+      }
+    ],
+    "limits": "A dev hot reload cleared window.audit before the production screenshot; reimported actual modules and captured successfully. No manual keyboard bout or audio listening.",
+    "retest": {
+      "tabId": "tab_35_3d2ead87-813d-4915-a28a-5a44312bba47",
+      "openedWithReuseExistingTab": false,
+      "ownTabClosed": true,
+      "camera": {
+        "height": 620,
+        "shift": 0
+      },
+      "result": "midpoint_and_other_hop_points_pass_both_sides",
+      "screenshots": [
+        {
+          "kind": "fixed_camera_midpoint_both_sides",
+          "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv632r4a-3938530a.png"
+        },
+        {
+          "kind": "fixed_camera_other_hop_points_both_sides",
+          "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv63318h-a1a3e375.png"
+        }
+      ]
+    }
+  },
+  "validation": {
+    "testCommand": "npx tsx --test tests/character-audits/tioconejo.test.ts",
+    "tests": 12,
+    "passed": 12,
+    "failed": 0,
+    "typecheckCommand": "npx tsc --noEmit",
+    "typecheck": "pass",
+    "freshProcessRetest": "Final12/12 run used a fresh tsx process. Initial assertions used a risky edge launch, assumed lifetime expiry instead of second-ground removal, miscalculated super damage and failed to start special in the CPU policy; corrected test setup/expectations, without runtime changes. After root camera fix, reran12/12 in another fresh process; full CPU/replay result remains identical. Earlier typecheck pass predates only this camera constant change.",
+    "postCameraFixTestCommand": "npx tsx --test tests/character-audits/tioconejo.test.ts",
+    "postCameraFixTests": {
+      "tests": 12,
+      "passed": 12,
+      "failed": 0
+    }
+  },
+  "findings": [
+    {
+      "id": "tioconejo-intro-ear-tip-letterbox",
+      "severity": "minor",
+      "category": "visual_camera_framing",
+      "status": "resolved_and_independently_retested",
+      "source": "src/game/intro-renderer.ts introCamera/drawIntroCinematic",
+      "reproduction": "Create poliedro match with tioconejo as P1 at x330 facing1 or P2 at x750 facing-1, rival Javier. Set tick84 for P1 or264 for P2, phase intro, reducedMotion=false. renderMatch with actual loaded tioconejo-v12 atlas. Entrance progress=.5; frame4 tucked hop.",
+      "expected": "Long upper ear tip remains fully visible inside the cinematic picture area during the hop.",
+      "observed": "The uppermost ear reaches/crops against the 24px top letterbox on both sides. Face, other ear and all combat/standalone presentation sprites remain intact.",
+      "evidence": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62zgc6-ef3af3ca.png",
+      "suggestedIntegration": "Adjust only Tío Conejo intro camera/vertical framing for raised hop ears; preserve actual sprite and one-shot entrance.",
+      "resolution": "Root set CHOREOGRAPHIES.tioconejo.camera={height:620,shift:0}. Fresh native-tab direct import confirmed this configuration. At original midpoint P1 tick84 and P2 tick264, both long ear tips are entirely inside the cinematic picture area with visible margin below the letterbox. P1 ticks0,42,126,168 and P2 ticks180,222,306,348 also show intact ears and correct rival-facing posture.",
+      "resolutionEvidence": [
+        "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv632r4a-3938530a.png",
+        "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv63318h-a1a3e375.png"
+      ]
+    }
+  ],
+  "outstandingFindings": []
+}

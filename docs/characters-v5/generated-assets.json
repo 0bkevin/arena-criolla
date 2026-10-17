@@ -1,0 +1,55 @@
+{
+  "version": 5,
+  "tool": "image_gen.imagegen",
+  "generated": [
+    {
+      "id": "zavarce",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-af8d07a4-d489-4e70-a507-10b5b3be9c74.png",
+      "source": "assets/source/zavarce-v5.png",
+      "runtime": "public/assets/zavarce-v5.webp",
+      "files": [
+        {
+          "file": "assets/source/zavarce-v5.png",
+          "bytes": 1373737,
+          "sha256": "fb61777036d862aec06177baf08154dc88ad6ea352acd3f9557462f40203a7e1",
+          "width": 1774,
+          "height": 887,
+          "alpha": true
+        },
+        {
+          "file": "public/assets/zavarce-v5.webp",
+          "bytes": 335416,
+          "sha256": "3c826ed9a9180d04d94054bd231b028023e53328ab767fd856d25eeae028aa1b",
+          "width": 1774,
+          "height": 887,
+          "alpha": true
+        }
+      ]
+    },
+    {
+      "id": "vallenilla",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-c95a4859-dcf1-4f2c-b77b-33327bb76a48.png",
+      "source": "assets/source/vallenilla-v5.png",
+      "runtime": "public/assets/vallenilla-v5.webp",
+      "files": [
+        {
+          "file": "assets/source/vallenilla-v5.png",
+          "bytes": 1429922,
+          "sha256": "0e114ab7c7e1ed1c1a76ac23a129dfefca10c321a157b401710e0a6ae9af19c4",
+          "width": 1774,
+          "height": 887,
+          "alpha": true
+        },
+        {
+          "file": "public/assets/vallenilla-v5.webp",
+          "bytes": 362180,
+          "sha256": "737a655b837760b31f23ae8b9b1dbe1f97d5217bb6fd18786054755beb838bcc",
+          "width": 1774,
+          "height": 887,
+          "alpha": true
+        }
+      ]
+    }
+  ],
+  "prompts": "docs/characters-v5/sprite-prompts.json"
+}

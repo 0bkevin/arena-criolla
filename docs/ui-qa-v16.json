@@ -1,0 +1,612 @@
+{
+  "revision": 16,
+  "date": "2026-10-09T10:56:56.238Z",
+  "browser": "Chromium local aislado, tras desconexión del navegador compartido",
+  "viewports": [
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "ctaBottom": 1688.984375,
+      "duo": {
+        "x": 14,
+        "y": 295,
+        "width": 292,
+        "height": 330.984375,
+        "top": 295,
+        "right": 306,
+        "bottom": 625.984375,
+        "left": 14
+      },
+      "roster": {
+        "x": 14,
+        "y": 639.984375,
+        "width": 292,
+        "height": 614,
+        "top": 639.984375,
+        "right": 306,
+        "bottom": 1253.984375,
+        "left": 14
+      },
+      "portraits": [
+        {
+          "x": 32,
+          "y": 347,
+          "width": 117,
+          "height": 146,
+          "top": 347,
+          "right": 149,
+          "bottom": 493,
+          "left": 32
+        },
+        {
+          "x": 171,
+          "y": 347,
+          "width": 117,
+          "height": 146,
+          "top": 347,
+          "right": 288,
+          "bottom": 493,
+          "left": 171
+        }
+      ],
+      "mobileDock": "absent"
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "ctaBottom": 1655.390625,
+      "duo": {
+        "x": 14,
+        "y": 295,
+        "width": 362,
+        "height": 329.390625,
+        "top": 295,
+        "right": 376,
+        "bottom": 624.390625,
+        "left": 14
+      },
+      "roster": {
+        "x": 14,
+        "y": 638.390625,
+        "width": 362,
+        "height": 614,
+        "top": 638.390625,
+        "right": 376,
+        "bottom": 1252.390625,
+        "left": 14
+      },
+      "portraits": [
+        {
+          "x": 49.5,
+          "y": 347,
+          "width": 117,
+          "height": 146,
+          "top": 347,
+          "right": 166.5,
+          "bottom": 493,
+          "left": 49.5
+        },
+        {
+          "x": 223.5,
+          "y": 347,
+          "width": 117,
+          "height": 146,
+          "top": 347,
+          "right": 340.5,
+          "bottom": 493,
+          "left": 223.5
+        }
+      ],
+      "mobileDock": "flex"
+    },
+    {
+      "width": 600,
+      "scrollWidth": 600,
+      "ctaBottom": 1655.390625,
+      "duo": {
+        "x": 14,
+        "y": 295,
+        "width": 572,
+        "height": 329.390625,
+        "top": 295,
+        "right": 586,
+        "bottom": 624.390625,
+        "left": 14
+      },
+      "roster": {
+        "x": 14,
+        "y": 638.390625,
+        "width": 572,
+        "height": 614,
+        "top": 638.390625,
+        "right": 586,
+        "bottom": 1252.390625,
+        "left": 14
+      },
+      "portraits": [
+        {
+          "x": 102,
+          "y": 347,
+          "width": 117,
+          "height": 146,
+          "top": 347,
+          "right": 219,
+          "bottom": 493,
+          "left": 102
+        },
+        {
+          "x": 381,
+          "y": 347,
+          "width": 117,
+          "height": 146,
+          "top": 347,
+          "right": 498,
+          "bottom": 493,
+          "left": 381
+        }
+      ],
+      "mobileDock": "flex"
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "ctaBottom": 1180.09375,
+      "duo": {
+        "x": 18,
+        "y": 267,
+        "width": 732,
+        "height": 324.59375,
+        "top": 267,
+        "right": 750,
+        "bottom": 591.59375,
+        "left": 18
+      },
+      "roster": {
+        "x": 18,
+        "y": 605.59375,
+        "width": 732,
+        "height": 362,
+        "top": 605.59375,
+        "right": 750,
+        "bottom": 967.59375,
+        "left": 18
+      },
+      "portraits": [
+        {
+          "x": 140,
+          "y": 315,
+          "width": 127,
+          "height": 159,
+          "top": 315,
+          "right": 267,
+          "bottom": 474,
+          "left": 140
+        },
+        {
+          "x": 501,
+          "y": 315,
+          "width": 127,
+          "height": 159,
+          "top": 315,
+          "right": 628,
+          "bottom": 474,
+          "left": 501
+        }
+      ],
+      "mobileDock": "none"
+    },
+    {
+      "width": 879,
+      "scrollWidth": 879,
+      "ctaBottom": 1180.09375,
+      "duo": {
+        "x": 18,
+        "y": 267,
+        "width": 843,
+        "height": 324.59375,
+        "top": 267,
+        "right": 861,
+        "bottom": 591.59375,
+        "left": 18
+      },
+      "roster": {
+        "x": 18,
+        "y": 605.59375,
+        "width": 843,
+        "height": 362,
+        "top": 605.59375,
+        "right": 861,
+        "bottom": 967.59375,
+        "left": 18
+      },
+      "portraits": [
+        {
+          "x": 167.75,
+          "y": 315,
+          "width": 127,
+          "height": 159,
+          "top": 315,
+          "right": 294.75,
+          "bottom": 474,
+          "left": 167.75
+        },
+        {
+          "x": 584.25,
+          "y": 315,
+          "width": 127,
+          "height": 159,
+          "top": 315,
+          "right": 711.25,
+          "bottom": 474,
+          "left": 584.25
+        }
+      ],
+      "mobileDock": "none"
+    },
+    {
+      "width": 900,
+      "scrollWidth": 900,
+      "ctaBottom": 816.09375,
+      "duo": {
+        "x": 18,
+        "y": 267,
+        "width": 382.9375,
+        "height": 347.59375,
+        "top": 267,
+        "right": 400.9375,
+        "bottom": 614.59375,
+        "left": 18
+      },
+      "roster": {
+        "x": 413.9375,
+        "y": 267,
+        "width": 468.0625,
+        "height": 347.59375,
+        "top": 267,
+        "right": 882,
+        "bottom": 614.59375,
+        "left": 413.9375
+      },
+      "portraits": [
+        {
+          "x": 49.734375,
+          "y": 323,
+          "width": 138,
+          "height": 173,
+          "top": 323,
+          "right": 187.734375,
+          "bottom": 496,
+          "left": 49.734375
+        },
+        {
+          "x": 231.203125,
+          "y": 323,
+          "width": 138,
+          "height": 173,
+          "top": 323,
+          "right": 369.203125,
+          "bottom": 496,
+          "left": 231.203125
+        }
+      ],
+      "mobileDock": "none"
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024,
+      "ctaBottom": 779.5,
+      "duo": {
+        "x": 18,
+        "y": 267,
+        "width": 438.75,
+        "height": 322,
+        "top": 267,
+        "right": 456.75,
+        "bottom": 589,
+        "left": 18
+      },
+      "roster": {
+        "x": 469.75,
+        "y": 267,
+        "width": 536.25,
+        "height": 322,
+        "top": 267,
+        "right": 1006,
+        "bottom": 589,
+        "left": 469.75
+      },
+      "portraits": [
+        {
+          "x": 63.6875,
+          "y": 323,
+          "width": 138,
+          "height": 173,
+          "top": 323,
+          "right": 201.6875,
+          "bottom": 496,
+          "left": 63.6875
+        },
+        {
+          "x": 273.0625,
+          "y": 323,
+          "width": 138,
+          "height": 173,
+          "top": 323,
+          "right": 411.0625,
+          "bottom": 496,
+          "left": 273.0625
+        }
+      ],
+      "mobileDock": "absent"
+    },
+    {
+      "width": 1280,
+      "scrollWidth": 1280,
+      "ctaBottom": 779.5,
+      "duo": {
+        "x": 24,
+        "y": 267,
+        "width": 577.59375,
+        "height": 322,
+        "top": 267,
+        "right": 601.59375,
+        "bottom": 589,
+        "left": 24
+      },
+      "roster": {
+        "x": 617.59375,
+        "y": 267,
+        "width": 638.390625,
+        "height": 322,
+        "top": 267,
+        "right": 1255.984375,
+        "bottom": 589,
+        "left": 617.59375
+      },
+      "portraits": [
+        {
+          "x": 104.390625,
+          "y": 323,
+          "width": 138,
+          "height": 173,
+          "top": 323,
+          "right": 242.390625,
+          "bottom": 496,
+          "left": 104.390625
+        },
+        {
+          "x": 383.1875,
+          "y": 323,
+          "width": 138,
+          "height": 173,
+          "top": 323,
+          "right": 521.1875,
+          "bottom": 496,
+          "left": 383.1875
+        }
+      ],
+      "mobileDock": "absent"
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "ctaBottom": 779.5,
+      "duo": {
+        "x": 100,
+        "y": 267,
+        "width": 581.390625,
+        "height": 322,
+        "top": 267,
+        "right": 681.390625,
+        "bottom": 589,
+        "left": 100
+      },
+      "roster": {
+        "x": 697.390625,
+        "y": 267,
+        "width": 642.59375,
+        "height": 322,
+        "top": 267,
+        "right": 1339.984375,
+        "bottom": 589,
+        "left": 697.390625
+      },
+      "portraits": [
+        {
+          "x": 181.34375,
+          "y": 323,
+          "width": 138,
+          "height": 173,
+          "top": 323,
+          "right": 319.34375,
+          "bottom": 496,
+          "left": 181.34375
+        },
+        {
+          "x": 462.03125,
+          "y": 323,
+          "width": 138,
+          "height": 173,
+          "top": 323,
+          "right": 600.03125,
+          "bottom": 496,
+          "left": 462.03125
+        }
+      ],
+      "mobileDock": "absent"
+    },
+    {
+      "width": 1536,
+      "scrollWidth": 1536,
+      "ctaBottom": 856.5,
+      "duo": {
+        "x": 148,
+        "y": 306,
+        "width": 581.390625,
+        "height": 360,
+        "top": 306,
+        "right": 729.390625,
+        "bottom": 666,
+        "left": 148
+      },
+      "roster": {
+        "x": 745.390625,
+        "y": 306,
+        "width": 642.59375,
+        "height": 360,
+        "top": 306,
+        "right": 1387.984375,
+        "bottom": 666,
+        "left": 745.390625
+      },
+      "portraits": [
+        {
+          "x": 213.84375,
+          "y": 362,
+          "width": 169,
+          "height": 211,
+          "top": 362,
+          "right": 382.84375,
+          "bottom": 573,
+          "left": 213.84375
+        },
+        {
+          "x": 494.53125,
+          "y": 362,
+          "width": 169,
+          "height": 211,
+          "top": 362,
+          "right": 663.53125,
+          "bottom": 573,
+          "left": 494.53125
+        }
+      ],
+      "mobileDock": "absent"
+    }
+  ],
+  "checks": [
+    "Sin desbordamiento horizontal a 320px",
+    "Retratos dentro de la arena a 320px",
+    "Sin desbordamiento horizontal a 390px",
+    "Retratos dentro de la arena a 390px",
+    "Sin desbordamiento horizontal a 600px",
+    "Retratos dentro de la arena a 600px",
+    "Sin desbordamiento horizontal a 768px",
+    "Retratos dentro de la arena a 768px",
+    "Sin desbordamiento horizontal a 879px",
+    "Retratos dentro de la arena a 879px",
+    "Sin desbordamiento horizontal a 900px",
+    "Arena y colección en dos columnas a 900px",
+    "Retratos dentro de la arena a 900px",
+    "Sin desbordamiento horizontal a 1024px",
+    "Inicio visible a 1024×800",
+    "Arena y colección en dos columnas a 1024px",
+    "Retratos dentro de la arena a 1024px",
+    "Sin desbordamiento horizontal a 1280px",
+    "Inicio visible a 1280×800",
+    "Arena y colección en dos columnas a 1280px",
+    "Retratos dentro de la arena a 1280px",
+    "Sin desbordamiento horizontal a 1440px",
+    "Arena y colección en dos columnas a 1440px",
+    "Retratos dentro de la arena a 1440px",
+    "Sin desbordamiento horizontal a 1536px",
+    "Arena y colección en dos columnas a 1536px",
+    "Retratos dentro de la arena a 1536px",
+    "Azar cambia P1 dentro de Leyendas y conserva CPU",
+    "Azar cambia CPU y conserva P1",
+    "Búsqueda ignora acentos",
+    "Búsqueda vacía desactiva azar",
+    "Escape cierra búsqueda y restaura colección",
+    "Nombre largo legible en móvil",
+    "Ficha de movimientos abierta en móvil",
+    "Flechas navegan por luchadores",
+    "Enter selecciona luchador",
+    "End llega al final de la página",
+    "Última página muestra el personaje 41",
+    "Última página de Cultura incluye Giuseppe",
+    "Validación de apodo enfoca el campo",
+    "Escenario actualiza la arena del selector",
+    "Teclado navega escenarios",
+    "CPU entra a combate y conserva tema de partida",
+    "Modo local permite azar para P2",
+    "Dos jugadores locales entran al combate",
+    "Crear sala privada sin registro",
+    "Sala en espera conserva interfaz de selección",
+    "Invitado ve la misma sala y escenario",
+    "Invitado conserva escenario bloqueado",
+    "Ambos listos inician combate multijugador",
+    "Catálogo conserva los 41 personajes",
+    "Logros se abren con métricas",
+    "Movimiento reducido desactiva animaciones decorativas",
+    "Preparar desplaza hasta los ajustes en móvil",
+    "Mapa móvil ofrece los nueve escenarios",
+    "Mapa móvil selecciona y cierra",
+    "Sin errores de JavaScript en selección ni partidas"
+  ],
+  "errors": [],
+  "finalPolish": {
+    "date": "2026-10-09T10:58:44.589Z",
+    "mobile": {
+      "scrollY": 1056,
+      "headerTop": 0,
+      "rootBottom": 844.390625,
+      "height": 844,
+      "inputVisible": true,
+      "footerMargin": "0px"
+    },
+    "roomFields": [
+      {
+        "bg": "rgb(255, 253, 246)",
+        "color": "rgb(24, 54, 95)"
+      },
+      {
+        "bg": "rgb(255, 253, 246)",
+        "color": "rgb(24, 54, 95)"
+      }
+    ],
+    "checks": [
+      "Cabecera pegada al borde superior al preparar en móvil",
+      "Fondo claro cubre toda la pantalla tras desplazamiento",
+      "Mapa conserva nueve escenarios y etiquetas con contraste",
+      "Campos de salas legibles sobre fondo claro"
+    ]
+  },
+  "direction": "Festival arcade: papel crema, amarillo/azul/rojo, títulos pixel art, arena de duelo y colección de tarjetas",
+  "changes": [
+    "Arena con los dos luchadores y el escenario seleccionado",
+    "Botones con relieve y estados de pulsación",
+    "Tarjetas de personajes con cuadros y etiquetas P1/CPU/P2",
+    "Sorpréndeme respeta colección, búsqueda y jugador activo, y evita repetir el personaje",
+    "Postales de los nueve escenarios",
+    "Menús claros de movimientos, ayuda, catálogo, logros y salas",
+    "Turpial, cuatro, ocho estrellas, arepa y araguaney",
+    "Diseño móvil con selección apilada y acceso a preparar",
+    "Navegación por teclado, foco visible y movimiento reducido"
+  ],
+  "verification": {
+    "unitAndIntegrationTests": {
+      "command": "npm test",
+      "passed": 63,
+      "failed": 0
+    },
+    "productionBuild": {
+      "command": "npm run build",
+      "passed": true,
+      "warning": "Vite advierte que el módulo JavaScript supera 500 kB, como en la revisión anterior."
+    },
+    "format": "Prettier en los archivos modificados",
+    "userState": "Navegador compartido incógnito y contextos Chromium aislados; no se modifica el progreso ni las preferencias del perfil habitual.",
+    "browserFlowChecks": 61
+  },
+  "screenshots": [
+    "docs/screenshots/festival-arcade-desktop-v16.png",
+    "docs/screenshots/festival-arcade-mobile-v16.png",
+    "docs/screenshots/festival-arcade-tablet-v16.png",
+    "docs/screenshots/festival-arcade-help-v16.png",
+    "docs/screenshots/festival-arcade-mobile-detail-v16.png",
+    "docs/screenshots/festival-arcade-mobile-prepare-v16.png",
+    "docs/screenshots/festival-arcade-mobile-map-v16.png",
+    "docs/screenshots/festival-arcade-rooms-v16.png",
+    "docs/screenshots/festival-arcade-cpu-v16.png"
+  ]
+}

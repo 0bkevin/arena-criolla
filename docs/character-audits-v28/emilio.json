@@ -1,0 +1,216 @@
+{
+  "auditVersion": 28,
+  "fighterId": "emilio",
+  "name": "Emilio Lovera",
+  "auditedDate": "2026-10-13",
+  "status": "complete_no_reproducible_character_specific_defect",
+  "scope": "Dedicated Emilio audit using the preserved dossier, actual shared/engine.ts fights, and this agent’s own native T3 preview tab. Wrote only this report and tests/character-audits/emilio.test.ts in the repository; no runtime edits, commits, server startup or child agents.",
+  "evidenceRead": [
+    "docs/characters-v3/emilio.json",
+    "docs/character-sprite-qa.json",
+    "shared/fighters.json",
+    "shared/techniques.ts",
+    "shared/engine.ts",
+    "shared/presentation.ts",
+    "shared/presentations.json",
+    "shared/choreography.ts",
+    "shared/entrance-actions.ts",
+    "shared/entrance-assets.json",
+    "src/game/assets.ts",
+    "src/game/presentation-renderer.ts",
+    "src/game/intro-renderer.ts",
+    "src/game/entrance-renderer.ts",
+    "src/game/renderer.ts",
+    "src/components/Portrait.tsx",
+    "public/assets/emilio-v3.webp"
+  ],
+  "baselineHashes": {
+    "shared/engine.ts": "b312989fbf51363844c52bfb4e0021793c1371e69b9a782910e033f6e0930d31",
+    "shared/techniques.ts": "596f948c07d685c7e570eeaa4c3919367d0a805ce352ba5aee48a4bcda14c550",
+    "shared/fighters.json": "30611f5f186fc5de17ab2ccfe7646e8fd4343cbcce803e208d2a5c9e045b69b9",
+    "shared/presentations.json": "8a7fbd0de98e62534317f4d5f41f20d4a1180d2960a07c6764aba0082112d8a1",
+    "shared/choreography.ts": "ffe139cd4af2c7a371cb69ec23f36ada6807dd6aa835657599c752dc238cb3b8",
+    "public/assets/emilio-v3.webp": "fad39cff4b354e801d5ff1038478c442666e35eda2fe97feb112f3da55a37371"
+  },
+  "identityAndPortrayal": {
+    "preservedDossier": "Emilio Alejandro Lovera Ruiz portrayed as himself, with short dark hair, a broad clean-shaven expressive face, charcoal jacket and red-orange shirt from the preserved stage reference. The green hat in the 2025 portrait is intentionally omitted. These are preserved dossier statements, not newly researched attribution.",
+    "visualMatch": "All eight inspected poses retain the dark hair, broad expressive face, charcoal suit, red-orange shirt and dark shoes. Open palms, smiling presentation, exaggerated jump/recoil expressions and quick strikes agree with the existing comic portrayal.",
+    "fictionalAdaptation": "Doble interpretación uses two timed melee pulses with longer reach on the reply; Cambio de gesto, Segunda voz and Remate de mil caras follow the preserved gesture/persona theme. The fighting behavior is fictional.",
+    "audioLimit": "The dossier preserves three brief original interview clips and explicitly distinguishes wording verified by ASR from speaker identity. This audit did not listen to or independently authenticate audio."
+  },
+  "movementAndStance": {
+    "result": "pass_both_sides",
+    "movement": "From x540, 24 right inputs reach646.2860026935858; 24 subsequent left inputs reach548.9137089078745. Both player sides produce the same movement and correct logical facing.",
+    "jump": "First jump reaches y454.6 after10 calls. Second jump is accepted, third jump is rejected, and landing restores grounded=true, y554 and jumps0 on both sides.",
+    "stance": "Combat ready/block use frame1. Production drawSprite was inspected for all eight frames in both facings: open-hand presentation0, palm guard1, run2/3, tucked jump4, punch5, high kick6 and recoil7. No missing hand, foot, head, borrowed neighboring limb or reversed attack was observed.",
+    "atlas": {
+      "imageSize": [
+        1536,
+        1024
+      ],
+      "bodyHeight": 489,
+      "baseline": 509,
+      "qaRows": [
+        4,
+        4
+      ],
+      "qaPassed": true,
+      "frameFacing": [
+        -1,
+        1,
+        1,
+        1,
+        -1,
+        1,
+        1,
+        1
+      ],
+      "note": "Frames4/5/6 cross nominal column bounds. The production loader uses QA component bounds and frame isolation; the inspected jump, fist and kicking foot remained complete."
+    }
+  },
+  "special": {
+    "name": "Doble interpretación",
+    "ability": "echo",
+    "distinctBehavior": "Stationary melee pulses at attackTick8 and24, separated by16 active simulation frames. The second range expands from150 to220. There are no projectiles, dash or teleport.",
+    "configuration": {
+      "startupFrames": 8,
+      "recoveryFrames": 51,
+      "firstRange": 150,
+      "secondRange": 220,
+      "height": 135,
+      "damagePerPulse": 10,
+      "force": 4.5,
+      "pulses": [
+        0,
+        16
+      ],
+      "energyCost": 25
+    },
+    "idle": "At gap80 on both sides, impacts occur at step calls8 and27 (attackTick8/24; hitstop delays the second call). Javier loses10.197 HP per hit (10*0.99*1.03), finishing79.606 with two Emilio hits. Emilio remains at his initial x.",
+    "forwardGuard": "Grounded guard facing toward the attacker blocks both pulses, at calls8 and26. Both sides retainHP100, record two block effects and no attacker hits. Defender energy is71.68 after90 calls including held-guard drain; attacker energy immediately after activation is75.",
+    "backwardGuard": "Holding block while moving away points the defender away from the strike. At gap80 both sides take both impacts and finish79.606HP with no block effects. At gap140 this movement carries the defender beyond the second range after the first hit, so only one impact occurs; this is measured motion, not guard protection.",
+    "energyGate": "Energy24 rejects special on both sides; energy100 spends25 at activation before regeneration or hit rewards.",
+    "rangeProbesBothSides": [
+      {
+        "gap": 140,
+        "hits": 2,
+        "finalHp": 79.606
+      },
+      {
+        "gap": 150,
+        "hits": 1,
+        "finalHp": 89.803
+      },
+      {
+        "gap": 180,
+        "hits": 1,
+        "finalHp": 89.803
+      },
+      {
+        "gap": 219,
+        "hits": 1,
+        "finalHp": 89.803
+      },
+      {
+        "gap": 220,
+        "hits": 0,
+        "finalHp": 100
+      },
+      {
+        "gap": 240,
+        "hits": 0,
+        "finalHp": 100
+      }
+    ],
+    "rangeInterpretation": "Idle targets at150/180/219 are hit only by the second pulse at attackTick24. The strict less-than range boundary explains no hit at220. Repeated effects identify one activation accent and two melee pulses. Both damage events confirm the second pulse survives first-hit invincibility."
+  },
+  "attacksAndCombos": {
+    "light": "Both sides connect once at gap80 for7.1379 damage, with outward knockback. Facing guard prevents HP loss.",
+    "heavy": "Both sides connect once at gap80 for13.2561 damage, with outward knockback. Facing guard prevents HP loss.",
+    "baseCombo": "Cambio de gesto (L→H) connects both strikes using real approach inputs on both sides, finishing Javier at76.516HP after65 simulation ticks with heavy bonus3.",
+    "advancedCombo": "Segunda voz (L→L→H) connects all three strikes using real approach inputs on both sides, finishing65.2581HP after109 ticks with bonus7. At zero wins the same input sequence remains Cambio de gesto with bonus3.",
+    "recognitionLimit": "Shared combo recognition uses input history rather than requiring previous impacts. Out-of-range light setup probes still name and buff the heavy; independent connected-combo checks confirm every strike can actually hit.",
+    "definitive": "Remate de mil caras requires three wins and75energy. At gap200/startup9 it hits once on both sides for40.9116 damage, finishing59.0884HP: (28*0.99+12)*1.03. Zero/two wins and three wins with74energy reject it. The current super is the shared close-range strike."
+  },
+  "cpuFight": {
+    "opponent": "Javier Hala Madrid",
+    "difficulty": "normal",
+    "method": "Complete shared510-tick intro, leave Emilio idle180 calls to exercise CPU offense, then use real approach, guard, jump and action inputs. Complete the whole bout twice and compare full final state.",
+    "result": "finished_and_exactly_replayed",
+    "winner": "Emilio",
+    "finalTick": 1162,
+    "remainingFrames": 4712,
+    "started": [
+      "super",
+      "heavy",
+      "light",
+      "special"
+    ],
+    "landed": [
+      "super",
+      "heavy",
+      "light"
+    ],
+    "emilio": {
+      "hp": 78.3593,
+      "stocks": 1,
+      "hits": 5,
+      "peakCombo": 3
+    },
+    "javier": {
+      "hp": 0,
+      "stocks": 0,
+      "hits": 3,
+      "peakCombo": 1
+    },
+    "limitation": "The special starts during this bout but does not land. Separate close-range, extended-range and directional-guard tests verify its real collisions. This controller exercises a complete fight; it is not a balance benchmark."
+  },
+  "introAndSelection": {
+    "result": "visually_checked",
+    "name": "Reverencia cómica",
+    "introStyle": "present",
+    "selectionStyle": "joke",
+    "durationMs": 2800,
+    "nativePreviewTab": "tab_25_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "nativePreviewUrl": "http://localhost:5173/",
+    "actualAppChecks": "Selected Emilio through the ordinary lobby button. Verified the selected ready portrait holds frame1/progress1, then started a CPU match and inspected the split-screen cinematic with Emilio facing Javier.",
+    "controlledChecks": "Loaded production loadSprite/drawSprite/drawPresentation in an ephemeral canvas inside this agent’s own native tab. Inspected every combat frame in both facings and intro/selection at progress0/.5/1 in both facings. No repository visual harness was created.",
+    "observation": "Start and end use palm guard frame1. Midpoint opens a smiling welcoming palm in frame0 with a small accent and subtle articulated gesture. Both facings remain coherent, with complete limbs and head in the representative full-body samples. The actual cinematic intentionally frames a close-up and crops the lower legs.",
+    "oneShot": "selectionProgress reaches1 at2800ms and remains1 at5600ms; Portrait stops animation requests once progress reaches1. The shared intro rejects movement and attacks until the510-tick timeline completes.",
+    "screenshotPaths": {
+      "selectedLobby": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv611m49-3e2dbef9.png",
+      "actualIntro": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv612fh5-c1f96f41.png",
+      "combatFramesBothDirections": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv6131si-caf67e2c.png",
+      "introAndSelectionBothDirections": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv613a0m-0caabf5c.png"
+    },
+    "limitations": "Representative static samples and the initial actual cinematic were inspected. Every interpolated frame, audiovisual synchronization, audio playback and a human-controlled browser bout were not reviewed. The native tab was closed after saving and inspecting screenshots."
+  },
+  "findings": [],
+  "recommendation": "Retain Emilio’s current runtime behavior and sprites. This focused audit did not reproduce an Emilio-specific defect requiring a change.",
+  "verification": {
+    "testFile": "tests/character-audits/emilio.test.ts",
+    "command": "npx tsx --test tests/character-audits/emilio.test.ts",
+    "result": {
+      "tests": 8,
+      "passed": 8,
+      "failed": 0
+    },
+    "checksActuallyRun": [
+      "Walking, facing, double jump, rejected third jump and landing on both sides",
+      "Actual light/heavy damage, single impact, outward knockback and facing guard on both sides",
+      "Two echo melee impacts against idle, forward guard and backward guard on both sides",
+      "First/second pulse reach and special energy gate on both sides",
+      "Combo win gates and fully connected base/advanced combos on both sides",
+      "Super win/energy gates and actual hit on both sides",
+      "Shared intro action gate",
+      "Complete normal-CPU fight with exact full-state replay",
+      "Own native preview actual lobby/cinematic and eight production sprites plus intro/selection in both facings"
+    ],
+    "notRun": [
+      "New external research",
+      "Audio listening",
+      "Full repository suite/build; left to central integrator"
+    ],
+    "sharedFileHashCheck": "The six recorded hashes were unchanged across the engine test and native visual checks."
+  }
+}

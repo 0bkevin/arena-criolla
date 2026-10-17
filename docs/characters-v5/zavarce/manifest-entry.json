@@ -1,0 +1,91 @@
+{
+  "id": "zavarce",
+  "realName": "Vicente Zavarce",
+  "sprite": "zavarce-v5",
+  "portraitReference": "assets/references/zavarce/startupeable-vicente.png",
+  "portrayal": "Retrato de Vicente Zavarce, fundador y CEO de Yummy. Usar como rasgos principales el rostro ovalado, cejas oscuras, cabello castaño muy oscuro peinado hacia atrás y barba y bigote conectados, cortos y recortados. La referencia principal lo muestra con lentes negros rectangulares y camiseta negra lisa; una fotografía de Yummy Rocket lo muestra sin lentes y con chaqueta clara de detalles morados. Mantener un atuendo coherente con el retrato de Yummy Rocket para el luchador. Las poses y ataques son ficción de videojuego.",
+  "sources": [
+    {
+      "title": "Startupeable — entrevista en español con Vicente Zavarce, CEO y cofundador de Yummy",
+      "url": "https://startupeable.com/yummy/"
+    },
+    {
+      "title": "Feed RSS oficial de Startupeable, episodio 055",
+      "url": "https://feeds.captivate.fm/startupeable/"
+    },
+    {
+      "title": "Semilla.VC — entrevista con Vicente Zavarce, fundador y CEO de Yummy",
+      "url": "https://semillavc.podbean.com/e/vincente-zavarce-yummy-yc-s21-founder-ceo-semillavc-interview/"
+    },
+    {
+      "title": "Rest of World — The man who built Venezuela’s only delivery app",
+      "url": "https://restofworld.org/2020/the-man-behind-venezuelas-only-delivery-app/"
+    },
+    {
+      "title": "Rest of World — perfil y retrato de Vicente Zavarce",
+      "url": "https://restofworld.org/profile/vicente-zavarce/"
+    }
+  ],
+  "lines": {
+    "select": {
+      "text": "Todo bien, todo bien. Gracias por el espacio y por tenerme.",
+      "file": "/audio/zavarce/original-select.mp3",
+      "kind": "original",
+      "sourceUrl": "https://startupeable.com/yummy/",
+      "sourceMediaUrl": "https://episodes.captivate.fm/episode/fdb51fa0-137a-46b7-95a2-d97a5d705e75.mp3",
+      "start": 385.8,
+      "end": 388.64,
+      "verification": "La ficha del episodio de Startupeable identifica la conversación como entrevista a Vicente Zavarce. En el audio, el presentador lo llama por su nombre y le da la bienvenida al podcast inmediatamente antes de esta respuesta. Whisper local sobre el episodio transcribe «Todo bien, todo bien. Gracias por el espacio y por tenerme» entre 385.80 y 388.64 s; otra pasada sobre el recorte corto coincide. Los tiempos corresponden a la descarga del MP3 editorial, que tenía publicidad dinámica antes del programa. Recorte de audio original, mono, fade breve y normalización; sin TTS, clonación ni cambio de tono. No se afirma escucha humana ni identificación por sincronía labial."
+    }
+  },
+  "audioResearch": {
+    "status": "one-original-spanish-podcast-interview-clip-extracted; publisher-feed-and-episode-intro-verified; local-ASR-confirmed; human-audition-not-claimed",
+    "limitations": "El audio se descargó del feed RSS editorial de Startupeable porque YouTube exigió autenticación. El MP3 de Captivate tenía publicidad dinámica antes de la entrevista, por lo que start/end corresponden a la versión local obtenida. La atribución se basa en la ficha editorial del episodio y en que el presentador se dirige a Vicente justo antes de la respuesta; no se afirma identificación biométrica ni escucha humana.",
+    "processing": "Recorte mono MP3 de 2.84 s con fade de entrada/salida breve y normalización de volumen. Sin voz sintética, clonación ni alteración de tono.",
+    "sourceMediaUrl": "https://episodes.captivate.fm/episode/fdb51fa0-137a-46b7-95a2-d97a5d705e75.mp3"
+  },
+  "distinctiveTraits": [
+    "Cabello castaño muy oscuro, abundante, peinado hacia atrás y con volumen arriba.",
+    "Rostro ovalado, cejas oscuras marcadas, nariz recta y barba con bigote conectados y recortados.",
+    "Lentes negros rectangulares visibles en la portada de Startupeable; sin lentes en el retrato Yummy Rocket.",
+    "Chaqueta clara Yummy Rocket de detalles morados sobre camiseta negra en la foto editorial de Rest of World."
+  ],
+  "suggestedMoves": [
+    {
+      "name": "Pedido relámpago",
+      "description": "Avanza con un impulso veloz y encadena dos golpes breves; habilidad ficticia inspirada en el servicio de entrega rápida de Yummy."
+    },
+    {
+      "name": "Ruta optimizada",
+      "description": "Esquiva hacia un lado y reaparece con un golpe de hombro; recurso de juego inspirado en la coordinación de rutas de una plataforma de delivery."
+    },
+    {
+      "name": "Combo Súper App",
+      "description": "Cierra una secuencia de golpes con una embestida marcada por un destello verde y morado; remate ficticio ligado a la identidad visual de Yummy."
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/zavarce/startupeable-vicente.png",
+      "url": "https://startupeable.com/wp-content/uploads/2022/02/Vicente-Zavarce-Yummy.png",
+      "sourcePage": "https://startupeable.com/yummy/",
+      "credit": "Startupeable",
+      "viewed": true
+    },
+    {
+      "file": "assets/references/zavarce/restofworld-2022-vicente.png",
+      "url": "https://fastly.restofworld.org/uploads/2022/05/LatinAmerica-VicenteZavarceEDITED.png?crop=1%3A1&dpr=2&width=900",
+      "sourcePage": "https://restofworld.org/profile/vicente-zavarce/",
+      "credit": "Rest of World / cortesía de Yummy",
+      "viewed": true
+    },
+    {
+      "file": "assets/references/zavarce/restofworld-portrait.jpg",
+      "url": "https://fastly.restofworld.org/uploads/2020/12/yummyheader-1.jpeg?crop=16%3A9&dpr=2&width=1200",
+      "sourcePage": "https://restofworld.org/2020/the-man-behind-venezuelas-only-delivery-app/",
+      "credit": "Rest of World / cortesía de Yummy",
+      "viewed": true,
+      "note": "Foto de contexto con cabeza cortada por el encuadre; sirve para vestuario y branding, no como referencia principal del rostro."
+    }
+  ]
+}

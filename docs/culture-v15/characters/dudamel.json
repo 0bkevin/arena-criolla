@@ -1,0 +1,50 @@
+{
+  "id": "dudamel",
+  "name": "Gustavo Dudamel",
+  "biography": "Director de orquesta formado en El Sistema. La batuta y los cambios de tempo se adaptan a una defensa que redirige proyectiles.",
+  "portraitReference": "assets/references/culture-v15/dudamel/portrait.jpg",
+  "distinctiveTraits": [
+    "Rizos cortos abundantes con canas y rostro afeitado.",
+    "Traje de concierto negro, camisa clara y batuta blanca."
+  ],
+  "portrayal": "Rizos cortos abundantes con canas y rostro afeitado. Traje de concierto negro, camisa clara y batuta blanca. Las acciones de pelea son ficción.",
+  "sources": [
+    {
+      "title": "Gustavo Dudamel — biografía oficial",
+      "url": "https://www.gustavodudamel.com/biography"
+    },
+    {
+      "title": "Referencia fotográfica inspeccionada — Gustavo Dudamel",
+      "url": "https://www.gustavodudamel.com/"
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/culture-v15/dudamel/portrait.jpg",
+      "url": "https://cdn.prod.website-files.com/634419b014b43460b76a5a9f/686c26c05133c21c51a686bd_webLA%20Phil%20Promo%20Photos%20%C2%A9%20Danny%20Clinch%20for%20LA%20Phil%204.jpg",
+      "sourcePage": "https://www.gustavodudamel.com/",
+      "viewed": true
+    }
+  ],
+  "gameplay": {
+    "special": "Cadenza de rebote",
+    "ability": "cadenza",
+    "description": "Rizos, frac y batuta. Marca un compás defensivo que devuelve los proyectiles cercanos frente a él antes de cerrar con un golpe.",
+    "combos": [
+      "Primer compás",
+      "Cambio de tempo",
+      "Gran cadenza"
+    ],
+    "role": "REFLEJO"
+  },
+  "audio": {
+    "realVoice": false,
+    "reactions": "Esfuerzos y dolor genéricos sin palabras",
+    "specialCue": "cadenza"
+  },
+  "review": {
+    "identityVerified": true,
+    "portraitViewed": true,
+    "biographyReviewed": true
+  }
+}

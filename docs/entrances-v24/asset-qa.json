@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "id": "oscar",
+      "width": 2048,
+      "height": 1536,
+      "poses": 12,
+      "allPosesInsideCells": true,
+      "visiblePngWebpPixelsAndAlphaIdentical": true,
+      "transparentFraction": 0.7857141494750977,
+      "bytes": 1188492
+    },
+    {
+      "id": "dudamel",
+      "width": 2048,
+      "height": 1536,
+      "poses": 12,
+      "allPosesInsideCells": true,
+      "visiblePngWebpPixelsAndAlphaIdentical": true,
+      "transparentFraction": 0.7790629069010416,
+      "bytes": 1074104
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "auditVersion": 28,
+  "fighterId": "george",
+  "name": "George Harris",
+  "auditedDate": "2026-10-13",
+  "sourceRevision": "2273843fe788fb68bfa35d80d9ec87b48f1d2b7e",
+  "status": "complete_no_reproducible_character_specific_defect",
+  "scope": "Dedicated George Harris audit. Only docs/character-audits-v28/george.json and tests/character-audits/george.test.ts were written in the repository. No runtime edits, art changes, commits, new server or child agents.",
+  "evidenceRead": [
+    "docs/characters-v3/george.json",
+    "docs/character-sprite-qa.json",
+    "shared/fighters.json",
+    "shared/techniques.ts",
+    "shared/engine.ts",
+    "shared/presentation.ts",
+    "shared/presentations.json",
+    "shared/choreography.ts",
+    "src/game/assets.ts",
+    "src/game/renderer.ts",
+    "src/game/presentation-renderer.ts",
+    "src/game/intro-renderer.ts",
+    "src/components/Portrait.tsx",
+    "src/game/reactions.ts",
+    "docs/audio-provenance.json",
+    "public/assets/george-v3.webp"
+  ],
+  "baselineHashes": {
+    "shared/engine.ts": "b312989fbf51363844c52bfb4e0021793c1371e69b9a782910e033f6e0930d31",
+    "shared/techniques.ts": "596f948c07d685c7e570eeaa4c3919367d0a805ce352ba5aee48a4bcda14c550",
+    "shared/fighters.json": "30611f5f186fc5de17ab2ccfe7646e8fd4343cbcce803e208d2a5c9e045b69b9",
+    "shared/presentations.json": "8a7fbd0de98e62534317f4d5f41f20d4a1180d2960a07c6764aba0082112d8a1",
+    "shared/choreography.ts": "ffe139cd4af2c7a371cb69ec23f36ada6807dd6aa835657599c752dc238cb3b8",
+    "src/game/assets.ts": "ad5b574b631cdf553810fe18e6fc2fab875635c5717cb53df7eb020df1775b0c",
+    "docs/characters-v3/george.json": "401e3a73313c3132ecb8a37b9af268f78c4e5f4ed1be73f7a37d313cc7dc0a04",
+    "public/assets/george-v3.webp": "0e8c94fbdec4ee0403a4affc3360afd2d3782c78445fad3c12c33631d2288896"
+  },
+  "identityAndPortrayal": {
+    "preservedDossier": "Stage comedian with brushed-back dark brown hair, trimmed full beard and moustache, expressive face, black short-sleeve shirt, dark trousers, white low-top shoes and handheld microphone. The dossier is preserved reference evidence, not fresh web research.",
+    "visualMatch": "The production-rendered atlas retains those clothing and likeness traits. The microphone stays close to his face while the free hand presents, guards or attacks. Fictional punch, kick and jump poses maintain the same identity.",
+    "fictionalAdaptation": "Remate en dos tiempos fits the documented first joke, pause and longer second punchline. Primera fila / Otra más / Sala llena preserve the stage-comedian theme.",
+    "audio": "Current src/game/reactions.ts uses generic male/female nonverbal effort and pain clips. The dossier still documents archived real-person dialogue, but those historical clips are not used in this visual/engine audit. No audio listening or identity verification was performed."
+  },
+  "movementAndStance": {
+    "result": "pass_both_sides",
+    "movement": {
+      "startX": 540,
+      "right24FramesX": 637.4288358024536,
+      "subsequentLeft24FramesX": 548.1708998322179,
+      "facingRight": 1,
+      "facingLeft": -1
+    },
+    "jump": "Both sides: first jump reaches y454.6 after10 calls; second jump accepted; third rejected; eventual landing resets jumps0 and grounded=true at floor y554 with both stocks retained.",
+    "stance": "Frame1 serves ready and guard. Eight real combat frames were visually inspected in both facings: open-palm presentation0, guard1, running2/3, jump4, punch5, high kick6, recoil7. No reversed face, missing head, clipped limb or neighboring shoe fragment was observed.",
+    "atlas": {
+      "size": [
+        1536,
+        1024
+      ],
+      "qaRows": [
+        4,
+        4
+      ],
+      "qaPassed": true,
+      "frameFacing": [
+        -1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "note": "Frame0 is authored leftward and the production loader corrects it; the resulting face points toward the requested rival in both views."
+    }
+  },
+  "special": {
+    "name": "Remate en dos tiempos",
+    "ability": "punchline",
+    "result": "pass_both_pulses_and_both_player_sides",
+    "configuration": {
+      "startupFrames": 14,
+      "recoveryFrames": 55,
+      "firstRange": 190,
+      "secondRange": 280,
+      "height": 110,
+      "baseDamagePerPulse": 10,
+      "fighterDamageMultiplier": 1.07,
+      "force": 6,
+      "pulseOffsets": [
+        0,
+        16
+      ],
+      "energyCost": 25,
+      "projectile": false
+    },
+    "exactSetup": "Finish intro510 ticks in poliedro using seed george-v28-audit; George x180 / Javier x300 for side0, or George x900 / Javier x780 for side1; both grounded at y554, HP100, energy100, wins3. Increment George special action once and advance90 calls. For front guard hold Javier block only; for rear guard also hold right on side0 or left on side1.",
+    "idle": "Both melee pulses occur at simulation-relative ticks14 and30 (absolute524/540), corresponding attackTicks14/30. Both land: Javier HP88.979 then77.958, George hits2. George remains stationary; no projectile exists.",
+    "frontGuard": "Both pulses blocked: two distinct block effects, Javier HP100, George hits0.",
+    "rearGuard": "Both pulses connect despite held guard when Javier faces away: Javier HP77.958, George hits2, zero block effects. Both sides reproduce this.",
+    "energyGate": "Activation spends25 immediately, leaving75 from100. Energy24 rejects the special on both sides.",
+    "rangeProbes": [
+      {
+        "initialGap": 80,
+        "hits": 2,
+        "finalHp": 77.958
+      },
+      {
+        "initialGap": 120,
+        "hits": 2,
+        "finalHp": 77.958
+      },
+      {
+        "initialGap": 180,
+        "hits": 1,
+        "finalHp": 88.979
+      },
+      {
+        "initialGap": 190,
+        "hits": 1,
+        "finalHp": 88.979,
+        "hitAttackTick": 30
+      },
+      {
+        "initialGap": 220,
+        "hits": 1,
+        "finalHp": 88.979,
+        "hitAttackTick": 30
+      },
+      {
+        "initialGap": 279,
+        "hits": 1,
+        "finalHp": 88.979,
+        "hitAttackTick": 30
+      },
+      {
+        "initialGap": 280,
+        "hits": 0,
+        "finalHp": 100
+      },
+      {
+        "initialGap": 320,
+        "hits": 0,
+        "finalHp": 100
+      }
+    ],
+    "rangeInterpretation": "All probes reproduced on both player sides. First reach is strictly below190; second reach strictly below280. At initial gap180 the first knockback moves Javier beyond the second pulse reach. That spacing outcome does not establish a defect; gap120 verifies both genuine hits."
+  },
+  "attacksAndCombos": {
+    "light": "At gap80 on both sides, one hit deals7.7147 (7*1.07*1.03). Front guard prevents HP loss; knockback points outward.",
+    "heavy": "At gap80 on both sides, one hit deals14.3273 (13*1.07*1.03). Front guard prevents HP loss; knockback points outward.",
+    "baseCombo": "L→H with approach inputs lands every hit on both sides: Primera fila, heavy bonus3, Javier HP74.868, elapsed67 simulation ticks.",
+    "advancedCombo": "L→L→H with approach inputs lands all three hits on both sides: Otra más with wins1, heavy bonus7, Javier HP63.0333, elapsed113 ticks. The same input history at zero wins uses Primera fila with bonus3.",
+    "recognitionLimit": "Combo recognition uses input history including whiffs by existing design. Separate connected-combo tests chase knockback through real movement inputs and verify every strike lands.",
+    "definitive": "Sala llena uses the shared melee super: requires wins3 and energy75. At gap200, startup9, one hit leaves Javier HP56.7812 ((28*1.07+12)*1.03 damage), with combo bonus12. Wins0/2 or energy74 reject it on both sides."
+  },
+  "cpuFight": {
+    "opponent": "Javier Hala Madrid",
+    "difficulty": "normal",
+    "seed": "george-v28-audit",
+    "method": "Finish intro, place fighters at x180 and600, leave George idle180 calls, then use actual approach, guard, jump and attack action inputs against cpuInput(normal). Repeat from identical state and assert deep equality of complete final state.",
+    "result": "finished_and_exactly_replayed",
+    "winner": "George",
+    "winnerSide": 0,
+    "finalTick": 1188,
+    "remainingFrames": 4676,
+    "started": [
+      "super",
+      "light",
+      "heavy",
+      "special"
+    ],
+    "landed": [
+      "super",
+      "heavy",
+      "light",
+      "special"
+    ],
+    "george": {
+      "hp": 87.09899999999999,
+      "stocks": 1,
+      "hits": 7,
+      "peakCombo": 5
+    },
+    "javier": {
+      "hp": 0,
+      "stocks": 0,
+      "hits": 3,
+      "peakCombo": 1
+    },
+    "limitation": "This deterministic fight exercises all attack types; it is not a balance benchmark."
+  },
+  "introAndSelection": {
+    "result": "visually_checked_production_renderer_samples",
+    "name": "Gesto de remate",
+    "introStyle": "joke",
+    "selectionStyle": "joke",
+    "durationMs": 2800,
+    "nativePreviewTab": "tab_2b_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "nativePreviewUrl": "http://localhost:5173/",
+    "ownTabClosed": true,
+    "controlledChecks": "Opened a distinct native preview tab with reuseExistingTab:false. Imported actual loadSprite/drawSprite/drawPresentation, and rendered eight combat frames for each facing plus intro/selection samples at0%,28%,61%,100% and held5600ms in an ephemeral page canvas.",
+    "observation": "Presentation opens the free palm, gestures with the monologue rhythm, keeps the microphone near the face and returns to ready guard frame1. Both facings remain coherent. The complete and held poses match; no repeated choreography is introduced after completion.",
+    "oneShot": "selectionProgress clamps to1 at2800ms and stays1 at5600ms; Portrait requests further animation only while progress<1. Intro blocks movement/attack until the510-tick shared timeline finishes; opening facings point toward the rival.",
+    "screenshotPaths": {
+      "combatFramesBothDirections": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61bx9h-5a4e93db.png",
+      "introAndSelectionBothDirections": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61ca7p-564f0881.png"
+    },
+    "environmentInterruption": "Native console recorded Vite server connection lost at02:01:07 UTC and reconnection by02:01:12, during central development. The actual sprite and presentation renders succeeded afterwards; no alternate browser or server was started.",
+    "limitations": "Representative deterministic production-renderer samples were inspected. The ordinary lobby selection control, full cinematic framing, every interpolation frame and audio playback were not visually/audibly reviewed."
+  },
+  "findings": [],
+  "recommendation": "Retain current George Harris behavior and presentation; this focused audit found no reproducible character-specific defect requiring runtime changes.",
+  "verification": {
+    "testFile": "tests/character-audits/george.test.ts",
+    "command": "npx tsx --test tests/character-audits/george.test.ts",
+    "result": {
+      "tests": 8,
+      "passed": 8,
+      "failed": 0
+    },
+    "freshProcessRetest": "Final fresh tsx process passed8/8 after central changes. Recorded source hashes were unchanged immediately before and after that run.",
+    "isolatedTypecheck": {
+      "command": "npx tsc --noEmit --target ES2022 --lib ES2022,DOM,DOM.Iterable --module ESNext --moduleResolution Bundler --strict --esModuleInterop --allowImportingTsExtensions --skipLibCheck --resolveJsonModule --types node tests/character-audits/george.test.ts",
+      "result": "passed"
+    },
+    "fullTypecheck": "npx tsc --noEmit --pretty false reported an unrelated concurrent audit error: tests/character-audits/simon.test.ts(83,146), TS2322 number | undefined is not assignable to number. Parent notified; no George type errors were reported.",
+    "notRun": [
+      "Fresh external research",
+      "Audio listening",
+      "Full test suite or production build"
+    ]
+  }
+}

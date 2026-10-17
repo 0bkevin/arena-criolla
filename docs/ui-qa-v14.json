@@ -1,0 +1,179 @@
+{
+  "version": 14,
+  "date": "2026-10-08",
+  "direction": "Venezuelan accents within the v13 dusk arcade composition",
+  "palette": {
+    "yellow": "#ffce32",
+    "blue": "#245ee8",
+    "red": "#ef4c49",
+    "p2Light": "#ff7667"
+  },
+  "changes": [
+    "Tricolor rails on header, marquee, mode controls and preparation deck",
+    "Yellow CPU, blue local and red online mode selection",
+    "Original repeating pixel araguaney flower illustration in marquee",
+    "Original repeating cuatro-string illustration in stage panel",
+    "Visible cuatro and turpial beneath eight stars on desktop",
+    "Arepa and araguaney ornaments in selection heading; araguaney remains on phones",
+    "Cuatro ornament in preparation deck",
+    "Existing nine Venezuelan pixel landscapes remain in scene selector and shared background"
+  ],
+  "patternNote": "Original decorative illustrations inspired by flowers and cuatro strings; no traditional textile provenance claimed.",
+  "viewports": [
+    {
+      "width": 320,
+      "height": 800,
+      "documentWidth": 320,
+      "startVisible": false,
+      "clippedNames": [],
+      "patternIds": [
+        "criollo-_r_0_",
+        "criollo-_r_1_"
+      ],
+      "headingOverlap": false,
+      "smallTouchControls": []
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "documentWidth": 360,
+      "startVisible": false,
+      "clippedNames": [],
+      "patternIds": [
+        "criollo-_r_0_",
+        "criollo-_r_1_"
+      ],
+      "headingOverlap": false,
+      "smallTouchControls": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "startVisible": false,
+      "clippedNames": [],
+      "patternIds": [
+        "criollo-_r_0_",
+        "criollo-_r_1_"
+      ],
+      "headingOverlap": false,
+      "smallTouchControls": []
+    },
+    {
+      "width": 700,
+      "height": 900,
+      "documentWidth": 700,
+      "startVisible": false,
+      "clippedNames": [],
+      "patternIds": [
+        "criollo-_r_0_",
+        "criollo-_r_1_"
+      ],
+      "headingOverlap": false,
+      "smallTouchControls": []
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "documentWidth": 768,
+      "startVisible": false,
+      "clippedNames": [],
+      "patternIds": [
+        "criollo-_r_0_",
+        "criollo-_r_1_"
+      ],
+      "headingOverlap": false,
+      "smallTouchControls": []
+    },
+    {
+      "width": 900,
+      "height": 800,
+      "documentWidth": 900,
+      "startVisible": false,
+      "clippedNames": [],
+      "patternIds": [
+        "criollo-_r_0_",
+        "criollo-_r_1_"
+      ],
+      "headingOverlap": false,
+      "smallTouchControls": []
+    },
+    {
+      "width": 1024,
+      "height": 800,
+      "documentWidth": 1024,
+      "startVisible": true,
+      "clippedNames": [],
+      "patternIds": [
+        "criollo-_r_0_",
+        "criollo-_r_1_"
+      ],
+      "headingOverlap": false,
+      "smallTouchControls": []
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "documentWidth": 1280,
+      "startVisible": true,
+      "clippedNames": [],
+      "patternIds": [
+        "criollo-_r_0_",
+        "criollo-_r_1_"
+      ],
+      "headingOverlap": false,
+      "smallTouchControls": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "documentWidth": 1440,
+      "startVisible": true,
+      "clippedNames": [],
+      "patternIds": [
+        "criollo-_r_0_",
+        "criollo-_r_1_"
+      ],
+      "headingOverlap": false,
+      "smallTouchControls": []
+    }
+  ],
+  "modeColors": [
+    {
+      "mode": "mode-local",
+      "color": "rgb(255, 248, 231)",
+      "background": "linear-gradient(rgb(44, 101, 220), rgb(25, 75, 182))",
+      "startVisible": true
+    },
+    {
+      "mode": "mode-online",
+      "color": "rgb(24, 36, 59)",
+      "background": "linear-gradient(rgb(255, 130, 112), rgb(239, 92, 83))",
+      "startVisible": true
+    },
+    {
+      "mode": "mode-practice",
+      "color": "rgb(27, 39, 64)",
+      "background": "linear-gradient(rgb(255, 220, 117), rgb(248, 202, 82))",
+      "startVisible": true
+    }
+  ],
+  "validation": {
+    "productionBuild": "passed",
+    "typescript": "passed",
+    "formatting": "passed",
+    "stageThumbnailsLoaded": 9,
+    "patternIdsUnique": true,
+    "decorativePatternsAriaHidden": true,
+    "marqueeStars": 8,
+    "mobileSetupShortcut": "scrolls to preparation; fixed dock hides while start is visible",
+    "stageChange": "Canaima background switches correctly",
+    "browserErrors": 0
+  },
+  "scope": "Presentation only; game engine, fighters, anonymous rooms, combat sounds and persisted preferences unchanged.",
+  "screenshots": [
+    "docs/screenshots/venezuela-before-v14.png",
+    "docs/screenshots/venezuela-desktop-v14.png",
+    "docs/screenshots/venezuela-mobile-v14.png"
+  ]
+}

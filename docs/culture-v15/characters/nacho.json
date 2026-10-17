@@ -1,0 +1,50 @@
+{
+  "id": "nacho",
+  "name": "Nacho",
+  "biography": "Miguel Ignacio Mendoza, cantante venezolano e integrante de Chino & Nacho. Sus actuaciones musicales inspiran un especial de tres pasos.",
+  "portraitReference": "assets/references/culture-v15/nacho/portrait.jpg",
+  "distinctiveTraits": [
+    "Cabello muy corto y barba negra perfilada, cejas fuertes.",
+    "Bomber oscura con motivos claros y cadena discreta."
+  ],
+  "portrayal": "Cabello muy corto y barba negra perfilada, cejas fuertes. Bomber oscura con motivos claros y cadena discreta. Las acciones de pelea son ficción.",
+  "sources": [
+    {
+      "title": "Nacho — perfil de AllMusic",
+      "url": "https://www.allmusic.com/artist/nacho-mn0003485703"
+    },
+    {
+      "title": "Referencia fotográfica inspeccionada — Nacho",
+      "url": "https://www.univision.com/noticias/crisis-en-venezuela/el-cantante-activista-nacho-hasta-que-no-caiga-ese-regimen-no-voy-a-dejar-de-regresar-a-venezuela"
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/culture-v15/nacho/portrait.jpg",
+      "url": "https://st1.uvnimg.com/25/89/00f2dfe843fbbc5fcc96a2106613/promonacho.jpg",
+      "sourcePage": "https://www.univision.com/noticias/crisis-en-venezuela/el-cantante-activista-nacho-hasta-que-no-caiga-ese-regimen-no-voy-a-dejar-de-regresar-a-venezuela",
+      "viewed": true
+    }
+  ],
+  "gameplay": {
+    "special": "Paso sincopado",
+    "ability": "syncopate",
+    "description": "Barba perfilada y bomber estampada. Avanza, retrocede y vuelve con un remate aéreo; tres tiempos para abrir la guardia.",
+    "combos": [
+      "Paso primero",
+      "Contratiempo",
+      "Remate de tarima"
+    ],
+    "role": "RITMO"
+  },
+  "audio": {
+    "realVoice": false,
+    "reactions": "Esfuerzos y dolor genéricos sin palabras",
+    "specialCue": "syncopate"
+  },
+  "review": {
+    "identityVerified": true,
+    "portraitViewed": true,
+    "biographyReviewed": true
+  }
+}

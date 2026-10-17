@@ -1,0 +1,256 @@
+{
+  "auditVersion": 28,
+  "fighterId": "conde",
+  "name": "Er Conde del Guácharo",
+  "auditedDate": "2026-10-13",
+  "status": "complete_post_fix_gameplay_pass_with_low_priority_visual_adaptation",
+  "scope": "Dedicated one-agent Conde audit. Only this report and tests/character-audits/conde.test.ts were written in the repository. No runtime edits, commits, child agents, server startup or new web research.",
+  "evidenceRead": [
+    "docs/characters-v3/conde.json",
+    "docs/character-sprite-qa.json",
+    "shared/fighters.json",
+    "shared/techniques.ts",
+    "shared/engine.ts",
+    "shared/presentation.ts",
+    "shared/presentations.json",
+    "shared/choreography.ts",
+    "src/game/assets.ts",
+    "src/game/renderer.ts",
+    "src/game/presentation-renderer.ts",
+    "src/game/intro-renderer.ts",
+    "src/components/Portrait.tsx",
+    "scripts/entrance-browser-qa.ts",
+    "public/assets/conde-v3.webp"
+  ],
+  "postFixHashes": {
+    "shared/engine.ts": "b312989fbf51363844c52bfb4e0021793c1371e69b9a782910e033f6e0930d31",
+    "shared/techniques.ts": "596f948c07d685c7e570eeaa4c3919367d0a805ce352ba5aee48a4bcda14c550",
+    "shared/fighters.json": "30611f5f186fc5de17ab2ccfe7646e8fd4343cbcce803e208d2a5c9e045b69b9",
+    "shared/presentations.json": "8a7fbd0de98e62534317f4d5f41f20d4a1180d2960a07c6764aba0082112d8a1",
+    "shared/choreography.ts": "ffe139cd4af2c7a371cb69ec23f36ada6807dd6aa835657599c752dc238cb3b8",
+    "public/assets/conde-v3.webp": "adeed4c4096dee5cbf5a342b2a8f1b7253a9e7832bca9a5d88b9fe014f530c40"
+  },
+  "identityAndPortrayal": {
+    "preservedDossier": "Benjamín Rausseo Rodríguez, portrayed as the stage comedian Er Conde del Guácharo. The dossier supplies the archival research and attribution; this audit did not establish new biographical claims.",
+    "visualMatch": "The eight inspected combat frames retain a large straw hat with red/yellow/blue bands, blue floral stage shirt, dark trousers, broad adult face, expressive eyebrows, moustache and short goatee. The mirrored views preserve the same costume and anatomy.",
+    "fictionalAdaptation": "Remate oriental, Chiste corto, Doble remate and La función completa fit the established comedian portrayal. The shoulder/punch dash and combat are fictional adaptations.",
+    "limitations": "The combat atlas uses strapped open-toe sandals instead of the dossier’s proposed alpargatas. No microphone or clearly raised index appears in the inspected greeting samples. These are portrayal limitations, not newly established accuracy failures about the real performer. Audio was not listened to or re-attributed."
+  },
+  "movementAndStance": {
+    "result": "pass_both_sides",
+    "movement": {
+      "startX": 540,
+      "after24RightInputs": 633.0002523568872,
+      "after24LeftInputs": 547.7994952943895,
+      "facingFollowsInputs": true
+    },
+    "jump": "First jump reaches y454.6 after10 calls. Second jump succeeds; third is rejected. Landing restores y554, grounded=true, jumps0 and two stocks on both sides.",
+    "frames": "Production drawSprite was inspected for frames0–7 in both facings: neutral0, open-palm guard1, running2/3, tucked jump4, straight punch5, high kick6 and hurt/recoil7. Heads, hats, hands and footwear remained complete in the combat contact sheets. The two running frames have a very similar leg arrangement; no temporal gait quality claim is made from these static views.",
+    "atlas": {
+      "imageSize": [
+        1774,
+        887
+      ],
+      "bodyHeight": 433,
+      "baseline": 444,
+      "qaRows": [
+        4,
+        4
+      ],
+      "qaPassed": true,
+      "frameFacing": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    }
+  },
+  "special": {
+    "name": "Remate oriental",
+    "ability": "whirl",
+    "result": "pass_after_central_forward_dash_window_and_braking_fix",
+    "configuration": {
+      "startupFrames": 14,
+      "recoveryFrames": 47,
+      "range": 165,
+      "height": 105,
+      "damage": 20,
+      "force": 10,
+      "energyCost": 25,
+      "dashSpeed": 12,
+      "dashTicks": 9,
+      "dashInvincibility": 3,
+      "brake": 0.3
+    },
+    "behavior": "Begins forward movement at simulation attackTick14, tests contact through the nine-frame dash window, and records at most one successful hit or block. It is a short ground-level forward dash without projectiles or teleportation. The recovery now brakes instead of retaining dash speed.",
+    "idleAndRearGuard": "At initial gap120, both sides connect once on call14 for22.66 damage against Javier:20*1.1*1.03. Target finishes77.34 HP. Rear guard while moving away does not block; facing guard does.",
+    "forwardGuard": "At gap120, each side records exactly one block effect, no hit and HP100. Collision with the guarding body reduces final attacker displacement to about96.46 pixels.",
+    "displacementAndRecovery": "Without body contact preventing movement, the attacker advances113.142857 pixels in either direction. On the idle-hit trace, call13 has vx0; call14 has vx±12; call35 has |vx|0.0000708588; call60 has |vx|1.37e-14 and attack=null. Hitstop increases wall-call recovery timing without changing simulation attackTick.",
+    "energyGate": "Energy24 rejects the move on both sides; energy25 accepts it and leaves0.035 after passive regeneration. Energy100 immediately spends25 before hit rewards.",
+    "rangeProbes": [
+      {
+        "gap": 80,
+        "hits": 1,
+        "impactCall": 14
+      },
+      {
+        "gap": 160,
+        "hits": 1,
+        "impactCall": 14
+      },
+      {
+        "gap": 165,
+        "hits": 1,
+        "impactCall": 15
+      },
+      {
+        "gap": 175,
+        "hits": 1,
+        "impactCall": 15
+      },
+      {
+        "gap": 220,
+        "hits": 1,
+        "impactCall": 19
+      },
+      {
+        "gap": 250,
+        "hits": 1,
+        "impactCall": 22
+      },
+      {
+        "gap": 275,
+        "hits": 0
+      },
+      {
+        "gap": 300,
+        "hits": 0
+      },
+      {
+        "gap": 500,
+        "hits": 0
+      }
+    ],
+    "rangeInterpretation": "Each listed probe was run on both player sides. The later contacts at gap165–250 verify the post-fix moving collision window; misses at275/300/500 verify finite reach. All runs retain two target stocks and hit at most once. These are measured sample gaps, not an exact maximum-range claim."
+  },
+  "attacksAndCombos": {
+    "light": "Both sides connect once at gap80 for7.931 damage with outward knockback. Facing guard prevents HP loss.",
+    "heavy": "Both sides connect once at gap80 for14.729 damage with outward knockback. Facing guard prevents HP loss.",
+    "baseCombo": "Chiste corto (L→H) connects both attacks with actual approach inputs on both sides, leaving target74.25 HP after67 calls. Heavy adds bonus3.",
+    "advancedCombo": "Doble remate (L→L→H) connects all three attacks with approach inputs on both sides, leaving target62.199 HP after115 calls. Requires at least one win and adds bonus7. At zero wins L→L→H remains Chiste corto with bonus3.",
+    "recognitionLimit": "Input-history recognition can name a combo even when preceding attacks miss. Separate connected-combo fights verify that every attack can land.",
+    "definitive": "La función completa requires three wins and75 energy. At gap200, accepted super connects once at startup9 for44.084 damage:((28*1.1)+12)*1.03, leaving55.916 HP. Zero/two wins and three wins with74 energy reject it; exactly75 and100 energy accept it on both sides. The current definitive uses the shared close-range super."
+  },
+  "cpuFight": {
+    "opponent": "Javier Hala Madrid",
+    "difficulty": "normal",
+    "method": "Complete510-tick intro, leave Conde idle180 calls so CPU can attack, then issue real approach/block/jump and light/heavy/special/super inputs. Finish the entire bout twice and compare full final state.",
+    "result": "finished_and_exactly_replayed",
+    "winner": 0,
+    "winnerName": "Conde",
+    "finalTick": 1080,
+    "remainingFrames": 4797,
+    "started": [
+      "super",
+      "light",
+      "heavy",
+      "special"
+    ],
+    "landed": [
+      "super",
+      "heavy",
+      "light"
+    ],
+    "conde": {
+      "hp": 100,
+      "stocks": 1,
+      "hits": 6,
+      "peakCombo": 5
+    },
+    "javier": {
+      "hp": 0,
+      "stocks": 0,
+      "hits": 1,
+      "peakCombo": 1
+    },
+    "limitation": "Conde starts special during the full bout but it does not score a hit there. Dedicated idle/directional-guard/range fights independently verify its actual collisions. This deterministic input controller is not a balance benchmark."
+  },
+  "introAndSelection": {
+    "result": "visually_checked_in_own_native_tab",
+    "name": "Saludo del Conde",
+    "introStyle": "hat",
+    "selectionStyle": "joke",
+    "durationMs": 2800,
+    "nativePreviewTab": "tab_24_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "nativePreviewUrl": "http://localhost:5173/",
+    "actualAppChecks": "Selected Conde through the ordinary lobby control, inspected the ready stance and confirmed the animated Portrait dataset reached frame1/progress1. The attempted normal match-start click timed out; no claim is made that an app-driven bout was watched.",
+    "controlledChecks": "Production loadSprite/drawSprite/drawPresentation rendered eight combat frames in both facings plus intro/selection at0/.5/1 and mirrored midpoint. Production drawIntroCinematic rendered both actors at progress.3 and.7 in an ephemeral browser canvas. No repository visual harness was written.",
+    "observation": "Intro and selection move from open-palm guard1 to the standing frame0 and return to guard1. The hat stays on the head in the inspected samples; a raised index and microphone were not visible. Faces and hats remain complete in both sampled cinematic directions. The cinematic deliberately frames the upper body, so full feet visibility was assessed in combat sheets and the lobby instead.",
+    "oneShot": "selectionProgress clamps to1 at2800ms and remains1 at5600ms; Portrait stops requesting animation frames at completion. Shared-engine inputs cannot move or attack during the510-tick intro.",
+    "nativeEntranceChecks": {
+      "renders": 36,
+      "cameras": 32,
+      "errors": [],
+      "renderedBothSides": true,
+      "reducedMotionExact": true,
+      "finalGuardExact": true,
+      "bodyChangedFraction": 0.528,
+      "headBounds": {
+        "minX": 282,
+        "maxX": 798,
+        "minY": 141.5,
+        "maxY": 155.8
+      }
+    },
+    "screenshotPaths": {
+      "combatFacingRight": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv610fvy-084abf3a.png",
+      "combatFacingLeft": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv610ij0-8403e4f4.png",
+      "introAndSelectionSamples": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv610t54-477c61e7.png",
+      "selectedLobby": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv6122t4-e2c4cc69.png",
+      "cinematicBothActors": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv6133ax-1f27674b.png"
+    },
+    "limitations": "Static representative samples and the existing native entrance QA helper were inspected; every interpolation frame, audio playback and audiovisual synchronization were not reviewed. This agent’s native tab was closed through t3_preview_close after saving screenshots."
+  },
+  "findings": [
+    {
+      "id": "conde-footwear-dossier-adaptation",
+      "severity": "low",
+      "kind": "visual_adaptation",
+      "evidence": "All eight combat poses visibly use strapped open-toe sandals while docs/characters-v3/conde.json proposes alpargatas. The dossier itself identifies the lower-body clothing as a design choice.",
+      "recommendation": "Preserve existing likeness/art. Treat the shoe difference as a documented adaptation unless an art revision is specifically requested."
+    }
+  ],
+  "recommendation": "Retain the post-fix gameplay. No further reproducible Conde-specific combat bug was established by this focused audit.",
+  "verification": {
+    "testFile": "tests/character-audits/conde.test.ts",
+    "command": "npx tsx --test tests/character-audits/conde.test.ts",
+    "result": {
+      "tests": 8,
+      "passed": 8,
+      "failed": 0
+    },
+    "postFixProcess": "Final focused tests ran in a fresh tsx process after the central dash-window/braking change and passed with range/braking assertions.",
+    "checksActuallyRun": [
+      "Shared510-tick intro action gate",
+      "Walk/facing/double jump/third-jump rejection/landing on both sides",
+      "Light/heavy actual damage and facing guard on both sides",
+      "Special idle/front/rear guard and exact energy threshold on both sides",
+      "Nine actual dash range fights on each side and recovery braking",
+      "Base/upgraded input-history gates and fully connected combos on both sides",
+      "Super win/energy thresholds including exactly75 energy and actual damage on both sides",
+      "Complete normal-CPU bout and full deterministic replay",
+      "Own native preview: selected lobby, eight combat frames in both facings, intro/selection and cinematic samples",
+      "Native existing entrance helper:36 renders/32 cameras/no errors"
+    ],
+    "notRun": [
+      "New web research",
+      "Audio listening",
+      "Full repository build or suite; central integrator owns shared verification"
+    ]
+  }
+}

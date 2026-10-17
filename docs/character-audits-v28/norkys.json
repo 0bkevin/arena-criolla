@@ -1,0 +1,767 @@
+{
+  "auditVersion": 28,
+  "fighterId": "norkys",
+  "name": "Norkys Batista",
+  "auditedDate": "2026-10-13",
+  "completedAt": "2026-10-13T02:28:50.897189+00:00",
+  "status": "complete_no_reproducible_character_specific_defect",
+  "scope": "Independent audit limited to Norkys Batista. Real shared-engine movement, attacks, pivot, directional guards, combo gates, normal CPU fight and deterministic replay; actual production renderer inspected in an independently opened native T3 tab. Only own test and this report written; no runtime or artwork edits, commits or child agents.",
+  "sourceRevision": "2273843fe788fb68bfa35d80d9ec87b48f1d2b7e",
+  "sourceRevisionNote": "Runtime is untracked working-tree content; file hashes identify the exact audited source. Central engine edits occurred during this audit; the final fresh tsx process was rerun and the hashes were checked immediately before and after it.",
+  "sourceStableDuringFinalRun": true,
+  "sourceHashes": {
+    "shared/engine.ts": "f9f0a0ad96d986547a48e9073c273038214fda830b44b16726f98762f1a1eeb2",
+    "shared/techniques.ts": "f0210e6f6decad809f216d2b416ce6ed8812b658fedf170c903152aa552f6250",
+    "shared/culture-techniques.ts": "396bba2b1ecaa3a4d501ff320d16352eddc6bc05b9676bf40101e5e1384a447d",
+    "shared/fighters.json": "30611f5f186fc5de17ab2ccfe7646e8fd4343cbcce803e208d2a5c9e045b69b9",
+    "shared/presentation.ts": "68ff1fb48680fd1c018ea3b95fcbe7a348e6c7e6109cdfc79e040736794fbacf",
+    "shared/presentations.json": "8a7fbd0de98e62534317f4d5f41f20d4a1180d2960a07c6764aba0082112d8a1",
+    "shared/choreography.ts": "ffe139cd4af2c7a371cb69ec23f36ada6807dd6aa835657599c752dc238cb3b8",
+    "src/game/assets.ts": "7e8c53ea36d1e1d47655352145db110ccebf088c54ce3262e8bc29fea364ca56",
+    "src/game/renderer.ts": "824190a6519cfa8ba8ccf70516eeafada1b3c29332fce2c497e125846d80d3be",
+    "src/game/presentation-renderer.ts": "847ffff581aef95e9621cbd0d534923bd1f34f7561b742502e74c0be9eea64bb",
+    "src/game/intro-renderer.ts": "97db4d0575bbe24f79e398516a5ab299ec1cceef0f9da4791f41e947fba670d8",
+    "public/assets/norkys-v15.webp": "0706435320ab9830d3402ffabeafbbdf5c09668c2b3f1ddfbd1359e05f52d08e",
+    "docs/character-sprite-qa.json": "5c2b30942cfde62e1deae698eeb25670e90642bff8f629b29a77a84b48ff7209"
+  },
+  "evidenceRead": [
+    "docs/character-audits-v28/BRIEF.txt",
+    "docs/culture-v15/characters/norkys.json",
+    "docs/character-sprite-qa.json",
+    "docs/culture-v15/runtime-qa.json",
+    "shared/engine.ts",
+    "shared/techniques.ts",
+    "shared/culture-techniques.ts",
+    "shared/fighters.json",
+    "shared/presentation.ts",
+    "shared/presentations.json",
+    "shared/choreography.ts",
+    "src/game/assets.ts",
+    "src/game/renderer.ts",
+    "src/game/presentation-renderer.ts",
+    "src/game/intro-renderer.ts",
+    "src/game/entrance-renderer.ts",
+    "src/components/Portrait.tsx"
+  ],
+  "identityAndPortrayal": {
+    "preservedDossier": "Venezuelan actress and model. Long straight black hair, center part, dark brows and hoop earrings; coral blazer, white top and black trousers are a documented stage adaptation. Fictional fighting actions retained.",
+    "visualObservation": "The actual atlas retains the dossier identity and outfit through idle, guard, two running strides, tucked jump, punch, high kick and hurt poses. Both facings are correct; no detached neighboring shoe fragments, clipped extremities or inconsistent costume were visible in the correctly spaced native galleries.",
+    "audio": "Dossier requires generic effort/pain without real-person dialogue and identifies pivot special cue. No voice replacement requested or performed. This audit did not record or listen to audio."
+  },
+  "validation": {
+    "testCommand": "./node_modules/.bin/tsx --test tests/character-audits/norkys.test.ts",
+    "tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "typecheckCommand": "./node_modules/.bin/tsc --noEmit",
+    "typecheckExitCode": 0,
+    "bothPlayerSides": true
+  },
+  "gameplay": {
+    "movement": "24 frames right from x540 ->659.571753; 24 frames left ->550.027923. Correct facing, two jump stocks, third jump refused, lands at floor y554 and resets jump stocks. Mirrored player-side checks pass.",
+    "ordinaryAttacks": "At gap80, light reduces Javier HP to93.1505, heavy to87.2795; each connects once. Facing guard preserves100HP; backward guard takes the attack. Verified on P1 and P2.",
+    "pivot": {
+      "startupAttackTick": 8,
+      "secondPulseAttackTick": 23,
+      "pulses": [
+        0,
+        15
+      ],
+      "cost": 25,
+      "range": 155,
+      "height": 220,
+      "radial": true,
+      "jumpVelocityAtActivation": -13,
+      "dashVelocityRelativeToFacing": -7,
+      "dashTicks": 7,
+      "brake": 0.78,
+      "totalRetreatWithNeutralInput": 73.83212589080193,
+      "apexY": 397.99999999999983,
+      "landedY": 554,
+      "finalVxMagnitude": 1.901192621193928e-15,
+      "projectiles": 0
+    },
+    "frontOpponentReproduction": {
+      "stage": "poliedro",
+      "startTick": 510,
+      "P1Norkys": {
+        "x": 420,
+        "y": 554,
+        "energy": 100,
+        "facing": 1
+      },
+      "P2Javier": {
+        "x": 500,
+        "y": 554,
+        "energy": 100
+      },
+      "input": "Increment Norkys special once; advance120 frames. Idle rival: one hit,92.172HP. Rival block with no move: two blocks,100HP. Rival block+right: one hit,92.172HP. Mirrored equivalent uses Norkys P2 at660 and Javier P1 at580 with rear guard block+left.",
+      "interpretation": "The two radial pulses exist, but first-hit knockback and the backward leap move a frontal damaged opponent out of range of the second pulse. A guarded opponent remains close enough to block both. This is range behavior rather than a missing pulse."
+    },
+    "behindOpponentReproduction": {
+      "stage": "poliedro",
+      "startTick": 510,
+      "P1Norkys": {
+        "x": 420,
+        "y": 554,
+        "energy": 100
+      },
+      "P2Javier": {
+        "x": 340,
+        "y": 554,
+        "energy": 100
+      },
+      "input": "Increment special while holding right for the first frame to cast facing away from the opponent, then release right. Capture the40-frame window before possible ringout/respawn. Idle: two hits at attack ticks8 and23,84.344HP. Facing guard block/no move: two blocks,100HP. Rear guard block+left: two hits,84.344HP. Mirrored P2 at660/P1 at740 uses initial left, and rear guard block+right.",
+      "firstImpactVxMagnitude": 4.347911111111111,
+      "finisherVxMagnitude": 9.391644444444445,
+      "expected": "Both radial pulses can damage behind the actor; second has stronger finisher force.",
+      "observed": "Expected result on both player sides."
+    },
+    "gates": "Special rejected at24energy; gap160 neutral target takes no pivot hits. Light+heavy yields Cambio de perfil (+3); light+light+heavy upgrades to Giro de escena (+7) with at least1win. Pursuit inputs maintain range and connect every strike. Super requires3wins and75energy; at200gap valid Pivote doble reduces Javier HP to60.242. Both sides pass.",
+    "intro": "Both player-side checks preserve positions and refuse combat through tick509; full intro duration510ticks; initial rival-facing guard restored at play start."
+  },
+  "cpuBout": {
+    "winner": 0,
+    "tick": 1643,
+    "remaining": 4188,
+    "started": [
+      "special",
+      "super",
+      "light",
+      "heavy"
+    ],
+    "landed": [
+      "light",
+      "special",
+      "heavy"
+    ],
+    "players": [
+      {
+        "fighter": "norkys",
+        "hp": 31.421,
+        "stocks": 2,
+        "hits": 10,
+        "peakCombo": 5
+      },
+      {
+        "fighter": "javier",
+        "hp": 0,
+        "stocks": 0,
+        "hits": 7,
+        "peakCombo": 4
+      }
+    ]
+  },
+  "cpuReplay": "Second complete simulation deeply equals the first, including final match state, projectile/effect data, started attack kinds and landed attack kinds. Inputs use the real normal CPU and pursuit/jump/guard policy in the test.",
+  "visual": {
+    "nativeTabId": "tab_2p_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "nativeTabClosed": true,
+    "nativeTabCloseResult": "Success, empty structured result.",
+    "method": "Native preview_status, own preview_open(reuseExistingTab:false), tabId on every operation. Direct imports of actual loadSprite/drawSprite/drawPresentation/preloadAssets/renderMatch produced deterministic native snapshots. No alternative browser system used.",
+    "combatFramesInspected": 8,
+    "combatFacings": [
+      1,
+      -1
+    ],
+    "entranceAndSelection": "Both facings at progress0,0.22,0.5,0.76,1 and selection2. A single shoulder/head/arm gesture releases into frame1 guard; selection1 and2 are visibly identical. No dedicated entrance atlas is configured for Norkys; production drawPresentation uses the authored articulated choreography. Actual pivot match renderer at attack ticks8/23 uses the tucked-jump/high-kick poses on both sides.",
+    "screenshots": {
+      "combatFramesRight": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv625v35-fb1bb24f.png",
+      "combatFramesLeft": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv628k9b-d40c1d2c.png",
+      "introBothFacings": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv628xf7-94b4ee65.png",
+      "selectionBothFacings": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv628y8p-d477beff.png",
+      "pivotRealMatchRenderer": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv629jwr-14a39297.png"
+    },
+    "limitations": "Initial preview_status returned available:false, but opening a dedicated tab succeeded. The initial server hot reload produced ERR_CONNECTION_REFUSED/WebSocket errors and later erased the first in-page harness (window.__norkysAudit undefined); native navigation and fresh imports recovered it. Complete valid screenshots were then saved. The first16-pose gallery had overly tight layout and was superseded by the two correctly spaced eight-pose galleries listed above; no visual pass depends on that initial layout."
+  },
+  "findings": [],
+  "runtimeEdits": false,
+  "rawEngineEvidence": [
+    {
+      "character": "norkys",
+      "check": "presentation",
+      "evidence": {
+        "intro": "Giro de hombros",
+        "choreography": "Giro de hombros",
+        "durationMs": 2800
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "movement",
+      "evidence": {
+        "side": 0,
+        "right": 659.5717530302835,
+        "left": 550.0279225213583,
+        "firstY": 454.59999999999997,
+        "landingY": 554
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "movement",
+      "evidence": {
+        "side": 1,
+        "right": 659.5717530302835,
+        "left": 550.0279225213583,
+        "firstY": 454.59999999999997,
+        "landingY": 554
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "ordinary-attack",
+      "evidence": {
+        "side": 0,
+        "action": "light",
+        "guard": "idle",
+        "hp": 93.1505,
+        "hits": 1
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "ordinary-attack",
+      "evidence": {
+        "side": 0,
+        "action": "light",
+        "guard": "front",
+        "hp": 100,
+        "hits": 0
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "ordinary-attack",
+      "evidence": {
+        "side": 0,
+        "action": "light",
+        "guard": "rear",
+        "hp": 93.1505,
+        "hits": 1
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "ordinary-attack",
+      "evidence": {
+        "side": 0,
+        "action": "heavy",
+        "guard": "idle",
+        "hp": 87.2795,
+        "hits": 1
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "ordinary-attack",
+      "evidence": {
+        "side": 0,
+        "action": "heavy",
+        "guard": "front",
+        "hp": 100,
+        "hits": 0
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "ordinary-attack",
+      "evidence": {
+        "side": 0,
+        "action": "heavy",
+        "guard": "rear",
+        "hp": 87.2795,
+        "hits": 1
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "ordinary-attack",
+      "evidence": {
+        "side": 1,
+        "action": "light",
+        "guard": "idle",
+        "hp": 93.1505,
+        "hits": 1
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "ordinary-attack",
+      "evidence": {
+        "side": 1,
+        "action": "light",
+        "guard": "front",
+        "hp": 100,
+        "hits": 0
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "ordinary-attack",
+      "evidence": {
+        "side": 1,
+        "action": "light",
+        "guard": "rear",
+        "hp": 93.1505,
+        "hits": 1
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "ordinary-attack",
+      "evidence": {
+        "side": 1,
+        "action": "heavy",
+        "guard": "idle",
+        "hp": 87.2795,
+        "hits": 1
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "ordinary-attack",
+      "evidence": {
+        "side": 1,
+        "action": "heavy",
+        "guard": "front",
+        "hp": 100,
+        "hits": 0
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "ordinary-attack",
+      "evidence": {
+        "side": 1,
+        "action": "heavy",
+        "guard": "rear",
+        "hp": 87.2795,
+        "hits": 1
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "retreat-and-braking",
+      "evidence": {
+        "side": 0,
+        "pulses": [
+          8,
+          23
+        ],
+        "displacement": -73.83212589080193,
+        "apexY": 397.99999999999983,
+        "finalVx": -1.901192621193928e-15,
+        "finalY": 554
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "retreat-and-braking",
+      "evidence": {
+        "side": 1,
+        "pulses": [
+          8,
+          23
+        ],
+        "displacement": 73.83212589080188,
+        "apexY": 397.99999999999983,
+        "finalVx": 1.901192621193928e-15,
+        "finalY": 554
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "frontal-pivot",
+      "evidence": {
+        "side": 0,
+        "guard": "idle",
+        "hp": 92.172,
+        "hits": 1,
+        "blocks": 0,
+        "contacts": [
+          {
+            "tick": 8,
+            "attackTick": 8,
+            "hp": 92.172
+          }
+        ],
+        "explanation": "First-hit knockback moves a frontal opponent beyond the second radial pulse; a close guarded opponent remains in range."
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "frontal-pivot",
+      "evidence": {
+        "side": 0,
+        "guard": "front",
+        "hp": 100,
+        "hits": 0,
+        "blocks": 2,
+        "contacts": [],
+        "explanation": "First-hit knockback moves a frontal opponent beyond the second radial pulse; a close guarded opponent remains in range."
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "frontal-pivot",
+      "evidence": {
+        "side": 0,
+        "guard": "rear",
+        "hp": 92.172,
+        "hits": 1,
+        "blocks": 0,
+        "contacts": [
+          {
+            "tick": 8,
+            "attackTick": 8,
+            "hp": 92.172
+          }
+        ],
+        "explanation": "First-hit knockback moves a frontal opponent beyond the second radial pulse; a close guarded opponent remains in range."
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "frontal-pivot",
+      "evidence": {
+        "side": 1,
+        "guard": "idle",
+        "hp": 92.172,
+        "hits": 1,
+        "blocks": 0,
+        "contacts": [
+          {
+            "tick": 8,
+            "attackTick": 8,
+            "hp": 92.172
+          }
+        ],
+        "explanation": "First-hit knockback moves a frontal opponent beyond the second radial pulse; a close guarded opponent remains in range."
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "frontal-pivot",
+      "evidence": {
+        "side": 1,
+        "guard": "front",
+        "hp": 100,
+        "hits": 0,
+        "blocks": 2,
+        "contacts": [],
+        "explanation": "First-hit knockback moves a frontal opponent beyond the second radial pulse; a close guarded opponent remains in range."
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "frontal-pivot",
+      "evidence": {
+        "side": 1,
+        "guard": "rear",
+        "hp": 92.172,
+        "hits": 1,
+        "blocks": 0,
+        "contacts": [
+          {
+            "tick": 8,
+            "attackTick": 8,
+            "hp": 92.172
+          }
+        ],
+        "explanation": "First-hit knockback moves a frontal opponent beyond the second radial pulse; a close guarded opponent remains in range."
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "rear-radial-pulses",
+      "evidence": {
+        "side": 0,
+        "guard": "idle",
+        "hits": 2,
+        "hp": 84.344,
+        "blocks": 0,
+        "contacts": [
+          {
+            "tick": 8,
+            "attackTick": 8,
+            "hp": 92.172,
+            "vx": -4.347911111111111
+          },
+          {
+            "tick": 23,
+            "attackTick": 23,
+            "hp": 84.344,
+            "vx": -9.391644444444445
+          }
+        ]
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "rear-radial-pulses",
+      "evidence": {
+        "side": 0,
+        "guard": "front",
+        "hits": 0,
+        "hp": 100,
+        "blocks": 2,
+        "contacts": []
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "rear-radial-pulses",
+      "evidence": {
+        "side": 0,
+        "guard": "rear",
+        "hits": 2,
+        "hp": 84.344,
+        "blocks": 0,
+        "contacts": [
+          {
+            "tick": 8,
+            "attackTick": 8,
+            "hp": 92.172,
+            "vx": -4.347911111111111
+          },
+          {
+            "tick": 23,
+            "attackTick": 23,
+            "hp": 84.344,
+            "vx": -9.391644444444445
+          }
+        ]
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "rear-radial-pulses",
+      "evidence": {
+        "side": 1,
+        "guard": "idle",
+        "hits": 2,
+        "hp": 84.344,
+        "blocks": 0,
+        "contacts": [
+          {
+            "tick": 8,
+            "attackTick": 8,
+            "hp": 92.172,
+            "vx": 4.347911111111111
+          },
+          {
+            "tick": 23,
+            "attackTick": 23,
+            "hp": 84.344,
+            "vx": 9.391644444444445
+          }
+        ]
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "rear-radial-pulses",
+      "evidence": {
+        "side": 1,
+        "guard": "front",
+        "hits": 0,
+        "hp": 100,
+        "blocks": 2,
+        "contacts": []
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "rear-radial-pulses",
+      "evidence": {
+        "side": 1,
+        "guard": "rear",
+        "hits": 2,
+        "hp": 84.344,
+        "blocks": 0,
+        "contacts": [
+          {
+            "tick": 8,
+            "attackTick": 8,
+            "hp": 92.172,
+            "vx": 4.347911111111111
+          },
+          {
+            "tick": 23,
+            "attackTick": 23,
+            "hp": 84.344,
+            "vx": 9.391644444444445
+          }
+        ]
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "connected-combo",
+      "evidence": {
+        "side": 0,
+        "combo": "Cambio de perfil",
+        "hits": 2,
+        "hp": 77.33999999999999,
+        "elapsed": 64
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "connected-combo",
+      "evidence": {
+        "side": 0,
+        "combo": "Giro de escena",
+        "hits": 3,
+        "hp": 66.37049999999999,
+        "elapsed": 106
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "super-gate",
+      "evidence": {
+        "side": 0,
+        "wins": 0,
+        "energy": 100,
+        "hp": 100,
+        "combo": ""
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "super-gate",
+      "evidence": {
+        "side": 0,
+        "wins": 2,
+        "energy": 100,
+        "hp": 100,
+        "combo": ""
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "super-gate",
+      "evidence": {
+        "side": 0,
+        "wins": 3,
+        "energy": 74,
+        "hp": 100,
+        "combo": ""
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "super-gate",
+      "evidence": {
+        "side": 0,
+        "wins": 3,
+        "energy": 100,
+        "hp": 60.242000000000004,
+        "combo": "Pivote doble"
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "connected-combo",
+      "evidence": {
+        "side": 1,
+        "combo": "Cambio de perfil",
+        "hits": 2,
+        "hp": 77.33999999999999,
+        "elapsed": 64
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "connected-combo",
+      "evidence": {
+        "side": 1,
+        "combo": "Giro de escena",
+        "hits": 3,
+        "hp": 66.37049999999999,
+        "elapsed": 106
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "super-gate",
+      "evidence": {
+        "side": 1,
+        "wins": 0,
+        "energy": 100,
+        "hp": 100,
+        "combo": ""
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "super-gate",
+      "evidence": {
+        "side": 1,
+        "wins": 2,
+        "energy": 100,
+        "hp": 100,
+        "combo": ""
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "super-gate",
+      "evidence": {
+        "side": 1,
+        "wins": 3,
+        "energy": 74,
+        "hp": 100,
+        "combo": ""
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "super-gate",
+      "evidence": {
+        "side": 1,
+        "wins": 3,
+        "energy": 100,
+        "hp": 60.242000000000004,
+        "combo": "Pivote doble"
+      }
+    },
+    {
+      "character": "norkys",
+      "check": "cpu-fight",
+      "evidence": {
+        "winner": 0,
+        "tick": 1643,
+        "remaining": 4188,
+        "started": [
+          "special",
+          "super",
+          "light",
+          "heavy"
+        ],
+        "landed": [
+          "light",
+          "special",
+          "heavy"
+        ],
+        "players": [
+          {
+            "fighter": "norkys",
+            "hp": 31.421,
+            "stocks": 2,
+            "hits": 10,
+            "peakCombo": 5
+          },
+          {
+            "fighter": "javier",
+            "hp": 0,
+            "stocks": 0,
+            "hits": 7,
+            "peakCombo": 4
+          }
+        ]
+      }
+    }
+  ]
+}

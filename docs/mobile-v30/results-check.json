@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "viewport": [
+    568,
+    320
+  ],
+  "winnerNameCharacters": 20,
+  "controlsHiddenOnFinish": true,
+  "resultOverlay": {
+    "clientHeight": 264,
+    "scrollHeight": 354,
+    "scrollTop": 0,
+    "clientWidth": 548,
+    "scrollWidth": 548
+  },
+  "trustedTouchPan": true,
+  "rematchStartsFreshControls": true,
+  "exitRestoresLobbyAndFullscreen": true,
+  "physicalDevice": false
+}

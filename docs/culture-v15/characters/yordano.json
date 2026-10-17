@@ -1,0 +1,50 @@
+{
+  "id": "yordano",
+  "name": "Yordano",
+  "biography": "Cantautor ítalo-venezolano conocido por canciones como Manantial y Por estas calles. Sus referencias acuáticas se traducen en parábolas de agua.",
+  "portraitReference": "assets/references/culture-v15/yordano/portrait.jpg",
+  "distinctiveTraits": [
+    "Cabello corto plateado y frente despejada, rostro afeitado.",
+    "Lentes negros con cristales teñidos, chaqueta negra y camisa gris estampada del retrato de 2025."
+  ],
+  "portrayal": "Cabello corto plateado y frente despejada, rostro afeitado. Lentes negros con cristales teñidos, chaqueta negra y camisa gris estampada del retrato de 2025. Las acciones de pelea son ficción.",
+  "sources": [
+    {
+      "title": "Yordano — biografía oficial",
+      "url": "https://www.yordanooficial.com/bio.html"
+    },
+    {
+      "title": "Referencia fotográfica inspeccionada — Yordano",
+      "url": "https://www.diariolibre.com/revista/musica/2025/09/04/yordano-rd-siempre-ha-sido-una-ida-y-vuelta-entre-recuerdos/3233047"
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/culture-v15/yordano/portrait.jpg",
+      "url": "https://resources.diariolibre.com/images/2025/09/03/fotografia-cedida-por-francisco-fernandez-donde-aparece-el-cantautor-venezolano-yordano-efefrancis-20fe33b3.jpg",
+      "sourcePage": "https://www.diariolibre.com/revista/musica/2025/09/04/yordano-rd-siempre-ha-sido-una-ida-y-vuelta-entre-recuerdos/3233047",
+      "viewed": true
+    }
+  ],
+  "gameplay": {
+    "special": "Manantial en tres tiempos",
+    "ability": "fountain",
+    "description": "Pelo plateado, lentes y chaqueta negra. Tres gotas salen a distinto tiempo en parábolas altas que cubren los saltos.",
+    "combos": [
+      "Agua clara",
+      "Ida y vuelta",
+      "Tres tiempos"
+    ],
+    "role": "ARCO"
+  },
+  "audio": {
+    "realVoice": false,
+    "reactions": "Esfuerzos y dolor genéricos sin palabras",
+    "specialCue": "fountain"
+  },
+  "review": {
+    "identityVerified": true,
+    "portraitViewed": true,
+    "biographyReviewed": true
+  }
+}

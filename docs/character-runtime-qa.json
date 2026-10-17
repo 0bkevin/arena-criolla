@@ -1,0 +1,501 @@
+{
+  "version": 3,
+  "checkedAt": "2026-10-08 09:11:26 UTC",
+  "activeCharacters": [
+    "john",
+    "kilometro",
+    "javier",
+    "capriles",
+    "renny",
+    "gomez",
+    "simon",
+    "conde",
+    "emilio",
+    "maite",
+    "oscar",
+    "puma",
+    "chataing",
+    "george",
+    "mcm"
+  ],
+  "characterCount": 15,
+  "poseCount": 120,
+  "removedFromActiveRoster": [
+    "delsa",
+    "lacava"
+  ],
+  "voiceClips": [
+    {
+      "id": "john",
+      "cue": "select",
+      "file": "/audio/john/original-select.mp3",
+      "duration": 1.42,
+      "rms": 0.1775,
+      "peak": 0.9699
+    },
+    {
+      "id": "kilometro",
+      "cue": "select",
+      "file": "/audio/kilometro/original-select.mp3",
+      "duration": 1.25,
+      "rms": 0.1946,
+      "peak": 1
+    },
+    {
+      "id": "kilometro",
+      "cue": "special",
+      "file": "/audio/kilometro/original-special.mp3",
+      "duration": 3.2,
+      "rms": 0.1189,
+      "peak": 0.9146
+    },
+    {
+      "id": "javier",
+      "cue": "select",
+      "file": "/audio/javier/original-select.mp3",
+      "duration": 2.6,
+      "rms": 0.12,
+      "peak": 1
+    },
+    {
+      "id": "capriles",
+      "cue": "select",
+      "file": "/audio/capriles/original-select.mp3",
+      "duration": 2.22,
+      "rms": 0.1398,
+      "peak": 0.8435
+    },
+    {
+      "id": "renny",
+      "cue": "select",
+      "file": "/audio/renny/original-select.mp3",
+      "duration": 2.05,
+      "rms": 0.1498,
+      "peak": 0.6456
+    },
+    {
+      "id": "simon",
+      "cue": "select",
+      "file": "/audio/simon/original-select.mp3",
+      "duration": 1.8,
+      "rms": 0.1693,
+      "peak": 0.7252
+    },
+    {
+      "id": "conde",
+      "cue": "select",
+      "file": "/audio/conde/original-select.mp3",
+      "duration": 2.8,
+      "rms": 0.1329,
+      "peak": 0.6499
+    },
+    {
+      "id": "emilio",
+      "cue": "select",
+      "file": "/audio/emilio/original-select.mp3",
+      "duration": 1.7,
+      "rms": 0.1685,
+      "peak": 1
+    },
+    {
+      "id": "emilio",
+      "cue": "special",
+      "file": "/audio/emilio/original-special.mp3",
+      "duration": 2.8,
+      "rms": 0.1339,
+      "peak": 1
+    },
+    {
+      "id": "emilio",
+      "cue": "win",
+      "file": "/audio/emilio/original-win.mp3",
+      "duration": 2.25,
+      "rms": 0.1473,
+      "peak": 0.7976
+    },
+    {
+      "id": "maite",
+      "cue": "select",
+      "file": "/audio/maite/original-select.mp3",
+      "duration": 3.4,
+      "rms": 0.0934,
+      "peak": 0.3337
+    },
+    {
+      "id": "maite",
+      "cue": "win",
+      "file": "/audio/maite/original-win.mp3",
+      "duration": 3.2,
+      "rms": 0.1218,
+      "peak": 0.8929
+    },
+    {
+      "id": "oscar",
+      "cue": "select",
+      "file": "/audio/oscar/original-select.mp3",
+      "duration": 1.9,
+      "rms": 0.1547,
+      "peak": 0.5542
+    },
+    {
+      "id": "puma",
+      "cue": "select",
+      "file": "/audio/puma/original-select.mp3",
+      "duration": 1.8,
+      "rms": 0.163,
+      "peak": 1
+    },
+    {
+      "id": "puma",
+      "cue": "special",
+      "file": "/audio/puma/original-special.mp3",
+      "duration": 1.94,
+      "rms": 0.1505,
+      "peak": 1
+    },
+    {
+      "id": "puma",
+      "cue": "win",
+      "file": "/audio/puma/original-win.mp3",
+      "duration": 3.18,
+      "rms": 0.1196,
+      "peak": 0.8196
+    },
+    {
+      "id": "chataing",
+      "cue": "select",
+      "file": "/audio/chataing/original-select.mp3",
+      "duration": 3.25,
+      "rms": 0.1417,
+      "peak": 0.6729
+    },
+    {
+      "id": "george",
+      "cue": "select",
+      "file": "/audio/george/original-select.mp3",
+      "duration": 2.66,
+      "rms": 0.1238,
+      "peak": 1
+    },
+    {
+      "id": "george",
+      "cue": "special",
+      "file": "/audio/george/original-special.mp3",
+      "duration": 1.7,
+      "rms": 0.1656,
+      "peak": 1
+    },
+    {
+      "id": "mcm",
+      "cue": "select",
+      "file": "/audio/mcm/original-select.mp3",
+      "duration": 3.16,
+      "rms": 0.1186,
+      "peak": 0.6231
+    },
+    {
+      "id": "mcm",
+      "cue": "win",
+      "file": "/audio/mcm/original-win.mp3",
+      "duration": 3.72,
+      "rms": 0.126,
+      "peak": 0.5655
+    }
+  ],
+  "voiceClipCount": 22,
+  "voicedCharacterCount": 14,
+  "charactersWithoutVerifiedOriginalVoice": [
+    "gomez"
+  ],
+  "researchAgents": {
+    "model": "gpt-6-luna",
+    "reasoningEffort": "high",
+    "count": 15,
+    "status": "completed",
+    "log": "docs/character-agents-v3.json"
+  },
+  "automatedChecks": {
+    "tests": {
+      "passed": 18,
+      "failed": 0,
+      "command": "npm test"
+    },
+    "assetValidation": {
+      "passed": 15,
+      "command": "npm run check:assets",
+      "report": "docs/character-sprite-qa.json"
+    },
+    "productionBuild": {
+      "passed": true,
+      "command": "npm run build"
+    }
+  },
+  "browserChecks": {
+    "assetAndAudioCheckMs": 193.8,
+    "selectorCards": [
+      "Elegir a John Acquaviva",
+      "Elegir a Kilómetro",
+      "Elegir a Javier Hala Madrid",
+      "Elegir a Capriles Radonski",
+      "Elegir a Renny Ottolina",
+      "Elegir a Juan Vicente Gómez",
+      "Elegir a Simón Díaz",
+      "Elegir a Er Conde del Guácharo",
+      "Elegir a Emilio Lovera",
+      "Elegir a Maite Delgado",
+      "Elegir a Óscar D’León",
+      "Elegir a José Luis Rodríguez",
+      "Elegir a Luis Chataing",
+      "Elegir a George Harris",
+      "Elegir a María Corina Machado"
+    ],
+    "rivalIds": [
+      "john",
+      "kilometro",
+      "javier",
+      "capriles",
+      "renny",
+      "gomez",
+      "simon",
+      "conde",
+      "emilio",
+      "maite",
+      "oscar",
+      "puma",
+      "chataing",
+      "george",
+      "mcm"
+    ],
+    "voiceControls": {
+      "noGomez": true,
+      "fallbackFile": "/audio/john/original-select.mp3",
+      "voicesMuted": true,
+      "allMuted": true,
+      "speechStarts": [
+        1.42
+      ]
+    },
+    "accentInsensitiveSearch": {
+      "cards": [
+        "Elegir a María Corina Machado"
+      ],
+      "indices": [
+        "15MOVILIDADMaría"
+      ]
+    },
+    "voiceDetails": {
+      "dialog": "María Corina MachadoMOVILIDADLa marcha firmeCamisa blanca, cabello largo y paso decidido. Avanza con un salto bajo que convierte el especial en una herramienta de ataque y recuperación.María Corina Machado PariscaPolítica venezolana de presencia firme y directa. Las fotos de campaña muestran piel clara, rostro alargado, cejas oscuras muy definidas, nariz estrecha recta, ojos expresivos y cabello castaño muy oscuro, liso y largo, con raya ligeramente lateral y recogido detrás de las orejas. En las referencias aparece con camisa blanca de cuello y botones; una foto de acto también muestra jeans azul oscuro y cinturón. El atlas conserva esa ropa de campaña sencilla; el cinturón, los jeans completos y los zapatos blancos son decisiones prácticas de diseño porque las fotos no muestran siempre el cuerpo entero. La guardia alta y los pasos de combate son licencias ficticias del juego.SelecciónEspecialVictoria Escuchar a María CorinaFragmento de voz original“Tenemos las pruebas en las actas oficiales.” Fuente · 39.3–42.5 sFotos, videos y referencias“Esto es mucho más que una lucha electoral o política”: la entrevista completa con María Corina Machado — Noticias Telemundo (16 agosto 2024) Election campaign 2024 Venezuela 10.jpg — Wikimedia Commons 2024 Venezuelan presidential election 09.jpg — Wikimedia Commons Marcha firmeL Especial · 25 de energíaTu libro de combosPaso decididoListo para pelearJ → KImpulso dobleGana 1 pelea con María Corina (0/1)J → J → KHasta el finalGana 3 peleas con María Corina (0/3)IElegir a María Corina ",
+      "buttons": [
+        {
+          "name": "Cerrar",
+          "disabled": false
+        },
+        {
+          "name": " Escuchar a María Corina",
+          "disabled": false
+        },
+        {
+          "name": "Elegir a María Corina ",
+          "disabled": false
+        }
+      ],
+      "voiceOptions": [
+        {
+          "text": "Selección",
+          "value": "select",
+          "disabled": false
+        },
+        {
+          "text": "Especial",
+          "value": "special",
+          "disabled": true
+        },
+        {
+          "text": "Victoria",
+          "value": "win",
+          "disabled": false
+        }
+      ],
+      "source": "https://www.telemundo.com/noticias/noticias-telemundo/internacional/video/esto-es-mucho-mas-que-una-lucha-electoral-o-politica-la-entrevista-completa-con-maria-tmvo12733828"
+    },
+    "mobile": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "cards": 15,
+      "grid": {
+        "client": 550,
+        "scroll": 982,
+        "overflow": "auto"
+      },
+      "inputs": 0
+    },
+    "portraitCenterX": [
+      {
+        "id": "john",
+        "center": 293,
+        "width": 512,
+        "frames": 8
+      },
+      {
+        "id": "kilometro",
+        "center": 230,
+        "width": 443.5,
+        "frames": 8
+      },
+      {
+        "id": "javier",
+        "center": 226,
+        "width": 443.5,
+        "frames": 8
+      },
+      {
+        "id": "capriles",
+        "center": 249,
+        "width": 512,
+        "frames": 8
+      },
+      {
+        "id": "renny",
+        "center": 239,
+        "width": 443.5,
+        "frames": 8
+      },
+      {
+        "id": "gomez",
+        "center": 338,
+        "width": 512,
+        "frames": 8
+      },
+      {
+        "id": "simon",
+        "center": 230,
+        "width": 443,
+        "frames": 8
+      },
+      {
+        "id": "conde",
+        "center": 209,
+        "width": 443.5,
+        "frames": 8
+      },
+      {
+        "id": "emilio",
+        "center": 207,
+        "width": 384,
+        "frames": 8
+      },
+      {
+        "id": "maite",
+        "center": 217,
+        "width": 384,
+        "frames": 8
+      },
+      {
+        "id": "oscar",
+        "center": 180,
+        "width": 384,
+        "frames": 8
+      },
+      {
+        "id": "puma",
+        "center": 189,
+        "width": 384,
+        "frames": 8
+      },
+      {
+        "id": "chataing",
+        "center": 197,
+        "width": 384,
+        "frames": 8
+      },
+      {
+        "id": "george",
+        "center": 235,
+        "width": 384,
+        "frames": 8
+      },
+      {
+        "id": "mcm",
+        "center": 205,
+        "width": 443.5,
+        "frames": 8
+      }
+    ],
+    "combat": {
+      "mode": "local",
+      "characters": [
+        "maite",
+        "george"
+      ],
+      "initialHealth": [
+        100,
+        100
+      ],
+      "finalHealth": [
+        70,
+        75
+      ],
+      "remainingSeconds": 78,
+      "paused": true,
+      "originalVoiceCaptions": [
+        {
+          "text": "Maite¡Buenas noches, Poliedro de Caracas!",
+          "at": 1791450447344
+        },
+        {
+          "text": "George¿Qué te dijo el psicólogo, mi amor?",
+          "at": 1791450456035
+        },
+        {
+          "text": "Maite¡Buenas noches, Poliedro de Caracas!",
+          "at": 1791450458636
+        }
+      ],
+      "decodedVoicePlayback": [
+        {
+          "duration": 3.4,
+          "at": 1791450447316
+        },
+        {
+          "duration": 1.7,
+          "at": 1791450456019
+        },
+        {
+          "duration": 3.4,
+          "at": 1791450458625
+        }
+      ],
+      "notes": [
+        "Keyboard actions were sent through the live game UI.",
+        "The browser evaluation response disconnected, but the script completed; page state, captions and audio events were recovered on the next call.",
+        "No match state was injected or mocked."
+      ]
+    },
+    "anonymousPrivateRoom": {
+      "character": "mcm",
+      "noAccountFields": true,
+      "created": true,
+      "ready": true,
+      "excludedFromPublicListing": true,
+      "left": true
+    },
+    "userPreferencesAndProgressRestored": true,
+    "finalGallery": {
+      "width": 728,
+      "contentHeight": 3340,
+      "consoleMessages": []
+    }
+  },
+  "limitations": [
+    "No verified original historical speech was found for Juan Vicente Gómez; no actor or synthesized replacement is served.",
+    "Research dossiers distinguish source/context verification and automatic transcription from human listening.",
+    "The native browser recording has no audio stream. The demonstration export mixes only the actual original voice excerpts at the recorded browser playback times; procedural combat sounds were not captured.",
+    "Online room creation was checked in the browser. Two-client fight, rematch and disconnect behavior was checked with real WebSocket integration tests."
+  ],
+  "review": {
+    "gallery": "docs/character-preview.html",
+    "video": "docs/videos/maite-vs-george-v3.mp4",
+    "videoProvenance": "docs/videos/maite-vs-george-v3.json",
+    "sources": "docs/characters-v3/"
+  }
+}

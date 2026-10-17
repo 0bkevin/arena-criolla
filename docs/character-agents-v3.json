@@ -1,0 +1,97 @@
+{
+  "version": 3,
+  "model": "gpt-6-luna",
+  "reasoningEffort": "high",
+  "agents": [
+    {
+      "character": "john",
+      "agent": "/root/luna_john",
+      "status": "completed",
+      "package": "docs/characters-v3/john.json"
+    },
+    {
+      "character": "kilometro",
+      "agent": "/root/luna_kilometro",
+      "status": "completed",
+      "package": "docs/characters-v3/kilometro.json"
+    },
+    {
+      "character": "javier",
+      "agent": "/root/luna_javier",
+      "status": "completed",
+      "package": "docs/characters-v3/javier.json"
+    },
+    {
+      "character": "capriles",
+      "agent": "/root/luna_capriles",
+      "status": "completed",
+      "package": "docs/characters-v3/capriles.json"
+    },
+    {
+      "character": "renny",
+      "agent": "/root/luna_renny",
+      "status": "completed",
+      "package": "docs/characters-v3/renny.json"
+    },
+    {
+      "character": "gomez",
+      "agent": "/root/luna_gomez",
+      "status": "completed",
+      "package": "docs/characters-v3/gomez.json"
+    },
+    {
+      "character": "simon",
+      "agent": "/root/luna_simon",
+      "status": "completed",
+      "package": "docs/characters-v3/simon.json"
+    },
+    {
+      "character": "conde",
+      "agent": "/root/luna_conde",
+      "status": "completed",
+      "package": "docs/characters-v3/conde.json"
+    },
+    {
+      "character": "emilio",
+      "agent": "/root/luna_emilio",
+      "status": "completed",
+      "package": "docs/characters-v3/emilio.json"
+    },
+    {
+      "character": "maite",
+      "agent": "/root/luna_maite",
+      "status": "completed",
+      "package": "docs/characters-v3/maite.json"
+    },
+    {
+      "character": "oscar",
+      "agent": "/root/luna_oscar",
+      "status": "completed",
+      "package": "docs/characters-v3/oscar.json"
+    },
+    {
+      "character": "puma",
+      "agent": "/root/luna_puma",
+      "status": "completed",
+      "package": "docs/characters-v3/puma.json"
+    },
+    {
+      "character": "chataing",
+      "agent": "/root/luna_chataing",
+      "status": "completed",
+      "package": "docs/characters-v3/chataing.json"
+    },
+    {
+      "character": "george",
+      "agent": "/root/luna_george",
+      "status": "completed",
+      "package": "docs/characters-v3/george.json"
+    },
+    {
+      "character": "mcm",
+      "agent": "/root/luna_mcm",
+      "status": "completed",
+      "package": "docs/characters-v3/mcm.json"
+    }
+  ]
+}

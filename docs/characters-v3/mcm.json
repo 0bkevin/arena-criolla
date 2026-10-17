@@ -1,0 +1,83 @@
+{
+  "id": "mcm",
+  "realName": "María Corina Machado Parisca",
+  "sprite": "mcm-v3",
+  "portraitReference": "assets/references/mcm/election-2024-09.jpg",
+  "portrayal": "Política venezolana de presencia firme y directa. Las fotos de campaña muestran piel clara, rostro alargado, cejas oscuras muy definidas, nariz estrecha recta, ojos expresivos y cabello castaño muy oscuro, liso y largo, con raya ligeramente lateral y recogido detrás de las orejas. En las referencias aparece con camisa blanca de cuello y botones; una foto de acto también muestra jeans azul oscuro y cinturón. El atlas conserva esa ropa de campaña sencilla; el cinturón, los jeans completos y los zapatos blancos son decisiones prácticas de diseño porque las fotos no muestran siempre el cuerpo entero. La guardia alta y los pasos de combate son licencias ficticias del juego.",
+  "sources": [
+    {
+      "title": "“Esto es mucho más que una lucha electoral o política”: la entrevista completa con María Corina Machado — Noticias Telemundo (16 agosto 2024)",
+      "url": "https://www.telemundo.com/noticias/noticias-telemundo/internacional/video/esto-es-mucho-mas-que-una-lucha-electoral-o-politica-la-entrevista-completa-con-maria-tmvo12733828"
+    },
+    {
+      "title": "Election campaign 2024 Venezuela 10.jpg — Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/wiki/File:Election_campaign_2024_Venezuela_10.jpg"
+    },
+    {
+      "title": "2024 Venezuelan presidential election 09.jpg — Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/wiki/File:2024_Venezuelan_presidential_election_09.jpg"
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/mcm/campaign-2024-10.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Election_campaign_2024_Venezuela_10.jpg"
+    },
+    {
+      "file": "assets/references/mcm/election-2024-09.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:2024_Venezuelan_presidential_election_09.jpg"
+    }
+  ],
+  "distinctiveTraits": [
+    "Cabello castaño muy oscuro, liso y largo, con raya ligeramente lateral y mechones recogidos detrás de las orejas.",
+    "Rostro adulto alargado, cejas oscuras y marcadas, nariz estrecha y recta, boca expresiva y mirada firme.",
+    "Piel clara y complexión esbelta de adulta de finales de sus cincuenta; conservar anatomía natural.",
+    "Camisa de campaña blanca con cuello y mangas arremangadas, jeans azul oscuro, cinturón marrón y pequeños pendientes tipo perla; parte del conjunto inferior se completa por decisión de diseño.",
+    "Postura erguida y guardia compacta, inspiradas en su presencia decidida ante las cámaras; los golpes y patadas son movimientos ficticios del juego."
+  ],
+  "suggestedMoves": [
+    "Actas oficiales: paso breve hacia delante con un golpe recto; efecto visual de hojas abstractas como recurso del juego, sin texto legible.",
+    "Hasta el final: bloquea con ambos antebrazos y responde con un avance corto.",
+    "Voz de campaña: gesto firme con la mano abierta que se transforma en una embestida corta; sin atribuirle frases sintéticas.",
+    "Paso de gira: dos pasos rápidos y un golpe frontal con el puño, como adaptación de videojuego a su recorrido por actos públicos."
+  ],
+  "lines": {
+    "select": {
+      "text": "Tenemos las pruebas en las actas oficiales.",
+      "file": "/audio/mcm/original-select.mp3",
+      "kind": "original",
+      "sourceUrl": "https://www.telemundo.com/noticias/noticias-telemundo/internacional/video/esto-es-mucho-mas-que-una-lucha-electoral-o-politica-la-entrevista-completa-con-maria-tmvo12733828",
+      "sourceMediaUrl": "https://prodamdnbcmobile.akamaized.net/NBCU_Telemundo/900/215/1723840944106_35859628254-288ptelemundo.mp4",
+      "start": 39.34,
+      "end": 42.5,
+      "verification": "La página de Noticias Telemundo identifica la entrevista completa con María Corina Machado y la presenta como invitada; el intercambio transcrito empieza con la presentadora dirigiéndose a ella por su nombre. El fotograma de contexto de 40 s está guardado en assets/references/mcm/interview-frame-40s.jpg y muestra a Machado hablando. ASR local sitúa “Tenemos las pruebas en las actas oficiales” entre 39.34 y 42.36 s de la entrevista. El recorte dura 3.16 s. ASR solo comprueba las palabras y su ubicación, no identidad acústica ni escucha humana."
+    },
+    "win": {
+      "text": "El mundo entero sabe que fue absolutamente derrotado.",
+      "file": "/audio/mcm/original-win.mp3",
+      "kind": "original",
+      "sourceUrl": "https://www.telemundo.com/noticias/noticias-telemundo/internacional/video/esto-es-mucho-mas-que-una-lucha-electoral-o-politica-la-entrevista-completa-con-maria-tmvo12733828",
+      "sourceMediaUrl": "https://prodamdnbcmobile.akamaized.net/NBCU_Telemundo/900/215/1723840944106_35859628254-288ptelemundo.mp4",
+      "start": 35.52,
+      "end": 39.24,
+      "verification": "Es una respuesta de Machado dentro de la entrevista completa de Noticias Telemundo, cuya página la identifica por nombre y la presenta hablando sobre la situación venezolana tras las elecciones. El fotograma de contexto de 36 s está guardado en assets/references/mcm/interview-frame-36s.jpg y muestra a Machado hablando. ASR local transcribe estas palabras entre 35.52 y 39.24 s. El recorte dura 3.72 s. ASR solo comprueba las palabras y su ubicación, no identidad acústica ni escucha humana."
+    }
+  },
+  "audioResearch": {
+    "status": "verified-original-clips",
+    "limitations": "Dos recortes hablados de la entrevista original publicada por Noticias Telemundo, con la invitada identificada en la página y por la presentación de la entrevista. Ambos provienen del mismo archivo de video y se conservan a velocidad, tono y timbre originales. ASR local coteja palabras y tiempos, pero no prueba la identidad de la voz ni equivale a escucha humana. No se halló ni inventó una tercera frase para special."
+  },
+  "atlasReview": {
+    "poseOrder": [
+      "idle",
+      "block",
+      "runA",
+      "runB",
+      "jump",
+      "punch",
+      "highKick",
+      "hurt"
+    ],
+    "correction": "Atlas editorial cel-shaded generado con dos fotos reales inspeccionadas como referencias de identidad y la imagen de Capriles-v2 solo como guía de estilo. Revisión visual confirma ocho siluetas adultas completas, camisa blanca, cabello oscuro liso y largo, cuadrícula 4×2 y transparencia alfa; el validador del proyecto comprueba su formato y separación."
+  }
+}

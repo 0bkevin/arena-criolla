@@ -1,0 +1,50 @@
+{
+  "id": "gualberto",
+  "name": "Gualberto Ibarreto",
+  "biography": "Intérprete de música oriental venezolana, con repertorio de galerón, malagueña y polo. El cuatro y los gestos cercanos al público orientan el diseño.",
+  "portraitReference": "assets/references/culture-v15/gualberto/portrait.jpg",
+  "distinctiveTraits": [
+    "Rostro maduro limpio de barba, nariz marcada y sonrisa amplia.",
+    "Sombrero de paja y polo amarillo con rayas oscuras, rojas y blancas; cuatro a la cadera."
+  ],
+  "portrayal": "Rostro maduro limpio de barba, nariz marcada y sonrisa amplia. Sombrero de paja y polo amarillo con rayas oscuras, rojas y blancas; cuatro a la cadera. Las acciones de pelea son ficción.",
+  "sources": [
+    {
+      "title": "El Estímulo — entrevista con Gualberto Ibarreto",
+      "url": "https://elestimulo.com/cultura/musica/2022-08-26/gualberto-ibarreto-la-gratificacion-mas-grande-es-ser-querido-por-toda-venezuela/"
+    },
+    {
+      "title": "Referencia fotográfica inspeccionada — Gualberto Ibarreto",
+      "url": "https://elestimulo.com/cultura/musica/2022-08-26/gualberto-ibarreto-la-gratificacion-mas-grande-es-ser-querido-por-toda-venezuela/"
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/culture-v15/gualberto/portrait.jpg",
+      "url": "https://media.elestimulo.com/uploads/2022/08/FOTO-PRINCIPAL-Foto-cortesia-Aleidy-Coll1.jpg",
+      "sourcePage": "https://elestimulo.com/cultura/musica/2022-08-26/gualberto-ibarreto-la-gratificacion-mas-grande-es-ser-querido-por-toda-venezuela/",
+      "viewed": true
+    }
+  ],
+  "gameplay": {
+    "special": "Tremolo oriental",
+    "ability": "tremolo",
+    "description": "Sombrero de paja, polo amarillo y cuatro. Dos notas se separan y regresan; controla tanto la ida como la vuelta.",
+    "combos": [
+      "Cerecita",
+      "Galerón cruzado",
+      "Doble tremolo"
+    ],
+    "role": "RETORNO"
+  },
+  "audio": {
+    "realVoice": false,
+    "reactions": "Esfuerzos y dolor genéricos sin palabras",
+    "specialCue": "tremolo"
+  },
+  "review": {
+    "identityVerified": true,
+    "portraitViewed": true,
+    "biographyReviewed": true
+  }
+}

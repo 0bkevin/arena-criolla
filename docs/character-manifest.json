@@ -1,0 +1,2712 @@
+{
+  "version": 15,
+  "characters": {
+    "zavarce": {
+      "id": "zavarce",
+      "realName": "Vicente Zavarce",
+      "sprite": "zavarce-v5",
+      "portraitReference": "assets/references/zavarce/startupeable-vicente.png",
+      "portrayal": "Retrato de Vicente Zavarce, fundador y CEO de Yummy. Usar como rasgos principales el rostro ovalado, cejas oscuras, cabello castaño muy oscuro peinado hacia atrás y barba y bigote conectados, cortos y recortados. La referencia principal lo muestra con lentes negros rectangulares y camiseta negra lisa; una fotografía de Yummy Rocket lo muestra sin lentes y con chaqueta clara de detalles morados. Mantener un atuendo coherente con el retrato de Yummy Rocket para el luchador. Las poses y ataques son ficción de videojuego.",
+      "sources": [
+        {
+          "title": "Startupeable — entrevista en español con Vicente Zavarce, CEO y cofundador de Yummy",
+          "url": "https://startupeable.com/yummy/"
+        },
+        {
+          "title": "Feed RSS oficial de Startupeable, episodio 055",
+          "url": "https://feeds.captivate.fm/startupeable/"
+        },
+        {
+          "title": "Semilla.VC — entrevista con Vicente Zavarce, fundador y CEO de Yummy",
+          "url": "https://semillavc.podbean.com/e/vincente-zavarce-yummy-yc-s21-founder-ceo-semillavc-interview/"
+        },
+        {
+          "title": "Rest of World — The man who built Venezuela’s only delivery app",
+          "url": "https://restofworld.org/2020/the-man-behind-venezuelas-only-delivery-app/"
+        },
+        {
+          "title": "Rest of World — perfil y retrato de Vicente Zavarce",
+          "url": "https://restofworld.org/profile/vicente-zavarce/"
+        }
+      ],
+      "distinctiveTraits": [
+        "Cabello castaño muy oscuro, abundante, peinado hacia atrás y con volumen arriba.",
+        "Rostro ovalado, cejas oscuras marcadas, nariz recta y barba con bigote conectados y recortados.",
+        "Lentes negros rectangulares visibles en la portada de Startupeable; sin lentes en el retrato Yummy Rocket.",
+        "Chaqueta clara Yummy Rocket de detalles morados sobre camiseta negra en la foto editorial de Rest of World."
+      ],
+      "suggestedMoves": [
+        {
+          "name": "Pedido relámpago",
+          "description": "Avanza con un impulso veloz y encadena dos golpes breves; habilidad ficticia inspirada en el servicio de entrega rápida de Yummy."
+        },
+        {
+          "name": "Ruta optimizada",
+          "description": "Esquiva hacia un lado y reaparece con un golpe de hombro; recurso de juego inspirado en la coordinación de rutas de una plataforma de delivery."
+        },
+        {
+          "name": "Combo Súper App",
+          "description": "Cierra una secuencia de golpes con una embestida marcada por un destello verde y morado; remate ficticio ligado a la identidad visual de Yummy."
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/zavarce/startupeable-vicente.png",
+          "url": "https://startupeable.com/wp-content/uploads/2022/02/Vicente-Zavarce-Yummy.png",
+          "sourcePage": "https://startupeable.com/yummy/",
+          "credit": "Startupeable",
+          "viewed": true
+        },
+        {
+          "file": "assets/references/zavarce/restofworld-2022-vicente.png",
+          "url": "https://fastly.restofworld.org/uploads/2022/05/LatinAmerica-VicenteZavarceEDITED.png?crop=1%3A1&dpr=2&width=900",
+          "sourcePage": "https://restofworld.org/profile/vicente-zavarce/",
+          "credit": "Rest of World / cortesía de Yummy",
+          "viewed": true
+        },
+        {
+          "file": "assets/references/zavarce/restofworld-portrait.jpg",
+          "url": "https://fastly.restofworld.org/uploads/2020/12/yummyheader-1.jpeg?crop=16%3A9&dpr=2&width=1200",
+          "sourcePage": "https://restofworld.org/2020/the-man-behind-venezuelas-only-delivery-app/",
+          "credit": "Rest of World / cortesía de Yummy",
+          "viewed": true,
+          "note": "Foto de contexto con cabeza cortada por el encuadre; sirve para vestuario y branding, no como referencia principal del rostro."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Confirma y señala el pedido",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "vallenilla": {
+      "id": "vallenilla",
+      "realName": "Pedro Julio Vallenilla Sosa",
+      "sprite": "vallenilla-v5",
+      "portraitReference": "assets/references/vallenilla/forbes-cashea.jpg",
+      "portrayal": "Representar a Pedro Vallenilla, fundador y CEO de Cashea, con sus rasgos documentados en retratos editoriales y corporativos: frente amplia con entradas pronunciadas, cabello castaño oscuro corto peinado hacia un lado y barba corta conectada con bigote. El atlas usa la camisa azul clara a cuadros, con mangas recogidas, documentada por Banca y Negocios; el rostro se basa en el retrato de Forbes Chile. La silueta de luchador, las poses y las técnicas son ficción de juego.",
+      "sources": [
+        {
+          "title": "Cashea — sitio oficial",
+          "url": "https://www.cashea.app/"
+        },
+        {
+          "title": "Startupeable — entrevista en video y audio a Pedro Vallenilla, CEO y cofundador de Cashea (14 de mayo de 2025)",
+          "url": "https://startupeable.com/cashea/"
+        },
+        {
+          "title": "Forbes Chile — entrevista a Pedro Vallenilla; foto acreditada a Cashea",
+          "url": "https://forbes.cl/negocios/2026-07-24/cachea-la-fintech-venezolana-con-raices-chilenas-que-le-ha-devuelto-el-credito-a-venezuela/"
+        },
+        {
+          "title": "Banca y Negocios — entrevista y retrato de Pedro Vallenilla Sosa",
+          "url": "https://www.bancaynegocios.com/exclusivo-cashea-un-fenomeno-social-que-aspira-duplicar-su-mercado-en-2026/"
+        }
+      ],
+      "distinctiveTraits": [
+        "Rostro adulto de tez clara, frente muy amplia y entradas pronunciadas.",
+        "Cabello castaño oscuro, corto y peinado hacia un lado; cejas oscuras y ojos oscuros.",
+        "Bigote conectado con barba corta y tupida en mandíbula y mentón; no lleva gafas en los retratos inspeccionados.",
+        "Forbes Chile muestra camiseta negra de cuello redondo; Banca y Negocios muestra camisa azul clara a cuadros y cuello abierto."
+      ],
+      "suggestedMoves": [
+        "Cuota inicial: avance corto con un golpe al cuerpo y un paso lateral.",
+        "Línea de crédito: combo ficticio de golpes rápidos que aumenta de alcance por etapas.",
+        "Cierre de caja: especial ficticio que encadena cuatro impactos y termina con pose de victoria."
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Presenta una tarjeta",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "javier": {
+      "id": "javier",
+      "realName": "Javier David Romero (Javier Hala Madrid)",
+      "sprite": "javier-v2",
+      "portraitReference": "assets/references/javier/version-final-portrait-2021.jpg",
+      "portrayal": "Retratar a Javier como creador venezolano de sketches satíricos que cambia rápido de expresión y personaje. La foto de prensa verifica su rostro y camiseta negra con cadena; el atlas v2 ya conserva esos rasgos y sus ocho poses separadas. En sus propios TikToks también aparece con polos casuales y ropa negra.",
+      "sources": [
+        {
+          "title": "Canal oficial JAVIERHALAMADRID / Canal Oficial",
+          "url": "https://t.me/s/Javierhalamadridd?after=487"
+        },
+        {
+          "title": "Post 490 — sketch de reacción al texto sobre el machismo",
+          "url": "https://t.me/Javierhalamadridd/490"
+        },
+        {
+          "title": "Foto de Javier publicada por Diario Versión Final",
+          "url": "https://diarioversionfinal.com/magazine/influencer-javier-halamadrid-nominado-a-los-premios-juventud-2021/"
+        },
+        {
+          "title": "Canal de YouTube enlazado por el perfil oficial de Telegram",
+          "url": "https://www.youtube.com/c/JavierRomero321"
+        }
+      ],
+      "distinctiveTraits": [
+        "Copete negro alto peinado hacia atrás y arriba, laterales más cortos.",
+        "Rostro ovalado, frente amplia, cejas marcadas, orejas visibles, nariz redondeada y sonrisa amplia.",
+        "Expresiones cambiantes y señalamiento enfático al reaccionar a textos o videos.",
+        "Camiseta negra y cadena fina plateada en la foto de prensa; vestuario casual variable en sus sketches."
+      ],
+      "suggestedMoves": [
+        "Reacción de cejas elevadas seguida por mirada de incredulidad.",
+        "Señalar al rival mientras encadena una secuencia rápida de golpes.",
+        "Cambio cómico de expresión antes del remate especial."
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Cruza los brazos y mira al rival",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "capriles": {
+      "id": "capriles",
+      "realName": "Henrique Capriles Radonski",
+      "sprite": "capriles-v22",
+      "portraitReference": "assets/references/capriles/likeness-v22/tricolor-closeup-2012.jpg",
+      "portrayal": "Henrique Capriles en el atuendo casual solicitado: gorra tricolor, camisa gris con mangas recogidas, jeans y tenis blancos; sin lentes. Rostro rehecho desde primeros planos reales: óvalo alargado, mandíbula y mentón redondeados, nariz con punta y alas más anchas, cejas naturales, ojos con párpados y sonrisa con pliegues nasolabiales y barba incipiente. Se prioriza parecido fotográfico frente a la caricatura angular anterior. Todas las poses son ficción de combate.",
+      "sources": [
+        {
+          "title": "Referencia facial: tricolor-closeup-2012.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_Radonski_2.jpg",
+          "kind": "photographic-likeness-reference",
+          "date": "2012-08-26",
+          "note": "Primer plano nítido con gorra tricolor. Referencia principal de anatomía y ropa; foto de archivo, no de 2026."
+        },
+        {
+          "title": "Referencia facial: casual-frontal-2022.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_2022.jpg",
+          "kind": "photographic-likeness-reference",
+          "date": "2022-11-05",
+          "note": "Vista frontal: relación entre ojos, nariz, boca y orejas. No se copia la barba completa ni la gorra alternativa."
+        },
+        {
+          "title": "Referencia facial: contemplation-2026.jpg",
+          "url": "https://english.elpais.com/international/2026-02-01/henrique-capriles-venezuelans-will-not-settle-for-just-a-reshuffling-of-power.html",
+          "kind": "photographic-likeness-reference",
+          "date": "2026-01-19",
+          "note": "Primer plano lateral adulto y textura de piel; mismo evento ya documentado en el dossier anterior. Lentes y traje excluidos del atuendo casual solicitado."
+        },
+        {
+          "title": "Referencia facial: efe-interview-2025.webp",
+          "url": "https://efe.com/mundo/2025-05-23/henrique-capriles-venezuela/",
+          "kind": "photographic-likeness-reference",
+          "date": "2025-05-23",
+          "note": "Fecha de publicación verificada; vista frontal/oblicua con expresión hablando. Se utiliza para contrastar anatomía, no lentes o chaqueta."
+        },
+        {
+          "title": "Henrique Capriles — visita publicada en su Instagram oficial",
+          "url": "https://www.instagram.com/p/Ddr8Tz5RAAM/",
+          "kind": "official-video",
+          "publishedAt": "2026-09-24T22:21:25.000Z",
+          "inspectedFramesSeconds": [
+            7,
+            27
+          ],
+          "note": "Video original de 46.37 s. Fecha verificada en el elemento time del post y fotogramas inspeccionados en navegador. Gorra gris, lentes ópticos, chemise verde oscuro, jeans y taza; la gorra tricolor y camisa gris del juego provienen de la referencia del usuario, no de este clip."
+        },
+        {
+          "title": "Entrevista con Román Lozinski — clips publicados por Caraota Digital",
+          "url": "https://tucaraotadigital.com/venezuela/apoyara-a-maria-corina-el-perlazo-de-capriles-sobre-la-posible-fecha-para-las-elecciones-presidenciales/",
+          "kind": "published-video-clips",
+          "publishedAt": "2026-09-15",
+          "inspectedFramesSeconds": [
+            3,
+            8
+          ],
+          "note": "Dos clips descargados y fotogramas inspeccionados: rostro maduro alargado, sienes grises, lentes, camisa verde y chaqueta negra; manos y rostro expresivos al hablar. Se verifica fecha de publicación; no se dispone de metadatos independientes de fecha de grabación."
+        },
+        {
+          "title": "Cazadores de Fake News — verifica la procedencia del video del 24 de septiembre",
+          "url": "https://storage.googleapis.com/qurium/www.cazadoresdefakenews.info/video-de-capriles-sin-camisa-y-con-sombrero-de-pirata-creado-con-ia.html",
+          "kind": "video-provenance-verification",
+          "publishedAt": "2026-09-29",
+          "note": "Vincula el post original de hcapriles y distingue el material auténtico con chemise y gorra de una edición falsa; no se utiliza esa edición como referencia."
+        },
+        {
+          "title": "Henrique Capriles: Los venezolanos no nos vamos a conformar solo con un reacomodo en el poder — El País",
+          "url": "https://elpais.com/america/2026-01-25/henrique-capriles-los-venezolanos-no-nos-vamos-a-conformar-solo-con-un-reacomodo-en-el-poder.html",
+          "kind": "published-interview-and-photographs",
+          "note": "La entrevista nombra a Capriles y acredita las fotos de Gaby Oraa (oficina, 23 de enero de 2026) y Miguel Gutiérrez/EFE (rueda de prensa, 19 de enero)."
+        },
+        {
+          "title": "Henrique Capriles Radonski in Margarita International Airport — Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_Radonski_in_Margarita_International_Airport.JPG",
+          "kind": "photographic-reference",
+          "note": "Fotografía de Wilfredor/Wilfredo Rodríguez, fechada el 26 de agosto de 2012; consultada para confirmar el rostro y contexto de la gorra tricolor, cuyo estilo tricolor se adopta en v21 a petición del usuario."
+        },
+        {
+          "title": "Rueda de prensa de Capriles Radonski 2 — Canal Comunidad en iVoox",
+          "url": "https://www.ivoox.com/rueda-prensa-capriles-radonski-2-audios-mp3_rf_1138310_1.html",
+          "kind": "archival-press-conference-audio",
+          "note": "La página identifica el audio como rueda de prensa del candidato Henrique Capriles Radonski. La ficha lo fecha el 29 de marzo de 2012 y da una duración de 26:24."
+        }
+      ],
+      "distinctiveTraits": [
+        "Rostro ovalado alargado con mandíbula suave y mentón redondeado; nariz larga con punta y alas nasales redondeadas, cejas relativamente rectas y ojos pequeños con párpados marcados.",
+        "Sonrisa y pliegues alrededor de boca y ojos basados en primeros planos reales; barba incipiente gris oscura, orejas prominentes con lóbulos redondeados.",
+        "Gorra tricolor con estrellas y camisa gris conservadas según la foto del usuario; los retratos de archivo se distinguen de los videos recientes.",
+        "Ocho poses con mayor detalle facial, todas orientadas a la derecha y reflejadas por el motor para mirar al rival."
+      ],
+      "suggestedMoves": [
+        {
+          "name": "Paso de campaña",
+          "description": "Avanza con paso ágil y guardia ligera; recurso ficticio de juego inspirado en su silueta delgada."
+        },
+        {
+          "name": "Defensa abierta",
+          "description": "Bloqueo compacto con las manos levantadas; animación de combate ficticia."
+        },
+        {
+          "name": "Línea directa",
+          "description": "Puñetazo recto hacia delante; nombre de fantasía sin cita política asociada."
+        },
+        {
+          "name": "Cambio de ritmo",
+          "description": "Patada lateral alta con apoyo estable; movimiento completamente ficticio."
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/capriles/likeness-v22/tricolor-closeup-2012.jpg",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Henrique_Capriles_Radonski_2.jpg",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_Radonski_2.jpg",
+          "date": "2012-08-26",
+          "credit": "Wilfredor",
+          "license": "CC0 1.0",
+          "viewed": true,
+          "note": "Primer plano nítido con gorra tricolor. Referencia principal de anatomía y ropa; foto de archivo, no de 2026."
+        },
+        {
+          "file": "assets/references/capriles/likeness-v22/casual-frontal-2022.jpg",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Henrique_Capriles_2022.jpg",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_2022.jpg",
+          "date": "2022-11-05",
+          "credit": "SantanaZ",
+          "license": "CC0 1.0",
+          "viewed": true,
+          "note": "Vista frontal: relación entre ojos, nariz, boca y orejas. No se copia la barba completa ni la gorra alternativa."
+        },
+        {
+          "file": "assets/references/capriles/likeness-v22/contemplation-2026.jpg",
+          "url": "https://cloudfront-eu-central-1.images.arcpublishing.com/prisa/NKJ5X6DJAVOMHGSBTNG4N4K7YE.jpg",
+          "sourcePage": "https://english.elpais.com/international/2026-02-01/henrique-capriles-venezuelans-will-not-settle-for-just-a-reshuffling-of-power.html",
+          "date": "2026-01-19",
+          "credit": "Miguel Gutiérrez/EFE",
+          "viewed": true,
+          "note": "Primer plano lateral adulto y textura de piel; mismo evento ya documentado en el dossier anterior. Lentes y traje excluidos del atuendo casual solicitado."
+        },
+        {
+          "file": "assets/references/capriles/likeness-v22/efe-interview-2025.webp",
+          "url": "https://i0.wp.com/efe.com/wp-content/uploads/2025/05/OBJ_20250519T043018S0006I_1_1_1_39_3_1.webp?fit=900%2C599&ssl=1",
+          "sourcePage": "https://efe.com/mundo/2025-05-23/henrique-capriles-venezuela/",
+          "date": "2025-05-23",
+          "viewed": true,
+          "note": "Fecha de publicación verificada; vista frontal/oblicua con expresión hablando. Se utiliza para contrastar anatomía, no lentes o chaqueta."
+        },
+        {
+          "file": "assets/references/capriles/user-casual-tricolor.png",
+          "url": "/assets/references/capriles/user-casual-tricolor.png",
+          "kind": "user-supplied-style-reference",
+          "date": null,
+          "note": "Fecha no aportada; no se presenta como fotografía de los últimos tres meses.",
+          "viewed": true
+        },
+        {
+          "file": "assets/references/capriles/elpais-portrait-2026.jpg",
+          "url": "https://imagenes.elpais.com/resizer/v2/W6UBVWNI3ZEB3MI2N2MA6MP3NM.jpg?auth=29698deb776ca477f50ded700fb3b8e2f3f53cd256c028899f2804455825992b&width=1200",
+          "sourcePage": "https://elpais.com/america/2026-01-25/henrique-capriles-los-venezolanos-no-nos-vamos-a-conformar-solo-con-un-reacomodo-en-el-poder.html",
+          "date": "2026-01-23",
+          "credit": "Gaby Oraa",
+          "viewed": true
+        },
+        {
+          "file": "assets/references/capriles/commons-tricolor-2012.jpg",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Henrique_Capriles_Radonski_in_Margarita_International_Airport.JPG",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_Radonski_in_Margarita_International_Airport.JPG",
+          "date": "2012-08-26",
+          "credit": "Wilfredor / Wilfredo Rodríguez",
+          "license": "CC BY-SA 3.0",
+          "viewed": true
+        }
+      ],
+      "encoding": {
+        "runtimeAtlas": [
+          3072,
+          1536
+        ],
+        "source": "assets/source/capriles-v22.png",
+        "webp": "public/assets/capriles-v22.webp",
+        "lossless": true,
+        "effort": 6,
+        "packing": "scripts/pack-capriles-v22.mjs",
+        "validation": {
+          "status": "passed",
+          "command": "npm run check:assets",
+          "result": "Ocho siluetas aisladas y PNG/WebP idénticos en alfa y componentes. Se separan los componentes antes de empaquetar para excluir fragmentos de poses vecinas."
+        }
+      },
+      "recentVideoReview": {
+        "reviewedAt": "2026-10-09",
+        "window": {
+          "from": "2026-07-09",
+          "through": "2026-10-09"
+        },
+        "sources": [
+          {
+            "title": "Henrique Capriles — visita publicada en su Instagram oficial",
+            "url": "https://www.instagram.com/p/Ddr8Tz5RAAM/",
+            "kind": "official-video",
+            "publishedAt": "2026-09-24T22:21:25.000Z",
+            "inspectedFramesSeconds": [
+              7,
+              27
+            ],
+            "note": "Video original de 46.37 s. Fecha verificada en el elemento time del post y fotogramas inspeccionados en navegador. Gorra gris, lentes ópticos, chemise verde oscuro, jeans y taza; la gorra tricolor y camisa gris del juego provienen de la referencia del usuario, no de este clip."
+          },
+          {
+            "title": "Entrevista con Román Lozinski — clips publicados por Caraota Digital",
+            "url": "https://tucaraotadigital.com/venezuela/apoyara-a-maria-corina-el-perlazo-de-capriles-sobre-la-posible-fecha-para-las-elecciones-presidenciales/",
+            "kind": "published-video-clips",
+            "publishedAt": "2026-09-15",
+            "inspectedFramesSeconds": [
+              3,
+              8
+            ],
+            "note": "Dos clips descargados y fotogramas inspeccionados: rostro maduro alargado, sienes grises, lentes, camisa verde y chaqueta negra; manos y rostro expresivos al hablar. Se verifica fecha de publicación; no se dispone de metadatos independientes de fecha de grabación."
+          }
+        ],
+        "frameEvidence": [
+          "assets/references/capriles/recent-2026/2026-09-15-gestures-frame8.png",
+          "assets/references/capriles/recent-2026/2026-09-24-instagram-frame7.png",
+          "assets/references/capriles/recent-2026/2026-09-24-instagram-frame27.png"
+        ],
+        "stylePriority": "Foto proporcionada por el usuario. No se atribuye la gorra tricolor concreta a los videos recientes."
+      },
+      "generation": {
+        "mode": "built-in image_gen",
+        "promptSet": [
+          "docs/characters-v22/capriles-face-prompt.txt",
+          "docs/characters-v22/capriles-ready-final-prompt.txt",
+          "docs/characters-v22/capriles-action-final-prompt.txt"
+        ],
+        "replaces": "capriles-v21"
+      },
+      "likenessReview": {
+        "reviewedAt": "2026-10-09",
+        "reason": "El usuario rechazó el rostro angular y genérico de v21.",
+        "photoFiles": [
+          "assets/references/capriles/likeness-v22/tricolor-closeup-2012.jpg",
+          "assets/references/capriles/likeness-v22/casual-frontal-2022.jpg",
+          "assets/references/capriles/likeness-v22/contemplation-2026.jpg",
+          "assets/references/capriles/likeness-v22/efe-interview-2025.webp"
+        ],
+        "faceMaster": "assets/source/capriles-face-v22.png",
+        "method": "Inspección visual de fotografías reales frontal/oblicua/perfil; creación de retrato grande y dos hojas de cuatro poses con prioridad anatómica; comparación ampliada dentro del juego.",
+        "limitations": "La evaluación es visual, no una medida biométrica ni garantía de parecido perfecto. Las fotos de archivo no se presentan como fotos actuales."
+      },
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Saludo casual",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "renny": {
+      "id": "renny",
+      "realName": "Renaldo José Ottolina Pinto",
+      "sprite": "renny-v3",
+      "portraitReference": "assets/references/renny/photo-1960s.jpg",
+      "portrayal": "Presentador, locutor, productor y publicista venezolano. Representarlo como figura adulta de los años setenta, con cara larga y estrecha, nariz recta, sonrisa amplia, cabello oscuro peinado hacia atrás con raya lateral, entradas leves, sin barba y gafas negras rectangulares. El traje claro, camisa y corbata evocan su imagen de anfitrión televisivo documentada en archivo; las poses de combate son una licencia humorística del juego.",
+      "sources": [
+        {
+          "title": "Retrato de Renny Ottolina alrededor de los años sesenta, Wikimedia Commons (CC0)",
+          "url": "https://commons.wikimedia.org/wiki/File:Renny_Ottolina_circa_1960s.jpg"
+        },
+        {
+          "title": "Renny Ottolina en el estudio de El Show de Renny, Wikimedia Commons (CC BY-SA 4.0)",
+          "url": "https://commons.wikimedia.org/wiki/File:Renny_Ottolina.jpg"
+        },
+        {
+          "title": "Entrevista política a Renny Ottolina en Radio Continente, grabada en cassette en 1977 (historia archivística y republicaciones)",
+          "url": "https://karakenio.wordpress.com/2012/03/09/entrevista-politica-a-renny-ottolina-en-1977/"
+        },
+        {
+          "title": "Así lo dijo Renny Ottolina 3, episodio de Renny Ottolina a 34 años de su muerte; archivo radial de 52 segundos",
+          "url": "https://www.ivoox.com/en/asi-lo-dijo-renny-ottolina-3-audios-mp3_rf_1111292_1.html"
+        }
+      ],
+      "distinctiveTraits": [
+        "Rostro largo y estrecho, nariz recta y expresión vivaz, con sonrisa amplia al presentar.",
+        "Cabello oscuro peinado hacia atrás con raya lateral y entradas leves; rostro afeitado.",
+        "Gafas negras de montura rectangular, rasgo visible en fotografías de estudio y retratos archivísticos.",
+        "Traje de presentador de televisión, camisa clara y corbata; gestualidad de manos abierta y enfática."
+      ],
+      "suggestedMoves": [
+        "Dos pulsos al aire",
+        "En cadena",
+        "Doble anuncio",
+        "Buenas noches",
+        "El Número Uno"
+      ],
+      "photos": [
+        {
+          "file": "assets/references/renny/photo-1960s.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Renny_Ottolina_circa_1960s.jpg"
+        },
+        {
+          "file": "assets/references/renny/photo-commons.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Renny_Ottolina.jpg"
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Bienvenida con la palma abierta",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "gomez": {
+      "id": "gomez",
+      "realName": "Juan Vicente Gómez Chacón",
+      "sprite": "gomez-v3",
+      "portraitReference": "assets/references/gomez/1928-uniform.jpg",
+      "portrayal": "Juan Vicente Gómez (1857–1935), general y gobernante de facto de Venezuela entre 1908 y su muerte. El rostro combina retratos de 1910, 1928 y sus últimos años: adulto mayor de rostro ancho, nariz marcada, cejas pesadas, cabello corto peinado hacia atrás y bigote oscuro compacto. El uniforme de combate es una adaptación sobria del uniforme de servicio con cuello alto, gorra de plato, cinturón, bolsillos y botas que aparece en la fotografía de 1928. Las poses de combate son animación ficticia de videojuego, no episodios ni gestos históricos atribuidos a Gómez.",
+      "sources": [
+        {
+          "title": "Gen. Juan V. Gomez, Pres't Venez. (Library of Congress, George Grantham Bain Collection, 1910)",
+          "url": "https://www.loc.gov/pictures/item/2014695965/",
+          "kind": "primary-photograph",
+          "note": "Retrato de archivo contemporáneo; usado para rasgos faciales y bigote. La ficha declara que no hay restricciones conocidas de publicación."
+        },
+        {
+          "title": "Gómez, 1928 restored (Wikimedia Commons)",
+          "url": "https://commons.wikimedia.org/wiki/File:G%C3%B3mez,_1928_restored.jpg",
+          "kind": "archival-photograph-copy",
+          "note": "La ficha fecha el retrato en 1928; autor original desconocido y restauración atribuida a Wilfredor. Referencia principal para gorra y uniforme de cuello alto, bolsillos, correaje y hombreras discretas."
+        },
+        {
+          "title": "Gómez 1930s (Wikimedia Commons)",
+          "url": "https://commons.wikimedia.org/wiki/File:G%C3%B3mez_1930s.jpg",
+          "kind": "archival-photograph-reproduction",
+          "note": "La ficha identifica a Gómez en sus últimos años y atribuye la reproducción a Rostros y Personajes de Venezuela (El Nacional, 2002); fotógrafo original desconocido. Usada solo como referencia de edad y rostro tardío."
+        },
+        {
+          "title": "Gómez, 1910 (Library of Congress, George Grantham Bain Collection)",
+          "url": "https://commons.wikimedia.org/wiki/File:Gen._Juan_V._Gomez,_Pres%27t_Venez._LCCN2014695965.jpg",
+          "kind": "primary-photograph-copy",
+          "note": "Copia de la ficha LOC ggbain.15988, negativa de vidrio de Bain News Service."
+        },
+        {
+          "title": "Cine (Diccionario de Historia de Venezuela, Fundación Empresas Polar)",
+          "url": "https://bibliofep.fundacionempresaspolar.org/dhv/entradas/c/cine/",
+          "kind": "historical-film-research",
+          "note": "Resume el establecimiento de los Laboratorios Nacionales, las primeras pruebas de sonido y la transición al cine sonoro; no identifica una voz grabada de Gómez."
+        },
+        {
+          "title": "Juan Vicente Gómez y su época: proyección de la Cinemateca Nacional",
+          "url": "https://www.mincultura.gob.ve/noticias/cinemateca-nacional-proyecto-la-joya-filmica-juan-vicente-gomez-y-su-epoca/",
+          "kind": "film-archive-reference",
+          "note": "La Cinemateca Nacional presentó el documental histórico de archivo de Manuel de Pedro; la nota no ofrece un clip de voz original de Gómez."
+        },
+        {
+          "title": "Centenario de Bolívar en Santa Marta y Venezuela [fragmentos], catálogo BnF",
+          "url": "https://catalogue.bnf.fr/ark:/12148/cb44522683z",
+          "kind": "film-catalogue",
+          "note": "El catálogo lista a Gómez como participante en fragmentos del archivo cinematográfico de los Acevedo; la ficha no confirma que el fragmento contenga sonido sincronizado ni su voz."
+        },
+        {
+          "title": "Andrés Eloy Blanco (Biblioteca Biográfica Venezolana)",
+          "url": "https://www.anhvenezuela.org.ve/wp-content/uploads/2024/09/ANDRES-ELOY-BLANCO-1.pdf",
+          "kind": "historical-audio-context",
+          "note": "La biografía contrasta la escasa intervención pública de Gómez con el uso de la radio por Eleazar López Contreras; no aporta una grabación verificable de Gómez."
+        },
+        {
+          "title": "Rafael Caldera recuerda la primera alocución radial de Eleazar López Contreras",
+          "url": "https://rafaelcaldera.com/las-exequias-lopez-contreras-1973/",
+          "kind": "historical-audio-attribution",
+          "note": "La fuente atribuye a López Contreras la alocución radial del 19 de diciembre de 1935 y el lema asociado a calma y cordura. No es voz de Gómez."
+        }
+      ],
+      "distinctiveTraits": [
+        "Bigote oscuro, denso y corto, con extremos apenas curvados; nariz ancha y prominente; rostro maduro amplio y cejas pesadas, contrastados en retratos de archivo de distintas edades.",
+        "Cabello corto peinado hacia atrás y entradas visibles en los retratos tardíos; la foto de 1930s lo muestra con sombrero claro y guantes mientras está sentado, no en una pose de combate.",
+        "El retrato militar de 1928 muestra gorra de plato, cuello alto, bolsillos de pecho, cinturón ancho y hombreras sobrias; la atlas usa esa silueta con una paleta oscura editorial.",
+        "Pose histórica observada: retratos formales de frente y fotografía tardía sentado o reclinado. Los golpes, bloqueos y patadas del atlas son recursos de juego, no gestos documentados."
+      ],
+      "suggestedMoves": [
+        {
+          "name": "Paso firme",
+          "description": "Avance corto y pesado, con los hombros firmes; movimiento de juego, sin atribuir una marcha personal documentada."
+        },
+        {
+          "name": "Orden cerrada",
+          "description": "Bloqueo de antebrazos que mantiene el cuerpo compacto; nombre y acción son ficción de combate."
+        },
+        {
+          "name": "Golpe de mando",
+          "description": "Puñetazo recto hacia delante; nombre de fantasía de juego, no frase ni acción histórica."
+        },
+        {
+          "name": "Pisada pesada",
+          "description": "Pisotón con onda de impacto dibujada por el motor del juego; efecto completamente ficticio."
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/gomez/loc-bain-1910.jpg",
+          "url": "https://cdn.loc.gov/service/pnp/ggbain/15900/15988v.jpg",
+          "sourcePage": "https://www.loc.gov/pictures/item/2014695965/",
+          "date": "1910",
+          "credit": "Bain News Service / Library of Congress",
+          "viewed": true
+        },
+        {
+          "file": "assets/references/gomez/1928-uniform.jpg",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/G%C3%B3mez%2C_1928_restored.jpg",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:G%C3%B3mez,_1928_restored.jpg",
+          "date": "1928",
+          "credit": "Autor original desconocido; restauración de Wilfredor",
+          "viewed": true
+        },
+        {
+          "file": "assets/references/gomez/gomez-1930s.jpg",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/G%C3%B3mez_1930s.jpg",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:G%C3%B3mez_1930s.jpg",
+          "date": "1930s",
+          "credit": "Autor desconocido; reproducción citada de Rostros y Personajes de Venezuela, El Nacional, 2002",
+          "viewed": true
+        },
+        {
+          "file": "assets/references/gomez/bioyvidas-portrait.jpg",
+          "url": "https://www.biografiasyvidas.com/biografia/g/fotos/gomez_juan_vicente.jpg",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Juan_Vicente_G%C3%B3mez.jpg",
+          "date": "1909 (ficha Wikimedia Commons; Revista Selecta)",
+          "credit": "Fotografía histórica reproducida por Biografías y Vidas",
+          "viewed": true
+        }
+      ],
+      "historicalAudioFindings": [
+        {
+          "finding": "Las fuentes consultadas sitúan la primera expansión del sonido cinematográfico venezolano en los años 1930; Fundación Empresas Polar describe pruebas en 1933–1934 y noticiarios con segmentos parlantes. Eso hace plausible que haya registros contemporáneos, pero no verifica que un segmento conserve la voz de Gómez.",
+          "sourceUrl": "https://bibliofep.fundacionempresaspolar.org/dhv/entradas/c/cine/"
+        },
+        {
+          "finding": "La BnF cataloga fragmentos de Centenario de Bolívar en Santa Marta y Venezuela con Gómez como participante. El registro describe un DVD con sonido, pero no confirma que el fragmento de Gómez tenga sonido original o voz identificable.",
+          "sourceUrl": "https://catalogue.bnf.fr/ark:/12148/cb44522683z"
+        },
+        {
+          "finding": "Rafael Caldera identifica la alocución radial del 19 de diciembre de 1935, su voz ronca y la consigna de calma y cordura como las de Eleazar López Contreras. Es posterior a la muerte de Gómez y no puede usarse como voz suya.",
+          "sourceUrl": "https://rafaelcaldera.com/las-exequias-lopez-contreras-1973/"
+        },
+        {
+          "finding": "Las adaptaciones televisivas con Rafael Briceño y el CD Intimidades de Juan Vicente Gómez y Rafael Briceño contienen interpretación actoral; se excluyeron como fuentes de voz histórica.",
+          "sourceUrl": "https://www.rctvinternational.com/producto/gomez-i/"
+        }
+      ],
+      "encoding": {
+        "runtimeAtlas": [
+          2048,
+          1024
+        ],
+        "originalAtlas": "assets/references/gomez/gomez-v3-original-4096.png",
+        "reason": "Reducción proporcional para disminuir memoria de textura; se preservó el PNG de resolución original."
+      },
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Saludo solemne",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "simon": {
+      "id": "simon",
+      "realName": "Simón Narciso Díaz Márquez",
+      "sprite": "simon-v3",
+      "portraitReference": "assets/references/simon/boston.jpg",
+      "portrayal": "Simón Díaz en sus años de Tío Simón: músico, compositor, humorista y animador venezolano. El retrato oficial con sombrero y cuatro guía el vestuario y la sonrisa; la foto de escenario de Boston (2005) fija su edad avanzada. Ambas imágenes muestran el rostro afeitado, sin bigote. El sprite conserva el liqui-liqui claro y sombrero llanero, con movimientos estilizados de juego.",
+      "sources": [
+        {
+          "title": "Biografía oficial de Simón Díaz",
+          "url": "https://simondiaz.com/biografia/"
+        },
+        {
+          "title": "Foto oficial: Simón Díaz con cuatro y sombrero",
+          "url": "https://simondiaz.com/wp-content/uploads/2020/07/foto_cuatro-768x1114.jpg"
+        },
+        {
+          "title": "Foto de Simón Díaz en Boston, 24 de abril de 2005 (Wikimedia Commons, CC BY-SA 2.0)",
+          "url": "https://commons.wikimedia.org/wiki/File:Sim%C3%B3n_D%C3%ADaz_en_Boston.jpg"
+        },
+        {
+          "title": "Simón Diaz Especial Parte 2 — Conversaciones con Gustavo Trias",
+          "url": "https://www.ivoox.com/simon-diaz-especial-parte-2-audios-mp3_rf_126080543_1.html"
+        }
+      ],
+      "distinctiveTraits": [
+        "Coronilla amplia y calva, pelo corto blanco a los lados en la vejez.",
+        "Rostro redondeado, mirada amable y sonrisa amplia con pliegues marcados.",
+        "Sin bigote en las fotos de referencia usadas para esta representación.",
+        "Sombrero llanero claro y liqui-liqui blanco/crema documentados en su retrato oficial.",
+        "Compositor de tonadas llaneras, animador y humorista conocido como Tío Simón."
+      ],
+      "suggestedMoves": [
+        "Acorde llanero: abanico de tres notas como proyectiles musicales, con el cuatro siempre sujeto a la mano.",
+        "Contrapunteo: esquiva lateral y réplica rítmica con gesto de mano abierta.",
+        "Arreo de tonada: paso corto con giro de torso y un llamado vocal ilustrado por ondas musicales."
+      ],
+      "photos": [
+        {
+          "file": "assets/references/simon/official-photo.jpg",
+          "url": "https://simondiaz.com/wp-content/uploads/2020/07/foto_cuatro-768x1114.jpg"
+        },
+        {
+          "file": "assets/references/simon/boston.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Sim%C3%B3n_D%C3%ADaz_en_Boston.jpg"
+        },
+        {
+          "file": "assets/references/simon/official-hat.jpg",
+          "url": "https://simondiaz.com/wp-content/uploads/2020/07/simon-diaz-blanco-negro-sombrero-768x560.jpeg"
+        }
+      ],
+      "atlasReview": {
+        "poseOrder": [
+          "idle",
+          "block",
+          "runA",
+          "runB",
+          "jump",
+          "punch",
+          "highKick",
+          "hurt"
+        ],
+        "correction": "Revisión visual de integración: las celdas inferiores de puño y patada estaban invertidas; se intercambiaron completas, conservando los píxeles y la identidad del personaje."
+      },
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Inclinación de sombrero",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "conde": {
+      "id": "conde",
+      "realName": "Benjamín Rausseo Rodríguez",
+      "sprite": "conde-v3",
+      "portraitReference": "assets/references/conde/stage-ntn24.jpg",
+      "portrayal": "Er Conde del Guácharo como humorista de escenario: sombrero de paja grande con bandas tejidas de colores, camisa azul estampada, pantalón oscuro y alpargatas. Las fotos de escena muestran rostro ancho, ojos expresivos, nariz marcada y bigote con perilla corta en algunas etapas. Sus gestos incluyen el dedo índice levantado, mano abierta al público y juego con el micrófono. La edad y rasgos faciales siguen las referencias; pantalón oscuro y alpargatas son una elección de diseño para completar el cuerpo en las poses de juego, y la camisa y sombrero son una síntesis de prendas escénicas vistas en las fotos.",
+      "sources": [
+        {
+          "title": "Comediante Er Conde del Guácharo fue operado de emergencia (foto en escena)",
+          "url": "https://www.ntn24.com/noticias-entretenimiento/comediante-er-conde-del-guacharo-fue-operado-de-emergencia-95234"
+        },
+        {
+          "title": "Buenas Buenas, el nuevo tema de Er Conde del Guácharo (foto de escenario)",
+          "url": "https://noticiasvenevision.com/noticias/entretenimiento/buenas-buenas-el-nuevo-tema-de-er-conde-del-guacharo"
+        },
+        {
+          "title": "Benjamín Rausseo: Todo lo que soy se lo debo a Er Conde del Guácharo",
+          "url": "https://curadas.com/2020/07/14/benjamin-rausseo-todo-lo-que-soy-se-lo-debo-a-er-conde-del-guacharo/"
+        },
+        {
+          "title": "Con los Otros Somos Nosotros: Er Conde del Guácharo",
+          "url": "https://www.ivoox.com/con-otros-somos-nosotros-er-conde-del-audios-mp3_rf_70791097_1.html"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/conde/stage-ntn24.jpg",
+          "url": "https://intn24.lalr.co/old/el-conde-del-guacharo_0.jpg"
+        },
+        {
+          "file": "assets/references/conde/venevision-stage.jpeg",
+          "url": "https://w2a-noticierovenevision-net.s3.amazonaws.com/public/media/images/prensa-1-aa4e2e.jpeg"
+        },
+        {
+          "file": "assets/references/conde/curadas-portrait.jpeg",
+          "url": "https://curadas.com/wp-content/uploads/2020/07/Benjam%C3%ADn-Rausseo-e1595300360758.jpeg"
+        }
+      ],
+      "distinctiveTraits": [
+        "Sombrero escénico de paja de ala ancha, con bandas tejidas rojo, amarillo y azul y adornos llamativos.",
+        "Rostro adulto ancho, piel morena media, nariz ancha y ojos vivaces; bigote corto y perilla oscura visible en fotos recientes de escena.",
+        "Camisas de escenario estampadas en azul y naranja, combinadas con gestos conversacionales expansivos.",
+        "Índice levantado y mano abierta hacia el público durante el remate; micrófono cerca del torso en escena."
+      ],
+      "suggestedMoves": [
+        "Embestida pesada corta: un avance compacto con el hombro y una salida en guardia.",
+        "Golpe de remate: golpe frontal y gesto de índice levantado como cierre escénico.",
+        "Chiste corto: pausa expresiva, palma abierta y ataque breve.",
+        "Doble remate: dos golpes rítmicos alternando el puño y la mano abierta.",
+        "La función completa: secuencia más larga de pasos laterales, gestos teatrales y remate final."
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Saludo del Conde",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "emilio": {
+      "id": "emilio",
+      "realName": "Emilio Alejandro Lovera Ruiz",
+      "sprite": "emilio-v3",
+      "portraitReference": "assets/references/emilio/el-estimulo-2025.webp",
+      "portrayal": "Emilio Lovera como él mismo: cabello oscuro corto, rostro ancho y expresivo, sin barba y de constitución media. El atlas sigue su foto de escenario de 2020, con chaqueta gris carbón y camisa roja anaranjada; pantalón y zapatos oscuros completan el vestuario por decisión de diseño. El retrato de 2025 lo muestra con sombrero verde oscuro, que se omite para conservar el peinado visible de las otras referencias. Las cejas, los cambios rápidos de expresión y los gestos abiertos inspiran sus golpes en dos tiempos.",
+      "sources": [
+        {
+          "title": "Emilio Lovera está de gira y Barquisimeto y Valencia son las próximas paradas — El Estímulo (2025-03-27)",
+          "url": "https://elestimulo.com/espectaculos/2025-03-27/emilio-lovera-shows/"
+        },
+        {
+          "title": "El comediante Emilio Lovera trae sus mil caras a Miami — Diario Las Américas",
+          "url": "https://www.diariolasamericas.com/el-comediante-emilio-lovera-trae-sus-mil-caras-miami-n2914162"
+        },
+        {
+          "title": "Estrellas de la Rochela regresan con Radio Cuarentena vía web — El Estímulo",
+          "url": "https://elestimulo.com/destacados/2020-09-02/estrellas-de-la-rochela-regresan-con-radio-cuarentena-via-web/"
+        },
+        {
+          "title": "Emilio Lovera EP015 — Colores Sonidos y Sabores de Mi Tierra (iVoox, 2024-07-29)",
+          "url": "https://www.ivoox.com/emilio-lovera-ep015-audios-mp3_rf_132182774_1.html"
+        },
+        {
+          "title": "Emilio Lovera: historia viva del humorismo venezolano — Encuentros Mundanos (Apple Podcasts, 2021-02-26)",
+          "url": "https://podcasts.apple.com/ve/podcast/emilio-lovera-historia-viva-del-humorismo-venezolano/id1520760354?i=1000510808514"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/emilio/diario-las-americas-interview.jpg",
+          "url": "https://media.diariolasamericas.com/p/dcae4b15bfa77601eb49ad9d378a9279/adjuntos/216/imagenes/000/389/0000389397/1200x675/smart/lovera-posa-la-entrevista-diario-las-americas-yender-hernandez.jpg"
+        },
+        {
+          "file": "assets/references/emilio/el-estimulo-stage.jpg",
+          "url": "https://media.elestimulo.com/uploads/2020/09/EMILIO-LOVERA.jpg"
+        },
+        {
+          "file": "assets/references/emilio/el-estimulo-2025.webp",
+          "url": "https://media.elestimulo.com/uploads/2025/02/emilio-lovera-1a.webp"
+        }
+      ],
+      "distinctiveTraits": [
+        "Cabello oscuro corto, entradas suaves y rostro afeitado.",
+        "Rostro ancho y expresivo, cejas levantadas y ojos animados.",
+        "Chaqueta gris carbón y camisa roja anaranjada de la referencia de escenario.",
+        "Cambios rápidos de expresión, pausas cómicas y gestos de palma abierta.",
+        "El retrato de 2025 incluye un sombrero verde oscuro; el atlas sigue el vestuario sin sombrero de la foto de escenario."
+      ],
+      "suggestedMoves": [
+        "Cambio de gesto: dos golpes medidos con un cambio de expresión entre ellos.",
+        "Segunda voz: finta gestual que evoca sus cambios de personaje.",
+        "Remate de mil caras: avance corto con expresiones rápidas y remate de palma abierta."
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Reverencia cómica",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "maite": {
+      "id": "maite",
+      "realName": "Maite Coromoto Delgado de Mora",
+      "sprite": "maite-v3",
+      "portraitReference": "assets/references/maite/elestimulo-portrait-2024.jpg",
+      "portrayal": "Presentadora venezolana y exreina de belleza, representada como adulta actual con cabello rubio en capas a la altura del hombro, sonrisa cálida y porte seguro de anfitriona. El vestido rojo anaranjado de gala con guantes largos y capa de plumas se basa en su aparición documentada en Miss Venezuela 2022; el micrófono pertenece a su puesta en escena. La abertura lateral del vestido y las poses de combate son decisiones de diseño para permitir movimiento dentro del juego. Su recurso especial de juego es un foco escénico que marca el suelo delante de ella; sus combos se llaman «Primera entrada», «Cambio de cámara» y «Gran final».",
+      "sources": [
+        {
+          "title": "Maite Delgado será la animadora oficial del Miss Venezuela 2024, fuente oficial de Miss Venezuela",
+          "url": "https://www.missvenezuela.com/noticias/maite-delgado-sera-la-animadora-oficial-del-miss-venezuela-2024"
+        },
+        {
+          "title": "Maite Delgado en el escenario del Miss Venezuela 2022; cobertura del saludo y descripción del vestido rojo de Ángel Sánchez",
+          "url": "https://noticiaalminuto.com/buenas-noches-poliedro-el-poliedro-retumbo-con-el-saludo-de-maite-delgado/"
+        },
+        {
+          "title": "Retrato editorial de Maite Delgado, El Estímulo, entrevista de julio de 2024",
+          "url": "https://elestimulo.com/ub/mujeres/2024-07-11/maite-delgado-miss-venezuela/"
+        },
+        {
+          "title": "Nosotros. E1. Maite Delgado, episodio de podcast iVoox cuya descripción identifica a Maite como invitada",
+          "url": "https://www.ivoox.com/nosotros-e1-maite-delgado-audios-mp3_rf_45930270_1.html"
+        },
+        {
+          "title": "Venevisión: saludo de Maite Delgado en el Miss Venezuela 2022 — publicación del canal",
+          "url": "https://twitter.com/venevision/status/1593034739761414144"
+        },
+        {
+          "title": "Miss Venezuela 2022: cobertura contemporánea de El Diario con el video de Venevisión y el saludo transcrito",
+          "url": "https://eldiario.com/2022/11/16/miss-venezuela-2022-en-el-poliedro-de-caracas/"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/maite/elestimulo-portrait-2024.jpg",
+          "url": "https://media.elestimulo.com/uploads/2024/07/maiite-delgado-1a-1100x572.jpg"
+        },
+        {
+          "file": "assets/references/maite/missvenezuela-2022.jpg",
+          "url": "https://media.noticiaalminuto.com/wp-content/uploads/2022/11/MAITE-2.jpg"
+        },
+        {
+          "file": "assets/references/maite/noticialdia-2024.jpg",
+          "url": "https://www.noticialdia.com/wp-content/firewall/uploads/2024/12/Maite-Delgado.jpg?x74346="
+        },
+        {
+          "file": "assets/references/maite/missvenezuela-2022-greeting-38s.jpg",
+          "url": "https://twitter.com/venevision/status/1593034739761414144"
+        }
+      ],
+      "distinctiveTraits": [
+        "Cabello rubio en capas, a la altura del hombro, con raya lateral y volumen suave.",
+        "Rostro ovalado adulto, ojos claros y sonrisa amplia reconocible en retratos editoriales de 2024.",
+        "Porte erguido, expresión cálida y gestualidad abierta de conductora de gala.",
+        "Vestido rojo anaranjado de gala con capa de plumas y guantes largos, basado en su aparición de Miss Venezuela 2022; micrófono en mano durante la presentación."
+      ],
+      "suggestedMoves": [
+        "Primera entrada",
+        "Cambio de cámara",
+        "Gran final"
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Saludo de gala",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "oscar": {
+      "id": "oscar",
+      "realName": "Óscar Emilio León Simosa",
+      "sprite": "oscar-v3",
+      "portraitReference": "assets/references/oscar/primicias-2024.jpg",
+      "portrayal": "Óscar D'León como sonero de escenario: hombre adulto mayor, calvo, bigote negro ancho, mejillas redondeadas, líneas de expresión y sonrisa abierta. La entrevista visual de Telemadrid (2025) lo muestra con chaqueta satinada negra, camiseta negra con tigre brillante, cadena dorada y gafas oscuras; las gafas se omiten en el sprite para mantener sus ojos y expresión visibles. La foto de Primicias/EFE (2023) confirma el rostro y sonrisa de cerca. El pantalón negro se ve en imágenes de escenario; el fino brillo plateado del pantalón y los zapatos negros pulidos son decisiones de diseño para completar las poses. La pose idle usa una palma abierta como gesto de invitación del sonero; los movimientos de combate son estilización ficticia de juego.",
+      "sources": [
+        {
+          "title": "Óscar d’Leon llega a Las Noches del Botánico de Madrid — entrevista de Telemadrid (22 julio 2025)",
+          "url": "https://www.telemadrid.es/programas/madrid-directo/Oscar-dLeon-llega-a-Las-Noches-del-Botanico-de-Madrid-2-2799940019--20250722084105.html"
+        },
+        {
+          "title": "Oscar D’León, a sus 81 años: ‘Yo me retiro cuando el público lo decida o el mismo destino’ — Primicias/EFE (18 julio 2024; retrato EFE fechado 2023)",
+          "url": "https://www.primicias.ec/entretenimiento/musica/oscar-leon-retiro-canciones-conciertos-74286/"
+        },
+        {
+          "title": "Óscar D'León en homenaje a Rubén Blades en los Latin Grammy 2021 — foto de Tony Dandrades, Commons CC BY 3.0",
+          "url": "https://commons.wikimedia.org/wiki/File:%C3%93scar_D%27Le%C3%B3n_2021.jpg"
+        },
+        {
+          "title": "‘Estoy contento y feliz de poder estar una vez más en Cali’: Oscar D’León — entrevista de La W, Caracol Radio (25 noviembre 2022)",
+          "url": "https://caracol.com.co/2022/11/25/estoy-contento-y-feliz-de-poder-estar-una-vez-mas-en-cali-oscar-dleon/"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/oscar/primicias-2024.jpg",
+          "url": "https://www.primicias.ec/entretenimiento/musica/oscar-leon-retiro-canciones-conciertos-74286/"
+        },
+        {
+          "file": "assets/references/oscar/telemadrid-2025-backstage.jpg",
+          "url": "https://www.telemadrid.es/programas/madrid-directo/Oscar-dLeon-llega-a-Las-Noches-del-Botanico-de-Madrid-2-2799940019--20250722084105.html"
+        },
+        {
+          "file": "assets/references/oscar/commons-2021.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:%C3%93scar_D%27Le%C3%B3n_2021.jpg"
+        },
+        {
+          "file": "assets/references/oscar/commons-stage-2026.png",
+          "url": "https://commons.wikimedia.org/wiki/File:OSCAR_D%27LEON_EN_EL_CHIMPUNAZO_A_LA_CHALACA_2026_2.png"
+        }
+      ],
+      "distinctiveTraits": [
+        "Cabeza completamente calva y brillante; rostro ancho con mejillas redondeadas, pliegues de sonrisa y nariz amplia.",
+        "Bigote negro muy ancho y denso, de puntas suavemente afinadas; sin perilla.",
+        "Sonrisa grande y expresiva con ojos oscuros; constitución adulta mayor, baja y compacta.",
+        "Chaqueta satinada negra sobre camiseta negra con un tigre de lentejuelas doradas y plateadas; cadena dorada corta.",
+        "Gafas de sol doradas documentadas en la entrevista de Telemadrid; se excluyen del sprite para dejar visible su expresión.",
+        "Palma abierta hacia el público como gesto cálido de invitación escénica."
+      ],
+      "suggestedMoves": [
+        "Paso de salsa: avance corto con el torso en balanceo, palma libre abierta y retorno rápido a guardia.",
+        "Síncopa doble: dos golpes cortos alternados a ambos lados con cambio rítmico de peso.",
+        "Cierre del sonero: salto con giro amplio y aterrizaje en guardia, rematado por un golpe a cada lado."
+      ],
+      "atlasReview": {
+        "poseOrder": [
+          "idle",
+          "block",
+          "runA",
+          "runB",
+          "jump",
+          "punch",
+          "highKick",
+          "hurt"
+        ],
+        "correction": "Atlas generado con referencias fotográficas reales de 2023–2025; revisión visual confirma calvicie, bigote ancho, camiseta con tigre, chaqueta oscura y ocho poses separadas sobre alfa transparente."
+      },
+      "entranceReview": {
+        "version": 25,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Saca el micrófono, canta y da una vuelta de salsa",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v25/artifacts.json",
+        "paintedEntranceAtlas": "oscar-entrance-v25",
+        "paintedPoses": 16,
+        "sequence": [
+          "Saca un micrófono inalámbrico de la chaqueta",
+          "Lo lleva a la boca y hace un gesto de cantar",
+          "Da una sola vuelta de salsa conservando el micrófono en la mano derecha",
+          "Guarda el micrófono y termina en guardia mirando al oponente"
+        ],
+        "voiceAudio": false
+      }
+    },
+    "puma": {
+      "id": "puma",
+      "realName": "José Luis Rodríguez González",
+      "sprite": "puma-v3",
+      "portraitReference": "assets/references/puma/tvn-olmue-2024.jpg",
+      "portrayal": "Cantante venezolano de presencia serena y teatral. Las referencias actuales muestran el cabello plateado, ondulado y abundante peinado hacia atrás, cejas marcadas, nariz recta y rostro maduro de piel cálida. En TVN lleva una prenda oscura con cuello alto abierto; una entrevista EFE/NTN24 lo muestra con camisa azul marino, chaleco de cuadros y cadena. El atlas conserva la chaqueta elegante oscura y camisa abierta como adaptación escénica de esas prendas fotografiadas. El pantalón carbón y los zapatos pulidos completan el vestuario por decisión de diseño. Sus manos abiertas evocan el gesto de un cantante que conversa con el público; los golpes y patadas son una licencia ficticia del juego. El rugido es un efecto de juego que dibuja un cono de empuje, separado de toda voz original.",
+      "sources": [
+        {
+          "title": "Un ícono que estará el Olmué 2024: conversamos con el Puma Rodríguez — TVN (26 diciembre 2023)",
+          "url": "https://www.tvn.cl/programas/buenos-dias-a-todos/espectaculos-y-tv/un-icono-que-estara-el-olmue-2024-conversamos-con-el-puma-rodriguez"
+        },
+        {
+          "title": "‘El Puma’ José Luis Rodríguez dio su versión de los hechos tras escándalo en aeropuerto en Ecuador — NTN24/EFE (2025)",
+          "url": "https://www.ntn24.com/noticias-entretenimiento/el-puma-jose-luis-rodriguez-dio-su-version-de-los-hechos-tras-escandalo-en-aeropuerto-en-ecuador-592395"
+        },
+        {
+          "title": "José Luis Rodríguez explica por qué siempre será 'El Puma' — Hoy Día, Telemundo (10 junio 2024)",
+          "url": "https://www.telemundo.com/shows/hoy-dia/television/video/jose-luis-rodriguez-explica-por-que-siempre-sera-el-puma-tmvo12679877"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/puma/tvn-olmue-2024.jpg",
+          "url": "https://www.tvn.cl/tvn/site/artic/20231226/imag/foto_0000000720231226125507/EL_PUMA.jpg"
+        },
+        {
+          "file": "assets/references/puma/ntn24-efe-2025.jpg",
+          "url": "https://intn24.lalr.co/cms/2025/11/26194209/Jose-Luis-Rodriguez-El-Puma-cantante-venezolano-Foto-EFE.jpg?w=1024"
+        },
+        {
+          "file": "assets/references/puma/telemundo-frame-20s.jpg",
+          "url": "https://www.telemundo.com/shows/hoy-dia/television/video/jose-luis-rodriguez-explica-por-que-siempre-sera-el-puma-tmvo12679877"
+        },
+        {
+          "file": "assets/references/puma/telemundo-frame-30s.jpg",
+          "url": "https://www.telemundo.com/shows/hoy-dia/television/video/jose-luis-rodriguez-explica-por-que-siempre-sera-el-puma-tmvo12679877"
+        },
+        {
+          "file": "assets/references/puma/telemundo-frame-9s.jpg",
+          "url": "https://www.telemundo.com/shows/hoy-dia/television/video/jose-luis-rodriguez-explica-por-que-siempre-sera-el-puma-tmvo12679877"
+        }
+      ],
+      "distinctiveTraits": [
+        "Cabello plateado, ondulado y peinado hacia atrás desde la frente, con volumen sobre las sienes y la nuca.",
+        "Rostro maduro y alargado, cejas oscuras expresivas, nariz recta prominente y pliegues suaves de expresión.",
+        "Piel cálida de tono medio claro y porte sereno, con mirada directa y gesto de cantante experimentado.",
+        "Chaqueta de escenario oscura, camisa negra abierta al cuello y cadena plateada discreta; conjunto inspirado en prendas actuales fotografiadas.",
+        "Palma abierta y brazo extendido como gesto de interlocución con el público, tomado de su presencia de cantante y entrevistado."
+      ],
+      "suggestedMoves": [
+        "Primer rugido: un gesto de cantante proyecta un cono de empuje corto; el rugido es un efecto de juego, no una voz atribuida al artista.",
+        "Crescendo: dos conos de empuje sucesivos con un paso lateral y una mano abierta hacia el rival.",
+        "Último aplauso: una palma amplia desvía el avance y remata con un golpe corto hacia delante.",
+        "Gesto de escenario: marca el ritmo con una mano mientras mantiene la otra cerca del pecho, evocando su oficio real de cantante."
+      ],
+      "atlasReview": {
+        "poseOrder": [
+          "idle",
+          "block",
+          "runA",
+          "runB",
+          "jump",
+          "punch",
+          "highKick",
+          "hurt"
+        ],
+        "correction": "Atlas editorial cel-shaded generado con dos fotos reales inspeccionadas como referencias de identidad. Revisión visual confirma edad, nariz, cejas, cabello ondulado plateado hacia atrás, chaqueta oscura y ocho figuras completas separadas sobre transparencia alfa; la transparencia se verificó con el validador del proyecto."
+      },
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Invita al público con la mano",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "chataing": {
+      "id": "chataing",
+      "realName": "Luis Eduardo Chataing Zambrano",
+      "sprite": "chataing-v3",
+      "portraitReference": "assets/references/chataing/photo-official-video.jpg",
+      "portrayal": "Luis Chataing como conductor y humorista adulto: rostro alargado, frente amplia, nariz prominente, cabello corto peinado hacia arriba con canas en las sienes, gafas rectangulares negras y barba corta entrecana. El atlas adapta su ropa de presentador a una chaqueta gris carbón, camiseta negra, jeans oscuros y zapatos bajos; el micrófono permanece en la mano. Sus gestos de palma abierta y repregunta inspiran una señal que sale y regresa durante el combate.",
+      "sources": [
+        {
+          "title": "Luis Chataing, official YouTube channel (interview frame with Carla Angola / La Última)",
+          "url": "https://www.youtube.com/watch?v=uiGFHrQ-I10"
+        },
+        {
+          "title": "Luis Chataing, promotional portrait collection",
+          "url": "https://esunchiste.com/collections/luis-chataing"
+        },
+        {
+          "title": "Meridiano interview portrait, ‘Luis Chataing muestra su lado más sensible…’",
+          "url": "https://meridiano.net/farandula/luis-chataing-muestra-su-lado-mas-sensible-al-hablar-de-lo-mucho-que-extrana-venezuela-202463011200"
+        },
+        {
+          "title": "A Sigún 162: Luis Chataing, with Carlos Sánchez",
+          "url": "https://domiplay.net/podcaster/a-sigun-con-carlos-sanchez/162-a-sigun-luis-chataing"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/chataing/photo-official-video.jpg",
+          "url": "https://www.youtube.com/watch?v=uiGFHrQ-I10"
+        },
+        {
+          "file": "assets/references/chataing/photo-portrait-promo.png",
+          "url": "https://esunchiste.com/collections/luis-chataing"
+        },
+        {
+          "file": "assets/references/chataing/photo-meridiano.jpg",
+          "url": "https://meridiano.net/farandula/luis-chataing-muestra-su-lado-mas-sensible-al-hablar-de-lo-mucho-que-extrana-venezuela-202463011200"
+        }
+      ],
+      "distinctiveTraits": [
+        "Gafas negras rectangulares de montura gruesa.",
+        "Cabello oscuro corto levantado hacia atrás, con canas en las sienes.",
+        "Rostro alargado, nariz prominente y barba corta entrecana.",
+        "Ropa oscura de presentador y micrófono de mano."
+      ],
+      "suggestedMoves": [
+        "Pregunta directa: golpe corto con el micrófono hacia el rival.",
+        "Repregunta: segundo golpe rápido que interrumpe la recuperación.",
+        "Cierre al aire: una señal sale y vuelve al conductor.",
+        "Micrófono de guardia: palma abierta y brazo del micrófono recogido."
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Pide un segundo con la palma",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "george": {
+      "id": "george",
+      "realName": "George Harris",
+      "sprite": "george-v3",
+      "portraitReference": "assets/references/george/elpais-stage.jpg",
+      "portrayal": "George Harris como humorista de escenario, con cabello castaño oscuro de largo medio peinado hacia atrás, barba y bigote recortados, cejas expresivas y micrófono de mano. La ropa sigue la foto de escenario de EL PAÍS: camiseta negra, pantalón oscuro y zapatos blancos. Su ritmo de monólogo inspira un primer golpe, una pausa y un segundo remate de mayor alcance; los ataques son ficción de juego.",
+      "sources": [
+        {
+          "title": "George Harris — Sitio Oficial",
+          "url": "https://elgeorgeharris.com/"
+        },
+        {
+          "title": "EL SHOW DE GEORGE HARRIS 10-01-2026 — iHeart",
+          "url": "https://www.iheart.com/podcast/269-el-show-de-george-harris-230556832/episode/el-show-de-george-harris-10-01-2026-347144033/"
+        },
+        {
+          "title": "George Harris: ‘El humor te ayuda a superar el duelo migratorio’ — EL PAÍS",
+          "url": "https://elpais.com/us/entretenimiento/2025-08-18/george-harris-el-humor-te-ayuda-a-superar-el-duelo-migratorio.html"
+        },
+        {
+          "title": "George Harris no olvida su paso por Viña 2025 y lo convierte en una rutina de humor — Emol",
+          "url": "https://www.emol.com/noticias/Espectaculos/2025/03/11/1160013/george-harris-show-miami-vina.html"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/george/official-full-portrait.png",
+          "url": "https://framerusercontent.com/images/orQzDxOGZUjyZlJGSkQvDRzCo.png?width=2731&height=4096",
+          "sourcePage": "https://elgeorgeharris.com/",
+          "observation": "Official portrait: dark swept-back hair, full beard, expressive face and stage presence. Outfit is a black embellished jacket over a black shirt."
+        },
+        {
+          "file": "assets/references/george/elpais-stage.jpg",
+          "url": "https://imagenes.elpais.com/resizer/v2/BAZ3H32PR5C6ZKFVLKZSIPIKME.jpg?auth=41a180457084be0b8a0a9194540dcaf328a9e88b49f2390218b3cb9fd7a76c6d&width=1960",
+          "sourcePage": "https://elpais.com/us/entretenimiento/2025-08-18/george-harris-el-humor-te-ayuda-a-superar-el-duelo-migratorio.html",
+          "observation": "Recent full-body stage photo: black short-sleeve shirt, dark trousers, white low-top shoes, handheld microphone, dark hair brushed back and full beard."
+        },
+        {
+          "file": "assets/references/george/emol.jpg",
+          "url": "https://static.emol.cl/emol50/Fotos/2025/03/11/file_20250311101410.jpg",
+          "sourcePage": "https://www.emol.com/noticias/Espectaculos/2025/03/11/1160013/george-harris-show-miami-vina.html",
+          "observation": "Stage frame confirms the beard, brushed-back dark hair and black T-shirt with a handheld microphone."
+        }
+      ],
+      "distinctiveTraits": [
+        "Cabello castaño oscuro de largo medio, peinado hacia atrás.",
+        "Barba y bigote completos recortados, con cejas y mirada expresivas.",
+        "Camiseta negra de escenario, pantalón oscuro y zapatos bajos blancos.",
+        "Micrófono cerca del rostro mientras gesticula con la mano libre.",
+        "Primer remate, pausa y segundo golpe de mayor alcance."
+      ],
+      "suggestedMoves": [
+        "Primera fila: golpe rápido con el micrófono y gesto de la mano libre.",
+        "Otra más: pausa y segundo remate con mayor alcance.",
+        "Sala llena: gesto amplio al público manteniendo el micrófono cerca."
+      ],
+      "signatureCombo": "Primera fila / Otra más / Sala llena: primer remate, pausa y segundo golpe de mayor alcance.",
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Gesto de remate",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "mcm": {
+      "id": "mcm",
+      "realName": "María Corina Machado Parisca",
+      "sprite": "mcm-v3",
+      "portraitReference": "assets/references/mcm/election-2024-09.jpg",
+      "portrayal": "Política venezolana de presencia firme y directa. Las fotos de campaña muestran piel clara, rostro alargado, cejas oscuras muy definidas, nariz estrecha recta, ojos expresivos y cabello castaño muy oscuro, liso y largo, con raya ligeramente lateral y recogido detrás de las orejas. En las referencias aparece con camisa blanca de cuello y botones; una foto de acto también muestra jeans azul oscuro y cinturón. El atlas conserva esa ropa de campaña sencilla; el cinturón, los jeans completos y los zapatos blancos son decisiones prácticas de diseño porque las fotos no muestran siempre el cuerpo entero. La guardia alta y los pasos de combate son licencias ficticias del juego.",
+      "sources": [
+        {
+          "title": "“Esto es mucho más que una lucha electoral o política”: la entrevista completa con María Corina Machado — Noticias Telemundo (16 agosto 2024)",
+          "url": "https://www.telemundo.com/noticias/noticias-telemundo/internacional/video/esto-es-mucho-mas-que-una-lucha-electoral-o-politica-la-entrevista-completa-con-maria-tmvo12733828"
+        },
+        {
+          "title": "Election campaign 2024 Venezuela 10.jpg — Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Election_campaign_2024_Venezuela_10.jpg"
+        },
+        {
+          "title": "2024 Venezuelan presidential election 09.jpg — Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:2024_Venezuelan_presidential_election_09.jpg"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/mcm/campaign-2024-10.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Election_campaign_2024_Venezuela_10.jpg"
+        },
+        {
+          "file": "assets/references/mcm/election-2024-09.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:2024_Venezuelan_presidential_election_09.jpg"
+        }
+      ],
+      "distinctiveTraits": [
+        "Cabello castaño muy oscuro, liso y largo, con raya ligeramente lateral y mechones recogidos detrás de las orejas.",
+        "Rostro adulto alargado, cejas oscuras y marcadas, nariz estrecha y recta, boca expresiva y mirada firme.",
+        "Piel clara y complexión esbelta de adulta de finales de sus cincuenta; conservar anatomía natural.",
+        "Camisa de campaña blanca con cuello y mangas arremangadas, jeans azul oscuro, cinturón marrón y pequeños pendientes tipo perla; parte del conjunto inferior se completa por decisión de diseño.",
+        "Postura erguida y guardia compacta, inspiradas en su presencia decidida ante las cámaras; los golpes y patadas son movimientos ficticios del juego."
+      ],
+      "suggestedMoves": [
+        "Actas oficiales: paso breve hacia delante con un golpe recto; efecto visual de hojas abstractas como recurso del juego, sin texto legible.",
+        "Hasta el final: bloquea con ambos antebrazos y responde con un avance corto.",
+        "Voz de campaña: gesto firme con la mano abierta que se transforma en una embestida corta; sin atribuirle frases sintéticas.",
+        "Paso de gira: dos pasos rápidos y un golpe frontal con el puño, como adaptación de videojuego a su recorrido por actos públicos."
+      ],
+      "atlasReview": {
+        "poseOrder": [
+          "idle",
+          "block",
+          "runA",
+          "runB",
+          "jump",
+          "punch",
+          "highKick",
+          "hurt"
+        ],
+        "correction": "Atlas editorial cel-shaded generado con dos fotos reales inspeccionadas como referencias de identidad y la imagen de Capriles-v2 solo como guía de estilo. Revisión visual confirma ocho siluetas adultas completas, camisa blanca, cabello oscuro liso y largo, cuadrícula 4×2 y transparencia alfa; el validador del proyecto comprueba su formato y separación."
+      },
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Saludo de encuentro",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "silbon": {
+      "id": "silbon",
+      "realName": "El Silbón",
+      "sprite": "silbon-v12",
+      "category": "folklore",
+      "portrayal": "Su saco y su sombrero anuncian una leyenda llanera. Su silbido ondula y acelera: mide la distancia antes de lanzarlo. Interpretación original de videojuego; vestuario, ataques, combos y efectos son ficción arcade, no una versión única o canónica de la tradición.",
+      "sources": [
+        {
+          "title": "Fundación Empresas Polar — Mitos y leyendas del estado Portuguesa",
+          "url": "https://bibliofep.fundacionempresaspolar.org/media/1377933/presentacion-introduccion-y-aspectos-generales.pdf"
+        }
+      ],
+      "soundMode": "generic-combat-reactions",
+      "distinctiveTraits": [
+        "El silbido de los llanos",
+        "Silbido errante"
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Acomoda el saco",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "llorona": {
+      "id": "llorona",
+      "realName": "La Llorona",
+      "sprite": "llorona-v12",
+      "category": "folklore",
+      "portrayal": "Vestido blanco, cabello oscuro y lágrimas azules. Su ola atrae al rival para acercarlo a sus combos. Interpretación original de videojuego; vestuario, ataques, combos y efectos son ficción arcade, no una versión única o canónica de la tradición.",
+      "sources": [
+        {
+          "title": "Fundación Empresas Polar — Mitos y leyendas del estado Portuguesa",
+          "url": "https://bibliofep.fundacionempresaspolar.org/media/1377933/presentacion-introduccion-y-aspectos-generales.pdf"
+        }
+      ],
+      "soundMode": "generic-combat-reactions",
+      "distinctiveTraits": [
+        "La pena del río",
+        "Marea en pena"
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Extiende las manos en pena",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "sayona": {
+      "id": "sayona",
+      "realName": "La Sayona",
+      "sprite": "sayona-v12",
+      "category": "folklore",
+      "portrayal": "Mantón rojo y mirada felina en esta versión arcade de la leyenda. Se desplaza de golpe una distancia corta y ataca; nunca cruza toda la arena. Interpretación original de videojuego; vestuario, ataques, combos y efectos son ficción arcade, no una versión única o canónica de la tradición.",
+      "sources": [
+        {
+          "title": "La Sayona — tradición y variantes",
+          "url": "https://es.wikipedia.org/wiki/La_Sayona"
+        }
+      ],
+      "soundMode": "generic-combat-reactions",
+      "distinctiveTraits": [
+        "Una aparición fugaz",
+        "Paso espectral"
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Revela la mirada bajo el mantón",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "lionza": {
+      "id": "lionza",
+      "realName": "María Lionza",
+      "sprite": "lionza-v12",
+      "category": "folklore",
+      "portrayal": "Corona de hojas y túnica verde. Invoca una danta de luz que avanza por el suelo; el rival puede evitarla saltando. Interpretación original de videojuego; vestuario, ataques, combos y efectos son ficción arcade, no una versión única o canónica de la tradición.",
+      "sources": [
+        {
+          "title": "Fundación Empresas Polar — Mitos y leyendas del estado Portuguesa",
+          "url": "https://bibliofep.fundacionempresaspolar.org/media/1377933/presentacion-introduccion-y-aspectos-generales.pdf"
+        }
+      ],
+      "soundMode": "generic-combat-reactions",
+      "distinctiveTraits": [
+        "Guardiana de Sorte",
+        "Danta de Sorte"
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Abre las palmas de Sorte",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "florentino": {
+      "id": "florentino",
+      "realName": "Florentino",
+      "sprite": "florentino-v12",
+      "category": "folklore",
+      "portrayal": "Liquiliqui, sombrero y cuatro al hombro. Su nota sigue la altura del rival sin cambiar de rumbo: contrapunteo convertido en combate. Interpretación original de videojuego; vestuario, ataques, combos y efectos son ficción arcade, no una versión única o canónica de la tradición.",
+      "sources": [
+        {
+          "title": "Cambridge — The Devil and Florentino, estudio del contrapunteo venezolano",
+          "url": "https://www.cambridge.org/core/journals/comparative-studies-in-society-and-history/article/devil-and-florentino-specters-of-petropopulism-in-venezuela/2213650405212C781D1EAF12866681B6"
+        }
+      ],
+      "soundMode": "generic-combat-reactions",
+      "distinctiveTraits": [
+        "El coplero del llano",
+        "Copla certera"
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Invita al contrapunteo",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "diablo": {
+      "id": "diablo",
+      "realName": "El Diablo de los Llanos",
+      "sprite": "diablo-v12",
+      "category": "folklore",
+      "portrayal": "Traje morado, cuernos y sonrisa desafiante. Lanza fuego en parábola que estalla al tocar el suelo; mantén la distancia. Interpretación original de videojuego; vestuario, ataques, combos y efectos son ficción arcade, no una versión única o canónica de la tradición.",
+      "sources": [
+        {
+          "title": "Cambridge — The Devil and Florentino, estudio del contrapunteo venezolano",
+          "url": "https://www.cambridge.org/core/journals/comparative-studies-in-society-and-history/article/devil-and-florentino-specters-of-petropopulism-in-venezuela/2213650405212C781D1EAF12866681B6"
+        }
+      ],
+      "soundMode": "generic-combat-reactions",
+      "distinctiveTraits": [
+        "El otro coplero",
+        "Fogonazo del llano"
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Gesto de retador",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "knoche": {
+      "id": "knoche",
+      "realName": "Doctor Knoche",
+      "sprite": "knoche-v12",
+      "category": "folklore",
+      "portrayal": "Barba blanca, lentes redondos y abrigo de época. Lanza un frasco que reduce brevemente la velocidad del rival si este no lo bloquea. Interpretación original de videojuego; vestuario, ataques, combos y efectos son ficción arcade, no una versión única o canónica de la tradición.",
+      "sources": [
+        {
+          "title": "Gottfried Knoche — historia de Galipán",
+          "url": "https://es.wikipedia.org/wiki/Gottfried_Knoche"
+        }
+      ],
+      "soundMode": "generic-combat-reactions",
+      "distinctiveTraits": [
+        "El misterio de Galipán",
+        "Frasco de Galipán"
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Inspecciona su frasco",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "momoy": {
+      "id": "momoy",
+      "realName": "El Momoy",
+      "sprite": "momoy-v12",
+      "category": "folklore",
+      "portrayal": "Sombrero campesino, ruana y bastón. Sus raíces atrapan los pies del rival en tierra: un salto a tiempo evita o rompe la trampa. Interpretación original de videojuego; vestuario, ataques, combos y efectos son ficción arcade, no una versión única o canónica de la tradición.",
+      "sources": [
+        {
+          "title": "Ministerio de Cultura — El Momoy en CaminArte, Transfiguración ecológica",
+          "url": "https://www.mincultura.gob.ve/noticias/carlos-servando-invita-a-la-proyeccion-del-videoarte-de-caminarte-transfiguracion-ecologica/"
+        }
+      ],
+      "soundMode": "generic-combat-reactions",
+      "distinctiveTraits": [
+        "Duende del páramo",
+        "Raíces del páramo"
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Ofrece la palma",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "tiotigre": {
+      "id": "tiotigre",
+      "realName": "Tío Tigre",
+      "sprite": "tiotigre-v12",
+      "category": "folklore",
+      "portrayal": "Rayas negras y chaleco verde. Se abalanza con un salto y dos zarpazos separados; necesita acercarse para conectar. Interpretación original de videojuego; vestuario, ataques, combos y efectos son ficción arcade, no una versión única o canónica de la tradición.",
+      "sources": [
+        {
+          "title": "Antonio Arráiz — Tío Tigre y Tío Conejo (edición Ministerio de Cultura, 2011)",
+          "url": "https://eldienteroto.org/wp49/wp-content/uploads/2023/11/Tio-conejo.pdf"
+        }
+      ],
+      "soundMode": "generic-combat-reactions",
+      "distinctiveTraits": [
+        "La fuerza del cuento",
+        "Salto de tigre"
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Reta con las garras",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "tioconejo": {
+      "id": "tioconejo",
+      "realName": "Tío Conejo",
+      "sprite": "tioconejo-v12",
+      "category": "folklore",
+      "portrayal": "Orejas largas, chaleco azul y pañuelo rojo. Salta hacia atrás mientras lanza una zanahoria que rebota una vez: gana espacio para la revancha. Interpretación original de videojuego; vestuario, ataques, combos y efectos son ficción arcade, no una versión única o canónica de la tradición.",
+      "sources": [
+        {
+          "title": "Antonio Arráiz — Tío Tigre y Tío Conejo (edición Ministerio de Cultura, 2011)",
+          "url": "https://eldienteroto.org/wp49/wp-content/uploads/2023/11/Tio-conejo.pdf"
+        }
+      ],
+      "soundMode": "generic-combat-reactions",
+      "distinctiveTraits": [
+        "La viveza del cuento",
+        "Brinco tramposo"
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Un brinco travieso",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "ali": {
+      "id": "ali",
+      "name": "Alí Primera",
+      "biography": "Cantautor venezolano vinculado a la nueva canción. La guitarra y la expresividad de sus recitales guían este personaje.",
+      "portraitReference": "assets/references/culture-v15/ali/portrait.jpg",
+      "distinctiveTraits": [
+        "Melena rizada oscura y barba abundante con algunas canas.",
+        "Camisa clara de rayas verticales y guitarra naranja observadas en recital."
+      ],
+      "portrayal": "Melena rizada oscura y barba abundante con algunas canas. Camisa clara de rayas verticales y guitarra naranja observadas en recital. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "Fundación Alí Primera — vida y trayectoria",
+          "url": "https://aliprimera.com/vida-de-al%C3%AD-primera"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Alí Primera",
+          "url": "https://www.saberesafricanos.net/noticias/cultura/989-presidente-maduro-enaltecio-el-legado-musical-de-ali-primera.html"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/ali/portrait.jpg",
+          "url": "https://saberesafricanos.net/images/2016/10/Primera-cantor-bolivariano.jpg",
+          "sourcePage": "https://www.saberesafricanos.net/noticias/cultura/989-presidente-maduro-enaltecio-el-legado-musical-de-ali-primera.html",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Rasgueo del pueblo",
+        "ability": "strum",
+        "description": "Guitarra naranja y camisa a rayas. Envía tres ondas rasantes a intervalos: saltar permite evitarlas.",
+        "combos": [
+          "Primer acorde",
+          "Cuerda firme",
+          "Rasgueo del pueblo"
+        ],
+        "role": "DISTANCIA"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "strum"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Alí Primera",
+      "sprite": "ali-v15",
+      "suggestedMoves": [
+        {
+          "name": "Rasgueo del pueblo",
+          "description": "Guitarra naranja y camisa a rayas. Envía tres ondas rasantes a intervalos: saltar permite evitarlas."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Invitación de cantautor",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "gualberto": {
+      "id": "gualberto",
+      "name": "Gualberto Ibarreto",
+      "biography": "Intérprete de música oriental venezolana, con repertorio de galerón, malagueña y polo. El cuatro y los gestos cercanos al público orientan el diseño.",
+      "portraitReference": "assets/references/culture-v15/gualberto/portrait.jpg",
+      "distinctiveTraits": [
+        "Rostro maduro limpio de barba, nariz marcada y sonrisa amplia.",
+        "Sombrero de paja y polo amarillo con rayas oscuras, rojas y blancas; cuatro a la cadera."
+      ],
+      "portrayal": "Rostro maduro limpio de barba, nariz marcada y sonrisa amplia. Sombrero de paja y polo amarillo con rayas oscuras, rojas y blancas; cuatro a la cadera. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "El Estímulo — entrevista con Gualberto Ibarreto",
+          "url": "https://elestimulo.com/cultura/musica/2022-08-26/gualberto-ibarreto-la-gratificacion-mas-grande-es-ser-querido-por-toda-venezuela/"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Gualberto Ibarreto",
+          "url": "https://elestimulo.com/cultura/musica/2022-08-26/gualberto-ibarreto-la-gratificacion-mas-grande-es-ser-querido-por-toda-venezuela/"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/gualberto/portrait.jpg",
+          "url": "https://media.elestimulo.com/uploads/2022/08/FOTO-PRINCIPAL-Foto-cortesia-Aleidy-Coll1.jpg",
+          "sourcePage": "https://elestimulo.com/cultura/musica/2022-08-26/gualberto-ibarreto-la-gratificacion-mas-grande-es-ser-querido-por-toda-venezuela/",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Tremolo oriental",
+        "ability": "tremolo",
+        "description": "Sombrero de paja, polo amarillo y cuatro. Dos notas se separan y regresan; controla tanto la ida como la vuelta.",
+        "combos": [
+          "Cerecita",
+          "Galerón cruzado",
+          "Doble tremolo"
+        ],
+        "role": "RETORNO"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "tremolo"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Gualberto Ibarreto",
+      "sprite": "gualberto-v15",
+      "suggestedMoves": [
+        {
+          "name": "Tremolo oriental",
+          "description": "Sombrero de paja, polo amarillo y cuatro. Dos notas se separan y regresan; controla tanto la ida como la vuelta."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Saludo con el cuatro",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "reynaldo": {
+      "id": "reynaldo",
+      "name": "Reynaldo Armas",
+      "biography": "Cantante y compositor de música llanera conocido como el Cardenal Sabanero. Su vínculo con el llano inspira el motivo visual del lazo.",
+      "portraitReference": "assets/references/culture-v15/reynaldo/reference-0.jpg",
+      "distinctiveTraits": [
+        "Cabello corto canoso, cejas marcadas y rostro sin barba.",
+        "Chaqueta ocre sobre camisa clara a cuadros, tomada de la referencia."
+      ],
+      "portrayal": "Cabello corto canoso, cejas marcadas y rostro sin barba. Chaqueta ocre sobre camisa clara a cuadros, tomada de la referencia. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "Reynaldo Armas — trayectoria",
+          "url": "https://es.wikipedia.org/wiki/Reynaldo_Armas"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Reynaldo Armas",
+          "url": "https://es.wikipedia.org/wiki/Reynaldo_Armas"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/reynaldo/reference-0.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Reynaldo_Armas.jpg",
+          "sourcePage": "https://es.wikipedia.org/wiki/Reynaldo_Armas",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Lazo sabanero",
+        "ability": "lasso",
+        "description": "Cabello canoso y chaqueta ocre. Su lazo de luz atrae al rival y lo ralentiza brevemente; bloquear evita ambos efectos.",
+        "combos": [
+          "Paso del llano",
+          "Vuelta sabanera",
+          "Caballo de oro"
+        ],
+        "role": "AGARRE"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "lasso"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Reynaldo Armas",
+      "sprite": "reynaldo-v15",
+      "suggestedMoves": [
+        {
+          "name": "Lazo sabanero",
+          "description": "Cabello canoso y chaqueta ocre. Su lazo de luz atrae al rival y lo ralentiza brevemente; bloquear evita ambos efectos."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Invitación llanera",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "dudamel": {
+      "id": "dudamel",
+      "name": "Gustavo Dudamel",
+      "biography": "Director de orquesta formado en El Sistema. La batuta y los cambios de tempo se adaptan a una defensa que redirige proyectiles.",
+      "portraitReference": "assets/references/culture-v15/dudamel/portrait.jpg",
+      "distinctiveTraits": [
+        "Rizos cortos abundantes con canas y rostro afeitado.",
+        "Traje de concierto negro, camisa clara y batuta blanca."
+      ],
+      "portrayal": "Rizos cortos abundantes con canas y rostro afeitado. Traje de concierto negro, camisa clara y batuta blanca. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "Gustavo Dudamel — biografía oficial",
+          "url": "https://www.gustavodudamel.com/biography"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Gustavo Dudamel",
+          "url": "https://www.gustavodudamel.com/"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/dudamel/portrait.jpg",
+          "url": "https://cdn.prod.website-files.com/634419b014b43460b76a5a9f/686c26c05133c21c51a686bd_webLA%20Phil%20Promo%20Photos%20%C2%A9%20Danny%20Clinch%20for%20LA%20Phil%204.jpg",
+          "sourcePage": "https://www.gustavodudamel.com/",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Cadenza de rebote",
+        "ability": "cadenza",
+        "description": "Rizos, frac y batuta. Marca un compás defensivo que devuelve los proyectiles cercanos frente a él antes de cerrar con un golpe.",
+        "combos": [
+          "Primer compás",
+          "Cambio de tempo",
+          "Gran cadenza"
+        ],
+        "role": "REFLEJO"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "cadenza"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Gustavo Dudamel",
+      "sprite": "dudamel-v15",
+      "suggestedMoves": [
+        {
+          "name": "Cadenza de rebote",
+          "description": "Rizos, frac y batuta. Marca un compás defensivo que devuelve los proyectiles cercanos frente a él antes de cerrar con un golpe."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Abre los brazos y dirige la orquesta",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json",
+        "paintedEntranceAtlas": "dudamel-entrance-v24",
+        "paintedPoses": 12
+      }
+    },
+    "danny": {
+      "id": "danny",
+      "name": "Danny Ocean",
+      "biography": "Cantante y compositor venezolano de pop y ritmos urbanos, reconocido por Me Rehúso. Su estética casual se combina con una onda sonora creciente.",
+      "portraitReference": "assets/references/culture-v15/danny/portrait.jpg",
+      "distinctiveTraits": [
+        "Cabello oscuro desordenado, bigote fino y perilla pequeña; rostro alargado.",
+        "Cortaviento oscuro con cuello alto de su retrato promocional."
+      ],
+      "portrayal": "Cabello oscuro desordenado, bigote fino y perilla pequeña; rostro alargado. Cortaviento oscuro con cuello alto de su retrato promocional. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "Danny Ocean — perfil de artista en Apple Music",
+          "url": "https://music.apple.com/us/artist/danny-ocean/1248515752"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Danny Ocean",
+          "url": "https://www.ticketmaster.com/danny-ocean-tickets/artist/2696886"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/danny/portrait.jpg",
+          "url": "https://s1.ticketm.net/dam/a/339/20f8ce33-d853-4b4f-9631-b7333ca52339_RETINA_PORTRAIT_3_2.jpg",
+          "sourcePage": "https://www.ticketmaster.com/danny-ocean-tickets/artist/2696886",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Onda Reflexa",
+        "ability": "crescendo",
+        "description": "Melena despeinada y cortaviento azul. Lanza una burbuja sonora lenta que aumenta de tamaño al avanzar.",
+        "combos": [
+          "Pulso suave",
+          "Cambio de marea",
+          "Onda Reflexa"
+        ],
+        "role": "PRESIÓN"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "crescendo"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Danny Ocean",
+      "sprite": "danny-v15",
+      "suggestedMoves": [
+        {
+          "name": "Onda Reflexa",
+          "description": "Melena despeinada y cortaviento azul. Lanza una burbuja sonora lenta que aumenta de tamaño al avanzar."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Un paso urbano",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "nacho": {
+      "id": "nacho",
+      "name": "Nacho",
+      "biography": "Miguel Ignacio Mendoza, cantante venezolano e integrante de Chino & Nacho. Sus actuaciones musicales inspiran un especial de tres pasos.",
+      "portraitReference": "assets/references/culture-v15/nacho/portrait.jpg",
+      "distinctiveTraits": [
+        "Cabello muy corto y barba negra perfilada, cejas fuertes.",
+        "Bomber oscura con motivos claros y cadena discreta."
+      ],
+      "portrayal": "Cabello muy corto y barba negra perfilada, cejas fuertes. Bomber oscura con motivos claros y cadena discreta. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "Nacho — perfil de AllMusic",
+          "url": "https://www.allmusic.com/artist/nacho-mn0003485703"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Nacho",
+          "url": "https://www.univision.com/noticias/crisis-en-venezuela/el-cantante-activista-nacho-hasta-que-no-caiga-ese-regimen-no-voy-a-dejar-de-regresar-a-venezuela"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/nacho/portrait.jpg",
+          "url": "https://st1.uvnimg.com/25/89/00f2dfe843fbbc5fcc96a2106613/promonacho.jpg",
+          "sourcePage": "https://www.univision.com/noticias/crisis-en-venezuela/el-cantante-activista-nacho-hasta-que-no-caiga-ese-regimen-no-voy-a-dejar-de-regresar-a-venezuela",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Paso sincopado",
+        "ability": "syncopate",
+        "description": "Barba perfilada y bomber estampada. Avanza, retrocede y vuelve con un remate aéreo; tres tiempos para abrir la guardia.",
+        "combos": [
+          "Paso primero",
+          "Contratiempo",
+          "Remate de tarima"
+        ],
+        "role": "RITMO"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "syncopate"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Nacho",
+      "sprite": "nacho-v15",
+      "suggestedMoves": [
+        {
+          "name": "Paso sincopado",
+          "description": "Barba perfilada y bomber estampada. Avanza, retrocede y vuelve con un remate aéreo; tres tiempos para abrir la guardia."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Un paso lateral",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "sarcos": {
+      "id": "sarcos",
+      "name": "Daniel Sarcos",
+      "biography": "Presentador venezolano asociado con Súper sábado sensacional y concursos de televisión. La sorpresa de un premio inspira su proyectil con rebotes.",
+      "portraitReference": "assets/references/culture-v15/sarcos/portrait.jpg",
+      "distinctiveTraits": [
+        "Cabello corto peinado hacia atrás, canas laterales y gran sonrisa.",
+        "Traje azul oscuro, camisa blanca y corbata; micrófono como accesorio de animador."
+      ],
+      "portrayal": "Cabello corto peinado hacia atrás, canas laterales y gran sonrisa. Traje azul oscuro, camisa blanca y corbata; micrófono como accesorio de animador. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "Daniel Sarcos — biografía",
+          "url": "https://es.wikipedia.org/wiki/Daniel_Sarcos"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Daniel Sarcos",
+          "url": "https://www.diariolasamericas.com/cultura/daniel-sarcos-y-alessandra-villegas-se-convierten-padres-un-varon-n4171499"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/sarcos/portrait.jpg",
+          "url": "https://media.diariolasamericas.com/p/a9bb0549bbedc72a6bbd8d3f641ab867/adjuntos/216/imagenes/001/617/0001617983/855x0/smart/danielsarcos.jpg",
+          "sourcePage": "https://www.diariolasamericas.com/cultura/daniel-sarcos-y-alessandra-villegas-se-convierten-padres-un-varon-n4171499",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Premio sensacional",
+        "ability": "jackpot",
+        "description": "Traje oscuro, micrófono y sonrisa de animador. Arroja un premio que rebota dos veces y estalla al terminar su recorrido.",
+        "combos": [
+          "Calienta el show",
+          "Doble sorpresa",
+          "Premio mayor"
+        ],
+        "role": "REBOTE"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "jackpot"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Daniel Sarcos",
+      "sprite": "sarcos-v15",
+      "suggestedMoves": [
+        {
+          "name": "Premio sensacional",
+          "description": "Traje oscuro, micrófono y sonrisa de animador. Arroja un premio que rebota dos veces y estalla al terminar su recorrido."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Bienvenida con los brazos abiertos",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "yordano": {
+      "id": "yordano",
+      "name": "Yordano",
+      "biography": "Cantautor ítalo-venezolano conocido por canciones como Manantial y Por estas calles. Sus referencias acuáticas se traducen en parábolas de agua.",
+      "portraitReference": "assets/references/culture-v15/yordano/portrait.jpg",
+      "distinctiveTraits": [
+        "Cabello corto plateado y frente despejada, rostro afeitado.",
+        "Lentes negros con cristales teñidos, chaqueta negra y camisa gris estampada del retrato de 2025."
+      ],
+      "portrayal": "Cabello corto plateado y frente despejada, rostro afeitado. Lentes negros con cristales teñidos, chaqueta negra y camisa gris estampada del retrato de 2025. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "Yordano — biografía oficial",
+          "url": "https://www.yordanooficial.com/bio.html"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Yordano",
+          "url": "https://www.diariolibre.com/revista/musica/2025/09/04/yordano-rd-siempre-ha-sido-una-ida-y-vuelta-entre-recuerdos/3233047"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/yordano/portrait.jpg",
+          "url": "https://resources.diariolibre.com/images/2025/09/03/fotografia-cedida-por-francisco-fernandez-donde-aparece-el-cantautor-venezolano-yordano-efefrancis-20fe33b3.jpg",
+          "sourcePage": "https://www.diariolibre.com/revista/musica/2025/09/04/yordano-rd-siempre-ha-sido-una-ida-y-vuelta-entre-recuerdos/3233047",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Manantial en tres tiempos",
+        "ability": "fountain",
+        "description": "Pelo plateado, lentes y chaqueta negra. Tres gotas salen a distinto tiempo en parábolas altas que cubren los saltos.",
+        "combos": [
+          "Agua clara",
+          "Ida y vuelta",
+          "Tres tiempos"
+        ],
+        "role": "ARCO"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "fountain"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Yordano",
+      "sprite": "yordano-v15",
+      "suggestedMoves": [
+        {
+          "name": "Manantial en tres tiempos",
+          "description": "Pelo plateado, lentes y chaqueta negra. Tres gotas salen a distinto tiempo en parábolas altas que cubren los saltos."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Invitación del cantautor",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "lila": {
+      "id": "lila",
+      "name": "Lila Morillo",
+      "biography": "Cantante y actriz zuliana, conocida por El Cocotero y una imagen de escenario con gran melena y accesorios llamativos.",
+      "portraitReference": "assets/references/culture-v15/lila/portrait.jpg",
+      "distinctiveTraits": [
+        "Melena larga oscura rojiza con flequillo, maquillaje de ojos y labios rojos.",
+        "Cadenas y pendientes dorados; bordados y botines añadidos como adaptación de escenario."
+      ],
+      "portrayal": "Melena larga oscura rojiza con flequillo, maquillaje de ojos y labios rojos. Cadenas y pendientes dorados; bordados y botines añadidos como adaptación de escenario. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "Lila Morillo — trayectoria",
+          "url": "https://es.wikipedia.org/wiki/Lila_Morillo"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Lila Morillo",
+          "url": "https://www.quepasa.com.ve/cultura-y-farandula/lila-morillo-sobre-la-situacion-en-venezuela-a-mi-me-duele-mi-pais-y-sufro-lo-que-sufre-mi-pais/"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/lila/portrait.jpg",
+          "url": "https://www.quepasa.com.ve/site/wp-content/uploads/2022/08/Lila-Morillo-750x400.jpg",
+          "sourcePage": "https://www.quepasa.com.ve/cultura-y-farandula/lila-morillo-sobre-la-situacion-en-venezuela-a-mi-me-duele-mi-pais-y-sufro-lo-que-sufre-mi-pais/",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Abanico del cocotero",
+        "ability": "cocotero",
+        "description": "Flequillo, melena y detalles dorados. Abre cinco hojas de luz en abanico para cerrar las rutas del rival.",
+        "combos": [
+          "Destello zuliano",
+          "Giro dorado",
+          "Gran cocotero"
+        ],
+        "role": "ABANICO"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "cocotero"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Lila Morillo",
+      "sprite": "lila-v15",
+      "suggestedMoves": [
+        {
+          "name": "Abanico del cocotero",
+          "description": "Flequillo, melena y detalles dorados. Abre cinco hojas de luz en abanico para cerrar las rutas del rival."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Saludo de diva",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "rummy": {
+      "id": "rummy",
+      "name": "Rummy Olivo",
+      "biography": "Cantante venezolana de música llanera. La cadencia del joropo y su vestuario de sombrero y camisa estampada orientan el zapateo.",
+      "portraitReference": "assets/references/culture-v15/rummy/portrait.jpg",
+      "distinctiveTraits": [
+        "Sombrero azul de ala ancha y cabello castaño con puntas claras.",
+        "Camisa azul con motivos, jeans y cinturón observados en fotografía; botas como adaptación de combate."
+      ],
+      "portrayal": "Sombrero azul de ala ancha y cabello castaño con puntas claras. Camisa azul con motivos, jeans y cinturón observados en fotografía; botas como adaptación de combate. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "Festival Centro — Rummy Olivo",
+          "url": "https://www.festivalcentro.gov.co/artista/rummy-olivo"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Rummy Olivo",
+          "url": "https://llanera.com/rummy-olivo-da-parte-de-tranquilidad-luego-de-su-operacion/25604"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/rummy/portrait.jpg",
+          "url": "https://llanera.com/data/archivos/galeriasinicio/1/20230107165416-rummy-olivo.webp",
+          "sourcePage": "https://llanera.com/rummy-olivo-da-parte-de-tranquilidad-luego-de-su-operacion/25604",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Zapateo llanero",
+        "ability": "zapateo",
+        "description": "Sombrero azul y camisa estampada. Avanza con cuatro golpes de suelo; saltar evita el zapateo y su último empujón.",
+        "combos": [
+          "Paso de sabana",
+          "Flor de ritmo",
+          "Zapateo final"
+        ],
+        "role": "SUELO"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "zapateo"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Rummy Olivo",
+      "sprite": "rummy-v15",
+      "suggestedMoves": [
+        {
+          "name": "Zapateo llanero",
+          "description": "Sombrero azul y camisa estampada. Avanza con cuatro golpes de suelo; saltar evita el zapateo y su último empujón."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Saludo llanero",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "chiqui": {
+      "id": "chiqui",
+      "name": "Chiquinquirá Delgado",
+      "biography": "Presentadora, actriz y modelo venezolana ligada a programas como Mira quién baila. La pasarela sirve como motivo de desplazamiento.",
+      "portraitReference": "assets/references/culture-v15/chiqui/portrait.jpg",
+      "distinctiveTraits": [
+        "Cabello castaño voluminoso con ondas y reflejos, ojos avellana.",
+        "Blusa blanca de su fotografía; pantalón azul y botas se añaden como vestuario arcade."
+      ],
+      "portrayal": "Cabello castaño voluminoso con ondas y reflejos, ojos avellana. Blusa blanca de su fotografía; pantalón azul y botas se añaden como vestuario arcade. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "Univision — trayectoria de Chiquinquirá Delgado",
+          "url": "https://www.univision.com/shows/mira-quien-baila/chiqui-delgado-llega-a-los-45-mira-como-ha-cambiado-la-conductora-fotos"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Chiquinquirá Delgado",
+          "url": "https://www.univision.com/temas/chiquinquira-delgado"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/chiqui/portrait.jpg",
+          "url": "https://st1.uvnimg.com/f8/0a/8f36ffe64feaa04835bc65c65e04/11379048_1587078681556025_73486330_n.jpg",
+          "sourcePage": "https://www.univision.com/temas/chiquinquira-delgado",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Pasarela relámpago",
+        "ability": "runway",
+        "description": "Ondas castañas, blusa blanca y pantalón azul. Un avance corto y rapidísimo empuja con fuerza y frena al acabar.",
+        "combos": [
+          "Paso elegante",
+          "Foco azul",
+          "Cierre de pasarela"
+        ],
+        "role": "IMPULSO"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "runway"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Chiquinquirá Delgado",
+      "sprite": "chiqui-v15",
+      "suggestedMoves": [
+        {
+          "name": "Pasarela relámpago",
+          "description": "Ondas castañas, blusa blanca y pantalón azul. Un avance corto y rapidísimo empuja con fuerza y frena al acabar."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Saludo de pasarela",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "norkys": {
+      "id": "norkys",
+      "name": "Norkys Batista",
+      "biography": "Actriz y modelo venezolana con trayectoria en televisión y teatro. El cambio de perfil y la expresión corporal inspiran su pivote.",
+      "portraitReference": "assets/references/culture-v15/norkys/portrait.jpg",
+      "distinctiveTraits": [
+        "Cabello negro largo, liso y con raya central; cejas oscuras y pendientes de aro.",
+        "Blazer coral y pantalón negro son adaptación de escenario, no una reproducción de la fotografía de rostro."
+      ],
+      "portrayal": "Cabello negro largo, liso y con raya central; cejas oscuras y pendientes de aro. Blazer coral y pantalón negro son adaptación de escenario, no una reproducción de la fotografía de rostro. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "Correo Cultural — entrevista con Norkys Batista",
+          "url": "https://correocultural.com/2022/08/norkys-batista-y-punto-go-conforman-primera-entrevista-en-el-metaverso-en-venezuela/"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Norkys Batista",
+          "url": "https://correocultural.com/2022/08/norkys-batista-y-punto-go-conforman-primera-entrevista-en-el-metaverso-en-venezuela/"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/norkys/portrait.jpg",
+          "url": "https://correocultural.com/wp-content/uploads/2022/08/norkys1.jpg",
+          "sourcePage": "https://correocultural.com/2022/08/norkys-batista-y-punto-go-conforman-primera-entrevista-en-el-metaverso-en-venezuela/",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Pivote de escena",
+        "ability": "pivot",
+        "description": "Cabello negro liso y blazer coral. Salta hacia atrás con dos golpes circulares para castigar a quien se acerque.",
+        "combos": [
+          "Cambio de perfil",
+          "Giro de escena",
+          "Pivote doble"
+        ],
+        "role": "AÉREO"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "pivot"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Norkys Batista",
+      "sprite": "norkys-v15",
+      "suggestedMoves": [
+        {
+          "name": "Pivote de escena",
+          "description": "Cabello negro liso y blazer coral. Salta hacia atrás con dos golpes circulares para castigar a quien se acerque."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Giro de hombros",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "gabriela": {
+      "id": "gabriela",
+      "name": "Gabriela Spanic",
+      "biography": "Actriz venezolana reconocida por interpretar papeles dobles en La usurpadora y La intrusa. Ese recurso dramático inspira la silueta espejo.",
+      "portraitReference": "assets/references/culture-v15/gabriela/portrait.jpg",
+      "distinctiveTraits": [
+        "Melena lisa color miel, ojos claros, cejas arqueadas y labios rojos.",
+        "Gargantilla plateada observada en retrato; blazer y pantalón adaptados para la pelea."
+      ],
+      "portrayal": "Melena lisa color miel, ojos claros, cejas arqueadas y labios rojos. Gargantilla plateada observada en retrato; blazer y pantalón adaptados para la pelea. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "Gshow — carrera de Gabriela Spanic",
+          "url": "https://gshow.globo.com/novelas/mundo-de-novela/noticia/gabriela-spanic-relembre-a-carreira-da-atriz-estrela-de-a-usurpadora-e-a-intrusa.ghtml"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Gabriela Spanic",
+          "url": "https://www.ellaeonline.com/farandulamexicana/La-unica-ecuatoriana-que-logro-conmover-a-Gabriela-Spanic-20230123-0023.html"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/gabriela/portrait.jpg",
+          "url": "https://www.ellaeonline.com/image/ellaeonlinecom/la-actriz-se-mostro-conmovida-los-comentarios-hechos-alejandra-jaramillo-parte-del-elenco-sientese-quien-pueda-y-estos-son-los-motivos-1693575895-hq.jpeg",
+          "sourcePage": "https://www.ellaeonline.com/farandulamexicana/La-unica-ecuatoriana-que-logro-conmover-a-Gabriela-Spanic-20230123-0023.html",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Doble de novela",
+        "ability": "mirror",
+        "description": "Melena miel, gargantilla y blazer plateado. Golpea al frente y después desde una silueta detrás del rival; gira tu guardia.",
+        "combos": [
+          "Primera toma",
+          "Cambio de papel",
+          "Doble de novela"
+        ],
+        "role": "ESPEJO"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "mirror"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Gabriela Spanic",
+      "sprite": "gabriela-v15",
+      "suggestedMoves": [
+        {
+          "name": "Doble de novela",
+          "description": "Melena miel, gargantilla y blazer plateado. Golpea al frente y después desde una silueta detrás del rival; gira tu guardia."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Saludo de actriz",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "amanda": {
+      "id": "amanda",
+      "name": "Amanda Gutiérrez",
+      "biography": "Amanda Gutiérrez Padrón, actriz venezolana de teatro y televisión. Su experiencia escénica inspira un telón defensivo y un contraataque.",
+      "portraitReference": "assets/references/culture-v15/amanda/portrait.jpg",
+      "distinctiveTraits": [
+        "Bob castaño asimétrico a la altura de la mandíbula, raya lateral y ojos expresivos.",
+        "Collar y brazalete dorados del retrato; conjunto marfil y violeta como adaptación teatral."
+      ],
+      "portrayal": "Bob castaño asimétrico a la altura de la mandíbula, raya lateral y ojos expresivos. Collar y brazalete dorados del retrato; conjunto marfil y violeta como adaptación teatral. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "Amanda Gutiérrez Padrón — televisión y teatro",
+          "url": "https://es.wikipedia.org/wiki/Amanda_Guti%C3%A9rrez"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Amanda Gutiérrez",
+          "url": "https://2001online.com/farandula/amanda-gutierrez-envia-emotivo-mensaje-a-los-venezolanos-video"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/amanda/portrait.jpg",
+          "url": "https://pxcdn.2001online.com/2001/082024/1723154479491.jpg?ch=675&cw=1200",
+          "sourcePage": "https://2001online.com/farandula/amanda-gutierrez-envia-emotivo-mensaje-a-los-venezolanos-video",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Telón de respuesta",
+        "ability": "curtain",
+        "description": "Bob castaño y vestuario violeta. Abre una ventana de contraataque: detiene un golpe frontal y responde si el rival está cerca.",
+        "combos": [
+          "Entrada a escena",
+          "Cambio de acto",
+          "Telón final"
+        ],
+        "role": "CONTRAATAQUE"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "curtain"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Amanda Gutiérrez",
+      "sprite": "amanda-v15",
+      "suggestedMoves": [
+        {
+          "name": "Telón de respuesta",
+          "description": "Bob castaño y vestuario violeta. Abre una ventana de contraataque: detiene un golpe frontal y responde si el rival está cerca."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Mirada y gesto dramático",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "lele": {
+      "id": "lele",
+      "name": "Lele Pons",
+      "biography": "Creadora, comediante y cantante nacida en Caracas, conocida por sus videos de humor. El teléfono y las bromas físicas guían su trampa arcade.",
+      "portraitReference": "assets/references/culture-v15/lele/portrait.jpg",
+      "distinctiveTraits": [
+        "Ondas rubias con raíz oscura y pequeño lunar en la mejilla derecha.",
+        "Hoodie amarillo, jeans y teléfono son adaptación de humor y creación de contenido."
+      ],
+      "portrayal": "Ondas rubias con raíz oscura y pequeño lunar en la mejilla derecha. Hoodie amarillo, jeans y teléfono son adaptación de humor y creación de contenido. Las acciones de pelea son ficción.",
+      "sources": [
+        {
+          "title": "Lele Pons — creadora y comediante",
+          "url": "https://en.wikipedia.org/wiki/Lele_Pons"
+        },
+        {
+          "title": "Referencia fotográfica inspeccionada — Lele Pons",
+          "url": "https://www.themoviedb.org/person/1629636-lele-pons/images/profiles"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/lele/portrait.jpg",
+          "url": "https://image.tmdb.org/t/p/original/idevharlilDew3QepRGqvFuOsX0.jpg",
+          "sourcePage": "https://www.themoviedb.org/person/1629636-lele-pons/images/profiles",
+          "viewed": true
+        }
+      ],
+      "gameplay": {
+        "special": "Broma resbalosa",
+        "ability": "prank",
+        "description": "Ondas rubias, teléfono y hoodie amarillo. Retrocede y deja una cáscara que se activa después de un instante; evítala saltando.",
+        "combos": [
+          "Cámara lista",
+          "Giro viral",
+          "Última broma"
+        ],
+        "role": "TRAMPA"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "prank"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Lele Pons",
+      "sprite": "lele-v15",
+      "suggestedMoves": [
+        {
+          "name": "Broma resbalosa",
+          "description": "Ondas rubias, teléfono y hoodie amarillo. Retrocede y deja una cáscara que se activa después de un instante; evítala saltando."
+        }
+      ],
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Saludo a la cámara",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    },
+    "giuseppe": {
+      "id": "giuseppe",
+      "name": "Giuseppe Gangi",
+      "biography": "Ingeniero de software venezolano, investigador de datos y creador de Macedonia del Norte. Su perfil oficial y entrevistas identifican al personaje; no se confunde con los homónimos italianos.",
+      "portraitReference": "assets/references/culture-v15/giuseppe/portrait.jpg",
+      "distinctiveTraits": [
+        "Rostro ovalado ancho, mejillas llenas y sonrisa pequeña; cabello negro corto, abundante y peinado hacia un lado.",
+        "Lentes negros de montura gruesa y redondeada, suéter liso ciruela en su retrato de estudio.",
+        "Su fotografía pública de GitHub muestra el mismo rostro y cabello, sin lentes y con camiseta gris."
+      ],
+      "portrayal": "Se reproduce el rostro, los lentes y el suéter de la referencia de estudio. Pantalones, zapatillas, postura y combate digital son adaptaciones arcade ficticias.",
+      "sources": [
+        {
+          "title": "Giuseppe Gangi — Sobre mí, perfil oficial",
+          "url": "https://ggangi.com/sobre-mi"
+        },
+        {
+          "title": "GitHub — perfil oficial ggangix",
+          "url": "https://github.com/ggangix"
+        },
+        {
+          "title": "El Pitazo — entrevista La Conversa Electoral, 22 mayo 2025",
+          "url": "https://elpitazo.net/alianzas/la-conversa-electoral-giuseppe-gangi-el-25m-la-tendencia-opaca-es-irreversible/"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/culture-v15/giuseppe/portrait.jpg",
+          "url": "https://pbs.twimg.com/profile_images/2032881948398325760/Vk5B76EH_400x400.jpg",
+          "sourcePage": "https://x.com/ggangix",
+          "viewed": true
+        },
+        {
+          "file": "assets/references/culture-v15/giuseppe/github.jpg",
+          "url": "https://github.com/ggangix.png",
+          "sourcePage": "https://github.com/ggangix",
+          "viewed": true
+        }
+      ],
+      "videoReferences": [
+        {
+          "title": "Canal público oficial Giuseppe Gangi",
+          "url": "https://www.youtube.com/@ggangix",
+          "note": "Referencia de contexto; no se descargan ni utilizan voces reales."
+        }
+      ],
+      "gameplay": {
+        "special": "Ráfaga de datos",
+        "ability": "audit",
+        "description": "Lentes negros y suéter ciruela, como en su estudio. Lanza tres paquetes digitales que oscilan y aceleran hasta un límite; bloquear o saltar evita la ráfaga.",
+        "combos": [
+          "Ping certero",
+          "Código limpio",
+          "Compilación final"
+        ],
+        "role": "CONTROL"
+      },
+      "audio": {
+        "realVoice": false,
+        "reactions": "Esfuerzos y dolor genéricos sin palabras",
+        "specialCue": "audit"
+      },
+      "review": {
+        "identityVerified": true,
+        "portraitViewed": true,
+        "biographyReviewed": true
+      },
+      "realName": "Giuseppe Gangi",
+      "sprite": "giuseppe-v15",
+      "entranceReview": {
+        "version": 24,
+        "individualAudit": "docs/entrances-v23/character-review.json",
+        "corporalGesture": "Presentación de su idea",
+        "rig": "shared/choreography.ts",
+        "durationMs": 2800,
+        "settlesAt": 0.9,
+        "fictionalAdaptation": true,
+        "playsOnce": true,
+        "singleGesture": "docs/entrances-v24/single-gestures.json"
+      }
+    }
+  },
+  "soundMode": "generic-combat-reactions"
+}

@@ -1,0 +1,346 @@
+{
+  "id": "kilometro",
+  "resolvedName": "Miguel Alejandro Herrera",
+  "displayName": "Kilómetro Internacional",
+  "identityResolution": {
+    "confidence": "high",
+    "officialProfile": "https://kilometrointernacional.com/kilometro/",
+    "evidence": "La página oficial nombra a Miguel Alejandro Herrera y muestra las mismas fotos y marca que el canal Kilómetro Internacional. Monitoreamos identifica a Miguel Herrera como Kilómetro en su cobertura del 6 de agosto de 2026.",
+    "verifiedAt": "2026-10-08"
+  },
+  "sources": [
+    {
+      "url": "https://kilometrointernacional.com/kilometro/",
+      "title": "Kilómetro — Miguel Alejandro Herrera",
+      "kind": "official-profile"
+    },
+    {
+      "url": "https://kilometrointernacional.com/",
+      "title": "Kilómetro Internacional — sitio oficial",
+      "kind": "official-site"
+    },
+    {
+      "url": "https://linktr.ee/kilometro_produce",
+      "title": "Kilómetro — perfiles públicos enlazados",
+      "kind": "official-social-links"
+    },
+    {
+      "url": "https://monitoreamos.com/venezuela/delegacion-an-2015-kilometro-mesa-dialogo",
+      "title": "Delegación de la AN 2015 se reunió con el tiktoker Kilómetro",
+      "kind": "news"
+    },
+    {
+      "url": "https://kilometrointernacional.com/kilometro-venezuela-periodista-comunicar/",
+      "title": "Kilómetro en Venezuela: ¿Hay que ser periodista para comunicar?",
+      "kind": "official-first-person-text"
+    },
+    {
+      "url": "https://www.libertaddigital.com/internacional/latinoamerica/2026-01-11/los-comunistas-donde-estan-el-nuevo-himno-viral-de-los-democratas-venezolanos-tras-la-caida-de-maduro-7342153/amp.html",
+      "title": "Los comunistas ¿dónde están? — canción de Kilómetro Internacional",
+      "kind": "news-song-attribution"
+    },
+    {
+      "url": "https://propuestasmusicales.com/kilometro-internacional-el-creador-detras-del-exito-viral-los-comunistas-donde-estan/",
+      "title": "Kilómetro Internacional: entrevista enlazada por Propuestas Musicales",
+      "kind": "voice-candidate-source"
+    },
+    {
+      "url": "https://www.youtube.com/@KilometroInternacional",
+      "title": "Canal Kilómetro Internacional enlazado por su sitio oficial",
+      "kind": "official-video-channel"
+    }
+  ],
+  "referenceImages": [
+    {
+      "path": "assets/references/kilometro/official-kilo2.png",
+      "url": "https://kilometrointernacional.com/wp-content/uploads/2026/05/kilo2.png",
+      "role": "primary photographic identity and green sweatshirt reference",
+      "viewed": true
+    },
+    {
+      "path": "assets/references/kilometro/official-sept-portrait.png",
+      "url": "https://kilometrointernacional.com/wp-content/uploads/2026/09/KILOMETRO-PNG.png",
+      "role": "photographic close face reference published in official biography",
+      "viewed": true
+    },
+    {
+      "path": "assets/references/kilometro/official-history.jpeg",
+      "url": "https://kilometrointernacional.com/wp-content/uploads/2026/09/KILO-HISTORIA.jpeg",
+      "role": "official studio portrait; smile and black cap",
+      "viewed": true
+    },
+    {
+      "path": "assets/references/kilometro/official-2026.jpg",
+      "url": "https://kilometrointernacional.com/wp-content/uploads/2026/09/4-de-quien-soy.jpg",
+      "role": "official website screenshot, contextual reference only; not passed to imagegen",
+      "viewed": true
+    }
+  ],
+  "visual": {
+    "face": "Rostro juvenil ovalado, mandíbula suave, cejas negras gruesas casi rectas, ojos oscuros, nariz de puente recto y punta redondeada ancha, labios llenos, orejas visibles. Sin barba ni bigote en las tres referencias oficiales.",
+    "hair": "Cabello oscuro corto, ligeramente ondulado, visible por la abertura de una gorra negra llevada hacia atrás.",
+    "outfit": "Suéter liso verde bosque oscuro de cuello redondo y mangas largas, con puños y cintura acanalados; gorra negra hacia atrás. También lleva suéter negro en el retrato de estudio. Pantalón negro y zapatillas blancas del atlas son una elección de vestuario del juego: las fotos utilizadas no verifican su ropa de cintura para abajo.",
+    "gestures": [
+      {
+        "description": "Índice apoyado en la sien mientras escucha o analiza ante el micrófono.",
+        "sourceUrl": "https://kilometrointernacional.com/wp-content/uploads/2026/05/kilo2.png",
+        "verification": "observed-photo"
+      },
+      {
+        "description": "Manos entrelazadas a la altura del pecho.",
+        "sourceUrl": "https://kilometrointernacional.com/wp-content/uploads/2026/09/KILOMETRO-PNG.png",
+        "verification": "observed-photo"
+      },
+      {
+        "description": "Sonrisa amplia mostrando dientes, con la mano cerca de la barbilla en estudio.",
+        "sourceUrl": "https://kilometrointernacional.com/wp-content/uploads/2026/09/KILO-HISTORIA.jpeg",
+        "verification": "observed-photo"
+      }
+    ],
+    "changesFromV1": "Se sustituyeron la barba, el rostro adulto genérico, la gorra gris y la franela azul por el rostro juvenil afeitado, gorra negra y suéter verde largo vistos en las fotos."
+  },
+  "quotes": [
+    {
+      "id": "siempre-luz",
+      "text": "Siempre luz.",
+      "sourceUrl": "https://kilometrointernacional.com/kilometro-venezuela-periodista-comunicar/",
+      "verified": true,
+      "context": "Firma del artículo escrito en primera persona y fechado 21 de agosto de 2026. Se verifica esta aparición; no se afirma frecuencia en videos.",
+      "kind": "signature"
+    },
+    {
+      "id": "comunidad",
+      "text": "Quiero una comunidad que piense.",
+      "sourceUrl": "https://kilometrointernacional.com/kilometro-venezuela-periodista-comunicar/",
+      "verified": true,
+      "context": "Frase del artículo oficial del 21 de agosto de 2026 sobre su comunidad y la responsabilidad al comunicar.",
+      "kind": "first-person-text"
+    },
+    {
+      "id": "especula",
+      "text": "cuando se habla mucho, se especula mucho",
+      "sourceUrl": "https://monitoreamos.com/venezuela/delegacion-an-2015-kilometro-mesa-dialogo",
+      "verified": true,
+      "context": "Fragmento atribuido a Herrera tras reunirse con la delegación de la Asamblea Nacional de 2015, 6 de agosto de 2026. Verificado en cobertura escrita; no se verificó el segundo exacto del video.",
+      "kind": "reported-speech"
+    },
+    {
+      "id": "comunistas",
+      "text": "Los comunistas ¿dónde están?",
+      "sourceUrl": "https://www.libertaddigital.com/internacional/latinoamerica/2026-01-11/los-comunistas-donde-estan-el-nuevo-himno-viral-de-los-democratas-venezolanos-tras-la-caida-de-maduro-7342153/amp.html",
+      "verified": true,
+      "context": "Título y estribillo de la canción que la cobertura atribuye a su canal Kilómetro Internacional. Se conserva solamente este fragmento de cinco palabras de la letra.",
+      "kind": "song-refrain"
+    }
+  ],
+  "voice": {
+    "description": "La identidad de la voz hablada no pudo comprobarse auditivamente porque no se obtuvo un medio reproducible sin login. No se atribuye un timbre escuchado ni se clona voz. Si se usa locución sintética para el juego, debe identificarse como interpretación arcade y no como grabación de Miguel Herrera.",
+    "status": "no-usable-original-sample-obtained",
+    "candidates": [
+      {
+        "url": "https://www.instagram.com/reel/Dbs4tiyu_PO/",
+        "title": "Kilómetro Internacional tras encuentro con la delegación de la AN 2015",
+        "timestamp": null,
+        "text": null,
+        "quoteId": "especula",
+        "sourceUrl": "https://monitoreamos.com/venezuela/delegacion-an-2015-kilometro-mesa-dialogo",
+        "downloadStatus": "Instagram devuelve respuesta de medios vacía sin login; navegador de investigación bloqueado."
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=9v2O1bN-PYE",
+        "title": "Entrevista a Kilómetro enlazada por Propuestas Musicales",
+        "timestamp": null,
+        "text": null,
+        "sourceUrl": "https://propuestasmusicales.com/kilometro-internacional-el-creador-detras-del-exito-viral-los-comunistas-donde-estan/",
+        "downloadStatus": "YouTube pide login para confirmar que no se trata de un bot. No se verificó el título exacto, duración ni un timestamp."
+      },
+      {
+        "url": "https://www.youtube.com/@KilometroInternacional",
+        "title": "Canal oficial de Kilómetro Internacional",
+        "timestamp": null,
+        "text": null,
+        "sourceUrl": "https://kilometrointernacional.com/",
+        "downloadStatus": "El sitio propio enlaza el canal. La biblioteca de video de su WordPress devuelve cero archivos de tipo video; sus videos se alojan externamente."
+      }
+    ],
+    "usableSamples": [],
+    "downloadAttempts": [
+      {
+        "url": "https://www.youtube.com/watch?v=9v2O1bN-PYE",
+        "method": "yt-dlp público sin cookies",
+        "result": "Sign in to confirm you’re not a bot"
+      },
+      {
+        "url": "https://www.instagram.com/reel/Dbs4tiyu_PO/",
+        "method": "yt-dlp público sin cookies",
+        "result": "Instagram sent an empty media response"
+      },
+      {
+        "url": "https://kilometrointernacional.com/wp-json/wp/v2/media?media_type=video&per_page=50",
+        "method": "Consulta pública WordPress",
+        "result": "[]"
+      }
+    ]
+  },
+  "gameLines": {
+    "select": {
+      "text": "Siempre luz.",
+      "kind": "verified-quote",
+      "quoteId": "siempre-luz",
+      "performance": "Si se sintetiza, identificar como interpretación del juego."
+    },
+    "special": {
+      "text": "¡Esto va para el directo!",
+      "kind": "fictional-game-line",
+      "verified": false
+    },
+    "win": {
+      "text": "Quiero una comunidad que piense.",
+      "kind": "verified-quote",
+      "quoteId": "comunidad",
+      "performance": "Si se sintetiza, identificar como interpretación del juego."
+    }
+  },
+  "recommended": {
+    "title": "El Comunicador",
+    "description": "Kilómetro Internacional entra con la gorra negra hacia atrás y el suéter verde de sus fotos oficiales. Pelea con movilidad y golpes rápidos; su especial convierte el directo en una ráfaga arcade.",
+    "special": {
+      "name": "Coro Viral",
+      "description": "Una ráfaga verde que representa el alcance del directo. Recurso ficticio del juego, sin atribuir poderes o acciones reales al creador.",
+      "kind": "fictional-game-mechanic"
+    },
+    "combos": [
+      {
+        "name": "Hilo en vivo",
+        "sequence": [
+          "puñetazo",
+          "puñetazo",
+          "especial"
+        ],
+        "kind": "fictional-game-mechanic"
+      },
+      {
+        "name": "Pregunta incómoda",
+        "sequence": [
+          "bloqueo",
+          "puñetazo",
+          "patada alta"
+        ],
+        "kind": "fictional-game-mechanic"
+      }
+    ]
+  },
+  "sprite": {
+    "source": "assets/source/kilometro-v2.png",
+    "runtime": "public/assets/kilometro-v2.webp",
+    "previousSource": "assets/source/kilometro.png",
+    "previousRuntime": "public/assets/kilometro.webp",
+    "tool": "built-in image_gen.imagegen",
+    "promptFile": "docs/characters/kilometro-prompt.txt",
+    "prompt": "Use case: stylized-concept\nAsset type: production transparent 2D fighting-game sprite atlas for Arena Criolla.\nPrimary request: Regenerate Kilómetro as a recognizable editorial illustration of the REAL Venezuelan creator Miguel Alejandro Herrera, known as Kilómetro Internacional. Create exactly EIGHT separate full-body poses of this same young adult man, in a precise 4-column by 2-row atlas.\n\nInput images:\nImage 1 (official-kilo2.png) is the PRIMARY real photographic reference for his face, short dark hair, backwards BLACK baseball cap and plain DARK FOREST GREEN long-sleeved crewneck sweatshirt.\nImage 2 (official-sept-portrait.png) is a SECOND real photographic identity reference. Match the young face, thick dark nearly straight brows, dark eyes, prominent broad straight nose with rounded tip, full lips, clearly visible ears, oval youthful jaw, warm light-medium olive skin. He is CLEAN-SHAVEN, no beard, no moustache. Use his face; the backpack seen in this photo is omitted from the combat outfit.\nImage 3 (official-history.jpeg) is a THIRD photographic reference for his wide toothy smile, expressive face, clean-shaven cheeks and backwards black cap.\nImage 4 (delsa.png) is ONLY the illustration and atlas-layout style reference, never the identity or clothing.\n\nIdentity and clothing: Preserve the photographic facial likeness in every pose, with a modestly enlarged expressive head. Young slender build, natural slim limbs, never a bulky older bearded fighter. Short slightly wavy dark hair visible through the cap opening. Plain BLACK cap worn backwards, its adjustable band above his forehead and brim behind his head. Plain DARK FOREST GREEN long-sleeved crewneck sweatshirt with ribbed cuffs and hem, sleeves full length in all eight poses. Black straight/slim casual trousers and clean off-white low-top sneakers are the simple lower-body game costume. Small thin silver bracelet is optional, attached at wrist. No beard, moustache, sunglasses, microphone, logos, backpack, or handheld props.\n\nStyle/medium: match the Delsa reference's polished contemporary 2D arcade illustration: bold crisp dark ink contours, hand-painted editorial caricature, detailed cel shading, expressive recognizable face. Preserve likeness rather than replacing him with a generic handsome cartoon. No pixel art, no photorealistic bodies.\n\nComposition: one wide 2048 by 1024 pixel PNG canvas, truly transparent alpha. EXACTLY four equally spaced sprites in top row and four equally spaced sprites in bottom row, ONE complete independent man per cell. Large transparent gutters around every silhouette, including extended punch and kick. Each figure wholly inside its cell, no clipping or touching, all heads and shoes visible. Consistent head size, body proportions, clothing, colors and scale. All eight face SCREEN-RIGHT in a THREE-QUARTER SIDE VIEW. Each body's feet use the same local baseline per row except the airborne jump. Top row begins with clear transparent top margin; bottom row heads begin below the middle of the sheet.\n\nTop row, left to right:\n1. Idle combat guard, knees softly bent, hands raised near face, energetic speaking expression.\n2. Defensive block, both forearms crossed tightly in front of upper chest.\n3. Running right A, left leg extended forward, right leg back, arms opposing.\n4. Running right B, right leg extended forward, left leg back, arms opposing, visibly a different run cycle.\n\nBottom row, left to right:\n5. Airborne jump with knees tucked toward chest, full body visible.\n6. Straight right-handed punch toward screen-right, other fist at chin.\n7. High rightward side kick with one leg extended horizontally toward screen-right, support foot on the baseline, two arms in guard.\n8. Hurt/recoil leaning backward, pained expression, hands open, facing right.\n\nScene/backdrop: transparent only. No background color, floor, cast shadows, glow, scenery, decorative panels, grid, cells, checkerboard, annotations, captions or text.\nConstraints: EXACTLY eight complete single connected character silhouettes; no extra person, no detached objects, effects, motion trails, duplicated limbs, floating hands or accessories. All poses have exactly two arms and two legs. Do not derive his identity from the previous generic bearded Kilómetro asset. Copy the clean-shaven youthful REAL face in the first three photos.",
+    "styleReference": "assets/source/delsa.png (style only)",
+    "generationReferences": [
+      "assets/references/kilometro/official-kilo2.png",
+      "assets/references/kilometro/official-sept-portrait.png",
+      "assets/references/kilometro/official-history.jpeg"
+    ],
+    "validation": {
+      "width": 1774,
+      "height": 887,
+      "hasAlpha": true,
+      "transparentPixels": 1048295,
+      "opaquePixels": 2319,
+      "partialAlphaPixels": 522924,
+      "componentThreshold": {
+        "alpha": 40,
+        "minAreaExclusive": 4000
+      },
+      "componentCount": 8,
+      "rows": [
+        4,
+        4
+      ],
+      "runtimeComponentContractPassed": true,
+      "frameOrder": [
+        "idle",
+        "block",
+        "runA",
+        "runB",
+        "jump",
+        "punch",
+        "highKick",
+        "hurt"
+      ],
+      "frames": [
+        {
+          "minX": 33,
+          "maxX": 385,
+          "minY": 9,
+          "maxY": 454,
+          "count": 58036
+        },
+        {
+          "minX": 472,
+          "maxX": 836,
+          "minY": 11,
+          "maxY": 453,
+          "count": 55352
+        },
+        {
+          "minX": 899,
+          "maxX": 1310,
+          "minY": 10,
+          "maxY": 447,
+          "count": 64637
+        },
+        {
+          "minX": 1360,
+          "maxX": 1746,
+          "minY": 9,
+          "maxY": 447,
+          "count": 61869
+        },
+        {
+          "minX": 72,
+          "maxX": 305,
+          "minY": 454,
+          "maxY": 784,
+          "count": 44679
+        },
+        {
+          "minX": 425,
+          "maxX": 881,
+          "minY": 453,
+          "maxY": 871,
+          "count": 62358
+        },
+        {
+          "minX": 942,
+          "maxX": 1366,
+          "minY": 455,
+          "maxY": 871,
+          "count": 52062
+        },
+        {
+          "minX": 1441,
+          "maxX": 1742,
+          "minY": 469,
+          "maxY": 870,
+          "count": 58663
+        }
+      ],
+      "visualInspection": "Las ocho poses muestran el mismo joven afeitado, gorra negra y suéter verde; están completas dentro del lienzo y separadas. Se inspeccionó también el v1 y las cuatro referencias descargadas.",
+      "limitations": [
+        "La herramienta devolvió 1774×887 aunque el prompt solicitaba 2048×1024; el cargador acepta dimensiones variables.",
+        "Los ataques cruzan ligeramente algunos límites de celda nominal; el cargador usa componentes conexos y no recortes rígidos.",
+        "Los pies de las poses terrestres no quedan exactamente a una misma base: primera fila maxY447–454; segunda fila maxY870–871. Con el baseline fijo actual, las poses de la segunda fila se elevan unos 27 píxeles del atlas; conviene normalizar la posición por cuadro durante la integración.",
+        "Las fotografías no muestran pantalones ni calzado; esos detalles del juego se documentan como adaptación."
+      ],
+      "webp": {
+        "quality": 90,
+        "alphaQuality": 100
+      },
+      "preservedV1": true
+    }
+  }
+}

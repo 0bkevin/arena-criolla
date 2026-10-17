@@ -1,0 +1,64 @@
+{
+  "id": "vallenilla",
+  "realName": "Pedro Julio Vallenilla Sosa",
+  "sprite": "vallenilla-v5",
+  "portraitReference": "assets/references/vallenilla/forbes-cashea.jpg",
+  "portrayal": "Representar a Pedro Vallenilla, fundador y CEO de Cashea, con sus rasgos documentados en retratos editoriales y corporativos: frente amplia con entradas pronunciadas, cabello castaño oscuro corto peinado hacia un lado y barba corta conectada con bigote. Para el atuendo, usar como referencia la camiseta negra de Forbes Chile; la camisa azul clara a cuadros de Banca y Negocios sirve como alternativa documentada. La silueta de luchador, las poses y las técnicas son ficción de juego.",
+  "sources": [
+    {
+      "title": "Cashea — sitio oficial",
+      "url": "https://www.cashea.app/"
+    },
+    {
+      "title": "Startupeable — entrevista en video y audio a Pedro Vallenilla, CEO y cofundador de Cashea (14 de mayo de 2025)",
+      "url": "https://startupeable.com/cashea/"
+    },
+    {
+      "title": "Forbes Chile — entrevista a Pedro Vallenilla; foto acreditada a Cashea",
+      "url": "https://forbes.cl/negocios/2026-07-24/cachea-la-fintech-venezolana-con-raices-chilenas-que-le-ha-devuelto-el-credito-a-venezuela/"
+    },
+    {
+      "title": "Banca y Negocios — entrevista y retrato de Pedro Vallenilla Sosa",
+      "url": "https://www.bancaynegocios.com/exclusivo-cashea-un-fenomeno-social-que-aspira-duplicar-su-mercado-en-2026/"
+    }
+  ],
+  "lines": {
+    "select": {
+      "text": "La primera vez se nos dice que no, la segunda vez se nos dice que no.",
+      "file": "/audio/vallenilla/original-select.mp3",
+      "kind": "original",
+      "sourceUrl": "https://startupeable.com/cashea/",
+      "sourceMediaUrl": "https://episodes.captivate.fm/episode/8668de54-b6cc-445e-ae68-2355600ca997.mp3",
+      "start": 296.54,
+      "end": 299.42,
+      "verification": "El episodio oficial identifica y presenta a Pedro Vallenilla como CEO y cofundador de Cashea antes de la conversación. Este recorte corresponde a su respuesta sobre las negativas del regulador. Whisper local en español transcribe «La primera vez se nos dice que no, la segunda vez se nos dice que no» tanto en el contexto como en el archivo recortado. No se afirma escucha humana ni sincronía labial. Audio original publicado por Startupeable; solo recorte mono, normalización y fades breves, sin TTS, clonación ni cambio de tono."
+    },
+    "special": {
+      "text": "La tercera vez se nos dice que no, la cuarta vez se nos dice que no.",
+      "file": "/audio/vallenilla/original-special.mp3",
+      "kind": "original",
+      "sourceUrl": "https://startupeable.com/cashea/",
+      "sourceMediaUrl": "https://episodes.captivate.fm/episode/8668de54-b6cc-445e-ae68-2355600ca997.mp3",
+      "start": 299.42,
+      "end": 303.2,
+      "verification": "El episodio oficial presenta a Pedro Vallenilla como invitado antes de la conversación; este tramo continúa la misma respuesta atribuida a él sobre las negativas del regulador. Whisper local en español coincide con la frase en el contexto y en el archivo recortado. No se afirma escucha humana ni sincronía labial. Audio original publicado por Startupeable; solo recorte mono, normalización y fades breves, sin TTS, clonación ni cambio de tono."
+    }
+  },
+  "audioResearch": {
+    "status": "two-original-startupeable-interview-clips-extracted; speaker-introduction-and-context-ASR-verified; human-audition-pending",
+    "limitations": "La atribución editorial se apoya en la presentación del invitado y el contexto de la entrevista. La verificación del texto se hizo con ASR local; no se afirma escucha humana ni identificación por sincronía labial. Las búsquedas adicionales por EDN, Fuera de la Caja, Innovando y Semilla no permitieron verificar una fuente primaria inequívoca con esos nombres en esta revisión; los clips usan la entrevista editorial identificada de Startupeable.",
+    "processing": "Dos recortes MP3 mono de 2.88 s y 3.78 s, con fade breve y normalización de volumen. Sin síntesis, clonación ni alteración de tono.",
+    "sourceMediaUrl": "https://episodes.captivate.fm/episode/8668de54-b6cc-445e-ae68-2355600ca997.mp3"
+  },
+  "distinctiveTraits": [
+    "Rostro adulto de tez clara, frente muy amplia y entradas pronunciadas.",
+    "Cabello castaño oscuro, corto y peinado hacia un lado; cejas oscuras y ojos oscuros.",
+    "Bigote conectado con barba corta y tupida en mandíbula y mentón; no lleva gafas en los retratos inspeccionados.",
+    "Forbes Chile muestra camiseta negra de cuello redondo; Banca y Negocios muestra camisa azul clara a cuadros y cuello abierto."
+  ],
+  "suggestedMoves": [
+    "Cuota inicial: avance corto con un golpe al cuerpo y un paso lateral.",
+    "Línea de crédito: combo ficticio de golpes rápidos que aumenta de alcance por etapas.",
+    "Cierre de caja: especial ficticio que encadena cuatro impactos y termina con pose de victoria."
+  ]
+}

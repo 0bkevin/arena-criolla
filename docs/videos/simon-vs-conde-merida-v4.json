@@ -1,0 +1,59 @@
+{
+  "version": 4,
+  "file": "docs/videos/simon-vs-conde-merida-v4.mp4",
+  "durationSeconds": 18.453,
+  "video": {
+    "capture": "Grabación nativa del navegador T3",
+    "originalPath": "/home/ubuntu/.t3/userdata/attachments/2368edeb-71f1-4514-90cb-b6547290f9e8-ea124f47-2166-4294-8309-3b1aca67b32b-mp4.mp4",
+    "startedAt": "2026-10-08T09:50:23.945Z",
+    "dimensions": [
+      1280,
+      800
+    ],
+    "codec": "H.264",
+    "framesPerSecond": 30,
+    "processing": "Recorte al final de la captura de audio; conversión de frecuencia variable a 30 fps"
+  },
+  "audio": {
+    "capture": "MediaRecorder de un MediaStreamAudioDestinationNode conectado a la salida mezclada de Web Audio del juego",
+    "originalFile": "docs/videos/fight-audio-v4.webm",
+    "startedAt": "2026-10-08T09:50:23.973Z",
+    "delayFromVideoStartMs": 28,
+    "exportGain": 0.85,
+    "codec": "AAC",
+    "channels": 2,
+    "includes": [
+      "Efectos de golpes, bloqueos, ataques y aterrizajes",
+      "Ambiente del escenario",
+      "Fragmento original de Simón Díaz reproducido durante la partida"
+    ],
+    "voiceProvenance": "docs/audio-provenance.json",
+    "substituteSoundtrack": false,
+    "synthesizedOrClonedVoices": false,
+    "humanListeningClaim": false
+  },
+  "fight": {
+    "mode": "Dos jugadores locales",
+    "stage": "merida",
+    "fighters": [
+      "simon",
+      "conde"
+    ],
+    "initialHealth": [
+      100,
+      100
+    ],
+    "finalHealth": [
+      20,
+      46
+    ],
+    "observations": 120,
+    "recordedAudioNodeStarts": 123
+  },
+  "audioMeasurements": {
+    "seconds": 18.453,
+    "rms": 0.11173,
+    "peak": 0.8812
+  },
+  "qa": "docs/stage-runtime-qa-v4.json"
+}

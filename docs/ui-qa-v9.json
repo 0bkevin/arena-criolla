@@ -1,0 +1,347 @@
+{
+  "flows": [
+    {
+      "test": "CPU selection",
+      "p1": "Vicente Zavarce",
+      "p2": "Pedro Vallenilla",
+      "picking": "ELIGIENDO CPU",
+      "selected": "Elegir a Pedro Vallenilla"
+    },
+    {
+      "test": "Mirror match allowed",
+      "p1": "Pedro Vallenilla",
+      "p2": "Pedro Vallenilla",
+      "tags": [
+        "P1",
+        "CPU"
+      ]
+    },
+    {
+      "test": "Keyboard roster navigation and Enter",
+      "focus": "Elegir a Pedro Vallenilla",
+      "p1": "Pedro Vallenilla"
+    },
+    {
+      "test": "Accent-insensitive search and shared stage preview",
+      "found": [
+        "Elegir a Simón Díaz"
+      ],
+      "stage": "Salto Ángel",
+      "backgrounds": [
+        "url(\"/assets/canaima.webp\")",
+        "url(\"/assets/canaima.webp\")"
+      ]
+    },
+    {
+      "test": "Missing nickname validation",
+      "focus": "player-name",
+      "error": "Pon tu apodo y entramos a la arena.",
+      "invalid": "true",
+      "gameStarted": false
+    },
+    {
+      "test": "CPU match starts from new selection",
+      "phase": "playing",
+      "stage": "canaima",
+      "players": [
+        {
+          "fighter": "zavarce",
+          "name": "John",
+          "actions": {
+            "jump": 1,
+            "light": 0,
+            "heavy": 0,
+            "special": 0,
+            "dash": 0,
+            "super": 0
+          }
+        },
+        {
+          "fighter": "vallenilla",
+          "name": "CPU",
+          "actions": {
+            "jump": 0,
+            "light": 0,
+            "heavy": 0,
+            "special": 2,
+            "dash": 0,
+            "super": 0
+          }
+        }
+      ],
+      "width": 1280,
+      "viewport": 1280
+    },
+    {
+      "test": "Local player 2 nickname validation",
+      "focus": "second-name",
+      "error": "Tu pana también necesita un apodo.",
+      "invalid": "true",
+      "rivalPicker": "P2 TU PANA"
+    },
+    {
+      "test": "Local two-player match starts",
+      "phase": "playing",
+      "players": [
+        {
+          "fighter": "zavarce",
+          "name": "John"
+        },
+        {
+          "fighter": "vallenilla",
+          "name": "Pedro"
+        }
+      ]
+    },
+    {
+      "test": "Online roster only edits local fighter",
+      "rivalPicker": false,
+      "rivalEditDisabled": true,
+      "waiting": "¿QUIÉN SE ANIMA?"
+    },
+    {
+      "test": "Private anonymous room creation",
+      "code": "418191",
+      "stageLocked": false,
+      "readyButton": "¡ESTOY LISTO!"
+    },
+    {
+      "test": "Remote player appears in new lobby",
+      "ready": true,
+      "rival": "Pedro Vallenilla",
+      "roomState": "John (tú) · ELIGIENDOPedro QA · LISTOSalir de la sala"
+    },
+    {
+      "test": "Anonymous online match starts from new ready bar",
+      "phase": "playing",
+      "stage": "canaima",
+      "players": [
+        {
+          "fighter": "zavarce",
+          "name": "John"
+        },
+        {
+          "fighter": "vallenilla",
+          "name": "Pedro QA"
+        }
+      ],
+      "serverTick": 163,
+      "clientTick": 159
+    },
+    {
+      "test": "Mobile setup shortcut",
+      "visible": true,
+      "label": "Preparar",
+      "area": 44
+    },
+    {
+      "test": "Mobile shortcut scrolls to setup and then hides",
+      "setupVisible": true,
+      "dockHidden": true,
+      "pageWidth": 390,
+      "viewport": 390
+    },
+    {
+      "test": "Retro stage map modal on mobile",
+      "open": true,
+      "cards": 9,
+      "modalWidth": 352,
+      "viewport": 390
+    }
+  ],
+  "prefsUnchanged": true,
+  "date": "2026-10-08T20:03:48.369Z",
+  "touchTargets": [
+    {
+      "label": "Movimientos",
+      "height": 44,
+      "width": 81.5
+    },
+    {
+      "label": "P1 TÚ",
+      "height": 44,
+      "width": 55
+    },
+    {
+      "label": "CPU RIVAL",
+      "height": 44,
+      "width": 82.5
+    },
+    {
+      "label": "Buscar luchador",
+      "height": 44,
+      "width": 44
+    },
+    {
+      "label": "Movimientos",
+      "height": 44,
+      "width": 81.5
+    },
+    {
+      "label": "Suave",
+      "height": 44,
+      "width": 51
+    },
+    {
+      "label": "Normal",
+      "height": 44,
+      "width": 51
+    },
+    {
+      "label": "Candela",
+      "height": 44,
+      "width": 51
+    }
+  ],
+  "responsive": [
+    {
+      "width": 320,
+      "height": 844,
+      "documentWidth": 320,
+      "documentHeight": 1628,
+      "columns": 3,
+      "clippedNames": [],
+      "ctaVisible": false,
+      "buttonOverflow": [],
+      "fontLoaded": true
+    },
+    {
+      "width": 360,
+      "height": 844,
+      "documentWidth": 360,
+      "documentHeight": 1626,
+      "columns": 3,
+      "clippedNames": [],
+      "ctaVisible": false,
+      "buttonOverflow": [],
+      "fontLoaded": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 1691,
+      "columns": 3,
+      "clippedNames": [],
+      "ctaVisible": false,
+      "buttonOverflow": [],
+      "fontLoaded": true
+    },
+    {
+      "width": 430,
+      "height": 844,
+      "documentWidth": 430,
+      "documentHeight": 1684,
+      "columns": 3,
+      "clippedNames": [],
+      "ctaVisible": false,
+      "buttonOverflow": [],
+      "fontLoaded": true
+    },
+    {
+      "width": 560,
+      "height": 844,
+      "documentWidth": 560,
+      "documentHeight": 1674,
+      "columns": 3,
+      "clippedNames": [],
+      "ctaVisible": false,
+      "buttonOverflow": [],
+      "fontLoaded": true
+    },
+    {
+      "width": 700,
+      "height": 844,
+      "documentWidth": 700,
+      "documentHeight": 1674,
+      "columns": 3,
+      "clippedNames": [],
+      "ctaVisible": false,
+      "buttonOverflow": [],
+      "fontLoaded": true
+    },
+    {
+      "width": 760,
+      "height": 844,
+      "documentWidth": 760,
+      "documentHeight": 1406,
+      "columns": 5,
+      "clippedNames": [],
+      "ctaVisible": false,
+      "buttonOverflow": [],
+      "fontLoaded": true
+    },
+    {
+      "width": 900,
+      "height": 844,
+      "documentWidth": 900,
+      "documentHeight": 1412,
+      "columns": 5,
+      "clippedNames": [],
+      "ctaVisible": false,
+      "buttonOverflow": [],
+      "fontLoaded": true
+    },
+    {
+      "width": 1024,
+      "height": 800,
+      "documentWidth": 1024,
+      "documentHeight": 898,
+      "columns": 5,
+      "clippedNames": [],
+      "ctaVisible": true,
+      "buttonOverflow": [],
+      "fontLoaded": true
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "documentWidth": 1280,
+      "documentHeight": 892,
+      "columns": 5,
+      "clippedNames": [],
+      "ctaVisible": true,
+      "buttonOverflow": [],
+      "fontLoaded": true
+    },
+    {
+      "width": 1440,
+      "height": 800,
+      "documentWidth": 1440,
+      "documentHeight": 892,
+      "columns": 5,
+      "clippedNames": [],
+      "ctaVisible": true,
+      "buttonOverflow": [],
+      "fontLoaded": true
+    }
+  ],
+  "build": {
+    "command": "npm run build",
+    "passed": true
+  },
+  "tests": {
+    "command": "npm test",
+    "passed": 28,
+    "failed": 0
+  },
+  "visualReview": {
+    "agent": "/root/retro_ui_design",
+    "checked": [
+      "1280×800",
+      "390×844"
+    ],
+    "changesAfterReview": [
+      "Compacted desktop to show all fighters, stages and start button.",
+      "Clarified mobile shortcut as Preparar.",
+      "Increased mobile control targets to 44 px.",
+      "Removed difficulty icon overflow on small phones."
+    ]
+  },
+  "font": {
+    "family": "Pixelify Sans",
+    "file": "public/fonts/pixelify-sans.ttf",
+    "license": "public/fonts/OFL-pixelify-sans.txt",
+    "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/pixelifysans/PixelifySans%5Bwght%5D.ttf"
+  }
+}

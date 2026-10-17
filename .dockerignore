@@ -1,0 +1,14 @@
+node_modules
+dist
+.git
+assets/source
+docs/*
+!docs/character-sprite-qa.json
+!docs/character-manifest.json
+tests
+*.log
+.env*
+
+data
+assets/archive
+assets/references

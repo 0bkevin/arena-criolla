@@ -1,0 +1,253 @@
+{
+  "version": 28,
+  "fighterId": "gomez",
+  "fighterName": "Juan Vicente Gómez",
+  "auditedAt": "2026-10-13",
+  "status": "complete-with-findings",
+  "scope": "Dedicated Gómez audit. Only this report and tests/character-audits/gomez.test.ts were written in the repository; no shared runtime, assets, other fighters, or commits were changed.",
+  "evidence": {
+    "preservedDossier": "docs/characters-v3/gomez.json",
+    "runtimeSourcesReviewed": [
+      "shared/fighters.json",
+      "shared/techniques.ts",
+      "shared/engine.ts",
+      "shared/presentations.json",
+      "shared/presentation.ts",
+      "shared/choreography.ts",
+      "src/game/assets.ts",
+      "src/game/renderer.ts",
+      "src/game/presentation-renderer.ts",
+      "src/components/Portrait.tsx"
+    ],
+    "spriteQaReviewed": [
+      "docs/character-sprite-qa.json",
+      "docs/entrances-v23/character-review.json"
+    ],
+    "imagesActuallyViewed": [
+      "public/assets/gomez-v3.webp",
+      "assets/references/gomez/1928-uniform.jpg"
+    ],
+    "newWebResearch": false,
+    "identityAssessment": "The current atlas preserves the peaked military cap, broad nose, compact dark moustache, mature face, high collar, chest pockets, belt and boots. Its dark palette, fighting poses, salute and ground shock are fictional adaptations. The retained dossier has no verified historical voice clip; this audit makes no new historical gesture or audio attribution."
+  },
+  "tests": {
+    "file": "tests/character-audits/gomez.test.ts",
+    "command": "npx tsx --test tests/character-audits/gomez.test.ts",
+    "lastRunExitCode": 0,
+    "testsPassed": 16,
+    "testsFailed": 0,
+    "method": "Actual createMatch/stepMatch simulation through the complete 510-tick intro. Focused tests arrange starting positions and use real input counters, engine timing, physics and damage. Both fighter sides are covered; two complete bouts use cpuInput hard for P2 and a scripted P1 controller.",
+    "coverage": [
+      "Identity, technique, all eight facing entries and one-shot selection progress",
+      "Intro gates movement and attacks and settles facing inward on both sides",
+      "Walking right/left, turning, neutral velocity, double jump, rejected third jump and landing on both sides",
+      "Light/heavy startup, exact damage, one-hit behavior, knockback and directional guard on both sides",
+      "Special against idle, correctly facing guard and guard turned away on both sides",
+      "Radial special hits behind Gómez when he turns away during startup",
+      "Special hits at 204 pixels and misses at 205 and 206 pixels",
+      "Jumping enemy avoids special despite remaining within its height tolerance",
+      "Airborne-attacker probe records the observed ground-shock behavior without asserting that the defect must remain",
+      "Special energy cost and recovery; rejection below 25 energy",
+      "Connected basic light-to-heavy combo and one-win upgraded light-to-light-to-heavy input chain",
+      "Definitive rejects fewer than three wins and energy below 75, then connects on both sides when unlocked",
+      "Complete P1 Gómez versus hard CPU Javier and P2 CPU Gómez versus scripted Javier bouts"
+    ],
+    "testDevelopmentCorrections": [
+      "Initial jump assertion expected the floor, but Caracas correctly landed Gómez on its 392-pixel platform. The final test holds down to descend through elevated platforms and verify floor landing.",
+      "An initial connected-combo probe pressed heavy after 23 wall-clock frames, while hitstop kept light recovery active. Waiting 26 frames allows the real second attack and both hits. This was an incorrect probe timing assumption, not a runtime failure."
+    ]
+  },
+  "combatResults": {
+    "movement": {
+      "configuredSpeed": 3.5,
+      "rightDisplacementAfter20Frames": 63.50117809547942,
+      "firstJumpYAfter10Frames": 454.6,
+      "floorLandingY": 554,
+      "bothSidesEquivalent": true
+    },
+    "normalAttacksAgainstJavier": {
+      "lightStartupFrame": 6,
+      "lightDamage": 8.652,
+      "heavyStartupFrame": 11,
+      "heavyDamage": 16.068,
+      "hitsPerAttack": 1,
+      "correctlyFacingGuardHealthDamage": 0
+    },
+    "special": {
+      "displayName": "Paso del general",
+      "ability": "command",
+      "startupFrame": 17,
+      "recoveryFrames": 49,
+      "rangeExclusive": 205,
+      "heightToleranceExclusive": 65,
+      "energyCost": 25,
+      "baseDamage": 21,
+      "damageAgainstJavier": 25.956,
+      "force": 11,
+      "radial": true,
+      "groundedTargetRequired": true,
+      "groundedAttackerRequiredByCurrentEngine": false,
+      "projectilesCreated": 0,
+      "idleTargetHpAfterHit": 74.044,
+      "correctlyGuardedTargetHpAfterHit": 100,
+      "guardTurnedAwayTargetHpAfterHit": 74.044,
+      "guardedTargetEnergyFrom60AtActiveFrame": 48.96,
+      "actorEnergyFrom50AtActiveFrameAfterSuccessfulHit": 38.595,
+      "actorEnergyFrom50AtActiveFrameAfterBlockedHit": 25.595,
+      "jumpingEnemyProbe": {
+        "jumpInputAfterSpecialStepCalls": 15,
+        "activeAttackTick": 17,
+        "enemyY": 529.96,
+        "verticalGap": 24.04,
+        "enemyGrounded": false,
+        "enemyHp": 100,
+        "bothSidesEquivalent": true
+      },
+      "jumpingAttackerProbe": {
+        "jumpInputAfterSpecialStepCalls": 15,
+        "activeAttackTick": 17,
+        "actorY": 529.96,
+        "actorGrounded": false,
+        "enemyHp": 74.044,
+        "hits": 1,
+        "bothSidesEquivalent": true,
+        "orderingNote": "P1's hit updates Javier physics in the same step, giving enemyY 547.37 after impact; P2's enemy remains at 554 until the next step. Health damage and attacker height agree."
+      }
+    },
+    "combos": {
+      "basic": "Paso firme",
+      "basicInput": "J → K",
+      "basicBonus": 3,
+      "connectedBasicInitialGap": 60,
+      "connectedBasicLightThenWaitFrames": 26,
+      "connectedBasicHits": 2,
+      "connectedBasicTargetHp": 72.19,
+      "advanced": "Orden cerrada",
+      "advancedInput": "J → J → K",
+      "advancedUnlockWins": 1,
+      "advancedBonus": 7,
+      "advancedGateProbe": "At initial gap 140, both light setup attacks intentionally miss and heavy connects. Zero wins produces Paso firme with target HP 80.842; one win produces Orden cerrada with target HP 76.722. This isolates input-chain unlock recognition from hit-chain spacing.",
+      "definitive": "Golpe de mando",
+      "definitiveInput": "I",
+      "definitiveUnlockWins": 3,
+      "definitiveEnergyCost": 75,
+      "definitiveBonus": 12,
+      "definitiveDamageAgainstJavier": 46.968,
+      "definitiveTargetHp": 53.032
+    },
+    "completedBouts": [
+      {
+        "gomezSide": 0,
+        "gomezController": "scripted inputs",
+        "opponent": "javier",
+        "opponentController": "cpuInput hard",
+        "combatStepCalls": 419,
+        "finalTick": 902,
+        "winner": "javier",
+        "gomezHp": 0,
+        "gomezStocks": 0,
+        "gomezHits": 1,
+        "gomezPeakCombo": 1,
+        "gomezAttacksStarted": ["super", "heavy", "light", "special"]
+      },
+      {
+        "gomezSide": 1,
+        "gomezController": "cpuInput hard",
+        "opponent": "javier",
+        "opponentController": "scripted inputs",
+        "combatStepCalls": 453,
+        "finalTick": 930,
+        "winner": "gomez",
+        "gomezHp": 100,
+        "gomezStocks": 1,
+        "gomezHits": 2,
+        "gomezPeakCombo": 1,
+        "gomezAttacksStarted": ["super", "special", "heavy"]
+      }
+    ],
+    "boutInterpretation": "These bouts prove completion, real attacks and finite physics with both sides. They are not balance benchmarks, and the attack-start sets do not prove that each attack kind connected."
+  },
+  "nativeVisualChecks": {
+    "tool": "Native T3 collaborative Chromium preview",
+    "url": "http://localhost:5173/",
+    "ownTabId": "tab_22_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "rootTabOperated": false,
+    "actualLobbySelectionClicked": true,
+    "selectionTrace": {
+      "method": "Clicked the actual Juan Vicente Gómez fighter button and sampled the actual animated Portrait canvas dataset every 200 ms for 3.2 seconds.",
+      "observedFrames": [0],
+      "observedFacing": 1,
+      "firstProgress": 0.01596428564616612,
+      "finalProgressAt2800Ms": 1,
+      "finalFrame": 0,
+      "interpretation": "The frame stays at ready pose 0 while the articulated head and forearms provide small authored motion, then hold at completion."
+    },
+    "introSnapshots": [
+      { "side": 0, "tick": 45 },
+      { "side": 0, "tick": 105 },
+      { "side": 1, "tick": 225 },
+      { "side": 1, "tick": 285 }
+    ],
+    "selectionSnapshots": {
+      "progress": [0, 0.3, 0.5, 1],
+      "facing": [1, -1]
+    },
+    "specialSnapshots": {
+      "sides": [0, 1],
+      "attackTick": 17,
+      "attackerGrounded": [true, false]
+    },
+    "snapshotMethod": "Imported the real assets, renderer, engine and presentation modules in this audit's own browser tab. Painted all eight runtime drawSprite poses, drawPresentation selection samples, renderMatch intro states and engine-stepped specials, then inspected native screenshots. Saved screenshots are browser artifacts outside the repository.",
+    "allEightRuntimeFramesViewed": true,
+    "atlas": {
+      "path": "public/assets/gomez-v3.webp",
+      "width": 2048,
+      "height": 1024,
+      "runtimeFrames": 8,
+      "loaderBodyHeight": 457,
+      "manifestPassed": true,
+      "qaTransparentFraction": 0.7225809097290039
+    },
+    "visualAssessment": "Ready, crossed-arm block, two runs, tucked jump, straight punch, kick and hurt poses remain recognizable and intact. P2 mirrors the cap, face and body correctly in selection, intro and special samples. No severe clipping, duplicated prop or face breakup appeared. The run frames change upper-body pose while retaining similar lead-leg stride. The intro and selection movement is restrained and reads as a serious ready posture rather than a clear hand-to-cap salute.",
+    "savedArtifacts": {
+      "eightPoses": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv60v0x2-61d0fac8.png",
+      "introBothSides": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv60va8m-3f5ecdb6.png",
+      "specialGroundedAndAirborne": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv60vjlf-33808df0.png",
+      "selectionBothSides": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv60whzb-9c9afe53.png",
+      "transientSharedCompilerError": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv60w599-4d241183.png"
+    },
+    "limitations": [
+      "The first own-tab creation attempt hit the browser tab limit. The parent closed stale audit tabs; the next explicit new-tab request succeeded.",
+      "During concurrent creator-feature edits, Vite briefly failed to resolve ./creator.css imported by src/main.tsx. Its reload discarded the temporary audit globals. Renderer modules were imported again and the final selection samples completed. No shared file was edited to work around this transient error.",
+      "Intro and special review used inspected deterministic stills; a continuous full visual fight was not watched.",
+      "Audio was not listened to, and whole-project TypeScript/build checks were outside this dedicated character audit."
+    ]
+  },
+  "findings": [
+    {
+      "id": "gomez-ground-shock-without-attacker-ground-contact",
+      "severity": "medium",
+      "kind": "reproduced-gameplay-coherence-defect",
+      "status": "reported-to-parent",
+      "sources": ["shared/engine.ts:updateAttack", "shared/engine.ts:stepMatch", "shared/techniques.ts:command"],
+      "observation": "The ground-impact special requires its victim to be grounded but does not require Gómez to touch a surface. A jump accepted during startup leaves Gómez 24.04 pixels above the floor at attackTick 17, yet the idle grounded rival takes the full 25.956 damage. Native snapshots show the ground-shock ellipse following Gómez into the air. This conflicts with the described golpe contra el suelo and can produce a floating stomp while avoiding grounded contact.",
+      "reproduction": "Complete the intro on Caracas. Put Gómez and idle Javier 130 pixels apart on the floor and give Gómez at least 25 energy. Press special, advance 15 stepMatch calls, press jump, then advance two calls. Read Gómez attackTick=17, y=529.96, grounded=false; Javier hp=74.044 and Gómez hits=1. Repeat with Gómez as P2 for the same health damage. Control: make Javier jump at that time instead; hp remains 100 despite a vertical gap below the technique's 65-pixel tolerance.",
+      "recommendedFix": "Require source ground contact when command becomes active, or defer its impact until Gómez lands, and anchor its effect to the contacted surface. Preserve the passing radial range, target-jump avoidance, directional block, energy and damage behavior. The audit records the current result without asserting that this defect must persist."
+    },
+    {
+      "id": "gomez-stomp-uses-straight-punch-pose",
+      "severity": "low",
+      "kind": "actionable-visual-readability",
+      "status": "reported-to-parent",
+      "sources": ["src/game/renderer.ts:attack frame selection", "src/game/renderer.ts:command effect"],
+      "observation": "At the command impact frame, the body uses straight-punch atlas frame 5; both feet retain the punch stance and there is no visible stamp or downward body action. The gold ellipse communicates a ground effect, but the pose reads as an ordinary punch. Both mirrored native special samples confirm the mismatch.",
+      "reproduction": "Use the same 130-pixel idle-target setup without jumping and inspect renderMatch at attackTick 17 on both sides.",
+      "recommendedFix": "Author a short command-specific windup and downward foot/body impact using existing poses where possible. Keep the current recognizable uniform and face, and preserve the passing combat values."
+    }
+  ],
+  "runtimeFixesMade": [],
+  "filesCreated": [
+    "docs/character-audits-v28/gomez.json",
+    "tests/character-audits/gomez.test.ts"
+  ]
+}

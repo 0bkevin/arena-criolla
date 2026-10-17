@@ -1,0 +1,120 @@
+{
+  "version": 15,
+  "tool": "image_gen.imagegen",
+  "assets": [
+    {
+      "id": "ali",
+      "name": "Alí Primera",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-b7cb9410-f8aa-4ada-93a5-5c2c2571d334.png",
+      "source": "assets/source/ali-v15.png",
+      "runtime": "public/assets/ali-v15.webp"
+    },
+    {
+      "id": "gualberto",
+      "name": "Gualberto Ibarreto",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-0659b4bc-7919-4ec3-9c6e-a5bb3d9ccca1.png",
+      "source": "assets/source/gualberto-v15.png",
+      "runtime": "public/assets/gualberto-v15.webp"
+    },
+    {
+      "id": "reynaldo",
+      "name": "Reynaldo Armas",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-af329d20-44ed-4c13-a3f2-b9cab4fd315e.png",
+      "source": "assets/source/reynaldo-v15.png",
+      "runtime": "public/assets/reynaldo-v15.webp"
+    },
+    {
+      "id": "dudamel",
+      "name": "Gustavo Dudamel",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-299eeafa-c815-4dd4-b647-678ba7cd51cd.png",
+      "source": "assets/source/dudamel-v15.png",
+      "runtime": "public/assets/dudamel-v15.webp"
+    },
+    {
+      "id": "danny",
+      "name": "Danny Ocean",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-2ed47015-7929-40c0-bb86-a1396e2a3ce2.png",
+      "source": "assets/source/danny-v15.png",
+      "runtime": "public/assets/danny-v15.webp"
+    },
+    {
+      "id": "nacho",
+      "name": "Nacho",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-1000b063-4e23-4bdf-8ec5-0810872fcee5.png",
+      "source": "assets/source/nacho-v15.png",
+      "runtime": "public/assets/nacho-v15.webp"
+    },
+    {
+      "id": "sarcos",
+      "name": "Daniel Sarcos",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-09e98e30-e61e-4e92-a539-5b1924d25a9a.png",
+      "source": "assets/source/sarcos-v15.png",
+      "runtime": "public/assets/sarcos-v15.webp"
+    },
+    {
+      "id": "yordano",
+      "name": "Yordano",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-5b15fb5e-af45-470d-909e-b28b58ea9ef4.png",
+      "source": "assets/source/yordano-v15.png",
+      "runtime": "public/assets/yordano-v15.webp"
+    },
+    {
+      "id": "lila",
+      "name": "Lila Morillo",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-36e8f07a-6612-4721-9fa0-15fb51e3e324.png",
+      "source": "assets/source/lila-v15.png",
+      "runtime": "public/assets/lila-v15.webp"
+    },
+    {
+      "id": "rummy",
+      "name": "Rummy Olivo",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-9a1b8011-af26-4ea9-b429-e1154aa775ad.png",
+      "source": "assets/source/rummy-v15.png",
+      "runtime": "public/assets/rummy-v15.webp"
+    },
+    {
+      "id": "chiqui",
+      "name": "Chiquinquirá Delgado",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-a2d77b65-51b6-4993-9355-b7a0cf331d24.png",
+      "source": "assets/source/chiqui-v15.png",
+      "runtime": "public/assets/chiqui-v15.webp"
+    },
+    {
+      "id": "norkys",
+      "name": "Norkys Batista",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-878a9efd-0905-4933-9a53-5fb5e4de26d3.png",
+      "source": "assets/source/norkys-v15.png",
+      "runtime": "public/assets/norkys-v15.webp"
+    },
+    {
+      "id": "gabriela",
+      "name": "Gabriela Spanic",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-7f342373-12d3-4e32-bc84-5a76c8e96835.png",
+      "source": "assets/source/gabriela-v15.png",
+      "runtime": "public/assets/gabriela-v15.webp"
+    },
+    {
+      "id": "amanda",
+      "name": "Amanda Gutiérrez",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-c769eefe-e200-450e-9a7b-899730b1d004.png",
+      "source": "assets/source/amanda-v15.png",
+      "runtime": "public/assets/amanda-v15.webp"
+    },
+    {
+      "id": "lele",
+      "name": "Lele Pons",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-a4950f24-5fc3-4694-826a-9f3766b85f03.png",
+      "source": "assets/source/lele-v15.png",
+      "runtime": "public/assets/lele-v15.webp"
+    },
+    {
+      "id": "giuseppe",
+      "name": "Giuseppe Gangi",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-77e42097-8bf7-4f31-8af9-2ad5dea9b48a.png",
+      "source": "assets/source/giuseppe-v15.png",
+      "runtime": "public/assets/giuseppe-v15.webp"
+    }
+  ],
+  "promptSet": "docs/culture-v15/sprite-prompts.json",
+  "research": "docs/culture-v15/research.json"
+}

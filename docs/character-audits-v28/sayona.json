@@ -1,0 +1,258 @@
+{
+  "auditVersion": 28,
+  "fighterId": "sayona",
+  "name": "La Sayona",
+  "auditedDate": "2026-10-13",
+  "status": "complete_no_reproducible_character_specific_defect",
+  "scope": "Dedicated La Sayona audit using preserved folklore dossier, real shared-engine fights, and an independently opened native T3 preview tab. Only this report and tests/character-audits/sayona.test.ts were written in the repository. No runtime or art edits, commits, servers, or child agents.",
+  "sourceRevision": "2273843fe788fb68bfa35d80d9ec87b48f1d2b7e",
+  "sourceCapturedAt": "2026-10-13T02:38:10.047334+00:00",
+  "baselineHashes": {
+    "shared/engine.ts": "77916f714c9d0dc048f20964eb4ee9d03fa6267425ed974b38daee7f82c23749",
+    "shared/techniques.ts": "6b0381e7f847289e88636960923ba82722a25ec7a0d4786f72037a7f45942bf1",
+    "shared/fighters.json": "30611f5f186fc5de17ab2ccfe7646e8fd4343cbcce803e208d2a5c9e045b69b9",
+    "shared/presentations.json": "0c03861463a97bb48a9f7eb1e5b00cdd8ab816b7af1e1d4582adc9ef62173e25",
+    "shared/choreography.ts": "ffe139cd4af2c7a371cb69ec23f36ada6807dd6aa835657599c752dc238cb3b8",
+    "public/assets/sayona-v12.webp": "88140873c5e47025b3769ea98022ec281f970b39bb2434fa9248625e2f418ce8",
+    "docs/folklore-v12/research.json": "02568b490e9542af4025900cf40b2eed1fbcea6f026c2deafb8e7560097101ac"
+  },
+  "evidenceRead": [
+    "docs/character-audits-v28/BRIEF.txt",
+    "docs/folklore-v12/research.json#sayona",
+    "docs/character-sprite-qa.json#sayona",
+    "shared/fighters.json#sayona",
+    "shared/techniques.ts#haunt",
+    "shared/engine.ts",
+    "shared/presentation.ts",
+    "shared/presentations.json#sayona",
+    "shared/choreography.ts#sayona",
+    "src/game/assets.ts",
+    "src/game/renderer.ts",
+    "src/game/presentation-renderer.ts",
+    "src/game/intro-renderer.ts",
+    "src/game/entrance-renderer.ts"
+  ],
+  "identityAndPortrayal": {
+    "preservedDossier": "The folklore dossier explicitly defines the red shawl and feline gaze as this arcade adaptation. Existing red/black dress, long dark hair, red shawl, and spectral short displacement are consistent with that preserved brief. No new historical claims or broad web research were introduced.",
+    "sourceReference": {
+      "title": "La Sayona — tradición y variantes",
+      "url": "https://es.wikipedia.org/wiki/La_Sayona",
+      "verification": "Preserved dossier reference, not independently browsed in this focused audit."
+    },
+    "visualMatch": "The eight inspected combat poses preserve the same woman, red shawl and dark dress. Light uses a forward claw-like hand and heavy a high kick. Likeness and costume remained consistent across both facings."
+  },
+  "movementAndStance": {
+    "result": "pass_both_sides",
+    "movement": {
+      "initialX": 540,
+      "rightInputCalls": 24,
+      "rightFinalX": 668.428919921416,
+      "subsequentLeftInputCalls": 24,
+      "leftFinalX": 550.7707315970146,
+      "facings": [
+        1,
+        -1
+      ]
+    },
+    "jump": "Both sides accept a first and second jump, reject a third, and land at floor y554 with grounded=true, jumps=0 and both stocks. First jump y454.6 at call10.",
+    "atlas": {
+      "imageSize": [
+        1774,
+        887
+      ],
+      "qaPassed": true,
+      "qaRows": [
+        4,
+        4
+      ],
+      "components": 8,
+      "frameFacing": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "battleFrame": 0
+    },
+    "visualObservation": "Native production drawSprite renders all eight complete poses facing right and left: ready0, guard1, run2/3, tucked jump4, hand attack5, kick6 and recoil7. Heads, hands, boots and skirt silhouettes are intact; no reverse-facing pose, clipped limb, or borrowed neighboring fragment was observed."
+  },
+  "special": {
+    "name": "Paso espectral",
+    "ability": "haunt",
+    "configuration": {
+      "startupFrames": 12,
+      "recoveryFrames": 46,
+      "meleeRange": 120,
+      "height": 145,
+      "baseDamage": 15,
+      "force": 7,
+      "blinkReach": 210,
+      "blinkGap": 86,
+      "blinkInvincibility": 7,
+      "energyCost": 25
+    },
+    "distinctBehavior": "One instantaneous directional short blink at attackTick12 followed by one melee collision check. No projectile, multi-pulse, or continued dash. Displacement is min(210,max(0,absolute rival gap-86)), then clamped to x70..1010.",
+    "idle": {
+      "initialP1": [
+        180,
+        460
+      ],
+      "initialP2": [
+        900,
+        620
+      ],
+      "blinkP1X": 374,
+      "blinkP2X": 706,
+      "blinkCall": 12,
+      "targetHp": 85.3225,
+      "attackerHits": 1,
+      "postRecovery": "Attacker holds the blink destination through call97 and returns to no attack; no repeat damage."
+    },
+    "frontGuard": "At gap280 on both sides, holding block toward La Sayona records exactly one block, leaves target HP100 and attacker hits0.",
+    "rearGuard": "At gap280, hold block plus away-direction movement. Both sides take one14.6775-damage hit and no block. Defender movement increases the blink to208.5629826697438 units by activation; it remains below210.",
+    "energyGate": "Energy24 rejects the special; energy25 allows it. At energy100, activation leaves75 before later regeneration or hit rewards. Checked both player sides.",
+    "rangeProbes": {
+      "initialGaps": [
+        80,
+        86,
+        120,
+        210,
+        296,
+        329,
+        330,
+        400,
+        830
+      ],
+      "expectedBlinkDistances": [
+        0,
+        0,
+        34,
+        124,
+        210,
+        210,
+        210,
+        210,
+        210
+      ],
+      "expectedHits": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "result": "All predictions pass on both sides. Gap329 leaves119 and hits; gap330 leaves120 and misses because melee reach is strict."
+    },
+    "directionalCollision": "Both sides start airborne at y500 to preserve an intentionally reversed facing when beginning special. A rival80 units behind causes zero blink and zero hit despite being inside absolute melee range; a rival300 units behind causes a blink away limited by the stage edge, with zero hit. Facing stays locked during the special.",
+    "stageClamp": "Airborne facing-away probes start P1 x980/rival710/facing+1 and P2 x100/rival370/facing-1. At call12, x clamps to1010 and70 respectively; neither hits the rear rival.",
+    "invulnerability": {
+      "setup": "Both sides start gap500; special begins at call1 and blinks at call12. Rival is then placed80 units ahead and uses its real light action through shared/engine.ts.",
+      "immuneProbe": "Rival light starts call13 and contacts call18: La Sayona HP100, rival hits0, remaining blink invincibility1.",
+      "expiryProbe": "Rival light starts call14 and contacts call19: La Sayona HP92.9384, rival hits1, special interrupted. Blink invincibility has expired; normal hit invincibility becomes12.",
+      "hitstopInterpretation": "The seven frames are simulation frames. Hitstop freezes attack ticks and invincibility timers; wall-clock input calls can therefore exceed seven during an actual blink hit."
+    }
+  },
+  "attacksAndCombos": {
+    "light": "At gap80 on each side, connects once for6.8495 damage, pushes outward and does not repeat; front guard prevents HP loss.",
+    "heavy": "At gap80 on each side, connects once for12.7205 damage, pushes outward and does not repeat; front guard prevents HP loss.",
+    "baseCombo": "Sombra roja (light→heavy), bonus3, connects both hits with chase inputs on both sides; target HP77.34 after63 simulation ticks.",
+    "advancedCombo": "Aparición doble (light→light→heavy), bonus7 at one win, connects all three hits with chase inputs on both sides; target HP66.3705 after104 simulation ticks. At zero wins the same input history stays Sombra roja with bonus3.",
+    "inputHistory": "Separate gap140 recognition probes deliberately whiff the initial lights; the heavy still receives the input-chain combo bonus. This is the existing input-chain design. Connected-combo tests independently prove every intended strike can land.",
+    "super": "Última visita requires three wins and75 energy. Zero/two wins or74 energy reject it. With three wins and100 energy at gap200, startup9 hits once for39.758 damage, leaving target HP60.242 on both sides."
+  },
+  "cpuFight": {
+    "opponent": "Javier Hala Madrid",
+    "difficulty": "normal",
+    "result": "finished_and_exactly_replayed",
+    "method": "Run the full510-tick shared intro, idle180 input calls to exercise CPU offense, then chase, block, jump and choose ordinary attacks/special/super. Replay independently and compare the full final state.",
+    "winner": "La Sayona",
+    "winnerIndex": 0,
+    "finalTick": 974,
+    "remainingFrames": 4913,
+    "started": [
+      "super",
+      "light",
+      "heavy",
+      "special"
+    ],
+    "landed": [
+      "super",
+      "heavy",
+      "special"
+    ],
+    "sayona": {
+      "hp": 100,
+      "stocks": 1,
+      "hits": 4,
+      "peakCombo": 3
+    },
+    "javier": {
+      "hp": 0,
+      "stocks": 0,
+      "hits": 1,
+      "peakCombo": 1
+    },
+    "limitation": "This deterministic exercised bout is not a balance benchmark. Dedicated tests verify light damage even though light did not connect during this complete bout."
+  },
+  "introAndSelection": {
+    "result": "visually_checked_both_facings",
+    "introName": "Revela la mirada bajo el mantón",
+    "introStyle": "spectral",
+    "selectionStyle": "stalk",
+    "durationMs": 2800,
+    "readyFrame": 0,
+    "nativePreviewTab": "tab_2w_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "nativePreviewUrl": "http://localhost:5173/",
+    "nativeTabClosed": true,
+    "method": "Directly import production loadSprite/drawSprite/drawPresentation/drawIntroCinematic and shared engine inside own native tab. Ephemeral canvases only; no repository visual harness. Use Sayona on both sides in the cinematic to inspect the side-specific timing.",
+    "introTicksInspected": [
+      0,
+      84,
+      179,
+      180,
+      264,
+      359
+    ],
+    "selectionProgressesInspected": [
+      0,
+      0.5,
+      1
+    ],
+    "observation": "She parts the shawl and reveals her gaze once, then releases to the ready pose. Both mirrored faces look inward toward the rival in the cinematic. The restrained spectral/selection accents disappear at the final ready pose.",
+    "oneShot": "selectionProgress reaches1 at2800ms and remains1 at5600ms. Production selection render pixel hashes are identical at those elapsed times in both facings: right2040014085/2040014085; left3426299433/3426299433. Engine movement and special input remain gated until all510 intro ticks complete.",
+    "screenshotPaths": {
+      "combatFramesBothDirections": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62k1xi-371908ad.png",
+      "introAndSelectionSamples": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv62klv5-7aac0bbe.png"
+    },
+    "environment": "Initial preview_status had no tab; a new native tab opened successfully with reuseExistingTab=false. Earlier development hot reloads and WebSocket warnings appeared in the console; controlled imported-renderer checks completed successfully. No new browser system or server was started.",
+    "limitations": "Representative static animation samples were inspected, not every interpolation frame. Audio listening and audiovisual synchronization were not audited."
+  },
+  "findings": [],
+  "recommendation": "Retain La Sayona behavior and current arcade art; this focused audit found no reproducible character-specific defect requiring a runtime edit.",
+  "verification": {
+    "testFile": "tests/character-audits/sayona.test.ts",
+    "command": "npx tsx --test tests/character-audits/sayona.test.ts",
+    "result": {
+      "tests": 10,
+      "passed": 10,
+      "failed": 0
+    },
+    "typecheckCommand": "npx tsc --noEmit --pretty false",
+    "typecheckExitCode": 0,
+    "freshProcessRetest": "Reran the dedicated tsx test after final probe adjustments and after the native visual checks;10/10 passed. Repository TypeScript check also passed after those adjustments.",
+    "notRun": [
+      "Full repository test suite",
+      "Production build",
+      "New web research",
+      "Audio listening"
+    ]
+  }
+}

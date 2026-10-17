@@ -1,0 +1,740 @@
+{
+  "version": "v30",
+  "date": "2026-10-14",
+  "browser": "Chromium with Android mobile user agent, isMobile:true and hasTouch:true",
+  "physicalDevice": false,
+  "isolatedContext": true,
+  "checks": {
+    "portraitWaitsWithoutConsumingIntro": true,
+    "realCoarsePointer": {
+      "coarse": true,
+      "maxTouchPoints": 1
+    },
+    "pauseHelpAndContinue": true,
+    "exitRestoresLobby": true,
+    "trustedMultitouchMoveAndBlockThenCancel": true,
+    "onlineControlActions": [
+      {
+        "control": "right",
+        "observed": true
+      },
+      {
+        "control": "block",
+        "observed": true
+      },
+      {
+        "control": "left",
+        "observed": true
+      },
+      {
+        "control": "down",
+        "sent": true
+      },
+      {
+        "control": "jump",
+        "received": true,
+        "executed": true
+      },
+      {
+        "control": "dash",
+        "received": true,
+        "executed": true
+      },
+      {
+        "control": "light",
+        "received": true,
+        "executed": true
+      },
+      {
+        "control": "heavy",
+        "received": true,
+        "executed": true
+      },
+      {
+        "control": "special",
+        "received": true,
+        "executed": true
+      },
+      {
+        "control": "super",
+        "received": true,
+        "executed": true
+      }
+    ],
+    "rotatingReleasesOnlineMovement": true,
+    "onlinePauseExplainsLiveMatch": true
+  },
+  "viewports": [
+    {
+      "width": 568,
+      "height": 320,
+      "docWidth": 568,
+      "targets": [
+        {
+          "control": "left",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "right",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "jump",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "down",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "dash",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "block",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "light",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "heavy",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "special",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "super",
+          "width": 44,
+          "height": 44,
+          "within": true
+        }
+      ]
+    },
+    {
+      "width": 640,
+      "height": 360,
+      "docWidth": 640,
+      "targets": [
+        {
+          "control": "left",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "right",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "jump",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "down",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "dash",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "block",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "light",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "heavy",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "special",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "super",
+          "width": 44,
+          "height": 44,
+          "within": true
+        }
+      ]
+    },
+    {
+      "width": 667,
+      "height": 375,
+      "docWidth": 667,
+      "targets": [
+        {
+          "control": "left",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "right",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "jump",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "down",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "dash",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "block",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "light",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "heavy",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "special",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "super",
+          "width": 45,
+          "height": 45,
+          "within": true
+        }
+      ]
+    },
+    {
+      "width": 740,
+      "height": 360,
+      "docWidth": 740,
+      "targets": [
+        {
+          "control": "left",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "right",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "jump",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "down",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "dash",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "block",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "light",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "heavy",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "special",
+          "width": 44,
+          "height": 44,
+          "within": true
+        },
+        {
+          "control": "super",
+          "width": 44,
+          "height": 44,
+          "within": true
+        }
+      ]
+    },
+    {
+      "width": 812,
+      "height": 375,
+      "docWidth": 812,
+      "targets": [
+        {
+          "control": "left",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "right",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "jump",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "down",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "dash",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "block",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "light",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "heavy",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "special",
+          "width": 45,
+          "height": 45,
+          "within": true
+        },
+        {
+          "control": "super",
+          "width": 45,
+          "height": 45,
+          "within": true
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "docWidth": 844,
+      "targets": [
+        {
+          "control": "left",
+          "width": 46.796875,
+          "height": 46.796875,
+          "within": true
+        },
+        {
+          "control": "right",
+          "width": 46.796875,
+          "height": 46.796875,
+          "within": true
+        },
+        {
+          "control": "jump",
+          "width": 46.796875,
+          "height": 46.796875,
+          "within": true
+        },
+        {
+          "control": "down",
+          "width": 46.796875,
+          "height": 46.796875,
+          "within": true
+        },
+        {
+          "control": "dash",
+          "width": 46.796875,
+          "height": 46.796875,
+          "within": true
+        },
+        {
+          "control": "block",
+          "width": 46.796875,
+          "height": 46.796875,
+          "within": true
+        },
+        {
+          "control": "light",
+          "width": 46.796875,
+          "height": 46.796875,
+          "within": true
+        },
+        {
+          "control": "heavy",
+          "width": 46.796875,
+          "height": 46.796875,
+          "within": true
+        },
+        {
+          "control": "special",
+          "width": 46.796875,
+          "height": 46.796875,
+          "within": true
+        },
+        {
+          "control": "super",
+          "width": 46.796875,
+          "height": 46.796875,
+          "within": true
+        }
+      ]
+    },
+    {
+      "width": 852,
+      "height": 393,
+      "docWidth": 852,
+      "targets": [
+        {
+          "control": "left",
+          "width": 47.15625,
+          "height": 47.15625,
+          "within": true
+        },
+        {
+          "control": "right",
+          "width": 47.15625,
+          "height": 47.15625,
+          "within": true
+        },
+        {
+          "control": "jump",
+          "width": 47.15625,
+          "height": 47.15625,
+          "within": true
+        },
+        {
+          "control": "down",
+          "width": 47.15625,
+          "height": 47.15625,
+          "within": true
+        },
+        {
+          "control": "dash",
+          "width": 47.15625,
+          "height": 47.15625,
+          "within": true
+        },
+        {
+          "control": "block",
+          "width": 47.15625,
+          "height": 47.15625,
+          "within": true
+        },
+        {
+          "control": "light",
+          "width": 47.15625,
+          "height": 47.15625,
+          "within": true
+        },
+        {
+          "control": "heavy",
+          "width": 47.15625,
+          "height": 47.15625,
+          "within": true
+        },
+        {
+          "control": "special",
+          "width": 47.15625,
+          "height": 47.15625,
+          "within": true
+        },
+        {
+          "control": "super",
+          "width": 47.15625,
+          "height": 47.15625,
+          "within": true
+        }
+      ]
+    },
+    {
+      "width": 896,
+      "height": 414,
+      "docWidth": 896,
+      "targets": [
+        {
+          "control": "left",
+          "width": 49.671875,
+          "height": 49.671875,
+          "within": true
+        },
+        {
+          "control": "right",
+          "width": 49.671875,
+          "height": 49.671875,
+          "within": true
+        },
+        {
+          "control": "jump",
+          "width": 49.671875,
+          "height": 49.671875,
+          "within": true
+        },
+        {
+          "control": "down",
+          "width": 49.671875,
+          "height": 49.671875,
+          "within": true
+        },
+        {
+          "control": "dash",
+          "width": 49.671875,
+          "height": 49.671875,
+          "within": true
+        },
+        {
+          "control": "block",
+          "width": 49.671875,
+          "height": 49.671875,
+          "within": true
+        },
+        {
+          "control": "light",
+          "width": 49.671875,
+          "height": 49.671875,
+          "within": true
+        },
+        {
+          "control": "heavy",
+          "width": 49.671875,
+          "height": 49.671875,
+          "within": true
+        },
+        {
+          "control": "special",
+          "width": 49.671875,
+          "height": 49.671875,
+          "within": true
+        },
+        {
+          "control": "super",
+          "width": 49.671875,
+          "height": 49.671875,
+          "within": true
+        }
+      ]
+    },
+    {
+      "width": 932,
+      "height": 430,
+      "docWidth": 932,
+      "targets": [
+        {
+          "control": "left",
+          "width": 51.59375,
+          "height": 51.59375,
+          "within": true
+        },
+        {
+          "control": "right",
+          "width": 51.59375,
+          "height": 51.59375,
+          "within": true
+        },
+        {
+          "control": "jump",
+          "width": 51.59375,
+          "height": 51.59375,
+          "within": true
+        },
+        {
+          "control": "down",
+          "width": 51.59375,
+          "height": 51.59375,
+          "within": true
+        },
+        {
+          "control": "dash",
+          "width": 51.59375,
+          "height": 51.59375,
+          "within": true
+        },
+        {
+          "control": "block",
+          "width": 51.59375,
+          "height": 51.59375,
+          "within": true
+        },
+        {
+          "control": "light",
+          "width": 51.59375,
+          "height": 51.59375,
+          "within": true
+        },
+        {
+          "control": "heavy",
+          "width": 51.59375,
+          "height": 51.59375,
+          "within": true
+        },
+        {
+          "control": "special",
+          "width": 51.59375,
+          "height": 51.59375,
+          "within": true
+        },
+        {
+          "control": "super",
+          "width": 51.59375,
+          "height": 51.59375,
+          "within": true
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "docWidth": 1024,
+      "targets": [
+        {
+          "control": "left",
+          "width": 56,
+          "height": 56,
+          "within": true
+        },
+        {
+          "control": "right",
+          "width": 56,
+          "height": 56,
+          "within": true
+        },
+        {
+          "control": "jump",
+          "width": 56,
+          "height": 56,
+          "within": true
+        },
+        {
+          "control": "down",
+          "width": 56,
+          "height": 56,
+          "within": true
+        },
+        {
+          "control": "dash",
+          "width": 56,
+          "height": 56,
+          "within": true
+        },
+        {
+          "control": "block",
+          "width": 56,
+          "height": 56,
+          "within": true
+        },
+        {
+          "control": "light",
+          "width": 56,
+          "height": 56,
+          "within": true
+        },
+        {
+          "control": "heavy",
+          "width": 56,
+          "height": 56,
+          "within": true
+        },
+        {
+          "control": "special",
+          "width": 56,
+          "height": 56,
+          "within": true
+        },
+        {
+          "control": "super",
+          "width": 56,
+          "height": 56,
+          "within": true
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

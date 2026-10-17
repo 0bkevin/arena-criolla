@@ -1,0 +1,2337 @@
+{
+  "version": "v29",
+  "date": "2026-10-14",
+  "origin": "http://localhost:5183",
+  "status": "completed",
+  "objective": "Review and repair responsive alignment, clipping and unintended overflow while retaining the approved Arena Criolla arcade design.",
+  "independentReview": {
+    "agent": "/root/responsive_ui_audit_v29",
+    "report": "docs/ui-responsive-v29-agent.json",
+    "measuredStates": 27,
+    "measuredStateViewportEntries": 321,
+    "physicalDeviceClaim": false
+  },
+  "changedFiles": [
+    "src/styles.css",
+    "src/creator.css"
+  ],
+  "fixes": [
+    {
+      "id": "creator-names",
+      "selectors": [
+        ".creator-record-info"
+      ],
+      "behavior": "Supported 24-character names with no spaces wrap inside cards instead of being hidden by the card edge."
+    },
+    {
+      "id": "room-join-action",
+      "selectors": [
+        ".rooms-list > div > div",
+        ".rooms-list img",
+        ".rooms-list button"
+      ],
+      "behavior": "Room text can shrink and wrap while the thumbnail and join button retain their space, including 20-character host names at 320px."
+    },
+    {
+      "id": "pause-card",
+      "selectors": [
+        ".game-overlay:has(.pause-card)",
+        ".pause-card",
+        ".arena-wrap:has(.pause-card)"
+      ],
+      "behavior": "Pause card fits mobile and short landscape arenas. A definite width prevents aspect ratio from widening the page when the paused arena becomes taller. Resuming returns to normal battle dimensions."
+    },
+    {
+      "id": "match-result",
+      "selectors": [
+        ".result-overlay",
+        ".result-card",
+        ".game-page:has(.result-overlay)",
+        ".arena-wrap:fullscreen .result-overlay"
+      ],
+      "behavior": "Results use content height and a single column through tablet widths and short landscape. Short landscape gets more horizontal space and compact spacing/type. All content remains reachable via deliberate scrolling if necessary; fullscreen overlay stays anchored to the viewport."
+    }
+  ],
+  "parentVerification": {
+    "creatorCards": [
+      {
+        "width": 320,
+        "height": 700,
+        "scrollWidth": 320,
+        "unintendedOverflow": []
+      },
+      {
+        "width": 360,
+        "height": 800,
+        "scrollWidth": 360,
+        "unintendedOverflow": []
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 390,
+        "unintendedOverflow": []
+      },
+      {
+        "width": 600,
+        "height": 900,
+        "scrollWidth": 600,
+        "unintendedOverflow": []
+      },
+      {
+        "width": 700,
+        "height": 900,
+        "scrollWidth": 700,
+        "unintendedOverflow": []
+      },
+      {
+        "width": 701,
+        "height": 900,
+        "scrollWidth": 701,
+        "unintendedOverflow": []
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "scrollWidth": 768,
+        "unintendedOverflow": []
+      },
+      {
+        "width": 820,
+        "height": 1180,
+        "scrollWidth": 820,
+        "unintendedOverflow": []
+      },
+      {
+        "width": 900,
+        "height": 900,
+        "scrollWidth": 900,
+        "unintendedOverflow": []
+      },
+      {
+        "width": 901,
+        "height": 900,
+        "scrollWidth": 901,
+        "unintendedOverflow": []
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "scrollWidth": 1024,
+        "unintendedOverflow": []
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "scrollWidth": 1280,
+        "unintendedOverflow": []
+      },
+      {
+        "width": 1440,
+        "height": 900,
+        "scrollWidth": 1440,
+        "unintendedOverflow": []
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "scrollWidth": 1920,
+        "unintendedOverflow": []
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "scrollWidth": 844,
+        "unintendedOverflow": []
+      }
+    ],
+    "photoPreviews": [
+      {
+        "width": 320,
+        "height": 700,
+        "docWidth": 320,
+        "photos": 3,
+        "photoGrid": {
+          "x": 39,
+          "y": 436.3359375,
+          "width": 242,
+          "height": 92.5,
+          "top": 436.3359375,
+          "right": 281,
+          "bottom": 528.8359375,
+          "left": 39
+        },
+        "outside": []
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "docWidth": 390,
+        "photos": 3,
+        "photoGrid": {
+          "x": 39,
+          "y": 389.421875,
+          "width": 312,
+          "height": 121.6640625,
+          "top": 389.421875,
+          "right": 351,
+          "bottom": 511.0859375,
+          "left": 39
+        },
+        "outside": []
+      },
+      {
+        "width": 600,
+        "height": 900,
+        "docWidth": 600,
+        "photos": 3,
+        "photoGrid": {
+          "x": 39,
+          "y": 365.625,
+          "width": 522,
+          "height": 209.1640625,
+          "top": 365.625,
+          "right": 561,
+          "bottom": 574.7890625,
+          "left": 39
+        },
+        "outside": []
+      },
+      {
+        "width": 700,
+        "height": 900,
+        "docWidth": 700,
+        "photos": 3,
+        "photoGrid": {
+          "x": 39,
+          "y": 365.625,
+          "width": 622,
+          "height": 250.8359375,
+          "top": 365.625,
+          "right": 661,
+          "bottom": 616.4609375,
+          "left": 39
+        },
+        "outside": []
+      },
+      {
+        "width": 701,
+        "height": 900,
+        "docWidth": 701,
+        "photos": 3,
+        "photoGrid": {
+          "x": 47,
+          "y": 391.46875,
+          "width": 301.34375,
+          "height": 117.2265625,
+          "top": 391.46875,
+          "right": 348.34375,
+          "bottom": 508.6953125,
+          "left": 47
+        },
+        "outside": []
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "docWidth": 768,
+        "photos": 3,
+        "photoGrid": {
+          "x": 47,
+          "y": 391.46875,
+          "width": 338.1953125,
+          "height": 132.578125,
+          "top": 391.46875,
+          "right": 385.1953125,
+          "bottom": 524.046875,
+          "left": 47
+        },
+        "outside": []
+      },
+      {
+        "width": 820,
+        "height": 1180,
+        "docWidth": 820,
+        "photos": 3,
+        "photoGrid": {
+          "x": 47,
+          "y": 391.46875,
+          "width": 366.796875,
+          "height": 144.5,
+          "top": 391.46875,
+          "right": 413.796875,
+          "bottom": 535.96875,
+          "left": 47
+        },
+        "outside": []
+      },
+      {
+        "width": 900,
+        "height": 900,
+        "docWidth": 900,
+        "photos": 3,
+        "photoGrid": {
+          "x": 47,
+          "y": 391.46875,
+          "width": 410.796875,
+          "height": 162.828125,
+          "top": 391.46875,
+          "right": 457.796875,
+          "bottom": 554.296875,
+          "left": 47
+        },
+        "outside": []
+      },
+      {
+        "width": 901,
+        "height": 900,
+        "docWidth": 901,
+        "photos": 3,
+        "photoGrid": {
+          "x": 47,
+          "y": 409.46875,
+          "width": 435.3984375,
+          "height": 173.0859375,
+          "top": 409.46875,
+          "right": 482.3984375,
+          "bottom": 582.5546875,
+          "left": 47
+        },
+        "outside": []
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "docWidth": 1024,
+        "photos": 3,
+        "photoGrid": {
+          "x": 47,
+          "y": 419.875,
+          "width": 509.1953125,
+          "height": 203.8359375,
+          "top": 419.875,
+          "right": 556.1953125,
+          "bottom": 623.7109375,
+          "left": 47
+        },
+        "outside": []
+      },
+      {
+        "width": 1440,
+        "height": 900,
+        "docWidth": 1440,
+        "photos": 3,
+        "photoGrid": {
+          "x": 217,
+          "y": 454.34375,
+          "width": 554.796875,
+          "height": 222.828125,
+          "top": 454.34375,
+          "right": 771.796875,
+          "bottom": 677.171875,
+          "left": 217
+        },
+        "outside": []
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "docWidth": 844,
+        "photos": 3,
+        "photoGrid": {
+          "x": 47,
+          "y": 391.46875,
+          "width": 380,
+          "height": 150,
+          "top": 391.46875,
+          "right": 427,
+          "bottom": 541.46875,
+          "left": 47
+        },
+        "outside": []
+      }
+    ],
+    "pause": [
+      {
+        "width": 320,
+        "height": 700,
+        "docWidth": 320,
+        "arena": {
+          "x": 16,
+          "y": 137,
+          "width": 288,
+          "height": 260,
+          "top": 137,
+          "right": 304,
+          "bottom": 397,
+          "left": 16
+        },
+        "card": {
+          "x": 30,
+          "y": 176.3984375,
+          "width": 260,
+          "height": 181.1953125,
+          "top": 176.3984375,
+          "right": 290,
+          "bottom": 357.59375,
+          "left": 30
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 256,
+          "clientHeight": 256
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 360,
+        "height": 800,
+        "docWidth": 360,
+        "arena": {
+          "x": 16,
+          "y": 137,
+          "width": 328,
+          "height": 260,
+          "top": 137,
+          "right": 344,
+          "bottom": 397,
+          "left": 16
+        },
+        "card": {
+          "x": 40,
+          "y": 176.3984375,
+          "width": 280,
+          "height": 181.1953125,
+          "top": 176.3984375,
+          "right": 320,
+          "bottom": 357.59375,
+          "left": 40
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 256,
+          "clientHeight": 256
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "docWidth": 390,
+        "arena": {
+          "x": 16,
+          "y": 137,
+          "width": 358,
+          "height": 260,
+          "top": 137,
+          "right": 374,
+          "bottom": 397,
+          "left": 16
+        },
+        "card": {
+          "x": 55,
+          "y": 176.3984375,
+          "width": 280,
+          "height": 181.1953125,
+          "top": 176.3984375,
+          "right": 335,
+          "bottom": 357.59375,
+          "left": 55
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 256,
+          "clientHeight": 256
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 600,
+        "height": 900,
+        "docWidth": 600,
+        "arena": {
+          "x": 16,
+          "y": 137,
+          "width": 568,
+          "height": 336.5859375,
+          "top": 137,
+          "right": 584,
+          "bottom": 473.5859375,
+          "left": 16
+        },
+        "card": {
+          "x": 160,
+          "y": 214.6953125,
+          "width": 280,
+          "height": 181.1953125,
+          "top": 214.6953125,
+          "right": 440,
+          "bottom": 395.890625,
+          "left": 160
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 333,
+          "clientHeight": 333
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 650,
+        "height": 900,
+        "docWidth": 650,
+        "arena": {
+          "x": 16,
+          "y": 137,
+          "width": 618,
+          "height": 366.21875,
+          "top": 137,
+          "right": 634,
+          "bottom": 503.21875,
+          "left": 16
+        },
+        "card": {
+          "x": 185,
+          "y": 229.5078125,
+          "width": 280,
+          "height": 181.1953125,
+          "top": 229.5078125,
+          "right": 465,
+          "bottom": 410.703125,
+          "left": 185
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 362,
+          "clientHeight": 362
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 651,
+        "height": 900,
+        "docWidth": 651,
+        "arena": {
+          "x": 20,
+          "y": 127,
+          "width": 611,
+          "height": 362.0703125,
+          "top": 127,
+          "right": 631,
+          "bottom": 489.0703125,
+          "left": 20
+        },
+        "card": {
+          "x": 185.5,
+          "y": 217.4375,
+          "width": 280,
+          "height": 181.1953125,
+          "top": 217.4375,
+          "right": 465.5,
+          "bottom": 398.6328125,
+          "left": 185.5
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 358,
+          "clientHeight": 358
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "docWidth": 768,
+        "arena": {
+          "x": 20,
+          "y": 127,
+          "width": 728,
+          "height": 431.40625,
+          "top": 127,
+          "right": 748,
+          "bottom": 558.40625,
+          "left": 20
+        },
+        "card": {
+          "x": 244,
+          "y": 252.1015625,
+          "width": 280,
+          "height": 181.1953125,
+          "top": 252.1015625,
+          "right": 524,
+          "bottom": 433.296875,
+          "left": 244
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 427,
+          "clientHeight": 427
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 820,
+        "height": 1180,
+        "docWidth": 820,
+        "arena": {
+          "x": 20,
+          "y": 127,
+          "width": 780,
+          "height": 462.21875,
+          "top": 127,
+          "right": 800,
+          "bottom": 589.21875,
+          "left": 20
+        },
+        "card": {
+          "x": 270,
+          "y": 267.5078125,
+          "width": 280,
+          "height": 181.1953125,
+          "top": 267.5078125,
+          "right": 550,
+          "bottom": 448.703125,
+          "left": 270
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 458,
+          "clientHeight": 458
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 900,
+        "height": 900,
+        "docWidth": 900,
+        "arena": {
+          "x": 28,
+          "y": 127,
+          "width": 844,
+          "height": 500.140625,
+          "top": 127,
+          "right": 872,
+          "bottom": 627.140625,
+          "left": 28
+        },
+        "card": {
+          "x": 310,
+          "y": 286.46875,
+          "width": 280,
+          "height": 181.1953125,
+          "top": 286.46875,
+          "right": 590,
+          "bottom": 467.6640625,
+          "left": 310
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 496,
+          "clientHeight": 496
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 901,
+        "height": 900,
+        "docWidth": 901,
+        "arena": {
+          "x": 28,
+          "y": 131,
+          "width": 845,
+          "height": 500.734375,
+          "top": 131,
+          "right": 873,
+          "bottom": 631.734375,
+          "left": 28
+        },
+        "card": {
+          "x": 285.5,
+          "y": 246.96875,
+          "width": 330,
+          "height": 268.796875,
+          "top": 246.96875,
+          "right": 615.5,
+          "bottom": 515.765625,
+          "left": 285.5
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 497,
+          "clientHeight": 497
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "docWidth": 1024,
+        "arena": {
+          "x": 83.375,
+          "y": 131,
+          "width": 857.25,
+          "height": 508,
+          "top": 131,
+          "right": 940.625,
+          "bottom": 639,
+          "left": 83.375
+        },
+        "card": {
+          "x": 347,
+          "y": 250.6015625,
+          "width": 330,
+          "height": 268.796875,
+          "top": 250.6015625,
+          "right": 677,
+          "bottom": 519.3984375,
+          "left": 347
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 504,
+          "clientHeight": 504
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "docWidth": 1280,
+        "arena": {
+          "x": 184.375,
+          "y": 131,
+          "width": 911.25,
+          "height": 540,
+          "top": 131,
+          "right": 1095.625,
+          "bottom": 671,
+          "left": 184.375
+        },
+        "card": {
+          "x": 475,
+          "y": 266.6015625,
+          "width": 330,
+          "height": 268.796875,
+          "top": 266.6015625,
+          "right": 805,
+          "bottom": 535.3984375,
+          "left": 475
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 536,
+          "clientHeight": 536
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "height": 900,
+        "docWidth": 1440,
+        "arena": {
+          "x": 180,
+          "y": 131,
+          "width": 1080,
+          "height": 640,
+          "top": 131,
+          "right": 1260,
+          "bottom": 771,
+          "left": 180
+        },
+        "card": {
+          "x": 555,
+          "y": 316.6015625,
+          "width": 330,
+          "height": 268.796875,
+          "top": 316.6015625,
+          "right": 885,
+          "bottom": 585.3984375,
+          "left": 555
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 636,
+          "clientHeight": 636
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "docWidth": 1920,
+        "arena": {
+          "x": 328,
+          "y": 141,
+          "width": 1264,
+          "height": 749.03125,
+          "top": 141,
+          "right": 1592,
+          "bottom": 890.03125,
+          "left": 328
+        },
+        "card": {
+          "x": 795,
+          "y": 381.1171875,
+          "width": 330,
+          "height": 268.796875,
+          "top": 381.1171875,
+          "right": 1125,
+          "bottom": 649.9140625,
+          "left": 795
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 745,
+          "clientHeight": 745
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "docWidth": 844,
+        "arena": {
+          "x": 198.40625,
+          "y": 57,
+          "width": 447.1875,
+          "height": 265,
+          "top": 57,
+          "right": 645.59375,
+          "bottom": 322,
+          "left": 198.40625
+        },
+        "card": {
+          "x": 282,
+          "y": 98.8984375,
+          "width": 280,
+          "height": 181.1953125,
+          "top": 98.8984375,
+          "right": 562,
+          "bottom": 280.09375,
+          "left": 282
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 261,
+          "clientHeight": 261
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 667,
+        "height": 375,
+        "docWidth": 667,
+        "arena": {
+          "x": 122.5625,
+          "y": 57,
+          "width": 421.875,
+          "height": 260,
+          "top": 57,
+          "right": 544.4375,
+          "bottom": 317,
+          "left": 122.5625
+        },
+        "card": {
+          "x": 193.5,
+          "y": 96.3984375,
+          "width": 280,
+          "height": 181.1953125,
+          "top": 96.3984375,
+          "right": 473.5,
+          "bottom": 277.59375,
+          "left": 193.5
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 256,
+          "clientHeight": 256
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 812,
+        "height": 375,
+        "docWidth": 812,
+        "arena": {
+          "x": 195.0625,
+          "y": 57,
+          "width": 421.875,
+          "height": 260,
+          "top": 57,
+          "right": 616.9375,
+          "bottom": 317,
+          "left": 195.0625
+        },
+        "card": {
+          "x": 266,
+          "y": 96.3984375,
+          "width": 280,
+          "height": 181.1953125,
+          "top": 96.3984375,
+          "right": 546,
+          "bottom": 277.59375,
+          "left": 266
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 256,
+          "clientHeight": 256
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      },
+      {
+        "width": 932,
+        "height": 430,
+        "docWidth": 932,
+        "arena": {
+          "x": 208.65625,
+          "y": 65,
+          "width": 514.6875,
+          "height": 305,
+          "top": 65,
+          "right": 723.34375,
+          "bottom": 370,
+          "left": 208.65625
+        },
+        "card": {
+          "x": 326,
+          "y": 126.8984375,
+          "width": 280,
+          "height": 181.1953125,
+          "top": 126.8984375,
+          "right": 606,
+          "bottom": 308.09375,
+          "left": 326
+        },
+        "cardWithin": true,
+        "overlay": {
+          "scrollHeight": 301,
+          "clientHeight": 301
+        },
+        "buttons": [
+          {
+            "text": " Continuar",
+            "within": true
+          },
+          {
+            "text": "Salir del combate",
+            "within": true
+          }
+        ]
+      }
+    ],
+    "finalResultEdges": [
+      {
+        "width": 844,
+        "height": 390,
+        "docWidth": 844,
+        "arena": {
+          "x": 42,
+          "y": 57,
+          "width": 760,
+          "height": 315.796875,
+          "top": 57,
+          "right": 802,
+          "bottom": 372.796875,
+          "left": 42
+        },
+        "overlay": {
+          "x": 44,
+          "y": 59,
+          "width": 756,
+          "height": 311.796875,
+          "top": 59,
+          "right": 800,
+          "bottom": 370.796875,
+          "left": 44
+        },
+        "card": {
+          "x": 112,
+          "y": 71,
+          "width": 620,
+          "height": 287.796875,
+          "top": 71,
+          "right": 732,
+          "bottom": 358.796875,
+          "left": 112
+        },
+        "scrollArea": {
+          "clientHeight": 312,
+          "scrollHeight": 312,
+          "overflowY": "auto"
+        },
+        "actions": [
+          {
+            "text": "¡Revancha!",
+            "box": {
+              "x": 129,
+              "y": 270.796875,
+              "width": 586,
+              "height": 43,
+              "top": 270.796875,
+              "right": 715,
+              "bottom": 313.796875,
+              "left": 129
+            },
+            "withinArena": true
+          },
+          {
+            "text": "Volver a la selección ",
+            "box": {
+              "x": 129,
+              "y": 320.796875,
+              "width": 586,
+              "height": 21,
+              "top": 320.796875,
+              "right": 715,
+              "bottom": 341.796875,
+              "left": 129
+            },
+            "withinArena": true
+          }
+        ],
+        "internal": []
+      },
+      {
+        "width": 667,
+        "height": 375,
+        "docWidth": 667,
+        "arena": {
+          "x": 20,
+          "y": 57,
+          "width": 627,
+          "height": 315.796875,
+          "top": 57,
+          "right": 647,
+          "bottom": 372.796875,
+          "left": 20
+        },
+        "overlay": {
+          "x": 22,
+          "y": 59,
+          "width": 623,
+          "height": 311.796875,
+          "top": 59,
+          "right": 645,
+          "bottom": 370.796875,
+          "left": 22
+        },
+        "card": {
+          "x": 34,
+          "y": 71,
+          "width": 599,
+          "height": 287.796875,
+          "top": 71,
+          "right": 633,
+          "bottom": 358.796875,
+          "left": 34
+        },
+        "scrollArea": {
+          "clientHeight": 312,
+          "scrollHeight": 312,
+          "overflowY": "auto"
+        },
+        "actions": [
+          {
+            "text": "¡Revancha!",
+            "box": {
+              "x": 51,
+              "y": 270.796875,
+              "width": 565,
+              "height": 43,
+              "top": 270.796875,
+              "right": 616,
+              "bottom": 313.796875,
+              "left": 51
+            },
+            "withinArena": true
+          },
+          {
+            "text": "Volver a la selección ",
+            "box": {
+              "x": 51,
+              "y": 320.796875,
+              "width": 565,
+              "height": 21,
+              "top": 320.796875,
+              "right": 616,
+              "bottom": 341.796875,
+              "left": 51
+            },
+            "withinArena": true
+          }
+        ],
+        "internal": []
+      },
+      {
+        "width": 812,
+        "height": 375,
+        "docWidth": 812,
+        "arena": {
+          "x": 26,
+          "y": 57,
+          "width": 760,
+          "height": 315.796875,
+          "top": 57,
+          "right": 786,
+          "bottom": 372.796875,
+          "left": 26
+        },
+        "overlay": {
+          "x": 28,
+          "y": 59,
+          "width": 756,
+          "height": 311.796875,
+          "top": 59,
+          "right": 784,
+          "bottom": 370.796875,
+          "left": 28
+        },
+        "card": {
+          "x": 96,
+          "y": 71,
+          "width": 620,
+          "height": 287.796875,
+          "top": 71,
+          "right": 716,
+          "bottom": 358.796875,
+          "left": 96
+        },
+        "scrollArea": {
+          "clientHeight": 312,
+          "scrollHeight": 312,
+          "overflowY": "auto"
+        },
+        "actions": [
+          {
+            "text": "¡Revancha!",
+            "box": {
+              "x": 113,
+              "y": 270.796875,
+              "width": 586,
+              "height": 43,
+              "top": 270.796875,
+              "right": 699,
+              "bottom": 313.796875,
+              "left": 113
+            },
+            "withinArena": true
+          },
+          {
+            "text": "Volver a la selección ",
+            "box": {
+              "x": 113,
+              "y": 320.796875,
+              "width": 586,
+              "height": 21,
+              "top": 320.796875,
+              "right": 699,
+              "bottom": 341.796875,
+              "left": 113
+            },
+            "withinArena": true
+          }
+        ],
+        "internal": []
+      },
+      {
+        "width": 851,
+        "height": 900,
+        "docWidth": 851,
+        "arena": {
+          "x": 28,
+          "y": 127,
+          "width": 795,
+          "height": 403.796875,
+          "top": 127,
+          "right": 823,
+          "bottom": 530.796875,
+          "left": 28
+        },
+        "overlay": {
+          "x": 30,
+          "y": 129,
+          "width": 791,
+          "height": 399.796875,
+          "top": 129,
+          "right": 821,
+          "bottom": 528.796875,
+          "left": 30
+        },
+        "card": {
+          "x": 115.5,
+          "y": 149,
+          "width": 620,
+          "height": 359.796875,
+          "top": 149,
+          "right": 735.5,
+          "bottom": 508.796875,
+          "left": 115.5
+        },
+        "scrollArea": {
+          "clientHeight": 400,
+          "scrollHeight": 400,
+          "overflowY": "auto"
+        },
+        "actions": [
+          {
+            "text": "¡Revancha!",
+            "box": {
+              "x": 137.5,
+              "y": 411.796875,
+              "width": 576,
+              "height": 43,
+              "top": 411.796875,
+              "right": 713.5,
+              "bottom": 454.796875,
+              "left": 137.5
+            },
+            "withinArena": true
+          },
+          {
+            "text": "Volver a la selección ",
+            "box": {
+              "x": 137.5,
+              "y": 465.796875,
+              "width": 576,
+              "height": 21,
+              "top": 465.796875,
+              "right": 713.5,
+              "bottom": 486.796875,
+              "left": 137.5
+            },
+            "withinArena": true
+          }
+        ],
+        "internal": []
+      },
+      {
+        "width": 900,
+        "height": 900,
+        "docWidth": 900,
+        "arena": {
+          "x": 28,
+          "y": 127,
+          "width": 844,
+          "height": 403.796875,
+          "top": 127,
+          "right": 872,
+          "bottom": 530.796875,
+          "left": 28
+        },
+        "overlay": {
+          "x": 30,
+          "y": 129,
+          "width": 840,
+          "height": 399.796875,
+          "top": 129,
+          "right": 870,
+          "bottom": 528.796875,
+          "left": 30
+        },
+        "card": {
+          "x": 140,
+          "y": 149,
+          "width": 620,
+          "height": 359.796875,
+          "top": 149,
+          "right": 760,
+          "bottom": 508.796875,
+          "left": 140
+        },
+        "scrollArea": {
+          "clientHeight": 400,
+          "scrollHeight": 400,
+          "overflowY": "auto"
+        },
+        "actions": [
+          {
+            "text": "¡Revancha!",
+            "box": {
+              "x": 162,
+              "y": 411.796875,
+              "width": 576,
+              "height": 43,
+              "top": 411.796875,
+              "right": 738,
+              "bottom": 454.796875,
+              "left": 162
+            },
+            "withinArena": true
+          },
+          {
+            "text": "Volver a la selección ",
+            "box": {
+              "x": 162,
+              "y": 465.796875,
+              "width": 576,
+              "height": 21,
+              "top": 465.796875,
+              "right": 738,
+              "bottom": 486.796875,
+              "left": 162
+            },
+            "withinArena": true
+          }
+        ],
+        "internal": []
+      },
+      {
+        "width": 901,
+        "height": 900,
+        "docWidth": 901,
+        "arena": {
+          "x": 28,
+          "y": 131,
+          "width": 845,
+          "height": 500.734375,
+          "top": 131,
+          "right": 873,
+          "bottom": 631.734375,
+          "left": 28
+        },
+        "overlay": {
+          "x": 30,
+          "y": 133,
+          "width": 841,
+          "height": 496.734375,
+          "top": 133,
+          "right": 871,
+          "bottom": 629.734375,
+          "left": 30
+        },
+        "card": {
+          "x": 140.5,
+          "y": 152.7265625,
+          "width": 620,
+          "height": 457.28125,
+          "top": 152.7265625,
+          "right": 760.5,
+          "bottom": 610.0078125,
+          "left": 140.5
+        },
+        "scrollArea": {
+          "clientHeight": 497,
+          "scrollHeight": 497,
+          "overflowY": "auto"
+        },
+        "actions": [
+          {
+            "text": "¡Revancha!",
+            "box": {
+              "x": 377.5,
+              "y": 506.0078125,
+              "width": 352,
+              "height": 43,
+              "top": 506.0078125,
+              "right": 729.5,
+              "bottom": 549.0078125,
+              "left": 377.5
+            },
+            "withinArena": true
+          },
+          {
+            "text": "Volver a la selección ",
+            "box": {
+              "x": 377.5,
+              "y": 562.0078125,
+              "width": 352,
+              "height": 21,
+              "top": 562.0078125,
+              "right": 729.5,
+              "bottom": 583.0078125,
+              "left": 377.5
+            },
+            "withinArena": true
+          }
+        ],
+        "internal": [
+          {
+            "cls": "result-art",
+            "tag": "DIV",
+            "text": "",
+            "cw": 180,
+            "sw": 190
+          }
+        ]
+      }
+    ],
+    "behaviors": [
+      "Native photo upload showed three previews; removing one restored the add-photo button.",
+      "Native rematch started a new introduction.",
+      "Native continue resumed the match and restored arena dimensions.",
+      "Actual keyboard controls finished a two-player match with a 20-character winner nickname and unlock message.",
+      "Full page reload removed tab-local creator fixtures."
+    ],
+    "creatorFixtures": "Tab-local creatorApi responses only; ready/published/failed/drawing cards used existing sprite assets for geometry. No generation or database writes."
+  },
+  "additionalRosterChecks": {
+    "singleResult": [
+      {
+        "width": 320,
+        "height": 740,
+        "docWidth": 320,
+        "cards": 1,
+        "visibleLabels": [
+          "Juan Vicente Gómez"
+        ],
+        "pagination": "1–1 de 1PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 360,
+        "height": 800,
+        "docWidth": 360,
+        "cards": 1,
+        "visibleLabels": [
+          "Juan Vicente Gómez"
+        ],
+        "pagination": "1–1 de 1PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "docWidth": 390,
+        "cards": 1,
+        "visibleLabels": [
+          "Juan Vicente Gómez"
+        ],
+        "pagination": "1–1 de 1PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 600,
+        "height": 900,
+        "docWidth": 600,
+        "cards": 1,
+        "visibleLabels": [
+          "Juan Vicente Gómez"
+        ],
+        "pagination": "1–1 de 1PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "docWidth": 768,
+        "cards": 1,
+        "visibleLabels": [
+          "Juan Vicente Gómez"
+        ],
+        "pagination": "1–1 de 1PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 820,
+        "height": 1180,
+        "docWidth": 820,
+        "cards": 1,
+        "visibleLabels": [
+          "Juan Vicente Gómez"
+        ],
+        "pagination": "1–1 de 1PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 900,
+        "height": 900,
+        "docWidth": 900,
+        "cards": 1,
+        "visibleLabels": [
+          "Juan Vicente Gómez"
+        ],
+        "pagination": "1–1 de 1PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1024,
+        "height": 900,
+        "docWidth": 1024,
+        "cards": 1,
+        "visibleLabels": [
+          "Juan Vicente Gómez"
+        ],
+        "pagination": "1–1 de 1PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "docWidth": 1280,
+        "cards": 1,
+        "visibleLabels": [
+          "Juan Vicente Gómez"
+        ],
+        "pagination": "1–1 de 1PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1440,
+        "height": 900,
+        "docWidth": 1440,
+        "cards": 1,
+        "visibleLabels": [
+          "Juan Vicente Gómez"
+        ],
+        "pagination": "1–1 de 1PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "docWidth": 1920,
+        "cards": 1,
+        "visibleLabels": [
+          "Juan Vicente Gómez"
+        ],
+        "pagination": "1–1 de 1PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "docWidth": 844,
+        "cards": 1,
+        "visibleLabels": [
+          "Juan Vicente Gómez"
+        ],
+        "pagination": "1–1 de 1PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1366,
+        "height": 768,
+        "docWidth": 1366,
+        "cards": 1,
+        "visibleLabels": [
+          "Juan Vicente Gómez"
+        ],
+        "pagination": "1–1 de 1PÁG. 1/1",
+        "unintendedTextOverflow": []
+      }
+    ],
+    "lastPage": [
+      {
+        "width": 320,
+        "height": 740,
+        "docWidth": 320,
+        "cards": 1,
+        "visibleLabels": [
+          "Tío Conejo"
+        ],
+        "pagination": "41–41 de 41PÁG. 5/5",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 360,
+        "height": 800,
+        "docWidth": 360,
+        "cards": 1,
+        "visibleLabels": [
+          "Tío Conejo"
+        ],
+        "pagination": "41–41 de 41PÁG. 5/5",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "docWidth": 390,
+        "cards": 1,
+        "visibleLabels": [
+          "Tío Conejo"
+        ],
+        "pagination": "41–41 de 41PÁG. 5/5",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 600,
+        "height": 900,
+        "docWidth": 600,
+        "cards": 1,
+        "visibleLabels": [
+          "Tío Conejo"
+        ],
+        "pagination": "41–41 de 41PÁG. 5/5",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "docWidth": 768,
+        "cards": 1,
+        "visibleLabels": [
+          "Tío Conejo"
+        ],
+        "pagination": "41–41 de 41PÁG. 5/5",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 820,
+        "height": 1180,
+        "docWidth": 820,
+        "cards": 1,
+        "visibleLabels": [
+          "Tío Conejo"
+        ],
+        "pagination": "41–41 de 41PÁG. 5/5",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 900,
+        "height": 900,
+        "docWidth": 900,
+        "cards": 1,
+        "visibleLabels": [
+          "Tío Conejo"
+        ],
+        "pagination": "41–41 de 41PÁG. 5/5",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1024,
+        "height": 900,
+        "docWidth": 1024,
+        "cards": 1,
+        "visibleLabels": [
+          "Tío Conejo"
+        ],
+        "pagination": "41–41 de 41PÁG. 5/5",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "docWidth": 1280,
+        "cards": 1,
+        "visibleLabels": [
+          "Tío Conejo"
+        ],
+        "pagination": "41–41 de 41PÁG. 5/5",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1440,
+        "height": 900,
+        "docWidth": 1440,
+        "cards": 1,
+        "visibleLabels": [
+          "Tío Conejo"
+        ],
+        "pagination": "41–41 de 41PÁG. 5/5",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "docWidth": 1920,
+        "cards": 1,
+        "visibleLabels": [
+          "Tío Conejo"
+        ],
+        "pagination": "41–41 de 41PÁG. 5/5",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "docWidth": 844,
+        "cards": 1,
+        "visibleLabels": [
+          "Tío Conejo"
+        ],
+        "pagination": "41–41 de 41PÁG. 5/5",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1366,
+        "height": 768,
+        "docWidth": 1366,
+        "cards": 1,
+        "visibleLabels": [
+          "Tío Conejo"
+        ],
+        "pagination": "41–41 de 41PÁG. 5/5",
+        "unintendedTextOverflow": []
+      }
+    ],
+    "legends": [
+      {
+        "width": 320,
+        "height": 740,
+        "docWidth": 320,
+        "cards": 10,
+        "visibleLabels": [
+          "El Silbón",
+          "La Llorona",
+          "La Sayona",
+          "María Lionza",
+          "Florentino",
+          "El Diablo de los Llanos",
+          "Doctor Knoche",
+          "El Momoy",
+          "Tío Tigre",
+          "Tío Conejo"
+        ],
+        "pagination": "1–10 de 10PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 360,
+        "height": 800,
+        "docWidth": 360,
+        "cards": 10,
+        "visibleLabels": [
+          "El Silbón",
+          "La Llorona",
+          "La Sayona",
+          "María Lionza",
+          "Florentino",
+          "El Diablo de los Llanos",
+          "Doctor Knoche",
+          "El Momoy",
+          "Tío Tigre",
+          "Tío Conejo"
+        ],
+        "pagination": "1–10 de 10PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "docWidth": 390,
+        "cards": 10,
+        "visibleLabels": [
+          "El Silbón",
+          "La Llorona",
+          "La Sayona",
+          "María Lionza",
+          "Florentino",
+          "El Diablo de los Llanos",
+          "Doctor Knoche",
+          "El Momoy",
+          "Tío Tigre",
+          "Tío Conejo"
+        ],
+        "pagination": "1–10 de 10PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 600,
+        "height": 900,
+        "docWidth": 600,
+        "cards": 10,
+        "visibleLabels": [
+          "El Silbón",
+          "La Llorona",
+          "La Sayona",
+          "María Lionza",
+          "Florentino",
+          "El Diablo de los Llanos",
+          "Doctor Knoche",
+          "El Momoy",
+          "Tío Tigre",
+          "Tío Conejo"
+        ],
+        "pagination": "1–10 de 10PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "docWidth": 768,
+        "cards": 10,
+        "visibleLabels": [
+          "El Silbón",
+          "La Llorona",
+          "La Sayona",
+          "María Lionza",
+          "Florentino",
+          "El Diablo de los Llanos",
+          "Doctor Knoche",
+          "El Momoy",
+          "Tío Tigre",
+          "Tío Conejo"
+        ],
+        "pagination": "1–10 de 10PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 820,
+        "height": 1180,
+        "docWidth": 820,
+        "cards": 10,
+        "visibleLabels": [
+          "El Silbón",
+          "La Llorona",
+          "La Sayona",
+          "María Lionza",
+          "Florentino",
+          "El Diablo de los Llanos",
+          "Doctor Knoche",
+          "El Momoy",
+          "Tío Tigre",
+          "Tío Conejo"
+        ],
+        "pagination": "1–10 de 10PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 900,
+        "height": 900,
+        "docWidth": 900,
+        "cards": 10,
+        "visibleLabels": [
+          "El Silbón",
+          "La Llorona",
+          "La Sayona",
+          "María Lionza",
+          "Florentino",
+          "El Diablo de los Llanos",
+          "Doctor Knoche",
+          "El Momoy",
+          "Tío Tigre",
+          "Tío Conejo"
+        ],
+        "pagination": "1–10 de 10PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1024,
+        "height": 900,
+        "docWidth": 1024,
+        "cards": 10,
+        "visibleLabels": [
+          "El Silbón",
+          "La Llorona",
+          "La Sayona",
+          "María Lionza",
+          "Florentino",
+          "El Diablo de los Llanos",
+          "Doctor Knoche",
+          "El Momoy",
+          "Tío Tigre",
+          "Tío Conejo"
+        ],
+        "pagination": "1–10 de 10PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "docWidth": 1280,
+        "cards": 10,
+        "visibleLabels": [
+          "El Silbón",
+          "La Llorona",
+          "La Sayona",
+          "María Lionza",
+          "Florentino",
+          "El Diablo de los Llanos",
+          "Doctor Knoche",
+          "El Momoy",
+          "Tío Tigre",
+          "Tío Conejo"
+        ],
+        "pagination": "1–10 de 10PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1440,
+        "height": 900,
+        "docWidth": 1440,
+        "cards": 10,
+        "visibleLabels": [
+          "El Silbón",
+          "La Llorona",
+          "La Sayona",
+          "María Lionza",
+          "Florentino",
+          "El Diablo de los Llanos",
+          "Doctor Knoche",
+          "El Momoy",
+          "Tío Tigre",
+          "Tío Conejo"
+        ],
+        "pagination": "1–10 de 10PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "docWidth": 1920,
+        "cards": 10,
+        "visibleLabels": [
+          "El Silbón",
+          "La Llorona",
+          "La Sayona",
+          "María Lionza",
+          "Florentino",
+          "El Diablo de los Llanos",
+          "Doctor Knoche",
+          "El Momoy",
+          "Tío Tigre",
+          "Tío Conejo"
+        ],
+        "pagination": "1–10 de 10PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "docWidth": 844,
+        "cards": 10,
+        "visibleLabels": [
+          "El Silbón",
+          "La Llorona",
+          "La Sayona",
+          "María Lionza",
+          "Florentino",
+          "El Diablo de los Llanos",
+          "Doctor Knoche",
+          "El Momoy",
+          "Tío Tigre",
+          "Tío Conejo"
+        ],
+        "pagination": "1–10 de 10PÁG. 1/1",
+        "unintendedTextOverflow": []
+      },
+      {
+        "width": 1366,
+        "height": 768,
+        "docWidth": 1366,
+        "cards": 10,
+        "visibleLabels": [
+          "El Silbón",
+          "La Llorona",
+          "La Sayona",
+          "María Lionza",
+          "Florentino",
+          "El Diablo de los Llanos",
+          "Doctor Knoche",
+          "El Momoy",
+          "Tío Tigre",
+          "Tío Conejo"
+        ],
+        "pagination": "1–10 de 10PÁG. 1/1",
+        "unintendedTextOverflow": []
+      }
+    ],
+    "emptyResults": [
+      {
+        "width": 320,
+        "height": 740,
+        "docWidth": 320,
+        "text": "P1\nTÚ\nCPU\nRIVAL\n0/41\nTodos\n41\nCultura\n31\nLeyendas\n10\nEse pana no está en la arena.\nVer todos los personajes\nLuchador seleccionado para P1: Vicente Zavarce.",
+        "overflow": []
+      },
+      {
+        "width": 360,
+        "height": 800,
+        "docWidth": 360,
+        "text": "P1\nTÚ\nCPU\nRIVAL\n0/41\nTodos\n41\nCultura\n31\nLeyendas\n10\nEse pana no está en la arena.\nVer todos los personajes\nLuchador seleccionado para P1: Vicente Zavarce.",
+        "overflow": []
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "docWidth": 390,
+        "text": "P1\nTÚ\nCPU\nRIVAL\n0/41\nTodos\n41\nCultura\n31\nLeyendas\n10\nEse pana no está en la arena.\nVer todos los personajes\nLuchador seleccionado para P1: Vicente Zavarce.",
+        "overflow": []
+      },
+      {
+        "width": 600,
+        "height": 900,
+        "docWidth": 600,
+        "text": "P1\nTÚ\nCPU\nRIVAL\n0/41\nTodos\n41\nCultura\n31\nLeyendas\n10\nEse pana no está en la arena.\nVer todos los personajes\nLuchador seleccionado para P1: Vicente Zavarce.",
+        "overflow": []
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "docWidth": 768,
+        "text": "P1\nTÚ\nCPU\nRIVAL\n0/41\nTodos\n41\nCultura\n31\nLeyendas\n10\nEse pana no está en la arena.\nVer todos los personajes\nLuchador seleccionado para P1: Vicente Zavarce.",
+        "overflow": []
+      },
+      {
+        "width": 820,
+        "height": 1180,
+        "docWidth": 820,
+        "text": "P1\nTÚ\nCPU\nRIVAL\n0/41\nTodos\n41\nCultura\n31\nLeyendas\n10\nEse pana no está en la arena.\nVer todos los personajes\nLuchador seleccionado para P1: Vicente Zavarce.",
+        "overflow": []
+      },
+      {
+        "width": 900,
+        "height": 900,
+        "docWidth": 900,
+        "text": "P1\nTÚ\nCPU\nRIVAL\n0/41\nTodos\n41\nCultura\n31\nLeyendas\n10\nEse pana no está en la arena.\nVer todos los personajes\nLuchador seleccionado para P1: Vicente Zavarce.",
+        "overflow": []
+      },
+      {
+        "width": 1024,
+        "height": 900,
+        "docWidth": 1024,
+        "text": "P1\nTÚ\nCPU\nRIVAL\n0/41\nTodos\n41\nCultura\n31\nLeyendas\n10\nEse pana no está en la arena.\nVer todos los personajes\nLuchador seleccionado para P1: Vicente Zavarce.",
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "docWidth": 1280,
+        "text": "P1\nTÚ\nCPU\nRIVAL\nELIGIENDO P1\n0/41\nTodos\n41\nCultura\n31\nLeyendas\n10\nEse pana no está en la arena.\nVer todos los personajes\nLuchador seleccionado para P1: Vicente Zavarce.",
+        "overflow": []
+      },
+      {
+        "width": 1440,
+        "height": 900,
+        "docWidth": 1440,
+        "text": "P1\nTÚ\nCPU\nRIVAL\nELIGIENDO P1\n0/41\nTodos\n41\nCultura\n31\nLeyendas\n10\nEse pana no está en la arena.\nVer todos los personajes\nLuchador seleccionado para P1: Vicente Zavarce.",
+        "overflow": []
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "docWidth": 1920,
+        "text": "P1\nTÚ\nCPU\nRIVAL\nELIGIENDO P1\n0/41\nTodos\n41\nCultura\n31\nLeyendas\n10\nEse pana no está en la arena.\nVer todos los personajes\nLuchador seleccionado para P1: Vicente Zavarce.",
+        "overflow": []
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "docWidth": 844,
+        "text": "P1\nTÚ\nCPU\nRIVAL\n0/41\nTodos\n41\nCultura\n31\nLeyendas\n10\nEse pana no está en la arena.\nVer todos los personajes\nLuchador seleccionado para P1: Vicente Zavarce.",
+        "overflow": []
+      },
+      {
+        "width": 1366,
+        "height": 768,
+        "docWidth": 1366,
+        "text": "P1\nTÚ\nCPU\nRIVAL\nELIGIENDO P1\n0/41\nTodos\n41\nCultura\n31\nLeyendas\n10\nEse pana no está en la arena.\nVer todos los personajes\nLuchador seleccionado para P1: Vicente Zavarce.",
+        "overflow": []
+      }
+    ],
+    "method": "Native search (no results and one result), last roster page, and legends category at all 13 review sizes. Intentional screen-reader-only hiding and portrait cropping are excluded from unintended clipping."
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "checks": [
+      "TypeScript",
+      "Vite production bundle"
+    ],
+    "existingWarning": "Vite reports a JavaScript bundle larger than 500kB; this change does not modify JavaScript."
+  },
+  "screenshots": [
+    {
+      "id": "creator-name-before",
+      "source": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv7u1o3r-bf292605.png",
+      "path": "docs/screenshots/ui-responsive-v29-creator-before-320.png",
+      "cssViewport": [
+        320,
+        700
+      ]
+    },
+    {
+      "id": "creator-name-after",
+      "source": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv7u2rsw-9c5babb2.png",
+      "path": "docs/screenshots/ui-responsive-v29-creator-after-320.png",
+      "cssViewport": [
+        320,
+        700
+      ]
+    },
+    {
+      "id": "landscape-result-before",
+      "source": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv7u2igh-a99fc8b8.png",
+      "path": "docs/screenshots/ui-responsive-v29-result-before-844.png",
+      "cssViewport": [
+        844,
+        390
+      ]
+    },
+    {
+      "id": "landscape-result-after",
+      "source": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv7uoxu1-53af9a92.png",
+      "path": "docs/screenshots/ui-responsive-v29-result-after-844.png",
+      "cssViewport": [
+        844,
+        390
+      ]
+    },
+    {
+      "id": "mobile-pause-after",
+      "source": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv7up17p-073be4fb.png",
+      "path": "docs/screenshots/ui-responsive-v29-pause-after-320.png",
+      "cssViewport": [
+        320,
+        700
+      ]
+    },
+    {
+      "id": "room-row-before",
+      "source": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv7uj5p8-77f088e1.png",
+      "path": "docs/screenshots/ui-responsive-v29-rooms-before-320.png",
+      "cssViewport": [
+        320,
+        740
+      ]
+    },
+    {
+      "id": "room-row-after",
+      "source": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv7unjnp-912f569f.png",
+      "path": "docs/screenshots/ui-responsive-v29-rooms-after-320.png",
+      "cssViewport": [
+        320,
+        740
+      ]
+    },
+    {
+      "id": "desktop-lobby-final",
+      "source": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv7uz5ny-571673d1.png",
+      "path": "docs/screenshots/ui-responsive-v29-lobby-1440.png",
+      "cssViewport": [
+        1440,
+        900
+      ]
+    }
+  ],
+  "limitations": [
+    "Viewport checks use the native T3 Chromium preview; physical devices, mobile software keyboard and mobile pointer emulation were not tested.",
+    "The preview sometimes resets the DOM viewport to 400x300 on entering fullscreen while capturing an image at the requested 844x390 size. Actual 400x300 fullscreen layout and scrolling were checked; the requested 844x390 fullscreen size is not claimed as verified. A separate run did report correct 932x430 bounds.",
+    "No live creator generation was requested. The authenticated cards were explicit review fixtures."
+  ],
+  "fullscreenActual": {
+    "width": 400,
+    "height": 300,
+    "docWidth": 400,
+    "arena": {
+      "x": 0,
+      "y": 0,
+      "width": 400,
+      "height": 300,
+      "top": 0,
+      "right": 400,
+      "bottom": 300,
+      "left": 0
+    },
+    "overlay": {
+      "x": 2,
+      "y": 2,
+      "width": 396,
+      "height": 296,
+      "top": 2,
+      "right": 398,
+      "bottom": 298,
+      "left": 2
+    },
+    "card": {
+      "x": 14,
+      "y": 14,
+      "width": 372,
+      "height": 301.390625,
+      "top": 14,
+      "right": 386,
+      "bottom": 315.390625,
+      "left": 14
+    },
+    "scrollArea": {
+      "clientHeight": 296,
+      "scrollHeight": 325,
+      "overflowY": "auto"
+    },
+    "actions": [
+      {
+        "text": "¡Revancha!",
+        "box": {
+          "x": 31,
+          "y": 232.390625,
+          "width": 338,
+          "height": 38,
+          "top": 232.390625,
+          "right": 369,
+          "bottom": 270.390625,
+          "left": 31
+        },
+        "withinArena": true
+      },
+      {
+        "text": "Volver a la selección ",
+        "box": {
+          "x": 31,
+          "y": 277.390625,
+          "width": 338,
+          "height": 21,
+          "top": 277.390625,
+          "right": 369,
+          "bottom": 298.390625,
+          "left": 31
+        },
+        "withinArena": true
+      }
+    ],
+    "internal": []
+  },
+  "cleanup": {
+    "creatorDatabaseWrites": 0,
+    "aiCalls": 0,
+    "peerRoomsClosed": true,
+    "fixtureRemoval": "Reloaded the real application; creator session is unauthenticated.",
+    "reviewProfileData": "Removed only the exact 20-M test name and progress matching four identified review matches from this session; other preferences retained.",
+    "port5173": "Different project; untouched.",
+    "gameServer": "Kept running at port5183"
+  }
+}

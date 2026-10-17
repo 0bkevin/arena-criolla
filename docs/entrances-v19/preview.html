@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Arena Criolla · revisión de presentaciones</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font:
+          16px/1.5 system-ui,
+          sans-serif;
+        color: #e6eef7;
+        background: #080e16;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      main {
+        max-width: 1160px;
+        margin: 40px auto;
+        padding: 0 24px 48px;
+      }
+      header {
+        border-top: 4px solid #ffd95c;
+        border-image: linear-gradient(
+            90deg,
+            #ffd95c 33.3%,
+            #3c7eea 33.3%,
+            #3c7eea 66.6%,
+            #f1766c 66.6%
+          )
+          1;
+        padding-top: 24px;
+        margin-bottom: 28px;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(25px, 4vw, 34px);
+        letter-spacing: -0.04em;
+      }
+      p {
+        margin: 8px 0;
+      }
+      .muted {
+        color: #9fb0c3;
+      }
+      .toolbar {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        align-items: end;
+        margin-bottom: 20px;
+      }
+      label {
+        display: grid;
+        gap: 6px;
+        font-size: 13px;
+        color: #9fb0c3;
+      }
+      select,
+      button {
+        font: inherit;
+        border: 1px solid #34465e;
+        border-radius: 7px;
+        background: #122238;
+        color: #e6eef7;
+        min-height: 44px;
+        padding: 9px 12px;
+      }
+      button {
+        cursor: pointer;
+        transition:
+          border-color 140ms,
+          background 140ms;
+      }
+      button:hover {
+        border-color: #ffd95c;
+        background: #1b304b;
+      }
+      button:disabled {
+        cursor: wait;
+        opacity: 0.55;
+      }
+      :focus-visible {
+        outline: 3px solid #ffd95c;
+        outline-offset: 3px;
+      }
+      #fighter {
+        min-width: 240px;
+      }
+      .primary {
+        background: #ffd95c;
+        color: #142138;
+        border-color: #ffd95c;
+        font-weight: 700;
+      }
+      .primary:hover {
+        background: #ffe490;
+      }
+      .stage {
+        border: 1px solid #34465e;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #10233b;
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1080/600;
+      }
+      .timeline {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        padding: 14px 18px;
+        border-top: 1px solid #34465e;
+        background: #101d2e;
+      }
+      .timeline label {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        min-width: 0;
+      }
+      input[type="range"] {
+        flex: 1;
+        min-width: 0;
+        accent-color: #ffd95c;
+      }
+      output {
+        font-variant-numeric: tabular-nums;
+        min-width: 48px;
+        text-align: right;
+      }
+      #status {
+        min-height: 24px;
+        margin: 12px 0 22px;
+      }
+      section {
+        padding: 22px 0;
+        border-top: 1px solid #25364b;
+      }
+      h2 {
+        margin: 0 0 8px;
+        font-size: 21px;
+      }
+      h3 {
+        margin: 18px 0 6px;
+        font-size: 15px;
+        color: #ffd95c;
+      }
+      .facts {
+        display: flex;
+        gap: 12px 28px;
+        flex-wrap: wrap;
+        margin: 12px 0;
+        color: #afbed0;
+        font-size: 14px;
+      }
+      code {
+        color: #ffd95c;
+      }
+      details {
+        margin-top: 18px;
+      }
+      summary {
+        cursor: pointer;
+        color: #ffd95c;
+        padding: 8px 0;
+      }
+      ul {
+        padding-left: 24px;
+      }
+      li {
+        margin: 12px 0;
+      }
+      li p {
+        font-size: 14px;
+        color: #afbed0;
+      }
+      a {
+        color: #9ac4ff;
+        text-underline-offset: 3px;
+      }
+      #error {
+        color: #ffb9b0;
+      }
+      @media (max-width: 600px) {
+        main {
+          margin-top: 20px;
+          padding: 0 14px 32px;
+        }
+        .toolbar {
+          gap: 12px;
+        }
+        #fighter {
+          min-width: 0;
+          width: 100%;
+        }
+        .fighter-field {
+          width: 100%;
+        }
+        select {
+          max-width: 100%;
+        }
+        .timeline {
+          padding: 10px;
+          gap: 10px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        button {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="muted">ARENA CRIOLLA · REVISIÓN VISUAL V19</p>
+        <h1>Una entrada para cada luchador.</h1>
+        <p class="muted">
+          Atlas, coreografías y renderizador reales del juego. Esta página es
+          una herramienta de revisión, sin audio.
+        </p>
+      </header>
+      <div class="toolbar" aria-label="Controles de revisión">
+        <label class="fighter-field"
+          >Personaje
+          <select id="fighter"></select
+        ></label>
+        <button id="previous" type="button" aria-label="Personaje anterior">
+          ←
+        </button>
+        <button id="next" type="button" aria-label="Personaje siguiente">
+          →
+        </button>
+        <label
+          >Movimiento
+          <select id="kind">
+            <option value="intro">Introducción</option>
+            <option value="selection">Selección</option>
+            <option value="guard">Guardia de batalla</option>
+          </select></label
+        >
+        <label
+          >Orientación
+          <select id="direction">
+            <option value="both">Ambos, frente al oponente</option>
+            <option value="right">Hacia la derecha</option>
+            <option value="left">Hacia la izquierda</option>
+          </select></label
+        >
+        <label
+          >Escenario
+          <select id="background"></select
+        ></label>
+        <button class="primary" id="replay" type="button">↻ Repetir</button>
+      </div>
+      <div class="stage">
+        <canvas
+          id="scene"
+          width="1080"
+          height="600"
+          role="img"
+          aria-label="Vista de la animación del personaje"
+        ></canvas>
+        <div class="timeline">
+          <button id="pause" type="button">Pausar</button>
+          <label for="progress"
+            >Tiempo
+            <input
+              id="progress"
+              type="range"
+              min="0"
+              max="1000"
+              value="0"
+              step="1"
+            /><output id="percentage" for="progress">0%</output></label
+          >
+        </div>
+      </div>
+      <p id="status" class="muted" role="status" aria-live="polite">
+        Cargando los assets del juego…
+      </p>
+      <p id="error" role="alert" hidden></p>
+      <section aria-labelledby="name">
+        <h2 id="name">Referencia del personaje</h2>
+        <div class="facts">
+          <span id="index"></span><span id="moves"></span
+          ><span id="audit"></span>
+        </div>
+        <h3>Qué documentan las referencias</h3>
+        <p id="observed"></p>
+        <h3>Cómo lo adapta el juego</h3>
+        <p id="adaptation"></p>
+        <details>
+          <summary>Fuentes consultadas y revisión del atlas</summary>
+          <p id="frame-note" class="muted"></p>
+          <ul id="sources"></ul>
+        </details>
+      </section>
+      <p class="muted">
+        Introducción: se reproduce una vez y termina en guardia. Selección: se
+        repite en bucle. El deslizador permite detenerse en cualquier punto. Si
+        el sistema solicita movimiento reducido, se muestra la guardia estática.
+      </p>
+    </main>
+    <script type="module">
+      import { FIGHTERS, STAGES } from "/shared/content.ts";
+      import {
+        presentationById,
+        normalizedFacing,
+      } from "/shared/presentation.ts";
+      import { loadSprite, loadImage, drawSprite } from "/src/game/assets.ts";
+      import { drawPresentation } from "/src/game/presentation-renderer.ts";
+
+      const el = (id) => document.getElementById(id);
+      const canvas = el("scene"),
+        ctx = canvas.getContext("2d");
+      const motion = matchMedia("(prefers-reduced-motion: reduce)");
+      let sprite = null,
+        background = null,
+        research = [],
+        loadingVersion = 0;
+      let scrubProgress = null;
+      let elapsed = 0,
+        previousTime = 0,
+        paused = false,
+        lastStatus = "";
+      const chosen = () =>
+        FIGHTERS.find((fighter) => fighter.id === el("fighter").value) ||
+        FIGHTERS[0];
+      const duration = () => presentationById(chosen().id).durationMs;
+      const setStatus = (message) => {
+        if (message !== lastStatus) {
+          el("status").textContent = message;
+          lastStatus = message;
+        }
+      };
+
+      for (const [index, fighter] of FIGHTERS.entries()) {
+        const option = document.createElement("option");
+        option.value = fighter.id;
+        option.textContent = `${String(index + 1).padStart(2, "0")} · ${fighter.name}`;
+        el("fighter").append(option);
+      }
+      for (const stage of STAGES) {
+        const option = document.createElement("option");
+        option.value = stage.id;
+        option.textContent = stage.name;
+        el("background").append(option);
+      }
+      el("fighter").value = "renny";
+      el("background").value = "caracas";
+
+      function showReferences() {
+        const fighter = chosen(),
+          profile = presentationById(fighter.id);
+        const entry = research.find((record) => record.id === fighter.id);
+        el("name").textContent = fighter.name;
+        el("index").textContent =
+          `${FIGHTERS.indexOf(fighter) + 1} de ${FIGHTERS.length}`;
+        el("moves").textContent =
+          `${profile.introName} · ${profile.selectionName}`;
+        el("audit").textContent =
+          `Guardia: frame ${profile.battleFrame} · base: ${profile.frameFacing.join(", ")}`;
+        el("observed").textContent =
+          entry?.observedGesture ||
+          "No se encontró la ficha de investigación para este personaje.";
+        el("adaptation").textContent =
+          entry?.adaptationNote || "Revisar la ficha de investigación.";
+        el("frame-note").textContent =
+          entry?.frameAuditNote ||
+          "Las direcciones de los ocho frames se conservan en la definición compartida de presentación.";
+        el("sources").replaceChildren();
+        for (const source of entry?.sources || []) {
+          const li = document.createElement("li"),
+            link = document.createElement("a"),
+            note = document.createElement("p");
+          link.textContent = source.title;
+          link.href = source.url;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          note.textContent = source.note || "";
+          li.append(link, note);
+          el("sources").append(li);
+        }
+        canvas.setAttribute(
+          "aria-label",
+          `${fighter.name}: ${el("kind").selectedOptions[0].textContent}, ${el("direction").selectedOptions[0].textContent}`,
+        );
+      }
+
+      function restart() {
+        elapsed = 0;
+        scrubProgress = null;
+        paused = false;
+        previousTime = 0;
+        el("pause").textContent = "Pausar";
+        showReferences();
+      }
+      async function load() {
+        const version = ++loadingVersion;
+        sprite = null;
+        el("error").hidden = true;
+        for (const id of ["replay", "pause", "progress"])
+          el(id).disabled = true;
+        setStatus("Cargando el personaje y el escenario…");
+        showReferences();
+        try {
+          const result = await Promise.all([
+            loadSprite(chosen().id),
+            loadImage(el("background").value),
+          ]);
+          if (version !== loadingVersion) return;
+          [sprite, background] = result;
+          for (const id of ["replay", "pause", "progress"])
+            el(id).disabled = false;
+          restart();
+        } catch (error) {
+          if (version !== loadingVersion) return;
+          el("error").hidden = false;
+          el("error").textContent = error.message;
+          setStatus(
+            "No se pudieron cargar los assets. Revisa el mensaje de error.",
+          );
+        }
+      }
+
+      function label(text, x, y, color = "#eef6ff") {
+        ctx.save();
+        ctx.font = "600 19px system-ui";
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#07101ccc";
+        ctx.fillRect(x - 145, y - 25, 290, 39);
+        ctx.fillStyle = color;
+        ctx.fillText(text, x, y);
+        ctx.restore();
+      }
+      function draw(now) {
+        requestAnimationFrame(draw);
+        if (!ctx) return;
+        const step = previousTime ? Math.min(50, now - previousTime) : 0;
+        previousTime = now;
+        const kind = el("kind").value,
+          total = duration(),
+          fighter = chosen(),
+          profile = presentationById(fighter.id);
+        if (sprite && !paused && !motion.matches && kind !== "guard")
+          elapsed += step;
+        let progress =
+          kind === "guard" || motion.matches
+            ? 1
+            : paused && scrubProgress !== null
+              ? scrubProgress
+              : kind === "selection"
+                ? Math.min(1, (elapsed % Math.max(5400, total + 3400)) / total)
+                : Math.min(1, elapsed / total);
+        el("progress").value = String(Math.round(progress * 1000));
+        el("percentage").textContent = `${Math.round(progress * 100)}%`;
+        ctx.clearRect(0, 0, 1080, 600);
+        ctx.imageSmoothingEnabled = false;
+        if (background) {
+          const scale = Math.max(
+            1080 / background.width,
+            600 / background.height,
+          );
+          ctx.drawImage(
+            background,
+            (1080 - background.width * scale) / 2,
+            (600 - background.height * scale) / 2,
+            background.width * scale,
+            background.height * scale,
+          );
+        } else {
+          ctx.fillStyle = "#142942";
+          ctx.fillRect(0, 0, 1080, 600);
+        }
+        ctx.fillStyle = "#07162866";
+        ctx.fillRect(0, 0, 1080, 600);
+        ctx.fillStyle = "#07162880";
+        ctx.fillRect(0, 520, 1080, 80);
+        const direction = el("direction").value;
+        if (!sprite) {
+          label("Cargando…", 540, 315);
+          return;
+        }
+        const positions =
+          direction === "both"
+            ? [
+                [310, 1],
+                [770, -1],
+              ]
+            : [[540, direction === "left" ? -1 : 1]];
+        const poses = [];
+        for (const [x, facing] of positions) {
+          ctx.fillStyle = "#00000066";
+          ctx.beginPath();
+          ctx.ellipse(x, 520, 83, 12, 0, 0, Math.PI * 2);
+          ctx.fill();
+          let frame;
+          if (kind === "guard") {
+            frame = profile.battleFrame;
+            drawSprite(ctx, sprite, frame, x, 520, 360, facing);
+          } else
+            frame = drawPresentation(
+              ctx,
+              sprite,
+              fighter.id,
+              progress,
+              x,
+              520,
+              360,
+              facing,
+              kind,
+              motion.matches,
+            ).frame;
+          poses.push(
+            `${facing === 1 ? "→" : "←"} frame ${frame}, reflejo ${normalizedFacing(fighter.id, frame, facing) === 1 ? "+1" : "−1"}`,
+          );
+          label(
+            facing === 1
+              ? "MIRA HACIA LA DERECHA →"
+              : "← MIRA HACIA LA IZQUIERDA",
+            x,
+            566,
+            facing === 1 ? "#ffd95c" : "#9ac4ff",
+          );
+        }
+        label(fighter.name, 540, 45);
+        const title =
+          kind === "guard"
+            ? "Guardia de batalla"
+            : kind === "intro"
+              ? profile.introName
+              : profile.selectionName;
+        setStatus(
+          `${title} · ${poses.join(" · ")}${motion.matches ? " · Movimiento reducido activo" : paused ? " · En pausa" : kind === "intro" && progress === 1 ? " · Entrada terminada" : kind === "selection" ? " · En bucle" : ""}`,
+        );
+      }
+
+      el("fighter").addEventListener("change", load);
+      el("background").addEventListener("change", load);
+      for (const id of ["kind", "direction"])
+        el(id).addEventListener("change", restart);
+      el("replay").addEventListener("click", restart);
+      el("pause").addEventListener("click", () => {
+        paused = !paused;
+        if (!paused) scrubProgress = null;
+        el("pause").textContent = paused ? "Continuar" : "Pausar";
+      });
+      el("progress").addEventListener("input", () => {
+        scrubProgress = Number(el("progress").value) / 1000;
+        elapsed = scrubProgress * duration();
+        paused = true;
+        el("pause").textContent = "Continuar";
+      });
+      for (const [id, offset] of [
+        ["previous", -1],
+        ["next", 1],
+      ])
+        el(id).addEventListener("click", () => {
+          const index =
+            (FIGHTERS.indexOf(chosen()) + offset + FIGHTERS.length) %
+            FIGHTERS.length;
+          el("fighter").value = FIGHTERS[index].id;
+          load();
+        });
+      motion.addEventListener("change", restart);
+      try {
+        const response = await fetch("/docs/entrances-v19/research.json");
+        if (!response.ok)
+          throw new Error(`Investigación: HTTP ${response.status}`);
+        research = (await response.json()).fighters;
+      } catch (error) {
+        el("error").hidden = false;
+        el("error").textContent = error.message;
+      }
+      await load();
+      requestAnimationFrame(draw);
+    </script>
+  </body>
+</html>

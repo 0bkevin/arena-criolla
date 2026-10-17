@@ -1,0 +1,219 @@
+{
+  "method": "Generated alpha silhouettes isolated and aligned without repainting",
+  "assets": {
+    "oscar": {
+      "file": "oscar-entrance-v24",
+      "cell": 512,
+      "bodyHeight": 400,
+      "baseline": 492,
+      "anchorX": 256,
+      "width": 2048,
+      "height": 1536,
+      "frames": [
+        {
+          "x": 128,
+          "y": 92,
+          "width": 240,
+          "height": 400,
+          "slotX": 0,
+          "slotY": 0
+        },
+        {
+          "x": 610,
+          "y": 92,
+          "width": 310,
+          "height": 400,
+          "slotX": 512,
+          "slotY": 0
+        },
+        {
+          "x": 1076,
+          "y": 94,
+          "width": 402,
+          "height": 398,
+          "slotX": 1024,
+          "slotY": 0
+        },
+        {
+          "x": 1591,
+          "y": 93,
+          "width": 401,
+          "height": 399,
+          "slotX": 1536,
+          "slotY": 0
+        },
+        {
+          "x": 125,
+          "y": 609,
+          "width": 225,
+          "height": 395,
+          "slotX": 0,
+          "slotY": 512
+        },
+        {
+          "x": 585,
+          "y": 612,
+          "width": 360,
+          "height": 392,
+          "slotX": 512,
+          "slotY": 512
+        },
+        {
+          "x": 1083,
+          "y": 610,
+          "width": 392,
+          "height": 394,
+          "slotX": 1024,
+          "slotY": 512
+        },
+        {
+          "x": 1640,
+          "y": 613,
+          "width": 350,
+          "height": 391,
+          "slotX": 1536,
+          "slotY": 512
+        },
+        {
+          "x": 115,
+          "y": 1118,
+          "width": 239,
+          "height": 398,
+          "slotX": 0,
+          "slotY": 1024
+        },
+        {
+          "x": 611,
+          "y": 1116,
+          "width": 342,
+          "height": 400,
+          "slotX": 512,
+          "slotY": 1024
+        },
+        {
+          "x": 1071,
+          "y": 1114,
+          "width": 405,
+          "height": 402,
+          "slotX": 1024,
+          "slotY": 1024
+        },
+        {
+          "x": 1662,
+          "y": 1118,
+          "width": 243,
+          "height": 398,
+          "slotX": 1536,
+          "slotY": 1024
+        }
+      ]
+    },
+    "dudamel": {
+      "file": "dudamel-entrance-v24",
+      "cell": 512,
+      "bodyHeight": 400,
+      "baseline": 492,
+      "anchorX": 256,
+      "width": 2048,
+      "height": 1536,
+      "frames": [
+        {
+          "x": 128,
+          "y": 92,
+          "width": 291,
+          "height": 400,
+          "slotX": 0,
+          "slotY": 0
+        },
+        {
+          "x": 642,
+          "y": 94,
+          "width": 299,
+          "height": 398,
+          "slotX": 512,
+          "slotY": 0
+        },
+        {
+          "x": 1086,
+          "y": 91,
+          "width": 394,
+          "height": 401,
+          "slotX": 1024,
+          "slotY": 0
+        },
+        {
+          "x": 1597,
+          "y": 93,
+          "width": 401,
+          "height": 399,
+          "slotX": 1536,
+          "slotY": 0
+        },
+        {
+          "x": 122,
+          "y": 583,
+          "width": 305,
+          "height": 421,
+          "slotX": 0,
+          "slotY": 512
+        },
+        {
+          "x": 634,
+          "y": 556,
+          "width": 307,
+          "height": 448,
+          "slotX": 512,
+          "slotY": 512
+        },
+        {
+          "x": 1144,
+          "y": 533,
+          "width": 310,
+          "height": 471,
+          "slotX": 1024,
+          "slotY": 512
+        },
+        {
+          "x": 1662,
+          "y": 641,
+          "width": 326,
+          "height": 363,
+          "slotX": 1536,
+          "slotY": 512
+        },
+        {
+          "x": 118,
+          "y": 1142,
+          "width": 374,
+          "height": 374,
+          "slotX": 0,
+          "slotY": 1024
+        },
+        {
+          "x": 631,
+          "y": 1127,
+          "width": 303,
+          "height": 389,
+          "slotX": 512,
+          "slotY": 1024
+        },
+        {
+          "x": 1153,
+          "y": 1125,
+          "width": 286,
+          "height": 391,
+          "slotX": 1024,
+          "slotY": 1024
+        },
+        {
+          "x": 1665,
+          "y": 1119,
+          "width": 289,
+          "height": 397,
+          "slotX": 1536,
+          "slotY": 1024
+        }
+      ]
+    }
+  }
+}

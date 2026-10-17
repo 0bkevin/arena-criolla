@@ -1,0 +1,102 @@
+{
+  "id": "capriles",
+  "realName": "Henrique Capriles Radonski",
+  "sprite": "capriles-v3",
+  "portraitReference": "assets/references/capriles/elpais-portrait-2026.jpg",
+  "portrayal": "Henrique Capriles Radonski aparece como un hombre de unos 53 años, delgado, con rostro alargado, nariz prominente, lentes ópticos rectangulares y cabello corto gris oscuro con entradas visibles. El retrato de oficina de enero de 2026 muestra chaqueta azul marino abierta sobre polo blanco y jeans; el atlas conserva ese atuendo. Las poses de combate son ficción de videojuego, no gestos políticos documentados.",
+  "sources": [
+    {
+      "title": "Henrique Capriles: Los venezolanos no nos vamos a conformar solo con un reacomodo en el poder — El País",
+      "url": "https://elpais.com/america/2026-01-25/henrique-capriles-los-venezolanos-no-nos-vamos-a-conformar-solo-con-un-reacomodo-en-el-poder.html",
+      "kind": "published-interview-and-photographs",
+      "note": "La entrevista nombra a Capriles y acredita las fotos de Gaby Oraa (oficina, 23 de enero de 2026) y Miguel Gutiérrez/EFE (rueda de prensa, 19 de enero)."
+    },
+    {
+      "title": "Henrique Capriles Radonski in Margarita International Airport — Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_Radonski_in_Margarita_International_Airport.JPG",
+      "kind": "photographic-reference",
+      "note": "Fotografía de Wilfredor/Wilfredo Rodríguez, fechada el 26 de agosto de 2012; consultada para confirmar el rostro y contexto de la gorra tricolor, que no se usa en el sprite actual."
+    },
+    {
+      "title": "Rueda de prensa de Capriles Radonski 2 — Canal Comunidad en iVoox",
+      "url": "https://www.ivoox.com/rueda-prensa-capriles-radonski-2-audios-mp3_rf_1138310_1.html",
+      "kind": "archival-press-conference-audio",
+      "note": "La página identifica el audio como rueda de prensa del candidato Henrique Capriles Radonski. La ficha lo fecha el 29 de marzo de 2012 y da una duración de 26:24."
+    }
+  ],
+  "lines": {
+    "select": {
+      "text": "Ya están en la parte personal.",
+      "file": "/audio/capriles/original-select.mp3",
+      "kind": "original",
+      "sourceUrl": "https://www.ivoox.com/rueda-prensa-capriles-radonski-2-audios-mp3_rf_1138310_1.html",
+      "sourceMediaUrl": "https://ivoox.com/listen_mn_1138310_1.mp3",
+      "start": 430.64,
+      "end": 432.86,
+      "verification": "El contexto de iVoox identifica la grabación como rueda de prensa de Henrique Capriles. La transcripción local ASR del fragmento devuelve «Ya están en la parte de persona»; en una ventana más amplia la misma ASR devuelve «ya están en la parte personal». La página no ofrece atribución por turnos de voz; la identificación del hablante se basa en la descripción de la rueda de prensa. ASR usado para comprobar palabras, no como identificación de voz; no se afirma escucha humana. La revisión de integración comprobó además el contexto continuo de 400–460 s: el orador se dirige a la prensa, pide una campaña respetuosa y critica los ataques personales, sin un cambio de turno alrededor del recorte. Esto refuerza la atribución contextual; no constituye identificación acústica."
+    }
+  },
+  "audioResearch": {
+    "status": "verified-original-clips",
+    "limitations": "Se obtuvo el MP3 desde el enlace de iVoox y se extrajo un fragmento de 2.22 segundos a 430.64–432.86 s. El contexto de la página atribuye el audio a una rueda de prensa de Capriles, pero el editor del episodio es un usuario de iVoox (opo) y no hay metadatos por hablante; la atribución depende de ese contexto. El ASR local confirma las palabras con una pequeña variación en la última frase entre la transcripción corta y la ventana amplia; no se utilizó ni se presenta como escucha humana. No se encontró base suficiente para asignar cues especiales o de victoria."
+  },
+  "distinctiveTraits": [
+    "Rostro adulto alargado, nariz larga y prominente, cejas oscuras y lentes ópticos rectangulares, visibles en las fotografías de prensa de enero de 2026.",
+    "Cabello corto gris oscuro, con sienes canosas y entradas; chaqueta ligera abierta azul marino, polo blanco y jeans en el retrato de oficina de Gaby Oraa.",
+    "La gorra venezolana tricolor aparece en una fotografía de campaña de 2012, pero se dejó fuera del sprite para representar la apariencia actual del retrato principal.",
+    "El atlas usa la misma ropa y rasgos en ocho poses; el cuerpo y las acciones de combate son elecciones de diseño de juego."
+  ],
+  "suggestedMoves": [
+    {
+      "name": "Paso de campaña",
+      "description": "Avanza con paso ágil y guardia ligera; recurso ficticio de juego inspirado en su silueta delgada."
+    },
+    {
+      "name": "Defensa abierta",
+      "description": "Bloqueo compacto con las manos levantadas; animación de combate ficticia."
+    },
+    {
+      "name": "Línea directa",
+      "description": "Puñetazo recto hacia delante; nombre de fantasía sin cita política asociada."
+    },
+    {
+      "name": "Cambio de ritmo",
+      "description": "Patada lateral alta con apoyo estable; movimiento completamente ficticio."
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/capriles/elpais-portrait-2026.jpg",
+      "url": "https://imagenes.elpais.com/resizer/v2/W6UBVWNI3ZEB3MI2N2MA6MP3NM.jpg?auth=29698deb776ca477f50ded700fb3b8e2f3f53cd256c028899f2804455825992b&width=1200",
+      "sourcePage": "https://elpais.com/america/2026-01-25/henrique-capriles-los-venezolanos-no-nos-vamos-a-conformar-solo-con-un-reacomodo-en-el-poder.html",
+      "date": "2026-01-23",
+      "credit": "Gaby Oraa",
+      "viewed": true
+    },
+    {
+      "file": "assets/references/capriles/commons-tricolor-2012.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Henrique_Capriles_Radonski_in_Margarita_International_Airport.JPG",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_Radonski_in_Margarita_International_Airport.JPG",
+      "date": "2012-08-26",
+      "credit": "Wilfredor / Wilfredo Rodríguez",
+      "license": "CC BY-SA 3.0",
+      "viewed": true
+    }
+  ],
+  "encoding": {
+    "runtimeAtlas": [
+      2048,
+      1024
+    ],
+    "source": "assets/source/capriles-v3.png",
+    "webp": "public/assets/capriles-v3.webp",
+    "webpQuality": 90,
+    "alphaQuality": 100,
+    "effort": 6,
+    "validation": {
+      "status": "passed",
+      "command": "node scripts/validate-character-assets.mjs --sprite capriles-v3",
+      "result": "PNG y WebP: ocho poses completas, ocho componentes y alfa válido; lienzo de 2048×1024."
+    }
+  }
+}

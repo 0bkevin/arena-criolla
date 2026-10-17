@@ -1,0 +1,42 @@
+{
+  "name": "arena-criolla",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch server/index.ts",
+    "build": "tsc --noEmit && vite build",
+    "start": "NODE_ENV=production tsx server/index.ts",
+    "test": "tsx --test tests/*.test.ts tests/character-audits/*.test.ts",
+    "assets": "node scripts/prepare-assets.mjs",
+    "check:assets": "node scripts/validate-character-assets.mjs",
+    "test:creator": "tsx --test tests/creator.test.ts tests/creator-sprites.test.ts tests/creator-resilience.test.ts tests/adversarial-creator-v31.test.ts tests/provider-contract.test.ts",
+    "test:adversarial": "tsx --test tests/adversarial-creator-v31.test.ts tests/adversarial-game-v31.test.ts tests/creator-resilience.test.ts tests/provider-contract.test.ts tests/scheduler.test.ts",
+    "test:characters": "tsx --test tests/character-audits/*.test.ts"
+  },
+  "dependencies": {
+    "@langchain/langgraph": "^1.5.0",
+    "dotenv": "^18.0.7",
+    "express": "^5.1.0",
+    "lucide-react": "^0.468.0",
+    "multer": "^2.4.0",
+    "openai": "^7.32.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sharp": "^0.35.5",
+    "tsx": "^4.20.0",
+    "vite": "^7.1.0",
+    "ws": "^8.18.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/multer": "^2.3.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@types/ws": "^8.18.0",
+    "prettier": "^3.9.9",
+    "typescript": "^5.9.0"
+  }
+}

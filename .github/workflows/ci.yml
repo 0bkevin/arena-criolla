@@ -1,0 +1,31 @@
+name: Validate Arena Criolla
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run check:assets
+      - run: npm run build
+      - name: Build production image
+        run: docker build -t arena-criolla:ci .
+      - name: Boot production image and verify HTTP routes
+        shell: bash
+        run: |
+          set -euo pipefail
+          container=$(docker run --detach --publish 127.0.0.1::5173 arena-criolla:ci)
+          trap 'docker logs "$container"; docker rm --force --volumes "$container"' EXIT
+          port=$(docker port "$container" 5173/tcp | cut -d: -f2)
+          base="http://127.0.0.1:$port"
+          curl --fail --retry 15 --retry-delay 1 --retry-connrefused "$base/api/health"
+          curl --fail "$base/create" --output /dev/null
+          curl --fail "$base/api/creator/capabilities"

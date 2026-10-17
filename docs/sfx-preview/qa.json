@@ -1,0 +1,23 @@
+[
+  {
+    "id": "light",
+    "seconds": 0.66,
+    "rms": 0.01445,
+    "peak": 0.20858,
+    "file": "docs/sfx-preview/light.mp3"
+  },
+  {
+    "id": "heavy",
+    "seconds": 0.66,
+    "rms": 0.05517,
+    "peak": 0.48893,
+    "file": "docs/sfx-preview/heavy.mp3"
+  },
+  {
+    "id": "block",
+    "seconds": 0.66,
+    "rms": 0.01589,
+    "peak": 0.20092,
+    "file": "docs/sfx-preview/block.mp3"
+  }
+]

@@ -1,0 +1,350 @@
+{
+  "id": "ali",
+  "name": "Alí Primera",
+  "auditVersion": 28,
+  "status": "passed_after_central_visual_fix",
+  "auditedAt": "2026-10-13T02:07:07.446483+00:00",
+  "sourceRevision": "2273843fe788fb68bfa35d80d9ec87b48f1d2b7e",
+  "sourceNote": "Shared working tree audited; parent applied the gesture texture isolation fix during this audit. Fresh engine tests rerun afterward. No runtime edits by this agent.",
+  "sourceSha256": {
+    "shared/fighters.json": "30611f5f186fc5de17ab2ccfe7646e8fd4343cbcce803e208d2a5c9e045b69b9",
+    "shared/culture-techniques.ts": "6c43364d4cd9984c56aeeb5fd68dc5c4f5bb3b5e3343e13adaa78b83734425aa",
+    "shared/techniques.ts": "596f948c07d685c7e570eeaa4c3919367d0a805ce352ba5aee48a4bcda14c550",
+    "shared/engine.ts": "402ab4dd11397617e6d96c03289328d2c4025b87cc14617acf1cf5ca2083de7e",
+    "shared/presentation.ts": "68ff1fb48680fd1c018ea3b95fcbe7a348e6c7e6109cdfc79e040736794fbacf",
+    "shared/presentations.json": "8a7fbd0de98e62534317f4d5f41f20d4a1180d2960a07c6764aba0082112d8a1",
+    "shared/choreography.ts": "ffe139cd4af2c7a371cb69ec23f36ada6807dd6aa835657599c752dc238cb3b8",
+    "src/game/assets.ts": "ad5b574b631cdf553810fe18e6fc2fab875635c5717cb53df7eb020df1775b0c",
+    "src/game/gesture-rig.ts": "0492fd7576100be1880c674606d423df0d2f71e2c84267d73078a82f3838cbd1",
+    "src/game/presentation-renderer.ts": "847ffff581aef95e9621cbd0d534923bd1f34f7561b742502e74c0be9eea64bb",
+    "src/game/intro-renderer.ts": "97db4d0575bbe24f79e398516a5ab299ec1cceef0f9da4791f41e947fba670d8",
+    "src/game/renderer.ts": "1758cf5884e95f310495985860a68a657d08a4bdc1b6c9394136d38953d0650c",
+    "src/game/culture-renderer.ts": "c4dd7462ad3c85fb148ec3b380ccf90c619396c61bf5c1127161174c20eb2489",
+    "src/game/reactions.ts": "410ef49a8a8a9881d471ff1774d23c20fa320afb2eb11d389b0692f0afa48414",
+    "docs/culture-v15/characters/ali.json": "42c6a5b7aa9dfd86253befb769125b186b4d6938b9f0df1b03ecdd11b89062b1",
+    "docs/character-sprite-qa.json": "c905f31e533dffbb618fd99ab6277f4917b6713cd4c23da87bf1a480d3c0c20d",
+    "docs/pixel-v26/qa.json": "c2d499cbd2d2f217b2cfddb419af0b916bf336a9171f101f88b212b6752808b3",
+    "docs/entrances-v24/runtime-qa.json": "ee2080b66ef7bd6315f2d7deb06073c20e772b5007c2d0694798b50a248aa56f"
+  },
+  "identity": {
+    "dossier": "docs/culture-v15/characters/ali.json",
+    "reviewed": true,
+    "traitsObserved": [
+      "Dark curly hair",
+      "Full dark beard with grey",
+      "Light shirt with vertical stripes",
+      "Orange guitar"
+    ],
+    "ability": "strum",
+    "special": "Rasgueo del pueblo",
+    "combos": [
+      "Primer acorde",
+      "Cuerda firme",
+      "Rasgueo del pueblo"
+    ],
+    "artPreserved": true,
+    "audioReview": "Dossier and src/game/reactions.ts specify generic nonverbal actor efforts/pain. Audio was inspected in source; no real-person dialogue added and audio playback was not evaluated."
+  },
+  "validation": {
+    "engine": "Real createMatch/stepMatch/cpuInput from shared/engine.ts; no mocked engine",
+    "testFile": "tests/character-audits/ali.test.ts",
+    "testCommand": "npx tsx --test tests/character-audits/ali.test.ts",
+    "result": {
+      "tests": 8,
+      "passed": 8,
+      "failed": 0,
+      "exitCode": 0
+    },
+    "typecheckCommand": "npx tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --esModuleInterop --resolveJsonModule --skipLibCheck --strict tests/character-audits/ali.test.ts",
+    "typecheckExitCode": 0,
+    "bothPlayerSides": true
+  },
+  "fightSetup": {
+    "stage": "poliedro",
+    "rival": "javier",
+    "introTicks": 510,
+    "relativeTickOrigin": 510,
+    "specialPositions": {
+      "side0": [
+        180,
+        460
+      ],
+      "side1": [
+        900,
+        620
+      ]
+    },
+    "energy": 100
+  },
+  "movement": {
+    "bothSides": true,
+    "startX": 540,
+    "rightAfter24Ticks": 635.2145440796703,
+    "leftAfterNext24Ticks": 547.9851975633037,
+    "firstJumpAfter10TicksY": 454.6,
+    "secondJumpAccepted": true,
+    "thirdJumpRejected": true,
+    "landsAtY": 554,
+    "remainingStocks": 2
+  },
+  "ordinaryAttacks": {
+    "gap": 80,
+    "bothSides": true,
+    "lightActiveTick": 6,
+    "heavyActiveTick": 11,
+    "lightIdleTargetHP": 92.5016,
+    "heavyIdleTargetHP": 86.0744,
+    "frontGuardTargetHP": 100,
+    "oneHitPerAttack": true,
+    "knockbackFollowsFacing": true
+  },
+  "special": {
+    "bothSides": true,
+    "input": "Increment special action at relative tick 1",
+    "cost": 25,
+    "attackerStationary": true,
+    "emissionTicks": [
+      12,
+      24,
+      36
+    ],
+    "pulseOffsets": [
+      0,
+      12,
+      24
+    ],
+    "projectileSpeed": 8.5,
+    "leftProjectileSpeed": -8.5,
+    "projectileDamage": 7.28,
+    "projectileY": 512,
+    "groundOnly": true,
+    "projectileLife": 62,
+    "idle": {
+      "hits": 3,
+      "hitTicks": [
+        34,
+        53,
+        72
+      ],
+      "hp": 77.5048
+    },
+    "frontGuard": {
+      "input": "Hold block, no movement",
+      "blocks": 3,
+      "hits": 0,
+      "hp": 100,
+      "targetEnergyAfter170Ticks": 53.32
+    },
+    "rearGuard": {
+      "input": "Hold block and away movement (right on side 0 / left on side 1)",
+      "hits": 3,
+      "hitTicks": [
+        41,
+        61,
+        81
+      ],
+      "blocks": 0,
+      "hp": 77.5048
+    },
+    "jumping": {
+      "input": "Increment jump at relative ticks 15 and 37",
+      "hits": 0,
+      "blocks": 0,
+      "hp": 100,
+      "landsAfterSequence": true
+    },
+    "energyGate": {
+      "energy": 24,
+      "specialRejected": true
+    },
+    "rangeProbes": [
+      {
+        "gap": 25,
+        "hits": 3
+      },
+      {
+        "gap": 80,
+        "hits": 3
+      },
+      {
+        "gap": 120,
+        "hits": 3
+      },
+      {
+        "gap": 520,
+        "hits": 2
+      },
+      {
+        "gap": 620,
+        "hits": 0
+      },
+      {
+        "gap": 720,
+        "hits": 0
+      },
+      {
+        "gap": 790,
+        "hits": 0
+      },
+      {
+        "gap": 805,
+        "hits": 0
+      }
+    ],
+    "rangeNote": "At close gaps emitted projectiles can hit and be removed in their spawn step, so retained projectile snapshots can count fewer than three; all three damage events are observed. Knockback and lifetime reduce repeat hits near maximum range."
+  },
+  "combos": {
+    "bothSides": true,
+    "whiffChainRecognized": true,
+    "baseWinsGate": 0,
+    "upgradedWinsGate": 1,
+    "baseBonus": 3,
+    "upgradedBonus": 7,
+    "connectedBase": {
+      "inputs": [
+        "light",
+        "heavy"
+      ],
+      "chaseInputs": "Move toward target between strikes until within 80 and grounded; release and settle eight ticks",
+      "hits": 2,
+      "targetHP": 75.486,
+      "elapsedTicks": 67
+    },
+    "connectedUpgraded": {
+      "inputs": [
+        "light",
+        "light",
+        "heavy"
+      ],
+      "hits": 3,
+      "targetHP": 63.8676,
+      "elapsedTicks": 113
+    },
+    "super": {
+      "blockedConfigurations": [
+        [
+          0,
+          100
+        ],
+        [
+          2,
+          100
+        ],
+        [
+          3,
+          74
+        ]
+      ],
+      "acceptedConfiguration": [
+        3,
+        100
+      ],
+      "bonus": 12,
+      "targetHP": 57.6464,
+      "hits": 1
+    }
+  },
+  "cpuBout": {
+    "difficulty": "normal",
+    "complete": true,
+    "deterministicReplay": "Two full independently created bouts deep-equal, including final engine state",
+    "winner": 0,
+    "winnerFighter": "ali",
+    "finalTick": 1258,
+    "remainingTicks": 4595,
+    "started": [
+      "super",
+      "light",
+      "heavy",
+      "special"
+    ],
+    "landed": [
+      "super",
+      "heavy",
+      "light",
+      "special"
+    ],
+    "players": [
+      {
+        "fighter": "ali",
+        "hp": 72.064,
+        "stocks": 1,
+        "hits": 9,
+        "peakCombo": 5
+      },
+      {
+        "fighter": "javier",
+        "hp": 0,
+        "stocks": 0,
+        "hits": 4,
+        "peakCombo": 3
+      }
+    ]
+  },
+  "presentation": {
+    "introName": "Invitación de cantautor",
+    "selectionName": "Invitación de cantautor",
+    "style": "strum",
+    "durationMs": 2800,
+    "combatReadyFrame": 1,
+    "eightFramesCheckedInBothFacings": true,
+    "introAndSelectionCheckedInBothFacings": true,
+    "oneShotSamples": [
+      0,
+      0.5,
+      0.9,
+      1,
+      2
+    ],
+    "selectionProgressAt2800": 1,
+    "selectionProgressAt5600": 1,
+    "finalPoseGuardStable": true,
+    "introActionGate": {
+      "lockedThroughTick": 509,
+      "playingAtTick": 510
+    },
+    "faceDirection": "All eight frames orient toward facing; actual intro cinematics show Alí facing rival on both left and right panels."
+  },
+  "visualEvidence": {
+    "method": "Own native T3 preview tab; imported actual assets, drawSprite, drawPresentation and renderMatch in page for deterministic snapshots",
+    "tabId": "tab_2d_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "tabClosed": true,
+    "combatSprites": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61fsm5-83691d12.png",
+    "presentationBeforeFix": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61gkmk-02400d3a.png",
+    "detachedFragmentCloseupBeforeFix": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61grtn-2388b5a6.png",
+    "presentationAfterFix": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61hts0-631f24d1.png",
+    "actualCinematicsAndStrumsBothSidesAfterFix": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61i6or-20363840.png",
+    "limitation": "One hot reload cleared the temporary page audit objects while the parent edited the renderer. Re-imported actual modules and recovered; final native visual checks succeeded."
+  },
+  "findings": [],
+  "resolvedFindings": [
+    {
+      "id": "ali-intro-selection-neighbor-fragment",
+      "severity": "visual",
+      "reproduction": {
+        "api": "drawPresentation",
+        "fighter": "ali",
+        "progress": 0.5,
+        "frame": 0,
+        "kind": [
+          "intro",
+          "selection"
+        ],
+        "facing": [
+          1,
+          -1
+        ],
+        "height": 550,
+        "anchor": [
+          270,
+          690
+        ]
+      },
+      "expected": "Only Alí silhouette and intended musical accent",
+      "observedBeforeFix": "Detached hand fragment between feet while the equivalent combat drawSprite pose was clean",
+      "cause": "gesture-rig isolatedFrame cropped raw sprite.image instead of isolated spriteFrameSource texture",
+      "resolution": "Parent changed isolatedFrame to use spriteFrameSource. Own preview reloaded and midpoint rechecked for intro and selection in both facings; detached fragment absent.",
+      "verified": true
+    }
+  ]
+}

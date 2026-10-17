@@ -1,0 +1,81 @@
+{
+  "id": "simon",
+  "realName": "Simón Narciso Díaz Márquez",
+  "sprite": "simon-v3",
+  "portraitReference": "assets/references/simon/boston.jpg",
+  "portrayal": "Simón Díaz en sus años de Tío Simón: músico, compositor, humorista y animador venezolano. El retrato oficial con sombrero y cuatro guía el vestuario y la sonrisa; la foto de escenario de Boston (2005) fija su edad avanzada. Ambas imágenes muestran el rostro afeitado, sin bigote. El sprite conserva el liqui-liqui claro y sombrero llanero, con movimientos estilizados de juego.",
+  "sources": [
+    {
+      "title": "Biografía oficial de Simón Díaz",
+      "url": "https://simondiaz.com/biografia/"
+    },
+    {
+      "title": "Foto oficial: Simón Díaz con cuatro y sombrero",
+      "url": "https://simondiaz.com/wp-content/uploads/2020/07/foto_cuatro-768x1114.jpg"
+    },
+    {
+      "title": "Foto de Simón Díaz en Boston, 24 de abril de 2005 (Wikimedia Commons, CC BY-SA 2.0)",
+      "url": "https://commons.wikimedia.org/wiki/File:Sim%C3%B3n_D%C3%ADaz_en_Boston.jpg"
+    },
+    {
+      "title": "Simón Diaz Especial Parte 2 — Conversaciones con Gustavo Trias",
+      "url": "https://www.ivoox.com/simon-diaz-especial-parte-2-audios-mp3_rf_126080543_1.html"
+    }
+  ],
+  "lines": {
+    "select": {
+      "text": "Gustavo Trias me ha invitado",
+      "file": "/audio/simon/original-select.mp3",
+      "kind": "original",
+      "sourceUrl": "https://www.ivoox.com/simon-diaz-especial-parte-2-audios-mp3_rf_126080543_1.html",
+      "sourceMediaUrl": "https://ivoox.com/listen_mn_126080543_1.mp3",
+      "start": 39.94,
+      "end": 41.74,
+      "verification": "El episodio se presenta como la historia de Simón Díaz contada por él mismo en coplas; en el cambio de voz posterior a la introducción del anfitrión, Whisper local (faster-whisper base, español) transcribe «Gustavo Trias me ha invitado» entre 39.94 y 41.70 s. Es una copla recitada/cantada por Simón, no una entrevista hablada. No se declara escucha humana; la atribución se apoya en el contexto e identificación de la página y la transcripción automática. Clip recortado, normalizado y con fades breves, sin síntesis, clonación ni cambio de tono."
+    }
+  },
+  "audioResearch": {
+    "status": "one-original-voice-clip-from-self-narrated-copla",
+    "limitations": "La página del episodio y su introducción describen el material como la vida de Simón Díaz contada por él mismo en coplas. Es la única fuente de voz original localizada para este corte y la frase es cantada/recitada; no se encontró un enlace reproducible al audio original de la entrevista radial Los Imposibles. La comprobación de texto usa ASR local y no equivale a escucha humana. No se usaron imitadores, covers ni voz sintética.",
+    "processing": "Recorte mono MP3 de 1.8 s con fade breve y normalización. Sin TTS, clonación ni alteración de tono."
+  },
+  "distinctiveTraits": [
+    "Coronilla amplia y calva, pelo corto blanco a los lados en la vejez.",
+    "Rostro redondeado, mirada amable y sonrisa amplia con pliegues marcados.",
+    "Sin bigote en las fotos de referencia usadas para esta representación.",
+    "Sombrero llanero claro y liqui-liqui blanco/crema documentados en su retrato oficial.",
+    "Compositor de tonadas llaneras, animador y humorista conocido como Tío Simón."
+  ],
+  "suggestedMoves": [
+    "Acorde llanero: abanico de tres notas como proyectiles musicales, con el cuatro siempre sujeto a la mano.",
+    "Contrapunteo: esquiva lateral y réplica rítmica con gesto de mano abierta.",
+    "Arreo de tonada: paso corto con giro de torso y un llamado vocal ilustrado por ondas musicales."
+  ],
+  "photos": [
+    {
+      "file": "assets/references/simon/official-photo.jpg",
+      "url": "https://simondiaz.com/wp-content/uploads/2020/07/foto_cuatro-768x1114.jpg"
+    },
+    {
+      "file": "assets/references/simon/boston.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Sim%C3%B3n_D%C3%ADaz_en_Boston.jpg"
+    },
+    {
+      "file": "assets/references/simon/official-hat.jpg",
+      "url": "https://simondiaz.com/wp-content/uploads/2020/07/simon-diaz-blanco-negro-sombrero-768x560.jpeg"
+    }
+  ],
+  "atlasReview": {
+    "poseOrder": [
+      "idle",
+      "block",
+      "runA",
+      "runB",
+      "jump",
+      "punch",
+      "highKick",
+      "hurt"
+    ],
+    "correction": "Revisión visual de integración: las celdas inferiores de puño y patada estaban invertidas; se intercambiaron completas, conservando los píxeles y la identidad del personaje."
+  }
+}

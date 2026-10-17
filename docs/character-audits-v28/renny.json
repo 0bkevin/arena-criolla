@@ -1,0 +1,148 @@
+{
+  "auditVersion": 28,
+  "fighterId": "renny",
+  "name": "Renny Ottolina",
+  "auditedDate": "2026-10-13",
+  "status": "complete_no_reproducible_character_specific_defect",
+  "scope": "Dedicated Renny audit using preserved research, actual shared-engine fights and this agent's own native preview tab. Only this report and tests/character-audits/renny.test.ts were written in the repository; no runtime edits, commits or child agents.",
+  "evidenceRead": [
+    "docs/characters-v3/renny.json",
+    "docs/character-sprite-qa.json",
+    "shared/fighters.json",
+    "shared/techniques.ts",
+    "shared/engine.ts",
+    "shared/presentation.ts",
+    "shared/presentations.json",
+    "shared/choreography.ts",
+    "src/game/assets.ts",
+    "src/game/presentation-renderer.ts",
+    "src/game/intro-renderer.ts",
+    "src/game/entrance-renderer.ts",
+    "src/game/renderer.ts",
+    "src/components/Portrait.tsx",
+    "public/assets/renny-v3.webp"
+  ],
+  "baselineHashes": {
+    "shared/engine.ts": "3726d79ced241138fd806c8bf656ed52c49491bbf441ae05d1482731bb647161",
+    "shared/techniques.ts": "54ecb55b4f94deb05efb5445ed406b8eada9548fe970e40d70290e994c5a2efa",
+    "shared/fighters.json": "30611f5f186fc5de17ab2ccfe7646e8fd4343cbcce803e208d2a5c9e045b69b9",
+    "shared/presentations.json": "8a7fbd0de98e62534317f4d5f41f20d4a1180d2960a07c6764aba0082112d8a1",
+    "shared/choreography.ts": "ffe139cd4af2c7a371cb69ec23f36ada6807dd6aa835657599c752dc238cb3b8",
+    "public/assets/renny-v3.webp": "d73883f1367a65352d5da1bc8dc94a8476e586dc8b067a922c969dc585928cd4"
+  },
+  "identityAndPortrayal": {
+    "preservedDossier": "Renaldo José Ottolina Pinto, Venezuelan presenter, announcer, producer and publicist, portrayed as an adult television host from the 1970s. The archival identification and attribution are preserved dossier evidence, not newly researched claims.",
+    "visualMatch": "The inspected atlas retains the long narrow clean-shaven face, swept-back dark hair with receding side part, black rectangular glasses, light suit, white shirt and dark red tie. The open-palm presenter pose smiles; the ready combat pose has a serious expression.",
+    "fictionalAdaptation": "Broadcast pulses, En cadena, Doble anuncio, Buenas noches and El número uno fit the established television-host portrayal. Fighting moves are fictional adaptations.",
+    "audioLimit": "The preserved dossier explicitly qualifies its iVoox archival attribution and approximate ASR verification. This audit did not listen to the clip or verify identity through audiovisual synchronization."
+  },
+  "movementAndStance": {
+    "result": "pass_both_sides",
+    "movement": "Starting x540, 24 right inputs reach639.6431275252367; 24 subsequent left inputs reach548.3566021011321. Facing follows the inputs. Both player sides reproduce identical results.",
+    "jump": "The first jump reaches y454.6 after10 calls. A second jump is accepted, a third is rejected, and landing restores grounded=true, y554, jumps0 and two stocks on both sides.",
+    "stance": "Ready and block both use frame1. All eight frames were drawn through production drawSprite in both directions: open-palm presenter0, guard1, running2/3, tucked jump4, punch5, high kick6 and recoil7. Complete heads, hands, shoes and silhouettes remained visible in the inspected views. No reversal or borrowed limb was observed.",
+    "atlas": {
+      "imageSize": [1774, 887],
+      "bodyHeight": 439,
+      "baseline": 459,
+      "qaRows": [4, 4],
+      "qaPassed": true,
+      "note": "Frame0 extends past the nominal half-image row boundary; the production loader uses connected-component bounds and the inspected pose remained complete."
+    }
+  },
+  "special": {
+    "name": "En cadena",
+    "ability": "broadcast",
+    "distinctBehavior": "Two straight broadcast projectiles emitted16 simulation frames apart; each travels7.5 pixels per active frame. This is a stationary ranged special with no dash or teleport.",
+    "configuration": {
+      "startupFrames": 10,
+      "recoveryFrames": 46,
+      "nominalRange": 520,
+      "height": 120,
+      "damagePerPulse": 8,
+      "force": 5,
+      "pulses": [0, 16],
+      "projectileSpeed": 7.5,
+      "projectileLife": 95,
+      "energyCost": 25
+    },
+    "idle": "At gap280, both sides emit at calls10 and26 and hit at calls35 and63. Javier loses8.24 HP per hit (8*1.03), finishing83.52 HP with two Renny hits. Renny stays at his original x; both projectiles expire or collide by call170.",
+    "forwardGuard": "Holding grounded guard toward the incoming pulses blocks both. Both sides retain HP100, record two block effects and no attacker hits. Defender energy reaches62.08 after170 calls including held-guard drain; Renny energy immediately after activation is75.",
+    "backwardGuard": "Holding block while moving away points the defender in the wrong direction. Both sides take both hits, at calls44 and74, and finish HP83.52 with no block effects.",
+    "energyGate": "Energy24 rejects special on both player sides; energy100 spends25 before any hit rewards.",
+    "rangeProbes": [
+      { "gap": 25, "hits": 2, "finalHp": 83.52, "observedSurvivingProjectileIds": 1 },
+      { "gap": 80, "hits": 2, "finalHp": 83.52, "observedSurvivingProjectileIds": 1 },
+      { "gap": 120, "hits": 2, "finalHp": 83.52 },
+      { "gap": 520, "hits": 2, "finalHp": 83.52 },
+      { "gap": 620, "hits": 2, "finalHp": 83.52 },
+      { "gap": 720, "hits": 1, "finalHp": 91.76 },
+      { "gap": 790, "hits": 1, "finalHp": 100, "remainingStocks": 1 },
+      { "gap": 805, "hits": 0, "finalHp": 100 }
+    ],
+    "rangeInterpretation": "Projectile lifetime governs actual reach rather than the technique's nominal CPU range. The gap790 target is knocked off the edge and respawns, explaining HP100 after one hit. At close range a projectile may be spawned and consumed within one step, so surviving projectile IDs undercount emissions; measured damage still confirms both pulses. These probes did not establish a character-specific defect."
+  },
+  "attacksAndCombos": {
+    "light": "Both sides connect once at gap80 for7.21 damage with outward knockback; facing guard prevents HP loss.",
+    "heavy": "Both sides connect once at gap80 for13.39 damage with outward knockback; facing guard prevents HP loss.",
+    "baseCombo": "Doble anuncio (L→H) connects both strikes using real approach inputs on both sides; target HP76.31 after66 simulation ticks, heavy bonus3.",
+    "advancedCombo": "Buenas noches (L→L→H) connects all three strikes using real approach inputs on both sides; target HP64.98 after112 ticks, heavy bonus7. At zero wins L→L→H remains Doble anuncio with bonus3.",
+    "recognitionLimit": "Combo recognition uses input history; separate out-of-range light setup probes can still name and buff the heavy. Connected-combo checks independently verify every strike can actually land.",
+    "definitive": "El número uno requires three wins and75 energy. At gap200 and startup9 it hits once on both sides for41.2 damage, finishing Javier at58.8 HP: (28+12)*1.03. Zero/two wins and three wins with74 energy reject it. The current definitive is the shared close-range super rather than a distinct broadcast projectile."
+  },
+  "cpuFight": {
+    "opponent": "Javier Hala Madrid",
+    "difficulty": "normal",
+    "method": "Finish the510-tick shared intro, leave Renny idle180 calls to exercise CPU offense, then use real approach/guard/jump and light/heavy/special/super inputs. Run the entire fight twice and compare full final state.",
+    "result": "finished_and_exactly_replayed",
+    "winner": "Renny",
+    "finalTick": 1013,
+    "remainingFrames": 4865,
+    "started": ["super", "heavy", "light", "special"],
+    "landed": ["super", "heavy", "light"],
+    "renny": { "hp": 100, "stocks": 1, "hits": 5, "peakCombo": 4 },
+    "javier": { "hp": 0, "stocks": 0, "hits": 1, "peakCombo": 1 },
+    "limitation": "Renny starts his special during this bout but it does not score a hit. Dedicated idle and directional-guard tests separately verify its actual collisions. This deterministic controller is an exercised fight, not a balance benchmark."
+  },
+  "introAndSelection": {
+    "result": "visually_checked",
+    "name": "Bienvenida con la palma abierta",
+    "introStyle": "broadcast",
+    "selectionStyle": "present",
+    "durationMs": 2800,
+    "nativePreviewTab": "tab_21_3d2ead87-813d-4915-a28a-5a44312bba47",
+    "nativePreviewUrl": "http://localhost:5173/",
+    "actualAppChecks": "Selected Renny through the ordinary lobby control and started a CPU match. Inspected the selected ready stance and initial split-screen cinematic showing Renny facing Javier.",
+    "controlledChecks": "Used production loadSprite, drawSprite and drawPresentation in an ephemeral canvas within this agent's own native tab. Inspected all eight combat frames in both directions, plus intro and selection at progress0/.5/1 and mirrored midpoint. No repository visual harness was written.",
+    "observation": "At midpoint Renny smiles and opens his palm in the presenter stance. Intro adds two subdued broadcast arcs; selection adds a small accent. Start and end return to ready frame1. Mirrored midpoints preserve coherent anatomy and facing. No hand, head or foot clipping was observed in these representative samples.",
+    "oneShot": "selectionProgress clamps to1 at2800ms and stays1 at5600ms. Portrait stops requesting selection-animation frames when progress reaches1. The intro rejects movement and attacks until the shared510-frame timeline completes.",
+    "screenshotPaths": {
+      "selectedLobby": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv60uybj-318fc4a9.png",
+      "combatFramesBothDirections": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv60var1-a32ba769.png",
+      "introAndSelectionSamples": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv60vkhz-1b5e68ef.png"
+    },
+    "transientFailure": "The first browser click timed out while the development server connection was lost, and the tab became chrome-error://chromewebdata/. Reloading the same tab after the parent confirmed server recovery restored the app. No server was started by this agent. This failure is recorded as an environment interruption, not a Renny defect.",
+    "limitations": "Representative static samples and an initial actual cinematic were inspected. Every interpolation frame, audiovisual synchronization and audio playback were not reviewed. The native tab was closed after these checks."
+  },
+  "findings": [],
+  "recommendation": "Retain Renny's current behavior and presentation. No reproducible Renny-specific bug from this focused audit justifies a runtime change.",
+  "verification": {
+    "testFile": "tests/character-audits/renny.test.ts",
+    "command": "npx tsx --test tests/character-audits/renny.test.ts",
+    "result": { "tests": 8, "passed": 8, "failed": 0 },
+    "checksActuallyRun": [
+      "Shared510-tick intro and action gate",
+      "Walking both directions, facing, double jump, third-jump rejection and landing on both sides",
+      "Light/heavy actual damage, single impact, outward knockback and facing guard on both sides",
+      "Both broadcast emissions and actual hits against idle, forward guard and backward guard on both sides",
+      "Projectile range and immediate close-collision probes",
+      "Special energy gate on both sides",
+      "Base/advanced input-history gates and fully connected combos on both sides",
+      "Definitive win/energy gates and actual damage on both sides",
+      "Complete normal-CPU fight and full deterministic replay",
+      "Own native preview actual lobby/cinematic, eight production sprite frames in both facings, intro and selection samples"
+    ],
+    "notRun": ["New web research", "Audio listening", "Full repository build or suite; left to central integrator"],
+    "sharedFileHashCheck": "The six recorded hashes were unchanged after the test and visual checks."
+  }
+}

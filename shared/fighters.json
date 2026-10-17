@@ -1,0 +1,1067 @@
+[
+  {
+    "id": "zavarce",
+    "sprite": "zavarce-v5",
+    "name": "Vicente Zavarce",
+    "shortName": "Vicente",
+    "title": "La ruta exprés",
+    "role": "VELOCIDAD",
+    "color": "#a8a0f3",
+    "description": "Lentes negros y chaqueta clara con cohete. Arranca con una carrera corta de reparto que atraviesa el espacio y empuja al rival.",
+    "speed": 5.8,
+    "damage": 0.94,
+    "armor": 1.02,
+    "stats": [
+      3,
+      5,
+      3
+    ],
+    "ability": "courier",
+    "special": "Entrega exprés",
+    "combos": [
+      "Pedido confirmado",
+      "Ruta directa",
+      "Cohete a domicilio"
+    ]
+  },
+  {
+    "id": "vallenilla",
+    "sprite": "vallenilla-v5",
+    "name": "Pedro Vallenilla",
+    "shortName": "Pedro",
+    "title": "El ritmo de las cuotas",
+    "role": "CONTROL",
+    "color": "#e6ed7a",
+    "description": "Frente despejada, barba corta y camisa de cuadros. Lanza tres pulsos de crédito separados que obligan al rival a medir cada bloqueo.",
+    "speed": 4.6,
+    "damage": 1.01,
+    "armor": 0.96,
+    "stats": [
+      4,
+      3,
+      4
+    ],
+    "ability": "installments",
+    "special": "Tres cuotas",
+    "combos": [
+      "Cuota inicial",
+      "Pago en cadena",
+      "Límite aprobado"
+    ]
+  },
+  {
+    "id": "javier",
+    "sprite": "javier-v2",
+    "name": "Javier Hala Madrid",
+    "shortName": "Javier",
+    "title": "El remate maracucho",
+    "role": "IMPREDECIBLE",
+    "color": "#ff96bd",
+    "description": "Ceja levantada, respuesta rápida y un remate de mialma. Sus fintas y giros llevan las reacciones de cámara al combate.",
+    "speed": 5.3,
+    "damage": 0.97,
+    "armor": 1.03,
+    "stats": [
+      3,
+      4,
+      3
+    ],
+    "ability": "spin",
+    "special": "Reacción maracucha",
+    "combos": [
+      "Finta de ceja",
+      "Réplica al instante",
+      "Remate de mialma"
+    ]
+  },
+  {
+    "id": "capriles",
+    "sprite": "capriles-v22",
+    "name": "Capriles Radonski",
+    "shortName": "Capriles",
+    "title": "A toda marcha",
+    "role": "VELOCIDAD",
+    "color": "#80b8ff",
+    "description": "Corre la cancha completa. Su sprint tricolor atraviesa la arena y castiga a quien se quede quieto.",
+    "speed": 6.2,
+    "damage": 0.88,
+    "armor": 1.02,
+    "stats": [
+      3,
+      5,
+      3
+    ],
+    "ability": "sprint",
+    "special": "Sprint tricolor",
+    "combos": [
+      "Paso a paso",
+      "Carrera de fondo",
+      "Meta tricolor"
+    ]
+  },
+  {
+    "id": "renny",
+    "sprite": "renny-v3",
+    "name": "Renny Ottolina",
+    "shortName": "Renny",
+    "title": "El número uno",
+    "role": "PRECISIÓN",
+    "color": "#ffc76a",
+    "description": "Traje, corbata y presencia de televisión. Sus dos pulsos de transmisión controlan el espacio a distinto ritmo.",
+    "speed": 4.5,
+    "damage": 1,
+    "armor": 0.97,
+    "stats": [
+      3,
+      3,
+      4
+    ],
+    "ability": "broadcast",
+    "special": "En cadena",
+    "combos": [
+      "Doble anuncio",
+      "Buenas noches",
+      "El número uno"
+    ]
+  },
+  {
+    "id": "gomez",
+    "sprite": "gomez-v3",
+    "name": "Juan Vicente Gómez",
+    "shortName": "Gómez",
+    "title": "El general de archivo",
+    "role": "PODER",
+    "color": "#c9ae78",
+    "description": "Uniforme histórico, bigote y andar pesado. Un golpe contra el suelo sacude a los rivales que permanezcan cerca.",
+    "speed": 3.5,
+    "damage": 1.2,
+    "armor": 0.86,
+    "stats": [
+      5,
+      2,
+      5
+    ],
+    "ability": "command",
+    "special": "Paso del general",
+    "combos": [
+      "Paso firme",
+      "Orden cerrada",
+      "Golpe de mando"
+    ]
+  },
+  {
+    "id": "simon",
+    "sprite": "simon-v3",
+    "name": "Simón Díaz",
+    "shortName": "Tío Simón",
+    "title": "El cantor del llano",
+    "role": "DISTANCIA",
+    "color": "#e0a55f",
+    "description": "Sombrero y camisa de faena. Un abanico de tres notas viaja por trayectorias distintas y cubre los saltos del rival.",
+    "speed": 4.1,
+    "damage": 0.95,
+    "armor": 0.97,
+    "stats": [
+      3,
+      3,
+      4
+    ],
+    "ability": "cuatro",
+    "special": "Acorde llanero",
+    "combos": [
+      "Primer acorde",
+      "Contrapunteo",
+      "Tonada de la arena"
+    ]
+  },
+  {
+    "id": "conde",
+    "sprite": "conde-v3",
+    "name": "Er Conde del Guácharo",
+    "shortName": "El Conde",
+    "title": "El remate oriental",
+    "role": "EMBESTIDA",
+    "color": "#8bd3ac",
+    "description": "Sombrero y movimientos teatrales. Su embestida corta tiene un arranque pesado y mucho empuje al conectar.",
+    "speed": 4.2,
+    "damage": 1.1,
+    "armor": 0.9,
+    "stats": [
+      4,
+      3,
+      4
+    ],
+    "ability": "whirl",
+    "special": "Remate oriental",
+    "combos": [
+      "Chiste corto",
+      "Doble remate",
+      "La función completa"
+    ]
+  },
+  {
+    "id": "emilio",
+    "sprite": "emilio-v3",
+    "name": "Emilio Lovera",
+    "shortName": "Emilio",
+    "title": "Mil gestos, un remate",
+    "role": "TÉCNICA",
+    "color": "#bd98ef",
+    "description": "El rostro cambia antes de cada golpe. Ataca en dos tiempos, con una segunda réplica que castiga una defensa prematura.",
+    "speed": 4.8,
+    "damage": 0.99,
+    "armor": 0.97,
+    "stats": [
+      3,
+      4,
+      4
+    ],
+    "ability": "echo",
+    "special": "Doble interpretación",
+    "combos": [
+      "Cambio de gesto",
+      "Segunda voz",
+      "Remate de mil caras"
+    ]
+  },
+  {
+    "id": "maite",
+    "sprite": "maite-v3",
+    "name": "Maite Delgado",
+    "shortName": "Maite",
+    "title": "La anfitriona",
+    "role": "CONTROL",
+    "color": "#f19bca",
+    "description": "Vestido de gala y porte de presentadora. Marca el suelo frente a ella y enciende un foco que interrumpe la aproximación.",
+    "speed": 4.7,
+    "damage": 0.94,
+    "armor": 0.99,
+    "stats": [
+      3,
+      4,
+      4
+    ],
+    "ability": "spotlight",
+    "special": "Luz de escenario",
+    "combos": [
+      "Primera entrada",
+      "Cambio de cámara",
+      "Gran final"
+    ]
+  },
+  {
+    "id": "oscar",
+    "sprite": "oscar-v3",
+    "name": "Óscar D’León",
+    "shortName": "Óscar",
+    "title": "El sonero",
+    "role": "AÉREO",
+    "color": "#ea806d",
+    "description": "Bigote, sonrisa y traje de escenario. Salta con un giro de salsa que golpea a ambos lados y alcanza rivales en el aire.",
+    "speed": 5.1,
+    "damage": 1.01,
+    "armor": 0.97,
+    "stats": [
+      4,
+      4,
+      3
+    ],
+    "ability": "salsa",
+    "special": "Giro del sonero",
+    "combos": [
+      "Paso de salsa",
+      "Síncopa doble",
+      "Cierre del sonero"
+    ]
+  },
+  {
+    "id": "puma",
+    "sprite": "puma-v3",
+    "name": "José Luis Rodríguez",
+    "shortName": "El Puma",
+    "title": "El rugido de la arena",
+    "role": "ALCANCE",
+    "color": "#9ac5ed",
+    "description": "Cabellera característica y chaqueta de escenario. Su rugido dibuja un cono amplio que empuja al oponente hacia el borde.",
+    "speed": 4,
+    "damage": 1.12,
+    "armor": 0.91,
+    "stats": [
+      4,
+      3,
+      4
+    ],
+    "ability": "roar",
+    "special": "Rugido del Puma",
+    "combos": [
+      "Primer rugido",
+      "Crescendo",
+      "Último aplauso"
+    ]
+  },
+  {
+    "id": "chataing",
+    "sprite": "chataing-v3",
+    "name": "Luis Chataing",
+    "shortName": "Chataing",
+    "title": "La réplica al aire",
+    "role": "ESTRATEGA",
+    "color": "#91d3d7",
+    "description": "Gafas y micrófono de conductor. Envía una señal que vuelve hacia él y obliga a vigilar el espacio por ambos lados.",
+    "speed": 4.9,
+    "damage": 0.95,
+    "armor": 1,
+    "stats": [
+      3,
+      4,
+      3
+    ],
+    "ability": "static",
+    "special": "Micrófono de vuelta",
+    "combos": [
+      "Pregunta directa",
+      "Repregunta",
+      "Cierre al aire"
+    ]
+  },
+  {
+    "id": "george",
+    "sprite": "george-v3",
+    "name": "George Harris",
+    "shortName": "George",
+    "title": "El monólogo",
+    "role": "RITMO",
+    "color": "#d5a787",
+    "description": "Camisa de escenario y gestos de monólogo. Prepara el remate, pausa y vuelve a golpear con más alcance.",
+    "speed": 4.4,
+    "damage": 1.07,
+    "armor": 0.95,
+    "stats": [
+      4,
+      3,
+      4
+    ],
+    "ability": "punchline",
+    "special": "Remate en dos tiempos",
+    "combos": [
+      "Primera fila",
+      "Otra más",
+      "Sala llena"
+    ]
+  },
+  {
+    "id": "mcm",
+    "sprite": "mcm-v3",
+    "name": "María Corina Machado",
+    "shortName": "María Corina",
+    "title": "La marcha firme",
+    "role": "MOVILIDAD",
+    "color": "#75bfea",
+    "description": "Camisa blanca, cabello largo y paso decidido. Avanza con un salto bajo que convierte el especial en una herramienta de ataque y recuperación.",
+    "speed": 5.6,
+    "damage": 0.92,
+    "armor": 0.99,
+    "stats": [
+      3,
+      5,
+      3
+    ],
+    "ability": "rally",
+    "special": "Marcha firme",
+    "combos": [
+      "Paso decidido",
+      "Impulso doble",
+      "Hasta el final"
+    ]
+  },
+  {
+    "id": "ali",
+    "sprite": "ali-v15",
+    "category": "culture",
+    "name": "Alí Primera",
+    "shortName": "Alí",
+    "title": "El cantor de la guitarra",
+    "role": "DISTANCIA",
+    "color": "#ee8653",
+    "speed": 4.3,
+    "damage": 1.04,
+    "armor": 0.96,
+    "stats": [
+      4,
+      3,
+      4
+    ],
+    "ability": "strum",
+    "special": "Rasgueo del pueblo",
+    "description": "Guitarra naranja y camisa a rayas. Envía tres ondas rasantes a intervalos: saltar permite evitarlas.",
+    "combos": [
+      "Primer acorde",
+      "Cuerda firme",
+      "Rasgueo del pueblo"
+    ]
+  },
+  {
+    "id": "gualberto",
+    "sprite": "gualberto-v15",
+    "category": "culture",
+    "name": "Gualberto Ibarreto",
+    "shortName": "Gualberto",
+    "title": "El cuatro oriental",
+    "role": "RETORNO",
+    "color": "#e3cd62",
+    "speed": 4.6,
+    "damage": 0.98,
+    "armor": 0.98,
+    "stats": [
+      3,
+      3,
+      5
+    ],
+    "ability": "tremolo",
+    "special": "Tremolo oriental",
+    "description": "Sombrero de paja, polo amarillo y cuatro. Dos notas se separan y regresan; controla tanto la ida como la vuelta.",
+    "combos": [
+      "Cerecita",
+      "Galerón cruzado",
+      "Doble tremolo"
+    ]
+  },
+  {
+    "id": "reynaldo",
+    "sprite": "reynaldo-v15",
+    "category": "culture",
+    "name": "Reynaldo Armas",
+    "shortName": "Reynaldo",
+    "title": "El cardenal sabanero",
+    "role": "AGARRE",
+    "color": "#e7ae62",
+    "speed": 4.5,
+    "damage": 1.06,
+    "armor": 0.93,
+    "stats": [
+      4,
+      3,
+      4
+    ],
+    "ability": "lasso",
+    "special": "Lazo sabanero",
+    "description": "Cabello canoso y chaqueta ocre. Su lazo de luz atrae al rival y lo ralentiza brevemente; bloquear evita ambos efectos.",
+    "combos": [
+      "Paso del llano",
+      "Vuelta sabanera",
+      "Caballo de oro"
+    ]
+  },
+  {
+    "id": "dudamel",
+    "sprite": "dudamel-v15",
+    "category": "culture",
+    "name": "Gustavo Dudamel",
+    "shortName": "Dudamel",
+    "title": "La batuta al mando",
+    "role": "REFLEJO",
+    "color": "#b6b9ff",
+    "speed": 4.8,
+    "damage": 0.97,
+    "armor": 0.99,
+    "stats": [
+      3,
+      4,
+      5
+    ],
+    "ability": "cadenza",
+    "special": "Cadenza de rebote",
+    "description": "Rizos, frac y batuta. Marca un compás defensivo que devuelve los proyectiles cercanos frente a él antes de cerrar con un golpe.",
+    "combos": [
+      "Primer compás",
+      "Cambio de tempo",
+      "Gran cadenza"
+    ]
+  },
+  {
+    "id": "danny",
+    "sprite": "danny-v15",
+    "category": "culture",
+    "name": "Danny Ocean",
+    "shortName": "Danny",
+    "title": "La onda que crece",
+    "role": "PRESIÓN",
+    "color": "#67d5e9",
+    "speed": 5.2,
+    "damage": 0.96,
+    "armor": 1.03,
+    "stats": [
+      3,
+      4,
+      4
+    ],
+    "ability": "crescendo",
+    "special": "Onda Reflexa",
+    "description": "Melena despeinada y cortaviento azul. Lanza una burbuja sonora lenta que aumenta de tamaño al avanzar.",
+    "combos": [
+      "Pulso suave",
+      "Cambio de marea",
+      "Onda Reflexa"
+    ]
+  },
+  {
+    "id": "nacho",
+    "sprite": "nacho-v15",
+    "category": "culture",
+    "name": "Nacho",
+    "shortName": "Nacho",
+    "title": "Síncopa de escenario",
+    "role": "RITMO",
+    "color": "#aab2e1",
+    "speed": 5.5,
+    "damage": 0.95,
+    "armor": 1.02,
+    "stats": [
+      3,
+      5,
+      3
+    ],
+    "ability": "syncopate",
+    "special": "Paso sincopado",
+    "description": "Barba perfilada y bomber estampada. Avanza, retrocede y vuelve con un remate aéreo; tres tiempos para abrir la guardia.",
+    "combos": [
+      "Paso primero",
+      "Contratiempo",
+      "Remate de tarima"
+    ]
+  },
+  {
+    "id": "sarcos",
+    "sprite": "sarcos-v15",
+    "category": "culture",
+    "name": "Daniel Sarcos",
+    "shortName": "Sarcos",
+    "title": "Sábado de sorpresas",
+    "role": "REBOTE",
+    "color": "#ffae75",
+    "speed": 4.7,
+    "damage": 1.02,
+    "armor": 0.98,
+    "stats": [
+      4,
+      3,
+      4
+    ],
+    "ability": "jackpot",
+    "special": "Premio sensacional",
+    "description": "Traje oscuro, micrófono y sonrisa de animador. Arroja un premio que rebota dos veces y estalla al terminar su recorrido.",
+    "combos": [
+      "Calienta el show",
+      "Doble sorpresa",
+      "Premio mayor"
+    ]
+  },
+  {
+    "id": "yordano",
+    "sprite": "yordano-v15",
+    "category": "culture",
+    "name": "Yordano",
+    "shortName": "Yordano",
+    "title": "El manantial urbano",
+    "role": "ARCO",
+    "color": "#8bd3cd",
+    "speed": 4.4,
+    "damage": 1,
+    "armor": 0.96,
+    "stats": [
+      3,
+      3,
+      5
+    ],
+    "ability": "fountain",
+    "special": "Manantial en tres tiempos",
+    "description": "Pelo plateado, lentes y chaqueta negra. Tres gotas salen a distinto tiempo en parábolas altas que cubren los saltos.",
+    "combos": [
+      "Agua clara",
+      "Ida y vuelta",
+      "Tres tiempos"
+    ]
+  },
+  {
+    "id": "lila",
+    "sprite": "lila-v15",
+    "category": "culture",
+    "name": "Lila Morillo",
+    "shortName": "Lila",
+    "title": "La diva del cocotero",
+    "role": "ABANICO",
+    "color": "#f6ce78",
+    "speed": 4.2,
+    "damage": 1.08,
+    "armor": 0.93,
+    "stats": [
+      4,
+      3,
+      4
+    ],
+    "ability": "cocotero",
+    "special": "Abanico del cocotero",
+    "description": "Flequillo, melena y detalles dorados. Abre cinco hojas de luz en abanico para cerrar las rutas del rival.",
+    "combos": [
+      "Destello zuliano",
+      "Giro dorado",
+      "Gran cocotero"
+    ]
+  },
+  {
+    "id": "rummy",
+    "sprite": "rummy-v15",
+    "category": "culture",
+    "name": "Rummy Olivo",
+    "shortName": "Rummy",
+    "title": "La flor del zapateo",
+    "role": "SUELO",
+    "color": "#b3c6ef",
+    "speed": 5.1,
+    "damage": 0.97,
+    "armor": 0.99,
+    "stats": [
+      3,
+      4,
+      4
+    ],
+    "ability": "zapateo",
+    "special": "Zapateo llanero",
+    "description": "Sombrero azul y camisa estampada. Avanza con cuatro golpes de suelo; saltar evita el zapateo y su último empujón.",
+    "combos": [
+      "Paso de sabana",
+      "Flor de ritmo",
+      "Zapateo final"
+    ]
+  },
+  {
+    "id": "chiqui",
+    "sprite": "chiqui-v15",
+    "category": "culture",
+    "name": "Chiquinquirá Delgado",
+    "shortName": "Chiqui",
+    "title": "La pasarela veloz",
+    "role": "IMPULSO",
+    "color": "#8cacff",
+    "speed": 5.7,
+    "damage": 0.93,
+    "armor": 1.04,
+    "stats": [
+      3,
+      5,
+      3
+    ],
+    "ability": "runway",
+    "special": "Pasarela relámpago",
+    "description": "Ondas castañas, blusa blanca y pantalón azul. Un avance corto y rapidísimo empuja con fuerza y frena al acabar.",
+    "combos": [
+      "Paso elegante",
+      "Foco azul",
+      "Cierre de pasarela"
+    ]
+  },
+  {
+    "id": "norkys",
+    "sprite": "norkys-v15",
+    "category": "culture",
+    "name": "Norkys Batista",
+    "shortName": "Norkys",
+    "title": "El giro de escena",
+    "role": "AÉREO",
+    "color": "#fa9cb5",
+    "speed": 5.4,
+    "damage": 0.95,
+    "armor": 1.01,
+    "stats": [
+      3,
+      5,
+      3
+    ],
+    "ability": "pivot",
+    "special": "Pivote de escena",
+    "description": "Cabello negro liso y blazer coral. Salta hacia atrás con dos golpes circulares para castigar a quien se acerque.",
+    "combos": [
+      "Cambio de perfil",
+      "Giro de escena",
+      "Pivote doble"
+    ]
+  },
+  {
+    "id": "gabriela",
+    "sprite": "gabriela-v15",
+    "category": "culture",
+    "name": "Gabriela Spanic",
+    "shortName": "Gabriela",
+    "title": "El doble papel",
+    "role": "ESPEJO",
+    "color": "#c7b6eb",
+    "speed": 4.8,
+    "damage": 1,
+    "armor": 0.98,
+    "stats": [
+      3,
+      4,
+      5
+    ],
+    "ability": "mirror",
+    "special": "Doble de novela",
+    "description": "Melena miel, gargantilla y blazer plateado. Golpea al frente y después desde una silueta detrás del rival; gira tu guardia.",
+    "combos": [
+      "Primera toma",
+      "Cambio de papel",
+      "Doble de novela"
+    ]
+  },
+  {
+    "id": "amanda",
+    "sprite": "amanda-v15",
+    "category": "culture",
+    "name": "Amanda Gutiérrez",
+    "shortName": "Amanda",
+    "title": "El último acto",
+    "role": "CONTRAATAQUE",
+    "color": "#d8a4e3",
+    "speed": 4.3,
+    "damage": 1.05,
+    "armor": 0.94,
+    "stats": [
+      4,
+      3,
+      5
+    ],
+    "ability": "curtain",
+    "special": "Telón de respuesta",
+    "description": "Bob castaño y vestuario violeta. Abre una ventana de contraataque: detiene un golpe frontal y responde si el rival está cerca.",
+    "combos": [
+      "Entrada a escena",
+      "Cambio de acto",
+      "Telón final"
+    ]
+  },
+  {
+    "id": "lele",
+    "sprite": "lele-v15",
+    "category": "culture",
+    "name": "Lele Pons",
+    "shortName": "Lele",
+    "title": "La broma en el piso",
+    "role": "TRAMPA",
+    "color": "#f6db69",
+    "speed": 5.6,
+    "damage": 0.91,
+    "armor": 1.05,
+    "stats": [
+      3,
+      5,
+      4
+    ],
+    "ability": "prank",
+    "special": "Broma resbalosa",
+    "description": "Ondas rubias, teléfono y hoodie amarillo. Retrocede y deja una cáscara que se activa después de un instante; evítala saltando.",
+    "combos": [
+      "Cámara lista",
+      "Giro viral",
+      "Última broma"
+    ]
+  },
+  {
+    "id": "giuseppe",
+    "sprite": "giuseppe-v15",
+    "category": "culture",
+    "name": "Giuseppe Gangi",
+    "shortName": "Giuseppe",
+    "title": "El investigador de datos",
+    "role": "CONTROL",
+    "color": "#60e4b4",
+    "speed": 4.6,
+    "damage": 0.96,
+    "armor": 1.02,
+    "stats": [
+      3,
+      4,
+      4
+    ],
+    "ability": "audit",
+    "special": "Ráfaga de datos",
+    "description": "Lentes negros y suéter ciruela, como en su estudio. Lanza tres paquetes digitales que oscilan y aceleran hasta un límite; bloquear o saltar evita la ráfaga.",
+    "combos": [
+      "Ping certero",
+      "Código limpio",
+      "Compilación final"
+    ]
+  },
+  {
+    "id": "silbon",
+    "sprite": "silbon-v12",
+    "category": "folklore",
+    "name": "El Silbón",
+    "shortName": "Silbón",
+    "title": "El silbido de los llanos",
+    "role": "DISTANCIA",
+    "color": "#c7d88a",
+    "description": "Su saco y su sombrero anuncian una leyenda llanera. Su silbido ondula y acelera: mide la distancia antes de lanzarlo.",
+    "speed": 4.3,
+    "damage": 1.03,
+    "armor": 0.99,
+    "stats": [
+      4,
+      3,
+      3
+    ],
+    "ability": "whistle",
+    "special": "Silbido errante",
+    "combos": [
+      "Paso perdido",
+      "Eco del camino",
+      "Noche sin regreso"
+    ],
+    "displayHeight": 198
+  },
+  {
+    "id": "llorona",
+    "sprite": "llorona-v12",
+    "category": "folklore",
+    "name": "La Llorona",
+    "shortName": "Llorona",
+    "title": "La pena del río",
+    "role": "CONTROL",
+    "color": "#81e6ef",
+    "description": "Vestido blanco, cabello oscuro y lágrimas azules. Su ola atrae al rival para acercarlo a sus combos.",
+    "speed": 4.8,
+    "damage": 0.96,
+    "armor": 1.02,
+    "stats": [
+      3,
+      4,
+      3
+    ],
+    "ability": "undertow",
+    "special": "Marea en pena",
+    "combos": [
+      "Lágrima fría",
+      "Corriente profunda",
+      "Crecida de medianoche"
+    ],
+    "displayHeight": 176
+  },
+  {
+    "id": "sayona",
+    "sprite": "sayona-v12",
+    "category": "folklore",
+    "name": "La Sayona",
+    "shortName": "Sayona",
+    "title": "Una aparición fugaz",
+    "role": "EMBOSCADA",
+    "color": "#ee6c8a",
+    "description": "Mantón rojo y mirada felina en esta versión arcade de la leyenda. Se desplaza de golpe una distancia corta y ataca; nunca cruza toda la arena.",
+    "speed": 5.8,
+    "damage": 0.95,
+    "armor": 1.04,
+    "stats": [
+      3,
+      5,
+      2
+    ],
+    "ability": "haunt",
+    "special": "Paso espectral",
+    "combos": [
+      "Sombra roja",
+      "Aparición doble",
+      "Última visita"
+    ],
+    "displayHeight": 180
+  },
+  {
+    "id": "lionza",
+    "sprite": "lionza-v12",
+    "category": "folklore",
+    "name": "María Lionza",
+    "shortName": "Lionza",
+    "title": "Guardiana de Sorte",
+    "role": "PODER",
+    "color": "#6fd6a1",
+    "description": "Corona de hojas y túnica verde. Invoca una danta de luz que avanza por el suelo; el rival puede evitarla saltando.",
+    "speed": 4.1,
+    "damage": 1.05,
+    "armor": 0.93,
+    "stats": [
+      5,
+      2,
+      4
+    ],
+    "ability": "wildspirit",
+    "special": "Danta de Sorte",
+    "combos": [
+      "Hoja de jade",
+      "Selva viva",
+      "Corona de Sorte"
+    ],
+    "displayHeight": 180
+  },
+  {
+    "id": "florentino",
+    "sprite": "florentino-v12",
+    "category": "folklore",
+    "name": "Florentino",
+    "shortName": "Florentino",
+    "title": "El coplero del llano",
+    "role": "PRECISIÓN",
+    "color": "#f2d078",
+    "description": "Liquiliqui, sombrero y cuatro al hombro. Su nota sigue la altura del rival sin cambiar de rumbo: contrapunteo convertido en combate.",
+    "speed": 5.1,
+    "damage": 0.97,
+    "armor": 1,
+    "stats": [
+      3,
+      4,
+      3
+    ],
+    "ability": "verse",
+    "special": "Copla certera",
+    "combos": [
+      "Verso primero",
+      "Copla enlazada",
+      "Contrapunteo final"
+    ],
+    "displayHeight": 177
+  },
+  {
+    "id": "diablo",
+    "sprite": "diablo-v12",
+    "category": "folklore",
+    "name": "El Diablo de los Llanos",
+    "shortName": "El Diablo",
+    "title": "El otro coplero",
+    "role": "EXPLOSIVO",
+    "color": "#ef8456",
+    "description": "Traje morado, cuernos y sonrisa desafiante. Lanza fuego en parábola que estalla al tocar el suelo; mantén la distancia.",
+    "speed": 4.6,
+    "damage": 1.06,
+    "armor": 1.02,
+    "stats": [
+      5,
+      3,
+      2
+    ],
+    "ability": "hellfire",
+    "special": "Fogonazo del llano",
+    "combos": [
+      "Brasa corta",
+      "Copla ardiente",
+      "Amanecer de fuego"
+    ],
+    "displayHeight": 187
+  },
+  {
+    "id": "knoche",
+    "sprite": "knoche-v12",
+    "category": "folklore",
+    "name": "Doctor Knoche",
+    "shortName": "Knoche",
+    "title": "El misterio de Galipán",
+    "role": "ESTRATEGIA",
+    "color": "#a6e98d",
+    "description": "Barba blanca, lentes redondos y abrigo de época. Lanza un frasco que reduce brevemente la velocidad del rival si este no lo bloquea.",
+    "speed": 4.2,
+    "damage": 1,
+    "armor": 0.96,
+    "stats": [
+      3,
+      3,
+      4
+    ],
+    "ability": "elixir",
+    "special": "Frasco de Galipán",
+    "combos": [
+      "Fórmula inicial",
+      "Dosis precisa",
+      "Secreto del Ávila"
+    ],
+    "displayHeight": 173
+  },
+  {
+    "id": "momoy",
+    "sprite": "momoy-v12",
+    "category": "folklore",
+    "name": "El Momoy",
+    "shortName": "Momoy",
+    "title": "Duende del páramo",
+    "role": "TRAMPAS",
+    "color": "#a6cdaa",
+    "description": "Sombrero campesino, ruana y bastón. Sus raíces atrapan los pies del rival en tierra: un salto a tiempo evita o rompe la trampa.",
+    "speed": 4.5,
+    "damage": 0.97,
+    "armor": 0.93,
+    "stats": [
+      3,
+      3,
+      5
+    ],
+    "ability": "roots",
+    "special": "Raíces del páramo",
+    "combos": [
+      "Paso de musgo",
+      "Raíz y rama",
+      "Guardián de la laguna"
+    ],
+    "displayHeight": 140,
+    "portraitScale": 0.78,
+    "portraitLift": 0.07
+  },
+  {
+    "id": "tiotigre",
+    "sprite": "tiotigre-v12",
+    "category": "folklore",
+    "name": "Tío Tigre",
+    "shortName": "Tío Tigre",
+    "title": "La fuerza del cuento",
+    "role": "PRESIÓN",
+    "color": "#f5ab63",
+    "description": "Rayas negras y chaleco verde. Se abalanza con un salto y dos zarpazos separados; necesita acercarse para conectar.",
+    "speed": 5.2,
+    "damage": 1.04,
+    "armor": 1.01,
+    "stats": [
+      5,
+      4,
+      2
+    ],
+    "ability": "pounce",
+    "special": "Salto de tigre",
+    "combos": [
+      "Zarpazo rápido",
+      "Rayas en cadena",
+      "Dueño del monte"
+    ],
+    "displayHeight": 183
+  },
+  {
+    "id": "tioconejo",
+    "sprite": "tioconejo-v12",
+    "category": "folklore",
+    "name": "Tío Conejo",
+    "shortName": "Tío Conejo",
+    "title": "La viveza del cuento",
+    "role": "EVASIÓN",
+    "color": "#aadff6",
+    "description": "Orejas largas, chaleco azul y pañuelo rojo. Salta hacia atrás mientras lanza una zanahoria que rebota una vez: gana espacio para la revancha.",
+    "speed": 6.3,
+    "damage": 0.88,
+    "armor": 1.07,
+    "stats": [
+      2,
+      5,
+      2
+    ],
+    "ability": "trickster",
+    "special": "Brinco tramposo",
+    "combos": [
+      "Patas ligeras",
+      "Finta del camino",
+      "La última picardía"
+    ],
+    "displayHeight": 154,
+    "portraitScale": 0.6,
+    "portraitLift": 0.035
+  }
+]

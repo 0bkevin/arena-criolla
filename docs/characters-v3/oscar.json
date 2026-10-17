@@ -1,0 +1,86 @@
+{
+  "id": "oscar",
+  "realName": "Óscar Emilio León Simosa",
+  "sprite": "oscar-v3",
+  "portraitReference": "assets/references/oscar/primicias-2024.jpg",
+  "portrayal": "Óscar D'León como sonero de escenario: hombre adulto mayor, calvo, bigote negro ancho, mejillas redondeadas, líneas de expresión y sonrisa abierta. La entrevista visual de Telemadrid (2025) lo muestra con chaqueta satinada negra, camiseta negra con tigre brillante, cadena dorada y gafas oscuras; las gafas se omiten en el sprite para mantener sus ojos y expresión visibles. La foto de Primicias/EFE (2023) confirma el rostro y sonrisa de cerca. El pantalón negro se ve en imágenes de escenario; el fino brillo plateado del pantalón y los zapatos negros pulidos son decisiones de diseño para completar las poses. La pose idle usa una palma abierta como gesto de invitación del sonero; los movimientos de combate son estilización ficticia de juego.",
+  "sources": [
+    {
+      "title": "Óscar d’Leon llega a Las Noches del Botánico de Madrid — entrevista de Telemadrid (22 julio 2025)",
+      "url": "https://www.telemadrid.es/programas/madrid-directo/Oscar-dLeon-llega-a-Las-Noches-del-Botanico-de-Madrid-2-2799940019--20250722084105.html"
+    },
+    {
+      "title": "Oscar D’León, a sus 81 años: ‘Yo me retiro cuando el público lo decida o el mismo destino’ — Primicias/EFE (18 julio 2024; retrato EFE fechado 2023)",
+      "url": "https://www.primicias.ec/entretenimiento/musica/oscar-leon-retiro-canciones-conciertos-74286/"
+    },
+    {
+      "title": "Óscar D'León en homenaje a Rubén Blades en los Latin Grammy 2021 — foto de Tony Dandrades, Commons CC BY 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:%C3%93scar_D%27Le%C3%B3n_2021.jpg"
+    },
+    {
+      "title": "‘Estoy contento y feliz de poder estar una vez más en Cali’: Oscar D’León — entrevista de La W, Caracol Radio (25 noviembre 2022)",
+      "url": "https://caracol.com.co/2022/11/25/estoy-contento-y-feliz-de-poder-estar-una-vez-mas-en-cali-oscar-dleon/"
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/oscar/primicias-2024.jpg",
+      "url": "https://www.primicias.ec/entretenimiento/musica/oscar-leon-retiro-canciones-conciertos-74286/"
+    },
+    {
+      "file": "assets/references/oscar/telemadrid-2025-backstage.jpg",
+      "url": "https://www.telemadrid.es/programas/madrid-directo/Oscar-dLeon-llega-a-Las-Noches-del-Botanico-de-Madrid-2-2799940019--20250722084105.html"
+    },
+    {
+      "file": "assets/references/oscar/commons-2021.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:%C3%93scar_D%27Le%C3%B3n_2021.jpg"
+    },
+    {
+      "file": "assets/references/oscar/commons-stage-2026.png",
+      "url": "https://commons.wikimedia.org/wiki/File:OSCAR_D%27LEON_EN_EL_CHIMPUNAZO_A_LA_CHALACA_2026_2.png"
+    }
+  ],
+  "distinctiveTraits": [
+    "Cabeza completamente calva y brillante; rostro ancho con mejillas redondeadas, pliegues de sonrisa y nariz amplia.",
+    "Bigote negro muy ancho y denso, de puntas suavemente afinadas; sin perilla.",
+    "Sonrisa grande y expresiva con ojos oscuros; constitución adulta mayor, baja y compacta.",
+    "Chaqueta satinada negra sobre camiseta negra con un tigre de lentejuelas doradas y plateadas; cadena dorada corta.",
+    "Gafas de sol doradas documentadas en la entrevista de Telemadrid; se excluyen del sprite para dejar visible su expresión.",
+    "Palma abierta hacia el público como gesto cálido de invitación escénica."
+  ],
+  "suggestedMoves": [
+    "Paso de salsa: avance corto con el torso en balanceo, palma libre abierta y retorno rápido a guardia.",
+    "Síncopa doble: dos golpes cortos alternados a ambos lados con cambio rítmico de peso.",
+    "Cierre del sonero: salto con giro amplio y aterrizaje en guardia, rematado por un golpe a cada lado."
+  ],
+  "lines": {
+    "select": {
+      "text": "lo que se vive hoy en el mundo",
+      "file": "/audio/oscar/original-select.mp3",
+      "kind": "original",
+      "sourceUrl": "https://caracol.com.co/2022/11/25/estoy-contento-y-feliz-de-poder-estar-una-vez-mas-en-cali-oscar-dleon/",
+      "sourceMediaUrl": "https://sdmedia.wradio.com.co/wradiocol/2022/11/25/audio_con_6380eb6aa274d_77758_cut.mp3",
+      "start": 42.4,
+      "end": 44.3,
+      "verification": "La página de Caracol titula la entrevista con Óscar D’León y especifica que La W habló con él sobre su regreso a Cali. En el audio de esa entrevista, el conductor lo presenta por nombre antes de la respuesta del invitado; el ASR local sitúa estas palabras en 42.42–44.26 s, durante la respuesta. El contexto de entrevista atribuye la respuesta a Óscar; ASR comprueba palabras y tiempos, no identidad de voz. Fragmento hablado, no canción. Recorte de 1.9 s, sin TTS, clonación ni cambio de tono."
+    }
+  },
+  "audioResearch": {
+    "status": "verified-original-clips",
+    "limitations": "Se verificó un fragmento hablado corto en una entrevista publicada por La W/Caracol y nombrada por el artículo. El recorte conserva una respuesta conversacional del invitado; no es una canción ni una línea icónica. La atribución se apoya en la identificación del entrevistado y el contexto de la introducción; la transcripción es ASR y no equivale a escucha humana ni verifica identidad acústica. No se encontraron otros recortes breves con atribución suficientemente clara. El material original permanece archivado en assets/references/oscar/caracol-interview.mp3.",
+    "processing": "Recorte de 1.9 s en MP3 del archivo original, sin modificar tono, velocidad ni timbre."
+  },
+  "atlasReview": {
+    "poseOrder": [
+      "idle",
+      "block",
+      "runA",
+      "runB",
+      "jump",
+      "punch",
+      "highKick",
+      "hurt"
+    ],
+    "correction": "Atlas generado con referencias fotográficas reales de 2023–2025; revisión visual confirma calvicie, bigote ancho, camiseta con tigre, chaqueta oscura y ocho poses separadas sobre alfa transparente."
+  }
+}

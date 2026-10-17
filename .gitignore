@@ -1,0 +1,20 @@
+node_modules/
+dist/
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# Private creator storage (accounts, sessions, uploaded photos, generated art)
+data/
+
+# Downloaded research media and retired assets stay local.
+/assets/references/*
+!/assets/references/audio-reactions-v8/
+!/assets/references/entrances-v24/
+!/assets/references/entrances-v25/
+!/assets/references/pixel-v26/
+!/assets/references/stages-v4/
+/assets/archive/
+/docs/character-previews/

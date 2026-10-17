@@ -1,0 +1,355 @@
+import { fighterById, stageById } from "../../shared/content";
+import { WORLD, type MatchState } from "../../shared/engine";
+import { TECHNIQUES } from "../../shared/techniques";
+import { drawSprite, type preloadAssets } from "./assets";
+import { drawStage } from "./stage-renderer";
+import { drawImpact } from "./effects-renderer";
+import { drawCuatro } from "./combat-props";
+import {
+  entranceProgress,
+  introActor,
+  INTRO_COUNTDOWN_START,
+} from "../../shared/presentation";
+import { drawPresentation } from "./presentation-renderer";
+import { drawIntroCinematic } from "./intro-renderer";
+import { drawCultureProjectile, drawCultureSpecial } from "./culture-renderer";
+import {
+  drawFolkloreProjectile,
+  drawFolkloreSpecial,
+  drawFolkloreStatus,
+} from "./folklore-renderer";
+
+export type Assets = Awaited<ReturnType<typeof preloadAssets>>;
+export function renderMatch(
+  ctx: CanvasRenderingContext2D,
+  state: MatchState,
+  assets: Assets,
+  time: number,
+  reducedMotion = false,
+) {
+  const { width, height } = WORLD;
+  ctx.clearRect(0, 0, width, height);
+  if (state.phase === "intro" && state.tick < INTRO_COUNTDOWN_START) {
+    drawIntroCinematic(ctx, state, assets.sprites, reducedMotion);
+    return;
+  }
+  ctx.save();
+  if (state.shake > 0.3)
+    ctx.translate(
+      Math.sin(time * 0.07) * state.shake,
+      Math.cos(time * 0.08) * state.shake * 0.4,
+    );
+  const bg = assets.stages[state.stage];
+  const stage = stageById(state.stage);
+  drawStage(ctx, stage, bg, state.tick);
+  for (const projectile of state.projectiles) {
+    const color = fighterById(
+      state.players[projectile.owner].config.fighter,
+    ).color;
+    ctx.save();
+    ctx.translate(projectile.x, projectile.y);
+    ctx.scale(
+      Math.sign(projectile.vx) ||
+        projectile.direction ||
+        state.players[projectile.owner].facing,
+      1,
+    );
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 18;
+    ctx.fillStyle = color;
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 2;
+    if (
+      drawCultureProjectile(ctx, projectile) ||
+      drawFolkloreProjectile(ctx, projectile)
+    ) {
+      // The folklore effects share the same glow and transform as other shots.
+    } else if (projectile.kind === "installments") {
+      ctx.rotate(Math.sin((projectile.age ?? 0) / 9) * 0.08);
+      ctx.beginPath();
+      ctx.roundRect(-18, -12, 36, 24, 5);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = "#242837";
+      ctx.fillRect(-13, -5, 8, 6);
+      ctx.fillRect(0, 5, 12, 2);
+    } else if (projectile.kind === "cuatro") {
+      ctx.rotate(Math.sin(time / 100) * 0.12);
+      ctx.beginPath();
+      ctx.ellipse(-5, 9, 9, 6, -0.3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillRect(2, -18, 3, 28);
+      ctx.fillRect(3, -18, 13, 4);
+    } else if (projectile.kind === "static") {
+      ctx.rotate(time / 110);
+      ctx.beginPath();
+      ctx.roundRect(-6, -20, 12, 25, 6);
+      ctx.fill();
+      ctx.fillRect(-2, 3, 4, 17);
+      ctx.strokeRect(-5, -15, 10, 10);
+    } else if (projectile.kind === "broadcast") {
+      for (let ring = 0; ring < 3; ring++) {
+        ctx.globalAlpha = 1 - ring * 0.22;
+        ctx.beginPath();
+        ctx.arc(0, 0, 10 + ring * 8, -1.25, 1.25);
+        ctx.stroke();
+      }
+      ctx.beginPath();
+      ctx.arc(0, 0, 4, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      for (let j = 0; j < 3; j++) {
+        ctx.globalAlpha = 1 - j * 0.25;
+        ctx.beginPath();
+        ctx.arc(-j * 12, 0, 19 + j * 3, -1.1, 1.1);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+  state.players.forEach((p, i) => {
+    if (p.stocks <= 0) return;
+    const def = fighterById(p.config.fighter);
+    const bodyHeight = def.displayHeight ?? 177;
+    const sprite = assets.sprites[p.config.fighter];
+    ctx.save();
+    ctx.fillStyle = "#090c1670";
+    ctx.beginPath();
+    ctx.ellipse(p.x, p.y + 4, 42, 8, 0, 0, Math.PI * 2);
+    ctx.fill();
+    if (state.phase === "intro") {
+      const active = introActor(state.tick) === i;
+      drawPresentation(
+        ctx,
+        sprite,
+        def.id,
+        active ? entranceProgress(def.id, state.tick, i) : 1,
+        p.x,
+        p.y,
+        bodyHeight,
+        p.facing,
+        "intro",
+        reducedMotion,
+      );
+      ctx.restore();
+      return;
+    }
+    if (p.invincible > 15 && Math.floor(time / 75) % 2 === 0)
+      ctx.globalAlpha = 0.45;
+    let frame = sprite.battleFrame;
+    if (p.stun > 0) frame = 7;
+    else if (p.blocking) frame = 1;
+    else if (p.attack === "heavy")
+      frame = p.attackTick < 6 ? sprite.battleFrame : 6;
+    else if (
+      p.attack === "light" ||
+      p.attack === "super" ||
+      p.attack === "special"
+    )
+      frame = p.attackTick < 4 ? 1 : 5;
+    else if (!p.grounded) frame = 4;
+    else if (Math.abs(p.vx) > 0.7)
+      frame = Math.floor(state.tick / 7) % 2 === 0 ? 2 : 3;
+    if (p.attack === "special" && !p.stun) {
+      if (
+        (def.ability === "curtain" && p.attackTick <= 26) ||
+        (def.ability === "cadenza" && p.attackTick <= 22)
+      )
+        frame = 1;
+      else if (def.ability === "strum" || def.ability === "tremolo")
+        frame = p.attackTick % 12 < 6 ? 0 : 5;
+      else if (def.ability === "cuatro") frame = sprite.battleFrame;
+      else if (def.ability === "syncopate")
+        frame = p.attackTick > 34 ? 6 : 2 + (Math.floor(p.attackTick / 7) % 2);
+      else if (def.ability === "zapateo") frame = p.attackTick % 10 < 4 ? 6 : 0;
+      else if (def.ability === "pivot") frame = p.attackTick < 22 ? 4 : 6;
+      else if (
+        ["runway", "courier", "sprint", "whirl", "rally"].includes(def.ability)
+      )
+        frame =
+          p.dash > 0
+            ? 2 + (Math.floor(p.attackTick / 4) % 2)
+            : sprite.battleFrame;
+      else if (def.ability === "spin")
+        frame =
+          p.attackTick < 9
+            ? 1
+            : p.attackTick < 18
+              ? 4
+              : p.attackTick < 33
+                ? 6
+                : sprite.battleFrame;
+      else if (def.ability === "command")
+        frame =
+          p.attackTick < 13
+            ? sprite.battleFrame
+            : p.attackTick < 22
+              ? 6
+              : sprite.battleFrame;
+    }
+    const idleBob =
+      !reducedMotion && !p.attack && p.grounded && !p.stun && !p.blocking
+        ? Math.sin(time / 240 + i) * 1.5
+        : 0;
+    if (p.dash > 0) {
+      ctx.globalAlpha = 0.16;
+      drawSprite(
+        ctx,
+        sprite,
+        frame,
+        p.x - p.facing * 44,
+        p.y,
+        bodyHeight,
+        p.facing,
+      );
+      ctx.globalAlpha = 0.28;
+      drawSprite(
+        ctx,
+        sprite,
+        frame,
+        p.x - p.facing * 22,
+        p.y,
+        bodyHeight,
+        p.facing,
+      );
+      ctx.globalAlpha = 1;
+    }
+    drawSprite(ctx, sprite, frame, p.x, p.y + idleBob, bodyHeight, p.facing);
+    if (def.ability === "cuatro" && p.attack === "special" && !p.stun)
+      drawCuatro(ctx, p, bodyHeight);
+    if (
+      (p.attack === "light" || p.attack === "heavy") &&
+      p.attackTick >= 5 &&
+      p.attackTick < 17
+    ) {
+      ctx.save();
+      ctx.translate(p.x, p.y - (p.attack === "heavy" ? 63 : 94));
+      ctx.scale(p.facing, 1);
+      ctx.globalAlpha = Math.max(0, 0.58 - Math.abs(p.attackTick - 10) * 0.07);
+      ctx.strokeStyle = p.attack === "heavy" ? "#ffe4a7" : "#d8f3ff";
+      ctx.lineWidth = p.attack === "heavy" ? 8 : 4;
+      ctx.beginPath();
+      ctx.arc(17, 0, p.attack === "heavy" ? 90 : 68, -0.8, 0.55);
+      ctx.stroke();
+      ctx.restore();
+    }
+    if (p.attack === "special") {
+      const technique = TECHNIQUES[def.ability];
+      const progress = p.attackTick - technique.startup;
+      ctx.save();
+      ctx.strokeStyle = def.color;
+      ctx.fillStyle = `${def.color}30`;
+      ctx.lineWidth = 3;
+      ctx.globalAlpha = Math.max(0, 1 - Math.abs(progress) / 18);
+      drawFolkloreSpecial(ctx, def.ability, p, state.players[1 - i], progress);
+      drawCultureSpecial(
+        ctx,
+        def.ability,
+        p,
+        state.players[1 - i],
+        sprite,
+        progress,
+      );
+      if (def.ability === "courier") {
+        ctx.save();
+        ctx.translate(p.x, p.y - 70);
+        ctx.scale(p.facing, 1);
+        for (let line = 0; line < 3; line++) {
+          ctx.beginPath();
+          ctx.moveTo(-24 - line * 12, -26 + line * 26);
+          ctx.lineTo(-110 - line * 18, -26 + line * 26);
+          ctx.stroke();
+        }
+        ctx.restore();
+      } else if (def.ability === "spotlight") {
+        const other = state.players[1 - i];
+        const mark = p.x + p.facing * Math.min(250, Math.abs(other.x - p.x));
+        ctx.beginPath();
+        ctx.moveTo(mark - 52, p.y);
+        ctx.lineTo(mark, p.y - 235);
+        ctx.lineTo(mark + 52, p.y);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+      } else if (def.ability === "command") {
+        ctx.beginPath();
+        ctx.ellipse(
+          p.x,
+          p.y,
+          Math.min(210, 35 + Math.max(0, progress) * 14),
+          15,
+          0,
+          0,
+          Math.PI * 2,
+        );
+        ctx.stroke();
+      } else if (def.ability === "roar") {
+        ctx.beginPath();
+        ctx.moveTo(p.x + p.facing * 35, p.y - 90);
+        ctx.lineTo(p.x + p.facing * 260, p.y - 160);
+        ctx.lineTo(p.x + p.facing * 260, p.y - 20);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+      } else if (def.ability === "salsa" || def.ability === "spin") {
+        ctx.beginPath();
+        ctx.ellipse(p.x, p.y - 90, 90, 45, progress / 16, 0, Math.PI * 1.75);
+        ctx.stroke();
+      } else if (def.ability === "echo" || def.ability === "punchline") {
+        [50, 95].forEach((distance, index) => {
+          ctx.beginPath();
+          ctx.arc(
+            p.x + p.facing * distance,
+            p.y - 80,
+            18 + index * 10,
+            0,
+            Math.PI * 2,
+          );
+          ctx.stroke();
+        });
+      }
+      ctx.restore();
+    }
+    if (p.blocking) {
+      ctx.strokeStyle = `${def.color}aa`;
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.ellipse(p.x + p.facing * 25, p.y - 85, 48, 70, 0, -1.5, 1.5);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+    drawFolkloreStatus(ctx, p);
+    ctx.fillStyle = i === 0 ? "#dfff7b" : "#b69cff";
+    ctx.beginPath();
+    ctx.moveTo(p.x, p.y - bodyHeight - 20);
+    ctx.lineTo(p.x - 5, p.y - bodyHeight - 28);
+    ctx.lineTo(p.x + 5, p.y - bodyHeight - 28);
+    ctx.closePath();
+    ctx.fill();
+    ctx.font = '700 13px "DM Sans", sans-serif';
+    ctx.textAlign = "center";
+    ctx.fillText(`P${i + 1}`, p.x, p.y - bodyHeight - 34);
+    if (p.combo && state.tick - p.comboTick < 75) {
+      ctx.fillStyle = "#ffffff";
+      ctx.font = 'italic 700 22px "Barlow Condensed", sans-serif';
+      ctx.shadowColor = "#000";
+      ctx.shadowBlur = 6;
+      ctx.fillText(p.combo.toUpperCase(), p.x, p.y - 240);
+    }
+    ctx.restore();
+  });
+  if (
+    state.hitstop > 0 &&
+    state.effects.some(
+      (e) =>
+        e.kind === "hit" &&
+        (e.impact === "heavy" || e.impact === "super") &&
+        e.life === e.duration,
+    )
+  ) {
+    ctx.fillStyle = "#fff2d90c";
+    ctx.fillRect(0, 0, width, height);
+  }
+  state.effects.forEach((e) => drawImpact(ctx, e));
+  ctx.restore();
+}

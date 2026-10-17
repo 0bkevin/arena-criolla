@@ -1,0 +1,100 @@
+{
+  "version": 28,
+  "date": "2026-10-13",
+  "feature": "Authenticated character workshop and persistent public community roster",
+  "implementation": {
+    "route": "/create",
+    "auth": "Email/password, scrypt hashes, server-stored opaque HttpOnly cookie sessions",
+    "persistence": "Node 24 SQLite WAL and generated artifacts under ARENA_DATA_DIR",
+    "graph": "server/creator/pipeline.ts",
+    "nodes": [
+      "create_design",
+      "draw",
+      "pack",
+      "test",
+      "save"
+    ],
+    "publishing": "Explicit owner publication, shared definition catalog, WebSocket updates to guests",
+    "developmentPrivacy": "Vite denies configured storage file paths; data folders inside public or dist are rejected."
+  },
+  "liveAI": {
+    "configured": false,
+    "apiCallsRun": false,
+    "limitation": "OPENAI_API_KEY is absent. Production returns generationAvailable=false and rejects generation with503; tests inject a deterministic atlas provider. The browser fixture does not demonstrate AI likeness or image-provider quality.",
+    "setup": ".env.example and README.md"
+  },
+  "automatedVerification": {
+    "creatorCommand": "npm run test:creator",
+    "creatorTestsPassed": 15,
+    "covers": [
+      "Hashed passwords and cookie/session lifecycle",
+      "Cross-origin mutation rejection and owner isolation",
+      "Private normalized reference photos",
+      "Real LangGraph execution and eight-sprite packing",
+      "Published asset and anonymous roster access",
+      "Sessions and published characters across restarts",
+      "Honest unavailable state without a provider",
+      "Retry reuses completed design",
+      "Invalid atlas retry redraws source",
+      "Concurrent submissions reserve one active job",
+      "Abortable shutdown and owner-triggered continuation",
+      "Live anonymous WS catalog and selected created fighter",
+      "Two anonymous peers start with a published avatar; retirement preserves the active match and rejects its rematch",
+      "Raw development file URLs cannot bypass photo ownership or download SQLite",
+      "Authorized media access works inside the hidden T3 project directory"
+    ],
+    "wholeSuite": {
+      "command": "npm test",
+      "tests": 488,
+      "passed": 488,
+      "failed": 0
+    },
+    "productionBuild": "npm run build passed; Vite warns of an existing >500kB JS bundle",
+    "assetCheck": "npm run check:assets passed for all41 built-in combat atlases",
+    "individualCharacterAudits": 41
+  },
+  "browser": {
+    "tool": "Native T3 collaborative preview",
+    "actualServer": "http://localhost:5173/create",
+    "fixtureServer": "Temporary isolated server at5180, stopped after verification",
+    "actualChecks": [
+      "Sign-up/sign-in/session and photo preview",
+      "Unavailable generation state without exposing API configuration",
+      "Desktop1280 and mobile390/320 layout without horizontal overflow",
+      "Anonymous auth view remains usable at320px without horizontal overflow"
+    ],
+    "fixtureChecks": [
+      "One photo and short description submitted through the actual React form",
+      "Real graph job reached ready and portrait loaded",
+      "Private draft played against CPU in the actual Game view",
+      "Publish button moved character into public Panas collection",
+      "Sign-out left anonymous selection able to choose created character"
+    ],
+    "artIsTestFixture": true,
+    "screenshots": {
+      "authDesktop": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv621zwj-dc6c41ca.png",
+      "studioDesktop": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv617r4p-666653c2.png",
+      "studioMobile": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv6187hz-25223ee7.png",
+      "fixtureMatch": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv61ulrg-256b386f.png",
+      "authFinalDesktop": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mv635lzc-145d6ef0.png"
+    }
+  },
+  "production": {
+    "dockerBuild": "Final arena-criolla:creator-v28 build passed after all creator/privacy fixes",
+    "checks": [
+      "Container starts as node user and initializes writable persistent SQLite volume",
+      "GET/api/health returns200",
+      "Direct GET/create serves built SPA with200",
+      "Production sign-up issues Secure HttpOnly session",
+      "Session survives container restart"
+    ],
+    "temporaryContainerStopped": true
+  },
+  "cleanup": {
+    "previewTestAccountRemoved": true,
+    "mainLocalDatabaseUsers": 0,
+    "fixtureProviderNotInProduction": true,
+    "temporaryFixtureServerStopped": true,
+    "existingCastAndApprovedIntrosPreserved": true
+  }
+}

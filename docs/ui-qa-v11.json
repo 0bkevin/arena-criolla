@@ -1,0 +1,180 @@
+{
+  "version": 11,
+  "theme": "Tricolor arcade composition",
+  "changes": [
+    "Warm ivory background and yellow pixel-cut marquee",
+    "Blue fighter selection panel",
+    "Separate scenario strip and coral match preparation panel",
+    "Yellow P1 and coral rival selection indicators"
+  ],
+  "checks": {
+    "build": "passed",
+    "tests": {
+      "passed": 28,
+      "failed": 0
+    },
+    "prefsRestoredAfterQA": true,
+    "touchTargets44px": true
+  },
+  "responsive": [
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "clippedNames": [],
+      "headingOverlap": false,
+      "ctaBottom": 1467,
+      "readyBottom": 1487,
+      "gridColumns": 3
+    },
+    {
+      "width": 360,
+      "scrollWidth": 360,
+      "clippedNames": [],
+      "headingOverlap": false,
+      "ctaBottom": 1465,
+      "readyBottom": 1485,
+      "gridColumns": 3
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "clippedNames": [],
+      "headingOverlap": false,
+      "ctaBottom": 1530,
+      "readyBottom": 1550,
+      "gridColumns": 3
+    },
+    {
+      "width": 560,
+      "scrollWidth": 560,
+      "clippedNames": [],
+      "headingOverlap": false,
+      "ctaBottom": 1513,
+      "readyBottom": 1533,
+      "gridColumns": 3
+    },
+    {
+      "width": 700,
+      "scrollWidth": 700,
+      "clippedNames": [],
+      "headingOverlap": false,
+      "ctaBottom": 1513,
+      "readyBottom": 1533,
+      "gridColumns": 3
+    },
+    {
+      "width": 760,
+      "scrollWidth": 760,
+      "clippedNames": [],
+      "headingOverlap": false,
+      "ctaBottom": 1233,
+      "readyBottom": 1258,
+      "gridColumns": 5
+    },
+    {
+      "width": 900,
+      "scrollWidth": 900,
+      "clippedNames": [],
+      "headingOverlap": false,
+      "ctaBottom": 1222,
+      "readyBottom": 1246,
+      "gridColumns": 5
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024,
+      "clippedNames": [],
+      "headingOverlap": false,
+      "ctaBottom": 780,
+      "readyBottom": 794,
+      "gridColumns": 5
+    },
+    {
+      "width": 1280,
+      "scrollWidth": 1280,
+      "clippedNames": [],
+      "headingOverlap": false,
+      "ctaBottom": 781,
+      "readyBottom": 795,
+      "gridColumns": 5
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "clippedNames": [],
+      "headingOverlap": false,
+      "ctaBottom": 781,
+      "readyBottom": 795,
+      "gridColumns": 5
+    }
+  ],
+  "flows": {
+    "selection": {
+      "p1": "Vicente Zavarce",
+      "p2": "Pedro Vallenilla",
+      "stage": "Puente de Maracaibo",
+      "backgrounds": [
+        "url(\"http://localhost:5173/assets/maracaibo.webp\")",
+        "url(\"http://localhost:5173/assets/maracaibo.webp\")"
+      ],
+      "playerOneColor": "rgb(255, 220, 113)",
+      "playerTwoColor": "rgb(255, 172, 150)"
+    },
+    "cpuMatch": {
+      "started": true,
+      "canvas": "Combate entre John y CPU en Puente de Maracaibo",
+      "mode": "COMBATE CONTRA LA CPU",
+      "overflow": false
+    },
+    "localMatch": {
+      "started": true,
+      "canvas": "Combate entre John y Pana 2 en Puente de Maracaibo",
+      "mode": "VERSUS LOCAL"
+    },
+    "online": {
+      "rivalLocked": true,
+      "waiting": "¿QUIÉN SE ANIMA?",
+      "cta": "BUSCAR SALAS"
+    },
+    "rooms": {
+      "dialog": true,
+      "heading": "La pelea es con los panas",
+      "width": 760,
+      "viewport": 1280,
+      "background": "rgb(21, 54, 100)",
+      "buttons": [
+        {
+          "text": "",
+          "aria": "Cerrar"
+        },
+        {
+          "text": " Actualizar",
+          "aria": null
+        },
+        {
+          "text": " Crear sala",
+          "aria": null
+        },
+        {
+          "text": "Entrar a la sala ",
+          "aria": null
+        }
+      ]
+    },
+    "mobileShortcut": {
+      "visible": true,
+      "shortcutHidden": true,
+      "overflow": false
+    },
+    "mobileMap": {
+      "open": true,
+      "width": 352,
+      "cards": 9,
+      "viewport": 390
+    }
+  },
+  "screenshots": {
+    "desktop": "docs/screenshots/arcade-tricolor-desktop-v11.png",
+    "mobile": "docs/screenshots/arcade-tricolor-mobile-v11.png"
+  }
+}

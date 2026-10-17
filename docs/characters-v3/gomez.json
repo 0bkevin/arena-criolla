@@ -1,0 +1,153 @@
+{
+  "id": "gomez",
+  "realName": "Juan Vicente Gómez Chacón",
+  "sprite": "gomez-v3",
+  "portraitReference": "assets/references/gomez/1928-uniform.jpg",
+  "portrayal": "Juan Vicente Gómez (1857–1935), general y gobernante de facto de Venezuela entre 1908 y su muerte. El rostro combina retratos de 1910, 1928 y sus últimos años: adulto mayor de rostro ancho, nariz marcada, cejas pesadas, cabello corto peinado hacia atrás y bigote oscuro compacto. El uniforme de combate es una adaptación sobria del uniforme de servicio con cuello alto, gorra de plato, cinturón, bolsillos y botas que aparece en la fotografía de 1928. Las poses de combate son animación ficticia de videojuego, no episodios ni gestos históricos atribuidos a Gómez.",
+  "sources": [
+    {
+      "title": "Gen. Juan V. Gomez, Pres't Venez. (Library of Congress, George Grantham Bain Collection, 1910)",
+      "url": "https://www.loc.gov/pictures/item/2014695965/",
+      "kind": "primary-photograph",
+      "note": "Retrato de archivo contemporáneo; usado para rasgos faciales y bigote. La ficha declara que no hay restricciones conocidas de publicación."
+    },
+    {
+      "title": "Gómez, 1928 restored (Wikimedia Commons)",
+      "url": "https://commons.wikimedia.org/wiki/File:G%C3%B3mez,_1928_restored.jpg",
+      "kind": "archival-photograph-copy",
+      "note": "La ficha fecha el retrato en 1928; autor original desconocido y restauración atribuida a Wilfredor. Referencia principal para gorra y uniforme de cuello alto, bolsillos, correaje y hombreras discretas."
+    },
+    {
+      "title": "Gómez 1930s (Wikimedia Commons)",
+      "url": "https://commons.wikimedia.org/wiki/File:G%C3%B3mez_1930s.jpg",
+      "kind": "archival-photograph-reproduction",
+      "note": "La ficha identifica a Gómez en sus últimos años y atribuye la reproducción a Rostros y Personajes de Venezuela (El Nacional, 2002); fotógrafo original desconocido. Usada solo como referencia de edad y rostro tardío."
+    },
+    {
+      "title": "Gómez, 1910 (Library of Congress, George Grantham Bain Collection)",
+      "url": "https://commons.wikimedia.org/wiki/File:Gen._Juan_V._Gomez,_Pres%27t_Venez._LCCN2014695965.jpg",
+      "kind": "primary-photograph-copy",
+      "note": "Copia de la ficha LOC ggbain.15988, negativa de vidrio de Bain News Service."
+    },
+    {
+      "title": "Cine (Diccionario de Historia de Venezuela, Fundación Empresas Polar)",
+      "url": "https://bibliofep.fundacionempresaspolar.org/dhv/entradas/c/cine/",
+      "kind": "historical-film-research",
+      "note": "Resume el establecimiento de los Laboratorios Nacionales, las primeras pruebas de sonido y la transición al cine sonoro; no identifica una voz grabada de Gómez."
+    },
+    {
+      "title": "Juan Vicente Gómez y su época: proyección de la Cinemateca Nacional",
+      "url": "https://www.mincultura.gob.ve/noticias/cinemateca-nacional-proyecto-la-joya-filmica-juan-vicente-gomez-y-su-epoca/",
+      "kind": "film-archive-reference",
+      "note": "La Cinemateca Nacional presentó el documental histórico de archivo de Manuel de Pedro; la nota no ofrece un clip de voz original de Gómez."
+    },
+    {
+      "title": "Centenario de Bolívar en Santa Marta y Venezuela [fragmentos], catálogo BnF",
+      "url": "https://catalogue.bnf.fr/ark:/12148/cb44522683z",
+      "kind": "film-catalogue",
+      "note": "El catálogo lista a Gómez como participante en fragmentos del archivo cinematográfico de los Acevedo; la ficha no confirma que el fragmento contenga sonido sincronizado ni su voz."
+    },
+    {
+      "title": "Andrés Eloy Blanco (Biblioteca Biográfica Venezolana)",
+      "url": "https://www.anhvenezuela.org.ve/wp-content/uploads/2024/09/ANDRES-ELOY-BLANCO-1.pdf",
+      "kind": "historical-audio-context",
+      "note": "La biografía contrasta la escasa intervención pública de Gómez con el uso de la radio por Eleazar López Contreras; no aporta una grabación verificable de Gómez."
+    },
+    {
+      "title": "Rafael Caldera recuerda la primera alocución radial de Eleazar López Contreras",
+      "url": "https://rafaelcaldera.com/las-exequias-lopez-contreras-1973/",
+      "kind": "historical-audio-attribution",
+      "note": "La fuente atribuye a López Contreras la alocución radial del 19 de diciembre de 1935 y el lema asociado a calma y cordura. No es voz de Gómez."
+    }
+  ],
+  "lines": {},
+  "audioResearch": {
+    "status": "not-found-after-source-search",
+    "limitations": "No localicé un archivo reproducible y verificable con la voz original de Juan Vicente Gómez. Revisé resultados de búsquedas por grabación, discurso, voz y fonoteca; fichas de cine y el contexto de la llegada del sonido a Venezuela; y referencias públicas sobre la radio de diciembre de 1935. Esto documenta una búsqueda sin resultado, no demuestra que nunca haya existido o que no sobreviva en un fondo no indexado. No se usó una voz creada, clonada, imitada ni atribuida a un actor. El audio de Rafael Briceño como Gómez en RCTV y el CD Intimidades de Juan Vicente Gómez y Rafael Briceño son interpretaciones, no voz histórica. La voz ronca apodada El Ronquito y la alocución Calma y cordura corresponden a Eleazar López Contreras; no se asignan a Gómez.",
+    "clip": null
+  },
+  "distinctiveTraits": [
+    "Bigote oscuro, denso y corto, con extremos apenas curvados; nariz ancha y prominente; rostro maduro amplio y cejas pesadas, contrastados en retratos de archivo de distintas edades.",
+    "Cabello corto peinado hacia atrás y entradas visibles en los retratos tardíos; la foto de 1930s lo muestra con sombrero claro y guantes mientras está sentado, no en una pose de combate.",
+    "El retrato militar de 1928 muestra gorra de plato, cuello alto, bolsillos de pecho, cinturón ancho y hombreras sobrias; la atlas usa esa silueta con una paleta oscura editorial.",
+    "Pose histórica observada: retratos formales de frente y fotografía tardía sentado o reclinado. Los golpes, bloqueos y patadas del atlas son recursos de juego, no gestos documentados."
+  ],
+  "suggestedMoves": [
+    {
+      "name": "Paso firme",
+      "description": "Avance corto y pesado, con los hombros firmes; movimiento de juego, sin atribuir una marcha personal documentada."
+    },
+    {
+      "name": "Orden cerrada",
+      "description": "Bloqueo de antebrazos que mantiene el cuerpo compacto; nombre y acción son ficción de combate."
+    },
+    {
+      "name": "Golpe de mando",
+      "description": "Puñetazo recto hacia delante; nombre de fantasía de juego, no frase ni acción histórica."
+    },
+    {
+      "name": "Pisada pesada",
+      "description": "Pisotón con onda de impacto dibujada por el motor del juego; efecto completamente ficticio."
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/gomez/loc-bain-1910.jpg",
+      "url": "https://cdn.loc.gov/service/pnp/ggbain/15900/15988v.jpg",
+      "sourcePage": "https://www.loc.gov/pictures/item/2014695965/",
+      "date": "1910",
+      "credit": "Bain News Service / Library of Congress",
+      "viewed": true
+    },
+    {
+      "file": "assets/references/gomez/1928-uniform.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/G%C3%B3mez%2C_1928_restored.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:G%C3%B3mez,_1928_restored.jpg",
+      "date": "1928",
+      "credit": "Autor original desconocido; restauración de Wilfredor",
+      "viewed": true
+    },
+    {
+      "file": "assets/references/gomez/gomez-1930s.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/G%C3%B3mez_1930s.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:G%C3%B3mez_1930s.jpg",
+      "date": "1930s",
+      "credit": "Autor desconocido; reproducción citada de Rostros y Personajes de Venezuela, El Nacional, 2002",
+      "viewed": true
+    },
+    {
+      "file": "assets/references/gomez/bioyvidas-portrait.jpg",
+      "url": "https://www.biografiasyvidas.com/biografia/g/fotos/gomez_juan_vicente.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Juan_Vicente_G%C3%B3mez.jpg",
+      "date": "1909 (ficha Wikimedia Commons; Revista Selecta)",
+      "credit": "Fotografía histórica reproducida por Biografías y Vidas",
+      "viewed": true
+    }
+  ],
+  "historicalAudioFindings": [
+    {
+      "finding": "Las fuentes consultadas sitúan la primera expansión del sonido cinematográfico venezolano en los años 1930; Fundación Empresas Polar describe pruebas en 1933–1934 y noticiarios con segmentos parlantes. Eso hace plausible que haya registros contemporáneos, pero no verifica que un segmento conserve la voz de Gómez.",
+      "sourceUrl": "https://bibliofep.fundacionempresaspolar.org/dhv/entradas/c/cine/"
+    },
+    {
+      "finding": "La BnF cataloga fragmentos de Centenario de Bolívar en Santa Marta y Venezuela con Gómez como participante. El registro describe un DVD con sonido, pero no confirma que el fragmento de Gómez tenga sonido original o voz identificable.",
+      "sourceUrl": "https://catalogue.bnf.fr/ark:/12148/cb44522683z"
+    },
+    {
+      "finding": "Rafael Caldera identifica la alocución radial del 19 de diciembre de 1935, su voz ronca y la consigna de calma y cordura como las de Eleazar López Contreras. Es posterior a la muerte de Gómez y no puede usarse como voz suya.",
+      "sourceUrl": "https://rafaelcaldera.com/las-exequias-lopez-contreras-1973/"
+    },
+    {
+      "finding": "Las adaptaciones televisivas con Rafael Briceño y el CD Intimidades de Juan Vicente Gómez y Rafael Briceño contienen interpretación actoral; se excluyeron como fuentes de voz histórica.",
+      "sourceUrl": "https://www.rctvinternational.com/producto/gomez-i/"
+    }
+  ],
+  "encoding": {
+    "runtimeAtlas": [
+      2048,
+      1024
+    ],
+    "originalAtlas": "assets/references/gomez/gomez-v3-original-4096.png",
+    "reason": "Reducción proporcional para disminuir memoria de textura; se preservó el PNG de resolución original."
+  }
+}

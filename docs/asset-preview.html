@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: var(--font-sans, system-ui);
+        color: var(--foreground, #ededf2);
+        background: transparent;
+      }
+      .toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin: 0 0 14px;
+        font-size: 12px;
+      }
+      .toolbar span {
+        color: var(--muted-foreground, #9ba3b5);
+      }
+      select,
+      button {
+        font: inherit;
+        color: var(--foreground, #ededf2);
+        background: var(--secondary, #232b39);
+        border: 1px solid var(--border, #3c475a);
+        padding: 7px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .buttons {
+        display: flex;
+        gap: 7px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .fighter {
+        padding: 16px;
+        background: var(--card, #181c24);
+        border: 1px solid var(--border, #313948);
+        border-radius: var(--radius, 10px);
+        overflow: hidden;
+        text-align: center;
+        min-width: 0;
+      }
+      .fighter canvas {
+        width: 100%;
+        height: 145px;
+        display: block;
+        object-fit: contain;
+      }
+      .fighter strong {
+        display: block;
+        font-size: 11px;
+        line-height: 1.4;
+        margin-top: 9px;
+        color: var(--foreground, #f4f5f8);
+      }
+      .fighter i {
+        display: block;
+        background: var(--color);
+        height: 2px;
+        width: 30px;
+        margin: 9px auto 0;
+        border-radius: 2px;
+      }
+      .stages {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .stage img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        border-radius: 7px;
+        display: block;
+      }
+      .stage span {
+        display: block;
+        font-size: 10px;
+        color: var(--muted-foreground, #96a3b9);
+        margin-top: 7px;
+        text-align: center;
+      }
+      .status {
+        font-size: 10px;
+        color: var(--muted-foreground, #96a3b9);
+        margin: 13px 0 0;
+        line-height: 1.6;
+      }
+      button:focus-visible,
+      select:focus-visible {
+        outline: 2px solid var(--ring, #dfff7b);
+        outline-offset: 3px;
+      }
+      @media (max-width: 480px) {
+        .fighter {
+          padding: 16px 8px;
+        }
+        .fighter canvas {
+          height: 105px;
+        }
+        .fighter strong {
+          font-size: 9px;
+        }
+        .grid,
+        .stages {
+          gap: 7px;
+        }
+        .toolbar {
+          font-size: 10px;
+        }
+        .toolbar > span {
+          max-width: 110px;
+        }
+        .buttons {
+          gap: 5px;
+        }
+        select,
+        button {
+          padding: 6px 7px;
+          font-size: 10px;
+        }
+        .stage span {
+          font-size: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <span>Ocho poses por luchador</span>
+      <div class="buttons">
+        <select id="pose" aria-label="Animación">
+          <option value="idle">En guardia</option>
+          <option value="run" selected>Carrera</option>
+          <option value="block">Bloqueo</option>
+          <option value="jump">Salto</option>
+          <option value="punch">Puño</option>
+          <option value="kick">Patada</option>
+          <option value="hurt">Daño</option></select
+        ><button id="play" aria-label="Pausar animación">Pausar</button>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="fighter" style="--color: #6adacb">
+        <canvas
+          id="delsa"
+          width="300"
+          height="360"
+          aria-label="Delsa Solórzano, sprite animado"
+        ></canvas
+        ><strong>Delsa Solórzano</strong><i></i>
+      </div>
+      <div class="fighter" style="--color: #ffb56b">
+        <canvas
+          id="john"
+          width="300"
+          height="360"
+          aria-label="John Acquaviva, sprite animado"
+        ></canvas
+        ><strong>John Acquaviva</strong><i></i>
+      </div>
+      <div class="fighter" style="--color: #b69cff">
+        <canvas
+          id="kilometro"
+          width="300"
+          height="360"
+          aria-label="Kilómetro, sprite animado"
+        ></canvas
+        ><strong>Kilómetro</strong><i></i>
+      </div>
+      <div class="fighter" style="--color: #ff96bd">
+        <canvas
+          id="javier"
+          width="300"
+          height="360"
+          aria-label="Javier Hala Madrid, sprite animado"
+        ></canvas
+        ><strong>Javier Hala Madrid</strong><i></i>
+      </div>
+      <div class="fighter" style="--color: #ff746b">
+        <canvas
+          id="lacava"
+          width="300"
+          height="360"
+          aria-label="Rafael Lacava, sprite animado"
+        ></canvas
+        ><strong>Rafael Lacava</strong><i></i>
+      </div>
+      <div class="fighter" style="--color: #80b8ff">
+        <canvas
+          id="capriles"
+          width="300"
+          height="360"
+          aria-label="Capriles Radonski, sprite animado"
+        ></canvas
+        ><strong>Capriles Radonski</strong><i></i>
+      </div>
+    </div>
+    <div class="stages">
+      <div class="stage">
+        <img
+          src="/home/ubuntu/.t3/projects/vepol/public/assets/caracas.webp"
+          alt="Altamira · Caracas"
+        /><span>Altamira · Caracas</span>
+      </div>
+      <div class="stage">
+        <img
+          src="/home/ubuntu/.t3/projects/vepol/public/assets/guaira.webp"
+          alt="Malecón · La Guaira"
+        /><span>Malecón · La Guaira</span>
+      </div>
+      <div class="stage">
+        <img
+          src="/home/ubuntu/.t3/projects/vepol/public/assets/valencia.webp"
+          alt="Noche de Drácula · Valencia"
+        /><span>Noche de Drácula · Valencia</span>
+      </div>
+    </div>
+    <p class="status" id="status">Cargando los sprites…</p>
+    <script>
+      const fighters = [
+        {
+          id: "delsa",
+          name: "Delsa Solórzano",
+          color: "#6adacb",
+          bodyHeight: 433,
+          frames: [
+            { x: 75, y: 5, width: 293, height: 434, slotX: 0, slotY: 0 },
+            { x: 516, y: 11, width: 301, height: 428, slotX: 443.5, slotY: 0 },
+            { x: 918, y: 12, width: 381, height: 421, slotX: 887, slotY: 0 },
+            {
+              x: 1359,
+              y: 10,
+              width: 364,
+              height: 425,
+              slotX: 1330.5,
+              slotY: 0,
+            },
+            { x: 78, y: 446, width: 283, height: 322, slotX: 0, slotY: 443.5 },
+            {
+              x: 477,
+              y: 449,
+              width: 398,
+              height: 424,
+              slotX: 443.5,
+              slotY: 443.5,
+            },
+            {
+              x: 903,
+              y: 450,
+              width: 434,
+              height: 423,
+              slotX: 887,
+              slotY: 443.5,
+            },
+            {
+              x: 1382,
+              y: 472,
+              width: 345,
+              height: 401,
+              slotX: 1330.5,
+              slotY: 443.5,
+            },
+          ],
+          ok: true,
+        },
+        {
+          id: "john",
+          name: "John Acquaviva",
+          color: "#ffb56b",
+          bodyHeight: 432,
+          frames: [
+            { x: 57, y: 5, width: 331, height: 433, slotX: 0, slotY: 0 },
+            { x: 497, y: 7, width: 336, height: 431, slotX: 443.5, slotY: 0 },
+            { x: 924, y: 10, width: 381, height: 425, slotX: 887, slotY: 0 },
+            { x: 1369, y: 6, width: 374, height: 430, slotX: 1330.5, slotY: 0 },
+            { x: 102, y: 445, width: 243, height: 331, slotX: 0, slotY: 443.5 },
+            {
+              x: 466,
+              y: 445,
+              width: 418,
+              height: 426,
+              slotX: 443.5,
+              slotY: 443.5,
+            },
+            {
+              x: 945,
+              y: 447,
+              width: 420,
+              height: 425,
+              slotX: 887,
+              slotY: 443.5,
+            },
+            {
+              x: 1431,
+              y: 466,
+              width: 311,
+              height: 410,
+              slotX: 1330.5,
+              slotY: 443.5,
+            },
+          ],
+          ok: true,
+        },
+        {
+          id: "kilometro",
+          name: "Kilómetro",
+          color: "#b69cff",
+          bodyHeight: 427,
+          frames: [
+            { x: 50, y: 8, width: 323, height: 428, slotX: 0, slotY: 0 },
+            { x: 491, y: 8, width: 324, height: 427, slotX: 443.5, slotY: 0 },
+            { x: 913, y: 9, width: 366, height: 426, slotX: 887, slotY: 0 },
+            { x: 1358, y: 9, width: 380, height: 425, slotX: 1330.5, slotY: 0 },
+            { x: 100, y: 442, width: 245, height: 335, slotX: 0, slotY: 443.5 },
+            {
+              x: 461,
+              y: 445,
+              width: 393,
+              height: 426,
+              slotX: 443.5,
+              slotY: 443.5,
+            },
+            {
+              x: 917,
+              y: 445,
+              width: 398,
+              height: 427,
+              slotX: 887,
+              slotY: 443.5,
+            },
+            {
+              x: 1413,
+              y: 454,
+              width: 312,
+              height: 417,
+              slotX: 1330.5,
+              slotY: 443.5,
+            },
+          ],
+          ok: true,
+        },
+        {
+          id: "javier",
+          name: "Javier Hala Madrid",
+          color: "#ff96bd",
+          bodyHeight: 428,
+          frames: [
+            { x: 66, y: 8, width: 303, height: 429, slotX: 0, slotY: 0 },
+            { x: 512, y: 7, width: 303, height: 430, slotX: 443.5, slotY: 0 },
+            { x: 925, y: 8, width: 365, height: 426, slotX: 887, slotY: 0 },
+            { x: 1367, y: 9, width: 377, height: 425, slotX: 1330.5, slotY: 0 },
+            { x: 52, y: 447, width: 342, height: 325, slotX: 0, slotY: 443.5 },
+            {
+              x: 476,
+              y: 449,
+              width: 397,
+              height: 422,
+              slotX: 443.5,
+              slotY: 443.5,
+            },
+            {
+              x: 933,
+              y: 454,
+              width: 412,
+              height: 416,
+              slotX: 887,
+              slotY: 443.5,
+            },
+            {
+              x: 1450,
+              y: 471,
+              width: 271,
+              height: 401,
+              slotX: 1330.5,
+              slotY: 443.5,
+            },
+          ],
+          ok: true,
+        },
+        {
+          id: "lacava",
+          name: "Rafael Lacava",
+          color: "#ff746b",
+          bodyHeight: 431,
+          frames: [
+            { x: 62, y: 6, width: 326, height: 432, slotX: 0, slotY: 0 },
+            { x: 503, y: 12, width: 330, height: 426, slotX: 443.5, slotY: 0 },
+            { x: 909, y: 14, width: 397, height: 421, slotX: 887, slotY: 0 },
+            {
+              x: 1360,
+              y: 16,
+              width: 382,
+              height: 420,
+              slotX: 1330.5,
+              slotY: 0,
+            },
+            { x: 77, y: 451, width: 287, height: 321, slotX: 0, slotY: 443.5 },
+            {
+              x: 476,
+              y: 450,
+              width: 417,
+              height: 416,
+              slotX: 443.5,
+              slotY: 443.5,
+            },
+            {
+              x: 938,
+              y: 454,
+              width: 407,
+              height: 418,
+              slotX: 887,
+              slotY: 443.5,
+            },
+            {
+              x: 1422,
+              y: 465,
+              width: 314,
+              height: 406,
+              slotX: 1330.5,
+              slotY: 443.5,
+            },
+          ],
+          ok: true,
+        },
+        {
+          id: "capriles",
+          name: "Capriles Radonski",
+          color: "#80b8ff",
+          bodyHeight: 427,
+          frames: [
+            { x: 51, y: 10, width: 325, height: 428, slotX: 0, slotY: 0 },
+            { x: 498, y: 11, width: 334, height: 426, slotX: 443.5, slotY: 0 },
+            { x: 909, y: 11, width: 399, height: 427, slotX: 887, slotY: 0 },
+            {
+              x: 1359,
+              y: 11,
+              width: 382,
+              height: 426,
+              slotX: 1330.5,
+              slotY: 0,
+            },
+            { x: 46, y: 441, width: 322, height: 331, slotX: 0, slotY: 443.5 },
+            {
+              x: 471,
+              y: 439,
+              width: 441,
+              height: 434,
+              slotX: 443.5,
+              slotY: 443.5,
+            },
+            {
+              x: 942,
+              y: 435,
+              width: 419,
+              height: 440,
+              slotX: 887,
+              slotY: 443.5,
+            },
+            {
+              x: 1424,
+              y: 452,
+              width: 297,
+              height: 421,
+              slotX: 1330.5,
+              slotY: 443.5,
+            },
+          ],
+          ok: true,
+        },
+      ];
+      const paths = {
+        delsa: "/home/ubuntu/.t3/projects/vepol/public/assets/delsa.webp",
+        john: "/home/ubuntu/.t3/projects/vepol/public/assets/john.webp",
+        kilometro:
+          "/home/ubuntu/.t3/projects/vepol/public/assets/kilometro.webp",
+        javier: "/home/ubuntu/.t3/projects/vepol/public/assets/javier.webp",
+        lacava: "/home/ubuntu/.t3/projects/vepol/public/assets/lacava.webp",
+        capriles: "/home/ubuntu/.t3/projects/vepol/public/assets/capriles.webp",
+      };
+      let playing = true,
+        tick = 0;
+      const images = {};
+      const modes = {
+        idle: [0],
+        run: [2, 3],
+        block: [1],
+        jump: [4],
+        punch: [0, 5, 5, 0],
+        kick: [0, 6, 6, 0],
+        hurt: [7],
+      };
+      function draw() {
+        const list = modes[document.getElementById("pose").value];
+        const frame = list[Math.floor(tick / 2) % list.length];
+        for (const f of fighters) {
+          const im = images[f.id];
+          if (!im) continue;
+          const canvas = document.getElementById(f.id),
+            ctx = canvas.getContext("2d"),
+            source = f.frames[frame],
+            scale = 320 / f.bodyHeight;
+          ctx.clearRect(0, 0, 300, 360);
+          ctx.drawImage(
+            im,
+            source.x,
+            source.y,
+            source.width,
+            source.height,
+            150 + (source.x - source.slotX - im.width / 8) * scale,
+            338 +
+              (source.y - source.slotY - (f.frames[0].y + f.frames[0].height)) *
+                scale,
+            source.width * scale,
+            source.height * scale,
+          );
+        }
+      }
+      Promise.all(
+        fighters.map(
+          (f) =>
+            new Promise((resolve, reject) => {
+              const im = new Image();
+              im.onload = () => {
+                images[f.id] = im;
+                resolve();
+              };
+              im.onerror = reject;
+              im.src = paths[f.id];
+            }),
+        ),
+      )
+        .then(() => {
+          document.getElementById("status").textContent =
+            "6 luchadores · 48 poses · 3 escenarios · Ilustraciones generadas con image_gen";
+          console.log("Asset preview: six sprites loaded, eight poses each.");
+          draw();
+        })
+        .catch(() => {
+          document.getElementById("status").textContent =
+            "No se pudo cargar un asset.";
+          console.error("Asset preview failed");
+        });
+      document.getElementById("pose").addEventListener("change", () => {
+        tick = 0;
+        draw();
+      });
+      document.getElementById("play").addEventListener("click", () => {
+        playing = !playing;
+        document.getElementById("play").textContent = playing
+          ? "Pausar"
+          : "Animar";
+      });
+      setInterval(() => {
+        if (playing) {
+          tick++;
+          draw();
+        }
+      }, 100);
+    </script>
+  </body>
+</html>

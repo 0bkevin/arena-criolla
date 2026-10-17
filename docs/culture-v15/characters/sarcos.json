@@ -1,0 +1,50 @@
+{
+  "id": "sarcos",
+  "name": "Daniel Sarcos",
+  "biography": "Presentador venezolano asociado con Súper sábado sensacional y concursos de televisión. La sorpresa de un premio inspira su proyectil con rebotes.",
+  "portraitReference": "assets/references/culture-v15/sarcos/portrait.jpg",
+  "distinctiveTraits": [
+    "Cabello corto peinado hacia atrás, canas laterales y gran sonrisa.",
+    "Traje azul oscuro, camisa blanca y corbata; micrófono como accesorio de animador."
+  ],
+  "portrayal": "Cabello corto peinado hacia atrás, canas laterales y gran sonrisa. Traje azul oscuro, camisa blanca y corbata; micrófono como accesorio de animador. Las acciones de pelea son ficción.",
+  "sources": [
+    {
+      "title": "Daniel Sarcos — biografía",
+      "url": "https://es.wikipedia.org/wiki/Daniel_Sarcos"
+    },
+    {
+      "title": "Referencia fotográfica inspeccionada — Daniel Sarcos",
+      "url": "https://www.diariolasamericas.com/cultura/daniel-sarcos-y-alessandra-villegas-se-convierten-padres-un-varon-n4171499"
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/culture-v15/sarcos/portrait.jpg",
+      "url": "https://media.diariolasamericas.com/p/a9bb0549bbedc72a6bbd8d3f641ab867/adjuntos/216/imagenes/001/617/0001617983/855x0/smart/danielsarcos.jpg",
+      "sourcePage": "https://www.diariolasamericas.com/cultura/daniel-sarcos-y-alessandra-villegas-se-convierten-padres-un-varon-n4171499",
+      "viewed": true
+    }
+  ],
+  "gameplay": {
+    "special": "Premio sensacional",
+    "ability": "jackpot",
+    "description": "Traje oscuro, micrófono y sonrisa de animador. Arroja un premio que rebota dos veces y estalla al terminar su recorrido.",
+    "combos": [
+      "Calienta el show",
+      "Doble sorpresa",
+      "Premio mayor"
+    ],
+    "role": "REBOTE"
+  },
+  "audio": {
+    "realVoice": false,
+    "reactions": "Esfuerzos y dolor genéricos sin palabras",
+    "specialCue": "jackpot"
+  },
+  "review": {
+    "identityVerified": true,
+    "portraitViewed": true,
+    "biographyReviewed": true
+  }
+}

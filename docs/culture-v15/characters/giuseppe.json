@@ -1,0 +1,68 @@
+{
+  "id": "giuseppe",
+  "name": "Giuseppe Gangi",
+  "biography": "Ingeniero de software venezolano, investigador de datos y creador de Macedonia del Norte. Su perfil oficial y entrevistas identifican al personaje; no se confunde con los homónimos italianos.",
+  "portraitReference": "assets/references/culture-v15/giuseppe/portrait.jpg",
+  "distinctiveTraits": [
+    "Rostro ovalado ancho, mejillas llenas y sonrisa pequeña; cabello negro corto, abundante y peinado hacia un lado.",
+    "Lentes negros de montura gruesa y redondeada, suéter liso ciruela en su retrato de estudio.",
+    "Su fotografía pública de GitHub muestra el mismo rostro y cabello, sin lentes y con camiseta gris."
+  ],
+  "portrayal": "Se reproduce el rostro, los lentes y el suéter de la referencia de estudio. Pantalones, zapatillas, postura y combate digital son adaptaciones arcade ficticias.",
+  "sources": [
+    {
+      "title": "Giuseppe Gangi — Sobre mí, perfil oficial",
+      "url": "https://ggangi.com/sobre-mi"
+    },
+    {
+      "title": "GitHub — perfil oficial ggangix",
+      "url": "https://github.com/ggangix"
+    },
+    {
+      "title": "El Pitazo — entrevista La Conversa Electoral, 22 mayo 2025",
+      "url": "https://elpitazo.net/alianzas/la-conversa-electoral-giuseppe-gangi-el-25m-la-tendencia-opaca-es-irreversible/"
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/culture-v15/giuseppe/portrait.jpg",
+      "url": "https://pbs.twimg.com/profile_images/2032881948398325760/Vk5B76EH_400x400.jpg",
+      "sourcePage": "https://x.com/ggangix",
+      "viewed": true
+    },
+    {
+      "file": "assets/references/culture-v15/giuseppe/github.jpg",
+      "url": "https://github.com/ggangix.png",
+      "sourcePage": "https://github.com/ggangix",
+      "viewed": true
+    }
+  ],
+  "videoReferences": [
+    {
+      "title": "Canal público oficial Giuseppe Gangi",
+      "url": "https://www.youtube.com/@ggangix",
+      "note": "Referencia de contexto; no se descargan ni utilizan voces reales."
+    }
+  ],
+  "gameplay": {
+    "special": "Ráfaga de datos",
+    "ability": "audit",
+    "description": "Lentes negros y suéter ciruela, como en su estudio. Lanza tres paquetes digitales que oscilan y aceleran hasta un límite; bloquear o saltar evita la ráfaga.",
+    "combos": [
+      "Ping certero",
+      "Código limpio",
+      "Compilación final"
+    ],
+    "role": "CONTROL"
+  },
+  "audio": {
+    "realVoice": false,
+    "reactions": "Esfuerzos y dolor genéricos sin palabras",
+    "specialCue": "audit"
+  },
+  "review": {
+    "identityVerified": true,
+    "portraitViewed": true,
+    "biographyReviewed": true
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "id": "lila",
+  "name": "Lila Morillo",
+  "biography": "Cantante y actriz zuliana, conocida por El Cocotero y una imagen de escenario con gran melena y accesorios llamativos.",
+  "portraitReference": "assets/references/culture-v15/lila/portrait.jpg",
+  "distinctiveTraits": [
+    "Melena larga oscura rojiza con flequillo, maquillaje de ojos y labios rojos.",
+    "Cadenas y pendientes dorados; bordados y botines añadidos como adaptación de escenario."
+  ],
+  "portrayal": "Melena larga oscura rojiza con flequillo, maquillaje de ojos y labios rojos. Cadenas y pendientes dorados; bordados y botines añadidos como adaptación de escenario. Las acciones de pelea son ficción.",
+  "sources": [
+    {
+      "title": "Lila Morillo — trayectoria",
+      "url": "https://es.wikipedia.org/wiki/Lila_Morillo"
+    },
+    {
+      "title": "Referencia fotográfica inspeccionada — Lila Morillo",
+      "url": "https://www.quepasa.com.ve/cultura-y-farandula/lila-morillo-sobre-la-situacion-en-venezuela-a-mi-me-duele-mi-pais-y-sufro-lo-que-sufre-mi-pais/"
+    }
+  ],
+  "photos": [
+    {
+      "file": "assets/references/culture-v15/lila/portrait.jpg",
+      "url": "https://www.quepasa.com.ve/site/wp-content/uploads/2022/08/Lila-Morillo-750x400.jpg",
+      "sourcePage": "https://www.quepasa.com.ve/cultura-y-farandula/lila-morillo-sobre-la-situacion-en-venezuela-a-mi-me-duele-mi-pais-y-sufro-lo-que-sufre-mi-pais/",
+      "viewed": true
+    }
+  ],
+  "gameplay": {
+    "special": "Abanico del cocotero",
+    "ability": "cocotero",
+    "description": "Flequillo, melena y detalles dorados. Abre cinco hojas de luz en abanico para cerrar las rutas del rival.",
+    "combos": [
+      "Destello zuliano",
+      "Giro dorado",
+      "Gran cocotero"
+    ],
+    "role": "ABANICO"
+  },
+  "audio": {
+    "realVoice": false,
+    "reactions": "Esfuerzos y dolor genéricos sin palabras",
+    "specialCue": "cocotero"
+  },
+  "review": {
+    "identityVerified": true,
+    "portraitViewed": true,
+    "biographyReviewed": true
+  }
+}

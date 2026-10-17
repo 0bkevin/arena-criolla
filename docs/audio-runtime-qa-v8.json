@@ -1,0 +1,341 @@
+{
+  "version": 8,
+  "date": "2026-10-08T19:42:59.324Z",
+  "browser": "T3 Code collaborative Chromium preview",
+  "method": "Actual UI selection, keyboard actions and a second anonymous WebSocket client; Web Audio source starts and stops observed without changing match state.",
+  "requests": [
+    {
+      "url": "/audio/arcade/male-jump-1.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/male-jump-2.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/male-jump-3.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/male-attack-1.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/male-attack-2.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/male-attack-3.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/male-hurt-1.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/male-hurt-2.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/male-hurt-3.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/female-jump-1.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/female-jump-2.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/female-jump-3.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/female-attack-1.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/female-attack-2.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/female-attack-3.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/female-hurt-1.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/female-hurt-2.mp3",
+      "status": 200
+    },
+    {
+      "url": "/audio/arcade/female-hurt-3.mp3",
+      "status": 200
+    }
+  ],
+  "originalSpeechRequests": 0,
+  "local": {
+    "before": [
+      {
+        "fighter": "zavarce",
+        "x": 689.454987021688,
+        "hp": 100
+      },
+      {
+        "fighter": "vallenilla",
+        "x": 750,
+        "hp": 100
+      }
+    ],
+    "blocked": [
+      {
+        "hp": 100,
+        "blocking": false,
+        "energy": 100
+      },
+      {
+        "hp": 100,
+        "blocking": true,
+        "energy": 87.75999999999988
+      }
+    ],
+    "blockPlaybacks": [
+      {
+        "file": "/audio/arcade/male-attack-1.mp3",
+        "at": 44010.199999809265,
+        "when": 38.841179138322,
+        "duration": 0.4533106575963719,
+        "pan": 0.22161909937858582,
+        "rate": 1
+      }
+    ],
+    "after": [
+      {
+        "fighter": "zavarce",
+        "hp": 81.45639999999999,
+        "hits": 1,
+        "actions": {
+          "jump": 1,
+          "light": 1,
+          "heavy": 1,
+          "special": 1,
+          "dash": 0,
+          "super": 0
+        }
+      },
+      {
+        "fighter": "vallenilla",
+        "hp": 85.3888,
+        "hits": 3,
+        "actions": {
+          "jump": 1,
+          "light": 0,
+          "heavy": 0,
+          "special": 1,
+          "dash": 0,
+          "super": 0
+        }
+      }
+    ],
+    "playbacks": [
+      {
+        "file": "/audio/arcade/male-jump-3.mp3",
+        "at": 41110.699999809265,
+        "when": 35.941587301587305,
+        "duration": 0.38374149659863943,
+        "pan": -0.31111112236976624,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/male-jump-2.mp3",
+        "at": 41810,
+        "when": 36.64108843537415,
+        "duration": 0.33034013605442175,
+        "pan": 0.31111112236976624,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/male-attack-1.mp3",
+        "at": 44010.199999809265,
+        "when": 38.841179138322,
+        "duration": 0.4533106575963719,
+        "pan": 0.22161909937858582,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/male-attack-3.mp3",
+        "at": 44744.699999809265,
+        "when": 39.581315192743766,
+        "duration": 0.4142857142857143,
+        "pan": 0.22173736989498138,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/male-hurt-2.mp3",
+        "at": 44910.90000009537,
+        "when": 39.775952380952376,
+        "duration": 0.583469387755102,
+        "pan": 0.3152380883693695,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/male-attack-1.mp3",
+        "at": 45643.40000009537,
+        "when": 40.48108843537415,
+        "duration": 0.4533106575963719,
+        "pan": 0.644346296787262,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/male-hurt-3.mp3",
+        "at": 46160,
+        "when": 41.02692743764172,
+        "duration": 0.6006122448979592,
+        "pan": 0.22173738479614258,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/male-hurt-2.mp3",
+        "at": 46476.59999990463,
+        "when": 41.34620181405895,
+        "duration": 0.583469387755102,
+        "pan": 0.1387387216091156,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/male-hurt-1.mp3",
+        "at": 46810,
+        "when": 41.677086167800454,
+        "duration": 0.5576190476190476,
+        "pan": 0.04948617145419121,
+        "rate": 1
+      }
+    ]
+  },
+  "lifecycle": {
+    "before": 10,
+    "started": 11,
+    "stopStart": 3,
+    "stopsOnMute": 4,
+    "mutedStart": 11,
+    "mutedCount": 11,
+    "resumedCount": 12,
+    "beforePause": 4,
+    "stopsAfterPause": 5,
+    "pausedStart": 12,
+    "pausedCount": 12,
+    "noSpeechUI": true
+  },
+  "online": {
+    "room": "E721C2",
+    "phase": "playing",
+    "players": [
+      {
+        "fighter": "maite",
+        "hp": 82.00180000000002,
+        "hits": 1,
+        "actions": {
+          "jump": 1,
+          "light": 0,
+          "heavy": 1,
+          "special": 0,
+          "dash": 0,
+          "super": 0
+        }
+      },
+      {
+        "fighter": "vallenilla",
+        "hp": 88.2688,
+        "hits": 3,
+        "actions": {
+          "jump": 1,
+          "light": 0,
+          "heavy": 0,
+          "special": 1,
+          "dash": 0,
+          "super": 0
+        }
+      }
+    ],
+    "playbacks": [
+      {
+        "file": "/audio/arcade/female-jump-3.mp3",
+        "at": 153405.5,
+        "when": 148.2419954648526,
+        "duration": 0.22968253968253968,
+        "pan": -0.31111112236976624,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/male-jump-2.mp3",
+        "at": 154088.90000009537,
+        "when": 148.921179138322,
+        "duration": 0.33034013605442175,
+        "pan": 0.31111112236976624,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/female-attack-3.mp3",
+        "at": 156255.5,
+        "when": 151.09224489795918,
+        "duration": 0.33643990929705214,
+        "pan": 0.23192644119262695,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/male-hurt-2.mp3",
+        "at": 156406,
+        "when": 151.27527210884352,
+        "duration": 0.583469387755102,
+        "pan": 0.31111112236976624,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/male-attack-2.mp3",
+        "at": 157255.59999990463,
+        "when": 152.0907029478458,
+        "duration": 0.485827664399093,
+        "pan": 0.6311753988265991,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/female-hurt-1.mp3",
+        "at": 157739.09999990463,
+        "when": 152.6075170068027,
+        "duration": 0.5111337868480725,
+        "pan": 0.23322777450084686,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/female-hurt-3.mp3",
+        "at": 158055.5,
+        "when": 152.92679138321995,
+        "duration": 0.3785034013605442,
+        "pan": 0.1495232880115509,
+        "rate": 1
+      },
+      {
+        "file": "/audio/arcade/female-hurt-1.mp3",
+        "at": 158338.90000009537,
+        "when": 153.20543083900228,
+        "duration": 0.5111337868480725,
+        "pan": 0.06150438264012337,
+        "rate": 1
+      }
+    ],
+    "serverTick": 481,
+    "clientTick": 479
+  },
+  "exit": {
+    "soundsBeforeExit": 21,
+    "soundsAfterExit": 21,
+    "stopsBeforeExit": 7,
+    "stopsAfterExit": 8
+  },
+  "prefsUnchanged": true,
+  "speechUiElements": 0
+}

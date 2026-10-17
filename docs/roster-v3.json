@@ -1,0 +1,382 @@
+{
+  "version": 3,
+  "model": "gpt-6-luna",
+  "reasoningEffort": "high",
+  "fighters": [
+    {
+      "id": "john",
+      "sprite": "john-v2",
+      "name": "John Acquaviva",
+      "shortName": "Acquaviva",
+      "title": "El gladiador del debate",
+      "role": "ESTRATEGA",
+      "color": "#ffb56b",
+      "description": "Índice arriba, argumento listo y una patada de freestyle. El comentarista de La hora de Acquaviva trae su propio estilo a la arena.",
+      "speed": 4.5,
+      "damage": 1.08,
+      "armor": 1,
+      "stats": [
+        4,
+        3,
+        4
+      ],
+      "ability": "wave",
+      "special": "La hora de Acquaviva",
+      "combos": [
+        "Réplica en vivo",
+        "Freestyle al argumento",
+        "Gladiador del debate"
+      ]
+    },
+    {
+      "id": "kilometro",
+      "sprite": "kilometro-v2",
+      "name": "Kilómetro",
+      "shortName": "Kilómetro",
+      "title": "El comunicador",
+      "role": "ÁGIL",
+      "color": "#79bf93",
+      "description": "Gorra negra, suéter verde y el directo encendido. Kilómetro Internacional entra y sale de la pelea con una ráfaga de golpes rápidos.",
+      "speed": 5.9,
+      "damage": 0.9,
+      "armor": 1.04,
+      "stats": [
+        3,
+        5,
+        3
+      ],
+      "ability": "dash",
+      "special": "Coro viral",
+      "combos": [
+        "Hilo en vivo",
+        "Pregunta incómoda",
+        "Cadena viral"
+      ]
+    },
+    {
+      "id": "javier",
+      "sprite": "javier-v2",
+      "name": "Javier Hala Madrid",
+      "shortName": "Javier",
+      "title": "El remate maracucho",
+      "role": "IMPREDECIBLE",
+      "color": "#ff96bd",
+      "description": "Ceja levantada, respuesta rápida y un remate de mialma. Sus fintas y giros llevan las reacciones de cámara al combate.",
+      "speed": 5.3,
+      "damage": 0.97,
+      "armor": 1.03,
+      "stats": [
+        3,
+        4,
+        3
+      ],
+      "ability": "spin",
+      "special": "Reacción maracucha",
+      "combos": [
+        "Finta de ceja",
+        "Réplica al instante",
+        "Remate de mialma"
+      ]
+    },
+    {
+      "id": "capriles",
+      "sprite": "capriles-v3",
+      "name": "Capriles Radonski",
+      "shortName": "Capriles",
+      "title": "A toda marcha",
+      "role": "VELOCIDAD",
+      "color": "#80b8ff",
+      "description": "Corre la cancha completa. Su sprint tricolor atraviesa la arena y castiga a quien se quede quieto.",
+      "speed": 6.2,
+      "damage": 0.88,
+      "armor": 1.02,
+      "stats": [
+        3,
+        5,
+        3
+      ],
+      "ability": "sprint",
+      "special": "Sprint tricolor",
+      "combos": [
+        "Paso a paso",
+        "Carrera de fondo",
+        "Meta tricolor"
+      ]
+    },
+    {
+      "id": "renny",
+      "sprite": "renny-v3",
+      "name": "Renny Ottolina",
+      "shortName": "Renny",
+      "title": "El número uno",
+      "role": "PRECISIÓN",
+      "color": "#ffc76a",
+      "description": "Traje, corbata y presencia de televisión. Sus dos pulsos de transmisión controlan el espacio a distinto ritmo.",
+      "speed": 4.5,
+      "damage": 1.0,
+      "armor": 0.97,
+      "stats": [
+        3,
+        3,
+        4
+      ],
+      "ability": "broadcast",
+      "special": "En cadena",
+      "combos": [
+        "Doble anuncio",
+        "Buenas noches",
+        "El número uno"
+      ]
+    },
+    {
+      "id": "gomez",
+      "sprite": "gomez-v3",
+      "name": "Juan Vicente Gómez",
+      "shortName": "Gómez",
+      "title": "El general de archivo",
+      "role": "PODER",
+      "color": "#c9ae78",
+      "description": "Uniforme histórico, bigote y andar pesado. Un golpe contra el suelo sacude a los rivales que permanezcan cerca.",
+      "speed": 3.5,
+      "damage": 1.2,
+      "armor": 0.86,
+      "stats": [
+        5,
+        2,
+        5
+      ],
+      "ability": "command",
+      "special": "Paso del general",
+      "combos": [
+        "Paso firme",
+        "Orden cerrada",
+        "Golpe de mando"
+      ]
+    },
+    {
+      "id": "simon",
+      "sprite": "simon-v3",
+      "name": "Simón Díaz",
+      "shortName": "Tío Simón",
+      "title": "El cantor del llano",
+      "role": "DISTANCIA",
+      "color": "#e0a55f",
+      "description": "Sombrero y camisa de faena. Un abanico de tres notas viaja por trayectorias distintas y cubre los saltos del rival.",
+      "speed": 4.1,
+      "damage": 0.95,
+      "armor": 0.97,
+      "stats": [
+        3,
+        3,
+        4
+      ],
+      "ability": "cuatro",
+      "special": "Acorde llanero",
+      "combos": [
+        "Primer acorde",
+        "Contrapunteo",
+        "Tonada de la arena"
+      ]
+    },
+    {
+      "id": "conde",
+      "sprite": "conde-v3",
+      "name": "Er Conde del Guácharo",
+      "shortName": "El Conde",
+      "title": "El remate oriental",
+      "role": "EMBESTIDA",
+      "color": "#8bd3ac",
+      "description": "Sombrero y movimientos teatrales. Su embestida corta tiene un arranque pesado y mucho empuje al conectar.",
+      "speed": 4.2,
+      "damage": 1.1,
+      "armor": 0.9,
+      "stats": [
+        4,
+        3,
+        4
+      ],
+      "ability": "whirl",
+      "special": "Remate oriental",
+      "combos": [
+        "Chiste corto",
+        "Doble remate",
+        "La función completa"
+      ]
+    },
+    {
+      "id": "emilio",
+      "sprite": "emilio-v3",
+      "name": "Emilio Lovera",
+      "shortName": "Emilio",
+      "title": "Mil gestos, un remate",
+      "role": "TÉCNICA",
+      "color": "#bd98ef",
+      "description": "El rostro cambia antes de cada golpe. Ataca en dos tiempos, con una segunda réplica que castiga una defensa prematura.",
+      "speed": 4.8,
+      "damage": 0.99,
+      "armor": 0.97,
+      "stats": [
+        3,
+        4,
+        4
+      ],
+      "ability": "echo",
+      "special": "Doble interpretación",
+      "combos": [
+        "Cambio de gesto",
+        "Segunda voz",
+        "Remate de mil caras"
+      ]
+    },
+    {
+      "id": "maite",
+      "sprite": "maite-v3",
+      "name": "Maite Delgado",
+      "shortName": "Maite",
+      "title": "La anfitriona",
+      "role": "CONTROL",
+      "color": "#f19bca",
+      "description": "Vestido de gala y porte de presentadora. Marca el suelo frente a ella y enciende un foco que interrumpe la aproximación.",
+      "speed": 4.7,
+      "damage": 0.94,
+      "armor": 0.99,
+      "stats": [
+        3,
+        4,
+        4
+      ],
+      "ability": "spotlight",
+      "special": "Luz de escenario",
+      "combos": [
+        "Primera entrada",
+        "Cambio de cámara",
+        "Gran final"
+      ]
+    },
+    {
+      "id": "oscar",
+      "sprite": "oscar-v3",
+      "name": "Óscar D’León",
+      "shortName": "Óscar",
+      "title": "El sonero",
+      "role": "AÉREO",
+      "color": "#ea806d",
+      "description": "Bigote, sonrisa y traje de escenario. Salta con un giro de salsa que golpea a ambos lados y alcanza rivales en el aire.",
+      "speed": 5.1,
+      "damage": 1.01,
+      "armor": 0.97,
+      "stats": [
+        4,
+        4,
+        3
+      ],
+      "ability": "salsa",
+      "special": "Giro del sonero",
+      "combos": [
+        "Paso de salsa",
+        "Síncopa doble",
+        "Cierre del sonero"
+      ]
+    },
+    {
+      "id": "puma",
+      "sprite": "puma-v3",
+      "name": "José Luis Rodríguez",
+      "shortName": "El Puma",
+      "title": "El rugido de la arena",
+      "role": "ALCANCE",
+      "color": "#9ac5ed",
+      "description": "Cabellera característica y chaqueta de escenario. Su rugido dibuja un cono amplio que empuja al oponente hacia el borde.",
+      "speed": 4.0,
+      "damage": 1.12,
+      "armor": 0.91,
+      "stats": [
+        4,
+        3,
+        4
+      ],
+      "ability": "roar",
+      "special": "Rugido del Puma",
+      "combos": [
+        "Primer rugido",
+        "Crescendo",
+        "Último aplauso"
+      ]
+    },
+    {
+      "id": "chataing",
+      "sprite": "chataing-v3",
+      "name": "Luis Chataing",
+      "shortName": "Chataing",
+      "title": "La réplica al aire",
+      "role": "ESTRATEGA",
+      "color": "#91d3d7",
+      "description": "Gafas y micrófono de conductor. Envía una señal que vuelve hacia él y obliga a vigilar el espacio por ambos lados.",
+      "speed": 4.9,
+      "damage": 0.95,
+      "armor": 1.0,
+      "stats": [
+        3,
+        4,
+        3
+      ],
+      "ability": "static",
+      "special": "Micrófono de vuelta",
+      "combos": [
+        "Pregunta directa",
+        "Repregunta",
+        "Cierre al aire"
+      ]
+    },
+    {
+      "id": "george",
+      "sprite": "george-v3",
+      "name": "George Harris",
+      "shortName": "George",
+      "title": "El monólogo",
+      "role": "RITMO",
+      "color": "#d5a787",
+      "description": "Camisa de escenario y gestos de monólogo. Prepara el remate, pausa y vuelve a golpear con más alcance.",
+      "speed": 4.4,
+      "damage": 1.07,
+      "armor": 0.95,
+      "stats": [
+        4,
+        3,
+        4
+      ],
+      "ability": "punchline",
+      "special": "Remate en dos tiempos",
+      "combos": [
+        "Primera fila",
+        "Otra más",
+        "Sala llena"
+      ]
+    },
+    {
+      "id": "mcm",
+      "sprite": "mcm-v3",
+      "name": "María Corina Machado",
+      "shortName": "María Corina",
+      "title": "La marcha firme",
+      "role": "MOVILIDAD",
+      "color": "#75bfea",
+      "description": "Camisa blanca, cabello largo y paso decidido. Avanza con un salto bajo que convierte el especial en una herramienta de ataque y recuperación.",
+      "speed": 5.6,
+      "damage": 0.92,
+      "armor": 0.99,
+      "stats": [
+        3,
+        5,
+        3
+      ],
+      "ability": "rally",
+      "special": "Marcha firme",
+      "combos": [
+        "Paso decidido",
+        "Impulso doble",
+        "Hasta el final"
+      ]
+    }
+  ]
+}
