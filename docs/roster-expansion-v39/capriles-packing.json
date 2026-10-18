@@ -1,0 +1,83 @@
+{
+  "id": "capriles",
+  "raw": "assets/source/roster-v39/capriles-generated.png",
+  "source": "assets/source/capriles-v39.png",
+  "runtime": "public/assets/capriles-v39.webp",
+  "sourceWidth": 1774,
+  "sourceHeight": 887,
+  "frames": [
+    {
+      "label": 1,
+      "minX": 56,
+      "minY": 15,
+      "maxX": 358,
+      "maxY": 445,
+      "pixels": 58204,
+      "frame": 0
+    },
+    {
+      "label": 4,
+      "minX": 486,
+      "minY": 21,
+      "maxX": 822,
+      "maxY": 448,
+      "pixels": 57216,
+      "frame": 1
+    },
+    {
+      "label": 3,
+      "minX": 897,
+      "minY": 17,
+      "maxX": 1284,
+      "maxY": 446,
+      "pixels": 68536,
+      "frame": 2
+    },
+    {
+      "label": 2,
+      "minX": 1344,
+      "minY": 15,
+      "maxX": 1745,
+      "maxY": 445,
+      "pixels": 63941,
+      "frame": 3
+    },
+    {
+      "label": 7,
+      "minX": 44,
+      "minY": 476,
+      "maxX": 353,
+      "maxY": 844,
+      "pixels": 60137,
+      "frame": 4
+    },
+    {
+      "label": 5,
+      "minX": 427,
+      "minY": 462,
+      "maxX": 875,
+      "maxY": 874,
+      "pixels": 63478,
+      "frame": 5
+    },
+    {
+      "label": 6,
+      "minX": 945,
+      "minY": 466,
+      "maxX": 1349,
+      "maxY": 874,
+      "pixels": 53450,
+      "frame": 6
+    },
+    {
+      "label": 8,
+      "minX": 1451,
+      "minY": 479,
+      "maxX": 1745,
+      "maxY": 873,
+      "pixels": 60215,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 0
+}

@@ -1,0 +1,83 @@
+{
+  "id": "dayana",
+  "raw": "assets/source/identity-v40/dayana-generated.png",
+  "source": "assets/source/dayana-v40.png",
+  "runtime": "public/assets/dayana-v40.webp",
+  "sourceWidth": 1774,
+  "sourceHeight": 887,
+  "frames": [
+    {
+      "label": 1,
+      "minX": 35,
+      "minY": 14,
+      "maxX": 365,
+      "maxY": 461,
+      "pixels": 53321,
+      "frame": 0
+    },
+    {
+      "label": 2,
+      "minX": 487,
+      "minY": 18,
+      "maxX": 832,
+      "maxY": 461,
+      "pixels": 53921,
+      "frame": 1
+    },
+    {
+      "label": 3,
+      "minX": 916,
+      "minY": 18,
+      "maxX": 1284,
+      "maxY": 458,
+      "pixels": 57479,
+      "frame": 2
+    },
+    {
+      "label": 4,
+      "minX": 1351,
+      "minY": 26,
+      "maxX": 1748,
+      "maxY": 459,
+      "pixels": 54915,
+      "frame": 3
+    },
+    {
+      "label": 7,
+      "minX": 83,
+      "minY": 481,
+      "maxX": 336,
+      "maxY": 846,
+      "pixels": 51148,
+      "frame": 4
+    },
+    {
+      "label": 8,
+      "minX": 432,
+      "minY": 493,
+      "maxX": 886,
+      "maxY": 870,
+      "pixels": 51487,
+      "frame": 5
+    },
+    {
+      "label": 9,
+      "minX": 907,
+      "minY": 494,
+      "maxX": 1315,
+      "maxY": 870,
+      "pixels": 41834,
+      "frame": 6
+    },
+    {
+      "label": 10,
+      "minX": 1420,
+      "minY": 494,
+      "maxX": 1719,
+      "maxY": 870,
+      "pixels": 50914,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 5
+}

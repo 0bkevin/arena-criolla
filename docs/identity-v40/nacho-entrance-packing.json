@@ -1,0 +1,83 @@
+{
+  "id": "nacho-entrance",
+  "raw": "assets/source/identity-v40/nacho-entrance-generated.png",
+  "source": "assets/source/nacho-v40-defiant-entrance.png",
+  "runtime": "public/assets/nacho-v40-defiant-entrance.webp",
+  "sourceWidth": 1774,
+  "sourceHeight": 887,
+  "frames": [
+    {
+      "label": 4,
+      "minX": 118,
+      "minY": 49,
+      "maxX": 378,
+      "maxY": 449,
+      "pixels": 51976,
+      "frame": 0
+    },
+    {
+      "label": 1,
+      "minX": 555,
+      "minY": 34,
+      "maxX": 797,
+      "maxY": 449,
+      "pixels": 53357,
+      "frame": 1
+    },
+    {
+      "label": 2,
+      "minX": 974,
+      "minY": 41,
+      "maxX": 1225,
+      "maxY": 449,
+      "pixels": 49914,
+      "frame": 2
+    },
+    {
+      "label": 3,
+      "minX": 1411,
+      "minY": 47,
+      "maxX": 1672,
+      "maxY": 449,
+      "pixels": 47127,
+      "frame": 3
+    },
+    {
+      "label": 7,
+      "minX": 130,
+      "minY": 469,
+      "maxX": 386,
+      "maxY": 865,
+      "pixels": 46975,
+      "frame": 4
+    },
+    {
+      "label": 6,
+      "minX": 556,
+      "minY": 467,
+      "maxX": 810,
+      "maxY": 865,
+      "pixels": 46653,
+      "frame": 5
+    },
+    {
+      "label": 8,
+      "minX": 978,
+      "minY": 477,
+      "maxX": 1230,
+      "maxY": 866,
+      "pixels": 48395,
+      "frame": 6
+    },
+    {
+      "label": 9,
+      "minX": 1415,
+      "minY": 497,
+      "maxX": 1675,
+      "maxY": 865,
+      "pixels": 46844,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 1
+}

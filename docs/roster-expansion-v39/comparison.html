@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Revisión histórica del elenco · v39</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:transparent;color:var(--foreground,#eaf0f8);font:13px var(--font-sans,system-ui),sans-serif}.tabs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}button{font:inherit;cursor:pointer;padding:8px 11px;border:1px solid var(--border,#33465e);border-radius:7px;color:var(--muted-foreground,#a7bad1);background:transparent;transition:background .15s,color .15s}button:hover{background:var(--secondary,#16243a)}button[aria-selected=true]{background:var(--accent-surface,#243d56);color:var(--accent-surface-foreground,#fff0c0);border-color:var(--accent,#ebbe5d)}button:focus-visible{outline:2px solid var(--ring,#edcc73);outline-offset:3px}figure{margin:0}img{display:block;width:100%;height:auto;border-radius:9px}figcaption{margin-top:9px;color:var(--muted-foreground,#a7bad1);line-height:1.5;font-size:12px}
+</style>
+<p style="margin:0 0 12px;line-height:1.5;color:var(--muted-foreground,#a7bad1)">Revisión histórica v39. Javier tiene una <a href="../identity-v43/comparison.html" style="color:inherit">versión posterior basada en la foto elegida por el usuario</a>; Dayana y Nacho también se actualizaron después.</p>
+<div class="tabs" role="tablist" aria-label="Revisión visual">
+<button role="tab" aria-selected="true" aria-controls="art" data-view="0">Capriles y Javier</button>
+<button role="tab" aria-selected="false" aria-controls="art" data-view="1">Elenco actualizado</button>
+<button role="tab" aria-selected="false" aria-controls="art" data-view="2">Ocho poses</button>
+<button role="tab" aria-selected="false" aria-controls="art" data-view="3">En pelea</button>
+</div>
+<figure id="art"><img id="visual" src="comparison.png" alt="Capriles y Javier antes y después, junto a dos luchadores de referencia"><figcaption id="caption">Comparación a la misma altura con el renderizador del juego: acabado ilustrado para Capriles y proporciones corregidas para Javier.</figcaption></figure>
+<script>
+const views=[
+{url:"comparison.png",alt:"Capriles y Javier antes y después, junto a dos luchadores de referencia",caption:"Comparación a la misma altura con el renderizador del juego: acabado ilustrado para Capriles y proporciones corregidas para Javier."},
+{url:"gallery.png",alt:"Los siete personajes nuevos o corregidos",caption:"Lorenzo Mendoza, Carolina Herrera, Dayana Mendoza, Simón Bolívar y Édgar Ramírez, junto a Capriles y Javier corregidos."},
+{url:"all-poses.png",alt:"Las ocho poses de cada personaje comparadas con Renny y Vicente",caption:"Guardia, bloqueo, dos carreras, salto, golpe, patada e impacto. Los dos primeros renglones sirven de referencia del elenco."},
+{url:"match.png",alt:"Javier Hala Madrid contra Capriles en Altamira",caption:"Captura de una pelea real, con ambos atlas nuevos cargados."}
+];
+function activate(index){const view=views[index];document.getElementById('visual').src=view.url;document.getElementById('visual').alt=view.alt;document.getElementById('caption').textContent=view.caption;document.querySelectorAll('[data-view]').forEach((button,i)=>button.setAttribute('aria-selected',String(i===index)));}
+document.querySelectorAll('[data-view]').forEach((button,i)=>button.onclick=()=>activate(i));
+Promise.all(views.map(view=>new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img.naturalWidth);img.onerror=()=>reject(Error('Image failed: '+view.url));img.src=view.url;}))).then(widths=>console.log(JSON.stringify({viewsLoaded:widths.length,overflow:document.documentElement.scrollWidth>innerWidth}))).catch(console.error);
+</script>
+</html>
