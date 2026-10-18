@@ -1,0 +1,83 @@
+{
+  "id": "victor",
+  "raw": "assets/source/founders-v3/victor-generated.png",
+  "source": "assets/source/victor-v3.png",
+  "runtime": "public/assets/victor-v3.webp",
+  "sourceWidth": 1774,
+  "sourceHeight": 887,
+  "frames": [
+    {
+      "label": 1,
+      "minX": 96,
+      "minY": 11,
+      "maxX": 356,
+      "maxY": 459,
+      "pixels": 54825,
+      "frame": 0
+    },
+    {
+      "label": 2,
+      "minX": 504,
+      "minY": 19,
+      "maxX": 831,
+      "maxY": 459,
+      "pixels": 55240,
+      "frame": 1
+    },
+    {
+      "label": 4,
+      "minX": 924,
+      "minY": 29,
+      "maxX": 1296,
+      "maxY": 438,
+      "pixels": 60828,
+      "frame": 2
+    },
+    {
+      "label": 3,
+      "minX": 1352,
+      "minY": 28,
+      "maxX": 1746,
+      "maxY": 453,
+      "pixels": 61717,
+      "frame": 3
+    },
+    {
+      "label": 5,
+      "minX": 68,
+      "minY": 463,
+      "maxX": 339,
+      "maxY": 821,
+      "pixels": 51554,
+      "frame": 4
+    },
+    {
+      "label": 7,
+      "minX": 466,
+      "minY": 467,
+      "maxX": 908,
+      "maxY": 874,
+      "pixels": 59693,
+      "frame": 5
+    },
+    {
+      "label": 6,
+      "minX": 949,
+      "minY": 466,
+      "maxX": 1373,
+      "maxY": 873,
+      "pixels": 52539,
+      "frame": 6
+    },
+    {
+      "label": 8,
+      "minX": 1452,
+      "minY": 470,
+      "maxX": 1734,
+      "maxY": 871,
+      "pixels": 52654,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 0
+}
