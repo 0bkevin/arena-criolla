@@ -1,0 +1,192 @@
+{
+  "functionalDesktop": {
+    "before": {
+      "phase": "playing",
+      "tick": 517,
+      "x": 330,
+      "inputs": {
+        "left": false,
+        "right": false,
+        "block": false,
+        "down": false,
+        "actions": {
+          "jump": 0,
+          "light": 0,
+          "heavy": 0,
+          "special": 0,
+          "dash": 0,
+          "super": 0
+        }
+      }
+    },
+    "during": {
+      "phase": "playing",
+      "tick": 527,
+      "x": 360.35661140421877,
+      "inputs": {
+        "left": false,
+        "right": true,
+        "block": false,
+        "down": false,
+        "actions": {
+          "jump": 0,
+          "light": 0,
+          "heavy": 0,
+          "special": 0,
+          "dash": 0,
+          "super": 0
+        }
+      }
+    },
+    "after": {
+      "phase": "playing",
+      "tick": 527,
+      "x": 360.35661140421877,
+      "inputs": {
+        "left": false,
+        "right": false,
+        "block": false,
+        "down": false,
+        "actions": {
+          "jump": 0,
+          "light": 0,
+          "heavy": 0,
+          "special": 0,
+          "dash": 0,
+          "super": 0
+        }
+      }
+    },
+    "mobile": false,
+    "touchButtons": 0,
+    "audioLoaded": 18,
+    "qa": {
+      "violations": [],
+      "errors": []
+    }
+  },
+  "functionalMobile": {
+    "before": {
+      "phase": "playing",
+      "tick": 913,
+      "x": 27.174922479199296,
+      "inputs": {
+        "left": false,
+        "right": false,
+        "block": false,
+        "down": false,
+        "actions": {
+          "jump": 0,
+          "light": 0,
+          "heavy": 0,
+          "special": 0,
+          "dash": 0,
+          "super": 0
+        }
+      }
+    },
+    "during": {
+      "phase": "playing",
+      "tick": 925,
+      "x": -110.0820375208007,
+      "inputs": {
+        "left": false,
+        "right": true,
+        "block": false,
+        "down": false,
+        "actions": {
+          "jump": 0,
+          "light": 0,
+          "heavy": 0,
+          "special": 0,
+          "dash": 0,
+          "super": 0
+        }
+      }
+    },
+    "after": {
+      "phase": "playing",
+      "tick": 925,
+      "x": -110.0820375208007,
+      "inputs": {
+        "left": false,
+        "right": false,
+        "block": false,
+        "down": false,
+        "actions": {
+          "jump": 0,
+          "light": 0,
+          "heavy": 0,
+          "special": 0,
+          "dash": 0,
+          "super": 0
+        }
+      }
+    },
+    "mobile": true,
+    "touchButtons": 10,
+    "audioLoaded": 18,
+    "qa": {
+      "violations": [],
+      "errors": []
+    }
+  },
+  "cspDesktop": {
+    "canvasDrawn": true,
+    "nonce": true,
+    "blockedInline": true,
+    "expectedViolations": [
+      {
+        "directive": "script-src-elem",
+        "blocked": "inline"
+      }
+    ],
+    "previousUnexpectedViolations": [],
+    "errors": []
+  },
+  "cspMobile": {
+    "canvasDrawn": true,
+    "nonce": true,
+    "blockedInline": true,
+    "expectedViolations": [
+      {
+        "directive": "script-src-elem",
+        "blocked": "inline"
+      },
+      {
+        "directive": "script-src-elem",
+        "blocked": "inline"
+      }
+    ],
+    "previousUnexpectedViolations": [],
+    "errors": []
+  },
+  "productionMain": {
+    "url": "https://arena.kevinbravo.com",
+    "connected": true,
+    "noncedScripts": true,
+    "contentSecurityPolicy": true,
+    "hsts": "max-age=31536000",
+    "referrer": "no-referrer",
+    "workshopVisible": false,
+    "overflow": false,
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    }
+  },
+  "productionAlias": {
+    "url": "https://arenacriolla.161-153-114-230.sslip.io",
+    "connected": true,
+    "noncedScripts": true,
+    "contentSecurityPolicy": true,
+    "hsts": "max-age=31536000",
+    "referrer": "no-referrer",
+    "workshopVisible": false,
+    "overflow": false,
+    "viewport": {
+      "width": 844,
+      "height": 390
+    }
+  }
+}
