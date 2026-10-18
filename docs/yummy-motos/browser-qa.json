@@ -1,0 +1,157 @@
+{
+  "checkedAt": "2026-10-18",
+  "method": "Scripted combat replays using the shipped engine, atlas loader, camera and renderer in the T3 collaborative browser.",
+  "viewports": [
+    [
+      1280,
+      800
+    ],
+    [
+      844,
+      390
+    ]
+  ],
+  "reducedMotionChecked": true,
+  "passed": true,
+  "cases": 10,
+  "elapsedMs": 138,
+  "atlas": {
+    "width": 896,
+    "height": 640
+  },
+  "evidence": [
+    {
+      "stage": "caracas",
+      "rival": "vallenilla",
+      "side": 0,
+      "mode": "hit",
+      "sourceHits": 7,
+      "minSourceHp": 100,
+      "minTargetHp": 77.8912,
+      "reflectedBikes": 0,
+      "bikeDraws": 42,
+      "renderedFrames": 24,
+      "passed": true
+    },
+    {
+      "stage": "guaira",
+      "rival": "capriles",
+      "side": 1,
+      "mode": "guard",
+      "sourceHits": 0,
+      "minSourceHp": 100,
+      "minTargetHp": 100,
+      "reflectedBikes": 0,
+      "bikeDraws": 28,
+      "renderedFrames": 24,
+      "passed": true
+    },
+    {
+      "stage": "valencia",
+      "rival": "maite",
+      "side": 0,
+      "mode": "jump",
+      "sourceHits": 0,
+      "minSourceHp": 100,
+      "minTargetHp": 100,
+      "reflectedBikes": 0,
+      "bikeDraws": 90,
+      "renderedFrames": 24,
+      "passed": true
+    },
+    {
+      "stage": "canaima",
+      "rival": "silbon",
+      "side": 1,
+      "mode": "hit",
+      "sourceHits": 7,
+      "minSourceHp": 100,
+      "minTargetHp": 77.20030000000004,
+      "reflectedBikes": 0,
+      "bikeDraws": 42,
+      "renderedFrames": 24,
+      "passed": true
+    },
+    {
+      "stage": "maracaibo",
+      "rival": "dudamel",
+      "side": 0,
+      "mode": "reflect",
+      "gap": 80,
+      "sourceHits": 0,
+      "minSourceHp": 76.68279999999999,
+      "minTargetHp": 100,
+      "reflectedBikes": 4,
+      "bikeDraws": 50,
+      "renderedFrames": 24,
+      "passed": true
+    },
+    {
+      "stage": "merida",
+      "rival": "amanda",
+      "side": 1,
+      "mode": "counter",
+      "gap": 180,
+      "sourceHits": 6,
+      "minSourceHp": 81.793,
+      "minTargetHp": 81.44439999999997,
+      "reflectedBikes": 0,
+      "bikeDraws": 27,
+      "renderedFrames": 24,
+      "passed": true
+    },
+    {
+      "stage": "coro",
+      "rival": "diablo",
+      "side": 0,
+      "mode": "clash",
+      "sourceHits": 7,
+      "minSourceHp": 100,
+      "minTargetHp": 76.50939999999999,
+      "reflectedBikes": 0,
+      "bikeDraws": 42,
+      "renderedFrames": 24,
+      "passed": true
+    },
+    {
+      "stage": "roques",
+      "rival": "lionza",
+      "side": 0,
+      "mode": "platform",
+      "sourceHits": 4,
+      "minSourceHp": 100,
+      "minTargetHp": 87.76119999999997,
+      "reflectedBikes": 0,
+      "bikeDraws": 57,
+      "renderedFrames": 24,
+      "passed": true
+    },
+    {
+      "stage": "poliedro",
+      "rival": "oscar",
+      "side": 1,
+      "mode": "hit",
+      "sourceHits": 7,
+      "minSourceHp": 100,
+      "minTargetHp": 77.66090000000001,
+      "reflectedBikes": 0,
+      "bikeDraws": 42,
+      "renderedFrames": 24,
+      "passed": true
+    },
+    {
+      "stage": "poliedro",
+      "rival": "dudamel",
+      "side": 1,
+      "mode": "reflect",
+      "gap": 80,
+      "sourceHits": 0,
+      "minSourceHp": 76.68279999999999,
+      "minTargetHp": 100,
+      "reflectedBikes": 4,
+      "bikeDraws": 50,
+      "renderedFrames": 24,
+      "passed": true
+    }
+  ]
+}

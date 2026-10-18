@@ -1,0 +1,83 @@
+{
+  "id": "edgar",
+  "raw": "assets/source/roster-v39/edgar-generated.png",
+  "source": "assets/source/edgar-v39.png",
+  "runtime": "public/assets/edgar-v39.webp",
+  "sourceWidth": 1774,
+  "sourceHeight": 887,
+  "frames": [
+    {
+      "label": 1,
+      "minX": 35,
+      "minY": 16,
+      "maxX": 383,
+      "maxY": 451,
+      "pixels": 61026,
+      "frame": 0
+    },
+    {
+      "label": 4,
+      "minX": 481,
+      "minY": 25,
+      "maxX": 829,
+      "maxY": 451,
+      "pixels": 56913,
+      "frame": 1
+    },
+    {
+      "label": 3,
+      "minX": 907,
+      "minY": 22,
+      "maxX": 1301,
+      "maxY": 445,
+      "pixels": 67190,
+      "frame": 2
+    },
+    {
+      "label": 2,
+      "minX": 1340,
+      "minY": 21,
+      "maxX": 1753,
+      "maxY": 453,
+      "pixels": 64759,
+      "frame": 3
+    },
+    {
+      "label": 6,
+      "minX": 72,
+      "minY": 457,
+      "maxX": 340,
+      "maxY": 821,
+      "pixels": 53599,
+      "frame": 4
+    },
+    {
+      "label": 8,
+      "minX": 435,
+      "minY": 469,
+      "maxX": 882,
+      "maxY": 875,
+      "pixels": 62097,
+      "frame": 5
+    },
+    {
+      "label": 5,
+      "minX": 918,
+      "minY": 456,
+      "maxX": 1336,
+      "maxY": 874,
+      "pixels": 55459,
+      "frame": 6
+    },
+    {
+      "label": 7,
+      "minX": 1435,
+      "minY": 465,
+      "maxX": 1733,
+      "maxY": 875,
+      "pixels": 58523,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 0
+}

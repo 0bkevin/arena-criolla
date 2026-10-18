@@ -1,0 +1,59 @@
+{
+  "file": "javier-v43-defiant-entrance",
+  "cell": 512,
+  "bodyHeight": 438,
+  "baseline": 482,
+  "anchorX": 256,
+  "width": 2048,
+  "height": 1024,
+  "frames": [
+    {
+      "x": 155,
+      "y": 43,
+      "width": 201,
+      "height": 438,
+      "slotX": 0,
+      "slotY": 0
+    },
+    {
+      "x": 678,
+      "y": 43,
+      "width": 179,
+      "height": 438,
+      "slotX": 512,
+      "slotY": 0
+    },
+    {
+      "x": 1183,
+      "y": 43,
+      "width": 194,
+      "height": 438,
+      "slotX": 1024,
+      "slotY": 0
+    },
+    {
+      "x": 1695,
+      "y": 43,
+      "width": 194,
+      "height": 438,
+      "slotX": 1536,
+      "slotY": 0
+    },
+    {
+      "x": 164,
+      "y": 555,
+      "width": 184,
+      "height": 438,
+      "slotX": 0,
+      "slotY": 512
+    },
+    {
+      "x": 676,
+      "y": 555,
+      "width": 184,
+      "height": 438,
+      "slotX": 512,
+      "slotY": 512
+    }
+  ]
+}

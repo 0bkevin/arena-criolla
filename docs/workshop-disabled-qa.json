@@ -1,0 +1,58 @@
+{
+  "recordedAt": "2026-10-18T12:49:18.353Z",
+  "publicUrl": "https://arena.kevinbravo.com",
+  "state": "workshop-disabled-and-deployed",
+  "changes": [
+    "Removed desktop navigation and mobile character-creation entries",
+    "Removed the workshop route, UI module and API client from the compiled game",
+    "Redirected old /create links, including nested links, to / without caching the redirect",
+    "Blocked public workshop and account APIs with uncached JSON 404 responses before parsing bodies",
+    "Disabled the generation provider in the normal game server even if one is configured",
+    "Retained inactive workshop code and existing game data for possible future reactivation"
+  ],
+  "validation": {
+    "testsPassed": 715,
+    "testsFailed": 0,
+    "productionBuild": "passed",
+    "uiDetectorFindings": 0,
+    "compiledWorkshopChunks": 0,
+    "compiledCreationOrAccountApiCalls": 0,
+    "disabledGameBootedWithGenerationEnvTrueAndNoApiKey": true,
+    "desktop": {
+      "url": "https://arena.kevinbravo.com/",
+      "viewport": [
+        1280,
+        800
+      ],
+      "creationEntries": [],
+      "mobileEntry": false,
+      "workshop": false,
+      "overflow": false,
+      "connected": true,
+      "workshopRequests": []
+    },
+    "mobile": {
+      "url": "https://arena.kevinbravo.com/",
+      "viewport": [
+        390,
+        844
+      ],
+      "creationEntries": [],
+      "mobileEntry": false,
+      "workshop": false,
+      "overflow": false,
+      "connected": true,
+      "workshopRequests": []
+    },
+    "publicMultiplayer": "guest create, join, start, movement, identical state and leave passed",
+    "backupBeforeDeployment": "passed"
+  },
+  "preservation": {
+    "roster": true,
+    "existingPublishedCharactersAndPublicAssets": true,
+    "guestMultiplayer": true,
+    "localAndCpuModes": true,
+    "storedAccountsAndCharacterData": true
+  },
+  "image": "arena-criolla:main-cc15e31-no-workshop"
+}

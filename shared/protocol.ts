@@ -2,12 +2,16 @@ import type { CommunityCharacter } from "./creator";
 import type { FighterId, StageId } from "./content";
 import type { Input, MatchState } from "./engine";
 
+export const ARENA_SOCKET_PROTOCOL = "arena-v1";
+export const ROOM_RESUME_PROTOCOL_PREFIX = "arena-resume.";
+
 export interface RoomPlayer {
   id: string;
   name: string;
   fighter: FighterId;
   ready: boolean;
   wins: number;
+  connected?: boolean;
 }
 export interface RoomView {
   code: string;
@@ -41,7 +45,7 @@ export type ClientMessage =
   | { type: "leave" };
 export type ServerMessage =
   | { type: "community"; characters: CommunityCharacter[] }
-  | { type: "welcome"; id: string }
+  | { type: "welcome"; id: string; resumeToken?: string; resumed?: boolean }
   | { type: "rooms"; rooms: RoomView[]; online: number }
   | { type: "room"; room: RoomView }
   | { type: "start"; state: MatchState; index: number }

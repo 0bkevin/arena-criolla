@@ -41,8 +41,10 @@ test("Javier intro gates both sides and settles into the correct ready facing", 
   assert.equal(samplePose(presentation.selectionBeats, 1).frame, 0);
   assert.equal(selectionProgress("javier", 2800), 1);
   for (let frame = 0; frame < 8; frame++) {
-    assert.equal(normalizedFacing("javier", frame, 1), 1);
-    assert.equal(normalizedFacing("javier", frame, -1), -1);
+    // The authored hurt pose faces left and recoils right; mirror it for P1.
+    const sourceFacing = frame === 7 ? -1 : 1;
+    assert.equal(normalizedFacing("javier", frame, 1), sourceFacing);
+    assert.equal(normalizedFacing("javier", frame, -1), -sourceFacing);
   }
 });
 

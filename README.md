@@ -8,7 +8,7 @@ El repositorio incluye los assets necesarios para jugar en `public/`, los PNG ed
 
 Las fotografías, entrevistas y otros medios descargados para investigación, las voces retiradas y las miniaturas de referencia quedan fuera de esta publicación. Los informes históricos conservan sus enlaces y rutas de investigación; esas rutas locales pueden no existir en un clon público. Los secretos y los datos privados del taller tampoco se distribuyen.
 
-Juego de pelea en español con 46 personajes. Conserva estas 15 figuras venezolanas: Vicente Zavarce, Pedro Vallenilla, Javier Hala Madrid, Capriles Radonski, Renny Ottolina, Juan Vicente Gómez, Simón Díaz, Er Conde del Guácharo, Emilio Lovera, Maite Delgado, Óscar D’León, El Puma, Luis Chataing, George Harris y María Corina Machado. Se suman Alí Primera, Gualberto Ibarreto, Reynaldo Armas, Gustavo Dudamel, Danny Ocean, Nacho, Daniel Sarcos, Yordano, Lila Morillo, Rummy Olivo, Chiquinquirá Delgado, Norkys Batista, Gabriela Spanic, Amanda Gutiérrez, Lele Pons y Giuseppe Gangi. También se incorporan Enrique Rivas (Fina), Jesús Castillo (Kontigo), Carlos García Ottati (Kavak), Víctor Cárdenas (Slash) y Juan José Pocaterra (Vikua y La Wawa). También están El Silbón, La Llorona, La Sayona, María Lionza, Florentino, El Diablo de los Llanos, Doctor Knoche, El Momoy, Tío Tigre y Tío Conejo. Combina vida, bloqueo y combos con plataformas, doble salto, empujones y eliminación por caída.
+Juego de pelea en español con 51 personajes. Conserva estas 15 figuras venezolanas: Vicente Zavarce, Pedro Vallenilla, Javier Hala Madrid, Capriles Radonski, Renny Ottolina, Juan Vicente Gómez, Simón Díaz, Er Conde del Guácharo, Emilio Lovera, Maite Delgado, Óscar D’León, El Puma, Luis Chataing, George Harris y María Corina Machado. Se suman Alí Primera, Gualberto Ibarreto, Reynaldo Armas, Gustavo Dudamel, Danny Ocean, Nacho, Daniel Sarcos, Yordano, Lila Morillo, Rummy Olivo, Chiquinquirá Delgado, Norkys Batista, Gabriela Spanic, Amanda Gutiérrez, Lele Pons y Giuseppe Gangi. También se incorporan Enrique Rivas (Fina), Jesús Castillo (Kontigo), Carlos García Ottati (Kavak), Víctor Cárdenas (Slash) y Juan José Pocaterra (Vikua y La Wawa). Se incorporan Lorenzo Mendoza, Carolina Herrera, Dayana Mendoza, Simón Bolívar y Édgar Ramírez. También están El Silbón, La Llorona, La Sayona, María Lionza, Florentino, El Diablo de los Llanos, Doctor Knoche, El Momoy, Tío Tigre y Tío Conejo. Combina vida, bloqueo y combos con plataformas, doble salto, empujones y eliminación por caída.
 
 ## Jugar y desarrollar
 
@@ -27,17 +27,11 @@ Abre `http://localhost:5173`. El servidor escucha en todas las interfaces: para 
 
 Las salas y las partidas en red funcionan en el servidor Node por WebSocket, sin cuentas. El servidor está desplegado en Oracle y disponible en https://arena.kevinbravo.com/.
 
-## Crear tu propio luchador
+## Taller desactivado
 
-`/create` abre el taller. Crear cuenta o entrar requiere solo nombre, correo y contraseña; jugar, usar salas y elegir personajes publicados sigue abierto a invitados.
+La creación de personajes está desactivada temporalmente en el juego. Se retiraron los accesos de escritorio y móvil, y el cliente no incluye el taller. Los enlaces antiguos de `/create` vuelven al inicio; las rutas públicas `/api/creator` y `/api/auth` responden 404. La arena, las salas y los personajes ya publicados siguen disponibles sin cuenta.
 
-Para activar la generación, copia `.env.example` a `.env` y configura `OPENAI_API_KEY` **solo en el servidor**. Después de comprobar acceso y saldo de API, cambia `ARENA_CREATOR_ENABLED=true` y reinicia `npm run dev`. Los modelos se pueden configurar con `OPENAI_DESIGN_MODEL` y `OPENAI_IMAGE_MODEL`; por defecto usa `gpt-4.1-mini` para el diseño y `gpt-image-2` para el atlas. Requiere acceso a esos modelos en tu cuenta de API. Sin clave o con la generación desactivada, el taller muestra su estado de disponibilidad y no acepta trabajos de generación.
-
-1. Sube entre una y tres fotos JPG, PNG o WebP (máximo 8 MB cada una).
-2. Escribe un nombre y una descripción corta (10–240 caracteres); elige Ágil, Técnico o Potente y un color.
-3. La creación continúa en el servidor aunque cierres la página. Puedes volver para ver el progreso.
-4. Prueba tu borrador contra la CPU, con sus combos desbloqueados para la prueba, y pulsa **Publicar** para añadirlo a la colección **Panas** de todos los jugadores.
-5. Administra tus creaciones desde **Mis luchadores**: probar, publicar, continuar un trabajo fallido o eliminarlo.
+El código y los datos se conservan para una reactivación futura. `ARENA_CREATOR_ENABLED=true` por sí solo no vuelve a publicar el taller ni inicia generaciones en el servidor del juego. Las pruebas aisladas del módulo habilitan explícitamente `workshopEnabled: true`; la entrada normal de desarrollo y producción lo mantiene cerrado. El resto de esta sección documenta el módulo conservado, que no forma parte de la interfaz pública actual.
 
 El grafo real de LangGraph vive en `server/creator/pipeline.ts`:
 
@@ -70,7 +64,7 @@ Para preparar personajes de forma privada con la sesión de ChatGPT, `npm run cr
 
 En el servidor Oracle, la sesión de ChatGPT y una generación real del [generador privado del operador](docs/codex-operator-oracle.md) ya se verificaron. El dueño autoriza usar primero la cuota de su suscripción y luego sus créditos. Ambos turnos de razonamiento usan `gpt-6-luna` con esfuerzo `high`; la herramienta de imágenes dibuja con `gpt-image-2`. El contenedor sigue separado del juego, sin recurrir a la clave de API ni procesar solicitudes públicas.
 
-La generación automática para visitantes en producción usa la API del servidor y su saldo de OpenAI Platform. `ARENA_CREATOR_ENABLED=false` permite instalar la clave y preparar el despliegue sin admitir generaciones hasta superar una prueba real. La configuración, límites, activación y recuperación están en [la guía de producción](docs/production-creator.md).
+La generación automática para visitantes permanece desactivada y no requiere configurar credenciales. La [guía de producción anterior](docs/production-creator.md) se conserva como referencia histórica; sus pasos de activación no habilitan la interfaz ni las rutas públicas de esta versión.
 
 `npm run test:adversarial` añade sobrecarga, peticiones simultáneas, entradas inválidas, errores de SQLite, resultados tardíos, recuperación de imágenes, coherencia del catálogo, aislamiento de salas y el adaptador OpenAI contra un servidor HTTP local. Los informes independientes de Luna con razonamiento extra alto están en `docs/adversarial-v31/`. El workflow `.github/workflows/ci.yml` ejecuta pruebas, validación de assets, compilación y un arranque HTTP del contenedor; no prueba cuentas reales de OpenAI, dispositivos físicos ni escalado distribuido.
 
@@ -119,6 +113,44 @@ docker run --rm -p 5173:5173 --env-file .env -v arena-data:/app/data arena-criol
 
 Las salas viven en memoria, expiran por inactividad y se eliminan al quedar vacías. Reiniciar el servidor cierra las partidas existentes. Esta versión usa un único proceso; persiste cuentas y personajes en SQLite; no incluye ranking, espectadores, emparejamiento competitivo, rollback ni escalado entre instancias. La simulación de combate corre en el servidor a 60 Hz y envía estados a 30 Hz. Los resultados y movimientos se resuelven allí; los desbloqueos iniciales proceden del progreso local de cada invitado y no se consideran verificables para un futuro ranking.
 
+Mientras una sala espera jugadores, la versión web reserva durante cinco minutos el lugar de quien pierde la conexión al cambiar de aplicación o compartir la invitación. Al volver o recargar la misma pestaña, recupera el código, el anfitrión y la selección mediante una credencial privada en `sessionStorage`; la credencial nunca forma parte del enlace compartido. «Salir de la sala» cancela esa recuperación. Las partidas en curso conservan su comportamiento de salida al desconectarse y las salas no sobreviven a un reinicio del servidor.
+
+El acceso al juego queda abierto, sin un máximo fijo de conexiones ni de salas. La capacidad práctica depende de la CPU, memoria, ancho de banda y latencia del servidor; eliminar los topes no garantiza un número ilimitado de partidas fluidas.
+
+En `t3code-agents`, `deploy/production.compose.yaml` publica el contenedor solamente en `127.0.0.1:35173`, con datos persistentes en `/workspace/arena-criolla-production/data` (dueño `1000:1000`, permisos `700`). Caddy importa `deploy/Caddyfile.site` para HTTPS y WSS. La configuración privada vive en `/etc/arena-criolla/server.env` y la imagen seleccionada en `/etc/arena-criolla/release.env`, ambos con permisos `600`; `ARENA_IMAGE` selecciona una imagen ya construida. Usa `ARENA_TRUST_PROXY=loopback,uniquelocal` solamente detrás de este proxy privado. El taller y su proveedor permanecen desactivados.
+
+`deploy/backup.py` usa la copia en línea de SQLite sin pausar las partidas; `deploy/arena-criolla-backup.timer` programa una copia diaria a las 09:00 UTC, con hasta cinco minutos de variación. Conserva siete archivos privados en `/var/backups/arena-criolla`. Son copias locales: todavía hace falta configurar un destino externo para sobrevivir a la pérdida de la VM y sus discos. La instalación usa `/opt/arena-criolla/backup.py` y `/opt/arena-criolla/compose.yaml`.
+
+El contenedor ejecuta Node como usuario `1000`, con la raíz de solo lectura, `/tmp` limitado a 128 MiB y el volumen de datos escribible. La imagen final excluye npm y Yarn; la configuración de producción deja vacía la clave del proveedor mientras el taller permanece desactivado. Las conexiones WebSocket del navegador requieren el mismo origen completo, incluidas las direcciones temporales servidas por el proxy; los clientes sin `Origin` siguen admitidos como visitantes. `Origin` no autentica usuarios ni impide bots. La página usa CSP con un nonce nuevo por respuesta, evita almacenar HTML con invitaciones y conserva la caché de los archivos versionados, el audio, los estilos dinámicos y los controles del juego.
+
+La CI ejecuta `npm audit` sobre el archivo de dependencias completo y Trivy sobre la imagen final, sin omitir avisos sin parche, y prueba HTTP y WebSocket con un contenedor de solo lectura. El ejecutable de Trivy está fijado por versión y SHA-256. `node scripts/security-smoke.mjs https://arena.kevinbravo.com` comprueba cabeceras, rechazo de otros orígenes, taller desactivado y una partida privada con dos visitantes temporales; no usa cuentas ni proveedores. La revisión y sus límites están en [docs/security-audit.json](docs/security-audit.json). Los pasos preparados para actualizar el proxy compartido y reiniciar la VM están en [deploy/security-maintenance.json](deploy/security-maintenance.json); esa intervención requiere coordinar la interrupción de los otros servicios de `t3code-agents`. Un escaneo sin avisos no garantiza que no existan vulnerabilidades; el aviso de Node del 14 de octubre anuncia parches para el 21 de octubre de 2026 que aún deben aplicarse cuando estén disponibles.
+
+El progreso guardado en el navegador es declarado y no verificado. En multijugador, el servidor valida las entradas y simula la pelea, pero acepta el contador de victorias del visitante para los desbloqueos; un cliente modificado puede atribuirse victorias y adelantar el combo avanzado y la definitiva, respetando sus requisitos de energía. Este historial no acredita resultados competitivos ni debe autorizar rankings o premios verificados. Las reglas competitivas con desbloqueos iguales para ambos jugadores o un historial separado validado por servidor requieren un diseño específico que conserve el progreso local y el juego sin cuenta.
+
+`npm run perf:engine` recorre los 51 luchadores y nueve escenarios con una reproducción determinista. `npm run perf:network` inicia su propio servidor temporal y 500 clientes WebSocket locales; `ARENA_PERF_PLAYERS`, `ARENA_PERF_SECONDS` y `ARENA_PERF_ROSTER=all` permiten variar la carga. No envía tráfico a producción. Las mediciones, límites de interpretación y comprobaciones están en `docs/performance-audit.json` y `docs/production-deployment.json`.
+
+## Nuevos iconos y correcciones v39
+
+Lorenzo Mendoza, Carolina Herrera, Dayana Mendoza, Simón Bolívar y Édgar Ramírez tienen ocho poses, entrada, celebración, tres combos y especial propio. Sus mecánicas incluyen proyectiles que ralentizan, reflejo de proyectiles, pulsos expansivos, una carga y una contra frontal. Capriles recibe un acabado ilustrado consistente con el elenco y Javier Hala Madrid recibe una cabeza menor y un cuerpo mejor proporcionado; ambos tienen entradas redibujadas. Se conservan sus habilidades anteriores.
+
+La [revisión individual y los assets](docs/roster-expansion-v39/review.md), las [fuentes primarias](docs/roster-expansion-v39/research.md), los [prompts](docs/roster-expansion-v39/prompts.json) y la [evidencia de ejecución](docs/roster-expansion-v39/runtime-qa.json) documentan el trabajo. Los 51 pares de atlas pasan validación y la suite incluye 731 pruebas, con combates deterministas y comprobaciones individuales de los siete personajes revisados.
+
+## Parecidos y uniforme Vinotinto v40
+
+Javier Hala Madrid y Nacho tienen nuevos sprites de combate y entrada basados en referencias de octubre y mayo de 2026. Dayana Mendoza lleva el uniforme Vinotinto solicitado, inspirado en la camiseta oficial de 2026. Los tres mantienen la ilustración del elenco y proporciones adultas.
+
+La [revisión y las fuentes individuales](docs/identity-v40/review.md), los [prompts reproducibles](docs/identity-v40/prompts.json) y la [evidencia de ejecución](docs/identity-v40/runtime-qa.json) incluyen la comparación antes/después. Pasan 737 pruebas, los 51 pares de atlas y la compilación de producción.
+
+## Revisión adversarial interactiva v41
+
+Los ocho personajes recientes se probaron contra rivales distintos en CPU, local y multijugador, cubriendo los nueve escenarios. Se corrigió la pose de la carga de Bolívar y se añadieron diez pruebas adversariales de combate, renderizado y WebSocket. La suite completa pasa con 747 tests. El [informe con matriz, límites y evidencia](docs/adversarial-roster-v41/report.md) incluye la revancha, el reingreso a una sala y controles táctiles simulados.
+
+## Apariencia final de Javier y Nacho v42/v43
+
+La versión elegida de Javier Hala Madrid usa la fotografía aportada por el usuario: rostro sin barba, copete alto, sonrisa amplia y camiseta azul marino. Las poses de combate y entrada se generaron en pares para conservar su identidad; se corrigieron la alternancia de carrera y la orientación de la reacción al golpe. Nacho usa el retrato de corte rapado y barba corta; Dayana conserva el uniforme Vinotinto.
+
+La [revisión final de Javier](docs/identity-v43/review.md) y la [revisión de Nacho](docs/identity-v42/review.md) conservan prompts, fuentes seleccionadas, atlas y evidencia de ejecución. Las cifras de pruebas en los informes v39/v40/v41 corresponden a sus revisiones históricas; CI valida el estado integrado actual.
+
 ## Nuevos fundadores y celebraciones
 
 Los cinco nuevos personajes reúnen las seis empresas solicitadas: Juan José Pocaterra representa a Vikua y La Wawa. Para La Wawa se eligió la referencia de CEO actual tras la aclaración del usuario; las fuentes recientes lo presentan como CEO y WEF lo denomina presidente. Mafe Vera figura en la investigación como cofundadora y ex CEO, sin personaje jugable. La evidencia y las diferencias de fechas/cargos están en [investigación de Vikua y La Wawa](docs/founders/research-vikua-wawa.md). Las otras fichas se apoyan en [Fina y Kontigo](docs/founders/research-fina-kontigo.md) y [Kavak y Slash](docs/founders/research-kavak-slash.md).
@@ -127,7 +159,7 @@ Cada fundador tiene ocho poses transparentes, entrada propia, especial distinto 
 
 La [revisión de estilo v3](docs/founders/style-v3/review.md) reemplaza los cinco atlas originales por dibujos nuevos basados en los retratos reales y en el estilo ilustrado de Renny. Cada fundador conserva su ropa, especial y animaciones, con una postura inicial más compacta y rasgos menos genéricos. Los PNG de 2048×1024 y los WebP sin pérdida contienen ocho siluetas completas, separadas y alineadas. Los prompts, fuentes, originales generados y auditorías de empaquetado quedan conservados; `scripts/pack-founder-style-v3.ts` permite reproducir el empaquetado. La galería de fundadores utiliza el mismo cargador y dibujado que el juego.
 
-Los 46 luchadores muestran una celebración individual de 3,5 segundos antes del resultado: música original de victoria, gesto del ganador y breve reacción del derrotado, visible incluso tras una caída fuera de la arena. Se respetan silencio, movimiento reducido, pestaña oculta y limpieza al salir o reiniciar.
+Los 51 luchadores muestran una celebración individual de 3,5 segundos antes del resultado: música original de victoria, gesto del ganador y breve reacción del derrotado, visible incluso tras una caída fuera de la arena. Se respetan silencio, movimiento reducido, pestaña oculta y limpieza al salir o reiniciar.
 
 ## Revisión individual del elenco v28
 
@@ -162,7 +194,7 @@ Los originales generados de los escenarios están en `assets/references/stages-v
 
 `npm run assets` prepara únicamente los atlas y escenarios activos. `npm run check:assets` comprueba ocho siluetas completas, cuatro por fila, transparencia, bordes y paridad PNG/WebP. Para validar un personaje durante su preparación: `node scripts/validate-character-assets.mjs --sprite simon-v3`.
 
-Vicente ejecuta una embestida de reparto rápida con «Entrega exprés»; Pedro lanza tres tarjetas separadas con «Tres cuotas». Ambos conservan combos y desbloqueos propios. John Acquaviva y Kilómetro están retirados del elenco y sus archivos servidos se conservaron en `assets/archive/v5-retired/`.
+Vicente invoca siete moticos Yummy con «Entrega exprés» (`L`): aparecen juntas, escalonadas en un pelotón compacto y alargado, con daño y empuje por cada moto que conecta. Los repartidores y motos usan un atlas ilustrado con cuatro cuadros de conducción, creado a partir de referencias reales y con el mismo acabado que los luchadores. Cada moto conserva una escala de unos dos metros de largo respecto a un luchador de 177 unidades de altura; la profundidad visual del grupo no cambia su tamaño. Avanzan por la altura desde la que se invocaron. Requiere estar en el suelo o una plataforma y consume 25 de energía; se pueden bloquear o saltar. Referencias, prompt y preparación del atlas: `docs/yummy-motos/` y `scripts/prepare-yummy-motos.mjs`. Pedro lanza tres tarjetas separadas con «Tres cuotas». Ambos conservan combos y desbloqueos propios. John Acquaviva y Kilómetro están retirados del elenco y sus archivos servidos se conservaron en `assets/archive/v5-retired/`.
 
 Los especiales tienen reglas diferentes: dos pulsos de Renny, pisada terrestre de Gómez, abanico de notas de Simón, embestida del Conde, golpe en dos tiempos de Emilio, foco de Maite, giro aéreo de Óscar, cono de empuje del Puma, señal de regreso de Chataing, remate con pausa de George y avance con salto de María Corina. Estas reglas se comparten entre partidas locales y servidor.
 

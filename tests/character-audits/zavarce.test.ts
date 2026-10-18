@@ -92,50 +92,93 @@ test("Zavarce light and heavy land once, with the correct damage and knockback, 
   }
 });
 
-test("Entrega exprés hits idle and respects a facing block at close range on both sides", () => {
-  for (const side of [0, 1] as const) for (const blocking of [false, true]) {
-    const run = setup(side, 120);
-    run.inputs[1 - side].block = blocking;
+test("Entrega exprés summons seven motorcycles together in a compact formation and recovers without dashing", () => {
+  for (const side of [0, 1] as const) {
+    const run = setup(side, 600, 0);
+    run.rival.invincible = 1000;
+    const startX = run.player.x;
+    const spawned = new Map<number, number>();
     run.inputs[side].actions.special++;
-    run.advance(6);
-    assert.equal(run.player.attack, "special");
-    assert.equal(run.player.dash, TECHNIQUES.courier.dash!.ticks);
-    assert.equal(run.player.invincible, TECHNIQUES.courier.dash!.invincibility);
-    assert.equal(Math.sign(run.player.vx), side === 0 ? 1 : -1);
-    assert.equal(Math.abs(run.player.vx), 20);
-    assert.equal(run.state.projectiles.length, 0);
-    if (blocking) {
-      assert.equal(run.rival.hp, 100);
-      assert.ok(run.rival.energy < 51);
-      assert.ok(run.state.effects.some(e => e.kind === "block"));
-    } else {
-      assert.ok(Math.abs((100 - run.rival.hp) - 14 * 0.94 * 1.03) < 1e-9);
-      assert.equal(run.player.hits, 1);
+    run.advance(1);
+    assert.ok(run.player.energy < 76, "one activation costs 25 energy");
+    for (let frame = 2; frame <= 200; frame++) {
+      run.advance(1);
+      for (const shot of run.state.projectiles) {
+        if (!spawned.has(shot.id)) spawned.set(shot.id, frame);
+        assert.equal(shot.kind, "courier");
+        assert.equal(shot.vx, (side === 0 ? 1 : -1) * 8.5);
+        assert.equal(shot.y, WORLD.floor - 42);
+        assert.equal(shot.groundOnly, true);
+      }
     }
-    console.log("close-special", JSON.stringify({ side, blocking, attackerX: run.player.x, hp: run.rival.hp, rivalEnergy: run.rival.energy, attackerEnergy: run.player.energy, hits: run.player.hits }));
+    assert.deepEqual([...spawned.values()], Array(7).fill(12));
+    assert.equal(run.player.x, startX);
+    assert.equal(run.player.dash, 0);
+    assert.equal(run.player.invincible, 0);
+    assert.equal(run.player.attack, null);
+    assert.equal(run.player.cooldown, 0);
+    assert.equal(run.state.projectiles.length, 0, "unconnected bikes expire");
+    assert.equal(run.player.hits, 0);
   }
 });
 
-test("courier distance and recovery probes exercise every frame without prescribing an unfixed bug", () => {
-  for (const side of [0, 1] as const) for (const gap of [120, 169, 170, 180, 200, 300, 420]) {
-    const run = setup(side, gap);
-    run.inputs[side].actions.special++;
-    const startX = run.player.x;
-    let crossing: number | null = null;
-    let dashEnded: { tick: number; x: number; vx: number; attack: string | null } | null = null;
-    for (let n = 1; n <= 40; n++) {
-      run.advance(1);
-      if (crossing === null && (run.player.x - run.rival.x) * (side === 0 ? 1 : -1) >= 0) crossing = n;
-      if (!dashEnded && n > 6 && !run.player.dash) dashEnded = { tick: n, x: run.player.x, vx: run.player.vx, attack: run.player.attack };
-      assert.ok(Number.isFinite(run.player.x));
-      assert.ok(Number.isFinite(run.rival.x));
+test("the compact Yummy pack hits or is blocked on either side, with each motorcycle consumed once", () => {
+  for (const side of [0, 1] as const) {
+    for (const gap of [120, 420]) {
+      for (const blocking of [false, true]) {
+        const run = setup(side, gap);
+        run.rival.energy = 100;
+        run.inputs[1 - side].block = blocking;
+        run.inputs[side].actions.special++;
+        let blockEffects = 0;
+        let lastEffect = -1;
+        for (let frame = 0; frame < 150; frame++) {
+          run.advance(1);
+          for (const effect of run.state.effects) {
+            if (effect.id > lastEffect) {
+              if (effect.kind === "block") blockEffects++;
+              lastEffect = effect.id;
+            }
+          }
+        }
+        assert.equal(run.state.projectiles.length, 0);
+        if (blocking) assert.equal(run.player.hits, 0);
+        else assert.equal(run.player.hits, gap === 120 ? 5 : 7);
+        if (blocking) {
+          assert.equal(run.rival.hp, 100);
+          assert.equal(blockEffects, gap === 120 ? 6 : 7);
+          assert.ok(run.rival.energy < 30);
+        } else {
+          const expected = run.player.hits * TECHNIQUES.courier.damage * 0.94 * 1.03;
+          assert.ok(Math.abs(100 - run.rival.hp - expected) < 1e-9);
+          assert.equal(Math.sign(run.rival.x - (side === 0 ? 250 + gap : 830 - gap)), side === 0 ? 1 : -1);
+        }
+      }
     }
-    console.log("range-probe", JSON.stringify({ side, gap, hp: run.rival.hp, hits: run.player.hits, crossing, dashEnded, displacement: Math.abs(run.player.x - startX), attackerStocks: run.player.stocks }));
   }
-  const recovery = setup(0, 700);
-  recovery.inputs[0].actions.special++;
-  recovery.advance(37);
-  console.log("recovery-probe", JSON.stringify({ tick: 37, displacement: recovery.player.x - 250, vx: recovery.player.vx, dash: recovery.player.dash, attack: recovery.player.attack, cooldown: recovery.player.cooldown }));
+});
+
+test("motorcycles can be jumped and cannot be summoned in midair", () => {
+  for (const side of [0, 1] as const) {
+    const dodge = setup(side, 120);
+    dodge.inputs[side].actions.special++;
+    dodge.inputs[1 - side].actions.jump++;
+    dodge.advance(22);
+    dodge.inputs[1 - side].actions.jump++;
+    dodge.advance(128);
+    assert.equal(dodge.rival.hp, 100);
+    assert.equal(dodge.player.hits, 0);
+    assert.equal(dodge.state.projectiles.length, 0);
+
+    const airborne = setup(side);
+    airborne.inputs[side].actions.jump++;
+    airborne.advance(4);
+    airborne.inputs[side].actions.special++;
+    airborne.advance(1);
+    assert.equal(airborne.player.attack, null);
+    assert.equal(airborne.player.energy, 100);
+    assert.equal(airborne.state.projectiles.length, 0);
+  }
 });
 
 test("Zavarce specials, advanced combo, and definitive enforce their energy and win gates", () => {

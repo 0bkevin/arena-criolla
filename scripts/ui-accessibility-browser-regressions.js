@@ -97,6 +97,7 @@ async function mountGame({
   if (phase === "finished") initial.winner = 0;
   const remote = { current: structuredClone(initial) };
   let help = false;
+  let soundEnabled = true;
   const events = [];
   const render = () =>
     flushSync(() =>
@@ -119,6 +120,12 @@ async function mountGame({
               onRematch: () => events.push("rematch"),
               onHelp: () => {
                 help = true;
+                render();
+              },
+              soundEnabled,
+              onToggleSound: () => {
+                soundEnabled = !soundEnabled;
+                events.push("sound");
                 render();
               },
             }),
@@ -237,9 +244,9 @@ window.runUiAdversarialReview = async () => {
     },
   );
   await run(
-    "touch pause includes reachable Help and Fullscreen actions",
+    "touch pause includes reachable sound, Help and Fullscreen actions",
     { touch: true },
-    async () => {
+    async ({ events }) => {
       key("Escape");
       release("Escape");
       await until(() => document.querySelector(".pause-card"));
@@ -252,6 +259,17 @@ window.runUiAdversarialReview = async () => {
       assert(
         help && fullscreen,
         "Help and Fullscreen are outside the modal keyboard region",
+      );
+      pointerClick('.pause-card [aria-label="Silenciar sonido"]');
+      await until(() =>
+        document.querySelector('.pause-card [aria-label="Activar sonido"]'),
+      );
+      assert(
+        events.includes("sound") &&
+          query('.pause-card [aria-label="Activar sonido"]').getAttribute(
+            "aria-pressed",
+          ) === "false",
+        "The pause sound control did not toggle the current audio state",
       );
       pointerClick('.pause-card [aria-label="Ver controles"]');
       await until(() => document.querySelector("dialog[open]"));

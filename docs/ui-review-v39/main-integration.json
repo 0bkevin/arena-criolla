@@ -1,0 +1,356 @@
+{
+  "date": "2026-10-18",
+  "branch": "t3/review-game-screens",
+  "previousHead": "6409843c776eb08773cdc8c4ce2c6d02451dba3e",
+  "main": "330787c592c0bc4a14278cb5c5476701e2a6316d",
+  "pullRequest": "https://github.com/0bkevin/vepol/pull/17",
+  "scope": "Integrate current main without rewriting the fourteen reviewed UI commits. This supplements the earlier responsive audit; it is not a fresh audit of every newly added main screen.",
+  "conflictResolution": {
+    "file": "src/components/Game.tsx",
+    "resolution": "Retain main's compact pause/result copy with named dialogs, the reviewed overlay focus lifecycle, native activation guards, canvas focus on resume, viewport tracking, audio props and settled-frame performance changes."
+  },
+  "semanticIntegrationFixes": [
+    {
+      "area": "Pause sound access",
+      "before": "The existing pause toolbar rule hid main's sound control while the modal focus region excluded the toolbar.",
+      "after": "The optional controlled sound toggle is inside pause-tools; three controls use a full-width sound row and two helper columns."
+    },
+    {
+      "area": "Help stylesheet",
+      "before": "Legacy shared modal rules shrank main's Help prose/keys and overrode the header surface.",
+      "after": "Legacy modal selectors exclude .help-modal with zero added specificity; main's Help keeps 16px prose/keys and its own header/layout."
+    },
+    {
+      "area": "Creator QA",
+      "before": "Main intentionally removes the public /create route, so the prior account browser workflow could not mount the editor.",
+      "after": "A deterministic-QA-only browser fixture imports and mounts the real editor after verifying /api/qa/fixture; remount exercises stale responses without restoring a public workshop route."
+    }
+  ],
+  "verification": {
+    "build": {
+      "command": "npm run build",
+      "pass": true,
+      "warning": "Existing bundle-size warning; no CSS syntax warning remains."
+    },
+    "suite": {
+      "command": "npm test",
+      "tests": 793,
+      "passed": 793,
+      "failed": 0,
+      "skipped": 0
+    },
+    "browser": {
+      "passed": 11,
+      "failed": 0,
+      "scenarios": [
+        "Resume returns focus to the arena for P2 Enter",
+        "Held Enter cannot activate Continue",
+        "Held Enter cannot activate Rematch",
+        "Online phase changes preserve pause focus",
+        "Touch pause sound, Help and Fullscreen handlers",
+        "Orientation focus survives online phase changes",
+        "Closing Help after rotation focuses the foreground gate",
+        "Drafts/photos remain isolated across accounts",
+        "Delayed collection responses cannot cross account boundaries",
+        "Wrong-password errors allow retry",
+        "Delayed creation frame cannot focus or scroll a new account"
+      ]
+    },
+    "creatorRace": {
+      "pass": true,
+      "queuedFrames": 1,
+      "accountBefore": "Primera cuenta QA",
+      "accountAfter": "Delayed frame account",
+      "before": {
+        "tag": "INPUT",
+        "scrollY": 20
+      },
+      "after": {
+        "tag": "INPUT",
+        "label": null,
+        "scrollY": 20
+      }
+    },
+    "orientation": {
+      "nested": {
+        "pass": true,
+        "focusedLabel": "Jugar en horizontal",
+        "inOrientation": true
+      },
+      "orientation": {
+        "pass": true,
+        "preservedFocus": true,
+        "repeatPrevented": true
+      }
+    },
+    "help": {
+      "desktop": {
+        "size": [
+          1440,
+          900
+        ],
+        "paragraphSize": "16px",
+        "keySize": "16px",
+        "headerBackground": "rgba(0, 0, 0, 0)",
+        "dialogBackground": "rgb(19, 36, 58)"
+      },
+      "mobile": {
+        "size": [
+          390,
+          844
+        ],
+        "paragraphSize": "16px",
+        "keySize": "16px",
+        "headerBackground": "rgba(0, 0, 0, 0)",
+        "dialogBackground": "rgb(19, 36, 58)",
+        "horizontalOverflow": false,
+        "closeButtonHeight": 48
+      }
+    },
+    "pauseLayouts": [
+      {
+        "size": [
+          667,
+          375
+        ],
+        "buttons": [
+          {
+            "label": "Continuar",
+            "width": 246,
+            "height": 44,
+            "x": 210.5,
+            "y": 108.59375,
+            "bottom": 152.59375
+          },
+          {
+            "label": "Silenciar sonido",
+            "width": 246,
+            "height": 44,
+            "x": 210.5,
+            "y": 171.59375,
+            "bottom": 215.59375
+          },
+          {
+            "label": "Ver controles",
+            "width": 119,
+            "height": 49,
+            "x": 210.5,
+            "y": 230.59375,
+            "bottom": 279.59375
+          },
+          {
+            "label": "Pantalla completa",
+            "width": 119,
+            "height": 49,
+            "x": 337.5,
+            "y": 230.59375,
+            "bottom": 279.59375
+          },
+          {
+            "label": "Salir del combate",
+            "width": 246,
+            "height": 44,
+            "x": 210.5,
+            "y": 286.59375,
+            "bottom": 330.59375
+          }
+        ],
+        "card": {
+          "x": 193.5,
+          "y": 27.3984375,
+          "width": 280,
+          "height": 320.1953125,
+          "top": 27.3984375,
+          "right": 473.5,
+          "bottom": 347.59375,
+          "left": 193.5
+        }
+      },
+      {
+        "size": [
+          844,
+          390
+        ],
+        "buttons": [
+          {
+            "label": "Continuar",
+            "width": 246,
+            "height": 44,
+            "x": 299,
+            "y": 116.09375,
+            "bottom": 160.09375
+          },
+          {
+            "label": "Silenciar sonido",
+            "width": 246,
+            "height": 44,
+            "x": 299,
+            "y": 179.09375,
+            "bottom": 223.09375
+          },
+          {
+            "label": "Ver controles",
+            "width": 119,
+            "height": 49,
+            "x": 299,
+            "y": 238.09375,
+            "bottom": 287.09375
+          },
+          {
+            "label": "Pantalla completa",
+            "width": 119,
+            "height": 49,
+            "x": 426,
+            "y": 238.09375,
+            "bottom": 287.09375
+          },
+          {
+            "label": "Salir del combate",
+            "width": 246,
+            "height": 44,
+            "x": 299,
+            "y": 294.09375,
+            "bottom": 338.09375
+          }
+        ],
+        "card": {
+          "x": 282,
+          "y": 34.8984375,
+          "width": 280,
+          "height": 320.1953125,
+          "top": 34.8984375,
+          "right": 562,
+          "bottom": 355.09375,
+          "left": 282
+        }
+      },
+      {
+        "size": [
+          1024,
+          768
+        ],
+        "buttons": [
+          {
+            "label": "Continuar",
+            "width": 272,
+            "height": 44,
+            "x": 376,
+            "y": 330.8984375,
+            "bottom": 374.8984375
+          },
+          {
+            "label": "Silenciar sonido",
+            "width": 272,
+            "height": 44,
+            "x": 376,
+            "y": 386.8984375,
+            "bottom": 430.8984375
+          },
+          {
+            "label": "Ver controles",
+            "width": 132,
+            "height": 49,
+            "x": 376,
+            "y": 438.8984375,
+            "bottom": 487.8984375
+          },
+          {
+            "label": "Pantalla completa",
+            "width": 132,
+            "height": 49,
+            "x": 516,
+            "y": 438.8984375,
+            "bottom": 487.8984375
+          },
+          {
+            "label": "Salir del combate",
+            "width": 272,
+            "height": 44,
+            "x": 376,
+            "y": 497.8984375,
+            "bottom": 541.8984375
+          }
+        ],
+        "card": {
+          "x": 347,
+          "y": 197.1015625,
+          "width": 330,
+          "height": 373.796875,
+          "top": 197.1015625,
+          "right": 677,
+          "bottom": 570.8984375,
+          "left": 347
+        }
+      },
+      {
+        "size": [
+          1440,
+          900
+        ],
+        "buttons": [
+          {
+            "label": "Continuar",
+            "width": 272,
+            "height": 44,
+            "x": 584,
+            "y": 396.8984375,
+            "bottom": 440.8984375
+          },
+          {
+            "label": "Silenciar sonido",
+            "width": 272,
+            "height": 44,
+            "x": 584,
+            "y": 452.8984375,
+            "bottom": 496.8984375
+          },
+          {
+            "label": "Ver controles",
+            "width": 132,
+            "height": 49,
+            "x": 584,
+            "y": 504.8984375,
+            "bottom": 553.8984375
+          },
+          {
+            "label": "Pantalla completa",
+            "width": 132,
+            "height": 49,
+            "x": 724,
+            "y": 504.8984375,
+            "bottom": 553.8984375
+          },
+          {
+            "label": "Salir del combate",
+            "width": 272,
+            "height": 44,
+            "x": 584,
+            "y": 563.8984375,
+            "bottom": 607.8984375
+          }
+        ],
+        "card": {
+          "x": 555,
+          "y": 263.1015625,
+          "width": 330,
+          "height": 373.796875,
+          "top": 263.1015625,
+          "right": 885,
+          "bottom": 636.8984375,
+          "left": 555
+        }
+      }
+    ],
+    "independentResolutionReview": "No remaining concrete material issue found in the final resolution diff.",
+    "history": "Preserve the prior fourteen commits and add a merge commit."
+  },
+  "reproduction": {
+    "start": "ARENA_QA_PORT=5383 npx tsx scripts/journey-qa-server.ts",
+    "gameplay": "In a separate QA browser tab, import /scripts/ui-accessibility-browser-regressions.js and run window.runUiAdversarialReview(); use the documented functions for portrait and nested-rotation scenarios.",
+    "creator": "In a second QA browser tab at /, evaluate scripts/account-browser-regressions.js, then scripts/creator-focus-race-browser-regression.js. The first probe mounts the private QA editor automatically."
+  },
+  "limits": [
+    "Chromium simulated viewports; no new physical-device or Safari validation.",
+    "The earlier screenshot gallery documents the pre-main review and remains historical evidence."
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "primaryPhoto": "assets/source/identity-v43/user-reference.png",
+  "master": {
+    "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-c19f617d-7ad1-42c8-ab5e-378d5e070b65.png",
+    "source": "assets/source/identity-v43/javier-classic-master.png",
+    "selected": true
+  },
+  "pairs": [
+    {
+      "id": "combat-23",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-16f3f93b-9303-4df1-85b7-73be87103480.png",
+      "refs": [
+        "/home/ubuntu/.t3/userdata/attachments/2368edeb-71f1-4514-90cb-b6547290f9e8-7620c0b2-f7d6-4117-9c55-99c91808f1c8.png",
+        "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-c19f617d-7ad1-42c8-ab5e-378d5e070b65.png"
+      ],
+      "selected": true,
+      "source": "assets/source/identity-v43/javier-combat-23-generated.png",
+      "note": "Only left figure selected for frame2; right figure superseded by independently generated alternate."
+    },
+    {
+      "id": "combat-01",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-7b5e6c56-80b4-4c26-a0cf-64367ff556b0.png",
+      "refs": [
+        "/home/ubuntu/.t3/userdata/attachments/2368edeb-71f1-4514-90cb-b6547290f9e8-7620c0b2-f7d6-4117-9c55-99c91808f1c8.png",
+        "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-c19f617d-7ad1-42c8-ab5e-378d5e070b65.png"
+      ],
+      "selected": false,
+      "source": "assets/source/identity-v43/javier-combat-01-generated.png",
+      "note": "Superseded by right-facing refinement."
+    },
+    {
+      "id": "combat-45",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-d06541bf-9970-4bcb-81aa-a23bf87565cd.png",
+      "refs": [
+        "/home/ubuntu/.t3/userdata/attachments/2368edeb-71f1-4514-90cb-b6547290f9e8-7620c0b2-f7d6-4117-9c55-99c91808f1c8.png",
+        "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-c19f617d-7ad1-42c8-ab5e-378d5e070b65.png"
+      ],
+      "selected": true,
+      "source": "assets/source/identity-v43/javier-combat-45-generated.png",
+      "note": "Selected pair."
+    },
+    {
+      "id": "combat-67",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-f54aa75a-27ab-4038-ad1f-0dd115f3c099.png",
+      "refs": [
+        "/home/ubuntu/.t3/userdata/attachments/2368edeb-71f1-4514-90cb-b6547290f9e8-7620c0b2-f7d6-4117-9c55-99c91808f1c8.png",
+        "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-c19f617d-7ad1-42c8-ab5e-378d5e070b65.png"
+      ],
+      "selected": true,
+      "source": "assets/source/identity-v43/javier-combat-67-generated.png",
+      "note": "Selected pair."
+    },
+    {
+      "id": "entrance-01",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-55e0b058-49c6-4908-8be2-c10b3dd99dda.png",
+      "refs": [
+        "/home/ubuntu/.t3/userdata/attachments/2368edeb-71f1-4514-90cb-b6547290f9e8-7620c0b2-f7d6-4117-9c55-99c91808f1c8.png",
+        "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-c19f617d-7ad1-42c8-ab5e-378d5e070b65.png"
+      ],
+      "selected": true,
+      "source": "assets/source/identity-v43/javier-entrance-01-generated.png",
+      "note": "Selected pair."
+    },
+    {
+      "id": "entrance-45",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-19691efa-e2c3-4fb6-92cd-d51625767749.png",
+      "refs": [
+        "/home/ubuntu/.t3/userdata/attachments/2368edeb-71f1-4514-90cb-b6547290f9e8-7620c0b2-f7d6-4117-9c55-99c91808f1c8.png",
+        "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-c19f617d-7ad1-42c8-ab5e-378d5e070b65.png"
+      ],
+      "selected": true,
+      "source": "assets/source/identity-v43/javier-entrance-45-generated.png",
+      "note": "Selected pair."
+    },
+    {
+      "id": "entrance-23",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-22609080-fe59-43e9-aac3-bea4996d4fea.png",
+      "refs": [
+        "/home/ubuntu/.t3/userdata/attachments/2368edeb-71f1-4514-90cb-b6547290f9e8-7620c0b2-f7d6-4117-9c55-99c91808f1c8.png",
+        "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-c19f617d-7ad1-42c8-ab5e-378d5e070b65.png"
+      ],
+      "selected": true,
+      "source": "assets/source/identity-v43/javier-entrance-23-generated.png",
+      "note": "Selected pair."
+    },
+    {
+      "id": "combat-01",
+      "path": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-ac8b485a-97de-4012-bf9c-5730876b857e.png",
+      "selected": true,
+      "source": "assets/source/identity-v43/javier-combat-01-generated.png"
+    }
+  ],
+  "alternate": "docs/identity-v43/gait-review.json"
+}

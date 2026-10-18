@@ -1,4 +1,4 @@
-// Evaluate on /create after scripts/account-browser-regressions.js has restored
+// Evaluate in the QA editor after scripts/account-browser-regressions.js restored
 // its first account and photo draft. Only runs on the deterministic QA server.
 // Delays the real accepted-creation UI frame across a real logout/new signup.
 (async () => {

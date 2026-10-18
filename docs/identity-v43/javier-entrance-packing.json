@@ -1,0 +1,288 @@
+{
+  "id": "javier-entrance",
+  "raw": "assets/source/identity-v43/javier-entrance-composed.png",
+  "source": "assets/source/javier-v43-defiant-entrance.png",
+  "runtime": "public/assets/javier-v43-defiant-entrance.webp",
+  "sourceWidth": 4096,
+  "sourceHeight": 2048,
+  "frames": [
+    {
+      "label": 1,
+      "minX": 309,
+      "minY": 81,
+      "maxX": 713,
+      "maxY": 962,
+      "pixels": 156326,
+      "frame": 0
+    },
+    {
+      "label": 2,
+      "minX": 1355,
+      "minY": 81,
+      "maxX": 1715,
+      "maxY": 961,
+      "pixels": 160589,
+      "frame": 1
+    },
+    {
+      "label": 3,
+      "minX": 2365,
+      "minY": 82,
+      "maxX": 2754,
+      "maxY": 962,
+      "pixels": 149831,
+      "frame": 2
+    },
+    {
+      "label": 4,
+      "minX": 3388,
+      "minY": 82,
+      "maxX": 3777,
+      "maxY": 961,
+      "pixels": 145449,
+      "frame": 3
+    },
+    {
+      "label": 6,
+      "minX": 327,
+      "minY": 1105,
+      "maxX": 696,
+      "maxY": 1985,
+      "pixels": 150019,
+      "frame": 4
+    },
+    {
+      "label": 5,
+      "minX": 1351,
+      "minY": 1104,
+      "maxX": 1721,
+      "maxY": 1985,
+      "pixels": 148642,
+      "frame": 5
+    },
+    {
+      "label": 8,
+      "minX": 2290,
+      "minY": 1146,
+      "maxX": 2828,
+      "maxY": 1985,
+      "pixels": 169131,
+      "frame": 6
+    },
+    {
+      "label": 7,
+      "minX": 3291,
+      "minY": 1144,
+      "maxX": 3875,
+      "maxY": 1986,
+      "pixels": 145311,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 0,
+  "pairCalibration": {
+    "standingHeight": 880,
+    "scales": {
+      "combat-01": 0.887991927346115,
+      "combat-23": 0.887991927346115,
+      "combat-45": 0.8862034239677744,
+      "combat-67": 0.8844221105527639,
+      "entrance-01": 0.8764940239043825,
+      "entrance-23": 0.88,
+      "entrance-45": 0.8897876643073812,
+      "run-alternate": 0.5919946182307433
+    },
+    "fit": 1,
+    "runScale": "ready pair scale adjusted for source canvas height",
+    "warnings": [
+      "combat-01: standing control occupies 96.8% of canvas height; ready occupies 96.8%. Review framing and head/body scale before publishing.",
+      "combat-45: standing control occupies 97.0% of canvas height; ready occupies 96.8%. Review framing and head/body scale before publishing.",
+      "combat-67: standing control occupies 97.2% of canvas height; ready occupies 96.8%. Review framing and head/body scale before publishing.",
+      "entrance-01: standing control occupies 98.0% of canvas height; ready occupies 96.8%. Review framing and head/body scale before publishing.",
+      "entrance-23: standing control occupies 97.7% of canvas height; ready occupies 96.8%. Review framing and head/body scale before publishing.",
+      "entrance-45: standing control occupies 96.6% of canvas height; ready occupies 96.8%. Review framing and head/body scale before publishing."
+    ]
+  },
+  "inputPairs": [
+    {
+      "name": "combat-01",
+      "source": "assets/source/identity-v43/javier-combat-01-generated.png",
+      "sourceWidth": 1536,
+      "sourceHeight": 1024,
+      "ignoredNoisePixels": 0
+    },
+    {
+      "name": "combat-23",
+      "source": "assets/source/identity-v43/javier-combat-23-generated.png",
+      "sourceWidth": 1536,
+      "sourceHeight": 1024,
+      "ignoredNoisePixels": 0
+    },
+    {
+      "name": "combat-45",
+      "source": "assets/source/identity-v43/javier-combat-45-generated.png",
+      "sourceWidth": 1536,
+      "sourceHeight": 1024,
+      "ignoredNoisePixels": 0
+    },
+    {
+      "name": "combat-67",
+      "source": "assets/source/identity-v43/javier-combat-67-generated.png",
+      "sourceWidth": 1536,
+      "sourceHeight": 1024,
+      "ignoredNoisePixels": 0
+    },
+    {
+      "name": "entrance-01",
+      "source": "assets/source/identity-v43/javier-entrance-01-generated.png",
+      "sourceWidth": 1536,
+      "sourceHeight": 1024,
+      "ignoredNoisePixels": 0
+    },
+    {
+      "name": "entrance-23",
+      "source": "assets/source/identity-v43/javier-entrance-23-generated.png",
+      "sourceWidth": 1536,
+      "sourceHeight": 1024,
+      "ignoredNoisePixels": 0
+    },
+    {
+      "name": "entrance-45",
+      "source": "assets/source/identity-v43/javier-entrance-45-generated.png",
+      "sourceWidth": 1536,
+      "sourceHeight": 1024,
+      "ignoredNoisePixels": 0
+    }
+  ],
+  "inputSingles": [
+    {
+      "name": "run-alternate",
+      "source": "assets/source/identity-v43/javier-run-alternate.png",
+      "sourceWidth": 1024,
+      "sourceHeight": 1536,
+      "ignoredNoisePixels": 0
+    }
+  ],
+  "authoredFrames": [
+    {
+      "frame": 0,
+      "source": "assets/source/identity-v43/javier-entrance-01-generated.png",
+      "pairIndex": 0,
+      "scale": 0.8764940239043825,
+      "width": 408,
+      "height": 884,
+      "bounds": {
+        "minX": 246,
+        "minY": 12,
+        "maxX": 706,
+        "maxY": 1015,
+        "pixels": 202776
+      }
+    },
+    {
+      "frame": 1,
+      "source": "assets/source/identity-v43/javier-entrance-01-generated.png",
+      "pairIndex": 1,
+      "scale": 0.8764940239043825,
+      "width": 363,
+      "height": 884,
+      "bounds": {
+        "minX": 847,
+        "minY": 12,
+        "maxX": 1256,
+        "maxY": 1016,
+        "pixels": 208493
+      }
+    },
+    {
+      "frame": 2,
+      "source": "assets/source/identity-v43/javier-entrance-23-generated.png",
+      "pairIndex": 0,
+      "scale": 0.88,
+      "width": 392,
+      "height": 884,
+      "bounds": {
+        "minX": 252,
+        "minY": 11,
+        "maxX": 692,
+        "maxY": 1010,
+        "pixels": 192809
+      }
+    },
+    {
+      "frame": 3,
+      "source": "assets/source/identity-v43/javier-entrance-23-generated.png",
+      "pairIndex": 1,
+      "scale": 0.88,
+      "width": 393,
+      "height": 883,
+      "bounds": {
+        "minX": 844,
+        "minY": 12,
+        "maxX": 1286,
+        "maxY": 1010,
+        "pixels": 187423
+      }
+    },
+    {
+      "frame": 4,
+      "source": "assets/source/identity-v43/javier-entrance-45-generated.png",
+      "pairIndex": 0,
+      "scale": 0.8897876643073812,
+      "width": 374,
+      "height": 884,
+      "bounds": {
+        "minX": 281,
+        "minY": 18,
+        "maxX": 696,
+        "maxY": 1006,
+        "pixels": 188888
+      }
+    },
+    {
+      "frame": 5,
+      "source": "assets/source/identity-v43/javier-entrance-45-generated.png",
+      "pairIndex": 1,
+      "scale": 0.8897876643073812,
+      "width": 374,
+      "height": 884,
+      "bounds": {
+        "minX": 825,
+        "minY": 17,
+        "maxX": 1240,
+        "maxY": 1006,
+        "pixels": 187139
+      }
+    },
+    {
+      "frame": 6,
+      "source": "assets/source/identity-v43/javier-combat-23-generated.png",
+      "pairIndex": 0,
+      "scale": 0.887991927346115,
+      "width": 541,
+      "height": 844,
+      "bounds": {
+        "minX": 62,
+        "minY": 27,
+        "maxX": 666,
+        "maxY": 972,
+        "pixels": 214022
+      }
+    },
+    {
+      "frame": 7,
+      "source": "assets/source/identity-v43/javier-run-alternate.png",
+      "pairIndex": 0,
+      "scale": 0.5919946182307433,
+      "width": 587,
+      "height": 845,
+      "bounds": {
+        "minX": 25,
+        "minY": 34,
+        "maxX": 1012,
+        "maxY": 1456,
+        "pixels": 412976
+      }
+    }
+  ]
+}

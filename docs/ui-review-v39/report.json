@@ -4,7 +4,10 @@
   "scope": "Revisión visual y funcional de las pantallas del juego y del taller, con correcciones locales verificadas.",
   "environment": {
     "browser": "Navegador colaborativo T3, motor Chromium de escritorio",
-    "servers": ["http://localhost:5380", "http://localhost:5381"],
+    "servers": [
+      "http://localhost:5380",
+      "http://localhost:5381"
+    ],
     "backend": "Servidor real con WebSocket, SQLite temporal y proveedor determinista de personajes; sin llamadas a generación pagada."
   },
   "sizes": {
@@ -197,7 +200,10 @@
   "evidence": {
     "lobby": "lobby/captures.json",
     "game": "game/review.json",
-    "creator": ["creator/evidence.json", "creator/journey-evidence.json"],
+    "creator": [
+      "creator/evidence.json",
+      "creator/journey-evidence.json"
+    ],
     "probe": "browser-probe.js",
     "note": "Capturas finales y contactos por tamaño acompañan las mediciones. Las lecturas iniciales de contraste se descartaron por falsos positivos al interpretar color(srgb) y degradados; las cifras del informe usan colores resueltos y el contraste mínimo de los fondos medidos. La casilla de privacidad mide 20 px, pero su etiqueta clicable mide al menos 44 px."
   },
@@ -214,5 +220,10 @@
     "report": "adversarial-review.json",
     "status": "Completed; seven behavioral findings fixed, including one related pre-existing dialog issue",
     "verification": "684 tests passed including65 adversarial cases;11 browser scenarios passed; final independent re-review found no remaining confirmed material issue."
+  },
+  "mainIntegrationFollowup": {
+    "report": "main-integration.json",
+    "main": "330787c",
+    "note": "Current-main integration and its focused verification; the original screen captures remain historical evidence."
   }
 }

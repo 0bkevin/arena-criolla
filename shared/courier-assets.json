@@ -1,0 +1,64 @@
+{
+  "file": "yummy-courier-v1",
+  "columns": 2,
+  "frameCount": 4,
+  "cellWidth": 448,
+  "cellHeight": 320,
+  "baseline": 306,
+  "bodyHeight": 284,
+  "frames": [
+    {
+      "x": 0,
+      "y": 0,
+      "width": 448,
+      "height": 320,
+      "sourceBounds": {
+        "left": 169,
+        "top": 19,
+        "width": 585,
+        "height": 485
+      }
+    },
+    {
+      "x": 448,
+      "y": 0,
+      "width": 448,
+      "height": 320,
+      "sourceBounds": {
+        "left": 904,
+        "top": 23,
+        "width": 586,
+        "height": 481
+      }
+    },
+    {
+      "x": 0,
+      "y": 320,
+      "width": 448,
+      "height": 320,
+      "sourceBounds": {
+        "left": 156,
+        "top": 522,
+        "width": 584,
+        "height": 476
+      }
+    },
+    {
+      "x": 448,
+      "y": 320,
+      "width": 448,
+      "height": 320,
+      "sourceBounds": {
+        "left": 923,
+        "top": 523,
+        "width": 583,
+        "height": 474
+      }
+    }
+  ],
+  "runtime": "public/assets/yummy-courier-v1.webp",
+  "source": "assets/source/yummy-courier-v1.png",
+  "runtimeSha256": "957b38cf6291d1ce1bffb71e8114295e01af4e8b977a2b98534274d48c7edf72",
+  "sourceSha256": "9de80b5bc7e3aeca25a2463f687319d78ddc6e626d6acbcc007297befa088cbf",
+  "alpha": true
+}

@@ -1,46 +1,50 @@
-/* Shared legibility and input fixes from the full-screen UI review. */
-.modal {
+/* Shared legibility and input fixes from the full-screen UI review.
+   The device-specific Help dialog owns its layout and type scale. */
+.modal:where(:not(.help-modal)) {
   --dialog-surface: #181c25;
   scrollbar-width: thin;
   scrollbar-color: #6682a2 var(--dialog-surface);
   scroll-padding-block: 80px 24px;
 }
-.in-lobby .modal {
+.in-lobby .modal:where(:not(.help-modal)) {
   --dialog-surface: #13243a;
 }
-.modal .modal-header {
+.modal:where(:not(.help-modal)) .modal-header {
   position: sticky;
   top: -26px;
   z-index: 3;
   padding-block: 12px;
   background: var(--dialog-surface);
 }
-.modal .modal-header h2 {
+.modal:where(:not(.help-modal)) .modal-header h2 {
   min-width: 0;
   overflow-wrap: anywhere;
 }
-.modal .modal-header .icon-button {
+.modal:where(:not(.help-modal)) .modal-header .icon-button {
   width: 44px;
   min-width: 44px;
   height: 44px;
   flex-shrink: 0;
 }
-.modal :is(p, .help-note, .character-identity, .character-identity span) {
+.modal:where(:not(.help-modal))
+  :is(p, .help-note, .character-identity, .character-identity span) {
   font-size: 13px;
   line-height: 1.7;
 }
-.modal :is(.help-section, .rules-grid h3, .detail-info > h3) {
+.modal:where(:not(.help-modal))
+  :is(.help-section, .rules-grid h3, .detail-info > h3) {
   font-size: 15px;
 }
-.modal :is(.controls-table > div, .controls-table .table-heading, kbd) {
+.modal:where(:not(.help-modal))
+  :is(.controls-table > div, .controls-table .table-heading, kbd) {
   font-size: 12px;
   letter-spacing: 0;
 }
-.modal .controls-table kbd {
+.modal:where(:not(.help-modal)) .controls-table kbd {
   white-space: normal;
   overflow-wrap: anywhere;
 }
-.modal
+.modal:where(:not(.help-modal))
   :is(
     .roster-grid p,
     .roster-grid strong,
@@ -69,7 +73,7 @@
   line-height: 1.5;
   letter-spacing: 0;
 }
-.modal
+.modal:where(:not(.help-modal))
   :is(
     .combo-list strong,
     .special-description strong,
@@ -79,13 +83,13 @@
   ) {
   font-size: 13px;
 }
-.modal .combo-list small {
+.modal:where(:not(.help-modal)) .combo-list small {
   color: #acb9cf;
 }
-.modal .recent-matches small {
+.modal:where(:not(.help-modal)) .recent-matches small {
   color: #acb9cf;
 }
-.modal
+.modal:where(:not(.help-modal))
   :is(
     .roster-grid span,
     .roster-grid strong,
@@ -96,7 +100,7 @@
   ) {
   color: color-mix(in srgb, var(--fighter-color) 65%, #ffffff);
 }
-.modal
+.modal:where(:not(.help-modal))
   :is(
     .primary-button,
     .secondary-button,
@@ -107,23 +111,23 @@
   ) {
   min-height: 44px;
 }
-.modal .character-references summary {
+.modal:where(:not(.help-modal)) .character-references summary {
   align-content: center;
 }
-.modal input:not([type="checkbox"]) {
+.modal:where(:not(.help-modal)) input:not([type="checkbox"]) {
   min-height: 44px;
   font-size: 16px;
 }
-.modal .checkbox-label {
+.modal:where(:not(.help-modal)) .checkbox-label {
   min-height: 44px;
   cursor: pointer;
 }
-.modal .checkbox-label input {
+.modal:where(:not(.help-modal)) .checkbox-label input {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
 }
-.modal .code-input {
+.modal:where(:not(.help-modal)) .code-input {
   font-family: "DM Sans", sans-serif;
   letter-spacing: 0;
 }
@@ -216,37 +220,40 @@
   }
 }
 @media (max-width: 600px) {
-  .modal .rules-grid,
-  .modal .roster-grid {
+  .modal:where(:not(.help-modal)) .rules-grid,
+  .modal:where(:not(.help-modal)) .roster-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-  .modal .progress-roster > div {
+  .modal:where(:not(.help-modal)) .progress-roster > div {
     display: grid;
     grid-template-columns: 6px minmax(0, 1fr) auto;
     gap: 7px;
   }
-  .modal .progress-roster strong {
+  .modal:where(:not(.help-modal)) .progress-roster strong {
     grid-column: 2 / -1;
   }
-  .modal .progress-roster > div > span:not(.progress-dot) {
+  .modal:where(:not(.help-modal))
+    .progress-roster
+    > div
+    > span:not(.progress-dot) {
     grid-column: 2;
   }
-  .modal .progress-metrics > div {
+  .modal:where(:not(.help-modal)) .progress-metrics > div {
     min-width: 0;
     padding: 12px 4px;
   }
-  .modal .controls-table > div {
+  .modal:where(:not(.help-modal)) .controls-table > div {
     grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 1fr));
     gap: 5px;
   }
-  .modal .controls-table .table-heading {
+  .modal:where(:not(.help-modal)) .controls-table .table-heading {
     font-size: 10px;
     padding-inline: 3px;
   }
-  .modal .lobby-name {
+  .modal:where(:not(.help-modal)) .lobby-name {
     align-items: stretch;
   }
-  .modal .lobby-name .plain-input {
+  .modal:where(:not(.help-modal)) .lobby-name .plain-input {
     width: 100%;
   }
   .in-lobby .arcade-modes button > svg {

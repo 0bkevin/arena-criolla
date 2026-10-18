@@ -34,6 +34,7 @@ async function makeIsolated(
 ) {
   const folder = await mkdtemp(path.join(os.tmpdir(), "arena-creator-v31-"));
   const server = await makeArenaServer({
+    workshopEnabled: true,
     serveClient: false,
     creator: {
       dataDir: folder,

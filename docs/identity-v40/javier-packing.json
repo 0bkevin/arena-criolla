@@ -1,0 +1,83 @@
+{
+  "id": "javier",
+  "raw": "assets/source/identity-v40/javier-generated.png",
+  "source": "assets/source/javier-v40.png",
+  "runtime": "public/assets/javier-v40.webp",
+  "sourceWidth": 1774,
+  "sourceHeight": 887,
+  "frames": [
+    {
+      "label": 1,
+      "minX": 46,
+      "minY": 10,
+      "maxX": 375,
+      "maxY": 459,
+      "pixels": 64381,
+      "frame": 0
+    },
+    {
+      "label": 3,
+      "minX": 491,
+      "minY": 16,
+      "maxX": 838,
+      "maxY": 459,
+      "pixels": 61234,
+      "frame": 1
+    },
+    {
+      "label": 2,
+      "minX": 914,
+      "minY": 12,
+      "maxX": 1320,
+      "maxY": 457,
+      "pixels": 72443,
+      "frame": 2
+    },
+    {
+      "label": 4,
+      "minX": 1352,
+      "minY": 16,
+      "maxX": 1759,
+      "maxY": 458,
+      "pixels": 69169,
+      "frame": 3
+    },
+    {
+      "label": 6,
+      "minX": 67,
+      "minY": 467,
+      "maxX": 361,
+      "maxY": 844,
+      "pixels": 59738,
+      "frame": 4
+    },
+    {
+      "label": 5,
+      "minX": 419,
+      "minY": 464,
+      "maxX": 871,
+      "maxY": 875,
+      "pixels": 65336,
+      "frame": 5
+    },
+    {
+      "label": 7,
+      "minX": 899,
+      "minY": 471,
+      "maxX": 1328,
+      "maxY": 875,
+      "pixels": 56009,
+      "frame": 6
+    },
+    {
+      "label": 8,
+      "minX": 1403,
+      "minY": 480,
+      "maxX": 1720,
+      "maxY": 874,
+      "pixels": 60250,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 0
+}

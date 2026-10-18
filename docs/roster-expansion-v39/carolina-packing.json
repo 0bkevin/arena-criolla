@@ -1,0 +1,83 @@
+{
+  "id": "carolina",
+  "raw": "assets/source/roster-v39/carolina-generated.png",
+  "source": "assets/source/carolina-v39.png",
+  "runtime": "public/assets/carolina-v39.webp",
+  "sourceWidth": 1774,
+  "sourceHeight": 887,
+  "frames": [
+    {
+      "label": 2,
+      "minX": 36,
+      "minY": 14,
+      "maxX": 337,
+      "maxY": 437,
+      "pixels": 60187,
+      "frame": 0
+    },
+    {
+      "label": 1,
+      "minX": 493,
+      "minY": 13,
+      "maxX": 793,
+      "maxY": 438,
+      "pixels": 57672,
+      "frame": 1
+    },
+    {
+      "label": 4,
+      "minX": 917,
+      "minY": 17,
+      "maxX": 1262,
+      "maxY": 433,
+      "pixels": 62098,
+      "frame": 2
+    },
+    {
+      "label": 3,
+      "minX": 1374,
+      "minY": 16,
+      "maxX": 1750,
+      "maxY": 436,
+      "pixels": 62042,
+      "frame": 3
+    },
+    {
+      "label": 5,
+      "minX": 59,
+      "minY": 453,
+      "maxX": 358,
+      "maxY": 815,
+      "pixels": 49136,
+      "frame": 4
+    },
+    {
+      "label": 6,
+      "minX": 449,
+      "minY": 461,
+      "maxX": 850,
+      "maxY": 874,
+      "pixels": 64856,
+      "frame": 5
+    },
+    {
+      "label": 7,
+      "minX": 942,
+      "minY": 461,
+      "maxX": 1349,
+      "maxY": 874,
+      "pixels": 56097,
+      "frame": 6
+    },
+    {
+      "label": 8,
+      "minX": 1468,
+      "minY": 473,
+      "maxX": 1742,
+      "maxY": 874,
+      "pixels": 52428,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 0
+}

@@ -364,119 +364,119 @@
     ]
   },
   "javier": {
-    "file": "javier-defiant-entrance",
+    "file": "javier-v43-defiant-entrance",
     "cell": 512,
-    "bodyHeight": 400,
-    "baseline": 492,
+    "bodyHeight": 438,
+    "baseline": 482,
     "anchorX": 256,
-    "width": 1536,
+    "width": 2048,
     "height": 1024,
     "frames": [
       {
-        "x": 129,
-        "y": 94,
-        "width": 272,
-        "height": 402,
+        "x": 155,
+        "y": 43,
+        "width": 201,
+        "height": 438,
         "slotX": 0,
         "slotY": 0
       },
       {
-        "x": 643,
-        "y": 89,
-        "width": 265,
-        "height": 406,
+        "x": 678,
+        "y": 43,
+        "width": 179,
+        "height": 438,
         "slotX": 512,
         "slotY": 0
       },
       {
-        "x": 1144,
-        "y": 90,
-        "width": 288,
-        "height": 405,
+        "x": 1183,
+        "y": 43,
+        "width": 194,
+        "height": 438,
         "slotX": 1024,
         "slotY": 0
       },
       {
-        "x": 121,
-        "y": 602,
-        "width": 283,
-        "height": 405,
+        "x": 1695,
+        "y": 43,
+        "width": 194,
+        "height": 438,
+        "slotX": 1536,
+        "slotY": 0
+      },
+      {
+        "x": 164,
+        "y": 555,
+        "width": 184,
+        "height": 438,
         "slotX": 0,
         "slotY": 512
       },
       {
-        "x": 632,
-        "y": 602,
-        "width": 282,
-        "height": 405,
+        "x": 676,
+        "y": 555,
+        "width": 184,
+        "height": 438,
         "slotX": 512,
-        "slotY": 512
-      },
-      {
-        "x": 1145,
-        "y": 601,
-        "width": 285,
-        "height": 406,
-        "slotX": 1024,
         "slotY": 512
       }
     ]
   },
   "capriles": {
-    "file": "capriles-defiant-entrance",
+    "file": "capriles-v39-defiant-entrance",
     "cell": 512,
-    "bodyHeight": 400,
-    "baseline": 492,
+    "bodyHeight": 432,
+    "baseline": 482,
     "anchorX": 256,
-    "width": 1536,
+    "width": 2048,
     "height": 1024,
     "frames": [
       {
-        "x": 121,
-        "y": 90,
+        "x": 107,
+        "y": 48,
         "width": 300,
-        "height": 405,
+        "height": 432,
         "slotX": 0,
         "slotY": 0
       },
       {
-        "x": 636,
-        "y": 88,
-        "width": 300,
-        "height": 407,
+        "x": 620,
+        "y": 35,
+        "width": 297,
+        "height": 445,
         "slotX": 512,
         "slotY": 0
       },
       {
-        "x": 1136,
-        "y": 88,
-        "width": 314,
-        "height": 407,
+        "x": 1130,
+        "y": 40,
+        "width": 299,
+        "height": 441,
         "slotX": 1024,
         "slotY": 0
       },
       {
-        "x": 112,
-        "y": 602,
-        "width": 318,
-        "height": 405,
+        "x": 1639,
+        "y": 34,
+        "width": 306,
+        "height": 447,
+        "slotX": 1536,
+        "slotY": 0
+      },
+      {
+        "x": 111,
+        "y": 568,
+        "width": 292,
+        "height": 424,
         "slotX": 0,
         "slotY": 512
       },
       {
-        "x": 624,
-        "y": 600,
-        "width": 316,
-        "height": 407,
+        "x": 620,
+        "y": 567,
+        "width": 297,
+        "height": 425,
         "slotX": 512,
-        "slotY": 512
-      },
-      {
-        "x": 1137,
-        "y": 604,
-        "width": 314,
-        "height": 404,
-        "slotX": 1024,
         "slotY": 512
       }
     ]
@@ -1072,60 +1072,60 @@
     ]
   },
   "nacho": {
-    "file": "nacho-defiant-entrance",
+    "file": "nacho-v42-defiant-entrance",
     "cell": 512,
-    "bodyHeight": 400,
-    "baseline": 492,
+    "bodyHeight": 437,
+    "baseline": 482,
     "anchorX": 256,
-    "width": 1536,
+    "width": 2048,
     "height": 1024,
     "frames": [
       {
-        "x": 133,
-        "y": 89,
-        "width": 269,
-        "height": 406,
+        "x": 144,
+        "y": 44,
+        "width": 226,
+        "height": 437,
         "slotX": 0,
         "slotY": 0
       },
       {
-        "x": 639,
-        "y": 89,
-        "width": 275,
-        "height": 406,
+        "x": 660,
+        "y": 44,
+        "width": 216,
+        "height": 437,
         "slotX": 512,
         "slotY": 0
       },
       {
-        "x": 1147,
-        "y": 89,
-        "width": 278,
-        "height": 406,
+        "x": 1168,
+        "y": 43,
+        "width": 225,
+        "height": 437,
         "slotX": 1024,
         "slotY": 0
       },
       {
-        "x": 123,
-        "y": 601,
-        "width": 275,
-        "height": 406,
+        "x": 1681,
+        "y": 43,
+        "width": 224,
+        "height": 437,
+        "slotX": 1536,
+        "slotY": 0
+      },
+      {
+        "x": 141,
+        "y": 558,
+        "width": 231,
+        "height": 435,
         "slotX": 0,
         "slotY": 512
       },
       {
-        "x": 643,
-        "y": 601,
-        "width": 266,
-        "height": 406,
+        "x": 652,
+        "y": 558,
+        "width": 233,
+        "height": 434,
         "slotX": 512,
-        "slotY": 512
-      },
-      {
-        "x": 1153,
-        "y": 601,
-        "width": 270,
-        "height": 406,
-        "slotX": 1024,
         "slotY": 512
       }
     ]

@@ -249,5 +249,10 @@
     "Held-key checks assert prevention of the native repeat default in the real component. Chromium's native repeat-button behavior was separately confirmed; trusted press tests cover the resume path.",
     "Game timing is controlled at its existing initial/remote props for deterministic component cases; account and creator races use real QA HTTP/forms and explicitly delayed callbacks.",
     "No review can prove absence of all bugs. No unresolved confirmed material issue remains in the inspected changes."
-  ]
+  ],
+  "mainIntegrationFollowup": {
+    "report": "main-integration.json",
+    "main": "330787c",
+    "note": "Current-main integration and its focused verification; the original screen captures remain historical evidence."
+  }
 }

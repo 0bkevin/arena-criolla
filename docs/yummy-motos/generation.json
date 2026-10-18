@@ -1,0 +1,27 @@
+{
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "generatedPath": "/home/ubuntu/.codex/generated_images/01a14ea2-069a-7161-9269-92ba3cf171bd/exec-7ee0dc77-7d83-4682-a51d-e68f4a58edfb.png",
+  "source": "assets/source/yummy-courier-v1.png",
+  "runtime": "public/assets/yummy-courier-v1.webp",
+  "prompt": "Use case: stylized-concept.\nAsset type: production transparent animation sprite atlas for the 2D fighting game Arena Criolla.\n\nReference image 1 is the EXISTING VICENTE FIGHTER ATLAS: match ONLY its polished hand-painted 2D cel-shaded editorial fighting-game style, realistic adult anatomy, fine dark ink outlines, detailed cloth folds, rich but controlled colors, crisp readable cutout edges and directional lighting. Do not reproduce Vicente, his outfit or any standing fighters.\nReference image 2 is an OFFICIAL YUMMY RIDES DRIVER PHOTO: use the purple-and-silver-gray windbreaker, black full-face helmet, ordinary black commuter motorcycle with visible front headlight, tires, engine, spokes, fork and mirrors.\nReference image 3 is the REAL YUMMY COURIER FLEET PHOTO IN CARACAS: use the practical insulated cubic delivery backpack, recognizable green fabric and white \"Yummy\" marking as the delivery cue. These are research references; create original artwork, do not paste photos.\n\nCreate a new animation sheet with EXACTLY FOUR cells in a 2 columns by 2 rows regular grid. EACH CELL contains ONE complete adult motorcycle courier riding ONE complete black standard street/commuter motorcycle, fully visible helmet to both complete wheels, facing screen RIGHT in a near-side-on shallow three-quarter view suitable for a side-view fighting game. The courier wears the purple/silver-gray Yummy jacket, dark jeans, dark shoes, hands gripping handlebars, knees bent naturally. A large GREEN insulated delivery backpack on the rider's back/rear seat, with a legible white \"Yummy\" word. No extra people or motorcycles inside any cell. No separate or detached parts.\n\nThe four cells are consecutive subtle DRIVING ANIMATION frames of the SAME rider and SAME motorcycle. Same camera angle, motorcycle size, proportions, registration, colors and silhouette in all four cells. Frames differ gently in wheel spoke rotation, suspension compression, jacket folds and slight forward rider lean, not different vehicles or camera angles. Front wheel screen-right, rear wheel screen-left. Both tires on a consistent horizontal baseline in each cell. Full motorcycle profile must read clearly when scaled to about 170 pixels wide.\n\nOutput a landscape sheet approximately 3:2, with four equally sized cells, ample transparent gutters and at least 25px transparent outer padding. Each frame centered in its own cell, same overall size and wheel baseline. True transparent alpha background, no checkerboard baked in, no background, road, ground shadows, dust, motion streaks, glow, magical effects, titles, frame numbers, panel borders or grid lines. No vector icon look, simplistic geometric scooter, chibi, anime, pixel art, 3D render, photomontage or photographic cutout. Match the illustrated game fighters.",
+  "references": [
+    "public/assets/zavarce-v5.webp",
+    "assets/references/yummy-motos/official-driver.png",
+    "assets/references/yummy-motos/caracas-riders.jpeg"
+  ],
+  "formation": {
+    "count": 7,
+    "spacing": 42,
+    "displayHeight": 154,
+    "depthOffsets": [
+      -30,
+      -8,
+      -45,
+      -22,
+      -4,
+      -36,
+      0
+    ]
+  }
+}

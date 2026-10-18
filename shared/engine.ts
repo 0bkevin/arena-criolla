@@ -83,6 +83,8 @@ export interface Projectile {
   life: number;
   vy?: number;
   age?: number;
+  formationIndex?: number;
+  hitInvincibility?: number;
   returnAfter?: number;
   kind: string;
   damage: number;
@@ -404,15 +406,12 @@ function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
     });
 }
 
-function updateAttack(s: MatchState, i: number) {
+function reflectProjectiles(s: MatchState, i: number) {
   const p = s.players[i];
-  if (!p.attack) return;
-  const attack = p.attack;
+  if (p.attack !== "special") return;
   const def = fighterById(p.config.fighter);
-  const other = s.players[1 - i];
   const technique = TECHNIQUES[def.ability];
   if (
-    attack === "special" &&
     technique.reflect &&
     p.attackTick >= technique.reflect.from &&
     p.attackTick <= technique.reflect.to
@@ -441,6 +440,15 @@ function updateAttack(s: MatchState, i: number) {
       }
     }
   }
+}
+
+function updateAttack(s: MatchState, i: number) {
+  const p = s.players[i];
+  if (!p.attack) return;
+  const attack = p.attack;
+  const def = fighterById(p.config.fighter);
+  const other = s.players[1 - i];
+  const technique = TECHNIQUES[def.ability];
   const activeAt =
     attack === "light"
       ? 6
@@ -493,7 +501,10 @@ function updateAttack(s: MatchState, i: number) {
           id: s.nextId++,
           owner: i,
           direction: p.facing,
-          x: p.x + p.facing * 48,
+          x:
+            p.x +
+            p.facing *
+              (48 + (note - (count - 1) / 2) * (projectile.spacing ?? 0)),
           y: p.y - (projectile.groundOnly ? 42 : 75),
           originY: p.y - 75,
           vx: p.facing * projectile.speed,
@@ -501,6 +512,8 @@ function updateAttack(s: MatchState, i: number) {
             (projectile.initialVy ?? 0) +
             (note - (count - 1) / 2) * (projectile.spread || 0),
           age: 0,
+          formationIndex: projectile.spacing ? note : undefined,
+          hitInvincibility: projectile.hitInvincibility,
           returnAfter: projectile.returnAfter,
           life: projectile.life,
           kind: def.ability,
@@ -827,6 +840,8 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
   // Otherwise a P1 hit applies knockback one frame earlier than the mirrored P2 hit.
   for (const player of s.players) if (player.attack) player.attackTick++;
   for (let i = 0; i < 2; i++) updateAttack(s, i);
+  // Both players must finish spawning shots before either reflector sees this tick's pack.
+  for (let i = 0; i < 2; i++) reflectProjectiles(s, i);
   // Predict spacing from the movement that roots actually allow this frame.
   for (const p of s.players) {
     if (p.rootTicks > 0 && p.grounded) {
@@ -1003,6 +1018,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
           target.x,
           projectile.y,
           "special",
+          projectile.hitInvincibility,
         )
       ) {
         if (target.hp < healthBefore) {

@@ -1,0 +1,482 @@
+{
+  "recordedAt": "2026-10-18T13:09:18.153017+00:00",
+  "npmAudit": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "dependencies": {
+      "prod": 114,
+      "dev": 25,
+      "optional": 87,
+      "peer": 10,
+      "peerOptional": 0,
+      "total": 229
+    }
+  },
+  "trivy": {
+    "version": "0.76.0",
+    "download": "https://github.com/aquasecurity/trivy/releases/download/v0.76.0/trivy_0.76.0_Linux-64bit.tar.gz",
+    "archiveSha256": "e24b1c51293c1b15e4ba8d45bbc7891ba053f90278ec2698f3562c993e145fe7",
+    "database": {
+      "Version": 2,
+      "NextUpdate": "2026-10-19T07:12:07.771859277Z",
+      "UpdatedAt": "2026-10-18T07:12:07.771859408Z",
+      "DownloadedAt": "2026-10-18T12:54:15.089870462Z"
+    },
+    "unfixedVulnerabilitiesHidden": false,
+    "ignoreFileUsed": false,
+    "before": {
+      "image": "arena-criolla:main-cc15e31-no-workshop",
+      "imageId": "sha256:cf02eb94b11e9844ad2962ee5817abe4f05cd72d7a686e2ec7877f188cf34c20",
+      "os": {
+        "Family": "alpine",
+        "Name": "3.24.2"
+      },
+      "targets": [
+        {
+          "target": "arena-criolla:main-cc15e31-no-workshop (alpine 3.24.2)",
+          "class": "os-pkgs",
+          "type": "alpine",
+          "packageCount": 19,
+          "vulnerabilities": [
+            {
+              "VulnerabilityID": "CVE-2026-85091",
+              "PkgName": "zlib",
+              "PkgPath": null,
+              "InstalledVersion": "1.3.2-r0",
+              "FixedVersion": "1.3.2-r1",
+              "Severity": "MEDIUM",
+              "Status": "fixed",
+              "Title": "zlib versions 1.3.1.2 through 1.3.2 contain a heap buffer overflow vul ...",
+              "DataSource": {
+                "ID": "alpine",
+                "Name": "Alpine Secdb",
+                "URL": "https://secdb.alpinelinux.org/"
+              },
+              "References": [
+                "https://gist.github.com/thesmartshadow/e0b9481792afb7c31e86fee1ff084490",
+                "https://github.com/madler/zlib",
+                "https://github.com/madler/zlib/blob/v1.3.2/gzwrite.c#L393",
+                "https://www.cve.org/CVERecord?id=CVE-2026-85091",
+                "https://www.vulncheck.com/advisories/zlib-1.3.1.2-through-1.3.2-heap-buffer-overflow-via-gz-vacate"
+              ]
+            }
+          ]
+        },
+        {
+          "target": "Node.js",
+          "class": "lang-pkgs",
+          "type": "node-pkg",
+          "packageCount": 274,
+          "vulnerabilities": [
+            {
+              "VulnerabilityID": "CVE-2026-102276",
+              "PkgName": "brace-expansion",
+              "PkgPath": "usr/local/lib/node_modules/npm/node_modules/brace-expansion/package.json",
+              "InstalledVersion": "5.0.9",
+              "FixedVersion": "5.0.10, 3.0.7, 2.1.5, 1.1.19",
+              "Severity": "HIGH",
+              "Status": "fixed",
+              "Title": "brace-expansion: brace-expansion: Denial of Service via stack exhaustion from crafted brace patterns",
+              "DataSource": {
+                "ID": "ghsa",
+                "Name": "GitHub Security Advisory npm",
+                "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+              },
+              "References": [
+                "https://access.redhat.com/security/cve/CVE-2026-102276",
+                "https://advisory.echohq.com/cve/CVE-2026-102276",
+                "https://github.com/juliangruber/brace-expansion",
+                "https://github.com/juliangruber/brace-expansion/commit/0bcbfc0a5928c3073d48f42999d1ce4fc1c42fbc",
+                "https://github.com/juliangruber/brace-expansion/commit/316359e6019c39b3254c8ba8e25dc586a480652c",
+                "https://github.com/juliangruber/brace-expansion/commit/5171e681c0922b7ae8bfaf9a331e309107be6edc",
+                "https://github.com/juliangruber/brace-expansion/commit/6735c94873ca570bcdd6a0690033bdd3126379d3",
+                "https://github.com/juliangruber/brace-expansion/security/advisories/GHSA-6j4f-fj2g-mc7p",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-102276",
+                "https://www.cve.org/CVERecord?id=CVE-2026-102276"
+              ]
+            },
+            {
+              "VulnerabilityID": "CVE-2026-102278",
+              "PkgName": "brace-expansion",
+              "PkgPath": "usr/local/lib/node_modules/npm/node_modules/brace-expansion/package.json",
+              "InstalledVersion": "5.0.9",
+              "FixedVersion": "5.0.11, 3.0.8, 2.1.6, 1.1.20",
+              "Severity": "HIGH",
+              "Status": "fixed",
+              "Title": "brace-expansion: brace-expansion: Denial of Service via uncontrolled recursion in nested brace patterns",
+              "DataSource": {
+                "ID": "ghsa",
+                "Name": "GitHub Security Advisory npm",
+                "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+              },
+              "References": [
+                "https://access.redhat.com/security/cve/CVE-2026-102278",
+                "https://advisory.echohq.com/cve/CVE-2026-102278",
+                "https://github.com/juliangruber/brace-expansion",
+                "https://github.com/juliangruber/brace-expansion/commit/1efee7c397c191da6287a78ec19512476a966a7b",
+                "https://github.com/juliangruber/brace-expansion/commit/935d78f32f335b2ff76578e5c5e877d31ae9888c",
+                "https://github.com/juliangruber/brace-expansion/commit/de84f144e9816f30e25fc8179e2e1249ab6df0db",
+                "https://github.com/juliangruber/brace-expansion/security/advisories/GHSA-qhr7-859c-m2p7",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-102278",
+                "https://www.cve.org/CVERecord?id=CVE-2026-102278"
+              ]
+            },
+            {
+              "VulnerabilityID": "CVE-2026-102277",
+              "PkgName": "brace-expansion",
+              "PkgPath": "usr/local/lib/node_modules/npm/node_modules/brace-expansion/package.json",
+              "InstalledVersion": "5.0.9",
+              "FixedVersion": "5.0.12, 3.0.9, 2.1.7, 1.1.21",
+              "Severity": "MEDIUM",
+              "Status": "fixed",
+              "Title": "brace-expansion: brace-expansion: Denial of Service via crafted brace patterns",
+              "DataSource": {
+                "ID": "ghsa",
+                "Name": "GitHub Security Advisory npm",
+                "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+              },
+              "References": [
+                "https://access.redhat.com/security/cve/CVE-2026-102277",
+                "https://advisory.echohq.com/cve/CVE-2026-102277",
+                "https://github.com/juliangruber/brace-expansion",
+                "https://github.com/juliangruber/brace-expansion/commit/33a5ef17b8d800bbfa8c52b14c39043b6aac1a96",
+                "https://github.com/juliangruber/brace-expansion/commit/bdff773f98e5988616b7039cc9b508df5d640b22",
+                "https://github.com/juliangruber/brace-expansion/commit/c55e67d8d8b1c56a2474afff15c2891166b2d364",
+                "https://github.com/juliangruber/brace-expansion/commit/ffdfa3e3806bed17c0874b8f1439b084de354a7e",
+                "https://github.com/juliangruber/brace-expansion/security/advisories/GHSA-q2hr-2g5m-vwhr",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-102277",
+                "https://www.cve.org/CVERecord?id=CVE-2026-102277"
+              ]
+            },
+            {
+              "VulnerabilityID": "CVE-2026-93748",
+              "PkgName": "http-cache-semantics",
+              "PkgPath": "usr/local/lib/node_modules/npm/node_modules/http-cache-semantics/package.json",
+              "InstalledVersion": "4.2.0",
+              "FixedVersion": null,
+              "Severity": "HIGH",
+              "Status": "affected",
+              "Title": "http-cache-semantics: http-cache-semantics: Information Disclosure via max-stale directive",
+              "DataSource": {
+                "ID": "ghsa",
+                "Name": "GitHub Security Advisory npm",
+                "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+              },
+              "References": [
+                "https://access.redhat.com/security/cve/CVE-2026-93748",
+                "https://github.com/kornelski/http-cache-semantics",
+                "https://github.com/kornelski/http-cache-semantics/blob/f01112e954b83cfa8765b633ba880e5e980aa54c/index.js#L425-L441",
+                "https://github.com/kornelski/http-cache-semantics/blob/f01112e954b83cfa8765b633ba880e5e980aa54c/index.js#L603-L623",
+                "https://github.com/kornelski/http-cache-semantics/issues/56",
+                "https://github.com/kornelski/http-cache-semantics/issues/56#issuecomment-5975759591",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-93748",
+                "https://www.cve.org/CVERecord?id=CVE-2026-93748",
+                "https://www.vulncheck.com/advisories/http-cache-semantics-through-4.2.0-cross-user-cache-disclosure-via-max-stale"
+              ]
+            },
+            {
+              "VulnerabilityID": "CVE-2026-101910",
+              "PkgName": "ip-address",
+              "PkgPath": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json",
+              "InstalledVersion": "10.5.0",
+              "FixedVersion": "10.5.1",
+              "Severity": "MEDIUM",
+              "Status": "fixed",
+              "Title": "ip-address: ip-address: Security boundary bypass via unclassified NAT64 local-use address range",
+              "DataSource": {
+                "ID": "ghsa",
+                "Name": "GitHub Security Advisory npm",
+                "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+              },
+              "References": [
+                "https://access.redhat.com/security/cve/CVE-2026-101910",
+                "https://advisory.echohq.com/cve/CVE-2026-101910",
+                "https://github.com/beaugunderson/ip-address",
+                "https://github.com/beaugunderson/ip-address/commit/ab3dc88bcf5374344168a2ba075ca7ac4ff257f8",
+                "https://github.com/beaugunderson/ip-address/releases/tag/v10.5.1",
+                "https://github.com/beaugunderson/ip-address/security/advisories/GHSA-2vr4-cq9g-pvrc",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-101910",
+                "https://www.cve.org/CVERecord?id=CVE-2026-101910"
+              ]
+            },
+            {
+              "VulnerabilityID": "CVE-2026-101911",
+              "PkgName": "ip-address",
+              "PkgPath": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json",
+              "InstalledVersion": "10.5.0",
+              "FixedVersion": "10.7.1",
+              "Severity": "MEDIUM",
+              "Status": "fixed",
+              "Title": "ip-address: ip-address: Denial of Service via unbounded IPv6 address parsing",
+              "DataSource": {
+                "ID": "ghsa",
+                "Name": "GitHub Security Advisory npm",
+                "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+              },
+              "References": [
+                "https://access.redhat.com/security/cve/CVE-2026-101911",
+                "https://advisory.echohq.com/cve/CVE-2026-101911",
+                "https://github.com/beaugunderson/ip-address",
+                "https://github.com/beaugunderson/ip-address/commit/469ead1231b4cc059f2150c626e1e0c2895c0134",
+                "https://github.com/beaugunderson/ip-address/commit/8b34a21e0839b37c094066816fb2c2c48a2adcf5",
+                "https://github.com/beaugunderson/ip-address/releases/tag/v10.7.1",
+                "https://github.com/beaugunderson/ip-address/security/advisories/GHSA-h3mg-xc3c-68pw",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-101911",
+                "https://www.cve.org/CVERecord?id=CVE-2026-101911"
+              ]
+            },
+            {
+              "VulnerabilityID": "CVE-2026-101912",
+              "PkgName": "ip-address",
+              "PkgPath": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json",
+              "InstalledVersion": "10.5.0",
+              "FixedVersion": "10.7.1",
+              "Severity": "MEDIUM",
+              "Status": "fixed",
+              "Title": "ip-address: ip-address: Access control bypass via cross-family subnet comparison",
+              "DataSource": {
+                "ID": "ghsa",
+                "Name": "GitHub Security Advisory npm",
+                "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+              },
+              "References": [
+                "https://access.redhat.com/security/cve/CVE-2026-101912",
+                "https://advisory.echohq.com/cve/CVE-2026-101912",
+                "https://github.com/beaugunderson/ip-address",
+                "https://github.com/beaugunderson/ip-address/commit/1343629d57fea413644a5c9d41ff1e59619f3f28",
+                "https://github.com/beaugunderson/ip-address/releases/tag/v10.7.1",
+                "https://github.com/beaugunderson/ip-address/security/advisories/GHSA-j6r3-76f7-8jcv",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-101912",
+                "https://www.cve.org/CVERecord?id=CVE-2026-101912"
+              ]
+            },
+            {
+              "VulnerabilityID": "CVE-2026-101913",
+              "PkgName": "ip-address",
+              "PkgPath": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json",
+              "InstalledVersion": "10.5.0",
+              "FixedVersion": "10.5.1",
+              "Severity": "MEDIUM",
+              "Status": "fixed",
+              "Title": "ip-address: ip-address: Security bypass via incomplete IPv6 link-local address validation",
+              "DataSource": {
+                "ID": "ghsa",
+                "Name": "GitHub Security Advisory npm",
+                "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+              },
+              "References": [
+                "https://access.redhat.com/security/cve/CVE-2026-101913",
+                "https://advisory.echohq.com/cve/CVE-2026-101913",
+                "https://github.com/beaugunderson/ip-address",
+                "https://github.com/beaugunderson/ip-address/commit/d03e960c7cc3179ef25c8a44b4f94dd499625546",
+                "https://github.com/beaugunderson/ip-address/releases/tag/v10.5.1",
+                "https://github.com/beaugunderson/ip-address/security/advisories/GHSA-rpw4-54j3-4h4q",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-101913",
+                "https://www.cve.org/CVERecord?id=CVE-2026-101913"
+              ]
+            },
+            {
+              "VulnerabilityID": "CVE-2026-104844",
+              "PkgName": "postcss-selector-parser",
+              "PkgPath": "usr/local/lib/node_modules/npm/node_modules/postcss-selector-parser/package.json",
+              "InstalledVersion": "7.1.4",
+              "FixedVersion": "7.1.6",
+              "Severity": "MEDIUM",
+              "Status": "fixed",
+              "Title": "postcss-selector-parser: postcss-selector-parser: Denial of Service via crafted CSS selectors",
+              "DataSource": {
+                "ID": "ghsa",
+                "Name": "GitHub Security Advisory npm",
+                "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+              },
+              "References": [
+                "https://access.redhat.com/security/cve/CVE-2026-104844",
+                "https://advisory.echohq.com/cve/CVE-2026-104844",
+                "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
+                "https://github.com/postcss/postcss-selector-parser",
+                "https://github.com/postcss/postcss-selector-parser/commit/62b191792df0a0bc56062e5a875bc74aae2a51cd",
+                "https://github.com/postcss/postcss-selector-parser/releases/tag/7.1.6",
+                "https://github.com/postcss/postcss-selector-parser/security/advisories/GHSA-rj75-hqrm-r3gf",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-104844",
+                "https://www.cve.org/CVERecord?id=CVE-2026-104844"
+              ]
+            },
+            {
+              "VulnerabilityID": "CVE-2026-19534",
+              "PkgName": "undici",
+              "PkgPath": "usr/local/lib/node_modules/npm/node_modules/undici/package.json",
+              "InstalledVersion": "6.28.0",
+              "FixedVersion": "6.28.1, 7.29.1, 8.10.2",
+              "Severity": "HIGH",
+              "Status": "fixed",
+              "Title": "undici: undici: Denial of Service via unrequested WebSocket subprotocol",
+              "DataSource": {
+                "ID": "ghsa",
+                "Name": "GitHub Security Advisory npm",
+                "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+              },
+              "References": [
+                "https://access.redhat.com/errata/RHSA-2026:75870",
+                "https://access.redhat.com/security/cve/CVE-2026-19534",
+                "https://advisory.echohq.com/cve/CVE-2026-19534",
+                "https://bugzilla.redhat.com/2481394",
+                "https://bugzilla.redhat.com/2528759",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2481394",
+                "https://bugzilla.redhat.com/show_bug.cgi?id=2528759",
+                "https://cna.openjsf.org/security-advisories.html",
+                "https://creativecommons.org/licenses/by/4.0/",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-19534",
+                "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-9496",
+                "https://errata.almalinux.org/8/ALSA-2026-75870.html",
+                "https://errata.rockylinux.org/RLSA-2026:75870",
+                "https://github.com/nodejs/undici",
+                "https://github.com/nodejs/undici/commit/2af0faf88b906d3127a360c3ac75164c0f95e5a5",
+                "https://github.com/nodejs/undici/commit/6615e0175e9b635bcd2e3e87a47daa82f6f5b728",
+                "https://github.com/nodejs/undici/commit/66e12816064cf3068f63bd134748b7fc4e779bad",
+                "https://github.com/nodejs/undici/releases/tag/v6.28.1",
+                "https://github.com/nodejs/undici/releases/tag/v7.29.1",
+                "https://github.com/nodejs/undici/releases/tag/v8.10.2",
+                "https://github.com/nodejs/undici/security/advisories/GHSA-rfgv-xxqx-mfg5",
+                "https://linux.oracle.com/cve/CVE-2026-19534.html",
+                "https://linux.oracle.com/errata/ELSA-2026-76750.html",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-19534",
+                "https://www.cve.org/CVERecord?id=CVE-2026-19534"
+              ]
+            },
+            {
+              "VulnerabilityID": "CVE-2026-85024",
+              "PkgName": "undici",
+              "PkgPath": "usr/local/lib/node_modules/npm/node_modules/undici/package.json",
+              "InstalledVersion": "6.28.0",
+              "FixedVersion": "6.28.1, 7.29.1, 8.10.2",
+              "Severity": "MEDIUM",
+              "Status": "fixed",
+              "Title": "undici: undici: Denial of Service via unhandled error in WebSocket permessage-deflate decompression",
+              "DataSource": {
+                "ID": "ghsa",
+                "Name": "GitHub Security Advisory npm",
+                "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+              },
+              "References": [
+                "https://access.redhat.com/security/cve/CVE-2026-85024",
+                "https://advisory.echohq.com/cve/CVE-2026-85024",
+                "https://cna.openjsf.org/security-advisories.html",
+                "https://github.com/nodejs/undici",
+                "https://github.com/nodejs/undici/commit/07c60d9c7099a910451244afe42861bbdbdd974c",
+                "https://github.com/nodejs/undici/commit/4411a238a98e8791da5fff10cc9e3578a7668ed6",
+                "https://github.com/nodejs/undici/commit/63cf698b611fecc6ee0a17b185b930051e4b982f",
+                "https://github.com/nodejs/undici/releases/tag/v6.28.1",
+                "https://github.com/nodejs/undici/releases/tag/v7.29.1",
+                "https://github.com/nodejs/undici/releases/tag/v8.10.2",
+                "https://github.com/nodejs/undici/security/advisories/GHSA-3wwx-pv8p-q78v",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-85024",
+                "https://www.cve.org/CVERecord?id=CVE-2026-85024"
+              ]
+            },
+            {
+              "VulnerabilityID": "CVE-2026-18540",
+              "PkgName": "undici",
+              "PkgPath": "usr/local/lib/node_modules/npm/node_modules/undici/package.json",
+              "InstalledVersion": "6.28.0",
+              "FixedVersion": "6.28.1, 7.29.1, 8.10.2",
+              "Severity": "LOW",
+              "Status": "fixed",
+              "Title": "undici: undici: HTTP response splitting via retry interceptor",
+              "DataSource": {
+                "ID": "ghsa",
+                "Name": "GitHub Security Advisory npm",
+                "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+              },
+              "References": [
+                "https://access.redhat.com/security/cve/CVE-2026-18540",
+                "https://advisory.echohq.com/cve/CVE-2026-18540",
+                "https://cna.openjsf.org/security-advisories.html",
+                "https://github.com/nodejs/undici",
+                "https://github.com/nodejs/undici/commit/0160a719063fb0a77f4fdf9500b9166b91e14329",
+                "https://github.com/nodejs/undici/commit/cd8af90b38ae33c2838d54a2d629774122effe95",
+                "https://github.com/nodejs/undici/commit/ce31bc824b578008faae5d3350da66c1b5f71548",
+                "https://github.com/nodejs/undici/releases/tag/v6.28.1",
+                "https://github.com/nodejs/undici/releases/tag/v7.29.1",
+                "https://github.com/nodejs/undici/releases/tag/v8.10.2",
+                "https://github.com/nodejs/undici/security/advisories/GHSA-r53p-7pc4-xj5r",
+                "https://hackerone.com/reports/3900104",
+                "https://hackerone.com/reports/3900615",
+                "https://nvd.nist.gov/vuln/detail/CVE-2026-18540",
+                "https://www.cve.org/CVERecord?id=CVE-2026-18540"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "after": {
+      "image": "arena-criolla:main-cc15e31-security",
+      "imageId": "sha256:f48fced61b036f5de74bc790c628fcb6cb3572029f8aed9f685f68cbbada4a1c",
+      "os": {
+        "Family": "alpine",
+        "Name": "3.24.2"
+      },
+      "targets": [
+        {
+          "target": "arena-criolla:main-cc15e31-security (alpine 3.24.2)",
+          "class": "os-pkgs",
+          "type": "alpine",
+          "packageCount": 19,
+          "vulnerabilities": []
+        },
+        {
+          "target": "Node.js",
+          "class": "lang-pkgs",
+          "type": "node-pkg",
+          "packageCount": 128,
+          "vulnerabilities": []
+        }
+      ]
+    }
+  },
+  "runtime": {
+    "node": "24.22.0",
+    "openssl": "3.5.8",
+    "sharp": {
+      "aom": "3.15.1",
+      "archive": "3.8.9",
+      "cairo": "1.18.6",
+      "cgif": "0.5.4",
+      "exif": "0.6.26",
+      "expat": "2.8.5",
+      "ffi": "3.8.0",
+      "fontconfig": "2.18.3",
+      "freetype": "2.14.3",
+      "fribidi": "1.0.17",
+      "glib": "2.90.0",
+      "harfbuzz": "14.5.0",
+      "heif": "1.23.5",
+      "highway": "1.4.0",
+      "imagequant": "2.4.1",
+      "lcms": "2.19.1",
+      "mozjpeg": "0826579",
+      "pango": "1.58.2",
+      "pixman": "0.46.4",
+      "png": "1.6.58",
+      "proxy-libintl": "0.5",
+      "rsvg": "2.63.2",
+      "tiff": "4.7.2",
+      "uhdr": "2.0.2",
+      "vips": "8.18.7",
+      "webp": "1.6.0",
+      "xml2": "2.15.4",
+      "zlib-ng": "2.3.3",
+      "sharp": "0.35.5"
+    }
+  },
+  "limitations": [
+    "Results reflect the advisory databases and package analyzers at the recorded time, not a proof that every embedded native component is free of vulnerabilities.",
+    "The upcoming Node security release announcement is tracked separately because no patch or CVE identifiers have been published yet."
+  ]
+}

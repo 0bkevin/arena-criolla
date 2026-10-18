@@ -1,0 +1,30 @@
+{
+  "version": "v43",
+  "purpose": "Independent alternate gait phase preserving the user-selected classic clean-shaven Javier identity.",
+  "tool": "image_gen.imagegen",
+  "references": [
+    "assets/source/identity-v43/user-reference.png",
+    "assets/source/identity-v43/javier-classic-master.png"
+  ],
+  "selectedAsset": "assets/source/identity-v43/javier-run-alternate.png",
+  "generatedSource": "/home/ubuntu/.codex/generated_images/01a1511e-89f9-75d1-9f75-cd1aec6f28b6/exec-e1474b10-9072-4e0e-aef8-fc77f2bfa1e6.png",
+  "selection": "Attempt 2: visibly opposite arm/leg lead. Near right upper arm comes forward across chest while near right thigh stretches back; far left arm trails and far left leg reaches forward. Broad smile, lifted inner brows, clean jaw and tall swept quiff retained. Complete body and footwear.",
+  "limitations": [
+    "Raw selected figure has not been packed into the live atlas by this independent reviewer. Root must preserve whole-figure proportions and verify playback against frame 2.",
+    "Transparent alpha must be respected; RGB hidden under zero alpha is not visible runtime artwork."
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "selected": false,
+      "source": "/home/ubuntu/.codex/generated_images/01a1511e-89f9-75d1-9f75-cd1aec6f28b6/exec-9971e3ee-e13c-4e5f-9c9e-88e9952de38a.png",
+      "reason": "Good identity and different contact silhouette but old forward-arm lead persisted.",
+      "prompt": "Create ONE isolated full-body 2D fighting-game running animation frame, on genuine transparent alpha background. Input 1 is ONLY the identity reference: Javier Hala Madrid clean-shaven with a tall smooth black swept-up quiff, very broad tooth-showing comic smile, raised inner eyebrows, forehead creases, deep smile curves, tan skin. Input 2 is ONLY the approved identity/wardrobe/art-style master; preserve that exact recognizable face, navy-black fitted crew-neck T shirt with small red chest mark and fine silver chain, charcoal straight trousers and white low-top sneakers. Do NOT copy its guard pose. Draw a RIGHTWARD RUNNING CONTACT PHASE: far LEFT anatomical leg reaches forward toward screen RIGHT with the heel landing on ground, near RIGHT anatomical leg is kicked backward toward screen LEFT with the knee folded and heel high behind the buttocks. The RIGHT anatomical arm swings forward toward screen RIGHT across the torso, hand at chest level; the LEFT arm swings back toward screen LEFT. This is a clearly opposing gait phase, not a raised front-knee sprint. Both feet, hair and hands entirely inside canvas with generous transparent margin. Torso leans right. Face turns modestly right so both eyes and broad grinning mouth remain visible and gaze goes toward opponent on the right. Adult 7.5-head body proportions. Match bold clean black outlines and smooth painted cel shading of approved master. Only one person, no extra figures, no labels, no ground plane, no cast shadow or halo, no background. Anatomically coherent complete limbs. Primary priority: heel landing far ahead on RIGHT and other heel up behind on LEFT, with reversed arm swing."
+    },
+    {
+      "attempt": 2,
+      "selected": true,
+      "prompt": "Generate ONE full-body clean cel-shaded 2D fighting-game running sprite on genuine transparent alpha. Use the supplied photo for Javier's classic identity and supplied illustrated master for exact clean-shaven face/style/wardrobe. Keep high smooth swept-up black quiff, expressive raised inner eyebrows, forehead creases, broad toothy comic smile, long oval tan face, fitted dark navy tee, subtle silver chain, charcoal pants and white low sneakers. NEW REQUIRED POSE: the OPPOSITE ARM-AND-LEG phase of an ordinary RIGHT-facing sprint. The runner is viewed from his RIGHT side in mild front three-quarter. His near RIGHT shoulder comes forward; his near RIGHT elbow points toward screen RIGHT and his RIGHT fist crosses in front of his breastbone at shoulder height toward the right. His far LEFT arm extends backward behind the torso toward screen LEFT, with LEFT fist clearly behind his waist. His near RIGHT thigh stretches BACKWARDS toward screen LEFT and its knee bends so its sneaker heel kicks upward behind him. His far LEFT leg stretches forward toward screen RIGHT with knee nearly straight and sneaker heel just touching ground far ahead. This creates a wide bounding stride with right arm FORWARD, right leg BACK; left arm BACK, left leg FORWARD. The raised forward fist belongs to the near shoulder on the viewer's LEFT side of the chest, crossing diagonally across chest. Chest is twisted right, red chest emblem only partly visible on far side. Face modestly toward right, both eyes visible, recognizable smile. Show entire man with 6 percent transparent margin all round. Adult athletic proportions, black ink outlines and restrained smooth cel shading. Only one complete man; no labels, no ground, no halo/shadow, no other poses."
+    }
+  ]
+}

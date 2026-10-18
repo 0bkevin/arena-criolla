@@ -1,0 +1,75 @@
+{
+  "title": "Entrega exprés — Motos Yummy",
+  "file": "vicente-motos-yummy.mp4",
+  "durationSeconds": 22.5,
+  "resolution": [
+    1280,
+    800
+  ],
+  "outputFrameRate": 60,
+  "videoCodec": "H.264",
+  "audioCodec": "AAC",
+  "capture": "Canvas y mezcla Web Audio capturados juntos con MediaRecorder en el navegador colaborativo de T3. El vídeo muestra el motor y los assets reales con textos explicativos añadidos.",
+  "ability": "courier",
+  "key": "L",
+  "energyCost": 25,
+  "requiredWins": 0,
+  "motorcyclesPerActivation": 3,
+  "launchTicks": [
+    12,
+    30,
+    48
+  ],
+  "chapters": [
+    {
+      "start": 0,
+      "end": 4.5,
+      "label": "Invocación y tres impactos",
+      "hits": 3
+    },
+    {
+      "start": 4.5,
+      "end": 9,
+      "label": "Repetición a cámara lenta",
+      "speed": 0.35
+    },
+    {
+      "start": 9,
+      "end": 13.5,
+      "label": "Invocación hacia la izquierda",
+      "hits": 3
+    },
+    {
+      "start": 13.5,
+      "end": 18,
+      "label": "Bloqueo del convoy",
+      "hits": 0,
+      "rivalHp": 100
+    },
+    {
+      "start": 18,
+      "end": 22.5,
+      "label": "Esquiva con doble salto",
+      "hits": 0,
+      "rivalHp": 100
+    }
+  ],
+  "verification": {
+    "testsPassed": 686,
+    "testsFailed": 0,
+    "build": "passed",
+    "typecheck": "passed",
+    "browserViewports": [
+      [
+        1280,
+        800
+      ],
+      [
+        844,
+        390
+      ]
+    ],
+    "browserRuntimeErrors": 0,
+    "online": "Three projectiles and all three impacts agree between two real WebSocket clients."
+  }
+}

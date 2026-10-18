@@ -1,6 +1,9 @@
-// Evaluate on /create against an isolated QA server. Creates disposable accounts
+// Evaluate in an isolated QA tab. Creates disposable accounts
 // through the real forms; generated credentials never leave this expression.
 (async () => {
+  const creatorFixture = await (
+    await import("/scripts/creator-browser-fixture.js")
+  ).mountCreatorForQa();
   const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const until = async (predicate) => {
     const deadline = performance.now() + 5000;
@@ -120,11 +123,7 @@
     return response;
   };
   try {
-    document.querySelector(".creator-back").click();
-    await until(() => !document.querySelector(".creator-shell"));
-    [...document.querySelectorAll("button")]
-      .find((button) => button.textContent.trim() === "Crear luchador")
-      .click();
+    creatorFixture.remount();
     await until(() => captured && document.querySelector(".creator-account"));
     await signout();
     await signup("Tercera cuenta QA");
