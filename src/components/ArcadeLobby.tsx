@@ -155,13 +155,9 @@ export function ArcadeLobby(props: Props) {
         <div className="marquee-landscape" aria-hidden="true" />
         <div className="marquee-sunshine" aria-hidden="true" />
         <div className="marquee-copy">
-          <span className="arcade-eyebrow">
-            <PixelIcon kind="coin" size={13} /> SIN MONEDAS. SIN REGISTRO.
-          </span>
           <h1>
             ARENA <span>CRIOLLA</span>
           </h1>
-          <p>Piques de aquí. Revanchas infinitas.</p>
         </div>
         <div className="marquee-culture" aria-hidden="true">
           <VenezuelaStars />
@@ -187,11 +183,11 @@ export function ArcadeLobby(props: Props) {
         >
           {(
             [
-              ["practice", "Pelea rápida", "TÚ VS. CPU", "gamepad"],
-              ["local", "Con un pana", "2 JUGADORES LOCAL", "heart"],
-              ["online", "En línea", "SALAS MULTIJUGADOR", "bolt"],
+              ["practice", "Contra CPU", "gamepad"],
+              ["local", "Dos jugadores", "heart"],
+              ["online", "En línea", "bolt"],
             ] as const
-          ).map(([value, label, description, icon], index) => (
+          ).map(([value, label, icon]) => (
             <button
               key={value}
               role="tab"
@@ -199,15 +195,16 @@ export function ArcadeLobby(props: Props) {
               aria-controls="match-setup"
               tabIndex={mode === value ? 0 : -1}
               aria-selected={mode === value}
+              title={
+                value === "local"
+                  ? "Dos jugadores en el mismo dispositivo"
+                  : undefined
+              }
               className={mode === value ? "selected" : ""}
               onClick={() => props.onMode(value)}
             >
               <PixelIcon kind={icon} size={20} />
-              <span>
-                {label}
-                <small>{description}</small>
-              </span>
-              <span className="mode-slot">0{index + 1}</span>
+              <span>{label}</span>
             </button>
           ))}
         </div>
@@ -225,7 +222,7 @@ export function ArcadeLobby(props: Props) {
           <Globe2 size={16} />
           <span>
             {network.opponentLeft
-              ? "Tu pana salió. Puedes invitarlo de nuevo o buscar otra pelea."
+              ? "Tu pana salió. Invítalo de nuevo o busca otra pelea."
               : network.error}
           </span>
           <button
@@ -256,13 +253,11 @@ export function ArcadeLobby(props: Props) {
           />
           <div className="cabinet-heading">
             <div>
-              <span className="arcade-step">01</span>
-              <h2>ELIGE TU LUCHADOR</h2>
+              <h2>LUCHADORES</h2>
             </div>
             <span className="duel-vs" aria-hidden="true">
               VS
             </span>
-            <span className="cabinet-count">← ↑ ↓ → MOVER · ENTER ELEGIR</span>
           </div>
 
           <div className="arcade-selection" id="luchadores">
@@ -278,7 +273,6 @@ export function ArcadeLobby(props: Props) {
                   onClick={() => setTarget("p1")}
                 >
                   <span>P1</span>
-                  <span>TU LUCHADOR</span>
                   <span className="pixel-cursor" aria-hidden="true">
                     ◂
                   </span>
@@ -299,7 +293,6 @@ export function ArcadeLobby(props: Props) {
                 <div className="contender-identity" key={`name-${fighter}`}>
                   <span>{chosen.role}</span>
                   <h3>{chosen.name}</h3>
-                  <p>{chosen.title}</p>
                 </div>
                 <button
                   className="contender-moves"
@@ -324,7 +317,6 @@ export function ArcadeLobby(props: Props) {
                   onClick={() => setTarget("p2")}
                 >
                   <span>{rivalLabel}</span>
-                  <span>{mode === "practice" ? "EL RIVAL" : "TU PANA"}</span>
                   <span className="pixel-cursor" aria-hidden="true">
                     ▸
                   </span>
@@ -354,9 +346,8 @@ export function ArcadeLobby(props: Props) {
                   className="contender-identity"
                   key={`rival-${opponent?.id || "waiting"}`}
                 >
-                  <span>{opponent?.role || "EN LÍNEA"}</span>
-                  <h3>{opponent?.name || "Tu pana"}</h3>
-                  <p>{opponent?.title || "La próxima revancha"}</p>
+                  {opponent && <span>{opponent.role}</span>}
+                  <h3>{opponent?.name || "Esperando rival"}</h3>
                 </div>
                 {opponent ? (
                   <button
@@ -368,9 +359,7 @@ export function ArcadeLobby(props: Props) {
                     <PixelIcon kind="bolt" size={12} />
                     <span>Movimientos</span> <ArrowRight size={12} />
                   </button>
-                ) : (
-                  <span className="waiting-message">Esperando rival</span>
-                )}
+                ) : null}
               </div>
             </div>
             <div className="arcade-roster">
@@ -383,24 +372,22 @@ export function ArcadeLobby(props: Props) {
                   <button
                     className={!pickingRival ? "active p1" : "p1"}
                     aria-pressed={!pickingRival}
+                    aria-label="Elegir luchador para P1"
                     onClick={() => setTarget("p1")}
                   >
-                    P1 <span>TÚ</span>
+                    P1
                   </button>
                   {mode !== "online" && (
                     <button
                       className={pickingRival ? "active p2" : "p2"}
                       aria-pressed={pickingRival}
+                      aria-label={`Elegir luchador para ${rivalLabel}`}
                       onClick={() => setTarget("p2")}
                     >
-                      {rivalLabel}{" "}
-                      <span>{mode === "practice" ? "RIVAL" : "TU PANA"}</span>
+                      {rivalLabel}
                     </button>
                   )}
                 </div>
-                <span className={`picking-label ${pickingRival ? "p2" : ""}`}>
-                  ELIGIENDO {pickingRival ? rivalLabel : "P1"}
-                </span>
                 <button
                   className="roster-random"
                   onClick={surpriseFighter}
@@ -431,7 +418,7 @@ export function ArcadeLobby(props: Props) {
                   <input
                     ref={props.searchInput}
                     aria-label="Buscar luchador"
-                    placeholder="¿Quién se mete en la pelea?"
+                    placeholder="Buscar luchador"
                     value={props.query}
                     onChange={(event) => props.onQuery(event.target.value)}
                     onKeyDown={(event) => {
@@ -545,7 +532,7 @@ export function ArcadeLobby(props: Props) {
                       setPage(0);
                     }}
                   >
-                    Ver todos los personajes <ArrowRight size={14} />
+                    Ver todos <ArrowRight size={14} />
                   </button>
                 </div>
               )}
@@ -562,12 +549,7 @@ export function ArcadeLobby(props: Props) {
                     <ChevronLeft size={16} />
                   </button>
                   <span role="status">
-                    {currentPage * PAGE_SIZE + 1}–
-                    {Math.min((currentPage + 1) * PAGE_SIZE, roster.length)} de{" "}
-                    {roster.length}
-                    <small>
-                      PÁG. {currentPage + 1}/{pageCount}
-                    </small>
+                    Página {currentPage + 1} de {pageCount}
                   </span>
                   <button
                     aria-label="Página siguiente de luchadores"
@@ -589,10 +571,9 @@ export function ArcadeLobby(props: Props) {
         <section className="arcade-stages" aria-label="Seleccionar escenario">
           <div className="arcade-stage-heading">
             <div>
-              <span className="arcade-step">02</span>
-              <h2>¿DÓNDE SE PRENDE?</h2>
+              <h2>ESCENARIO</h2>
             </div>
-            <span className="selected-stage-name" aria-live="polite">
+            <span className="sr-only" aria-live="polite">
               {stage.name}
             </span>
             <button onClick={() => props.onModal("stages")}>
@@ -643,8 +624,7 @@ export function ArcadeLobby(props: Props) {
           <div className="ready-intro">
             <PixelIcon kind="swords" size={28} />
             <div>
-              <span>ROUND 01</span>
-              <strong>¿LISTOS, PANAS?</strong>
+              <strong>PREPARAR PELEA</strong>
             </div>
           </div>
           {!network.room ? (
@@ -659,7 +639,6 @@ export function ArcadeLobby(props: Props) {
                   props.formError && !props.secondNameError ? "field-error" : ""
                 }
                 value={props.name}
-                placeholder="Tu apodo, pana"
                 maxLength={20}
                 autoComplete="nickname"
                 aria-invalid={
@@ -701,7 +680,6 @@ export function ArcadeLobby(props: Props) {
                 aria-label="Apodo del jugador 2"
                 className={props.secondNameError ? "field-error" : ""}
                 value={props.secondName}
-                placeholder="Apodo de tu pana"
                 maxLength={20}
                 aria-invalid={props.secondNameError}
                 aria-describedby={
@@ -751,7 +729,7 @@ export function ArcadeLobby(props: Props) {
               <span>
                 {network.room
                   ? `${network.room.players.length}/2 PANAS EN LA SALA`
-                  : "INVITA A UN PANA, DONDE ESTÉ"}
+                  : "INVITA A UN PANA"}
               </span>
               {network.room && (
                 <button onClick={props.onInvite}>
@@ -806,9 +784,8 @@ export function ArcadeLobby(props: Props) {
       </div>
 
       <div className="arcade-help-strip">
-        <span>Sin cuentas. Solo tu apodo y ganas de jugar.</span>
         <button onClick={() => props.onModal("help")}>
-          ¿Cómo se juega? <ArrowRight size={14} />
+          Cómo jugar <ArrowRight size={14} />
         </button>
       </div>
     </main>

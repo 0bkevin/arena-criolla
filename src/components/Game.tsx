@@ -834,13 +834,10 @@ export function Game(props: Props) {
         {paused && view.phase !== "finished" && (
           <div className="game-overlay">
             <div className="pause-card">
-              <span className="eyebrow">UN RESPIRO</span>
-              <h2>{mode === "online" ? "La pelea sigue" : "Pausa, pana."}</h2>
-              <p>
-                {mode === "online"
-                  ? "En línea el combate continúa. Vuelve antes de que tu rival aproveche."
-                  : "Recarga el ánimo y vuelve a la arena."}
-              </p>
+              <h2>{mode === "online" ? "La pelea sigue" : "Pausa"}</h2>
+              {mode === "online" && (
+                <p>El combate continúa mientras estás en el menú.</p>
+              )}
               <button className="primary-button" onClick={togglePause}>
                 <Play size={18} /> Continuar
               </button>
@@ -886,11 +883,6 @@ export function Game(props: Props) {
                         : "ESTA SE LA LLEVÓ TU RIVAL"}
                 </span>
                 <h2>{winner ? `${winner.config.name} gana.` : "¡Empate!"}</h2>
-                <p>
-                  {winnerDef
-                    ? `${winnerDef.name} se lleva la arena. ¿Vamos con la revancha?`
-                    : "Nadie cedió. Esto merece otra ronda."}
-                </p>
                 <div className="result-stats">
                   <div>
                     <strong>{view.players[localIndex].hits}</strong>
