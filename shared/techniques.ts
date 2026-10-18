@@ -1,6 +1,7 @@
 import type { Ability } from "./content";
 import { CULTURE_TECHNIQUES } from "./culture-techniques";
 import { FOUNDER_TECHNIQUES } from "./founder-techniques";
+import { ICON_TECHNIQUES } from "./icon-techniques";
 
 export interface Technique {
   startup: number;
@@ -68,6 +69,7 @@ export interface Technique {
 export const TECHNIQUES: Record<Ability, Technique> = {
   ...CULTURE_TECHNIQUES,
   ...FOUNDER_TECHNIQUES,
+  ...ICON_TECHNIQUES,
   courier: {
     startup: 12,
     recovery: 60,

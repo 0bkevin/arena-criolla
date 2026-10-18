@@ -1,0 +1,125 @@
+[
+  {
+    "id": "nacho",
+    "kind": "identity-anchor",
+    "generatedPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-2371c509-e5b2-4516-8650-f487d16b63f1.png",
+    "source": "assets/source/identity-v42/nacho-identity-anchor.png",
+    "references": [
+      "/home/ubuntu/.t3/userdata/attachments/2368edeb-71f1-4514-90cb-b6547290f9e8-9436f759-8e42-41a1-a2c3-867192d70042.png"
+    ],
+    "selected": true,
+    "localCopyRetained": true
+  },
+  {
+    "id": "javier",
+    "kind": "identity-anchor",
+    "generatedPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-5620e474-cead-41d1-8afa-b6dfbecf91fe.png",
+    "source": "assets/source/identity-v42/javier-identity-anchor.png",
+    "references": [
+      "/home/ubuntu/.t3/projects/vepol/assets/references/identity-v40/javier/youtube-10-cPuQ2pDEHFo.jpg",
+      "/home/ubuntu/.t3/projects/vepol/assets/references/identity-v40/javier/telegram-6423-30s.jpg"
+    ],
+    "selected": true,
+    "localCopyRetained": true
+  },
+  {
+    "id": "nacho",
+    "kind": "atlas-draft",
+    "generatedPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-7589af5d-d0b0-4d54-9873-5f824417a1e1.png",
+    "source": "assets/source/identity-v42/nacho-draft.png",
+    "references": [
+      "/home/ubuntu/.t3/projects/vepol/assets/source/identity-v42/nacho-identity-anchor.png",
+      "/home/ubuntu/.t3/userdata/attachments/2368edeb-71f1-4514-90cb-b6547290f9e8-9436f759-8e42-41a1-a2c3-867192d70042.png",
+      "/home/ubuntu/.t3/projects/vepol/public/assets/nacho-v40.webp"
+    ],
+    "selected": false,
+    "localCopyRetained": false
+  },
+  {
+    "id": "nacho-entrance",
+    "kind": "atlas-draft",
+    "generatedPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-f5fd0ded-898e-47af-8274-799de5d18fc2.png",
+    "source": "assets/source/identity-v42/nacho-entrance-draft.png",
+    "references": [
+      "/home/ubuntu/.t3/projects/vepol/assets/source/identity-v42/nacho-identity-anchor.png",
+      "/home/ubuntu/.t3/userdata/attachments/2368edeb-71f1-4514-90cb-b6547290f9e8-9436f759-8e42-41a1-a2c3-867192d70042.png",
+      "/home/ubuntu/.t3/projects/vepol/public/assets/nacho-v40-defiant-entrance.webp"
+    ],
+    "selected": false,
+    "localCopyRetained": false
+  },
+  {
+    "id": "javier",
+    "kind": "atlas-draft",
+    "generatedPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-e45d23e4-2db2-4413-a139-a382f56c9280.png",
+    "source": "assets/source/identity-v42/javier-draft.png",
+    "references": [
+      "/home/ubuntu/.t3/projects/vepol/assets/source/identity-v42/javier-identity-anchor.png",
+      "/home/ubuntu/.t3/projects/vepol/assets/references/identity-v40/javier/youtube-10-cPuQ2pDEHFo.jpg",
+      "/home/ubuntu/.t3/projects/vepol/public/assets/javier-v40.webp"
+    ],
+    "selected": false,
+    "localCopyRetained": false
+  },
+  {
+    "id": "javier-entrance",
+    "kind": "atlas-draft",
+    "generatedPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-2e0d062d-4285-4cc5-9605-eb5d2ceab622.png",
+    "source": "assets/source/identity-v42/javier-entrance-draft.png",
+    "references": [
+      "/home/ubuntu/.t3/projects/vepol/assets/source/identity-v42/javier-identity-anchor.png",
+      "/home/ubuntu/.t3/projects/vepol/assets/references/identity-v40/javier/youtube-10-cPuQ2pDEHFo.jpg",
+      "/home/ubuntu/.t3/projects/vepol/public/assets/javier-v40-defiant-entrance.webp"
+    ],
+    "selected": false,
+    "localCopyRetained": false
+  },
+  {
+    "id": "nacho",
+    "kind": "fresh-atlas",
+    "generatedPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-eb976985-fdd0-4b6a-9b7a-05a44e8ce823.png",
+    "source": "assets/source/identity-v42/nacho-generated.png",
+    "references": [
+      "/home/ubuntu/.t3/projects/vepol/assets/source/identity-v42/nacho-identity-anchor.png",
+      "/home/ubuntu/.t3/userdata/attachments/2368edeb-71f1-4514-90cb-b6547290f9e8-9436f759-8e42-41a1-a2c3-867192d70042.png"
+    ],
+    "selected": true,
+    "localCopyRetained": true
+  },
+  {
+    "id": "nacho-entrance",
+    "kind": "fresh-atlas",
+    "generatedPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-d6053542-c429-422f-b089-6fec60e858d4.png",
+    "source": "assets/source/identity-v42/nacho-entrance-generated.png",
+    "references": [
+      "/home/ubuntu/.t3/projects/vepol/assets/source/identity-v42/nacho-identity-anchor.png",
+      "/home/ubuntu/.t3/userdata/attachments/2368edeb-71f1-4514-90cb-b6547290f9e8-9436f759-8e42-41a1-a2c3-867192d70042.png"
+    ],
+    "selected": true,
+    "localCopyRetained": true
+  },
+  {
+    "id": "javier",
+    "kind": "fresh-atlas",
+    "generatedPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-5e3fe960-a0a9-4718-9ecf-b5a8cfed0342.png",
+    "source": "assets/source/identity-v42/javier-generated.png",
+    "references": [
+      "/home/ubuntu/.t3/projects/vepol/assets/source/identity-v42/javier-identity-anchor.png",
+      "/home/ubuntu/.t3/projects/vepol/assets/references/identity-v40/javier/youtube-10-cPuQ2pDEHFo.jpg"
+    ],
+    "selected": true,
+    "localCopyRetained": true
+  },
+  {
+    "id": "javier-entrance",
+    "kind": "fresh-atlas",
+    "generatedPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-7c3a9997-45c9-46ac-8175-bbd73ecea4bb.png",
+    "source": "assets/source/identity-v42/javier-entrance-generated.png",
+    "references": [
+      "/home/ubuntu/.t3/projects/vepol/assets/source/identity-v42/javier-identity-anchor.png",
+      "/home/ubuntu/.t3/projects/vepol/assets/references/identity-v40/javier/youtube-10-cPuQ2pDEHFo.jpg"
+    ],
+    "selected": true,
+    "localCopyRetained": true
+  }
+]

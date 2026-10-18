@@ -1,0 +1,61 @@
+import type { Technique } from "./techniques";
+
+// Fictional arcade adaptations. Timings are simulation ticks at 60 Hz.
+export const ICON_TECHNIQUES = {
+  polar: {
+    startup: 15,
+    recovery: 53,
+    range: 520,
+    height: 150,
+    damage: 7,
+    force: 4,
+    projectile: {
+      speed: 8,
+      life: 72,
+      count: 3,
+      spread: 1.6,
+      slowTicks: 30,
+      radius: 16,
+    },
+  },
+  couture: {
+    startup: 25,
+    recovery: 54,
+    range: 235,
+    height: 145,
+    damage: 15,
+    force: 7,
+    reflect: { from: 4, to: 23, radius: 110 },
+  },
+  corona: {
+    startup: 13,
+    recovery: 54,
+    range: 135,
+    height: 180,
+    damage: 5,
+    force: 2.5,
+    radial: true,
+    pulses: [0, 12, 24],
+    pulseRangeStep: 36,
+    finisherForce: 8,
+    hitInvincibility: 7,
+  },
+  liberator: {
+    startup: 13,
+    recovery: 49,
+    range: 190,
+    height: 140,
+    damage: 18,
+    force: 9,
+    dash: { speed: 14, ticks: 10, invincibility: 4, brake: 0.3 },
+  },
+  retake: {
+    startup: 28,
+    recovery: 55,
+    range: 175,
+    height: 135,
+    damage: 13,
+    force: 7,
+    counter: { from: 5, to: 23, damage: 18, force: 9, range: 185 },
+  },
+} satisfies Record<string, Technique>;

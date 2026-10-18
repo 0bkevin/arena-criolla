@@ -20,6 +20,7 @@ import { drawIntroCinematic } from "./intro-renderer";
 import { drawVictory } from "./victory-renderer";
 import { drawCultureProjectile, drawCultureSpecial } from "./culture-renderer";
 import { drawFounderProjectile, drawFounderSpecial } from "./founder-renderer";
+import { drawIconProjectile, drawIconSpecial } from "./icon-renderer";
 import { drawCourierMotorcycle } from "./courier-renderer";
 import {
   drawFolkloreProjectile,
@@ -87,6 +88,7 @@ export function renderMatch(
       if (assets.courier)
         drawCourierMotorcycle(ctx, projectile, assets.courier, reducedMotion);
     } else if (
+      drawIconProjectile(ctx, projectile) ||
       drawFounderProjectile(ctx, projectile) ||
       drawCultureProjectile(ctx, projectile) ||
       drawFolkloreProjectile(ctx, projectile)
@@ -191,7 +193,7 @@ export function renderMatch(
         frame = p.attackTick > 34 ? 6 : 2 + (Math.floor(p.attackTick / 7) % 2);
       else if (def.ability === "zapateo") frame = p.attackTick % 10 < 4 ? 6 : 0;
       else if (def.ability === "pivot") frame = p.attackTick < 22 ? 4 : 6;
-      else if (["runway", "sprint", "whirl", "rally"].includes(def.ability))
+      else if (["runway", "sprint", "whirl", "rally", "liberator"].includes(def.ability))
         frame =
           p.dash > 0
             ? 2 + (Math.floor(p.attackTick / 4) % 2)
@@ -269,6 +271,7 @@ export function renderMatch(
       ctx.globalAlpha = Math.max(0, 1 - Math.abs(progress) / 18);
       drawFolkloreSpecial(ctx, def.ability, p, state.players[1 - i], progress);
       drawFounderSpecial(ctx, def.ability, p, state.players[1 - i], progress);
+      drawIconSpecial(ctx, def.ability, p, progress);
       drawCultureSpecial(
         ctx,
         def.ability,

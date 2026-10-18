@@ -1,0 +1,311 @@
+{
+  "fighter": "dayana",
+  "rival": "oscar",
+  "side": 1,
+  "stage": "merida",
+  "mode": "local",
+  "difficulty": "normal",
+  "matchId": "1c930a1f-dcb0-4e5c-8e97-9bb033e03201",
+  "phase": "playing",
+  "ticks": 486,
+  "observations": {
+    "started": [
+      "special",
+      "light",
+      "heavy"
+    ],
+    "history": [
+      "special",
+      "light",
+      "heavy"
+    ],
+    "minX": 293.0135963600935,
+    "maxX": 750,
+    "minY": 359.8799999999999,
+    "blurPaused": true,
+    "hp": 100,
+    "rivalHp": 100,
+    "hits": 4,
+    "stocks": 2,
+    "lastActions": {
+      "jump": 3,
+      "light": 2,
+      "heavy": 2,
+      "special": 2,
+      "dash": 1,
+      "super": 0
+    },
+    "samples": [
+      {
+        "tick": 1043,
+        "x": 750,
+        "y": 554,
+        "hp": 100,
+        "energy": 28.654999999998196,
+        "attack": "special",
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1058,
+        "x": 750,
+        "y": 554,
+        "hp": 100,
+        "energy": 29.1799999999982,
+        "attack": "special",
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1079,
+        "x": 750,
+        "y": 554,
+        "hp": 100,
+        "energy": 29.9149999999982,
+        "attack": "special",
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1099,
+        "x": 750,
+        "y": 554,
+        "hp": 100,
+        "energy": 30.614999999998204,
+        "attack": null,
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1121,
+        "x": 750,
+        "y": 554,
+        "hp": 100,
+        "energy": 31.384999999998207,
+        "attack": null,
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1138,
+        "x": 750,
+        "y": 554,
+        "hp": 100,
+        "energy": 31.97999999999821,
+        "attack": null,
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1155,
+        "x": 670.7894404102547,
+        "y": 554,
+        "hp": 100,
+        "energy": 32.574999999998155,
+        "attack": null,
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1178,
+        "x": 589.0597141662952,
+        "y": 415.24,
+        "hp": 100,
+        "energy": 33.37999999999808,
+        "attack": null,
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1194,
+        "x": 578.6301219770404,
+        "y": 359.8799999999999,
+        "hp": 100,
+        "energy": 33.93999999999802,
+        "attack": null,
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1213,
+        "x": 599.7006610738046,
+        "y": 365,
+        "hp": 100,
+        "energy": 34.60499999999796,
+        "attack": null,
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1237,
+        "x": 634.5659871323611,
+        "y": 365,
+        "hp": 100,
+        "energy": 33.42999999999795,
+        "attack": null,
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1255,
+        "x": 658.5849871095855,
+        "y": 365,
+        "hp": 100,
+        "energy": 32.664999999997946,
+        "attack": "light",
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1271,
+        "x": 677.6269871075879,
+        "y": 365,
+        "hp": 100,
+        "energy": 33.22499999999789,
+        "attack": null,
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1296,
+        "x": 701.7399871072894,
+        "y": 365,
+        "hp": 100,
+        "energy": 34.099999999997806,
+        "attack": "heavy",
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1314,
+        "x": 644.0449871071854,
+        "y": 365,
+        "hp": 100,
+        "energy": 34.729999999997744,
+        "attack": null,
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1332,
+        "x": 451.9776049467898,
+        "y": 419.6,
+        "hp": 100,
+        "energy": 35.35999999999768,
+        "attack": null,
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1351,
+        "x": 363.2281441557063,
+        "y": 554,
+        "hp": 100,
+        "energy": 36.02499999999762,
+        "attack": null,
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 1368,
+        "x": 310.6937116949075,
+        "y": 554,
+        "hp": 100,
+        "energy": 49.61999999999756,
+        "attack": "light",
+        "hits": 1,
+        "facing": -1
+      },
+      {
+        "tick": 1386,
+        "x": 293.10648123161394,
+        "y": 554,
+        "hp": 100,
+        "energy": 50.2499999999975,
+        "attack": null,
+        "hits": 1,
+        "facing": -1
+      },
+      {
+        "tick": 1406,
+        "x": 293.07243522556354,
+        "y": 554,
+        "hp": 100,
+        "energy": 38.94999999999747,
+        "attack": "special",
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 1419,
+        "x": 293.052230180914,
+        "y": 554,
+        "hp": 100,
+        "energy": 52.40499999999743,
+        "attack": "special",
+        "hits": 3,
+        "facing": -1
+      },
+      {
+        "tick": 1438,
+        "x": 293.02269973104166,
+        "y": 554,
+        "hp": 100,
+        "energy": 66.06999999999736,
+        "attack": "special",
+        "hits": 4,
+        "facing": -1
+      },
+      {
+        "tick": 1454,
+        "x": 293.01361277734446,
+        "y": 554,
+        "hp": 100,
+        "energy": 66.62999999999731,
+        "attack": null,
+        "hits": 4,
+        "facing": -1
+      },
+      {
+        "tick": 1477,
+        "x": 293.0135963600935,
+        "y": 554,
+        "hp": 100,
+        "energy": 67.43499999999723,
+        "attack": null,
+        "hits": 4,
+        "facing": 1
+      },
+      {
+        "tick": 1490,
+        "x": 326.142215599921,
+        "y": 554,
+        "hp": 100,
+        "energy": 67.88999999999719,
+        "attack": null,
+        "hits": 4,
+        "facing": 1
+      },
+      {
+        "tick": 1512,
+        "x": 306.8067801313631,
+        "y": 554,
+        "hp": 100,
+        "energy": 68.65999999999711,
+        "attack": null,
+        "hits": 4,
+        "facing": 1
+      }
+    ]
+  },
+  "assets": [
+    "/assets/dayana-v40.webp"
+  ],
+  "assertions": {
+    "finite": true,
+    "moved": true,
+    "jumped": true,
+    "specialStarted": true,
+    "actionsReceived": true
+  }
+}

@@ -4,6 +4,7 @@ import { CLASSIC_VICTORIES } from "./victories-classic";
 import { CULTURE_VICTORIES } from "./victories-culture";
 import { FOLKLORE_VICTORIES } from "./victories-folklore";
 import { FOUNDER_VICTORIES } from "./victories-founders";
+import { ICON_VICTORIES } from "./victories-icons";
 import { VICTORY_DURATION_MS, type VictoryProfile } from "./victory-types";
 
 export { VICTORY_DURATION_MS } from "./victory-types";
@@ -13,6 +14,7 @@ export const VICTORIES = {
   ...CULTURE_VICTORIES,
   ...FOLKLORE_VICTORIES,
   ...FOUNDER_VICTORIES,
+  ...ICON_VICTORIES,
 } satisfies Record<BuiltInFighterId, VictoryProfile>;
 
 const COMMUNITY_VICTORY: VictoryProfile = {

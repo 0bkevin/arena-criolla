@@ -1,0 +1,292 @@
+{
+  "fighter": "javier",
+  "rival": "llorona",
+  "side": 0,
+  "stage": "canaima",
+  "mode": "practice",
+  "difficulty": "hard",
+  "matchId": "0fbbb158-7937-4adc-ba3c-c9bdac2ea1be",
+  "phase": "finished",
+  "ticks": 342,
+  "observations": {
+    "started": [
+      "special",
+      "light",
+      "heavy"
+    ],
+    "history": [
+      "special",
+      "light",
+      "heavy"
+    ],
+    "minX": -159.94221326809614,
+    "maxX": 330,
+    "minY": 263.12,
+    "blurPaused": false,
+    "hp": 0,
+    "rivalHp": 77.152,
+    "hits": 2,
+    "stocks": 0,
+    "lastActions": {
+      "jump": 3,
+      "light": 2,
+      "heavy": 1,
+      "special": 1,
+      "dash": 1,
+      "super": 0
+    },
+    "samples": [
+      {
+        "tick": 519,
+        "x": 330,
+        "y": 554,
+        "hp": 100,
+        "energy": 10.314999999999984,
+        "attack": "special",
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 539,
+        "x": 330,
+        "y": 480.55999999999983,
+        "hp": 100,
+        "energy": 11.014999999999986,
+        "attack": "special",
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 559,
+        "x": 330,
+        "y": 554,
+        "hp": 100,
+        "energy": 11.71499999999999,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 574,
+        "x": 330,
+        "y": 554,
+        "hp": 100,
+        "energy": 12.239999999999991,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 589,
+        "x": 302.57216000000005,
+        "y": 541.5200000000001,
+        "hp": 87.1456,
+        "energy": 21.764999999999993,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 609,
+        "x": 128.7300173083819,
+        "y": 554,
+        "hp": 87.1456,
+        "energy": 22.464999999999996,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 629,
+        "x": 177.84430741597404,
+        "y": 554,
+        "hp": 87.1456,
+        "energy": 23.165,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 644,
+        "x": 86.09359887848325,
+        "y": 530.6000000000001,
+        "hp": 74.2912,
+        "energy": 32.68999999999997,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 664,
+        "x": -112.01509873080099,
+        "y": 639.8000000000001,
+        "hp": 74.2912,
+        "energy": 33.3899999999999,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 684,
+        "x": 330,
+        "y": 278.72,
+        "hp": 100,
+        "energy": 14.089999999999861,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 704,
+        "x": 330,
+        "y": 471.11999999999995,
+        "hp": 100,
+        "energy": 14.789999999999864,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 722,
+        "x": 330,
+        "y": 554,
+        "hp": 100,
+        "energy": 27.48999999999987,
+        "attack": "light",
+        "hits": 1,
+        "facing": -1
+      },
+      {
+        "tick": 741,
+        "x": 330,
+        "y": 554,
+        "hp": 100,
+        "energy": 28.154999999999873,
+        "attack": "heavy",
+        "hits": 1,
+        "facing": -1
+      },
+      {
+        "tick": 751,
+        "x": 330,
+        "y": 554,
+        "hp": 100,
+        "energy": 41.50499999999987,
+        "attack": "heavy",
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 771,
+        "x": 330,
+        "y": 554,
+        "hp": 100,
+        "energy": 42.2049999999998,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 791,
+        "x": 137.2745792515625,
+        "y": 554,
+        "hp": 100,
+        "energy": 42.90499999999973,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 811,
+        "x": 66.32771292773086,
+        "y": 554,
+        "hp": 100,
+        "energy": 43.60499999999966,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 828,
+        "x": 2.352712689372048,
+        "y": 542.1700000000001,
+        "hp": 88.1344,
+        "energy": 53.199999999999605,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 848,
+        "x": -112.36748102795472,
+        "y": 695.57,
+        "hp": 88.1344,
+        "energy": 53.89999999999954,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 856,
+        "x": -124.37123800973691,
+        "y": 815.17,
+        "hp": 0,
+        "energy": 54.17999999999951,
+        "attack": null,
+        "hits": 2,
+        "facing": 1
+      },
+      {
+        "tick": 856,
+        "x": -124.37123800973691,
+        "y": 815.17,
+        "hp": 0,
+        "energy": 54.17999999999951,
+        "attack": null,
+        "hits": 2,
+        "facing": 1
+      },
+      {
+        "tick": 856,
+        "x": -124.37123800973691,
+        "y": 815.17,
+        "hp": 0,
+        "energy": 54.17999999999951,
+        "attack": null,
+        "hits": 2,
+        "facing": 1
+      },
+      {
+        "tick": 856,
+        "x": -124.37123800973691,
+        "y": 815.17,
+        "hp": 0,
+        "energy": 54.17999999999951,
+        "attack": null,
+        "hits": 2,
+        "facing": 1
+      },
+      {
+        "tick": 856,
+        "x": -124.37123800973691,
+        "y": 815.17,
+        "hp": 0,
+        "energy": 54.17999999999951,
+        "attack": null,
+        "hits": 2,
+        "facing": 1
+      }
+    ]
+  },
+  "assets": [
+    "/assets/javier-v40.webp",
+    "/assets/javier-v40-defiant-entrance.webp"
+  ],
+  "assertions": {
+    "finite": true,
+    "moved": true,
+    "jumped": true,
+    "specialStarted": true,
+    "actionsReceived": true
+  }
+}

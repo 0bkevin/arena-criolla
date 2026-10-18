@@ -1,0 +1,83 @@
+{
+  "id": "nacho",
+  "raw": "assets/source/identity-v42/nacho-generated.png",
+  "source": "assets/source/nacho-v42.png",
+  "runtime": "public/assets/nacho-v42.webp",
+  "sourceWidth": 1774,
+  "sourceHeight": 887,
+  "frames": [
+    {
+      "label": 1,
+      "minX": 57,
+      "minY": 14,
+      "maxX": 401,
+      "maxY": 437,
+      "pixels": 61126,
+      "frame": 0
+    },
+    {
+      "label": 4,
+      "minX": 496,
+      "minY": 15,
+      "maxX": 832,
+      "maxY": 440,
+      "pixels": 59146,
+      "frame": 1
+    },
+    {
+      "label": 2,
+      "minX": 933,
+      "minY": 14,
+      "maxX": 1288,
+      "maxY": 437,
+      "pixels": 64456,
+      "frame": 2
+    },
+    {
+      "label": 3,
+      "minX": 1385,
+      "minY": 14,
+      "maxX": 1725,
+      "maxY": 434,
+      "pixels": 62904,
+      "frame": 3
+    },
+    {
+      "label": 5,
+      "minX": 43,
+      "minY": 451,
+      "maxX": 432,
+      "maxY": 757,
+      "pixels": 50364,
+      "frame": 4
+    },
+    {
+      "label": 6,
+      "minX": 463,
+      "minY": 451,
+      "maxX": 852,
+      "maxY": 863,
+      "pixels": 61256,
+      "frame": 5
+    },
+    {
+      "label": 8,
+      "minX": 921,
+      "minY": 464,
+      "maxX": 1316,
+      "maxY": 860,
+      "pixels": 53646,
+      "frame": 6
+    },
+    {
+      "label": 7,
+      "minX": 1434,
+      "minY": 459,
+      "maxX": 1731,
+      "maxY": 863,
+      "pixels": 56392,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 0
+}
