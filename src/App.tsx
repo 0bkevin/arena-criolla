@@ -59,9 +59,8 @@ const colorStyle = (color: string): React.CSSProperties =>
   ({ "--fighter-color": color }) as React.CSSProperties;
 
 export function App({
-  onCreate,
   communityRevision: _communityRevision,
-}: { onCreate?: () => void; communityRevision?: number } = {}) {
+}: { communityRevision?: number } = {}) {
   const [mode, setMode] = useState<GameMode>("practice");
   const [fighter, setFighter] = useState<FighterId>("zavarce");
   const [rival, setRival] = useState<FighterId>("javier");
@@ -433,12 +432,6 @@ export function App({
           >
             Luchadores
           </button>
-          {onCreate && (
-            <button onClick={onCreate}>
-              <Plus size={14} />
-              <span>Crear luchador</span>
-            </button>
-          )}
           <button onClick={() => setModal("help")} aria-label="Cómo jugar">
             <CircleHelp size={15} />
             <span>Cómo jugar</span>
@@ -568,11 +561,6 @@ export function App({
           Ranking <span>PRONTO</span>
         </button>
       </footer>
-      {!active && onCreate && (
-        <button className="creator-mobile-entry" onClick={onCreate}>
-          <Plus size={15} /> Crea tu luchador
-        </button>
-      )}
       {!active && !modal && !detail && !setupVisible && (
         <div className="mobile-setup-dock">
           <span>
