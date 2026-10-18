@@ -30,6 +30,7 @@ import type {
   ServerMessage,
 } from "../shared/protocol";
 import { FixedStepTicker } from "./ticker";
+import { allowedWebSocketOrigin, securityHeaders } from "./security";
 
 interface Client {
   id: string;
@@ -81,6 +82,11 @@ export async function makeArenaServer(
       .map((proxy) => proxy.trim())
       .filter(Boolean);
   if (trustedProxies?.length) app.set("trust proxy", trustedProxies);
+  const trustProxy = app.get("trust proxy fn") as (
+    address: string,
+    hop: number,
+  ) => boolean;
+  app.use(securityHeaders(options.production === true, trustProxy));
   const configuredOrigin =
     options.serveClient === false
       ? undefined
@@ -105,7 +111,16 @@ export async function makeArenaServer(
     });
   }
   app.use("/api", creator.router);
-  const http = createServer(app);
+  const http = createServer(
+    {
+      headersTimeout: 10_000,
+      requestTimeout: 30_000,
+      keepAliveTimeout: 5_000,
+      connectionsCheckingInterval: 1_000,
+      maxHeaderSize: 16_384,
+    },
+    app,
+  );
   const connections = new Set<import("node:net").Socket>();
   http.on("connection", (socket) => {
     connections.add(socket);
@@ -274,6 +289,13 @@ export async function makeArenaServer(
       if (viteHmr) return;
       socket.end(
         "HTTP/1.1 404 Not Found\r\nConnection: close\r\nContent-Length: 0\r\n\r\n",
+        () => socket.destroy(),
+      );
+      return;
+    }
+    if (!allowedWebSocketOrigin(request, trustProxy)) {
+      socket.end(
+        "HTTP/1.1 403 Forbidden\r\nConnection: close\r\nContent-Length: 0\r\n\r\n",
         () => socket.destroy(),
       );
       return;
@@ -594,11 +616,13 @@ export async function makeArenaServer(
       );
       app.get("/{*path}", (req, res) => {
         res
+          .set("Cache-Control", "no-store")
           .type("html")
           .send(
             renderSiteHtml(
               template,
               requestSiteOrigin(req, configuredOrigin),
+              res.locals.cspNonce,
             ),
           );
       });
