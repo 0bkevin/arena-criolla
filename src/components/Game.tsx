@@ -91,6 +91,7 @@ export function Game(props: Props) {
     touch: hasTouchInput(),
     portrait: innerHeight > innerWidth,
   }));
+  const touchControlsAvailable = device.touch || navigator.maxTouchPoints > 0;
   const portraitBlocked = device.touch && device.portrait;
   const blockedRef = useRef(portraitBlocked);
   blockedRef.current = portraitBlocked;
@@ -893,7 +894,7 @@ export function Game(props: Props) {
       </div>
       {!intro && (
         <>
-          {!paused && view.phase === "playing" && (
+          {touchControlsAvailable && !paused && view.phase === "playing" && (
             <TouchControls
               onPress={touchPress}
               onRelease={touchRelease}

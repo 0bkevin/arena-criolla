@@ -1452,13 +1452,15 @@ body {
   background: var(--coin);
 }
 .arcade-app .game-page {
-  width: min(calc(100% - 32px), calc((100dvh - 120px) * 1.8));
+  --match-chrome: 120px;
+  width: calc(100% - 32px);
   max-width: 1600px;
   min-height: 100dvh;
   margin-block: 0;
   padding: 12px 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 .arcade-app .game-topline {
@@ -1477,6 +1479,22 @@ body {
   padding: 0 4px;
   border: 0;
 }
+.arcade-app .game-page:not(.is-touch) > .game-topline,
+.arcade-app .game-page:not(.is-touch) > .game-controls-bar,
+.arcade-app .game-page:not(.is-touch) > .touch-controls {
+  width: 100%;
+}
+@media (max-width: 650px), (max-height: 500px) and (orientation: landscape) {
+  .arcade-app .game-page:not(.is-touch) {
+    --match-chrome: 76px;
+  }
+  .arcade-app .game-page:not(.is-touch):has(> .touch-controls) {
+    --match-chrome: 184px;
+  }
+  .arcade-app .game-page:not(.is-touch) .arena-wrap:has(.pause-card) {
+    min-height: min(260px, calc(100dvh - var(--match-chrome)));
+  }
+}
 .arcade-app .game-toolbar h1 {
   font-size: 21px;
 }
@@ -1484,11 +1502,17 @@ body {
   font-family: "DM Sans", sans-serif;
 }
 .arcade-app .arena-wrap {
-  width: 100%;
+  width: min(100%, calc((100dvh - var(--match-chrome)) * 1.8));
   flex: none;
   border: 0;
   border-radius: 0;
   box-shadow: none;
+}
+.arcade-app .is-intro .arena-wrap {
+  width: 100%;
+}
+.arcade-app .game-page:not(.is-touch) .result-overlay {
+  max-height: calc(100dvh - var(--match-chrome));
 }
 .arcade-app .game-page .primary-button {
   background: var(--coin);

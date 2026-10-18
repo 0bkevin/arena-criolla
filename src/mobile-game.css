@@ -29,7 +29,7 @@
   display: none;
 }
 #root:fullscreen .game-page:not(.is-touch):not(.is-intro) {
-  max-width: min(calc(100vw - 32px), calc((100dvh - 120px) * 1.8));
+  max-width: 1600px;
   margin: 0 auto;
 }
 html:has(.game-page.is-touch),
@@ -402,6 +402,15 @@ body:has(.game-page.is-touch) {
 @media (max-width: 700px) {
   .game-page.is-touch .game-mode {
     display: none;
+  }
+}
+@media (max-width: 360px) {
+  .game-page.is-touch .touch-controls {
+    gap: 4px;
+  }
+  .game-page.is-touch .touch-directions,
+  .game-page.is-touch .touch-actions {
+    gap: 2px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
