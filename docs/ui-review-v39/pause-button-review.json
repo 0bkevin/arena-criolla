@@ -1,0 +1,107 @@
+{
+  "date": "2026-10-18",
+  "request": "Remove the external rings around the pause-menu buttons shown in the user's screenshot.",
+  "scope": "Pause-menu buttons only.",
+  "change": "Remove the external focus outline and Continue hover glow. Keyboard focus remains visible through text underline and a filled button background.",
+  "verification": {
+    "build": {
+      "command": "npm run build",
+      "pass": true,
+      "warning": "Existing bundle-size warning."
+    },
+    "keyboardMobile": {
+      "size": [
+        844,
+        390
+      ],
+      "focusedText": "Continuar",
+      "insidePause": true,
+      "outlineStyle": "none",
+      "boxShadow": "none",
+      "textDecoration": "underline"
+    },
+    "keyboardDesktop": {
+      "size": [
+        1440,
+        900
+      ],
+      "focusedText": "Continuar",
+      "insidePause": true,
+      "outlineStyle": "none",
+      "boxShadow": "none",
+      "textDecoration": "underline"
+    },
+    "keyboardSecondary": {
+      "focusedText": "Sonido",
+      "insidePause": true,
+      "outlineStyle": "none",
+      "boxShadow": "none",
+      "textDecoration": "underline",
+      "background": "rgb(53, 64, 85)",
+      "color": "rgb(253, 244, 220)"
+    },
+    "hover": {
+      "focused": {
+        "focused": true,
+        "hovered": true,
+        "outlineStyle": "none",
+        "boxShadow": "none",
+        "textDecoration": "underline"
+      },
+      "pointer": {
+        "focused": false,
+        "hovered": true,
+        "outlineStyle": "none",
+        "boxShadow": "none",
+        "textDecoration": "none"
+      }
+    },
+    "allPauseActions": [
+      {
+        "text": "Continuar",
+        "focusVisible": true,
+        "outlineStyle": "none",
+        "boxShadow": "none",
+        "textDecoration": "underline",
+        "background": "rgb(255, 230, 163)"
+      },
+      {
+        "text": "Sonido",
+        "focusVisible": true,
+        "outlineStyle": "none",
+        "boxShadow": "none",
+        "textDecoration": "underline",
+        "background": "rgb(36, 42, 54)"
+      },
+      {
+        "text": "Controles",
+        "focusVisible": true,
+        "outlineStyle": "none",
+        "boxShadow": "none",
+        "textDecoration": "underline",
+        "background": "rgb(36, 42, 54)"
+      },
+      {
+        "text": "Pantalla completa",
+        "focusVisible": true,
+        "outlineStyle": "none",
+        "boxShadow": "none",
+        "textDecoration": "underline",
+        "background": "rgb(36, 42, 54)"
+      },
+      {
+        "text": "Salir del combate",
+        "focusVisible": true,
+        "outlineStyle": "none",
+        "boxShadow": "none",
+        "textDecoration": "underline",
+        "background": "rgb(36, 42, 54)"
+      }
+    ],
+    "note": "Native Tab stays inside the pause panel. Outline and shadow are absent on all five focused pause actions and on the hovered Continue button. No controls or input handlers changed."
+  },
+  "screenshots": [
+    "game/pause-without-rings-844x390.png",
+    "game/pause-without-rings-1440x900.png"
+  ]
+}

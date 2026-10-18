@@ -225,5 +225,9 @@
     "report": "main-integration.json",
     "main": "330787c",
     "note": "Current-main integration and its focused verification; the original screen captures remain historical evidence."
+  },
+  "pauseButtonAppearanceFollowup": {
+    "report": "pause-button-review.json",
+    "note": "User-requested removal of external pause-button rings; keyboard focus uses fill and underline."
   }
 }
