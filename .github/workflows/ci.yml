@@ -8,26 +8,38 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: npm
       - run: npm ci
+      - name: Audit all locked dependencies
+        run: npm audit --audit-level=low
       - run: npm test
       - run: npm run check:assets
       - run: npm run build
       - name: Build production image
-        run: docker build -t arena-criolla:ci .
-      - name: Boot production image and verify HTTP routes
+        run: docker build --pull -t arena-criolla:ci .
+      - name: Check the complete runtime image for known CVEs
         shell: bash
         run: |
           set -euo pipefail
-          container=$(docker run --detach --publish 127.0.0.1::5173 arena-criolla:ci)
+          scanner_dir=$(mktemp -d)
+          trap 'rm -rf "$scanner_dir"' EXIT
+          curl --fail --location --retry 3 --output "$scanner_dir/trivy.tar.gz" https://github.com/aquasecurity/trivy/releases/download/v0.76.0/trivy_0.76.0_Linux-64bit.tar.gz
+          echo "e24b1c51293c1b15e4ba8d45bbc7891ba053f90278ec2698f3562c993e145fe7  $scanner_dir/trivy.tar.gz" | sha256sum --check --strict
+          tar --extract --gzip --file "$scanner_dir/trivy.tar.gz" --directory "$scanner_dir" trivy
+          "$scanner_dir/trivy" image --disable-telemetry --scanners vuln --exit-code 1 arena-criolla:ci
+      - name: Boot production image and verify HTTP and WebSocket behavior
+        shell: bash
+        run: |
+          set -euo pipefail
+          container=$(docker run --detach --read-only --tmpfs /tmp:rw,noexec,nosuid,nodev,size=128m,mode=1777 --cap-drop ALL --security-opt no-new-privileges:true --publish 127.0.0.1::5173 arena-criolla:ci)
           trap 'docker logs "$container"; docker rm --force --volumes "$container"' EXIT
           port=$(docker port "$container" 5173/tcp | cut -d: -f2)
           base="http://127.0.0.1:$port"
           # Docker can reset connections before the application is listening.
           curl --fail --retry 15 --retry-delay 1 --retry-all-errors --retry-max-time 30 --connect-timeout 2 --max-time 3 "$base/api/health"
-          test "$(curl --silent --output /dev/null --write-out '%{http_code}' "$base/create")" = 302
-          test "$(curl --silent --output /dev/null --write-out '%{http_code}' "$base/api/creator/capabilities")" = 404
-          test "$(curl --silent --output /dev/null --write-out '%{http_code}' "$base/api/auth/session")" = 404
+          node scripts/security-smoke.mjs "$base"
