@@ -178,6 +178,14 @@ export function App({
     preloadReactions();
     sound("select");
   };
+  const toggleAudio = () => {
+    setAudio(!audio);
+    setSound(!audio);
+    if (!audio) {
+      initAudio();
+      preloadReactions();
+    }
+  };
   const clearFighterSearch = () => {
     setFighterQuery("");
     fighterSearchInput.current?.focus();
@@ -461,14 +469,7 @@ export function App({
           </span>
           <button
             className="icon-button"
-            onClick={() => {
-              setAudio(!audio);
-              setSound(!audio);
-              if (!audio) {
-                initAudio();
-                preloadReactions();
-              }
-            }}
+            onClick={toggleAudio}
             aria-label={audio ? "Silenciar sonido" : "Activar sonido"}
             aria-pressed={audio}
           >
@@ -499,6 +500,8 @@ export function App({
           }}
           rematchWaiting={rematchWaiting}
           onHelp={() => setModal("help")}
+          soundEnabled={audio}
+          onToggleSound={toggleAudio}
         />
       ) : (
         <ArcadeLobby

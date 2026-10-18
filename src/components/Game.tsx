@@ -10,6 +10,8 @@ import {
   RotateCcw,
   Smartphone,
   Trophy,
+  Volume2,
+  VolumeX,
   Zap,
 } from "lucide-react";
 import { fighterById, stageById } from "../../shared/content";
@@ -69,6 +71,8 @@ interface Props {
   onRematch: () => void;
   rematchWaiting?: boolean;
   onHelp: () => void;
+  soundEnabled?: boolean;
+  onToggleSound?: () => void;
 }
 
 export function Game(props: Props) {
@@ -87,6 +91,7 @@ export function Game(props: Props) {
     touch: hasTouchInput(),
     portrait: innerHeight > innerWidth,
   }));
+  const touchControlsAvailable = device.touch || navigator.maxTouchPoints > 0;
   const portraitBlocked = device.touch && device.portrait;
   const blockedRef = useRef(portraitBlocked);
   blockedRef.current = portraitBlocked;
@@ -623,6 +628,22 @@ export function Game(props: Props) {
                 : "COMBATE CONTRA LA CPU"}
           </span>
           <div className="game-tools">
+            {props.onToggleSound && (
+              <button
+                className="icon-button"
+                aria-label={
+                  props.soundEnabled ? "Silenciar sonido" : "Activar sonido"
+                }
+                aria-pressed={props.soundEnabled}
+                onClick={props.onToggleSound}
+              >
+                {props.soundEnabled ? (
+                  <Volume2 size={19} />
+                ) : (
+                  <VolumeX size={19} />
+                )}
+              </button>
+            )}
             <button
               className="icon-button"
               aria-label="Ver controles"
@@ -873,7 +894,7 @@ export function Game(props: Props) {
       </div>
       {!intro && (
         <>
-          {!paused && view.phase === "playing" && (
+          {touchControlsAvailable && !paused && view.phase === "playing" && (
             <TouchControls
               onPress={touchPress}
               onRelease={touchRelease}
@@ -882,32 +903,30 @@ export function Game(props: Props) {
               wins={view.players[localIndex].config.wins}
             />
           )}
-          <div className="game-controls-bar">
-            <span>
-              <kbd>A</kbd>
-              <kbd>D</kbd> Mover <kbd>W</kbd> Saltar
-            </span>
-            <span>
-              <kbd>J</kbd> Ligero <kbd>K</kbd> Fuerte <kbd>L</kbd> Especial
-            </span>
-            <span>
-              <kbd>U</kbd> Bloquear <kbd>⇧</kbd> Esquivar <kbd>I</kbd>{" "}
-              Definitiva
-            </span>
-            <button
-              className="text-button"
-              onClick={() => {
-                releaseInputs();
-                props.onHelp();
-              }}
-            >
-              Todos los controles <ArrowRight size={14} />
-            </button>
-          </div>
-          <p className="game-tip">
-            <Zap size={13} /> Baja la vida del rival para lanzarlo más lejos.
-            Fuera de la plataforma, usa tu doble salto para volver.
-          </p>
+          {!paused && view.phase === "playing" && (
+            <div className="game-controls-bar">
+              <span>
+                <kbd>A</kbd>
+                <kbd>D</kbd> Mover <kbd>W</kbd> Saltar
+              </span>
+              <span>
+                <kbd>J</kbd> Ligero <kbd>K</kbd> Fuerte <kbd>L</kbd> Especial
+              </span>
+              <span>
+                <kbd>U</kbd> Bloquear <kbd>⇧</kbd> Esquivar <kbd>I</kbd>{" "}
+                Definitiva
+              </span>
+              <button
+                className="text-button"
+                onClick={() => {
+                  releaseInputs();
+                  props.onHelp();
+                }}
+              >
+                Todos los controles <ArrowRight size={14} />
+              </button>
+            </div>
+          )}
         </>
       )}
       {portraitBlocked && (

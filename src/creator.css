@@ -5,19 +5,6 @@
   --creator-gold: #ffd45a;
   --creator-line: #ffffff13;
 }
-.creator-shell::before {
-  content: "";
-  position: fixed;
-  inset: 0 0 auto;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    #ffd45a 0 33.333%,
-    #669bff 33.333% 66.666%,
-    #fa7c6d 66.666%
-  );
-  z-index: 40;
-}
 .creator-header {
   max-width: 1180px;
   margin: auto;
