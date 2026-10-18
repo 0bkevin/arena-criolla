@@ -34,6 +34,7 @@ const losslessSprites = new Set([
   "dayana-v40.png",
   "nacho-v40.png",
   "javier-v42.png",
+  "javier-v43.png",
   "nacho-v42.png",
 ]);
 const active = [
