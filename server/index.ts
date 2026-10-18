@@ -68,10 +68,17 @@ export async function makeArenaServer(
     serveClient?: boolean;
     production?: boolean;
     creator?: CreatorOptions;
+    trustProxy?: string[];
   } = {},
 ) {
   const app = express();
   app.disable("x-powered-by");
+  const trustedProxies =
+    options.trustProxy ??
+    process.env.ARENA_TRUST_PROXY?.split(",")
+      .map((proxy) => proxy.trim())
+      .filter(Boolean);
+  if (trustedProxies?.length) app.set("trust proxy", trustedProxies);
   const configuredOrigin =
     options.serveClient === false
       ? undefined
