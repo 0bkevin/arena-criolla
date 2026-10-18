@@ -42,6 +42,8 @@ export interface Technique {
     life: number;
     count?: number;
     spread?: number;
+    spacing?: number;
+    hitInvincibility?: number;
     returnAfter?: number;
     wave?: { amplitude: number; period: number };
     acceleration?: number;
@@ -67,13 +69,22 @@ export const TECHNIQUES: Record<Ability, Technique> = {
   ...CULTURE_TECHNIQUES,
   ...FOUNDER_TECHNIQUES,
   courier: {
-    startup: 6,
-    recovery: 37,
-    range: 170,
+    startup: 12,
+    recovery: 60,
+    range: 720,
     height: 120,
-    damage: 14,
-    force: 8,
-    dash: { speed: 20, ticks: 10, invincibility: 5, brake: 0.3 },
+    damage: 3.5,
+    force: 4,
+    requiresGround: true,
+    projectile: {
+      speed: 8.5,
+      life: 100,
+      count: 7,
+      spacing: 42,
+      hitInvincibility: 3,
+      groundOnly: true,
+      radius: 36,
+    },
   },
   installments: {
     startup: 11,

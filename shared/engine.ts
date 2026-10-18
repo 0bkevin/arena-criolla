@@ -83,6 +83,8 @@ export interface Projectile {
   life: number;
   vy?: number;
   age?: number;
+  formationIndex?: number;
+  hitInvincibility?: number;
   returnAfter?: number;
   kind: string;
   damage: number;
@@ -493,7 +495,10 @@ function updateAttack(s: MatchState, i: number) {
           id: s.nextId++,
           owner: i,
           direction: p.facing,
-          x: p.x + p.facing * 48,
+          x:
+            p.x +
+            p.facing *
+              (48 + (note - (count - 1) / 2) * (projectile.spacing ?? 0)),
           y: p.y - (projectile.groundOnly ? 42 : 75),
           originY: p.y - 75,
           vx: p.facing * projectile.speed,
@@ -501,6 +506,8 @@ function updateAttack(s: MatchState, i: number) {
             (projectile.initialVy ?? 0) +
             (note - (count - 1) / 2) * (projectile.spread || 0),
           age: 0,
+          formationIndex: projectile.spacing ? note : undefined,
+          hitInvincibility: projectile.hitInvincibility,
           returnAfter: projectile.returnAfter,
           life: projectile.life,
           kind: def.ability,
@@ -1003,6 +1010,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
           target.x,
           projectile.y,
           "special",
+          projectile.hitInvincibility,
         )
       ) {
         if (target.hp < healthBefore) {

@@ -43,17 +43,31 @@ test("the expanded roster contains forty-six distinct figures and excludes remov
   assert.equal(isFighter("vallenilla"), true);
 });
 
-test("Vicente's delivery special advances rapidly without launching a projectile", () => {
+test("Vicente summons seven tightly packed motorcycles at once without moving himself", () => {
   const { match, advance } = special("zavarce");
   const origin = match.players[0].x;
-  advance(6);
-  assert.ok(match.players[0].vx > 10);
-  assert.ok(match.players[0].dash > 0);
-  assert.ok(match.players[0].invincible > 0);
-  assert.equal(match.projectiles.length, 0);
-  advance(10);
-  assert.ok(match.players[0].x > origin + 100);
-  assert.ok(match.players[0].energy < 27);
+  advance(12);
+  assert.equal(match.projectiles.length, 7);
+  assert.equal(new Set(match.projectiles.map((shot) => shot.x)).size, 7);
+  const xs = match.projectiles.map((shot) => shot.x).sort((a, b) => a - b);
+  assert.equal(
+    xs.at(-1)! - xs[0],
+    252,
+    "seven full-sized bikes overlap in a compact, elongated pack",
+  );
+  assert.deepEqual(
+    match.projectiles.map((shot) => shot.formationIndex),
+    [0, 1, 2, 3, 4, 5, 6],
+  );
+  assert.ok(
+    match.projectiles.every(
+      (shot) => shot.kind === "courier" && shot.vx > 0 && shot.groundOnly,
+    ),
+  );
+  assert.equal(match.players[0].x, origin);
+  assert.equal(match.players[0].dash, 0);
+  assert.equal(match.players[0].invincible, 0);
+  assert.ok(match.players[0].energy < 28);
 });
 
 test("Pedro's installments arrive in three separate pulses and expire after crossing the arena", () => {
