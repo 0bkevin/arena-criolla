@@ -10,6 +10,8 @@ import {
   RotateCcw,
   Smartphone,
   Trophy,
+  Volume2,
+  VolumeX,
   Zap,
 } from "lucide-react";
 import { fighterById, stageById } from "../../shared/content";
@@ -47,7 +49,12 @@ import {
 import { victoryById, VICTORY_DURATION_MS } from "../game/victory";
 import { Portrait } from "./Portrait";
 import { TouchControls } from "./TouchControls";
-import { enterLandscape, hasTouchInput, leaveLandscape } from "../game/mobile";
+import {
+  enterLandscape,
+  hasTouchInput,
+  leaveLandscape,
+  trackPlayViewport,
+} from "../game/mobile";
 import { arenaCanvasSize } from "../game/viewport";
 import { ARENA_VIEW } from "../../shared/arena";
 import {
@@ -69,11 +76,14 @@ interface Props {
   onRematch: () => void;
   rematchWaiting?: boolean;
   onHelp: () => void;
+  soundEnabled?: boolean;
+  onToggleSound?: () => void;
 }
 
 export function Game(props: Props) {
   const { initial, mode, difficulty, remote, localIndex = 0 } = props;
   const canvas = useRef<HTMLCanvasElement>(null);
+  const page = useRef<HTMLElement>(null);
   const orientationGate = useRef<HTMLDivElement>(null);
   const wrapper = useRef<HTMLDivElement>(null);
   const inputs = useRef(makeInputs());
@@ -87,6 +97,7 @@ export function Game(props: Props) {
     touch: hasTouchInput(),
     portrait: innerHeight > innerWidth,
   }));
+  const touchControlsAvailable = device.touch || navigator.maxTouchPoints > 0;
   const portraitBlocked = device.touch && device.portrait;
   const blockedRef = useRef(portraitBlocked);
   blockedRef.current = portraitBlocked;
@@ -99,6 +110,9 @@ export function Game(props: Props) {
   const [view, setView] = useState(initial);
   const [resultReady, setResultReady] = useState(false);
   const [fullscreenError, setFullscreenError] = useState("");
+  useEffect(() => {
+    if (device.touch && page.current) return trackPlayViewport(page.current);
+  }, [device.touch]);
   useEffect(() => {
     const element = canvas.current,
       container = wrapper.current;
@@ -294,6 +308,14 @@ export function Game(props: Props) {
     let victoryElapsed = 0;
     let victoryStarted = false;
     let finaleComplete = false;
+    let settledFrame:
+      | {
+          state: MatchState;
+          width: number;
+          height: number;
+          reducedMotion: boolean;
+        }
+      | undefined;
     const playedIntroductions = new Set<number>();
     let lastCountdown = -1;
     const motionPreference = window.matchMedia(
@@ -313,6 +335,22 @@ export function Game(props: Props) {
     const animate = (now: number) => {
       const elapsed = Math.min(100, now - last);
       last = now;
+      if (mode === "online" && remote?.current?.id === initial.id)
+        state = remote.current;
+      const finalStill =
+        state.phase === "finished" &&
+        victoryElapsed >= VICTORY_DURATION_MS &&
+        (motionPreference.matches || state.shake <= 0.3);
+      if (
+        finalStill &&
+        settledFrame?.state === state &&
+        settledFrame.width === ctx.canvas.width &&
+        settledFrame.height === ctx.canvas.height &&
+        settledFrame.reducedMotion === motionPreference.matches
+      ) {
+        raf = requestAnimationFrame(animate);
+        return;
+      }
       const dialogOpen = Boolean(document.querySelector("dialog[open]"));
       const quiet = isGameQuiet();
       setReactionsPaused(pausedRef.current || blockedRef.current || dialogOpen);
@@ -320,7 +358,6 @@ export function Game(props: Props) {
       if (!quiet && state.phase !== "finished")
         gamepads.update(inputs.current, mode === "local" ? 2 : 1);
       if (mode === "online") {
-        if (remote?.current?.id === initial.id) state = remote.current;
         if (state.phase !== "finished" && now - lastSend > 45) {
           callbacks.current.onInput?.(inputs.current[0]);
           lastSend = now;
@@ -527,6 +564,14 @@ export function Game(props: Props) {
         camera,
         victoryElapsed,
       );
+      settledFrame = finalStill
+        ? {
+            state,
+            width: ctx.canvas.width,
+            height: ctx.canvas.height,
+            reducedMotion: motionPreference.matches,
+          }
+        : undefined;
       if (
         now - lastUI > 80 ||
         (state.phase === "finished" && !resultSent.current)
@@ -546,9 +591,16 @@ export function Game(props: Props) {
     initAudio();
     startAmbience(initial.stage);
     preloadReactions();
+    const invalidateSettledFrame = () => {
+      settledFrame = undefined;
+    };
+    document.addEventListener("visibilitychange", invalidateSettledFrame);
+    ctx.canvas.addEventListener("contextrestored", invalidateSettledFrame);
     raf = requestAnimationFrame(animate);
     return () => {
       cancelAnimationFrame(raf);
+      document.removeEventListener("visibilitychange", invalidateSettledFrame);
+      ctx.canvas.removeEventListener("contextrestored", invalidateSettledFrame);
       stopReactions();
       stopAmbience();
       stopVictoryMusic();
@@ -600,6 +652,7 @@ export function Game(props: Props) {
 
   return (
     <main
+      ref={page}
       className={`game-page page-width${intro ? " is-intro" : ""}${cinematic ? " is-cinematic" : ""}${device.touch ? " is-touch" : ""}${paused ? " is-paused" : ""}${celebrating ? " is-celebrating" : ""}${resultReady ? " is-finished" : ""}`}
       data-phase={view.phase}
       data-result-ready={resultReady}
@@ -623,6 +676,22 @@ export function Game(props: Props) {
                 : "COMBATE CONTRA LA CPU"}
           </span>
           <div className="game-tools">
+            {props.onToggleSound && (
+              <button
+                className="icon-button"
+                aria-label={
+                  props.soundEnabled ? "Silenciar sonido" : "Activar sonido"
+                }
+                aria-pressed={props.soundEnabled}
+                onClick={props.onToggleSound}
+              >
+                {props.soundEnabled ? (
+                  <Volume2 size={19} />
+                ) : (
+                  <VolumeX size={19} />
+                )}
+              </button>
+            )}
             <button
               className="icon-button"
               aria-label="Ver controles"
@@ -775,13 +844,10 @@ export function Game(props: Props) {
         {paused && view.phase !== "finished" && (
           <div className="game-overlay">
             <div className="pause-card">
-              <span className="eyebrow">UN RESPIRO</span>
-              <h2>{mode === "online" ? "La pelea sigue" : "Pausa, pana."}</h2>
-              <p>
-                {mode === "online"
-                  ? "En línea el combate continúa. Vuelve antes de que tu rival aproveche."
-                  : "Recarga el ánimo y vuelve a la arena."}
-              </p>
+              <h2>{mode === "online" ? "La pelea sigue" : "Pausa"}</h2>
+              {mode === "online" && (
+                <p>El combate continúa mientras estás en el menú.</p>
+              )}
               <button className="primary-button" onClick={togglePause}>
                 <Play size={18} /> Continuar
               </button>
@@ -827,11 +893,6 @@ export function Game(props: Props) {
                         : "ESTA SE LA LLEVÓ TU RIVAL"}
                 </span>
                 <h2>{winner ? `${winner.config.name} gana.` : "¡Empate!"}</h2>
-                <p>
-                  {winnerDef
-                    ? `${winnerDef.name} se lleva la arena. ¿Vamos con la revancha?`
-                    : "Nadie cedió. Esto merece otra ronda."}
-                </p>
                 <div className="result-stats">
                   <div>
                     <strong>{view.players[localIndex].hits}</strong>
@@ -873,7 +934,7 @@ export function Game(props: Props) {
       </div>
       {!intro && (
         <>
-          {!paused && view.phase === "playing" && (
+          {touchControlsAvailable && !paused && view.phase === "playing" && (
             <TouchControls
               onPress={touchPress}
               onRelease={touchRelease}
@@ -882,32 +943,30 @@ export function Game(props: Props) {
               wins={view.players[localIndex].config.wins}
             />
           )}
-          <div className="game-controls-bar">
-            <span>
-              <kbd>A</kbd>
-              <kbd>D</kbd> Mover <kbd>W</kbd> Saltar
-            </span>
-            <span>
-              <kbd>J</kbd> Ligero <kbd>K</kbd> Fuerte <kbd>L</kbd> Especial
-            </span>
-            <span>
-              <kbd>U</kbd> Bloquear <kbd>⇧</kbd> Esquivar <kbd>I</kbd>{" "}
-              Definitiva
-            </span>
-            <button
-              className="text-button"
-              onClick={() => {
-                releaseInputs();
-                props.onHelp();
-              }}
-            >
-              Todos los controles <ArrowRight size={14} />
-            </button>
-          </div>
-          <p className="game-tip">
-            <Zap size={13} /> Baja la vida del rival para lanzarlo más lejos.
-            Fuera de la plataforma, usa tu doble salto para volver.
-          </p>
+          {!paused && view.phase === "playing" && (
+            <div className="game-controls-bar">
+              <span>
+                <kbd>A</kbd>
+                <kbd>D</kbd> Mover <kbd>W</kbd> Saltar
+              </span>
+              <span>
+                <kbd>J</kbd> Ligero <kbd>K</kbd> Fuerte <kbd>L</kbd> Especial
+              </span>
+              <span>
+                <kbd>U</kbd> Bloquear <kbd>⇧</kbd> Esquivar <kbd>I</kbd>{" "}
+                Definitiva
+              </span>
+              <button
+                className="text-button"
+                onClick={() => {
+                  releaseInputs();
+                  props.onHelp();
+                }}
+              >
+                Todos los controles <ArrowRight size={14} />
+              </button>
+            </div>
+          )}
         </>
       )}
       {portraitBlocked && (

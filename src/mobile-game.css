@@ -29,7 +29,7 @@
   display: none;
 }
 #root:fullscreen .game-page:not(.is-touch):not(.is-intro) {
-  max-width: min(calc(100vw - 32px), calc((100dvh - 150px) * 1.8));
+  max-width: 1600px;
   margin: 0 auto;
 }
 html:has(.game-page.is-touch),
@@ -46,14 +46,18 @@ body:has(.game-page.is-touch) {
   --play-bottom: max(8px, env(safe-area-inset-bottom));
   --play-left: max(10px, env(safe-area-inset-left));
   --play-right: max(10px, env(safe-area-inset-right));
-  --touch-size: clamp(48px, 12dvh, 56px);
+  --touch-size: clamp(
+    48px,
+    calc(var(--play-viewport-height, 100dvh) * 0.12),
+    56px
+  );
   position: fixed;
-  inset: 0;
+  inset: var(--play-viewport-top, 0px) auto auto var(--play-viewport-left, 0px);
   z-index: 20;
   display: block;
-  width: 100%;
+  width: var(--play-viewport-width, 100%);
   max-width: none;
-  height: 100dvh;
+  height: var(--play-viewport-height, 100dvh);
   min-height: 0;
   margin: 0;
   padding: 0;
@@ -62,6 +66,7 @@ body:has(.game-page.is-touch) {
   overflow: hidden;
   background: #081322;
   user-select: none;
+  container: play / size;
 }
 .game-page.is-touch .game-topline {
   position: absolute;
@@ -188,8 +193,7 @@ body:has(.game-page.is-touch) {
   height: 5px;
 }
 .game-page.is-touch .arena-location,
-.game-page.is-touch .game-controls-bar,
-.game-page.is-touch .game-tip {
+.game-page.is-touch .game-controls-bar {
   display: none;
 }
 .game-page.is-touch .touch-controls {
@@ -270,6 +274,15 @@ body:has(.game-page.is-touch) {
 .game-page.is-touch .touch-dash {
   grid-column: 1;
   grid-row: 3;
+}
+/* Query the visible play area, including space taken by mobile browser bars. */
+@container play (max-height: 280px) {
+  .game-page.is-touch .touch-down {
+    grid-row: 2;
+  }
+  .game-page.is-touch .touch-dash {
+    grid-row: 1;
+  }
 }
 .game-page.is-touch .touch-block {
   grid-column: 1;
@@ -403,6 +416,15 @@ body:has(.game-page.is-touch) {
 @media (max-width: 700px) {
   .game-page.is-touch .game-mode {
     display: none;
+  }
+}
+@media (max-width: 360px) {
+  .game-page.is-touch .touch-controls {
+    gap: 4px;
+  }
+  .game-page.is-touch .touch-directions,
+  .game-page.is-touch .touch-actions {
+    gap: 2px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

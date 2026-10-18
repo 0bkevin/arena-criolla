@@ -21,6 +21,7 @@ import { drawVictory } from "./victory-renderer";
 import { drawCultureProjectile, drawCultureSpecial } from "./culture-renderer";
 import { drawFounderProjectile, drawFounderSpecial } from "./founder-renderer";
 import { drawIconProjectile, drawIconSpecial } from "./icon-renderer";
+import { drawCourierMotorcycle } from "./courier-renderer";
 import {
   drawFolkloreProjectile,
   drawFolkloreSpecial,
@@ -83,7 +84,10 @@ export function renderMatch(
     ctx.fillStyle = color;
     ctx.strokeStyle = "#ffffff";
     ctx.lineWidth = 2;
-    if (
+    if (projectile.kind === "courier") {
+      if (assets.courier)
+        drawCourierMotorcycle(ctx, projectile, assets.courier, reducedMotion);
+    } else if (
       drawIconProjectile(ctx, projectile) ||
       drawFounderProjectile(ctx, projectile) ||
       drawCultureProjectile(ctx, projectile) ||
@@ -189,11 +193,7 @@ export function renderMatch(
         frame = p.attackTick > 34 ? 6 : 2 + (Math.floor(p.attackTick / 7) % 2);
       else if (def.ability === "zapateo") frame = p.attackTick % 10 < 4 ? 6 : 0;
       else if (def.ability === "pivot") frame = p.attackTick < 22 ? 4 : 6;
-      else if (
-        ["runway", "courier", "sprint", "whirl", "rally", "liberator"].includes(
-          def.ability,
-        )
-      )
+      else if (["runway", "sprint", "whirl", "rally", "liberator"].includes(def.ability))
         frame =
           p.dash > 0
             ? 2 + (Math.floor(p.attackTick / 4) % 2)
@@ -282,12 +282,14 @@ export function renderMatch(
       );
       if (def.ability === "courier") {
         ctx.save();
-        ctx.translate(p.x, p.y - 70);
+        ctx.translate(p.x + p.facing * 48, p.y - 8);
         ctx.scale(p.facing, 1);
-        for (let line = 0; line < 3; line++) {
+        // Route markers show where the convoy emerges; the bikes carry the attack.
+        for (let mark = 0; mark < 3; mark++) {
           ctx.beginPath();
-          ctx.moveTo(-24 - line * 12, -26 + line * 26);
-          ctx.lineTo(-110 - line * 18, -26 + line * 26);
+          ctx.moveTo(mark * 22, -9);
+          ctx.lineTo(mark * 22 + 10, -4);
+          ctx.lineTo(mark * 22, 1);
           ctx.stroke();
         }
         ctx.restore();

@@ -1,21 +1,28 @@
 import { useEffect, useState } from "react";
 import { App } from "../App";
-import { CreatorStudio } from "./CreatorStudio";
-import { creatorApi } from "../creator-api";
 import { syncCommunityCatalog } from "../../shared/community";
+import type { CommunityCharacter } from "../../shared/creator";
 
 export function RootApp() {
-  const [route, setRoute] = useState(location.pathname),
-    [revision, setRevision] = useState(0);
+  const [revision, setRevision] = useState(0);
   const [catalogReady, setCatalogReady] = useState(false);
   const refresh = async () => {
-    const { characters } = await creatorApi.community();
+    const response = await fetch("/api/community/characters", {
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!response.ok) throw new Error("No pudimos cargar los luchadores.");
+    const { characters }: { characters: CommunityCharacter[] } =
+      await response.json();
     syncCommunityCatalog(characters);
     setRevision((n) => n + 1);
   };
   useEffect(() => {
-    const pop = () => setRoute(location.pathname);
-    window.addEventListener("popstate", pop);
+    const restoreGameRoute = () => {
+      if (/^\/create(?:\/|$)/i.test(location.pathname))
+        history.replaceState(null, "", "/");
+    };
+    restoreGameRoute();
+    window.addEventListener("popstate", restoreGameRoute);
     void refresh()
       .catch(() => {})
       .finally(() => setCatalogReady(true));
@@ -23,19 +30,10 @@ export function RootApp() {
       if (!document.hidden) void refresh().catch(() => {});
     }, 15_000);
     return () => {
-      window.removeEventListener("popstate", pop);
+      window.removeEventListener("popstate", restoreGameRoute);
       clearInterval(timer);
     };
   }, []);
-  const navigate = (path: string) => {
-    history.pushState(null, "", path);
-    setRoute(path);
-    window.scrollTo({ top: 0 });
-  };
-  if (route === "/create" || route === "/create/")
-    return (
-      <CreatorStudio onBack={() => navigate("/")} onCatalogChange={refresh} />
-    );
   // Restore saved community selections only after their definitions are available.
   if (!catalogReady)
     return (
@@ -43,7 +41,5 @@ export function RootApp() {
         Abriendo la arena…
       </div>
     );
-  return (
-    <App onCreate={() => navigate("/create")} communityRevision={revision} />
-  );
+  return <App communityRevision={revision} />;
 }

@@ -139,6 +139,9 @@ export interface FighterDefinition {
 
 export const BUILT_IN_FIGHTERS = fighterData as FighterDefinition[];
 export const FIGHTERS = [...BUILT_IN_FIGHTERS];
+const builtInDefinitions = new Map(
+  BUILT_IN_FIGHTERS.map((fighter) => [fighter.id, fighter]),
+);
 export const COMMUNITY_DEFINITIONS = new Map<FighterId, FighterDefinition>();
 
 export interface Platform {
@@ -160,6 +163,7 @@ export interface StageDefinition {
   platforms: Platform[];
 }
 export const STAGES = stageData as StageDefinition[];
+const stageDefinitions = new Map(STAGES.map((stage) => [stage.id, stage]));
 // Simulation and rendering share the same positions, including in online rooms.
 // Motion is derived from the match tick rather than the browser's clock.
 export function platformsAtTick(id: StageId, tick: number): Platform[] {
@@ -174,8 +178,8 @@ export function platformsAtTick(id: StageId, tick: number): Platform[] {
   });
 }
 export const fighterById = (id: FighterId) =>
-  (FIGHTERS.find((f) => f.id === id) ?? COMMUNITY_DEFINITIONS.get(id))!;
-export const stageById = (id: StageId) => STAGES.find((s) => s.id === id)!;
+  (builtInDefinitions.get(id) ?? COMMUNITY_DEFINITIONS.get(id))!;
+export const stageById = (id: StageId) => stageDefinitions.get(id)!;
 export const isFighter = (id: unknown): id is FighterId =>
   FIGHTERS.some((f) => f.id === id);
 export const isStage = (id: unknown): id is StageId =>

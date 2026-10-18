@@ -6,6 +6,44 @@ export function hasTouchInput() {
   );
 }
 
+/** Keep the arena and its controls inside the area not covered by browser UI. */
+export function trackPlayViewport(element: HTMLElement) {
+  const viewport = window.visualViewport;
+  const update = () => {
+    element.style.setProperty(
+      "--play-viewport-width",
+      `${viewport?.width ?? window.innerWidth}px`,
+    );
+    element.style.setProperty(
+      "--play-viewport-height",
+      `${viewport?.height ?? window.innerHeight}px`,
+    );
+    element.style.setProperty(
+      "--play-viewport-left",
+      `${viewport?.offsetLeft ?? 0}px`,
+    );
+    element.style.setProperty(
+      "--play-viewport-top",
+      `${viewport?.offsetTop ?? 0}px`,
+    );
+  };
+  update();
+  window.addEventListener("resize", update);
+  window.addEventListener("orientationchange", update);
+  document.addEventListener("fullscreenchange", update);
+  viewport?.addEventListener("resize", update);
+  viewport?.addEventListener("scroll", update);
+  return () => {
+    window.removeEventListener("resize", update);
+    window.removeEventListener("orientationchange", update);
+    document.removeEventListener("fullscreenchange", update);
+    viewport?.removeEventListener("resize", update);
+    viewport?.removeEventListener("scroll", update);
+    for (const name of ["width", "height", "left", "top"])
+      element.style.removeProperty(`--play-viewport-${name}`);
+  };
+}
+
 type LockableOrientation = ScreenOrientation & {
   lock?: (orientation: "landscape") => Promise<void>;
 };

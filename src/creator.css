@@ -5,19 +5,6 @@
   --creator-gold: #ffd45a;
   --creator-line: #ffffff13;
 }
-.creator-shell::before {
-  content: "";
-  position: fixed;
-  inset: 0 0 auto;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    #ffd45a 0 33.333%,
-    #669bff 33.333% 66.666%,
-    #fa7c6d 66.666%
-  );
-  z-index: 40;
-}
 .creator-header {
   max-width: 1180px;
   margin: auto;
@@ -560,9 +547,6 @@
     transform: rotate(360deg);
   }
 }
-.creator-mobile-entry {
-  display: none;
-}
 @media (max-width: 900px) {
   .creator-layout {
     gap: 28px;
@@ -624,15 +608,6 @@
     height: 220px;
     width: 176px;
   }
-  .creator-mobile-entry {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 0 auto 24px;
-    color: #ffd45a;
-    font-size: 12px;
-    min-height: 44px;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   .creator-spinner {
@@ -641,11 +616,4 @@
   .creator-shell * {
     transition: none !important;
   }
-}
-.arena-boot {
-  min-height: 80svh;
-  display: grid;
-  place-content: center;
-  color: #ffd45a;
-  font-family: "Pixelify Sans", monospace;
 }

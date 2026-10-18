@@ -1,7 +1,7 @@
 name: arena-criolla
 services:
   app:
-    image: arena-criolla:creator-v38
+    image: ${ARENA_IMAGE:-arena-criolla:local}
     container_name: arena-criolla
     build:
       context: ..
@@ -11,7 +11,11 @@ services:
     environment:
       NODE_ENV: production
       PORT: "5173"
+      ARENA_TRUST_PROXY: "loopback,uniquelocal"
+      ARENA_PUBLIC_URL: "https://arena.kevinbravo.com"
       ARENA_DATA_DIR: /app/data/creator
+      ARENA_CREATOR_ENABLED: "false"
+      OPENAI_API_KEY: ""
       ARENA_CREATOR_CONCURRENCY: "1"
       ARENA_CREATOR_CAPACITY: "4"
       ARENA_CREATOR_DAILY_ATTEMPTS: "10"
@@ -19,9 +23,7 @@ services:
     ports:
       - "127.0.0.1:35173:5173"
     volumes:
-      - /var/lib/arena-criolla:/app/data
-    networks:
-      - proxy
+      - ${ARENA_DATA_PATH:-/workspace/arena-criolla-production/data}:/app/data
     logging:
       driver: json-file
       options:
@@ -31,10 +33,9 @@ services:
       - no-new-privileges:true
     cap_drop:
       - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=128m,mode=1777
     pids_limit: 256
     mem_limit: 3g
-    cpus: "1.5"
-networks:
-  proxy:
-    external: true
-    name: oracle_default
+    cpus: "2"

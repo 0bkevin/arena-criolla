@@ -16,6 +16,7 @@ const photo = path.join(folder, "reference.jpg");
 await writeFile(photo, await referencePhoto());
 const production = process.argv.includes("--production");
 const server = await makeArenaServer({
+  workshopEnabled: true,
   production,
   creator: {
     dataDir: folder,

@@ -118,6 +118,7 @@ test(
       "sprite.webp",
     ]);
     const server = await makeArenaServer({
+      workshopEnabled: true,
       serveClient: false,
       creator: {
         dataDir: path.join(f.root, "prod-tst"),

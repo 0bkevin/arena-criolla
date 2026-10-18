@@ -47,7 +47,6 @@ import { preloadAssets } from "./game/assets";
 import { Portrait } from "./components/Portrait";
 import { ArcadeLobby } from "./components/ArcadeLobby";
 import { PixelIcon } from "./components/PixelIcon";
-import { CriolloArt } from "./components/CriolloArt";
 import { Game, type GameMode } from "./components/Game";
 import { Modal } from "./components/Modal";
 import { Help } from "./components/Help";
@@ -59,9 +58,8 @@ const colorStyle = (color: string): React.CSSProperties =>
   ({ "--fighter-color": color }) as React.CSSProperties;
 
 export function App({
-  onCreate,
   communityRevision: _communityRevision,
-}: { onCreate?: () => void; communityRevision?: number } = {}) {
+}: { communityRevision?: number } = {}) {
   const [mode, setMode] = useState<GameMode>("practice");
   const [fighter, setFighter] = useState<FighterId>("zavarce");
   const [rival, setRival] = useState<FighterId>("javier");
@@ -137,8 +135,10 @@ export function App({
     setPreference("name", name);
   }, [name]);
   useEffect(() => {
-    if (network.room)
+    if (network.room) {
+      setMode("online");
       setModal((current) => (current === "rooms" ? null : current));
+    }
   }, [network.room]);
   useEffect(() => {
     // Warm the same cached assets while players choose in a room, so the
@@ -177,6 +177,14 @@ export function App({
     initAudio();
     preloadReactions();
     sound("select");
+  };
+  const toggleAudio = () => {
+    setAudio(!audio);
+    setSound(!audio);
+    if (!audio) {
+      initAudio();
+      preloadReactions();
+    }
   };
   const clearFighterSearch = () => {
     setFighterQuery("");
@@ -425,12 +433,6 @@ export function App({
           >
             Luchadores
           </button>
-          {onCreate && (
-            <button onClick={onCreate}>
-              <Plus size={14} />
-              <span>Crear luchador</span>
-            </button>
-          )}
           <button onClick={() => setModal("help")} aria-label="Cómo jugar">
             <CircleHelp size={15} />
             <span>Cómo jugar</span>
@@ -447,7 +449,6 @@ export function App({
               <PixelIcon kind="star" size={18} />
             </button>
           )}
-          <span className="beta-badge">V0.1</span>
           <span
             className={`server-status ${network.connected ? "connected" : ""}`}
             title={
@@ -461,14 +462,7 @@ export function App({
           </span>
           <button
             className="icon-button"
-            onClick={() => {
-              setAudio(!audio);
-              setSound(!audio);
-              if (!audio) {
-                initAudio();
-                preloadReactions();
-              }
-            }}
+            onClick={toggleAudio}
             aria-label={audio ? "Silenciar sonido" : "Activar sonido"}
             aria-pressed={audio}
           >
@@ -499,6 +493,8 @@ export function App({
           }}
           rematchWaiting={rematchWaiting}
           onHelp={() => setModal("help")}
+          soundEnabled={audio}
+          onToggleSound={toggleAudio}
         />
       ) : (
         <ArcadeLobby
@@ -552,11 +548,6 @@ export function App({
       )}
 
       <footer className="site-footer page-width">
-        <span className="footer-criollo">
-          <CriolloArt kind="arepa" size={23} />
-          HECHO PARA ECHAR UN PIQUE.
-          <CriolloArt kind="cuatro" size={23} />
-        </span>
         <span className="footer-note">
           Parodia arcade · Habilidades ficticias
         </span>
@@ -565,15 +556,9 @@ export function App({
           Ranking <span>PRONTO</span>
         </button>
       </footer>
-      {!active && onCreate && (
-        <button className="creator-mobile-entry" onClick={onCreate}>
-          <Plus size={15} /> Crea tu luchador
-        </button>
-      )}
       {!active && !modal && !detail && !setupVisible && (
         <div className="mobile-setup-dock">
           <span>
-            <small>LISTO PARA EL PIQUE</small>
             <strong>{chosen.name}</strong>
           </span>
           <button onClick={goToSetup}>
@@ -589,10 +574,7 @@ export function App({
       )}
       {modal === "help" && <Help onClose={() => setModal(null)} />}
       {modal === "fighters" && (
-        <Modal title="La gente de la arena" wide onClose={() => setModal(null)}>
-          <p className="modal-intro">
-            {FIGHTERS.length} caras conocidas. Cada quien con su estilo.
-          </p>
+        <Modal title="Luchadores" wide onClose={() => setModal(null)}>
           <div className="roster-grid">
             {FIGHTERS.map((f) => (
               <button
@@ -607,7 +589,6 @@ export function App({
                 <div>
                   <span>{f.role}</span>
                   <h3>{f.name}</h3>
-                  <p>{f.title}</p>
                   <strong>
                     Ver movimientos <ArrowRight size={13} />
                   </strong>
@@ -618,15 +599,7 @@ export function App({
         </Modal>
       )}
       {modal === "stages" && (
-        <Modal
-          title="Elige dónde se prende la pelea"
-          wide
-          onClose={() => setModal(null)}
-        >
-          <p className="modal-intro">
-            De los tepuyes al Poliedro. Salta entre plataformas, viaja en una
-            cabina o resuelve la pelea a ras del suelo.
-          </p>
+        <Modal title="Escenarios" wide onClose={() => setModal(null)}>
           <div className="stage-gallery">
             {STAGES.map((s, index) => (
               <button
@@ -682,10 +655,9 @@ export function App({
         />
       )}
       {modal === "progress" && (
-        <Modal title="Tu historia en la arena" onClose={() => setModal(null)}>
+        <Modal title="Mi progreso" onClose={() => setModal(null)}>
           <p className="modal-intro">
-            El progreso se guarda en este navegador. Cada luchador tiene sus
-            propios desbloqueos.
+            Guardado en este navegador. Desbloqueos por luchador.
           </p>
           <div className="progress-metrics">
             <div>
@@ -778,7 +750,8 @@ export function App({
       )}
       {modal === "rooms" && (
         <Modal
-          title="La pelea es con los panas"
+          title="Salas en línea"
+          className="rooms-modal"
           wide
           onClose={() => setModal(null)}
         >
@@ -796,10 +769,6 @@ export function App({
               <Radio size={13} /> Actualizar
             </button>
           </div>
-          <p className="modal-intro">
-            Crea una sala, comparte el enlace y jueguen desde donde estén. Sin
-            registro.
-          </p>
           <div className="lobby-name">
             <label className="field-label" htmlFor="lobby-name">
               Tu apodo
@@ -809,7 +778,6 @@ export function App({
               className="plain-input"
               value={name}
               maxLength={20}
-              placeholder="Tu apodo, pana"
               onChange={(e) => {
                 setName(e.target.value);
                 setFormError("");
@@ -823,9 +791,10 @@ export function App({
           )}
           <div className="lobby-grid">
             <div className="create-room-panel">
-              <Plus size={25} />
-              <h3>Arma tu propia sala.</h3>
-              <p>Tú eliges el escenario. Tu pana trae los golpes.</p>
+              <div className="room-panel-heading">
+                <Plus size={20} aria-hidden="true" />
+                <h3>Crear sala</h3>
+              </div>
               <label className="checkbox-label">
                 <input
                   type="checkbox"
@@ -854,8 +823,7 @@ export function App({
               </button>
             </div>
             <div className="join-room-panel">
-              <h3>¿Ya tienes un código?</h3>
-              <p>Entra a la sala que creó tu pana.</p>
+              <h3>Entrar con código</h3>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -889,14 +857,14 @@ export function App({
                     network.setError("");
                   }}
                   maxLength={ROOM_CODE_LENGTH}
-                  placeholder="ABCDEF0123456789ABCDEF0123456789"
+                  placeholder="Código de sala"
                 />
                 <button
                   className="secondary-button"
                   disabled={!network.connected}
                   type="submit"
                 >
-                  Entrar a la sala <ArrowRight size={15} />
+                  Entrar <ArrowRight size={15} />
                 </button>
               </form>
             </div>
@@ -909,8 +877,7 @@ export function App({
             <div className="empty-rooms">
               <Globe2 size={27} />
               <div>
-                <strong>La próxima pelea puede ser la tuya.</strong>
-                <p>No hay salas abiertas ahora. Crea una e invita a tu pana.</p>
+                <p>No hay salas abiertas. Crea una e invita a tu pana.</p>
               </div>
             </div>
           ) : (

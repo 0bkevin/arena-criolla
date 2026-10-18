@@ -27,6 +27,7 @@ async function fixture() {
     },
   };
   let server = await makeArenaServer({
+    workshopEnabled: true,
     serveClient: false,
     creator: { dataDir: folder, provider, secureCookies: false },
   });
@@ -118,6 +119,7 @@ async function fixture() {
     async restart() {
       await server.close();
       server = await makeArenaServer({
+        workshopEnabled: true,
         serveClient: false,
         creator: { dataDir: folder, provider: null, secureCookies: false },
       });

@@ -3,6 +3,7 @@ import { REACTION_CLIPS, type ReactionKind } from "./game/reactions";
 import { CULTURE_SOUNDS } from "./game/culture-sounds";
 import { presentationById } from "../shared/presentation";
 import { WORLD } from "../shared/arena";
+import { TECHNIQUES } from "../shared/techniques";
 import { MUSIC_SECONDS, writeArcadeMusic } from "./game/arcade-music";
 import { VICTORY_DURATION_MS } from "./game/victory-types";
 import { writeVictoryMusic } from "./game/victory-music";
@@ -650,9 +651,17 @@ export function sound(
       tone(880, 880, 0.07, "sine", 0.09, 0.26);
       noise(0.11, 6200, 0.07, "highpass", 0.32);
     } else if (ability === "courier") {
-      tone(210, 980, 0.24, "triangle", 0.075);
-      noise(0.28, 2600, 0.11);
-      tone(1040, 1560, 0.07, "sine", 0.04, 0.15);
+      // Layer the engines of the compact formation, all summoned on the same tick.
+      const technique = TECHNIQUES.courier;
+      Array.from(
+        { length: technique.projectile?.count ?? 1 },
+        (_, index) => index,
+      ).forEach((index) => {
+        const delay = technique.startup / 60 + index * 0.025;
+        tone(85, 230, 0.2, "sawtooth", 0.035, delay, spatial);
+        tone(170, 380, 0.16, "triangle", 0.04, delay, spatial);
+        noise(0.15, 800, 0.035, "lowpass", delay, spatial);
+      });
     } else if (ability === "installments") {
       [660, 880, 1100].forEach((frequency, index) =>
         tone(frequency, frequency, 0.09, "sine", 0.08, index / 6),

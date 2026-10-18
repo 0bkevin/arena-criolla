@@ -10,6 +10,8 @@
     "creator:codex": "tsx scripts/creator-codex.ts",
     "creator:import": "tsx scripts/creator-import.ts",
     "test": "tsx --test tests/*.test.ts tests/character-audits/*.test.ts",
+    "perf:engine": "tsx scripts/performance-audit.ts",
+    "perf:network": "node scripts/performance-network.mjs",
     "assets": "node scripts/prepare-assets.mjs",
     "assets:og": "node scripts/generate-og-image.mjs",
     "check:assets": "node scripts/validate-character-assets.mjs",

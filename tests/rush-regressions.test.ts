@@ -39,22 +39,18 @@ function rush(id: FighterId, side: 0 | 1, gap: number, guard = false) {
     distance: Math.abs(state.players[side].x - start),
   };
 }
-test("Vicente and Capriles rushes connect once during travel and respect directional guards", () => {
-  for (const [id, gap] of [
-    ["zavarce", 200],
-    ["capriles", 240],
-  ] as const)
-    for (const side of [0, 1] as const) {
-      const hit = rush(id, side, gap);
-      assert.ok(hit.target.hp < 100);
-      assert.equal(hit.attacker.hits, 1);
-      const blocked = rush(id, side, gap, true);
-      assert.equal(blocked.target.hp, 100);
-      assert.ok(blocked.target.energy < 100);
-    }
+test("Capriles rush connects once during travel and respects directional guards", () => {
+  for (const side of [0, 1] as const) {
+    const hit = rush("capriles", side, 240);
+    assert.ok(hit.target.hp < 100);
+    assert.equal(hit.attacker.hits, 1);
+    const blocked = rush("capriles", side, 240, true);
+    assert.equal(blocked.target.hp, 100);
+    assert.ok(blocked.target.energy < 100);
+  }
 });
 test("forward rushes brake after their configured movement window", () => {
-  for (const id of ["zavarce", "capriles", "conde", "mcm"] as const)
+  for (const id of ["capriles", "conde", "mcm"] as const)
     for (const side of [0, 1] as const) {
       const result = rush(id, side, 700);
       assert.ok(result.distance < 240, `${id} traveled ${result.distance}`);

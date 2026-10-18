@@ -1,0 +1,1068 @@
+{
+  "initial": {
+    "timestamp": "2026-10-18T12:53:43.110Z",
+    "scope": "Current working tree active production app; isolated loopback listeners, synthetic private fixtures, provider:null. No production load tests.",
+    "summary": {
+      "checks": 57,
+      "passed": 57,
+      "failed": 0,
+      "critical": 0,
+      "high": 0,
+      "medium": 1,
+      "low": 0,
+      "harnessCompleted": true
+    },
+    "findings": [
+      {
+        "id": "ARENA-ADV-001",
+        "severity": "medium",
+        "classification": "verified resource amplification",
+        "title": "Anonymous private-room toggles trigger identical global room-list broadcasts",
+        "locations": [
+          {
+            "file": "server/index.ts",
+            "line": 173
+          },
+          {
+            "file": "server/index.ts",
+            "line": 176
+          },
+          {
+            "file": "server/index.ts",
+            "line": 452
+          }
+        ],
+        "prerequisites": "One anonymous guest WebSocket; a private waiting room owned by that guest. No invite from another player, account, or privileged access required.",
+        "reproduction": "Create a private room; alternate {type:\"ready\",ready:true} and {type:\"ready\",ready:false}, allowing 120ms between messages; observe rooms messages on an unrelated client.",
+        "observed": {
+          "attackerMessages": 4,
+          "observerBroadcasts": 4,
+          "distinctSnapshots": 1,
+          "observerBroadcastBytes": 152
+        },
+        "impact": "Each toggle within the existing control budget invalidates, rebuilds and broadcasts the entire public lobby snapshot to every socket, including players in private matches. Amplification scales with connected clients and public room-list size. Availability degradation at production scale was not measured.",
+        "recommendedFix": "Keep the last globally published encoded snapshot and suppress broadcasts when the public room list and online count are unchanged; continue answering explicit list requests. Avoid scheduling discovery updates for private-only state changes. Consider bounded per-source/control-churn rate limits without adding global connection/room admission ceilings.",
+        "evidenceHarness": "/tmp/arena-adversarial-review.mts",
+        "reproductionCommand": "node --import tsx /tmp/arena-adversarial-review.mts"
+      }
+    ],
+    "hardeningSuggestions": [
+      {
+        "id": "ARENA-ADV-D01",
+        "severity": "low",
+        "classification": "defense in depth; no authenticated WebSocket state exists",
+        "title": "WebSocket upgrades accept arbitrary browser Origin",
+        "locations": [
+          {
+            "file": "server/index.ts",
+            "line": 276
+          }
+        ],
+        "observed": "Origin https://attacker.invalid completed /ws upgrade, received welcome and created its own anonymous room.",
+        "impact": "A malicious webpage can create guest connections and exercise anonymous room/broadcast paths through visitors. This does not hijack an existing connection, reveal a private invite, or use account credentials.",
+        "recommendedFix": "Reject browser Origin values outside an explicit set of canonical and intended alias origins before handleUpgrade; parse and compare complete origins including scheme and port. Keep an intentional policy for clients without Origin to preserve tooling."
+      }
+    ],
+    "reviewedSurfaces": {
+      "websocket": "Upgrade paths, guest lifecycle, payload size, UTF-8 validation, malformed/deep JSON, field forgery, room membership, ready/select permissions, match IDs, normalized inputs, monotonic action counters, send backpressure, heartbeat, discovery fanout.",
+      "http": "Disabled auth/creator prefix gates, encoded/case/double-slash route variants, parser ordering, community catalog, published/archived versus private assets, static traversal, dotfiles, server source, configured SEO Host/query isolation.",
+      "frontend": "RootApp workshop removal, retained /create redirect, production bundle absence of CreatorStudio/auth/creator/key strings, React/canvas text rendering, DOM sinks, image paths, localStorage trust boundary and outbound reference links.",
+      "retainedPrivateModule": "Parameterized SQLite queries, hashed sessions/scrypt, ownership guards, restricted custom asset IDs/files, provider:null enforcement, no public operator import endpoint, bounded no-follow bundle reads. Legacy creation/auth paths remain present but inaccessible without programmatic workshopEnabled:true."
+    },
+    "limitations": [
+      "No production attack/load/fuzz tests or private production-data reads were performed.",
+      "No paid providers, unrelated apps, accounts, or host secrets were accessed.",
+      "No application/deployment files were modified; synthetic evidence stayed under /tmp.",
+      "Library advisories, container/host/runtime vulnerabilities, proxy deployment and planned HTTP hardening are handled by the parent audit.",
+      "No full browser exploit campaign or exhaustive protocol fuzzing was performed; passing checks do not establish absence of vulnerabilities.",
+      "Trusted filesystem/database compromise and intentionally re-enabled workshop deployment were outside the active production threat boundary."
+    ]
+  },
+  "revalidation": {
+    "timestamp": "2026-10-18T12:58:48.934Z",
+    "repository": "/home/ubuntu/.t3/worktrees/vepol/t3-b51dc6d3",
+    "scope": "Current working tree active production app; isolated loopback listeners, synthetic private fixtures, provider:null. No production load tests.",
+    "observations": [
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/creator",
+        "status": 404
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/auth/session",
+        "status": 404
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/API/AUTH/SESSION",
+        "status": 404
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/Creator/characters",
+        "status": 404
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/creator/characters/",
+        "status": 404
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/%63reator/capabilities",
+        "status": 200
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/cre%61tor/capabilities",
+        "status": 200
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/creator%2fcapabilities",
+        "status": 200
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api%2fcreator/capabilities",
+        "status": 200
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api//creator/capabilities",
+        "status": 200
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "//api/creator/capabilities",
+        "status": 200
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/creator;/capabilities",
+        "status": 200
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/creator%00/capabilities",
+        "status": 200
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/./creator/capabilities",
+        "status": 200
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/x/../creator/capabilities",
+        "status": 200
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/auth%2Fsession",
+        "status": 200
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/%61uth/session",
+        "status": 200
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/auth/session%3f",
+        "status": 404
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/creator\\capabilities",
+        "status": 200
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/creator%5ccapabilities",
+        "status": 200
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/creator/capabilities?workshopEnabled=true",
+        "status": 404
+      },
+      {
+        "description": "Workshop route variant cannot expose retained routes",
+        "passed": true,
+        "target": "/api/creator/characters/custom_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/photos/0",
+        "status": 404
+      },
+      {
+        "description": "Disabled route gate precedes body parser",
+        "passed": true,
+        "status": 404
+      },
+      {
+        "description": "Published catalog excludes private input, photos, unpublished and archived records",
+        "passed": true
+      },
+      {
+        "description": "Only published/archived art is anonymously accessible",
+        "passed": true,
+        "status": "ready",
+        "observed": 404
+      },
+      {
+        "description": "Only published/archived art is anonymously accessible",
+        "passed": true,
+        "status": "published",
+        "observed": 200
+      },
+      {
+        "description": "Only published/archived art is anonymously accessible",
+        "passed": true,
+        "status": "archived",
+        "observed": 200
+      },
+      {
+        "description": "Retained owner preview stays private",
+        "passed": true
+      },
+      {
+        "description": "Static and asset traversal probe excludes synthetic/private/server content",
+        "passed": true,
+        "target": "/.env",
+        "status": 200,
+        "type": "text/html; charset=utf-8"
+      },
+      {
+        "description": "Static and asset traversal probe excludes synthetic/private/server content",
+        "passed": true,
+        "target": "/.env.production",
+        "status": 200,
+        "type": "text/html; charset=utf-8"
+      },
+      {
+        "description": "Static and asset traversal probe excludes synthetic/private/server content",
+        "passed": true,
+        "target": "/.git/config",
+        "status": 200,
+        "type": "text/html; charset=utf-8"
+      },
+      {
+        "description": "Static and asset traversal probe excludes synthetic/private/server content",
+        "passed": true,
+        "target": "/server/index.ts",
+        "status": 200,
+        "type": "text/html; charset=utf-8"
+      },
+      {
+        "description": "Static and asset traversal probe excludes synthetic/private/server content",
+        "passed": true,
+        "target": "/data/creator/arena.sqlite",
+        "status": 200,
+        "type": "text/html; charset=utf-8"
+      },
+      {
+        "description": "Static and asset traversal probe excludes synthetic/private/server content",
+        "passed": true,
+        "target": "/assets/../../.env",
+        "status": 200,
+        "type": "text/html; charset=utf-8"
+      },
+      {
+        "description": "Static and asset traversal probe excludes synthetic/private/server content",
+        "passed": true,
+        "target": "/%2e%2e/.env",
+        "status": 200,
+        "type": "text/html; charset=utf-8"
+      },
+      {
+        "description": "Static and asset traversal probe excludes synthetic/private/server content",
+        "passed": true,
+        "target": "/assets/%2e%2e/%2e%2e/.env",
+        "status": 200,
+        "type": "text/html; charset=utf-8"
+      },
+      {
+        "description": "Static and asset traversal probe excludes synthetic/private/server content",
+        "passed": true,
+        "target": "/@fs//workspace/t3-tmp/arena-security-review-KwXKLd/uploads/custom_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/0.jpg",
+        "status": 200,
+        "type": "text/html; charset=utf-8"
+      },
+      {
+        "description": "Static and asset traversal probe excludes synthetic/private/server content",
+        "passed": true,
+        "target": "/api/community/assets/custom_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb/%2e%2e%2fuploads%2f0.jpg",
+        "status": 404,
+        "type": "text/plain; charset=utf-8"
+      },
+      {
+        "description": "Static and asset traversal probe excludes synthetic/private/server content",
+        "passed": true,
+        "target": "/api/community/assets/custom_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb/..%2f..%2f.env",
+        "status": 404,
+        "type": "text/plain; charset=utf-8"
+      },
+      {
+        "description": "Static and asset traversal probe excludes synthetic/private/server content",
+        "passed": true,
+        "target": "/api/community/assets/..%2f..%2fuploads/sprite.webp",
+        "status": 404,
+        "type": "text/plain; charset=utf-8"
+      },
+      {
+        "description": "Static and asset traversal probe excludes synthetic/private/server content",
+        "passed": true,
+        "target": "/api/community/assets/custom_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb/sprite.webp%00",
+        "status": 404,
+        "type": "text/plain; charset=utf-8"
+      },
+      {
+        "description": "Static and asset traversal probe excludes synthetic/private/server content",
+        "passed": true,
+        "target": "/api/community/assets/custom_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb/portrait.webp/..%2f..%2fuploads/0.jpg",
+        "status": 200,
+        "type": "text/html; charset=utf-8"
+      },
+      {
+        "description": "Pinned canonical metadata ignores attacker-controlled Host/query",
+        "passed": true,
+        "host": "attacker.example",
+        "status": 200
+      },
+      {
+        "description": "Pinned canonical metadata ignores attacker-controlled Host/query",
+        "passed": true,
+        "host": "evil\".example",
+        "status": 200
+      },
+      {
+        "description": "Pinned canonical metadata ignores attacker-controlled Host/query",
+        "passed": true,
+        "host": "attacker.example:8080",
+        "status": 200
+      },
+      {
+        "description": "Original arbitrary-Origin repro is now denied",
+        "passed": true,
+        "origin": "https://attacker.invalid",
+        "status": 403
+      },
+      {
+        "description": "Origin-less guest tooling can still create rooms",
+        "passed": true
+      },
+      {
+        "description": "Private token never appears in anonymous room discovery",
+        "passed": true
+      },
+      {
+        "description": "Room display name is length-bounded and strips markup",
+        "passed": true
+      },
+      {
+        "description": "Forged room/id fields do not grant room membership or control",
+        "passed": true
+      },
+      {
+        "description": "Truncated private token cannot join",
+        "passed": true
+      },
+      {
+        "description": "Non-host cannot select the stage",
+        "passed": true
+      },
+      {
+        "description": "Malformed bounded JSON and deep nesting do not crash the service",
+        "passed": true
+      },
+      {
+        "description": "Accepted game input normalizes booleans and preserves bounded counters",
+        "passed": true
+      },
+      {
+        "description": "Malformed, decreasing/oversized/fractional counters and stale match IDs cannot replace accepted input",
+        "passed": true
+      },
+      {
+        "description": "Forging another player ID in game input cannot control that player",
+        "passed": true
+      },
+      {
+        "description": "Non-members receive no match state",
+        "passed": true
+      },
+      {
+        "description": "Oversized frame is rejected and service remains healthy",
+        "passed": true,
+        "closeCode": 1009
+      },
+      {
+        "description": "Invalid UTF-8 text frame is rejected without crashing the service",
+        "passed": true,
+        "utfCloseCode": 1007
+      },
+      {
+        "description": "Bounded anonymous room churn amplification sample (four cycles; no load test)",
+        "cycles": 4,
+        "attackerMessages": 8,
+        "observerBroadcasts": 4,
+        "observerBroadcastBytes": 1224,
+        "explanation": "The server broadcasts each coalesced public room change to every connected client, including active private games."
+      },
+      {
+        "description": "Private ready-toggle fanout sample (four messages; no load test)",
+        "attackerMessages": 4,
+        "observerBroadcasts": 0,
+        "distinctSnapshots": 0,
+        "observerBroadcastBytes": 0
+      },
+      {
+        "description": "Original private ready-toggle amplification repro is fixed",
+        "passed": true,
+        "observerBroadcasts": 0
+      },
+      {
+        "description": "Explicit list requests still receive a snapshot after global deduplication",
+        "passed": true
+      }
+    ],
+    "findings": [],
+    "baselineCommit": "cc15e316d4ebcf1c5bd2314c2ee60d20f0fb051e",
+    "sourceSha256": {
+      "server/security.ts": "7b47e76713a6f937a33d58094f35ff3a9df57017c98923d463b68acfd076e7ac",
+      "server/index.ts": "f5911da3f7d1fe6867f71a25763368b6758f0f6c31a07b92a237d4e66052ac89",
+      "server/seo.ts": "0e267f427126839aa446155eb63d2c0df3bea0f69458b02d5449b5b60481967c",
+      "Dockerfile": "8aebb30bf4d62582c1668e6b34becfd836a77fecebc14ea33979cb46e641f0f1",
+      "deploy/production.compose.yaml": "e6042e8d3b96f98264fb8a4fb6bfd0df2e08e1140f90a4f708e9f708380c1ac8"
+    },
+    "fixedFindings": [
+      {
+        "id": "ARENA-ADV-001",
+        "verified": true
+      },
+      {
+        "id": "ARENA-ADV-D01",
+        "verified": true
+      }
+    ],
+    "hardeningSuggestions": [],
+    "reviewedSurfaces": {
+      "websocket": "Upgrade paths, guest lifecycle, payload size, UTF-8 validation, malformed/deep JSON, field forgery, room membership, ready/select permissions, match IDs, normalized inputs, monotonic action counters, send backpressure, heartbeat, discovery fanout.",
+      "http": "Disabled auth/creator prefix gates, encoded/case/double-slash route variants, parser ordering, community catalog, published/archived versus private assets, static traversal, dotfiles, server source, configured SEO Host/query isolation.",
+      "frontend": "RootApp workshop removal, retained /create redirect, production bundle absence of CreatorStudio/auth/creator/key strings, React/canvas text rendering, DOM sinks, image paths, localStorage trust boundary and outbound reference links.",
+      "retainedPrivateModule": "Parameterized SQLite queries, hashed sessions/scrypt, ownership guards, restricted custom asset IDs/files, provider:null enforcement, no public operator import endpoint, bounded no-follow bundle reads. Legacy creation/auth paths remain present but inaccessible without programmatic workshopEnabled:true."
+    },
+    "limitations": [
+      "No production attack/load/fuzz tests or private production-data reads were performed.",
+      "No paid providers, unrelated apps, accounts, or host secrets were accessed.",
+      "No application/deployment files were modified; synthetic evidence stayed under /tmp.",
+      "Library advisories, container/host/runtime vulnerabilities, proxy deployment and planned HTTP hardening are handled by the parent audit.",
+      "No full browser exploit campaign or exhaustive protocol fuzzing was performed; passing checks do not establish absence of vulnerabilities.",
+      "Trusted filesystem/database compromise and intentionally re-enabled workshop deployment were outside the active production threat boundary."
+    ],
+    "summary": {
+      "checks": 61,
+      "passed": 61,
+      "failed": 0,
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "harnessCompleted": true
+    },
+    "additionalAttackObservations": [
+      {
+        "description": "Origin boundary: No Origin tooling",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 101,
+        "expected": 101
+      },
+      {
+        "description": "Origin boundary: Exact HTTP origin",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 101,
+        "expected": 101
+      },
+      {
+        "description": "Origin boundary: Foreign origin with spoofed X-Forwarded-Host",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Foreign origin with spoofed Forwarded header",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Protocol spoof accepted only from trusted proxy",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Forwarded proto list uses first value",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Forwarded HTTPS first value trusted only for proxy",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Invalid forwarded proto falls back to transport",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 101,
+        "expected": 101
+      },
+      {
+        "description": "Origin boundary: Opaque null origin",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Empty origin",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Multiple comma-separated origins",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Origin path suffix",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Userinfo origin",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Port mismatch",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Host suffix mismatch",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Quoted Host rejected",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Percent-encoded slash in Host rejected",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Authorized alias with forwarded scheme",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Alias cannot use forwarded Host as authority",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: IPv6 literal origin canonicalization",
+        "passed": true,
+        "trustedProxy": false,
+        "status": 101,
+        "expected": 101
+      },
+      {
+        "description": "HSTS honors forwarded HTTPS only across configured proxy trust",
+        "passed": true,
+        "trustedProxy": false,
+        "hsts": null
+      },
+      {
+        "description": "API responses carry defensive headers",
+        "passed": true,
+        "trustedProxy": false
+      },
+      {
+        "description": "HTTP timeout/header-size configuration remains bounded",
+        "passed": true,
+        "trustedProxy": false
+      },
+      {
+        "description": "Origin boundary: No Origin tooling",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 101,
+        "expected": 101
+      },
+      {
+        "description": "Origin boundary: Exact HTTP origin",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 101,
+        "expected": 101
+      },
+      {
+        "description": "Origin boundary: Foreign origin with spoofed X-Forwarded-Host",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Foreign origin with spoofed Forwarded header",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Protocol spoof accepted only from trusted proxy",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 101,
+        "expected": 101
+      },
+      {
+        "description": "Origin boundary: Forwarded proto list uses first value",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Forwarded HTTPS first value trusted only for proxy",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 101,
+        "expected": 101
+      },
+      {
+        "description": "Origin boundary: Invalid forwarded proto falls back to transport",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 101,
+        "expected": 101
+      },
+      {
+        "description": "Origin boundary: Opaque null origin",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Empty origin",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Multiple comma-separated origins",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Origin path suffix",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Userinfo origin",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Port mismatch",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Host suffix mismatch",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Quoted Host rejected",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Percent-encoded slash in Host rejected",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: Authorized alias with forwarded scheme",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 101,
+        "expected": 101
+      },
+      {
+        "description": "Origin boundary: Alias cannot use forwarded Host as authority",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 403,
+        "expected": 403
+      },
+      {
+        "description": "Origin boundary: IPv6 literal origin canonicalization",
+        "passed": true,
+        "trustedProxy": true,
+        "status": 101,
+        "expected": 101
+      },
+      {
+        "description": "HSTS honors forwarded HTTPS only across configured proxy trust",
+        "passed": true,
+        "trustedProxy": true,
+        "hsts": "max-age=31536000"
+      },
+      {
+        "description": "API responses carry defensive headers",
+        "passed": true,
+        "trustedProxy": true
+      },
+      {
+        "description": "HTTP timeout/header-size configuration remains bounded",
+        "passed": true,
+        "trustedProxy": true
+      },
+      {
+        "description": "Every production script receives exactly the response CSP nonce",
+        "passed": true,
+        "scripts": 2
+      },
+      {
+        "description": "Fresh HTML nonce cannot reuse an old conditional-cache body",
+        "passed": true
+      },
+      {
+        "description": "Query values cannot enter HTML or CSP nonce",
+        "passed": true
+      },
+      {
+        "description": "Malformed Host cannot inject CSP or pinned HTML metadata",
+        "passed": true,
+        "host": "evil\".example",
+        "status": 200
+      },
+      {
+        "description": "Malformed Host cannot inject CSP or pinned HTML metadata",
+        "passed": true,
+        "host": "evil'.example",
+        "status": 200
+      },
+      {
+        "description": "Malformed Host cannot inject CSP or pinned HTML metadata",
+        "passed": true,
+        "host": "evil.example;script-src *",
+        "status": 200
+      },
+      {
+        "description": "Malformed Host cannot inject CSP or pinned HTML metadata",
+        "passed": true,
+        "host": "evil.example,attacker.invalid",
+        "status": 200
+      },
+      {
+        "description": "Malformed Host cannot inject CSP or pinned HTML metadata",
+        "passed": true,
+        "host": "evil.example%0a",
+        "status": 200
+      },
+      {
+        "description": "Malformed Host cannot inject CSP or pinned HTML metadata",
+        "passed": true,
+        "host": "evil.example%3bscript-src%20*",
+        "status": 200
+      },
+      {
+        "description": "HTTPS after an HTTP first hop does not mint HSTS",
+        "passed": true
+      },
+      {
+        "description": "Oversized HTTP headers reject before app dispatch",
+        "passed": true,
+        "statusLine": "HTTP/1.1 431 Request Header Fields Too Large"
+      },
+      {
+        "description": "An incomplete HTTP header is actively closed by configured timeout",
+        "passed": true,
+        "statusLine": "HTTP/1.1 408 Request Timeout",
+        "elapsedMs": 10971
+      },
+      {
+        "description": "An incomplete JSON request body is actively closed by configured timeout",
+        "passed": true,
+        "statusLine": "HTTP/1.1 408 Request Timeout",
+        "elapsedMs": 30974
+      },
+      {
+        "description": "Service remains healthy after the bounded header/body timeout probes",
+        "passed": true
+      },
+      {
+        "description": "Runtime Dockerfile runs as node and copies Node/deps without npm/Yarn tooling",
+        "passed": true
+      },
+      {
+        "description": "Compose preserves read-only root, restricted temporary storage and disabled generation credentials",
+        "passed": true
+      }
+    ],
+    "additionalAttackSummary": {
+      "checks": 62,
+      "passed": 62,
+      "failed": 0,
+      "completed": true
+    },
+    "parentSecurityTests": {
+      "command": "node --import tsx --test tests/security.test.ts",
+      "passed": 3,
+      "failed": 0
+    },
+    "revalidationLimitations": [
+      "No production requests, load testing, host scans or secret reads.",
+      "Read-only review of application, Dockerfile and compose; no application/deployment edits.",
+      "Docker/compose validation here is static; image-build/runtime/CVE checks belong to parent.",
+      "Original privacy/game-input harness reran, plus proxy/header/timeout probes; no exhaustive browser/HTTP fuzzing."
+    ],
+    "overallSummary": {
+      "assertedChecks": 123,
+      "passed": 123,
+      "failed": 0,
+      "parentTestsPassed": 3,
+      "verifiedFindings": 0
+    },
+    "sourceUnchangedDuringReview": {
+      "server/security.ts": true,
+      "server/index.ts": true,
+      "server/seo.ts": true,
+      "Dockerfile": false,
+      "deploy/production.compose.yaml": true
+    },
+    "concurrentChangesReviewed": [
+      {
+        "file": "Dockerfile",
+        "change": "Added COPY of Node LICENSE into runtime image; reviewed final file after dynamic probes, no security behavior change",
+        "finalSha256": "584330d7edef111300521f4d511815ddc94e766697eec646bc97ec3b2b0b03fd"
+      }
+    ]
+  },
+  "additionalGameIntegrityReview": {
+    "timestamp": "2026-10-18T13:09:18.560Z",
+    "scope": "Client-declared wins -> online match config -> combo/super gates only. Isolated loopback, two new anonymous peers, memory DB, provider:null.",
+    "results": [
+      {
+        "description": "create accepts unearned wins and only clamps the number",
+        "passed": true,
+        "supplied": 999999,
+        "accepted": 9999
+      },
+      {
+        "description": "join also accepts self-declared wins",
+        "passed": true,
+        "supplied": 9999,
+        "accepted": 9999
+      },
+      {
+        "description": "select can replace the count without changing fighter or winning a match",
+        "passed": true
+      },
+      {
+        "description": "The authoritative start payload carries declared wins directly into PlayerConfig",
+        "passed": true,
+        "wins": [
+          9999,
+          0
+        ],
+        "initialEnergy": [
+          35,
+          35
+        ],
+        "previousCompletedMatches": 0
+      },
+      {
+        "description": "Actual online execution grants the advanced combo to the forged-count guest and only the base combo to the zero-win peer",
+        "passed": true,
+        "wins": [
+          9999,
+          0
+        ],
+        "comboNames": [
+          "Ruta directa",
+          "Pedido confirmado"
+        ],
+        "comboBonuses": [
+          7,
+          3
+        ],
+        "hp": [
+          100,
+          100
+        ]
+      },
+      {
+        "description": "Shared authoritative engine gates super on declared wins, while independently enforcing 75 energy",
+        "passed": true,
+        "note": "Controlled pure-engine copies of server-issued start state; energy=100 was assigned only in these isolated local copies, never supplied over WebSocket or written to live server state.",
+        "denied": {
+          "declaredWins": 0,
+          "controlledEnergy": 100,
+          "attack": null,
+          "energyAfter": 100,
+          "comboBonus": 0
+        },
+        "allowed": {
+          "declaredWins": 9999,
+          "controlledEnergy": 100,
+          "attack": "super",
+          "energyAfter": 25,
+          "comboBonus": 12
+        },
+        "lowEnergy": {
+          "declaredWins": 9999,
+          "controlledEnergy": 35,
+          "attack": null,
+          "energyAfter": 35.035,
+          "comboBonus": 0
+        }
+      }
+    ],
+    "verdict": {
+      "confirmed": "A guest can self-declare 9999 wins through create/join/select and unlock advanced combo eligibility and the super win prerequisite without any prior victory.",
+      "classification": "Known trust boundary of anonymous local progression; real casual-match integrity limitation. No account/resource authorization barrier is crossed and no verified/global ranking exists.",
+      "impact": "Advanced combo bonus becomes 7 instead of base 3 for the same light/light/heavy inputs. Super eligibility changes from locked to available once authoritative energy is at least 75; normal energy, cooldown, input and match-membership rules still apply. More than 3 declared wins does not further increase damage or add further unlocks.",
+      "designEvidence": [
+        {
+          "file": "README.md",
+          "line": 90,
+          "meaning": "Unlocks at 1 and 3 wins; super costs 75 energy"
+        },
+        {
+          "file": "README.md",
+          "line": 92,
+          "meaning": "Progress explicitly localStorage; no global ranking or verified identity"
+        },
+        {
+          "file": "src/storage.ts",
+          "line": 33,
+          "meaning": "Client reads wins from local storage"
+        },
+        {
+          "file": "src/App.tsx",
+          "line": 199,
+          "meaning": "Client forwards local wins in selection"
+        },
+        {
+          "file": "server/index.ts",
+          "line": 62,
+          "meaning": "cleanWins normalizes and bounds; it does not verify history"
+        },
+        {
+          "file": "server/index.ts",
+          "line": 259,
+          "meaning": "Room player configs feed createMatch"
+        },
+        {
+          "file": "shared/engine.ts",
+          "line": 366,
+          "meaning": "Super trusts config.wins >=3 plus authoritative energy"
+        },
+        {
+          "file": "shared/engine.ts",
+          "line": 391,
+          "meaning": "Advanced combo trusts config.wins >=1"
+        }
+      ],
+      "recommendation": "Keep existing offline/localStorage progression and open guest access. Describe online progress as client-declared and casual, and do not use this field for verified achievements, rankings, prizes or access authorization. If competitive parity is later required, add separate symmetric online unlock rules or an opt-in server-tracked/signed progression mode; retain existing local progression as unverified legacy progress without deleting or pretending it can be retroactively proven."
+    },
+    "limits": [
+      "No application or production changes.",
+      "Two anonymous loopback clients and small deterministic engine copies only; no account, DB persistence, paid generation, load test or other surface reviewed.",
+      "The actual online advanced combo was observed. Super eligibility/energy isolation was verified in shared-engine copies of the server-issued state, not by forging server energy over the network."
+    ],
+    "summary": {
+      "checks": 6,
+      "passed": 6,
+      "completed": true
+    }
+  }
+}

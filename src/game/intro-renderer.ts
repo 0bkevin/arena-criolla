@@ -150,13 +150,9 @@ export function drawIntroCinematic(
   ctx.shadowBlur = 14;
   ctx.fillText("VS", width / 2, 333 * scale);
   ctx.shadowBlur = 0;
-  // Letterbox and the tricolor introduce the shot without showing the arena HUD.
+  // Letterbox the shot without showing the arena HUD.
   ctx.fillStyle = "#070d18";
   ctx.fillRect(0, 0, width, 24 * scale);
   ctx.fillRect(0, height - 24 * scale, width, 24 * scale);
-  ["#ffdb68", "#669bff", "#ff8075"].forEach((color, i) => {
-    ctx.fillStyle = color;
-    ctx.fillRect((i * width) / 3, 0, width / 3, 3 * scale);
-  });
   ctx.restore();
 }
