@@ -644,6 +644,8 @@ export function Game(props: Props) {
   const winner =
     typeof view.winner === "number" ? view.players[view.winner] : null;
   const winnerDef = winner ? fighterById(winner.config.fighter) : null;
+  const specialUnlockWins =
+    fighterById(view.players[localIndex].config.fighter).specialUnlockWins ?? 0;
   const localWinner = view.winner === localIndex;
   const presenting = view.phase === "intro" ? introActor(view.tick) : null;
   const intro = view.phase === "intro";
@@ -911,7 +913,9 @@ export function Game(props: Props) {
                       <span>
                         {winner.config.wins === 0
                           ? "Nuevo combo desbloqueado"
-                          : "Definitiva desbloqueada"}{" "}
+                          : winnerDef?.specialUnlockWins === 3
+                            ? "Especial y definitiva desbloqueados"
+                            : "Definitiva desbloqueada"}{" "}
                         para {winnerDef?.shortName}
                       </span>
                     </div>
@@ -941,6 +945,7 @@ export function Game(props: Props) {
               reset={touchReset}
               energy={view.players[localIndex].energy}
               wins={view.players[localIndex].config.wins}
+              specialUnlockWins={specialUnlockWins}
             />
           )}
           {!paused && view.phase === "playing" && (
@@ -951,6 +956,8 @@ export function Game(props: Props) {
               </span>
               <span>
                 <kbd>J</kbd> Ligero <kbd>K</kbd> Fuerte <kbd>L</kbd> Especial
+                {view.players[localIndex].config.wins < specialUnlockWins &&
+                  ` (${specialUnlockWins} victorias)`}
               </span>
               <span>
                 <kbd>U</kbd> Bloquear <kbd>⇧</kbd> Esquivar <kbd>I</kbd>{" "}

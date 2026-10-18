@@ -94,7 +94,7 @@ test("Zavarce light and heavy land once, with the correct damage and knockback, 
 
 test("Entrega exprés summons seven motorcycles together in a compact formation and recovers without dashing", () => {
   for (const side of [0, 1] as const) {
-    const run = setup(side, 600, 0);
+    const run = setup(side, 600, 3);
     run.rival.invincible = 1000;
     const startX = run.player.x;
     const spawned = new Map<number, number>();
@@ -221,6 +221,38 @@ test("Zavarce specials, advanced combo, and definitive enforce their energy and 
   depleted.inputs[0].actions.super++;
   depleted.advance(1);
   assert.equal(depleted.player.attack, null);
+});
+
+test("Vicente unlocks his motorcycle special only at three wins, for either player", () => {
+  for (const side of [0, 1] as const) {
+    for (const wins of [0, 1, 2, 3, 4]) {
+      for (const energy of [24, 25, 100]) {
+        const run = setup(side, 600, wins);
+        run.player.energy = energy;
+        run.inputs[side].actions.special++;
+        run.advance(12);
+        const unlocked = wins >= 3 && energy >= 25;
+        assert.equal(run.player.attack, unlocked ? "special" : null);
+        assert.equal(run.state.projectiles.length, unlocked ? 7 : 0);
+        assert.equal(run.player.cooldown > 0, unlocked);
+        assert.equal(run.state.effects.some(e => e.kind === "special"), unlocked);
+        if (!unlocked) {
+          assert.ok(run.player.energy >= energy, "a locked special spends no energy");
+          assert.deepEqual(run.player.history, []);
+          assert.equal(run.rival.hp, 100);
+        }
+      }
+    }
+  }
+});
+
+test("the CPU respects Vicente's motorcycle unlock", () => {
+  for (const wins of [0, 1, 2, 3]) {
+    const run = setup(1, 300, wins);
+    run.state.tick = 600;
+    const input = cpuInput(run.state, emptyInput(), "normal");
+    assert.equal(input.actions.special, wins >= 3 ? 1 : 0);
+  }
 });
 
 test("both named input combos can also connect every strike on both sides with real approach inputs", () => {

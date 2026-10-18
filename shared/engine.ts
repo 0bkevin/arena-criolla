@@ -355,13 +355,13 @@ function loseStock(s: MatchState, i: number) {
 
 function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
   const p = s.players[i];
+  const def = fighterById(p.config.fighter);
   if (
     attack === "special" &&
-    TECHNIQUES[fighterById(p.config.fighter).ability].requiresGround &&
-    !p.grounded
+    (p.config.wins < (def.specialUnlockWins ?? 0) ||
+      (TECHNIQUES[def.ability].requiresGround && !p.grounded))
   )
     return;
-  const def = fighterById(p.config.fighter);
   if (attack === "special" && p.energy < 25) return;
   if (attack === "super" && (p.config.wins < 3 || p.energy < 75)) return;
   if (attack === "special") p.energy -= 25;
@@ -1104,7 +1104,8 @@ export function cpuInput(
     difficulty === "easy" ? 68 : difficulty === "normal" ? 38 : 24;
   if (s.tick % cadence === 0 && p.cooldown === 0 && Math.abs(dx) < 165)
     next.actions[s.tick % 3 === 0 ? "heavy" : "light"]++;
-  const technique = TECHNIQUES[fighterById(p.config.fighter).ability];
+  const def = fighterById(p.config.fighter);
+  const technique = TECHNIQUES[def.ability];
   const defensiveOpportunity = technique.reflect
     ? s.projectiles.some(
         (shot) =>
@@ -1131,7 +1132,8 @@ export function cpuInput(
   if (
     ((specialInRange && s.tick % 100 === 0) ||
       (defensiveOpportunity && s.tick % 12 === 0)) &&
-    p.energy >= 25
+    p.energy >= 25 &&
+    p.config.wins >= (def.specialUnlockWins ?? 0)
   ) {
     if (defensiveOpportunity) next.block = false;
     next.actions.special++;

@@ -2,13 +2,18 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir, stat } from "node:fs/promises";
 import { createHash } from "node:crypto";
-import { FIGHTERS, isFighter, type FighterId } from "../shared/content";
+import {
+  FIGHTERS,
+  fighterById,
+  isFighter,
+  type FighterId,
+} from "../shared/content";
 import { createMatch, emptyInput, stepMatch } from "../shared/engine";
 import { REACTION_CLIPS } from "../src/game/reactions";
 
 function special(fighter: FighterId, rivalX = 750) {
   const match = createMatch("guaira", [
-    { name: "Uno", fighter, wins: 0 },
+    { name: "Uno", fighter, wins: fighterById(fighter).specialUnlockWins ?? 0 },
     { name: "Dos", fighter: "zavarce", wins: 0 },
   ]);
   match.phase = "playing";

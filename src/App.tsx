@@ -965,12 +965,23 @@ function FighterDetail({
             </details>
           )}
           <div className="special-description">
-            <Zap size={18} />
+            {wins < (f.specialUnlockWins ?? 0) ? (
+              <LockKeyhole size={18} />
+            ) : (
+              <Zap size={18} />
+            )}
             <div>
               <strong>{f.special}</strong>
               <span>
                 <kbd>L</kbd> Especial · 25 de energía
               </span>
+              {f.specialUnlockWins !== undefined && (
+                <span>
+                  {wins < f.specialUnlockWins
+                    ? `Gana ${f.specialUnlockWins} peleas con ${f.shortName} (${wins}/${f.specialUnlockWins})`
+                    : "Especial desbloqueado"}
+                </span>
+              )}
             </div>
           </div>
           <h3>Tu libro de combos</h3>

@@ -48,6 +48,7 @@ class TestClient {
 async function onlineMatch(
   stage: (typeof STAGES)[number]["id"] = "poliedro",
   fighters: [FighterId, FighterId] = ["zavarce", "vallenilla"],
+  wins: [number, number] = [0, 0],
 ) {
   const server = await makeArenaServer({ serveClient: false });
   await new Promise<void>((resolve) =>
@@ -64,7 +65,7 @@ async function onlineMatch(
     name: "Host",
     fighter: fighters[0],
     stage,
-    wins: 0,
+    wins: wins[0],
     private: true,
   });
   const { room } = await a.wait("room");
@@ -73,7 +74,7 @@ async function onlineMatch(
     code: room.code,
     name: "Guest",
     fighter: fighters[1],
-    wins: 0,
+    wins: wins[1],
   });
   await a.wait("room", (message) => message.room.players.length === 2);
   a.send({ type: "ready", ready: true });
@@ -514,6 +515,36 @@ test("anonymous rooms synchronize two players, validate inputs, rematch, and rec
   }
 });
 
+test("rooms reject Vicente's motorcycle special before the final unlock for both players", async () => {
+  for (const wins of [0, 1, 2]) {
+    const match = await onlineMatch("poliedro", ["zavarce", "zavarce"], [wins, wins]);
+    try {
+      const state = match.active.state!;
+      state.players.forEach(player => { player.energy = 100; });
+      const input = emptyInput();
+      input.actions.special++;
+      match.a.send({ type: "input", matchId: state.id, input });
+      match.b.send({ type: "input", matchId: state.id, input });
+      const received = await match.a.wait("state", message =>
+        message.state.players.every(player => player.lastActions.special === 1),
+      );
+      const remote = await match.b.wait("state", message =>
+        message.state.tick === received.state.tick,
+      );
+      assert.deepEqual(remote.state, received.state);
+      assert.equal(received.state.projectiles.length, 0);
+      for (const player of received.state.players) {
+        assert.equal(player.config.wins, wins);
+        assert.equal(player.attack, null);
+        assert.equal(player.energy, 100);
+        assert.equal(player.cooldown, 0);
+      }
+    } finally {
+      await match.close();
+    }
+  }
+});
+
 test("rooms synchronize the seven-bike pack and its impacts against nine rivals across all stages", async () => {
   const opponents: FighterId[] = [
     "maite",
@@ -527,7 +558,7 @@ test("rooms synchronize the seven-bike pack and its impacts against nine rivals 
     "vallenilla",
   ];
   for (const [index, stage] of STAGES.entries()) {
-    const match = await onlineMatch(stage.id, ["zavarce", opponents[index]]);
+    const match = await onlineMatch(stage.id, ["zavarce", opponents[index]], [3, 0]);
     try {
       const state = match.active.state!;
       state.players[0].x = 230;
@@ -579,7 +610,7 @@ test("online Dudamel reflects a newly summoned pack from either player on three 
     for (const side of [0, 1] as const) {
       const fighters: [FighterId, FighterId] =
         side === 0 ? ["zavarce", "dudamel"] : ["dudamel", "zavarce"];
-      const match = await onlineMatch(stage, fighters);
+      const match = await onlineMatch(stage, fighters, [3, 3]);
       try {
         const state = match.active.state!;
         const caster = state.players[side],

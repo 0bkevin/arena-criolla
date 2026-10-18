@@ -18,6 +18,7 @@
     ],
     "ability": "courier",
     "special": "Entrega exprés",
+    "specialUnlockWins": 3,
     "combos": [
       "Pedido confirmado",
       "Ruta directa",

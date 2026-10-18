@@ -3,11 +3,38 @@ import assert from "node:assert/strict";
 import {
   ControlSources,
   GamepadControls,
+  KEY_MAP,
   makeInputs,
   type Control,
 } from "../src/game/controls";
 import { createMatch, stepMatch } from "../shared/engine";
 import { INTRO_TOTAL_TICKS } from "../shared/presentation";
+
+test("J remains Vicente's basic punch before and after unlocking his special", () => {
+  for (const wins of [0, 3]) {
+    const match = createMatch("poliedro", [
+      { fighter: "zavarce", name: "Vicente", wins },
+      { fighter: "vallenilla", name: "Rival", wins: 0 },
+    ]);
+    match.phase = "playing";
+    match.players.forEach((player) => {
+      player.invincible = 0;
+    });
+    match.players[1].x = match.players[0].x + 80;
+    const inputs = makeInputs();
+    const [player, control] = KEY_MAP.KeyJ;
+    new ControlSources(inputs[player]).press("key:KeyJ", control);
+    stepMatch(match, inputs);
+    assert.equal(match.players[0].attack, "light");
+    for (let frame = 0; frame < 24; frame++) stepMatch(match, inputs);
+    assert.equal(match.players[0].hits, 1);
+    assert.equal(match.projectiles.length, 0);
+    assert.equal(
+      match.effects.some((effect) => effect.kind === "special"),
+      false,
+    );
+  }
+});
 
 test("releasing one finger does not release another finger or key on the same direction", () => {
   const [input] = makeInputs(),

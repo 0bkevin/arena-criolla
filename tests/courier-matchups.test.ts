@@ -36,7 +36,7 @@ let clashCases = 0,
   interactionCases = 0;
 
 function scene(stage: StageId, rival: FighterId, side: Side, gap = 260) {
-  const vicente = { name: "Vicente", fighter: "zavarce", wins: 0 } as const;
+  const vicente = { name: "Vicente", fighter: "zavarce", wins: 3 } as const;
   const opponent = { name: rival, fighter: rival, wins: 3 };
   const state = createMatch(
     stage,

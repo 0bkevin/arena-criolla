@@ -222,6 +222,8 @@ export function Help({ onClose }: { onClose: () => void }) {
             <li>
               <strong>Energía:</strong> se recarga al golpear y recibir golpes.
               El súper se desbloquea con tres victorias con ese personaje.
+              El especial de las motos de Vicente también requiere tres
+              victorias con él.
             </li>
             <li>
               <strong>Tiempo:</strong> cada pelea dura 90 segundos. Si se acaba,

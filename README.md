@@ -87,7 +87,7 @@ Limitación pendiente de retención: retirar un personaje publicado elimina sus 
 
 En móvil aparecen botones táctiles. También hay controles de mando estándar: stick, A, B, X, Y, LB, RB y RT. Los números del jugador 2 funcionan en la fila superior y en el teclado numérico.
 
-Cada pelea tiene dos vidas por jugador y 90 segundos. El daño aumenta el empuje. Un especial cuesta 25 de energía; golpear y recibir golpes recarga la barra. Los combos se desbloquean por personaje: J → K desde el inicio, J → J → K con una victoria, definitiva I con tres victorias y 75 de energía. La secuencia se completa en 2,5 segundos, dejando terminar la recuperación de cada ataque.
+Cada pelea tiene dos vidas por jugador y 90 segundos. El daño aumenta el empuje. Un especial cuesta 25 de energía; golpear y recibir golpes recarga la barra. Los combos se desbloquean por personaje: J → K desde el inicio, J → J → K con una victoria, definitiva I con tres victorias y 75 de energía. El especial de las motos de Vicente también se desbloquea con tres victorias con él y conserva su coste de 25 de energía. La secuencia se completa en 2,5 segundos, dejando terminar la recuperación de cada ataque.
 
 El progreso se guarda en `localStorage`, en el navegador usado. No es una clasificación global ni una identidad verificada. El ranking global se deja pendiente. Las victorias de la CPU no desbloquean combos para el jugador.
 

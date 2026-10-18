@@ -210,7 +210,7 @@ test("projectile knockouts resolve before timeout, including simultaneous final 
 
 test("all active characters execute their individual specials with finite physics", () => {
   for (const fighter of FIGHTERS) {
-    const { state, inputs } = setup();
+    const { state, inputs } = setup(fighter.specialUnlockWins ?? 0);
     state.players[0].config.fighter = fighter.id;
     state.players[0].energy = 50;
     state.players[1].x = 450;
