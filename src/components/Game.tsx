@@ -49,7 +49,12 @@ import {
 import { victoryById, VICTORY_DURATION_MS } from "../game/victory";
 import { Portrait } from "./Portrait";
 import { TouchControls } from "./TouchControls";
-import { enterLandscape, hasTouchInput, leaveLandscape } from "../game/mobile";
+import {
+  enterLandscape,
+  hasTouchInput,
+  leaveLandscape,
+  trackPlayViewport,
+} from "../game/mobile";
 import { arenaCanvasSize } from "../game/viewport";
 import { ARENA_VIEW } from "../../shared/arena";
 import {
@@ -78,6 +83,7 @@ interface Props {
 export function Game(props: Props) {
   const { initial, mode, difficulty, remote, localIndex = 0 } = props;
   const canvas = useRef<HTMLCanvasElement>(null);
+  const page = useRef<HTMLElement>(null);
   const orientationGate = useRef<HTMLDivElement>(null);
   const wrapper = useRef<HTMLDivElement>(null);
   const inputs = useRef(makeInputs());
@@ -104,6 +110,9 @@ export function Game(props: Props) {
   const [view, setView] = useState(initial);
   const [resultReady, setResultReady] = useState(false);
   const [fullscreenError, setFullscreenError] = useState("");
+  useEffect(() => {
+    if (device.touch && page.current) return trackPlayViewport(page.current);
+  }, [device.touch]);
   useEffect(() => {
     const element = canvas.current,
       container = wrapper.current;
@@ -643,6 +652,7 @@ export function Game(props: Props) {
 
   return (
     <main
+      ref={page}
       className={`game-page page-width${intro ? " is-intro" : ""}${cinematic ? " is-cinematic" : ""}${device.touch ? " is-touch" : ""}${paused ? " is-paused" : ""}${celebrating ? " is-celebrating" : ""}${resultReady ? " is-finished" : ""}`}
       data-phase={view.phase}
       data-result-ready={resultReady}

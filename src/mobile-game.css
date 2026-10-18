@@ -46,14 +46,18 @@ body:has(.game-page.is-touch) {
   --play-bottom: max(8px, env(safe-area-inset-bottom));
   --play-left: max(10px, env(safe-area-inset-left));
   --play-right: max(10px, env(safe-area-inset-right));
-  --touch-size: clamp(48px, 12dvh, 56px);
+  --touch-size: clamp(
+    48px,
+    calc(var(--play-viewport-height, 100dvh) * 0.12),
+    56px
+  );
   position: fixed;
-  inset: 0;
+  inset: var(--play-viewport-top, 0px) auto auto var(--play-viewport-left, 0px);
   z-index: 20;
   display: block;
-  width: 100%;
+  width: var(--play-viewport-width, 100%);
   max-width: none;
-  height: 100dvh;
+  height: var(--play-viewport-height, 100dvh);
   min-height: 0;
   margin: 0;
   padding: 0;

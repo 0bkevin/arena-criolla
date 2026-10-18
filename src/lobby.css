@@ -1250,26 +1250,30 @@ body {
   box-shadow: 0 1px 0 var(--ink);
 }
 .ready-room {
-  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  gap: 4px 8px;
+  align-items: center;
   min-width: 0;
 }
 .ready-room > span {
+  grid-column: 1 / -1;
   display: block;
   font: 500 10px var(--pixel);
   color: #513a46;
 }
 .ready-room strong {
   display: block;
-  font: 700 26px var(--pixel);
-  letter-spacing: 3px;
-  margin-top: 3px;
+  min-width: 0;
+  font: 700 16px/1.5 var(--pixel);
+  letter-spacing: 1px;
+  overflow-wrap: anywhere;
 }
 .ready-room > button {
-  position: absolute;
-  right: 0;
-  top: 20px;
-  width: 30px;
-  height: 30px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
   border: 1px solid #c9b0b8;
   border-radius: 2px;
 }
@@ -2167,14 +2171,6 @@ body {
   }
   .ready-online-status {
     font-size: 11px;
-  }
-  .ready-room strong {
-    font-size: 22px;
-    letter-spacing: 1px;
-  }
-  .ready-room > button {
-    width: 25px;
-    top: 17px;
   }
   .ready-room-players {
     font-size: 10px;

@@ -1136,7 +1136,6 @@ body {
 }
 .in-lobby .ready-room strong {
   color: var(--coin);
-  font: 700 24px var(--pixel);
 }
 .in-lobby .ready-room > button {
   color: #bfcee1;
