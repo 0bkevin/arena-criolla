@@ -1,0 +1,4398 @@
+{
+  "ready": [
+    {
+      "state": "ready",
+      "size": [
+        320,
+        568
+      ],
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "scroll": {
+        "width": 320,
+        "height": 2105
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 39,
+          "y": -1034,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 20,
+          "y": -1242,
+          "w": 280,
+          "h": 48
+        },
+        {
+          "text": "¡Vamos! Puedes quedarte aquí o volver después. Tu progreso queda guardado.",
+          "color": "rgb(181, 232, 200)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -1171,
+          "w": 280,
+          "h": 38
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 39,
+          "y": -1034,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -857,
+          "w": 280,
+          "h": 77
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 20,
+          "y": -673,
+          "w": 280,
+          "h": 49
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 20,
+          "y": -579,
+          "w": 280,
+          "h": 105
+        },
+        {
+          "text": "0/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -465,
+          "w": 280,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 31,
+          "y": -333,
+          "w": 65,
+          "h": 50
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 127,
+          "y": -333,
+          "w": 65,
+          "h": 50
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 224,
+          "y": -333,
+          "w": 65,
+          "h": 34
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -83,
+          "w": 280,
+          "h": 38
+        },
+        {
+          "text": "Tu borrador se guarda en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -34,
+          "w": 280,
+          "h": 19
+        },
+        {
+          "text": "Paso de prueba",
+          "color": "rgb(152, 173, 199)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 41,
+          "y": 366,
+          "w": 238,
+          "h": 19
+        }
+      ]
+    },
+    {
+      "state": "ready",
+      "size": [
+        390,
+        844
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "width": 390,
+        "height": 1984
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 39,
+          "y": -685,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 20,
+          "y": -893,
+          "w": 350,
+          "h": 48
+        },
+        {
+          "text": "¡Vamos! Puedes quedarte aquí o volver después. Tu progreso queda guardado.",
+          "color": "rgb(181, 232, 200)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -821,
+          "w": 350,
+          "h": 38
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 39,
+          "y": -685,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -508,
+          "w": 350,
+          "h": 58
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 20,
+          "y": -343,
+          "w": 350,
+          "h": 49
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 20,
+          "y": -249,
+          "w": 350,
+          "h": 105
+        },
+        {
+          "text": "0/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -135,
+          "w": 350,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 31,
+          "y": -2,
+          "w": 89,
+          "h": 34
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 151,
+          "y": -2,
+          "w": 89,
+          "h": 50
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 270,
+          "y": -2,
+          "w": 89,
+          "h": 34
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": 248,
+          "w": 350,
+          "h": 38
+        },
+        {
+          "text": "Tu borrador se guarda en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": 296,
+          "w": 350,
+          "h": 19
+        },
+        {
+          "text": "Paso de prueba",
+          "color": "rgb(152, 173, 199)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 41,
+          "y": 696,
+          "w": 308,
+          "h": 19
+        }
+      ]
+    },
+    {
+      "state": "ready",
+      "size": [
+        768,
+        1024
+      ],
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "scroll": {
+        "width": 768,
+        "height": 1467
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 47,
+          "y": -4,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 28,
+          "y": -179,
+          "w": 490,
+          "h": 24
+        },
+        {
+          "text": "¡Vamos! Puedes quedarte aquí o volver después. Tu progreso queda guardado.",
+          "color": "rgb(181, 232, 200)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": -132,
+          "w": 712,
+          "h": 19
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 47,
+          "y": -4,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 173,
+          "w": 376,
+          "h": 58
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 338,
+          "w": 376,
+          "h": 49
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 431,
+          "w": 376,
+          "h": 105
+        },
+        {
+          "text": "0/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 546,
+          "w": 376,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 877,
+          "w": 376,
+          "h": 38
+        },
+        {
+          "text": "Tu borrador se guarda en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 925,
+          "w": 376,
+          "h": 19
+        },
+        {
+          "text": "Paso de prueba",
+          "color": "rgb(152, 173, 199)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 453,
+          "y": 383,
+          "w": 266,
+          "h": 19
+        }
+      ]
+    },
+    {
+      "state": "ready",
+      "size": [
+        1024,
+        768
+      ],
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "scroll": {
+        "width": 1024,
+        "height": 1479
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 47,
+          "y": -6,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 28,
+          "y": -181,
+          "w": 490,
+          "h": 24
+        },
+        {
+          "text": "¡Vamos! Puedes quedarte aquí o volver después. Tu progreso queda guardado.",
+          "color": "rgb(181, 232, 200)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": -133,
+          "w": 968,
+          "h": 19
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 47,
+          "y": -6,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 171,
+          "w": 547,
+          "h": 38
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 317,
+          "w": 547,
+          "h": 49
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 410,
+          "w": 547,
+          "h": 105
+        },
+        {
+          "text": "0/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 525,
+          "w": 547,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 39,
+          "y": 659,
+          "w": 149,
+          "h": 17
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 224,
+          "y": 659,
+          "w": 149,
+          "h": 17
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 410,
+          "y": 659,
+          "w": 128,
+          "h": 17
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 878,
+          "w": 547,
+          "h": 19
+        },
+        {
+          "text": "Tu borrador se guarda en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 907,
+          "w": 547,
+          "h": 19
+        },
+        {
+          "text": "Paso de prueba",
+          "color": "rgb(152, 173, 199)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 652,
+          "y": 383,
+          "w": 323,
+          "h": 19
+        }
+      ]
+    },
+    {
+      "state": "ready",
+      "size": [
+        1440,
+        900
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "width": 1440,
+        "height": 1513
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 217,
+          "y": -1,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 198,
+          "y": -176,
+          "w": 490,
+          "h": 24
+        },
+        {
+          "text": "¡Vamos! Puedes quedarte aquí o volver después. Tu progreso queda guardado.",
+          "color": "rgb(181, 232, 200)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 198,
+          "y": -129,
+          "w": 1044,
+          "h": 19
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 217,
+          "y": -1,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 198,
+          "y": 176,
+          "w": 593,
+          "h": 38
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 198,
+          "y": 321,
+          "w": 593,
+          "h": 49
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 198,
+          "y": 415,
+          "w": 593,
+          "h": 105
+        },
+        {
+          "text": "0/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 198,
+          "y": 529,
+          "w": 593,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 209,
+          "y": 664,
+          "w": 149,
+          "h": 17
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 410,
+          "y": 664,
+          "w": 149,
+          "h": 17
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 610,
+          "y": 664,
+          "w": 128,
+          "h": 17
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 198,
+          "y": 882,
+          "w": 593,
+          "h": 19
+        },
+        {
+          "text": "Tu borrador se guarda en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 198,
+          "y": 911,
+          "w": 593,
+          "h": 19
+        },
+        {
+          "text": "Paso de prueba",
+          "color": "rgb(152, 173, 199)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 868,
+          "y": 383,
+          "w": 353,
+          "h": 19
+        }
+      ]
+    },
+    {
+      "state": "ready",
+      "size": [
+        844,
+        390
+      ],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "scroll": {
+        "width": 844,
+        "height": 1448
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 47,
+          "y": -94,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 28,
+          "y": -269,
+          "w": 490,
+          "h": 24
+        },
+        {
+          "text": "¡Vamos! Puedes quedarte aquí o volver después. Tu progreso queda guardado.",
+          "color": "rgb(181, 232, 200)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": -222,
+          "w": 788,
+          "h": 19
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 47,
+          "y": -94,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 83,
+          "w": 418,
+          "h": 58
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 248,
+          "w": 418,
+          "h": 49
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 341,
+          "w": 418,
+          "h": 105
+        },
+        {
+          "text": "0/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 456,
+          "w": 418,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 787,
+          "w": 418,
+          "h": 19
+        },
+        {
+          "text": "Tu borrador se guarda en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 816,
+          "w": 418,
+          "h": 19
+        },
+        {
+          "text": "Paso de prueba",
+          "color": "rgb(152, 173, 199)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 495,
+          "y": 383,
+          "w": 300,
+          "h": 19
+        }
+      ]
+    }
+  ],
+  "draft": [
+    {
+      "state": "draft",
+      "size": [
+        320,
+        568
+      ],
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "scroll": {
+        "width": 320,
+        "height": 1859
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 39,
+          "y": 440,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 20,
+          "y": 295,
+          "w": 280,
+          "h": 48
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 39,
+          "y": 440,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": 579,
+          "w": 280,
+          "h": 77
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 20,
+          "y": 764,
+          "w": 280,
+          "h": 49
+        },
+        {
+          "text": "Soy salsera, llevo lentes y chaqueta azul y me gustan las arepas.",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 20,
+          "y": 857,
+          "w": 280,
+          "h": 105
+        },
+        {
+          "text": "65/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": 971,
+          "w": 280,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 31,
+          "y": 1104,
+          "w": 65,
+          "h": 50
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 127,
+          "y": 1104,
+          "w": 65,
+          "h": 50
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 224,
+          "y": 1104,
+          "w": 65,
+          "h": 34
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": 1354,
+          "w": 280,
+          "h": 38
+        },
+        {
+          "text": "Borrador guardado en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": 1402,
+          "w": 280,
+          "h": 19
+        },
+        {
+          "text": "Tu personaje aparecerá en este espacio cuando empieces a crearlo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 55,
+          "y": 1736,
+          "w": 210,
+          "h": 41
+        }
+      ]
+    },
+    {
+      "state": "draft",
+      "size": [
+        390,
+        844
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "width": 390,
+        "height": 1805
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 39,
+          "y": -568,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 20,
+          "y": -713,
+          "w": 350,
+          "h": 48
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 39,
+          "y": -568,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -417,
+          "w": 350,
+          "h": 58
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 20,
+          "y": -252,
+          "w": 350,
+          "h": 49
+        },
+        {
+          "text": "Soy salsera, llevo lentes y chaqueta azul y me gustan las arepas.",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 20,
+          "y": -158,
+          "w": 350,
+          "h": 105
+        },
+        {
+          "text": "65/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -44,
+          "w": 350,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 31,
+          "y": 88,
+          "w": 89,
+          "h": 34
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 151,
+          "y": 88,
+          "w": 89,
+          "h": 50
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 270,
+          "y": 88,
+          "w": 89,
+          "h": 34
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": 338,
+          "w": 350,
+          "h": 38
+        },
+        {
+          "text": "Borrador guardado en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": 387,
+          "w": 350,
+          "h": 19
+        },
+        {
+          "text": "Tu personaje aparecerá en este espacio cuando empieces a crearlo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 90,
+          "y": 720,
+          "w": 210,
+          "h": 41
+        }
+      ]
+    },
+    {
+      "state": "draft",
+      "size": [
+        768,
+        1024
+      ],
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "scroll": {
+        "width": 768,
+        "height": 1452
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 47,
+          "y": -33,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 28,
+          "y": -165,
+          "w": 490,
+          "h": 24
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 47,
+          "y": -33,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 129,
+          "w": 376,
+          "h": 58
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 294,
+          "w": 376,
+          "h": 49
+        },
+        {
+          "text": "Soy salsera, llevo lentes y chaqueta azul y me gustan las arepas.",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 387,
+          "w": 376,
+          "h": 105
+        },
+        {
+          "text": "65/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 501,
+          "w": 376,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 832,
+          "w": 376,
+          "h": 38
+        },
+        {
+          "text": "Borrador guardado en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 881,
+          "w": 376,
+          "h": 19
+        },
+        {
+          "text": "Tu personaje aparecerá en este espacio cuando empieces a crearlo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 481,
+          "y": 284,
+          "w": 210,
+          "h": 41
+        }
+      ]
+    },
+    {
+      "state": "draft",
+      "size": [
+        1024,
+        768
+      ],
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "scroll": {
+        "width": 1024,
+        "height": 1535
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 47,
+          "y": -5,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 28,
+          "y": -136,
+          "w": 490,
+          "h": 24
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 47,
+          "y": -5,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 228,
+          "w": 547,
+          "h": 38
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 374,
+          "w": 547,
+          "h": 49
+        },
+        {
+          "text": "Soy salsera, llevo lentes y chaqueta azul y me gustan las arepas.",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 468,
+          "w": 547,
+          "h": 105
+        },
+        {
+          "text": "65/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 582,
+          "w": 547,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 39,
+          "y": 716,
+          "w": 149,
+          "h": 17
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 224,
+          "y": 716,
+          "w": 149,
+          "h": 17
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 410,
+          "y": 716,
+          "w": 128,
+          "h": 17
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 935,
+          "w": 547,
+          "h": 19
+        },
+        {
+          "text": "Borrador guardado en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 964,
+          "w": 547,
+          "h": 19
+        },
+        {
+          "text": "Tu personaje aparecerá en este espacio cuando empieces a crearlo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 709,
+          "y": 284,
+          "w": 210,
+          "h": 41
+        }
+      ]
+    },
+    {
+      "state": "draft",
+      "size": [
+        1440,
+        900
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "width": 1440,
+        "height": 1589
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 217,
+          "y": -231,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 198,
+          "y": -362,
+          "w": 490,
+          "h": 24
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 217,
+          "y": -231,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 198,
+          "y": 21,
+          "w": 593,
+          "h": 38
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 198,
+          "y": 167,
+          "w": 593,
+          "h": 49
+        },
+        {
+          "text": "Soy salsera, llevo lentes y chaqueta azul y me gustan las arepas.",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 198,
+          "y": 261,
+          "w": 593,
+          "h": 105
+        },
+        {
+          "text": "65/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 198,
+          "y": 375,
+          "w": 593,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 209,
+          "y": 509,
+          "w": 149,
+          "h": 17
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 410,
+          "y": 509,
+          "w": 149,
+          "h": 17
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 610,
+          "y": 509,
+          "w": 128,
+          "h": 17
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 198,
+          "y": 728,
+          "w": 593,
+          "h": 19
+        },
+        {
+          "text": "Borrador guardado en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 198,
+          "y": 757,
+          "w": 593,
+          "h": 19
+        },
+        {
+          "text": "Tu personaje aparecerá en este espacio cuando empieces a crearlo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 939,
+          "y": 284,
+          "w": 210,
+          "h": 41
+        }
+      ]
+    },
+    {
+      "state": "draft",
+      "size": [
+        844,
+        390
+      ],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "scroll": {
+        "width": 844,
+        "height": 1450
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 47,
+          "y": -294,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 28,
+          "y": -425,
+          "w": 490,
+          "h": 24
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 47,
+          "y": -294,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": -115,
+          "w": 418,
+          "h": 58
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 51,
+          "w": 418,
+          "h": 49
+        },
+        {
+          "text": "Soy salsera, llevo lentes y chaqueta azul y me gustan las arepas.",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 144,
+          "w": 418,
+          "h": 105
+        },
+        {
+          "text": "65/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 258,
+          "w": 418,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 589,
+          "w": 418,
+          "h": 19
+        },
+        {
+          "text": "Borrador guardado en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 619,
+          "w": 418,
+          "h": 19
+        },
+        {
+          "text": "Tu personaje aparecerá en este espacio cuando empieces a crearlo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 540,
+          "y": 284,
+          "w": 210,
+          "h": 41
+        }
+      ]
+    }
+  ],
+  "published": [
+    {
+      "state": "published",
+      "size": [
+        320,
+        568
+      ],
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "scroll": {
+        "width": 320,
+        "height": 2051
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 39,
+          "y": -980,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 20,
+          "y": -1188,
+          "w": 280,
+          "h": 48
+        },
+        {
+          "text": "Publicado. Tu personaje ya está disponible para todos.",
+          "color": "rgb(181, 232, 200)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -1117,
+          "w": 280,
+          "h": 38
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 39,
+          "y": -980,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -803,
+          "w": 280,
+          "h": 77
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 20,
+          "y": -619,
+          "w": 280,
+          "h": 49
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 20,
+          "y": -525,
+          "w": 280,
+          "h": 105
+        },
+        {
+          "text": "0/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -411,
+          "w": 280,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 31,
+          "y": -279,
+          "w": 65,
+          "h": 50
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 127,
+          "y": -279,
+          "w": 65,
+          "h": 50
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 224,
+          "y": -279,
+          "w": 65,
+          "h": 34
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -29,
+          "w": 280,
+          "h": 38
+        },
+        {
+          "text": "Tu borrador se guarda en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": 20,
+          "w": 280,
+          "h": 19
+        },
+        {
+          "text": "Paso de prueba",
+          "color": "rgb(152, 173, 199)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 41,
+          "y": 420,
+          "w": 238,
+          "h": 19
+        }
+      ]
+    },
+    {
+      "state": "published",
+      "size": [
+        390,
+        844
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "width": 390,
+        "height": 1965
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 39,
+          "y": -685,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 20,
+          "y": -874,
+          "w": 350,
+          "h": 48
+        },
+        {
+          "text": "Publicado. Tu personaje ya está disponible para todos.",
+          "color": "rgb(181, 232, 200)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -802,
+          "w": 350,
+          "h": 19
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 39,
+          "y": -685,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -508,
+          "w": 350,
+          "h": 58
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 20,
+          "y": -343,
+          "w": 350,
+          "h": 49
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 20,
+          "y": -249,
+          "w": 350,
+          "h": 105
+        },
+        {
+          "text": "0/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": -135,
+          "w": 350,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 31,
+          "y": -3,
+          "w": 89,
+          "h": 34
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 151,
+          "y": -3,
+          "w": 89,
+          "h": 50
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 270,
+          "y": -3,
+          "w": 89,
+          "h": 34
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": 247,
+          "w": 350,
+          "h": 38
+        },
+        {
+          "text": "Tu borrador se guarda en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 20,
+          "y": 296,
+          "w": 350,
+          "h": 19
+        },
+        {
+          "text": "Paso de prueba",
+          "color": "rgb(152, 173, 199)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 41,
+          "y": 696,
+          "w": 308,
+          "h": 19
+        }
+      ]
+    },
+    {
+      "state": "published",
+      "size": [
+        768,
+        1024
+      ],
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "scroll": {
+        "width": 768,
+        "height": 1467
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 47,
+          "y": -4,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 28,
+          "y": -179,
+          "w": 490,
+          "h": 24
+        },
+        {
+          "text": "Publicado. Tu personaje ya está disponible para todos.",
+          "color": "rgb(181, 232, 200)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": -132,
+          "w": 712,
+          "h": 19
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 47,
+          "y": -4,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 173,
+          "w": 376,
+          "h": 58
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 338,
+          "w": 376,
+          "h": 49
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 431,
+          "w": 376,
+          "h": 105
+        },
+        {
+          "text": "0/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 546,
+          "w": 376,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 877,
+          "w": 376,
+          "h": 38
+        },
+        {
+          "text": "Tu borrador se guarda en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 925,
+          "w": 376,
+          "h": 19
+        },
+        {
+          "text": "Paso de prueba",
+          "color": "rgb(152, 173, 199)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 453,
+          "y": 383,
+          "w": 266,
+          "h": 19
+        }
+      ]
+    },
+    {
+      "state": "published",
+      "size": [
+        1024,
+        768
+      ],
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "scroll": {
+        "width": 1024,
+        "height": 1479
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 47,
+          "y": -6,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 28,
+          "y": -181,
+          "w": 490,
+          "h": 24
+        },
+        {
+          "text": "Publicado. Tu personaje ya está disponible para todos.",
+          "color": "rgb(181, 232, 200)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": -133,
+          "w": 968,
+          "h": 19
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 47,
+          "y": -6,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 171,
+          "w": 547,
+          "h": 38
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 317,
+          "w": 547,
+          "h": 49
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 410,
+          "w": 547,
+          "h": 105
+        },
+        {
+          "text": "0/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 525,
+          "w": 547,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 39,
+          "y": 659,
+          "w": 149,
+          "h": 17
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 224,
+          "y": 659,
+          "w": 149,
+          "h": 17
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 410,
+          "y": 659,
+          "w": 128,
+          "h": 17
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 878,
+          "w": 547,
+          "h": 19
+        },
+        {
+          "text": "Tu borrador se guarda en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 907,
+          "w": 547,
+          "h": 19
+        },
+        {
+          "text": "Paso de prueba",
+          "color": "rgb(152, 173, 199)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 652,
+          "y": 383,
+          "w": 323,
+          "h": 19
+        }
+      ]
+    },
+    {
+      "state": "published",
+      "size": [
+        1440,
+        900
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "width": 1440,
+        "height": 1513
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 217,
+          "y": -1,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 198,
+          "y": -176,
+          "w": 490,
+          "h": 24
+        },
+        {
+          "text": "Publicado. Tu personaje ya está disponible para todos.",
+          "color": "rgb(181, 232, 200)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 198,
+          "y": -129,
+          "w": 1044,
+          "h": 19
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 217,
+          "y": -1,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 198,
+          "y": 176,
+          "w": 593,
+          "h": 38
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 198,
+          "y": 321,
+          "w": 593,
+          "h": 49
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 198,
+          "y": 415,
+          "w": 593,
+          "h": 105
+        },
+        {
+          "text": "0/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 198,
+          "y": 529,
+          "w": 593,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 209,
+          "y": 664,
+          "w": 149,
+          "h": 17
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 410,
+          "y": 664,
+          "w": 149,
+          "h": 17
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 610,
+          "y": 664,
+          "w": 128,
+          "h": 17
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 198,
+          "y": 882,
+          "w": 593,
+          "h": 19
+        },
+        {
+          "text": "Tu borrador se guarda en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 198,
+          "y": 911,
+          "w": 593,
+          "h": 19
+        },
+        {
+          "text": "Paso de prueba",
+          "color": "rgb(152, 173, 199)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 868,
+          "y": 383,
+          "w": 353,
+          "h": 19
+        }
+      ]
+    },
+    {
+      "state": "published",
+      "size": [
+        844,
+        390
+      ],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "scroll": {
+        "width": 844,
+        "height": 1448
+      },
+      "horizontalOverflow": [],
+      "smallTargets": [
+        {
+          "text": "Subir fotos de referencia",
+          "cls": "creator-file-input",
+          "x": 47,
+          "y": -94,
+          "w": 1,
+          "h": 1
+        }
+      ],
+      "text": [
+        {
+          "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+          "color": "rgb(168, 185, 207)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "14px",
+          "x": 28,
+          "y": -269,
+          "w": 490,
+          "h": 24
+        },
+        {
+          "text": "Publicado. Tu personaje ya está disponible para todos.",
+          "color": "rgb(181, 232, 200)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": -222,
+          "w": 788,
+          "h": 19
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "16px",
+          "x": 47,
+          "y": -94,
+          "w": 1,
+          "h": 1
+        },
+        {
+          "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de medio cuerpo; com",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 83,
+          "w": 418,
+          "h": 58
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 248,
+          "w": 418,
+          "h": 49
+        },
+        {
+          "text": "",
+          "color": "rgb(237, 242, 250)",
+          "bg": "rgb(11, 24, 43)",
+          "size": "16px",
+          "x": 28,
+          "y": 341,
+          "w": 418,
+          "h": 105
+        },
+        {
+          "text": "0/240",
+          "color": "rgb(114, 135, 161)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 456,
+          "w": 418,
+          "h": 16
+        },
+        {
+          "text": "Entra rápido. Sal con estilo.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Ritmo, precisión y combos.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Cada golpe deja huella.",
+          "color": "rgb(130, 151, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guardado.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 787,
+          "w": 418,
+          "h": 19
+        },
+        {
+          "text": "Tu borrador se guarda en este dispositivo.",
+          "color": "rgb(128, 149, 177)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 28,
+          "y": 816,
+          "w": 418,
+          "h": 19
+        },
+        {
+          "text": "Paso de prueba",
+          "color": "rgb(152, 173, 199)",
+          "bg": "rgba(0, 0, 0, 0)",
+          "size": "12px",
+          "x": 495,
+          "y": 383,
+          "w": 300,
+          "h": 19
+        }
+      ]
+    }
+  ],
+  "trial": [
+    {
+      "state": "trial-paused",
+      "size": [
+        320,
+        568
+      ],
+      "scroll": {
+        "width": 320,
+        "height": 580
+      },
+      "buttons": [
+        {
+          "name": "Volver a la selección",
+          "rect": {
+            "x": 16,
+            "y": 32,
+            "width": 134,
+            "height": 44,
+            "top": 32,
+            "right": 150,
+            "bottom": 76,
+            "left": 16
+          }
+        },
+        {
+          "name": "Ver controles",
+          "rect": {
+            "x": 172,
+            "y": 32,
+            "width": 44,
+            "height": 44,
+            "top": 32,
+            "right": 216,
+            "bottom": 76,
+            "left": 172
+          }
+        },
+        {
+          "name": "Pantalla completa",
+          "rect": {
+            "x": 216,
+            "y": 32,
+            "width": 44,
+            "height": 44,
+            "top": 32,
+            "right": 260,
+            "bottom": 76,
+            "left": 216
+          }
+        },
+        {
+          "name": "Continuar pelea",
+          "rect": {
+            "x": 260,
+            "y": 32,
+            "width": 44,
+            "height": 44,
+            "top": 32,
+            "right": 304,
+            "bottom": 76,
+            "left": 260
+          }
+        },
+        {
+          "name": "Continuar",
+          "rect": {
+            "x": 47,
+            "y": 241.59375,
+            "width": 226,
+            "height": 34,
+            "top": 241.59375,
+            "right": 273,
+            "bottom": 275.59375,
+            "left": 47
+          }
+        },
+        {
+          "name": "Salir del combate",
+          "rect": {
+            "x": 47,
+            "y": 282.59375,
+            "width": 226,
+            "height": 34,
+            "top": 282.59375,
+            "right": 273,
+            "bottom": 316.59375,
+            "left": 47
+          }
+        },
+        {
+          "name": "Todos los controles ",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ]
+    },
+    {
+      "state": "trial-paused",
+      "size": [
+        390,
+        844
+      ],
+      "scroll": {
+        "width": 390,
+        "height": 856
+      },
+      "buttons": [
+        {
+          "name": "Volver a la selección",
+          "rect": {
+            "x": 16,
+            "y": 32,
+            "width": 134,
+            "height": 44,
+            "top": 32,
+            "right": 150,
+            "bottom": 76,
+            "left": 16
+          }
+        },
+        {
+          "name": "Ver controles",
+          "rect": {
+            "x": 242,
+            "y": 32,
+            "width": 44,
+            "height": 44,
+            "top": 32,
+            "right": 286,
+            "bottom": 76,
+            "left": 242
+          }
+        },
+        {
+          "name": "Pantalla completa",
+          "rect": {
+            "x": 286,
+            "y": 32,
+            "width": 44,
+            "height": 44,
+            "top": 32,
+            "right": 330,
+            "bottom": 76,
+            "left": 286
+          }
+        },
+        {
+          "name": "Continuar pelea",
+          "rect": {
+            "x": 330,
+            "y": 32,
+            "width": 44,
+            "height": 44,
+            "top": 32,
+            "right": 374,
+            "bottom": 76,
+            "left": 330
+          }
+        },
+        {
+          "name": "Continuar",
+          "rect": {
+            "x": 72,
+            "y": 241.59375,
+            "width": 246,
+            "height": 34,
+            "top": 241.59375,
+            "right": 318,
+            "bottom": 275.59375,
+            "left": 72
+          }
+        },
+        {
+          "name": "Salir del combate",
+          "rect": {
+            "x": 72,
+            "y": 282.59375,
+            "width": 246,
+            "height": 34,
+            "top": 282.59375,
+            "right": 318,
+            "bottom": 316.59375,
+            "left": 72
+          }
+        },
+        {
+          "name": "Todos los controles ",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ]
+    },
+    {
+      "state": "trial-paused",
+      "size": [
+        768,
+        1024
+      ],
+      "scroll": {
+        "width": 768,
+        "height": 1036
+      },
+      "buttons": [
+        {
+          "name": "Volver a la selección",
+          "rect": {
+            "x": 20,
+            "y": 32,
+            "width": 134,
+            "height": 44,
+            "top": 32,
+            "right": 154,
+            "bottom": 76,
+            "left": 20
+          }
+        },
+        {
+          "name": "Ver controles",
+          "rect": {
+            "x": 608,
+            "y": 32,
+            "width": 44,
+            "height": 44,
+            "top": 32,
+            "right": 652,
+            "bottom": 76,
+            "left": 608
+          }
+        },
+        {
+          "name": "Pantalla completa",
+          "rect": {
+            "x": 656,
+            "y": 32,
+            "width": 44,
+            "height": 44,
+            "top": 32,
+            "right": 700,
+            "bottom": 76,
+            "left": 656
+          }
+        },
+        {
+          "name": "Continuar pelea",
+          "rect": {
+            "x": 704,
+            "y": 32,
+            "width": 44,
+            "height": 44,
+            "top": 32,
+            "right": 748,
+            "bottom": 76,
+            "left": 704
+          }
+        },
+        {
+          "name": "Continuar",
+          "rect": {
+            "x": 261,
+            "y": 293.8125,
+            "width": 246,
+            "height": 34,
+            "top": 293.8125,
+            "right": 507,
+            "bottom": 327.8125,
+            "left": 261
+          }
+        },
+        {
+          "name": "Salir del combate",
+          "rect": {
+            "x": 261,
+            "y": 334.8125,
+            "width": 246,
+            "height": 34,
+            "top": 334.8125,
+            "right": 507,
+            "bottom": 368.8125,
+            "left": 261
+          }
+        },
+        {
+          "name": "Todos los controles ",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ]
+    },
+    {
+      "state": "trial-paused",
+      "size": [
+        1024,
+        768
+      ],
+      "scroll": {
+        "width": 1024,
+        "height": 788
+      },
+      "buttons": [
+        {
+          "name": "Volver a la selección",
+          "rect": {
+            "x": 28,
+            "y": 40,
+            "width": 134,
+            "height": 44,
+            "top": 40,
+            "right": 162,
+            "bottom": 84,
+            "left": 28
+          }
+        },
+        {
+          "name": "Ver controles",
+          "rect": {
+            "x": 856,
+            "y": 40,
+            "width": 44,
+            "height": 44,
+            "top": 40,
+            "right": 900,
+            "bottom": 84,
+            "left": 856
+          }
+        },
+        {
+          "name": "Pantalla completa",
+          "rect": {
+            "x": 904,
+            "y": 40,
+            "width": 44,
+            "height": 44,
+            "top": 40,
+            "right": 948,
+            "bottom": 84,
+            "left": 904
+          }
+        },
+        {
+          "name": "Continuar pelea",
+          "rect": {
+            "x": 952,
+            "y": 40,
+            "width": 44,
+            "height": 44,
+            "top": 40,
+            "right": 996,
+            "bottom": 84,
+            "left": 952
+          }
+        },
+        {
+          "name": "Continuar",
+          "rect": {
+            "x": 376,
+            "y": 382.28125,
+            "width": 272,
+            "height": 44,
+            "top": 382.28125,
+            "right": 648,
+            "bottom": 426.28125,
+            "left": 376
+          }
+        },
+        {
+          "name": "Salir del combate",
+          "rect": {
+            "x": 376,
+            "y": 436.28125,
+            "width": 272,
+            "height": 39,
+            "top": 436.28125,
+            "right": 648,
+            "bottom": 475.28125,
+            "left": 376
+          }
+        },
+        {
+          "name": "Todos los controles ",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ]
+    },
+    {
+      "state": "trial-paused",
+      "size": [
+        1440,
+        900
+      ],
+      "scroll": {
+        "width": 1440,
+        "height": 920
+      },
+      "buttons": [
+        {
+          "name": "Volver a la selección",
+          "rect": {
+            "x": 99,
+            "y": 40,
+            "width": 134,
+            "height": 44,
+            "top": 40,
+            "right": 233,
+            "bottom": 84,
+            "left": 99
+          }
+        },
+        {
+          "name": "Ver controles",
+          "rect": {
+            "x": 1201,
+            "y": 40,
+            "width": 44,
+            "height": 44,
+            "top": 40,
+            "right": 1245,
+            "bottom": 84,
+            "left": 1201
+          }
+        },
+        {
+          "name": "Pantalla completa",
+          "rect": {
+            "x": 1249,
+            "y": 40,
+            "width": 44,
+            "height": 44,
+            "top": 40,
+            "right": 1293,
+            "bottom": 84,
+            "left": 1249
+          }
+        },
+        {
+          "name": "Continuar pelea",
+          "rect": {
+            "x": 1297,
+            "y": 40,
+            "width": 44,
+            "height": 44,
+            "top": 40,
+            "right": 1341,
+            "bottom": 84,
+            "left": 1297
+          }
+        },
+        {
+          "name": "Continuar",
+          "rect": {
+            "x": 584,
+            "y": 458.3984375,
+            "width": 272,
+            "height": 44,
+            "top": 458.3984375,
+            "right": 856,
+            "bottom": 502.3984375,
+            "left": 584
+          }
+        },
+        {
+          "name": "Salir del combate",
+          "rect": {
+            "x": 584,
+            "y": 512.3984375,
+            "width": 272,
+            "height": 39,
+            "top": 512.3984375,
+            "right": 856,
+            "bottom": 551.3984375,
+            "left": 584
+          }
+        },
+        {
+          "name": "Todos los controles",
+          "rect": {
+            "x": 1210,
+            "y": 808,
+            "width": 127,
+            "height": 44,
+            "top": 808,
+            "right": 1337,
+            "bottom": 852,
+            "left": 1210
+          }
+        }
+      ]
+    },
+    {
+      "state": "trial-paused",
+      "size": [
+        844,
+        390
+      ],
+      "scroll": {
+        "width": 844,
+        "height": 402
+      },
+      "buttons": [
+        {
+          "name": "Volver a la selección",
+          "rect": {
+            "x": 183.5,
+            "y": 20,
+            "width": 134,
+            "height": 44,
+            "top": 20,
+            "right": 317.5,
+            "bottom": 64,
+            "left": 183.5
+          }
+        },
+        {
+          "name": "Ver controles",
+          "rect": {
+            "x": 520.5,
+            "y": 20,
+            "width": 44,
+            "height": 44,
+            "top": 20,
+            "right": 564.5,
+            "bottom": 64,
+            "left": 520.5
+          }
+        },
+        {
+          "name": "Pantalla completa",
+          "rect": {
+            "x": 568.5,
+            "y": 20,
+            "width": 44,
+            "height": 44,
+            "top": 20,
+            "right": 612.5,
+            "bottom": 64,
+            "left": 568.5
+          }
+        },
+        {
+          "name": "Continuar pelea",
+          "rect": {
+            "x": 616.5,
+            "y": 20,
+            "width": 44,
+            "height": 44,
+            "top": 20,
+            "right": 660.5,
+            "bottom": 64,
+            "left": 616.5
+          }
+        },
+        {
+          "name": "Continuar",
+          "rect": {
+            "x": 299,
+            "y": 200.09375,
+            "width": 246,
+            "height": 34,
+            "top": 200.09375,
+            "right": 545,
+            "bottom": 234.09375,
+            "left": 299
+          }
+        },
+        {
+          "name": "Salir del combate",
+          "rect": {
+            "x": 299,
+            "y": 241.09375,
+            "width": 246,
+            "height": 34,
+            "top": 241.09375,
+            "right": 545,
+            "bottom": 275.09375,
+            "left": 299
+          }
+        },
+        {
+          "name": "Todos los controles ",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        }
+      ]
+    }
+  ],
+  "trialHelp": [
+    {
+      "size": [
+        320,
+        568
+      ],
+      "documentWidth": 320,
+      "dialog": [
+        {
+          "label": "El manual del pana",
+          "rect": {
+            "x": 19,
+            "y": 14,
+            "width": 282,
+            "height": 540,
+            "top": 14,
+            "right": 301,
+            "bottom": 554,
+            "left": 19
+          },
+          "scroll": 2114,
+          "client": 536,
+          "width": 278,
+          "clientWidth": 278
+        }
+      ]
+    },
+    {
+      "size": [
+        390,
+        844
+      ],
+      "documentWidth": 390,
+      "dialog": [
+        {
+          "label": "El manual del pana",
+          "rect": {
+            "x": 19,
+            "y": 14,
+            "width": 352,
+            "height": 816,
+            "top": 14,
+            "right": 371,
+            "bottom": 830,
+            "left": 19
+          },
+          "scroll": 1800,
+          "client": 812,
+          "width": 348,
+          "clientWidth": 348
+        }
+      ]
+    },
+    {
+      "size": [
+        768,
+        1024
+      ],
+      "documentWidth": 768,
+      "dialog": [
+        {
+          "label": "El manual del pana",
+          "rect": {
+            "x": 19,
+            "y": 24,
+            "width": 730,
+            "height": 976,
+            "top": 24,
+            "right": 749,
+            "bottom": 1000,
+            "left": 19
+          },
+          "scroll": 1291,
+          "client": 972,
+          "width": 726,
+          "clientWidth": 726
+        }
+      ]
+    },
+    {
+      "size": [
+        1024,
+        768
+      ],
+      "documentWidth": 1024,
+      "dialog": [
+        {
+          "label": "El manual del pana",
+          "rect": {
+            "x": 132,
+            "y": 24,
+            "width": 760,
+            "height": 720,
+            "top": 24,
+            "right": 892,
+            "bottom": 744,
+            "left": 132
+          },
+          "scroll": 1291,
+          "client": 716,
+          "width": 756,
+          "clientWidth": 756
+        }
+      ]
+    },
+    {
+      "size": [
+        1440,
+        900
+      ],
+      "documentWidth": 1440,
+      "dialog": [
+        {
+          "label": "El manual del pana",
+          "rect": {
+            "x": 340,
+            "y": 24,
+            "width": 760,
+            "height": 852,
+            "top": 24,
+            "right": 1100,
+            "bottom": 876,
+            "left": 340
+          },
+          "scroll": 1291,
+          "client": 848,
+          "width": 756,
+          "clientWidth": 756
+        }
+      ]
+    },
+    {
+      "size": [
+        844,
+        390
+      ],
+      "documentWidth": 844,
+      "dialog": [
+        {
+          "label": "El manual del pana",
+          "rect": {
+            "x": 42,
+            "y": 24,
+            "width": 760,
+            "height": 342,
+            "top": 24,
+            "right": 802,
+            "bottom": 366,
+            "left": 42
+          },
+          "scroll": 1291,
+          "client": 338,
+          "width": 756,
+          "clientWidth": 756
+        }
+      ]
+    }
+  ],
+  "selectionControls": [
+    [
+      "↗\nÁgil"
+    ],
+    [
+      "✦\nTécnico"
+    ],
+    [
+      "⚡\nPotente"
+    ],
+    [
+      "Elegir color #ffd45a"
+    ],
+    [
+      "Elegir color #669bff"
+    ],
+    [
+      "Elegir color #fa7c6d"
+    ],
+    [
+      "Elegir color #8fe0b1"
+    ],
+    [
+      "Elegir color #c39bf2"
+    ]
+  ],
+  "uploadErrors": [
+    {
+      "size": [
+        320,
+        568
+      ],
+      "message": "Usa fotos JPG, PNG o WebP.",
+      "focus": "creator-error",
+      "rect": {
+        "x": 20,
+        "y": 74.8359375,
+        "width": 280,
+        "height": 45.5,
+        "top": 74.8359375,
+        "right": 300,
+        "bottom": 120.3359375,
+        "left": 20
+      }
+    },
+    {
+      "size": [
+        390,
+        844
+      ],
+      "message": "Usa fotos JPG, PNG o WebP.",
+      "focus": "creator-error",
+      "rect": {
+        "x": 20,
+        "y": 27.921875,
+        "width": 350,
+        "height": 45.5,
+        "top": 27.921875,
+        "right": 370,
+        "bottom": 73.421875,
+        "left": 20
+      }
+    },
+    {
+      "size": [
+        768,
+        1024
+      ],
+      "message": "Usa fotos JPG, PNG o WebP.",
+      "focus": "creator-error",
+      "rect": {
+        "x": 28,
+        "y": 19.96875,
+        "width": 712,
+        "height": 45.5,
+        "top": 19.96875,
+        "right": 740,
+        "bottom": 65.46875,
+        "left": 28
+      }
+    },
+    {
+      "size": [
+        1024,
+        768
+      ],
+      "message": "Usa fotos JPG, PNG o WebP.",
+      "focus": "creator-error",
+      "rect": {
+        "x": 28,
+        "y": 48.375,
+        "width": 968,
+        "height": 45.5,
+        "top": 48.375,
+        "right": 996,
+        "bottom": 93.875,
+        "left": 28
+      }
+    },
+    {
+      "size": [
+        1440,
+        900
+      ],
+      "message": "Usa fotos JPG, PNG o WebP.",
+      "focus": "creator-error",
+      "rect": {
+        "x": 198,
+        "y": 82.84375,
+        "width": 1044,
+        "height": 45.5,
+        "top": 82.84375,
+        "right": 1242,
+        "bottom": 128.34375,
+        "left": 198
+      }
+    },
+    {
+      "size": [
+        844,
+        390
+      ],
+      "message": "Usa fotos JPG, PNG o WebP.",
+      "focus": "creator-error",
+      "rect": {
+        "x": 28,
+        "y": 19.96875,
+        "width": 788,
+        "height": 45.5,
+        "top": 19.96875,
+        "right": 816,
+        "bottom": 65.46875,
+        "left": 28
+      }
+    }
+  ],
+  "contrast": [
+    {
+      "text": "65/240",
+      "cls": "creator-counter",
+      "size": "12px",
+      "contrast": 5.06
+    },
+    {
+      "text": "Rostro visible y buena luz. Puede ser una selfie o una foto de me",
+      "cls": "creator-hint",
+      "size": "12px",
+      "contrast": 6.08
+    },
+    {
+      "text": "Tarda unos minutos. Puedes volver después; tu progreso queda guar",
+      "cls": "creator-hint creator-timing",
+      "size": "12px",
+      "contrast": 6.08
+    },
+    {
+      "text": "Borrador guardado en este dispositivo.",
+      "cls": "creator-hint",
+      "size": "12px",
+      "contrast": 6.08
+    },
+    {
+      "text": "1–3 fotos",
+      "cls": "",
+      "size": "11px",
+      "contrast": 6.22
+    },
+    {
+      "text": "Tu personaje aparecerá en este espacio cuando empieces a crearlo.",
+      "cls": "",
+      "size": "12px",
+      "contrast": 6.22
+    },
+    {
+      "text": "↗",
+      "cls": "",
+      "size": "19px",
+      "contrast": 7.94
+    },
+    {
+      "text": "✦",
+      "cls": "",
+      "size": "19px",
+      "contrast": 7.94
+    },
+    {
+      "text": "Arena",
+      "cls": "creator-back",
+      "size": "13px",
+      "contrast": 9.32
+    },
+    {
+      "text": "Taller QA v39",
+      "cls": "",
+      "size": "13px",
+      "contrast": 9.32
+    },
+    {
+      "text": "Descartar borrador",
+      "cls": "creator-account",
+      "size": "13px",
+      "contrast": 9.32
+    },
+    {
+      "text": "Crea tu versión de la arena. Pruébala y compártela con tus panas.",
+      "cls": "",
+      "size": "14px",
+      "contrast": 9.33
+    },
+    {
+      "text": "Usa fotos JPG, PNG o WebP.",
+      "cls": "creator-error",
+      "size": "13px",
+      "contrast": 10.5
+    },
+    {
+      "text": "Crear mi luchador",
+      "cls": "creator-primary",
+      "size": "15px",
+      "contrast": 11.51
+    },
+    {
+      "text": "⚡",
+      "cls": "",
+      "size": "19px",
+      "contrast": 12.13
+    },
+    {
+      "text": "CRIOLLA",
+      "cls": "",
+      "size": "22px",
+      "contrast": 13.15
+    },
+    {
+      "text": "EL TALLER CRIOLLO",
+      "cls": "creator-eyebrow",
+      "size": "9px",
+      "contrast": 13.15
+    },
+    {
+      "text": "Tu luchador.",
+      "cls": "",
+      "size": "42px",
+      "contrast": 13.15
+    },
+    {
+      "text": "01",
+      "cls": "",
+      "size": "9px",
+      "contrast": 13.15
+    },
+    {
+      "text": "02",
+      "cls": "",
+      "size": "9px",
+      "contrast": 13.15
+    },
+    {
+      "text": "Nombre en la arena",
+      "cls": "",
+      "size": "12px",
+      "contrast": 14.68
+    },
+    {
+      "text": "Cuéntanos un poquitoSoy salsera, llevo lentes y chaqueta azul y m",
+      "cls": "",
+      "size": "12px",
+      "contrast": 14.68
+    },
+    {
+      "text": "¿Cómo quieres pelear?",
+      "cls": "",
+      "size": "12px",
+      "contrast": 14.68
+    },
+    {
+      "text": "Tu toque de color",
+      "cls": "",
+      "size": "12px",
+      "contrast": 14.68
+    },
+    {
+      "text": "Potente",
+      "cls": "",
+      "size": "12px",
+      "contrast": 15.29
+    },
+    {
+      "text": "",
+      "cls": "creator-file-input",
+      "size": "16px",
+      "contrast": 15.84
+    },
+    {
+      "text": "Tu nombre o tu apodo",
+      "cls": "",
+      "size": "16px",
+      "contrast": 15.84,
+      "placeholderContrast": 4.76
+    },
+    {
+      "text": "Soy salsera, llevo lentes y chaqueta azul y me gustan las arepas.",
+      "cls": "",
+      "size": "16px",
+      "contrast": 15.84,
+      "placeholderContrast": 4.76
+    },
+    {
+      "text": "Ágil",
+      "cls": "",
+      "size": "12px",
+      "contrast": 15.84
+    },
+    {
+      "text": "Técnico",
+      "cls": "",
+      "size": "12px",
+      "contrast": 15.84
+    },
+    {
+      "text": "ARENA CRIOLLA",
+      "cls": "creator-brand",
+      "size": "22px",
+      "contrast": 16.58
+    },
+    {
+      "text": "Tu cara. Tu estilo.Tu luchador.",
+      "cls": "",
+      "size": "42px",
+      "contrast": 16.58
+    },
+    {
+      "text": "Así te ves",
+      "cls": "",
+      "size": "24px",
+      "contrast": 16.58
+    },
+    {
+      "text": "Así eres tú",
+      "cls": "",
+      "size": "24px",
+      "contrast": 16.58
+    },
+    {
+      "text": "Mis luchadores",
+      "cls": "",
+      "size": "24px",
+      "contrast": 16.58
+    },
+    {
+      "text": "Tu primer piqueempieza aquí.",
+      "cls": "",
+      "size": "30px",
+      "contrast": 16.58
+    }
+  ],
+  "alignmentFinal": [
+    {
+      "size": [
+        320,
+        568
+      ],
+      "documentWidth": 320,
+      "portrait": {
+        "x": 76,
+        "y": 1545.375,
+        "width": 168,
+        "height": 210,
+        "top": 1545.375,
+        "right": 244,
+        "bottom": 1755.375,
+        "left": 76
+      },
+      "art": {
+        "x": 21,
+        "y": 1545.375,
+        "width": 278,
+        "height": 210,
+        "top": 1545.375,
+        "right": 299,
+        "bottom": 1755.375,
+        "left": 21
+      },
+      "actions": [
+        {
+          "name": "Probar",
+          "rect": {
+            "x": 41,
+            "y": 1875.3671875,
+            "width": 82,
+            "height": 44,
+            "top": 1875.3671875,
+            "right": 123,
+            "bottom": 1919.3671875,
+            "left": 41
+          }
+        },
+        {
+          "name": "Publicar",
+          "rect": {
+            "x": 131,
+            "y": 1875.3671875,
+            "width": 94,
+            "height": 44,
+            "top": 1875.3671875,
+            "right": 225,
+            "bottom": 1919.3671875,
+            "left": 131
+          }
+        },
+        {
+          "name": "Eliminar Borrador de prueba v39",
+          "rect": {
+            "x": 235,
+            "y": 1875.3671875,
+            "width": 44,
+            "height": 44,
+            "top": 1875.3671875,
+            "right": 279,
+            "bottom": 1919.3671875,
+            "left": 235
+          }
+        }
+      ]
+    },
+    {
+      "size": [
+        390,
+        844
+      ],
+      "documentWidth": 390,
+      "portrait": {
+        "x": 111,
+        "y": 1479.265625,
+        "width": 168,
+        "height": 210,
+        "top": 1479.265625,
+        "right": 279,
+        "bottom": 1689.265625,
+        "left": 111
+      },
+      "art": {
+        "x": 21,
+        "y": 1479.265625,
+        "width": 348,
+        "height": 210,
+        "top": 1479.265625,
+        "right": 369,
+        "bottom": 1689.265625,
+        "left": 21
+      },
+      "actions": [
+        {
+          "name": "Probar",
+          "rect": {
+            "x": 41,
+            "y": 1809.2578125,
+            "width": 82,
+            "height": 44,
+            "top": 1809.2578125,
+            "right": 123,
+            "bottom": 1853.2578125,
+            "left": 41
+          }
+        },
+        {
+          "name": "Publicar",
+          "rect": {
+            "x": 131,
+            "y": 1809.2578125,
+            "width": 94,
+            "height": 44,
+            "top": 1809.2578125,
+            "right": 225,
+            "bottom": 1853.2578125,
+            "left": 131
+          }
+        },
+        {
+          "name": "Eliminar Borrador de prueba v39",
+          "rect": {
+            "x": 305,
+            "y": 1809.2578125,
+            "width": 44,
+            "height": 44,
+            "top": 1809.2578125,
+            "right": 349,
+            "bottom": 1853.2578125,
+            "left": 305
+          }
+        }
+      ]
+    },
+    {
+      "size": [
+        768,
+        1024
+      ],
+      "documentWidth": 768,
+      "portrait": {
+        "x": 498.09375,
+        "y": 377.46875,
+        "width": 176,
+        "height": 220,
+        "top": 377.46875,
+        "right": 674.09375,
+        "bottom": 597.46875,
+        "left": 498.09375
+      },
+      "art": {
+        "x": 433.1953125,
+        "y": 377.46875,
+        "width": 305.8046875,
+        "height": 220,
+        "top": 377.46875,
+        "right": 739,
+        "bottom": 597.46875,
+        "left": 433.1953125
+      },
+      "actions": [
+        {
+          "name": "Probar",
+          "rect": {
+            "x": 453.1953125,
+            "y": 717.4609375,
+            "width": 82,
+            "height": 44,
+            "top": 717.4609375,
+            "right": 535.1953125,
+            "bottom": 761.4609375,
+            "left": 453.1953125
+          }
+        },
+        {
+          "name": "Publicar",
+          "rect": {
+            "x": 543.1953125,
+            "y": 717.4609375,
+            "width": 94,
+            "height": 44,
+            "top": 717.4609375,
+            "right": 637.1953125,
+            "bottom": 761.4609375,
+            "left": 543.1953125
+          }
+        },
+        {
+          "name": "Eliminar Borrador de prueba v39",
+          "rect": {
+            "x": 675,
+            "y": 717.4609375,
+            "width": 44,
+            "height": 44,
+            "top": 717.4609375,
+            "right": 719,
+            "bottom": 761.4609375,
+            "left": 675
+          }
+        }
+      ]
+    },
+    {
+      "size": [
+        1024,
+        768
+      ],
+      "documentWidth": 1024,
+      "portrait": {
+        "x": 725.59375,
+        "y": 405.875,
+        "width": 176,
+        "height": 220,
+        "top": 405.875,
+        "right": 901.59375,
+        "bottom": 625.875,
+        "left": 725.59375
+      },
+      "art": {
+        "x": 632.1953125,
+        "y": 405.875,
+        "width": 362.8046875,
+        "height": 220,
+        "top": 405.875,
+        "right": 995,
+        "bottom": 625.875,
+        "left": 632.1953125
+      },
+      "actions": [
+        {
+          "name": "Probar",
+          "rect": {
+            "x": 652.1953125,
+            "y": 745.8671875,
+            "width": 82,
+            "height": 44,
+            "top": 745.8671875,
+            "right": 734.1953125,
+            "bottom": 789.8671875,
+            "left": 652.1953125
+          }
+        },
+        {
+          "name": "Publicar",
+          "rect": {
+            "x": 742.1953125,
+            "y": 745.8671875,
+            "width": 94,
+            "height": 44,
+            "top": 745.8671875,
+            "right": 836.1953125,
+            "bottom": 789.8671875,
+            "left": 742.1953125
+          }
+        },
+        {
+          "name": "Eliminar Borrador de prueba v39",
+          "rect": {
+            "x": 931,
+            "y": 745.8671875,
+            "width": 44,
+            "height": 44,
+            "top": 745.8671875,
+            "right": 975,
+            "bottom": 789.8671875,
+            "left": 931
+          }
+        }
+      ]
+    },
+    {
+      "size": [
+        1440,
+        900
+      ],
+      "documentWidth": 1440,
+      "portrait": {
+        "x": 956.390625,
+        "y": 440.34375,
+        "width": 176,
+        "height": 220,
+        "top": 440.34375,
+        "right": 1132.390625,
+        "bottom": 660.34375,
+        "left": 956.390625
+      },
+      "art": {
+        "x": 847.796875,
+        "y": 440.34375,
+        "width": 393.1953125,
+        "height": 220,
+        "top": 440.34375,
+        "right": 1240.9921875,
+        "bottom": 660.34375,
+        "left": 847.796875
+      },
+      "actions": [
+        {
+          "name": "Probar",
+          "rect": {
+            "x": 867.796875,
+            "y": 780.3359375,
+            "width": 82,
+            "height": 44,
+            "top": 780.3359375,
+            "right": 949.796875,
+            "bottom": 824.3359375,
+            "left": 867.796875
+          }
+        },
+        {
+          "name": "Publicar",
+          "rect": {
+            "x": 957.796875,
+            "y": 780.3359375,
+            "width": 94,
+            "height": 44,
+            "top": 780.3359375,
+            "right": 1051.796875,
+            "bottom": 824.3359375,
+            "left": 957.796875
+          }
+        },
+        {
+          "name": "Eliminar Borrador de prueba v39",
+          "rect": {
+            "x": 1176.9921875,
+            "y": 780.3359375,
+            "width": 44,
+            "height": 44,
+            "top": 780.3359375,
+            "right": 1220.9921875,
+            "bottom": 824.3359375,
+            "left": 1176.9921875
+          }
+        }
+      ]
+    },
+    {
+      "size": [
+        844,
+        390
+      ],
+      "documentWidth": 844,
+      "portrait": {
+        "x": 557,
+        "y": 377.46875,
+        "width": 176,
+        "height": 220,
+        "top": 377.46875,
+        "right": 733,
+        "bottom": 597.46875,
+        "left": 557
+      },
+      "art": {
+        "x": 475,
+        "y": 377.46875,
+        "width": 340,
+        "height": 220,
+        "top": 377.46875,
+        "right": 815,
+        "bottom": 597.46875,
+        "left": 475
+      },
+      "actions": [
+        {
+          "name": "Probar",
+          "rect": {
+            "x": 495,
+            "y": 717.4609375,
+            "width": 82,
+            "height": 44,
+            "top": 717.4609375,
+            "right": 577,
+            "bottom": 761.4609375,
+            "left": 495
+          }
+        },
+        {
+          "name": "Publicar",
+          "rect": {
+            "x": 585,
+            "y": 717.4609375,
+            "width": 94,
+            "height": 44,
+            "top": 717.4609375,
+            "right": 679,
+            "bottom": 761.4609375,
+            "left": 585
+          }
+        },
+        {
+          "name": "Eliminar Borrador de prueba v39",
+          "rect": {
+            "x": 751,
+            "y": 717.4609375,
+            "width": 44,
+            "height": 44,
+            "top": 717.4609375,
+            "right": 795,
+            "bottom": 761.4609375,
+            "left": 751
+          }
+        }
+      ]
+    }
+  ],
+  "retryControl": {
+    "text": "Mis luchadores\n1/12\nCREANDO\nLuchadora Prueba v39\n\nAjustando las poses para que se muevan bien…",
+    "pending": ""
+  },
+  "connectionRecovery": {
+    "method": "In-page fetch wrapper rejected only GET /api/creator/characters, then restored fetch and dispatched window focus",
+    "offlineNoticeShown": true,
+    "recordsPreserved": true,
+    "noticeClearedAfterRestore": true
+  },
+  "functionalChecks": {
+    "signup": true,
+    "signin": true,
+    "incorrectPasswordAlert": true,
+    "keyboardTabsArrowLeft": true,
+    "threeStyles": true,
+    "fiveColors": true,
+    "threePhotosLimit": true,
+    "removePhoto": true,
+    "unsupportedFileType": true,
+    "eightMegabyteLimit": true,
+    "missingPhotoAlert": true,
+    "draftReloadPreservesAllFields": true,
+    "discardDraft": true,
+    "createReady": true,
+    "retryFailedRecord": true,
+    "tryFighter": true,
+    "rematch": true,
+    "pause": true,
+    "helpDialog": true,
+    "helpEscape": true,
+    "exitTrial": true,
+    "publish": true,
+    "publishedInCommunityCatalog": true,
+    "deleteCancelPreservesRecord": true,
+    "deleteAcceptRemovesRecordAndCatalog": true,
+    "signOut": true
+  },
+  "validation": {
+    "typescript": "npx tsc --noEmit passed",
+    "formatting": "npx prettier --check src/components/CreatorStudio.tsx src/creator.css passed"
+  },
+  "limitations": [
+    "CSS viewport emulation in shared desktop browser; no physical phone/tablet validation",
+    "No Safari/Firefox, mobile virtual keyboard, real multitouch or physical gamepad validation in this subtask",
+    "Deterministic local QA generation only; no paid provider called",
+    "Unavailable generation service, IndexedDB quota failure, and simultaneous draft conflict were not forced",
+    "Native delete confirmation inspected with browser dialog API; its system chrome is not captured in screenshots"
+  ],
+  "notes": [
+    "Primary auth/form/error/draft/ready/published/help/pause layouts checked at all six viewports",
+    "Generating is transient and only captured at 844x390; original fixture failure captured in six viewport form/list images",
+    "PNG representative screenshots retained:18; other final matrix screenshots compressed to WebP; earlier redundant captures removed",
+    "Contrast uses computed sRGB text and backgrounds with alpha composition; gradients under portraits are not text backgrounds",
+    "Placeholder contrast4.76:1, counter5.06:1, help text6.08:1; no text color correction was required in CreatorStudio"
+  ]
+}
