@@ -42,6 +42,7 @@ async function atlas(crossing = false) {
 async function setup(provider: CharacterProvider | null = null) {
   const folder = await mkdtemp(path.join(os.tmpdir(), "arena-resilience-v31-"));
   const server = await makeArenaServer({
+    workshopEnabled: true,
     serveClient: false,
     creator: { dataDir: folder, provider, secureCookies: false },
   });

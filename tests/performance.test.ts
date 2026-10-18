@@ -227,6 +227,7 @@ test("trusted proxy clients have separate auth limits, and untrusted forwarded h
   for (const trusted of [true, false]) {
     const server = await makeArenaServer({
       serveClient: false,
+      workshopEnabled: true,
       trustProxy: trusted ? ["loopback"] : [],
       creator: { databasePath: ":memory:", provider: null },
     });

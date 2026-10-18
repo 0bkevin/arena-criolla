@@ -33,13 +33,11 @@ export function requestSiteOrigin(
 export function renderSiteHtml(
   template: string,
   origin: string,
-  pathname: string,
 ): string {
   // Room invitations and other query parameters must not become canonical URLs.
-  const page = pathname === "/create" ? "/create" : "/";
   return template
     .replaceAll("__ARENA_ORIGIN__", origin)
-    .replaceAll("__ARENA_PAGE_URL__", origin + page);
+    .replaceAll("__ARENA_PAGE_URL__", origin + "/");
 }
 
 export function siteSitemap(origin: string): string {

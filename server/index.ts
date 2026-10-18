@@ -68,6 +68,8 @@ export async function makeArenaServer(
     serveClient?: boolean;
     production?: boolean;
     creator?: CreatorOptions;
+    // Explicit opt-in for the retained workshop's isolated tests and tooling.
+    workshopEnabled?: boolean;
     trustProxy?: string[];
   } = {},
 ) {
@@ -84,11 +86,24 @@ export async function makeArenaServer(
       ? undefined
       : publicSiteOrigin(process.env.ARENA_PUBLIC_URL);
   let notifyCommunity = () => {};
+  const workshopEnabled = options.workshopEnabled === true;
   const creator = makeCreatorService({
     ...(options.creator ??
       (options.serveClient === false ? { databasePath: ":memory:" } : {})),
+    ...(!workshopEnabled ? { provider: null } : {}),
     onCatalogChange: () => notifyCommunity(),
   });
+  if (!workshopEnabled) {
+    app.use(["/api/creator", "/api/auth"], (_req, res) => {
+      res
+        .set("Cache-Control", "no-store")
+        .status(404)
+        .json({ error: "No encontramos esa ruta." });
+    });
+    app.get(/^\/create(?:\/.*)?$/i, (_req, res) => {
+      res.set("Cache-Control", "no-store").redirect(302, "/");
+    });
+  }
   app.use("/api", creator.router);
   const http = createServer(app);
   const connections = new Set<import("node:net").Socket>();
@@ -579,7 +594,6 @@ export async function makeArenaServer(
             renderSiteHtml(
               template,
               requestSiteOrigin(req, configuredOrigin),
-              req.path,
             ),
           );
       });
@@ -610,7 +624,6 @@ export async function makeArenaServer(
         const html = renderSiteHtml(
           template,
           requestSiteOrigin(req, configuredOrigin),
-          req.path,
         );
         res
           .type("html")
