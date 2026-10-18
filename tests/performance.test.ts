@@ -172,3 +172,54 @@ test("each match update is serialized once and delivered identically to both pla
   }
 });
 
+test("production caches fingerprinted bundles while keeping HTML and API responses fresh", async () => {
+  const { mkdtemp, mkdir, writeFile, rm } = await import("node:fs/promises");
+  const { tmpdir } = await import("node:os");
+  const path = await import("node:path");
+  const folder = await mkdtemp(path.join(tmpdir(), "arena-cache-test-"));
+  const previous = process.cwd();
+  let server: Awaited<ReturnType<typeof makeArenaServer>> | undefined;
+  try {
+    await mkdir(path.join(folder, "dist/assets"), { recursive: true });
+    await writeFile(
+      path.join(folder, "dist/index.html"),
+      "<!doctype html><html><body>arena</body></html>",
+    );
+    await writeFile(
+      path.join(folder, "dist/assets/index-Abcd1234.js"),
+      "console.log('arena')",
+    );
+    await writeFile(path.join(folder, "dist/assets/caracas.webp"), "fixture");
+    process.chdir(folder);
+    server = await makeArenaServer({
+      production: true,
+      creator: { dataDir: path.join(folder, "private"), provider: null },
+    });
+    process.chdir(previous);
+    await new Promise<void>((resolve) =>
+      server!.http.listen(0, "127.0.0.1", resolve),
+    );
+    const address = server.http.address();
+    assert.ok(address && typeof address === "object");
+    const base = `http://127.0.0.1:${address.port}`;
+    const bundle = await fetch(base + "/assets/index-Abcd1234.js");
+    assert.equal(bundle.status, 200);
+    assert.equal(
+      bundle.headers.get("cache-control"),
+      "public, max-age=31536000, immutable",
+    );
+    for (const route of ["/", "/api/health", "/assets/caracas.webp"]) {
+      const response = await fetch(base + route);
+      assert.equal(response.status, 200);
+      assert.doesNotMatch(
+        response.headers.get("cache-control") ?? "",
+        /immutable/,
+      );
+    }
+  } finally {
+    process.chdir(previous);
+    await server?.close();
+    await rm(folder, { recursive: true, force: true });
+  }
+});
+

@@ -563,7 +563,19 @@ export async function makeArenaServer(
     if (options.production) {
       const dist = path.resolve("dist");
       const template = await readFile(path.join(dist, "index.html"), "utf8");
-      app.use(express.static(dist, { index: false }));
+      app.use(
+        express.static(dist, {
+          index: false,
+          setHeaders: (res, file) => {
+            // Vite fingerprints these files; a new build produces a new URL.
+            if (/[-\w]+-[\w-]{8}\.(?:js|css)$/.test(path.basename(file)))
+              res.setHeader(
+                "Cache-Control",
+                "public, max-age=31536000, immutable",
+              );
+          },
+        }),
+      );
       app.get("/{*path}", (req, res) => {
         res
           .type("html")
