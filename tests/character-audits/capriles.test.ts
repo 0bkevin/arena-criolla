@@ -28,7 +28,7 @@ const emit = (check: string, evidence: unknown) => console.log(JSON.stringify({ 
 
 test("Capriles retains his researched casual identity and mirrored one-shot greeting", () => {
   const fighter = fighterById("capriles");
-  assert.equal(fighter.sprite, "capriles-v22");
+  assert.equal(fighter.sprite, "capriles-v39");
   assert.equal(fighter.ability, "sprint");
   assert.equal(fighter.special, "Sprint tricolor");
   assert.deepEqual(fighter.combos, ["Paso a paso", "Carrera de fondo", "Meta tricolor"]);

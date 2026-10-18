@@ -275,7 +275,7 @@
       1,
       1,
       1,
-      1
+      -1
     ],
     "introStyle": "defiant",
     "selectionStyle": "defiant",
@@ -2642,7 +2642,7 @@
   "nacho": {
     "introName": "Se yergue y cruza los brazos",
     "selectionName": "Se yergue y cruza los brazos",
-    "battleFrame": 1,
+    "battleFrame": 0,
     "frameFacing": [
       1,
       1,
@@ -2661,7 +2661,7 @@
     "introBeats": [
       {
         "at": 0,
-        "frame": 1,
+        "frame": 0,
         "dx": 0,
         "dy": 0,
         "rotate": 0,
@@ -2670,7 +2670,7 @@
       },
       {
         "at": 0.14,
-        "frame": 1,
+        "frame": 0,
         "dx": 0,
         "dy": 0,
         "rotate": 0,
@@ -2679,7 +2679,7 @@
       },
       {
         "at": 0.5,
-        "frame": 1,
+        "frame": 0,
         "dx": 0,
         "dy": 0,
         "rotate": 0,
@@ -2688,7 +2688,7 @@
       },
       {
         "at": 0.76,
-        "frame": 1,
+        "frame": 0,
         "dx": 0,
         "dy": 0,
         "rotate": 0,
@@ -2697,7 +2697,7 @@
       },
       {
         "at": 0.9,
-        "frame": 1,
+        "frame": 0,
         "dx": 0,
         "dy": 0,
         "rotate": 0,
@@ -2706,7 +2706,7 @@
       },
       {
         "at": 1,
-        "frame": 1,
+        "frame": 0,
         "dx": 0,
         "dy": 0,
         "rotate": 0,
@@ -2717,7 +2717,7 @@
     "selectionBeats": [
       {
         "at": 0,
-        "frame": 1,
+        "frame": 0,
         "dx": 0,
         "dy": 0,
         "rotate": 0,
@@ -2726,7 +2726,7 @@
       },
       {
         "at": 0.14,
-        "frame": 1,
+        "frame": 0,
         "dx": 0,
         "dy": 0,
         "rotate": 0,
@@ -2735,7 +2735,7 @@
       },
       {
         "at": 0.5,
-        "frame": 1,
+        "frame": 0,
         "dx": 0,
         "dy": 0,
         "rotate": 0,
@@ -2744,7 +2744,7 @@
       },
       {
         "at": 0.76,
-        "frame": 1,
+        "frame": 0,
         "dx": 0,
         "dy": 0,
         "rotate": 0,
@@ -2753,7 +2753,7 @@
       },
       {
         "at": 0.9,
-        "frame": 1,
+        "frame": 0,
         "dx": 0,
         "dy": 0,
         "rotate": 0,
@@ -2762,7 +2762,7 @@
       },
       {
         "at": 1,
-        "frame": 1,
+        "frame": 0,
         "dx": 0,
         "dy": 0,
         "rotate": 0,
@@ -6049,6 +6049,666 @@
         "dy": -0.0018000000000000002,
         "rotate": 0,
         "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ]
+  },
+  "lorenzo": {
+    "introName": "Se recoge el puño y presenta la palma",
+    "selectionName": "Se recoge el puño y presenta la palma",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "present",
+    "selectionStyle": "present",
+    "prop": "none",
+    "color": "#91d6f5",
+    "durationMs": 2800,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 0,
+        "dx": 0.0063,
+        "dy": -0.00216,
+        "rotate": -0.0036,
+        "scaleX": 0.9964,
+        "scaleY": 1
+      },
+      {
+        "at": 0.44,
+        "frame": 0,
+        "dx": 0.035,
+        "dy": -0.012,
+        "rotate": -0.02,
+        "scaleX": 0.98,
+        "scaleY": 1
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": 0.0105,
+        "dy": -0.0036,
+        "rotate": -0.006,
+        "scaleX": 0.994,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 0,
+        "dx": 0.00252,
+        "dy": -0.0008640000000000001,
+        "rotate": -0.00144,
+        "scaleX": 0.99856,
+        "scaleY": 1
+      },
+      {
+        "at": 0.44,
+        "frame": 0,
+        "dx": 0.014000000000000002,
+        "dy": -0.0048000000000000004,
+        "rotate": -0.008,
+        "scaleX": 0.992,
+        "scaleY": 1
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": 0.004200000000000001,
+        "dy": -0.00144,
+        "rotate": -0.0024000000000000002,
+        "scaleX": 0.9976,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ]
+  },
+  "carolina": {
+    "introName": "Acomoda el puño y presenta su silueta",
+    "selectionName": "Acomoda el puño y presenta su silueta",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "inspect",
+    "selectionStyle": "inspect",
+    "prop": "none",
+    "color": "#e9d9b3",
+    "durationMs": 2800,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 0,
+        "dx": -0.00324,
+        "dy": 0,
+        "rotate": -0.0045,
+        "scaleX": 0.9766,
+        "scaleY": 1
+      },
+      {
+        "at": 0.44,
+        "frame": 0,
+        "dx": -0.018,
+        "dy": 0,
+        "rotate": -0.025,
+        "scaleX": 0.87,
+        "scaleY": 1
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": -0.005399999999999999,
+        "dy": 0,
+        "rotate": -0.0075,
+        "scaleX": 0.961,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 0,
+        "dx": -0.001296,
+        "dy": 0,
+        "rotate": -0.0018,
+        "scaleX": 0.99064,
+        "scaleY": 1
+      },
+      {
+        "at": 0.44,
+        "frame": 0,
+        "dx": -0.0072,
+        "dy": 0,
+        "rotate": -0.010000000000000002,
+        "scaleX": 0.948,
+        "scaleY": 1
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": -0.00216,
+        "dy": 0,
+        "rotate": -0.003,
+        "scaleX": 0.9843999999999999,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ]
+  },
+  "dayana": {
+    "introName": "Paso y saludo a la tribuna",
+    "selectionName": "Paso y saludo a la tribuna",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "present",
+    "selectionStyle": "present",
+    "prop": "none",
+    "color": "#ffe079",
+    "durationMs": 2800,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 0,
+        "dx": 0.010799999999999999,
+        "dy": -0.0036,
+        "rotate": 0.0063,
+        "scaleX": 0.9802,
+        "scaleY": 1
+      },
+      {
+        "at": 0.44,
+        "frame": 0,
+        "dx": 0.06,
+        "dy": -0.02,
+        "rotate": 0.035,
+        "scaleX": 0.89,
+        "scaleY": 1
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": 0.018,
+        "dy": -0.006,
+        "rotate": 0.0105,
+        "scaleX": 0.967,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 0,
+        "dx": 0.00432,
+        "dy": -0.00144,
+        "rotate": 0.00252,
+        "scaleX": 0.99208,
+        "scaleY": 1
+      },
+      {
+        "at": 0.44,
+        "frame": 0,
+        "dx": 0.024,
+        "dy": -0.008,
+        "rotate": 0.014000000000000002,
+        "scaleX": 0.956,
+        "scaleY": 1
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": 0.0072,
+        "dy": -0.0024000000000000002,
+        "rotate": 0.004200000000000001,
+        "scaleX": 0.9868,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ]
+  },
+  "bolivar": {
+    "introName": "Saludo de campaña y paso firme",
+    "selectionName": "Saludo de campaña y paso firme",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "salute",
+    "selectionStyle": "salute",
+    "prop": "none",
+    "color": "#f4b557",
+    "durationMs": 2800,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 0,
+        "dx": 0.005399999999999999,
+        "dy": -0.00216,
+        "rotate": -0.00324,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.44,
+        "frame": 0,
+        "dx": 0.03,
+        "dy": -0.012,
+        "rotate": -0.018,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": 0.009,
+        "dy": -0.0036,
+        "rotate": -0.005399999999999999,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 0,
+        "dx": 0.00216,
+        "dy": -0.0008640000000000001,
+        "rotate": -0.001296,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.44,
+        "frame": 0,
+        "dx": 0.012,
+        "dy": -0.0048000000000000004,
+        "rotate": -0.0072,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": 0.0036,
+        "dy": -0.00144,
+        "rotate": -0.00216,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ]
+  },
+  "edgar": {
+    "introName": "Esquiva de hombro y guardia de acción",
+    "selectionName": "Esquiva de hombro y guardia de acción",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "greet",
+    "selectionStyle": "greet",
+    "prop": "none",
+    "color": "#9bb9e5",
+    "durationMs": 2800,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 0,
+        "dx": -0.0063,
+        "dy": -0.0045,
+        "rotate": -0.0081,
+        "scaleX": 0.9928,
+        "scaleY": 1
+      },
+      {
+        "at": 0.44,
+        "frame": 1,
+        "dx": -0.035,
+        "dy": -0.025,
+        "rotate": -0.045,
+        "scaleX": 0.96,
+        "scaleY": 1
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": -0.0105,
+        "dy": -0.0075,
+        "rotate": -0.0135,
+        "scaleX": 0.988,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 0,
+        "dx": -0.00252,
+        "dy": -0.0018,
+        "rotate": -0.00324,
+        "scaleX": 0.99712,
+        "scaleY": 1
+      },
+      {
+        "at": 0.44,
+        "frame": 1,
+        "dx": -0.014000000000000002,
+        "dy": -0.010000000000000002,
+        "rotate": -0.018,
+        "scaleX": 0.984,
+        "scaleY": 1
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": -0.004200000000000001,
+        "dy": -0.003,
+        "rotate": -0.0054,
+        "scaleX": 0.9952,
         "scaleY": 1
       },
       {

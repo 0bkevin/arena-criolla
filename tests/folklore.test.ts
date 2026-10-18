@@ -33,7 +33,7 @@ function special(fighter: FighterId, rivalX = 950) {
   return { match, inputs, advance, until };
 }
 
-test("ten folklore fighters remain available alongside the thirty-six-person culture roster", () => {
+test("ten folklore fighters remain available alongside the forty-one-person culture roster", () => {
   const legends = FIGHTERS.filter((f) => f.category === "folklore");
   assert.deepEqual(
     legends.map((f) => f.id),
@@ -50,7 +50,7 @@ test("ten folklore fighters remain available alongside the thirty-six-person cul
       "tioconejo",
     ],
   );
-  assert.equal(FIGHTERS.filter((f) => f.category !== "folklore").length, 36);
+  assert.equal(FIGHTERS.filter((f) => f.category !== "folklore").length, 41);
   assert.ok(
     [
       "zavarce",

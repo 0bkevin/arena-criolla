@@ -2,6 +2,7 @@ import type { FighterId } from "./content";
 import { PRESENTATIONS } from "./presentation";
 import { DEFAULT_ENTRANCE_FIGHTERS } from "./entrance-actions";
 import { FOUNDER_CHOREOGRAPHIES } from "./founder-choreography";
+import { ICON_CHOREOGRAPHIES } from "./icon-choreography";
 
 export interface Gesture {
   at: number;
@@ -99,6 +100,7 @@ function routine(
 // These are theatrical adaptations of public personas, never claimed as real rituals.
 export const CHOREOGRAPHIES: Record<FighterId, Choreography> = {
   ...FOUNDER_CHOREOGRAPHIES,
+  ...ICON_CHOREOGRAPHIES,
   zavarce: routine(
     "Consulta, confirma y señala",
     [
@@ -970,9 +972,10 @@ export const CHOREOGRAPHIES: Record<FighterId, Choreography> = {
 
 // Frame 1 is audited independently: crossed arms and props are not generic palms.
 CHOREOGRAPHIES.javier.raisedHands = [
-  [0.055, 0.27],
-  [-0.02, 0.27],
+  [-0.08, 0.28],
+  [0.12, 0.27],
 ];
+CHOREOGRAPHIES.javier.headWidth = 0.16;
 CHOREOGRAPHIES.mcm.raisedHands = [
   [0.065, 0.28],
   [-0.015, 0.275],
