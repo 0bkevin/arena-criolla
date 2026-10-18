@@ -1,5 +1,7 @@
 # Founder sprite visual review
 
+The v2 selection below is superseded by the [18 October v3 consistency review](style-v3/review.md). The game now uses freshly drawn v3 sheets, compact individual ready stances, updated photo-based faces, padded cells and lossless runtime assets. The previous review remains as historical context.
+
 Reviewed 17 October 2026. These are the selected five founder sprite sheets; Mafe Vera is not included as a playable character. Juan José Pocaterra represents both Vikua and La Wawa.
 
 Each sheet has eight complete poses. I checked the source sheets against the collected founder photos and the existing `zavarce-v5` / `capriles-v3` style. I also rendered every character through the actual `drawVictory` renderer at 1280×720 at the 1.4-second accent and 3.5-second finish, paired with Zavarce as the losing fighter. Winners and loser stayed in frame, facing correctly, with no missing limbs or gameplay-scale mesh artifacts. Tiny colored edge specks remain visible at source-image zoom on some sheets, but are not a material distraction at game scale and are comparable to fringe on existing sheets.

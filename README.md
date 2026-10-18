@@ -125,6 +125,8 @@ Los cinco nuevos personajes reúnen las seis empresas solicitadas: Juan José Po
 
 Cada fundador tiene ocho poses transparentes, entrada propia, especial distinto y celebración. Se inspeccionaron al menos tres fotos por persona; los atlas finales se generaron con la herramienta integrada `image_gen.imagegen`, manteniendo el estilo de los luchadores existentes. Los [prompts](docs/founders/sprite-prompts.json), las [correcciones](docs/founders/correction-prompts.json) y los [archivos finales](docs/founders/generated-assets.json) documentan el proceso. `tests/founders.test.ts` comprueba sus ataques en ambos lados, bloqueo y reproducción determinista.
 
+La [revisión de estilo v3](docs/founders/style-v3/review.md) reemplaza los cinco atlas originales por dibujos nuevos basados en los retratos reales y en el estilo ilustrado de Renny. Cada fundador conserva su ropa, especial y animaciones, con una postura inicial más compacta y rasgos menos genéricos. Los PNG de 2048×1024 y los WebP sin pérdida contienen ocho siluetas completas, separadas y alineadas. Los prompts, fuentes, originales generados y auditorías de empaquetado quedan conservados; `scripts/pack-founder-style-v3.ts` permite reproducir el empaquetado. La galería de fundadores utiliza el mismo cargador y dibujado que el juego.
+
 Los 46 luchadores muestran una celebración individual de 3,5 segundos antes del resultado: música original de victoria, gesto del ganador y breve reacción del derrotado, visible incluso tras una caída fuera de la arena. Se respetan silencio, movimiento reducido, pestaña oculta y limpieza al salir o reiniciar.
 
 ## Revisión individual del elenco v28
