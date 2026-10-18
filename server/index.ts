@@ -30,6 +30,7 @@ import type {
   ServerMessage,
 } from "../shared/protocol";
 import { FixedStepTicker } from "./ticker";
+import { allowedWebSocketOrigin, securityHeaders } from "./security";
 
 interface Client {
   id: string;
@@ -68,22 +69,58 @@ export async function makeArenaServer(
     serveClient?: boolean;
     production?: boolean;
     creator?: CreatorOptions;
+    // Explicit opt-in for the retained workshop's isolated tests and tooling.
+    workshopEnabled?: boolean;
+    trustProxy?: string[];
   } = {},
 ) {
   const app = express();
   app.disable("x-powered-by");
+  const trustedProxies =
+    options.trustProxy ??
+    process.env.ARENA_TRUST_PROXY?.split(",")
+      .map((proxy) => proxy.trim())
+      .filter(Boolean);
+  if (trustedProxies?.length) app.set("trust proxy", trustedProxies);
+  const trustProxy = app.get("trust proxy fn") as (
+    address: string,
+    hop: number,
+  ) => boolean;
+  app.use(securityHeaders(options.production === true, trustProxy));
   const configuredOrigin =
     options.serveClient === false
       ? undefined
       : publicSiteOrigin(process.env.ARENA_PUBLIC_URL);
   let notifyCommunity = () => {};
+  const workshopEnabled = options.workshopEnabled === true;
   const creator = makeCreatorService({
     ...(options.creator ??
       (options.serveClient === false ? { databasePath: ":memory:" } : {})),
+    ...(!workshopEnabled ? { provider: null } : {}),
     onCatalogChange: () => notifyCommunity(),
   });
+  if (!workshopEnabled) {
+    app.use(["/api/creator", "/api/auth"], (_req, res) => {
+      res
+        .set("Cache-Control", "no-store")
+        .status(404)
+        .json({ error: "No encontramos esa ruta." });
+    });
+    app.get(/^\/create(?:\/.*)?$/i, (_req, res) => {
+      res.set("Cache-Control", "no-store").redirect(302, "/");
+    });
+  }
   app.use("/api", creator.router);
-  const http = createServer(app);
+  const http = createServer(
+    {
+      headersTimeout: 10_000,
+      requestTimeout: 30_000,
+      keepAliveTimeout: 5_000,
+      connectionsCheckingInterval: 1_000,
+      maxHeaderSize: 16_384,
+    },
+    app,
+  );
   const connections = new Set<import("node:net").Socket>();
   http.on("connection", (socket) => {
     connections.add(socket);
@@ -103,11 +140,7 @@ export async function makeArenaServer(
     }
     client.socket.send(JSON.stringify(message));
   };
-  const sendEncoded = (
-    client: Client,
-    message: string,
-    reliable = false,
-  ) => {
+  const sendEncoded = (client: Client, message: string, reliable = false) => {
     if (client.socket.readyState !== WebSocket.OPEN) return;
     if (client.socket.bufferedAmount >= 256_000) {
       if (reliable) client.socket.terminate();
@@ -134,8 +167,10 @@ export async function makeArenaServer(
     isFighter(id) &&
     (!id.startsWith("custom_") ||
       creator.db.character(id)?.status === "published");
-  const publishRoom = (room: Room) =>
-    room.clients.forEach((c) => send(c, { type: "room", room: room.view }));
+  const publishRoom = (room: Room) => {
+    const message = JSON.stringify({ type: "room", room: room.view });
+    room.clients.forEach((client) => sendEncoded(client, message, true));
+  };
   const roomListMessage = () => {
     const list = [...rooms.values()]
       .filter(
@@ -146,14 +181,19 @@ export async function makeArenaServer(
     return JSON.stringify({ type: "rooms", rooms: list, online: clients.size });
   };
   let roomListCache = "";
+  let lastPublishedList = "";
   const publishList = (recipient?: Client) => {
     if (!roomListCache) roomListCache = roomListMessage();
     const encoded = roomListCache;
     if (recipient) sendEncoded(recipient, encoded);
-    else clients.forEach((client) => sendEncoded(client, encoded));
+    else if (encoded !== lastPublishedList) {
+      lastPublishedList = encoded;
+      clients.forEach((client) => sendEncoded(client, encoded));
+    }
   };
   let roomListTimer: ReturnType<typeof setTimeout> | null = null;
-  const scheduleRoomList = () => {
+  const scheduleRoomList = (room?: Room) => {
+    if (room?.private) return;
     roomListCache = "";
     if (roomListTimer) return;
     roomListTimer = setTimeout(() => {
@@ -184,7 +224,7 @@ export async function makeArenaServer(
           room.clients.forEach((c) => send(c, { type: "opponent-left" }));
         publishRoom(room);
       }
-      scheduleRoomList();
+      scheduleRoomList(room);
     }
     if (notify) send(client, { type: "left" });
   };
@@ -208,7 +248,7 @@ export async function makeArenaServer(
         ),
       );
       publishRoom(room);
-      scheduleRoomList();
+      scheduleRoomList(room);
       return;
     }
     room.clients.forEach((c) => {
@@ -223,7 +263,7 @@ export async function makeArenaServer(
       send(c, { type: "start", state: room.state!, index }),
     );
     publishRoom(room);
-    scheduleRoomList();
+    scheduleRoomList(room);
   };
 
   app.get("/api/health", (_req, res) =>
@@ -253,9 +293,9 @@ export async function makeArenaServer(
       );
       return;
     }
-    if (clients.size >= 300) {
+    if (!allowedWebSocketOrigin(request, trustProxy)) {
       socket.end(
-        "HTTP/1.1 503 Service Unavailable\r\nConnection: close\r\nContent-Length: 0\r\n\r\n",
+        "HTTP/1.1 403 Forbidden\r\nConnection: close\r\nContent-Length: 0\r\n\r\n",
         () => socket.destroy(),
       );
       return;
@@ -339,10 +379,6 @@ export async function makeArenaServer(
           error(client, "Elige un luchador y un escenario válidos.");
           return;
         }
-        if (rooms.size >= 100) {
-          error(client, "La arena está llena. Intenta de nuevo en un momento.");
-          return;
-        }
         let code: string;
         do {
           code = randomBytes(16).toString("hex").toUpperCase();
@@ -372,7 +408,7 @@ export async function makeArenaServer(
         rooms.set(code, room);
         client.room = code;
         publishRoom(room);
-        scheduleRoomList();
+        scheduleRoomList(room);
         return;
       }
       if (message.type === "join") {
@@ -402,7 +438,7 @@ export async function makeArenaServer(
         room.touched = now;
         client.room = room.view.code;
         publishRoom(room);
-        scheduleRoomList();
+        scheduleRoomList(room);
         return;
       }
       if (!current) return;
@@ -431,7 +467,7 @@ export async function makeArenaServer(
         }
         if (changed) {
           publishRoom(current);
-          scheduleRoomList();
+          scheduleRoomList(current);
         }
       }
       if (message.type === "ready" && current.view.status === "waiting") {
@@ -440,7 +476,7 @@ export async function makeArenaServer(
         if (player.ready !== message.ready) {
           player.ready = message.ready;
           publishRoom(current);
-          scheduleRoomList();
+          scheduleRoomList(current);
           if (message.ready) start(current);
         }
       }
@@ -507,10 +543,10 @@ export async function makeArenaServer(
           client.input.down = false;
         });
         stepMatch(room.state, [room.clients[0].input, room.clients[1].input]);
-        if (tick % 2 === 0 || room.state.phase === "finished")
-          room.clients.forEach((c) =>
-            send(c, { type: "state", state: room.state! }),
-          );
+        if (tick % 2 === 0 || room.state.phase === "finished") {
+          const message = JSON.stringify({ type: "state", state: room.state });
+          room.clients.forEach((client) => sendEncoded(client, message));
+        }
         if (room.state.phase === "finished") {
           room.view.status = "finished";
           room.view.players.forEach((p, index) => {
@@ -552,7 +588,9 @@ export async function makeArenaServer(
       const origin = requestSiteOrigin(req, configuredOrigin);
       res
         .type("text/plain")
-        .send(`User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}/sitemap.xml\n`);
+        .send(
+          `User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}/sitemap.xml\n`,
+        );
     });
     app.get("/sitemap.xml", (req, res) => {
       res
@@ -563,11 +601,30 @@ export async function makeArenaServer(
     if (options.production) {
       const dist = path.resolve("dist");
       const template = await readFile(path.join(dist, "index.html"), "utf8");
-      app.use(express.static(dist, { index: false }));
+      app.use(
+        express.static(dist, {
+          index: false,
+          setHeaders: (res, file) => {
+            // Vite fingerprints these files; a new build produces a new URL.
+            if (/[-\w]+-[\w-]{8}\.(?:js|css)$/.test(path.basename(file)))
+              res.setHeader(
+                "Cache-Control",
+                "public, max-age=31536000, immutable",
+              );
+          },
+        }),
+      );
       app.get("/{*path}", (req, res) => {
         res
+          .set("Cache-Control", "no-store")
           .type("html")
-          .send(renderSiteHtml(template, requestSiteOrigin(req, configuredOrigin), req.path));
+          .send(
+            renderSiteHtml(
+              template,
+              requestSiteOrigin(req, configuredOrigin),
+              res.locals.cspNonce,
+            ),
+          );
       });
     } else {
       const { createServer: createViteServer } = await import("vite");
@@ -596,9 +653,10 @@ export async function makeArenaServer(
         const html = renderSiteHtml(
           template,
           requestSiteOrigin(req, configuredOrigin),
-          req.path,
         );
-        res.type("html").send(await vite!.transformIndexHtml(req.originalUrl, html));
+        res
+          .type("html")
+          .send(await vite!.transformIndexHtml(req.originalUrl, html));
       });
     }
   }
@@ -608,21 +666,27 @@ export async function makeArenaServer(
     creator,
     clients,
     rooms,
-    close: () => closing ??= (async () => {
-      creator.stop();
-      clients.forEach((c) => c.socket.terminate());
-      // Stop accepting connections first, but retain SQLite until in-flight auth,
-      // uploads and catalog writes finish. Bound keep-alive/slow-client shutdown.
-      const closed = new Promise<void>((resolve) => http.close(() => resolve()));
-      const deadline = setTimeout(() => connections.forEach((socket) => socket.destroy()), 5_000);
-      try {
-        await vite?.close();
-        await closed;
-        await creator.close();
-      } finally {
-        clearTimeout(deadline);
-      }
-    })(),
+    close: () =>
+      (closing ??= (async () => {
+        creator.stop();
+        clients.forEach((c) => c.socket.terminate());
+        // Stop accepting connections first, but retain SQLite until in-flight auth,
+        // uploads and catalog writes finish. Bound keep-alive/slow-client shutdown.
+        const closed = new Promise<void>((resolve) =>
+          http.close(() => resolve()),
+        );
+        const deadline = setTimeout(
+          () => connections.forEach((socket) => socket.destroy()),
+          5_000,
+        );
+        try {
+          await vite?.close();
+          await closed;
+          await creator.close();
+        } finally {
+          clearTimeout(deadline);
+        }
+      })()),
   };
 }
 

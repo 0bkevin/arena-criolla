@@ -30,7 +30,7 @@ export function Portrait({
     const onVisibility = () => redraw();
     document.addEventListener("visibilitychange", onVisibility);
     reduced.addEventListener("change", onVisibility);
-    void loadSprite(fighter)
+    void loadSprite(fighter, { entrance: animated && !bust })
       .then((asset) => {
         if (disposed || !canvas.current) return;
         const node = canvas.current;

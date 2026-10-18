@@ -60,6 +60,7 @@ async function setup(
   const folder =
     dataDir || (await mkdtemp(path.join(os.tmpdir(), "arena-creator-test-")));
   const server = await makeArenaServer({
+    workshopEnabled: true,
     serveClient,
     creator: {
       dataDir: folder,

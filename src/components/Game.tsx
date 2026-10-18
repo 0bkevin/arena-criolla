@@ -299,6 +299,14 @@ export function Game(props: Props) {
     let victoryElapsed = 0;
     let victoryStarted = false;
     let finaleComplete = false;
+    let settledFrame:
+      | {
+          state: MatchState;
+          width: number;
+          height: number;
+          reducedMotion: boolean;
+        }
+      | undefined;
     const playedIntroductions = new Set<number>();
     let lastCountdown = -1;
     const motionPreference = window.matchMedia(
@@ -318,6 +326,22 @@ export function Game(props: Props) {
     const animate = (now: number) => {
       const elapsed = Math.min(100, now - last);
       last = now;
+      if (mode === "online" && remote?.current?.id === initial.id)
+        state = remote.current;
+      const finalStill =
+        state.phase === "finished" &&
+        victoryElapsed >= VICTORY_DURATION_MS &&
+        (motionPreference.matches || state.shake <= 0.3);
+      if (
+        finalStill &&
+        settledFrame?.state === state &&
+        settledFrame.width === ctx.canvas.width &&
+        settledFrame.height === ctx.canvas.height &&
+        settledFrame.reducedMotion === motionPreference.matches
+      ) {
+        raf = requestAnimationFrame(animate);
+        return;
+      }
       const dialogOpen = Boolean(document.querySelector("dialog[open]"));
       const quiet = isGameQuiet();
       setReactionsPaused(pausedRef.current || blockedRef.current || dialogOpen);
@@ -325,7 +349,6 @@ export function Game(props: Props) {
       if (!quiet && state.phase !== "finished")
         gamepads.update(inputs.current, mode === "local" ? 2 : 1);
       if (mode === "online") {
-        if (remote?.current?.id === initial.id) state = remote.current;
         if (state.phase !== "finished" && now - lastSend > 45) {
           callbacks.current.onInput?.(inputs.current[0]);
           lastSend = now;
@@ -532,6 +555,14 @@ export function Game(props: Props) {
         camera,
         victoryElapsed,
       );
+      settledFrame = finalStill
+        ? {
+            state,
+            width: ctx.canvas.width,
+            height: ctx.canvas.height,
+            reducedMotion: motionPreference.matches,
+          }
+        : undefined;
       if (
         now - lastUI > 80 ||
         (state.phase === "finished" && !resultSent.current)
@@ -551,9 +582,16 @@ export function Game(props: Props) {
     initAudio();
     startAmbience(initial.stage);
     preloadReactions();
+    const invalidateSettledFrame = () => {
+      settledFrame = undefined;
+    };
+    document.addEventListener("visibilitychange", invalidateSettledFrame);
+    ctx.canvas.addEventListener("contextrestored", invalidateSettledFrame);
     raf = requestAnimationFrame(animate);
     return () => {
       cancelAnimationFrame(raf);
+      document.removeEventListener("visibilitychange", invalidateSettledFrame);
+      ctx.canvas.removeEventListener("contextrestored", invalidateSettledFrame);
       stopReactions();
       stopAmbience();
       stopVictoryMusic();

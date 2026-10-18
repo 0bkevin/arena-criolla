@@ -63,12 +63,22 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
   assert.ok(structured);
   assert.equal(JSON.parse(structured[1]).url, "https://arena.example/");
 
-  const creator = await (await fetch(`${base}/create?room=PRIVATE`)).text();
-  assert.ok(
-    creator.includes(
-      '<link rel="canonical" href="https://arena.example/create"',
-    ),
-  );
+  for (const route of [
+    "/create",
+    "/create/",
+    "/create/saved?room=PRIVATE",
+    "/CREATE?room=PRIVATE",
+  ]) {
+    const legacy = await fetch(base + route, { redirect: "manual" });
+    assert.equal(legacy.status, 302);
+    assert.equal(legacy.headers.get("location"), "/");
+    assert.equal(legacy.headers.get("cache-control"), "no-store");
+    const home = await (await fetch(base + route)).text();
+    assert.ok(
+      home.includes('<link rel="canonical" href="https://arena.example/"'),
+    );
+    assert.ok(!home.includes("arena.example/create"));
+  }
   const robots = await (await fetch(`${base}/robots.txt`)).text();
   assert.ok(robots.includes("Sitemap: https://arena.example/sitemap.xml"));
   const sitemap = await fetch(`${base}/sitemap.xml`);

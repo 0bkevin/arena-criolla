@@ -1,0 +1,5 @@
+# Import into the host's existing Caddyfile. The app port stays on loopback.
+arena.kevinbravo.com, arenacriolla.161-153-114-230.sslip.io {
+    encode zstd gzip
+    reverse_proxy 127.0.0.1:35173
+}

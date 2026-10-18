@@ -9,6 +9,7 @@ import { makeArenaServer } from "../server/index";
 async function accountServer(secureCookies = false) {
   const folder = await mkdtemp(path.join(os.tmpdir(), "arena-accounts-"));
   const server = await makeArenaServer({
+    workshopEnabled: true,
     serveClient: false,
     creator: { dataDir: folder, provider: null, secureCookies },
   });
@@ -309,6 +310,7 @@ test("new accounts and their sessions survive restarting the server", async () =
     const cookie = f.cookie(created);
     await f.server.close();
     second = await makeArenaServer({
+      workshopEnabled: true,
       serveClient: false,
       creator: { dataDir: f.folder, provider: null, secureCookies: false },
     });
