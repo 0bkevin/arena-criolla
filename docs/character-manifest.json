@@ -2710,7 +2710,7 @@
     "enrique": {
       "id": "enrique",
       "realName": "Enrique Rivas",
-      "sprite": "enrique-v2",
+      "sprite": "enrique-v3",
       "portraitReference": "assets/references/founders/enrique/enrique-fina-official.webp",
       "portrayal": "Enrique Rivas, cofundador y ceo de fina. Cofundador de Fina. Ordena la arena con dos paquetes de balance separados; su chaqueta violeta recuerda la identidad de la plataforma. Las poses, gestos, efectos y ataques son adaptaciones ficticias de videojuego.",
       "sources": [
@@ -2768,12 +2768,22 @@
         "durationMs": 3500,
         "playsOnce": true,
         "profile": "src/game/victories-founders.ts"
+      },
+      "styleReview": {
+        "checkedAt": "2026-10-18",
+        "version": 3,
+        "styleReference": "public/assets/renny-v3.webp",
+        "photoReference": "assets/references/founders/enrique/enrique-fina-official.webp",
+        "review": "docs/founders/style-v3/review.md",
+        "packedWith": "scripts/pack-founder-style-v3.ts",
+        "runtimeEncoding": "lossless WebP",
+        "notes": "Fresh photo-referenced illustrated artwork, individual compact ready stance, shared eight-pose order and transparent padded cells. Moves and choreography preserved."
       }
     },
     "jesus": {
       "id": "jesus",
       "realName": "Jesús Castillo",
-      "sprite": "jesus-v2",
+      "sprite": "jesus-v3",
       "portraitReference": "assets/references/founders/jesus/jesus-kontigo-official.webp",
       "portrayal": "Jesús Castillo, cofundador y ceo de kontigo. Cofundador de Kontigo. Gorra naranja y polo oscuro, como en sus entrevistas. Envía un aro de transferencia que regresa y exige medir el bloqueo. Las poses, gestos, efectos y ataques son adaptaciones ficticias de videojuego.",
       "sources": [
@@ -2827,12 +2837,22 @@
         "durationMs": 3500,
         "playsOnce": true,
         "profile": "src/game/victories-founders.ts"
+      },
+      "styleReview": {
+        "checkedAt": "2026-10-18",
+        "version": 3,
+        "styleReference": "public/assets/renny-v3.webp",
+        "photoReference": "assets/references/founders/jesus/jesus-kontigo-official.webp",
+        "review": "docs/founders/style-v3/review.md",
+        "packedWith": "scripts/pack-founder-style-v3.ts",
+        "runtimeEncoding": "lossless WebP",
+        "notes": "Fresh photo-referenced illustrated artwork, individual compact ready stance, shared eight-pose order and transparent padded cells. Moves and choreography preserved."
       }
     },
     "carlos": {
       "id": "carlos",
       "realName": "Carlos García Ottati",
-      "sprite": "carlos-v2",
+      "sprite": "carlos-v3",
       "portraitReference": "assets/references/founders/carlos/01-kavak-ceo.webp",
       "portrayal": "Carlos García Ottati, fundador y ceo de kavak. Fundador de Kavak. Cabello castaño hacia atrás y chaqueta oscura de taller. Acelera en una embestida corta que termina en un impacto firme. Las poses, gestos, efectos y ataques son adaptaciones ficticias de videojuego.",
       "sources": [
@@ -2890,12 +2910,22 @@
         "durationMs": 3500,
         "playsOnce": true,
         "profile": "src/game/victories-founders.ts"
+      },
+      "styleReview": {
+        "checkedAt": "2026-10-18",
+        "version": 3,
+        "styleReference": "public/assets/renny-v3.webp",
+        "photoReference": "assets/references/founders/carlos/01-kavak-ceo.webp",
+        "review": "docs/founders/style-v3/review.md",
+        "packedWith": "scripts/pack-founder-style-v3.ts",
+        "runtimeEncoding": "lossless WebP",
+        "notes": "Fresh photo-referenced illustrated artwork, individual compact ready stance, shared eight-pose order and transparent padded cells. Moves and choreography preserved."
       }
     },
     "victor": {
       "id": "victor",
       "realName": "Víctor Cárdenas Codriansky",
-      "sprite": "victor-v2",
+      "sprite": "victor-v3",
       "portraitReference": "assets/references/founders/victor/01-slash-executive.jpg",
       "portrayal": "Víctor Cárdenas Codriansky, cofundador y ceo de slash. Cofundador de Slash. Camiseta negra y cabello corto, como en sus entrevistas. Acorta la distancia con un paso instantáneo y un corte diagonal de luz. Las poses, gestos, efectos y ataques son adaptaciones ficticias de videojuego.",
       "sources": [
@@ -2953,12 +2983,22 @@
         "durationMs": 3500,
         "playsOnce": true,
         "profile": "src/game/victories-founders.ts"
+      },
+      "styleReview": {
+        "checkedAt": "2026-10-18",
+        "version": 3,
+        "styleReference": "public/assets/renny-v3.webp",
+        "photoReference": "assets/references/founders/victor/01-slash-executive.jpg",
+        "review": "docs/founders/style-v3/review.md",
+        "packedWith": "scripts/pack-founder-style-v3.ts",
+        "runtimeEncoding": "lossless WebP",
+        "notes": "Fresh photo-referenced illustrated artwork, individual compact ready stance, shared eight-pose order and transparent padded cells. Moves and choreography preserved."
       }
     },
     "juan": {
       "id": "juan",
       "realName": "Juan José Pocaterra Mendoza",
-      "sprite": "juan-v2",
+      "sprite": "juan-v3",
       "portraitReference": "assets/references/founders/juan/juan_linkedin_portrait.jpg",
       "portrayal": "Juan José Pocaterra Mendoza, cofundador de Vikua y CEO de La Wawa. Cabello oscuro ondulado corto, barba recortada y camisa azul clara, basados en tres retratos y fotos de eventos verificados. Sus gestos y ataques de red urbana son adaptaciones ficticias de videojuego.",
       "sources": [
@@ -3025,6 +3065,16 @@
         "durationMs": 3500,
         "playsOnce": true,
         "profile": "src/game/victories-founders.ts"
+      },
+      "styleReview": {
+        "checkedAt": "2026-10-18",
+        "version": 3,
+        "styleReference": "public/assets/renny-v3.webp",
+        "photoReference": "assets/references/founders/juan/juan_linkedin_portrait.jpg",
+        "review": "docs/founders/style-v3/review.md",
+        "packedWith": "scripts/pack-founder-style-v3.ts",
+        "runtimeEncoding": "lossless WebP",
+        "notes": "Fresh photo-referenced illustrated artwork, individual compact ready stance, shared eight-pose order and transparent padded cells. Moves and choreography preserved."
       }
     }
   },

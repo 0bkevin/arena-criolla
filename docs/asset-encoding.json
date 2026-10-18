@@ -300,33 +300,38 @@
     "saved": "37%"
   },
   {
-    "name": "carlos-v2.png",
-    "sourceBytes": 1280059,
-    "outputBytes": 821450,
-    "saved": "36%"
+    "name": "carlos-v3.png",
+    "sourceBytes": 1467336,
+    "outputBytes": 836288,
+    "saved": "43%",
+    "lossless": true
   },
   {
-    "name": "victor-v2.png",
-    "sourceBytes": 1218388,
-    "outputBytes": 805096,
-    "saved": "34%"
+    "name": "victor-v3.png",
+    "sourceBytes": 1467655,
+    "outputBytes": 833624,
+    "saved": "43%",
+    "lossless": true
   },
   {
-    "name": "enrique-v2.png",
-    "sourceBytes": 1382117,
-    "outputBytes": 921254,
-    "saved": "33%"
+    "name": "enrique-v3.png",
+    "sourceBytes": 1544059,
+    "outputBytes": 881328,
+    "saved": "43%",
+    "lossless": true
   },
   {
-    "name": "jesus-v2.png",
-    "sourceBytes": 1193839,
-    "outputBytes": 776320,
-    "saved": "35%"
+    "name": "jesus-v3.png",
+    "sourceBytes": 1346511,
+    "outputBytes": 764046,
+    "saved": "43%",
+    "lossless": true
   },
   {
-    "name": "juan-v2.png",
-    "sourceBytes": 1292158,
-    "outputBytes": 864174,
-    "saved": "33%"
+    "name": "juan-v3.png",
+    "sourceBytes": 1417427,
+    "outputBytes": 806558,
+    "saved": "43%",
+    "lossless": true
   }
 ]
