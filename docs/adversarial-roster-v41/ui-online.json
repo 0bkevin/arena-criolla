@@ -1,0 +1,541 @@
+{
+  "before": {
+    "host": {
+      "id": "d2da194e-11e8-4d20-b33f-0f0875aa96a1",
+      "stage": "poliedro",
+      "phase": "playing",
+      "tick": 1781,
+      "players": [
+        {
+          "id": "javier",
+          "hp": 100,
+          "stocks": 2,
+          "energy": 79.48499999999567,
+          "x": 330,
+          "y": 554,
+          "facing": 1,
+          "lastActions": {
+            "jump": 0,
+            "light": 0,
+            "heavy": 0,
+            "special": 0,
+            "dash": 0,
+            "super": 0
+          },
+          "history": []
+        },
+        {
+          "id": "dayana",
+          "hp": 100,
+          "stocks": 2,
+          "energy": 79.48499999999567,
+          "x": 750,
+          "y": 554,
+          "facing": -1,
+          "lastActions": {
+            "jump": 0,
+            "light": 0,
+            "heavy": 0,
+            "special": 0,
+            "dash": 0,
+            "super": 0
+          },
+          "history": []
+        }
+      ]
+    },
+    "guest": {
+      "id": "d2da194e-11e8-4d20-b33f-0f0875aa96a1",
+      "stage": "poliedro",
+      "phase": "playing",
+      "tick": 1891,
+      "players": [
+        {
+          "id": "javier",
+          "hp": 100,
+          "stocks": 2,
+          "energy": 83.33499999999529,
+          "x": 330,
+          "y": 554,
+          "facing": 1,
+          "lastActions": {
+            "jump": 0,
+            "light": 0,
+            "heavy": 0,
+            "special": 0,
+            "dash": 0,
+            "super": 0
+          },
+          "history": []
+        },
+        {
+          "id": "dayana",
+          "hp": 100,
+          "stocks": 2,
+          "energy": 83.33499999999529,
+          "x": 750,
+          "y": 554,
+          "facing": -1,
+          "lastActions": {
+            "jump": 0,
+            "light": 0,
+            "heavy": 0,
+            "special": 0,
+            "dash": 0,
+            "super": 0
+          },
+          "history": []
+        }
+      ]
+    }
+  },
+  "hostInput": {
+    "index": 0,
+    "sampledAt": 1792360910857.7,
+    "matchId": "d2da194e-11e8-4d20-b33f-0f0875aa96a1",
+    "stage": "poliedro",
+    "tick": 3575,
+    "phase": "playing",
+    "specialReceiptMs": 89.40000009536743,
+    "before": {
+      "x": 330,
+      "energy": 100
+    },
+    "after": {
+      "id": "javier",
+      "x": 330,
+      "y": 554,
+      "hp": 100,
+      "hits": 0,
+      "energy": 81.40499999999938,
+      "lastActions": {
+        "jump": 2,
+        "light": 2,
+        "heavy": 2,
+        "special": 2,
+        "dash": 0,
+        "super": 0
+      },
+      "history": [
+        {
+          "action": "special",
+          "tick": 3392
+        },
+        {
+          "action": "light",
+          "tick": 3514
+        },
+        {
+          "action": "heavy",
+          "tick": 3539
+        }
+      ]
+    },
+    "finite": true
+  },
+  "guestInput": {
+    "index": 1,
+    "sampledAt": 1792360914059.5999,
+    "matchId": "d2da194e-11e8-4d20-b33f-0f0875aa96a1",
+    "stage": "poliedro",
+    "tick": 3771,
+    "phase": "playing",
+    "specialReceiptMs": 101.2999997138977,
+    "before": {
+      "x": 750,
+      "energy": 100
+    },
+    "after": {
+      "id": "dayana",
+      "x": 750,
+      "y": 554,
+      "hp": 100,
+      "hits": 0,
+      "energy": 81.54499999999936,
+      "lastActions": {
+        "jump": 1,
+        "light": 1,
+        "heavy": 1,
+        "special": 1,
+        "dash": 0,
+        "super": 0
+      },
+      "history": [
+        {
+          "action": "special",
+          "tick": 3584
+        },
+        {
+          "action": "light",
+          "tick": 3707
+        },
+        {
+          "action": "heavy",
+          "tick": 3732
+        }
+      ]
+    },
+    "finite": true
+  },
+  "after": {
+    "host": {
+      "sampledAt": 1792360914107.5,
+      "id": "d2da194e-11e8-4d20-b33f-0f0875aa96a1",
+      "stage": "poliedro",
+      "phase": "playing",
+      "tick": 3769,
+      "players": [
+        {
+          "id": "javier",
+          "hp": 100,
+          "stocks": 2,
+          "energy": 88.19499999999871,
+          "x": 330,
+          "y": 554,
+          "facing": 1,
+          "lastActions": {
+            "jump": 2,
+            "light": 2,
+            "heavy": 2,
+            "special": 2,
+            "dash": 0,
+            "super": 0
+          },
+          "history": [
+            {
+              "action": "special",
+              "tick": 3392
+            },
+            {
+              "action": "light",
+              "tick": 3514
+            },
+            {
+              "action": "heavy",
+              "tick": 3539
+            }
+          ]
+        },
+        {
+          "id": "dayana",
+          "hp": 100,
+          "stocks": 2,
+          "energy": 81.47499999999937,
+          "x": 750,
+          "y": 554,
+          "facing": -1,
+          "lastActions": {
+            "jump": 1,
+            "light": 1,
+            "heavy": 1,
+            "special": 1,
+            "dash": 0,
+            "super": 0
+          },
+          "history": [
+            {
+              "action": "special",
+              "tick": 3584
+            },
+            {
+              "action": "light",
+              "tick": 3707
+            },
+            {
+              "action": "heavy",
+              "tick": 3732
+            }
+          ]
+        }
+      ]
+    },
+    "guest": {
+      "sampledAt": 1792360914159.0999,
+      "id": "d2da194e-11e8-4d20-b33f-0f0875aa96a1",
+      "stage": "poliedro",
+      "phase": "playing",
+      "tick": 3775,
+      "players": [
+        {
+          "id": "javier",
+          "hp": 100,
+          "stocks": 2,
+          "energy": 88.4049999999987,
+          "x": 330,
+          "y": 554,
+          "facing": 1,
+          "lastActions": {
+            "jump": 2,
+            "light": 2,
+            "heavy": 2,
+            "special": 2,
+            "dash": 0,
+            "super": 0
+          },
+          "history": [
+            {
+              "action": "special",
+              "tick": 3392
+            },
+            {
+              "action": "light",
+              "tick": 3514
+            },
+            {
+              "action": "heavy",
+              "tick": 3539
+            }
+          ]
+        },
+        {
+          "id": "dayana",
+          "hp": 100,
+          "stocks": 2,
+          "energy": 81.68499999999935,
+          "x": 750,
+          "y": 554,
+          "facing": -1,
+          "lastActions": {
+            "jump": 1,
+            "light": 1,
+            "heavy": 1,
+            "special": 1,
+            "dash": 0,
+            "super": 0
+          },
+          "history": [
+            {
+              "action": "special",
+              "tick": 3584
+            },
+            {
+              "action": "light",
+              "tick": 3707
+            },
+            {
+              "action": "heavy",
+              "tick": 3732
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "contact": {
+    "before": [
+      {
+        "x": 494.29999999564694,
+        "hp": 100
+      },
+      {
+        "x": 571.309831175026,
+        "hp": 100
+      }
+    ],
+    "after": [
+      {
+        "x": 494.30000001297026,
+        "hp": 100,
+        "hits": 1
+      },
+      {
+        "x": 792.6992345855907,
+        "hp": 87.0117,
+        "hits": 0
+      }
+    ],
+    "phase": "playing",
+    "tick": 5026
+  },
+  "result": {
+    "id": "d2da194e-11e8-4d20-b33f-0f0875aa96a1",
+    "winner": 0,
+    "progress": {
+      "wins": {
+        "diablo": 1,
+        "javier": 1
+      },
+      "played": 6,
+      "bestCombo": 4,
+      "recent": [
+        {
+          "fighter": "javier",
+          "rival": "dayana",
+          "won": true,
+          "date": "2026-10-18T22:02:29.784Z"
+        },
+        {
+          "fighter": "carolina",
+          "rival": "vallenilla",
+          "won": false,
+          "date": "2026-10-18T21:57:18.783Z"
+        },
+        {
+          "fighter": "carolina",
+          "rival": "vallenilla",
+          "won": false,
+          "date": "2026-10-18T21:55:43.493Z"
+        },
+        {
+          "fighter": "lorenzo",
+          "rival": "diablo",
+          "won": false,
+          "date": "2026-10-18T21:55:23.147Z"
+        },
+        {
+          "fighter": "nacho",
+          "rival": "capriles",
+          "won": false,
+          "date": "2026-10-18T21:54:39.839Z"
+        },
+        {
+          "fighter": "javier",
+          "rival": "llorona",
+          "won": false,
+          "date": "2026-10-18T21:52:37.799Z"
+        }
+      ]
+    }
+  },
+  "rematch": {
+    "id": "5c907102-7ab5-43f0-b048-bf612c39542d",
+    "phase": "intro",
+    "configs": [
+      {
+        "id": "4d9d1f2c-f198-48bf-9d7d-04b531fed70c",
+        "name": "QA Host Javier",
+        "fighter": "javier",
+        "ready": true,
+        "wins": 1
+      },
+      {
+        "id": "52044da4-984e-4310-bbdf-30f4356ba1e8",
+        "name": "QA Guest Dayana",
+        "fighter": "dayana",
+        "ready": true,
+        "wins": 0
+      }
+    ],
+    "stage": "poliedro"
+  },
+  "touch": {
+    "matchId": "5c907102-7ab5-43f0-b048-bf612c39542d",
+    "stage": "poliedro",
+    "phase": "playing",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "input": "simulated touch PointerEvents through production TouchControls",
+    "before": {
+      "x": 750,
+      "energy": 57.819999999997776,
+      "lastActions": {
+        "jump": 0,
+        "light": 0,
+        "heavy": 0,
+        "special": 0,
+        "dash": 0,
+        "super": 0
+      }
+    },
+    "after": {
+      "x": 495.2551859129035,
+      "y": 554,
+      "energy": 36.6699999999974,
+      "lastActions": {
+        "jump": 1,
+        "light": 0,
+        "heavy": 0,
+        "special": 1,
+        "dash": 0,
+        "super": 0
+      },
+      "history": [
+        {
+          "action": "special",
+          "tick": 1176
+        }
+      ]
+    },
+    "pressed": 0,
+    "assertions": {
+      "movedLeft": true,
+      "jumped": true,
+      "special": true,
+      "released": true
+    }
+  },
+  "notes": [
+    "State snapshots on separate tabs are sampled at different times, not synchronously.",
+    "Receipt times measure input-to-observed-UI on local loopback; they are not internet latency benchmarks.",
+    "Touch events were simulated in a native browser viewport, not physical hardware."
+  ],
+  "disconnect": {
+    "room": "CE2737D1AF17D5978AAC1E11D5AF8EF5",
+    "players": "QA Host Javier (tú) · ELIGIENDOEsperando a tu pana…Salir de la sala",
+    "game": false
+  },
+  "rejoin": {
+    "id": "9daabd26-a359-49ad-98c0-ccd0e5eb9bdc",
+    "stage": "poliedro",
+    "phase": "playing",
+    "before": [
+      {
+        "id": "4d9d1f2c-f198-48bf-9d7d-04b531fed70c",
+        "name": "QA Host Javier",
+        "fighter": "javier",
+        "ready": true,
+        "wins": 1
+      },
+      {
+        "id": "9e78e8c9-00c5-4fb5-9b56-0b32f9780518",
+        "name": "QA Rejoin Nacho",
+        "fighter": "nacho",
+        "ready": true,
+        "wins": 0
+      }
+    ],
+    "after": [
+      {
+        "id": "javier",
+        "energy": 37.37999999999977,
+        "history": [],
+        "lastActions": {
+          "jump": 0,
+          "light": 0,
+          "heavy": 0,
+          "special": 0,
+          "dash": 0,
+          "super": 0
+        }
+      },
+      {
+        "id": "nacho",
+        "energy": 12.37999999999995,
+        "history": [
+          {
+            "action": "special",
+            "tick": 527
+          }
+        ],
+        "lastActions": {
+          "jump": 0,
+          "light": 0,
+          "heavy": 0,
+          "special": 1,
+          "dash": 0,
+          "super": 0
+        }
+      }
+    ],
+    "specialReceived": true,
+    "finite": true
+  },
+  "recording": {
+    "file": "docs/adversarial-roster-v41/bolivar-charge-review.mp4",
+    "durationSeconds": 20,
+    "audio": false,
+    "source": "T3 native browser recording; trimmed from the original 67-second capture."
+  }
+}
