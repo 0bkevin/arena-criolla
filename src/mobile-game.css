@@ -66,6 +66,7 @@ body:has(.game-page.is-touch) {
   overflow: hidden;
   background: #081322;
   user-select: none;
+  container: play / size;
 }
 .game-page.is-touch .game-topline {
   position: absolute;
@@ -273,6 +274,15 @@ body:has(.game-page.is-touch) {
 .game-page.is-touch .touch-dash {
   grid-column: 1;
   grid-row: 3;
+}
+/* Query the visible play area, including space taken by mobile browser bars. */
+@container play (max-height: 280px) {
+  .game-page.is-touch .touch-down {
+    grid-row: 2;
+  }
+  .game-page.is-touch .touch-dash {
+    grid-row: 1;
+  }
 }
 .game-page.is-touch .touch-block {
   grid-column: 1;
