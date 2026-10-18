@@ -166,14 +166,19 @@ export async function makeArenaServer(
     return JSON.stringify({ type: "rooms", rooms: list, online: clients.size });
   };
   let roomListCache = "";
+  let lastPublishedList = "";
   const publishList = (recipient?: Client) => {
     if (!roomListCache) roomListCache = roomListMessage();
     const encoded = roomListCache;
     if (recipient) sendEncoded(recipient, encoded);
-    else clients.forEach((client) => sendEncoded(client, encoded));
+    else if (encoded !== lastPublishedList) {
+      lastPublishedList = encoded;
+      clients.forEach((client) => sendEncoded(client, encoded));
+    }
   };
   let roomListTimer: ReturnType<typeof setTimeout> | null = null;
-  const scheduleRoomList = () => {
+  const scheduleRoomList = (room?: Room) => {
+    if (room?.private) return;
     roomListCache = "";
     if (roomListTimer) return;
     roomListTimer = setTimeout(() => {
@@ -204,7 +209,7 @@ export async function makeArenaServer(
           room.clients.forEach((c) => send(c, { type: "opponent-left" }));
         publishRoom(room);
       }
-      scheduleRoomList();
+      scheduleRoomList(room);
     }
     if (notify) send(client, { type: "left" });
   };
@@ -228,7 +233,7 @@ export async function makeArenaServer(
         ),
       );
       publishRoom(room);
-      scheduleRoomList();
+      scheduleRoomList(room);
       return;
     }
     room.clients.forEach((c) => {
@@ -243,7 +248,7 @@ export async function makeArenaServer(
       send(c, { type: "start", state: room.state!, index }),
     );
     publishRoom(room);
-    scheduleRoomList();
+    scheduleRoomList(room);
   };
 
   app.get("/api/health", (_req, res) =>
@@ -381,7 +386,7 @@ export async function makeArenaServer(
         rooms.set(code, room);
         client.room = code;
         publishRoom(room);
-        scheduleRoomList();
+        scheduleRoomList(room);
         return;
       }
       if (message.type === "join") {
@@ -411,7 +416,7 @@ export async function makeArenaServer(
         room.touched = now;
         client.room = room.view.code;
         publishRoom(room);
-        scheduleRoomList();
+        scheduleRoomList(room);
         return;
       }
       if (!current) return;
@@ -440,7 +445,7 @@ export async function makeArenaServer(
         }
         if (changed) {
           publishRoom(current);
-          scheduleRoomList();
+          scheduleRoomList(current);
         }
       }
       if (message.type === "ready" && current.view.status === "waiting") {
@@ -449,7 +454,7 @@ export async function makeArenaServer(
         if (player.ready !== message.ready) {
           player.ready = message.ready;
           publishRoom(current);
-          scheduleRoomList();
+          scheduleRoomList(current);
           if (message.ready) start(current);
         }
       }
