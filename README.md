@@ -8,7 +8,7 @@ El repositorio incluye los assets necesarios para jugar en `public/`, los PNG ed
 
 Las fotografías, entrevistas y otros medios descargados para investigación, las voces retiradas y las miniaturas de referencia quedan fuera de esta publicación. Los informes históricos conservan sus enlaces y rutas de investigación; esas rutas locales pueden no existir en un clon público. Los secretos y los datos privados del taller tampoco se distribuyen.
 
-Juego de pelea en español con 46 personajes. Conserva estas 15 figuras venezolanas: Vicente Zavarce, Pedro Vallenilla, Javier Hala Madrid, Capriles Radonski, Renny Ottolina, Juan Vicente Gómez, Simón Díaz, Er Conde del Guácharo, Emilio Lovera, Maite Delgado, Óscar D’León, El Puma, Luis Chataing, George Harris y María Corina Machado. Se suman Alí Primera, Gualberto Ibarreto, Reynaldo Armas, Gustavo Dudamel, Danny Ocean, Nacho, Daniel Sarcos, Yordano, Lila Morillo, Rummy Olivo, Chiquinquirá Delgado, Norkys Batista, Gabriela Spanic, Amanda Gutiérrez, Lele Pons y Giuseppe Gangi. También se incorporan Enrique Rivas (Fina), Jesús Castillo (Kontigo), Carlos García Ottati (Kavak), Víctor Cárdenas (Slash) y Juan José Pocaterra (Vikua y La Wawa). También están El Silbón, La Llorona, La Sayona, María Lionza, Florentino, El Diablo de los Llanos, Doctor Knoche, El Momoy, Tío Tigre y Tío Conejo. Combina vida, bloqueo y combos con plataformas, doble salto, empujones y eliminación por caída.
+Juego de pelea en español con 51 personajes. Conserva estas 15 figuras venezolanas: Vicente Zavarce, Pedro Vallenilla, Javier Hala Madrid, Capriles Radonski, Renny Ottolina, Juan Vicente Gómez, Simón Díaz, Er Conde del Guácharo, Emilio Lovera, Maite Delgado, Óscar D’León, El Puma, Luis Chataing, George Harris y María Corina Machado. Se suman Alí Primera, Gualberto Ibarreto, Reynaldo Armas, Gustavo Dudamel, Danny Ocean, Nacho, Daniel Sarcos, Yordano, Lila Morillo, Rummy Olivo, Chiquinquirá Delgado, Norkys Batista, Gabriela Spanic, Amanda Gutiérrez, Lele Pons y Giuseppe Gangi. También se incorporan Enrique Rivas (Fina), Jesús Castillo (Kontigo), Carlos García Ottati (Kavak), Víctor Cárdenas (Slash) y Juan José Pocaterra (Vikua y La Wawa). Se incorporan Lorenzo Mendoza, Carolina Herrera, Dayana Mendoza, Simón Bolívar y Édgar Ramírez. También están El Silbón, La Llorona, La Sayona, María Lionza, Florentino, El Diablo de los Llanos, Doctor Knoche, El Momoy, Tío Tigre y Tío Conejo. Combina vida, bloqueo y combos con plataformas, doble salto, empujones y eliminación por caída.
 
 ## Jugar y desarrollar
 
@@ -119,6 +119,28 @@ docker run --rm -p 5173:5173 --env-file .env -v arena-data:/app/data arena-criol
 
 Las salas viven en memoria, expiran por inactividad y se eliminan al quedar vacías. Reiniciar el servidor cierra las partidas existentes. Esta versión usa un único proceso; persiste cuentas y personajes en SQLite; no incluye ranking, espectadores, emparejamiento competitivo, rollback ni escalado entre instancias. La simulación de combate corre en el servidor a 60 Hz y envía estados a 30 Hz. Los resultados y movimientos se resuelven allí; los desbloqueos iniciales proceden del progreso local de cada invitado y no se consideran verificables para un futuro ranking.
 
+## Nuevos iconos y correcciones v39
+
+Lorenzo Mendoza, Carolina Herrera, Dayana Mendoza, Simón Bolívar y Édgar Ramírez tienen ocho poses, entrada, celebración, tres combos y especial propio. Sus mecánicas incluyen proyectiles que ralentizan, reflejo de proyectiles, pulsos expansivos, una carga y una contra frontal. Capriles recibe un acabado ilustrado consistente con el elenco y Javier Hala Madrid recibe una cabeza menor y un cuerpo mejor proporcionado; ambos tienen entradas redibujadas. Se conservan sus habilidades anteriores.
+
+La [revisión individual y los assets](docs/roster-expansion-v39/review.md), las [fuentes primarias](docs/roster-expansion-v39/research.md), los [prompts](docs/roster-expansion-v39/prompts.json) y la [evidencia de ejecución](docs/roster-expansion-v39/runtime-qa.json) documentan el trabajo. Los 51 pares de atlas pasan validación y la suite incluye 731 pruebas, con combates deterministas y comprobaciones individuales de los siete personajes revisados.
+
+## Parecidos y uniforme Vinotinto v40
+
+Javier Hala Madrid y Nacho tienen nuevos sprites de combate y entrada basados en referencias de octubre y mayo de 2026. Dayana Mendoza lleva el uniforme Vinotinto solicitado, inspirado en la camiseta oficial de 2026. Los tres mantienen la ilustración del elenco y proporciones adultas.
+
+La [revisión y las fuentes individuales](docs/identity-v40/review.md), los [prompts reproducibles](docs/identity-v40/prompts.json) y la [evidencia de ejecución](docs/identity-v40/runtime-qa.json) incluyen la comparación antes/después. Pasan 737 pruebas, los 51 pares de atlas y la compilación de producción.
+
+## Revisión adversarial interactiva v41
+
+Los ocho personajes recientes se probaron contra rivales distintos en CPU, local y multijugador, cubriendo los nueve escenarios. Se corrigió la pose de la carga de Bolívar y se añadieron diez pruebas adversariales de combate, renderizado y WebSocket. La suite completa pasa con 747 tests. El [informe con matriz, límites y evidencia](docs/adversarial-roster-v41/report.md) incluye la revancha, el reingreso a una sala y controles táctiles simulados.
+
+## Apariencia final de Javier y Nacho v42/v43
+
+La versión elegida de Javier Hala Madrid usa la fotografía aportada por el usuario: rostro sin barba, copete alto, sonrisa amplia y camiseta azul marino. Las poses de combate y entrada se generaron en pares para conservar su identidad; se corrigieron la alternancia de carrera y la orientación de la reacción al golpe. Nacho usa el retrato de corte rapado y barba corta; Dayana conserva el uniforme Vinotinto.
+
+La [revisión final de Javier](docs/identity-v43/review.md) y la [revisión de Nacho](docs/identity-v42/review.md) conservan prompts, fuentes seleccionadas, atlas y evidencia de ejecución. Las cifras de pruebas en los informes v39/v40/v41 corresponden a sus revisiones históricas; CI valida el estado integrado actual.
+
 ## Nuevos fundadores y celebraciones
 
 Los cinco nuevos personajes reúnen las seis empresas solicitadas: Juan José Pocaterra representa a Vikua y La Wawa. Para La Wawa se eligió la referencia de CEO actual tras la aclaración del usuario; las fuentes recientes lo presentan como CEO y WEF lo denomina presidente. Mafe Vera figura en la investigación como cofundadora y ex CEO, sin personaje jugable. La evidencia y las diferencias de fechas/cargos están en [investigación de Vikua y La Wawa](docs/founders/research-vikua-wawa.md). Las otras fichas se apoyan en [Fina y Kontigo](docs/founders/research-fina-kontigo.md) y [Kavak y Slash](docs/founders/research-kavak-slash.md).
@@ -127,7 +149,7 @@ Cada fundador tiene ocho poses transparentes, entrada propia, especial distinto 
 
 La [revisión de estilo v3](docs/founders/style-v3/review.md) reemplaza los cinco atlas originales por dibujos nuevos basados en los retratos reales y en el estilo ilustrado de Renny. Cada fundador conserva su ropa, especial y animaciones, con una postura inicial más compacta y rasgos menos genéricos. Los PNG de 2048×1024 y los WebP sin pérdida contienen ocho siluetas completas, separadas y alineadas. Los prompts, fuentes, originales generados y auditorías de empaquetado quedan conservados; `scripts/pack-founder-style-v3.ts` permite reproducir el empaquetado. La galería de fundadores utiliza el mismo cargador y dibujado que el juego.
 
-Los 46 luchadores muestran una celebración individual de 3,5 segundos antes del resultado: música original de victoria, gesto del ganador y breve reacción del derrotado, visible incluso tras una caída fuera de la arena. Se respetan silencio, movimiento reducido, pestaña oculta y limpieza al salir o reiniciar.
+Los 51 luchadores muestran una celebración individual de 3,5 segundos antes del resultado: música original de victoria, gesto del ganador y breve reacción del derrotado, visible incluso tras una caída fuera de la arena. Se respetan silencio, movimiento reducido, pestaña oculta y limpieza al salir o reiniciar.
 
 ## Revisión individual del elenco v28
 
