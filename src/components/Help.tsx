@@ -1,102 +1,240 @@
-import { Gamepad2, Keyboard, Smartphone, Swords, Zap } from "lucide-react";
+import { useState } from "react";
+import { ChevronDown, Gamepad2, Keyboard, Smartphone } from "lucide-react";
+import { hasTouchInput } from "../game/mobile";
 import { Modal } from "./Modal";
+import "../help.css";
+
+type Device = "keyboard" | "touch" | "gamepad";
+
+const devices = [
+  { id: "keyboard", label: "Teclado", icon: Keyboard },
+  { id: "touch", label: "Teléfono", icon: Smartphone },
+  { id: "gamepad", label: "Mando", icon: Gamepad2 },
+] as const;
+
+const controls = [
+  {
+    action: "Mover",
+    first: ["A", "D"],
+    second: ["←", "→"],
+    touch: "Flechas",
+    gamepad: "Stick / cruceta",
+  },
+  {
+    action: "Saltar",
+    note: "Puedes saltar dos veces",
+    first: ["W"],
+    second: ["↑"],
+    touch: "Saltar",
+    gamepad: "A",
+  },
+  {
+    action: "Bajar de plataforma",
+    first: ["S"],
+    second: ["↓"],
+    touch: "Bajar",
+    gamepad: "Stick ↓",
+  },
+  {
+    action: "Bloquear",
+    note: "Mantén pulsado",
+    first: ["U"],
+    second: ["0"],
+    touch: "Bloqueo",
+    gamepad: "LB",
+  },
+  {
+    action: "Esquivar",
+    first: ["Shift izq."],
+    second: ["Enter"],
+    touch: "Esquiva",
+    gamepad: "RB",
+  },
+  {
+    action: "Golpe ligero",
+    first: ["J"],
+    second: ["1"],
+    touch: "Golpe",
+    gamepad: "X",
+  },
+  {
+    action: "Golpe fuerte",
+    first: ["K"],
+    second: ["2"],
+    touch: "Fuerte",
+    gamepad: "B",
+  },
+  {
+    action: "Especial",
+    note: "25 de energía",
+    first: ["L"],
+    second: ["3"],
+    touch: "Especial",
+    gamepad: "Y",
+  },
+  {
+    action: "Súper",
+    note: "3 victorias · 75 de energía",
+    first: ["I"],
+    second: ["5"],
+    touch: "Súper",
+    gamepad: "RT",
+  },
+] as const;
 
 export function Help({ onClose }: { onClose: () => void }) {
+  const [device, setDevice] = useState<Device>(() =>
+    hasTouchInput() ? "touch" : "keyboard",
+  );
+  const [player, setPlayer] = useState<0 | 1>(0);
+  const light =
+    device === "keyboard"
+      ? player === 0
+        ? "J"
+        : "1"
+      : device === "touch"
+        ? "Golpe"
+        : "X";
+  const heavy =
+    device === "keyboard"
+      ? player === 0
+        ? "K"
+        : "2"
+      : device === "touch"
+        ? "Fuerte"
+        : "B";
+
   return (
-    <Modal title="El manual del pana" wide onClose={onClose}>
-      <p className="modal-intro">
-        Fácil de empezar. Con suficientes trucos para pedir una revancha.
-      </p>
-      <div className="rules-grid">
-        <div>
-          <Swords />
-          <h3>Dos vidas. Una victoria.</h3>
+    <Modal title="Cómo jugar" className="help-modal" onClose={onClose}>
+      <div className="help-content">
+        <section className="help-goal" aria-labelledby="help-goal-title">
+          <h3 id="help-goal-title">Quita las dos vidas a tu rival.</h3>
           <p>
-            Deja al rival sin vida o sácalo de la arena. Cada caída cuesta una
-            vida. Gana quien elimine las dos; a los 90 segundos, decide la vida
-            restante.
+            Vacía su barra de vida o sácalo de la arena para quitarle una vida.
           </p>
-        </div>
-        <div>
-          <Zap />
-          <h3>Salta, esquiva, conecta.</h3>
-          <p>
-            Puedes saltar dos veces. Un rival con poca vida sale lanzado más
-            lejos. El especial usa 25 de energía; golpear y recibir golpes
-            recarga la barra.
-          </p>
-        </div>
-      </div>
-      <h3 className="help-section">
-        <Smartphone size={18} /> En el teléfono
-      </h3>
-      <p className="help-note">
-        Juega en horizontal. Usa las flechas con el pulgar izquierdo y los
-        ataques con el derecho; puedes mover y golpear al mismo tiempo. Saltar
-        permite un segundo salto en el aire. Bajar te deja atravesar una
-        plataforma, Esquiva te saca del peligro y Bloqueo funciona al mantenerlo
-        pulsado. Especial necesita 25 de energía; Súper se desbloquea con tres
-        victorias y necesita 75. Los botones iluminados responden a cada toque.
-      </p>
-      <h3 className="help-section">
-        <Keyboard size={18} /> Controles de teclado
-      </h3>
-      <div className="controls-table">
-        <div className="table-heading">
-          <span>ACCIÓN</span>
-          <span>JUGADOR 1 / EN LÍNEA</span>
-          <span>JUGADOR 2 LOCAL</span>
-        </div>
-        {[
-          ["Mover", "A / D", "← / →"],
-          ["Saltar (doble salto)", "W", "↑"],
-          ["Bajar de plataforma", "S", "↓"],
-          ["Golpe ligero", "J", "1"],
-          ["Golpe fuerte", "K", "2"],
-          ["Ataque especial", "L", "3"],
-          ["Bloquear", "U (mantener)", "0 (mantener)"],
-          ["Esquivar", "Shift izquierdo", "Enter"],
-          ["Definitiva", "I", "5"],
-          ["Pausa / menú", "Esc", "Esc"],
-        ].map(([action, first, second]) => (
-          <div key={action}>
-            <span>{action}</span>
-            <span>
-              <kbd>{first}</kbd>
-            </span>
-            <span>
-              <kbd>{second}</kbd>
-            </span>
+        </section>
+
+        <section aria-labelledby="help-controls-title">
+          <div className="help-controls-heading">
+            <h3 id="help-controls-title">Controles</h3>
+            <div
+              className="help-devices"
+              role="group"
+              aria-label="Dispositivo de juego"
+            >
+              {devices.map(({ id, label, icon: Icon }) => (
+                <button
+                  key={id}
+                  type="button"
+                  aria-pressed={device === id}
+                  onClick={() => setDevice(id)}
+                >
+                  <Icon size={19} aria-hidden="true" />
+                  {label}
+                </button>
+              ))}
+            </div>
           </div>
-        ))}
+
+          {device === "keyboard" ? (
+            <div
+              className="help-players"
+              role="group"
+              aria-label="Controles del jugador"
+            >
+              <button
+                type="button"
+                aria-pressed={player === 0}
+                onClick={() => setPlayer(0)}
+              >
+                Jugador 1 / en línea
+              </button>
+              <button
+                type="button"
+                aria-pressed={player === 1}
+                onClick={() => setPlayer(1)}
+              >
+                Jugador 2 · local
+              </button>
+            </div>
+          ) : (
+            <p className="help-device-note">
+              {device === "touch"
+                ? "Juega en horizontal. Mueve con la izquierda y ataca con la derecha."
+                : "Conecta tu mando. Los botones siguen la distribución Xbox."}
+            </p>
+          )}
+
+          <div className="help-controls-grid">
+            {[controls.slice(0, 5), controls.slice(5)].map((group, index) => (
+              <dl key={index}>
+                {group.map((control) => (
+                  <div className="help-control" key={control.action}>
+                    <dt>
+                      {control.action}
+                      {"note" in control && <span>{control.note}</span>}
+                    </dt>
+                    <dd>
+                      {device === "keyboard" ? (
+                        (player === 0 ? control.first : control.second).map(
+                          (key) => <kbd key={key}>{key}</kbd>,
+                        )
+                      ) : (
+                        <span className="help-input">{control[device]}</span>
+                      )}
+                    </dd>
+                  </div>
+                ))}
+                {index === 1 && (
+                  <div className="help-control">
+                    <dt>{device === "keyboard" ? "Pausa / menú" : "Pausar"}</dt>
+                    <dd>
+                      {device === "keyboard" ? (
+                        <kbd>Esc</kbd>
+                      ) : (
+                        <span className="help-input">Botón de pausa</span>
+                      )}
+                    </dd>
+                  </div>
+                )}
+              </dl>
+            ))}
+          </div>
+
+          {device === "keyboard" && player === 1 && (
+            <p className="help-device-note">
+              Puedes usar los números de la fila superior o del teclado
+              numérico.
+            </p>
+          )}
+        </section>
+
+        <details className="help-more">
+          <summary>
+            Combos y reglas extra <ChevronDown size={18} aria-hidden="true" />
+          </summary>
+          <ul>
+            <li>
+              <strong>Combos:</strong> {light} → {heavy} desde el inicio;{" "}
+              {light} → {light} → {heavy} tras una victoria con ese personaje.
+              Deja terminar cada golpe y completa la secuencia en 2,5 segundos.
+            </li>
+            <li>
+              <strong>Energía:</strong> se recarga al golpear y recibir golpes.
+              El súper se desbloquea con tres victorias con ese personaje.
+            </li>
+            <li>
+              <strong>Tiempo:</strong> cada pelea dura 90 segundos. Si se acaba,
+              gana quien conserve más vidas y, si empatan, más salud.
+            </li>
+          </ul>
+        </details>
       </div>
-      <p className="help-note">
-        Los números del jugador 2 funcionan tanto en la fila superior como en el
-        teclado numérico.
-      </p>
-      <div className="gamepad-note">
-        <Gamepad2 size={22} />
-        <div>
-          <strong>También puedes conectar un mando.</strong>
-          <p>
-            Stick: mover · A: saltar · X: ligero · B: fuerte · Y: especial · LB:
-            bloquear · RB: esquivar · RT: definitiva.
-          </p>
-        </div>
+      <div className="help-footer">
+        <button type="button" className="help-done" onClick={onClose}>
+          Entendido
+        </button>
       </div>
-      <h3 className="help-section">
-        <Zap size={18} /> Aprende los combos
-      </h3>
-      <p className="help-note">
-        J → K está disponible desde el inicio. Gana una pelea con un personaje
-        para desbloquear J → J → K. Con tres victorias desbloqueas su
-        definitiva: I, con 75 de energía. Ejecuta cada golpe al terminar la
-        recuperación anterior y completa la secuencia en 2,5 segundos.
-      </p>
-      <p className="help-note">
-        En el celular aparecen controles táctiles. Para dos jugadores en el
-        mismo equipo, usa teclado o dos mandos.
-      </p>
     </Modal>
   );
 }
