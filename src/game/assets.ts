@@ -9,6 +9,7 @@ import { presentationById } from "../../shared/presentation";
 import entranceManifest from "../../shared/entrance-assets.json";
 import { COMMUNITY_CHARACTERS } from "../../shared/community";
 import { isolateFramePixels } from "./sprite-isolation";
+import courierManifest from "../../shared/courier-assets.json";
 
 interface SpriteFrame {
   x: number;
@@ -327,9 +328,15 @@ export async function preloadAssets(
   // Snapshot the requested roster before loading: publishing can change it mid-flight.
   const fighters = [...new Set(fighterIds)];
   const stages = [...new Set(stageIds)];
-  const results = await Promise.all([
-    ...fighters.map((id) => loadSprite(id)),
-    ...stages.map((id) => loadImage(id)),
+  const hasCourier = fighters.some(
+    (id) => fighterById(id).ability === "courier",
+  );
+  const [results, courier] = await Promise.all([
+    Promise.all([
+      ...fighters.map((id) => loadSprite(id)),
+      ...stages.map((id) => loadImage(id)),
+    ]),
+    hasCourier ? loadImage(courierManifest.file) : undefined,
   ]);
   return {
     sprites: Object.fromEntries(
@@ -338,5 +345,6 @@ export async function preloadAssets(
     stages: Object.fromEntries(
       stages.map((id, i) => [id, results[i + fighters.length]]),
     ) as Record<string, HTMLImageElement>,
+    courier,
   };
 }

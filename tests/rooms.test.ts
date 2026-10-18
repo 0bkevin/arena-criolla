@@ -4,7 +4,12 @@ import { WebSocket } from "ws";
 import { makeArenaServer } from "../server/index";
 import { emptyInput } from "../shared/engine";
 import type { ServerMessage } from "../shared/protocol";
-import { FIGHTERS, STAGES, platformsAtTick } from "../shared/content";
+import {
+  FIGHTERS,
+  STAGES,
+  platformsAtTick,
+  type FighterId,
+} from "../shared/content";
 
 class TestClient {
   messages: ServerMessage[] = [];
@@ -40,7 +45,10 @@ class TestClient {
   }
 }
 
-async function onlineMatch(stage: (typeof STAGES)[number]["id"] = "poliedro") {
+async function onlineMatch(
+  stage: (typeof STAGES)[number]["id"] = "poliedro",
+  fighters: [FighterId, FighterId] = ["zavarce", "vallenilla"],
+) {
   const server = await makeArenaServer({ serveClient: false });
   await new Promise<void>((resolve) =>
     server.http.listen(0, "127.0.0.1", resolve),
@@ -54,7 +62,7 @@ async function onlineMatch(stage: (typeof STAGES)[number]["id"] = "poliedro") {
   a.send({
     type: "create",
     name: "Host",
-    fighter: "zavarce",
+    fighter: fighters[0],
     stage,
     wins: 0,
     private: true,
@@ -64,7 +72,7 @@ async function onlineMatch(stage: (typeof STAGES)[number]["id"] = "poliedro") {
     type: "join",
     code: room.code,
     name: "Guest",
-    fighter: "vallenilla",
+    fighter: fighters[1],
     wins: 0,
   });
   await a.wait("room", (message) => message.room.players.length === 2);
@@ -503,6 +511,117 @@ test("anonymous rooms synchronize two players, validate inputs, rematch, and rec
     b.socket.terminate();
     c.socket.terminate();
     await server.close();
+  }
+});
+
+test("rooms synchronize the seven-bike pack and its impacts against nine rivals across all stages", async () => {
+  const opponents: FighterId[] = [
+    "maite",
+    "capriles",
+    "silbon",
+    "diablo",
+    "amanda",
+    "dudamel",
+    "tiotigre",
+    "lionza",
+    "vallenilla",
+  ];
+  for (const [index, stage] of STAGES.entries()) {
+    const match = await onlineMatch(stage.id, ["zavarce", opponents[index]]);
+    try {
+      const state = match.active.state!;
+      state.players[0].x = 230;
+      state.players[1].x = 490;
+      state.players[0].energy = 50;
+      const input = emptyInput();
+      input.actions.special++;
+      match.a.send({ type: "input", matchId: state.id, input });
+      const left = await match.a.wait(
+        "state",
+        (message) =>
+          message.state.projectiles.filter((shot) => shot.kind === "courier")
+            .length === 7,
+      );
+      const right = await match.b.wait(
+        "state",
+        (message) => message.state.tick === left.state.tick,
+      );
+      assert.deepEqual(left.state, right.state, stage.id + " formation");
+      assert.deepEqual(
+        left.state.projectiles.map((shot) => shot.formationIndex),
+        [0, 1, 2, 3, 4, 5, 6],
+      );
+      assert.ok(
+        left.state.projectiles.every(
+          (shot) => shot.owner === 0 && shot.vx > 0 && shot.groundOnly,
+        ),
+      );
+      assert.ok(left.state.players[0].energy < 30);
+      const hit = await match.a.wait(
+        "state",
+        (message) => message.state.players[0].hits === 7,
+      );
+      const remoteHit = await match.b.wait(
+        "state",
+        (message) => message.state.tick === hit.state.tick,
+      );
+      assert.deepEqual(hit.state, remoteHit.state, stage.id + " impacts");
+      assert.ok(hit.state.players[1].hp < 100);
+      assert.equal(hit.state.players[0].x, 230);
+    } finally {
+      await match.close();
+    }
+  }
+});
+
+test("online Dudamel reflects a newly summoned pack from either player on three stages", async () => {
+  for (const stage of ["poliedro", "canaima", "merida"] as const) {
+    for (const side of [0, 1] as const) {
+      const fighters: [FighterId, FighterId] =
+        side === 0 ? ["zavarce", "dudamel"] : ["dudamel", "zavarce"];
+      const match = await onlineMatch(stage, fighters);
+      try {
+        const state = match.active.state!;
+        const caster = state.players[side],
+          reflector = state.players[1 - side];
+        caster.x = side === 0 ? 230 : 850;
+        reflector.x = caster.x + (side === 0 ? 80 : -80);
+        caster.facing = side === 0 ? 1 : -1;
+        reflector.facing = -caster.facing;
+        state.players.forEach((player) => {
+          player.energy = 100;
+        });
+        const input = emptyInput();
+        input.actions.special++;
+        match.a.send({ type: "input", matchId: state.id, input });
+        match.b.send({ type: "input", matchId: state.id, input });
+        const left = await match.a.wait("state", (message) =>
+          message.state.projectiles.some(
+            (shot) => shot.kind === "courier" && shot.owner === 1 - side,
+          ),
+        );
+        const right = await match.b.wait(
+          "state",
+          (message) => message.state.tick === left.state.tick,
+        );
+        assert.deepEqual(left.state, right.state, `${stage}/P${side + 1}`);
+        assert.equal(
+          left.state.players[1 - side].hp,
+          100,
+          "active reflection prevents the immediate hit",
+        );
+        assert.ok(
+          left.state.projectiles.some(
+            (shot) =>
+              shot.kind === "courier" &&
+              shot.owner === 1 - side &&
+              Math.sign(shot.vx) === -caster.facing,
+          ),
+        );
+      } finally {
+        await match.close();
+      }
+    }
   }
 });
 
