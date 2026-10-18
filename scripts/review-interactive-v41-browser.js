@@ -62,9 +62,7 @@ async function choose(id, side, mode) {
 }
 export async function setupMatch({ fighter, rival, side = 0, stage, mode = "practice", difficulty = "normal" }) {
   await exitMatch();
-  const label = mode === "local" ? "Con un pana" : "Pelea rápida";
-  const tab = [...document.querySelectorAll('[role="tab"]')].find((b) => b.textContent.includes(label));
-  tab.click();
+  click(`#mode-${mode === "local" ? "local" : "practice"}`);
   await delay(50);
   await choose(side === 0 ? fighter : rival, 0, mode);
   await choose(side === 1 ? fighter : rival, 1, mode);
