@@ -121,7 +121,8 @@ export function CreatorStudio({
   const generating = records.some((record) => busyStatuses.has(record.status));
   const fileInput = useRef<HTMLInputElement>(null),
     createForm = useRef<HTMLFormElement>(null),
-    errorMessage = useRef<HTMLParagraphElement>(null);
+    errorMessage = useRef<HTMLParagraphElement>(null),
+    workbench = useRef<HTMLElement>(null);
   useEffect(() => {
     if (!error) return;
     errorMessage.current?.focus({ preventScroll: true });
@@ -385,6 +386,11 @@ export function CreatorStudio({
       setNotice(
         "¡Vamos! Puedes quedarte aquí o volver después. Tu progreso queda guardado.",
       );
+      requestAnimationFrame(() => {
+        if (!currentSession(generation) || ownerRef.current !== owner) return;
+        workbench.current?.focus({ preventScroll: true });
+        workbench.current?.scrollIntoView({ block: "start" });
+      });
     } catch (e) {
       if (!currentSession(generation) || ownerRef.current !== owner) return;
       if (sessionFailure(e, owner)) return;
@@ -939,7 +945,12 @@ export function CreatorStudio({
                   )}
                 </form>
               )}
-              <aside className="creator-workbench" aria-label="Mis luchadores">
+              <aside
+                className="creator-workbench"
+                aria-label="Mis luchadores"
+                ref={workbench}
+                tabIndex={-1}
+              >
                 <div className="creator-section-title">
                   <h2>Mis luchadores</h2>
                   {records.length > 0 && <small>{records.length}/12</small>}
