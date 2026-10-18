@@ -261,33 +261,6 @@ body {
 .marquee-culture [data-criollo-motif="cuatro"] {
   transform: rotate(-10deg);
 }
-.arcade-marquee::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 4px;
-  background: linear-gradient(
-    90deg,
-    var(--coin) 0 33.333%,
-    var(--vz-blue) 33.333% 66.666%,
-    var(--vz-red) 66.666% 100%
-  );
-  pointer-events: none;
-  z-index: 4;
-}
-.app-shell .site-header::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    var(--coin) 0 33.333%,
-    var(--vz-blue) 33.333% 66.666%,
-    var(--vz-red) 66.666% 100%
-  );
-  pointer-events: none;
-}
 .arcade-eyebrow {
   display: flex;
   align-items: center;
@@ -999,22 +972,6 @@ body {
   border-radius: 4px;
   box-shadow: 0 3px 0 #112c5840;
 }
-.arcade-stages::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: 20px;
-  width: 42px;
-  height: 3px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--coin) 0 6px,
-    var(--vz-blue) 6px 12px,
-    var(--vz-red) 12px 18px,
-    var(--paper) 18px 21px
-  );
-  pointer-events: none;
-}
 .arcade-stage-heading {
   display: flex;
   align-items: center;
@@ -1495,7 +1452,30 @@ body {
   background: var(--coin);
 }
 .arcade-app .game-page {
-  margin-top: 20px;
+  width: min(calc(100% - 32px), calc((100dvh - 120px) * 1.8));
+  max-width: 1600px;
+  min-height: 100dvh;
+  margin-block: 0;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.arcade-app .game-topline {
+  flex-wrap: nowrap;
+  margin-bottom: 8px;
+}
+.arcade-app .game-topline > .text-button {
+  min-height: 44px;
+}
+.arcade-app .game-tools .icon-button {
+  width: 44px;
+  height: 44px;
+}
+.arcade-app .game-controls-bar {
+  min-height: 44px;
+  padding: 0 4px;
+  border: 0;
 }
 .arcade-app .game-toolbar h1 {
   font-size: 21px;
@@ -1504,9 +1484,11 @@ body {
   font-family: "DM Sans", sans-serif;
 }
 .arcade-app .arena-wrap {
-  border-radius: 4px;
-  border: 2px solid #776080;
-  box-shadow: 0 5px 0 #100b1e;
+  width: 100%;
+  flex: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 .arcade-app .game-page .primary-button {
   background: var(--coin);
@@ -2250,9 +2232,6 @@ body {
   }
   .arcade-app .modal-header h2 {
     font-size: 23px;
-  }
-  .arcade-app .game-page {
-    margin-top: 12px;
   }
 }
 @media (max-width: 370px) {

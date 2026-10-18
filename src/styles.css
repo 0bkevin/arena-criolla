@@ -2300,19 +2300,6 @@ kbd {
 .game-controls-bar .text-button {
   font-size: 8px;
 }
-.game-tip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  margin-top: 17px;
-  color: #7e8fa8;
-  font-size: 9px;
-  line-height: 1.8;
-}
-.game-tip svg {
-  color: var(--lime);
-}
 .touch-controls {
   display: none;
   justify-content: space-between;
@@ -2823,9 +2810,6 @@ kbd {
   }
   .result-info h2 {
     font-size: 35px;
-  }
-  .game-tip {
-    font-size: 8px;
   }
   .game-mode {
     font-size: 7px;
@@ -3468,18 +3452,6 @@ kbd {
   .touch-button svg {
     width: 14px;
   }
-  .game-tip {
-    font-size: 8px;
-    text-align: center;
-    align-items: flex-start;
-    margin-top: 8px;
-    gap: 5px;
-  }
-  .game-tip svg {
-    width: 11px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
   .game-overlay {
     padding: 12px;
   }
@@ -3636,9 +3608,6 @@ kbd {
 }
 .fighter-card-caption {
   flex: 1;
-}
-.game-page {
-  max-width: min(1440px, calc((100dvh - 210px) * 1.8));
 }
 .character-identity {
   display: flex;
@@ -3808,8 +3777,7 @@ kbd {
     width: auto;
     order: 0;
   }
-  .game-controls-bar,
-  .game-tip {
+  .game-controls-bar {
     display: none;
   }
   .touch-controls {
@@ -3876,33 +3844,25 @@ kbd {
   }
 }
 
-/* Entrances keep the frame focused on the two fighters. */
-.app-shell:has(.game-page.is-intro) {
+/* Keep the entire match focused on the fighters, through the rematch. */
+.app-shell.in-match {
   background: #070d18;
 }
-.app-shell:has(.game-page.is-intro) > .site-header,
-.app-shell:has(.game-page.is-intro) > .site-footer {
+.app-shell.in-match > .site-header,
+.app-shell.in-match > .site-footer {
   display: none;
 }
 .arcade-app .game-page.is-intro {
   width: min(calc(100% - 32px), calc((100svh - 32px) * 1.8));
-  max-width: 1440px;
+  max-width: 1600px;
   min-height: 100svh;
   margin-block: 0;
   padding: 16px 0;
   display: flex;
   align-items: center;
 }
-.arcade-app .is-intro .arena-wrap {
-  width: 100%;
-  flex: none;
-  border: 1px solid #53647c;
-  border-radius: 8px;
-  box-shadow: none;
-}
 .cinematic-active {
   background: #070d18;
-  border-color: #53647c;
 }
 .cinematic-overlay {
   position: absolute;
@@ -3964,6 +3924,9 @@ kbd {
   outline-offset: 2px;
 }
 @media (max-width: 700px) {
+  .arcade-app .game-mode {
+    display: none;
+  }
   .arcade-app .game-page.is-intro {
     width: min(calc(100% - 16px), calc((100svh - 16px) * 1.8));
     padding: 8px 0;

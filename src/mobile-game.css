@@ -29,7 +29,7 @@
   display: none;
 }
 #root:fullscreen .game-page:not(.is-touch):not(.is-intro) {
-  max-width: min(calc(100vw - 32px), calc((100dvh - 150px) * 1.8));
+  max-width: min(calc(100vw - 32px), calc((100dvh - 120px) * 1.8));
   margin: 0 auto;
 }
 html:has(.game-page.is-touch),
@@ -188,8 +188,7 @@ body:has(.game-page.is-touch) {
   height: 5px;
 }
 .game-page.is-touch .arena-location,
-.game-page.is-touch .game-controls-bar,
-.game-page.is-touch .game-tip {
+.game-page.is-touch .game-controls-bar {
   display: none;
 }
 .game-page.is-touch .touch-controls {
