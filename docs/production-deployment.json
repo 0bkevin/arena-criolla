@@ -1,0 +1,120 @@
+{
+  "recordedAt": "2026-10-18T13:09:34.625899+00:00",
+  "status": "live",
+  "host": "t3code-agents",
+  "publicIp": "161.153.114.230",
+  "publicUrl": "https://arena.kevinbravo.com",
+  "temporaryUrl": "https://arenacriolla.161-153-114-230.sslip.io",
+  "source": {
+    "baseCommit": "cc15e316d4ebcf1c5bd2314c2ee60d20f0fb051e",
+    "branch": "t3/assess-production-readiness",
+    "includesUncommittedPerformanceFixes": true,
+    "runtimeSha256": {
+      "server/index.ts": "f5911da3f7d1fe6867f71a25763368b6758f0f6c31a07b92a237d4e66052ac89",
+      "shared/content.ts": "a03bae49c292d45a9f4f668c721c7cf9d02192094d54abb4b704a468672bfa7b",
+      "src/components/Game.tsx": "f2ace85404b44b43a692838b75da45044682568a1999d9f20cf41cf73be0ae49",
+      "src/game/assets.ts": "58c64e0bf6ce7ee2e3ed2f06cea42dd67e2d7fe53d376c16efa74545ea64b60b",
+      "src/components/RootApp.tsx": "c58e5daab1cb37ae37729977da6dd94f4a0387cd7dd31fa7eb068c2bd673b608",
+      "server/seo.ts": "0e267f427126839aa446155eb63d2c0df3bea0f69458b02d5449b5b60481967c",
+      "src/App.tsx": "4cac58140f1b5c76339b3b1cd5295bcda0d3bee29fad592dc046f70b0f3ab0ce",
+      "server/security.ts": "7b47e76713a6f937a33d58094f35ff3a9df57017c98923d463b68acfd076e7ac",
+      "Dockerfile": "584330d7edef111300521f4d511815ddc94e766697eec646bc97ec3b2b0b03fd",
+      "deploy/production.compose.yaml": "e6042e8d3b96f98264fb8a4fb6bfd0df2e08e1140f90a4f708e9f708380c1ac8",
+      "scripts/security-smoke.mjs": "62e011c2790fa65328b3209a4457e9a74c7c2569f39ab3f7ce6f7caad3402190"
+    },
+    "includesUncommittedPerformanceFixesAndWorkshopRemoval": true,
+    "includesSecurityHardening": true,
+    "archivePath": "/opt/arena-criolla/releases/main-cc15e31-security/source.tar.gz"
+  },
+  "runtime": {
+    "image": "arena-criolla:main-cc15e31-security",
+    "imageDigest": "sha256:f48fced61b036f5de74bc790c628fcb6cb3572029f8aed9f685f68cbbada4a1c",
+    "startedAt": "2026-10-18T13:05:08.842138335Z",
+    "health": "healthy",
+    "restartPolicy": "unless-stopped",
+    "cpuLimit": 2,
+    "memoryGiB": 3,
+    "hostPort": "127.0.0.1:35173",
+    "reverseProxyService": "30x-radar-web.service",
+    "tls": "automatic Caddy certificates; HTTPS and WSS verified",
+    "admissionPlayerLimit": null,
+    "admissionRoomLimit": null,
+    "generationAvailable": false,
+    "workshopEnabled": false,
+    "accountApiEnabled": false,
+    "readOnlyRoot": true,
+    "tmpfsMiB": 128,
+    "providerKeyInjected": false,
+    "browserSameOriginWebSocketPolicy": true
+  },
+  "persistence": {
+    "dataDirectory": "/workspace/arena-criolla-production/data",
+    "database": "creator/arena.sqlite",
+    "configuration": "/etc/arena-criolla/server.env",
+    "compose": "/opt/arena-criolla/compose.yaml",
+    "releaseConfiguration": "/etc/arena-criolla/release.env",
+    "restoredPriorGameData": false,
+    "recoveryFinding": "Deleted brio-relay boot volumes are terminated. The sole available Oracle boot backup is from 2026-08-26; no game-era database backup was located."
+  },
+  "backups": {
+    "directory": "/var/backups/arena-criolla",
+    "timer": "arena-criolla-backup.timer",
+    "schedule": "daily 09:00 UTC with up to five minutes of jitter",
+    "retentionArchives": 7,
+    "onlineSqliteSnapshot": true,
+    "pausesGameplay": false,
+    "initialBackup": "passed",
+    "restoreFixture": "passed, including committed WAL data and complete fighter assets",
+    "retiredFighterFixture": "passed",
+    "retentionFixture": "passed",
+    "incompleteSnapshotRejected": true,
+    "offsiteConfigured": false
+  },
+  "validation": {
+    "testsPassed": 718,
+    "productionBuild": "passed",
+    "spritePairs": 46,
+    "publicSmoke": {
+      "origin": "https://arena.kevinbravo.com",
+      "publicTlsWebSocket": true,
+      "guestPrivateRoom": true,
+      "matchStarted": true,
+      "inputMovesPlayer": true,
+      "matchingStateForBothPlayers": true,
+      "opponentLeaveHandled": true,
+      "workshopApiBlocked": true,
+      "accountApiBlocked": true,
+      "oldCreationLinksRedirectHome": true,
+      "creationAbsentFromClient": true,
+      "communityCatalogAvailable": true,
+      "recordedAt": "2026-10-18T12:48:35.282Z"
+    },
+    "mobileSyntheticInput": "movement and release passed at 844x390; all ten 48px controls available",
+    "otherHostedApplication": "HTTPS remained reachable after proxy reload",
+    "workshopRemoval": "Desktop/mobile entry points, compiled chunks and creation/account API calls removed; old links redirect; API requests return 404.",
+    "securitySmoke": {
+      "origin": "https://arena.kevinbravo.com",
+      "recordedAt": "2026-10-18T13:05:37.385Z",
+      "httpHeadersAndNonce": true,
+      "workshopRemainsDisabled": true,
+      "foreignBrowserOriginRejected": true,
+      "unchangedLobbyIsNotRebroadcast": true,
+      "sameOriginGuestsPlayAndReceiveIdenticalState": true,
+      "healthy": true
+    },
+    "securityAudit": "docs/security-audit.json",
+    "imageCveRecords": 0,
+    "imageScannerScope": "Alpine and npm packages in the exact runtime image; not a clean-host or zero-risk claim."
+  },
+  "configurationRemaining": [
+    "An offsite backup destination for recovery after VM/disk deletion.",
+    "A game-era data backup if old accounts and generated fighters should be restored.",
+    "Approve coordinated maintenance to replace the shared Caddy proxy with the validated patched candidate and reboot the VM into the installed kernel (deploy/security-maintenance.json).",
+    "Rebuild and deploy the Node security update after its announced release on or shortly after 2026-10-21."
+  ],
+  "previousRelease": {
+    "image": "arena-criolla:main-cc15e31-no-workshop",
+    "imageDigest": "sha256:cf02eb94b11e9844ad2962ee5817abe4f05cd72d7a686e2ec7877f188cf34c20",
+    "record": "/workspace/arena-deploy/deployment-before-security.json"
+  }
+}
