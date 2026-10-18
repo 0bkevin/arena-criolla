@@ -1,0 +1,255 @@
+/* Shared legibility and input fixes from the full-screen UI review. */
+.modal {
+  --dialog-surface: #181c25;
+  scrollbar-width: thin;
+  scrollbar-color: #6682a2 var(--dialog-surface);
+  scroll-padding-block: 80px 24px;
+}
+.in-lobby .modal {
+  --dialog-surface: #13243a;
+}
+.modal .modal-header {
+  position: sticky;
+  top: -26px;
+  z-index: 3;
+  padding-block: 12px;
+  background: var(--dialog-surface);
+}
+.modal .modal-header h2 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.modal .modal-header .icon-button {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+.modal :is(p, .help-note, .character-identity, .character-identity span) {
+  font-size: 13px;
+  line-height: 1.7;
+}
+.modal :is(.help-section, .rules-grid h3, .detail-info > h3) {
+  font-size: 15px;
+}
+.modal :is(.controls-table > div, .controls-table .table-heading, kbd) {
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.modal .controls-table kbd {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.modal
+  :is(
+    .roster-grid p,
+    .roster-grid strong,
+    .roster-grid span,
+    .stage-card-body > span,
+    .stage-tags span,
+    .special-description span,
+    .special-description kbd,
+    .combo-list small,
+    .combo-list kbd,
+    .progress-roster small,
+    .progress-roster > div > span:not(.progress-dot),
+    .progress-metrics span,
+    .lobby-meta,
+    .field-label,
+    .checkbox-label,
+    .rooms-list span,
+    .rooms-list-heading > span,
+    .character-references,
+    .recent-matches > div,
+    .recent-matches small,
+    .recent-matches .won,
+    .recent-matches .lost
+  ) {
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+.modal
+  :is(
+    .combo-list strong,
+    .special-description strong,
+    .progress-roster strong,
+    .rooms-list strong,
+    .gamepad-note strong
+  ) {
+  font-size: 13px;
+}
+.modal .combo-list small {
+  color: #acb9cf;
+}
+.modal .recent-matches small {
+  color: #acb9cf;
+}
+.modal
+  :is(
+    .roster-grid span,
+    .roster-grid strong,
+    .special-description,
+    .detail-info > .eyebrow,
+    .character-references a,
+    .character-quote a
+  ) {
+  color: color-mix(in srgb, var(--fighter-color) 65%, #ffffff);
+}
+.modal
+  :is(
+    .primary-button,
+    .secondary-button,
+    .text-button,
+    .rooms-list button,
+    .character-references summary,
+    .character-references a
+  ) {
+  min-height: 44px;
+}
+.modal .character-references summary {
+  align-content: center;
+}
+.modal input:not([type="checkbox"]) {
+  min-height: 44px;
+  font-size: 16px;
+}
+.modal .checkbox-label {
+  min-height: 44px;
+  cursor: pointer;
+}
+.modal .checkbox-label input {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.modal .code-input {
+  font-family: "DM Sans", sans-serif;
+  letter-spacing: 0;
+}
+.in-lobby .arcade-modes small {
+  font:
+    700 10px/1.3 "DM Sans",
+    sans-serif;
+  letter-spacing: 0;
+}
+.in-lobby .arcade-modes #mode-practice.selected small,
+.in-lobby .arcade-modes #mode-online.selected small {
+  color: #17273f;
+}
+.in-lobby .arcade-modes #mode-local.selected small {
+  color: #fff5e7;
+}
+.in-lobby
+  :is(
+    .contender-identity > span,
+    .contender-identity p,
+    .contender-player > span:nth-child(2),
+    .ready-name label,
+    .ready-difficulty > span,
+    .ready-room > span,
+    .ready-online-status,
+    .ready-room-players,
+    .arcade-help-strip > span:first-child
+  ) {
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+.in-lobby .ready-room {
+  min-width: 0;
+  padding-right: 52px;
+}
+.in-lobby .ready-room strong {
+  font:
+    700 13px/1.6 "DM Sans",
+    sans-serif;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  min-width: 0;
+  letter-spacing: 0;
+}
+.in-lobby .ready-room > button {
+  width: 44px;
+}
+.in-lobby :is(.ready-name input, .arcade-search input) {
+  font-size: 16px;
+}
+.in-lobby
+  :is(
+    .site-header .brand,
+    .site-header .icon-button,
+    .arcade-help-strip > button,
+    .site-footer button,
+    .ready-room > button,
+    .ready-online-status > button,
+    .ready-room-players > button
+  ) {
+  min-height: 44px;
+}
+.in-lobby .site-header .icon-button {
+  width: 44px;
+  min-width: 44px;
+}
+.in-lobby .site-header {
+  min-height: 52px;
+}
+@media (max-width: 900px), (pointer: coarse) {
+  .in-lobby
+    :is(
+      .arcade-modes button,
+      .arcade-modes #mode-local,
+      .arcade-modes #mode-online
+    ) {
+    height: auto;
+    min-height: 58px;
+    padding-block: 8px;
+  }
+  .in-lobby .arcade-modes small {
+    font-size: 10px;
+  }
+  .in-lobby .arcade-modes button > span:not(.mode-slot) {
+    line-height: 1.2;
+  }
+  .in-lobby .ready-difficulty button {
+    min-height: 44px;
+  }
+}
+@media (max-width: 600px) {
+  .modal .rules-grid,
+  .modal .roster-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .modal .progress-roster > div {
+    display: grid;
+    grid-template-columns: 6px minmax(0, 1fr) auto;
+    gap: 7px;
+  }
+  .modal .progress-roster strong {
+    grid-column: 2 / -1;
+  }
+  .modal .progress-roster > div > span:not(.progress-dot) {
+    grid-column: 2;
+  }
+  .modal .progress-metrics > div {
+    min-width: 0;
+    padding: 12px 4px;
+  }
+  .modal .controls-table > div {
+    grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 1fr));
+    gap: 5px;
+  }
+  .modal .controls-table .table-heading {
+    font-size: 10px;
+    padding-inline: 3px;
+  }
+  .modal .lobby-name {
+    align-items: stretch;
+  }
+  .modal .lobby-name .plain-input {
+    width: 100%;
+  }
+  .in-lobby .arcade-modes button > svg {
+    display: none;
+  }
+}
