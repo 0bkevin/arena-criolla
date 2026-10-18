@@ -42,6 +42,7 @@ export interface SpriteAsset {
 }
 const images = new Map<string, Promise<HTMLImageElement>>();
 const sprites = new Map<FighterId, Promise<SpriteAsset>>();
+const cinematicSprites = new Map<FighterId, Promise<SpriteAsset>>();
 
 function portraitCenter(image: HTMLImageElement, frame: SpriteFrame): number {
   const band = document.createElement("canvas");
@@ -90,15 +91,11 @@ export function loadImage(id: string): Promise<HTMLImageElement> {
   }
   return images.get(id)!;
 }
-export function loadSprite(id: FighterId): Promise<SpriteAsset> {
+function loadSpriteGeometry(id: FighterId): Promise<SpriteAsset> {
   if (!sprites.has(id)) {
     sprites.set(
       id,
-      loadImage(fighterById(id).sprite).then(async (image) => {
-        const manifest = entranceManifest[id as keyof typeof entranceManifest];
-        const entrance = manifest
-          ? { ...manifest, image: await loadImage(manifest.file) }
-          : undefined;
+      loadImage(fighterById(id).sprite).then((image) => {
         const cellWidth = image.width / 4;
         const cellHeight = image.height / 2;
         const community = COMMUNITY_CHARACTERS.get(id);
@@ -148,7 +145,6 @@ export function loadSprite(id: FighterId): Promise<SpriteAsset> {
             frames,
             frameFacing: presentationById(id).frameFacing,
             battleFrame: presentationById(id).battleFrame,
-            entrance,
           };
         }
         const scratch = document.createElement("canvas");
@@ -239,13 +235,34 @@ export function loadSprite(id: FighterId): Promise<SpriteAsset> {
           frames,
           frameFacing: presentationById(id).frameFacing,
           battleFrame: presentationById(id).battleFrame,
-          entrance,
         };
       }),
     );
     void sprites.get(id)!.catch(() => sprites.delete(id));
   }
   return sprites.get(id)!;
+}
+
+export function loadSprite(
+  id: FighterId,
+  options: { entrance?: boolean } = {},
+): Promise<SpriteAsset> {
+  const geometry = loadSpriteGeometry(id);
+  const manifest = entranceManifest[id as keyof typeof entranceManifest];
+  if (options.entrance === false || !manifest) return geometry;
+  if (!cinematicSprites.has(id)) {
+    cinematicSprites.set(
+      id,
+      Promise.all([geometry, loadImage(manifest.file)]).then(
+        ([sprite, image]) => ({
+          ...sprite,
+          entrance: { ...manifest, image },
+        }),
+      ),
+    );
+    void cinematicSprites.get(id)!.catch(() => cinematicSprites.delete(id));
+  }
+  return cinematicSprites.get(id)!;
 }
 export function spriteFrameSource(sprite: SpriteAsset, frame: number) {
   const source = sprite.frames[frame];
