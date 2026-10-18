@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-18",
+  "stageSelections": [
+    {
+      "name": "Altamira al atardecer",
+      "selected": 1,
+      "background": "url(\"/assets/caracas.webp\")"
+    },
+    {
+      "name": "El malecón",
+      "selected": 1,
+      "background": "url(\"/assets/guaira.webp\")"
+    },
+    {
+      "name": "Plaza de noche",
+      "selected": 1,
+      "background": "url(\"/assets/valencia.webp\")"
+    },
+    {
+      "name": "Salto Ángel",
+      "selected": 1,
+      "background": "url(\"/assets/canaima.webp\")"
+    },
+    {
+      "name": "Puente de Maracaibo",
+      "selected": 1,
+      "background": "url(\"/assets/maracaibo.webp\")"
+    },
+    {
+      "name": "Teleférico de Mérida",
+      "selected": 1,
+      "background": "url(\"/assets/merida.webp\")"
+    },
+    {
+      "name": "Médanos de Coro",
+      "selected": 1,
+      "background": "url(\"/assets/coro.webp\")"
+    },
+    {
+      "name": "Los Roques",
+      "selected": 1,
+      "background": "url(\"/assets/roques.webp\")"
+    },
+    {
+      "name": "Poliedro de Caracas",
+      "selected": 1,
+      "background": "url(\"/assets/poliedro.webp\")"
+    }
+  ],
+  "checks": {
+    "searchAccentInsensitive": "simon → Simón Díaz",
+    "closeSearchFocus": "Buscar luchador, con clic y Escape",
+    "p1p2Independent": "P1 Simón Díaz, CPU Maite Delgado",
+    "pagination": "41–46 de 46, página5/5 y siguiente deshabilitado",
+    "emptySearch": "Sin resultados, azar deshabilitado y Ver todos restaura catálogo",
+    "modeKeyboard": "ArrowRight → local, End → online, Home → CPU",
+    "difficulties": ["Suave", "Normal", "Candela"],
+    "missingLocalName": {
+      "message": "Tu pana también necesita un apodo.",
+      "focused": "second-name"
+    },
+    "missingRoomName": {
+      "message": "Pon tu apodo y entramos a la arena.",
+      "focused": "lobby-name"
+    },
+    "invalidCode": "El código de sala debe tener 32 caracteres hexadecimales.",
+    "invite": "Enlace copiado. Mándaselo a tu pana.",
+    "publicRoom": "Visible en lista y entrada con Unirme",
+    "privateRoom": "Ausente de lista pública y entrada por código",
+    "stageSync": "Teleférico de Mérida sincronizado; 9 escenarios deshabilitados para invitado",
+    "ready": "LISTO → ELIGIENDO → LISTO",
+    "onlinePause": "La pelea sigue; ticks1618→1726 en ambos clientes",
+    "onlineResult": {
+      "matchId": "acba842c-b606-4f25-ac22-d19ff42a796b",
+      "tick": 2654,
+      "winner": 0,
+      "remaining": 3251,
+      "hostStocks": 2,
+      "guestStocks": 0,
+      "peersAgree": true
+    },
+    "rematch": "Esperando a tu pana… deshabilitado; segunda aceptación crea e8667a79-7ad2-4417-a874-2d7437b4c903",
+    "opponentExit": "Tu pana salió. Puedes invitarlo de nuevo o buscar otra pelea.",
+    "historyContrastAfter": 7.9
+  }
+}

@@ -1,0 +1,2994 @@
+[
+  {
+    "state": "help-before",
+    "width": 320,
+    "height": 568,
+    "screenshot": "help-before-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": "El manual del pana",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 282,
+        "height": 540
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "help-before",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "help-before-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": "El manual del pana",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 340,
+        "y": 24,
+        "width": 760,
+        "height": 852
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "stages-before",
+    "width": 320,
+    "height": 568,
+    "screenshot": "stages-before-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": "Elige dónde se prende la pelea",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 282,
+        "height": 540
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "stages-before",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "stages-before-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": "Elige dónde se prende la pelea",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 340,
+        "y": 24,
+        "width": 760,
+        "height": 852
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "roster-before",
+    "width": 320,
+    "height": 568,
+    "screenshot": "roster-before-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": "La gente de la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 282,
+        "height": 540
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "roster-before",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "roster-before-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": "La gente de la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 340,
+        "y": 24,
+        "width": 760,
+        "height": 852
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "fighter-detail-before",
+    "width": 320,
+    "height": 568,
+    "screenshot": "fighter-detail-before-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": "Vicente Zavarce",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 282,
+        "height": 540
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "fighter-detail-before",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "fighter-detail-before-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": "Vicente Zavarce",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 340,
+        "y": 88.203125,
+        "width": 760,
+        "height": 723.59375
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "progress-before",
+    "width": 320,
+    "height": 568,
+    "screenshot": "progress-before-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": "Tu historia en la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 282,
+        "height": 540
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "progress-before",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "progress-before-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": "Tu historia en la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 460,
+        "y": 24,
+        "width": 520,
+        "height": 852
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "ranking-before",
+    "width": 320,
+    "height": 568,
+    "screenshot": "ranking-before-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": "La próxima ronda",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 71.703125,
+        "width": 282,
+        "height": 424.59375
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "ranking-before",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "ranking-before-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": "La próxima ronda",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 460,
+        "y": 266.6015625,
+        "width": 520,
+        "height": 366.796875
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "lobby-final",
+    "width": 320,
+    "height": 568,
+    "screenshot": "lobby-final-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 10,
+        "y": 52,
+        "width": 300,
+        "height": 1716.8828125
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "P1\nTÚ",
+          "width": 43,
+          "height": 44
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "lobby-roster-final",
+    "width": 320,
+    "height": 568,
+    "screenshot": "lobby-roster-final-320x568.webp"
+  },
+  {
+    "state": "lobby-setup-final",
+    "width": 320,
+    "height": 568,
+    "screenshot": "lobby-setup-final-320x568.webp"
+  },
+  {
+    "state": "lobby-final",
+    "width": 390,
+    "height": 844,
+    "screenshot": "lobby-final-390x844.webp",
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 10,
+        "y": 52,
+        "width": 370,
+        "height": 1774.0859375
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "lobby-roster-final",
+    "width": 390,
+    "height": 844,
+    "screenshot": "lobby-roster-final-390x844.webp"
+  },
+  {
+    "state": "lobby-setup-final",
+    "width": 390,
+    "height": 844,
+    "screenshot": "lobby-setup-final-390x844.webp"
+  },
+  {
+    "state": "lobby-final",
+    "width": 667,
+    "height": 375,
+    "screenshot": "lobby-final-667x375.webp",
+    "layout": {
+      "width": 667,
+      "height": 375,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 14,
+        "y": 52,
+        "width": 639,
+        "height": 1476.7890625
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "lobby-roster-final",
+    "width": 667,
+    "height": 375,
+    "screenshot": "lobby-roster-final-667x375.webp"
+  },
+  {
+    "state": "lobby-setup-final",
+    "width": 667,
+    "height": 375,
+    "screenshot": "lobby-setup-final-667x375.webp"
+  },
+  {
+    "state": "lobby-final",
+    "width": 768,
+    "height": 1024,
+    "screenshot": "lobby-final-768x1024.webp",
+    "layout": {
+      "width": 768,
+      "height": 1024,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 14,
+        "y": 52,
+        "width": 740,
+        "height": 1390.2890625
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "lobby-roster-final",
+    "width": 768,
+    "height": 1024,
+    "screenshot": "lobby-roster-final-768x1024.webp"
+  },
+  {
+    "state": "lobby-setup-final",
+    "width": 768,
+    "height": 1024,
+    "screenshot": "lobby-setup-final-768x1024.webp"
+  },
+  {
+    "state": "lobby-final",
+    "width": 1024,
+    "height": 768,
+    "screenshot": "lobby-final-1024x768.webp",
+    "layout": {
+      "width": 1024,
+      "height": 768,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 20,
+        "y": 52,
+        "width": 984,
+        "height": 815.1953125
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Pelea rápida\nTÚ VS. CPU\n01",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "Con un pana\n2 JUGADORES LOCAL\n02",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "En línea\nSALAS MULTIJUGADOR\n03",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "Mis logros",
+          "width": 110,
+          "height": 34
+        },
+        {
+          "label": "Elegir luchador para P1",
+          "width": 173,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Simón Díaz",
+          "width": 173,
+          "height": 31
+        },
+        {
+          "label": "Elegir luchador para CPU",
+          "width": 173,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Maite Delgado",
+          "width": 173,
+          "height": 31
+        },
+        {
+          "label": "P1\nTÚ",
+          "width": 44,
+          "height": 29
+        },
+        {
+          "label": "CPU\nRIVAL",
+          "width": 66,
+          "height": 29
+        },
+        {
+          "label": "Elegir luchador al azar para P1",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Buscar luchador",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Todos\n46",
+          "width": 189,
+          "height": 29
+        },
+        {
+          "label": "Cultura\n36",
+          "width": 189,
+          "height": 29
+        },
+        {
+          "label": "Leyendas\n10",
+          "width": 189,
+          "height": 29
+        },
+        {
+          "label": "Página siguiente de luchadores",
+          "width": 29,
+          "height": 29
+        },
+        {
+          "label": "Ver mapa",
+          "width": 74,
+          "height": 13
+        },
+        {
+          "label": "INPUT",
+          "width": 238,
+          "height": 36
+        },
+        {
+          "label": "Suave",
+          "width": 75,
+          "height": 30
+        },
+        {
+          "label": "Normal",
+          "width": 75,
+          "height": 30
+        },
+        {
+          "label": "Candela",
+          "width": 75,
+          "height": 30
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "lobby-final",
+    "width": 1280,
+    "height": 800,
+    "screenshot": "lobby-final-1280x800.webp",
+    "layout": {
+      "width": 1280,
+      "height": 800,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 32,
+        "y": 52,
+        "width": 1216,
+        "height": 817.1953125
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Pelea rápida\nTÚ VS. CPU\n01",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "Con un pana\n2 JUGADORES LOCAL\n02",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "En línea\nSALAS MULTIJUGADOR\n03",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "Mis logros",
+          "width": 110,
+          "height": 34
+        },
+        {
+          "label": "Elegir luchador para P1",
+          "width": 206,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Simón Díaz",
+          "width": 206,
+          "height": 31
+        },
+        {
+          "label": "Elegir luchador para CPU",
+          "width": 206,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Maite Delgado",
+          "width": 206,
+          "height": 31
+        },
+        {
+          "label": "P1\nTÚ",
+          "width": 44,
+          "height": 29
+        },
+        {
+          "label": "CPU\nRIVAL",
+          "width": 66,
+          "height": 29
+        },
+        {
+          "label": "Elegir luchador al azar para P1",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Buscar luchador",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Todos\n46",
+          "width": 237,
+          "height": 29
+        },
+        {
+          "label": "Cultura\n36",
+          "width": 237,
+          "height": 29
+        },
+        {
+          "label": "Leyendas\n10",
+          "width": 237,
+          "height": 29
+        },
+        {
+          "label": "Página siguiente de luchadores",
+          "width": 29,
+          "height": 29
+        },
+        {
+          "label": "Ver mapa",
+          "width": 74,
+          "height": 13
+        },
+        {
+          "label": "INPUT",
+          "width": 292,
+          "height": 36
+        },
+        {
+          "label": "Suave",
+          "width": 93,
+          "height": 30
+        },
+        {
+          "label": "Normal",
+          "width": 93,
+          "height": 30
+        },
+        {
+          "label": "Candela",
+          "width": 93,
+          "height": 30
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "lobby-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "lobby-final-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 32,
+        "y": 52,
+        "width": 1376,
+        "height": 862.1953125
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Pelea rápida\nTÚ VS. CPU\n01",
+          "width": 262,
+          "height": 42
+        },
+        {
+          "label": "Con un pana\n2 JUGADORES LOCAL\n02",
+          "width": 262,
+          "height": 38
+        },
+        {
+          "label": "En línea\nSALAS MULTIJUGADOR\n03",
+          "width": 262,
+          "height": 38
+        },
+        {
+          "label": "Mis logros",
+          "width": 110,
+          "height": 34
+        },
+        {
+          "label": "Elegir luchador para P1",
+          "width": 235,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Simón Díaz",
+          "width": 235,
+          "height": 31
+        },
+        {
+          "label": "Elegir luchador para CPU",
+          "width": 235,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Maite Delgado",
+          "width": 235,
+          "height": 31
+        },
+        {
+          "label": "P1\nTÚ",
+          "width": 44,
+          "height": 29
+        },
+        {
+          "label": "CPU\nRIVAL",
+          "width": 66,
+          "height": 29
+        },
+        {
+          "label": "Elegir luchador al azar para P1",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Buscar luchador",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Todos\n46",
+          "width": 271,
+          "height": 29
+        },
+        {
+          "label": "Cultura\n36",
+          "width": 271,
+          "height": 29
+        },
+        {
+          "label": "Leyendas\n10",
+          "width": 271,
+          "height": 29
+        },
+        {
+          "label": "Página siguiente de luchadores",
+          "width": 29,
+          "height": 29
+        },
+        {
+          "label": "Ver mapa",
+          "width": 74,
+          "height": 13
+        },
+        {
+          "label": "INPUT",
+          "width": 334,
+          "height": 36
+        },
+        {
+          "label": "Suave",
+          "width": 107,
+          "height": 30
+        },
+        {
+          "label": "Normal",
+          "width": 107,
+          "height": 30
+        },
+        {
+          "label": "Candela",
+          "width": 107,
+          "height": 30
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "help-final",
+    "width": 320,
+    "height": 568,
+    "screenshot": "help-final-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": "El manual del pana",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 282,
+        "height": 540
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "help-final",
+    "width": 390,
+    "height": 844,
+    "screenshot": "help-final-390x844.webp",
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "title": "El manual del pana",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 352,
+        "height": 816
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "help-final",
+    "width": 667,
+    "height": 375,
+    "screenshot": "help-final-667x375.webp",
+    "layout": {
+      "width": 667,
+      "height": 375,
+      "title": "El manual del pana",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 24,
+        "width": 629,
+        "height": 327
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "help-final",
+    "width": 768,
+    "height": 1024,
+    "screenshot": "help-final-768x1024.webp",
+    "layout": {
+      "width": 768,
+      "height": 1024,
+      "title": "El manual del pana",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 24,
+        "width": 730,
+        "height": 976
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "help-final",
+    "width": 1024,
+    "height": 768,
+    "screenshot": "help-final-1024x768.webp",
+    "layout": {
+      "width": 1024,
+      "height": 768,
+      "title": "El manual del pana",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 132,
+        "y": 24,
+        "width": 760,
+        "height": 720
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "help-final",
+    "width": 1280,
+    "height": 800,
+    "screenshot": "help-final-1280x800.webp",
+    "layout": {
+      "width": 1280,
+      "height": 800,
+      "title": "El manual del pana",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 260,
+        "y": 24,
+        "width": 760,
+        "height": 752
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "help-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "help-final-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": "El manual del pana",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 340,
+        "y": 24,
+        "width": 760,
+        "height": 852
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "help-bottom-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "help-bottom-final-1440x900.webp"
+  },
+  {
+    "state": "stages-final",
+    "width": 320,
+    "height": 568,
+    "screenshot": "stages-final-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": "Elige dónde se prende la pelea",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 282,
+        "height": 540
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "stages-final",
+    "width": 390,
+    "height": 844,
+    "screenshot": "stages-final-390x844.webp",
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "title": "Elige dónde se prende la pelea",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 352,
+        "height": 816
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "stages-final",
+    "width": 667,
+    "height": 375,
+    "screenshot": "stages-final-667x375.webp",
+    "layout": {
+      "width": 667,
+      "height": 375,
+      "title": "Elige dónde se prende la pelea",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 24,
+        "width": 629,
+        "height": 327
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "stages-final",
+    "width": 768,
+    "height": 1024,
+    "screenshot": "stages-final-768x1024.webp",
+    "layout": {
+      "width": 768,
+      "height": 1024,
+      "title": "Elige dónde se prende la pelea",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 24,
+        "width": 730,
+        "height": 976
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "stages-final",
+    "width": 1024,
+    "height": 768,
+    "screenshot": "stages-final-1024x768.webp",
+    "layout": {
+      "width": 1024,
+      "height": 768,
+      "title": "Elige dónde se prende la pelea",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 132,
+        "y": 24,
+        "width": 760,
+        "height": 720
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "stages-final",
+    "width": 1280,
+    "height": 800,
+    "screenshot": "stages-final-1280x800.webp",
+    "layout": {
+      "width": 1280,
+      "height": 800,
+      "title": "Elige dónde se prende la pelea",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 260,
+        "y": 24,
+        "width": 760,
+        "height": 752
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "stages-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "stages-final-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": "Elige dónde se prende la pelea",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 340,
+        "y": 24,
+        "width": 760,
+        "height": 852
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "stages-bottom-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "stages-bottom-final-1440x900.webp"
+  },
+  {
+    "state": "roster-final",
+    "width": 320,
+    "height": 568,
+    "screenshot": "roster-final-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": "La gente de la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 282,
+        "height": 540
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "roster-final",
+    "width": 390,
+    "height": 844,
+    "screenshot": "roster-final-390x844.webp",
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "title": "La gente de la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 352,
+        "height": 816
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "roster-final",
+    "width": 667,
+    "height": 375,
+    "screenshot": "roster-final-667x375.webp",
+    "layout": {
+      "width": 667,
+      "height": 375,
+      "title": "La gente de la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 24,
+        "width": 629,
+        "height": 327
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "roster-final",
+    "width": 768,
+    "height": 1024,
+    "screenshot": "roster-final-768x1024.webp",
+    "layout": {
+      "width": 768,
+      "height": 1024,
+      "title": "La gente de la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 24,
+        "width": 730,
+        "height": 976
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "roster-final",
+    "width": 1024,
+    "height": 768,
+    "screenshot": "roster-final-1024x768.webp",
+    "layout": {
+      "width": 1024,
+      "height": 768,
+      "title": "La gente de la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 132,
+        "y": 24,
+        "width": 760,
+        "height": 720
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "roster-final",
+    "width": 1280,
+    "height": 800,
+    "screenshot": "roster-final-1280x800.webp",
+    "layout": {
+      "width": 1280,
+      "height": 800,
+      "title": "La gente de la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 260,
+        "y": 24,
+        "width": 760,
+        "height": 752
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "roster-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "roster-final-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": "La gente de la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 340,
+        "y": 24,
+        "width": 760,
+        "height": 852
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "roster-bottom-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "roster-bottom-final-1440x900.webp"
+  },
+  {
+    "state": "fighter-detail-final",
+    "width": 320,
+    "height": 568,
+    "screenshot": "fighter-detail-final-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": "Juan José Pocaterra",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 282,
+        "height": 540
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "fighter-detail-final",
+    "width": 390,
+    "height": 844,
+    "screenshot": "fighter-detail-final-390x844.webp",
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "title": "Juan José Pocaterra",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 352,
+        "height": 816
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "fighter-detail-final",
+    "width": 667,
+    "height": 375,
+    "screenshot": "fighter-detail-final-667x375.webp",
+    "layout": {
+      "width": 667,
+      "height": 375,
+      "title": "Juan José Pocaterra",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 24,
+        "width": 629,
+        "height": 327
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "fighter-detail-final",
+    "width": 768,
+    "height": 1024,
+    "screenshot": "fighter-detail-final-768x1024.webp",
+    "layout": {
+      "width": 768,
+      "height": 1024,
+      "title": "Juan José Pocaterra",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 92.828125,
+        "width": 730,
+        "height": 838.34375
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "fighter-detail-final",
+    "width": 1024,
+    "height": 768,
+    "screenshot": "fighter-detail-final-1024x768.webp",
+    "layout": {
+      "width": 1024,
+      "height": 768,
+      "title": "Juan José Pocaterra",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 132,
+        "y": 24,
+        "width": 760,
+        "height": 720
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "fighter-detail-final",
+    "width": 1280,
+    "height": 800,
+    "screenshot": "fighter-detail-final-1280x800.webp",
+    "layout": {
+      "width": 1280,
+      "height": 800,
+      "title": "Juan José Pocaterra",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 260,
+        "y": 24,
+        "width": 760,
+        "height": 752
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "fighter-detail-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "fighter-detail-final-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": "Juan José Pocaterra",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 340,
+        "y": 41.875,
+        "width": 760,
+        "height": 816.25
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "rooms-final",
+    "width": 320,
+    "height": 568,
+    "screenshot": "rooms-final-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": "La pelea es con los panas",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 282,
+        "height": 540
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "INPUT",
+          "width": 20,
+          "height": 20
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "rooms-final",
+    "width": 390,
+    "height": 844,
+    "screenshot": "rooms-final-390x844.webp",
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "title": "La pelea es con los panas",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 352,
+        "height": 816
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "INPUT",
+          "width": 20,
+          "height": 20
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "rooms-final",
+    "width": 667,
+    "height": 375,
+    "screenshot": "rooms-final-667x375.webp",
+    "layout": {
+      "width": 667,
+      "height": 375,
+      "title": "La pelea es con los panas",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 24,
+        "width": 629,
+        "height": 327
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "INPUT",
+          "width": 20,
+          "height": 20
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "rooms-final",
+    "width": 768,
+    "height": 1024,
+    "screenshot": "rooms-final-768x1024.webp",
+    "layout": {
+      "width": 768,
+      "height": 1024,
+      "title": "La pelea es con los panas",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 151.859375,
+        "width": 730,
+        "height": 720.28125
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "INPUT",
+          "width": 20,
+          "height": 20
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "rooms-final",
+    "width": 1024,
+    "height": 768,
+    "screenshot": "rooms-final-1024x768.webp",
+    "layout": {
+      "width": 1024,
+      "height": 768,
+      "title": "La pelea es con los panas",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 132,
+        "y": 24,
+        "width": 760,
+        "height": 720
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "INPUT",
+          "width": 20,
+          "height": 20
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "rooms-final",
+    "width": 1280,
+    "height": 800,
+    "screenshot": "rooms-final-1280x800.webp",
+    "layout": {
+      "width": 1280,
+      "height": 800,
+      "title": "La pelea es con los panas",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 260,
+        "y": 39.859375,
+        "width": 760,
+        "height": 720.28125
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "INPUT",
+          "width": 20,
+          "height": 20
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "rooms-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "rooms-final-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": "La pelea es con los panas",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 340,
+        "y": 89.859375,
+        "width": 760,
+        "height": 720.28125
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "INPUT",
+          "width": 20,
+          "height": 20
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "waiting-room-final",
+    "width": 320,
+    "height": 568,
+    "screenshot": "waiting-room-final-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 10,
+        "y": -1347.5,
+        "width": 300,
+        "height": 1878.4765625
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar aviso",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "P1\nTÚ",
+          "width": 43,
+          "height": 44
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "waiting-room-final",
+    "width": 390,
+    "height": 844,
+    "screenshot": "waiting-room-final-390x844.webp",
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 10,
+        "y": -1257,
+        "width": 370,
+        "height": 1915.8828125
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar aviso",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "waiting-room-final",
+    "width": 667,
+    "height": 375,
+    "screenshot": "waiting-room-final-667x375.webp",
+    "layout": {
+      "width": 667,
+      "height": 375,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 14,
+        "y": -1222,
+        "width": 639,
+        "height": 1621.1796875
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar aviso",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "waiting-room-final",
+    "width": 768,
+    "height": 1024,
+    "screenshot": "waiting-room-final-768x1024.webp",
+    "layout": {
+      "width": 768,
+      "height": 1024,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 14,
+        "y": -646,
+        "width": 740,
+        "height": 1521.890625
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Cerrar aviso",
+          "width": 32,
+          "height": 32
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "waiting-room-final",
+    "width": 1024,
+    "height": 768,
+    "screenshot": "waiting-room-final-1024x768.webp",
+    "layout": {
+      "width": 1024,
+      "height": 768,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 20,
+        "y": -278,
+        "width": 984,
+        "height": 972.7890625
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Pelea rápida\nTÚ VS. CPU\n01",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "Con un pana\n2 JUGADORES LOCAL\n02",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "En línea\nSALAS MULTIJUGADOR\n03",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "Mis logros",
+          "width": 110,
+          "height": 34
+        },
+        {
+          "label": "Cerrar aviso",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Elegir luchador para P1",
+          "width": 173,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Juan José Pocaterra",
+          "width": 173,
+          "height": 31
+        },
+        {
+          "label": "Ver movimientos de Vicente Zavarce",
+          "width": 173,
+          "height": 31
+        },
+        {
+          "label": "P1\nTÚ",
+          "width": 44,
+          "height": 29
+        },
+        {
+          "label": "Elegir luchador al azar para P1",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Buscar luchador",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Todos\n46",
+          "width": 189,
+          "height": 29
+        },
+        {
+          "label": "Cultura\n36",
+          "width": 189,
+          "height": 29
+        },
+        {
+          "label": "Leyendas\n10",
+          "width": 189,
+          "height": 29
+        },
+        {
+          "label": "Página siguiente de luchadores",
+          "width": 29,
+          "height": 29
+        },
+        {
+          "label": "Ver mapa",
+          "width": 74,
+          "height": 13
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "waiting-room-final",
+    "width": 1280,
+    "height": 800,
+    "screenshot": "waiting-room-final-1280x800.webp",
+    "layout": {
+      "width": 1280,
+      "height": 800,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 32,
+        "y": -232,
+        "width": 1216,
+        "height": 958.7890625
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Pelea rápida\nTÚ VS. CPU\n01",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "Con un pana\n2 JUGADORES LOCAL\n02",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "En línea\nSALAS MULTIJUGADOR\n03",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "Mis logros",
+          "width": 110,
+          "height": 34
+        },
+        {
+          "label": "Cerrar aviso",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Elegir luchador para P1",
+          "width": 206,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Juan José Pocaterra",
+          "width": 206,
+          "height": 31
+        },
+        {
+          "label": "Ver movimientos de Vicente Zavarce",
+          "width": 206,
+          "height": 31
+        },
+        {
+          "label": "P1\nTÚ",
+          "width": 44,
+          "height": 29
+        },
+        {
+          "label": "Elegir luchador al azar para P1",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Buscar luchador",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Todos\n46",
+          "width": 237,
+          "height": 29
+        },
+        {
+          "label": "Cultura\n36",
+          "width": 237,
+          "height": 29
+        },
+        {
+          "label": "Leyendas\n10",
+          "width": 237,
+          "height": 29
+        },
+        {
+          "label": "Página siguiente de luchadores",
+          "width": 29,
+          "height": 29
+        },
+        {
+          "label": "Ver mapa",
+          "width": 74,
+          "height": 13
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "waiting-room-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "waiting-room-final-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 32,
+        "y": -171,
+        "width": 1376,
+        "height": 997.796875
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Pelea rápida\nTÚ VS. CPU\n01",
+          "width": 262,
+          "height": 42
+        },
+        {
+          "label": "Con un pana\n2 JUGADORES LOCAL\n02",
+          "width": 262,
+          "height": 38
+        },
+        {
+          "label": "En línea\nSALAS MULTIJUGADOR\n03",
+          "width": 262,
+          "height": 38
+        },
+        {
+          "label": "Mis logros",
+          "width": 110,
+          "height": 34
+        },
+        {
+          "label": "Cerrar aviso",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Elegir luchador para P1",
+          "width": 235,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Juan José Pocaterra",
+          "width": 235,
+          "height": 31
+        },
+        {
+          "label": "Ver movimientos de Vicente Zavarce",
+          "width": 235,
+          "height": 31
+        },
+        {
+          "label": "P1\nTÚ",
+          "width": 44,
+          "height": 29
+        },
+        {
+          "label": "Elegir luchador al azar para P1",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Buscar luchador",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Todos\n46",
+          "width": 271,
+          "height": 29
+        },
+        {
+          "label": "Cultura\n36",
+          "width": 271,
+          "height": 29
+        },
+        {
+          "label": "Leyendas\n10",
+          "width": 271,
+          "height": 29
+        },
+        {
+          "label": "Página siguiente de luchadores",
+          "width": 29,
+          "height": 29
+        },
+        {
+          "label": "Ver mapa",
+          "width": 74,
+          "height": 13
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "local-setup-final",
+    "width": 320,
+    "height": 568,
+    "screenshot": "local-setup-final-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 10,
+        "y": -1236,
+        "width": 300,
+        "height": 1732.8828125
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "P1\nTÚ",
+          "width": 43,
+          "height": 44
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "local-setup-final",
+    "width": 390,
+    "height": 844,
+    "screenshot": "local-setup-final-390x844.webp",
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 10,
+        "y": -1156,
+        "width": 370,
+        "height": 1791.0859375
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "local-setup-final",
+    "width": 667,
+    "height": 375,
+    "screenshot": "local-setup-final-667x375.webp",
+    "layout": {
+      "width": 667,
+      "height": 375,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 14,
+        "y": -1113.5,
+        "width": 639,
+        "height": 1470.7890625
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "local-setup-final",
+    "width": 768,
+    "height": 1024,
+    "screenshot": "local-setup-final-768x1024.webp",
+    "layout": {
+      "width": 768,
+      "height": 1024,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 14,
+        "y": -512,
+        "width": 740,
+        "height": 1387.890625
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "local-setup-final",
+    "width": 1024,
+    "height": 768,
+    "screenshot": "local-setup-final-1024x768.webp",
+    "layout": {
+      "width": 1024,
+      "height": 768,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 20,
+        "y": -142,
+        "width": 984,
+        "height": 837.1953125
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Pelea rápida\nTÚ VS. CPU\n01",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "Con un pana\n2 JUGADORES LOCAL\n02",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "En línea\nSALAS MULTIJUGADOR\n03",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "Mis logros",
+          "width": 110,
+          "height": 34
+        },
+        {
+          "label": "Elegir luchador para P1",
+          "width": 173,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Juan José Pocaterra",
+          "width": 173,
+          "height": 31
+        },
+        {
+          "label": "Elegir luchador para P2",
+          "width": 173,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Maite Delgado",
+          "width": 173,
+          "height": 31
+        },
+        {
+          "label": "P1\nTÚ",
+          "width": 44,
+          "height": 29
+        },
+        {
+          "label": "P2\nTU PANA",
+          "width": 68,
+          "height": 29
+        },
+        {
+          "label": "Elegir luchador al azar para P1",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Buscar luchador",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Todos\n46",
+          "width": 189,
+          "height": 29
+        },
+        {
+          "label": "Cultura\n36",
+          "width": 189,
+          "height": 29
+        },
+        {
+          "label": "Leyendas\n10",
+          "width": 189,
+          "height": 29
+        },
+        {
+          "label": "Página siguiente de luchadores",
+          "width": 29,
+          "height": 29
+        },
+        {
+          "label": "Ver mapa",
+          "width": 74,
+          "height": 13
+        },
+        {
+          "label": "INPUT",
+          "width": 238,
+          "height": 36
+        },
+        {
+          "label": "Apodo del jugador 2",
+          "width": 238,
+          "height": 36
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "local-setup-final",
+    "width": 1280,
+    "height": 800,
+    "screenshot": "local-setup-final-1280x800.webp",
+    "layout": {
+      "width": 1280,
+      "height": 800,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 32,
+        "y": -90,
+        "width": 1216,
+        "height": 817.1953125
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Pelea rápida\nTÚ VS. CPU\n01",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "Con un pana\n2 JUGADORES LOCAL\n02",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "En línea\nSALAS MULTIJUGADOR\n03",
+          "width": 225,
+          "height": 38
+        },
+        {
+          "label": "Mis logros",
+          "width": 110,
+          "height": 34
+        },
+        {
+          "label": "Elegir luchador para P1",
+          "width": 206,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Juan José Pocaterra",
+          "width": 206,
+          "height": 31
+        },
+        {
+          "label": "Elegir luchador para P2",
+          "width": 206,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Maite Delgado",
+          "width": 206,
+          "height": 31
+        },
+        {
+          "label": "P1\nTÚ",
+          "width": 44,
+          "height": 29
+        },
+        {
+          "label": "P2\nTU PANA",
+          "width": 68,
+          "height": 29
+        },
+        {
+          "label": "Elegir luchador al azar para P1",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Buscar luchador",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Todos\n46",
+          "width": 237,
+          "height": 29
+        },
+        {
+          "label": "Cultura\n36",
+          "width": 237,
+          "height": 29
+        },
+        {
+          "label": "Leyendas\n10",
+          "width": 237,
+          "height": 29
+        },
+        {
+          "label": "Página siguiente de luchadores",
+          "width": 29,
+          "height": 29
+        },
+        {
+          "label": "Ver mapa",
+          "width": 74,
+          "height": 13
+        },
+        {
+          "label": "INPUT",
+          "width": 292,
+          "height": 36
+        },
+        {
+          "label": "Apodo del jugador 2",
+          "width": 292,
+          "height": 36
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "local-setup-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "local-setup-final-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": null,
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 32,
+        "y": -35,
+        "width": 1376,
+        "height": 862.1953125
+      },
+      "clipped": [],
+      "smallTargets": [
+        {
+          "label": "Pelea rápida\nTÚ VS. CPU\n01",
+          "width": 262,
+          "height": 42
+        },
+        {
+          "label": "Con un pana\n2 JUGADORES LOCAL\n02",
+          "width": 262,
+          "height": 38
+        },
+        {
+          "label": "En línea\nSALAS MULTIJUGADOR\n03",
+          "width": 262,
+          "height": 38
+        },
+        {
+          "label": "Mis logros",
+          "width": 110,
+          "height": 34
+        },
+        {
+          "label": "Elegir luchador para P1",
+          "width": 235,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Juan José Pocaterra",
+          "width": 235,
+          "height": 31
+        },
+        {
+          "label": "Elegir luchador para P2",
+          "width": 235,
+          "height": 30
+        },
+        {
+          "label": "Ver movimientos de Maite Delgado",
+          "width": 235,
+          "height": 31
+        },
+        {
+          "label": "P1\nTÚ",
+          "width": 44,
+          "height": 29
+        },
+        {
+          "label": "P2\nTU PANA",
+          "width": 68,
+          "height": 29
+        },
+        {
+          "label": "Elegir luchador al azar para P1",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Buscar luchador",
+          "width": 32,
+          "height": 32
+        },
+        {
+          "label": "Todos\n46",
+          "width": 271,
+          "height": 29
+        },
+        {
+          "label": "Cultura\n36",
+          "width": 271,
+          "height": 29
+        },
+        {
+          "label": "Leyendas\n10",
+          "width": 271,
+          "height": 29
+        },
+        {
+          "label": "Página siguiente de luchadores",
+          "width": 29,
+          "height": 29
+        },
+        {
+          "label": "Ver mapa",
+          "width": 74,
+          "height": 13
+        },
+        {
+          "label": "INPUT",
+          "width": 334,
+          "height": 36
+        },
+        {
+          "label": "Apodo del jugador 2",
+          "width": 334,
+          "height": 36
+        }
+      ],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "progress-final",
+    "width": 320,
+    "height": 568,
+    "screenshot": "progress-final-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": "Tu historia en la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 282,
+        "height": 540
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "progress-final",
+    "width": 390,
+    "height": 844,
+    "screenshot": "progress-final-390x844.webp",
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "title": "Tu historia en la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 14,
+        "width": 352,
+        "height": 816
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "progress-final",
+    "width": 667,
+    "height": 375,
+    "screenshot": "progress-final-667x375.webp",
+    "layout": {
+      "width": 667,
+      "height": 375,
+      "title": "Tu historia en la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 73.5,
+        "y": 24,
+        "width": 520,
+        "height": 327
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "progress-final",
+    "width": 768,
+    "height": 1024,
+    "screenshot": "progress-final-768x1024.webp",
+    "layout": {
+      "width": 768,
+      "height": 1024,
+      "title": "Tu historia en la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 124,
+        "y": 24,
+        "width": 520,
+        "height": 976
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "progress-final",
+    "width": 1024,
+    "height": 768,
+    "screenshot": "progress-final-1024x768.webp",
+    "layout": {
+      "width": 1024,
+      "height": 768,
+      "title": "Tu historia en la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 252,
+        "y": 24,
+        "width": 520,
+        "height": 720
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "progress-final",
+    "width": 1280,
+    "height": 800,
+    "screenshot": "progress-final-1280x800.webp",
+    "layout": {
+      "width": 1280,
+      "height": 800,
+      "title": "Tu historia en la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 380,
+        "y": 24,
+        "width": 520,
+        "height": 752
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "progress-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "progress-final-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": "Tu historia en la arena",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 460,
+        "y": 24,
+        "width": 520,
+        "height": 852
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "progress-bottom-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "progress-bottom-final-1440x900.webp"
+  },
+  {
+    "state": "ranking-final",
+    "width": 320,
+    "height": 568,
+    "screenshot": "ranking-final-320x568.webp",
+    "layout": {
+      "width": 320,
+      "height": 568,
+      "title": "La próxima ronda",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 51.3125,
+        "width": 282,
+        "height": 465.375
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "ranking-final",
+    "width": 390,
+    "height": 844,
+    "screenshot": "ranking-final-390x844.webp",
+    "layout": {
+      "width": 390,
+      "height": 844,
+      "title": "La próxima ronda",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 19,
+        "y": 189.3125,
+        "width": 352,
+        "height": 465.375
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "ranking-final",
+    "width": 667,
+    "height": 375,
+    "screenshot": "ranking-final-667x375.webp",
+    "layout": {
+      "width": 667,
+      "height": 375,
+      "title": "La próxima ronda",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 73.5,
+        "y": 24,
+        "width": 520,
+        "height": 327
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "ranking-final",
+    "width": 768,
+    "height": 1024,
+    "screenshot": "ranking-final-768x1024.webp",
+    "layout": {
+      "width": 768,
+      "height": 1024,
+      "title": "La próxima ronda",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 124,
+        "y": 309.40625,
+        "width": 520,
+        "height": 405.1875
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "ranking-final",
+    "width": 1024,
+    "height": 768,
+    "screenshot": "ranking-final-1024x768.webp",
+    "layout": {
+      "width": 1024,
+      "height": 768,
+      "title": "La próxima ronda",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 252,
+        "y": 181.40625,
+        "width": 520,
+        "height": 405.1875
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "ranking-final",
+    "width": 1280,
+    "height": 800,
+    "screenshot": "ranking-final-1280x800.webp",
+    "layout": {
+      "width": 1280,
+      "height": 800,
+      "title": "La próxima ronda",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 380,
+        "y": 197.40625,
+        "width": 520,
+        "height": 405.1875
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "ranking-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "ranking-final-1440x900.webp",
+    "layout": {
+      "width": 1440,
+      "height": 900,
+      "title": "La próxima ronda",
+      "horizontalOverflow": false,
+      "rootOverflow": false,
+      "rootBounds": {
+        "x": 460,
+        "y": 247.40625,
+        "width": 520,
+        "height": 405.1875
+      },
+      "clipped": [],
+      "smallTargets": [],
+      "offscreen": [],
+      "brokenImages": []
+    }
+  },
+  {
+    "state": "public-rooms-final",
+    "width": 1280,
+    "height": 800,
+    "screenshot": "public-rooms-final-1440x900.webp"
+  },
+  {
+    "state": "online-pause-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "online-pause-final-1440x900.webp"
+  },
+  {
+    "state": "online-result-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "online-result-final-1440x900.webp"
+  },
+  {
+    "state": "progress-bottom-contrast-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "progress-bottom-contrast-final-1440x900.webp"
+  },
+  {
+    "state": "search-empty-final",
+    "width": 1440,
+    "height": 900,
+    "screenshot": "search-empty-final-1440x900.webp"
+  }
+]
