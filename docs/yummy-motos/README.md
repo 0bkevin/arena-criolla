@@ -21,3 +21,24 @@ Las fotos descargadas son referencias locales excluidas por .gitignore.
 El arte de juego se genera de nuevo con image_gen.imagegen; las fotos no se
 redistribuyen como assets. La combinación de uniforme y mochila es una
 interpretación ilustrada para el juego.
+
+## Combat verification
+
+`matchup-qa.json` records 4,350 simulation scenarios across all 46 fighters and
+nine stages, including both player slots, guards, double jumps, simultaneous
+specials, elevated and moving platforms, reflections, counters, interrupted
+summons, final-stock knockouts, ringouts and JSON replay determinism. Fifteen
+additional scenarios verify formation, impact and reflection synchronization
+between two real WebSocket clients. `browser-qa.json` contains ten scripted
+renderer checks using the shipped sprites and stage assets; the reusable probe
+is `scripts/courier-browser-qa.js`.
+
+The checks exposed and fixed a close-range reflection order bug: both fighters
+now finish spawning projectiles before either reflector checks the current tick.
+The regression covers both player slots at gaps of 80, 120 and 180 world units.
+
+Reproduce the simulation report with:
+
+```bash
+COURIER_QA_REPORT=/tmp/courier-matchup-qa.json npx tsx --test tests/courier-matchups.test.ts
+```
