@@ -29,6 +29,10 @@ import type {
   RoomView,
   ServerMessage,
 } from "../shared/protocol";
+import {
+  ARENA_SOCKET_PROTOCOL,
+  ROOM_RESUME_PROTOCOL_PREFIX,
+} from "../shared/protocol";
 import { FixedStepTicker } from "./ticker";
 import { allowedWebSocketOrigin, securityHeaders } from "./security";
 
@@ -43,6 +47,7 @@ interface Client {
   controls: number;
   lists: number;
   window: number;
+  resumeToken: string | null;
 }
 interface Room {
   view: RoomView;
@@ -72,6 +77,7 @@ export async function makeArenaServer(
     // Explicit opt-in for the retained workshop's isolated tests and tooling.
     workshopEnabled?: boolean;
     trustProxy?: string[];
+    roomReconnectGraceMs?: number;
   } = {},
 ) {
   const app = express();
@@ -129,6 +135,17 @@ export async function makeArenaServer(
   const wss = new WebSocketServer({ noServer: true, maxPayload: 4096 });
   const clients = new Map<string, Client>();
   const rooms = new Map<string, Room>();
+  const sessions = new Map<string, Client>();
+  const resumeTimers = new Map<string, ReturnType<typeof setTimeout>>();
+  const reconnectGraceMs = options.roomReconnectGraceMs ?? 5 * 60_000;
+  let shuttingDown = false;
+
+  const forgetSession = (client: Client) => {
+    if (!client.resumeToken) return;
+    clearTimeout(resumeTimers.get(client.resumeToken));
+    resumeTimers.delete(client.resumeToken);
+    sessions.delete(client.resumeToken);
+  };
 
   const send = (client: Client, message: ServerMessage) => {
     if (client.socket.readyState !== WebSocket.OPEN) return;
@@ -204,6 +221,7 @@ export async function makeArenaServer(
   const error = (client: Client, message: string) =>
     send(client, { type: "error", message });
   const leave = (client: Client, notify = true) => {
+    forgetSession(client);
     const room = client.room && rooms.get(client.room);
     client.room = null;
     client.input = emptyInput();
@@ -229,7 +247,11 @@ export async function makeArenaServer(
     if (notify) send(client, { type: "left" });
   };
   const start = (room: Room) => {
-    if (room.clients.length !== 2 || !room.view.players.every((p) => p.ready))
+    if (
+      room.clients.length !== 2 ||
+      !room.view.players.every((p) => p.ready) ||
+      room.view.players.some((player) => player.connected === false)
+    )
       return;
     if (room.view.players.some((player) => !allowedFighter(player.fighter))) {
       room.view.status = "waiting";
@@ -304,34 +326,97 @@ export async function makeArenaServer(
       wss.emit("connection", ws, request),
     );
   });
-  wss.on("connection", (socket) => {
-    const client: Client = {
-      id: randomUUID(),
-      socket,
-      room: null,
-      input: emptyInput(),
-      inputAt: performance.now(),
-      alive: true,
-      messages: 0,
-      controls: 0,
-      lists: 0,
-      window: Date.now(),
-    };
+  wss.on("connection", (socket, request) => {
+    const protocols = (request.headers["sec-websocket-protocol"] ?? "")
+      .split(",")
+      .map((protocol) => protocol.trim());
+    const resumable = protocols.includes(ARENA_SOCKET_PROTOCOL);
+    const resumeToken = protocols
+      .find((protocol) => protocol.startsWith(ROOM_RESUME_PROTOCOL_PREFIX))
+      ?.slice(ROOM_RESUME_PROTOCOL_PREFIX.length);
+    const previous =
+      resumable && resumeToken ? sessions.get(resumeToken) : null;
+    const resumed = Boolean(previous?.room && rooms.has(previous.room));
+    const client: Client = resumed
+      ? previous!
+      : {
+          id: randomUUID(),
+          socket,
+          room: null,
+          input: emptyInput(),
+          inputAt: performance.now(),
+          alive: true,
+          messages: 0,
+          controls: 0,
+          lists: 0,
+          window: Date.now(),
+          resumeToken: resumable ? randomBytes(32).toString("hex") : null,
+        };
+    if (resumed) {
+      const oldSocket = client.socket;
+      client.socket = socket;
+      client.alive = true;
+      if (client.resumeToken) {
+        clearTimeout(resumeTimers.get(client.resumeToken));
+        resumeTimers.delete(client.resumeToken);
+      }
+      oldSocket.terminate();
+      const player = rooms
+        .get(client.room!)
+        ?.view.players.find((p) => p.id === client.id);
+      if (player) player.connected = true;
+    }
     clients.set(client.id, client);
-    send(client, { type: "welcome", id: client.id });
+    if (client.resumeToken) sessions.set(client.resumeToken, client);
+    send(client, {
+      type: "welcome",
+      id: client.id,
+      resumeToken: client.resumeToken ?? undefined,
+      resumed,
+    });
     sendEncoded(client, communityPayload(), true);
     publishList(client);
+    if (resumed) {
+      const room = rooms.get(client.room!)!;
+      publishRoom(room);
+      if (room.state)
+        send(client, {
+          type: "start",
+          state: room.state,
+          index: room.clients.indexOf(client),
+        });
+    }
     scheduleRoomList();
     socket.on("pong", () => {
       client.alive = true;
     });
     socket.on("error", () => {});
     socket.on("close", () => {
+      if (client.socket !== socket) return;
       clients.delete(client.id);
-      leave(client, false);
+      const room = client.room ? rooms.get(client.room) : undefined;
+      if (
+        !shuttingDown &&
+        client.resumeToken &&
+        room?.view.status === "waiting"
+      ) {
+        client.input = emptyInput();
+        room.view.players.forEach((player) => {
+          player.ready = false;
+          if (player.id === client.id) player.connected = false;
+        });
+        const timer = setTimeout(() => {
+          resumeTimers.delete(client.resumeToken!);
+          leave(client, false);
+        }, reconnectGraceMs);
+        timer.unref();
+        resumeTimers.set(client.resumeToken, timer);
+        publishRoom(room);
+      } else leave(client, false);
       scheduleRoomList();
     });
     socket.on("message", (raw) => {
+      if (client.socket !== socket) return;
       const now = Date.now();
       if (now - client.window >= 1000) {
         client.window = now;
@@ -407,6 +492,7 @@ export async function makeArenaServer(
         };
         rooms.set(code, room);
         client.room = code;
+        if (client.resumeToken) sessions.set(client.resumeToken, client);
         publishRoom(room);
         scheduleRoomList(room);
         return;
@@ -437,6 +523,7 @@ export async function makeArenaServer(
         });
         room.touched = now;
         client.room = room.view.code;
+        if (client.resumeToken) sessions.set(client.resumeToken, client);
         publishRoom(room);
         scheduleRoomList(room);
         return;
@@ -575,6 +662,9 @@ export async function makeArenaServer(
     });
   }, 15_000);
   http.on("close", () => {
+    resumeTimers.forEach(clearTimeout);
+    resumeTimers.clear();
+    sessions.clear();
     clearInterval(gameLoop);
     clearInterval(heartbeat);
     if (roomListTimer) clearTimeout(roomListTimer);
@@ -668,6 +758,7 @@ export async function makeArenaServer(
     rooms,
     close: () =>
       (closing ??= (async () => {
+        shuttingDown = true;
         creator.stop();
         clients.forEach((c) => c.socket.terminate());
         // Stop accepting connections first, but retain SQLite until in-flight auth,

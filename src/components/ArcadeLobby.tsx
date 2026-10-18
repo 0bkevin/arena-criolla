@@ -769,7 +769,11 @@ export function ArcadeLobby(props: Props) {
                   <span className="ready-player-dot" />
                   {p.name}
                   {p.id === network.id ? " (tú)" : ""} ·{" "}
-                  {p.ready ? "LISTO" : "ELIGIENDO"}
+                  {p.connected === false
+                    ? "RECONECTANDO…"
+                    : p.ready
+                      ? "LISTO"
+                      : "ELIGIENDO"}
                 </span>
               ))}
               {network.room.players.length === 1 && (
