@@ -258,13 +258,6 @@ export async function makeArenaServer(
       );
       return;
     }
-    if (clients.size >= 300) {
-      socket.end(
-        "HTTP/1.1 503 Service Unavailable\r\nConnection: close\r\nContent-Length: 0\r\n\r\n",
-        () => socket.destroy(),
-      );
-      return;
-    }
     wss.handleUpgrade(request, socket, head, (ws) =>
       wss.emit("connection", ws, request),
     );
@@ -342,10 +335,6 @@ export async function makeArenaServer(
         }
         if (!allowedFighter(message.fighter) || !isStage(message.stage)) {
           error(client, "Elige un luchador y un escenario válidos.");
-          return;
-        }
-        if (rooms.size >= 100) {
-          error(client, "La arena está llena. Intenta de nuevo en un momento.");
           return;
         }
         let code: string;
