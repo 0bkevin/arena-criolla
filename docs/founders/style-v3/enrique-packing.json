@@ -1,0 +1,83 @@
+{
+  "id": "enrique",
+  "raw": "assets/source/founders-v3/enrique-generated.png",
+  "source": "assets/source/enrique-v3.png",
+  "runtime": "public/assets/enrique-v3.webp",
+  "sourceWidth": 1774,
+  "sourceHeight": 887,
+  "frames": [
+    {
+      "label": 1,
+      "minX": 94,
+      "minY": 12,
+      "maxX": 377,
+      "maxY": 456,
+      "pixels": 58662,
+      "frame": 0
+    },
+    {
+      "label": 2,
+      "minX": 500,
+      "minY": 25,
+      "maxX": 834,
+      "maxY": 452,
+      "pixels": 56769,
+      "frame": 1
+    },
+    {
+      "label": 3,
+      "minX": 926,
+      "minY": 26,
+      "maxX": 1294,
+      "maxY": 456,
+      "pixels": 67062,
+      "frame": 2
+    },
+    {
+      "label": 4,
+      "minX": 1356,
+      "minY": 28,
+      "maxX": 1748,
+      "maxY": 451,
+      "pixels": 61721,
+      "frame": 3
+    },
+    {
+      "label": 5,
+      "minX": 82,
+      "minY": 466,
+      "maxX": 376,
+      "maxY": 829,
+      "pixels": 55485,
+      "frame": 4
+    },
+    {
+      "label": 7,
+      "minX": 471,
+      "minY": 471,
+      "maxX": 902,
+      "maxY": 865,
+      "pixels": 59166,
+      "frame": 5
+    },
+    {
+      "label": 6,
+      "minX": 946,
+      "minY": 466,
+      "maxX": 1334,
+      "maxY": 865,
+      "pixels": 49874,
+      "frame": 6
+    },
+    {
+      "label": 8,
+      "minX": 1440,
+      "minY": 473,
+      "maxX": 1724,
+      "maxY": 865,
+      "pixels": 56648,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 0
+}

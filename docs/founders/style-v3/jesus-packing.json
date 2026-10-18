@@ -1,0 +1,83 @@
+{
+  "id": "jesus",
+  "raw": "assets/source/founders-v3/jesus-generated.png",
+  "source": "assets/source/jesus-v3.png",
+  "runtime": "public/assets/jesus-v3.webp",
+  "sourceWidth": 1774,
+  "sourceHeight": 887,
+  "frames": [
+    {
+      "label": 1,
+      "minX": 114,
+      "minY": 14,
+      "maxX": 383,
+      "maxY": 444,
+      "pixels": 49094,
+      "frame": 0
+    },
+    {
+      "label": 2,
+      "minX": 506,
+      "minY": 23,
+      "maxX": 823,
+      "maxY": 442,
+      "pixels": 48412,
+      "frame": 1
+    },
+    {
+      "label": 3,
+      "minX": 914,
+      "minY": 30,
+      "maxX": 1290,
+      "maxY": 440,
+      "pixels": 55526,
+      "frame": 2
+    },
+    {
+      "label": 4,
+      "minX": 1366,
+      "minY": 32,
+      "maxX": 1752,
+      "maxY": 437,
+      "pixels": 54138,
+      "frame": 3
+    },
+    {
+      "label": 5,
+      "minX": 106,
+      "minY": 460,
+      "maxX": 363,
+      "maxY": 801,
+      "pixels": 47250,
+      "frame": 4
+    },
+    {
+      "label": 6,
+      "minX": 469,
+      "minY": 460,
+      "maxX": 880,
+      "maxY": 863,
+      "pixels": 52469,
+      "frame": 5
+    },
+    {
+      "label": 7,
+      "minX": 939,
+      "minY": 461,
+      "maxX": 1336,
+      "maxY": 861,
+      "pixels": 46779,
+      "frame": 6
+    },
+    {
+      "label": 8,
+      "minX": 1442,
+      "minY": 468,
+      "maxX": 1729,
+      "maxY": 856,
+      "pixels": 50345,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 0
+}

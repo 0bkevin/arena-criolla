@@ -1,0 +1,1815 @@
+{
+  "date": "2026-10-18",
+  "scope": [
+    "enrique",
+    "jesus",
+    "carlos",
+    "victor",
+    "juan"
+  ],
+  "method": "Native T3 browser, real loadSprite/drawSprite/drawPresentation/drawVictory, and actual UI fights against the CPU.",
+  "poses": {
+    "samples": 80,
+    "passed": 80,
+    "failed": [],
+    "results": [
+      {
+        "id": "enrique",
+        "frame": 0,
+        "facing": 1,
+        "count": 37672,
+        "bounds": {
+          "minX": 87,
+          "minY": 56,
+          "maxX": 313,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 0,
+        "facing": 1,
+        "count": 33540,
+        "bounds": {
+          "minX": 89,
+          "minY": 56,
+          "maxX": 311,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 0,
+        "facing": 1,
+        "count": 33579,
+        "bounds": {
+          "minX": 89,
+          "minY": 56,
+          "maxX": 309,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 0,
+        "facing": 1,
+        "count": 34617,
+        "bounds": {
+          "minX": 96,
+          "minY": 56,
+          "maxX": 302,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 0,
+        "facing": 1,
+        "count": 34513,
+        "bounds": {
+          "minX": 80,
+          "minY": 56,
+          "maxX": 319,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 1,
+        "facing": 1,
+        "count": 36423,
+        "bounds": {
+          "minX": 66,
+          "minY": 69,
+          "maxX": 333,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 1,
+        "facing": 1,
+        "count": 33105,
+        "bounds": {
+          "minX": 69,
+          "minY": 65,
+          "maxX": 330,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 1,
+        "facing": 1,
+        "count": 35444,
+        "bounds": {
+          "minX": 72,
+          "minY": 62,
+          "maxX": 328,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 1,
+        "facing": 1,
+        "count": 34833,
+        "bounds": {
+          "minX": 70,
+          "minY": 62,
+          "maxX": 329,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 1,
+        "facing": 1,
+        "count": 34264,
+        "bounds": {
+          "minX": 73,
+          "minY": 57,
+          "maxX": 326,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 2,
+        "facing": 1,
+        "count": 43180,
+        "bounds": {
+          "minX": 52,
+          "minY": 67,
+          "maxX": 347,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 2,
+        "facing": 1,
+        "count": 37983,
+        "bounds": {
+          "minX": 44,
+          "minY": 73,
+          "maxX": 354,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 2,
+        "facing": 1,
+        "count": 42534,
+        "bounds": {
+          "minX": 41,
+          "minY": 67,
+          "maxX": 357,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 2,
+        "facing": 1,
+        "count": 38426,
+        "bounds": {
+          "minX": 52,
+          "minY": 87,
+          "maxX": 347,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 2,
+        "facing": 1,
+        "count": 38396,
+        "bounds": {
+          "minX": 48,
+          "minY": 68,
+          "maxX": 352,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 3,
+        "facing": 1,
+        "count": 39665,
+        "bounds": {
+          "minX": 42,
+          "minY": 72,
+          "maxX": 356,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 3,
+        "facing": 1,
+        "count": 37022,
+        "bounds": {
+          "minX": 40,
+          "minY": 77,
+          "maxX": 358,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 3,
+        "facing": 1,
+        "count": 40259,
+        "bounds": {
+          "minX": 41,
+          "minY": 63,
+          "maxX": 357,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 3,
+        "facing": 1,
+        "count": 39075,
+        "bounds": {
+          "minX": 43,
+          "minY": 74,
+          "maxX": 356,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 3,
+        "facing": 1,
+        "count": 36928,
+        "bounds": {
+          "minX": 38,
+          "minY": 67,
+          "maxX": 360,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 4,
+        "facing": 1,
+        "count": 35714,
+        "bounds": {
+          "minX": 81,
+          "minY": 57,
+          "maxX": 317,
+          "maxY": 347
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 4,
+        "facing": 1,
+        "count": 32222,
+        "bounds": {
+          "minX": 94,
+          "minY": 57,
+          "maxX": 305,
+          "maxY": 338
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 4,
+        "facing": 1,
+        "count": 35583,
+        "bounds": {
+          "minX": 86,
+          "minY": 57,
+          "maxX": 313,
+          "maxY": 355
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 4,
+        "facing": 1,
+        "count": 32604,
+        "bounds": {
+          "minX": 92,
+          "minY": 57,
+          "maxX": 307,
+          "maxY": 341
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 4,
+        "facing": 1,
+        "count": 35085,
+        "bounds": {
+          "minX": 87,
+          "minY": 57,
+          "maxX": 313,
+          "maxY": 359
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 5,
+        "facing": 1,
+        "count": 38019,
+        "bounds": {
+          "minX": 27,
+          "minY": 95,
+          "maxX": 371,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 5,
+        "facing": 1,
+        "count": 35871,
+        "bounds": {
+          "minX": 31,
+          "minY": 79,
+          "maxX": 369,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 5,
+        "facing": 1,
+        "count": 39087,
+        "bounds": {
+          "minX": 16,
+          "minY": 79,
+          "maxX": 383,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 5,
+        "facing": 1,
+        "count": 37649,
+        "bounds": {
+          "minX": 25,
+          "minY": 89,
+          "maxX": 375,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 5,
+        "facing": 1,
+        "count": 35612,
+        "bounds": {
+          "minX": 36,
+          "minY": 81,
+          "maxX": 363,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 6,
+        "facing": 1,
+        "count": 32036,
+        "bounds": {
+          "minX": 44,
+          "minY": 92,
+          "maxX": 354,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 6,
+        "facing": 1,
+        "count": 31976,
+        "bounds": {
+          "minX": 36,
+          "minY": 81,
+          "maxX": 363,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 6,
+        "facing": 1,
+        "count": 35742,
+        "bounds": {
+          "minX": 22,
+          "minY": 78,
+          "maxX": 377,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 6,
+        "facing": 1,
+        "count": 33194,
+        "bounds": {
+          "minX": 31,
+          "minY": 89,
+          "maxX": 367,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 6,
+        "facing": 1,
+        "count": 33862,
+        "bounds": {
+          "minX": 21,
+          "minY": 84,
+          "maxX": 379,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 7,
+        "facing": 1,
+        "count": 36376,
+        "bounds": {
+          "minX": 86,
+          "minY": 98,
+          "maxX": 312,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 7,
+        "facing": 1,
+        "count": 34474,
+        "bounds": {
+          "minX": 81,
+          "minY": 91,
+          "maxX": 318,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 7,
+        "facing": 1,
+        "count": 38397,
+        "bounds": {
+          "minX": 85,
+          "minY": 83,
+          "maxX": 314,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 7,
+        "facing": 1,
+        "count": 33318,
+        "bounds": {
+          "minX": 87,
+          "minY": 93,
+          "maxX": 311,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 7,
+        "facing": 1,
+        "count": 36016,
+        "bounds": {
+          "minX": 73,
+          "minY": 97,
+          "maxX": 327,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 0,
+        "facing": -1,
+        "count": 37672,
+        "bounds": {
+          "minX": 86,
+          "minY": 56,
+          "maxX": 312,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 0,
+        "facing": -1,
+        "count": 33540,
+        "bounds": {
+          "minX": 88,
+          "minY": 56,
+          "maxX": 310,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 0,
+        "facing": -1,
+        "count": 33579,
+        "bounds": {
+          "minX": 90,
+          "minY": 56,
+          "maxX": 310,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 0,
+        "facing": -1,
+        "count": 34617,
+        "bounds": {
+          "minX": 97,
+          "minY": 56,
+          "maxX": 303,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 0,
+        "facing": -1,
+        "count": 34513,
+        "bounds": {
+          "minX": 80,
+          "minY": 56,
+          "maxX": 319,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 1,
+        "facing": -1,
+        "count": 36423,
+        "bounds": {
+          "minX": 66,
+          "minY": 69,
+          "maxX": 333,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 1,
+        "facing": -1,
+        "count": 33105,
+        "bounds": {
+          "minX": 69,
+          "minY": 65,
+          "maxX": 330,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 1,
+        "facing": -1,
+        "count": 35444,
+        "bounds": {
+          "minX": 71,
+          "minY": 62,
+          "maxX": 327,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 1,
+        "facing": -1,
+        "count": 34833,
+        "bounds": {
+          "minX": 70,
+          "minY": 62,
+          "maxX": 329,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 1,
+        "facing": -1,
+        "count": 34264,
+        "bounds": {
+          "minX": 73,
+          "minY": 57,
+          "maxX": 326,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 2,
+        "facing": -1,
+        "count": 43181,
+        "bounds": {
+          "minX": 52,
+          "minY": 67,
+          "maxX": 347,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 2,
+        "facing": -1,
+        "count": 37983,
+        "bounds": {
+          "minX": 45,
+          "minY": 73,
+          "maxX": 355,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 2,
+        "facing": -1,
+        "count": 42534,
+        "bounds": {
+          "minX": 42,
+          "minY": 67,
+          "maxX": 358,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 2,
+        "facing": -1,
+        "count": 38425,
+        "bounds": {
+          "minX": 52,
+          "minY": 87,
+          "maxX": 347,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 2,
+        "facing": -1,
+        "count": 38396,
+        "bounds": {
+          "minX": 47,
+          "minY": 68,
+          "maxX": 351,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 3,
+        "facing": -1,
+        "count": 39665,
+        "bounds": {
+          "minX": 43,
+          "minY": 72,
+          "maxX": 357,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 3,
+        "facing": -1,
+        "count": 37022,
+        "bounds": {
+          "minX": 41,
+          "minY": 77,
+          "maxX": 359,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 3,
+        "facing": -1,
+        "count": 40259,
+        "bounds": {
+          "minX": 42,
+          "minY": 63,
+          "maxX": 358,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 3,
+        "facing": -1,
+        "count": 39075,
+        "bounds": {
+          "minX": 43,
+          "minY": 74,
+          "maxX": 356,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 3,
+        "facing": -1,
+        "count": 36928,
+        "bounds": {
+          "minX": 39,
+          "minY": 67,
+          "maxX": 361,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 4,
+        "facing": -1,
+        "count": 35714,
+        "bounds": {
+          "minX": 82,
+          "minY": 57,
+          "maxX": 318,
+          "maxY": 347
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 4,
+        "facing": -1,
+        "count": 32222,
+        "bounds": {
+          "minX": 94,
+          "minY": 57,
+          "maxX": 305,
+          "maxY": 338
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 4,
+        "facing": -1,
+        "count": 35583,
+        "bounds": {
+          "minX": 86,
+          "minY": 57,
+          "maxX": 313,
+          "maxY": 355
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 4,
+        "facing": -1,
+        "count": 32603,
+        "bounds": {
+          "minX": 92,
+          "minY": 57,
+          "maxX": 307,
+          "maxY": 341
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 4,
+        "facing": -1,
+        "count": 35085,
+        "bounds": {
+          "minX": 86,
+          "minY": 57,
+          "maxX": 312,
+          "maxY": 359
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 5,
+        "facing": -1,
+        "count": 38019,
+        "bounds": {
+          "minX": 28,
+          "minY": 95,
+          "maxX": 372,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 5,
+        "facing": -1,
+        "count": 35871,
+        "bounds": {
+          "minX": 30,
+          "minY": 79,
+          "maxX": 368,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 5,
+        "facing": -1,
+        "count": 39087,
+        "bounds": {
+          "minX": 16,
+          "minY": 79,
+          "maxX": 383,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 5,
+        "facing": -1,
+        "count": 37649,
+        "bounds": {
+          "minX": 24,
+          "minY": 89,
+          "maxX": 374,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 5,
+        "facing": -1,
+        "count": 35612,
+        "bounds": {
+          "minX": 36,
+          "minY": 81,
+          "maxX": 363,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 6,
+        "facing": -1,
+        "count": 32035,
+        "bounds": {
+          "minX": 45,
+          "minY": 92,
+          "maxX": 355,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 6,
+        "facing": -1,
+        "count": 31976,
+        "bounds": {
+          "minX": 36,
+          "minY": 81,
+          "maxX": 363,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 6,
+        "facing": -1,
+        "count": 35742,
+        "bounds": {
+          "minX": 22,
+          "minY": 78,
+          "maxX": 377,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 6,
+        "facing": -1,
+        "count": 33194,
+        "bounds": {
+          "minX": 32,
+          "minY": 89,
+          "maxX": 368,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 6,
+        "facing": -1,
+        "count": 33862,
+        "bounds": {
+          "minX": 20,
+          "minY": 84,
+          "maxX": 378,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "enrique",
+        "frame": 7,
+        "facing": -1,
+        "count": 36376,
+        "bounds": {
+          "minX": 87,
+          "minY": 98,
+          "maxX": 313,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "jesus",
+        "frame": 7,
+        "facing": -1,
+        "count": 34474,
+        "bounds": {
+          "minX": 81,
+          "minY": 91,
+          "maxX": 318,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "carlos",
+        "frame": 7,
+        "facing": -1,
+        "count": 38397,
+        "bounds": {
+          "minX": 85,
+          "minY": 83,
+          "maxX": 314,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "victor",
+        "frame": 7,
+        "facing": -1,
+        "count": 33318,
+        "bounds": {
+          "minX": 88,
+          "minY": 93,
+          "maxX": 312,
+          "maxY": 411
+        },
+        "complete": true
+      },
+      {
+        "id": "juan",
+        "frame": 7,
+        "facing": -1,
+        "count": 36016,
+        "bounds": {
+          "minX": 72,
+          "minY": 97,
+          "maxX": 326,
+          "maxY": 411
+        },
+        "complete": true
+      }
+    ]
+  },
+  "animations": {
+    "introSamples": 50,
+    "completeIntros": 50,
+    "victorySamples": 25,
+    "results": [
+      {
+        "id": "enrique",
+        "intro": [
+          {
+            "progress": 0,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 98,
+              "minY": 91,
+              "maxX": 302,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0.25,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 102,
+              "minY": 89,
+              "maxX": 306,
+              "maxY": 408
+            }
+          },
+          {
+            "progress": 0.5,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 106,
+              "minY": 88,
+              "maxX": 310,
+              "maxY": 406
+            }
+          },
+          {
+            "progress": 0.75,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 100,
+              "minY": 90,
+              "maxX": 304,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 1,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 98,
+              "minY": 91,
+              "maxX": 302,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 97,
+              "minY": 91,
+              "maxX": 301,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0.25,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 93,
+              "minY": 89,
+              "maxX": 297,
+              "maxY": 408
+            }
+          },
+          {
+            "progress": 0.5,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 89,
+              "minY": 88,
+              "maxX": 293,
+              "maxY": 406
+            }
+          },
+          {
+            "progress": 0.75,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 95,
+              "minY": 90,
+              "maxX": 299,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 1,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 97,
+              "minY": 91,
+              "maxX": 301,
+              "maxY": 411
+            }
+          }
+        ],
+        "victory": [
+          {
+            "elapsed": 0,
+            "rendered": true
+          },
+          {
+            "elapsed": 700,
+            "rendered": true
+          },
+          {
+            "elapsed": 1400,
+            "rendered": true
+          },
+          {
+            "elapsed": 2800,
+            "rendered": true
+          },
+          {
+            "elapsed": 3500,
+            "rendered": true
+          }
+        ]
+      },
+      {
+        "id": "jesus",
+        "intro": [
+          {
+            "progress": 0,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 100,
+              "minY": 91,
+              "maxX": 300,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0.25,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 104,
+              "minY": 89,
+              "maxX": 302,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 0.5,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 109,
+              "minY": 86,
+              "maxX": 306,
+              "maxY": 408
+            }
+          },
+          {
+            "progress": 0.75,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 103,
+              "minY": 90,
+              "maxX": 303,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 1,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 100,
+              "minY": 91,
+              "maxX": 300,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 99,
+              "minY": 91,
+              "maxX": 299,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0.25,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 97,
+              "minY": 89,
+              "maxX": 295,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 0.5,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 93,
+              "minY": 86,
+              "maxX": 290,
+              "maxY": 408
+            }
+          },
+          {
+            "progress": 0.75,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 96,
+              "minY": 90,
+              "maxX": 296,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 1,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 99,
+              "minY": 91,
+              "maxX": 299,
+              "maxY": 411
+            }
+          }
+        ],
+        "victory": [
+          {
+            "elapsed": 0,
+            "rendered": true
+          },
+          {
+            "elapsed": 700,
+            "rendered": true
+          },
+          {
+            "elapsed": 1400,
+            "rendered": true
+          },
+          {
+            "elapsed": 2800,
+            "rendered": true
+          },
+          {
+            "elapsed": 3500,
+            "rendered": true
+          }
+        ]
+      },
+      {
+        "id": "carlos",
+        "intro": [
+          {
+            "progress": 0,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 100,
+              "minY": 91,
+              "maxX": 298,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0.25,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 104,
+              "minY": 90,
+              "maxX": 302,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 0.5,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 110,
+              "minY": 88,
+              "maxX": 307,
+              "maxY": 408
+            }
+          },
+          {
+            "progress": 0.75,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 103,
+              "minY": 90,
+              "maxX": 301,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 1,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 100,
+              "minY": 91,
+              "maxX": 298,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 101,
+              "minY": 91,
+              "maxX": 299,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0.25,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 97,
+              "minY": 90,
+              "maxX": 295,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 0.5,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 92,
+              "minY": 88,
+              "maxX": 289,
+              "maxY": 408
+            }
+          },
+          {
+            "progress": 0.75,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 98,
+              "minY": 90,
+              "maxX": 296,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 1,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 101,
+              "minY": 91,
+              "maxX": 299,
+              "maxY": 411
+            }
+          }
+        ],
+        "victory": [
+          {
+            "elapsed": 0,
+            "rendered": true
+          },
+          {
+            "elapsed": 700,
+            "rendered": true
+          },
+          {
+            "elapsed": 1400,
+            "rendered": true
+          },
+          {
+            "elapsed": 2800,
+            "rendered": true
+          },
+          {
+            "elapsed": 3500,
+            "rendered": true
+          }
+        ]
+      },
+      {
+        "id": "victor",
+        "intro": [
+          {
+            "progress": 0,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 107,
+              "minY": 91,
+              "maxX": 292,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0.25,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 110,
+              "minY": 89,
+              "maxX": 296,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 0.5,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 116,
+              "minY": 86,
+              "maxX": 302,
+              "maxY": 408
+            }
+          },
+          {
+            "progress": 0.75,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 109,
+              "minY": 90,
+              "maxX": 294,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 1,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 107,
+              "minY": 91,
+              "maxX": 292,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 107,
+              "minY": 91,
+              "maxX": 292,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0.25,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 103,
+              "minY": 89,
+              "maxX": 289,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 0.5,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 97,
+              "minY": 86,
+              "maxX": 283,
+              "maxY": 408
+            }
+          },
+          {
+            "progress": 0.75,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 105,
+              "minY": 90,
+              "maxX": 290,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 1,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 107,
+              "minY": 91,
+              "maxX": 292,
+              "maxY": 411
+            }
+          }
+        ],
+        "victory": [
+          {
+            "elapsed": 0,
+            "rendered": true
+          },
+          {
+            "elapsed": 700,
+            "rendered": true
+          },
+          {
+            "elapsed": 1400,
+            "rendered": true
+          },
+          {
+            "elapsed": 2800,
+            "rendered": true
+          },
+          {
+            "elapsed": 3500,
+            "rendered": true
+          }
+        ]
+      },
+      {
+        "id": "juan",
+        "intro": [
+          {
+            "progress": 0,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 92,
+              "minY": 91,
+              "maxX": 308,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0.25,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 96,
+              "minY": 90,
+              "maxX": 313,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 0.5,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 103,
+              "minY": 88,
+              "maxX": 321,
+              "maxY": 408
+            }
+          },
+          {
+            "progress": 0.75,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 95,
+              "minY": 91,
+              "maxX": 309,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 1,
+            "facing": 1,
+            "complete": true,
+            "bounds": {
+              "minX": 92,
+              "minY": 91,
+              "maxX": 308,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 91,
+              "minY": 91,
+              "maxX": 307,
+              "maxY": 411
+            }
+          },
+          {
+            "progress": 0.25,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 85,
+              "minY": 90,
+              "maxX": 303,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 0.5,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 78,
+              "minY": 88,
+              "maxX": 296,
+              "maxY": 408
+            }
+          },
+          {
+            "progress": 0.75,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 90,
+              "minY": 91,
+              "maxX": 304,
+              "maxY": 410
+            }
+          },
+          {
+            "progress": 1,
+            "facing": -1,
+            "complete": true,
+            "bounds": {
+              "minX": 91,
+              "minY": 91,
+              "maxX": 307,
+              "maxY": 411
+            }
+          }
+        ],
+        "victory": [
+          {
+            "elapsed": 0,
+            "rendered": true
+          },
+          {
+            "elapsed": 700,
+            "rendered": true
+          },
+          {
+            "elapsed": 1400,
+            "rendered": true
+          },
+          {
+            "elapsed": 2800,
+            "rendered": true
+          },
+          {
+            "elapsed": 3500,
+            "rendered": true
+          }
+        ]
+      }
+    ]
+  },
+  "actualMatches": [
+    {
+      "id": "enrique",
+      "phase": "playing",
+      "initialEnergy": 35.14,
+      "afterEnergy": 10.84,
+      "spriteLoaded": true
+    },
+    {
+      "id": "jesus",
+      "phase": "playing",
+      "hud": "Jesús",
+      "initialEnergy": 35.07,
+      "afterEnergy": 10.77,
+      "spriteLoaded": true
+    },
+    {
+      "id": "carlos",
+      "phase": "playing",
+      "hud": "Carlos",
+      "initialEnergy": 35.14,
+      "afterEnergy": 23.84,
+      "spriteLoaded": true
+    },
+    {
+      "id": "victor",
+      "phase": "playing",
+      "hud": "Víctor",
+      "initialEnergy": 35.245,
+      "afterEnergy": 23.84,
+      "spriteLoaded": true
+    },
+    {
+      "id": "juan",
+      "phase": "playing",
+      "hud": "Juan José",
+      "initialEnergy": 35.105,
+      "afterEnergy": 10.805,
+      "spriteLoaded": true
+    }
+  ],
+  "checks": {
+    "assets": "46 built-in PNG/WebP sheets passed",
+    "focusedTests": {
+      "passed": 18,
+      "failed": 0
+    },
+    "fullTests": {
+      "passed": 684,
+      "failed": 0,
+      "skipped": 0
+    },
+    "build": "passed",
+    "preserved": "Founder abilities, balance, presentation timings, choreography and victory profiles unchanged."
+  },
+  "screenshots": {
+    "poses": "all-poses.png",
+    "animations": "animations.png",
+    "gallery": "gallery.png",
+    "match": "match.png"
+  },
+  "limits": [
+    "Art style and likeness were visually inspected; exact photographic likeness cannot be asserted by automated tests.",
+    "This change replaces built-in art only; community generation and production deployment were not changed."
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "carlos",
+  "raw": "assets/source/founders-v3/carlos-generated.png",
+  "source": "assets/source/carlos-v3.png",
+  "runtime": "public/assets/carlos-v3.webp",
+  "sourceWidth": 1774,
+  "sourceHeight": 887,
+  "frames": [
+    {
+      "label": 1,
+      "minX": 89,
+      "minY": 12,
+      "maxX": 357,
+      "maxY": 445,
+      "pixels": 49734,
+      "frame": 0
+    },
+    {
+      "label": 2,
+      "minX": 509,
+      "minY": 19,
+      "maxX": 822,
+      "maxY": 445,
+      "pixels": 52420,
+      "frame": 1
+    },
+    {
+      "label": 4,
+      "minX": 919,
+      "minY": 20,
+      "maxX": 1304,
+      "maxY": 440,
+      "pixels": 62979,
+      "frame": 2
+    },
+    {
+      "label": 3,
+      "minX": 1369,
+      "minY": 19,
+      "maxX": 1756,
+      "maxY": 444,
+      "pixels": 59611,
+      "frame": 3
+    },
+    {
+      "label": 5,
+      "minX": 81,
+      "minY": 448,
+      "maxX": 357,
+      "maxY": 811,
+      "pixels": 52564,
+      "frame": 4
+    },
+    {
+      "label": 7,
+      "minX": 445,
+      "minY": 464,
+      "maxX": 893,
+      "maxY": 869,
+      "pixels": 57840,
+      "frame": 5
+    },
+    {
+      "label": 6,
+      "minX": 924,
+      "minY": 462,
+      "maxX": 1358,
+      "maxY": 869,
+      "pixels": 52987,
+      "frame": 6
+    },
+    {
+      "label": 8,
+      "minX": 1456,
+      "minY": 468,
+      "maxX": 1735,
+      "maxY": 869,
+      "pixels": 56905,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 0
+}

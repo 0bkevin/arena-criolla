@@ -2,7 +2,7 @@
   "fighters": [
     {
       "id": "enrique",
-      "sprite": "enrique-v2",
+      "sprite": "enrique-v3",
       "category": "culture",
       "name": "Enrique Rivas",
       "shortName": "Enrique",
@@ -28,7 +28,7 @@
     },
     {
       "id": "jesus",
-      "sprite": "jesus-v2",
+      "sprite": "jesus-v3",
       "category": "culture",
       "name": "Jesús Castillo",
       "shortName": "Jesús",
@@ -54,7 +54,7 @@
     },
     {
       "id": "carlos",
-      "sprite": "carlos-v2",
+      "sprite": "carlos-v3",
       "category": "culture",
       "name": "Carlos García Ottati",
       "shortName": "Carlos",
@@ -80,7 +80,7 @@
     },
     {
       "id": "victor",
-      "sprite": "victor-v2",
+      "sprite": "victor-v3",
       "category": "culture",
       "name": "Víctor Cárdenas",
       "shortName": "Víctor",
@@ -106,7 +106,7 @@
     },
     {
       "id": "juan",
-      "sprite": "juan-v2",
+      "sprite": "juan-v3",
       "category": "culture",
       "name": "Juan José Pocaterra",
       "shortName": "Juan José",

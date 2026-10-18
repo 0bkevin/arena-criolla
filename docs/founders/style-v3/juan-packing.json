@@ -1,0 +1,83 @@
+{
+  "id": "juan",
+  "raw": "assets/source/founders-v3/juan-generated.png",
+  "source": "assets/source/juan-v3.png",
+  "runtime": "public/assets/juan-v3.webp",
+  "sourceWidth": 1774,
+  "sourceHeight": 887,
+  "frames": [
+    {
+      "label": 1,
+      "minX": 59,
+      "minY": 12,
+      "maxX": 351,
+      "maxY": 446,
+      "pixels": 51392,
+      "frame": 0
+    },
+    {
+      "label": 2,
+      "minX": 496,
+      "minY": 13,
+      "maxX": 807,
+      "maxY": 446,
+      "pixels": 51097,
+      "frame": 1
+    },
+    {
+      "label": 3,
+      "minX": 902,
+      "minY": 21,
+      "maxX": 1274,
+      "maxY": 442,
+      "pixels": 57199,
+      "frame": 2
+    },
+    {
+      "label": 4,
+      "minX": 1369,
+      "minY": 23,
+      "maxX": 1764,
+      "maxY": 445,
+      "pixels": 55058,
+      "frame": 3
+    },
+    {
+      "label": 5,
+      "minX": 61,
+      "minY": 456,
+      "maxX": 337,
+      "maxY": 826,
+      "pixels": 52287,
+      "frame": 4
+    },
+    {
+      "label": 6,
+      "minX": 455,
+      "minY": 464,
+      "maxX": 857,
+      "maxY": 868,
+      "pixels": 53138,
+      "frame": 5
+    },
+    {
+      "label": 7,
+      "minX": 921,
+      "minY": 467,
+      "maxX": 1359,
+      "maxY": 868,
+      "pixels": 50535,
+      "frame": 6
+    },
+    {
+      "label": 8,
+      "minX": 1414,
+      "minY": 484,
+      "maxX": 1724,
+      "maxY": 868,
+      "pixels": 53614,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 0
+}

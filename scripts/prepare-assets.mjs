@@ -16,6 +16,14 @@ const entranceSources = new Set(
 const pixelStages = new Set(
   stages.filter((s) => s.artStyle === "pixel").map((s) => s.id + ".png"),
 );
+const losslessSprites = new Set([
+  "capriles-v22.png",
+  "enrique-v3.png",
+  "jesus-v3.png",
+  "carlos-v3.png",
+  "victor-v3.png",
+  "juan-v3.png",
+]);
 const active = [
   ...fighters.map((fighter) => `${fighter.sprite}.png`),
   ...entranceSources,
@@ -29,7 +37,7 @@ const results = await Promise.all(
       .webp({
         lossless:
           pixelStages.has(name) ||
-          name === "capriles-v22.png" ||
+          losslessSprites.has(name) ||
           entranceSources.has(name),
         quality: 90,
         alphaQuality: 100,
