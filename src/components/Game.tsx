@@ -216,10 +216,21 @@ export function Game(props: Props) {
     const handler = (event: KeyboardEvent, down: boolean) => {
       if (
         event.target instanceof HTMLElement &&
-        event.target.matches("input, textarea, select")
+        (event.target.matches("input, textarea, select") ||
+          event.target.isContentEditable)
       )
         return;
       if (down && document.querySelector("dialog[open]")) return;
+      const nativeActivation =
+        (event.code === "Enter" || event.code === "Space") &&
+        event.target instanceof HTMLElement &&
+        event.target.closest("button, a[href], summary, [role='button']");
+      // Holding a gameplay key across an overlay must not activate its newly
+      // focused button. Check before the paused/finished/orientation guards.
+      if (down && event.repeat && nativeActivation) {
+        event.preventDefault();
+        return;
+      }
       if (down && blockedRef.current) return;
       if (introView.current.phase === "finished") return;
       if (event.code === "Escape" && down && !event.repeat) {
@@ -231,6 +242,7 @@ export function Game(props: Props) {
         return;
       }
       if ((pausedRef.current || blockedRef.current) && down) return;
+      if (down && nativeActivation) return;
       if (
         event.code === "Space" &&
         down &&
