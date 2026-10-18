@@ -1,0 +1,106 @@
+{
+  "title": "Los poderes de Vicente Zavarce",
+  "game": "Arena Criolla",
+  "commit": "9973eb724d8ff039e6d9977b369922d9206effc9",
+  "file": "vicente-superpoderes.mp4",
+  "durationSeconds": 34,
+  "resolution": [
+    1280,
+    800
+  ],
+  "videoCodec": "H.264",
+  "outputFrameRate": 60,
+  "audioCodec": "AAC",
+  "audioSampleRate": 48000,
+  "capture": "Canvas MediaRecorder en el navegador colaborativo de T3. Motor stepMatch, renderMatch y assets del juego sin modificaciones. Textos y barras añadidos para la demostración.",
+  "setup": "Poliedro; Vicente contra Pedro inmóvil. Cada técnica comienza en un combate independiente, con 100 de energía para Vicente. Las aproximaciones de los combos usan los controles reales del motor.",
+  "audio": "Mezcla Web Audio capturada durante la reproducción, con ambiente del escenario, golpes y especiales del juego. Las repeticiones reproducen los efectos al pasar por cada impacto.",
+  "chapters": [
+    {
+      "start": 0,
+      "end": 3,
+      "label": "Presentación"
+    },
+    {
+      "start": 3,
+      "end": 8,
+      "label": "Entrega exprés",
+      "key": "L",
+      "energyCost": 25,
+      "requiredWins": 0,
+      "hits": 1,
+      "damageAgainstPedro": 12.6336
+    },
+    {
+      "start": 8,
+      "end": 12,
+      "label": "Entrega exprés — repetición",
+      "speed": 0.35
+    },
+    {
+      "start": 12,
+      "end": 17,
+      "label": "Pedido confirmado",
+      "keys": [
+        "J",
+        "K"
+      ],
+      "requiredWins": 0,
+      "hits": 2,
+      "damageAgainstPedro": 20.928
+    },
+    {
+      "start": 17,
+      "end": 22,
+      "label": "Ruta directa",
+      "keys": [
+        "J",
+        "J",
+        "K"
+      ],
+      "requiredWins": 1,
+      "hits": 3,
+      "damageAgainstPedro": 31.0848
+    },
+    {
+      "start": 22,
+      "end": 27,
+      "label": "Cohete a domicilio",
+      "key": "I",
+      "energyCost": 75,
+      "requiredWins": 3,
+      "hits": 1,
+      "damageAgainstPedro": 36.7872
+    },
+    {
+      "start": 27,
+      "end": 31,
+      "label": "Cohete a domicilio — repetición",
+      "speed": 0.35
+    },
+    {
+      "start": 31,
+      "end": 34,
+      "label": "Resumen de movimientos"
+    }
+  ],
+  "verification": {
+    "expectedHits": [
+      1,
+      2,
+      3,
+      1
+    ],
+    "actualHits": [
+      1,
+      2,
+      3,
+      1
+    ],
+    "advancedCombo": "Ruta directa",
+    "basicCombo": "Pedido confirmado",
+    "definitive": "Cohete a domicilio",
+    "audioMeanDb": -42.0,
+    "audioPeakDb": -10.3
+  }
+}
