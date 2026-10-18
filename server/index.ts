@@ -103,11 +103,7 @@ export async function makeArenaServer(
     }
     client.socket.send(JSON.stringify(message));
   };
-  const sendEncoded = (
-    client: Client,
-    message: string,
-    reliable = false,
-  ) => {
+  const sendEncoded = (client: Client, message: string, reliable = false) => {
     if (client.socket.readyState !== WebSocket.OPEN) return;
     if (client.socket.bufferedAmount >= 256_000) {
       if (reliable) client.socket.terminate();
@@ -134,8 +130,10 @@ export async function makeArenaServer(
     isFighter(id) &&
     (!id.startsWith("custom_") ||
       creator.db.character(id)?.status === "published");
-  const publishRoom = (room: Room) =>
-    room.clients.forEach((c) => send(c, { type: "room", room: room.view }));
+  const publishRoom = (room: Room) => {
+    const message = JSON.stringify({ type: "room", room: room.view });
+    room.clients.forEach((client) => sendEncoded(client, message, true));
+  };
   const roomListMessage = () => {
     const list = [...rooms.values()]
       .filter(
@@ -507,10 +505,10 @@ export async function makeArenaServer(
           client.input.down = false;
         });
         stepMatch(room.state, [room.clients[0].input, room.clients[1].input]);
-        if (tick % 2 === 0 || room.state.phase === "finished")
-          room.clients.forEach((c) =>
-            send(c, { type: "state", state: room.state! }),
-          );
+        if (tick % 2 === 0 || room.state.phase === "finished") {
+          const message = JSON.stringify({ type: "state", state: room.state });
+          room.clients.forEach((client) => sendEncoded(client, message));
+        }
         if (room.state.phase === "finished") {
           room.view.status = "finished";
           room.view.players.forEach((p, index) => {
@@ -552,7 +550,9 @@ export async function makeArenaServer(
       const origin = requestSiteOrigin(req, configuredOrigin);
       res
         .type("text/plain")
-        .send(`User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}/sitemap.xml\n`);
+        .send(
+          `User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}/sitemap.xml\n`,
+        );
     });
     app.get("/sitemap.xml", (req, res) => {
       res
@@ -567,7 +567,13 @@ export async function makeArenaServer(
       app.get("/{*path}", (req, res) => {
         res
           .type("html")
-          .send(renderSiteHtml(template, requestSiteOrigin(req, configuredOrigin), req.path));
+          .send(
+            renderSiteHtml(
+              template,
+              requestSiteOrigin(req, configuredOrigin),
+              req.path,
+            ),
+          );
       });
     } else {
       const { createServer: createViteServer } = await import("vite");
@@ -598,7 +604,9 @@ export async function makeArenaServer(
           requestSiteOrigin(req, configuredOrigin),
           req.path,
         );
-        res.type("html").send(await vite!.transformIndexHtml(req.originalUrl, html));
+        res
+          .type("html")
+          .send(await vite!.transformIndexHtml(req.originalUrl, html));
       });
     }
   }
@@ -608,21 +616,27 @@ export async function makeArenaServer(
     creator,
     clients,
     rooms,
-    close: () => closing ??= (async () => {
-      creator.stop();
-      clients.forEach((c) => c.socket.terminate());
-      // Stop accepting connections first, but retain SQLite until in-flight auth,
-      // uploads and catalog writes finish. Bound keep-alive/slow-client shutdown.
-      const closed = new Promise<void>((resolve) => http.close(() => resolve()));
-      const deadline = setTimeout(() => connections.forEach((socket) => socket.destroy()), 5_000);
-      try {
-        await vite?.close();
-        await closed;
-        await creator.close();
-      } finally {
-        clearTimeout(deadline);
-      }
-    })(),
+    close: () =>
+      (closing ??= (async () => {
+        creator.stop();
+        clients.forEach((c) => c.socket.terminate());
+        // Stop accepting connections first, but retain SQLite until in-flight auth,
+        // uploads and catalog writes finish. Bound keep-alive/slow-client shutdown.
+        const closed = new Promise<void>((resolve) =>
+          http.close(() => resolve()),
+        );
+        const deadline = setTimeout(
+          () => connections.forEach((socket) => socket.destroy()),
+          5_000,
+        );
+        try {
+          await vite?.close();
+          await closed;
+          await creator.close();
+        } finally {
+          clearTimeout(deadline);
+        }
+      })()),
   };
 }
 

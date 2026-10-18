@@ -79,3 +79,96 @@ test("static portraits load only their atlas; cinematic requests still load the 
   }
 });
 
+class Peer {
+  socket: WebSocket;
+  messages: ServerMessage[] = [];
+  constructor(url: string) {
+    this.socket = new WebSocket(url);
+    this.socket.on("message", (raw) =>
+      this.messages.push(JSON.parse(raw.toString())),
+    );
+  }
+  send(message: object) {
+    this.socket.send(JSON.stringify(message));
+  }
+  async wait<T extends ServerMessage["type"]>(type: T) {
+    const deadline = Date.now() + 5000;
+    while (Date.now() < deadline) {
+      const index = this.messages.findIndex((message) => message.type === type);
+      if (index >= 0)
+        return this.messages.splice(index, 1)[0] as Extract<
+          ServerMessage,
+          { type: T }
+        >;
+      await new Promise((resolve) => setTimeout(resolve, 10));
+    }
+    throw new Error(`Timed out waiting for ${type}`);
+  }
+}
+
+test("each match update is serialized once and delivered identically to both players", async () => {
+  const server = await makeArenaServer({
+    serveClient: false,
+    creator: { databasePath: ":memory:", provider: null },
+  });
+  await new Promise<void>((resolve) =>
+    server.http.listen(0, "127.0.0.1", resolve),
+  );
+  const address = server.http.address();
+  assert.ok(address && typeof address === "object");
+  const a = new Peer(`ws://127.0.0.1:${address.port}/ws`);
+  const b = new Peer(`ws://127.0.0.1:${address.port}/ws`);
+  const original = JSON.stringify;
+  try {
+    await Promise.all([a.wait("welcome"), b.wait("welcome")]);
+    a.send({
+      type: "create",
+      name: "Perf A",
+      fighter: "zavarce",
+      stage: "caracas",
+      wins: 0,
+      private: true,
+    });
+    const { room } = await a.wait("room");
+    b.send({
+      type: "join",
+      code: room.code,
+      name: "Perf B",
+      fighter: "dudamel",
+      wins: 0,
+    });
+    await b.wait("room");
+    const serializations = new Map<number, number>();
+    JSON.stringify = (value, ...rest) => {
+      if (value?.type === "state")
+        serializations.set(
+          value.state.tick,
+          (serializations.get(value.state.tick) ?? 0) + 1,
+        );
+      return Reflect.apply(original, JSON, [value, ...rest]);
+    };
+    a.send({ type: "ready", ready: true });
+    b.send({ type: "ready", ready: true });
+    await Promise.all([a.wait("start"), b.wait("start")]);
+    const [first, second] = await Promise.all([
+      a.wait("state"),
+      b.wait("state"),
+    ]);
+    assert.deepEqual(
+      first,
+      second,
+      "the wire state and tick stay identical for both players",
+    );
+    assert.equal(
+      serializations.get(first.state.tick),
+      1,
+      "each shared state must be encoded once",
+    );
+  } finally {
+    JSON.stringify = original;
+    a.socket.terminate();
+    b.socket.terminate();
+    await server.close();
+  }
+});
+
