@@ -20,6 +20,22 @@
 .touch-button:disabled {
   opacity: 0.4;
 }
+.pause-tools {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+.pause-tools .secondary-button {
+  min-width: 0;
+  min-height: 44px;
+  height: auto;
+  padding: 8px;
+  font-size: 12px;
+}
+.game-page.is-paused .game-tools > :not(:last-child) {
+  display: none;
+}
 .game-page:not(.is-touch) .game-topline > .text-button {
   min-height: 44px;
   font-size: 12px;

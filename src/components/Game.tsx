@@ -75,6 +75,8 @@ export function Game(props: Props) {
   const { initial, mode, difficulty, remote, localIndex = 0 } = props;
   const canvas = useRef<HTMLCanvasElement>(null);
   const orientationGate = useRef<HTMLDivElement>(null);
+  const pauseOverlay = useRef<HTMLDivElement>(null);
+  const resultOverlay = useRef<HTMLDivElement>(null);
   const wrapper = useRef<HTMLDivElement>(null);
   const inputs = useRef(makeInputs());
   const sources = useRef<[ControlSources, ControlSources]>([
@@ -171,17 +173,56 @@ export function Game(props: Props) {
   useEffect(() => {
     releaseInputs();
   }, [portraitBlocked]);
+  const activeOverlay = portraitBlocked
+    ? "orientation"
+    : paused && view.phase !== "finished"
+      ? "pause"
+      : resultReady
+        ? "result"
+        : null;
   useEffect(() => {
-    if (!portraitBlocked) return;
+    const overlay =
+      activeOverlay === "orientation"
+        ? orientationGate.current
+        : activeOverlay === "pause"
+          ? pauseOverlay.current
+          : activeOverlay === "result"
+            ? resultOverlay.current
+            : null;
+    if (!overlay) return;
     const previous = document.activeElement;
-    orientationGate.current
-      ?.querySelector<HTMLButtonElement>("button")
-      ?.focus();
-    return () => {
-      if (previous instanceof HTMLElement && previous.isConnected)
-        previous.focus({ preventScroll: true });
+    overlay.querySelector<HTMLButtonElement>("button:not(:disabled)")?.focus();
+    const containFocus = (event: KeyboardEvent) => {
+      if (event.key !== "Tab" || document.querySelector("dialog[open]")) return;
+      const buttons = [
+        ...overlay.querySelectorAll<HTMLButtonElement>("button:not(:disabled)"),
+      ];
+      const first = buttons[0],
+        last = buttons[buttons.length - 1];
+      if (
+        !overlay.contains(document.activeElement) ||
+        (event.shiftKey && document.activeElement === first) ||
+        (!event.shiftKey && document.activeElement === last)
+      ) {
+        event.preventDefault();
+        (event.shiftKey ? last : first)?.focus();
+      }
     };
-  }, [portraitBlocked]);
+    window.addEventListener("keydown", containFocus, true);
+    return () => {
+      window.removeEventListener("keydown", containFocus, true);
+      // Resuming play must restore gameplay keys, including P2's Enter dodge.
+      if (activeOverlay === "pause" && canvas.current?.isConnected)
+        canvas.current.focus({ preventScroll: true });
+      else if (
+        previous instanceof HTMLElement &&
+        previous !== document.body &&
+        previous.isConnected
+      )
+        previous.focus({ preventScroll: true });
+      else canvas.current?.focus({ preventScroll: true });
+    };
+  }, [activeOverlay]);
   const skipPresentations = () => {
     if (
       introView.current.phase !== "intro" ||
@@ -675,6 +716,7 @@ export function Game(props: Props) {
       >
         <canvas
           ref={canvas}
+          tabIndex={-1}
           className="arena-canvas"
           width={ARENA_VIEW.width}
           height={ARENA_VIEW.height}
@@ -785,10 +827,19 @@ export function Game(props: Props) {
             </div>
           ))}
         {paused && view.phase !== "finished" && (
-          <div className="game-overlay">
+          <div
+            ref={pauseOverlay}
+            className="game-overlay"
+            role="dialog"
+            aria-modal={activeOverlay === "pause"}
+            aria-hidden={activeOverlay !== "pause"}
+            aria-labelledby="pause-title"
+          >
             <div className="pause-card">
               <span className="eyebrow">UN RESPIRO</span>
-              <h2>{mode === "online" ? "La pelea sigue" : "Pausa, pana."}</h2>
+              <h2 id="pause-title">
+                {mode === "online" ? "La pelea sigue" : "Pausa, pana."}
+              </h2>
               <p>
                 {mode === "online"
                   ? "En línea el combate continúa. Vuelve antes de que tu rival aproveche."
@@ -797,6 +848,25 @@ export function Game(props: Props) {
               <button className="primary-button" onClick={togglePause}>
                 <Play size={18} /> Continuar
               </button>
+              <div className="pause-tools">
+                <button
+                  className="secondary-button"
+                  aria-label="Ver controles"
+                  onClick={() => {
+                    releaseInputs();
+                    props.onHelp();
+                  }}
+                >
+                  <CircleHelp size={18} /> Controles
+                </button>
+                <button
+                  className="secondary-button"
+                  aria-label="Pantalla completa"
+                  onClick={requestLandscape}
+                >
+                  <Expand size={18} /> Pantalla completa
+                </button>
+              </div>
               <button className="secondary-button" onClick={props.onExit}>
                 Salir del combate
               </button>
@@ -822,7 +892,14 @@ export function Game(props: Props) {
           </div>
         )}
         {view.phase === "finished" && resultReady && (
-          <div className="game-overlay result-overlay">
+          <div
+            ref={resultOverlay}
+            className="game-overlay result-overlay"
+            role="dialog"
+            aria-modal={activeOverlay === "result"}
+            aria-hidden={activeOverlay !== "result"}
+            aria-labelledby="result-title"
+          >
             <div className="result-card">
               <div className="result-art">
                 {winnerDef && <Portrait fighter={winnerDef.id} />}
@@ -838,7 +915,9 @@ export function Game(props: Props) {
                         ? "LA VICTORIA ES TUYA"
                         : "ESTA SE LA LLEVÓ TU RIVAL"}
                 </span>
-                <h2>{winner ? `${winner.config.name} gana.` : "¡Empate!"}</h2>
+                <h2 id="result-title">
+                  {winner ? `${winner.config.name} gana.` : "¡Empate!"}
+                </h2>
                 <p>
                   {winnerDef
                     ? `${winnerDef.name} se lleva la arena. ¿Vamos con la revancha?`
@@ -929,23 +1008,6 @@ export function Game(props: Props) {
           role="dialog"
           aria-modal="true"
           aria-label="Jugar en horizontal"
-          onKeyDown={(event) => {
-            if (event.key !== "Tab") return;
-            const buttons = [
-              ...event.currentTarget.querySelectorAll<HTMLButtonElement>(
-                "button",
-              ),
-            ];
-            const first = buttons[0],
-              last = buttons[buttons.length - 1];
-            if (event.shiftKey && document.activeElement === first) {
-              event.preventDefault();
-              last?.focus();
-            } else if (!event.shiftKey && document.activeElement === last) {
-              event.preventDefault();
-              first?.focus();
-            }
-          }}
         >
           <div className="orientation-card">
             <Smartphone size={48} aria-hidden="true" />
