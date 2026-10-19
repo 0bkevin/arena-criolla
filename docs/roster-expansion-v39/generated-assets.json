@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-18",
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "promptSet": "docs/roster-expansion-v39/prompts.json",
+  "characters": [
+    {
+      "id": "capriles",
+      "generatedAt": "2026-10-18",
+      "tool": "image_gen.imagegen",
+      "generationPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-402dc8d3-8574-4dfe-86cc-81d5a4c9ed18.png",
+      "raw": "assets/source/roster-v39/capriles-generated.png",
+      "source": "assets/source/capriles-v39.png",
+      "runtime": "public/assets/capriles-v39.webp"
+    },
+    {
+      "id": "lorenzo",
+      "generatedAt": "2026-10-18",
+      "tool": "image_gen.imagegen",
+      "generationPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-9b95530e-4709-488b-9855-33976d6f3a03.png",
+      "raw": "assets/source/roster-v39/lorenzo-generated.png",
+      "source": "assets/source/lorenzo-v39.png",
+      "runtime": "public/assets/lorenzo-v39.webp"
+    },
+    {
+      "id": "carolina",
+      "generatedAt": "2026-10-18",
+      "tool": "image_gen.imagegen",
+      "generationPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-304cf397-ee5f-4c44-8db7-45f58b2c5376.png",
+      "raw": "assets/source/roster-v39/carolina-generated.png",
+      "source": "assets/source/carolina-v39.png",
+      "runtime": "public/assets/carolina-v39.webp"
+    },
+    {
+      "id": "dayana",
+      "generatedAt": "2026-10-18",
+      "tool": "image_gen.imagegen",
+      "generationPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-dcebf07f-6008-4095-97a7-3a9752240afc.png",
+      "raw": "assets/source/roster-v39/dayana-generated.png",
+      "source": "assets/source/dayana-v39.png",
+      "runtime": "public/assets/dayana-v39.webp"
+    },
+    {
+      "id": "bolivar",
+      "generatedAt": "2026-10-18",
+      "tool": "image_gen.imagegen",
+      "generationPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-84eea070-41b2-427c-82ac-ee6caa01d942.png",
+      "raw": "assets/source/roster-v39/bolivar-generated.png",
+      "source": "assets/source/bolivar-v39.png",
+      "runtime": "public/assets/bolivar-v39.webp"
+    },
+    {
+      "id": "edgar",
+      "generatedAt": "2026-10-18",
+      "tool": "image_gen.imagegen",
+      "generationPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-7b67c867-82c6-4617-8e14-d8d222af4329.png",
+      "raw": "assets/source/roster-v39/edgar-generated.png",
+      "source": "assets/source/edgar-v39.png",
+      "runtime": "public/assets/edgar-v39.webp"
+    },
+    {
+      "id": "capriles-entrance",
+      "generatedAt": "2026-10-18",
+      "tool": "image_gen.imagegen",
+      "generationPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-c071e50a-df1f-4bb2-89d8-8f91d002def8.png",
+      "raw": "assets/source/roster-v39/capriles-entrance-generated.png",
+      "source": "assets/source/capriles-v39-defiant-entrance.png",
+      "runtime": "public/assets/capriles-v39-defiant-entrance.webp"
+    },
+    {
+      "id": "javier",
+      "generatedAt": "2026-10-18",
+      "tool": "image_gen.imagegen",
+      "generationPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-3e04f7c3-8cb0-473f-a840-828688a4208a.png",
+      "raw": "assets/source/roster-v39/javier-generated.png",
+      "source": "assets/source/javier-v39.png",
+      "runtime": "public/assets/javier-v39.webp"
+    },
+    {
+      "id": "javier-entrance",
+      "generatedAt": "2026-10-18",
+      "tool": "image_gen.imagegen",
+      "generationPath": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-a60fbd83-155d-404f-9553-6ce44fa9f9ec.png",
+      "raw": "assets/source/roster-v39/javier-entrance-generated.png",
+      "source": "assets/source/javier-v39-defiant-entrance.png",
+      "runtime": "public/assets/javier-v39-defiant-entrance.webp"
+    }
+  ]
+}

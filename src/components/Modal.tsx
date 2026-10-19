@@ -16,7 +16,26 @@ export function Modal({
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => {
-    dialog.current?.showModal();
+    const element = dialog.current;
+    const previous = document.activeElement;
+    element?.showModal();
+    return () => {
+      element?.close();
+      // Rotation can change the underlying overlay while this dialog is open.
+      const foreground =
+        document.querySelector<HTMLElement>("dialog[open]") ||
+        document.querySelector<HTMLElement>(
+          '[role="dialog"][aria-modal="true"]',
+        );
+      if (foreground && !foreground.contains(previous))
+        foreground
+          .querySelector<HTMLElement>(
+            "button:not(:disabled), a[href], input:not(:disabled), [tabindex='0']",
+          )
+          ?.focus({ preventScroll: true });
+      else if (previous instanceof HTMLElement && previous.isConnected)
+        previous.focus({ preventScroll: true });
+    };
   }, []);
   return (
     <dialog

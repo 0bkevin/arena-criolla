@@ -135,8 +135,10 @@ export function App({
     setPreference("name", name);
   }, [name]);
   useEffect(() => {
-    if (network.room)
+    if (network.room) {
+      setMode("online");
       setModal((current) => (current === "rooms" ? null : current));
+    }
   }, [network.room]);
   useEffect(() => {
     // Warm the same cached assets while players choose in a room, so the
@@ -747,7 +749,12 @@ export function App({
         </Modal>
       )}
       {modal === "rooms" && (
-        <Modal title="Salas en línea" wide onClose={() => setModal(null)}>
+        <Modal
+          title="Salas en línea"
+          className="rooms-modal"
+          wide
+          onClose={() => setModal(null)}
+        >
           <div className="lobby-meta">
             <span>
               <i className={network.connected ? "connected-dot" : ""} />
@@ -784,7 +791,10 @@ export function App({
           )}
           <div className="lobby-grid">
             <div className="create-room-panel">
-              <Plus size={25} />
+              <div className="room-panel-heading">
+                <Plus size={20} aria-hidden="true" />
+                <h3>Crear sala</h3>
+              </div>
               <label className="checkbox-label">
                 <input
                   type="checkbox"

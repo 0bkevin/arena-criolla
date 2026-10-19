@@ -1,0 +1,34 @@
+{
+  "tool": "built-in image_gen",
+  "identity": "Melanio Escobar (@melaniobar), confirmed by user",
+  "sources": [
+    "https://uploads.concordia.net/2022/05/24113447/melanio.jpeg",
+    "https://www.chisteinterno.com/podcasts/chiste-interno/episodes/2148904694"
+  ],
+  "generations": [
+    {
+      "name": "identity-master",
+      "prompt": "Use case: stylized-concept. Asset type: original transparent full-body fighting-game character identity master for Arena Criolla.\nSubject: MELANIO ESCOBAR (@melaniobar), the Venezuelan journalist, exactly the adult man shown in both attached photographs. Image1 (Concordia) is PRIMARY FACE AND WARDROBE reference. Image2 (Chiste Interno) is supporting FACE reference, NOT its podcast props/background. Preserve his distinctive rather narrow long oval face and tapering chin; prominent rounded nose with small silver nostril ring; thick oversized rectangular BLACK eyeglasses with clear lenses and visible eyes; strong dark moustache and close short jaw stubble / small chin beard, NOT a thick bushy beard; friendly slightly asymmetric smile showing upper teeth; warm light-medium tan skin. Black baseball cap worn BACKWARDS, strap visible on forehead, short dark hair at sides. Tattooed neck including rose-like front neck motif and heavily tattooed forearms/hands, simplified as coherent ink patterns at sprite size.\nOutfit: black short-sleeved polo with thin cream-white double piping at collar/cuffs as in image1; no brand logos or readable type. Charcoal straight jeans, black low-top sneakers with restrained off-white sole; ordinary adult lean-average build, 7.5 head lengths, realistic head/body ratio. Do not muscularize or make head enormous.\nPose: ONE complete full-body relaxed athletic fighting guard, feet apart and knees slightly bent. Body and face in three-quarter side view facing SCREEN RIGHT, fists raised at chest height, both feet/hands entirely visible. Natural anatomy, readable distinct silhouette.\nStyle: roster-consistent hand-inked semi-realistic 2D arcade illustration, crisp dark contour lines, controlled 3-tone cel shading, warm highlights and subtle material detail, polished and grounded. NOT photograph, NOT chibi/anime, NOT chunky pixelation, NOT 3D model. Facial likeness must survive stylization, avoid generic hero jaw/square face.\nCanvas: portrait, one figure centered with generous genuinely TRANSPARENT padding on all sides, no background, floor, ground shadow, glow, floating effects, text, symbols, portrait inset, weapons, microphone, cup or headphones. Preserve complete silhouette including cap and shoes.",
+      "referenceRoles": [
+        "Concordia: primary identity and polo wardrobe",
+        "Chiste Interno: supporting face only"
+      ],
+      "output": "assets/source/melanio-v44/identity-master.png",
+      "generatedOriginal": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-4a71107a-7edb-463a-948d-e8e264b8d8d3.png"
+    },
+    {
+      "name": "combat-atlas",
+      "prompt": "Use case: identity-preserve. Asset type: transparent combat animation atlas for an existing 2D arcade fighting game.\nImage1 is the APPROVED ORIGINAL CHARACTER IDENTITY MASTER: Melanio Escobar. Preserve exactly that face, adult proportions, glasses, backwards black cap, short moustache/jaw stubble, visible rose neck tattoo, dense ink forearm/hand tattoos, black short-sleeved polo with thin double cream piping, charcoal jeans and black sneakers with off-white soles. Images2 and3 are supporting REAL FACE references only. Keep the same slightly long oval face, tapering chin, prominent round nose, silver nostril hoop, clear lenses and dark moustache. Do not use a generic hero face, bushy beard, big cartoon head or new outfit.\nDeliver exactly EIGHT complete SEPARATE full-body figures in a spacious FOUR COLUMNS by TWO ROWS grid, landscape canvas, transparent RGBA background. Every figure is the same character at the same anatomical scale and same inked semi-realistic cel-shaded illustration style as image1. Each isolated figure and all hands/feet/cap must fit with at least 8% padding inside its area; absolutely no overlap between figures.\nORDER from left to right top row:\n0 READY: three-quarter side fighting guard facing SCREEN RIGHT, fists chest high, knees bent, friendly focused expression.\n1 BLOCK: facing RIGHT, forearms tight to face and chest in a defensive shield, planted feet, distinct from ready.\n2 RUN A: running RIGHT in first contact phase, LEFT knee and LEFT foot visibly FORWARD toward right, RIGHT leg extended BEHIND toward left; RIGHT fist/forearm FORWARD, LEFT arm BACK.\n3 RUN B: running RIGHT in OPPOSITE contact phase, RIGHT knee and RIGHT foot visibly FORWARD toward right, LEFT leg extended BEHIND toward left; LEFT fist/forearm FORWARD, RIGHT arm BACK. This must visibly ALTERNATE both arm and leg lead compared with frame2, not repeat the same silhouette.\nBottom row:\n4 JUMP: airborne tucked knees jump, legs both raised, face looking RIGHT. Natural compact jump silhouette at same body scale; NOT a shrunken person.\n5 PUNCH: long straight RIGHTWARD punch, punching arm extended horizontally RIGHT, other fist guards face, planted feet, torso rotating toward right. Whole fist visible.\n6 HIGH KICK: one leg raised and extended toward RIGHT at waist/head height, standing support leg planted, both fists protect head. Whole shoe visible; same head size as ready.\n7 HURT: stagger backward AWAY from opponent on right, chest/head lean toward SCREEN LEFT relative to hips, hands open, knees buckled; nose/eyes STILL look RIGHT at opponent. Do not lean toward opponent. No wounds or gore.\nNo duplicate poses, extra figures, portraits, labels, letters, watermarks, weapons, floating effects, ground shadows, floor, background scene or glow. Genuine transparent empty space. Crisp ink contours and 3-tone controlled shading, consistent warm skin. Do not copy the master pose 8 times. This atlas is used as actual animation frames so pose order, alternating run contact, source orientation and complete silhouettes matter.",
+      "referenceRoles": [
+        "Approved identity master: likeness/outfit/style",
+        "Concordia: supporting face",
+        "Chiste Interno: supporting face"
+      ],
+      "output": "assets/source/melanio-v44/combat-generated.png",
+      "generatedOriginal": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-8f315528-a638-45f7-a652-bde386eac259.png"
+    }
+  ],
+  "runtimeAsset": "public/assets/melanio-v44.webp",
+  "normalizedSource": "assets/source/melanio-v44.png",
+  "packing": "scripts/pack-melanio-v44.ts"
+}

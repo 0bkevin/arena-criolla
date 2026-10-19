@@ -1,5 +1,5 @@
 {
-  "version": 15,
+  "version": 44,
   "characters": {
     "zavarce": {
       "id": "zavarce",
@@ -135,9 +135,9 @@
     "javier": {
       "id": "javier",
       "realName": "Javier David Romero (Javier Hala Madrid)",
-      "sprite": "javier-v2",
-      "portraitReference": "assets/references/javier/version-final-portrait-2021.jpg",
-      "portrayal": "Retratar a Javier como creador venezolano de sketches satíricos que cambia rápido de expresión y personaje. La foto de prensa verifica su rostro y camiseta negra con cadena; el atlas v2 ya conserva esos rasgos y sus ocho poses separadas. En sus propios TikToks también aparece con polos casuales y ropa negra.",
+      "sprite": "javier-v43",
+      "portraitReference": "assets/source/identity-v43/user-reference.png",
+      "portrayal": "Sin barba, copete alto, sonrisa amplia y camiseta azul marino. Sus cejas y reacciones de cámara se convierten en fintas, giros y un remate maracucho. Las poses y ataques son ficción de videojuego.",
       "sources": [
         {
           "title": "Canal oficial JAVIERHALAMADRID / Canal Oficial",
@@ -154,13 +154,20 @@
         {
           "title": "Canal de YouTube enlazado por el perfil oficial de Telegram",
           "url": "https://www.youtube.com/c/JavierRomero321"
+        },
+        {
+          "title": "Canal propio de Javier, video publicado el 15 de octubre de 2026",
+          "url": "https://t.me/Javierhalamadridd/6423"
+        },
+        {
+          "title": "Javier: rostro en tres cuartos",
+          "url": "https://www.youtube.com/shorts/cPuQ2pDEHFo"
         }
       ],
       "distinctiveTraits": [
-        "Copete negro alto peinado hacia atrás y arriba, laterales más cortos.",
-        "Rostro ovalado, frente amplia, cejas marcadas, orejas visibles, nariz redondeada y sonrisa amplia.",
-        "Expresiones cambiantes y señalamiento enfático al reaccionar a textos o videos.",
-        "Camiseta negra y cadena fina plateada en la foto de prensa; vestuario casual variable en sus sketches."
+        "Apariencia escogida por el usuario en su fotografía: sin barba ni bigote, copete negro alto y camiseta azul marino casi negra.",
+        "Rostro alargado, orejas visibles, sonrisa muy amplia con dientes, mejillas elevadas y surcos de sonrisa marcados.",
+        "Cejas levantadas en el centro, frente expresiva y ojos entrecerrados por la sonrisa; pantalón oscuro y zapatillas blancas de continuidad artística."
       ],
       "suggestedMoves": [
         "Reacción de cejas elevadas seguida por mirada de incredulidad.",
@@ -176,15 +183,51 @@
         "settlesAt": 0.9,
         "fictionalAdaptation": true,
         "playsOnce": true,
-        "singleGesture": "docs/entrances-v24/single-gestures.json"
+        "singleGesture": "docs/entrances-v24/single-gestures.json",
+        "artwork": "javier-v43-defiant-entrance"
+      },
+      "encoding": {
+        "runtimeAtlas": [
+          2048,
+          1024
+        ],
+        "source": "assets/source/javier-v43.png",
+        "webp": "public/assets/javier-v43.webp",
+        "lossless": true,
+        "effort": 6,
+        "packing": "scripts/pack-identity-v43.ts"
+      },
+      "generation": {
+        "mode": "built-in image_gen.imagegen",
+        "promptSet": "docs/identity-v43/selected-prompts.json",
+        "replaces": "javier-v42",
+        "provenance": "docs/identity-v43/generated-assets.json"
+      },
+      "styleReview": {
+        "version": 43,
+        "checkedAt": "2026-10-18",
+        "styleReference": "User portrait and independent full-body master; no old fighter atlas face in generation inputs",
+        "packedWith": "scripts/pack-identity-v43.ts",
+        "runtimeEncoding": "lossless WebP",
+        "promptSet": "docs/identity-v43/selected-prompts.json",
+        "review": "docs/identity-v43/review.md"
+      },
+      "identityReview": {
+        "checkedAt": "2026-10-18",
+        "primaryReference": "assets/source/identity-v43/user-reference.png",
+        "referenceType": "Undated user-selected portrait; supersedes the recent bearded appearance",
+        "identityMaster": "assets/source/identity-v43/javier-classic-master.png",
+        "research": "docs/identity-v40/javier-research.md",
+        "referenceReview": "docs/identity-v43/review.md",
+        "exactLikeness": false
       }
     },
     "capriles": {
       "id": "capriles",
       "realName": "Henrique Capriles Radonski",
-      "sprite": "capriles-v22",
+      "sprite": "capriles-v39",
       "portraitReference": "assets/references/capriles/likeness-v22/tricolor-closeup-2012.jpg",
-      "portrayal": "Henrique Capriles en el atuendo casual solicitado: gorra tricolor, camisa gris con mangas recogidas, jeans y tenis blancos; sin lentes. Rostro rehecho desde primeros planos reales: óvalo alargado, mandíbula y mentón redondeados, nariz con punta y alas más anchas, cejas naturales, ojos con párpados y sonrisa con pliegues nasolabiales y barba incipiente. Se prioriza parecido fotográfico frente a la caricatura angular anterior. Todas las poses son ficción de combate.",
+      "portrayal": "Capriles con la gorra tricolor, camisa gris recogida, jeans y tenis de la referencia del usuario. Rostro alargado, nariz marcada y sonrisa dibujados con contornos y sombreado del elenco; ocho poses y entrada con un mismo acabado ilustrado. Los movimientos de combate son ficción.",
       "sources": [
         {
           "title": "Referencia facial: tricolor-closeup-2012.jpg",
@@ -352,19 +395,14 @@
       ],
       "encoding": {
         "runtimeAtlas": [
-          3072,
-          1536
+          2048,
+          1024
         ],
-        "source": "assets/source/capriles-v22.png",
-        "webp": "public/assets/capriles-v22.webp",
+        "source": "assets/source/capriles-v39.png",
+        "webp": "public/assets/capriles-v39.webp",
         "lossless": true,
         "effort": 6,
-        "packing": "scripts/pack-capriles-v22.mjs",
-        "validation": {
-          "status": "passed",
-          "command": "npm run check:assets",
-          "result": "Ocho siluetas aisladas y PNG/WebP idénticos en alfa y componentes. Se separan los componentes antes de empaquetar para excluir fragmentos de poses vecinas."
-        }
+        "packing": "scripts/pack-roster-v39.ts"
       },
       "recentVideoReview": {
         "reviewedAt": "2026-10-09",
@@ -404,13 +442,9 @@
         "stylePriority": "Foto proporcionada por el usuario. No se atribuye la gorra tricolor concreta a los videos recientes."
       },
       "generation": {
-        "mode": "built-in image_gen",
-        "promptSet": [
-          "docs/characters-v22/capriles-face-prompt.txt",
-          "docs/characters-v22/capriles-ready-final-prompt.txt",
-          "docs/characters-v22/capriles-action-final-prompt.txt"
-        ],
-        "replaces": "capriles-v21"
+        "mode": "built-in image_gen.imagegen",
+        "promptSet": "docs/roster-expansion-v39/prompts.json",
+        "replaces": "capriles-v22"
       },
       "likenessReview": {
         "reviewedAt": "2026-10-09",
@@ -434,7 +468,17 @@
         "settlesAt": 0.9,
         "fictionalAdaptation": true,
         "playsOnce": true,
-        "singleGesture": "docs/entrances-v24/single-gestures.json"
+        "singleGesture": "docs/entrances-v24/single-gestures.json",
+        "artwork": "capriles-v39-defiant-entrance"
+      },
+      "styleReview": {
+        "version": 39,
+        "checkedAt": "2026-10-18",
+        "styleReference": "public/assets/enrique-v3.webp",
+        "packedWith": "scripts/pack-roster-v39.ts",
+        "runtimeEncoding": "lossless WebP",
+        "promptSet": "docs/roster-expansion-v39/prompts.json",
+        "review": "docs/roster-expansion-v39/review.md"
       }
     },
     "renny": {
@@ -1476,9 +1520,9 @@
     "knoche": {
       "id": "knoche",
       "realName": "Doctor Knoche",
-      "sprite": "knoche-v12",
+      "sprite": "knoche-v46",
       "category": "folklore",
-      "portrayal": "Barba blanca, lentes redondos y abrigo de época. Lanza un frasco que reduce brevemente la velocidad del rival si este no lo bloquea. Interpretación original de videojuego; vestuario, ataques, combos y efectos son ficción arcade, no una versión única o canónica de la tradición.",
+      "portrayal": "Rostro alargado, frente alta, cabello corto hacia atrás, nariz prominente, bigote marcado y barba de mentón puntiaguda. Traje oscuro de tres piezas, camisa clara de cuello alto y corbatín, basados en las fotografías históricas aportadas por el usuario. El frasco verde, los colores elegidos y las acciones de combate son adaptaciones artísticas de videojuego.",
       "sources": [
         {
           "title": "Gottfried Knoche — historia de Galipán",
@@ -1487,19 +1531,69 @@
       ],
       "soundMode": "generic-combat-reactions",
       "distinctiveTraits": [
-        "El misterio de Galipán",
-        "Frasco de Galipán"
+        "Rostro alargado y frente alta; nariz recta prominente y ojos hundidos.",
+        "Cabello corto peinado hacia atrás, bigote marcado y barba compacta puntiaguda.",
+        "Saco oscuro con solapas, chaleco abotonado, camisa clara y corbatín."
       ],
       "entranceReview": {
-        "version": 24,
-        "individualAudit": "docs/entrances-v23/character-review.json",
-        "corporalGesture": "Inspecciona su frasco",
+        "version": 46,
+        "individualAudit": "docs/knoche-v46/review.md",
+        "corporalGesture": "Observa el frasco y vuelve a guardia",
         "rig": "shared/choreography.ts",
         "durationMs": 2800,
         "settlesAt": 0.9,
         "fictionalAdaptation": true,
         "playsOnce": true,
-        "singleGesture": "docs/entrances-v24/single-gestures.json"
+        "singleGesture": "docs/entrances-v24/single-gestures.json",
+        "supersedesVisualIdentity": "docs/entrances-v23/character-review.json"
+      },
+      "photos": [
+        {
+          "kind": "user-supplied-reference",
+          "attachmentId": "2368edeb-71f1-4514-90cb-b6547290f9e8-3c70d936-9abf-4ef9-be78-d2bca9dbad77",
+          "role": "Primary historical portrait: face, hair, moustache, beard and clothing",
+          "viewed": true
+        },
+        {
+          "kind": "user-supplied-reference",
+          "attachmentId": "2368edeb-71f1-4514-90cb-b6547290f9e8-5ad644f3-32ae-4555-ae75-f048cb699dd5",
+          "role": "Seated historical photograph: proportions and full-body formal clothing",
+          "viewed": true
+        },
+        {
+          "kind": "user-supplied-reference",
+          "attachmentId": "2368edeb-71f1-4514-90cb-b6547290f9e8-e01c9403-2480-47ad-b723-5a8e37094ee9",
+          "role": "Editorial colorization: silhouette corroboration only; exact colors unverified",
+          "viewed": true
+        }
+      ],
+      "identityReview": {
+        "version": 46,
+        "checkedAt": "2026-10-19",
+        "research": "docs/knoche-v46/research.md",
+        "visualReview": "docs/knoche-v46/visual-review.md",
+        "references": "Three historical photographs supplied by the user; no new video research claimed."
+      },
+      "styleReview": {
+        "version": 46,
+        "checkedAt": "2026-10-19",
+        "packedWith": "scripts/pack-knoche-v46.ts",
+        "runtimeEncoding": "lossless WebP",
+        "promptSet": "docs/knoche-v46/prompts.json"
+      },
+      "encoding": {
+        "runtimeAtlas": [
+          2048,
+          1024
+        ],
+        "source": "assets/source/knoche-v46.png",
+        "webp": "public/assets/knoche-v46.webp",
+        "lossless": true,
+        "effort": 6
+      },
+      "generation": {
+        "mode": "built-in image_gen.imagegen",
+        "promptSet": "docs/knoche-v46/prompts.json"
       }
     },
     "momoy": {
@@ -1940,12 +2034,13 @@
       "id": "nacho",
       "name": "Nacho",
       "biography": "Miguel Ignacio Mendoza, cantante venezolano e integrante de Chino & Nacho. Sus actuaciones musicales inspiran un especial de tres pasos.",
-      "portraitReference": "assets/references/culture-v15/nacho/portrait.jpg",
+      "portraitReference": "assets/source/identity-v42/nacho-identity-anchor.png",
       "distinctiveTraits": [
-        "Cabello muy corto y barba negra perfilada, cejas fuertes.",
-        "Bomber oscura con motivos claros y cadena discreta."
+        "Corte rapado y frente visible según el retrato aportado por el usuario; sin gorra.",
+        "Mejillas llenas, nariz de base redondeada, boca compacta y barba corta continua con mentón redondo.",
+        "Bomber negra abierta sobre camiseta clara, pantalón negro y zapatillas blancas con negro; adaptación del atuendo escénico."
       ],
-      "portrayal": "Cabello muy corto y barba negra perfilada, cejas fuertes. Bomber oscura con motivos claros y cadena discreta. Las acciones de pelea son ficción.",
+      "portrayal": "Corte rapado, barba corta y rostro redondeado; bomber negra con detalles plateados. Avanza, retrocede y vuelve con un remate aéreo; tres tiempos para abrir la guardia. Las poses y ataques son ficción de videojuego.",
       "sources": [
         {
           "title": "Nacho — perfil de AllMusic",
@@ -1954,6 +2049,14 @@
         {
           "title": "Referencia fotográfica inspeccionada — Nacho",
           "url": "https://www.univision.com/noticias/crisis-en-venezuela/el-cantante-activista-nacho-hasta-que-no-caiga-ese-regimen-no-voy-a-dejar-de-regresar-a-venezuela"
+        },
+        {
+          "title": "Telemundo: entrevista a Chyno y Nacho publicada el 7 de mayo de 2026",
+          "url": "https://www.telemundo.com/shows/la-mesa-caliente/famosos/video/chyno-y-nacho-nos-visitan-con-nuevos-brios-para-presentar-radio-venezuela-tmvo13179860"
+        },
+        {
+          "title": "LOS40 Urban: entrevista y fotografía, 15 de mayo de 2026",
+          "url": "https://los40.com/video/2026/05/15/exclusiva-chyno-y-nacho-visitan-el-morning-de-los40-urban-con-ramses-lopez/"
         }
       ],
       "photos": [
@@ -1986,7 +2089,7 @@
         "biographyReviewed": true
       },
       "realName": "Nacho",
-      "sprite": "nacho-v15",
+      "sprite": "nacho-v42",
       "suggestedMoves": [
         {
           "name": "Paso sincopado",
@@ -1996,13 +2099,47 @@
       "entranceReview": {
         "version": 24,
         "individualAudit": "docs/entrances-v23/character-review.json",
-        "corporalGesture": "Un paso lateral",
+        "corporalGesture": "Cruza los brazos y mira al rival",
         "rig": "shared/choreography.ts",
         "durationMs": 2800,
         "settlesAt": 0.9,
         "fictionalAdaptation": true,
         "playsOnce": true,
-        "singleGesture": "docs/entrances-v24/single-gestures.json"
+        "singleGesture": "docs/entrances-v24/single-gestures.json",
+        "artwork": "nacho-v42-defiant-entrance"
+      },
+      "identityReview": {
+        "checkedAt": "2026-10-18",
+        "research": "docs/identity-v40/nacho-research.md",
+        "referenceReview": "docs/identity-v42/review.md",
+        "identityAnchor": "assets/source/identity-v42/nacho-identity-anchor.png",
+        "exactLikeness": false
+      },
+      "styleReview": {
+        "version": 42,
+        "checkedAt": "2026-10-18",
+        "styleReference": "Existing roster inked illustration conventions; no other fighter face used for the selected generation",
+        "packedWith": "scripts/pack-identity-v42.ts",
+        "runtimeEncoding": "lossless WebP",
+        "promptSet": "docs/identity-v42/prompts.json",
+        "review": "docs/identity-v42/review.md"
+      },
+      "encoding": {
+        "runtimeAtlas": [
+          2048,
+          1024
+        ],
+        "source": "assets/source/nacho-v42.png",
+        "webp": "public/assets/nacho-v42.webp",
+        "lossless": true,
+        "effort": 6,
+        "packing": "scripts/pack-identity-v42.ts"
+      },
+      "generation": {
+        "mode": "built-in image_gen.imagegen",
+        "promptSet": "docs/identity-v42/prompts.json",
+        "replaces": "nacho-v40",
+        "provenance": "docs/identity-v42/generated-assets.json"
       }
     },
     "sarcos": {
@@ -3075,6 +3212,369 @@
         "packedWith": "scripts/pack-founder-style-v3.ts",
         "runtimeEncoding": "lossless WebP",
         "notes": "Fresh photo-referenced illustrated artwork, individual compact ready stance, shared eight-pose order and transparent padded cells. Moves and choreography preserved."
+      }
+    },
+    "lorenzo": {
+      "id": "lorenzo",
+      "realName": "Lorenzo Mendoza",
+      "sprite": "lorenzo-v39",
+      "portraitReference": "assets/references/roster-v39/lorenzo/portrait.png",
+      "portrayal": "Chemise azul, lentes y paso firme. Proyecta tres estrellas polares que ralentizan al rival y abren espacio. Los gestos y ataques son adaptaciones ficticias de videojuego.",
+      "sources": [
+        {
+          "title": "Empresas Polar — Nuestra gente",
+          "url": "https://empresaspolar.com/nuestra-gente/"
+        },
+        {
+          "title": "Empresas Polar — declaración de Lorenzo Mendoza",
+          "url": "https://empresaspolar.com/lorenzo-mendoza-siempre-voy-a-dar-la-cara-a-venezuela-a-mis-trabajadores/"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/roster-v39/lorenzo/portrait.png",
+          "url": "https://empresaspolar.com/wp-content/uploads/2024/08/PolarPruebas-9097-1x.png",
+          "sourcePage": "https://empresaspolar.com/nuestra-gente/",
+          "viewed": true,
+          "research": "docs/roster-expansion-v39/research.md"
+        }
+      ],
+      "identityReview": {
+        "checkedAt": "2026-10-18",
+        "research": "docs/roster-expansion-v39/research.md"
+      },
+      "entranceReview": {
+        "durationMs": 2800,
+        "playsOnce": true,
+        "fictionalAdaptation": true,
+        "rig": "shared/icon-choreography.ts"
+      },
+      "victoryReview": {
+        "durationMs": 3500,
+        "playsOnce": true,
+        "profile": "src/game/victories-icons.ts"
+      },
+      "styleReview": {
+        "version": 39,
+        "checkedAt": "2026-10-18",
+        "styleReference": "public/assets/enrique-v3.webp",
+        "packedWith": "scripts/pack-roster-v39.ts",
+        "runtimeEncoding": "lossless WebP",
+        "promptSet": "docs/roster-expansion-v39/prompts.json"
+      }
+    },
+    "carolina": {
+      "id": "carolina",
+      "realName": "Carolina Herrera",
+      "sprite": "carolina-v39",
+      "portraitReference": "assets/references/roster-v39/carolina/cfda-portrait.jpg",
+      "portrayal": "Camisa blanca, falda oscura y gesto sereno. Su arco de seda devuelve proyectiles antes de cerrar con un corte de luz. Los gestos y ataques son adaptaciones ficticias de videojuego.",
+      "sources": [
+        {
+          "title": "Carolina Herrera — historia de la marca",
+          "url": "https://www.carolinaherrera.com/ww/en/editorial/thebrandstorypage"
+        },
+        {
+          "title": "CFDA — Carolina Herrera",
+          "url": "https://cfda.com/member/carolina-herrera/"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/roster-v39/carolina/cfda-portrait.jpg",
+          "url": "https://cfda.com/wp-content/uploads/2025/05/185_1carolina_b_Poster.jpg",
+          "sourcePage": "https://www.carolinaherrera.com/ww/en/editorial/thebrandstorypage",
+          "viewed": true,
+          "research": "docs/roster-expansion-v39/research.md"
+        }
+      ],
+      "identityReview": {
+        "checkedAt": "2026-10-18",
+        "research": "docs/roster-expansion-v39/research.md"
+      },
+      "entranceReview": {
+        "durationMs": 2800,
+        "playsOnce": true,
+        "fictionalAdaptation": true,
+        "rig": "shared/icon-choreography.ts"
+      },
+      "victoryReview": {
+        "durationMs": 3500,
+        "playsOnce": true,
+        "profile": "src/game/victories-icons.ts"
+      },
+      "styleReview": {
+        "version": 39,
+        "checkedAt": "2026-10-18",
+        "styleReference": "public/assets/enrique-v3.webp",
+        "packedWith": "scripts/pack-roster-v39.ts",
+        "runtimeEncoding": "lossless WebP",
+        "promptSet": "docs/roster-expansion-v39/prompts.json"
+      }
+    },
+    "dayana": {
+      "id": "dayana",
+      "realName": "Dayana Mendoza",
+      "sprite": "dayana-v40",
+      "portraitReference": "assets/references/identity-v40/dayana/own-gallery-PICTURE-B.jpg",
+      "portrayal": "Camiseta vinotinto, detalles tricolor y una sonrisa de reina. Tres pulsos dorados crecientes le dan espacio para avanzar hacia el rival. Las poses y ataques son ficción de videojuego.",
+      "sources": [
+        {
+          "title": "Miss Universe — archivo 2008",
+          "url": "https://www.missuniverse.com/years/2008/"
+        },
+        {
+          "title": "Miss Universe — Dayana Sabrina Mendoza Moncada",
+          "url": "https://www.missuniverse.com/queens/dayana-sabrina-mendoza-moncada/"
+        },
+        {
+          "title": "Galería propia de Dayana Mendoza",
+          "url": "https://dayanamendoza.com/gallery"
+        },
+        {
+          "title": "adidas: camiseta oficial Venezuela 26, referencia de vestuario",
+          "url": "https://www.adidas.com/us/venezuela-26-home-authentic-jersey/KB7465.html"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/roster-v39/dayana/portrait.jpg",
+          "url": "https://www.missuniverse.com/wp-content/uploads/2024/09/2008-Dayana-Mendoza.jpg",
+          "sourcePage": "https://www.missuniverse.com/years/2008/",
+          "viewed": true,
+          "research": "docs/roster-expansion-v39/research.md"
+        }
+      ],
+      "identityReview": {
+        "checkedAt": "2026-10-18",
+        "research": "docs/identity-v40/dayana-research.md"
+      },
+      "entranceReview": {
+        "durationMs": 2800,
+        "playsOnce": true,
+        "fictionalAdaptation": true,
+        "rig": "shared/icon-choreography.ts"
+      },
+      "victoryReview": {
+        "durationMs": 3500,
+        "playsOnce": true,
+        "profile": "src/game/victories-icons.ts"
+      },
+      "styleReview": {
+        "version": 40,
+        "checkedAt": "2026-10-18",
+        "styleReference": "public/assets/enrique-v3.webp",
+        "packedWith": "scripts/pack-identity-v40.ts",
+        "runtimeEncoding": "lossless WebP",
+        "promptSet": "docs/identity-v40/prompts.json",
+        "review": "docs/identity-v40/review.md"
+      },
+      "distinctiveTraits": [
+        "Rostro ovalado, ojos claros, pómulos marcados y sonrisa amplia; melena castaña larga.",
+        "Camiseta y short vinotinto con ribetes dorados y detalles tricolor inspirados en el uniforme de 2026.",
+        "Sin corona, vestido ni tacones; medias y calzado deportivo son adaptación del juego."
+      ],
+      "encoding": {
+        "runtimeAtlas": [
+          2048,
+          1024
+        ],
+        "source": "assets/source/dayana-v40.png",
+        "webp": "public/assets/dayana-v40.webp",
+        "lossless": true,
+        "effort": 6,
+        "packing": "scripts/pack-identity-v40.ts"
+      },
+      "generation": {
+        "mode": "built-in image_gen.imagegen",
+        "promptSet": "docs/identity-v40/prompts.json",
+        "replaces": "dayana-v39"
+      },
+      "wardrobeAdaptation": "Uniforme Vinotinto solicitado por el usuario; no se afirma que Dayana usara este conjunto completo en una foto real."
+    },
+    "bolivar": {
+      "id": "bolivar",
+      "realName": "Simón Bolívar",
+      "sprite": "bolivar-v39",
+      "portraitReference": "assets/references/roster-v39/bolivar/portrait.jpg",
+      "portrayal": "Uniforme rojo y oro, patillas y porte de campaña, basados en un retrato histórico. Una carga breve deja una estela tricolor. Los gestos y ataques son adaptaciones ficticias de videojuego.",
+      "sources": [
+        {
+          "title": "MALI — retrato de Simón Bolívar por José Gil de Castro",
+          "url": "https://artsandculture.google.com/asset/sim%C3%B3n-bol%C3%ADvar/8wGrnuiPpRYHxA?hl=es-419"
+        },
+        {
+          "title": "Museo Nacional de Colombia — iconografía de Bolívar",
+          "url": "https://museonacional.gov.co/exposiciones/carteles/simon-bol%C3%ADvar/Paginas/default.aspx"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/roster-v39/bolivar/portrait.jpg",
+          "url": "https://lh3.googleusercontent.com/ci/AL18g_R2hGKsxwNATjIF_NMjLzEN7W-SWjw8T-szyOoyXKMEYEHrYO1oFWmUCtTUmjAS83HuNY5e7w=s1400",
+          "sourcePage": "https://artsandculture.google.com/asset/sim%C3%B3n-bol%C3%ADvar/8wGrnuiPpRYHxA?hl=es-419",
+          "viewed": true,
+          "research": "docs/roster-expansion-v39/research.md"
+        }
+      ],
+      "identityReview": {
+        "checkedAt": "2026-10-18",
+        "research": "docs/roster-expansion-v39/research.md"
+      },
+      "entranceReview": {
+        "durationMs": 2800,
+        "playsOnce": true,
+        "fictionalAdaptation": true,
+        "rig": "shared/icon-choreography.ts"
+      },
+      "victoryReview": {
+        "durationMs": 3500,
+        "playsOnce": true,
+        "profile": "src/game/victories-icons.ts"
+      },
+      "styleReview": {
+        "version": 39,
+        "checkedAt": "2026-10-18",
+        "styleReference": "public/assets/enrique-v3.webp",
+        "packedWith": "scripts/pack-roster-v39.ts",
+        "runtimeEncoding": "lossless WebP",
+        "promptSet": "docs/roster-expansion-v39/prompts.json"
+      }
+    },
+    "edgar": {
+      "id": "edgar",
+      "realName": "Édgar Ramírez",
+      "sprite": "edgar-v39",
+      "portraitReference": "assets/references/roster-v39/edgar/portrait.jpg",
+      "portrayal": "Cabello ondulado, barba y guardia de acción. Anticipa el golpe con una contra y termina la toma con un remate corto. Los gestos y ataques son adaptaciones ficticias de videojuego.",
+      "sources": [
+        {
+          "title": "Festival de Cannes — Édgar Ramírez",
+          "url": "https://www.festival-cannes.com/en/p/edgar-ramirez/"
+        },
+        {
+          "title": "Festival de Cannes — Hands of Stone",
+          "url": "https://www.festival-cannes.com/en/f/hands-of-stone/"
+        }
+      ],
+      "photos": [
+        {
+          "file": "assets/references/roster-v39/edgar/portrait.jpg",
+          "url": "https://cdn.festival-cannes.com/media/uploads/2023/03/141269-scaled.jpg",
+          "sourcePage": "https://www.festival-cannes.com/en/p/edgar-ramirez/",
+          "viewed": true,
+          "research": "docs/roster-expansion-v39/research.md"
+        }
+      ],
+      "identityReview": {
+        "checkedAt": "2026-10-18",
+        "research": "docs/roster-expansion-v39/research.md"
+      },
+      "entranceReview": {
+        "durationMs": 2800,
+        "playsOnce": true,
+        "fictionalAdaptation": true,
+        "rig": "shared/icon-choreography.ts"
+      },
+      "victoryReview": {
+        "durationMs": 3500,
+        "playsOnce": true,
+        "profile": "src/game/victories-icons.ts"
+      },
+      "styleReview": {
+        "version": 39,
+        "checkedAt": "2026-10-18",
+        "styleReference": "public/assets/enrique-v3.webp",
+        "packedWith": "scripts/pack-roster-v39.ts",
+        "runtimeEncoding": "lossless WebP",
+        "promptSet": "docs/roster-expansion-v39/prompts.json"
+      }
+    },
+    "melanio": {
+      "id": "melanio",
+      "realName": "Melanio Escobar",
+      "sprite": "melanio-v44",
+      "portraitReference": "https://uploads.concordia.net/2022/05/24113447/melanio.jpeg",
+      "portrayal": "Lentes negros gruesos, gorra hacia atrás, bigote, barba corta y tatuajes de cuello y brazos. Polo negro con ribetes claros, pantalón oscuro y zapatillas. Los ataques, gestos y el atuendo inferior son adaptaciones ficticias de videojuego.",
+      "sources": [
+        {
+          "title": "Concordia — Melanio Escobar",
+          "url": "https://concordia.net/community/melanio-escobar/"
+        },
+        {
+          "title": "Chiste Interno — Humor político venezolano, 2024-11-19",
+          "url": "https://www.chisteinterno.com/podcasts/chiste-interno/episodes/2148904694"
+        },
+        {
+          "title": "Palantespaya — entrevista, 2025-04-27",
+          "url": "https://www.youtube.com/watch?v=Xsc-WP9VUK8"
+        },
+        {
+          "title": "VENtv — Amplia frecuencia, 2025-09-01",
+          "url": "https://www.youtube.com/watch?v=YEch5BPGQSE"
+        }
+      ],
+      "photos": [
+        {
+          "url": "https://uploads.concordia.net/2022/05/24113447/melanio.jpeg",
+          "sourcePage": "https://concordia.net/community/melanio-escobar/",
+          "viewed": true,
+          "research": "docs/research/escobar-identity-v44.md"
+        },
+        {
+          "url": "https://i.ytimg.com/vi/YEch5BPGQSE/maxresdefault.jpg",
+          "sourcePage": "https://www.youtube.com/watch?v=YEch5BPGQSE",
+          "viewed": true,
+          "research": "docs/research/escobar-identity-v44.md"
+        }
+      ],
+      "distinctiveTraits": [
+        "Rostro ovalado alargado, nariz redondeada, aro pequeño en la nariz, bigote y barba de mandíbula corta.",
+        "Montura negra grande con cristales transparentes; gorra negra hacia atrás.",
+        "Rosa en el cuello, antebrazos y manos tatuados; polo negro con doble ribete claro."
+      ],
+      "identityReview": {
+        "checkedAt": "2026-10-19",
+        "research": "docs/research/escobar-identity-v44.md",
+        "identityConfirmedByUser": true,
+        "videoPlayback": "Unavailable: inspected creator-published stills; playback blocked by provider."
+      },
+      "entranceReview": {
+        "durationMs": 2800,
+        "playsOnce": true,
+        "fictionalAdaptation": true,
+        "rig": "shared/icon-choreography.ts"
+      },
+      "victoryReview": {
+        "durationMs": 3500,
+        "playsOnce": true,
+        "profile": "src/game/victories-icons.ts"
+      },
+      "styleReview": {
+        "version": 44,
+        "checkedAt": "2026-10-19",
+        "packedWith": "scripts/pack-melanio-v44.ts",
+        "runtimeEncoding": "lossless WebP",
+        "promptSet": "docs/melanio-v44/prompts.json"
+      },
+      "encoding": {
+        "runtimeAtlas": [
+          2048,
+          1024
+        ],
+        "source": "assets/source/melanio-v44.png",
+        "webp": "public/assets/melanio-v44.webp",
+        "lossless": true,
+        "effort": 6
+      },
+      "generation": {
+        "mode": "built-in image_gen.imagegen",
+        "promptSet": "docs/melanio-v44/prompts.json"
+      },
+      "audio": {
+        "realVoice": false,
+        "mode": "generic-combat-reactions",
+        "specialCue": "original oscillator broadcast cue"
       }
     }
   },

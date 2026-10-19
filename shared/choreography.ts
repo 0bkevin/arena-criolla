@@ -2,6 +2,7 @@ import type { FighterId } from "./content";
 import { PRESENTATIONS } from "./presentation";
 import { DEFAULT_ENTRANCE_FIGHTERS } from "./entrance-actions";
 import { FOUNDER_CHOREOGRAPHIES } from "./founder-choreography";
+import { ICON_CHOREOGRAPHIES } from "./icon-choreography";
 
 export interface Gesture {
   at: number;
@@ -99,6 +100,7 @@ function routine(
 // These are theatrical adaptations of public personas, never claimed as real rituals.
 export const CHOREOGRAPHIES: Record<FighterId, Choreography> = {
   ...FOUNDER_CHOREOGRAPHIES,
+  ...ICON_CHOREOGRAPHIES,
   zavarce: routine(
     "Consulta, confirma y señala",
     [
@@ -869,30 +871,27 @@ export const CHOREOGRAPHIES: Record<FighterId, Choreography> = {
     0.32,
   ),
   knoche: routine(
-    "Revisa el frasco y ajusta los lentes",
+    "Observa el frasco y vuelve a guardia",
     [
-      [-0.12, 0.34],
-      [0.13, 0.31],
+      [-0.07, 0.28],
+      [0.25, 0.28],
     ],
     [
-      { at: 0.13, head: 0.14, front: 0.14 },
+      { at: 0.28, head: 0.06, lean: 0.015, back: 0.035, backY: 0.02 },
       {
-        at: 0.31,
-        back: 0.18,
+        at: 0.5,
+        head: 0.16,
+        lean: 0.025,
+        back: 0.08,
+        backX: 0.025,
         backY: 0.07,
-        front: -0.2,
-        frontY: -0.025,
-        frontX: -0.03,
-        head: 0.18,
-        lean: 0.055,
+        front: 0.05,
+        frontY: 0.015,
       },
-      { at: 0.47, head: -0.12, front: -0.2, frontX: 0.025 },
-      { at: 0.63, head: 0.1, front: 0.19, frontY: 0.03, back: -0.12 },
-      { at: 0.79, head: -0.055, lean: -0.025 },
-      { at: 0.9, head: 0.025 },
+      { at: 0.78, head: 0.035, back: 0.02 },
     ],
-    0.26,
-    0.33,
+    0.2,
+    0.25,
   ),
   momoy: routine(
     "Apoya el bastón y ofrece la palma",
@@ -970,9 +969,10 @@ export const CHOREOGRAPHIES: Record<FighterId, Choreography> = {
 
 // Frame 1 is audited independently: crossed arms and props are not generic palms.
 CHOREOGRAPHIES.javier.raisedHands = [
-  [0.055, 0.27],
-  [-0.02, 0.27],
+  [-0.08, 0.28],
+  [0.12, 0.27],
 ];
+CHOREOGRAPHIES.javier.headWidth = 0.16;
 CHOREOGRAPHIES.mcm.raisedHands = [
   [0.065, 0.28],
   [-0.015, 0.275],
@@ -1059,8 +1059,8 @@ CHOREOGRAPHIES.florentino.rigidParts = [
 CHOREOGRAPHIES.knoche.rigidParts = [
   {
     bind: "body",
-    pivot: [-0.17, 0.56],
-    zones: [zone([-0.17, 0.54], [-0.17, 0.61], 0.055)],
+    pivot: [0.025, 0.43],
+    zones: [zone([0.025, 0.41], [0.025, 0.45], 0.02)],
   },
 ];
 CHOREOGRAPHIES.silbon.rigidParts = [

@@ -1,4 +1,11 @@
-import { useEffect, useState, type KeyboardEvent, type RefObject } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type RefObject,
+} from "react";
 import {
   ArrowRight,
   ChevronLeft,
@@ -60,7 +67,7 @@ interface Props {
 
 const colorStyle = (color: string) =>
   ({ "--fighter-color": color }) as React.CSSProperties;
-const PAGE_SIZE = 10;
+const MIN_PAGE_SIZE = 10;
 const stageLabels: Record<StageId, string> = {
   caracas: "Altamira",
   guaira: "La Guaira",
@@ -77,18 +84,26 @@ export function ArcadeLobby(props: Props) {
   const { mode, fighter, rival, stage, network } = props;
   const [target, setTarget] = useState<"p1" | "p2">("p1");
   const [searchOpen, setSearchOpen] = useState(false);
+  const closeSearch = () => {
+    props.onClearQuery();
+    setSearchOpen(false);
+    document.querySelector<HTMLButtonElement>(".roster-search-toggle")?.focus();
+  };
   const [category, setCategory] = useState<
     "all" | "culture" | "folklore" | "community"
   >("all");
-  const [page, setPage] = useState(0);
+  const rosterGrid = useRef<HTMLDivElement>(null);
+  const [pageSize, setPageSize] = useState(MIN_PAGE_SIZE);
+  // Keep the page's fighter anchor when a rotation changes its capacity.
+  const [pageStart, setPageStart] = useState(0);
   const roster = props.fighters.filter(
     (item) => category === "all" || (item.category ?? "culture") === category,
   );
-  const pageCount = Math.max(1, Math.ceil(roster.length / PAGE_SIZE));
-  const currentPage = Math.min(page, pageCount - 1);
+  const pageCount = Math.max(1, Math.ceil(roster.length / pageSize));
+  const currentPage = Math.min(Math.floor(pageStart / pageSize), pageCount - 1);
   const visibleFighters = roster.slice(
-    currentPage * PAGE_SIZE,
-    currentPage * PAGE_SIZE + PAGE_SIZE,
+    currentPage * pageSize,
+    currentPage * pageSize + pageSize,
   );
   const chosen = fighterById(fighter);
   const rivalPlayer = network.room?.players.find(
@@ -113,9 +128,7 @@ export function ArcadeLobby(props: Props) {
     const pick = candidates[Math.floor(Math.random() * candidates.length)];
     if (pickingRival) props.onRival(pick.id);
     else props.onFighter(pick.id);
-    setPage(
-      Math.floor(roster.findIndex((item) => item.id === pick.id) / PAGE_SIZE),
-    );
+    setPageStart(roster.findIndex((item) => item.id === pick.id));
   };
   const rivalLabel = mode === "practice" ? "CPU" : "P2";
   const handleStageKeys = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -144,7 +157,23 @@ export function ArcadeLobby(props: Props) {
   useEffect(() => {
     if (searchOpen) props.searchInput.current?.focus();
   }, [searchOpen, props.searchInput]);
-  useEffect(() => setPage(0), [props.query, category]);
+  useEffect(() => setPageStart(0), [props.query, category]);
+  useLayoutEffect(() => {
+    const grid = rosterGrid.current;
+    if (!grid) return;
+    const update = () => {
+      if (!grid.getClientRects().length) return;
+      const columns = getComputedStyle(grid)
+        .gridTemplateColumns.split(" ")
+        .filter(Boolean).length;
+      // A full page fills the actual CSS columns, including on small screens.
+      if (columns) setPageSize(Math.ceil(MIN_PAGE_SIZE / columns) * columns);
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(grid);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <main className="page-width home-page arcade-home">
@@ -405,8 +434,8 @@ export function ArcadeLobby(props: Props) {
                   }
                   aria-expanded={searchOpen}
                   onClick={() => {
-                    if (searchOpen) props.onClearQuery();
-                    setSearchOpen(!searchOpen);
+                    if (searchOpen) closeSearch();
+                    else setSearchOpen(true);
                   }}
                 >
                   {searchOpen ? <X size={18} /> : <Search size={18} />}
@@ -423,13 +452,7 @@ export function ArcadeLobby(props: Props) {
                     onChange={(event) => props.onQuery(event.target.value)}
                     onKeyDown={(event) => {
                       if (event.key === "Escape") {
-                        props.onClearQuery();
-                        setSearchOpen(false);
-                        document
-                          .querySelector<HTMLButtonElement>(
-                            ".roster-search-toggle",
-                          )
-                          ?.focus();
+                        closeSearch();
                       }
                     }}
                   />
@@ -458,7 +481,7 @@ export function ArcadeLobby(props: Props) {
                     aria-pressed={category === value}
                     onClick={() => {
                       setCategory(value);
-                      setPage(0);
+                      setPageStart(0);
                     }}
                   >
                     {value === "folklore" && (
@@ -479,7 +502,7 @@ export function ArcadeLobby(props: Props) {
               </div>
               <div
                 className="fighter-grid"
-                key={`${category}-${currentPage}-${props.query}`}
+                ref={rosterGrid}
                 role="group"
                 aria-label="Seleccionar luchador"
                 onKeyDown={props.onRosterKeys}
@@ -529,7 +552,7 @@ export function ArcadeLobby(props: Props) {
                     onClick={() => {
                       props.onClearQuery();
                       setCategory("all");
-                      setPage(0);
+                      setPageStart(0);
                     }}
                   >
                     Ver todos <ArrowRight size={14} />
@@ -544,7 +567,7 @@ export function ArcadeLobby(props: Props) {
                   <button
                     aria-label="Página anterior de luchadores"
                     disabled={currentPage === 0}
-                    onClick={() => setPage(currentPage - 1)}
+                    onClick={() => setPageStart((currentPage - 1) * pageSize)}
                   >
                     <ChevronLeft size={16} />
                   </button>
@@ -554,7 +577,7 @@ export function ArcadeLobby(props: Props) {
                   <button
                     aria-label="Página siguiente de luchadores"
                     disabled={currentPage >= pageCount - 1}
-                    onClick={() => setPage(currentPage + 1)}
+                    onClick={() => setPageStart((currentPage + 1) * pageSize)}
                   >
                     <ChevronRight size={16} />
                   </button>
@@ -769,7 +792,11 @@ export function ArcadeLobby(props: Props) {
                   <span className="ready-player-dot" />
                   {p.name}
                   {p.id === network.id ? " (tú)" : ""} ·{" "}
-                  {p.ready ? "LISTO" : "ELIGIENDO"}
+                  {p.connected === false
+                    ? "RECONECTANDO…"
+                    : p.ready
+                      ? "LISTO"
+                      : "ELIGIENDO"}
                 </span>
               ))}
               {network.room.players.length === 1 && (

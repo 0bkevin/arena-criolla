@@ -1,0 +1,312 @@
+{
+  "fighter": "edgar",
+  "rival": "zavarce",
+  "side": 0,
+  "stage": "roques",
+  "mode": "practice",
+  "difficulty": "hard",
+  "matchId": "c9151ca5-afd2-4310-bef9-cd3f057fe61f",
+  "phase": "playing",
+  "ticks": 461,
+  "observations": {
+    "started": [
+      "special",
+      "light",
+      "heavy"
+    ],
+    "history": [
+      "special",
+      "light",
+      "heavy"
+    ],
+    "minX": -153.58987848493896,
+    "maxX": 1225.014045193991,
+    "minY": 263.12,
+    "blurPaused": true,
+    "hp": 51.1764,
+    "rivalHp": 76.132,
+    "hits": 2,
+    "stocks": 1,
+    "lastActions": {
+      "jump": 3,
+      "light": 2,
+      "heavy": 2,
+      "special": 2,
+      "dash": 1,
+      "super": 0
+    },
+    "samples": [
+      {
+        "tick": 519,
+        "x": 330,
+        "y": 554,
+        "hp": 100,
+        "energy": 10.314999999999984,
+        "attack": "special",
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 534,
+        "x": 330,
+        "y": 554,
+        "hp": 100,
+        "energy": 10.839999999999986,
+        "attack": "special",
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 554,
+        "x": 330,
+        "y": 554,
+        "hp": 100,
+        "energy": 11.539999999999988,
+        "attack": "special",
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 574,
+        "x": 330,
+        "y": 554,
+        "hp": 100,
+        "energy": 12.239999999999991,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 589,
+        "x": 302.8065066666667,
+        "y": 541.5200000000001,
+        "hp": 88.0244,
+        "energy": 21.764999999999993,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 609,
+        "x": 130.44969153514708,
+        "y": 554,
+        "hp": 88.0244,
+        "energy": 22.464999999999996,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 629,
+        "x": 178.09675119396206,
+        "y": 554,
+        "hp": 88.0244,
+        "energy": 23.165,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 644,
+        "x": 88.70868512541136,
+        "y": 530.6000000000001,
+        "hp": 76.0488,
+        "energy": 32.68999999999997,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 664,
+        "x": -106.39076991184658,
+        "y": 639.8000000000001,
+        "hp": 76.0488,
+        "energy": 33.3899999999999,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 684,
+        "x": 330,
+        "y": 278.72,
+        "hp": 100,
+        "energy": 14.089999999999861,
+        "attack": null,
+        "hits": 0,
+        "facing": 1
+      },
+      {
+        "tick": 704,
+        "x": 330,
+        "y": 410,
+        "hp": 100,
+        "energy": 14.169999999999867,
+        "attack": null,
+        "hits": 0,
+        "facing": -1
+      },
+      {
+        "tick": 718,
+        "x": 345.3013721275629,
+        "y": 415.2,
+        "hp": 100,
+        "energy": 26.419999999999874,
+        "attack": "light",
+        "hits": 1,
+        "facing": -1
+      },
+      {
+        "tick": 736,
+        "x": 345.3013721275629,
+        "y": 541.56,
+        "hp": 100,
+        "energy": 27.049999999999876,
+        "attack": "heavy",
+        "hits": 1,
+        "facing": -1
+      },
+      {
+        "tick": 751,
+        "x": 345.3013721275629,
+        "y": 554,
+        "hp": 100,
+        "energy": 40.574999999999854,
+        "attack": "heavy",
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 771,
+        "x": 289.3013721275629,
+        "y": 554,
+        "hp": 100,
+        "energy": 41.274999999999785,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 791,
+        "x": 151.44926036320368,
+        "y": 554,
+        "hp": 100,
+        "energy": 41.97499999999972,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 808,
+        "x": 120.762312608527,
+        "y": 541.5200000000001,
+        "hp": 87.1032,
+        "energy": 51.56999999999966,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 828,
+        "x": 313.8319031222191,
+        "y": 554,
+        "hp": 87.1032,
+        "energy": 52.26999999999959,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 848,
+        "x": 329.3897762784088,
+        "y": 554,
+        "hp": 87.1032,
+        "energy": 52.96999999999952,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 863,
+        "x": 454.090047331958,
+        "y": 533.72,
+        "hp": 75.1276,
+        "energy": 62.49499999999947,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 883,
+        "x": 568.527806186236,
+        "y": 554,
+        "hp": 75.1276,
+        "energy": 63.1949999999994,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 898,
+        "x": 568.8931847848112,
+        "y": 554,
+        "hp": 75.1276,
+        "energy": 63.71999999999935,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 913,
+        "x": 738.0238514514774,
+        "y": 538.4000000000001,
+        "hp": 63.152,
+        "energy": 73.2449999999993,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 933,
+        "x": 842.0745111826784,
+        "y": 554,
+        "hp": 63.152,
+        "energy": 73.94499999999923,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 947,
+        "x": 885.1110871071637,
+        "y": 549.32,
+        "hp": 51.1764,
+        "energy": 83.43499999999918,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      },
+      {
+        "tick": 960,
+        "x": 1045.5294693293856,
+        "y": 535.8000000000001,
+        "hp": 51.1764,
+        "energy": 83.88999999999913,
+        "attack": null,
+        "hits": 2,
+        "facing": -1
+      }
+    ]
+  },
+  "assets": [
+    "/assets/edgar-v39.webp"
+  ],
+  "assertions": {
+    "finite": true,
+    "moved": true,
+    "jumped": true,
+    "specialStarted": true,
+    "actionsReceived": true
+  },
+  "resistingLocalOpponent": false
+}

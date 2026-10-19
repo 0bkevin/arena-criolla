@@ -35,8 +35,8 @@ const animationSignature = (id: FighterId) =>
     }),
   );
 
-test("all 46 built-in fighters have unique, finite, bounded victory motion", () => {
-  assert.equal(FIGHTERS.length, 46);
+test("all 52 built-in fighters have unique, finite, bounded victory motion", () => {
+  assert.equal(FIGHTERS.length, 52);
   assert.deepEqual(
     Object.keys(VICTORIES).sort(),
     FIGHTERS.map((f) => f.id).sort(),
@@ -102,7 +102,9 @@ test("victory and defeat settle at 3500ms and hold instead of replaying", () => 
 });
 
 test("jump celebrations prepare on the ground and land before the final hold", () => {
-  const jumpers = FIGHTERS.filter((fighter) => victoryById(fighter.id).frame === 4);
+  const jumpers = FIGHTERS.filter(
+    (fighter) => victoryById(fighter.id).frame === 4,
+  );
   assert.ok(jumpers.length > 0);
   for (const fighter of jumpers) {
     assert.equal(sampleVictory(fighter.id, 0).frame, 0, fighter.id);

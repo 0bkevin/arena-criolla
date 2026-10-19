@@ -1,0 +1,123 @@
+{
+  "checkedAt": "2026-10-19",
+  "main": "9328221",
+  "combinedCode": "c17427a",
+  "validation": {
+    "tests": 813,
+    "passed": 813,
+    "failed": 0,
+    "skipped": 0,
+    "activeAssetPairs": 52,
+    "typescript": true,
+    "productionBuild": true,
+    "dependencyAuditVulnerabilities": 0
+  },
+  "browser": {
+    "tool": "T3 collaborative browser",
+    "method": "Ordinary selection UI and DOM keyboard events, read-only inspection of live match state; no simulation-state injection.",
+    "fights": [
+      {
+        "fighter": "melanio",
+        "rival": "knoche",
+        "side": 0,
+        "stage": "caracas",
+        "mode": "practice",
+        "difficulty": "normal",
+        "matchId": "a3abdd91-effe-47f7-a0b3-929a1cfaf12b",
+        "assets": [
+          "/assets/melanio-v44.webp"
+        ],
+        "assertions": {
+          "finite": true,
+          "moved": true,
+          "jumped": true,
+          "specialStarted": true,
+          "actionsReceived": true
+        },
+        "observations": {
+          "started": [
+            "special",
+            "heavy",
+            "light"
+          ],
+          "hits": 2,
+          "lastActions": {
+            "jump": 3,
+            "light": 2,
+            "heavy": 2,
+            "special": 2,
+            "dash": 1,
+            "super": 0
+          },
+          "blurPaused": true
+        },
+        "resistingLocalOpponent": false
+      },
+      {
+        "fighter": "knoche",
+        "rival": "melanio",
+        "side": 1,
+        "stage": "roques",
+        "mode": "local",
+        "difficulty": "normal",
+        "matchId": "a198be5a-46a7-4898-87fc-47becebe35c1",
+        "assets": [
+          "/assets/knoche-v46.webp"
+        ],
+        "assertions": {
+          "finite": true,
+          "moved": true,
+          "jumped": true,
+          "specialStarted": true,
+          "actionsReceived": true
+        },
+        "observations": {
+          "started": [
+            "special",
+            "light",
+            "heavy"
+          ],
+          "hits": 2,
+          "lastActions": {
+            "jump": 3,
+            "light": 2,
+            "heavy": 2,
+            "special": 2,
+            "dash": 1,
+            "super": 0
+          },
+          "blurPaused": true
+        },
+        "resistingLocalOpponent": true
+      }
+    ],
+    "landscape": {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "overflow": false,
+      "touch": true,
+      "method": "Simulated touch capabilities in an 844x390 desktop browser viewport; not physical hardware."
+    }
+  },
+  "ciOnly": [
+    "Production Docker build",
+    "Container CVE scan",
+    "Production HTTP/WebSocket smoke"
+  ],
+  "cleanup": {
+    "ownedBrowserTabClosed": true,
+    "ownedServerPort5193Closed": true
+  }
+}

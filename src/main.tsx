@@ -5,6 +5,7 @@ import "./styles.css";
 import "./lobby.css";
 import "./arcade-theme.css";
 import "./mobile-game.css";
+import "./ui-accessibility.css";
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

@@ -12,16 +12,17 @@
     "saved": "75%"
   },
   {
-    "name": "javier-v2.png",
-    "sourceBytes": 1001734,
-    "outputBytes": 247660,
-    "saved": "75%"
+    "name": "javier-v43.png",
+    "sourceBytes": 1027335,
+    "outputBytes": 564822,
+    "saved": "45%"
   },
   {
-    "name": "capriles-v22.png",
-    "sourceBytes": 3419591,
-    "outputBytes": 1759454,
-    "lossless": true
+    "name": "capriles-v39.png",
+    "sourceBytes": 1676251,
+    "outputBytes": 959970,
+    "lossless": true,
+    "saved": "43%"
   },
   {
     "name": "renny-v3.png",
@@ -120,10 +121,10 @@
     "saved": "77%"
   },
   {
-    "name": "nacho-v15.png",
-    "sourceBytes": 1376067,
-    "outputBytes": 311548,
-    "saved": "77%"
+    "name": "nacho-v42.png",
+    "sourceBytes": 1503831,
+    "outputBytes": 814860,
+    "saved": "46%"
   },
   {
     "name": "sarcos-v15.png",
@@ -216,10 +217,10 @@
     "saved": "71%"
   },
   {
-    "name": "knoche-v12.png",
-    "sourceBytes": 1518347,
-    "outputBytes": 371156,
-    "saved": "76%"
+    "name": "knoche-v46.png",
+    "sourceBytes": 1312602,
+    "outputBytes": 746010,
+    "saved": "43%"
   },
   {
     "name": "momoy-v12.png",
@@ -333,5 +334,64 @@
     "outputBytes": 806558,
     "saved": "43%",
     "lossless": true
+  },
+  {
+    "name": "lorenzo-v39.png",
+    "sourceBytes": 1466549,
+    "outputBytes": 813092,
+    "saved": "45%",
+    "lossless": true
+  },
+  {
+    "name": "carolina-v39.png",
+    "sourceBytes": 1498181,
+    "outputBytes": 817322,
+    "saved": "45%",
+    "lossless": true
+  },
+  {
+    "name": "dayana-v40.png",
+    "sourceBytes": 1457272,
+    "outputBytes": 901378,
+    "saved": "38%"
+  },
+  {
+    "name": "bolivar-v39.png",
+    "sourceBytes": 1472032,
+    "outputBytes": 899734,
+    "saved": "39%",
+    "lossless": true
+  },
+  {
+    "name": "edgar-v39.png",
+    "sourceBytes": 1589864,
+    "outputBytes": 885774,
+    "saved": "44%",
+    "lossless": true
+  },
+  {
+    "name": "capriles-v39-defiant-entrance.png",
+    "sourceBytes": 1484769,
+    "outputBytes": 817940,
+    "saved": "45%",
+    "lossless": true
+  },
+  {
+    "name": "javier-v43-defiant-entrance.png",
+    "sourceBytes": 871899,
+    "outputBytes": 490812,
+    "saved": "44%"
+  },
+  {
+    "name": "nacho-v42-defiant-entrance.png",
+    "sourceBytes": 1148779,
+    "outputBytes": 632924,
+    "saved": "45%"
+  },
+  {
+    "name": "melanio-v44.png",
+    "sourceBytes": 1329211,
+    "outputBytes": 762028,
+    "saved": "43%"
   }
 ]

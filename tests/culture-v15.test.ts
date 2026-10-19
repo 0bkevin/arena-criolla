@@ -69,14 +69,14 @@ function incoming(x: number, direction = -1): Projectile {
 }
 
 test("sixteen individually researched culture figures have original sprites and distinct specials", () => {
-  assert.equal(FIGHTERS.length, 46);
+  assert.equal(FIGHTERS.length, 52);
   assert.equal(research.fighters.length, 16);
   assert.deepEqual(new Set(research.fighters.map((f) => f.id)), new Set(added));
   for (const id of added) {
     const f = fighterById(id),
       evidence = research.fighters.find((r) => r.id === id)!;
     assert.equal(f.category, "culture");
-    assert.equal(f.sprite, `${id}-v15`);
+    assert.equal(f.sprite, id === "nacho" ? "nacho-v42" : `${id}-v15`);
     assert.equal(new Set(f.combos).size, 3);
     assert.ok(
       evidence.sources.length >= 2 && evidence.photos.every((p) => p.viewed),

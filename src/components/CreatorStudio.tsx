@@ -121,7 +121,14 @@ export function CreatorStudio({
   const records = recordsOwner === user?.id ? storedRecords : [];
   const generating = records.some((record) => busyStatuses.has(record.status));
   const fileInput = useRef<HTMLInputElement>(null),
-    createForm = useRef<HTMLFormElement>(null);
+    createForm = useRef<HTMLFormElement>(null),
+    errorMessage = useRef<HTMLParagraphElement>(null),
+    workbench = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!error) return;
+    errorMessage.current?.focus({ preventScroll: true });
+    errorMessage.current?.scrollIntoView({ block: "nearest" });
+  }, [error]);
   const alive = useRef(true);
   const currentSession = (epoch: number) =>
     alive.current && sessionEpoch.current === epoch;
@@ -380,6 +387,11 @@ export function CreatorStudio({
       setNotice(
         "¡Vamos! Puedes quedarte aquí o volver después. Tu progreso queda guardado.",
       );
+      requestAnimationFrame(() => {
+        if (!currentSession(generation) || ownerRef.current !== owner) return;
+        workbench.current?.focus({ preventScroll: true });
+        workbench.current?.scrollIntoView({ block: "start" });
+      });
     } catch (e) {
       if (!currentSession(generation) || ownerRef.current !== owner) return;
       if (sessionFailure(e, owner)) return;
@@ -552,10 +564,32 @@ export function CreatorStudio({
               className="creator-auth-tabs"
               role="tablist"
               aria-label="Acceso al taller"
+              onKeyDown={(event) => {
+                const modes = ["signup", "signin"] as const;
+                const index = modes.indexOf(accountMode);
+                const next =
+                  event.key === "ArrowRight" || event.key === "ArrowLeft"
+                    ? 1 - index
+                    : event.key === "Home"
+                      ? 0
+                      : event.key === "End"
+                        ? 1
+                        : undefined;
+                if (next === undefined) return;
+                event.preventDefault();
+                setAccountMode(modes[next]);
+                setError("");
+                event.currentTarget
+                  .querySelectorAll<HTMLButtonElement>("[role=tab]")
+                  [next]?.focus();
+              }}
             >
               <button
+                id="creator-signup-tab"
                 role="tab"
+                aria-controls="creator-auth-panel"
                 aria-selected={accountMode === "signup"}
+                tabIndex={accountMode === "signup" ? 0 : -1}
                 onClick={() => {
                   setAccountMode("signup");
                   setError("");
@@ -564,8 +598,11 @@ export function CreatorStudio({
                 Crear cuenta
               </button>
               <button
+                id="creator-signin-tab"
                 role="tab"
+                aria-controls="creator-auth-panel"
                 aria-selected={accountMode === "signin"}
+                tabIndex={accountMode === "signin" ? 0 : -1}
                 onClick={() => {
                   setAccountMode("signin");
                   setError("");
@@ -574,7 +611,12 @@ export function CreatorStudio({
                 Ya tengo cuenta
               </button>
             </div>
-            <form onSubmit={authenticate}>
+            <form
+              id="creator-auth-panel"
+              role="tabpanel"
+              aria-labelledby={`creator-${accountMode}-tab`}
+              onSubmit={authenticate}
+            >
               {accountMode === "signup" && (
                 <label>
                   Tu nombre
@@ -623,7 +665,12 @@ export function CreatorStudio({
                 />
               </label>
               {error && (
-                <p className="creator-error" role="alert">
+                <p
+                  className="creator-error"
+                  role="alert"
+                  tabIndex={-1}
+                  ref={errorMessage}
+                >
                   {error}
                 </p>
               )}
@@ -655,7 +702,12 @@ export function CreatorStudio({
               </p>
             </div>
             {error && (
-              <p className="creator-error" role="alert">
+              <p
+                className="creator-error"
+                role="alert"
+                tabIndex={-1}
+                ref={errorMessage}
+              >
                 {error}
               </p>
             )}
@@ -697,6 +749,7 @@ export function CreatorStudio({
                       ref={fileInput}
                       className="creator-file-input"
                       type="file"
+                      tabIndex={-1}
                       accept="image/jpeg,image/png,image/webp"
                       multiple
                       disabled={submitting || draft.submitted}
@@ -893,7 +946,12 @@ export function CreatorStudio({
                   )}
                 </form>
               )}
-              <aside className="creator-workbench" aria-label="Mis luchadores">
+              <aside
+                className="creator-workbench"
+                aria-label="Mis luchadores"
+                ref={workbench}
+                tabIndex={-1}
+              >
                 <div className="creator-section-title">
                   <h2>Mis luchadores</h2>
                   {records.length > 0 && <small>{records.length}/12</small>}

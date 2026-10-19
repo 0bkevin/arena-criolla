@@ -1,0 +1,83 @@
+{
+  "id": "lorenzo",
+  "raw": "assets/source/roster-v39/lorenzo-generated.png",
+  "source": "assets/source/lorenzo-v39.png",
+  "runtime": "public/assets/lorenzo-v39.webp",
+  "sourceWidth": 1774,
+  "sourceHeight": 887,
+  "frames": [
+    {
+      "label": 1,
+      "minX": 52,
+      "minY": 15,
+      "maxX": 367,
+      "maxY": 441,
+      "pixels": 54668,
+      "frame": 0
+    },
+    {
+      "label": 2,
+      "minX": 497,
+      "minY": 22,
+      "maxX": 833,
+      "maxY": 442,
+      "pixels": 53079,
+      "frame": 1
+    },
+    {
+      "label": 3,
+      "minX": 916,
+      "minY": 27,
+      "maxX": 1282,
+      "maxY": 439,
+      "pixels": 60885,
+      "frame": 2
+    },
+    {
+      "label": 4,
+      "minX": 1369,
+      "minY": 28,
+      "maxX": 1741,
+      "maxY": 439,
+      "pixels": 58076,
+      "frame": 3
+    },
+    {
+      "label": 5,
+      "minX": 43,
+      "minY": 443,
+      "maxX": 329,
+      "maxY": 837,
+      "pixels": 49617,
+      "frame": 4
+    },
+    {
+      "label": 8,
+      "minX": 417,
+      "minY": 480,
+      "maxX": 855,
+      "maxY": 872,
+      "pixels": 53260,
+      "frame": 5
+    },
+    {
+      "label": 6,
+      "minX": 933,
+      "minY": 470,
+      "maxX": 1328,
+      "maxY": 872,
+      "pixels": 47372,
+      "frame": 6
+    },
+    {
+      "label": 7,
+      "minX": 1450,
+      "minY": 479,
+      "maxX": 1727,
+      "maxY": 871,
+      "pixels": 52907,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 0
+}

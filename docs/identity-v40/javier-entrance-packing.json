@@ -1,0 +1,83 @@
+{
+  "id": "javier-entrance",
+  "raw": "assets/source/identity-v40/javier-entrance-generated.png",
+  "source": "assets/source/javier-v40-defiant-entrance.png",
+  "runtime": "public/assets/javier-v40-defiant-entrance.webp",
+  "sourceWidth": 1774,
+  "sourceHeight": 887,
+  "frames": [
+    {
+      "label": 1,
+      "minX": 147,
+      "minY": 75,
+      "maxX": 382,
+      "maxY": 422,
+      "pixels": 37557,
+      "frame": 0
+    },
+    {
+      "label": 2,
+      "minX": 577,
+      "minY": 75,
+      "maxX": 798,
+      "maxY": 422,
+      "pixels": 34690,
+      "frame": 1
+    },
+    {
+      "label": 3,
+      "minX": 984,
+      "minY": 75,
+      "maxX": 1207,
+      "maxY": 423,
+      "pixels": 33647,
+      "frame": 2
+    },
+    {
+      "label": 4,
+      "minX": 1412,
+      "minY": 75,
+      "maxX": 1636,
+      "maxY": 422,
+      "pixels": 32873,
+      "frame": 3
+    },
+    {
+      "label": 5,
+      "minX": 170,
+      "minY": 488,
+      "maxX": 393,
+      "maxY": 831,
+      "pixels": 32337,
+      "frame": 4
+    },
+    {
+      "label": 6,
+      "minX": 581,
+      "minY": 488,
+      "maxX": 809,
+      "maxY": 831,
+      "pixels": 32855,
+      "frame": 5
+    },
+    {
+      "label": 8,
+      "minX": 981,
+      "minY": 492,
+      "maxX": 1204,
+      "maxY": 831,
+      "pixels": 34986,
+      "frame": 6
+    },
+    {
+      "label": 7,
+      "minX": 1383,
+      "minY": 491,
+      "maxX": 1615,
+      "maxY": 831,
+      "pixels": 35129,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 0
+}
