@@ -1,0 +1,60 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "identity": "Doctor Knoche, using the three historical portraits supplied by the user",
+  "references": [
+    {
+      "attachmentId": "2368edeb-71f1-4514-90cb-b6547290f9e8-3c70d936-9abf-4ef9-be78-d2bca9dbad77",
+      "role": "Primary historical face and wardrobe reference"
+    },
+    {
+      "attachmentId": "2368edeb-71f1-4514-90cb-b6547290f9e8-5ad644f3-32ae-4555-ae75-f048cb699dd5",
+      "role": "Seated full-body historical photograph"
+    },
+    {
+      "attachmentId": "2368edeb-71f1-4514-90cb-b6547290f9e8-e01c9403-2480-47ad-b723-5a8e37094ee9",
+      "role": "Editorial colorization, silhouette corroboration only; no watermark/background copied"
+    }
+  ],
+  "generations": [
+    {
+      "name": "identity-master",
+      "prompt": "Use case: identity-preserve. Asset: original transparent full-body 2D fighting-game character identity master for Arena Criolla, Doctor Gottfried Knoche.\nThe first attached historical sepia portrait is the PRIMARY FACE AND CLOTHING reference. The second seated historical photograph supports the full-body clothing and lean proportions. The third editorial colorization supports only face shape, never its watermark, backdrop or collage.\nDepict the SAME mature adult man in these photographs, not a generic fantasy doctor: elongated lean angular oval face, high broad forehead, short hair brushed UP AND BACK from the forehead with slightly receding temples but a FULL CROWN of hair, subtle side part. Long prominent nearly straight nose, deep-set eyes with straight serious brows, composed unsmiling mouth. A strong substantial dark moustache covers the upper lip and slopes down at its ends; the compact chin beard is fuller and POINTED, about one-third of the face length below the mouth, with shorter beard along the jaw and relatively clear upper cheeks. Brown-neutral hair with restrained grey at temples/beard, natural fair complexion. The pointed beard must NOT turn into a long flowing white beard. No round glasses, no eyewear, no bald crown, no exaggerated old-age wrinkles, no Santa/wizard face. Preserve the photographed person's exact head shape, nose, brow, moustache, hairline and beard silhouette under stylization.\nWardrobe from his actual portrait: dark charcoal-brown tailored late-19th-century wool jacket with broad lapels, dark subtly patterned buttoned waistcoat with a small antique watch chain, crisp ivory high-collared shirt and broad dark bow tie / folded cravat. Matching straight dark trousers and ordinary black-brown formal leather ankle shoes. Jacket ends at upper/mid thigh, NOT a purple trenchcoat, no adventure costume, no oversized boots/satchel/utility belt. ONE tiny capped green glass vial tucked discreetly in a lower waistcoat pocket at the viewer-left waist is a fictional gameplay prop; do not let it dominate or cover historical clothing. Hands bare.\nONE complete full-body relaxed athletic fighting guard, three-quarter side view facing SCREEN RIGHT, feet comfortably apart and knees gently bent, both hands raised around chest height, rightward leading fist slightly forward. Lean adult build and realistic head/body ratio of about 7.25 heads; not muscular superhero, not oversized head, not short chibi. Every hand and shoe fully visible with generous transparent padding.\nVisual style: hand-inked semi-realistic 2D arcade illustration, crisp restrained dark contours, polished controlled three-tone cel shading, subtle wool texture, natural anatomy and facial likeness. This belongs with an existing illustrated fighting-game roster. Not photo-real, not 3D, not anime, not pixelated.\nPortrait canvas, genuine transparent RGBA background, no ground shadow, no halo, no floor, no scenery, no text/watermark, no extra figures, no medical gore. Prioritize historical likeness.",
+      "referenceRoles": [
+        "Primary sepia portrait: identity and upper-body clothing",
+        "Seated photograph: proportions and lower-body attire",
+        "Editorial image: corroboration only"
+      ],
+      "output": "assets/source/knoche-v46/identity-master.png",
+      "generatedOriginal": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-3b1d0edb-6279-4e21-8719-6b1efd228e61.png"
+    },
+    {
+      "name": "combat-first-pass",
+      "prompt": "Use case: identity-preserve. Deliver a transparent eight-pose combat atlas for Arena Criolla.\nImage1 is the approved ORIGINAL DOCTOR KNOCHE IDENTITY MASTER. Preserve EXACTLY that person's face, body proportions, costume, ink illustration and colors. Image2 is the real historical portrait, supporting facial likeness. The character is a lean mature man, NOT an elderly wizard: high forehead and full crown of short swept-back brown-grey hair, long nearly straight nose, serious deep-set eyes, strong dark moustache and compact pointed chin beard, shorter beard along jaw, no glasses. Keep this specific face at a natural adult 7.25-head body ratio in EVERY frame, never increase head size.\nSame historical dark charcoal-brown wool jacket ending upper/mid-thigh, broad lapels, dark subtly patterned buttoned waistcoat, small pocket-watch chain, ivory high-collared shirt, broad dark bowtie, matching straight trousers, ordinary formal dark leather shoes. A tiny capped green glass vial sits tucked in one lower waistcoat pocket, attached to the body; same placement on the same side in every pose. Do not invent an adventurer utility belt, satchel, purple trenchcoat, long white beard, bald head, labcoat, spectacles or weapons.\nExactly EIGHT COMPLETE SEPARATE full-body figures, spaced in a FOUR COLUMNS by TWO ROWS grid on a LANDSCAPE canvas. Genuine transparent RGBA empty space, at least 7% padding per figure, complete heads/hands/shoes, no overlaps. Same anatomical scale across all figures, even when crouched or airborne.\nTop row, left to right:\n0 READY: face/body look SCREEN RIGHT, athletic guard, knees slightly bent, two fists chest high, same pose and identity as master.\n1 BLOCK: face looks RIGHT, both forearms raised tightly to protect head and chest, planted stance, clearly different silhouette from ready.\n2 RUN A: runs RIGHT, LEFT knee/foot visibly FORWARD toward right, RIGHT leg extended BACK toward left; RIGHT forearm/fist forward and LEFT arm back.\n3 RUN B: runs RIGHT in the OPPOSITE contact phase: RIGHT knee/foot visibly FORWARD toward right, LEFT leg BACK toward left; LEFT forearm/fist forward, RIGHT arm back. Arms AND legs MUST alternate compared with pose2. Not two copies of one run step.\nBottom row, left to right:\n4 JUMP: compact airborne tuck, BOTH knees raised and feet off the ground, eyes/nose still face RIGHT. Same head/body scale, not a smaller person.\n5 PUNCH: full straight horizontal punch toward RIGHT, extended punching arm and visible fist, opposite fist guards face, stable planted feet and torso rotation.\n6 HIGH KICK: one leg kicks fully out toward RIGHT at chest/head height, entire foot visible, other leg supports his weight, fists near head. Not a running step or jump.\n7 HURT: recoils AWAY FROM an opponent on the right, head/chest lean BACK TOWARD LEFT relative to hips, hands open and knees buckle. Face/nose still oriented RIGHT toward opponent, not looking left. No gore.\nHand-inked semi-realistic 2D arcade illustration with crisp contours and controlled cel shading matching image1. Preserve the facial proportions and historical attire. Every pose must be unique, believable anatomy with two arms and two legs. No extra character/portrait, no caption/text/labels/gridlines/watermark, no floor/shadows/background/glow/floating particles.",
+      "referenceRoles": [
+        "Approved own identity master",
+        "User's primary historical portrait"
+      ],
+      "generatedOriginal": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-af1a7743-bb7f-4510-99bf-fc2877284717.png",
+      "accepted": false,
+      "reason": "Two running poses had nearly identical stretched-stride silhouettes; frame3 required a distinct passing phase."
+    },
+    {
+      "name": "combat-final",
+      "prompt": "Edit the supplied transparent 4-column × 2-row combat atlas. Preserve the exact Doctor Knoche identity, detailed face, swept-back brown/grey hair, dark moustache and pointed chin beard, historic three-piece suit, small green pocket vial, inked cel-shaded style, complete silhouettes and transparent background.\nCHANGE ONLY THE TOP-RIGHT FIGURE (frame3, fourth column in top row). It currently duplicates the adjacent running contact step. Redraw that SINGLE COMPLETE FIGURE as a clearly DIFFERENT RUNNING PASSING PHASE toward SCREEN RIGHT:\nTorso leans forward and face looks right. The NEAR leg's knee lifts high forward at waist level, with that knee bent sharply and the foot tucked directly UNDER the knee (not extended far to the right). The OTHER leg extends down and BACK left, with its toe pushing off close to the ground behind the hips. Swing the NEAR ARM forward across chest and the OTHER ARM behind; the near forward fist should be close to sternum, different from frame2's forward fist near face. This should have a distinct compact triangular leg silhouette versus frame2's long stretched stride. Two legs and two arms, no extra limbs. Same adult anatomical scale, head size, face and clothes, generous complete-shoe padding within that cell.\nLeave frame0 ready, frame1 block, frame2 stretched running stride and all bottom-row jump/punch/kick/hurt artwork unchanged. Exactly8separate complete figures in the same grid/order, no labels, text, background, glow, ground shadows or other additions. Retain genuine transparent RGBA empty space.",
+      "referenceRoles": [
+        "First-pass own combat sheet, targeted full-figure pose correction only"
+      ],
+      "output": "assets/source/knoche-v46/combat-generated.png",
+      "generatedOriginal": "/home/ubuntu/.codex/generated_images/01a11980-eb6d-7f61-8136-757864cb64c8/exec-463037da-9baf-4282-a154-75b5710baabf.png",
+      "accepted": true
+    }
+  ],
+  "runtimeAsset": "public/assets/knoche-v46.webp",
+  "normalizedSource": "assets/source/knoche-v46.png",
+  "packing": "scripts/pack-knoche-v46.ts",
+  "interpretation": "The green pocket vial is an existing fictional gameplay cue. The monochrome photographs do not establish exact hair, eye or fabric colors. New photographs were not downloaded or republished.",
+  "preparation": "Whole-figure isolation, uniform scaling, padded 4x2 packing and lossless WebP only; no procedural facial redrawing or facial patches.",
+  "outputNotes": [
+    "The master prompt requested a viewer-left pocket vial. The generated master placed it on viewer-right. This harmless prop-placement difference was accepted, kept consistent in the final atlas, and measured when calibrating the body-bound rig; the prompt text is preserved verbatim."
+  ]
+}
