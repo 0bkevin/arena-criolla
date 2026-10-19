@@ -14,6 +14,8 @@ Juego de pelea en español con 52 personajes. Conserva estas 15 figuras venezola
 
 Se incorpora como el luchador 52 con ocho poses de combate, introducción y selección de una sola ejecución, celebración, tres combos y el especial de ida y vuelta «Señal libre». Conserva lentes, gorra hacia atrás, bigote y tatuajes a partir de [referencias visuales primarias](docs/research/escobar-identity-v44.md). La [revisión y validación](docs/melanio-v44/review.md), los [prompts](docs/melanio-v44/prompts.json) y la [vista de poses](docs/melanio-v44/preview.html) documentan el resultado.
 
+La [revisión adversarial de movimiento v45](docs/melanio-v45/review.md) corrigió las fases visuales de «Señal libre» y añadió pruebas de movimiento, plataformas, reflejos, entradas de red y controles táctiles. Pasan 813 pruebas; la matriz determinista recorre 432 combinaciones de escenario, rival, lado y dificultad.
+
 ## Jugar y desarrollar
 
 Requiere Node.js 24 o posterior (SQLite integrado).
