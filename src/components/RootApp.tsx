@@ -1,11 +1,25 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { App } from "../App";
+import { ArenaEntrance } from "./ArenaEntrance";
 import { syncCommunityCatalog } from "../../shared/community";
 import type { CommunityCharacter } from "../../shared/creator";
 
 export function RootApp() {
   const [revision, setRevision] = useState(0);
   const [catalogReady, setCatalogReady] = useState(false);
+  const [entranceComplete, setEntranceComplete] = useState(false);
+  const restoreFocus = useRef(false);
+  const finishEntrance = useCallback((focus: boolean) => {
+    restoreFocus.current = focus;
+    setEntranceComplete(true);
+  }, []);
+
+  useEffect(() => {
+    if (entranceComplete && restoreFocus.current) {
+      document.querySelector<HTMLButtonElement>(".site-header .brand")?.focus();
+      restoreFocus.current = false;
+    }
+  }, [entranceComplete]);
   const refresh = async () => {
     const response = await fetch("/api/community/characters", {
       signal: AbortSignal.timeout(5000),
@@ -35,11 +49,11 @@ export function RootApp() {
     };
   }, []);
   // Restore saved community selections only after their definitions are available.
-  if (!catalogReady)
-    return (
-      <div className="arena-boot" role="status">
-        Abriendo la arena…
-      </div>
-    );
-  return <App communityRevision={revision} />;
+  if (!entranceComplete)
+    return <ArenaEntrance ready={catalogReady} onComplete={finishEntrance} />;
+  return (
+    <div className="arena-arrival">
+      <App communityRevision={revision} />
+    </div>
+  );
 }

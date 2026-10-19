@@ -41,13 +41,6 @@
 * {
   box-sizing: border-box;
 }
-.arena-boot {
-  min-height: 80svh;
-  display: grid;
-  place-content: center;
-  color: #ffd45a;
-  font-family: "Pixelify Sans", monospace;
-}
 body {
   margin: 0;
   min-width: 320px;
