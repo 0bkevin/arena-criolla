@@ -1,6 +1,6 @@
 {
   "version": 15,
-  "checkedAt": "2026-10-18T23:12:35.732Z",
+  "checkedAt": "2026-10-19T00:04:10.281Z",
   "sprites": [
     {
       "id": "zavarce",
@@ -7285,6 +7285,149 @@
               "maxX": 1940,
               "maxY": 990,
               "pixels": 58159
+            }
+          ],
+          "rows": [
+            4,
+            4
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "melanio",
+      "files": [
+        {
+          "file": "assets/source/melanio-v44.png",
+          "width": 2048,
+          "height": 1024,
+          "transparentFraction": 0.7851085662841797,
+          "components": [
+            {
+              "minX": 109,
+              "minY": 44,
+              "maxX": 402,
+              "maxY": 479,
+              "pixels": 53519
+            },
+            {
+              "minX": 626,
+              "minY": 46,
+              "maxX": 910,
+              "maxY": 479,
+              "pixels": 52616
+            },
+            {
+              "minX": 1099,
+              "minY": 66,
+              "maxX": 1459,
+              "maxY": 480,
+              "pixels": 56078
+            },
+            {
+              "minX": 1620,
+              "minY": 74,
+              "maxX": 1963,
+              "maxY": 479,
+              "pixels": 53931
+            },
+            {
+              "minX": 120,
+              "minY": 674,
+              "maxX": 389,
+              "maxY": 992,
+              "pixels": 45444
+            },
+            {
+              "minX": 565,
+              "minY": 575,
+              "maxX": 969,
+              "maxY": 991,
+              "pixels": 57851
+            },
+            {
+              "minX": 1095,
+              "minY": 552,
+              "maxX": 1462,
+              "maxY": 991,
+              "pixels": 49474
+            },
+            {
+              "minX": 1664,
+              "minY": 563,
+              "maxX": 1918,
+              "maxY": 992,
+              "pixels": 54217
+            }
+          ],
+          "rows": [
+            4,
+            4
+          ],
+          "passed": true
+        },
+        {
+          "file": "public/assets/melanio-v44.webp",
+          "width": 2048,
+          "height": 1024,
+          "transparentFraction": 0.7851085662841797,
+          "components": [
+            {
+              "minX": 109,
+              "minY": 44,
+              "maxX": 402,
+              "maxY": 479,
+              "pixels": 53519
+            },
+            {
+              "minX": 626,
+              "minY": 46,
+              "maxX": 910,
+              "maxY": 479,
+              "pixels": 52616
+            },
+            {
+              "minX": 1099,
+              "minY": 66,
+              "maxX": 1459,
+              "maxY": 480,
+              "pixels": 56078
+            },
+            {
+              "minX": 1620,
+              "minY": 74,
+              "maxX": 1963,
+              "maxY": 479,
+              "pixels": 53931
+            },
+            {
+              "minX": 120,
+              "minY": 674,
+              "maxX": 389,
+              "maxY": 992,
+              "pixels": 45444
+            },
+            {
+              "minX": 565,
+              "minY": 575,
+              "maxX": 969,
+              "maxY": 991,
+              "pixels": 57851
+            },
+            {
+              "minX": 1095,
+              "minY": 552,
+              "maxX": 1462,
+              "maxY": 991,
+              "pixels": 49474
+            },
+            {
+              "minX": 1664,
+              "minY": 563,
+              "maxX": 1918,
+              "maxY": 992,
+              "pixels": 54217
             }
           ],
           "rows": [

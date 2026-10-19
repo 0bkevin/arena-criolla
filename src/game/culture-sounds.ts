@@ -59,6 +59,15 @@ export const CULTURE_SOUNDS: Partial<Record<Ability, CultureSound>> = {
     noise: 2500,
     filter: "bandpass",
   },
+  signal: {
+    notes: [220, 330, 495, 660],
+    wave: "triangle",
+    spacing: 0.055,
+    duration: 0.11,
+    sweep: 1.18,
+    noise: 5200,
+    filter: "highpass",
+  },
   strum: {
     notes: [196, 294, 392, 587],
     wave: "triangle",

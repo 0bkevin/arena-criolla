@@ -25,6 +25,31 @@ export function drawIconProjectile(
   ctx: CanvasRenderingContext2D,
   shot: Projectile,
 ): boolean {
+  if (shot.kind === "signal") {
+    const age = shot.age ?? 0;
+    ctx.save();
+    const returning = !!shot.returnAfter && age >= shot.returnAfter;
+    ctx.strokeStyle = returning ? "#ffe18a" : "#9cf6df";
+    ctx.fillStyle = "#d8fff6";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(0, 0, 13, -0.8, 0.8);
+    ctx.arc(0, 0, 13, Math.PI - 0.8, Math.PI + 0.8);
+    ctx.stroke();
+    ctx.fillRect(-4, -4, 8, 8);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, 21 + Math.sin(age * 0.3) * 2, 8, 0, 0, Math.PI * 2);
+    ctx.stroke();
+    // The caller mirrors by current velocity, including the return leg and
+    // reflected shots. Keep this leading chevron upright in that transform.
+    ctx.beginPath();
+    ctx.moveTo(17, -6);
+    ctx.lineTo(25, 0);
+    ctx.lineTo(17, 6);
+    ctx.stroke();
+    ctx.restore();
+    return true;
+  }
   if (shot.kind !== "polar") return false;
   ctx.save();
   ctx.rotate((shot.age ?? 0) * 0.075);
@@ -45,7 +70,11 @@ export function drawIconSpecial(
   p: PlayerState,
   progress: number,
 ) {
-  if (!["polar", "couture", "corona", "liberator", "retake"].includes(ability))
+  if (
+    !["polar", "couture", "corona", "liberator", "retake", "signal"].includes(
+      ability,
+    )
+  )
     return;
   ctx.save();
   ctx.translate(p.x, p.y);
@@ -105,7 +134,7 @@ export function drawIconSpecial(
     ctx.beginPath();
     ctx.arc(35, -77, 58, -1.1, 0.8);
     ctx.stroke();
-  } else {
+  } else if (ability === "retake") {
     ctx.strokeStyle = p.countered ? "#fff1ac" : "#9ec2ee";
     ctx.lineWidth = 3;
     ctx.beginPath();
@@ -119,6 +148,19 @@ export function drawIconSpecial(
       ctx.beginPath();
       ctx.moveTo(25 + n * 8, -125);
       ctx.lineTo(30 + n * 8, -119);
+      ctx.stroke();
+    }
+  } else {
+    ctx.strokeStyle = "#9cf6df";
+    ctx.fillStyle = "#d8fff6";
+    ctx.lineWidth = 2;
+    const charge = Math.min(1, Math.max(0, (progress + 21) / 21));
+    ctx.fillRect(34 + charge * 7, -91, 8, 8);
+    for (let wave = 0; wave < 3; wave++) {
+      ctx.globalAlpha = (0.55 - wave * 0.12) * (1 - charge * 0.3);
+      const radius = 12 + wave * 11 + charge * 5;
+      ctx.beginPath();
+      ctx.arc(42, -87, radius, -0.8, 0.8);
       ctx.stroke();
     }
   }

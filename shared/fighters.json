@@ -1323,5 +1323,31 @@
     ],
     "sprite": "edgar-v39",
     "category": "culture"
+  },
+  {
+    "id": "melanio",
+    "sprite": "melanio-v44",
+    "name": "Melanio Escobar",
+    "shortName": "Melanio",
+    "title": "La señal abierta",
+    "role": "COMUNICACIÓN",
+    "color": "#78dfc8",
+    "description": "Periodista venezolano y director de Humano Derecho Radio. En esta adaptación arcade ficticia, lanza una señal digital que regresa con una curva visible; mide el tiempo y la guardia para abrir espacio.",
+    "speed": 5.0,
+    "damage": 1.0,
+    "armor": 1.0,
+    "stats": [
+      4,
+      4,
+      4
+    ],
+    "ability": "signal",
+    "special": "Señal libre",
+    "combos": [
+      "Micrófono abierto",
+      "Frecuencia punk",
+      "Red en marcha"
+    ],
+    "category": "culture"
   }
 ]

@@ -50,7 +50,7 @@ test("ten folklore fighters remain available alongside the forty-one-person cult
       "tioconejo",
     ],
   );
-  assert.equal(FIGHTERS.filter((f) => f.category !== "folklore").length, 41);
+  assert.equal(FIGHTERS.filter((f) => f.category !== "folklore").length, 42);
   assert.ok(
     [
       "zavarce",

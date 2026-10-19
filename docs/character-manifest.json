@@ -1,5 +1,5 @@
 {
-  "version": 15,
+  "version": 44,
   "characters": {
     "zavarce": {
       "id": "zavarce",
@@ -3438,6 +3438,93 @@
         "packedWith": "scripts/pack-roster-v39.ts",
         "runtimeEncoding": "lossless WebP",
         "promptSet": "docs/roster-expansion-v39/prompts.json"
+      }
+    },
+    "melanio": {
+      "id": "melanio",
+      "realName": "Melanio Escobar",
+      "sprite": "melanio-v44",
+      "portraitReference": "https://uploads.concordia.net/2022/05/24113447/melanio.jpeg",
+      "portrayal": "Lentes negros gruesos, gorra hacia atrás, bigote, barba corta y tatuajes de cuello y brazos. Polo negro con ribetes claros, pantalón oscuro y zapatillas. Los ataques, gestos y el atuendo inferior son adaptaciones ficticias de videojuego.",
+      "sources": [
+        {
+          "title": "Concordia — Melanio Escobar",
+          "url": "https://concordia.net/community/melanio-escobar/"
+        },
+        {
+          "title": "Chiste Interno — Humor político venezolano, 2024-11-19",
+          "url": "https://www.chisteinterno.com/podcasts/chiste-interno/episodes/2148904694"
+        },
+        {
+          "title": "Palantespaya — entrevista, 2025-04-27",
+          "url": "https://www.youtube.com/watch?v=Xsc-WP9VUK8"
+        },
+        {
+          "title": "VENtv — Amplia frecuencia, 2025-09-01",
+          "url": "https://www.youtube.com/watch?v=YEch5BPGQSE"
+        }
+      ],
+      "photos": [
+        {
+          "url": "https://uploads.concordia.net/2022/05/24113447/melanio.jpeg",
+          "sourcePage": "https://concordia.net/community/melanio-escobar/",
+          "viewed": true,
+          "research": "docs/research/escobar-identity-v44.md"
+        },
+        {
+          "url": "https://i.ytimg.com/vi/YEch5BPGQSE/maxresdefault.jpg",
+          "sourcePage": "https://www.youtube.com/watch?v=YEch5BPGQSE",
+          "viewed": true,
+          "research": "docs/research/escobar-identity-v44.md"
+        }
+      ],
+      "distinctiveTraits": [
+        "Rostro ovalado alargado, nariz redondeada, aro pequeño en la nariz, bigote y barba de mandíbula corta.",
+        "Montura negra grande con cristales transparentes; gorra negra hacia atrás.",
+        "Rosa en el cuello, antebrazos y manos tatuados; polo negro con doble ribete claro."
+      ],
+      "identityReview": {
+        "checkedAt": "2026-10-19",
+        "research": "docs/research/escobar-identity-v44.md",
+        "identityConfirmedByUser": true,
+        "videoPlayback": "Unavailable: inspected creator-published stills; playback blocked by provider."
+      },
+      "entranceReview": {
+        "durationMs": 2800,
+        "playsOnce": true,
+        "fictionalAdaptation": true,
+        "rig": "shared/icon-choreography.ts"
+      },
+      "victoryReview": {
+        "durationMs": 3500,
+        "playsOnce": true,
+        "profile": "src/game/victories-icons.ts"
+      },
+      "styleReview": {
+        "version": 44,
+        "checkedAt": "2026-10-19",
+        "packedWith": "scripts/pack-melanio-v44.ts",
+        "runtimeEncoding": "lossless WebP",
+        "promptSet": "docs/melanio-v44/prompts.json"
+      },
+      "encoding": {
+        "runtimeAtlas": [
+          2048,
+          1024
+        ],
+        "source": "assets/source/melanio-v44.png",
+        "webp": "public/assets/melanio-v44.webp",
+        "lossless": true,
+        "effort": 6
+      },
+      "generation": {
+        "mode": "built-in image_gen.imagegen",
+        "promptSet": "docs/melanio-v44/prompts.json"
+      },
+      "audio": {
+        "realVoice": false,
+        "mode": "generic-combat-reactions",
+        "specialCue": "original oscillator broadcast cue"
       }
     }
   },
