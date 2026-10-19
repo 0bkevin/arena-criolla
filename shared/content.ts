@@ -4,7 +4,7 @@ import stageData from "./stages.json";
 export type FounderFighterId =
   "enrique" | "jesus" | "carlos" | "victor" | "juan";
 export type IconFighterId =
-  "lorenzo" | "carolina" | "dayana" | "bolivar" | "edgar";
+  "lorenzo" | "carolina" | "dayana" | "bolivar" | "edgar" | "melanio";
 
 export type BuiltInFighterId =
   | FounderFighterId
@@ -113,7 +113,8 @@ export type Ability =
   | "couture"
   | "corona"
   | "liberator"
-  | "retake";
+  | "retake"
+  | "signal";
 
 export interface FighterDefinition {
   id: FighterId;

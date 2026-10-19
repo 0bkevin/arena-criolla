@@ -102,4 +102,13 @@ export const ICON_CHOREOGRAPHIES = {
     { lean: -0.014, head: 0.03, front: -0.08, back: -0.05 },
     { lean: -0.055, head: 0.12, back: -0.2, front: -0.32, frontX: 0.045 },
   ),
+  melanio: greeting(
+    "Asiente y abre la señal",
+    [
+      [-0.1, 0.35],
+      [0.13, 0.34],
+    ],
+    { head: -0.025, front: -0.1, frontX: 0.03 },
+    { head: -0.045, front: -0.48, frontX: 0.055, frontY: -0.055, lean: -0.018 },
+  ),
 } satisfies Record<IconFighterId, Choreography>;

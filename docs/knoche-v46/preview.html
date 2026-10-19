@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doctor Knoche · revisión de assets</title>
+<style>
+  :root { color-scheme: dark; font-family: system-ui, sans-serif; color: #e8eef4; }
+  body { margin: 0; background: transparent; }
+  main { max-width: 920px; margin: auto; }
+  .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  figure { margin: 0; padding: 16px; border-radius: 12px; background: #132031; }
+  figcaption { color: #adbccb; font-size: 13px; }
+  canvas { display: block; width: 100%; height: auto; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+  button { border: 1px solid #526578; background: #152438; color: #e8eef4; border-radius: 7px; padding: 10px 13px; cursor: pointer; }
+  button[aria-pressed="true"] { background: #b6df9b; color: #102216; border-color: #b6df9b; }
+  p { color: #adbdce; font-size: 14px; line-height: 1.6; }
+  #pose { max-width: 520px; margin: auto; }
+  @media (max-width: 440px) { .comparison { gap: 8px; } figure { padding: 16px; } button { padding: 9px 11px; } }
+</style>
+<main>
+  <div class="comparison">
+    <figure><figcaption>Antes · v12</figcaption><canvas id="before" width="360" height="360"></canvas></figure>
+    <figure><figcaption>Ahora · v46</figcaption><canvas id="after" width="360" height="360"></canvas></figure>
+  </div>
+  <p>Rostro alargado, cabello hacia atrás, bigote y barba puntiaguda. Traje oscuro con chaleco y corbatín, basado en las fotografías históricas aportadas. El pequeño frasco conserva su función ficticia en el juego.</p>
+  <div class="controls" id="poses" aria-label="Pose de combate"></div>
+  <button id="flip" type="button" aria-pressed="false">Ver como P2</button>
+  <canvas id="pose" width="512" height="512" aria-label="Pose completa de Doctor Knoche"></canvas>
+  <p id="status" role="status">Cargando assets…</p>
+</main>
+<script>
+  const images = [new Image(), new Image()];
+  const paths = ['/assets/knoche-v12.webp', '/assets/knoche-v46.webp'];
+  const names = ['Guardia', 'Bloqueo', 'Carrera A', 'Carrera B', 'Salto', 'Puño', 'Patada', 'Retroceso'];
+  let frame = 0, facing = 1;
+  const loaded = Promise.all(images.map((img, n) => new Promise((resolve, reject) => {
+    img.onload = resolve; img.onerror = reject; img.src = paths[n];
+  })));
+  function draw() {
+    const ctx = document.querySelector('#pose').getContext('2d');
+    ctx.clearRect(0, 0, 512, 512); ctx.save();
+    if (facing < 0) { ctx.translate(512, 0); ctx.scale(-1, 1); }
+    ctx.drawImage(images[1], frame % 4 * 512, Math.floor(frame / 4) * 512, 512, 512, 0, 0, 512, 512);
+    ctx.restore();
+    document.querySelectorAll('#poses button').forEach((b, n) => b.setAttribute('aria-pressed', String(frame === n)));
+    document.querySelector('#status').textContent = `${names[frame]} · ${facing > 0 ? 'P1 →' : '← P2'} · WebP sin pérdidas · 8 poses completas`;
+  }
+  names.forEach((name, n) => {
+    const b = document.createElement('button'); b.type = 'button'; b.textContent = name;
+    b.onclick = () => { frame = n; draw(); }; document.querySelector('#poses').append(b);
+  });
+  document.querySelector('#flip').onclick = (event) => {
+    facing *= -1; event.currentTarget.setAttribute('aria-pressed', String(facing < 0)); draw();
+  };
+  loaded.then(() => {
+    const before = document.querySelector('#before').getContext('2d');
+    const after = document.querySelector('#after').getContext('2d');
+    before.drawImage(images[0], 100, 0, 280, 280, 0, 0, 360, 360);
+    after.drawImage(images[1], 150, 32, 250, 250, 0, 0, 360, 360);
+    draw();
+  }).catch(() => document.querySelector('#status').textContent = 'No se pudieron cargar los assets. Abre esta revisión desde el proyecto.');
+</script>
+</html>

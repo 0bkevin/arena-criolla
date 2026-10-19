@@ -217,10 +217,10 @@
     "saved": "71%"
   },
   {
-    "name": "knoche-v12.png",
-    "sourceBytes": 1518347,
-    "outputBytes": 371156,
-    "saved": "76%"
+    "name": "knoche-v46.png",
+    "sourceBytes": 1312602,
+    "outputBytes": 746010,
+    "saved": "43%"
   },
   {
     "name": "momoy-v12.png",
@@ -387,5 +387,11 @@
     "sourceBytes": 1148779,
     "outputBytes": 632924,
     "saved": "45%"
+  },
+  {
+    "name": "melanio-v44.png",
+    "sourceBytes": 1329211,
+    "outputBytes": 762028,
+    "saved": "43%"
   }
 ]

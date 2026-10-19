@@ -52,4 +52,20 @@ export const ICON_VICTORIES = {
     twist: -0.035,
     music: "percussion",
   },
+  melanio: {
+    name: "La señal queda abierta",
+    frame: 0,
+    movement: "plant",
+    gesture: {
+      head: -0.07,
+      front: -0.3,
+      frontX: 0.045,
+      back: 0.1,
+      lean: -0.02,
+    },
+    lift: 0.018,
+    travel: 0.012,
+    twist: -0.02,
+    music: "strings",
+  },
 } satisfies Record<IconFighterId, VictoryProfile>;

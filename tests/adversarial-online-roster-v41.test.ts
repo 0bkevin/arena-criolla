@@ -122,6 +122,7 @@ const NEW_FIGHTERS = [
   "carolina",
   "bolivar",
   "edgar",
+  "melanio",
 ] as const satisfies readonly BuiltInFighterId[];
 
 test("new fighters create, join, select and start online on every stage", async () => {

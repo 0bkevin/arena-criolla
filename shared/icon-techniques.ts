@@ -58,4 +58,19 @@ export const ICON_TECHNIQUES = {
     force: 7,
     counter: { from: 5, to: 23, damage: 18, force: 9, range: 185 },
   },
+  signal: {
+    startup: 21,
+    recovery: 52,
+    range: 500,
+    height: 132,
+    damage: 8,
+    force: 4.5,
+    projectile: {
+      speed: 7,
+      life: 58,
+      returnAfter: 24,
+      wave: { amplitude: 8, period: 30 },
+      radius: 10,
+    },
+  },
 } satisfies Record<string, Technique>;

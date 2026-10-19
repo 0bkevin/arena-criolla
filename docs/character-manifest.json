@@ -1,5 +1,5 @@
 {
-  "version": 15,
+  "version": 44,
   "characters": {
     "zavarce": {
       "id": "zavarce",
@@ -1520,9 +1520,9 @@
     "knoche": {
       "id": "knoche",
       "realName": "Doctor Knoche",
-      "sprite": "knoche-v12",
+      "sprite": "knoche-v46",
       "category": "folklore",
-      "portrayal": "Barba blanca, lentes redondos y abrigo de época. Lanza un frasco que reduce brevemente la velocidad del rival si este no lo bloquea. Interpretación original de videojuego; vestuario, ataques, combos y efectos son ficción arcade, no una versión única o canónica de la tradición.",
+      "portrayal": "Rostro alargado, frente alta, cabello corto hacia atrás, nariz prominente, bigote marcado y barba de mentón puntiaguda. Traje oscuro de tres piezas, camisa clara de cuello alto y corbatín, basados en las fotografías históricas aportadas por el usuario. El frasco verde, los colores elegidos y las acciones de combate son adaptaciones artísticas de videojuego.",
       "sources": [
         {
           "title": "Gottfried Knoche — historia de Galipán",
@@ -1531,19 +1531,69 @@
       ],
       "soundMode": "generic-combat-reactions",
       "distinctiveTraits": [
-        "El misterio de Galipán",
-        "Frasco de Galipán"
+        "Rostro alargado y frente alta; nariz recta prominente y ojos hundidos.",
+        "Cabello corto peinado hacia atrás, bigote marcado y barba compacta puntiaguda.",
+        "Saco oscuro con solapas, chaleco abotonado, camisa clara y corbatín."
       ],
       "entranceReview": {
-        "version": 24,
-        "individualAudit": "docs/entrances-v23/character-review.json",
-        "corporalGesture": "Inspecciona su frasco",
+        "version": 46,
+        "individualAudit": "docs/knoche-v46/review.md",
+        "corporalGesture": "Observa el frasco y vuelve a guardia",
         "rig": "shared/choreography.ts",
         "durationMs": 2800,
         "settlesAt": 0.9,
         "fictionalAdaptation": true,
         "playsOnce": true,
-        "singleGesture": "docs/entrances-v24/single-gestures.json"
+        "singleGesture": "docs/entrances-v24/single-gestures.json",
+        "supersedesVisualIdentity": "docs/entrances-v23/character-review.json"
+      },
+      "photos": [
+        {
+          "kind": "user-supplied-reference",
+          "attachmentId": "2368edeb-71f1-4514-90cb-b6547290f9e8-3c70d936-9abf-4ef9-be78-d2bca9dbad77",
+          "role": "Primary historical portrait: face, hair, moustache, beard and clothing",
+          "viewed": true
+        },
+        {
+          "kind": "user-supplied-reference",
+          "attachmentId": "2368edeb-71f1-4514-90cb-b6547290f9e8-5ad644f3-32ae-4555-ae75-f048cb699dd5",
+          "role": "Seated historical photograph: proportions and full-body formal clothing",
+          "viewed": true
+        },
+        {
+          "kind": "user-supplied-reference",
+          "attachmentId": "2368edeb-71f1-4514-90cb-b6547290f9e8-e01c9403-2480-47ad-b723-5a8e37094ee9",
+          "role": "Editorial colorization: silhouette corroboration only; exact colors unverified",
+          "viewed": true
+        }
+      ],
+      "identityReview": {
+        "version": 46,
+        "checkedAt": "2026-10-19",
+        "research": "docs/knoche-v46/research.md",
+        "visualReview": "docs/knoche-v46/visual-review.md",
+        "references": "Three historical photographs supplied by the user; no new video research claimed."
+      },
+      "styleReview": {
+        "version": 46,
+        "checkedAt": "2026-10-19",
+        "packedWith": "scripts/pack-knoche-v46.ts",
+        "runtimeEncoding": "lossless WebP",
+        "promptSet": "docs/knoche-v46/prompts.json"
+      },
+      "encoding": {
+        "runtimeAtlas": [
+          2048,
+          1024
+        ],
+        "source": "assets/source/knoche-v46.png",
+        "webp": "public/assets/knoche-v46.webp",
+        "lossless": true,
+        "effort": 6
+      },
+      "generation": {
+        "mode": "built-in image_gen.imagegen",
+        "promptSet": "docs/knoche-v46/prompts.json"
       }
     },
     "momoy": {
@@ -3438,6 +3488,93 @@
         "packedWith": "scripts/pack-roster-v39.ts",
         "runtimeEncoding": "lossless WebP",
         "promptSet": "docs/roster-expansion-v39/prompts.json"
+      }
+    },
+    "melanio": {
+      "id": "melanio",
+      "realName": "Melanio Escobar",
+      "sprite": "melanio-v44",
+      "portraitReference": "https://uploads.concordia.net/2022/05/24113447/melanio.jpeg",
+      "portrayal": "Lentes negros gruesos, gorra hacia atrás, bigote, barba corta y tatuajes de cuello y brazos. Polo negro con ribetes claros, pantalón oscuro y zapatillas. Los ataques, gestos y el atuendo inferior son adaptaciones ficticias de videojuego.",
+      "sources": [
+        {
+          "title": "Concordia — Melanio Escobar",
+          "url": "https://concordia.net/community/melanio-escobar/"
+        },
+        {
+          "title": "Chiste Interno — Humor político venezolano, 2024-11-19",
+          "url": "https://www.chisteinterno.com/podcasts/chiste-interno/episodes/2148904694"
+        },
+        {
+          "title": "Palantespaya — entrevista, 2025-04-27",
+          "url": "https://www.youtube.com/watch?v=Xsc-WP9VUK8"
+        },
+        {
+          "title": "VENtv — Amplia frecuencia, 2025-09-01",
+          "url": "https://www.youtube.com/watch?v=YEch5BPGQSE"
+        }
+      ],
+      "photos": [
+        {
+          "url": "https://uploads.concordia.net/2022/05/24113447/melanio.jpeg",
+          "sourcePage": "https://concordia.net/community/melanio-escobar/",
+          "viewed": true,
+          "research": "docs/research/escobar-identity-v44.md"
+        },
+        {
+          "url": "https://i.ytimg.com/vi/YEch5BPGQSE/maxresdefault.jpg",
+          "sourcePage": "https://www.youtube.com/watch?v=YEch5BPGQSE",
+          "viewed": true,
+          "research": "docs/research/escobar-identity-v44.md"
+        }
+      ],
+      "distinctiveTraits": [
+        "Rostro ovalado alargado, nariz redondeada, aro pequeño en la nariz, bigote y barba de mandíbula corta.",
+        "Montura negra grande con cristales transparentes; gorra negra hacia atrás.",
+        "Rosa en el cuello, antebrazos y manos tatuados; polo negro con doble ribete claro."
+      ],
+      "identityReview": {
+        "checkedAt": "2026-10-19",
+        "research": "docs/research/escobar-identity-v44.md",
+        "identityConfirmedByUser": true,
+        "videoPlayback": "Unavailable: inspected creator-published stills; playback blocked by provider."
+      },
+      "entranceReview": {
+        "durationMs": 2800,
+        "playsOnce": true,
+        "fictionalAdaptation": true,
+        "rig": "shared/icon-choreography.ts"
+      },
+      "victoryReview": {
+        "durationMs": 3500,
+        "playsOnce": true,
+        "profile": "src/game/victories-icons.ts"
+      },
+      "styleReview": {
+        "version": 44,
+        "checkedAt": "2026-10-19",
+        "packedWith": "scripts/pack-melanio-v44.ts",
+        "runtimeEncoding": "lossless WebP",
+        "promptSet": "docs/melanio-v44/prompts.json"
+      },
+      "encoding": {
+        "runtimeAtlas": [
+          2048,
+          1024
+        ],
+        "source": "assets/source/melanio-v44.png",
+        "webp": "public/assets/melanio-v44.webp",
+        "lossless": true,
+        "effort": 6
+      },
+      "generation": {
+        "mode": "built-in image_gen.imagegen",
+        "promptSet": "docs/melanio-v44/prompts.json"
+      },
+      "audio": {
+        "realVoice": false,
+        "mode": "generic-combat-reactions",
+        "specialCue": "original oscillator broadcast cue"
       }
     }
   },

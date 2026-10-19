@@ -1,0 +1,3357 @@
+{
+  "checkedAt": "2026-10-19",
+  "automated": {
+    "tests": 798,
+    "passed": 798,
+    "failed": 0,
+    "build": true,
+    "activeAtlasPairs": 52
+  },
+  "renderer": {
+    "poses": {
+      "checked": 16,
+      "passed": 16,
+      "samples": [
+        {
+          "id": "melanio",
+          "facing": 1,
+          "frame": 0,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 35805,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "frame": 1,
+          "minX": 144,
+          "minY": 131,
+          "maxX": 375,
+          "maxY": 484,
+          "pixels": 35171,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "frame": 2,
+          "minX": 112,
+          "minY": 146,
+          "maxX": 406,
+          "maxY": 484,
+          "pixels": 37534,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "frame": 3,
+          "minX": 120,
+          "minY": 154,
+          "maxX": 399,
+          "maxY": 484,
+          "pixels": 36120,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "frame": 4,
+          "minX": 149,
+          "minY": 130,
+          "maxX": 368,
+          "maxY": 389,
+          "pixels": 30379,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "frame": 5,
+          "minX": 94,
+          "minY": 145,
+          "maxX": 424,
+          "maxY": 484,
+          "pixels": 38725,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "frame": 6,
+          "minX": 109,
+          "minY": 126,
+          "maxX": 408,
+          "maxY": 484,
+          "pixels": 33082,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "frame": 7,
+          "minX": 156,
+          "minY": 134,
+          "maxX": 363,
+          "maxY": 484,
+          "pixels": 36273,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "frame": 0,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 35805,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "frame": 1,
+          "minX": 144,
+          "minY": 131,
+          "maxX": 375,
+          "maxY": 484,
+          "pixels": 35171,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "frame": 2,
+          "minX": 113,
+          "minY": 146,
+          "maxX": 407,
+          "maxY": 484,
+          "pixels": 37535,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "frame": 3,
+          "minX": 120,
+          "minY": 154,
+          "maxX": 399,
+          "maxY": 484,
+          "pixels": 36120,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "frame": 4,
+          "minX": 151,
+          "minY": 130,
+          "maxX": 370,
+          "maxY": 389,
+          "pixels": 30379,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "frame": 5,
+          "minX": 95,
+          "minY": 145,
+          "maxX": 425,
+          "maxY": 484,
+          "pixels": 38726,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "frame": 6,
+          "minX": 111,
+          "minY": 126,
+          "maxX": 410,
+          "maxY": 484,
+          "pixels": 33081,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "frame": 7,
+          "minX": 156,
+          "minY": 134,
+          "maxX": 363,
+          "maxY": 484,
+          "pixels": 36273,
+          "complete": true
+        }
+      ]
+    },
+    "entrances": {
+      "checked": 22,
+      "passed": 22,
+      "samples": [
+        {
+          "id": "melanio",
+          "facing": 1,
+          "progress": 0,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 35805,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "progress": 0.1,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 36007,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "progress": 0.2,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 36204,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "progress": 0.3,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 36136,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "progress": 0.4,
+          "minX": 140,
+          "minY": 128,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 35992,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "progress": 0.5,
+          "minX": 140,
+          "minY": 128,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 35980,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "progress": 0.6,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 35950,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "progress": 0.7,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 36015,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "progress": 0.8,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 36015,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "progress": 0.9,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 35806,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": 1,
+          "progress": 1,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 35805,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "progress": 0,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 35805,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "progress": 0.1,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 36007,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "progress": 0.2,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 36203,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "progress": 0.3,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 36135,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "progress": 0.4,
+          "minX": 140,
+          "minY": 128,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 35993,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "progress": 0.5,
+          "minX": 140,
+          "minY": 128,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 35978,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "progress": 0.6,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 35951,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "progress": 0.7,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 36014,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "progress": 0.8,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 36016,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "progress": 0.9,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 35806,
+          "complete": true
+        },
+        {
+          "id": "melanio",
+          "facing": -1,
+          "progress": 1,
+          "minX": 140,
+          "minY": 129,
+          "maxX": 379,
+          "maxY": 484,
+          "pixels": 35805,
+          "complete": true
+        }
+      ]
+    },
+    "cinematics": [
+      {
+        "id": "melanio",
+        "side": 0,
+        "tick": 0,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 0,
+        "tick": 90,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 0,
+        "tick": 180,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 0,
+        "tick": 270,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 0,
+        "tick": 359,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 1,
+        "tick": 0,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 1,
+        "tick": 90,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 1,
+        "tick": 180,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 1,
+        "tick": 270,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 1,
+        "tick": 359,
+        "rendered": true
+      }
+    ],
+    "victories": [
+      {
+        "id": "melanio",
+        "side": 0,
+        "elapsedMs": 0,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 0,
+        "elapsedMs": 700,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 0,
+        "elapsedMs": 1400,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 0,
+        "elapsedMs": 2800,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 0,
+        "elapsedMs": 3500,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 1,
+        "elapsedMs": 0,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 1,
+        "elapsedMs": 700,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 1,
+        "elapsedMs": 1400,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 1,
+        "elapsedMs": 2800,
+        "rendered": true
+      },
+      {
+        "id": "melanio",
+        "side": 1,
+        "elapsedMs": 3500,
+        "rendered": true
+      }
+    ],
+    "failures": []
+  },
+  "fights": [
+    {
+      "fighter": "melanio",
+      "rival": "javier",
+      "side": 0,
+      "stage": "caracas",
+      "mode": "practice",
+      "difficulty": "normal",
+      "matchId": "ee98f649-d12d-4209-884b-d90f33d3535e",
+      "phase": "playing",
+      "ticks": 453,
+      "observations": {
+        "started": [
+          "special",
+          "light",
+          "heavy"
+        ],
+        "history": [
+          "special",
+          "light",
+          "heavy"
+        ],
+        "minX": 36.26074568452496,
+        "maxX": 549.32261030134,
+        "minY": 360.1199999999999,
+        "blurPaused": true,
+        "hp": 56.35000000000001,
+        "rivalHp": 84.55000000000001,
+        "hits": 2,
+        "stocks": 2,
+        "lastActions": {
+          "jump": 3,
+          "light": 2,
+          "heavy": 2,
+          "special": 2,
+          "dash": 1,
+          "super": 0
+        },
+        "samples": [
+          {
+            "tick": 512,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 35.06999999999999,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 517,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 10.24499999999999,
+            "attack": "special",
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 522,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 10.419999999999991,
+            "attack": "special",
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 527,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 10.594999999999992,
+            "attack": "special",
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 532,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 10.769999999999992,
+            "attack": "special",
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 532,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 10.769999999999992,
+            "attack": "special",
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 537,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 10.944999999999993,
+            "attack": "special",
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 542,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.119999999999994,
+            "attack": "special",
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 547,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.294999999999995,
+            "attack": "special",
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 547,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.294999999999995,
+            "attack": "special",
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 552,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.469999999999995,
+            "attack": "special",
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 555,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.574999999999996,
+            "attack": "special",
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 560,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.749999999999996,
+            "attack": "special",
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 565,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.924999999999997,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 565,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.924999999999997,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 570,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 12.099999999999998,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 575,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 12.274999999999999,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 580,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 12.45,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 580,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 12.45,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 585,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 12.625,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 590,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 12.8,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 595,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 12.975000000000001,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 600,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 13.150000000000002,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 600,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 13.150000000000002,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 605,
+            "x": 330,
+            "y": 554,
+            "hp": 100,
+            "energy": 13.325000000000003,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 609,
+            "x": 320.62044444444444,
+            "y": 549.32,
+            "hp": 84.48,
+            "energy": 22.465000000000003,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 612,
+            "x": 292.4817777777778,
+            "y": 538.4000000000001,
+            "hp": 84.48,
+            "energy": 22.570000000000004,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 617,
+            "x": 245.584,
+            "y": 530.6000000000001,
+            "hp": 84.48,
+            "energy": 22.745000000000005,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 617,
+            "x": 245.584,
+            "y": 530.6000000000001,
+            "hp": 84.48,
+            "energy": 22.745000000000005,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 622,
+            "x": 198.68622222222223,
+            "y": 535.8000000000001,
+            "hp": 84.48,
+            "energy": 22.920000000000005,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 627,
+            "x": 151.78844444444445,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 23.095000000000006,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 632,
+            "x": 118.27625520986238,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 23.270000000000007,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 632,
+            "x": 118.27625520986238,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 23.270000000000007,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 637,
+            "x": 108.00483394056442,
+            "y": 529.96,
+            "hp": 84.48,
+            "energy": 23.445000000000007,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 642,
+            "x": 106.48085393079903,
+            "y": 478.96,
+            "hp": 84.48,
+            "energy": 23.620000000000008,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 647,
+            "x": 105.47642686463651,
+            "y": 431.52,
+            "hp": 84.48,
+            "energy": 23.79500000000001,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 652,
+            "x": 104.8144275439268,
+            "y": 394.71999999999997,
+            "hp": 84.48,
+            "energy": 23.97000000000001,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 652,
+            "x": 104.8144275439268,
+            "y": 394.71999999999997,
+            "hp": 84.48,
+            "energy": 23.97000000000001,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 657,
+            "x": 104.37811602327609,
+            "y": 370.9199999999999,
+            "hp": 84.48,
+            "energy": 24.14500000000001,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 662,
+            "x": 104.09055116165591,
+            "y": 360.1199999999999,
+            "hp": 84.48,
+            "energy": 24.32000000000001,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 667,
+            "x": 103.90102247464048,
+            "y": 362.3199999999999,
+            "hp": 84.48,
+            "energy": 24.49500000000001,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 667,
+            "x": 103.90102247464048,
+            "y": 362.3199999999999,
+            "hp": 84.48,
+            "energy": 24.49500000000001,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 672,
+            "x": 103.77610761891225,
+            "y": 377.51999999999987,
+            "hp": 84.48,
+            "energy": 24.670000000000012,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 677,
+            "x": 103.69377854552859,
+            "y": 405.71999999999986,
+            "hp": 84.48,
+            "energy": 24.845000000000013,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 682,
+            "x": 103.63951697443923,
+            "y": 446.9199999999998,
+            "hp": 84.48,
+            "energy": 25.020000000000014,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 687,
+            "x": 103.60375417551442,
+            "y": 501.1199999999998,
+            "hp": 84.48,
+            "energy": 25.195000000000014,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 687,
+            "x": 103.60375417551442,
+            "y": 501.1199999999998,
+            "hp": 84.48,
+            "energy": 25.195000000000014,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 692,
+            "x": 103.58018357552517,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 25.370000000000015,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 695,
+            "x": 95.918398740919,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 16.320000000000014,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 700,
+            "x": 81.49091365363236,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 15.720000000000015,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 700,
+            "x": 81.49091365363236,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 15.720000000000015,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 705,
+            "x": 68.15260314431578,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 15.120000000000019,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 710,
+            "x": 54.94066854017991,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 14.520000000000023,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 715,
+            "x": 41.74332396546363,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 14.230000000000025,
+            "attack": "light",
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 719,
+            "x": 36.272806377548015,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 27.370000000000026,
+            "attack": "light",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 719,
+            "x": 36.272806377548015,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 27.370000000000026,
+            "attack": "light",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 722,
+            "x": 36.27155069101468,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 27.475000000000026,
+            "attack": "light",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 727,
+            "x": 36.26945788012579,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 27.650000000000027,
+            "attack": "light",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 732,
+            "x": 36.2673650692369,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 27.825000000000028,
+            "attack": "light",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 732,
+            "x": 36.2673650692369,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 27.825000000000028,
+            "attack": "light",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 737,
+            "x": 36.26614391408323,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 28.00000000000003,
+            "attack": "heavy",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 742,
+            "x": 36.26525970148267,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 28.17500000000003,
+            "attack": "heavy",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 745,
+            "x": 36.26472917392233,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 28.28000000000003,
+            "attack": "heavy",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 750,
+            "x": 36.26384496132177,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 28.45500000000003,
+            "attack": "heavy",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 750,
+            "x": 36.26384496132177,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 28.45500000000003,
+            "attack": "heavy",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 755,
+            "x": 36.26296074872121,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 28.63000000000003,
+            "attack": "heavy",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 760,
+            "x": 36.26207653612065,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 28.80500000000003,
+            "attack": "heavy",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 765,
+            "x": 36.26119232352009,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 28.980000000000032,
+            "attack": "heavy",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 765,
+            "x": 36.26119232352009,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 28.980000000000032,
+            "attack": "heavy",
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 770,
+            "x": 36.26074568452496,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 29.155000000000033,
+            "attack": null,
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 775,
+            "x": 92.26072516565314,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 29.330000000000034,
+            "attack": null,
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 780,
+            "x": 162.26072516565313,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 29.505000000000035,
+            "attack": null,
+            "hits": 1,
+            "facing": 1
+          },
+          {
+            "tick": 785,
+            "x": 219.2757251656531,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 29.680000000000035,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 785,
+            "x": 219.2757251656531,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 29.680000000000035,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 790,
+            "x": 228.98614591409063,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 29.855000000000036,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 795,
+            "x": 230.11283693001235,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 30.030000000000037,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 800,
+            "x": 230.2435658323169,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 30.205000000000037,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 805,
+            "x": 230.258734184293,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 30.380000000000038,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 805,
+            "x": 230.258734184293,
+            "y": 554,
+            "hp": 84.48,
+            "energy": 30.380000000000038,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 809,
+            "x": 240.76062283684155,
+            "y": 549.32,
+            "hp": 71.87,
+            "energy": 39.52000000000004,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 810,
+            "x": 251.261067281286,
+            "y": 545.1600000000001,
+            "hp": 71.87,
+            "energy": 39.555000000000035,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 815,
+            "x": 303.7632895035082,
+            "y": 532.1600000000001,
+            "hp": 71.87,
+            "energy": 39.73000000000002,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 815,
+            "x": 303.7632895035082,
+            "y": 532.1600000000001,
+            "hp": 71.87,
+            "energy": 39.73000000000002,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 820,
+            "x": 356.2655117257304,
+            "y": 532.1600000000001,
+            "hp": 71.87,
+            "energy": 39.905,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 825,
+            "x": 408.7677339479526,
+            "y": 545.1600000000001,
+            "hp": 71.87,
+            "energy": 40.079999999999984,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 830,
+            "x": 454.8339082563971,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 40.25499999999997,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 835,
+            "x": 478.08547978464526,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 40.42999999999995,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 835,
+            "x": 478.08547978464526,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 40.42999999999995,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 840,
+            "x": 462.8317471440271,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 40.60499999999993,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 845,
+            "x": 438.96259740861046,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 40.779999999999916,
+            "attack": null,
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 850,
+            "x": 419.3641672546283,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 15.954999999999906,
+            "attack": "special",
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 850,
+            "x": 419.3641672546283,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 15.954999999999906,
+            "attack": "special",
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 855,
+            "x": 403.22391577209623,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 16.129999999999907,
+            "attack": "special",
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 860,
+            "x": 387.0836642895642,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 16.304999999999907,
+            "attack": "special",
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 865,
+            "x": 370.94341280703213,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 16.479999999999908,
+            "attack": "special",
+            "hits": 1,
+            "facing": -1
+          },
+          {
+            "tick": 868,
+            "x": 361.2592619175129,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 29.58499999999991,
+            "attack": "special",
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 868,
+            "x": 361.2592619175129,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 29.58499999999991,
+            "attack": "special",
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 872,
+            "x": 348.34706073148726,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 29.72499999999991,
+            "attack": "special",
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 877,
+            "x": 332.2068092489552,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 29.89999999999991,
+            "attack": "special",
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 882,
+            "x": 316.06655776642316,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 30.07499999999991,
+            "attack": "special",
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 882,
+            "x": 316.06655776642316,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 30.07499999999991,
+            "attack": "special",
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 887,
+            "x": 299.9263062838911,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 30.24999999999991,
+            "attack": "special",
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 892,
+            "x": 283.78605480135906,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 30.424999999999912,
+            "attack": "special",
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 897,
+            "x": 267.645803318827,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 30.599999999999913,
+            "attack": "special",
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 902,
+            "x": 262.07882979334283,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 30.774999999999913,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 902,
+            "x": 262.07882979334283,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 30.774999999999913,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 907,
+            "x": 261.34683775778717,
+            "y": 554,
+            "hp": 71.87,
+            "energy": 30.949999999999914,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 909,
+            "x": 273.1925435330196,
+            "y": 549.32,
+            "hp": 56.35000000000001,
+            "energy": 40.01999999999991,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 914,
+            "x": 332.5925435330196,
+            "y": 533.72,
+            "hp": 56.35000000000001,
+            "energy": 40.194999999999894,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 914,
+            "x": 332.5925435330196,
+            "y": 533.72,
+            "hp": 56.35000000000001,
+            "energy": 40.194999999999894,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 919,
+            "x": 391.99254353301956,
+            "y": 531.1200000000001,
+            "hp": 56.35000000000001,
+            "energy": 40.36999999999988,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 924,
+            "x": 451.39254353301953,
+            "y": 541.5200000000001,
+            "hp": 56.35000000000001,
+            "energy": 40.54499999999986,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 924,
+            "x": 451.39254353301953,
+            "y": 541.5200000000001,
+            "hp": 56.35000000000001,
+            "energy": 40.54499999999986,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 926,
+            "x": 475.1525435330195,
+            "y": 549.32,
+            "hp": 56.35000000000001,
+            "energy": 40.61499999999985,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 930,
+            "x": 515.3909232530195,
+            "y": 554,
+            "hp": 56.35000000000001,
+            "energy": 40.75499999999984,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 935,
+            "x": 543.6772183072003,
+            "y": 554,
+            "hp": 56.35000000000001,
+            "energy": 40.92999999999982,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 935,
+            "x": 543.6772183072003,
+            "y": 554,
+            "hp": 56.35000000000001,
+            "energy": 40.92999999999982,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 940,
+            "x": 548.6675929376338,
+            "y": 554,
+            "hp": 56.35000000000001,
+            "energy": 41.104999999999805,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 945,
+            "x": 549.2466214275267,
+            "y": 554,
+            "hp": 56.35000000000001,
+            "energy": 41.27999999999979,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 950,
+            "x": 549.3138055603697,
+            "y": 554,
+            "hp": 56.35000000000001,
+            "energy": 41.45499999999977,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 950,
+            "x": 549.3138055603697,
+            "y": 554,
+            "hp": 56.35000000000001,
+            "energy": 41.45499999999977,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 955,
+            "x": 549.3216008723184,
+            "y": 554,
+            "hp": 56.35000000000001,
+            "energy": 41.629999999999754,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 960,
+            "x": 549.3225053550558,
+            "y": 554,
+            "hp": 56.35000000000001,
+            "energy": 41.80499999999974,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          },
+          {
+            "tick": 965,
+            "x": 549.32261030134,
+            "y": 554,
+            "hp": 56.35000000000001,
+            "energy": 41.97999999999972,
+            "attack": null,
+            "hits": 2,
+            "facing": -1
+          }
+        ]
+      },
+      "assets": [
+        "/assets/melanio-v44.webp"
+      ],
+      "assertions": {
+        "finite": true,
+        "moved": true,
+        "jumped": true,
+        "specialStarted": true,
+        "actionsReceived": true
+      },
+      "resistingLocalOpponent": false
+    },
+    {
+      "fighter": "melanio",
+      "rival": "dayana",
+      "side": 1,
+      "stage": "roques",
+      "mode": "local",
+      "matchId": "0826ed94-b684-460a-b1ce-1413d12574ac",
+      "phase": "playing",
+      "ticks": 485,
+      "observations": {
+        "started": [
+          "special",
+          "light",
+          "heavy"
+        ],
+        "history": [
+          "special",
+          "light",
+          "heavy"
+        ],
+        "minX": 550.6078067197045,
+        "maxX": 1243.0338429757148,
+        "minY": 263.12,
+        "blurPaused": true,
+        "hp": 79.32,
+        "rivalHp": 100,
+        "hits": 0,
+        "stocks": 1,
+        "lastActions": {
+          "jump": 3,
+          "light": 2,
+          "heavy": 2,
+          "special": 2,
+          "dash": 1,
+          "super": 0
+        },
+        "samples": [
+          {
+            "tick": 511,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 35.035,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 516,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 10.209999999999994,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 521,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 10.384999999999994,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 526,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 10.559999999999995,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 531,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 10.734999999999996,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 531,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 10.734999999999996,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 536,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 10.909999999999997,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 541,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.084999999999997,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 546,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.259999999999998,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 546,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.259999999999998,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 551,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.434999999999999,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 556,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.61,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 561,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.785,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 566,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.96,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 566,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 11.96,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 571,
+            "x": 750,
+            "y": 554,
+            "hp": 100,
+            "energy": 12.135000000000002,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 576,
+            "x": 759.0862222222222,
+            "y": 549.32,
+            "hp": 87.78,
+            "energy": 21.310000000000002,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 576,
+            "x": 759.0862222222222,
+            "y": 549.32,
+            "hp": 87.78,
+            "energy": 21.310000000000002,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 576,
+            "x": 759.0862222222222,
+            "y": 549.32,
+            "hp": 87.78,
+            "energy": 21.310000000000002,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 581,
+            "x": 804.5173333333332,
+            "y": 533.72,
+            "hp": 87.78,
+            "energy": 21.485000000000003,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 586,
+            "x": 849.9484444444442,
+            "y": 531.1200000000001,
+            "hp": 87.78,
+            "energy": 21.660000000000004,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 591,
+            "x": 895.3795555555553,
+            "y": 541.5200000000001,
+            "hp": 87.78,
+            "energy": 21.835000000000004,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 596,
+            "x": 937.9221566222219,
+            "y": 554,
+            "hp": 87.78,
+            "energy": 22.010000000000005,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 596,
+            "x": 937.9221566222219,
+            "y": 554,
+            "hp": 87.78,
+            "energy": 22.010000000000005,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 601,
+            "x": 963.6370013964549,
+            "y": 554,
+            "hp": 87.78,
+            "energy": 22.185000000000006,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 606,
+            "x": 969.5090103143853,
+            "y": 554,
+            "hp": 87.78,
+            "energy": 22.360000000000007,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 611,
+            "x": 961.9259590041244,
+            "y": 554,
+            "hp": 87.78,
+            "energy": 22.535000000000007,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 611,
+            "x": 961.9259590041244,
+            "y": 554,
+            "hp": 87.78,
+            "energy": 22.535000000000007,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 616,
+            "x": 947.0643074405359,
+            "y": 552.895,
+            "hp": 83.08,
+            "energy": 31.710000000000008,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 618,
+            "x": 953.004307440536,
+            "y": 552.2449999999999,
+            "hp": 83.08,
+            "energy": 31.78000000000001,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 623,
+            "x": 966.910144440536,
+            "y": 554,
+            "hp": 83.08,
+            "energy": 31.95500000000001,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 628,
+            "x": 977.1024025742986,
+            "y": 552.895,
+            "hp": 78.38,
+            "energy": 41.129999999999995,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 628,
+            "x": 977.1024025742986,
+            "y": 552.895,
+            "hp": 78.38,
+            "energy": 41.129999999999995,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 630,
+            "x": 983.3035136854096,
+            "y": 552.2449999999999,
+            "hp": 78.38,
+            "energy": 41.19999999999999,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 635,
+            "x": 997.8206248520762,
+            "y": 554,
+            "hp": 78.38,
+            "energy": 41.37499999999997,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 640,
+            "x": 1015.5636207534931,
+            "y": 549.32,
+            "hp": 73.67999999999999,
+            "energy": 50.549999999999955,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 642,
+            "x": 1036.2427318646041,
+            "y": 541.5200000000001,
+            "hp": 73.67999999999999,
+            "energy": 50.61999999999995,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 642,
+            "x": 1036.2427318646041,
+            "y": 541.5200000000001,
+            "hp": 73.67999999999999,
+            "energy": 50.61999999999995,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 647,
+            "x": 1087.9405096423818,
+            "y": 531.1200000000001,
+            "hp": 73.67999999999999,
+            "energy": 50.79499999999993,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 652,
+            "x": 1139.6382874201595,
+            "y": 533.72,
+            "hp": 73.67999999999999,
+            "energy": 50.969999999999914,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 657,
+            "x": 1191.3360651979372,
+            "y": 549.32,
+            "hp": 73.67999999999999,
+            "energy": 51.1449999999999,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 657,
+            "x": 1191.3360651979372,
+            "y": 549.32,
+            "hp": 73.67999999999999,
+            "energy": 51.1449999999999,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 662,
+            "x": 1243.0338429757148,
+            "y": 577.9200000000001,
+            "hp": 73.67999999999999,
+            "energy": 51.31999999999988,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 667,
+            "x": 750,
+            "y": 263.12,
+            "hp": 100,
+            "energy": 31.494999999999873,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 672,
+            "x": 750,
+            "y": 278.72,
+            "hp": 100,
+            "energy": 31.669999999999874,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 677,
+            "x": 750,
+            "y": 307.32000000000005,
+            "hp": 100,
+            "energy": 31.844999999999875,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 677,
+            "x": 750,
+            "y": 307.32000000000005,
+            "hp": 100,
+            "energy": 31.844999999999875,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 682,
+            "x": 750,
+            "y": 348.92,
+            "hp": 100,
+            "energy": 32.019999999999875,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 687,
+            "x": 750,
+            "y": 403.52,
+            "hp": 100,
+            "energy": 32.19499999999986,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 692,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 31.749999999999854,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 692,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 31.749999999999854,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 697,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 31.14999999999985,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 702,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 30.549999999999844,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 707,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 30.414999999999843,
+            "attack": "light",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 712,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 30.589999999999844,
+            "attack": "light",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 712,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 30.589999999999844,
+            "attack": "light",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 717,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 30.764999999999844,
+            "attack": "light",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 722,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 30.939999999999845,
+            "attack": "light",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 727,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 31.114999999999846,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 727,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 31.114999999999846,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 732,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 31.289999999999846,
+            "attack": "heavy",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 737,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 31.464999999999847,
+            "attack": "heavy",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 742,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 31.639999999999848,
+            "attack": "heavy",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 747,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 31.81499999999985,
+            "attack": "heavy",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 747,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 31.81499999999985,
+            "attack": "heavy",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 752,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 31.98999999999985,
+            "attack": "heavy",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 757,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 32.164999999999836,
+            "attack": "heavy",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 762,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 32.33999999999982,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 762,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 32.33999999999982,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 767,
+            "x": 750,
+            "y": 410,
+            "hp": 100,
+            "energy": 32.5149999999998,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 772,
+            "x": 680,
+            "y": 417.8,
+            "hp": 100,
+            "energy": 32.689999999999785,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 777,
+            "x": 610,
+            "y": 435.355,
+            "hp": 100,
+            "energy": 32.86499999999977,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 782,
+            "x": 563.14025,
+            "y": 433.819,
+            "hp": 100,
+            "energy": 33.03999999999975,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 782,
+            "x": 563.14025,
+            "y": 433.819,
+            "hp": 100,
+            "energy": 33.03999999999975,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 787,
+            "x": 556.8284765135157,
+            "y": 432.406,
+            "hp": 100,
+            "energy": 33.21499999999973,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 792,
+            "x": 557.8461273531666,
+            "y": 431.131,
+            "hp": 100,
+            "energy": 33.389999999999716,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 797,
+            "x": 577.4257575510436,
+            "y": 430.007,
+            "hp": 100,
+            "energy": 33.5649999999997,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 797,
+            "x": 577.4257575510436,
+            "y": 430.007,
+            "hp": 100,
+            "energy": 33.5649999999997,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 802,
+            "x": 594.2107323282904,
+            "y": 427.943,
+            "hp": 95.3,
+            "energy": 42.73999999999968,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 804,
+            "x": 588.9496212171792,
+            "y": 427.293,
+            "hp": 95.3,
+            "energy": 42.809999999999675,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 809,
+            "x": 577.4091924866236,
+            "y": 428.001,
+            "hp": 95.3,
+            "energy": 42.98499999999966,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 814,
+            "x": 569.0578272752598,
+            "y": 426.371,
+            "hp": 90.6,
+            "energy": 52.15999999999964,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 814,
+            "x": 569.0578272752598,
+            "y": 426.371,
+            "hp": 90.6,
+            "energy": 52.15999999999964,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 816,
+            "x": 563.5356050530377,
+            "y": 425.721,
+            "hp": 90.6,
+            "energy": 52.229999999999634,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 821,
+            "x": 550.6078067197045,
+            "y": 427.063,
+            "hp": 90.6,
+            "energy": 52.40499999999962,
+            "attack": null,
+            "hits": 0,
+            "facing": 1
+          },
+          {
+            "tick": 826,
+            "x": 553.2682179030772,
+            "y": 422.324,
+            "hp": 85.89999999999999,
+            "energy": 61.5799999999996,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 828,
+            "x": 571.7748845697439,
+            "y": 414.524,
+            "hp": 85.89999999999999,
+            "energy": 61.649999999999594,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 828,
+            "x": 571.7748845697439,
+            "y": 414.524,
+            "hp": 85.89999999999999,
+            "energy": 61.649999999999594,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 833,
+            "x": 618.0415512364106,
+            "y": 404.12399999999997,
+            "hp": 85.89999999999999,
+            "energy": 61.82499999999958,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 838,
+            "x": 664.3082179030772,
+            "y": 406.724,
+            "hp": 85.89999999999999,
+            "energy": 61.99999999999956,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 843,
+            "x": 710.5748845697439,
+            "y": 422.324,
+            "hp": 85.89999999999999,
+            "energy": 62.17499999999954,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 843,
+            "x": 710.5748845697439,
+            "y": 422.324,
+            "hp": 85.89999999999999,
+            "energy": 62.17499999999954,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 848,
+            "x": 756.8415512364105,
+            "y": 450.924,
+            "hp": 85.89999999999999,
+            "energy": 62.349999999999525,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 853,
+            "x": 799.7786392364105,
+            "y": 492.52399999999994,
+            "hp": 85.89999999999999,
+            "energy": 62.52499999999951,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 858,
+            "x": 822.4763886724016,
+            "y": 547.1239999999999,
+            "hp": 85.89999999999999,
+            "energy": 37.69999999999949,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 863,
+            "x": 839.2322564538548,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 37.874999999999474,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 863,
+            "x": 839.2322564538548,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 37.874999999999474,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 868,
+            "x": 855.988124235308,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 38.04999999999946,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 873,
+            "x": 872.7439920167611,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 38.22499999999944,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 878,
+            "x": 889.4998597982143,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 38.39999999999942,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 878,
+            "x": 889.4998597982143,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 38.39999999999942,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 883,
+            "x": 906.2557275796675,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 38.574999999999406,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 888,
+            "x": 923.0115953611206,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 38.74999999999939,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 893,
+            "x": 939.7674631425738,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 38.92499999999937,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 898,
+            "x": 956.5233309240269,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 39.099999999999355,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 898,
+            "x": 956.5233309240269,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 39.099999999999355,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 903,
+            "x": 973.2791987054801,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 39.27499999999934,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 908,
+            "x": 990.0350664869333,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 39.44999999999932,
+            "attack": "special",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 913,
+            "x": 986.1270513948743,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 39.624999999999304,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 913,
+            "x": 986.1270513948743,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 39.624999999999304,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 918,
+            "x": 971.6153752135147,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 39.79999999999929,
+            "attack": "heavy",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 923,
+            "x": 958.514556438676,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 39.97499999999927,
+            "attack": "heavy",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 928,
+            "x": 945.4137376638373,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 40.14999999999925,
+            "attack": "heavy",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 933,
+            "x": 932.3129188889986,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 40.324999999999235,
+            "attack": "heavy",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 933,
+            "x": 932.3129188889986,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 40.324999999999235,
+            "attack": "heavy",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 938,
+            "x": 919.21210011416,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 40.49999999999922,
+            "attack": "heavy",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 943,
+            "x": 906.1112813393213,
+            "y": 554,
+            "hp": 85.89999999999999,
+            "energy": 40.6749999999992,
+            "attack": "heavy",
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 948,
+            "x": 910.3840450274398,
+            "y": 551.595,
+            "hp": 79.32,
+            "energy": 49.849999999999184,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 948,
+            "x": 910.3840450274398,
+            "y": 551.595,
+            "hp": 79.32,
+            "energy": 49.849999999999184,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 950,
+            "x": 921.5123764635267,
+            "y": 548.345,
+            "hp": 79.32,
+            "energy": 49.91999999999918,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 955,
+            "x": 949.333205053744,
+            "y": 549.32,
+            "hp": 79.32,
+            "energy": 50.09499999999916,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 956,
+            "x": 954.8973707717875,
+            "y": 551.075,
+            "hp": 79.32,
+            "energy": 50.12999999999916,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 956,
+            "x": 954.8973707717875,
+            "y": 551.075,
+            "hp": 79.32,
+            "energy": 50.12999999999916,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 961,
+            "x": 981.0222192850047,
+            "y": 554,
+            "hp": 79.32,
+            "energy": 50.30499999999914,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 966,
+            "x": 994.2942490653825,
+            "y": 554,
+            "hp": 79.32,
+            "energy": 50.47999999999912,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 966,
+            "x": 994.2942490653825,
+            "y": 554,
+            "hp": 79.32,
+            "energy": 50.47999999999912,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 971,
+            "x": 995.9920204669573,
+            "y": 554,
+            "hp": 79.32,
+            "energy": 50.654999999999106,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 976,
+            "x": 996.1890112910214,
+            "y": 554,
+            "hp": 79.32,
+            "energy": 50.82999999999909,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 981,
+            "x": 996.2118679516585,
+            "y": 554,
+            "hp": 79.32,
+            "energy": 51.00499999999907,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 981,
+            "x": 996.2118679516585,
+            "y": 554,
+            "hp": 79.32,
+            "energy": 51.00499999999907,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 986,
+            "x": 996.2145199885641,
+            "y": 554,
+            "hp": 79.32,
+            "energy": 51.179999999999055,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 991,
+            "x": 996.21482770192,
+            "y": 554,
+            "hp": 79.32,
+            "energy": 51.35499999999904,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          },
+          {
+            "tick": 996,
+            "x": 996.2148634056122,
+            "y": 554,
+            "hp": 79.32,
+            "energy": 51.52999999999902,
+            "attack": null,
+            "hits": 0,
+            "facing": -1
+          }
+        ]
+      },
+      "assets": [
+        "/assets/melanio-v44.webp"
+      ],
+      "assertions": {
+        "finite": true,
+        "moved": true,
+        "jumped": true,
+        "specialStarted": true,
+        "actionsReceived": true
+      },
+      "resistingLocalOpponent": true
+    }
+  ],
+  "mobile": {
+    "status": "done",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "simulatedTouchCapabilities": true,
+    "stage": "guaira",
+    "fighter": "melanio",
+    "canvas": {
+      "x": 0,
+      "y": 0,
+      "width": 844,
+      "height": 390
+    },
+    "buttons": [
+      {
+        "control": "left",
+        "x": 10,
+        "y": 278,
+        "width": 48,
+        "height": 48,
+        "inside": true
+      },
+      {
+        "control": "right",
+        "x": 122,
+        "y": 278,
+        "width": 48,
+        "height": 48,
+        "inside": true
+      },
+      {
+        "control": "jump",
+        "x": 66,
+        "y": 222,
+        "width": 48,
+        "height": 48,
+        "inside": true
+      },
+      {
+        "control": "down",
+        "x": 66,
+        "y": 334,
+        "width": 48,
+        "height": 48,
+        "inside": true
+      },
+      {
+        "control": "dash",
+        "x": 10,
+        "y": 334,
+        "width": 48,
+        "height": 48,
+        "inside": true
+      },
+      {
+        "control": "block",
+        "x": 674,
+        "y": 278,
+        "width": 48,
+        "height": 48,
+        "inside": true
+      },
+      {
+        "control": "light",
+        "x": 674,
+        "y": 334,
+        "width": 48,
+        "height": 48,
+        "inside": true
+      },
+      {
+        "control": "heavy",
+        "x": 730,
+        "y": 334,
+        "width": 48,
+        "height": 48,
+        "inside": true
+      },
+      {
+        "control": "special",
+        "x": 786,
+        "y": 334,
+        "width": 48,
+        "height": 48,
+        "inside": true
+      },
+      {
+        "control": "super",
+        "x": 786,
+        "y": 278,
+        "width": 48,
+        "height": 48,
+        "inside": true
+      }
+    ],
+    "signalSeen": true,
+    "moved": true,
+    "jumped": true,
+    "lastActions": {
+      "jump": 2,
+      "light": 1,
+      "heavy": 1,
+      "special": 1,
+      "dash": 1,
+      "super": 0
+    },
+    "finite": true,
+    "overflow": false
+  },
+  "limits": [
+    "Desktop collaborative browser with simulated touch capabilities at 844×390; not a physical-device certification.",
+    "Creator-published video stills were inspected; full video playback was blocked by the source provider."
+  ]
+}
