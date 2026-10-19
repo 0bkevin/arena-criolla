@@ -181,7 +181,23 @@ export function renderMatch(
     else if (Math.abs(p.vx) > 0.7)
       frame = Math.floor(state.tick / 7) % 2 === 0 ? 2 : 3;
     if (p.attack === "special" && !p.stun) {
-      if (
+      if (def.ability === "signal") {
+        // Show the extension when the pulse actually launches, then recover
+        // into the current locomotion pose instead of holding a frozen punch.
+        const release = p.attackTick - TECHNIQUES.signal.startup;
+        frame =
+          release < 0
+            ? p.grounded
+              ? 1
+              : 4
+            : release < 8
+              ? 5
+              : !p.grounded
+                ? 4
+                : Math.abs(p.vx) > 0.7
+                  ? 2 + (Math.floor(state.tick / 7) % 2)
+                  : sprite.battleFrame;
+      } else if (
         (def.ability === "curtain" && p.attackTick <= 26) ||
         (def.ability === "cadenza" && p.attackTick <= 22)
       )
