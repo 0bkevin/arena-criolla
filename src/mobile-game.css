@@ -20,6 +20,76 @@
 .touch-button:disabled {
   opacity: 0.4;
 }
+.pause-tools {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+.pause-tools .secondary-button {
+  min-width: 0;
+  min-height: 44px;
+  height: auto;
+  padding: 8px;
+  font-size: 12px;
+}
+.pause-tools > :first-child:nth-last-child(3) {
+  grid-column: 1 / -1;
+}
+.pause-card button:focus-visible {
+  outline: none;
+  box-shadow: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.pause-card .primary-button:focus-visible {
+  background: #ffe6a3;
+}
+.pause-card .primary-button:hover:not(:disabled),
+.pause-card .primary-button:focus-visible {
+  box-shadow: none;
+}
+.pause-card .secondary-button:focus-visible {
+  color: #fff5db;
+  background: #364157;
+}
+.game-page.is-paused .game-tools > :not(:last-child) {
+  display: none;
+}
+.game-page:not(.is-touch) .game-topline > .text-button {
+  min-height: 44px;
+  font-size: 12px;
+}
+.game-page:not(.is-touch) .game-tools .icon-button {
+  width: 44px;
+  height: 44px;
+}
+.game-page:not(.is-touch) .game-mode {
+  font-size: 10px;
+}
+.game-page:not(.is-touch) .game-controls-bar {
+  flex-wrap: wrap;
+  gap: 10px 18px;
+}
+.game-page:not(.is-touch) .game-controls-bar > span,
+.game-page:not(.is-touch) .game-controls-bar kbd,
+.game-page:not(.is-touch) .game-controls-bar .text-button {
+  font-size: 12px;
+}
+.game-page:not(.is-touch) .game-controls-bar > span,
+.game-page:not(.is-touch) .game-tip {
+  color: #a8b9cf;
+}
+.game-page:not(.is-touch) .game-controls-bar .text-button {
+  min-height: 44px;
+}
+.game-page:not(.is-touch) .game-tip {
+  font-size: 12px;
+}
+.game-page:not(.is-touch) .arena-location {
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
 #root:fullscreen {
   background: #081322;
   overflow: auto;
@@ -161,10 +231,10 @@ body:has(.game-page.is-touch) {
   margin-bottom: 5px;
 }
 .game-page.is-touch .hud-label strong {
-  font-size: 11px;
+  font-size: 12px;
 }
 .game-page.is-touch .player-number {
-  font-size: 7px;
+  font-size: 8px;
 }
 .game-page.is-touch .hud-character {
   display: none;
@@ -176,18 +246,18 @@ body:has(.game-page.is-touch) {
   font-size: 25px;
 }
 .game-page.is-touch .match-clock > span {
-  font-size: 6px;
+  font-size: 8px;
 }
 .game-page.is-touch .health-track {
   height: 14px;
 }
 .game-page.is-touch .health-track > span {
-  font-size: 8px;
+  font-size: 10px;
 }
 .game-page.is-touch .hud-bottom {
   gap: 5px;
   margin-top: 5px;
-  font-size: 8px;
+  font-size: 10px;
 }
 .game-page.is-touch .energy-track {
   height: 5px;
@@ -241,7 +311,7 @@ body:has(.game-page.is-touch) {
   height: 18px;
 }
 .game-page.is-touch .touch-button > span {
-  font-size: 8px;
+  font-size: 10px;
 }
 .game-page.is-touch .touch-button.is-pressed {
   background: #ffd45a;

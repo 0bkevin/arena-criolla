@@ -84,6 +84,11 @@ export function ArcadeLobby(props: Props) {
   const { mode, fighter, rival, stage, network } = props;
   const [target, setTarget] = useState<"p1" | "p2">("p1");
   const [searchOpen, setSearchOpen] = useState(false);
+  const closeSearch = () => {
+    props.onClearQuery();
+    setSearchOpen(false);
+    document.querySelector<HTMLButtonElement>(".roster-search-toggle")?.focus();
+  };
   const [category, setCategory] = useState<
     "all" | "culture" | "folklore" | "community"
   >("all");
@@ -429,8 +434,8 @@ export function ArcadeLobby(props: Props) {
                   }
                   aria-expanded={searchOpen}
                   onClick={() => {
-                    if (searchOpen) props.onClearQuery();
-                    setSearchOpen(!searchOpen);
+                    if (searchOpen) closeSearch();
+                    else setSearchOpen(true);
                   }}
                 >
                   {searchOpen ? <X size={18} /> : <Search size={18} />}
@@ -447,13 +452,7 @@ export function ArcadeLobby(props: Props) {
                     onChange={(event) => props.onQuery(event.target.value)}
                     onKeyDown={(event) => {
                       if (event.key === "Escape") {
-                        props.onClearQuery();
-                        setSearchOpen(false);
-                        document
-                          .querySelector<HTMLButtonElement>(
-                            ".roster-search-toggle",
-                          )
-                          ?.focus();
+                        closeSearch();
                       }
                     }}
                   />
