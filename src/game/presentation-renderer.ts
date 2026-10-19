@@ -112,7 +112,6 @@ function accents(
       sparkle(ctx, 35, -115, 4);
       ctx.strokeRect(23, -128, 24 + activity * 4, 35);
     }
-    if (profile.prop === "vial") sparkle(ctx, -15, -75, 3);
     if (profile.prop === "book") {
       ctx.strokeRect(8, -106, 15, 20);
       ctx.fillRect(15, -103, 1, 14);

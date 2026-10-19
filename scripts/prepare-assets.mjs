@@ -37,6 +37,7 @@ const losslessSprites = new Set([
   "javier-v43.png",
   "nacho-v42.png",
   "melanio-v44.png",
+  "knoche-v46.png",
 ]);
 const active = [
   ...fighters.map((fighter) => `${fighter.sprite}.png`),

@@ -1,6 +1,6 @@
 {
   "version": 15,
-  "checkedAt": "2026-10-19T00:04:10.281Z",
+  "checkedAt": "2026-10-19T00:52:39.971Z",
   "sprites": [
     {
       "id": "zavarce",
@@ -5297,66 +5297,66 @@
       "id": "knoche",
       "files": [
         {
-          "file": "assets/source/knoche-v12.png",
-          "width": 1774,
-          "height": 887,
-          "transparentFraction": 0.6066361282663654,
+          "file": "assets/source/knoche-v46.png",
+          "width": 2048,
+          "height": 1024,
+          "transparentFraction": 0.7923884391784668,
           "components": [
             {
-              "minX": 49,
-              "minY": 12,
-              "maxX": 369,
-              "maxY": 416,
-              "pixels": 71392
+              "minX": 106,
+              "minY": 44,
+              "maxX": 404,
+              "maxY": 479,
+              "pixels": 55858
             },
             {
-              "minX": 499,
-              "minY": 10,
-              "maxX": 836,
-              "maxY": 418,
-              "pixels": 70811
+              "minX": 606,
+              "minY": 56,
+              "maxX": 929,
+              "maxY": 479,
+              "pixels": 53076
             },
             {
-              "minX": 944,
-              "minY": 11,
-              "maxX": 1318,
-              "maxY": 411,
-              "pixels": 69051
+              "minX": 1104,
+              "minY": 83,
+              "maxX": 1453,
+              "maxY": 479,
+              "pixels": 56642
             },
             {
-              "minX": 1391,
-              "minY": 10,
-              "maxX": 1749,
-              "maxY": 409,
-              "pixels": 68593
+              "minX": 1651,
+              "minY": 80,
+              "maxX": 1933,
+              "maxY": 479,
+              "pixels": 48137
             },
             {
-              "minX": 41,
-              "minY": 440,
-              "maxX": 377,
-              "maxY": 749,
-              "pixels": 58616
+              "minX": 132,
+              "minY": 685,
+              "maxX": 380,
+              "maxY": 991,
+              "pixels": 40509
             },
             {
-              "minX": 453,
-              "minY": 455,
-              "maxX": 909,
-              "maxY": 851,
-              "pixels": 79008
+              "minX": 558,
+              "minY": 582,
+              "maxX": 976,
+              "maxY": 991,
+              "pixels": 57127
             },
             {
-              "minX": 943,
-              "minY": 450,
-              "maxX": 1362,
-              "maxY": 853,
-              "pixels": 66953
+              "minX": 1081,
+              "minY": 577,
+              "maxX": 1478,
+              "maxY": 991,
+              "pixels": 51396
             },
             {
-              "minX": 1431,
-              "minY": 476,
-              "maxX": 1755,
-              "maxY": 853,
-              "pixels": 68115
+              "minX": 1672,
+              "minY": 599,
+              "maxX": 1910,
+              "maxY": 992,
+              "pixels": 49063
             }
           ],
           "rows": [
@@ -5366,66 +5366,66 @@
           "passed": true
         },
         {
-          "file": "public/assets/knoche-v12.webp",
-          "width": 1774,
-          "height": 887,
-          "transparentFraction": 0.6066361282663654,
+          "file": "public/assets/knoche-v46.webp",
+          "width": 2048,
+          "height": 1024,
+          "transparentFraction": 0.7923884391784668,
           "components": [
             {
-              "minX": 49,
-              "minY": 12,
-              "maxX": 369,
-              "maxY": 416,
-              "pixels": 71392
+              "minX": 106,
+              "minY": 44,
+              "maxX": 404,
+              "maxY": 479,
+              "pixels": 55858
             },
             {
-              "minX": 499,
-              "minY": 10,
-              "maxX": 836,
-              "maxY": 418,
-              "pixels": 70811
+              "minX": 606,
+              "minY": 56,
+              "maxX": 929,
+              "maxY": 479,
+              "pixels": 53076
             },
             {
-              "minX": 944,
-              "minY": 11,
-              "maxX": 1318,
-              "maxY": 411,
-              "pixels": 69051
+              "minX": 1104,
+              "minY": 83,
+              "maxX": 1453,
+              "maxY": 479,
+              "pixels": 56642
             },
             {
-              "minX": 1391,
-              "minY": 10,
-              "maxX": 1749,
-              "maxY": 409,
-              "pixels": 68593
+              "minX": 1651,
+              "minY": 80,
+              "maxX": 1933,
+              "maxY": 479,
+              "pixels": 48137
             },
             {
-              "minX": 41,
-              "minY": 440,
-              "maxX": 377,
-              "maxY": 749,
-              "pixels": 58616
+              "minX": 132,
+              "minY": 685,
+              "maxX": 380,
+              "maxY": 991,
+              "pixels": 40509
             },
             {
-              "minX": 453,
-              "minY": 455,
-              "maxX": 909,
-              "maxY": 851,
-              "pixels": 79008
+              "minX": 558,
+              "minY": 582,
+              "maxX": 976,
+              "maxY": 991,
+              "pixels": 57127
             },
             {
-              "minX": 943,
-              "minY": 450,
-              "maxX": 1362,
-              "maxY": 853,
-              "pixels": 66953
+              "minX": 1081,
+              "minY": 577,
+              "maxX": 1478,
+              "maxY": 991,
+              "pixels": 51396
             },
             {
-              "minX": 1431,
-              "minY": 476,
-              "maxX": 1755,
-              "maxY": 853,
-              "pixels": 68115
+              "minX": 1672,
+              "minY": 599,
+              "maxX": 1910,
+              "maxY": 992,
+              "pixels": 49063
             }
           ],
           "rows": [
