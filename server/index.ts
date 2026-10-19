@@ -687,7 +687,13 @@ export async function makeArenaServer(
         .type("application/xml")
         .send(siteSitemap(requestSiteOrigin(req, configuredOrigin)));
     });
-    app.get("/index.html", (_req, res) => res.redirect(308, "/"));
+    app.get("/index.html", (req, res) => {
+      const query = req.originalUrl.indexOf("?");
+      res.redirect(
+        308,
+        "/" + (query === -1 ? "" : req.originalUrl.slice(query)),
+      );
+    });
     if (options.production) {
       const dist = path.resolve("dist");
       const template = await readFile(path.join(dist, "index.html"), "utf8");

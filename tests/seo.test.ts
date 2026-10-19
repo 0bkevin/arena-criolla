@@ -92,4 +92,17 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
   const alias = await fetch(`${base}/index.html`, { redirect: "manual" });
   assert.equal(alias.status, 308);
   assert.equal(alias.headers.get("location"), "/");
+  for (const route of ["/index.html", "/INDEX.HTML/"]) {
+    const query = "?sala=ABC123&note=a%2Bb%2Fc&repeat=1&repeat=2";
+    const invitation = await fetch(base + route + query, {
+      redirect: "manual",
+    });
+    assert.equal(invitation.status, 308);
+    assert.equal(invitation.headers.get("location"), "/" + query);
+    const home = await (await fetch(base + route + query)).text();
+    assert.ok(
+      home.includes('<link rel="canonical" href="https://arena.example/"'),
+    );
+    assert.ok(!home.includes("ABC123"));
+  }
 });
