@@ -1,0 +1,84 @@
+{
+  "id": "melanio",
+  "source": "assets/source/melanio-v44/combat-generated.png",
+  "output": "assets/source/melanio-v44.png",
+  "runtime": "public/assets/melanio-v44.webp",
+  "lossless": true,
+  "sourceWidth": 1536,
+  "sourceHeight": 1024,
+  "frames": [
+    {
+      "label": 1,
+      "minX": 17,
+      "minY": 14,
+      "maxX": 341,
+      "maxY": 495,
+      "pixels": 65119,
+      "frame": 0
+    },
+    {
+      "label": 2,
+      "minX": 396,
+      "minY": 17,
+      "maxX": 709,
+      "maxY": 495,
+      "pixels": 64010,
+      "frame": 1
+    },
+    {
+      "label": 3,
+      "minX": 750,
+      "minY": 20,
+      "maxX": 1148,
+      "maxY": 477,
+      "pixels": 68235,
+      "frame": 2
+    },
+    {
+      "label": 4,
+      "minX": 1128,
+      "minY": 26,
+      "maxX": 1507,
+      "maxY": 473,
+      "pixels": 65573,
+      "frame": 3
+    },
+    {
+      "label": 5,
+      "minX": 40,
+      "minY": 500,
+      "maxX": 336,
+      "maxY": 850,
+      "pixels": 55180,
+      "frame": 4
+    },
+    {
+      "label": 7,
+      "minX": 324,
+      "minY": 516,
+      "maxX": 770,
+      "maxY": 976,
+      "pixels": 70459,
+      "frame": 5
+    },
+    {
+      "label": 6,
+      "minX": 794,
+      "minY": 503,
+      "maxX": 1199,
+      "maxY": 988,
+      "pixels": 60154,
+      "frame": 6
+    },
+    {
+      "label": 8,
+      "minX": 1245,
+      "minY": 517,
+      "maxX": 1526,
+      "maxY": 990,
+      "pixels": 65965,
+      "frame": 7
+    }
+  ],
+  "ignoredNoisePixels": 1
+}
