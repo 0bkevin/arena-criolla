@@ -1,0 +1,29 @@
+{
+  "generator": "built-in image_gen__imagegen",
+  "transparent_background": true,
+  "prompt": "docs/finales/attack-overhaul/conde/prompt.txt",
+  "output": "/home/ubuntu/.codex/generated_images/01a155d9-45bf-7881-aa2b-2860ec7d856a/exec-a7b295cf-053e-4b09-bd24-4dba8cea16b6.png",
+  "files": [
+    {
+      "path": "assets/source/conde-v3.png",
+      "sha256": "76a9f13e7d7a74dcc0fed5bbfde7da2f6a3344c3fc253afe241fbbc451cc663c"
+    },
+    {
+      "path": "docs/finales/attack-overhaul/references/conde-conde-bond.png",
+      "sha256": "c3cde9d7e2b164b2f65088db76d78e42183bd38533c40264b59f06707d5adb30"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/conde/conde-bond-raw.png",
+      "sha256": "2ec98f29c9aa022194a261d95dc13a11b948e6ba1ff1d7c05648d1a6815bf745"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/conde/conde-bond-grid.png",
+      "sha256": "ab6278c217f097a6430965affd051c70f56f5eb8e5522933f8645f3ed413117e"
+    },
+    {
+      "path": "public/assets/attack-conde-bond-v1.webp",
+      "sha256": "7b00c51556dc4abc801e2d97233c1f51f68467ecfbaa7cbe2d4b524975554c58"
+    }
+  ],
+  "normalization": "Complete silhouettes translated without resizing/painting; retained RGBA reverse-translation proof in grid-audit.json. One nearby alpha2 island preserved under audited contour distance rule. Lossless runtime proof in assets.json."
+}

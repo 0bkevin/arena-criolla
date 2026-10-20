@@ -1,0 +1,18 @@
+{
+  "source": "assets/source/finales/attack-overhaul/conde/conde-bond-raw.png",
+  "destination": "assets/source/finales/attack-overhaul/conde/conde-bond-grid.png",
+  "auditPath": "docs/finales/attack-overhaul/conde/grid-audit.json",
+  "columns": 4,
+  "rows": 2,
+  "poseCount": 8,
+  "poses": [
+    "ready",
+    "guard",
+    "run",
+    "jump",
+    "punch",
+    "kick",
+    "hurt",
+    "whirl"
+  ]
+}

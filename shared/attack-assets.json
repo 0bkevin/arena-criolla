@@ -275,5 +275,82 @@
         "bodyHeight": 427.59518072289154
       }
     }
+  },
+  "conde": {
+    "file": "attack-conde-bond-v1",
+    "frames": {
+      "ready": {
+        "x": 106,
+        "y": 20,
+        "width": 299,
+        "height": 472,
+        "anchorX": 149.5,
+        "anchorY": 466.537037037037,
+        "bodyHeight": 462.1666666666667
+      },
+      "guard": {
+        "x": 561,
+        "y": 20,
+        "width": 414,
+        "height": 472,
+        "anchorX": 207,
+        "anchorY": 468.52941176470586,
+        "bodyHeight": 461.5882352941176
+      },
+      "run": {
+        "x": 1088,
+        "y": 20,
+        "width": 383,
+        "height": 472,
+        "anchorX": 191.5,
+        "anchorY": 461.1990846681922,
+        "bodyHeight": 454.71853546910756
+      },
+      "jump": {
+        "x": 1582,
+        "y": 20,
+        "width": 420,
+        "height": 472,
+        "anchorX": 210,
+        "anchorY": 469.413698630137,
+        "bodyHeight": 465.5342465753425
+      },
+      "punch": {
+        "x": 20,
+        "y": 580,
+        "width": 472,
+        "height": 424,
+        "anchorX": 236,
+        "anchorY": 421.90617283950616,
+        "bodyHeight": 414.5777777777778
+      },
+      "kick": {
+        "x": 532,
+        "y": 560,
+        "width": 472,
+        "height": 444,
+        "anchorX": 236,
+        "anchorY": 441.8498789346247,
+        "bodyHeight": 438.6246973365617
+      },
+      "hurt": {
+        "x": 1089,
+        "y": 532,
+        "width": 381,
+        "height": 472,
+        "anchorX": 190.5,
+        "anchorY": 468.3598971722365,
+        "bodyHeight": 457.439588688946
+      },
+      "whirl": {
+        "x": 1564,
+        "y": 532,
+        "width": 456,
+        "height": 472,
+        "anchorX": 228,
+        "anchorY": 468.5378973105135,
+        "bodyHeight": 460.4596577017115
+      }
+    }
   }
 }

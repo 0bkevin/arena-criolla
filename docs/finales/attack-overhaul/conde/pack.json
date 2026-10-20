@@ -1,0 +1,17 @@
+{
+  "fighter": "conde",
+  "source": "assets/source/finales/attack-overhaul/conde/conde-bond-grid.png",
+  "file": "attack-conde-bond-v1",
+  "columns": 4,
+  "rows": 2,
+  "poses": [
+    "ready",
+    "guard",
+    "run",
+    "jump",
+    "punch",
+    "kick",
+    "hurt",
+    "whirl"
+  ]
+}

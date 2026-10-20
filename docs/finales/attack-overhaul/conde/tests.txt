@@ -1,0 +1,134 @@
+✔ complete-scene preflight checks every requested pose against intrinsic loaded dimensions (1.247922ms)
+✔ valid art preserves its exact source crop, anchors, facing, body scale and alpha (0.960298ms)
+✔ legacy optional geometry and boundary anchors remain valid without changing drawing math (0.360714ms)
+✔ missing, unloaded, incomplete and intrinsically undersized images draw nothing (0.321564ms)
+✔ nonfinite, nonpositive and out-of-bounds frame geometry never touches canvas (0.538022ms)
+✔ vallenilla: revised attack art retains raw source provenance, complete frames and exact runtime alpha (216.344736ms)
+✔ javier: revised attack art retains raw source provenance, complete frames and exact runtime alpha (111.682378ms)
+✔ renny: revised attack art retains raw source provenance, complete frames and exact runtime alpha (92.463315ms)
+✔ gomez: revised attack art retains raw source provenance, complete frames and exact runtime alpha (178.879177ms)
+✔ simon: revised attack art retains raw source provenance, complete frames and exact runtime alpha (104.322185ms)
+✔ conde: revised attack art retains raw source provenance, complete frames and exact runtime alpha (142.789264ms)
+✔ every definitive has one generic combat category heading (7.684522ms)
+✔ complete silhouettes may cross source grid lines and reverse translation preserves their exact RGBA (88.733137ms)
+✔ overlapping source bounding boxes never borrow another silhouette or isolated alpha-1 noise (61.144069ms)
+✔ core centers preserve pose order even when long alpha-1 tails cross several source cells (45.134627ms)
+✔ detached soft pixels are retained exactly with their unique containing silhouette and audited separately (85.043132ms)
+✔ soft components with ambiguous containment or a different source cell and tiny visible fragments reject (34.575699ms)
+✔ complete silhouettes crossing horizontal grid lines preserve all rows in order (37.728735ms)
+✔ missing cells, duplicate cell centers and every extra visible or soft component reject (72.508623ms)
+✔ bad grid requests, truly clipped silhouettes, opaque backgrounds and non-PNG input reject (43.516507ms)
+✔ file normalization writes verifiable provenance and cannot overwrite the raw source (68.634649ms)
+✔ a tiny alpha2 island within three contour pixels is retained with an explicit distance audit (46.395519ms)
+✔ adjacent island exception rejects distance, higher alpha, excess size and ambiguous contours (63.543948ms)
+{"character":"conde","check":"presentation","evidence":{"intro":"Saludo del Conde","choreography":"Saludo del Conde"}}
+{"character":"conde","check":"movement","evidence":{"side":0,"start":540,"right":633.0002523568872,"left":547.7994952943895,"firstY":454.59999999999997,"finalY":554,"stocks":2}}
+{"character":"conde","check":"movement","evidence":{"side":1,"start":540,"right":633.0002523568872,"left":547.7994952943895,"firstY":454.59999999999997,"finalY":554,"stocks":2}}
+{"character":"conde","check":"ordinary-attack","evidence":{"side":0,"action":"light","guard":false,"hp":92.069,"hits":1,"energy":100}}
+{"character":"conde","check":"ordinary-attack","evidence":{"side":0,"action":"light","guard":true,"hp":100,"hits":0,"energy":85.47999999999979}}
+{"character":"conde","check":"ordinary-attack","evidence":{"side":0,"action":"heavy","guard":false,"hp":85.271,"hits":1,"energy":100}}
+{"character":"conde","check":"ordinary-attack","evidence":{"side":0,"action":"heavy","guard":true,"hp":100,"hits":0,"energy":84.87999999999977}}
+{"character":"conde","check":"ordinary-attack","evidence":{"side":1,"action":"light","guard":false,"hp":92.069,"hits":1,"energy":100}}
+{"character":"conde","check":"ordinary-attack","evidence":{"side":1,"action":"light","guard":true,"hp":100,"hits":0,"energy":85.47999999999979}}
+{"character":"conde","check":"ordinary-attack","evidence":{"side":1,"action":"heavy","guard":false,"hp":85.271,"hits":1,"energy":100}}
+{"character":"conde","check":"ordinary-attack","evidence":{"side":1,"action":"heavy","guard":true,"hp":100,"hits":0,"energy":84.87999999999977}}
+{"character":"conde","check":"special","evidence":{"side":0,"guard":"idle","energyAfterCost":75,"impacts":[{"tick":14,"hp":77.34,"gap":120.51777777777778}],"blockCount":0,"hp":77.34,"hits":1,"origin":180,"finalX":293.1428571428586,"trace":[{"call":13,"x":180,"vx":0,"attackTick":13,"dash":0},{"call":14,"x":192,"vx":12,"attackTick":14,"dash":9},{"call":20,"x":228,"vx":12,"attackTick":17,"dash":6},{"call":23,"x":264,"vx":12,"attackTick":20,"dash":3},{"call":35,"x":293.14282677479997,"vx":0.00007085879999999997,"attackTick":32,"dash":0},{"call":60,"x":293.1428571428586,"vx":1.3688194905310348e-14,"attackTick":47,"dash":0},{"call":109,"x":293.1428571428586,"vx":9.313237023544802e-24,"attackTick":47,"dash":0}]}}
+{"character":"conde","check":"special","evidence":{"side":0,"guard":"front","energyAfterCost":75,"impacts":[],"blockCount":1,"hp":100,"hits":0,"origin":180,"finalX":277.21267234607046,"trace":[{"call":13,"x":180,"vx":0,"attackTick":13,"dash":0},{"call":14,"x":192,"vx":12,"attackTick":14,"dash":9},{"call":20,"x":240,"vx":12,"attackTick":18,"dash":5},{"call":23,"x":276,"vx":12,"attackTick":21,"dash":2},{"call":35,"x":277.21266323565186,"vx":0.00002125763999999999,"attackTick":33,"dash":0},{"call":60,"x":277.21267234607046,"vx":8.897326688451727e-15,"attackTick":47,"dash":0},{"call":109,"x":277.21267234607046,"vx":6.053604065304121e-24,"attackTick":47,"dash":0}]}}
+{"character":"conde","check":"special","evidence":{"side":0,"guard":"rear","energyAfterCost":75,"impacts":[{"tick":14,"hp":77.34,"gap":138.2458379557445}],"blockCount":0,"hp":77.34,"hits":1,"origin":180,"finalX":293.1428571428586,"trace":[{"call":13,"x":180,"vx":0,"attackTick":13,"dash":0},{"call":14,"x":192,"vx":12,"attackTick":14,"dash":9},{"call":20,"x":228,"vx":12,"attackTick":17,"dash":6},{"call":23,"x":264,"vx":12,"attackTick":20,"dash":3},{"call":35,"x":293.14282677479997,"vx":0.00007085879999999997,"attackTick":32,"dash":0},{"call":60,"x":293.1428571428586,"vx":1.3688194905310348e-14,"attackTick":47,"dash":0},{"call":109,"x":293.1428571428586,"vx":9.313237023544802e-24,"attackTick":47,"dash":0}]}}
+{"character":"conde","check":"special","evidence":{"side":1,"guard":"idle","energyAfterCost":75,"impacts":[{"tick":14,"hp":77.34,"gap":-120.51777777777772}],"blockCount":0,"hp":77.34,"hits":1,"origin":900,"finalX":786.8571428571416,"trace":[{"call":13,"x":900,"vx":0,"attackTick":13,"dash":0},{"call":14,"x":888,"vx":-12,"attackTick":14,"dash":9},{"call":20,"x":852,"vx":-12,"attackTick":17,"dash":6},{"call":23,"x":816,"vx":-12,"attackTick":20,"dash":3},{"call":35,"x":786.8571732252001,"vx":-0.00007085879999999997,"attackTick":32,"dash":0},{"call":60,"x":786.8571428571416,"vx":-1.3688194905310348e-14,"attackTick":47,"dash":0},{"call":109,"x":786.8571428571416,"vx":-9.313237023544802e-24,"attackTick":47,"dash":0}]}}
+{"character":"conde","check":"special","evidence":{"side":1,"guard":"front","energyAfterCost":75,"impacts":[],"blockCount":1,"hp":100,"hits":0,"origin":900,"finalX":802.7873276539299,"trace":[{"call":13,"x":900,"vx":0,"attackTick":13,"dash":0},{"call":14,"x":888,"vx":-12,"attackTick":14,"dash":9},{"call":20,"x":840,"vx":-12,"attackTick":18,"dash":5},{"call":23,"x":804,"vx":-12,"attackTick":21,"dash":2},{"call":35,"x":802.7873367643483,"vx":-0.00002125763999999999,"attackTick":33,"dash":0},{"call":60,"x":802.7873276539299,"vx":-8.897326688451727e-15,"attackTick":47,"dash":0},{"call":109,"x":802.7873276539299,"vx":-6.053604065304121e-24,"attackTick":47,"dash":0}]}}
+{"character":"conde","check":"special","evidence":{"side":1,"guard":"rear","energyAfterCost":75,"impacts":[{"tick":14,"hp":77.34,"gap":-138.24583795574472}],"blockCount":0,"hp":77.34,"hits":1,"origin":900,"finalX":786.8571428571416,"trace":[{"call":13,"x":900,"vx":0,"attackTick":13,"dash":0},{"call":14,"x":888,"vx":-12,"attackTick":14,"dash":9},{"call":20,"x":852,"vx":-12,"attackTick":17,"dash":6},{"call":23,"x":816,"vx":-12,"attackTick":20,"dash":3},{"call":35,"x":786.8571732252001,"vx":-0.00007085879999999997,"attackTick":32,"dash":0},{"call":60,"x":786.8571428571416,"vx":-1.3688194905310348e-14,"attackTick":47,"dash":0},{"call":109,"x":786.8571428571416,"vx":-9.313237023544802e-24,"attackTick":47,"dash":0}]}}
+{"character":"conde","check":"range-probe","evidence":{"side":0,"gap":80,"hp":77.34,"hits":1,"playerX":293.1428571428586,"displacement":113.14285714285859,"targetX":626.0607900675647,"targetStocks":2,"impacts":[{"call":14,"hp":77.34,"gap":80.51777777777778}]}}
+{"character":"conde","check":"range-probe","evidence":{"side":0,"gap":160,"hp":77.34,"hits":1,"playerX":293.1428571428586,"displacement":113.14285714285859,"targetX":706.0607900675643,"targetStocks":2,"impacts":[{"call":14,"hp":77.34,"gap":160.51777777777778}]}}
+{"character":"conde","check":"range-probe","evidence":{"side":0,"gap":165,"hp":77.34,"hits":1,"playerX":293.1428571428586,"displacement":113.14285714285859,"targetX":711.0607900675562,"targetStocks":2,"impacts":[{"call":15,"hp":77.34,"gap":153.51777777777778}]}}
+{"character":"conde","check":"range-probe","evidence":{"side":0,"gap":175,"hp":77.34,"hits":1,"playerX":293.1428571428586,"displacement":113.14285714285859,"targetX":721.0607900675561,"targetStocks":2,"impacts":[{"call":15,"hp":77.34,"gap":163.51777777777778}]}}
+{"character":"conde","check":"range-probe","evidence":{"side":0,"gap":220,"hp":77.34,"hits":1,"playerX":293.1428571428586,"displacement":113.14285714285859,"targetX":766.06079006745,"targetStocks":2,"impacts":[{"call":19,"hp":77.34,"gap":160.51777777777778}]}}
+{"character":"conde","check":"range-probe","evidence":{"side":0,"gap":250,"hp":77.34,"hits":1,"playerX":293.1428571428586,"displacement":113.14285714285859,"targetX":796.0607900671091,"targetStocks":2,"impacts":[{"call":22,"hp":77.34,"gap":154.51777777777778}]}}
+{"character":"conde","check":"range-probe","evidence":{"side":0,"gap":275,"hp":100,"hits":0,"playerX":293.1428571428586,"displacement":113.14285714285859,"targetX":455,"targetStocks":2,"impacts":[]}}
+{"character":"conde","check":"range-probe","evidence":{"side":0,"gap":300,"hp":100,"hits":0,"playerX":293.1428571428586,"displacement":113.14285714285859,"targetX":480,"targetStocks":2,"impacts":[]}}
+{"character":"conde","check":"range-probe","evidence":{"side":0,"gap":500,"hp":100,"hits":0,"playerX":293.1428571428586,"displacement":113.14285714285859,"targetX":680,"targetStocks":2,"impacts":[]}}
+{"character":"conde","check":"range-probe","evidence":{"side":1,"gap":80,"hp":77.34,"hits":1,"playerX":786.8571428571416,"displacement":-113.14285714285836,"targetX":453.93920993243637,"targetStocks":2,"impacts":[{"call":14,"hp":77.34,"gap":-80.51777777777772}]}}
+{"character":"conde","check":"range-probe","evidence":{"side":1,"gap":160,"hp":77.34,"hits":1,"playerX":786.8571428571416,"displacement":-113.14285714285836,"targetX":373.93920993243603,"targetStocks":2,"impacts":[{"call":14,"hp":77.34,"gap":-160.51777777777772}]}}
+{"character":"conde","check":"range-probe","evidence":{"side":1,"gap":165,"hp":77.34,"hits":1,"playerX":786.8571428571416,"displacement":-113.14285714285836,"targetX":368.93920993244404,"targetStocks":2,"impacts":[{"call":15,"hp":77.34,"gap":-153.51777777777772}]}}
+{"character":"conde","check":"range-probe","evidence":{"side":1,"gap":175,"hp":77.34,"hits":1,"playerX":786.8571428571416,"displacement":-113.14285714285836,"targetX":358.93920993244404,"targetStocks":2,"impacts":[{"call":15,"hp":77.34,"gap":-163.51777777777772}]}}
+{"character":"conde","check":"range-probe","evidence":{"side":1,"gap":220,"hp":77.34,"hits":1,"playerX":786.8571428571416,"displacement":-113.14285714285836,"targetX":313.9392099325497,"targetStocks":2,"impacts":[{"call":19,"hp":77.34,"gap":-160.51777777777772}]}}
+{"character":"conde","check":"range-probe","evidence":{"side":1,"gap":250,"hp":77.34,"hits":1,"playerX":786.8571428571416,"displacement":-113.14285714285836,"targetX":283.9392099328902,"targetStocks":2,"impacts":[{"call":22,"hp":77.34,"gap":-154.51777777777772}]}}
+{"character":"conde","check":"range-probe","evidence":{"side":1,"gap":275,"hp":100,"hits":0,"playerX":786.8571428571416,"displacement":-113.14285714285836,"targetX":625,"targetStocks":2,"impacts":[]}}
+{"character":"conde","check":"range-probe","evidence":{"side":1,"gap":300,"hp":100,"hits":0,"playerX":786.8571428571416,"displacement":-113.14285714285836,"targetX":600,"targetStocks":2,"impacts":[]}}
+{"character":"conde","check":"range-probe","evidence":{"side":1,"gap":500,"hp":100,"hits":0,"playerX":786.8571428571416,"displacement":-113.14285714285836,"targetX":400,"targetStocks":2,"impacts":[]}}
+{"character":"conde","check":"combo-gate","evidence":{"side":0,"wins":0,"combo":"Chiste corto","bonus":3,"hits":1,"hp":82.181}}
+{"character":"conde","check":"combo-gate","evidence":{"side":0,"wins":1,"combo":"Doble remate","bonus":7,"hits":1,"hp":78.061}}
+{"character":"conde","check":"connected-combo","evidence":{"side":0,"combo":"Chiste corto","hits":2,"hp":74.25,"elapsed":68}}
+{"character":"conde","check":"connected-combo","evidence":{"side":0,"combo":"Doble remate","hits":3,"hp":62.199000000000005,"elapsed":116}}
+{"character":"conde","check":"super-gate","evidence":{"side":0,"wins":0,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"conde","check":"super-gate","evidence":{"side":0,"wins":2,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"conde","check":"super-gate","evidence":{"side":0,"wins":3,"energy":74,"hp":100,"attackerEnergy":74.31499999999997,"combo":""}}
+{"character":"conde","check":"super-gate","evidence":{"side":0,"wins":3,"energy":75,"hp":100,"attackerEnergy":0.3149999999999966,"combo":"La función completa"}}
+{"character":"conde","check":"super-gate","evidence":{"side":0,"wins":3,"energy":100,"hp":100,"attackerEnergy":25.28,"combo":"La función completa"}}
+{"character":"conde","check":"combo-gate","evidence":{"side":1,"wins":0,"combo":"Chiste corto","bonus":3,"hits":1,"hp":82.181}}
+{"character":"conde","check":"combo-gate","evidence":{"side":1,"wins":1,"combo":"Doble remate","bonus":7,"hits":1,"hp":78.061}}
+{"character":"conde","check":"connected-combo","evidence":{"side":1,"combo":"Chiste corto","hits":2,"hp":74.25,"elapsed":68}}
+{"character":"conde","check":"connected-combo","evidence":{"side":1,"combo":"Doble remate","hits":3,"hp":62.199000000000005,"elapsed":116}}
+{"character":"conde","check":"super-gate","evidence":{"side":1,"wins":0,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"conde","check":"super-gate","evidence":{"side":1,"wins":2,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"conde","check":"super-gate","evidence":{"side":1,"wins":3,"energy":74,"hp":100,"attackerEnergy":74.31499999999997,"combo":""}}
+{"character":"conde","check":"super-gate","evidence":{"side":1,"wins":3,"energy":75,"hp":100,"attackerEnergy":0.3149999999999966,"combo":"La función completa"}}
+{"character":"conde","check":"super-gate","evidence":{"side":1,"wins":3,"energy":100,"hp":100,"attackerEnergy":25.28,"combo":"La función completa"}}
+{"character":"conde","check":"cpu-fight","evidence":{"winner":1,"tick":846,"remaining":5050,"started":["special","super","light","heavy"],"landed":["light"],"players":[{"fighter":"conde","hp":0,"stocks":0,"hits":2,"peakCombo":2},{"fighter":"javier","hp":100,"stocks":1,"hits":2,"peakCombo":2}]}}
+✔ Conde retains his documented identity, compact forward dash, one-shot selection and both facings (2.779003ms)
+✔ Conde walks, faces both directions, jumps twice, rejects a third jump and lands on both sides (15.567374ms)
+✔ Conde light and heavy each connect once and obey a facing guard on both sides (13.877725ms)
+✔ Remate oriental spends 25 energy, dashes forward and hits once against idle/rear guard while facing guard blocks on both sides (18.798027ms)
+✔ dash range probes exercise actual collisions and braking on both sides (19.214866ms)
+✔ Conde recognizes base and upgraded combos, connects every strike with approach inputs, and enforces super gates on both sides (17.596055ms)
+✔ Conde intro blocks action until the full shared timeline completes (0.477542ms)
+✔ a complete Conde fight versus normal CPU finishes and deterministically replays (23.754214ms)
+✔ combat shows category labels, retains requested character lines, and expires combos (1.183325ms)
+✔ a paid transformation keeps the Definitiva category through recovery without overriding a special (0.508076ms)
+✔ Conde Bond activates at tick9 out of range in either slot with cost and no enemy damage/freeze (4.325114ms)
+✔ self-transform respects unlock, energy, stun, guard, cooldown, stale input and interrupted startup (9.179908ms)
+✔ all Conde damage paths get exactly20 percent; real light/heavy/special inputs work and facing guard still blocks (38.679931ms)
+✔ 360 active ticks expire exactly; hitstop/capture pause time; paid refresh never stacks; stocks clear buff (10.126515ms)
+✔ movement, jump, block and post-expiry basic attacks remain normal combat (14.377949ms)
+✔ transformation state serializes and replays deterministically; hard CPU activates at distance once (12.459325ms)
+✔ transformed render poses match contact, recoil and locomotion with safe missing-art fallback (1.625593ms)
+✔ shared empowerment snapshots projectile damage once, survives expiry and never compounds on reflections (1.368185ms)
+✔ shared empowerment applies to a new counter once (1.445541ms)
+✔ main's revised canonical identities remain selected and the authored batch is honestly incomplete for the expanded roster (4.500859ms)
+✔ all six incoming fighters remain visible in their finales, Capriles's chairs and Nacho's phrase using their own canonical frames (114.410423ms)
+✔ both dancers follow the contiguous six-second source phrase once at its observed timestamps (4.403303ms)
+✔ the support bounce leaves the painted patitas, heart, arms and face entirely unchanged (5.744697ms)
+✔ Nacho's visual drain follows the six-second profile beats, not the short finale clock (2.487533ms)
+✔ finale props use world coordinates and never cover or reframe the arena viewport (1.062693ms)
+✔ coffee stages complete chairs behind both actors and one isolated table in front (1.170755ms)
+✔ legacy guest dance poses remain available outside Nacho's dedicated finale (0.222115ms)
+✔ Giuseppe alternates illustrated keyboard presses between preparation and signoff (0.205611ms)
+✔ seated atlas padding does not shrink a rival or move their feet (0.212681ms)
+✔ captured fighters bend through hips and knees while their head keeps its likeness (0.464491ms)
+✔ paired dance alternates feet without translating either fighter's face (4.563264ms)
+✔ all built-in finales have distinct finite original scores with safe levels and a silent ending (522.745204ms)
+✔ all built-in finales keep both fighters in their arena on either side of both ledges (698.957668ms)
+✔ a finale uses the unchanged normal camera on desktop, mobile and reduced-motion views (72.509423ms)
+✔ moving platforms keep their exact captured phase and resume carrying the attacker after every mirrored finale (31.008457ms)
+✔ airborne and unequal-height captures preserve each fighter's own position instead of moving them to a common scene baseline (17.720041ms)
+✔ vehicle finales keep both painted passengers beside their capture positions throughout the ride (32.611667ms)
+✔ renderMatch draws every finale over its selected stage and platform surfaces using the normal world camera (108.194816ms)
+✔ all built-in finales exercise their capture or transformation mode against every rival on either side (815.642672ms)
+✔ finales keep the three-win and 75-energy gates, and Vicente's single motorcycle is available from zero wins (8.429736ms)
+✔ distance, height, facing, spawn protection and a facing guard can prevent capture (1.187632ms)
+✔ a counter and a startup interruption stop a cinematic before capture (0.593375ms)
+✔ cinematics consume inputs without queueing, freeze projectiles, and retain recovery on release (2.071475ms)
+✔ an airborne cinematic freezes actors in place and releases them without teleporting (0.486414ms)
+✔ a moving platform pauses on capture and carries its rider smoothly after release (0.413783ms)
+✔ lethal beats and a timer reaching zero wait until the scene ends to resolve stock or match results (0.489188ms)
+✔ simultaneous supers select one deterministic scene and serialized scenes replay exactly (9.34005ms)
+✔ exact lethal thresholds resolve without floating-point survivors, while a tiny HP advantage survives (40.617273ms)
+✔ community fighters keep their generic definitive until they have a cinematic definition (0.30432ms)
+ℹ tests 72
+ℹ suites 0
+ℹ pass 72
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1768.216201

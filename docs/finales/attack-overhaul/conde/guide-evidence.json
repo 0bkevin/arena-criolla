@@ -1,0 +1,71 @@
+{
+  "summary": {
+    "selected": "conde",
+    "mode": "final",
+    "frames": 460,
+    "hp": 69.39999999999999,
+    "minHp": 69.39999999999999,
+    "stocks": 2,
+    "props": [
+      "attack-conde-bond-v1",
+      "finales-v1-1",
+      "finales-seated-v1-1",
+      "finales-dance-v2-1",
+      "finales-seated-main-v1",
+      "perro-mujeriego-v3-capriles",
+      "finales-capriles-cafe",
+      "finales-cafe-furniture"
+    ],
+    "sprite": "conde-v3"
+  },
+  "effect": "Se transforma sin necesitar un rival cercano. Durante 6 segundos de combate sus ataques hacen un 20 % más de daño. El combate continúa: la demostración conecta ataques reales y termina al volver a su atuendo habitual.",
+  "events": [
+    {
+      "i": 9,
+      "tick": 10,
+      "hp": 100,
+      "buff": {
+        "id": "conde-bond",
+        "ticks": 360,
+        "damageMultiplier": 1.2
+      }
+    },
+    {
+      "i": 76,
+      "tick": 77,
+      "hp": 90.5752,
+      "buff": {
+        "id": "conde-bond",
+        "ticks": 293,
+        "damageMultiplier": 1.2
+      }
+    },
+    {
+      "i": 110,
+      "tick": 108,
+      "hp": 69.39999999999999,
+      "buff": {
+        "id": "conde-bond",
+        "ticks": 262,
+        "damageMultiplier": 1.2
+      }
+    },
+    {
+      "i": 377,
+      "tick": 370,
+      "hp": 69.39999999999999
+    }
+  ],
+  "ending": [
+    {
+      "x": 548.6652890113091,
+      "hp": 100,
+      "stocks": 2
+    },
+    {
+      "x": 808.8776248702168,
+      "hp": 69.39999999999999,
+      "stocks": 2
+    }
+  ]
+}
