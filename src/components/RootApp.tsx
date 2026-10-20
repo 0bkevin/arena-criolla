@@ -1,11 +1,36 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { App } from "../App";
+import { ArenaEntrance } from "./ArenaEntrance";
 import { syncCommunityCatalog } from "../../shared/community";
 import type { CommunityCharacter } from "../../shared/creator";
 
-export function RootApp() {
+export function RootApp({ fontLoading }: { fontLoading: Promise<void> }) {
   const [revision, setRevision] = useState(0);
   const [catalogReady, setCatalogReady] = useState(false);
+  const [fontsReady, setFontsReady] = useState(false);
+  const [entranceComplete, setEntranceComplete] = useState(false);
+  const restoreFocus = useRef(false);
+  const finishEntrance = useCallback((focus: boolean) => {
+    restoreFocus.current = focus;
+    setEntranceComplete(true);
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+    void fontLoading.then(() => {
+      if (active) setFontsReady(true);
+    });
+    return () => {
+      active = false;
+    };
+  }, [fontLoading]);
+
+  useEffect(() => {
+    if (entranceComplete && restoreFocus.current) {
+      document.querySelector<HTMLButtonElement>(".site-header .brand")?.focus();
+      restoreFocus.current = false;
+    }
+  }, [entranceComplete]);
   const refresh = async () => {
     const response = await fetch("/api/community/characters", {
       signal: AbortSignal.timeout(5000),
@@ -35,11 +60,17 @@ export function RootApp() {
     };
   }, []);
   // Restore saved community selections only after their definitions are available.
-  if (!catalogReady)
+  if (!entranceComplete)
     return (
-      <div className="arena-boot" role="status">
-        Abriendo la arena…
-      </div>
+      <ArenaEntrance
+        ready={catalogReady}
+        fontsReady={fontsReady}
+        onComplete={finishEntrance}
+      />
     );
-  return <App communityRevision={revision} />;
+  return (
+    <div className="arena-arrival">
+      <App communityRevision={revision} />
+    </div>
+  );
 }

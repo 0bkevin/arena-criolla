@@ -1,18 +1,22 @@
 import sharp from "sharp";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 
+const geometry = JSON.parse(
+  await readFile("shared/sprite-geometry.json", "utf8"),
+);
+const roster = JSON.parse(await readFile("shared/fighters.json", "utf8"));
 const requested = process.argv.indexOf("--sprite");
 const fighters =
-  requested >= 0
-    ? [{ id: process.argv[requested + 1], sprite: process.argv[requested + 1] }]
-    : JSON.parse(await readFile("shared/fighters.json", "utf8"));
+  requested < 0
+    ? roster
+    : roster.filter(({ id, sprite }) =>
+        [id, sprite].includes(process.argv[requested + 1]),
+      );
+if (!fighters.length) throw new Error("Unknown fighter or sprite");
 const sprites = [];
 for (const { id, sprite } of fighters) {
   const results = [];
-  for (const file of [
-    `assets/source/${sprite}.png`,
-    `public/assets/${sprite}.webp`,
-  ]) {
+  for (const file of [`public/assets/${sprite}.webp`]) {
     const { data, info } = await sharp(file)
       .ensureAlpha()
       .raw()
@@ -84,22 +88,26 @@ for (const { id, sprite } of fighters) {
     results.push(result);
     if (!passed) throw new Error(`Atlas inválido: ${file}`);
   }
+  const expected = geometry.sprites
+    .find((entry) => entry.id === id)
+    ?.files.find((entry) => entry.file === `public/assets/${sprite}.webp`);
+  const actual = results[0];
+  const bounds = actual.components.map(({ minX, minY, maxX, maxY }) => ({
+    minX,
+    minY,
+    maxX,
+    maxY,
+  }));
   if (
-    JSON.stringify(results[0].components) !==
-    JSON.stringify(results[1].components)
+    !expected ||
+    expected.width !== actual.width ||
+    expected.height !== actual.height ||
+    JSON.stringify(expected.components) !== JSON.stringify(bounds)
   )
-    throw new Error(`El WebP altera las siluetas de ${id}`);
-  sprites.push({ id, files: results });
-  console.log(`${id}: PNG y WebP, ocho poses completas y alfa válido.`);
-}
-if (requested < 0) {
-  await mkdir("docs", { recursive: true });
-  await writeFile(
-    "docs/character-sprite-qa.json",
-    JSON.stringify(
-      { version: 15, checkedAt: new Date().toISOString(), sprites },
-      null,
-      2,
-    ) + "\n",
+    throw new Error(
+      `Runtime geometry does not match the shipped sprite: ${id}`,
+    );
+  console.log(
+    `${id}: eight complete transparent poses and matching runtime geometry.`,
   );
 }

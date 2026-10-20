@@ -1,30 +1,8 @@
-@font-face {
-  font-family: Barlow Condensed;
-  src: url("/fonts/barlow-800.ttf") format("truetype");
-  font-weight: 700 900;
-  font-display: swap;
-}
-@font-face {
-  font-family: Barlow Condensed;
-  src: url("/fonts/barlow-800-italic.ttf") format("truetype");
-  font-weight: 700 900;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: DM Sans;
-  src: url("/fonts/dm-sans-400.ttf") format("truetype");
-  font-weight: 400 600;
-  font-display: swap;
-}
-@font-face {
-  font-family: DM Sans;
-  src: url("/fonts/dm-sans-700.ttf") format("truetype");
-  font-weight: 700 900;
-  font-display: swap;
-}
 :root {
-  font-family: "DM Sans", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-display: "Barlow Condensed", Impact, sans-serif;
+  --font-pixel: "Pixelify Sans", monospace;
+  font-family: var(--font-body);
   color: #f0f1f4;
   background: #101218;
   font-synthesis: none;
@@ -35,18 +13,11 @@
   --text: #f0f1f4;
   --muted: #9296a4;
   --lime: #dfff7b;
-  --display: "Barlow Condensed", Impact, sans-serif;
+  --display: var(--font-display);
   color-scheme: dark;
 }
 * {
   box-sizing: border-box;
-}
-.arena-boot {
-  min-height: 80svh;
-  display: grid;
-  place-content: center;
-  color: #ffd45a;
-  font-family: "Pixelify Sans", monospace;
 }
 body {
   margin: 0;
@@ -1428,7 +1399,7 @@ button {
 }
 kbd {
   display: inline-block;
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-body);
   background: #202632;
   border: 1px solid #414959;
   border-bottom-width: 2px;
@@ -1843,9 +1814,7 @@ kbd {
   min-width: 0;
   margin: 0;
   min-height: 44px;
-  font:
-    500 13px/1.4 "DM Sans",
-    sans-serif;
+  font: 500 13px/1.4 var(--font-body);
   letter-spacing: 0.5px;
   text-align: left;
 }
@@ -2124,12 +2093,9 @@ kbd {
   line-height: 1;
   color: #fff;
 }
-.match-clock span {
-  display: block;
-  font-size: 6px;
-  color: #c8cdda;
-  letter-spacing: 2px;
-  margin-top: 3px;
+.match-clock strong.match-clock-minutes {
+  font-size: 22px;
+  white-space: nowrap;
 }
 .arena-location {
   position: absolute;
@@ -3352,10 +3318,8 @@ kbd {
   .match-clock strong {
     font-size: 22px;
   }
-  .match-clock span {
-    font-size: 4px;
-    letter-spacing: 1px;
-    margin-top: 1px;
+  .match-clock strong.match-clock-minutes {
+    font-size: 16px;
   }
   .arena-location {
     font-size: 4px;
@@ -3565,7 +3529,6 @@ kbd {
 .character-quote {
   margin: 14px 0;
   padding: 11px 14px;
-  border-left: 2px solid var(--fighter-color);
   background: #ffffff05;
   font-size: 15px;
   line-height: 1.6;
@@ -3764,10 +3727,6 @@ kbd {
 .fighter-search:focus-within {
   border-color: #dfff7b;
 }
-.fighter-search > span {
-  font-size: 11px;
-  color: #dfff7b;
-}
 @media (min-width: 1024px) {
   .fight-setup {
     position: sticky;
@@ -3831,9 +3790,7 @@ kbd {
 }
 .cinematic-name > strong {
   display: block;
-  font:
-    italic 800 clamp(16px, 2.6vw, 34px)/1.08 "Barlow Condensed",
-    sans-serif;
+  font: italic 800 clamp(16px, 2.6vw, 34px)/1.08 var(--font-display);
   text-shadow: 0 2px 10px #070d18;
 }
 .skip-entrances {
@@ -3846,9 +3803,7 @@ kbd {
   display: flex;
   align-items: center;
   gap: 6px;
-  font:
-    500 12px "DM Sans",
-    sans-serif;
+  font: 500 12px var(--font-body);
   color: #c1ccdb;
   background: #070d1866;
   border: 1px solid transparent;

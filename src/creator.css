@@ -33,9 +33,7 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  font:
-    italic 800 22px "Barlow Condensed",
-    sans-serif;
+  font: italic 800 22px var(--font-display);
   white-space: nowrap;
 }
 .creator-brand svg,
@@ -58,9 +56,7 @@
   margin-bottom: 18px;
 }
 .creator-main h1 {
-  font:
-    italic 800 clamp(42px, 4.6vw, 64px)/1.02 "Barlow Condensed",
-    sans-serif;
+  font: italic 800 clamp(42px, 4.6vw, 64px)/1.02 var(--font-display);
   letter-spacing: -0.5px;
 }
 .creator-main h1 em {
@@ -126,9 +122,7 @@
   color: #edf2fa;
   border-radius: 7px;
   padding: 13px 14px;
-  font:
-    400 16px "DM Sans",
-    sans-serif;
+  font: 400 16px var(--font-body);
   min-height: 46px;
 }
 .creator-main input::placeholder,
@@ -204,9 +198,7 @@
   color: #ffd45a;
 }
 .creator-section-title h2 {
-  font:
-    italic 800 24px "Barlow Condensed",
-    sans-serif;
+  font: italic 800 24px var(--font-display);
 }
 .creator-section-title > small {
   color: #8297b1;
@@ -390,9 +382,7 @@
   opacity: 0.75;
 }
 .creator-empty h3 {
-  font:
-    italic 800 30px/1.12 "Barlow Condensed",
-    sans-serif;
+  font: italic 800 30px/1.12 var(--font-display);
   margin-top: 22px;
 }
 .creator-empty p {
@@ -453,9 +443,7 @@
   color: #fa7c6d;
 }
 .creator-record-info h3 {
-  font:
-    italic 800 28px/1.1 "Barlow Condensed",
-    sans-serif;
+  font: italic 800 28px/1.1 var(--font-display);
   margin-top: 7px;
 }
 .creator-record-info > p {

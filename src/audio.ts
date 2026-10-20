@@ -4,9 +4,12 @@ import { CULTURE_SOUNDS } from "./game/culture-sounds";
 import { presentationById } from "../shared/presentation";
 import { WORLD } from "../shared/arena";
 import { TECHNIQUES } from "../shared/techniques";
-import { MUSIC_SECONDS, writeArcadeMusic } from "./game/arcade-music";
+import { MUSIC_SECONDS } from "./game/arcade-music";
 import { VICTORY_DURATION_MS } from "./game/victory-types";
-import { writeVictoryMusic } from "./game/victory-music";
+import { victoryById } from "./game/victory";
+import { preparationWorker } from "./game/preparation-worker";
+import { synthesizeScore, type ScoreRequest } from "./game/music-preparation";
+import { finaleById, type FinaleState } from "../shared/finales";
 
 type SoundKind =
   | "select"
@@ -31,11 +34,86 @@ let context: AudioContext | null = null;
 let effectsBus: GainNode | null = null;
 let reactionsBus: GainNode | null = null;
 let musicBus: GainNode | null = null;
-let musicBuffer: AudioBuffer | null = null;
-let victoryBuffer: { fighter: FighterId | "draw"; buffer: AudioBuffer } | null =
-  null;
+const prepareScore = preparationWorker(
+  () =>
+    new Worker(new URL("./game/music.worker.ts", import.meta.url), {
+      type: "module",
+    }),
+  synthesizeScore,
+);
+const scores = new Map<string, AudioBuffer>();
+const pendingScores = new Map<string, Promise<void>>();
+let ambienceTicket = 0;
+
+function scoreBuffer(request: ScoreRequest): AudioBuffer | undefined {
+  const key = JSON.stringify(request);
+  const cached = scores.get(key);
+  if (cached) {
+    scores.delete(key);
+    scores.set(key, cached);
+    return cached;
+  }
+  if (!context || pendingScores.has(key)) return undefined;
+  const ctx = context;
+  const save = ({ left, right }: ReturnType<typeof synthesizeScore>) => {
+    const buffer = ctx.createBuffer(2, request.length, request.sampleRate);
+    buffer.getChannelData(0).set(left);
+    buffer.getChannelData(1).set(right);
+    scores.set(key, buffer);
+    // Playing sources own their buffers; eviction only affects future preparation.
+    while (scores.size > 12) scores.delete(scores.keys().next().value!);
+  };
+  const result = prepareScore(request);
+  if (result instanceof Promise) {
+    pendingScores.set(
+      key,
+      result.then(save).finally(() => pendingScores.delete(key)),
+    );
+    return undefined;
+  }
+  save(result);
+  return scores.get(key);
+}
+
+/** Prepare only the selected scores; playback always uses the current scene clock. */
+export async function prepareMatchAudio(fighters: FighterId[]) {
+  initAudio();
+  if (!context || !enabled) return;
+  const sampleRate = context.sampleRate;
+  scoreBuffer({
+    kind: "ambience",
+    sampleRate,
+    length: Math.round(sampleRate * MUSIC_SECONDS),
+  });
+  for (const fighter of new Set<FighterId | "draw">([...fighters, "draw"])) {
+    scoreBuffer({
+      kind: "victory",
+      style: fighter === "draw" ? "strings" : victoryById(fighter).music,
+      fighter,
+      sampleRate,
+      length: Math.ceil((sampleRate * VICTORY_DURATION_MS) / 1000),
+    });
+    const finale = fighter === "draw" ? undefined : finaleById(fighter);
+    if (finale && fighter !== "draw")
+      scoreBuffer({
+        kind: "finale",
+        profile: {
+          duration: finale.duration,
+          sound: finale.sound,
+          damageBeats: finale.damageBeats,
+        },
+        fighter,
+        sampleRate,
+        length: Math.ceil((sampleRate * finale.duration) / 60),
+      });
+  }
+  await Promise.all(pendingScores.values());
+}
 let victorySource: AudioBufferSourceNode | null = null;
 let victoryGain: GainNode | null = null;
+let finaleSource: AudioBufferSourceNode | null = null;
+let finaleGain: GainNode | null = null;
+let finaleKey = "";
 const MUSIC_GAIN = 0.12;
 let enabled = true;
 let reactionsPaused = false;
@@ -78,6 +156,7 @@ export function setSound(value: boolean) {
   if (!value) {
     stopReactions();
     stopVictoryMusic();
+    stopFinaleMusic();
   } else if (context || ambienceStage) {
     initAudio();
     if (ambienceStage) startAmbience(ambienceStage);
@@ -129,6 +208,7 @@ export function initAudio() {
   } catch {}
 }
 export function stopAmbience() {
+  ambienceTicket++;
   for (const node of ambienceNodes) {
     try {
       if ("stop" in node) (node as AudioBufferSourceNode).stop();
@@ -152,6 +232,60 @@ export function stopVictoryMusic() {
   victoryGain = null;
 }
 
+export function stopFinaleMusic() {
+  if (finaleSource) {
+    finaleSource.stop();
+    finaleSource.disconnect();
+    finaleSource = null;
+  }
+  finaleGain?.disconnect();
+  finaleGain = null;
+  finaleKey = "";
+}
+
+/** The simulation clock is authoritative, including reconnects and unmuting. */
+export function syncFinaleMusic(
+  scene:
+    | Pick<
+        FinaleState,
+        "fighter" | "owner" | "startedTick" | "tick" | "duration"
+      >
+    | undefined,
+  paused: boolean,
+) {
+  if (!scene || paused || !enabled || scene.tick >= scene.duration) {
+    stopFinaleMusic();
+    return;
+  }
+  const key = `${scene.fighter}:${scene.owner}:${scene.startedTick}`;
+  if (finaleSource && finaleKey === key) return;
+  stopFinaleMusic();
+  initAudio();
+  if (!context || !musicBus || context.state !== "running") return;
+  const buffer = scoreBuffer({
+    kind: "finale",
+    profile: finaleById(scene.fighter)
+      ? {
+          duration: finaleById(scene.fighter)!.duration,
+          sound: finaleById(scene.fighter)!.sound,
+          damageBeats: finaleById(scene.fighter)!.damageBeats,
+        }
+      : undefined,
+    fighter: scene.fighter,
+    sampleRate: context.sampleRate,
+    length: Math.ceil((context.sampleRate * scene.duration) / 60),
+  });
+  if (!buffer) return;
+  finaleKey = key;
+  finaleSource = context.createBufferSource();
+  finaleSource.buffer = buffer;
+  finaleGain = context.createGain();
+  finaleGain.gain.value = scene.fighter === "nacho" ? 0.8 : 2.4;
+  finaleSource.connect(finaleGain);
+  finaleGain.connect(musicBus);
+  finaleSource.start(0, Math.max(0, scene.tick / 60));
+}
+
 /** Resume from the cinematic clock after mute, a dialog or a hidden tab. */
 export function syncVictoryMusic(
   fighter: FighterId | "draw",
@@ -165,22 +299,16 @@ export function syncVictoryMusic(
   if (victorySource) return;
   initAudio();
   if (!context || !musicBus || context.state !== "running") return;
-  if (victoryBuffer?.fighter !== fighter) {
-    const buffer = context.createBuffer(
-      2,
-      Math.ceil((context.sampleRate * VICTORY_DURATION_MS) / 1000),
-      context.sampleRate,
-    );
-    writeVictoryMusic(
-      buffer.getChannelData(0),
-      buffer.getChannelData(1),
-      context.sampleRate,
-      fighter,
-    );
-    victoryBuffer = { fighter, buffer };
-  }
+  const buffer = scoreBuffer({
+    kind: "victory",
+    style: fighter === "draw" ? "strings" : victoryById(fighter).music,
+    fighter,
+    sampleRate: context.sampleRate,
+    length: Math.ceil((context.sampleRate * VICTORY_DURATION_MS) / 1000),
+  });
+  if (!buffer) return;
   victorySource = context.createBufferSource();
-  victorySource.buffer = victoryBuffer.buffer;
+  victorySource.buffer = buffer;
   victoryGain = context.createGain();
   victoryGain.gain.value = 2.8;
   victorySource.connect(victoryGain);
@@ -204,19 +332,21 @@ export function startAmbience(stage: StageId) {
   if (!context || !musicBus || activeAmbienceStage === stage) return;
   stopAmbience();
   ambienceStage = stage;
-  activeAmbienceStage = stage;
+  const request: ScoreRequest = {
+    kind: "ambience",
+    sampleRate: context.sampleRate,
+    length: Math.round(context.sampleRate * MUSIC_SECONDS),
+  };
+  const musicBuffer = scoreBuffer(request);
   if (!musicBuffer) {
-    musicBuffer = context.createBuffer(
-      2,
-      Math.round(context.sampleRate * MUSIC_SECONDS),
-      context.sampleRate,
-    );
-    writeArcadeMusic(
-      musicBuffer.getChannelData(0),
-      musicBuffer.getChannelData(1),
-      context.sampleRate,
-    );
+    const ticket = ambienceTicket;
+    void pendingScores.get(JSON.stringify(request))?.then(() => {
+      if (ticket === ambienceTicket && ambienceStage === stage && enabled)
+        startAmbience(stage);
+    });
+    return;
   }
+  activeAmbienceStage = stage;
   const source = context.createBufferSource();
   source.buffer = musicBuffer;
   source.loop = true;
@@ -694,9 +824,26 @@ export function sound(
         noise(0.12, ability === "echo" ? 2400 : 1400, 0.08, "bandpass", delay);
       });
     } else if (ability === "spotlight") {
-      tone(570, 1800, 0.25, "sine", 0.07);
-      tone(1350, 920, 0.26, "triangle", 0.055, 0.17);
-      noise(0.07, 7200, 0.09, "highpass", 0.22);
+      if (options.impact === "super") {
+        // Original resonant pressure sweep; no sampled voice or recording.
+        [180, 360, 720].forEach((frequency, index) =>
+          tone(
+            frequency,
+            frequency * 0.55,
+            0.72,
+            "triangle",
+            0.065 / (index + 1),
+            index * 0.025,
+            spatial,
+          ),
+        );
+        noise(0.5, 1150, 0.12, "bandpass", 0, spatial);
+        tone(110, 52, 0.42, "sine", 0.09, 0.03, spatial);
+      } else {
+        tone(570, 1800, 0.25, "sine", 0.07);
+        tone(1350, 920, 0.26, "triangle", 0.055, 0.17);
+        noise(0.07, 7200, 0.09, "highpass", 0.22);
+      }
     } else if (ability === "roar") {
       [110, 165, 220].forEach((frequency) =>
         tone(frequency, 50, 0.42, "sawtooth", 0.035),

@@ -31,7 +31,7 @@ test("Capriles retains his researched casual identity and mirrored one-shot gree
   assert.equal(fighter.sprite, "capriles-v39");
   assert.equal(fighter.ability, "sprint");
   assert.equal(fighter.special, "Sprint tricolor");
-  assert.deepEqual(fighter.combos, ["Paso a paso", "Carrera de fondo", "Meta tricolor"]);
+  assert.deepEqual(fighter.combos, ["¡Qué manguangua, ah!", "Hay un camino", "Meta tricolor"]);
   assert.equal(presentationById("capriles").battleFrame, 0);
   assert.equal(presentationById("capriles").introName, "Se yergue y cruza los brazos");
   assert.equal(presentationById("capriles").prop, "none");
@@ -135,6 +135,8 @@ for (const side of [0, 1] as const) {
       assert.equal(run.player.invincible, TECHNIQUES.sprint.dash!.invincibility);
       close(run.player.vx, (side === 0 ? 1 : -1) * 16);
       assert.equal(run.state.projectiles.length, 0);
+      // A retreating target must actually be reached during the dash.
+      for (let frame = 0; frame < 12 && !run.player.attackHit; frame++) run.advance(1);
       if (guard === "facing") {
         assert.equal(run.rival.hp, 100);
         assert.equal(run.player.hits, 0);
@@ -159,7 +161,7 @@ for (const side of [0, 1] as const) {
       run.inputs[side].actions.light++; run.advance(23);
       run.inputs[side].actions.light++; run.advance(23);
       run.inputs[side].actions.heavy++; run.advance(11);
-      assert.equal(run.player.combo, wins ? "Carrera de fondo" : "Paso a paso");
+      assert.equal(run.player.combo, wins ? "Hay un camino" : "¡Qué manguangua, ah!");
       assert.equal(run.player.comboBonus, wins ? 7 : 3);
       close(100 - run.rival.hp, (13 * 0.88 + (wins ? 7 : 3)) * 1.03);
       assert.equal(run.player.hits, 1);
@@ -168,6 +170,7 @@ for (const side of [0, 1] as const) {
     for (const wins of [0, 2, 3]) {
       const run = setup(side, 200, wins);
       run.inputs[side].actions.super++; run.advance(9);
+      if (run.state.finale) run.advance(run.state.finale.duration);
       if (wins < 3) { assert.equal(run.player.attack, null); assert.equal(run.rival.hp, 100); }
       else {
         assert.equal(run.player.combo, "Meta tricolor");
@@ -233,7 +236,7 @@ test("Both named Capriles input combos can connect all strikes with actual appro
       run.advance(attack === "light" ? 23 : 14);
     }
     assert.equal(run.player.hits, attacks.length);
-    assert.equal(run.player.combo, advanced ? "Carrera de fondo" : "Paso a paso");
+    assert.equal(run.player.combo, advanced ? "Hay un camino" : "¡Qué manguangua, ah!");
     assert.equal(run.player.comboBonus, advanced ? 7 : 3);
     emit("connected-combo", { side, name: run.player.combo, hits: run.player.hits, hp: run.rival.hp, elapsed: run.state.tick - INTRO_TOTAL_TICKS });
   }

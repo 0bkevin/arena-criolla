@@ -51,7 +51,7 @@ test("ten folklore fighters retain complete assets alongside the culture roster"
       "tioconejo",
     ],
   );
-  assert.equal(FIGHTERS.filter((f) => f.category !== "folklore").length, 42);
+  assert.equal(FIGHTERS.filter((f) => f.category !== "folklore").length, 43);
   assert.ok(
     [
       "zavarce",
@@ -74,10 +74,8 @@ test("ten folklore fighters retain complete assets alongside the culture roster"
   assert.equal(new Set(legends.map((f) => f.special)).size, 10);
   for (const fighter of legends) {
     assert.equal(fighter.combos.length, 3);
-    for (const path of [
-      `../assets/source/${fighter.sprite}.png`,
-      `../public/assets/${fighter.sprite}.webp`,
-    ]) assert.ok(existsSync(new URL(path, import.meta.url)), `Missing ${path}`);
+    for (const path of [`../public/assets/${fighter.sprite}.webp`])
+      assert.ok(existsSync(new URL(path, import.meta.url)), `Missing ${path}`);
   }
 });
 

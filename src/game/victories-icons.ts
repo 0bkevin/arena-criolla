@@ -23,6 +23,16 @@ export const ICON_VICTORIES = {
     music: "strings",
   },
   dayana: {
+    name: "Coronada en la arena",
+    frame: 0,
+    movement: "rise",
+    gesture: { head: -0.1, front: -0.28, frontY: -0.05, back: -0.04 },
+    lift: 0.012,
+    travel: 0.02,
+    twist: 0.015,
+    music: "strings",
+  },
+  deyna: {
     name: "Celebración vinotinto",
     frame: 0,
     movement: "rise",

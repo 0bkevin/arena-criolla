@@ -88,7 +88,7 @@ for (const side of [0, 1] as const) {
     });
   }
 
-  test(`Vallenilla P${side + 1}: special spawns exactly three staggered cards and damages an idle distant opponent`, () => {
+  test(`Vallenilla P${side + 1}: special spawns exactly three staggered boxes and damages an idle distant opponent`, () => {
     const { state, inputs } = setup(side, 0, 620);
     const actor = state.players[side]; actor.energy = 50;
     const spawned = new Map<number, { tick: number; vx: number; damage: number; kind: string }>();
@@ -125,7 +125,7 @@ for (const side of [0, 1] as const) {
     emit(`special-block-p${side + 1}`, { blocks: [...blocked.values()], targetEnergy: state.players[1 - side].energy, costAfterOneTick: energyAfterCost, targetHp: state.players[1 - side].hp });
   });
 
-  test(`Vallenilla P${side + 1}: all three cards hit at midrange and insufficient energy rejects the special`, () => {
+  test(`Vallenilla P${side + 1}: all three boxes hit at midrange and insufficient energy rejects the special`, () => {
     const { state, inputs } = setup(side, 0, 280);
     const origin = state.players[side].x;
     press(inputs, side, "special"); advance(state, inputs, 150);
@@ -147,7 +147,7 @@ for (const side of [0, 1] as const) {
       inputs[side][side === 0 ? "right" : "left"] = true;
       for (const action of actions) { waitReady(state, inputs, side); press(inputs, side, action); advance(state, inputs, 1); waitReady(state, inputs, side); }
       advance(state, inputs, 17);
-      assert.equal(state.players[side].combo, wins === 0 ? "Cuota inicial" : "Pago en cadena");
+      assert.equal(state.players[side].combo, wins === 0 ? "Cuota inicial" : "Cuota atrasada");
       assert.equal(state.players[side].comboBonus, wins === 0 ? 3 : 7);
       assert.ok(state.players[side].hits >= 2);
       results.push({ wins, combo: state.players[side].combo, bonus: state.players[side].comboBonus, hits: state.players[side].hits, targetHp: state.players[1 - side].hp, peakCombo: state.players[side].peakCombo });
@@ -166,8 +166,10 @@ for (const side of [0, 1] as const) {
     assert.equal(state.players[side].attack, "super");
     assert.equal(state.players[side].combo, "Límite aprobado");
     assert.ok(state.players[side].energy < 25.1);
-    advance(state, inputs, 50);
-    assert.equal(state.players[side].hits, 1);
+    advance(state, inputs, 55);
+    assert.ok(state.players[side].hits > 0);
+    assert.equal(state.fieldFinales?.[0]?.fighter, "vallenilla");
+    advance(state, inputs, 200);
     assert.ok(state.players[1 - side].hp < 65);
     emit(`super-p${side + 1}`, { hp: state.players[1 - side].hp, hits: state.players[side].hits, combo: state.players[side].combo, energy: state.players[side].energy });
   });

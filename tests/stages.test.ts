@@ -178,7 +178,7 @@ test("impact pauses hold platform positions and recover without losing support",
   const start = { x: p.x, y: p.y, tick: state.tick };
   for (let i = 0; i < 5; i++) stepMatch(state, inputs);
   assert.deepEqual({ x: p.x, y: p.y, tick: state.tick }, start);
-  assert.equal(state.remaining, 90 * 60 - 5);
+  assert.equal(state.remaining, 120 * 60 - 5);
   stepMatch(state, inputs);
   assert.ok(p.grounded);
   assert.equal(p.y, platformsAtTick(state.stage, state.tick)[index].y);

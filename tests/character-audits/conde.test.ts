@@ -128,8 +128,9 @@ test("Conde recognizes base and upgraded combos, connects every strike with appr
     for (const [wins, energy] of [[0, 100], [2, 100], [3, 74], [3, 75], [3, 100]] as const) {
       const r = setup(side, 200, wins); r.player.energy = energy;
       r.inputs[side].actions.super++; r.advance(9);
+      if (r.state.finale) r.advance(r.state.finale.duration);
       if (wins < 3 || energy < 75) { assert.equal(r.player.attack, null); assert.equal(r.rival.hp, 100); }
-      else { assert.equal(r.player.combo, "La función completa"); assert.equal(r.player.comboBonus, 12); assert.equal(r.player.hits, 1); close(r.rival.hp, 55.916); }
+      else { assert.equal(r.player.combo, "La función completa"); assert.equal(r.player.comboBonus, 12); assert.equal(r.player.hits, 0); assert.equal(r.player.transformation?.ticks, 360); close(r.rival.hp, 100); }
       emit("super-gate", { side, wins, energy, hp: r.rival.hp, attackerEnergy: r.player.energy, combo: r.player.combo });
     }
   }

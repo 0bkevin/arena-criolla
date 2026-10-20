@@ -22,6 +22,7 @@ import {
   type StageId,
 } from "../shared/content";
 import { createMatch, type MatchState } from "../shared/engine";
+import { finaleById } from "../shared/finales";
 import {
   isRoomCode,
   normalizeRoomCode,
@@ -53,7 +54,7 @@ import { Help } from "./components/Help";
 import { beginMobilePlay, leaveLandscape } from "./game/mobile";
 
 type ModalName =
-  "help" | "fighters" | "stages" | "progress" | "rooms" | "ranking" | null;
+  "help" | "fighters" | "stages" | "progress" | "rooms" | null;
 const colorStyle = (color: string): React.CSSProperties =>
   ({ "--fighter-color": color }) as React.CSSProperties;
 
@@ -61,8 +62,16 @@ export function App({
   communityRevision: _communityRevision,
 }: { communityRevision?: number } = {}) {
   const [mode, setMode] = useState<GameMode>("practice");
-  const [fighter, setFighter] = useState<FighterId>("zavarce");
-  const [rival, setRival] = useState<FighterId>("javier");
+  const [initialMatchup] = useState(() => {
+    // Pick two distinct fighters once, without shuffling or copying the roster.
+    const first = Math.floor(Math.random() * FIGHTERS.length);
+    const second =
+      (first + 1 + Math.floor(Math.random() * (FIGHTERS.length - 1))) %
+      FIGHTERS.length;
+    return [FIGHTERS[first].id, FIGHTERS[second].id] as const;
+  });
+  const [fighter, setFighter] = useState<FighterId>(initialMatchup[0]);
+  const [rival, setRival] = useState<FighterId>(initialMatchup[1]);
   const [fighterQuery, setFighterQuery] = useState("");
   const [stage, setStage] = useState<StageId>("caracas");
   const [name, setName] = useState(() => getPreference("name", ""));
@@ -86,7 +95,9 @@ export function App({
   const secondNameInput = useRef<HTMLInputElement>(null);
   const fighterSearchInput = useRef<HTMLInputElement>(null);
   const setupPanel = useRef<HTMLElement>(null);
+  const footer = useRef<HTMLElement>(null);
   const [setupVisible, setSetupVisible] = useState(true);
+  const [footerVisible, setFooterVisible] = useState(false);
   const network = useArenaNetwork();
   useEffect(() => {
     if (!isFighter(fighter)) {
@@ -120,10 +131,18 @@ export function App({
   useEffect(() => {
     if (active || !setupPanel.current) return;
     const observer = new IntersectionObserver(
-      ([entry]) => setSetupVisible(entry.isIntersecting),
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.target === setupPanel.current)
+            setSetupVisible(entry.isIntersecting);
+          else if (entry.target === footer.current)
+            setFooterVisible(entry.isIntersecting);
+        }
+      },
       { threshold: 0.08 },
     );
     observer.observe(setupPanel.current);
+    if (footer.current) observer.observe(footer.current);
     return () => observer.disconnect();
   }, [active]);
 
@@ -403,8 +422,8 @@ export function App({
             }
           }}
         >
-          <span className="brand-icon">
-            <PixelIcon kind="gamepad" size={22} />
+          <span className="brand-icon" aria-hidden="true">
+            <img src="/assets/arena-icon.svg" width="29" height="29" alt="" />
           </span>
           <span className="brand-name">
             ARENA
@@ -439,6 +458,14 @@ export function App({
           </button>
         </nav>
         <div className="header-right">
+          <button
+            className="icon-button header-help"
+            onClick={() => setModal("help")}
+            aria-label="Ayuda y controles"
+            title="Ayuda y controles"
+          >
+            <CircleHelp size={19} />
+          </button>
           {!active && (
             <button
               className="icon-button header-progress"
@@ -547,16 +574,30 @@ export function App({
         />
       )}
 
-      <footer className="site-footer page-width">
-        <span className="footer-note">
-          Parodia arcade · Habilidades ficticias
+      <footer className="site-footer page-width" ref={footer}>
+        <span className="footer-brand">
+          <img src="/assets/arena-icon.svg" width="26" height="26" alt="" />
+          <span className="footer-brand-name">
+            ARENA <span>CRIOLLA</span>
+          </span>
+          <span className="flag-mark" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
         </span>
-        <button onClick={() => setModal("ranking")}>
-          <Trophy size={13} />
-          Ranking <span>PRONTO</span>
-        </button>
+        <p className="footer-credit">
+          Hecho por{" "}
+          <a
+            href="https://kevinbravo.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Kevin Bravo
+          </a>
+        </p>
       </footer>
-      {!active && !modal && !detail && !setupVisible && (
+      {!active && !modal && !detail && !setupVisible && !footerVisible && (
         <div className="mobile-setup-dock">
           <span>
             <strong>{chosen.name}</strong>
@@ -724,28 +765,6 @@ export function App({
               </p>
             </div>
           )}
-        </Modal>
-      )}
-      {modal === "ranking" && (
-        <Modal title="La próxima ronda" onClose={() => setModal(null)}>
-          <div className="coming-soon">
-            <Trophy size={44} />
-            <span className="eyebrow">RANKING GLOBAL</span>
-            <h3>Los mejores tendrán su lugar.</h3>
-            <p>
-              La clasificación por victorias llegará más adelante. Mientras
-              tanto, puedes pelear sin cuentas y desbloquear los combos de tus
-              luchadores favoritos.
-            </p>
-            <button
-              className="primary-button"
-              onClick={() => {
-                setModal("progress");
-              }}
-            >
-              Ver mi progreso <ArrowRight size={16} />
-            </button>
-          </div>
         </Modal>
       )}
       {modal === "rooms" && (
@@ -930,6 +949,7 @@ function FighterDetail({
 }) {
   const f = fighterById(fighter);
   const personality = personalityById(fighter);
+  const finale = finaleById(fighter);
   return (
     <Modal title={f.name} wide onClose={onClose}>
       <div className="fighter-detail" style={colorStyle(f.color)}>
@@ -975,12 +995,23 @@ function FighterDetail({
             </details>
           )}
           <div className="special-description">
-            <Zap size={18} />
+            {wins < (f.specialUnlockWins ?? 0) ? (
+              <LockKeyhole size={18} />
+            ) : (
+              <Zap size={18} />
+            )}
             <div>
               <strong>{f.special}</strong>
               <span>
                 <kbd>L</kbd> Especial · 25 de energía
               </span>
+              {f.specialUnlockWins !== undefined && (
+                <span>
+                  {wins < f.specialUnlockWins
+                    ? `Gana ${f.specialUnlockWins} peleas con ${f.shortName} (${wins}/${f.specialUnlockWins})`
+                    : "Especial desbloqueado"}
+                </span>
+              )}
             </div>
           </div>
           <h3>Tu libro de combos</h3>
@@ -994,7 +1025,7 @@ function FighterDetail({
                     {unlocked ? <Check size={16} /> : <LockKeyhole size={15} />}
                   </span>
                   <div>
-                    <strong>{combo}</strong>
+                    <strong>{i === 2 && finale ? finale.title : combo}</strong>
                     <small>
                       {unlocked
                         ? i === 2
@@ -1002,12 +1033,24 @@ function FighterDetail({
                           : "Listo para pelear"
                         : `Gana ${threshold} ${threshold === 1 ? "pelea" : "peleas"} con ${f.shortName} (${wins}/${threshold})`}
                     </small>
+                    {i === 2 && finale && <small>{finale.description}</small>}
                   </div>
                   <kbd>{["J → K", "J → J → K", "I"][i]}</kbd>
                 </div>
               );
             })}
           </div>
+          {finale && (
+            <p className="finale-detail-note">
+              {finale.mode === "projectile"
+                ? "La definitiva lanza una onda a distancia. Puede bloquearse o esquivarse y consume 75 de energía, incluso si falla."
+                : finale.mode === "transformation"
+                  ? "La definitiva transforma al personaje durante seis segundos de combate. Sus ataques hacen un 20 % más de daño y consume 75 de energía."
+                  : finale.mode === "field"
+                    ? "La definitiva ocurre en la arena mientras la pelea continúa. Consume 75 de energía; sus impactos dependen del alcance y del contacto."
+                    : "La definitiva atrapa al rival a corta distancia. Puede bloquearse antes de que empiece la escena y consume 75 de energía."}
+            </p>
+          )}
           <button className="primary-button" onClick={onSelect}>
             Elegir a {f.shortName} <ArrowRight size={17} />
           </button>

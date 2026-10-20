@@ -1,32 +1,83 @@
 import { fighterById, stageById } from "../../shared/content";
 import type { MatchState } from "../../shared/engine";
+import { finaleById } from "../../shared/finales";
+import {
+  INTRO_COUNTDOWN_START,
+  entranceProgress,
+  introActor,
+} from "../../shared/presentation";
 import { TECHNIQUES } from "../../shared/techniques";
-import { drawSprite, type preloadAssets } from "./assets";
-import { drawStage } from "./stage-renderer";
-import { drawImpact } from "./effects-renderer";
-import { drawCuatro } from "./combat-props";
 import {
   advanceArenaCamera,
   cameraBounds,
   type ArenaCamera,
 } from "./arena-camera";
 import {
-  entranceProgress,
-  introActor,
-  INTRO_COUNTDOWN_START,
-} from "../../shared/presentation";
-import { drawPresentation } from "./presentation-renderer";
-import { drawIntroCinematic } from "./intro-renderer";
-import { drawVictory } from "./victory-renderer";
-import { drawCultureProjectile, drawCultureSpecial } from "./culture-renderer";
-import { drawFounderProjectile, drawFounderSpecial } from "./founder-renderer";
-import { drawIconProjectile, drawIconSpecial } from "./icon-renderer";
+  drawArenaFinaleLayer,
+  drawArenaFinaleProjectile,
+  drawArenaPerformer,
+} from "./arena-finale-renderer";
+import { drawSprite, type preloadAssets } from "./assets";
+import { drawAttackArt } from "./attack-art";
+import { combatLabel } from "./combat-label";
 import { drawCourierMotorcycle } from "./courier-renderer";
+import { drawCultureProjectile, drawCultureSpecial } from "./culture-renderer";
+import { drawImpact } from "./effects-renderer";
+import { drawFinale } from "./finale-renderer";
+import { drawAliSpecial } from "./finales/ali";
+import { drawBolivarSpecial } from "./finales/bolivar";
+import {
+  drawChataingSpecial,
+  drawMicrophoneCable,
+  drawWiredMicrophone,
+} from "./finales/chataing";
+import {
+  drawDayanaRunway,
+  drawDayanaRunwayBody,
+  drawDayanaSpecial,
+} from "./finales/dayana";
+import {
+  drawDeynaBallProjectile,
+  drawDeynaSpecial,
+  drawDeynaSquad,
+} from "./finales/deyna";
+import {
+  drawDudamelImpact,
+  drawDudamelProjectile,
+  drawDudamelSpecial,
+} from "./finales/dudamel";
+import {
+  drawLloronaImpact,
+  drawLloronaProjectile,
+  drawLloronaSpecial,
+} from "./finales/llorona";
+import { drawLorenzoProjectile, drawLorenzoSpecial } from "./finales/lorenzo";
+import {
+  drawMaiteFinaleBody,
+  drawMaiteGreeting,
+  drawSonicProjectile,
+} from "./finales/maite";
+import {
+  drawMelanioSignal,
+  drawMelanioSignalCharge,
+  drawMelanioSpecial,
+} from "./finales/melanio";
+import { simonSpecialPose } from "./finales/simon";
 import {
   drawFolkloreProjectile,
   drawFolkloreSpecial,
   drawFolkloreStatus,
 } from "./folklore-renderer";
+import { drawFounderProjectile, drawFounderSpecial } from "./founder-renderer";
+import { drawIconProjectile, drawIconSpecial } from "./icon-renderer";
+import { drawIntroCinematic } from "./intro-renderer";
+import { drawPresentation } from "./presentation-renderer";
+import { drawStage } from "./stage-renderer";
+import {
+  drawTransformationBody,
+  drawTransformationGauge,
+} from "./transformation-art";
+import { drawVictory } from "./victory-renderer";
 
 export type Assets = Awaited<ReturnType<typeof preloadAssets>>;
 export function renderMatch(
@@ -67,7 +118,19 @@ export function renderMatch(
     drawVictory(ctx, state, assets, victoryElapsed, reducedMotion);
     return;
   }
+  for (const field of state.fieldFinales ?? []) {
+    if (field.fighter === "deyna")
+      drawDeynaSquad(ctx, assets.finaleProps, field, "back");
+    else if (field.fighter === "dayana")
+      drawDayanaRunway(ctx, assets.finaleProps, field);
+  }
+  drawArenaFinaleLayer(ctx, assets.finaleProps, state, "back", reducedMotion);
   for (const projectile of state.projectiles) {
+    if (
+      projectile.tether &&
+      state.players[projectile.owner].config.fighter === "chataing"
+    )
+      continue;
     const color = fighterById(
       state.players[projectile.owner].config.fighter,
     ).color;
@@ -84,10 +147,19 @@ export function renderMatch(
     ctx.fillStyle = color;
     ctx.strokeStyle = "#ffffff";
     ctx.lineWidth = 2;
-    if (projectile.kind === "courier") {
+    if (drawArenaFinaleProjectile(ctx, assets.finaleProps, projectile)) {
+      // Original artwork is retained when a projectile changes owners.
+    } else if (projectile.kind === "sonic") {
+      drawSonicProjectile(ctx, projectile, reducedMotion);
+    } else if (projectile.kind === "courier") {
       if (assets.courier)
         drawCourierMotorcycle(ctx, projectile, assets.courier, reducedMotion);
     } else if (
+      drawLloronaProjectile(ctx, assets.finaleProps, projectile) ||
+      drawDudamelProjectile(ctx, projectile) ||
+      drawLorenzoProjectile(ctx, assets.finaleProps, projectile) ||
+      drawDeynaBallProjectile(ctx, assets.finaleProps, projectile) ||
+      drawMelanioSignal(ctx, assets.finaleProps, projectile) ||
       drawIconProjectile(ctx, projectile) ||
       drawFounderProjectile(ctx, projectile) ||
       drawCultureProjectile(ctx, projectile) ||
@@ -95,14 +167,38 @@ export function renderMatch(
     ) {
       // The folklore effects share the same glow and transform as other shots.
     } else if (projectile.kind === "installments") {
+      ctx.shadowBlur = 0;
       ctx.rotate(Math.sin((projectile.age ?? 0) / 9) * 0.08);
-      ctx.beginPath();
-      ctx.roundRect(-18, -12, 36, 24, 5);
-      ctx.fill();
-      ctx.stroke();
-      ctx.fillStyle = "#242837";
-      ctx.fillRect(-13, -5, 8, 6);
-      ctx.fillRect(0, 5, 12, 2);
+      // Keep the printed C readable when the projectile travels left.
+      const painted = drawAttackArt(
+        ctx,
+        assets.finaleProps,
+        "vallenilla",
+        "box",
+        0,
+        23,
+        46,
+        Math.sign(projectile.vx) ||
+          projectile.direction ||
+          state.players[projectile.owner].facing,
+      );
+      if (!painted) {
+        // Failed optional artwork must not leave a damaging projectile invisible.
+        ctx.fillStyle = "#fff52c";
+        ctx.strokeStyle = "#30312d";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(-21, -21, 42, 42, 7);
+        ctx.fill();
+        ctx.stroke();
+        ctx.save();
+        ctx.scale(Math.sign(projectile.vx) || projectile.direction || 1, 1);
+        ctx.lineWidth = 7;
+        ctx.beginPath();
+        ctx.arc(0, 0, 11, Math.PI * 0.2, Math.PI * 1.8);
+        ctx.stroke();
+        ctx.restore();
+      }
     } else if (projectile.kind === "cuatro") {
       ctx.rotate(Math.sin(time / 100) * 0.12);
       ctx.beginPath();
@@ -111,12 +207,16 @@ export function renderMatch(
       ctx.fillRect(2, -18, 3, 28);
       ctx.fillRect(3, -18, 13, 4);
     } else if (projectile.kind === "static") {
-      ctx.rotate(time / 110);
-      ctx.beginPath();
-      ctx.roundRect(-6, -20, 12, 25, 6);
-      ctx.fill();
-      ctx.fillRect(-2, 3, 4, 17);
-      ctx.strokeRect(-5, -15, 10, 10);
+      // Community users of the technique retain a visible physical microphone.
+      drawWiredMicrophone(
+        ctx,
+        assets.finaleProps,
+        { x: 0, y: 0 },
+        1,
+        0,
+        40,
+        false,
+      );
     } else if (projectile.kind === "broadcast") {
       for (let ring = 0; ring < 3; ring++) {
         ctx.globalAlpha = 1 - ring * 0.22;
@@ -136,6 +236,15 @@ export function renderMatch(
       }
     }
     ctx.restore();
+  }
+  if (
+    state.phase === "playing" &&
+    state.finale &&
+    finaleById(state.finale.fighter)?.mode === "capture"
+  ) {
+    drawFinale(ctx, state, assets.sprites, assets.finaleProps, reducedMotion);
+    ctx.restore();
+    return;
   }
   state.players.forEach((p, i) => {
     if (p.stocks <= 0) return;
@@ -197,30 +306,46 @@ export function renderMatch(
                 : Math.abs(p.vx) > 0.7
                   ? 2 + (Math.floor(state.tick / 7) % 2)
                   : sprite.battleFrame;
-      } else if (
-        (def.ability === "curtain" && p.attackTick <= 26) ||
-        (def.ability === "cadenza" && p.attackTick <= 22)
-      )
-        frame = 1;
+      } else if (def.ability === "curtain" && p.attackTick <= 26) frame = 1;
       else if (def.ability === "strum" || def.ability === "tremolo")
         frame = p.attackTick % 12 < 6 ? 0 : 5;
       else if (def.ability === "cuatro") frame = sprite.battleFrame;
-      else if (def.ability === "syncopate")
+      else if (def.ability === "echo") {
+        const technique = TECHNIQUES.echo;
+        const speaking = technique.pulses!.some(
+          (offset) =>
+            p.attackTick >= technique.startup + offset &&
+            p.attackTick < technique.startup + offset + 9,
+        );
+        frame =
+          p.attackTick < technique.startup
+            ? 1
+            : speaking
+              ? 5
+              : sprite.battleFrame;
+      } else if (def.ability === "syncopate")
         frame = p.attackTick > 34 ? 6 : 2 + (Math.floor(p.attackTick / 7) % 2);
       else if (def.ability === "zapateo") frame = p.attackTick % 10 < 4 ? 6 : 0;
       else if (def.ability === "pivot") frame = p.attackTick < 22 ? 4 : 6;
-      else if (["runway", "sprint", "whirl", "rally", "liberator"].includes(def.ability))
+      else if (def.ability === "whirl")
+        frame =
+          p.attackTick < TECHNIQUES.whirl.startup
+            ? 1
+            : p.attackTick < TECHNIQUES.whirl.startup + 9
+              ? 5
+              : sprite.battleFrame;
+      else if (["runway", "sprint", "rally", "liberator"].includes(def.ability))
         frame =
           p.dash > 0
             ? 2 + (Math.floor(p.attackTick / 4) % 2)
             : sprite.battleFrame;
       else if (def.ability === "spin")
         frame =
-          p.attackTick < 9
+          p.attackTick < 4
             ? 1
-            : p.attackTick < 18
+            : p.attackTick < TECHNIQUES.spin.startup
               ? 4
-              : p.attackTick < 33
+              : p.attackTick < TECHNIQUES.spin.startup + 14
                 ? 6
                 : sprite.battleFrame;
       else if (def.ability === "command")
@@ -235,32 +360,127 @@ export function renderMatch(
       !reducedMotion && !p.attack && p.grounded && !p.stun && !p.blocking
         ? Math.sin(time / 240 + i) * 1.5
         : 0;
-    if (p.dash > 0) {
-      ctx.globalAlpha = 0.16;
-      drawSprite(
-        ctx,
-        sprite,
-        frame,
-        p.x - p.facing * 44,
-        p.y,
-        bodyHeight,
-        p.facing,
-      );
-      ctx.globalAlpha = 0.28;
-      drawSprite(
-        ctx,
-        sprite,
-        frame,
-        p.x - p.facing * 22,
-        p.y,
-        bodyHeight,
-        p.facing,
-      );
-      ctx.globalAlpha = 1;
+    const drawBody = (x: number, feet: number) => {
+      if (
+        !drawTransformationBody(ctx, assets.finaleProps, p, x, feet, bodyHeight)
+      )
+        drawSprite(ctx, sprite, frame, x, feet, bodyHeight, p.facing);
+    };
+    if (p.dash > 0 && !reducedMotion) {
+      const opacity = ctx.globalAlpha;
+      ctx.globalAlpha = opacity * 0.16;
+      drawBody(p.x - p.facing * 44, p.y);
+      ctx.globalAlpha = opacity * 0.28;
+      drawBody(p.x - p.facing * 22, p.y);
+      ctx.globalAlpha = opacity;
     }
-    drawSprite(ctx, sprite, frame, p.x, p.y + idleBob, bodyHeight, p.facing);
-    if (def.ability === "cuatro" && p.attack === "special" && !p.stun)
-      drawCuatro(ctx, p, bodyHeight);
+    const paintedArena = drawArenaPerformer(
+      ctx,
+      assets.finaleProps,
+      state,
+      p,
+      bodyHeight,
+      reducedMotion,
+    );
+    const playingCuatro =
+      def.id === "simon" && p.attack === "special" && !p.stun;
+    const paintedCuatro =
+      drawAliSpecial(ctx, assets.finaleProps, p, bodyHeight) ||
+      (playingCuatro &&
+        drawAttackArt(
+          ctx,
+          assets.finaleProps,
+          "simon",
+          simonSpecialPose(p.attackTick),
+          p.x,
+          p.y,
+          bodyHeight,
+          p.facing,
+        ));
+    const paintedGreeting =
+      !paintedCuatro &&
+      drawMaiteFinaleBody(ctx, assets.finaleProps, p, bodyHeight);
+    const paintedMicrophone =
+      !paintedCuatro &&
+      !paintedGreeting &&
+      drawChataingSpecial(ctx, state, assets.finaleProps, p, i, bodyHeight);
+    const paintedSignal =
+      !paintedCuatro &&
+      !paintedGreeting &&
+      !paintedMicrophone &&
+      drawMelanioSpecial(ctx, assets.finaleProps, p, bodyHeight);
+    const paintedFootball =
+      !paintedSignal &&
+      drawDeynaSpecial(ctx, assets.finaleProps, p, bodyHeight);
+    const paintedRunway = drawDayanaRunwayBody(
+      ctx,
+      assets.finaleProps,
+      state,
+      p,
+      bodyHeight,
+    );
+    const paintedPageant =
+      !paintedRunway &&
+      drawDayanaSpecial(ctx, assets.finaleProps, p, bodyHeight);
+    const paintedLlorona = drawLloronaSpecial(
+      ctx,
+      assets.finaleProps,
+      p,
+      bodyHeight,
+    );
+    const paintedConductor = drawDudamelSpecial(
+      ctx,
+      assets.finaleProps,
+      p,
+      bodyHeight,
+    );
+    const paintedSabre = drawBolivarSpecial(
+      ctx,
+      assets.finaleProps,
+      p,
+      bodyHeight,
+    );
+    const paintedPan = drawLorenzoSpecial(
+      ctx,
+      assets.finaleProps,
+      p,
+      bodyHeight,
+    );
+    if (
+      !paintedLlorona &&
+      !paintedConductor &&
+      !paintedSabre &&
+      !paintedPan &&
+      !paintedCuatro &&
+      !paintedGreeting &&
+      !paintedMicrophone &&
+      !paintedSignal &&
+      !paintedFootball &&
+      !paintedPageant &&
+      !paintedRunway &&
+      !paintedArena
+    ) {
+      drawBody(p.x, p.y + idleBob);
+      const tether =
+        def.id === "chataing" &&
+        state.projectiles.find((shot) => shot.owner === i && shot.tether);
+      if (tether) {
+        // A failed optional sheet keeps the canonical held mic unique. A neutral
+        // contact marker still exposes the exact physical projectile position.
+        drawMicrophoneCable(ctx, { x: p.x, y: p.y - 115 }, tether, 14, 2);
+        ctx.save();
+        ctx.shadowBlur = 0;
+        ctx.strokeStyle = "#dce8ee";
+        ctx.fillStyle = "#353e49";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(tether.x, tether.y, 7, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+    drawTransformationGauge(ctx, p);
     if (
       (p.attack === "light" || p.attack === "heavy") &&
       p.attackTick >= 5 &&
@@ -287,7 +507,12 @@ export function renderMatch(
       ctx.globalAlpha = Math.max(0, 1 - Math.abs(progress) / 18);
       drawFolkloreSpecial(ctx, def.ability, p, state.players[1 - i], progress);
       drawFounderSpecial(ctx, def.ability, p, state.players[1 - i], progress);
-      drawIconSpecial(ctx, def.ability, p, progress);
+      if (
+        def.id !== "lorenzo" &&
+        def.id !== "bolivar" &&
+        !drawMelanioSignalCharge(ctx, assets.finaleProps, p, bodyHeight)
+      )
+        drawIconSpecial(ctx, def.ability, p, progress);
       drawCultureSpecial(
         ctx,
         def.ability,
@@ -341,20 +566,41 @@ export function renderMatch(
         ctx.stroke();
       } else if (def.ability === "salsa" || def.ability === "spin") {
         ctx.beginPath();
-        ctx.ellipse(p.x, p.y - 90, 90, 45, progress / 16, 0, Math.PI * 1.75);
+        const radius = def.ability === "spin" ? technique.range : 90;
+        ctx.ellipse(
+          p.x,
+          p.y - 90,
+          radius,
+          radius / 2,
+          progress / 16,
+          0,
+          Math.PI * 1.75,
+        );
         ctx.stroke();
       } else if (def.ability === "echo" || def.ability === "punchline") {
-        [50, 95].forEach((distance, index) => {
-          ctx.beginPath();
-          ctx.arc(
-            p.x + p.facing * distance,
-            p.y - 80,
-            18 + index * 10,
-            0,
-            Math.PI * 2,
-          );
-          ctx.stroke();
-        });
+        const echoPulse =
+          def.ability === "echo" || def.ability === "punchline"
+            ? technique.pulses!.findIndex(
+                (offset) => progress >= offset && progress < offset + 9,
+              )
+            : 0;
+        if (echoPulse >= 0)
+          ctx.globalAlpha = 1 - (progress - technique.pulses![echoPulse]) / 9;
+        if (echoPulse >= 0)
+          [50, 95].forEach((distance, index) => {
+            ctx.beginPath();
+            ctx.arc(
+              p.x +
+                p.facing *
+                  (distance +
+                    echoPulse * (def.ability === "punchline" ? 90 : 35)),
+              p.y - 80,
+              18 + index * 10,
+              0,
+              Math.PI * 2,
+            );
+            ctx.stroke();
+          });
       }
       ctx.restore();
     }
@@ -377,15 +623,21 @@ export function renderMatch(
     ctx.font = '700 13px "DM Sans", sans-serif';
     ctx.textAlign = "center";
     ctx.fillText(`P${i + 1}`, p.x, p.y - bodyHeight - 34);
-    if (p.combo && state.tick - p.comboTick < 75) {
+    const label = combatLabel(p, state.tick);
+    if (label) {
       ctx.fillStyle = "#ffffff";
       ctx.font = 'italic 700 22px "Barlow Condensed", sans-serif';
       ctx.shadowColor = "#000";
       ctx.shadowBlur = 6;
-      ctx.fillText(p.combo.toUpperCase(), p.x, p.y - 240);
+      ctx.fillText(label.toLocaleUpperCase("es"), p.x, p.y - 240);
     }
+    drawMaiteGreeting(ctx, p);
     ctx.restore();
   });
+  for (const field of state.fieldFinales ?? [])
+    if (field.fighter === "deyna")
+      drawDeynaSquad(ctx, assets.finaleProps, field, "front");
+  drawArenaFinaleLayer(ctx, assets.finaleProps, state, "front", reducedMotion);
   if (
     state.hitstop > 0 &&
     state.effects.some(
@@ -398,6 +650,10 @@ export function renderMatch(
     ctx.fillStyle = "#fff2d90c";
     ctx.fillRect(bounds.x, bounds.y, width, height);
   }
-  state.effects.forEach((e) => drawImpact(ctx, e));
+  state.effects.forEach((e) => {
+    drawImpact(ctx, e);
+    drawLloronaImpact(ctx, state, assets.finaleProps, e);
+    drawDudamelImpact(ctx, state, e);
+  });
   ctx.restore();
 }

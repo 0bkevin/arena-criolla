@@ -1,5 +1,21 @@
 # Import into the host's existing Caddyfile. The app port stays on loopback.
-arena.kevinbravo.com, arenacriolla.161-153-114-230.sslip.io {
-    encode zstd gzip
-    reverse_proxy 127.0.0.1:35173
+arenacriolla.com {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:35173
+}
+
+# Combine HTTPS and hostname normalization in a single redirect.
+http://arenacriolla.com,
+http://www.arenacriolla.com, https://www.arenacriolla.com,
+http://arena.kevinbravo.com, https://arena.kevinbravo.com,
+http://arenacriolla.161-153-114-230.sslip.io, https://arenacriolla.161-153-114-230.sslip.io {
+	@index path_regexp (?i)^/index[.]html/?$
+	@workshop path_regexp (?i)^/create(?:/.*)?$
+	route {
+		# The workshop remains temporarily unavailable, as in the application.
+		redir @workshop https://arenacriolla.com/ 302
+		# Rewrite only the path, keeping the raw invitation query unchanged.
+		rewrite @index /
+		redir https://arenacriolla.com{uri} 308
+	}
 }

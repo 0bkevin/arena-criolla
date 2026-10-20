@@ -216,6 +216,23 @@ test("production HTML has fresh CSP nonces and browser protections without cachi
   assert.match(policy, /frame-ancestors 'none'/);
   assert.ok(!policy.includes("unsafe-eval"));
   assert.ok(!policy.match(/script-src[^;]*'unsafe-inline'/));
+  const directives = new Map(
+    policy.split(";").map((directive) => {
+      const [name, ...sources] = directive.trim().split(/\s+/);
+      return [name, sources];
+    }),
+  );
+  assert.deepEqual(directives.get("script-src"), [
+    "'self'",
+    `'nonce-${nonce}'`,
+  ]);
+  assert.deepEqual(directives.get("frame-src"), ["'none'"]);
+  assert.deepEqual(directives.get("default-src"), ["'self'"]);
+  assert.deepEqual(directives.get("media-src"), ["'self'", "data:", "blob:"]);
+  assert.deepEqual(directives.get("connect-src"), [
+    "'self'",
+    base.replace(/^http/, "ws"),
+  ]);
   const html = await first.text();
   assert.ok(html.includes(`nonce="${nonce}"`));
   assert.ok(!html.includes("PRIVATE"));

@@ -1,3 +1,4 @@
+import { fieldFinaleBounds } from "../../shared/field-finales";
 import { WORLD } from "../../shared/arena";
 import { fighterById } from "../../shared/content";
 import type { MatchState } from "../../shared/engine";
@@ -44,8 +45,9 @@ export function advanceArenaCamera(
   const positions = players.map((player) =>
     clamp(player.x, WORLD.x - 120, WORLD.x + WORLD.width + 120),
   );
-  const left = Math.min(...positions);
-  const right = Math.max(...positions);
+  const fields = fieldFinaleBounds(state);
+  const left = Math.min(...positions, ...fields.map((field) => field.left));
+  const right = Math.max(...positions, ...fields.map((field) => field.right));
   const head = Math.min(
     ...players.map((player) =>
       Math.max(

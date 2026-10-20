@@ -4,9 +4,7 @@
   user-select: none;
 }
 .touch-button > span {
-  font:
-    700 7px/1 "DM Sans",
-    sans-serif;
+  font: 700 7px/1 var(--font-body);
   letter-spacing: 0;
 }
 .touch-button.is-pressed {
@@ -89,6 +87,11 @@
 .game-page:not(.is-touch) .arena-location {
   font-size: 10px;
   letter-spacing: 0.5px;
+}
+/* Preserve the control pad's space while the finale freezes combat. */
+.game-page[data-finale] > .touch-controls {
+  visibility: hidden;
+  pointer-events: none;
 }
 #root:fullscreen {
   background: #081322;
@@ -245,8 +248,8 @@ body:has(.game-page.is-touch) {
 .game-page.is-touch .match-clock > strong {
   font-size: 25px;
 }
-.game-page.is-touch .match-clock > span {
-  font-size: 8px;
+.game-page.is-touch .match-clock > .match-clock-minutes {
+  font-size: 16px;
 }
 .game-page.is-touch .health-track {
   height: 14px;
@@ -463,9 +466,7 @@ body:has(.game-page.is-touch) {
   margin-bottom: 22px;
 }
 .orientation-card h2 {
-  font:
-    italic 800 34px/1.1 "Barlow Condensed",
-    sans-serif;
+  font: italic 800 34px/1.1 var(--font-display);
   color: #fff0c3;
 }
 .orientation-card p {

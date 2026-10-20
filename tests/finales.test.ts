@@ -1,0 +1,489 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {
+  BUILT_IN_FIGHTERS,
+  COMMUNITY_DEFINITIONS,
+  fighterById,
+  platformsAtTick,
+  type FighterId,
+} from "../shared/content";
+import {
+  ACTIONS,
+  createMatch,
+  emptyInput,
+  stepMatch,
+  WORLD,
+  type Input,
+  type MatchState,
+} from "../shared/engine";
+import {
+  FINALES,
+  FINALE_CAPTURE_TICK,
+  FINALE_DAMAGE_BEATS,
+  FINALE_DURATION,
+  finaleById,
+} from "../shared/finales";
+
+function setup(
+  fighter: FighterId = "capriles",
+  rival: FighterId = "javier",
+  side: 0 | 1 = 0,
+) {
+  const state = createMatch("caracas", [
+    { name: "Uno", fighter: side === 0 ? fighter : rival, wins: 3 },
+    { name: "Dos", fighter: side === 1 ? fighter : rival, wins: 3 },
+  ]);
+  state.phase = "playing";
+  state.players.forEach((p, i) => {
+    p.x = i === 0 ? 330 : 530;
+    p.invincible = 0;
+    p.energy = 100;
+  });
+  const inputs: [Input, Input] = [emptyInput(), emptyInput()];
+  const advance = (frames: number) => {
+    for (let frame = 0; frame < frames; frame++) stepMatch(state, inputs);
+  };
+  const start = () => {
+    inputs[side].actions.super++;
+    advance(FINALE_CAPTURE_TICK);
+  };
+  return {
+    state,
+    inputs,
+    advance,
+    start,
+    source: state.players[side],
+    target: state.players[1 - side],
+  };
+}
+
+function close(actual: number, expected: number, message?: string) {
+  assert.ok(
+    Math.abs(actual - expected) < 1e-8,
+    message ?? `${actual} ≈ ${expected}`,
+  );
+}
+
+test("all built-in finales exercise their combat mode against every rival on either side", () => {
+  assert.equal(BUILT_IN_FIGHTERS.length, 53);
+  assert.equal(Object.keys(FINALES).length, BUILT_IN_FIGHTERS.length);
+  let scenes = 0;
+  for (const fighter of BUILT_IN_FIGHTERS)
+    for (const rival of BUILT_IN_FIGHTERS)
+      for (const side of [0, 1] as const) {
+        const r = setup(fighter.id, rival.id, side);
+        r.start();
+        const context = `${fighter.id} → ${rival.id}, P${side + 1}`;
+        const scene = r.state.finale;
+        if (finaleById(fighter.id)!.mode === "field") {
+          assert.equal(scene, undefined, context);
+          assert.equal(r.state.fieldFinales?.[0]?.fighter, fighter.id, context);
+          assert.equal(
+            r.target.hp,
+            100,
+            context + ": no automatic capture damage",
+          );
+          const tick = r.state.tick,
+            remaining = r.state.remaining;
+          r.inputs[1 - side].actions.jump++;
+          r.advance(12);
+          assert.ok(r.state.tick > tick, context + ": combat clock continues");
+          assert.ok(
+            r.state.remaining < remaining,
+            context + ": round timer continues",
+          );
+          assert.ok(r.target.y < WORLD.floor, context + ": rival can jump");
+          r.advance(320);
+          assert.equal(r.state.fieldFinales, undefined, context);
+          scenes++;
+          continue;
+        }
+        if (finaleById(fighter.id)!.mode === "projectile") {
+          assert.equal(scene, undefined, context);
+          assert.equal(
+            r.target.hp,
+            100,
+            context + ": no remote damage before contact",
+          );
+          assert.equal(r.state.projectiles.length, 1, context);
+          r.advance(25);
+          close(
+            r.target.hp,
+            100 - (28 * fighter.damage + 12) * rival.armor,
+            context,
+          );
+          assert.equal(r.source.hits, 1, context);
+          assert.equal(r.state.projectiles.length, 0, context);
+          r.advance(90);
+          assert.equal(r.source.attack, null, context);
+          scenes++;
+          continue;
+        }
+        if (finaleById(fighter.id)!.mode === "transformation") {
+          assert.equal(scene, undefined, context);
+          assert.equal(r.source.transformation?.ticks, 360, context);
+          assert.equal(r.source.transformation?.damageMultiplier, 1.2, context);
+          assert.equal(r.target.hp, 100, context);
+          assert.equal(r.source.hits, 0, context);
+          const tick = r.state.tick;
+          r.advance(360);
+          assert.equal(r.source.transformation, undefined, context);
+          assert.equal(r.state.tick, tick + 360, context);
+          assert.equal(r.target.hp, 100, context);
+          scenes++;
+          continue;
+        }
+        assert.ok(scene, context);
+        assert.equal(scene.owner, side, context);
+        assert.equal(scene.target, 1 - side, context);
+        assert.equal(scene.fighter, fighter.id, context);
+        assert.equal(scene.direction, side === 0 ? 1 : -1, context);
+        assert.equal(scene.x, 430, context);
+        assert.equal(scene.y, WORLD.floor, context);
+        assert.equal(r.target.hp, 100, context);
+        assert.equal(r.source.hits, 0, context);
+        const damage = (28 * fighter.damage + 12) * rival.armor;
+        close(scene.damage, damage, context);
+        const positions = r.state.players.map((p) => [p.x, p.y]);
+        const remaining = r.state.remaining;
+        const tick = r.state.tick;
+        let priorBeat = 0;
+        for (const [index, beat] of finaleById(
+          fighter.id,
+        )!.damageBeats.entries()) {
+          r.advance(beat - priorBeat - 1);
+          close(
+            r.target.hp,
+            100 - (damage * index) / finaleById(fighter.id)!.damageBeats.length,
+            context,
+          );
+          r.advance(1);
+          close(
+            r.target.hp,
+            100 -
+              (damage * (index + 1)) /
+                finaleById(fighter.id)!.damageBeats.length,
+            context,
+          );
+          assert.equal(r.source.hits, 1, context);
+          assert.equal(r.source.peakCombo, 1, context);
+          assert.deepEqual(
+            r.state.players.map((p) => [p.x, p.y]),
+            positions,
+            context,
+          );
+          assert.equal(r.state.remaining, remaining, context);
+          assert.equal(r.state.tick, tick, context);
+          priorBeat = beat;
+        }
+        r.advance(scene.duration - priorBeat);
+        assert.equal(r.state.finale, undefined, context);
+        close(r.target.hp, 100 - damage, context);
+        assert.equal(r.target.stocks, 2, context);
+        assert.equal(Math.sign(r.target.vx), scene.direction, context);
+        close(
+          Math.abs(r.target.vx),
+          (finaleById(fighter.id)?.release?.force ?? 12) * (1 + damage / 90),
+          context,
+        );
+        assert.equal(r.source.attack, null, context);
+        assert.equal(r.source.hits, 1, context);
+        close(r.source.energy, 38.28, context);
+        scenes++;
+      }
+  assert.equal(scenes, BUILT_IN_FIGHTERS.length ** 2 * 2);
+});
+
+test("finales keep the three-win and 75-energy gates, and Vicente's single motorcycle is available from zero wins", () => {
+  for (const fighter of BUILT_IN_FIGHTERS)
+    for (const [wins, energy] of [
+      [0, 100],
+      [2, 100],
+      [3, 74],
+      [3, 75],
+    ] as const) {
+      const r = setup(fighter.id);
+      r.source.config.wins = wins;
+      r.source.energy = energy;
+      r.start();
+      assert.equal(
+        Boolean(
+          r.state.finale ||
+          r.source.transformation ||
+          r.state.fieldFinales?.length ||
+          r.state.projectiles.some((p) => p.impact === "super"),
+        ),
+        wins === 3 && energy >= 75,
+        `${fighter.id}/${wins}/${energy}`,
+      );
+      if (!r.state.finale) assert.equal(r.target.hp, 100);
+    }
+  for (const wins of [0, 2, 3]) {
+    const r = setup("zavarce");
+    r.source.config.wins = wins;
+    r.inputs[0].actions.special++;
+    r.advance(1);
+    assert.equal(r.source.attack, "special");
+  }
+});
+
+test("distance, height, facing, spawn protection and a facing guard can prevent capture", () => {
+  for (const side of [0, 1] as const)
+    for (const reason of [
+      "distance",
+      "height",
+      "behind",
+      "invincible",
+      "guard",
+    ] as const) {
+      const r = setup("capriles", "javier", side);
+      if (reason === "distance") r.target.x += side === 0 ? 100 : -100;
+      if (reason === "height") {
+        r.target.y -= 220;
+        r.target.grounded = false;
+        r.target.supportPlatform = null;
+      }
+      if (reason === "invincible") r.target.invincible = 30;
+      if (reason === "guard") r.inputs[1 - side].block = true;
+      r.inputs[side].actions.super++;
+      r.advance(1);
+      if (reason === "behind") r.source.facing *= -1;
+      r.advance(FINALE_CAPTURE_TICK - 1);
+      assert.equal(r.state.finale, undefined, `${side}/${reason}`);
+      assert.equal(r.target.hp, 100, `${side}/${reason}`);
+      assert.equal(r.source.hits, 0, `${side}/${reason}`);
+      if (reason === "guard") {
+        assert.ok(r.target.energy < 91);
+        assert.ok(
+          r.state.effects.some(
+            (e) => e.kind === "block" && e.impact === "super",
+          ),
+        );
+      }
+      assert.ok(
+        r.source.energy < 26,
+        "a missed or defended super still costs energy",
+      );
+    }
+  const backwards = setup();
+  backwards.inputs[1].block = true;
+  backwards.inputs[1].right = true;
+  backwards.start();
+  assert.ok(
+    backwards.state.finale,
+    "guarding in the wrong direction does not prevent capture",
+  );
+});
+
+test("a counter and a startup interruption stop a cinematic before capture", () => {
+  for (const side of [0, 1] as const) {
+    const counter = setup("capriles", "amanda", side);
+    counter.inputs[1 - side].actions.special++;
+    counter.start();
+    assert.equal(counter.state.finale, undefined);
+    assert.equal(counter.target.hp, 100);
+    assert.equal(counter.target.countered, true);
+    assert.ok(counter.source.hp < 100);
+    assert.equal(counter.source.attack, null);
+    const interrupted = setup("capriles", "javier", side);
+    interrupted.target.x = interrupted.source.x + (side === 0 ? 80 : -80);
+    interrupted.inputs[1 - side].actions.light++;
+    interrupted.start();
+    assert.equal(interrupted.state.finale, undefined);
+    assert.ok(interrupted.source.hp < 100);
+    assert.equal(interrupted.source.attack, null);
+  }
+});
+
+test("cinematics consume inputs without queueing, freeze projectiles, and retain recovery on release", () => {
+  const r = setup();
+  r.start();
+  r.state.projectiles.push({
+    id: r.state.nextId++,
+    owner: 1,
+    x: 30,
+    y: 40,
+    vx: 4,
+    life: 60,
+    age: 7,
+    kind: "spin",
+    damage: 7,
+  });
+  const projectiles = structuredClone(r.state.projectiles);
+  const cooldown = r.source.cooldown;
+  for (let frame = 0; frame < FINALE_DURATION; frame++) {
+    for (const input of r.inputs) {
+      for (const action of ACTIONS) input.actions[action]++;
+      input.left = input.right = input.block = input.down = true;
+    }
+    r.advance(1);
+    assert.deepEqual(r.state.projectiles, projectiles);
+  }
+  assert.equal(r.source.cooldown, cooldown);
+  assert.ok(r.source.cooldown > 0);
+  assert.equal(r.source.attack, null);
+  assert.equal(r.target.stun, 36);
+  r.advance(1);
+  assert.equal(r.state.projectiles[0].age, 8);
+  assert.equal(r.state.projectiles[0].life, 59);
+  r.advance(75);
+  assert.equal(r.source.attack, null);
+  assert.equal(r.target.attack, null);
+  assert.equal(r.source.jumps, 0);
+});
+
+test("an airborne cinematic freezes actors in place and releases them without teleporting", () => {
+  const r = setup();
+  for (const p of r.state.players) {
+    p.y = 260;
+    p.grounded = false;
+    p.supportPlatform = null;
+    p.vy = -4;
+  }
+  r.start();
+  const positions = r.state.players.map((p) => [p.x, p.y]);
+  assert.equal(r.state.finale!.y, Math.min(...positions.map((p) => p[1])));
+  r.advance(FINALE_DURATION);
+  assert.deepEqual(
+    r.state.players.map((p) => [p.x, p.y]),
+    positions,
+  );
+  r.advance(1);
+  assert.ok(r.source.y !== positions[0][1]);
+});
+
+test("a moving platform pauses on capture and carries its rider smoothly after release", () => {
+  const r = setup();
+  r.state.stage = "canaima";
+  const platform = platformsAtTick(r.state.stage, r.state.tick)[2];
+  r.source.x = platform.x + 35;
+  r.source.y = platform.y;
+  r.source.supportPlatform = 2;
+  r.target.x = r.source.x + 110;
+  r.target.y = platform.y;
+  r.target.supportPlatform = 2;
+  r.start();
+  assert.ok(r.state.finale);
+  const before = { tick: r.state.tick, x: r.source.x, y: r.source.y };
+  r.advance(FINALE_DURATION);
+  assert.equal(r.state.tick, before.tick);
+  assert.equal(r.source.x, before.x);
+  assert.equal(r.source.y, before.y);
+  const next = platformsAtTick(r.state.stage, before.tick + 1)[2];
+  r.advance(1);
+  assert.equal(r.source.grounded, true);
+  assert.equal(r.source.supportPlatform, 2);
+  assert.equal(r.source.y, next.y);
+});
+
+test("lethal beats and a timer reaching zero wait until the scene ends to resolve stock or match results", () => {
+  for (const stocks of [1, 2]) {
+    const r = setup();
+    r.target.hp = 1;
+    r.target.stocks = stocks;
+    r.state.remaining = FINALE_CAPTURE_TICK;
+    r.start();
+    assert.equal(r.state.remaining, 0);
+    assert.equal(r.state.phase, "playing");
+    r.advance(FINALE_DAMAGE_BEATS[0]);
+    assert.equal(r.target.hp, 0);
+    assert.equal(r.target.stocks, stocks);
+    assert.equal(r.state.phase, "playing");
+    r.advance(FINALE_DURATION - FINALE_DAMAGE_BEATS[0] - 1);
+    assert.ok(r.state.finale);
+    assert.equal(r.target.stocks, stocks);
+    r.advance(1);
+    assert.equal(r.state.finale, undefined);
+    assert.equal(r.target.stocks, stocks - 1);
+    assert.equal(r.state.phase, "finished");
+    assert.equal(r.state.winner, 0);
+    assert.equal(r.target.hp, stocks === 2 ? 100 : 0);
+  }
+});
+
+test("simultaneous supers select one deterministic scene and serialized scenes replay exactly", () => {
+  const r = setup("nacho", "giuseppe");
+  r.inputs[1].actions.super++;
+  r.start();
+  assert.equal(r.state.finale!.owner, 0);
+  assert.equal(r.target.attack, null);
+  r.advance(66);
+  const replay: MatchState = JSON.parse(JSON.stringify(r.state));
+  const replayInputs: [Input, Input] = structuredClone(r.inputs);
+  for (let frame = 0; frame < FINALES.nacho.duration + 60; frame++) {
+    if (frame % 11 === 0) {
+      r.inputs[0].actions.jump++;
+      replayInputs[0].actions.jump++;
+    }
+    if (frame % 17 === 0) {
+      r.inputs[1].actions.light++;
+      replayInputs[1].actions.light++;
+    }
+    r.advance(1);
+    stepMatch(replay, replayInputs);
+    assert.deepEqual(replay, r.state);
+  }
+  const rematch = createMatch(r.state.stage, [
+    r.source.config,
+    r.target.config,
+  ]);
+  assert.equal(rematch.finale, undefined);
+  assert.equal(rematch.players[0].hits, 0);
+  assert.equal(rematch.players[1].hp, 100);
+});
+
+test("exact lethal thresholds resolve without floating-point survivors, while a tiny HP advantage survives", () => {
+  for (const fighter of BUILT_IN_FIGHTERS)
+    for (const side of [0, 1] as const)
+      for (const margin of [0, -0.0001, 0.0001]) {
+        const r = setup(fighter.id, "javier", side);
+        const damage = (28 * fighter.damage + 12) * fighterById("javier").armor;
+        if (finaleById(fighter.id)!.mode === "field") continue;
+        if (finaleById(fighter.id)!.mode === "transformation") {
+          r.target.hp = Math.max(0.0001, damage + margin);
+          r.start();
+          r.advance(360);
+          assert.equal(r.target.hp, Math.max(0.0001, damage + margin));
+          assert.equal(r.target.stocks, 2);
+          continue;
+        }
+        r.target.hp = damage + margin;
+        r.target.stocks = 1;
+        r.start();
+        r.advance(r.state.finale?.duration ?? 30);
+        if (margin <= 0 && finaleById(fighter.id)?.release?.knockoutDelay) {
+          assert.equal(r.target.hp, 0);
+          assert.equal(
+            r.target.stocks,
+            1,
+            "finishing throw must fly before stock loss",
+          );
+          for (let frame = 0; frame < 90 && r.target.stocks; frame++)
+            r.advance(1);
+        }
+        assert.equal(
+          r.target.stocks,
+          margin > 0 ? 1 : 0,
+          `${fighter.id}/${side}/${margin}`,
+        );
+        if (margin > 0) close(r.target.hp, margin);
+        else assert.equal(r.state.winner, side);
+      }
+});
+
+test("community fighters keep their generic definitive until they have a cinematic definition", () => {
+  const customId = "custom_finale-test";
+  COMMUNITY_DEFINITIONS.set(customId, {
+    ...fighterById("capriles"),
+    id: customId,
+  });
+  try {
+    const r = setup(customId);
+    r.start();
+    assert.equal(r.state.finale, undefined);
+    assert.ok(r.target.hp < 100);
+    assert.equal(r.source.hits, 1);
+  } finally {
+    COMMUNITY_DEFINITIONS.delete(customId);
+  }
+});

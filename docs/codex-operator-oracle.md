@@ -60,13 +60,7 @@ sudo arena-codex pack --job /operator/jobs/my-first-character
 
 Only a finished, validated `bundle/` should be transferred for import. This tool never writes to the live game database or publishes a character. The existing importer requires `prod-tst`; review and staging remain separate from public roster changes. Do not relabel the production database as staging to bypass that check.
 
-## Verification and removal
-
-The ARM64 image passes all 28 offline Codex workflow and adversarial tests, including both Luna High phases, the optional credits-only guard and native image receipt recovery. The executable CLI fixture uses a separate executable temporary mount; the installed operator keeps its normal temporary mount restrictions.
-
-A fresh Oracle job completed design, image generation, packing and combat validation using Luna High in both recorded Codex sessions. All eight complete poses were visually reviewed. Its [sprite sheet](screenshots/codex-operator-oracle-luna-high.png) is retained with detailed results in `codex-operator-oracle-qa.json`. Live tests found and corrected an omitted image-path response and an internal row-boundary packing check. The final run completed without manual recovery or automatic retries. Exact subscription allowance and credit deductions were not measured.
-
-The public game is healthy on `creator-v38`. Draft restoration was checked on the public site; in-flight browser recovery uses a fixture provider so it does not spend API funds. See [state recovery results](creator-state-qa.json). Public automatic generation remains disabled pending API billing.
+## Removal
 
 To remove the command and image without deleting login or job files:
 

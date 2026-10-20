@@ -34,6 +34,7 @@ import {
 } from "../game/controls";
 import {
   initAudio,
+  prepareMatchAudio,
   playReaction,
   preloadReactions,
   sound,
@@ -45,6 +46,8 @@ import {
   setSoundView,
   syncVictoryMusic,
   stopVictoryMusic,
+  syncFinaleMusic,
+  stopFinaleMusic,
 } from "../audio";
 import { victoryById, VICTORY_DURATION_MS } from "../game/victory";
 import { Portrait } from "./Portrait";
@@ -144,13 +147,20 @@ export function Game(props: Props) {
     Boolean(document.querySelector("dialog[open]")) ||
     document.hidden;
   const syncAmbiencePause = (phase = introView.current.phase) =>
-    setAmbiencePaused(isGameQuiet() || phase === "finished");
+    setAmbiencePaused(
+      isGameQuiet() ||
+        phase === "finished" ||
+        Boolean(introView.current.finale),
+    );
   const releaseInputs = () => {
     sources.current.forEach((source) => source.clear());
     keys.current.clear();
     setTouchReset((value) => value + 1);
     if (mode === "online") callbacks.current.onInput?.(inputs.current[0]);
   };
+  useEffect(() => {
+    if (view.finale) releaseInputs();
+  }, [view.finale?.startedTick]);
   const requestLandscape = () => {
     releaseInputs();
     const root = document.getElementById("root");
@@ -249,6 +259,9 @@ export function Game(props: Props) {
   };
   useEffect(() => {
     let alive = true;
+    void prepareMatchAudio(
+      initial.players.map((player) => player.config.fighter),
+    );
     void preloadAssets(
       initial.players.map((player) => player.config.fighter),
       [initial.stage],
@@ -358,6 +371,8 @@ export function Game(props: Props) {
     let lastSend = 0;
     let lastEffect = -1;
     let camera: ArenaCamera | undefined;
+    let cameraWidth = ctx.canvas.width;
+    let cameraHeight = ctx.canvas.height;
     let victoryElapsed = 0;
     let victoryStarted = false;
     let finaleComplete = false;
@@ -406,7 +421,7 @@ export function Game(props: Props) {
       }
       const dialogOpen = Boolean(document.querySelector("dialog[open]"));
       const quiet = isGameQuiet();
-      setReactionsPaused(pausedRef.current || blockedRef.current || dialogOpen);
+      setReactionsPaused(quiet || Boolean(state.finale));
       if (dialogOpen) sources.current.forEach((source) => source.clear());
       if (!quiet && state.phase !== "finished")
         gamepads.update(inputs.current, mode === "local" ? 2 : 1);
@@ -425,6 +440,13 @@ export function Game(props: Props) {
         }
       }
       syncAmbiencePause(state.phase);
+      setAmbiencePaused(
+        quiet || state.phase === "finished" || Boolean(state.finale),
+      );
+      syncFinaleMusic(
+        state.finale ?? state.fieldFinales?.[0],
+        quiet || state.phase === "finished",
+      );
       if (state.phase === "finished") {
         if (!victoryStarted) {
           victoryStarted = true;
@@ -592,7 +614,10 @@ export function Game(props: Props) {
             }
           : state;
       camera =
-        quiet && camera
+        (quiet || Boolean(state.finale)) &&
+        camera &&
+        cameraWidth === ctx.canvas.width &&
+        cameraHeight === ctx.canvas.height
           ? camera
           : advanceArenaCamera(
               camera,
@@ -602,6 +627,8 @@ export function Game(props: Props) {
               elapsed,
               motionPreference.matches,
             );
+      cameraWidth = ctx.canvas.width;
+      cameraHeight = ctx.canvas.height;
       const audioView = cameraBounds(
         camera,
         ctx.canvas.width,
@@ -657,16 +684,23 @@ export function Game(props: Props) {
       stopReactions();
       stopAmbience();
       stopVictoryMusic();
+      stopFinaleMusic();
     };
   }, [assets, initial.id, mode, difficulty, remote, localIndex]);
   useEffect(() => {
     syncAmbiencePause(view.phase);
-    if (paused || portraitBlocked) setReactionsPaused(true);
+    if (paused || portraitBlocked) {
+      setReactionsPaused(true);
+      stopFinaleMusic();
+    }
   }, [paused, portraitBlocked, view.phase]);
   useEffect(() => {
     const visibility = () => {
       syncAmbiencePause();
-      if (document.hidden) stopVictoryMusic();
+      if (document.hidden) {
+        stopVictoryMusic();
+        stopFinaleMusic();
+      }
     };
     document.addEventListener("visibilitychange", visibility);
     return () => document.removeEventListener("visibilitychange", visibility);
@@ -697,6 +731,8 @@ export function Game(props: Props) {
   const winner =
     typeof view.winner === "number" ? view.players[view.winner] : null;
   const winnerDef = winner ? fighterById(winner.config.fighter) : null;
+  const specialUnlockWins =
+    fighterById(view.players[localIndex].config.fighter).specialUnlockWins ?? 0;
   const localWinner = view.winner === localIndex;
   const presenting = view.phase === "intro" ? introActor(view.tick) : null;
   const intro = view.phase === "intro";
@@ -709,6 +745,7 @@ export function Game(props: Props) {
       className={`game-page page-width${intro ? " is-intro" : ""}${cinematic ? " is-cinematic" : ""}${device.touch ? " is-touch" : ""}${paused ? " is-paused" : ""}${celebrating ? " is-celebrating" : ""}${resultReady ? " is-finished" : ""}`}
       data-phase={view.phase}
       data-result-ready={resultReady}
+      data-finale={view.finale?.fighter}
     >
       {!intro && (
         <div className="game-topline">
@@ -833,12 +870,17 @@ export function Game(props: Props) {
               );
             })}
             <div className="match-clock">
-              <strong>
-                {Math.ceil(view.remaining / 60)
-                  .toString()
-                  .padStart(2, "0")}
+              <strong
+                className={
+                  view.remaining > 99 * 60 ? "match-clock-minutes" : undefined
+                }
+              >
+                {view.remaining > 99 * 60
+                  ? "2 min"
+                  : Math.ceil(view.remaining / 60)
+                      .toString()
+                      .padStart(2, "0")}
               </strong>
-              <span>2 VIDAS</span>
             </div>
           </div>
         )}
@@ -1019,7 +1061,9 @@ export function Game(props: Props) {
                       <span>
                         {winner.config.wins === 0
                           ? "Nuevo combo desbloqueado"
-                          : "Definitiva desbloqueada"}{" "}
+                          : winnerDef?.specialUnlockWins === 3
+                            ? "Especial y definitiva desbloqueados"
+                            : "Definitiva desbloqueada"}{" "}
                         para {winnerDef?.shortName}
                       </span>
                     </div>
@@ -1049,6 +1093,7 @@ export function Game(props: Props) {
               reset={touchReset}
               energy={view.players[localIndex].energy}
               wins={view.players[localIndex].config.wins}
+              specialUnlockWins={specialUnlockWins}
             />
           )}
           {!paused && view.phase === "playing" && (
@@ -1059,6 +1104,8 @@ export function Game(props: Props) {
               </span>
               <span>
                 <kbd>J</kbd> Ligero <kbd>K</kbd> Fuerte <kbd>L</kbd> Especial
+                {view.players[localIndex].config.wins < specialUnlockWins &&
+                  ` (${specialUnlockWins} victorias)`}
               </span>
               <span>
                 <kbd>U</kbd> Bloquear <kbd>⇧</kbd> Esquivar <kbd>I</kbd>{" "}

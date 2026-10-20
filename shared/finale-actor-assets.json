@@ -1,0 +1,1239 @@
+{
+  "seated": {
+    "zavarce": {
+      "file": "finales-seated-v1-1",
+      "frame": {
+        "x": 104,
+        "y": 42,
+        "width": 304,
+        "height": 440
+      },
+      "bodyHeight": 440,
+      "anchorX": 125.18192535838291
+    },
+    "vallenilla": {
+      "file": "finales-seated-v1-1",
+      "frame": {
+        "x": 619,
+        "y": 39,
+        "width": 298,
+        "height": 443
+      },
+      "bodyHeight": 443,
+      "anchorX": 115.98319507490268
+    },
+    "javier": {
+      "file": "finales-seated-main-v1",
+      "frame": {
+        "x": 90,
+        "y": 546,
+        "width": 331,
+        "height": 448
+      },
+      "bodyHeight": 448,
+      "anchorX": 123.38707614940098
+    },
+    "capriles": {
+      "file": "finales-seated-main-v1",
+      "frame": {
+        "x": 90,
+        "y": 42,
+        "width": 331,
+        "height": 440
+      },
+      "bodyHeight": 440,
+      "anchorX": 126.30414022543822
+    },
+    "renny": {
+      "file": "finales-seated-v1-1",
+      "frame": {
+        "x": 108,
+        "y": 561,
+        "width": 295,
+        "height": 433
+      },
+      "bodyHeight": 433,
+      "anchorX": 109.63435899459171
+    },
+    "gomez": {
+      "file": "finales-seated-v1-1",
+      "frame": {
+        "x": 602,
+        "y": 555,
+        "width": 331,
+        "height": 439
+      },
+      "bodyHeight": 439,
+      "anchorX": 126.82239203355985
+    },
+    "simon": {
+      "file": "finales-seated-v1-1",
+      "frame": {
+        "x": 1125,
+        "y": 569,
+        "width": 309,
+        "height": 425
+      },
+      "bodyHeight": 425,
+      "anchorX": 105.92497637876909
+    },
+    "conde": {
+      "file": "finales-seated-v1-1",
+      "frame": {
+        "x": 1642,
+        "y": 562,
+        "width": 299,
+        "height": 432
+      },
+      "bodyHeight": 432,
+      "anchorX": 104.04461044003487
+    },
+    "emilio": {
+      "file": "finales-seated-v1-2",
+      "frame": {
+        "x": 111,
+        "y": 42,
+        "width": 289,
+        "height": 440
+      },
+      "bodyHeight": 440,
+      "anchorX": 112.81045155237504
+    },
+    "maite": {
+      "file": "finales-seated-v1-2",
+      "frame": {
+        "x": 584,
+        "y": 51,
+        "width": 368,
+        "height": 431
+      },
+      "bodyHeight": 431,
+      "anchorX": 166.04897682961314
+    },
+    "oscar": {
+      "file": "finales-seated-v1-2",
+      "frame": {
+        "x": 1135,
+        "y": 48,
+        "width": 289,
+        "height": 434
+      },
+      "bodyHeight": 434,
+      "anchorX": 104.29356094314248
+    },
+    "puma": {
+      "file": "finales-seated-v1-2",
+      "frame": {
+        "x": 1652,
+        "y": 47,
+        "width": 279,
+        "height": 435
+      },
+      "bodyHeight": 435,
+      "anchorX": 101.25004702612611
+    },
+    "chataing": {
+      "file": "finales-seated-v1-2",
+      "frame": {
+        "x": 111,
+        "y": 575,
+        "width": 289,
+        "height": 419
+      },
+      "bodyHeight": 419,
+      "anchorX": 103.87015401576257
+    },
+    "george": {
+      "file": "finales-seated-v1-2",
+      "frame": {
+        "x": 637,
+        "y": 576,
+        "width": 262,
+        "height": 418
+      },
+      "bodyHeight": 418,
+      "anchorX": 95.27214073977441
+    },
+    "mcm": {
+      "file": "finales-seated-v1-2",
+      "frame": {
+        "x": 1156,
+        "y": 583,
+        "width": 247,
+        "height": 411
+      },
+      "bodyHeight": 411,
+      "anchorX": 79.42826631617858
+    },
+    "ali": {
+      "file": "finales-seated-v1-2",
+      "frame": {
+        "x": 1606,
+        "y": 575,
+        "width": 371,
+        "height": 419
+      },
+      "bodyHeight": 419,
+      "anchorX": 153.91540768912216
+    },
+    "gualberto": {
+      "file": "finales-seated-v1-3",
+      "frame": {
+        "x": 102,
+        "y": 42,
+        "width": 307,
+        "height": 440
+      },
+      "bodyHeight": 440,
+      "anchorX": 123.4527515742774
+    },
+    "reynaldo": {
+      "file": "finales-seated-v1-3",
+      "frame": {
+        "x": 613,
+        "y": 41,
+        "width": 309,
+        "height": 441
+      },
+      "bodyHeight": 441,
+      "anchorX": 119.09829714813644
+    },
+    "dudamel": {
+      "file": "finales-seated-v1-3",
+      "frame": {
+        "x": 1118,
+        "y": 40,
+        "width": 323,
+        "height": 442
+      },
+      "bodyHeight": 442,
+      "anchorX": 129.29549925591581
+    },
+    "danny": {
+      "file": "finales-seated-v1-3",
+      "frame": {
+        "x": 1651,
+        "y": 40,
+        "width": 282,
+        "height": 442
+      },
+      "bodyHeight": 442,
+      "anchorX": 103.99961288864523
+    },
+    "nacho": {
+      "file": "finales-seated-main-v1",
+      "frame": {
+        "x": 609,
+        "y": 62,
+        "width": 318,
+        "height": 420
+      },
+      "bodyHeight": 420,
+      "anchorX": 113.266577171327
+    },
+    "sarcos": {
+      "file": "finales-seated-v1-3",
+      "frame": {
+        "x": 614,
+        "y": 559,
+        "width": 307,
+        "height": 435
+      },
+      "bodyHeight": 435,
+      "anchorX": 115.89652217017581
+    },
+    "yordano": {
+      "file": "finales-seated-v1-3",
+      "frame": {
+        "x": 1122,
+        "y": 559,
+        "width": 316,
+        "height": 435
+      },
+      "bodyHeight": 435,
+      "anchorX": 117.95319321036021
+    },
+    "lila": {
+      "file": "finales-seated-v1-3",
+      "frame": {
+        "x": 1639,
+        "y": 561,
+        "width": 306,
+        "height": 433
+      },
+      "bodyHeight": 433,
+      "anchorX": 132.13028732465764
+    },
+    "rummy": {
+      "file": "finales-seated-v1-4",
+      "frame": {
+        "x": 120,
+        "y": 42,
+        "width": 271,
+        "height": 440
+      },
+      "bodyHeight": 440,
+      "anchorX": 103.15600127179718
+    },
+    "chiqui": {
+      "file": "finales-seated-v1-4",
+      "frame": {
+        "x": 627,
+        "y": 49,
+        "width": 281,
+        "height": 433
+      },
+      "bodyHeight": 433,
+      "anchorX": 101.83923525822681
+    },
+    "norkys": {
+      "file": "finales-seated-v1-4",
+      "frame": {
+        "x": 1138,
+        "y": 50,
+        "width": 283,
+        "height": 432
+      },
+      "bodyHeight": 432,
+      "anchorX": 92.2120849845021
+    },
+    "gabriela": {
+      "file": "finales-seated-v1-4",
+      "frame": {
+        "x": 1659,
+        "y": 52,
+        "width": 265,
+        "height": 430
+      },
+      "bodyHeight": 430,
+      "anchorX": 76.95444769407926
+    },
+    "amanda": {
+      "file": "finales-seated-v1-4",
+      "frame": {
+        "x": 90,
+        "y": 580,
+        "width": 331,
+        "height": 414
+      },
+      "bodyHeight": 414,
+      "anchorX": 125.44450674041317
+    },
+    "lele": {
+      "file": "finales-seated-v1-4",
+      "frame": {
+        "x": 612,
+        "y": 576,
+        "width": 312,
+        "height": 418
+      },
+      "bodyHeight": 418,
+      "anchorX": 102.3955856467339
+    },
+    "giuseppe": {
+      "file": "finales-seated-v1-4",
+      "frame": {
+        "x": 1133,
+        "y": 578,
+        "width": 294,
+        "height": 416
+      },
+      "bodyHeight": 416,
+      "anchorX": 112.56281056720073
+    },
+    "silbon": {
+      "file": "finales-seated-v1-4",
+      "frame": {
+        "x": 1616,
+        "y": 571,
+        "width": 351,
+        "height": 423
+      },
+      "bodyHeight": 423,
+      "anchorX": 172.27511127399498
+    },
+    "llorona": {
+      "file": "finales-seated-v1-5",
+      "frame": {
+        "x": 78,
+        "y": 42,
+        "width": 356,
+        "height": 440
+      },
+      "bodyHeight": 440,
+      "anchorX": 159.13483696348803
+    },
+    "sayona": {
+      "file": "finales-seated-v1-5",
+      "frame": {
+        "x": 587,
+        "y": 37,
+        "width": 362,
+        "height": 445
+      },
+      "bodyHeight": 445,
+      "anchorX": 160.52036707766817
+    },
+    "lionza": {
+      "file": "finales-seated-v1-5",
+      "frame": {
+        "x": 1122,
+        "y": 33,
+        "width": 315,
+        "height": 449
+      },
+      "bodyHeight": 449,
+      "anchorX": 147.99935050206406
+    },
+    "florentino": {
+      "file": "finales-seated-v1-5",
+      "frame": {
+        "x": 1638,
+        "y": 34,
+        "width": 307,
+        "height": 448
+      },
+      "bodyHeight": 448,
+      "anchorX": 123.07776705985263
+    },
+    "diablo": {
+      "file": "finales-seated-v1-5",
+      "frame": {
+        "x": 55,
+        "y": 559,
+        "width": 401,
+        "height": 435
+      },
+      "bodyHeight": 435,
+      "anchorX": 207.09873305298086
+    },
+    "knoche": {
+      "file": "finales-seated-main-v1",
+      "frame": {
+        "x": 590,
+        "y": 557,
+        "width": 355,
+        "height": 437
+      },
+      "bodyHeight": 437,
+      "anchorX": 113.1348995517948
+    },
+    "momoy": {
+      "file": "finales-seated-v1-5",
+      "frame": {
+        "x": 1119,
+        "y": 579,
+        "width": 321,
+        "height": 415
+      },
+      "bodyHeight": 415,
+      "anchorX": 161.5313538867528
+    },
+    "tiotigre": {
+      "file": "finales-seated-v1-5",
+      "frame": {
+        "x": 1600,
+        "y": 576,
+        "width": 384,
+        "height": 418
+      },
+      "bodyHeight": 418,
+      "anchorX": 208.3103590490845
+    },
+    "tioconejo": {
+      "file": "finales-seated-v1-6",
+      "frame": {
+        "x": 141,
+        "y": 42,
+        "width": 229,
+        "height": 440
+      },
+      "bodyHeight": 440,
+      "anchorX": 62.97399785708438
+    },
+    "enrique": {
+      "file": "finales-seated-v1-6",
+      "frame": {
+        "x": 620,
+        "y": 56,
+        "width": 295,
+        "height": 426
+      },
+      "bodyHeight": 426,
+      "anchorX": 119.37273815413253
+    },
+    "jesus": {
+      "file": "finales-seated-v1-6",
+      "frame": {
+        "x": 1135,
+        "y": 59,
+        "width": 289,
+        "height": 423
+      },
+      "bodyHeight": 423,
+      "anchorX": 108.93786639329181
+    },
+    "carlos": {
+      "file": "finales-seated-v1-6",
+      "frame": {
+        "x": 1644,
+        "y": 57,
+        "width": 295,
+        "height": 425
+      },
+      "bodyHeight": 425,
+      "anchorX": 112.48078238723646
+    },
+    "victor": {
+      "file": "finales-seated-v1-6",
+      "frame": {
+        "x": 108,
+        "y": 579,
+        "width": 296,
+        "height": 415
+      },
+      "bodyHeight": 415,
+      "anchorX": 110.76586274734981
+    },
+    "juan": {
+      "file": "finales-seated-v1-6",
+      "frame": {
+        "x": 619,
+        "y": 580,
+        "width": 298,
+        "height": 414
+      },
+      "bodyHeight": 414,
+      "anchorX": 110.90977233071372
+    },
+    "dayana": {
+      "file": "dayana-seated-v1",
+      "frame": {
+        "x": 16,
+        "y": 16,
+        "width": 763,
+        "height": 847
+      },
+      "bodyHeight": 841,
+      "anchorX": 396.76
+    },
+    "deyna": {
+      "file": "deyna-seated-v1",
+      "frame": {
+        "x": 16,
+        "y": 16,
+        "width": 590,
+        "height": 823
+      },
+      "bodyHeight": 817,
+      "anchorX": 212.4
+    }
+  },
+  "caprilesCafe": {
+    "file": "finales-capriles-cafe",
+    "frames": [
+      {
+        "x": 77,
+        "y": 42,
+        "width": 357,
+        "height": 440,
+        "bodyHeight": 440,
+        "anchorX": 149.12970288510098
+      },
+      {
+        "x": 602,
+        "y": 41,
+        "width": 331,
+        "height": 441,
+        "bodyHeight": 440,
+        "anchorX": 130.04788684069072
+      },
+      {
+        "x": 85,
+        "y": 564,
+        "width": 341,
+        "height": 430,
+        "bodyHeight": 440,
+        "anchorX": 135.19748892363074
+      },
+      {
+        "x": 574,
+        "y": 562,
+        "width": 388,
+        "height": 432,
+        "bodyHeight": 440,
+        "anchorX": 156.10722702022218
+      }
+    ]
+  },
+  "performers": {
+    "nacho": {
+      "file": "finales-nacho-dance",
+      "frames": [
+        {
+          "x": 145,
+          "y": 42,
+          "width": 221,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 112.43705839933494
+        },
+        {
+          "x": 658,
+          "y": 40,
+          "width": 220,
+          "height": 442,
+          "bodyHeight": 440,
+          "anchorX": 110.61414394513994
+        },
+        {
+          "x": 1087,
+          "y": 39,
+          "width": 386,
+          "height": 443,
+          "bodyHeight": 440,
+          "anchorX": 256.7207557819022
+        },
+        {
+          "x": 1665,
+          "y": 38,
+          "width": 253,
+          "height": 444,
+          "bodyHeight": 440,
+          "anchorX": 124.07028037151038
+        },
+        {
+          "x": 135,
+          "y": 558,
+          "width": 242,
+          "height": 436,
+          "bodyHeight": 440,
+          "anchorX": 125.03441457201254
+        },
+        {
+          "x": 647,
+          "y": 560,
+          "width": 242,
+          "height": 434,
+          "bodyHeight": 440,
+          "anchorX": 111.15164660113054
+        },
+        {
+          "x": 1134,
+          "y": 544,
+          "width": 292,
+          "height": 450,
+          "bodyHeight": 440,
+          "anchorX": 141.67660042793793
+        },
+        {
+          "x": 1669,
+          "y": 559,
+          "width": 245,
+          "height": 435,
+          "bodyHeight": 440,
+          "anchorX": 124.64456053264857
+        }
+      ]
+    },
+    "giuseppe": {
+      "file": "finales-giuseppe-hack",
+      "frames": [
+        {
+          "x": 115,
+          "y": 42,
+          "width": 282,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 103.97523953425454
+        },
+        {
+          "x": 625,
+          "y": 42,
+          "width": 285,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 108.89361990163749
+        },
+        {
+          "x": 1141,
+          "y": 42,
+          "width": 278,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 103.13039581401127
+        },
+        {
+          "x": 1652,
+          "y": 47,
+          "width": 279,
+          "height": 435,
+          "bodyHeight": 440,
+          "anchorX": 129.63326516545374
+        },
+        {
+          "x": 113,
+          "y": 566,
+          "width": 286,
+          "height": 428,
+          "bodyHeight": 440,
+          "anchorX": 107.02038316936556
+        },
+        {
+          "x": 625,
+          "y": 564,
+          "width": 286,
+          "height": 430,
+          "bodyHeight": 440,
+          "anchorX": 111.68405021838761
+        },
+        {
+          "x": 1135,
+          "y": 565,
+          "width": 290,
+          "height": 429,
+          "bodyHeight": 440,
+          "anchorX": 108.79653116297582
+        },
+        {
+          "x": 1651,
+          "y": 559,
+          "width": 282,
+          "height": 435,
+          "bodyHeight": 440,
+          "anchorX": 103.09614185662575
+        }
+      ]
+    }
+  },
+  "dancers": {
+    "zavarce": {
+      "file": "finales-dance-v2-1",
+      "frame": {
+        "x": 105,
+        "y": 42,
+        "width": 302,
+        "height": 440
+      },
+      "bodyHeight": 440,
+      "anchorX": 134.34584980237156
+    },
+    "vallenilla": {
+      "file": "finales-dance-v2-1",
+      "frame": {
+        "x": 607,
+        "y": 43,
+        "width": 321,
+        "height": 439
+      },
+      "bodyHeight": 439,
+      "anchorX": 155.5438247011952
+    },
+    "javier": {
+      "file": "perro-mujeriego-v3-javier",
+      "frame": {
+        "x": 1103,
+        "y": 45,
+        "width": 354,
+        "height": 437
+      },
+      "bodyHeight": 440,
+      "anchorX": 213.47826086956522
+    },
+    "capriles": {
+      "file": "perro-mujeriego-v3-capriles",
+      "frame": {
+        "x": 1091,
+        "y": 41,
+        "width": 377,
+        "height": 441
+      },
+      "bodyHeight": 439,
+      "anchorX": 217.79249011857706
+    },
+    "renny": {
+      "file": "finales-dance-v2-1",
+      "frame": {
+        "x": 98,
+        "y": 558,
+        "width": 316,
+        "height": 436
+      },
+      "bodyHeight": 436,
+      "anchorX": 136.52173913043478
+    },
+    "gomez": {
+      "file": "finales-dance-v2-1",
+      "frame": {
+        "x": 597,
+        "y": 550,
+        "width": 342,
+        "height": 444
+      },
+      "bodyHeight": 444,
+      "anchorX": 167.69338914184533
+    },
+    "simon": {
+      "file": "finales-dance-v2-1",
+      "frame": {
+        "x": 1118,
+        "y": 567,
+        "width": 323,
+        "height": 427
+      },
+      "bodyHeight": 427,
+      "anchorX": 161.8874462623813
+    },
+    "conde": {
+      "file": "finales-dance-v2-1",
+      "frame": {
+        "x": 1632,
+        "y": 562,
+        "width": 319,
+        "height": 432
+      },
+      "bodyHeight": 432,
+      "anchorX": 156.51383399209487
+    },
+    "emilio": {
+      "file": "finales-dance-v2-2",
+      "frame": {
+        "x": 107,
+        "y": 46,
+        "width": 297,
+        "height": 436
+      },
+      "bodyHeight": 436,
+      "anchorX": 171.51984519104084
+    },
+    "maite": {
+      "file": "finales-dance-v2-2",
+      "frame": {
+        "x": 576,
+        "y": 41,
+        "width": 383,
+        "height": 441
+      },
+      "bodyHeight": 441,
+      "anchorX": 197.58300395256916
+    },
+    "oscar": {
+      "file": "finales-dance-v2-2",
+      "frame": {
+        "x": 1125,
+        "y": 42,
+        "width": 310,
+        "height": 440
+      },
+      "bodyHeight": 440,
+      "anchorX": 176.88932806324112
+    },
+    "puma": {
+      "file": "finales-dance-v2-2",
+      "frame": {
+        "x": 1636,
+        "y": 34,
+        "width": 311,
+        "height": 448
+      },
+      "bodyHeight": 448,
+      "anchorX": 123.83596837944664
+    },
+    "chataing": {
+      "file": "finales-dance-v2-2",
+      "frame": {
+        "x": 97,
+        "y": 555,
+        "width": 318,
+        "height": 439
+      },
+      "bodyHeight": 439,
+      "anchorX": 128.3154761904762
+    },
+    "george": {
+      "file": "finales-dance-v2-2",
+      "frame": {
+        "x": 624,
+        "y": 550,
+        "width": 288,
+        "height": 444
+      },
+      "bodyHeight": 444,
+      "anchorX": 113.91369047619048
+    },
+    "mcm": {
+      "file": "finales-dance-v2-2",
+      "frame": {
+        "x": 1125,
+        "y": 550,
+        "width": 310,
+        "height": 444
+      },
+      "bodyHeight": 444,
+      "anchorX": 130.96343873517787
+    },
+    "ali": {
+      "file": "finales-dance-v2-2",
+      "frame": {
+        "x": 1639,
+        "y": 544,
+        "width": 306,
+        "height": 450
+      },
+      "bodyHeight": 450,
+      "anchorX": 148.0909090909091
+    },
+    "gualberto": {
+      "file": "finales-dance-v2-3",
+      "frame": {
+        "x": 92,
+        "y": 45,
+        "width": 327,
+        "height": 437
+      },
+      "bodyHeight": 437,
+      "anchorX": 130.53359683794466
+    },
+    "reynaldo": {
+      "file": "finales-dance-v2-3",
+      "frame": {
+        "x": 589,
+        "y": 45,
+        "width": 358,
+        "height": 437
+      },
+      "bodyHeight": 437,
+      "anchorX": 156.484126984127
+    },
+    "dudamel": {
+      "file": "finales-dance-v2-3",
+      "frame": {
+        "x": 1103,
+        "y": 43,
+        "width": 353,
+        "height": 439
+      },
+      "bodyHeight": 439,
+      "anchorX": 131.64822134387353
+    },
+    "danny": {
+      "file": "finales-dance-v2-3",
+      "frame": {
+        "x": 1643,
+        "y": 45,
+        "width": 297,
+        "height": 437
+      },
+      "bodyHeight": 437,
+      "anchorX": 137.0625
+    },
+    "nacho": {
+      "file": "perro-mujeriego-v3-nacho",
+      "frame": {
+        "x": 1087,
+        "y": 39,
+        "width": 386,
+        "height": 443
+      },
+      "bodyHeight": 440,
+      "anchorX": 218.55731225296444
+    },
+    "sarcos": {
+      "file": "finales-dance-v2-3",
+      "frame": {
+        "x": 590,
+        "y": 551,
+        "width": 355,
+        "height": 443
+      },
+      "bodyHeight": 443,
+      "anchorX": 161.5040650406504
+    },
+    "yordano": {
+      "file": "finales-dance-v2-3",
+      "frame": {
+        "x": 1099,
+        "y": 544,
+        "width": 361,
+        "height": 450
+      },
+      "bodyHeight": 450,
+      "anchorX": 157.61111111111111
+    },
+    "lila": {
+      "file": "finales-dance-v2-3",
+      "frame": {
+        "x": 1628,
+        "y": 557,
+        "width": 327,
+        "height": 437
+      },
+      "bodyHeight": 437,
+      "anchorX": 175.302
+    },
+    "rummy": {
+      "file": "finales-dance-v2-4",
+      "frame": {
+        "x": 97,
+        "y": 42,
+        "width": 317,
+        "height": 440
+      },
+      "bodyHeight": 440,
+      "anchorX": 141.7707509881423
+    },
+    "chiqui": {
+      "file": "finales-dance-v2-4",
+      "frame": {
+        "x": 613,
+        "y": 39,
+        "width": 309,
+        "height": 443
+      },
+      "bodyHeight": 443,
+      "anchorX": 158.35573122529644
+    },
+    "norkys": {
+      "file": "finales-dance-v2-4",
+      "frame": {
+        "x": 1107,
+        "y": 43,
+        "width": 346,
+        "height": 439
+      },
+      "bodyHeight": 439,
+      "anchorX": 164.00592885375494
+    },
+    "gabriela": {
+      "file": "finales-dance-v2-4",
+      "frame": {
+        "x": 1635,
+        "y": 50,
+        "width": 314,
+        "height": 432
+      },
+      "bodyHeight": 432,
+      "anchorX": 165.08498023715416
+    },
+    "amanda": {
+      "file": "finales-dance-v2-4",
+      "frame": {
+        "x": 99,
+        "y": 574,
+        "width": 314,
+        "height": 420
+      },
+      "bodyHeight": 420,
+      "anchorX": 128.7167935392573
+    },
+    "lele": {
+      "file": "finales-dance-v2-4",
+      "frame": {
+        "x": 610,
+        "y": 569,
+        "width": 316,
+        "height": 425
+      },
+      "bodyHeight": 425,
+      "anchorX": 157.64151609260307
+    },
+    "giuseppe": {
+      "file": "finales-dance-v2-4",
+      "frame": {
+        "x": 1109,
+        "y": 570,
+        "width": 341,
+        "height": 424
+      },
+      "bodyHeight": 424,
+      "anchorX": 154.9179841897233
+    },
+    "silbon": {
+      "file": "finales-dance-v2-4",
+      "frame": {
+        "x": 1634,
+        "y": 557,
+        "width": 315,
+        "height": 437
+      },
+      "bodyHeight": 437,
+      "anchorX": 142.498031496063
+    },
+    "llorona": {
+      "file": "finales-dance-v2-5",
+      "frame": {
+        "x": 81,
+        "y": 43,
+        "width": 349,
+        "height": 439
+      },
+      "bodyHeight": 439,
+      "anchorX": 195.8201581027668
+    },
+    "sayona": {
+      "file": "finales-dance-v2-5",
+      "frame": {
+        "x": 578,
+        "y": 40,
+        "width": 380,
+        "height": 442
+      },
+      "bodyHeight": 442,
+      "anchorX": 194.27569169960475
+    },
+    "lionza": {
+      "file": "finales-dance-v2-5",
+      "frame": {
+        "x": 1114,
+        "y": 42,
+        "width": 331,
+        "height": 440
+      },
+      "bodyHeight": 440,
+      "anchorX": 170.54462717234458
+    },
+    "florentino": {
+      "file": "finales-dance-v2-5",
+      "frame": {
+        "x": 1614,
+        "y": 32,
+        "width": 356,
+        "height": 450
+      },
+      "bodyHeight": 450,
+      "anchorX": 204.01185770750988
+    },
+    "diablo": {
+      "file": "finales-dance-v2-5",
+      "frame": {
+        "x": 84,
+        "y": 547,
+        "width": 343,
+        "height": 447
+      },
+      "bodyHeight": 447,
+      "anchorX": 203.04688578329882
+    },
+    "knoche": {
+      "file": "perro-mujeriego-v3-knoche",
+      "frame": {
+        "x": 1111,
+        "y": 69,
+        "width": 338,
+        "height": 413
+      },
+      "bodyHeight": 412,
+      "anchorX": 191.951581027668
+    },
+    "momoy": {
+      "file": "finales-dance-v2-5",
+      "frame": {
+        "x": 1104,
+        "y": 565,
+        "width": 351,
+        "height": 429
+      },
+      "bodyHeight": 429,
+      "anchorX": 157.7490118577075
+    },
+    "tiotigre": {
+      "file": "finales-dance-v2-5",
+      "frame": {
+        "x": 1611,
+        "y": 586,
+        "width": 361,
+        "height": 408
+      },
+      "bodyHeight": 408,
+      "anchorX": 214.2202380952381
+    },
+    "tioconejo": {
+      "file": "finales-dance-v2-6",
+      "frame": {
+        "x": 115,
+        "y": 42,
+        "width": 282,
+        "height": 440
+      },
+      "bodyHeight": 440,
+      "anchorX": 112.56027667984189
+    },
+    "enrique": {
+      "file": "finales-dance-v2-6",
+      "frame": {
+        "x": 599,
+        "y": 40,
+        "width": 337,
+        "height": 442
+      },
+      "bodyHeight": 442,
+      "anchorX": 154.33596445824708
+    },
+    "jesus": {
+      "file": "finales-dance-v2-6",
+      "frame": {
+        "x": 1122,
+        "y": 44,
+        "width": 315,
+        "height": 438
+      },
+      "bodyHeight": 438,
+      "anchorX": 145.6085476262934
+    },
+    "carlos": {
+      "file": "finales-dance-v2-6",
+      "frame": {
+        "x": 1636,
+        "y": 41,
+        "width": 312,
+        "height": 441
+      },
+      "bodyHeight": 441,
+      "anchorX": 136.07905138339922
+    },
+    "victor": {
+      "file": "finales-dance-v2-6",
+      "frame": {
+        "x": 90,
+        "y": 577,
+        "width": 332,
+        "height": 417
+      },
+      "bodyHeight": 417,
+      "anchorX": 144.52788844621514
+    },
+    "juan": {
+      "file": "finales-dance-v2-6",
+      "frame": {
+        "x": 599,
+        "y": 569,
+        "width": 338,
+        "height": 425
+      },
+      "bodyHeight": 425,
+      "anchorX": 142.9822134387352
+    },
+    "dayana": {
+      "file": "perro-mujeriego-dayana-v1",
+      "bodyHeight": 432,
+      "anchorX": 198.5,
+      "frame": {
+        "x": 1081,
+        "y": 47,
+        "width": 397,
+        "height": 443
+      }
+    },
+    "deyna": {
+      "file": "perro-mujeriego-deyna-v1",
+      "bodyHeight": 432,
+      "anchorX": 181,
+      "frame": {
+        "x": 1099,
+        "y": 53,
+        "width": 362,
+        "height": 437
+      }
+    }
+  }
+}

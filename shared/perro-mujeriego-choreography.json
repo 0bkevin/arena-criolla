@@ -1,0 +1,47 @@
+{
+  "sourceUrl": "https://www.youtube.com/shorts/Td2Zs5kiH0Y",
+  "clipStartSeconds": 34.1,
+  "durationTicks": 360,
+  "poses": [
+    {
+      "tick": 0,
+      "sourceTime": 34.1,
+      "label": "Ambas palmas verticales juntas cubren la cara. Codos delante del pecho; cadera baja, rodillas flexionadas abiertas y tobillos más próximos, rebote sobre los pies."
+    },
+    {
+      "tick": 60,
+      "sourceTime": 35.1,
+      "label": "Mantiene ambas manos cubriendo la cara; cambia el apoyo del rebote: una rodilla entra y la otra abre, un talón se despega. No cambia de gesto de manos todavía."
+    },
+    {
+      "tick": 102,
+      "sourceTime": 35.8,
+      "label": "Destapa la cara y lleva ambas manos curvadas como patitas hacia la derecha de pantalla, a altura de pecho. Inclina el torso hacia ese lado; pierna izquierda de pantalla se abre y extiende."
+    },
+    {
+      "tick": 144,
+      "sourceTime": 36.5,
+      "label": "Las dos patitas se desplazan hacia la izquierda de pantalla; cambia el peso de lado, flexiona ambas rodillas y rota ligeramente la cadera."
+    },
+    {
+      "tick": 186,
+      "sourceTime": 37.2,
+      "label": "Las patitas vuelven al centro y hacia la derecha de pantalla, con cabeza inclinada y piernas abiertas en otro apoyo del rebote."
+    },
+    {
+      "tick": 222,
+      "sourceTime": 37.8,
+      "label": "El brazo del lado izquierdo de pantalla barre hacia arriba en diagonal pasando delante de la parte alta de la cara. La otra mano baja a la cintura; rodillas siguen flexionadas."
+    },
+    {
+      "tick": 270,
+      "sourceTime": 38.6,
+      "label": "Ambos brazos suben abiertos por encima de los hombros, manos separadas sobre la cabeza y dedos curvados preparando el corazón. Los pies empiezan a acercarse."
+    },
+    {
+      "tick": 318,
+      "sourceTime": 39.4,
+      "label": "Pulgares e índices de ambas manos forman un corazón real delante y por encima de la frente, codos abiertos. Junta los pies y mantiene un pequeño rebote de rodillas."
+    }
+  ]
+}

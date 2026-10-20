@@ -192,8 +192,10 @@ for (const side of [0, 1] as const) {
         assert.equal(superMove.p.combo, "Remate de mialma");
         assert.equal(superMove.p.comboBonus, 12);
         advance(superMove.s, superMove.inputs, 8);
+        assert.equal(superMove.s.fieldFinales?.[0]?.fighter, "javier");
+        advance(superMove.s, superMove.inputs, 200);
         close(superMove.target.hp, 100 - (28 * 0.97 + 12) * 1.02);
-        assert.equal(superMove.p.hits, 1);
+        assert.equal(superMove.p.hits, 3);
         console.log(JSON.stringify({ check: "super", side, hp: superMove.target.hp, energy: superMove.p.energy, name: superMove.p.combo }));
       }
     }

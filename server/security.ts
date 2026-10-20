@@ -66,6 +66,7 @@ export function securityHeaders(
           "media-src 'self' data: blob:",
           "font-src 'self'",
           `connect-src 'self'${websocket ? ` ${websocket}` : ""}`,
+          "frame-src 'none'",
           "object-src 'none'",
           "base-uri 'none'",
           "frame-ancestors 'none'",

@@ -1,11 +1,5 @@
-@font-face {
-  font-family: "Pixelify Sans";
-  src: url("/fonts/pixelify-sans.ttf") format("truetype");
-  font-weight: 400 700;
-  font-display: swap;
-}
 :root {
-  --pixel: "Pixelify Sans", monospace;
+  --pixel: var(--font-pixel);
   --ink: #112c58;
   --paper: #fff7e3;
   --paper-deep: #f7e5bc;
@@ -21,7 +15,7 @@
   --line: #445a7d;
   --lime: #ffce52;
   --muted: #a7b5ce;
-  --display: "Pixelify Sans", monospace;
+  --display: var(--font-pixel);
   background: var(--bg);
   color: var(--paper);
 }
@@ -413,9 +407,7 @@ body {
   display: block;
   margin-top: 5px;
   color: inherit;
-  font:
-    700 8px "DM Sans",
-    sans-serif;
+  font: 700 8px var(--font-body);
   letter-spacing: 0.8px;
   opacity: 0.7;
 }
@@ -763,10 +755,6 @@ body {
   color: var(--ink);
   font-size: 11px;
 }
-.arcade-search > span {
-  color: #7a647b;
-  font: 500 10px var(--pixel);
-}
 .arcade-search:focus-within {
   border-color: var(--ink);
 }
@@ -880,9 +868,7 @@ body {
 }
 .arcade-home .fighter-card-caption strong {
   display: block;
-  font:
-    700 12px/1.15 "DM Sans",
-    sans-serif;
+  font: 700 12px/1.15 var(--font-body);
   letter-spacing: -0.15px;
   color: var(--ink);
   overflow-wrap: normal;
@@ -1503,7 +1489,7 @@ body {
   font-size: 21px;
 }
 .arcade-app .match-hud .hud-name {
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-body);
 }
 .arcade-app .arena-wrap {
   width: min(100%, calc((100dvh - var(--match-chrome)) * 1.8));
@@ -2230,9 +2216,7 @@ body {
     margin-bottom: 3px;
   }
   .mobile-setup-dock strong {
-    font:
-      700 12px/1 "DM Sans",
-      sans-serif;
+    font: 700 12px/1 var(--font-body);
     display: block;
   }
   .mobile-setup-dock button {
@@ -2765,9 +2749,6 @@ body {
     font-size: 12px;
     padding-inline: 4px;
     gap: 3px;
-  }
-  .roster-categories button > svg {
-    display: none;
   }
   .roster-categories button span {
     font-size: 9px;

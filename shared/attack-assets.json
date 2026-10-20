@@ -1,0 +1,1628 @@
+{
+  "vallenilla": {
+    "file": "vallenilla-cashea-attack-v1",
+    "frames": {
+      "box": {
+        "x": 20,
+        "y": 116,
+        "width": 472,
+        "height": 376,
+        "anchorX": 236,
+        "anchorY": 370.7595818815331,
+        "bodyHeight": 362.89895470383277
+      },
+      "summon": {
+        "x": 532,
+        "y": 28,
+        "width": 472,
+        "height": 464,
+        "anchorX": 236,
+        "anchorY": 459.8938053097345,
+        "bodyHeight": 455.78761061946904
+      },
+      "guard": {
+        "x": 1085,
+        "y": 20,
+        "width": 389,
+        "height": 472,
+        "anchorX": 194.5,
+        "anchorY": 463.0460704607046,
+        "bodyHeight": 459.20867208672087
+      },
+      "jab": {
+        "x": 20,
+        "y": 578,
+        "width": 472,
+        "height": 426,
+        "anchorX": 236,
+        "anchorY": 404.6406685236769,
+        "bodyHeight": 398.7075208913649
+      },
+      "hook": {
+        "x": 532,
+        "y": 598,
+        "width": 472,
+        "height": 406,
+        "anchorX": 236,
+        "anchorY": 395.73595505617976,
+        "bodyHeight": 390.03370786516854
+      },
+      "uppercut": {
+        "x": 1094,
+        "y": 532,
+        "width": 371,
+        "height": 472,
+        "anchorX": 185.5,
+        "anchorY": 468.32207792207794,
+        "bodyHeight": 463.41818181818184
+      }
+    }
+  },
+  "javier": {
+    "file": "javier-scolding-attack-v1",
+    "frames": {
+      "headshirt": {
+        "x": 133,
+        "y": 20,
+        "width": 246,
+        "height": 472,
+        "anchorX": 118.08,
+        "anchorY": 463.8760757314974,
+        "bodyHeight": 461.4388984509466
+      },
+      "fingerwag": {
+        "x": 636,
+        "y": 20,
+        "width": 264,
+        "height": 472,
+        "anchorX": 138.6,
+        "anchorY": 460.5078260869565,
+        "bodyHeight": 458.04521739130433
+      },
+      "scold": {
+        "x": 104,
+        "y": 532,
+        "width": 303,
+        "height": 472,
+        "anchorX": 151.5,
+        "anchorY": 460.6159554730983,
+        "bodyHeight": 457.98886827458256
+      },
+      "point": {
+        "x": 572,
+        "y": 532,
+        "width": 391,
+        "height": 472,
+        "anchorX": 144.279,
+        "anchorY": 462.3673469387755,
+        "bodyHeight": 459.7402597402597
+      }
+    }
+  },
+  "renny": {
+    "file": "renny-commercial-attack-v1",
+    "frames": {
+      "ladder": {
+        "x": 56,
+        "y": 20,
+        "width": 400,
+        "height": 472,
+        "anchorX": 180,
+        "anchorY": 464.94205607476636,
+        "bodyHeight": 461.41308411214953
+      },
+      "present": {
+        "x": 623,
+        "y": 20,
+        "width": 290,
+        "height": 472,
+        "anchorX": 147.9,
+        "anchorY": 467.1340206185567,
+        "bodyHeight": 460.64604810996565
+      },
+      "kick": {
+        "x": 60,
+        "y": 532,
+        "width": 392,
+        "height": 472,
+        "anchorX": 161.896,
+        "anchorY": 463.9591141396934,
+        "bodyHeight": 461.54684838160136
+      },
+      "push": {
+        "x": 553,
+        "y": 532,
+        "width": 430,
+        "height": 472,
+        "anchorX": 156.95,
+        "anchorY": 466.0253164556962,
+        "bodyHeight": 460.90415913200724
+      }
+    }
+  },
+  "gomez": {
+    "file": "gomez-cavalry-attack-v1",
+    "frames": {
+      "ready": {
+        "x": 36,
+        "y": 20,
+        "width": 440,
+        "height": 472,
+        "anchorX": 220,
+        "anchorY": 462.56,
+        "bodyHeight": 455.81714285714287
+      },
+      "gallop-extended": {
+        "x": 532,
+        "y": 157,
+        "width": 472,
+        "height": 335,
+        "anchorX": 236,
+        "anchorY": 329.45364238410593,
+        "bodyHeight": 327.23509933774835
+      },
+      "gallop-gathered": {
+        "x": 1044,
+        "y": 80,
+        "width": 472,
+        "height": 412,
+        "anchorX": 278.47999999999996,
+        "anchorY": 400.4485981308411,
+        "bodyHeight": 390.18068535825546
+      },
+      "brake": {
+        "x": 1558,
+        "y": 20,
+        "width": 467,
+        "height": 472,
+        "anchorX": 312.89000000000004,
+        "anchorY": 464.06722689075633,
+        "bodyHeight": 460.10084033613447
+      },
+      "trooper-extended": {
+        "x": 20,
+        "y": 650,
+        "width": 472,
+        "height": 354,
+        "anchorX": 236,
+        "anchorY": 350.61783439490443,
+        "bodyHeight": 346.10828025477707
+      },
+      "trooper-gathered": {
+        "x": 532,
+        "y": 572,
+        "width": 472,
+        "height": 432,
+        "anchorX": 259.6,
+        "anchorY": 424.3086053412463,
+        "bodyHeight": 416.61721068249255
+      },
+      "dismount": {
+        "x": 1044,
+        "y": 578,
+        "width": 472,
+        "height": 426,
+        "anchorX": 202.96,
+        "anchorY": 418.0373831775701,
+        "bodyHeight": 414.05607476635515
+      },
+      "horse-exit": {
+        "x": 1556,
+        "y": 619,
+        "width": 472,
+        "height": 385,
+        "anchorX": 240.72,
+        "anchorY": 373.9297124600639,
+        "bodyHeight": 367.779552715655
+      }
+    }
+  },
+  "simon": {
+    "file": "simon-cuatro-attack-v1",
+    "frames": {
+      "ready": {
+        "x": 80,
+        "y": 20,
+        "width": 352,
+        "height": 472,
+        "anchorX": 144.32,
+        "anchorY": 467.0210970464135,
+        "bodyHeight": 464.0337552742616
+      },
+      "downstroke": {
+        "x": 575,
+        "y": 20,
+        "width": 385,
+        "height": 472,
+        "anchorX": 165.55,
+        "anchorY": 464.86393088552916,
+        "bodyHeight": 459.76673866090715
+      },
+      "upstroke": {
+        "x": 1093,
+        "y": 20,
+        "width": 373,
+        "height": 472,
+        "anchorX": 160.39,
+        "anchorY": 463.8795698924731,
+        "bodyHeight": 458.8043010752688
+      },
+      "accent": {
+        "x": 62,
+        "y": 532,
+        "width": 388,
+        "height": 472,
+        "anchorX": 162.96,
+        "anchorY": 465.7206208425721,
+        "bodyHeight": 463.62749445676275
+      },
+      "horse-trot": {
+        "x": 532,
+        "y": 602,
+        "width": 472,
+        "height": 402,
+        "anchorX": 236,
+        "anchorY": 396.765625,
+        "bodyHeight": 393.625
+      },
+      "horse-spring": {
+        "x": 1044,
+        "y": 568,
+        "width": 472,
+        "height": 436,
+        "anchorX": 236,
+        "anchorY": 432.8481927710843,
+        "bodyHeight": 427.59518072289154
+      }
+    }
+  },
+  "conde": {
+    "file": "attack-conde-bond-v1",
+    "frames": {
+      "ready": {
+        "x": 106,
+        "y": 20,
+        "width": 299,
+        "height": 472,
+        "anchorX": 149.5,
+        "anchorY": 466.537037037037,
+        "bodyHeight": 462.1666666666667
+      },
+      "guard": {
+        "x": 561,
+        "y": 20,
+        "width": 414,
+        "height": 472,
+        "anchorX": 207,
+        "anchorY": 468.52941176470586,
+        "bodyHeight": 461.5882352941176
+      },
+      "run": {
+        "x": 1088,
+        "y": 20,
+        "width": 383,
+        "height": 472,
+        "anchorX": 191.5,
+        "anchorY": 461.1990846681922,
+        "bodyHeight": 454.71853546910756
+      },
+      "jump": {
+        "x": 1582,
+        "y": 20,
+        "width": 420,
+        "height": 472,
+        "anchorX": 210,
+        "anchorY": 469.413698630137,
+        "bodyHeight": 465.5342465753425
+      },
+      "punch": {
+        "x": 20,
+        "y": 580,
+        "width": 472,
+        "height": 424,
+        "anchorX": 236,
+        "anchorY": 421.90617283950616,
+        "bodyHeight": 414.5777777777778
+      },
+      "kick": {
+        "x": 532,
+        "y": 560,
+        "width": 472,
+        "height": 444,
+        "anchorX": 236,
+        "anchorY": 441.8498789346247,
+        "bodyHeight": 438.6246973365617
+      },
+      "hurt": {
+        "x": 1089,
+        "y": 532,
+        "width": 381,
+        "height": 472,
+        "anchorX": 190.5,
+        "anchorY": 468.3598971722365,
+        "bodyHeight": 457.439588688946
+      },
+      "whirl": {
+        "x": 1564,
+        "y": 532,
+        "width": 456,
+        "height": 472,
+        "anchorX": 228,
+        "anchorY": 468.5378973105135,
+        "bodyHeight": 460.4596577017115
+      }
+    }
+  },
+  "emilio": {
+    "file": "attack-emilio-chunior-v1",
+    "frames": {
+      "ready": {
+        "x": 89,
+        "y": 20,
+        "width": 334,
+        "height": 472,
+        "anchorX": 167,
+        "anchorY": 462.279176201373,
+        "bodyHeight": 457.9588100686499
+      },
+      "guard": {
+        "x": 560,
+        "y": 20,
+        "width": 415,
+        "height": 472,
+        "anchorX": 207.5,
+        "anchorY": 464.20754716981133,
+        "bodyHeight": 460.8679245283019
+      },
+      "run": {
+        "x": 1086,
+        "y": 20,
+        "width": 388,
+        "height": 472,
+        "anchorX": 194,
+        "anchorY": 461.0487238979118,
+        "bodyHeight": 454.47795823665894
+      },
+      "jump": {
+        "x": 1598,
+        "y": 20,
+        "width": 387,
+        "height": 472,
+        "anchorX": 193.5,
+        "anchorY": 470.7897435897436,
+        "bodyHeight": 462.3179487179487
+      },
+      "punch": {
+        "x": 20,
+        "y": 542,
+        "width": 472,
+        "height": 462,
+        "anchorX": 236,
+        "anchorY": 454.0148148148148,
+        "bodyHeight": 450.5925925925926
+      },
+      "kick": {
+        "x": 532,
+        "y": 550,
+        "width": 472,
+        "height": 454,
+        "anchorX": 236,
+        "anchorY": 448.39506172839504,
+        "bodyHeight": 445.0320987654321
+      },
+      "hurt": {
+        "x": 1099,
+        "y": 532,
+        "width": 362,
+        "height": 472,
+        "anchorX": 181,
+        "anchorY": 467.28,
+        "bodyHeight": 462.56
+      },
+      "retort": {
+        "x": 1577,
+        "y": 532,
+        "width": 429,
+        "height": 472,
+        "anchorX": 214.5,
+        "anchorY": 466.17283950617286,
+        "bodyHeight": 463.84197530864196
+      }
+    }
+  },
+  "maite": {
+    "file": "attack-maite-greeting",
+    "frames": {
+      "breath": {
+        "x": 20,
+        "y": 20,
+        "width": 472,
+        "height": 472,
+        "anchorX": 250.16000000000003,
+        "anchorY": 467.3267326732673,
+        "bodyHeight": 464.990099009901
+      },
+      "shout": {
+        "x": 536,
+        "y": 20,
+        "width": 464,
+        "height": 472,
+        "anchorX": 236.64000000000001,
+        "anchorY": 465.25714285714287,
+        "bodyHeight": 463.0095238095238
+      },
+      "sustain": {
+        "x": 20,
+        "y": 581,
+        "width": 472,
+        "height": 423,
+        "anchorX": 212.4,
+        "anchorY": 411.81490384615387,
+        "bodyHeight": 405.7139423076923
+      },
+      "recover": {
+        "x": 532,
+        "y": 540,
+        "width": 472,
+        "height": 464,
+        "anchorX": 250.16000000000003,
+        "anchorY": 453.0566037735849,
+        "bodyHeight": 447.58490566037733
+      }
+    }
+  },
+  "oscar": {
+    "file": "oscar-contrabajo-attack-v1",
+    "frames": {
+      "ready": {
+        "x": 113,
+        "y": 20,
+        "width": 286,
+        "height": 472,
+        "anchorX": 91.52,
+        "anchorY": 470.0126315789474,
+        "bodyHeight": 466.03789473684213
+      },
+      "pull": {
+        "x": 616,
+        "y": 20,
+        "width": 303,
+        "height": 472,
+        "anchorX": 96.96000000000001,
+        "anchorY": 468.04192872117403,
+        "bodyHeight": 465.0733752620545
+      },
+      "release": {
+        "x": 1134,
+        "y": 20,
+        "width": 291,
+        "height": 472,
+        "anchorX": 93.12,
+        "anchorY": 469.0376569037657,
+        "bodyHeight": 464.10041841004187
+      },
+      "accent": {
+        "x": 96,
+        "y": 532,
+        "width": 320,
+        "height": 472,
+        "anchorX": 102.4,
+        "anchorY": 467.85054945054947,
+        "bodyHeight": 463.7010989010989
+      },
+      "note": {
+        "x": 604,
+        "y": 532,
+        "width": 327,
+        "height": 472,
+        "anchorX": 163.5,
+        "anchorY": 464.625,
+        "bodyHeight": 460.2
+      },
+      "note-pair": {
+        "x": 1051,
+        "y": 532,
+        "width": 458,
+        "height": 472,
+        "anchorX": 229,
+        "anchorY": 459.7402597402597,
+        "bodyHeight": 456.6753246753247
+      }
+    }
+  },
+  "puma": {
+    "file": "puma-handchain-attack-v1",
+    "frames": {
+      "summon": {
+        "x": 56,
+        "y": 20,
+        "width": 399,
+        "height": 472,
+        "anchorX": 199.5,
+        "anchorY": 461.4256619144603,
+        "bodyHeight": 455.6578411405295
+      },
+      "release": {
+        "x": 583,
+        "y": 20,
+        "width": 369,
+        "height": 472,
+        "anchorX": 184.5,
+        "anchorY": 470.0414937759336,
+        "bodyHeight": 461.2282157676349
+      },
+      "ring-a": {
+        "x": 1044,
+        "y": 70,
+        "width": 472,
+        "height": 422,
+        "anchorX": 236,
+        "anchorY": 420.12860310421286,
+        "bodyHeight": 412.6430155210643
+      },
+      "ring-b": {
+        "x": 20,
+        "y": 600,
+        "width": 472,
+        "height": 404,
+        "anchorX": 236,
+        "anchorY": 398.42758620689654,
+        "bodyHeight": 395.6413793103448
+      },
+      "ring-c": {
+        "x": 532,
+        "y": 560,
+        "width": 472,
+        "height": 444,
+        "anchorX": 236,
+        "anchorY": 435.9088838268793,
+        "bodyHeight": 431.8633257403189
+      },
+      "ring-d": {
+        "x": 1044,
+        "y": 591,
+        "width": 472,
+        "height": 413,
+        "anchorX": 236,
+        "anchorY": 408.2528735632184,
+        "bodyHeight": 406.35402298850573
+      }
+    }
+  },
+  "chataing": {
+    "file": "chataing-wired-microphone-attack-v1",
+    "frames": {
+      "windup": {
+        "x": 63,
+        "y": 20,
+        "width": 385,
+        "height": 472,
+        "anchorX": 192.5,
+        "anchorY": 461.80561555075593,
+        "bodyHeight": 459.76673866090715
+      },
+      "cast": {
+        "x": 532,
+        "y": 78,
+        "width": 472,
+        "height": 414,
+        "anchorX": 236,
+        "anchorY": 409.3061224489796,
+        "bodyHeight": 406.48979591836735
+      },
+      "reel": {
+        "x": 1084,
+        "y": 20,
+        "width": 391,
+        "height": 472,
+        "anchorX": 195.5,
+        "anchorY": 462.76521739130436,
+        "bodyHeight": 453.5304347826087
+      },
+      "recover": {
+        "x": 64,
+        "y": 532,
+        "width": 383,
+        "height": 472,
+        "anchorX": 191.5,
+        "anchorY": 465.7758241758242,
+        "bodyHeight": 458.51428571428573
+      },
+      "microphone": {
+        "x": 532,
+        "y": 832,
+        "width": 472,
+        "height": 172,
+        "anchorX": 236,
+        "anchorY": 163.67741935483872,
+        "bodyHeight": 159.05376344086022
+      },
+      "screen": {
+        "x": 1044,
+        "y": 606,
+        "width": 472,
+        "height": 398,
+        "anchorX": 236,
+        "anchorY": 392.3785310734463,
+        "bodyHeight": 389.00564971751413
+      }
+    }
+  },
+  "george": {
+    "file": "george-curtain-attack-v1",
+    "frames": {
+      "present": {
+        "x": 94,
+        "y": 20,
+        "width": 324,
+        "height": 472,
+        "anchorX": 162,
+        "anchorY": 466.5009708737864,
+        "bodyHeight": 463.7514563106796
+      },
+      "incline": {
+        "x": 659,
+        "y": 20,
+        "width": 217,
+        "height": 472,
+        "anchorX": 108.5,
+        "anchorY": 469.05613305613304,
+        "bodyHeight": 461.2058212058212
+      },
+      "bow": {
+        "x": 1123,
+        "y": 20,
+        "width": 313,
+        "height": 472,
+        "anchorX": 156.5,
+        "anchorY": 462.3179487179487,
+        "bodyHeight": 458.6871794871795
+      },
+      "recover": {
+        "x": 122,
+        "y": 532,
+        "width": 268,
+        "height": 472,
+        "anchorX": 134,
+        "anchorY": 462.1871101871102,
+        "bodyHeight": 454.3367983367983
+      },
+      "curtain": {
+        "x": 532,
+        "y": 603,
+        "width": 472,
+        "height": 401,
+        "anchorX": 236,
+        "anchorY": 393.8869179600887,
+        "bodyHeight": 384.99556541019956
+      },
+      "support": {
+        "x": 1044,
+        "y": 951,
+        "width": 472,
+        "height": 53,
+        "anchorX": 236,
+        "anchorY": 51.20338983050848,
+        "bodyHeight": 50.30508474576271
+      }
+    }
+  },
+  "mcm": {
+    "file": "mcm-caravan-attack-v1",
+    "frames": {
+      "truck": {
+        "x": 20,
+        "y": 236,
+        "width": 472,
+        "height": 256,
+        "anchorX": 151.3495081967213,
+        "anchorY": 254.41573770491803,
+        "bodyHeight": 154.75409836065575
+      },
+      "empty": {
+        "x": 532,
+        "y": 287,
+        "width": 472,
+        "height": 205,
+        "anchorX": 147.77570093457945,
+        "anchorY": 203.8611481975968,
+        "bodyHeight": 157.543391188251
+      },
+      "mount": {
+        "x": 1103,
+        "y": 20,
+        "width": 353,
+        "height": 472,
+        "anchorX": 176.5,
+        "anchorY": 470.2188679245283,
+        "bodyHeight": 461.31320754716984
+      },
+      "dismount": {
+        "x": 47,
+        "y": 532,
+        "width": 417,
+        "height": 472,
+        "anchorX": 208.5,
+        "anchorY": 461.160751565762,
+        "bodyHeight": 456.2338204592902
+      },
+      "man-a": {
+        "x": 567,
+        "y": 532,
+        "width": 401,
+        "height": 472,
+        "anchorX": 200.5,
+        "anchorY": 464.34077079107504,
+        "bodyHeight": 460.5111561866126
+      },
+      "man-b": {
+        "x": 1069,
+        "y": 532,
+        "width": 421,
+        "height": 472,
+        "anchorX": 210.5,
+        "anchorY": 468.1547861507128,
+        "bodyHeight": 461.4256619144603
+      },
+      "woman-a": {
+        "x": 45,
+        "y": 1044,
+        "width": 421,
+        "height": 472,
+        "anchorX": 210.5,
+        "anchorY": 468.88791208791207,
+        "bodyHeight": 464.73846153846154
+      },
+      "woman-b": {
+        "x": 550,
+        "y": 1044,
+        "width": 435,
+        "height": 472,
+        "anchorX": 217.5,
+        "anchorY": 467.0210970464135,
+        "bodyHeight": 463.0379746835443
+      },
+      "flag": {
+        "x": 1044,
+        "y": 1182,
+        "width": 472,
+        "height": 334,
+        "anchorX": 451.11504424778764,
+        "anchorY": 269.06784660766965,
+        "bodyHeight": 327.89380530973455
+      }
+    }
+  },
+  "ali": {
+    "file": "ali-cuatro-choir-attack-v1",
+    "frames": {
+      "ready": {
+        "x": 75,
+        "y": 20,
+        "width": 362,
+        "height": 472,
+        "anchorX": 181,
+        "anchorY": 462.8051948051948,
+        "bodyHeight": 460.5064935064935
+      },
+      "upstroke": {
+        "x": 587,
+        "y": 20,
+        "width": 361,
+        "height": 472,
+        "anchorX": 180.5,
+        "anchorY": 462.7752442996743,
+        "bodyHeight": 460.4690553745928
+      },
+      "downstroke": {
+        "x": 1089,
+        "y": 20,
+        "width": 381,
+        "height": 472,
+        "anchorX": 190.5,
+        "anchorY": 464.2495894909688,
+        "bodyHeight": 462.69950738916253
+      },
+      "accent": {
+        "x": 1600,
+        "y": 20,
+        "width": 384,
+        "height": 472,
+        "anchorX": 192,
+        "anchorY": 468.06666666666666,
+        "bodyHeight": 463.3466666666667
+      },
+      "choir-a": {
+        "x": 2160,
+        "y": 20,
+        "width": 287,
+        "height": 472,
+        "anchorX": 143.5,
+        "anchorY": 466.5622119815668,
+        "bodyHeight": 460.036866359447
+      },
+      "choir-b": {
+        "x": 111,
+        "y": 532,
+        "width": 290,
+        "height": 472,
+        "anchorX": 145,
+        "anchorY": 469.7630331753555,
+        "bodyHeight": 466.4075829383886
+      },
+      "choir-c": {
+        "x": 628,
+        "y": 532,
+        "width": 279,
+        "height": 472,
+        "anchorX": 139.5,
+        "anchorY": 467.6796338672769,
+        "bodyHeight": 460.11899313501146
+      },
+      "choir-d": {
+        "x": 1137,
+        "y": 532,
+        "width": 286,
+        "height": 472,
+        "anchorX": 143,
+        "anchorY": 459.1272727272727,
+        "bodyHeight": 455.90909090909093
+      },
+      "choir-e": {
+        "x": 1633,
+        "y": 532,
+        "width": 318,
+        "height": 472,
+        "anchorX": 159,
+        "anchorY": 461.14942528735634,
+        "bodyHeight": 455.7241379310345
+      },
+      "choir-f": {
+        "x": 2157,
+        "y": 532,
+        "width": 293,
+        "height": 472,
+        "anchorX": 146.5,
+        "anchorY": 462.0979020979021,
+        "bodyHeight": 458.7972027972028
+      }
+    }
+  },
+  "melanio": {
+    "file": "melanio-phone-signal-attack-v1",
+    "frames": {
+      "record": {
+        "x": 73,
+        "y": 20,
+        "width": 365,
+        "height": 472,
+        "anchorX": 167.9,
+        "anchorY": 465.459584295612,
+        "bodyHeight": 462.18937644341804
+      },
+      "windup": {
+        "x": 573,
+        "y": 20,
+        "width": 389,
+        "height": 472,
+        "anchorX": 186.72,
+        "anchorY": 465.44444444444446,
+        "bodyHeight": 463.25925925925924
+      },
+      "strike-high": {
+        "x": 1060,
+        "y": 20,
+        "width": 439,
+        "height": 472,
+        "anchorX": 198.428,
+        "anchorY": 468.58324715615305,
+        "bodyHeight": 467.60703205791106
+      },
+      "strike-low": {
+        "x": 1556,
+        "y": 76,
+        "width": 472,
+        "height": 416,
+        "anchorX": 226.56,
+        "anchorY": 411.16279069767444,
+        "bodyHeight": 403.90697674418607
+      },
+      "recover": {
+        "x": 88,
+        "y": 532,
+        "width": 335,
+        "height": 472,
+        "anchorX": 154.1,
+        "anchorY": 467.72850678733033,
+        "bodyHeight": 462.3891402714932
+      },
+      "signal-windup": {
+        "x": 598,
+        "y": 532,
+        "width": 339,
+        "height": 472,
+        "anchorX": 159.32999999999998,
+        "anchorY": 465.7437407952872,
+        "bodyHeight": 463.6583210603829
+      },
+      "signal-release": {
+        "x": 1113,
+        "y": 532,
+        "width": 334,
+        "height": 472,
+        "anchorX": 156.98,
+        "anchorY": 469.94245858761985,
+        "bodyHeight": 469.94245858761985
+      },
+      "signal": {
+        "x": 1556,
+        "y": 629,
+        "width": 472,
+        "height": 375,
+        "anchorX": 236,
+        "anchorY": 351.3719512195122,
+        "bodyHeight": 322.4085365853659
+      }
+    }
+  },
+  "dayana": {
+    "file": "dayana-runway-attack-v3",
+    "frames": {
+      "present": {
+        "x": 8,
+        "y": 685,
+        "width": 425,
+        "height": 506,
+        "anchorX": 272,
+        "anchorY": 503,
+        "bodyHeight": 500
+      },
+      "walk-a": {
+        "x": 830,
+        "y": 1203,
+        "width": 395,
+        "height": 479,
+        "anchorX": 240.95,
+        "anchorY": 476,
+        "bodyHeight": 473
+      },
+      "walk-b": {
+        "x": 1624,
+        "y": 1203,
+        "width": 330,
+        "height": 479,
+        "anchorX": 201.29999999999998,
+        "anchorY": 476,
+        "bodyHeight": 473
+      },
+      "walk-c": {
+        "x": 872,
+        "y": 685,
+        "width": 414,
+        "height": 472,
+        "anchorX": 252.54,
+        "anchorY": 469,
+        "bodyHeight": 466
+      },
+      "walk-d": {
+        "x": 1233,
+        "y": 1203,
+        "width": 383,
+        "height": 475,
+        "anchorX": 233.63,
+        "anchorY": 472,
+        "bodyHeight": 469
+      },
+      "pose-hip": {
+        "x": 954,
+        "y": 173,
+        "width": 454,
+        "height": 484,
+        "anchorX": 249.70000000000002,
+        "anchorY": 481,
+        "bodyHeight": 478
+      },
+      "pose-wave": {
+        "x": 8,
+        "y": 1203,
+        "width": 405,
+        "height": 476,
+        "anchorX": 214.65,
+        "anchorY": 473,
+        "bodyHeight": 470
+      },
+      "runway": {
+        "x": 8,
+        "y": 8,
+        "width": 1952,
+        "height": 157,
+        "anchorX": 976,
+        "anchorY": 154,
+        "bodyHeight": 151
+      },
+      "spin-front": {
+        "x": 484,
+        "y": 173,
+        "width": 462,
+        "height": 490,
+        "anchorX": 277.2,
+        "anchorY": 487,
+        "bodyHeight": 484
+      },
+      "spin-side": {
+        "x": 1416,
+        "y": 173,
+        "width": 447,
+        "height": 492,
+        "anchorX": 272.67,
+        "anchorY": 489,
+        "bodyHeight": 486
+      },
+      "spin-back": {
+        "x": 1294,
+        "y": 685,
+        "width": 414,
+        "height": 488,
+        "anchorX": 244.26,
+        "anchorY": 485,
+        "bodyHeight": 482
+      },
+      "spin-finish": {
+        "x": 8,
+        "y": 173,
+        "width": 468,
+        "height": 504,
+        "anchorX": 294.84,
+        "anchorY": 501,
+        "bodyHeight": 498
+      },
+      "pose-shoulder": {
+        "x": 421,
+        "y": 1203,
+        "width": 401,
+        "height": 501,
+        "anchorX": 244.60999999999999,
+        "anchorY": 498,
+        "bodyHeight": 495
+      },
+      "pose-front": {
+        "x": 441,
+        "y": 685,
+        "width": 423,
+        "height": 510,
+        "anchorX": 211.5,
+        "anchorY": 507,
+        "bodyHeight": 504
+      }
+    }
+  },
+  "lorenzo": {
+    "file": "lorenzo-polar-attack-v1",
+    "frames": {
+      "windup": {
+        "x": 49,
+        "y": 20,
+        "width": 413,
+        "height": 472,
+        "anchorX": 206.5,
+        "anchorY": 469.50704225352115,
+        "bodyHeight": 464.5211267605634
+      },
+      "throw": {
+        "x": 579,
+        "y": 20,
+        "width": 377,
+        "height": 472,
+        "anchorX": 173.42000000000002,
+        "anchorY": 468.94074074074075,
+        "bodyHeight": 466.75555555555553
+      },
+      "recover": {
+        "x": 1096,
+        "y": 20,
+        "width": 368,
+        "height": 472,
+        "anchorX": 184,
+        "anchorY": 467.28785357737104,
+        "bodyHeight": 457.0782029950083
+      },
+      "bag": {
+        "x": 1655,
+        "y": 20,
+        "width": 274,
+        "height": 472,
+        "anchorX": 137,
+        "anchorY": 468.4907063197026,
+        "bodyHeight": 463.2267657992565
+      },
+      "ride-right": {
+        "x": 2068,
+        "y": 185,
+        "width": 472,
+        "height": 307,
+        "anchorX": 236,
+        "anchorY": 304.38166311300637,
+        "bodyHeight": 303.0724946695096
+      },
+      "ride-left": {
+        "x": 20,
+        "y": 701,
+        "width": 472,
+        "height": 303,
+        "anchorX": 236,
+        "anchorY": 301.6967741935484,
+        "bodyHeight": 301.0451612903226
+      },
+      "truck-right": {
+        "x": 532,
+        "y": 697,
+        "width": 472,
+        "height": 307,
+        "anchorX": 236,
+        "anchorY": 305.02360515021456,
+        "bodyHeight": 303.0472103004292
+      },
+      "truck-left": {
+        "x": 1044,
+        "y": 694,
+        "width": 472,
+        "height": 310,
+        "anchorX": 236,
+        "anchorY": 304.73460721868366,
+        "bodyHeight": 303.41825902335455
+      },
+      "front-right": {
+        "x": 1622,
+        "y": 532,
+        "width": 339,
+        "height": 472,
+        "anchorX": 169.5,
+        "anchorY": 470.5506653019447,
+        "bodyHeight": 467.16888433981575
+      },
+      "front-left": {
+        "x": 2137,
+        "y": 532,
+        "width": 333,
+        "height": 472,
+        "anchorX": 166.5,
+        "anchorY": 470.5536261491318,
+        "bodyHeight": 465.2502553626149
+      }
+    }
+  },
+  "bolivar": {
+    "file": "bolivar-llaneros-attack-v1",
+    "frames": {
+      "draw": {
+        "x": 46,
+        "y": 20,
+        "width": 420,
+        "height": 472,
+        "anchorX": 214.20000000000002,
+        "anchorY": 468.2390438247012,
+        "bodyHeight": 464.47808764940237
+      },
+      "slash": {
+        "x": 532,
+        "y": 174,
+        "width": 472,
+        "height": 318,
+        "anchorX": 160.48000000000002,
+        "anchorY": 315.456,
+        "bodyHeight": 313.548
+      },
+      "cut": {
+        "x": 1044,
+        "y": 40,
+        "width": 472,
+        "height": 452,
+        "anchorX": 236,
+        "anchorY": 448.4479371316306,
+        "bodyHeight": 445.78388998035365
+      },
+      "thrust": {
+        "x": 1556,
+        "y": 215,
+        "width": 472,
+        "height": 277,
+        "anchorX": 160.48000000000002,
+        "anchorY": 271.7954070981211,
+        "bodyHeight": 270.63883089770354
+      },
+      "ready": {
+        "x": 2068,
+        "y": 42,
+        "width": 472,
+        "height": 450,
+        "anchorX": 236,
+        "anchorY": 448.30827067669173,
+        "bodyHeight": 444.07894736842104
+      },
+      "gallop-a": {
+        "x": 2580,
+        "y": 132,
+        "width": 472,
+        "height": 360,
+        "anchorX": 236,
+        "anchorY": 357.9389312977099,
+        "bodyHeight": 354.5038167938931
+      },
+      "gallop-b": {
+        "x": 3092,
+        "y": 108,
+        "width": 472,
+        "height": 384,
+        "anchorX": 236,
+        "anchorY": 380.8198757763975,
+        "bodyHeight": 378.4347826086956
+      },
+      "horse": {
+        "x": 20,
+        "y": 664,
+        "width": 472,
+        "height": 340,
+        "anchorX": 236,
+        "anchorY": 336.76190476190476,
+        "bodyHeight": 334.3333333333333
+      },
+      "llanero-1": {
+        "x": 532,
+        "y": 590,
+        "width": 472,
+        "height": 414,
+        "anchorX": 236,
+        "anchorY": 412.31364562118125,
+        "bodyHeight": 409.78411405295316
+      },
+      "llanero-2": {
+        "x": 1044,
+        "y": 568,
+        "width": 472,
+        "height": 436,
+        "anchorX": 236,
+        "anchorY": 429.0517928286853,
+        "bodyHeight": 426.44621513944224
+      },
+      "llanero-3": {
+        "x": 1556,
+        "y": 589,
+        "width": 472,
+        "height": 415,
+        "anchorX": 236,
+        "anchorY": 410.92337917485264,
+        "bodyHeight": 408.4774066797643
+      },
+      "llanero-4": {
+        "x": 2068,
+        "y": 587,
+        "width": 472,
+        "height": 417,
+        "anchorX": 236,
+        "anchorY": 415.3774319066148,
+        "bodyHeight": 413.7548638132296
+      },
+      "llanero-5": {
+        "x": 2580,
+        "y": 562,
+        "width": 472,
+        "height": 442,
+        "anchorX": 236,
+        "anchorY": 440.35074626865674,
+        "bodyHeight": 438.7014925373134
+      },
+      "llanero-6": {
+        "x": 3092,
+        "y": 574,
+        "width": 472,
+        "height": 430,
+        "anchorX": 236,
+        "anchorY": 428.9155107187894,
+        "bodyHeight": 427.28877679697354
+      }
+    }
+  },
+  "dudamel": {
+    "file": "dudamel-orchestra-attack-v1",
+    "frames": {
+      "ready": {
+        "x": 78,
+        "y": 20,
+        "width": 355,
+        "height": 472,
+        "anchorX": 173.95,
+        "anchorY": 469.34831460674155,
+        "bodyHeight": 466.69662921348316
+      },
+      "upbeat": {
+        "x": 595,
+        "y": 20,
+        "width": 345,
+        "height": 472,
+        "anchorX": 172.5,
+        "anchorY": 465.74834437086093,
+        "bodyHeight": 463.4039735099338
+      },
+      "downbeat": {
+        "x": 20,
+        "y": 554,
+        "width": 472,
+        "height": 450,
+        "anchorX": 188.8,
+        "anchorY": 443.9306358381503,
+        "bodyHeight": 439.59537572254334
+      },
+      "fortissimo": {
+        "x": 568,
+        "y": 532,
+        "width": 400,
+        "height": 472,
+        "anchorX": 176,
+        "anchorY": 467.88132635253055,
+        "bodyHeight": 464.586387434555
+      },
+      "orchestra": {
+        "x": 0,
+        "y": 1024,
+        "width": 1536,
+        "height": 961,
+        "anchorX": 768,
+        "anchorY": 884.12,
+        "bodyHeight": 807.24
+      }
+    }
+  },
+  "llorona": {
+    "file": "llorona-underworld-attack-v1",
+    "frames": {
+      "lure": {
+        "x": 61,
+        "y": 20,
+        "width": 389,
+        "height": 472,
+        "anchorX": 202.28,
+        "anchorY": 466.36978131212726,
+        "bodyHeight": 464.493041749503
+      },
+      "cast": {
+        "x": 532,
+        "y": 65,
+        "width": 472,
+        "height": 427,
+        "anchorX": 250.16000000000003,
+        "anchorY": 416.96367521367523,
+        "bodyHeight": 412.4017094017094
+      },
+      "reveal": {
+        "x": 20,
+        "y": 582,
+        "width": 472,
+        "height": 422,
+        "anchorX": 245.44,
+        "anchorY": 413.5412026726058,
+        "bodyHeight": 410.7216035634744
+      },
+      "embrace-high": {
+        "x": 545,
+        "y": 532,
+        "width": 446,
+        "height": 472,
+        "anchorX": 231.92000000000002,
+        "anchorY": 465.201646090535,
+        "bodyHeight": 461.3168724279835
+      },
+      "embrace-low": {
+        "x": 20,
+        "y": 1131,
+        "width": 472,
+        "height": 385,
+        "anchorX": 245.44,
+        "anchorY": 374.7705314009662,
+        "bodyHeight": 371.0507246376812
+      },
+      "recover": {
+        "x": 580,
+        "y": 1044,
+        "width": 376,
+        "height": 472,
+        "anchorX": 195.52,
+        "anchorY": 469.1736526946108,
+        "bodyHeight": 464.4630738522954
+      },
+      "portal": {
+        "x": 20,
+        "y": 1833,
+        "width": 472,
+        "height": 195,
+        "anchorX": 236,
+        "anchorY": 190.71428571428572,
+        "bodyHeight": 188.92857142857142
+      },
+      "wave": {
+        "x": 532,
+        "y": 1646,
+        "width": 472,
+        "height": 382,
+        "anchorX": 236,
+        "anchorY": 378.740614334471,
+        "bodyHeight": 376.7849829351536
+      }
+    }
+  },
+  "deyna": {
+    "file": "deyna-squad-attack-v2",
+    "frames": {
+      "windup": {
+        "x": 8,
+        "y": 8,
+        "width": 625,
+        "height": 725,
+        "anchorX": 450,
+        "anchorY": 722,
+        "bodyHeight": 719
+      },
+      "contact": {
+        "x": 641,
+        "y": 8,
+        "width": 688,
+        "height": 688,
+        "anchorX": 385.28000000000003,
+        "anchorY": 685,
+        "bodyHeight": 682
+      },
+      "recover": {
+        "x": 1337,
+        "y": 8,
+        "width": 497,
+        "height": 728,
+        "anchorX": 248.5,
+        "anchorY": 725,
+        "bodyHeight": 722
+      },
+      "ball": {
+        "x": 8,
+        "y": 744,
+        "width": 459,
+        "height": 472,
+        "anchorX": 229.5,
+        "anchorY": 455.14285714285717,
+        "bodyHeight": 431.54285714285714
+      },
+      "squad-0-windup": {
+        "x": 475,
+        "y": 744,
+        "width": 321,
+        "height": 408,
+        "anchorX": 231.12,
+        "anchorY": 405,
+        "bodyHeight": 402
+      },
+      "squad-1-windup": {
+        "x": 804,
+        "y": 744,
+        "width": 307,
+        "height": 387,
+        "anchorX": 221.04,
+        "anchorY": 384,
+        "bodyHeight": 381
+      },
+      "squad-2-windup": {
+        "x": 1119,
+        "y": 744,
+        "width": 326,
+        "height": 375,
+        "anchorX": 234.72,
+        "anchorY": 372,
+        "bodyHeight": 369
+      },
+      "squad-3-windup": {
+        "x": 1453,
+        "y": 744,
+        "width": 298,
+        "height": 386,
+        "anchorX": 214.56,
+        "anchorY": 383,
+        "bodyHeight": 380
+      },
+      "squad-4-windup": {
+        "x": 8,
+        "y": 1224,
+        "width": 303,
+        "height": 377,
+        "anchorX": 218.16,
+        "anchorY": 374,
+        "bodyHeight": 371
+      },
+      "squad-0-contact": {
+        "x": 319,
+        "y": 1224,
+        "width": 329,
+        "height": 342,
+        "anchorX": 217.14000000000001,
+        "anchorY": 339,
+        "bodyHeight": 336
+      },
+      "squad-1-contact": {
+        "x": 656,
+        "y": 1224,
+        "width": 329,
+        "height": 318,
+        "anchorX": 217.14000000000001,
+        "anchorY": 315,
+        "bodyHeight": 312
+      },
+      "squad-2-contact": {
+        "x": 993,
+        "y": 1224,
+        "width": 321,
+        "height": 309,
+        "anchorX": 211.86,
+        "anchorY": 306,
+        "bodyHeight": 303
+      },
+      "squad-3-contact": {
+        "x": 1322,
+        "y": 1224,
+        "width": 325,
+        "height": 316,
+        "anchorX": 214.5,
+        "anchorY": 313,
+        "bodyHeight": 310
+      },
+      "squad-4-contact": {
+        "x": 1655,
+        "y": 1224,
+        "width": 297,
+        "height": 307,
+        "anchorX": 196.02,
+        "anchorY": 304,
+        "bodyHeight": 301
+      },
+      "squad-0-recover": {
+        "x": 8,
+        "y": 1609,
+        "width": 246,
+        "height": 312,
+        "anchorX": 123,
+        "anchorY": 309,
+        "bodyHeight": 306
+      },
+      "squad-1-recover": {
+        "x": 262,
+        "y": 1609,
+        "width": 224,
+        "height": 309,
+        "anchorX": 112,
+        "anchorY": 306,
+        "bodyHeight": 303
+      },
+      "squad-2-recover": {
+        "x": 494,
+        "y": 1609,
+        "width": 210,
+        "height": 301,
+        "anchorX": 105,
+        "anchorY": 298,
+        "bodyHeight": 295
+      },
+      "squad-3-recover": {
+        "x": 712,
+        "y": 1609,
+        "width": 243,
+        "height": 305,
+        "anchorX": 121.5,
+        "anchorY": 302,
+        "bodyHeight": 299
+      },
+      "squad-4-recover": {
+        "x": 963,
+        "y": 1609,
+        "width": 216,
+        "height": 299,
+        "anchorX": 108,
+        "anchorY": 296,
+        "bodyHeight": 293
+      }
+    }
+  }
+}

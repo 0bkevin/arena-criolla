@@ -7,6 +7,8 @@ export interface Technique {
   startup: number;
   recovery: number;
   range: number;
+  /** A rush can target a distant opponent, but connects only at bodily contact. */
+  contactRange?: number;
   height: number;
   damage: number;
   force: number;
@@ -46,6 +48,10 @@ export interface Technique {
     spacing?: number;
     hitInvincibility?: number;
     returnAfter?: number;
+    /** A held cable recalls the projectile after contact and catches it at its owner. */
+    tether?: { catchX: number; catchY: number; returnSpeed: number };
+    offsetX?: number;
+    offsetY?: number;
     wave?: { amplitude: number; period: number };
     acceleration?: number;
     maxSpeed?: number;
@@ -81,8 +87,7 @@ export const TECHNIQUES: Record<Ability, Technique> = {
     projectile: {
       speed: 8.5,
       life: 100,
-      count: 7,
-      spacing: 42,
+      count: 1,
       hitInvincibility: 3,
       groundOnly: true,
       radius: 36,
@@ -112,6 +117,7 @@ export const TECHNIQUES: Record<Ability, Technique> = {
     startup: 9,
     recovery: 40,
     range: 215,
+    contactRange: 125,
     height: 110,
     damage: 16,
     force: 8,
@@ -193,12 +199,20 @@ export const TECHNIQUES: Record<Ability, Technique> = {
   },
   static: {
     startup: 11,
-    recovery: 44,
-    range: 460,
+    recovery: 65,
+    range: 345,
     height: 120,
     damage: 12,
     force: 6,
-    projectile: { speed: 10, life: 75, returnAfter: 24 },
+    projectile: {
+      speed: 10,
+      life: 75,
+      returnAfter: 24,
+      offsetX: 75,
+      offsetY: 108,
+      radius: 12,
+      tether: { catchX: -9, catchY: 129, returnSpeed: 18 },
+    },
   },
   punchline: {
     startup: 14,
@@ -213,6 +227,7 @@ export const TECHNIQUES: Record<Ability, Technique> = {
     startup: 10,
     recovery: 43,
     range: 180,
+    contactRange: 110,
     height: 160,
     damage: 15,
     force: 7,

@@ -3,6 +3,8 @@ body {
   background: #091524;
 }
 .app-shell.in-lobby {
+  --selection-control-height: 35px;
+  --selection-fill: #31465f;
   --ink: #17273f;
   --paper: #fff5db;
   --coin: #ffd45a;
@@ -17,7 +19,7 @@ body {
   --text: #eef2fa;
   --muted: #a3b3ca;
   --lime: #ffd45a;
-  --display: "Barlow Condensed", Impact, sans-serif;
+  --display: var(--font-display);
   color-scheme: dark;
   color: var(--text);
   background: radial-gradient(
@@ -50,11 +52,14 @@ body {
 .in-lobby .site-header .brand-icon {
   width: 29px;
   height: 29px;
-  border: 1px solid #ffd45a40;
-  border-radius: 4px;
-  background: #ffd45a0b;
-  color: var(--coin);
-  box-shadow: inset 0 1px 0 #fff5db13;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.site-header .brand-icon > img {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .in-lobby .site-header .brand-name {
   font: italic 800 22px/1 var(--display);
@@ -77,9 +82,7 @@ body {
 .in-lobby .site-header .main-nav button {
   height: 30px;
   padding: 0 11px;
-  font:
-    500 12px "DM Sans",
-    sans-serif;
+  font: 500 12px var(--font-body);
   color: var(--muted);
   border: 1px solid transparent;
   border-radius: 4px;
@@ -128,7 +131,6 @@ body {
   isolation: isolate;
   overflow: hidden;
   border: 1px solid #6a7b9555;
-  border-left: 5px solid var(--coin);
   border-radius: 8px;
   background: #172b43;
   box-shadow: inset 0 1px 0 #ffffff0c;
@@ -176,9 +178,7 @@ body {
 }
 .in-lobby .marquee-copy p {
   color: #a6c0da;
-  font:
-    500 11px "DM Sans",
-    sans-serif;
+  font: 500 11px var(--font-body);
   letter-spacing: 0.1px;
 }
 .in-lobby .marquee-culture {
@@ -246,16 +246,12 @@ body {
     color 140ms;
 }
 .in-lobby .arcade-modes button > span:not(.mode-slot) {
-  font:
-    700 15px/1 "DM Sans",
-    sans-serif;
+  font: 700 15px/1 var(--font-body);
 }
 .in-lobby .arcade-modes small {
   display: block;
   margin-top: 5px;
-  font:
-    700 6px "DM Sans",
-    sans-serif;
+  font: 700 6px var(--font-body);
   letter-spacing: 0.7px;
 }
 .in-lobby .arcade-modes button > svg {
@@ -304,9 +300,7 @@ body {
 }
 .in-lobby .arcade-progress {
   color: #aebed4;
-  font:
-    500 11px "DM Sans",
-    sans-serif;
+  font: 500 11px var(--font-body);
 }
 .in-lobby .arcade-progress > svg:first-child {
   color: var(--coin);
@@ -538,7 +532,6 @@ body {
   inset: 0;
   z-index: -1;
   background: linear-gradient(120deg, #0d1b2ef0, #11213ce0);
-  border-left: 3px solid var(--coin);
   transform: skewX(-5deg);
 }
 .in-lobby .contender-p2 .contender-identity::before {
@@ -562,9 +555,7 @@ body {
 .in-lobby .contender-identity p {
   min-height: 13px;
   color: #afbdd2;
-  font:
-    500 10px/1.25 "DM Sans",
-    sans-serif;
+  font: 500 10px/1.25 var(--font-body);
 }
 .in-lobby .contender-moves {
   position: static;
@@ -574,9 +565,7 @@ body {
   padding: 7px 4px;
   border-top: 1px solid #ffffff09;
   color: #b8c8da;
-  font:
-    500 10px "DM Sans",
-    sans-serif;
+  font: 500 10px var(--font-body);
 }
 .in-lobby .contender-moves > svg:first-child {
   color: var(--coin);
@@ -602,9 +591,7 @@ body {
 .in-lobby .waiting-message {
   display: block;
   padding: 8px 0;
-  font:
-    500 10px "DM Sans",
-    sans-serif;
+  font: 500 10px var(--font-body);
   color: var(--muted);
 }
 .in-lobby .arcade-roster {
@@ -688,21 +675,19 @@ body {
   margin: 0 0 8px;
   background: #071425;
   color: #b1c4dd;
-  border: 1px solid #ffd45a80;
+  border: 1px solid #344a64;
   border-radius: 4px;
+}
+.in-lobby .arcade-search:focus-within {
+  background: #1a2e46;
 }
 .in-lobby .arcade-search input {
   color: var(--paper);
   background: transparent;
-  font:
-    400 12px "DM Sans",
-    sans-serif;
+  font: 400 12px var(--font-body);
 }
 .in-lobby .arcade-search input::placeholder {
   color: #92a5bf;
-}
-.in-lobby .arcade-search > span {
-  color: #a2b5cf;
 }
 .in-lobby .roster-categories {
   gap: 6px;
@@ -712,30 +697,31 @@ body {
   min-height: 29px;
   height: 29px;
   padding: 4px 7px;
-  background: #07162966;
-  border: 1px solid #6983a343;
+  background: #0b1a2d;
+  border: 1px solid transparent;
   border-radius: 3px;
   color: #bccae0;
   box-shadow: none;
-  font:
-    500 11px "DM Sans",
-    sans-serif;
+  font: 500 12px var(--font-body);
 }
 .in-lobby .roster-categories button span {
-  font: 500 9px var(--pixel);
+  font: 500 10px var(--font-body);
   color: #a2b1c6;
 }
 .in-lobby .roster-categories button[aria-pressed="true"] {
-  background: #ffd45a0b;
-  color: var(--paper);
-  border-color: #9eafd25a;
-  box-shadow: inset 0 -2px 0 var(--coin);
+  background: var(--selection-fill);
+  color: var(--coin);
+  font-weight: 700;
+  box-shadow: none;
 }
 .in-lobby .roster-categories button[aria-pressed="true"] span {
-  color: #e6d39b;
+  color: #d6e3f3;
 }
-.in-lobby .roster-categories button:hover {
-  border-color: #c4d2e67a;
+.in-lobby .roster-categories button:not([aria-pressed="true"]):hover {
+  background: #20354c;
+}
+.in-lobby .roster-categories button:is(:hover, :active) {
+  transform: none;
 }
 .in-lobby .fighter-grid {
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -760,24 +746,6 @@ body {
     inset 0 0 0 2px #07142544,
     0 3px 7px #020b1933;
 }
-.in-lobby .fighter-card::before {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  z-index: 4;
-  border-radius: 5px;
-  pointer-events: none;
-  opacity: 0;
-  background:
-    linear-gradient(var(--coin), var(--coin)) left top / 9px 2px no-repeat,
-    linear-gradient(var(--coin), var(--coin)) left top / 2px 9px no-repeat,
-    linear-gradient(var(--coin), var(--coin)) right top / 9px 2px no-repeat,
-    linear-gradient(var(--coin), var(--coin)) right top / 2px 9px no-repeat,
-    linear-gradient(var(--coin), var(--coin)) left bottom / 9px 2px no-repeat,
-    linear-gradient(var(--coin), var(--coin)) left bottom / 2px 9px no-repeat,
-    linear-gradient(var(--coin), var(--coin)) right bottom / 9px 2px no-repeat,
-    linear-gradient(var(--coin), var(--coin)) right bottom / 2px 9px no-repeat;
-}
 .in-lobby .fighter-card.chosen {
   border: 1px solid var(--coin);
   box-shadow:
@@ -785,17 +753,11 @@ body {
     0 5px 12px #020b1940;
   z-index: 3;
 }
-.in-lobby .fighter-card.chosen::before {
-  opacity: 1;
-}
 .in-lobby .fighter-card.chosen.picking-p2 {
   border-color: var(--coral);
   box-shadow:
     0 0 0 1px var(--coral),
     0 5px 12px #020b1940;
-}
-.in-lobby .fighter-card.chosen.picking-p2::before {
-  filter: hue-rotate(315deg) saturate(0.8);
 }
 .in-lobby .fighter-card:hover {
   transform: translateY(-2px);
@@ -882,9 +844,7 @@ body {
   border-radius: 0 0 3px 3px;
 }
 .in-lobby .fighter-card-caption strong {
-  font:
-    700 11px/1.25 "DM Sans",
-    sans-serif;
+  font: 700 11px/1.25 var(--font-body);
   color: #ecf0f8;
   letter-spacing: -0.15px;
   overflow-wrap: anywhere;
@@ -893,9 +853,7 @@ body {
   padding-top: 9px;
   gap: 12px;
   color: #c4d2e6;
-  font:
-    400 10px "DM Sans",
-    sans-serif;
+  font: 400 10px var(--font-body);
 }
 .in-lobby .roster-pagination button {
   width: 29px;
@@ -917,9 +875,7 @@ body {
 .in-lobby .fighter-empty {
   min-height: 191px;
   color: #bbcce0;
-  font:
-    500 12px "DM Sans",
-    sans-serif;
+  font: 500 12px var(--font-body);
 }
 .in-lobby .fighter-empty button {
   color: var(--coin);
@@ -948,15 +904,11 @@ body {
 }
 .in-lobby .selected-stage-name {
   color: #afc2d9;
-  font:
-    400 9px "DM Sans",
-    sans-serif;
+  font: 400 9px var(--font-body);
 }
 .in-lobby .arcade-stage-heading > button {
   color: var(--coin);
-  font:
-    500 10px "DM Sans",
-    sans-serif;
+  font: 500 10px var(--font-body);
   padding-block: 0;
 }
 .in-lobby .arcade-stage-heading > button:hover {
@@ -979,20 +931,15 @@ body {
   height: 37px;
 }
 .in-lobby .arcade-stage strong {
-  font:
-    400 10px/1.1 "DM Sans",
-    sans-serif;
+  font: 400 10px/1.1 var(--font-body);
   padding: 6px 2px;
 }
 .in-lobby .arcade-stage.selected {
   color: var(--paper);
-  background: #ffd45a09;
-  border-color: var(--coin);
-  box-shadow:
-    inset 0 -2px 0 var(--coin),
-    0 0 0 1px #ffd45a22;
+  background: var(--selection-fill);
+  box-shadow: none;
 }
-.in-lobby .arcade-stage:hover:enabled {
+.in-lobby .arcade-stage:not(.selected):hover:enabled {
   border-color: #cfdef1;
 }
 .in-lobby .stage-tick {
@@ -1059,9 +1006,7 @@ body {
   border-radius: 4px;
   background: #071527;
   color: var(--paper);
-  font:
-    400 11px "DM Sans",
-    sans-serif;
+  font: 400 11px var(--font-body);
   box-shadow: inset 0 2px 4px #020b1944;
 }
 .in-lobby .ready-name input::placeholder {
@@ -1078,29 +1023,26 @@ body {
   color: #ffac9b;
 }
 .in-lobby .ready-difficulty > div {
-  gap: 3px;
-  padding: 3px;
-  background: #071527;
-  border-radius: 4px;
+  gap: 6px;
+  padding: 0;
+  background: transparent;
 }
 .in-lobby .ready-difficulty button {
   height: 30px;
   color: #b5c5da;
-  font:
-    500 11px "DM Sans",
-    sans-serif;
+  font: 500 11px var(--font-body);
   padding: 0 5px;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 3px;
+  background: #071527;
+  border: 1px solid #879ab657;
+  border-radius: 4px;
 }
 .in-lobby .ready-difficulty button.active {
-  color: var(--paper);
-  background: #354c69;
-  border-color: #718aaa4b;
-  box-shadow: inset 0 1px 0 #a8c5e314;
+  color: var(--ink);
+  background: var(--coin);
+  border-color: var(--coin);
+  box-shadow: none;
 }
-.in-lobby .ready-difficulty button:hover {
+.in-lobby .ready-difficulty button:not(.active):hover {
   color: var(--paper);
   border-color: #718aaa4b;
 }
@@ -1167,26 +1109,75 @@ body {
   color: var(--coin);
   font-size: 10px;
 }
-.in-lobby .site-footer {
+.app-shell .site-footer {
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
   color: #9eafc6;
-  border-color: #ffffff0a;
+  border-top: 0;
   margin: 0 auto;
-  padding: 12px 0 16px;
+  padding: 8px 0 max(16px, env(safe-area-inset-bottom));
+  text-align: center;
 }
-.in-lobby .footer-criollo,
-.in-lobby .site-footer button {
-  color: #b2c2d7;
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
-.in-lobby .footer-criollo > svg {
-  width: 18px;
-  height: 18px;
+.footer-brand > img {
+  display: block;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
 }
-.in-lobby .footer-note {
-  color: #879bb7;
+.footer-brand-name {
+  color: var(--paper);
+  font: italic 800 20px/1 var(--font-display);
+  letter-spacing: 0;
+  white-space: nowrap;
 }
-.in-lobby .site-footer button > span {
-  border-color: #637a9666;
-  color: #a8bad4;
+.footer-brand-name > span {
+  color: var(--coin);
+}
+.footer-brand .flag-mark {
+  width: 12px;
+  height: 9px;
+  flex-shrink: 0;
+  transform: none;
+}
+.footer-brand .flag-mark i {
+  flex: 1;
+}
+.site-footer .footer-credit {
+  margin: 0;
+  color: #a3b3ca;
+  font: 400 12px/1.5 var(--font-body);
+  letter-spacing: 0;
+}
+.footer-credit a {
+  display: inline-block;
+  min-height: 28px;
+  align-content: center;
+  color: var(--paper);
+  font-weight: 700;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.footer-credit a:hover {
+  color: var(--coin);
+}
+.footer-credit a:focus-visible {
+  outline: 2px solid var(--coin);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+@media (min-width: 901px) {
+  .app-shell .site-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px;
+    text-align: left;
+  }
 }
 .in-lobby .mobile-setup-dock {
   display: none;
@@ -1195,6 +1186,9 @@ body {
 .in-lobby .arcade-session input:focus-visible {
   outline: 2px solid var(--coin);
   outline-offset: 3px;
+}
+.in-lobby .arcade-session .arcade-search input:focus-visible {
+  outline: none;
 }
 .in-lobby .modal {
   background: #13243a;
@@ -1697,7 +1691,7 @@ body {
     font-size: 21px;
   }
   .in-lobby .site-footer {
-    margin-bottom: 75px;
+    margin-bottom: 0;
   }
   .in-lobby .mobile-setup-dock {
     position: fixed;
@@ -1757,10 +1751,6 @@ body {
   .in-lobby .site-header .brand-icon {
     width: 26px;
     height: 26px;
-  }
-  .in-lobby .site-header .brand-icon > svg {
-    width: 20px;
-    height: 20px;
   }
   .in-lobby .site-header .server-status {
     margin-inline: 2px;
@@ -1904,8 +1894,8 @@ body {
   .in-lobby .arcade-ready.online-ready .arcade-start {
     grid-column: 1;
     margin-top: 0;
-    height: 58px;
-    font-size: 29px;
+    height: var(--selection-control-height);
+    font-size: 21px;
   }
   .in-lobby .ready-room-players {
     gap: 10px;
@@ -1917,13 +1907,6 @@ body {
   .in-lobby .arcade-help-strip > span:first-child {
     font-size: 8px;
     max-width: 170px;
-  }
-  .in-lobby .site-footer {
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .in-lobby .footer-note {
-    display: none;
   }
   .in-lobby .mobile-setup-dock {
     left: 10px;
@@ -1987,9 +1970,6 @@ body {
   .in-lobby .roster-categories button {
     font-size: 11px;
     gap: 4px;
-  }
-  .in-lobby .roster-categories button > svg {
-    display: none;
   }
   .in-lobby .fighter-card-caption strong {
     font-size: 10px;

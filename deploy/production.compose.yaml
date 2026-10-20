@@ -12,7 +12,7 @@ services:
       NODE_ENV: production
       PORT: "5173"
       ARENA_TRUST_PROXY: "loopback,uniquelocal"
-      ARENA_PUBLIC_URL: "https://arena.kevinbravo.com"
+      ARENA_PUBLIC_URL: "https://arenacriolla.com"
       ARENA_DATA_DIR: /app/data/creator
       ARENA_CREATOR_ENABLED: "false"
       OPENAI_API_KEY: ""

@@ -401,6 +401,7 @@ test("Giuseppe recognizes win-gated combos, connects each chained strike with ap
       r.player.energy = energy;
       r.inputs[side].actions.super++;
       r.advance(9);
+      if (r.state.finale) r.advance(r.state.finale.duration);
       if (wins < 3 || energy < 75) {
         assert.equal(r.player.attack, null);
         assert.equal(r.rival.hp, 100);

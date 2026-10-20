@@ -68,9 +68,9 @@ test("Melanio identity, signal tuning, one-shot presentation and right-facing sp
   assert.equal(TECHNIQUES.signal.startup, 21);
   assert.equal(
     presentationById("melanio").introName,
-    "Asiente y abre la señal",
+    "Se yergue y cruza los brazos",
   );
-  assert.equal(CHOREOGRAPHIES.melanio.name, "Asiente y abre la señal");
+  assert.equal(CHOREOGRAPHIES.melanio.name, "Se yergue y cruza los brazos");
   assert.equal(selectionProgress("melanio", 2800), 1);
   assert.deepEqual(
     samplePose(presentationById("melanio").selectionBeats, 1),

@@ -69,6 +69,22 @@ export const ICON_CHOREOGRAPHIES = {
     { head: -0.12, front: -0.46, frontY: -0.065, back: 0.15, lean: 0.025 },
   ),
   dayana: greeting(
+    "Vuelta y saludo de Miss Universo",
+    [
+      [-0.09, 0.37],
+      [0.16, 0.34],
+    ],
+    { head: -0.025, back: 0.02, front: -0.13 },
+    {
+      head: -0.065,
+      front: -0.45,
+      frontX: 0.025,
+      frontY: -0.055,
+      back: 0.08,
+      cloth: 0.03,
+    },
+  ),
+  deyna: greeting(
     "Paso y saludo a la tribuna",
     [
       [-0.09, 0.37],

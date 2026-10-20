@@ -19,6 +19,7 @@ import {
 const reviewed = [
   "javier",
   "dayana",
+  "deyna",
   "nacho",
   "capriles",
   "lorenzo",
@@ -154,7 +155,7 @@ function difficultyFor(
   return difficulties[(fighterIndex + stageIndex + side) % difficulties.length];
 }
 
-test("adversarial v41: all eight fighters survive both-side stage and rival pressure", () => {
+test("adversarial v41: all reviewed fighters survive both-side stage and rival pressure", () => {
   assert.equal(STAGES.length, 9);
   const seenRivals = new Set<FighterId>();
   const seenDifficulties = new Set<Difficulty>();
@@ -236,7 +237,7 @@ test("adversarial v41: all eight fighters survive both-side stage and rival pres
 
   assert.equal(
     rows,
-    8 * 9 * 2,
+    reviewed.length * STAGES.length * 2,
     "each fighter must run through all nine stages from both sides",
   );
   assert.equal(
@@ -512,8 +513,8 @@ test("adversarial v41: all reviewed fighters complete deterministic CPU matches 
   }
 });
 
-test("adversarial v41: Dayana's pulse chain resumes after each hitstop without extra pulse hits", () => {
-  const run = setup("canaima", "dayana", 0, "zavarce", 80);
+test("adversarial v41: Dayana's football resumes after hitstop without duplicate hits", () => {
+  const run = setup("canaima", "deyna", 0, "zavarce", 80);
   run.inputs[0].actions.special++;
   const hitTicks: number[] = [];
   let priorHp = run.other.hp;
@@ -525,11 +526,11 @@ test("adversarial v41: Dayana's pulse chain resumes after each hitstop without e
     if (run.other.hp < priorHp) hitTicks.push(run.target.attackTick);
     priorHp = run.other.hp;
   }
-  assert.deepEqual(hitTicks, [13, 25, 37]);
+  assert.deepEqual(hitTicks, [21]);
   assert.ok(
-    hitstopPauses >= 3,
-    "each pulse impact should pause the shared simulation",
+    hitstopPauses >= 1,
+    "the football impact should pause the shared simulation",
   );
-  assert.equal(run.target.hits, 3);
-  assertFiniteState(run.state, "dayana/canaima/pulse-hitstop");
+  assert.equal(run.target.hits, 1);
+  assertFiniteState(run.state, "deyna/canaima/football-hitstop");
 });

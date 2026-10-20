@@ -1,0 +1,458 @@
+.arena-entrance {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  isolation: isolate;
+  background: #091524;
+  color: #fff5db;
+  --entrance-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.arena-entrance-stage {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+}
+.arena-entrance.is-preparing .arena-entrance-stage {
+  visibility: hidden;
+}
+.arena-entrance.is-loading-fonts
+  :is(
+    .arena-entrance-title,
+    .arena-entrance-versus,
+    .arena-entrance-status,
+    .arena-entrance-skip
+  ) {
+  visibility: hidden;
+}
+.arena-entrance-scenery {
+  position: absolute;
+  inset: -4%;
+  z-index: -3;
+  background:
+    linear-gradient(0deg, #091524 2%, #09152440 55%, #091524ad),
+    url("/assets/caracas.webp") center 42% / cover;
+}
+.arena-entrance-panel {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.arena-entrance-panel-left {
+  background: #315caa80;
+  clip-path: polygon(0 0, 61% 0, 40% 100%, 0 100%);
+}
+.arena-entrance-panel-right {
+  background: #e8665840;
+  clip-path: polygon(62% 0, 100% 0, 100% 100%, 41% 100%);
+}
+.arena-entrance-speed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #fff5db;
+  stroke-width: 2;
+  opacity: 0;
+}
+.arena-entrance-duel {
+  position: absolute;
+  left: 50%;
+  top: 41%;
+  width: min(1000px, 92%);
+  height: min(500px, 62svh);
+  transform: translate(-50%, -50%);
+}
+.arena-entrance-fighter {
+  position: absolute;
+  bottom: 0;
+  width: 52%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  filter: drop-shadow(0 12px 16px #030a12a6);
+}
+.arena-entrance-fighter-left {
+  left: 0;
+  --fighter-direction: -1;
+}
+.arena-entrance-fighter-right {
+  right: 0;
+  --fighter-direction: 1;
+}
+.arena-entrance-fighter img {
+  display: block;
+  flex-shrink: 0;
+  width: auto;
+  height: 100%;
+}
+.arena-entrance-fighter img[hidden] {
+  display: none;
+}
+.arena-entrance-fighter-right img {
+  transform: scaleX(-1);
+}
+.arena-entrance-impact,
+.arena-entrance-sparks,
+.arena-entrance-versus {
+  position: absolute;
+  left: 50%;
+  top: 49%;
+}
+.arena-entrance-impact {
+  left: 55%;
+  top: 24%;
+  width: clamp(200px, 32vw, 380px);
+  height: auto;
+  fill: #ffd45a;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+.arena-entrance-sparks i {
+  position: absolute;
+  width: 36px;
+  height: 4px;
+  background: #ffd45a;
+  opacity: 0;
+}
+
+.arena-entrance-sparks {
+  left: 55%;
+  top: 24%;
+}
+.arena-entrance-versus {
+  color: #fff5db;
+  font: italic 800 clamp(76px, 11vw, 96px) / 1 var(--font-display);
+  letter-spacing: -0.04em;
+  text-shadow: 0 5px 12px #071124b3;
+  transform: translate(-50%, -50%) rotate(-12deg);
+}
+.arena-entrance-brand {
+  position: absolute;
+  left: 50%;
+  bottom: max(100px, 14svh);
+  width: max-content;
+  max-width: calc(100% - 40px);
+  text-align: center;
+  transform: translateX(-50%);
+}
+.arena-entrance-title {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 0;
+  font: italic 800 clamp(64px, 9vw, 96px) / 0.9 var(--font-display);
+  letter-spacing: -0.025em;
+  text-shadow: 0 5px 18px #030a12;
+}
+.arena-entrance-title span:last-child {
+  color: #ffd45a;
+}
+.arena-entrance-stars {
+  display: block;
+  width: 128px;
+  height: 26px;
+  margin: 18px auto 0;
+  color: #ffd45a;
+}
+.arena-entrance-status {
+  position: absolute;
+  bottom: max(34px, env(safe-area-inset-bottom));
+  left: 50%;
+  margin: 0;
+  color: #bac8d9;
+  font-size: 13px;
+  line-height: 1.5;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.arena-entrance-skip {
+  position: absolute;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #bac8d94d;
+  border-radius: 4px;
+  color: #fff5db;
+  font-size: 13px;
+  background: #09152480;
+  transition:
+    border-color 150ms,
+    color 150ms;
+}
+.arena-entrance-skip:hover:enabled {
+  border-color: #ffd45a;
+  color: #ffd45a;
+}
+.arena-entrance-skip:focus-visible {
+  outline: 2px solid #ffd45a;
+}
+.arena-entrance-exit-slash {
+  position: absolute;
+  inset: -20% -40%;
+  background: #ffd45a;
+  clip-path: polygon(45% 0, 50% 0, 30% 100%, 25% 100%);
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+.is-playing .arena-entrance-scenery {
+  animation: arena-camera-in 2200ms var(--entrance-ease) both;
+}
+.is-playing .arena-entrance-panel-left {
+  animation: arena-panel-left 480ms var(--entrance-ease) both;
+}
+.is-playing .arena-entrance-panel-right {
+  animation: arena-panel-right 480ms var(--entrance-ease) both;
+}
+.is-playing .arena-entrance-speed {
+  animation: arena-speed 720ms 100ms ease-out both;
+}
+.is-playing .arena-entrance-fighter {
+  animation: arena-fighter-clash 1800ms 80ms both;
+}
+.is-playing .arena-entrance-impact {
+  animation: arena-impact 600ms 640ms ease-out both;
+}
+.is-playing .arena-entrance-sparks i {
+  animation: arena-spark 620ms 660ms cubic-bezier(0.1, 0.6, 0.3, 1) both;
+}
+.is-playing .arena-entrance-versus {
+  animation: arena-versus 600ms 560ms var(--entrance-ease) both;
+}
+.is-playing .arena-entrance-stage {
+  animation: arena-impact-jolt 200ms 760ms linear;
+}
+.is-playing .arena-entrance-brand {
+  animation: arena-brand-impact 560ms 1040ms var(--entrance-ease) both;
+}
+.arena-entrance.is-leaving {
+  pointer-events: none;
+  animation: arena-entrance-out 360ms ease-in both;
+}
+.is-leaving .arena-entrance-exit-slash {
+  animation: arena-exit-slash 360ms ease-in both;
+}
+.arena-arrival {
+  animation: arena-lobby-in 220ms ease-out both;
+}
+@keyframes arena-camera-in {
+  from {
+    transform: scale(1.14);
+  }
+  36% {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.025);
+  }
+}
+@keyframes arena-panel-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes arena-panel-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes arena-speed {
+  0% {
+    opacity: 0;
+    transform: scaleX(1.6);
+  }
+  30% {
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0.22;
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(0.85);
+  }
+}
+@keyframes arena-fighter-clash {
+  0% {
+    transform: translateX(calc(var(--fighter-direction) * 85vw))
+      rotate(calc(var(--fighter-direction) * 14deg)) scale(0.88);
+    animation-timing-function: cubic-bezier(0.12, 0.72, 0.18, 1);
+  }
+  29% {
+    transform: translateX(calc(var(--fighter-direction) * 28px))
+      rotate(calc(var(--fighter-direction) * -5deg));
+    animation-timing-function: cubic-bezier(0.6, 0, 1, 1);
+  }
+  37% {
+    transform: translateX(calc(var(--fighter-direction) * -24px))
+      rotate(calc(var(--fighter-direction) * -8deg)) scale(1.06);
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  53% {
+    transform: translateX(calc(var(--fighter-direction) * 16px))
+      rotate(calc(var(--fighter-direction) * 3deg));
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: rotate(calc(var(--fighter-direction) * 2deg));
+  }
+}
+@keyframes arena-impact {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.1) rotate(-20deg);
+  }
+  12% {
+    opacity: 0.95;
+  }
+  45% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.6) rotate(12deg);
+  }
+}
+@keyframes arena-spark {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--spark-angle)) translateX(20px) scaleX(0.2);
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--spark-angle)) translateX(var(--spark-distance))
+      scaleX(0.4);
+  }
+}
+@keyframes arena-versus {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-24deg) scale(3);
+  }
+  25% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-12deg) scale(1);
+  }
+}
+@keyframes arena-impact-jolt {
+  0%,
+  100% {
+    transform: none;
+  }
+  25% {
+    transform: translate(-4px, 2px);
+  }
+  50% {
+    transform: translate(3px, -2px);
+  }
+  75% {
+    transform: translate(-2px, 1px);
+  }
+}
+@keyframes arena-brand-impact {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(1.8) rotate(-5deg);
+  }
+  30% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1) rotate(0);
+  }
+}
+@keyframes arena-entrance-out {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes arena-exit-slash {
+  to {
+    transform: translateX(120%);
+  }
+}
+@keyframes arena-lobby-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 600px) {
+  .arena-entrance-duel {
+    width: 124%;
+    top: 39%;
+    height: min(360px, 84vw);
+  }
+  .arena-entrance-brand {
+    bottom: max(132px, 19svh);
+  }
+  .arena-entrance-title {
+    flex-direction: column;
+    gap: 4px;
+    font-size: clamp(60px, 18vw, 80px);
+  }
+  .arena-entrance-stars {
+    margin-top: 14px;
+  }
+  .arena-entrance-status {
+    bottom: max(90px, calc(env(safe-area-inset-bottom) + 70px));
+  }
+}
+@media (max-height: 480px) and (min-width: 601px) {
+  .arena-entrance-duel {
+    width: min(620px, 90%);
+    height: 74svh;
+    top: 38%;
+  }
+  .arena-entrance-brand {
+    bottom: 60px;
+  }
+  .arena-entrance-title {
+    font-size: 60px;
+  }
+  .arena-entrance-stars {
+    display: none;
+  }
+  .arena-entrance-status {
+    bottom: 22px;
+  }
+  .arena-entrance-skip {
+    bottom: max(10px, env(safe-area-inset-bottom));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arena-entrance.is-preparing .arena-entrance-stage {
+    visibility: visible;
+  }
+  .arena-entrance *,
+  .arena-entrance.is-leaving,
+  .arena-arrival {
+    animation: none;
+    transition: none;
+  }
+}

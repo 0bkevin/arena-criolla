@@ -147,13 +147,11 @@
   flex-shrink: 0;
 }
 .modal:where(:not(.help-modal)) .code-input {
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-body);
   letter-spacing: 0;
 }
 .in-lobby .arcade-modes small {
-  font:
-    700 10px/1.3 "DM Sans",
-    sans-serif;
+  font: 700 10px/1.3 var(--font-body);
   letter-spacing: 0;
 }
 .in-lobby .arcade-modes #mode-practice.selected small,
@@ -184,9 +182,7 @@
   padding-right: 52px;
 }
 .in-lobby .ready-room strong {
-  font:
-    700 13px/1.6 "DM Sans",
-    sans-serif;
+  font: 700 13px/1.6 var(--font-body);
   overflow-wrap: anywhere;
   word-break: break-all;
   min-width: 0;
@@ -218,24 +214,11 @@
   min-height: 52px;
 }
 @media (max-width: 900px), (pointer: coarse) {
-  .in-lobby
-    :is(
-      .arcade-modes button,
-      .arcade-modes #mode-local,
-      .arcade-modes #mode-online
-    ) {
-    height: auto;
-    min-height: 58px;
-    padding-block: 8px;
-  }
   .in-lobby .arcade-modes small {
     font-size: 10px;
   }
   .in-lobby .arcade-modes button > span:not(.mode-slot) {
     line-height: 1.2;
-  }
-  .in-lobby .ready-difficulty button {
-    min-height: 44px;
   }
 }
 @media (max-width: 600px) {
@@ -278,4 +261,42 @@
   .in-lobby .arcade-modes button > svg {
     display: none;
   }
+}
+
+/* Keep selection controls compact across the inherited theme breakpoints.
+   Fighter and stage cards retain room for their artwork. */
+.in-lobby
+  :is(.site-header, .arcade-home, .site-footer, .mobile-setup-dock)
+  button:not(.fighter-card):not(.arcade-stage),
+.in-lobby .arcade-modes #mode-practice,
+.in-lobby .arcade-modes #mode-local,
+.in-lobby .arcade-modes #mode-online {
+  height: var(--selection-control-height);
+  min-height: var(--selection-control-height);
+  max-height: var(--selection-control-height);
+  padding-block: 0;
+}
+
+.in-lobby .site-header .icon-button,
+.in-lobby .roster-random,
+.in-lobby .roster-search-toggle,
+.in-lobby .roster-pagination button,
+.in-lobby .ready-room > button {
+  width: var(--selection-control-height);
+  min-width: var(--selection-control-height);
+  flex-basis: var(--selection-control-height);
+}
+
+.in-lobby .arcade-modes,
+.in-lobby .ready-difficulty > div {
+  padding: 0;
+}
+
+.in-lobby .ready-difficulty > div,
+.in-lobby .roster-toolbar {
+  min-height: var(--selection-control-height);
+}
+
+.in-lobby .arcade-ready .arcade-start {
+  font-size: 21px;
 }

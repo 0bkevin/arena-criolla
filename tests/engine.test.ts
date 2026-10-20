@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { FIGHTERS } from "../shared/content";
+import { FIGHTERS, STAGES } from "../shared/content";
 import { INTRO_TOTAL_TICKS } from "../shared/presentation";
 import {
   createMatch,
@@ -137,6 +137,42 @@ test("character wins unlock the advanced combo and gate the definitive", () => {
   assert.ok(unlocked.state.players[0].energy < 26);
 });
 
+test("every stage runs for 120 seconds after the intro and stops at timeout", () => {
+  for (const stage of STAGES) {
+    const state = createMatch(stage.id, [
+      { name: "Uno", fighter: "zavarce", wins: 0 },
+      { name: "Dos", fighter: "javier", wins: 0 },
+    ]);
+    const inputs: [Input, Input] = [emptyInput(), emptyInput()];
+    advance(state, inputs, INTRO_TOTAL_TICKS);
+    assert.equal(state.remaining, 120 * 60, stage.id);
+    assert.equal(state.phase, "playing", stage.id);
+
+    advance(state, inputs, 90 * 60);
+    assert.equal(state.remaining, 30 * 60, stage.id);
+    assert.equal(state.phase, "playing", stage.id);
+
+    advance(state, inputs, 30 * 60 - 1);
+    assert.equal(state.remaining, 1, stage.id);
+    assert.equal(state.phase, "playing", stage.id);
+    stepMatch(state, inputs);
+    assert.equal(state.remaining, 0, stage.id);
+    assert.equal(state.phase, "finished", stage.id);
+    assert.equal(state.winner, "draw", stage.id);
+
+    const finished = structuredClone(state);
+    advance(state, inputs, 120);
+    assert.deepEqual(state, finished, stage.id);
+
+    const rematch = createMatch(stage.id, [
+      state.players[0].config,
+      state.players[1].config,
+    ]);
+    assert.equal(rematch.remaining, 120 * 60, stage.id);
+    assert.equal(rematch.phase, "intro", stage.id);
+  }
+});
+
 test("timeout uses remaining stocks and health, including a true draw", () => {
   const first = setup();
   first.state.remaining = 1;
@@ -210,10 +246,11 @@ test("projectile knockouts resolve before timeout, including simultaneous final 
 
 test("all active characters execute their individual specials with finite physics", () => {
   for (const fighter of FIGHTERS) {
-    const { state, inputs } = setup();
+    const { state, inputs } = setup(fighter.specialUnlockWins ?? 0);
     state.players[0].config.fighter = fighter.id;
     state.players[0].energy = 50;
-    state.players[1].x = 450;
+    state.players[1].x =
+      fighter.id === "bolivar" ? state.players[0].x + 80 : 450;
     inputs[0].actions.special++;
     stepMatch(state, inputs);
     assert.ok(state.players[0].energy < 26, fighter.id);

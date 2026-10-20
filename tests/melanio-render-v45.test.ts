@@ -10,8 +10,10 @@ import {
 import { TECHNIQUES } from "../shared/techniques";
 import { renderMatch, type Assets } from "../src/game/renderer";
 import type { SpriteAsset } from "../src/game/assets";
-import { deformRigPoint, handAnchors } from "../src/game/gesture-rig";
-import { CHOREOGRAPHIES, sampleGesture } from "../shared/choreography";
+import { drawPresentation } from "../src/game/presentation-renderer";
+import entrances from "../shared/entrance-assets.json";
+import { sampleEntranceAction } from "../shared/entrance-actions";
+import { sampleGesture } from "../shared/choreography";
 
 function setup(melanioSide: 0 | 1 = 0) {
   const melanio = { name: "Melanio", fighter: "melanio" as const, wins: 3 };
@@ -178,43 +180,66 @@ test("Melanio combat states select the matching real atlas pose", () => {
   );
 });
 
-test("Melanio's intro and selection move his actual head and arm once, then settle", () => {
+test("Melanio's painted entrance folds his arms once, uses one complete body and settles into guard", () => {
   const sprite = spriteAsset().sprite;
-  const rig = CHOREOGRAPHIES.melanio;
-  const accent = sampleGesture("melanio", 0.5);
-  const settledSelection = sampleGesture("melanio", 1, true);
-  const settledLater = sampleGesture("melanio", 2, true);
-  const headAtRest = deformRigPoint(
-    { x: 0.025, y: 0.14 },
-    rig,
-    sampleGesture("melanio", 0),
-    0,
-  );
-  const headAtAccent = deformRigPoint({ x: 0.025, y: 0.14 }, rig, accent, 0);
-  const handsAtPrep = handAnchors(
-    sprite,
-    "melanio",
-    0,
-    sampleGesture("melanio", 0.19),
-  )[1];
-  const handsAtAccent = handAnchors(sprite, "melanio", 0, accent)[1];
-
-  assert.ok(
-    Math.hypot(headAtAccent.x - headAtRest.x, headAtAccent.y - headAtRest.y) >
-      0.005,
-    "the greeting nod moves Melanio's rigid head, including glasses and cap",
-  );
-  assert.ok(
-    Math.hypot(
-      handsAtAccent.x - handsAtPrep.x,
-      handsAtAccent.y - handsAtPrep.y,
-    ) > 0.05,
-    "the signal-opening arm moves its actual rig anchor",
-  );
+  const bitmap = {
+    width: entrances.melanio.width,
+    height: entrances.melanio.height,
+  } as HTMLImageElement;
+  sprite.entrance = { ...entrances.melanio, image: bitmap };
+  for (const kind of ["intro", "selection"] as const)
+    for (const facing of [-1, 1]) {
+      const visited = new Set<number>();
+      for (const progress of [0.04, 0.12, 0.26, 0.34, 0.44, 0.6, 0.82]) {
+        const calls: unknown[][] = [];
+        const ctx = new Proxy(
+          {
+            globalAlpha: 1,
+            drawImage(...args: unknown[]) {
+              calls.push(args);
+            },
+          },
+          { get: (t, k) => Reflect.get(t, k) ?? (() => {}) },
+        ) as unknown as CanvasRenderingContext2D;
+        drawPresentation(
+          ctx,
+          sprite,
+          "melanio",
+          progress,
+          0,
+          0,
+          375,
+          facing,
+          kind,
+        );
+        assert.equal(
+          calls.length,
+          1,
+          "one painted body, without a second deformed face or arm",
+        );
+        assert.equal(calls[0][0], bitmap);
+        const frame = sampleEntranceAction("melanio", progress)!.current.frame;
+        visited.add(frame);
+        const crop = entrances.melanio.frames[frame];
+        assert.deepEqual(calls[0].slice(1, 5), [
+          crop.x,
+          crop.y,
+          crop.width,
+          crop.height,
+        ]);
+      }
+      assert.equal(
+        visited.size,
+        6,
+        "all six distinct painted poses are reachable",
+      );
+    }
+  assert.equal(sampleEntranceAction("melanio", 0.6)!.current.phase, "hold");
+  for (const progress of [0.9, 1, 2])
+    assert.equal(sampleEntranceAction("melanio", progress), null);
   assert.deepEqual(
-    settledLater,
-    settledSelection,
-    "selection remains settled instead of looping",
+    sampleGesture("melanio", 1, true),
+    sampleGesture("melanio", 2, true),
   );
 });
 

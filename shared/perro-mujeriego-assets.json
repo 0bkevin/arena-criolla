@@ -1,0 +1,3316 @@
+{
+  "dancers": {
+    "zavarce": {
+      "file": "perro-mujeriego-v3-zavarce",
+      "frames": [
+        {
+          "x": 167,
+          "y": 61,
+          "width": 178,
+          "height": 421,
+          "bodyHeight": 421,
+          "anchorX": 91.01185770750988
+        },
+        {
+          "x": 682,
+          "y": 64,
+          "width": 172,
+          "height": 418,
+          "bodyHeight": 421,
+          "anchorX": 87.03853754940711
+        },
+        {
+          "x": 1097,
+          "y": 65,
+          "width": 365,
+          "height": 417,
+          "bodyHeight": 421,
+          "anchorX": 216.52173913043478
+        },
+        {
+          "x": 1656,
+          "y": 68,
+          "width": 271,
+          "height": 414,
+          "bodyHeight": 421,
+          "anchorX": 159.06225296442688
+        },
+        {
+          "x": 145,
+          "y": 569,
+          "width": 221,
+          "height": 425,
+          "bodyHeight": 421,
+          "anchorX": 110.59387351778656
+        },
+        {
+          "x": 657,
+          "y": 566,
+          "width": 222,
+          "height": 428,
+          "bodyHeight": 421,
+          "anchorX": 105.55753968253968
+        },
+        {
+          "x": 1149,
+          "y": 544,
+          "width": 261,
+          "height": 450,
+          "bodyHeight": 421,
+          "anchorX": 130.0079051383399
+        },
+        {
+          "x": 1682,
+          "y": 565,
+          "width": 220,
+          "height": 429,
+          "bodyHeight": 421,
+          "anchorX": 109.57213438735178
+        }
+      ]
+    },
+    "vallenilla": {
+      "file": "perro-mujeriego-v3-vallenilla",
+      "frames": [
+        {
+          "x": 157,
+          "y": 48,
+          "width": 197,
+          "height": 434,
+          "bodyHeight": 434,
+          "anchorX": 98.51679841897233
+        },
+        {
+          "x": 670,
+          "y": 46,
+          "width": 195,
+          "height": 436,
+          "bodyHeight": 434,
+          "anchorX": 101.31620553359684
+        },
+        {
+          "x": 1110,
+          "y": 51,
+          "width": 339,
+          "height": 431,
+          "bodyHeight": 434,
+          "anchorX": 196.7302371541502
+        },
+        {
+          "x": 1666,
+          "y": 48,
+          "width": 251,
+          "height": 434,
+          "bodyHeight": 434,
+          "anchorX": 140.0187747035573
+        },
+        {
+          "x": 139,
+          "y": 566,
+          "width": 233,
+          "height": 428,
+          "bodyHeight": 434,
+          "anchorX": 117.99802371541502
+        },
+        {
+          "x": 654,
+          "y": 562,
+          "width": 227,
+          "height": 432,
+          "bodyHeight": 434,
+          "anchorX": 110.0909090909091
+        },
+        {
+          "x": 1146,
+          "y": 544,
+          "width": 267,
+          "height": 450,
+          "bodyHeight": 434,
+          "anchorX": 132.01185770750988
+        },
+        {
+          "x": 1676,
+          "y": 564,
+          "width": 231,
+          "height": 430,
+          "bodyHeight": 434,
+          "anchorX": 120.95454545454545
+        }
+      ]
+    },
+    "javier": {
+      "file": "perro-mujeriego-v3-javier",
+      "frames": [
+        {
+          "x": 151,
+          "y": 42,
+          "width": 209,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 105.00691699604744
+        },
+        {
+          "x": 670,
+          "y": 43,
+          "width": 196,
+          "height": 439,
+          "bodyHeight": 440,
+          "anchorX": 102.46442687747036
+        },
+        {
+          "x": 1103,
+          "y": 45,
+          "width": 354,
+          "height": 437,
+          "bodyHeight": 440,
+          "anchorX": 213.47826086956522
+        },
+        {
+          "x": 1657,
+          "y": 40,
+          "width": 269,
+          "height": 442,
+          "bodyHeight": 440,
+          "anchorX": 130.9486166007905
+        },
+        {
+          "x": 138,
+          "y": 556,
+          "width": 236,
+          "height": 438,
+          "bodyHeight": 440,
+          "anchorX": 123.97332015810277
+        },
+        {
+          "x": 650,
+          "y": 558,
+          "width": 236,
+          "height": 436,
+          "bodyHeight": 440,
+          "anchorX": 115.56087507676803
+        },
+        {
+          "x": 1149,
+          "y": 546,
+          "width": 261,
+          "height": 448,
+          "bodyHeight": 440,
+          "anchorX": 134.47826086956522
+        },
+        {
+          "x": 1673,
+          "y": 559,
+          "width": 237,
+          "height": 435,
+          "bodyHeight": 440,
+          "anchorX": 119.48517786561266
+        }
+      ]
+    },
+    "capriles": {
+      "file": "perro-mujeriego-v3-capriles",
+      "frames": [
+        {
+          "x": 152,
+          "y": 43,
+          "width": 207,
+          "height": 439,
+          "bodyHeight": 439,
+          "anchorX": 100.4802371541502
+        },
+        {
+          "x": 663,
+          "y": 42,
+          "width": 210,
+          "height": 440,
+          "bodyHeight": 439,
+          "anchorX": 103.4911067193676
+        },
+        {
+          "x": 1091,
+          "y": 41,
+          "width": 377,
+          "height": 441,
+          "bodyHeight": 439,
+          "anchorX": 217.79249011857706
+        },
+        {
+          "x": 1658,
+          "y": 40,
+          "width": 268,
+          "height": 442,
+          "bodyHeight": 439,
+          "anchorX": 149.08893280632412
+        },
+        {
+          "x": 138,
+          "y": 559,
+          "width": 236,
+          "height": 435,
+          "bodyHeight": 439,
+          "anchorX": 118.24604743083003
+        },
+        {
+          "x": 653,
+          "y": 561,
+          "width": 229,
+          "height": 433,
+          "bodyHeight": 439,
+          "anchorX": 112.56027667984189
+        },
+        {
+          "x": 1137,
+          "y": 544,
+          "width": 285,
+          "height": 450,
+          "bodyHeight": 439,
+          "anchorX": 149.51581027667984
+        },
+        {
+          "x": 1670,
+          "y": 552,
+          "width": 243,
+          "height": 442,
+          "bodyHeight": 439,
+          "anchorX": 120.2588932806324
+        }
+      ]
+    },
+    "renny": {
+      "file": "perro-mujeriego-v3-renny",
+      "frames": [
+        {
+          "x": 159,
+          "y": 58,
+          "width": 193,
+          "height": 424,
+          "bodyHeight": 424,
+          "anchorX": 94.49604743083003
+        },
+        {
+          "x": 672,
+          "y": 57,
+          "width": 192,
+          "height": 425,
+          "bodyHeight": 424,
+          "anchorX": 102.04446640316206
+        },
+        {
+          "x": 1095,
+          "y": 54,
+          "width": 370,
+          "height": 428,
+          "bodyHeight": 424,
+          "anchorX": 209.4486166007905
+        },
+        {
+          "x": 1672,
+          "y": 53,
+          "width": 239,
+          "height": 429,
+          "bodyHeight": 424,
+          "anchorX": 127.51877470355731
+        },
+        {
+          "x": 151,
+          "y": 565,
+          "width": 209,
+          "height": 429,
+          "bodyHeight": 424,
+          "anchorX": 106.05731225296442
+        },
+        {
+          "x": 657,
+          "y": 569,
+          "width": 221,
+          "height": 425,
+          "bodyHeight": 424,
+          "anchorX": 108.79249011857706
+        },
+        {
+          "x": 1148,
+          "y": 544,
+          "width": 263,
+          "height": 450,
+          "bodyHeight": 424,
+          "anchorX": 127.4802371541502
+        },
+        {
+          "x": 1682,
+          "y": 564,
+          "width": 220,
+          "height": 430,
+          "bodyHeight": 424,
+          "anchorX": 117.56916996047431
+        }
+      ]
+    },
+    "gomez": {
+      "file": "perro-mujeriego-v3-gomez",
+      "frames": [
+        {
+          "x": 142,
+          "y": 47,
+          "width": 227,
+          "height": 435,
+          "bodyHeight": 435,
+          "anchorX": 113.02569169960475
+        },
+        {
+          "x": 661,
+          "y": 52,
+          "width": 214,
+          "height": 430,
+          "bodyHeight": 435,
+          "anchorX": 104.56916996047431
+        },
+        {
+          "x": 1099,
+          "y": 49,
+          "width": 362,
+          "height": 433,
+          "bodyHeight": 435,
+          "anchorX": 204.57837031321355
+        },
+        {
+          "x": 1642,
+          "y": 52,
+          "width": 300,
+          "height": 430,
+          "bodyHeight": 435,
+          "anchorX": 174.5691699604743
+        },
+        {
+          "x": 145,
+          "y": 563,
+          "width": 222,
+          "height": 431,
+          "bodyHeight": 435,
+          "anchorX": 107.46936758893281
+        },
+        {
+          "x": 659,
+          "y": 567,
+          "width": 218,
+          "height": 427,
+          "bodyHeight": 435,
+          "anchorX": 109.95749419662462
+        },
+        {
+          "x": 1144,
+          "y": 544,
+          "width": 272,
+          "height": 450,
+          "bodyHeight": 435,
+          "anchorX": 120.52173913043478
+        },
+        {
+          "x": 1668,
+          "y": 568,
+          "width": 247,
+          "height": 426,
+          "bodyHeight": 435,
+          "anchorX": 127.49209486166008
+        }
+      ]
+    },
+    "simon": {
+      "file": "perro-mujeriego-v3-simon",
+      "frames": [
+        {
+          "x": 151,
+          "y": 50,
+          "width": 209,
+          "height": 432,
+          "bodyHeight": 432,
+          "anchorX": 106.60474308300395
+        },
+        {
+          "x": 674,
+          "y": 52,
+          "width": 187,
+          "height": 430,
+          "bodyHeight": 432,
+          "anchorX": 98
+        },
+        {
+          "x": 1100,
+          "y": 47,
+          "width": 359,
+          "height": 435,
+          "bodyHeight": 432,
+          "anchorX": 204.5405138339921
+        },
+        {
+          "x": 1669,
+          "y": 47,
+          "width": 246,
+          "height": 435,
+          "bodyHeight": 432,
+          "anchorX": 134.4802371541502
+        },
+        {
+          "x": 149,
+          "y": 559,
+          "width": 213,
+          "height": 435,
+          "bodyHeight": 432,
+          "anchorX": 103.95652173913044
+        },
+        {
+          "x": 664,
+          "y": 557,
+          "width": 207,
+          "height": 437,
+          "bodyHeight": 432,
+          "anchorX": 99.04743083003953
+        },
+        {
+          "x": 1147,
+          "y": 544,
+          "width": 265,
+          "height": 450,
+          "bodyHeight": 432,
+          "anchorX": 126.5098814229249
+        },
+        {
+          "x": 1682,
+          "y": 562,
+          "width": 220,
+          "height": 432,
+          "bodyHeight": 432,
+          "anchorX": 109.52173913043478
+        }
+      ]
+    },
+    "conde": {
+      "file": "perro-mujeriego-v3-conde",
+      "frames": [
+        {
+          "x": 156,
+          "y": 58,
+          "width": 199,
+          "height": 424,
+          "bodyHeight": 424,
+          "anchorX": 104.00296442687747
+        },
+        {
+          "x": 674,
+          "y": 61,
+          "width": 188,
+          "height": 421,
+          "bodyHeight": 424,
+          "anchorX": 96.40118577075098
+        },
+        {
+          "x": 1108,
+          "y": 60,
+          "width": 344,
+          "height": 422,
+          "bodyHeight": 424,
+          "anchorX": 187.05830039525694
+        },
+        {
+          "x": 1668,
+          "y": 61,
+          "width": 248,
+          "height": 421,
+          "bodyHeight": 424,
+          "anchorX": 135.5098814229249
+        },
+        {
+          "x": 138,
+          "y": 555,
+          "width": 235,
+          "height": 439,
+          "bodyHeight": 424,
+          "anchorX": 118.52371541501977
+        },
+        {
+          "x": 651,
+          "y": 553,
+          "width": 234,
+          "height": 441,
+          "bodyHeight": 424,
+          "anchorX": 114.50592885375494
+        },
+        {
+          "x": 1141,
+          "y": 544,
+          "width": 278,
+          "height": 450,
+          "bodyHeight": 424,
+          "anchorX": 142.94664031620553
+        },
+        {
+          "x": 1670,
+          "y": 560,
+          "width": 244,
+          "height": 434,
+          "bodyHeight": 424,
+          "anchorX": 124.97727272727273
+        }
+      ]
+    },
+    "emilio": {
+      "file": "perro-mujeriego-v3-emilio",
+      "frames": [
+        {
+          "x": 157,
+          "y": 45,
+          "width": 198,
+          "height": 437,
+          "bodyHeight": 437,
+          "anchorX": 100.10474308300395
+        },
+        {
+          "x": 665,
+          "y": 48,
+          "width": 205,
+          "height": 434,
+          "bodyHeight": 437,
+          "anchorX": 111.0494071146245
+        },
+        {
+          "x": 1121,
+          "y": 47,
+          "width": 318,
+          "height": 435,
+          "bodyHeight": 437,
+          "anchorX": 189.58498023715413
+        },
+        {
+          "x": 1664,
+          "y": 51,
+          "width": 256,
+          "height": 431,
+          "bodyHeight": 437,
+          "anchorX": 129.98913043478262
+        },
+        {
+          "x": 138,
+          "y": 557,
+          "width": 236,
+          "height": 437,
+          "bodyHeight": 437,
+          "anchorX": 112.05138339920948
+        },
+        {
+          "x": 655,
+          "y": 563,
+          "width": 226,
+          "height": 431,
+          "bodyHeight": 437,
+          "anchorX": 103.9802371541502
+        },
+        {
+          "x": 1142,
+          "y": 544,
+          "width": 276,
+          "height": 450,
+          "bodyHeight": 437,
+          "anchorX": 136.45454545454547
+        },
+        {
+          "x": 1678,
+          "y": 556,
+          "width": 227,
+          "height": 438,
+          "bodyHeight": 437,
+          "anchorX": 114.08399209486166
+        }
+      ]
+    },
+    "maite": {
+      "file": "perro-mujeriego-v3-maite",
+      "frames": [
+        {
+          "x": 97,
+          "y": 58,
+          "width": 318,
+          "height": 424,
+          "bodyHeight": 424,
+          "anchorX": 161.8181818181818
+        },
+        {
+          "x": 610,
+          "y": 58,
+          "width": 316,
+          "height": 424,
+          "bodyHeight": 424,
+          "anchorX": 162.04249011857706
+        },
+        {
+          "x": 1104,
+          "y": 61,
+          "width": 351,
+          "height": 421,
+          "bodyHeight": 424,
+          "anchorX": 188.40711462450594
+        },
+        {
+          "x": 1631,
+          "y": 61,
+          "width": 322,
+          "height": 421,
+          "bodyHeight": 424,
+          "anchorX": 165.20750988142294
+        },
+        {
+          "x": 86,
+          "y": 565,
+          "width": 340,
+          "height": 429,
+          "bodyHeight": 424,
+          "anchorX": 178.3804347826087
+        },
+        {
+          "x": 593,
+          "y": 569,
+          "width": 349,
+          "height": 425,
+          "bodyHeight": 424,
+          "anchorX": 177.59112083568607
+        },
+        {
+          "x": 1124,
+          "y": 544,
+          "width": 311,
+          "height": 450,
+          "bodyHeight": 424,
+          "anchorX": 152.0592885375494
+        },
+        {
+          "x": 1651,
+          "y": 563,
+          "width": 281,
+          "height": 431,
+          "bodyHeight": 424,
+          "anchorX": 140.52865612648222
+        }
+      ]
+    },
+    "oscar": {
+      "file": "perro-mujeriego-v3-oscar",
+      "frames": [
+        {
+          "x": 159,
+          "y": 42,
+          "width": 193,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 94.20599420499819
+        },
+        {
+          "x": 673,
+          "y": 47,
+          "width": 189,
+          "height": 435,
+          "bodyHeight": 440,
+          "anchorX": 96.7420634920635
+        },
+        {
+          "x": 1097,
+          "y": 51,
+          "width": 366,
+          "height": 431,
+          "bodyHeight": 440,
+          "anchorX": 209.56037470983122
+        },
+        {
+          "x": 1666,
+          "y": 55,
+          "width": 252,
+          "height": 427,
+          "bodyHeight": 440,
+          "anchorX": 141.97529644268775
+        },
+        {
+          "x": 147,
+          "y": 568,
+          "width": 218,
+          "height": 426,
+          "bodyHeight": 440,
+          "anchorX": 116.95349065186022
+        },
+        {
+          "x": 660,
+          "y": 572,
+          "width": 215,
+          "height": 422,
+          "bodyHeight": 440,
+          "anchorX": 106.06547619047619
+        },
+        {
+          "x": 1150,
+          "y": 546,
+          "width": 259,
+          "height": 448,
+          "bodyHeight": 440,
+          "anchorX": 126.84189723320158
+        },
+        {
+          "x": 1677,
+          "y": 562,
+          "width": 230,
+          "height": 432,
+          "bodyHeight": 440,
+          "anchorX": 114.97628458498023
+        }
+      ]
+    },
+    "puma": {
+      "file": "perro-mujeriego-v3-puma",
+      "frames": [
+        {
+          "x": 156,
+          "y": 47,
+          "width": 199,
+          "height": 435,
+          "bodyHeight": 435,
+          "anchorX": 96.08640363259929
+        },
+        {
+          "x": 674,
+          "y": 48,
+          "width": 187,
+          "height": 434,
+          "bodyHeight": 435,
+          "anchorX": 92.52766798418972
+        },
+        {
+          "x": 1105,
+          "y": 51,
+          "width": 350,
+          "height": 431,
+          "bodyHeight": 435,
+          "anchorX": 197.44750298011166
+        },
+        {
+          "x": 1656,
+          "y": 51,
+          "width": 271,
+          "height": 431,
+          "bodyHeight": 435,
+          "anchorX": 165.45750988142294
+        },
+        {
+          "x": 146,
+          "y": 555,
+          "width": 219,
+          "height": 439,
+          "bodyHeight": 435,
+          "anchorX": 117.0197628458498
+        },
+        {
+          "x": 652,
+          "y": 557,
+          "width": 231,
+          "height": 437,
+          "bodyHeight": 435,
+          "anchorX": 122.53359683794466
+        },
+        {
+          "x": 1142,
+          "y": 544,
+          "width": 275,
+          "height": 450,
+          "bodyHeight": 435,
+          "anchorX": 127.03162055335969
+        },
+        {
+          "x": 1673,
+          "y": 560,
+          "width": 238,
+          "height": 434,
+          "bodyHeight": 435,
+          "anchorX": 116.04249011857706
+        }
+      ]
+    },
+    "chataing": {
+      "file": "perro-mujeriego-v3-chataing",
+      "frames": [
+        {
+          "x": 170,
+          "y": 45,
+          "width": 172,
+          "height": 437,
+          "bodyHeight": 437,
+          "anchorX": 89.96640316205534
+        },
+        {
+          "x": 683,
+          "y": 44,
+          "width": 170,
+          "height": 438,
+          "bodyHeight": 437,
+          "anchorX": 83.7994071146245
+        },
+        {
+          "x": 1105,
+          "y": 44,
+          "width": 349,
+          "height": 438,
+          "bodyHeight": 437,
+          "anchorX": 201.07312252964425
+        },
+        {
+          "x": 1662,
+          "y": 48,
+          "width": 259,
+          "height": 434,
+          "bodyHeight": 437,
+          "anchorX": 158.03458498023716
+        },
+        {
+          "x": 150,
+          "y": 558,
+          "width": 211,
+          "height": 436,
+          "bodyHeight": 437,
+          "anchorX": 104.80335968379447
+        },
+        {
+          "x": 667,
+          "y": 556,
+          "width": 201,
+          "height": 438,
+          "bodyHeight": 437,
+          "anchorX": 96.48122529644269
+        },
+        {
+          "x": 1145,
+          "y": 544,
+          "width": 269,
+          "height": 450,
+          "bodyHeight": 437,
+          "anchorX": 130.00592885375494
+        },
+        {
+          "x": 1680,
+          "y": 556,
+          "width": 223,
+          "height": 438,
+          "bodyHeight": 437,
+          "anchorX": 111.44367588932806
+        }
+      ]
+    },
+    "george": {
+      "file": "perro-mujeriego-v3-george",
+      "frames": [
+        {
+          "x": 157,
+          "y": 42,
+          "width": 198,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 99.48715415019763
+        },
+        {
+          "x": 673,
+          "y": 44,
+          "width": 189,
+          "height": 438,
+          "bodyHeight": 440,
+          "anchorX": 98.83102766798419
+        },
+        {
+          "x": 1094,
+          "y": 44,
+          "width": 372,
+          "height": 438,
+          "bodyHeight": 440,
+          "anchorX": 213.2490118577075
+        },
+        {
+          "x": 1671,
+          "y": 50,
+          "width": 241,
+          "height": 432,
+          "bodyHeight": 440,
+          "anchorX": 135.46640316205534
+        },
+        {
+          "x": 152,
+          "y": 561,
+          "width": 208,
+          "height": 433,
+          "bodyHeight": 440,
+          "anchorX": 102.98616600790514
+        },
+        {
+          "x": 659,
+          "y": 560,
+          "width": 218,
+          "height": 434,
+          "bodyHeight": 440,
+          "anchorX": 109.46739130434781
+        },
+        {
+          "x": 1158,
+          "y": 550,
+          "width": 244,
+          "height": 444,
+          "bodyHeight": 440,
+          "anchorX": 120.03063241106719
+        },
+        {
+          "x": 1684,
+          "y": 558,
+          "width": 216,
+          "height": 436,
+          "bodyHeight": 440,
+          "anchorX": 108.52470355731225
+        }
+      ]
+    },
+    "mcm": {
+      "file": "perro-mujeriego-v3-mcm",
+      "frames": [
+        {
+          "x": 163,
+          "y": 47,
+          "width": 186,
+          "height": 435,
+          "bodyHeight": 435,
+          "anchorX": 94.48418972332016
+        },
+        {
+          "x": 671,
+          "y": 55,
+          "width": 193,
+          "height": 427,
+          "bodyHeight": 435,
+          "anchorX": 97.58102766798419
+        },
+        {
+          "x": 1106,
+          "y": 51,
+          "width": 348,
+          "height": 431,
+          "bodyHeight": 435,
+          "anchorX": 200.7895256916996
+        },
+        {
+          "x": 1670,
+          "y": 54,
+          "width": 244,
+          "height": 428,
+          "bodyHeight": 435,
+          "anchorX": 136.96640316205534
+        },
+        {
+          "x": 149,
+          "y": 558,
+          "width": 214,
+          "height": 436,
+          "bodyHeight": 435,
+          "anchorX": 112.51976284584981
+        },
+        {
+          "x": 657,
+          "y": 561,
+          "width": 222,
+          "height": 433,
+          "bodyHeight": 435,
+          "anchorX": 111.99703557312253
+        },
+        {
+          "x": 1152,
+          "y": 544,
+          "width": 256,
+          "height": 450,
+          "bodyHeight": 435,
+          "anchorX": 125.60912698412699
+        },
+        {
+          "x": 1678,
+          "y": 556,
+          "width": 227,
+          "height": 438,
+          "bodyHeight": 435,
+          "anchorX": 117.92588932806325
+        }
+      ]
+    },
+    "ali": {
+      "file": "perro-mujeriego-v3-ali",
+      "frames": [
+        {
+          "x": 157,
+          "y": 67,
+          "width": 197,
+          "height": 415,
+          "bodyHeight": 415,
+          "anchorX": 98.96541501976284
+        },
+        {
+          "x": 674,
+          "y": 65,
+          "width": 188,
+          "height": 417,
+          "bodyHeight": 415,
+          "anchorX": 94.5098814229249
+        },
+        {
+          "x": 1106,
+          "y": 57,
+          "width": 348,
+          "height": 425,
+          "bodyHeight": 415,
+          "anchorX": 207.1200396825397
+        },
+        {
+          "x": 1673,
+          "y": 60,
+          "width": 237,
+          "height": 422,
+          "bodyHeight": 415,
+          "anchorX": 137.51881391555304
+        },
+        {
+          "x": 149,
+          "y": 561,
+          "width": 214,
+          "height": 433,
+          "bodyHeight": 415,
+          "anchorX": 105.00198020578455
+        },
+        {
+          "x": 657,
+          "y": 563,
+          "width": 222,
+          "height": 431,
+          "bodyHeight": 415,
+          "anchorX": 110.03359683794466
+        },
+        {
+          "x": 1149,
+          "y": 544,
+          "width": 262,
+          "height": 450,
+          "bodyHeight": 415,
+          "anchorX": 126.47430830039525
+        },
+        {
+          "x": 1681,
+          "y": 568,
+          "width": 221,
+          "height": 426,
+          "bodyHeight": 415,
+          "anchorX": 108.92490118577075
+        }
+      ]
+    },
+    "gualberto": {
+      "file": "perro-mujeriego-v3-gualberto",
+      "frames": [
+        {
+          "x": 159,
+          "y": 57,
+          "width": 193,
+          "height": 425,
+          "bodyHeight": 425,
+          "anchorX": 95.00790513833992
+        },
+        {
+          "x": 673,
+          "y": 56,
+          "width": 189,
+          "height": 426,
+          "bodyHeight": 425,
+          "anchorX": 97.2796442687747
+        },
+        {
+          "x": 1101,
+          "y": 53,
+          "width": 357,
+          "height": 429,
+          "bodyHeight": 425,
+          "anchorX": 196.23715415019763
+        },
+        {
+          "x": 1662,
+          "y": 54,
+          "width": 259,
+          "height": 428,
+          "bodyHeight": 425,
+          "anchorX": 138.5592885375494
+        },
+        {
+          "x": 143,
+          "y": 556,
+          "width": 226,
+          "height": 438,
+          "bodyHeight": 425,
+          "anchorX": 112.99802371541502
+        },
+        {
+          "x": 660,
+          "y": 563,
+          "width": 216,
+          "height": 431,
+          "bodyHeight": 425,
+          "anchorX": 107.84503811405985
+        },
+        {
+          "x": 1152,
+          "y": 544,
+          "width": 255,
+          "height": 450,
+          "bodyHeight": 425,
+          "anchorX": 122.04743083003953
+        },
+        {
+          "x": 1680,
+          "y": 558,
+          "width": 224,
+          "height": 436,
+          "bodyHeight": 425,
+          "anchorX": 107.449604743083
+        }
+      ]
+    },
+    "reynaldo": {
+      "file": "perro-mujeriego-v3-reynaldo",
+      "frames": [
+        {
+          "x": 155,
+          "y": 52,
+          "width": 201,
+          "height": 430,
+          "bodyHeight": 430,
+          "anchorX": 98.08928571428571
+        },
+        {
+          "x": 668,
+          "y": 50,
+          "width": 200,
+          "height": 432,
+          "bodyHeight": 430,
+          "anchorX": 101.49803149606299
+        },
+        {
+          "x": 1090,
+          "y": 49,
+          "width": 379,
+          "height": 433,
+          "bodyHeight": 430,
+          "anchorX": 225.4298418972332
+        },
+        {
+          "x": 1655,
+          "y": 49,
+          "width": 274,
+          "height": 433,
+          "bodyHeight": 430,
+          "anchorX": 163.5820158102767
+        },
+        {
+          "x": 135,
+          "y": 567,
+          "width": 242,
+          "height": 427,
+          "bodyHeight": 430,
+          "anchorX": 128.046626984127
+        },
+        {
+          "x": 656,
+          "y": 571,
+          "width": 223,
+          "height": 423,
+          "bodyHeight": 430,
+          "anchorX": 113.0494071146245
+        },
+        {
+          "x": 1144,
+          "y": 544,
+          "width": 272,
+          "height": 450,
+          "bodyHeight": 430,
+          "anchorX": 135.4822134387352
+        },
+        {
+          "x": 1670,
+          "y": 572,
+          "width": 244,
+          "height": 422,
+          "bodyHeight": 430,
+          "anchorX": 126.74209486166009
+        }
+      ]
+    },
+    "dudamel": {
+      "file": "perro-mujeriego-v3-dudamel",
+      "frames": [
+        {
+          "x": 148,
+          "y": 45,
+          "width": 215,
+          "height": 437,
+          "bodyHeight": 437,
+          "anchorX": 103.01778656126483
+        },
+        {
+          "x": 655,
+          "y": 44,
+          "width": 226,
+          "height": 438,
+          "bodyHeight": 437,
+          "anchorX": 106.92292490118578
+        },
+        {
+          "x": 1083,
+          "y": 47,
+          "width": 394,
+          "height": 435,
+          "bodyHeight": 437,
+          "anchorX": 226.2490118577075
+        },
+        {
+          "x": 1671,
+          "y": 47,
+          "width": 242,
+          "height": 435,
+          "bodyHeight": 437,
+          "anchorX": 121.86462450592884
+        },
+        {
+          "x": 146,
+          "y": 558,
+          "width": 219,
+          "height": 436,
+          "bodyHeight": 437,
+          "anchorX": 103.09288537549408
+        },
+        {
+          "x": 650,
+          "y": 568,
+          "width": 235,
+          "height": 426,
+          "bodyHeight": 437,
+          "anchorX": 109.97619047619048
+        },
+        {
+          "x": 1145,
+          "y": 544,
+          "width": 269,
+          "height": 450,
+          "bodyHeight": 437,
+          "anchorX": 128.46640316205534
+        },
+        {
+          "x": 1674,
+          "y": 569,
+          "width": 236,
+          "height": 425,
+          "bodyHeight": 437,
+          "anchorX": 115.03063241106719
+        }
+      ]
+    },
+    "danny": {
+      "file": "perro-mujeriego-v3-danny",
+      "frames": [
+        {
+          "x": 159,
+          "y": 42,
+          "width": 193,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 98.98616600790513
+        },
+        {
+          "x": 671,
+          "y": 44,
+          "width": 193,
+          "height": 438,
+          "bodyHeight": 440,
+          "anchorX": 96.96527777777777
+        },
+        {
+          "x": 1101,
+          "y": 43,
+          "width": 357,
+          "height": 439,
+          "bodyHeight": 440,
+          "anchorX": 210.04960317460316
+        },
+        {
+          "x": 1654,
+          "y": 43,
+          "width": 275,
+          "height": 439,
+          "bodyHeight": 440,
+          "anchorX": 156.47826086956522
+        },
+        {
+          "x": 147,
+          "y": 561,
+          "width": 217,
+          "height": 433,
+          "bodyHeight": 440,
+          "anchorX": 106.83102766798419
+        },
+        {
+          "x": 651,
+          "y": 560,
+          "width": 234,
+          "height": 434,
+          "bodyHeight": 440,
+          "anchorX": 109.0701581027668
+        },
+        {
+          "x": 1153,
+          "y": 546,
+          "width": 253,
+          "height": 448,
+          "bodyHeight": 440,
+          "anchorX": 126.0297619047619
+        },
+        {
+          "x": 1674,
+          "y": 566,
+          "width": 235,
+          "height": 428,
+          "bodyHeight": 440,
+          "anchorX": 115.55533596837945
+        }
+      ]
+    },
+    "nacho": {
+      "file": "perro-mujeriego-v3-nacho",
+      "frames": [
+        {
+          "x": 145,
+          "y": 42,
+          "width": 221,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 112.46343873517787
+        },
+        {
+          "x": 658,
+          "y": 40,
+          "width": 220,
+          "height": 442,
+          "bodyHeight": 440,
+          "anchorX": 111.4407114624506
+        },
+        {
+          "x": 1087,
+          "y": 39,
+          "width": 386,
+          "height": 443,
+          "bodyHeight": 440,
+          "anchorX": 218.55731225296444
+        },
+        {
+          "x": 1665,
+          "y": 38,
+          "width": 253,
+          "height": 444,
+          "bodyHeight": 440,
+          "anchorX": 137.90415019762844
+        },
+        {
+          "x": 135,
+          "y": 558,
+          "width": 242,
+          "height": 436,
+          "bodyHeight": 440,
+          "anchorX": 121.92885375494072
+        },
+        {
+          "x": 647,
+          "y": 560,
+          "width": 242,
+          "height": 434,
+          "bodyHeight": 440,
+          "anchorX": 120.44466403162055
+        },
+        {
+          "x": 1134,
+          "y": 544,
+          "width": 292,
+          "height": 450,
+          "bodyHeight": 440,
+          "anchorX": 141.57707509881422
+        },
+        {
+          "x": 1669,
+          "y": 559,
+          "width": 245,
+          "height": 435,
+          "bodyHeight": 440,
+          "anchorX": 126.53754940711462
+        }
+      ]
+    },
+    "sarcos": {
+      "file": "perro-mujeriego-v3-sarcos",
+      "frames": [
+        {
+          "x": 154,
+          "y": 44,
+          "width": 204,
+          "height": 438,
+          "bodyHeight": 438,
+          "anchorX": 105.99400840705188
+        },
+        {
+          "x": 667,
+          "y": 45,
+          "width": 201,
+          "height": 437,
+          "bodyHeight": 438,
+          "anchorX": 107.95849802371542
+        },
+        {
+          "x": 1101,
+          "y": 37,
+          "width": 357,
+          "height": 445,
+          "bodyHeight": 438,
+          "anchorX": 200.07142857142858
+        },
+        {
+          "x": 1664,
+          "y": 41,
+          "width": 256,
+          "height": 441,
+          "bodyHeight": 438,
+          "anchorX": 143.44268774703556
+        },
+        {
+          "x": 143,
+          "y": 557,
+          "width": 225,
+          "height": 437,
+          "bodyHeight": 438,
+          "anchorX": 111.02173913043478
+        },
+        {
+          "x": 657,
+          "y": 557,
+          "width": 221,
+          "height": 437,
+          "bodyHeight": 438,
+          "anchorX": 109.40079365079364
+        },
+        {
+          "x": 1140,
+          "y": 544,
+          "width": 279,
+          "height": 450,
+          "bodyHeight": 438,
+          "anchorX": 140.42460317460316
+        },
+        {
+          "x": 1676,
+          "y": 555,
+          "width": 231,
+          "height": 439,
+          "bodyHeight": 438,
+          "anchorX": 114.49407114624506
+        }
+      ]
+    },
+    "yordano": {
+      "file": "perro-mujeriego-v3-yordano",
+      "frames": [
+        {
+          "x": 161,
+          "y": 42,
+          "width": 190,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 97.51482213438734
+        },
+        {
+          "x": 673,
+          "y": 44,
+          "width": 190,
+          "height": 438,
+          "bodyHeight": 440,
+          "anchorX": 96.95355731225297
+        },
+        {
+          "x": 1098,
+          "y": 34,
+          "width": 363,
+          "height": 448,
+          "bodyHeight": 440,
+          "anchorX": 214.49604743083003
+        },
+        {
+          "x": 1659,
+          "y": 38,
+          "width": 265,
+          "height": 444,
+          "bodyHeight": 440,
+          "anchorX": 140.98320158102769
+        },
+        {
+          "x": 149,
+          "y": 566,
+          "width": 213,
+          "height": 428,
+          "bodyHeight": 440,
+          "anchorX": 105.44861660079052
+        },
+        {
+          "x": 660,
+          "y": 565,
+          "width": 216,
+          "height": 429,
+          "bodyHeight": 440,
+          "anchorX": 105.33596837944664
+        },
+        {
+          "x": 1146,
+          "y": 548,
+          "width": 267,
+          "height": 446,
+          "bodyHeight": 440,
+          "anchorX": 124.550395256917
+        },
+        {
+          "x": 1677,
+          "y": 567,
+          "width": 230,
+          "height": 427,
+          "bodyHeight": 440,
+          "anchorX": 110.56521739130434
+        }
+      ]
+    },
+    "lila": {
+      "file": "perro-mujeriego-v3-lila",
+      "frames": [
+        {
+          "x": 153,
+          "y": 48,
+          "width": 205,
+          "height": 434,
+          "bodyHeight": 434,
+          "anchorX": 106.51488095238095
+        },
+        {
+          "x": 666,
+          "y": 48,
+          "width": 204,
+          "height": 434,
+          "bodyHeight": 434,
+          "anchorX": 106.21031746031747
+        },
+        {
+          "x": 1101,
+          "y": 48,
+          "width": 357,
+          "height": 434,
+          "bodyHeight": 434,
+          "anchorX": 203.0584023464458
+        },
+        {
+          "x": 1666,
+          "y": 47,
+          "width": 251,
+          "height": 435,
+          "bodyHeight": 434,
+          "anchorX": 135.94246031746033
+        },
+        {
+          "x": 142,
+          "y": 557,
+          "width": 228,
+          "height": 437,
+          "bodyHeight": 434,
+          "anchorX": 114.02380952380952
+        },
+        {
+          "x": 653,
+          "y": 559,
+          "width": 230,
+          "height": 435,
+          "bodyHeight": 434,
+          "anchorX": 115.94852249200075
+        },
+        {
+          "x": 1154,
+          "y": 544,
+          "width": 251,
+          "height": 450,
+          "bodyHeight": 434,
+          "anchorX": 128.47420634920636
+        },
+        {
+          "x": 1682,
+          "y": 558,
+          "width": 219,
+          "height": 436,
+          "bodyHeight": 434,
+          "anchorX": 109.55357142857143
+        }
+      ]
+    },
+    "rummy": {
+      "file": "perro-mujeriego-v3-rummy",
+      "frames": [
+        {
+          "x": 156,
+          "y": 46,
+          "width": 199,
+          "height": 436,
+          "bodyHeight": 436,
+          "anchorX": 99.5088932806324
+        },
+        {
+          "x": 677,
+          "y": 46,
+          "width": 182,
+          "height": 436,
+          "bodyHeight": 436,
+          "anchorX": 95.01185770750988
+        },
+        {
+          "x": 1100,
+          "y": 47,
+          "width": 359,
+          "height": 435,
+          "bodyHeight": 436,
+          "anchorX": 206.47332015810275
+        },
+        {
+          "x": 1666,
+          "y": 42,
+          "width": 251,
+          "height": 440,
+          "bodyHeight": 436,
+          "anchorX": 135.53853754940712
+        },
+        {
+          "x": 143,
+          "y": 564,
+          "width": 225,
+          "height": 430,
+          "bodyHeight": 436,
+          "anchorX": 120.09486166007905
+        },
+        {
+          "x": 659,
+          "y": 567,
+          "width": 218,
+          "height": 427,
+          "bodyHeight": 436,
+          "anchorX": 108.00069180898166
+        },
+        {
+          "x": 1158,
+          "y": 544,
+          "width": 243,
+          "height": 450,
+          "bodyHeight": 436,
+          "anchorX": 114.98814229249012
+        },
+        {
+          "x": 1677,
+          "y": 563,
+          "width": 229,
+          "height": 431,
+          "bodyHeight": 436,
+          "anchorX": 112.9990118577075
+        }
+      ]
+    },
+    "chiqui": {
+      "file": "perro-mujeriego-v3-chiqui",
+      "frames": [
+        {
+          "x": 156,
+          "y": 50,
+          "width": 200,
+          "height": 432,
+          "bodyHeight": 432,
+          "anchorX": 103.59288537549408
+        },
+        {
+          "x": 675,
+          "y": 53,
+          "width": 185,
+          "height": 429,
+          "bodyHeight": 432,
+          "anchorX": 95.85770750988142
+        },
+        {
+          "x": 1107,
+          "y": 45,
+          "width": 345,
+          "height": 437,
+          "bodyHeight": 432,
+          "anchorX": 216.94466403162056
+        },
+        {
+          "x": 1669,
+          "y": 48,
+          "width": 246,
+          "height": 434,
+          "bodyHeight": 432,
+          "anchorX": 134.59920634920636
+        },
+        {
+          "x": 152,
+          "y": 551,
+          "width": 208,
+          "height": 443,
+          "bodyHeight": 432,
+          "anchorX": 110.02182539682539
+        },
+        {
+          "x": 651,
+          "y": 548,
+          "width": 233,
+          "height": 446,
+          "bodyHeight": 432,
+          "anchorX": 121.14511617900172
+        },
+        {
+          "x": 1158,
+          "y": 544,
+          "width": 243,
+          "height": 450,
+          "bodyHeight": 432,
+          "anchorX": 132.9802371541502
+        },
+        {
+          "x": 1687,
+          "y": 553,
+          "width": 210,
+          "height": 441,
+          "bodyHeight": 432,
+          "anchorX": 113.09881422924902
+        }
+      ]
+    },
+    "norkys": {
+      "file": "perro-mujeriego-v3-norkys",
+      "frames": [
+        {
+          "x": 160,
+          "y": 59,
+          "width": 192,
+          "height": 423,
+          "bodyHeight": 423,
+          "anchorX": 96.48221343873517
+        },
+        {
+          "x": 674,
+          "y": 59,
+          "width": 188,
+          "height": 423,
+          "bodyHeight": 423,
+          "anchorX": 101.05731225296442
+        },
+        {
+          "x": 1109,
+          "y": 54,
+          "width": 342,
+          "height": 428,
+          "bodyHeight": 423,
+          "anchorX": 214.39328063241106
+        },
+        {
+          "x": 1660,
+          "y": 55,
+          "width": 264,
+          "height": 427,
+          "bodyHeight": 423,
+          "anchorX": 102.81620553359684
+        },
+        {
+          "x": 152,
+          "y": 567,
+          "width": 207,
+          "height": 427,
+          "bodyHeight": 423,
+          "anchorX": 105.59387351778656
+        },
+        {
+          "x": 665,
+          "y": 568,
+          "width": 206,
+          "height": 426,
+          "bodyHeight": 423,
+          "anchorX": 100.97628458498025
+        },
+        {
+          "x": 1161,
+          "y": 544,
+          "width": 238,
+          "height": 450,
+          "bodyHeight": 423,
+          "anchorX": 115.53162055335969
+        },
+        {
+          "x": 1683,
+          "y": 568,
+          "width": 217,
+          "height": 426,
+          "bodyHeight": 423,
+          "anchorX": 104.00592885375494
+        }
+      ]
+    },
+    "gabriela": {
+      "file": "perro-mujeriego-v3-gabriela",
+      "frames": [
+        {
+          "x": 177,
+          "y": 42,
+          "width": 157,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 73.40810276679842
+        },
+        {
+          "x": 678,
+          "y": 41,
+          "width": 180,
+          "height": 441,
+          "bodyHeight": 440,
+          "anchorX": 95.52766798418972
+        },
+        {
+          "x": 1113,
+          "y": 37,
+          "width": 333,
+          "height": 445,
+          "bodyHeight": 440,
+          "anchorX": 172.53359683794466
+        },
+        {
+          "x": 1663,
+          "y": 38,
+          "width": 257,
+          "height": 444,
+          "bodyHeight": 440,
+          "anchorX": 154.00691699604744
+        },
+        {
+          "x": 149,
+          "y": 559,
+          "width": 214,
+          "height": 435,
+          "bodyHeight": 440,
+          "anchorX": 112.4802371541502
+        },
+        {
+          "x": 664,
+          "y": 563,
+          "width": 207,
+          "height": 431,
+          "bodyHeight": 440,
+          "anchorX": 97.5088932806324
+        },
+        {
+          "x": 1149,
+          "y": 546,
+          "width": 262,
+          "height": 448,
+          "bodyHeight": 440,
+          "anchorX": 128.03754940711462
+        },
+        {
+          "x": 1683,
+          "y": 554,
+          "width": 217,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 112.92687747035573
+        }
+      ]
+    },
+    "amanda": {
+      "file": "perro-mujeriego-v3-amanda",
+      "frames": [
+        {
+          "x": 163,
+          "y": 49,
+          "width": 185,
+          "height": 433,
+          "bodyHeight": 433,
+          "anchorX": 99.95652173913044
+        },
+        {
+          "x": 684,
+          "y": 48,
+          "width": 167,
+          "height": 434,
+          "bodyHeight": 433,
+          "anchorX": 86.01086956521739
+        },
+        {
+          "x": 1107,
+          "y": 49,
+          "width": 345,
+          "height": 433,
+          "bodyHeight": 433,
+          "anchorX": 207.5296442687747
+        },
+        {
+          "x": 1665,
+          "y": 50,
+          "width": 253,
+          "height": 432,
+          "bodyHeight": 433,
+          "anchorX": 150.00592885375494
+        },
+        {
+          "x": 152,
+          "y": 561,
+          "width": 207,
+          "height": 433,
+          "bodyHeight": 433,
+          "anchorX": 105.01383399209486
+        },
+        {
+          "x": 659,
+          "y": 564,
+          "width": 218,
+          "height": 430,
+          "bodyHeight": 433,
+          "anchorX": 101.17391304347827
+        },
+        {
+          "x": 1154,
+          "y": 544,
+          "width": 251,
+          "height": 450,
+          "bodyHeight": 433,
+          "anchorX": 127.09881422924902
+        },
+        {
+          "x": 1681,
+          "y": 548,
+          "width": 221,
+          "height": 446,
+          "bodyHeight": 433,
+          "anchorX": 112.96837944664031
+        }
+      ]
+    },
+    "lele": {
+      "file": "perro-mujeriego-v3-lele",
+      "frames": [
+        {
+          "x": 158,
+          "y": 54,
+          "width": 196,
+          "height": 428,
+          "bodyHeight": 428,
+          "anchorX": 95.45849802371542
+        },
+        {
+          "x": 673,
+          "y": 53,
+          "width": 189,
+          "height": 429,
+          "bodyHeight": 428,
+          "anchorX": 100.7588932806324
+        },
+        {
+          "x": 1111,
+          "y": 52,
+          "width": 337,
+          "height": 430,
+          "bodyHeight": 428,
+          "anchorX": 198.99604743083003
+        },
+        {
+          "x": 1658,
+          "y": 53,
+          "width": 268,
+          "height": 429,
+          "bodyHeight": 428,
+          "anchorX": 153.2411067193676
+        },
+        {
+          "x": 150,
+          "y": 563,
+          "width": 211,
+          "height": 431,
+          "bodyHeight": 428,
+          "anchorX": 111.43083003952569
+        },
+        {
+          "x": 660,
+          "y": 565,
+          "width": 216,
+          "height": 429,
+          "bodyHeight": 428,
+          "anchorX": 112.13339920948616
+        },
+        {
+          "x": 1153,
+          "y": 544,
+          "width": 254,
+          "height": 450,
+          "bodyHeight": 428,
+          "anchorX": 134.98616600790513
+        },
+        {
+          "x": 1684,
+          "y": 562,
+          "width": 216,
+          "height": 432,
+          "bodyHeight": 428,
+          "anchorX": 119.49407114624506
+        }
+      ]
+    },
+    "giuseppe": {
+      "file": "perro-mujeriego-v3-giuseppe",
+      "frames": [
+        {
+          "x": 148,
+          "y": 42,
+          "width": 215,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 110.98616600790514
+        },
+        {
+          "x": 669,
+          "y": 42,
+          "width": 198,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 102.52182539682539
+        },
+        {
+          "x": 1094,
+          "y": 41,
+          "width": 371,
+          "height": 441,
+          "bodyHeight": 440,
+          "anchorX": 197.94268774703556
+        },
+        {
+          "x": 1667,
+          "y": 41,
+          "width": 250,
+          "height": 441,
+          "bodyHeight": 440,
+          "anchorX": 142.0691699604743
+        },
+        {
+          "x": 144,
+          "y": 558,
+          "width": 223,
+          "height": 436,
+          "bodyHeight": 440,
+          "anchorX": 110.81818181818181
+        },
+        {
+          "x": 660,
+          "y": 557,
+          "width": 216,
+          "height": 437,
+          "bodyHeight": 440,
+          "anchorX": 103.0952380952381
+        },
+        {
+          "x": 1141,
+          "y": 548,
+          "width": 277,
+          "height": 446,
+          "bodyHeight": 440,
+          "anchorX": 140.52569169960475
+        },
+        {
+          "x": 1676,
+          "y": 560,
+          "width": 232,
+          "height": 434,
+          "bodyHeight": 440,
+          "anchorX": 118.0296442687747
+        }
+      ]
+    },
+    "silbon": {
+      "file": "perro-mujeriego-v3-silbon",
+      "frames": [
+        {
+          "x": 156,
+          "y": 54,
+          "width": 200,
+          "height": 428,
+          "bodyHeight": 428,
+          "anchorX": 98.06916996047431
+        },
+        {
+          "x": 661,
+          "y": 49,
+          "width": 214,
+          "height": 433,
+          "bodyHeight": 428,
+          "anchorX": 110.51728464771944
+        },
+        {
+          "x": 1107,
+          "y": 50,
+          "width": 346,
+          "height": 432,
+          "bodyHeight": 428,
+          "anchorX": 200.1170634920635
+        },
+        {
+          "x": 1665,
+          "y": 51,
+          "width": 253,
+          "height": 431,
+          "bodyHeight": 428,
+          "anchorX": 145.77371541501975
+        },
+        {
+          "x": 139,
+          "y": 569,
+          "width": 234,
+          "height": 425,
+          "bodyHeight": 428,
+          "anchorX": 124.53968253968254
+        },
+        {
+          "x": 656,
+          "y": 564,
+          "width": 224,
+          "height": 430,
+          "bodyHeight": 428,
+          "anchorX": 113.16403162055336
+        },
+        {
+          "x": 1135,
+          "y": 544,
+          "width": 289,
+          "height": 450,
+          "bodyHeight": 428,
+          "anchorX": 142.27865612648222
+        },
+        {
+          "x": 1668,
+          "y": 557,
+          "width": 247,
+          "height": 437,
+          "bodyHeight": 428,
+          "anchorX": 129.1581027667984
+        }
+      ]
+    },
+    "llorona": {
+      "file": "perro-mujeriego-v3-llorona",
+      "frames": [
+        {
+          "x": 124,
+          "y": 67,
+          "width": 264,
+          "height": 415,
+          "bodyHeight": 415,
+          "anchorX": 132.39846837944663
+        },
+        {
+          "x": 642,
+          "y": 74,
+          "width": 251,
+          "height": 408,
+          "bodyHeight": 415,
+          "anchorX": 121.04150197628458
+        },
+        {
+          "x": 1114,
+          "y": 69,
+          "width": 332,
+          "height": 413,
+          "bodyHeight": 415,
+          "anchorX": 188.90178571428572
+        },
+        {
+          "x": 1656,
+          "y": 69,
+          "width": 272,
+          "height": 413,
+          "bodyHeight": 415,
+          "anchorX": 153.06225296442688
+        },
+        {
+          "x": 115,
+          "y": 572,
+          "width": 282,
+          "height": 422,
+          "bodyHeight": 415,
+          "anchorX": 152.3418972332016
+        },
+        {
+          "x": 625,
+          "y": 567,
+          "width": 286,
+          "height": 427,
+          "bodyHeight": 415,
+          "anchorX": 152.79960317460316
+        },
+        {
+          "x": 1138,
+          "y": 544,
+          "width": 284,
+          "height": 450,
+          "bodyHeight": 415,
+          "anchorX": 144.17786561264822
+        },
+        {
+          "x": 1680,
+          "y": 565,
+          "width": 223,
+          "height": 429,
+          "bodyHeight": 415,
+          "anchorX": 106.30693189660582
+        }
+      ]
+    },
+    "sayona": {
+      "file": "perro-mujeriego-v3-sayona",
+      "frames": [
+        {
+          "x": 119,
+          "y": 79,
+          "width": 274,
+          "height": 403,
+          "bodyHeight": 403,
+          "anchorX": 137.140873015873
+        },
+        {
+          "x": 636,
+          "y": 80,
+          "width": 263,
+          "height": 402,
+          "bodyHeight": 403,
+          "anchorX": 125.69146825396825
+        },
+        {
+          "x": 1111,
+          "y": 80,
+          "width": 337,
+          "height": 402,
+          "bodyHeight": 403,
+          "anchorX": 185.01585340987515
+        },
+        {
+          "x": 1649,
+          "y": 83,
+          "width": 286,
+          "height": 399,
+          "bodyHeight": 403,
+          "anchorX": 146.10671936758894
+        },
+        {
+          "x": 105,
+          "y": 569,
+          "width": 301,
+          "height": 425,
+          "bodyHeight": 403,
+          "anchorX": 148.0784678745336
+        },
+        {
+          "x": 628,
+          "y": 569,
+          "width": 280,
+          "height": 425,
+          "bodyHeight": 403,
+          "anchorX": 145.28776115189157
+        },
+        {
+          "x": 1153,
+          "y": 544,
+          "width": 253,
+          "height": 450,
+          "bodyHeight": 403,
+          "anchorX": 133.4802371541502
+        },
+        {
+          "x": 1672,
+          "y": 563,
+          "width": 239,
+          "height": 431,
+          "bodyHeight": 403,
+          "anchorX": 122.04464285714286
+        }
+      ]
+    },
+    "lionza": {
+      "file": "perro-mujeriego-v3-lionza",
+      "frames": [
+        {
+          "x": 137,
+          "y": 42,
+          "width": 238,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 123.31916996047431
+        },
+        {
+          "x": 653,
+          "y": 46,
+          "width": 229,
+          "height": 436,
+          "bodyHeight": 440,
+          "anchorX": 118.47727272727273
+        },
+        {
+          "x": 1111,
+          "y": 46,
+          "width": 338,
+          "height": 436,
+          "bodyHeight": 440,
+          "anchorX": 174.2401185770751
+        },
+        {
+          "x": 1653,
+          "y": 46,
+          "width": 278,
+          "height": 436,
+          "bodyHeight": 440,
+          "anchorX": 121.5
+        },
+        {
+          "x": 135,
+          "y": 561,
+          "width": 241,
+          "height": 433,
+          "bodyHeight": 440,
+          "anchorX": 120.83893280632411
+        },
+        {
+          "x": 631,
+          "y": 565,
+          "width": 273,
+          "height": 429,
+          "bodyHeight": 440,
+          "anchorX": 127.20750988142294
+        },
+        {
+          "x": 1151,
+          "y": 544,
+          "width": 257,
+          "height": 450,
+          "bodyHeight": 440,
+          "anchorX": 127.36758893280633
+        },
+        {
+          "x": 1676,
+          "y": 562,
+          "width": 232,
+          "height": 432,
+          "bodyHeight": 440,
+          "anchorX": 113.24505928853755
+        }
+      ]
+    },
+    "florentino": {
+      "file": "perro-mujeriego-v3-florentino",
+      "frames": [
+        {
+          "x": 163,
+          "y": 58,
+          "width": 185,
+          "height": 424,
+          "bodyHeight": 424,
+          "anchorX": 88.7490118577075
+        },
+        {
+          "x": 675,
+          "y": 52,
+          "width": 186,
+          "height": 430,
+          "bodyHeight": 424,
+          "anchorX": 96.5296442687747
+        },
+        {
+          "x": 1102,
+          "y": 56,
+          "width": 356,
+          "height": 426,
+          "bodyHeight": 424,
+          "anchorX": 209.07707509881425
+        },
+        {
+          "x": 1671,
+          "y": 56,
+          "width": 241,
+          "height": 426,
+          "bodyHeight": 424,
+          "anchorX": 134.08399209486166
+        },
+        {
+          "x": 152,
+          "y": 561,
+          "width": 207,
+          "height": 433,
+          "bodyHeight": 424,
+          "anchorX": 105.98418972332016
+        },
+        {
+          "x": 659,
+          "y": 558,
+          "width": 218,
+          "height": 436,
+          "bodyHeight": 424,
+          "anchorX": 116.25691699604744
+        },
+        {
+          "x": 1153,
+          "y": 544,
+          "width": 253,
+          "height": 450,
+          "bodyHeight": 424,
+          "anchorX": 123.56126482213439
+        },
+        {
+          "x": 1674,
+          "y": 565,
+          "width": 236,
+          "height": 429,
+          "bodyHeight": 424,
+          "anchorX": 115.5
+        }
+      ]
+    },
+    "diablo": {
+      "file": "perro-mujeriego-v3-diablo",
+      "frames": [
+        {
+          "x": 134,
+          "y": 45,
+          "width": 244,
+          "height": 437,
+          "bodyHeight": 437,
+          "anchorX": 145.62252964426878
+        },
+        {
+          "x": 647,
+          "y": 48,
+          "width": 242,
+          "height": 434,
+          "bodyHeight": 437,
+          "anchorX": 140.54166666666669
+        },
+        {
+          "x": 1102,
+          "y": 46,
+          "width": 356,
+          "height": 436,
+          "bodyHeight": 437,
+          "anchorX": 196.9673913043478
+        },
+        {
+          "x": 1662,
+          "y": 45,
+          "width": 260,
+          "height": 437,
+          "bodyHeight": 437,
+          "anchorX": 161.20634920634922
+        },
+        {
+          "x": 126,
+          "y": 549,
+          "width": 260,
+          "height": 445,
+          "bodyHeight": 437,
+          "anchorX": 145.32598500533283
+        },
+        {
+          "x": 632,
+          "y": 547,
+          "width": 271,
+          "height": 447,
+          "bodyHeight": 437,
+          "anchorX": 144.9623015873016
+        },
+        {
+          "x": 1152,
+          "y": 544,
+          "width": 255,
+          "height": 450,
+          "bodyHeight": 437,
+          "anchorX": 130.43873517786562
+        },
+        {
+          "x": 1675,
+          "y": 557,
+          "width": 234,
+          "height": 437,
+          "bodyHeight": 437,
+          "anchorX": 130.55335968379447
+        }
+      ]
+    },
+    "knoche": {
+      "file": "perro-mujeriego-v3-knoche",
+      "frames": [
+        {
+          "x": 148,
+          "y": 70,
+          "width": 215,
+          "height": 412,
+          "bodyHeight": 412,
+          "anchorX": 108.72529644268775
+        },
+        {
+          "x": 667,
+          "y": 68,
+          "width": 201,
+          "height": 414,
+          "bodyHeight": 412,
+          "anchorX": 99.25592885375494
+        },
+        {
+          "x": 1111,
+          "y": 69,
+          "width": 338,
+          "height": 413,
+          "bodyHeight": 412,
+          "anchorX": 191.951581027668
+        },
+        {
+          "x": 1655,
+          "y": 68,
+          "width": 274,
+          "height": 414,
+          "bodyHeight": 412,
+          "anchorX": 158.05533596837944
+        },
+        {
+          "x": 113,
+          "y": 568,
+          "width": 285,
+          "height": 426,
+          "bodyHeight": 412,
+          "anchorX": 157.64131526104416
+        },
+        {
+          "x": 638,
+          "y": 571,
+          "width": 259,
+          "height": 423,
+          "bodyHeight": 412,
+          "anchorX": 116.54563492063492
+        },
+        {
+          "x": 1151,
+          "y": 544,
+          "width": 257,
+          "height": 450,
+          "bodyHeight": 412,
+          "anchorX": 129.0376984126984
+        },
+        {
+          "x": 1675,
+          "y": 553,
+          "width": 233,
+          "height": 441,
+          "bodyHeight": 412,
+          "anchorX": 114.53754940711462
+        }
+      ]
+    },
+    "momoy": {
+      "file": "perro-mujeriego-v3-momoy",
+      "frames": [
+        {
+          "x": 135,
+          "y": 50,
+          "width": 242,
+          "height": 432,
+          "bodyHeight": 432,
+          "anchorX": 117.39920948616601
+        },
+        {
+          "x": 646,
+          "y": 49,
+          "width": 243,
+          "height": 433,
+          "bodyHeight": 432,
+          "anchorX": 119.2915019762846
+        },
+        {
+          "x": 1088,
+          "y": 57,
+          "width": 384,
+          "height": 425,
+          "bodyHeight": 432,
+          "anchorX": 220.2102821695213
+        },
+        {
+          "x": 1646,
+          "y": 59,
+          "width": 292,
+          "height": 423,
+          "bodyHeight": 432,
+          "anchorX": 163.6679841897233
+        },
+        {
+          "x": 110,
+          "y": 569,
+          "width": 291,
+          "height": 425,
+          "bodyHeight": 432,
+          "anchorX": 137.01679841897231
+        },
+        {
+          "x": 637,
+          "y": 563,
+          "width": 262,
+          "height": 431,
+          "bodyHeight": 432,
+          "anchorX": 131.10770750988144
+        },
+        {
+          "x": 1130,
+          "y": 544,
+          "width": 300,
+          "height": 450,
+          "bodyHeight": 432,
+          "anchorX": 149.3300395256917
+        },
+        {
+          "x": 1666,
+          "y": 565,
+          "width": 251,
+          "height": 429,
+          "bodyHeight": 432,
+          "anchorX": 126.350790513834
+        }
+      ]
+    },
+    "tiotigre": {
+      "file": "perro-mujeriego-v3-tiotigre",
+      "frames": [
+        {
+          "x": 121,
+          "y": 75,
+          "width": 269,
+          "height": 407,
+          "bodyHeight": 407,
+          "anchorX": 139.68478260869566
+        },
+        {
+          "x": 637,
+          "y": 74,
+          "width": 261,
+          "height": 408,
+          "bodyHeight": 407,
+          "anchorX": 126.26877470355731
+        },
+        {
+          "x": 1097,
+          "y": 74,
+          "width": 366,
+          "height": 408,
+          "bodyHeight": 407,
+          "anchorX": 196.70355731225297
+        },
+        {
+          "x": 1653,
+          "y": 70,
+          "width": 277,
+          "height": 412,
+          "bodyHeight": 407,
+          "anchorX": 141.31746031746033
+        },
+        {
+          "x": 110,
+          "y": 582,
+          "width": 291,
+          "height": 412,
+          "bodyHeight": 407,
+          "anchorX": 148.23320158102766
+        },
+        {
+          "x": 634,
+          "y": 570,
+          "width": 268,
+          "height": 424,
+          "bodyHeight": 407,
+          "anchorX": 129.77272727272725
+        },
+        {
+          "x": 1145,
+          "y": 544,
+          "width": 269,
+          "height": 450,
+          "bodyHeight": 407,
+          "anchorX": 124.2411067193676
+        },
+        {
+          "x": 1671,
+          "y": 561,
+          "width": 242,
+          "height": 433,
+          "bodyHeight": 407,
+          "anchorX": 114.23814229249012
+        }
+      ]
+    },
+    "tioconejo": {
+      "file": "perro-mujeriego-v3-tioconejo",
+      "frames": [
+        {
+          "x": 177,
+          "y": 42,
+          "width": 158,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 80.57509881422925
+        },
+        {
+          "x": 690,
+          "y": 49,
+          "width": 155,
+          "height": 433,
+          "bodyHeight": 440,
+          "anchorX": 83.78063241106719
+        },
+        {
+          "x": 1116,
+          "y": 46,
+          "width": 327,
+          "height": 436,
+          "bodyHeight": 440,
+          "anchorX": 218.42687747035575
+        },
+        {
+          "x": 1666,
+          "y": 46,
+          "width": 252,
+          "height": 436,
+          "bodyHeight": 440,
+          "anchorX": 144.45903877874952
+        },
+        {
+          "x": 123,
+          "y": 556,
+          "width": 266,
+          "height": 438,
+          "bodyHeight": 440,
+          "anchorX": 150.451581027668
+        },
+        {
+          "x": 627,
+          "y": 562,
+          "width": 282,
+          "height": 432,
+          "bodyHeight": 440,
+          "anchorX": 160.55335968379447
+        },
+        {
+          "x": 1164,
+          "y": 560,
+          "width": 231,
+          "height": 434,
+          "bodyHeight": 440,
+          "anchorX": 116.55048936570677
+        },
+        {
+          "x": 1690,
+          "y": 561,
+          "width": 204,
+          "height": 433,
+          "bodyHeight": 440,
+          "anchorX": 102.62944664031622
+        }
+      ]
+    },
+    "enrique": {
+      "file": "perro-mujeriego-v3-enrique",
+      "frames": [
+        {
+          "x": 164,
+          "y": 48,
+          "width": 183,
+          "height": 434,
+          "bodyHeight": 434,
+          "anchorX": 93.07129525064308
+        },
+        {
+          "x": 675,
+          "y": 48,
+          "width": 185,
+          "height": 434,
+          "bodyHeight": 434,
+          "anchorX": 92.53071083505867
+        },
+        {
+          "x": 1103,
+          "y": 50,
+          "width": 354,
+          "height": 432,
+          "bodyHeight": 434,
+          "anchorX": 201.4683794466403
+        },
+        {
+          "x": 1664,
+          "y": 51,
+          "width": 255,
+          "height": 431,
+          "bodyHeight": 434,
+          "anchorX": 150.04347826086956
+        },
+        {
+          "x": 146,
+          "y": 564,
+          "width": 220,
+          "height": 430,
+          "bodyHeight": 434,
+          "anchorX": 111.99802371541502
+        },
+        {
+          "x": 655,
+          "y": 565,
+          "width": 225,
+          "height": 429,
+          "bodyHeight": 434,
+          "anchorX": 110.57823969508752
+        },
+        {
+          "x": 1153,
+          "y": 544,
+          "width": 254,
+          "height": 450,
+          "bodyHeight": 434,
+          "anchorX": 119.10474308300395
+        },
+        {
+          "x": 1675,
+          "y": 567,
+          "width": 233,
+          "height": 427,
+          "bodyHeight": 434,
+          "anchorX": 113.09486166007905
+        }
+      ]
+    },
+    "jesus": {
+      "file": "perro-mujeriego-v3-jesus",
+      "frames": [
+        {
+          "x": 149,
+          "y": 44,
+          "width": 213,
+          "height": 438,
+          "bodyHeight": 438,
+          "anchorX": 106.46343873517787
+        },
+        {
+          "x": 670,
+          "y": 45,
+          "width": 195,
+          "height": 437,
+          "bodyHeight": 438,
+          "anchorX": 100.96442687747036
+        },
+        {
+          "x": 1095,
+          "y": 44,
+          "width": 370,
+          "height": 438,
+          "bodyHeight": 438,
+          "anchorX": 207.251976284585
+        },
+        {
+          "x": 1667,
+          "y": 42,
+          "width": 250,
+          "height": 440,
+          "bodyHeight": 438,
+          "anchorX": 145.4209486166008
+        },
+        {
+          "x": 141,
+          "y": 555,
+          "width": 229,
+          "height": 439,
+          "bodyHeight": 438,
+          "anchorX": 116.03952569169961
+        },
+        {
+          "x": 658,
+          "y": 560,
+          "width": 219,
+          "height": 434,
+          "bodyHeight": 438,
+          "anchorX": 108.0899209486166
+        },
+        {
+          "x": 1148,
+          "y": 544,
+          "width": 264,
+          "height": 450,
+          "bodyHeight": 438,
+          "anchorX": 131.47035573122528
+        },
+        {
+          "x": 1681,
+          "y": 556,
+          "width": 221,
+          "height": 438,
+          "bodyHeight": 438,
+          "anchorX": 107.50296442687747
+        }
+      ]
+    },
+    "carlos": {
+      "file": "perro-mujeriego-v3-carlos",
+      "frames": [
+        {
+          "x": 157,
+          "y": 42,
+          "width": 197,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 96.01482213438734
+        },
+        {
+          "x": 668,
+          "y": 43,
+          "width": 199,
+          "height": 439,
+          "bodyHeight": 440,
+          "anchorX": 103.99802371541502
+        },
+        {
+          "x": 1090,
+          "y": 46,
+          "width": 379,
+          "height": 436,
+          "bodyHeight": 440,
+          "anchorX": 212.80632411067194
+        },
+        {
+          "x": 1669,
+          "y": 46,
+          "width": 246,
+          "height": 436,
+          "bodyHeight": 440,
+          "anchorX": 121.48715415019763
+        },
+        {
+          "x": 149,
+          "y": 563,
+          "width": 214,
+          "height": 431,
+          "bodyHeight": 440,
+          "anchorX": 109.71640316205534
+        },
+        {
+          "x": 658,
+          "y": 565,
+          "width": 220,
+          "height": 429,
+          "bodyHeight": 440,
+          "anchorX": 105.95451016374929
+        },
+        {
+          "x": 1143,
+          "y": 549,
+          "width": 273,
+          "height": 445,
+          "bodyHeight": 440,
+          "anchorX": 135.02470355731225
+        },
+        {
+          "x": 1672,
+          "y": 565,
+          "width": 239,
+          "height": 429,
+          "bodyHeight": 440,
+          "anchorX": 115.96047430830039
+        }
+      ]
+    },
+    "victor": {
+      "file": "perro-mujeriego-v3-victor",
+      "frames": [
+        {
+          "x": 155,
+          "y": 42,
+          "width": 201,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 99.93379446640316
+        },
+        {
+          "x": 673,
+          "y": 41,
+          "width": 189,
+          "height": 441,
+          "bodyHeight": 440,
+          "anchorX": 97.00197628458498
+        },
+        {
+          "x": 1096,
+          "y": 42,
+          "width": 368,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 210.97233201581025
+        },
+        {
+          "x": 1654,
+          "y": 41,
+          "width": 275,
+          "height": 441,
+          "bodyHeight": 440,
+          "anchorX": 152.44642857142858
+        },
+        {
+          "x": 152,
+          "y": 561,
+          "width": 208,
+          "height": 433,
+          "bodyHeight": 440,
+          "anchorX": 104.06225296442688
+        },
+        {
+          "x": 664,
+          "y": 569,
+          "width": 208,
+          "height": 425,
+          "bodyHeight": 440,
+          "anchorX": 102.5297619047619
+        },
+        {
+          "x": 1155,
+          "y": 555,
+          "width": 250,
+          "height": 439,
+          "bodyHeight": 440,
+          "anchorX": 130.05731225296444
+        },
+        {
+          "x": 1679,
+          "y": 573,
+          "width": 226,
+          "height": 421,
+          "bodyHeight": 440,
+          "anchorX": 113.97826086956522
+        }
+      ]
+    },
+    "juan": {
+      "file": "perro-mujeriego-v3-juan",
+      "frames": [
+        {
+          "x": 159,
+          "y": 42,
+          "width": 194,
+          "height": 440,
+          "bodyHeight": 440,
+          "anchorX": 96.91501976284584
+        },
+        {
+          "x": 670,
+          "y": 41,
+          "width": 195,
+          "height": 441,
+          "bodyHeight": 440,
+          "anchorX": 96.07936507936508
+        },
+        {
+          "x": 1093,
+          "y": 41,
+          "width": 374,
+          "height": 441,
+          "bodyHeight": 440,
+          "anchorX": 212.47430830039525
+        },
+        {
+          "x": 1659,
+          "y": 41,
+          "width": 265,
+          "height": 441,
+          "bodyHeight": 440,
+          "anchorX": 152.52173913043478
+        },
+        {
+          "x": 147,
+          "y": 559,
+          "width": 217,
+          "height": 435,
+          "bodyHeight": 440,
+          "anchorX": 109.57806324110672
+        },
+        {
+          "x": 649,
+          "y": 556,
+          "width": 238,
+          "height": 438,
+          "bodyHeight": 440,
+          "anchorX": 120.87185911914173
+        },
+        {
+          "x": 1151,
+          "y": 544,
+          "width": 258,
+          "height": 450,
+          "bodyHeight": 440,
+          "anchorX": 120.51185770750988
+        },
+        {
+          "x": 1675,
+          "y": 556,
+          "width": 233,
+          "height": 438,
+          "bodyHeight": 440,
+          "anchorX": 118.54841897233202
+        }
+      ]
+    },
+    "dayana": {
+      "file": "perro-mujeriego-dayana-v1",
+      "frames": [
+        {
+          "x": 82,
+          "y": 48,
+          "width": 347,
+          "height": 442,
+          "anchorX": 173.5,
+          "bodyHeight": 432
+        },
+        {
+          "x": 602,
+          "y": 48,
+          "width": 332,
+          "height": 442,
+          "anchorX": 166,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1081,
+          "y": 47,
+          "width": 397,
+          "height": 443,
+          "anchorX": 198.5,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1603,
+          "y": 50,
+          "width": 377,
+          "height": 440,
+          "anchorX": 188.5,
+          "bodyHeight": 432
+        },
+        {
+          "x": 61,
+          "y": 582,
+          "width": 389,
+          "height": 420,
+          "anchorX": 194.5,
+          "bodyHeight": 432
+        },
+        {
+          "x": 572,
+          "y": 568,
+          "width": 391,
+          "height": 434,
+          "anchorX": 195.5,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1092,
+          "y": 569,
+          "width": 376,
+          "height": 433,
+          "anchorX": 188,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1621,
+          "y": 569,
+          "width": 342,
+          "height": 433,
+          "anchorX": 171,
+          "bodyHeight": 432
+        }
+      ]
+    },
+    "deyna": {
+      "file": "perro-mujeriego-deyna-v1",
+      "frames": [
+        {
+          "x": 76,
+          "y": 49,
+          "width": 360,
+          "height": 441,
+          "anchorX": 180,
+          "bodyHeight": 432
+        },
+        {
+          "x": 645,
+          "y": 53,
+          "width": 245,
+          "height": 437,
+          "anchorX": 122.5,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1099,
+          "y": 53,
+          "width": 362,
+          "height": 437,
+          "anchorX": 181,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1612,
+          "y": 54,
+          "width": 360,
+          "height": 436,
+          "anchorX": 180,
+          "bodyHeight": 432
+        },
+        {
+          "x": 118,
+          "y": 594,
+          "width": 276,
+          "height": 408,
+          "anchorX": 138,
+          "bodyHeight": 432
+        },
+        {
+          "x": 573,
+          "y": 594,
+          "width": 390,
+          "height": 408,
+          "anchorX": 195,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1162,
+          "y": 571,
+          "width": 236,
+          "height": 431,
+          "anchorX": 118,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1679,
+          "y": 581,
+          "width": 226,
+          "height": 421,
+          "anchorX": 113,
+          "bodyHeight": 432
+        }
+      ]
+    }
+  }
+}

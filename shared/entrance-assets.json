@@ -1660,5 +1660,2114 @@
         "slotY": 512
       }
     ]
+  },
+  "dayana": {
+    "file": "dayana-runway-attack-v3",
+    "cell": 518,
+    "bodyHeight": 500,
+    "baseline": 503,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 1712,
+    "fullBody": true,
+    "frames": [
+      {
+        "x": 8,
+        "y": 685,
+        "width": 425,
+        "height": 506,
+        "anchorX": 272,
+        "anchorY": 503,
+        "bodyHeight": 500,
+        "slotX": 8,
+        "slotY": 685
+      },
+      {
+        "x": 484,
+        "y": 173,
+        "width": 462,
+        "height": 490,
+        "anchorX": 277.2,
+        "anchorY": 487,
+        "bodyHeight": 484,
+        "slotX": 484,
+        "slotY": 173
+      },
+      {
+        "x": 1416,
+        "y": 173,
+        "width": 447,
+        "height": 492,
+        "anchorX": 272.67,
+        "anchorY": 489,
+        "bodyHeight": 486,
+        "slotX": 1416,
+        "slotY": 173
+      },
+      {
+        "x": 1294,
+        "y": 685,
+        "width": 414,
+        "height": 488,
+        "anchorX": 244.26,
+        "anchorY": 485,
+        "bodyHeight": 482,
+        "slotX": 1294,
+        "slotY": 685
+      },
+      {
+        "x": 8,
+        "y": 173,
+        "width": 468,
+        "height": 504,
+        "anchorX": 294.84,
+        "anchorY": 501,
+        "bodyHeight": 498,
+        "slotX": 8,
+        "slotY": 173
+      },
+      {
+        "x": 954,
+        "y": 173,
+        "width": 454,
+        "height": 484,
+        "anchorX": 249.70000000000002,
+        "anchorY": 481,
+        "bodyHeight": 478,
+        "slotX": 954,
+        "slotY": 173
+      },
+      {
+        "x": 421,
+        "y": 1203,
+        "width": 401,
+        "height": 501,
+        "anchorX": 244.60999999999999,
+        "anchorY": 498,
+        "bodyHeight": 495,
+        "slotX": 421,
+        "slotY": 1203
+      },
+      {
+        "x": 441,
+        "y": 685,
+        "width": 423,
+        "height": 510,
+        "anchorX": 211.5,
+        "anchorY": 507,
+        "bodyHeight": 504,
+        "slotX": 441,
+        "slotY": 685
+      }
+    ]
+  },
+  "lorenzo": {
+    "file": "lorenzo-defiant-entrance",
+    "cell": 512,
+    "bodyHeight": 491,
+    "baseline": 500,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 519,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 265,
+        "height": 497,
+        "anchorX": 131.5,
+        "anchorY": 494,
+        "bodyHeight": 491,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 281,
+        "y": 8,
+        "width": 274,
+        "height": 496,
+        "anchorX": 136,
+        "anchorY": 493,
+        "bodyHeight": 491,
+        "slotX": 281,
+        "slotY": 8
+      },
+      {
+        "x": 563,
+        "y": 8,
+        "width": 274,
+        "height": 494,
+        "anchorX": 136.5,
+        "anchorY": 491,
+        "bodyHeight": 491,
+        "slotX": 563,
+        "slotY": 8
+      },
+      {
+        "x": 845,
+        "y": 8,
+        "width": 282,
+        "height": 501,
+        "anchorX": 140.5,
+        "anchorY": 498,
+        "bodyHeight": 491,
+        "slotX": 845,
+        "slotY": 8
+      },
+      {
+        "x": 1135,
+        "y": 8,
+        "width": 282,
+        "height": 503,
+        "anchorX": 141,
+        "anchorY": 500,
+        "bodyHeight": 491,
+        "slotX": 1135,
+        "slotY": 8
+      },
+      {
+        "x": 1425,
+        "y": 8,
+        "width": 282,
+        "height": 503,
+        "anchorX": 140,
+        "anchorY": 500,
+        "bodyHeight": 491,
+        "slotX": 1425,
+        "slotY": 8
+      }
+    ]
+  },
+  "carolina": {
+    "file": "carolina-defiant-entrance",
+    "cell": 517,
+    "bodyHeight": 503,
+    "baseline": 506,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 525,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 271,
+        "height": 509,
+        "anchorX": 143.5,
+        "anchorY": 506,
+        "bodyHeight": 503,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 287,
+        "y": 8,
+        "width": 280,
+        "height": 507,
+        "anchorX": 149.5,
+        "anchorY": 504,
+        "bodyHeight": 503,
+        "slotX": 287,
+        "slotY": 8
+      },
+      {
+        "x": 575,
+        "y": 8,
+        "width": 280,
+        "height": 508,
+        "anchorX": 149,
+        "anchorY": 505,
+        "bodyHeight": 503,
+        "slotX": 575,
+        "slotY": 8
+      },
+      {
+        "x": 863,
+        "y": 8,
+        "width": 284,
+        "height": 499,
+        "anchorX": 149,
+        "anchorY": 496,
+        "bodyHeight": 503,
+        "slotX": 863,
+        "slotY": 8
+      },
+      {
+        "x": 1155,
+        "y": 8,
+        "width": 290,
+        "height": 499,
+        "anchorX": 152,
+        "anchorY": 496,
+        "bodyHeight": 503,
+        "slotX": 1155,
+        "slotY": 8
+      },
+      {
+        "x": 1453,
+        "y": 8,
+        "width": 278,
+        "height": 502,
+        "anchorX": 145.5,
+        "anchorY": 499,
+        "bodyHeight": 503,
+        "slotX": 1453,
+        "slotY": 8
+      }
+    ]
+  },
+  "bolivar": {
+    "file": "bolivar-defiant-entrance",
+    "cell": 512,
+    "bodyHeight": 476,
+    "baseline": 484,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 503,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 277,
+        "height": 482,
+        "anchorX": 137.5,
+        "anchorY": 479,
+        "bodyHeight": 476,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 293,
+        "y": 8,
+        "width": 278,
+        "height": 481,
+        "anchorX": 138.5,
+        "anchorY": 478,
+        "bodyHeight": 476,
+        "slotX": 293,
+        "slotY": 8
+      },
+      {
+        "x": 579,
+        "y": 8,
+        "width": 280,
+        "height": 482,
+        "anchorX": 139.5,
+        "anchorY": 479,
+        "bodyHeight": 476,
+        "slotX": 579,
+        "slotY": 8
+      },
+      {
+        "x": 867,
+        "y": 8,
+        "width": 280,
+        "height": 480,
+        "anchorX": 139.5,
+        "anchorY": 477,
+        "bodyHeight": 476,
+        "slotX": 867,
+        "slotY": 8
+      },
+      {
+        "x": 1155,
+        "y": 8,
+        "width": 282,
+        "height": 480,
+        "anchorX": 140.5,
+        "anchorY": 477,
+        "bodyHeight": 476,
+        "slotX": 1155,
+        "slotY": 8
+      },
+      {
+        "x": 1445,
+        "y": 8,
+        "width": 285,
+        "height": 487,
+        "anchorX": 141.5,
+        "anchorY": 484,
+        "bodyHeight": 476,
+        "slotX": 1445,
+        "slotY": 8
+      }
+    ]
+  },
+  "melanio": {
+    "file": "melanio-defiant-entrance",
+    "cell": 512,
+    "bodyHeight": 489,
+    "baseline": 492,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 511,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 245,
+        "height": 495,
+        "anchorX": 121.5,
+        "anchorY": 492,
+        "bodyHeight": 489,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 261,
+        "y": 8,
+        "width": 249,
+        "height": 495,
+        "anchorX": 123.5,
+        "anchorY": 492,
+        "bodyHeight": 489,
+        "slotX": 261,
+        "slotY": 8
+      },
+      {
+        "x": 518,
+        "y": 8,
+        "width": 249,
+        "height": 495,
+        "anchorX": 124.5,
+        "anchorY": 492,
+        "bodyHeight": 489,
+        "slotX": 518,
+        "slotY": 8
+      },
+      {
+        "x": 775,
+        "y": 8,
+        "width": 252,
+        "height": 483,
+        "anchorX": 126,
+        "anchorY": 480,
+        "bodyHeight": 489,
+        "slotX": 775,
+        "slotY": 8
+      },
+      {
+        "x": 1035,
+        "y": 8,
+        "width": 251,
+        "height": 483,
+        "anchorX": 125,
+        "anchorY": 480,
+        "bodyHeight": 489,
+        "slotX": 1035,
+        "slotY": 8
+      },
+      {
+        "x": 1294,
+        "y": 8,
+        "width": 249,
+        "height": 483,
+        "anchorX": 124,
+        "anchorY": 480,
+        "bodyHeight": 489,
+        "slotX": 1294,
+        "slotY": 8
+      }
+    ]
+  },
+  "deyna": {
+    "file": "deyna-entrance-v1",
+    "cell": 512,
+    "bodyHeight": 485,
+    "baseline": 488,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 987,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 250,
+        "height": 491,
+        "anchorX": 125,
+        "anchorY": 488,
+        "bodyHeight": 485,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 266,
+        "y": 8,
+        "width": 341,
+        "height": 476,
+        "anchorX": 146.63,
+        "anchorY": 473,
+        "bodyHeight": 485,
+        "slotX": 266,
+        "slotY": 8
+      },
+      {
+        "x": 615,
+        "y": 8,
+        "width": 353,
+        "height": 471,
+        "anchorX": 151.79,
+        "anchorY": 468,
+        "bodyHeight": 485,
+        "slotX": 615,
+        "slotY": 8
+      },
+      {
+        "x": 976,
+        "y": 8,
+        "width": 347,
+        "height": 476,
+        "anchorX": 149.21,
+        "anchorY": 473,
+        "bodyHeight": 485,
+        "slotX": 976,
+        "slotY": 8
+      },
+      {
+        "x": 1331,
+        "y": 8,
+        "width": 375,
+        "height": 468,
+        "anchorX": 161.25,
+        "anchorY": 465,
+        "bodyHeight": 485,
+        "slotX": 1331,
+        "slotY": 8
+      },
+      {
+        "x": 1714,
+        "y": 8,
+        "width": 254,
+        "height": 484,
+        "anchorX": 127,
+        "anchorY": 481,
+        "bodyHeight": 485,
+        "slotX": 1714,
+        "slotY": 8
+      }
+    ],
+    "ball": {
+      "x": 8,
+      "y": 507,
+      "width": 459,
+      "height": 472
+    },
+    "fullBody": true
+  },
+  "enrique": {
+    "file": "enrique-defiant-entrance",
+    "cell": 522,
+    "bodyHeight": 506,
+    "baseline": 511,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 530,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 290,
+        "height": 512,
+        "anchorX": 144.5,
+        "anchorY": 509,
+        "bodyHeight": 506,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 306,
+        "y": 8,
+        "width": 301,
+        "height": 511,
+        "anchorX": 150,
+        "anchorY": 508,
+        "bodyHeight": 506,
+        "slotX": 306,
+        "slotY": 8
+      },
+      {
+        "x": 615,
+        "y": 8,
+        "width": 302,
+        "height": 513,
+        "anchorX": 151,
+        "anchorY": 510,
+        "bodyHeight": 506,
+        "slotX": 615,
+        "slotY": 8
+      },
+      {
+        "x": 925,
+        "y": 8,
+        "width": 319,
+        "height": 512,
+        "anchorX": 159,
+        "anchorY": 509,
+        "bodyHeight": 506,
+        "slotX": 925,
+        "slotY": 8
+      },
+      {
+        "x": 1252,
+        "y": 8,
+        "width": 317,
+        "height": 513,
+        "anchorX": 157.5,
+        "anchorY": 510,
+        "bodyHeight": 506,
+        "slotX": 1252,
+        "slotY": 8
+      },
+      {
+        "x": 1577,
+        "y": 8,
+        "width": 324,
+        "height": 514,
+        "anchorX": 162,
+        "anchorY": 511,
+        "bodyHeight": 506,
+        "slotX": 1577,
+        "slotY": 8
+      }
+    ]
+  },
+  "jesus": {
+    "file": "jesus-defiant-entrance",
+    "cell": 512,
+    "bodyHeight": 494,
+    "baseline": 498,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 517,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 288,
+        "height": 500,
+        "anchorX": 144,
+        "anchorY": 497,
+        "bodyHeight": 494,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 304,
+        "y": 8,
+        "width": 292,
+        "height": 501,
+        "anchorX": 145,
+        "anchorY": 498,
+        "bodyHeight": 494,
+        "slotX": 304,
+        "slotY": 8
+      },
+      {
+        "x": 604,
+        "y": 8,
+        "width": 292,
+        "height": 500,
+        "anchorX": 145.5,
+        "anchorY": 497,
+        "bodyHeight": 494,
+        "slotX": 604,
+        "slotY": 8
+      },
+      {
+        "x": 904,
+        "y": 8,
+        "width": 295,
+        "height": 492,
+        "anchorX": 147,
+        "anchorY": 489,
+        "bodyHeight": 494,
+        "slotX": 904,
+        "slotY": 8
+      },
+      {
+        "x": 1207,
+        "y": 8,
+        "width": 295,
+        "height": 493,
+        "anchorX": 147.5,
+        "anchorY": 490,
+        "bodyHeight": 494,
+        "slotX": 1207,
+        "slotY": 8
+      },
+      {
+        "x": 1510,
+        "y": 8,
+        "width": 294,
+        "height": 491,
+        "anchorX": 146.5,
+        "anchorY": 488,
+        "bodyHeight": 494,
+        "slotX": 1510,
+        "slotY": 8
+      }
+    ]
+  },
+  "carlos": {
+    "file": "carlos-defiant-entrance",
+    "cell": 518,
+    "bodyHeight": 503,
+    "baseline": 507,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 526,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 256,
+        "height": 509,
+        "anchorX": 127.5,
+        "anchorY": 506,
+        "bodyHeight": 503,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 272,
+        "y": 8,
+        "width": 255,
+        "height": 510,
+        "anchorX": 127,
+        "anchorY": 507,
+        "bodyHeight": 503,
+        "slotX": 272,
+        "slotY": 8
+      },
+      {
+        "x": 535,
+        "y": 8,
+        "width": 258,
+        "height": 510,
+        "anchorX": 128.5,
+        "anchorY": 507,
+        "bodyHeight": 503,
+        "slotX": 535,
+        "slotY": 8
+      },
+      {
+        "x": 801,
+        "y": 8,
+        "width": 260,
+        "height": 505,
+        "anchorX": 129,
+        "anchorY": 502,
+        "bodyHeight": 503,
+        "slotX": 801,
+        "slotY": 8
+      },
+      {
+        "x": 1069,
+        "y": 8,
+        "width": 260,
+        "height": 505,
+        "anchorX": 129.5,
+        "anchorY": 502,
+        "bodyHeight": 503,
+        "slotX": 1069,
+        "slotY": 8
+      },
+      {
+        "x": 1337,
+        "y": 8,
+        "width": 264,
+        "height": 506,
+        "anchorX": 132,
+        "anchorY": 503,
+        "bodyHeight": 503,
+        "slotX": 1337,
+        "slotY": 8
+      }
+    ]
+  },
+  "victor": {
+    "file": "victor-defiant-entrance",
+    "cell": 512,
+    "bodyHeight": 497,
+    "baseline": 500,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 519,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 270,
+        "height": 503,
+        "anchorX": 134,
+        "anchorY": 500,
+        "bodyHeight": 497,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 286,
+        "y": 8,
+        "width": 279,
+        "height": 501,
+        "anchorX": 139,
+        "anchorY": 498,
+        "bodyHeight": 497,
+        "slotX": 286,
+        "slotY": 8
+      },
+      {
+        "x": 573,
+        "y": 8,
+        "width": 279,
+        "height": 502,
+        "anchorX": 139,
+        "anchorY": 499,
+        "bodyHeight": 497,
+        "slotX": 573,
+        "slotY": 8
+      },
+      {
+        "x": 860,
+        "y": 8,
+        "width": 291,
+        "height": 502,
+        "anchorX": 144.5,
+        "anchorY": 499,
+        "bodyHeight": 497,
+        "slotX": 860,
+        "slotY": 8
+      },
+      {
+        "x": 1159,
+        "y": 8,
+        "width": 295,
+        "height": 502,
+        "anchorX": 147.5,
+        "anchorY": 499,
+        "bodyHeight": 497,
+        "slotX": 1159,
+        "slotY": 8
+      },
+      {
+        "x": 1462,
+        "y": 8,
+        "width": 294,
+        "height": 503,
+        "anchorX": 147,
+        "anchorY": 500,
+        "bodyHeight": 497,
+        "slotX": 1462,
+        "slotY": 8
+      }
+    ]
+  },
+  "juan": {
+    "file": "juan-defiant-entrance",
+    "cell": 523,
+    "bodyHeight": 509,
+    "baseline": 512,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 531,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 283,
+        "height": 515,
+        "anchorX": 141,
+        "anchorY": 512,
+        "bodyHeight": 509,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 299,
+        "y": 8,
+        "width": 288,
+        "height": 514,
+        "anchorX": 143,
+        "anchorY": 511,
+        "bodyHeight": 509,
+        "slotX": 299,
+        "slotY": 8
+      },
+      {
+        "x": 595,
+        "y": 8,
+        "width": 287,
+        "height": 513,
+        "anchorX": 142.5,
+        "anchorY": 510,
+        "bodyHeight": 509,
+        "slotX": 595,
+        "slotY": 8
+      },
+      {
+        "x": 890,
+        "y": 8,
+        "width": 295,
+        "height": 500,
+        "anchorX": 147,
+        "anchorY": 497,
+        "bodyHeight": 509,
+        "slotX": 890,
+        "slotY": 8
+      },
+      {
+        "x": 1193,
+        "y": 8,
+        "width": 294,
+        "height": 500,
+        "anchorX": 146.5,
+        "anchorY": 497,
+        "bodyHeight": 509,
+        "slotX": 1193,
+        "slotY": 8
+      },
+      {
+        "x": 1495,
+        "y": 8,
+        "width": 292,
+        "height": 505,
+        "anchorX": 145.5,
+        "anchorY": 502,
+        "bodyHeight": 509,
+        "slotX": 1495,
+        "slotY": 8
+      }
+    ]
+  },
+  "edgar": {
+    "file": "edgar-defiant-entrance",
+    "cell": 525,
+    "bodyHeight": 511,
+    "baseline": 514,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 533,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 316,
+        "height": 517,
+        "anchorX": 157.5,
+        "anchorY": 514,
+        "bodyHeight": 511,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 332,
+        "y": 8,
+        "width": 319,
+        "height": 515,
+        "anchorX": 158.5,
+        "anchorY": 512,
+        "bodyHeight": 511,
+        "slotX": 332,
+        "slotY": 8
+      },
+      {
+        "x": 659,
+        "y": 8,
+        "width": 323,
+        "height": 516,
+        "anchorX": 160.5,
+        "anchorY": 513,
+        "bodyHeight": 511,
+        "slotX": 659,
+        "slotY": 8
+      },
+      {
+        "x": 990,
+        "y": 8,
+        "width": 341,
+        "height": 502,
+        "anchorX": 170.5,
+        "anchorY": 499,
+        "bodyHeight": 511,
+        "slotX": 990,
+        "slotY": 8
+      },
+      {
+        "x": 1339,
+        "y": 8,
+        "width": 339,
+        "height": 504,
+        "anchorX": 169.5,
+        "anchorY": 501,
+        "bodyHeight": 511,
+        "slotX": 1339,
+        "slotY": 8
+      },
+      {
+        "x": 1686,
+        "y": 8,
+        "width": 340,
+        "height": 504,
+        "anchorX": 169.5,
+        "anchorY": 501,
+        "bodyHeight": 511,
+        "slotX": 1686,
+        "slotY": 8
+      }
+    ]
+  },
+  "conde": {
+    "file": "conde-entrance-v1",
+    "cell": 580,
+    "bodyHeight": 529,
+    "baseline": 569,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 588,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 265,
+        "height": 535,
+        "anchorX": 128.5,
+        "anchorY": 532,
+        "bodyHeight": 529,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 281,
+        "y": 8,
+        "width": 300,
+        "height": 516,
+        "anchorX": 143.5,
+        "anchorY": 513,
+        "bodyHeight": 529,
+        "slotX": 281,
+        "slotY": 8
+      },
+      {
+        "x": 589,
+        "y": 8,
+        "width": 298,
+        "height": 552,
+        "anchorX": 163,
+        "anchorY": 549,
+        "bodyHeight": 529,
+        "slotX": 589,
+        "slotY": 8
+      },
+      {
+        "x": 895,
+        "y": 8,
+        "width": 441,
+        "height": 572,
+        "anchorX": 206.5,
+        "anchorY": 569,
+        "bodyHeight": 529,
+        "slotX": 895,
+        "slotY": 8
+      },
+      {
+        "x": 1344,
+        "y": 8,
+        "width": 299,
+        "height": 540,
+        "anchorX": 153,
+        "anchorY": 537,
+        "bodyHeight": 529,
+        "slotX": 1344,
+        "slotY": 8
+      },
+      {
+        "x": 1651,
+        "y": 8,
+        "width": 301,
+        "height": 543,
+        "anchorX": 150.5,
+        "anchorY": 540,
+        "bodyHeight": 529,
+        "slotX": 1651,
+        "slotY": 8
+      }
+    ]
+  },
+  "lele": {
+    "file": "lele-entrance-v1",
+    "cell": 512,
+    "bodyHeight": 496,
+    "baseline": 499,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 518,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 328,
+        "height": 502,
+        "anchorX": 163.5,
+        "anchorY": 499,
+        "bodyHeight": 496,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 344,
+        "y": 8,
+        "width": 322,
+        "height": 501,
+        "anchorX": 160,
+        "anchorY": 498,
+        "bodyHeight": 496,
+        "slotX": 344,
+        "slotY": 8
+      },
+      {
+        "x": 674,
+        "y": 8,
+        "width": 320,
+        "height": 502,
+        "anchorX": 159.5,
+        "anchorY": 499,
+        "bodyHeight": 496,
+        "slotX": 674,
+        "slotY": 8
+      },
+      {
+        "x": 1002,
+        "y": 8,
+        "width": 335,
+        "height": 495,
+        "anchorX": 166.5,
+        "anchorY": 492,
+        "bodyHeight": 496,
+        "slotX": 1002,
+        "slotY": 8
+      },
+      {
+        "x": 1345,
+        "y": 8,
+        "width": 250,
+        "height": 497,
+        "anchorX": 156.5,
+        "anchorY": 494,
+        "bodyHeight": 496,
+        "slotX": 1345,
+        "slotY": 8
+      },
+      {
+        "x": 1603,
+        "y": 8,
+        "width": 327,
+        "height": 495,
+        "anchorX": 162.5,
+        "anchorY": 492,
+        "bodyHeight": 496,
+        "slotX": 1603,
+        "slotY": 8
+      }
+    ]
+  },
+  "ali": {
+    "file": "ali-entrance-v1",
+    "cell": 520,
+    "bodyHeight": 502,
+    "baseline": 509,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 1034,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 406,
+        "height": 508,
+        "anchorX": 182,
+        "anchorY": 505,
+        "bodyHeight": 502,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 422,
+        "y": 8,
+        "width": 401,
+        "height": 512,
+        "anchorX": 182,
+        "anchorY": 509,
+        "bodyHeight": 502,
+        "slotX": 422,
+        "slotY": 8
+      },
+      {
+        "x": 831,
+        "y": 8,
+        "width": 394,
+        "height": 503,
+        "anchorX": 185,
+        "anchorY": 500,
+        "bodyHeight": 502,
+        "slotX": 831,
+        "slotY": 8
+      },
+      {
+        "x": 1233,
+        "y": 8,
+        "width": 431,
+        "height": 506,
+        "anchorX": 212,
+        "anchorY": 503,
+        "bodyHeight": 502,
+        "slotX": 1233,
+        "slotY": 8
+      },
+      {
+        "x": 8,
+        "y": 528,
+        "width": 398,
+        "height": 495,
+        "anchorX": 185.5,
+        "anchorY": 492,
+        "bodyHeight": 502,
+        "slotX": 8,
+        "slotY": 528
+      },
+      {
+        "x": 414,
+        "y": 528,
+        "width": 385,
+        "height": 498,
+        "anchorX": 181,
+        "anchorY": 495,
+        "bodyHeight": 502,
+        "slotX": 414,
+        "slotY": 528
+      }
+    ]
+  },
+  "gualberto": {
+    "file": "gualberto-entrance-v1",
+    "cell": 518,
+    "bodyHeight": 503,
+    "baseline": 507,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 1039,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 380,
+        "height": 509,
+        "anchorX": 189.5,
+        "anchorY": 506,
+        "bodyHeight": 503,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 396,
+        "y": 8,
+        "width": 377,
+        "height": 510,
+        "anchorX": 188,
+        "anchorY": 507,
+        "bodyHeight": 503,
+        "slotX": 396,
+        "slotY": 8
+      },
+      {
+        "x": 781,
+        "y": 8,
+        "width": 379,
+        "height": 509,
+        "anchorX": 188.5,
+        "anchorY": 506,
+        "bodyHeight": 503,
+        "slotX": 781,
+        "slotY": 8
+      },
+      {
+        "x": 1168,
+        "y": 8,
+        "width": 412,
+        "height": 503,
+        "anchorX": 223,
+        "anchorY": 500,
+        "bodyHeight": 503,
+        "slotX": 1168,
+        "slotY": 8
+      },
+      {
+        "x": 1588,
+        "y": 8,
+        "width": 378,
+        "height": 504,
+        "anchorX": 188.5,
+        "anchorY": 501,
+        "bodyHeight": 503,
+        "slotX": 1588,
+        "slotY": 8
+      },
+      {
+        "x": 8,
+        "y": 526,
+        "width": 379,
+        "height": 505,
+        "anchorX": 189,
+        "anchorY": 502,
+        "bodyHeight": 503,
+        "slotX": 8,
+        "slotY": 526
+      }
+    ]
+  },
+  "silbon": {
+    "file": "silbon-entrance-v1",
+    "cell": 537,
+    "bodyHeight": 492,
+    "baseline": 526,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 1055,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 335,
+        "height": 498,
+        "anchorX": 149,
+        "anchorY": 495,
+        "bodyHeight": 492,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 351,
+        "y": 8,
+        "width": 340,
+        "height": 495,
+        "anchorX": 162.5,
+        "anchorY": 492,
+        "bodyHeight": 492,
+        "slotX": 351,
+        "slotY": 8
+      },
+      {
+        "x": 699,
+        "y": 8,
+        "width": 351,
+        "height": 498,
+        "anchorX": 172,
+        "anchorY": 495,
+        "bodyHeight": 492,
+        "slotX": 699,
+        "slotY": 8
+      },
+      {
+        "x": 1058,
+        "y": 8,
+        "width": 327,
+        "height": 529,
+        "anchorX": 165,
+        "anchorY": 526,
+        "bodyHeight": 492,
+        "slotX": 1058,
+        "slotY": 8
+      },
+      {
+        "x": 1393,
+        "y": 8,
+        "width": 495,
+        "height": 492,
+        "anchorX": 202.5,
+        "anchorY": 489,
+        "bodyHeight": 492,
+        "slotX": 1393,
+        "slotY": 8
+      },
+      {
+        "x": 8,
+        "y": 545,
+        "width": 364,
+        "height": 502,
+        "anchorX": 181.5,
+        "anchorY": 499,
+        "bodyHeight": 492,
+        "slotX": 8,
+        "slotY": 545
+      }
+    ]
+  },
+  "llorona": {
+    "file": "llorona-entrance-v1",
+    "cell": 520,
+    "bodyHeight": 506,
+    "baseline": 509,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 1027,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 379,
+        "height": 512,
+        "anchorX": 204.5,
+        "anchorY": 509,
+        "bodyHeight": 506,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 395,
+        "y": 8,
+        "width": 391,
+        "height": 512,
+        "anchorX": 207.5,
+        "anchorY": 509,
+        "bodyHeight": 506,
+        "slotX": 395,
+        "slotY": 8
+      },
+      {
+        "x": 794,
+        "y": 8,
+        "width": 459,
+        "height": 511,
+        "anchorX": 222,
+        "anchorY": 508,
+        "bodyHeight": 506,
+        "slotX": 794,
+        "slotY": 8
+      },
+      {
+        "x": 1261,
+        "y": 8,
+        "width": 461,
+        "height": 491,
+        "anchorX": 219.5,
+        "anchorY": 488,
+        "bodyHeight": 506,
+        "slotX": 1261,
+        "slotY": 8
+      },
+      {
+        "x": 8,
+        "y": 528,
+        "width": 472,
+        "height": 491,
+        "anchorX": 229,
+        "anchorY": 488,
+        "bodyHeight": 506,
+        "slotX": 8,
+        "slotY": 528
+      },
+      {
+        "x": 488,
+        "y": 528,
+        "width": 414,
+        "height": 491,
+        "anchorX": 219.5,
+        "anchorY": 488,
+        "bodyHeight": 506,
+        "slotX": 488,
+        "slotY": 528
+      }
+    ]
+  },
+  "sayona": {
+    "file": "sayona-entrance-v1",
+    "cell": 518,
+    "bodyHeight": 500,
+    "baseline": 507,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 1043,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 364,
+        "height": 506,
+        "anchorX": 188,
+        "anchorY": 503,
+        "bodyHeight": 500,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 380,
+        "y": 8,
+        "width": 370,
+        "height": 506,
+        "anchorX": 192,
+        "anchorY": 503,
+        "bodyHeight": 500,
+        "slotX": 380,
+        "slotY": 8
+      },
+      {
+        "x": 758,
+        "y": 8,
+        "width": 391,
+        "height": 504,
+        "anchorX": 199.5,
+        "anchorY": 501,
+        "bodyHeight": 500,
+        "slotX": 758,
+        "slotY": 8
+      },
+      {
+        "x": 1157,
+        "y": 8,
+        "width": 427,
+        "height": 510,
+        "anchorX": 221.5,
+        "anchorY": 507,
+        "bodyHeight": 500,
+        "slotX": 1157,
+        "slotY": 8
+      },
+      {
+        "x": 8,
+        "y": 526,
+        "width": 457,
+        "height": 509,
+        "anchorX": 215,
+        "anchorY": 506,
+        "bodyHeight": 500,
+        "slotX": 8,
+        "slotY": 526
+      },
+      {
+        "x": 473,
+        "y": 526,
+        "width": 381,
+        "height": 506,
+        "anchorX": 200,
+        "anchorY": 503,
+        "bodyHeight": 500,
+        "slotX": 473,
+        "slotY": 526
+      }
+    ]
+  },
+  "simon": {
+    "file": "simon-entrance-v1",
+    "cell": 512,
+    "bodyHeight": 485,
+    "baseline": 496,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 515,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 281,
+        "height": 491,
+        "anchorX": 139.5,
+        "anchorY": 488,
+        "bodyHeight": 485,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 297,
+        "y": 8,
+        "width": 298,
+        "height": 480,
+        "anchorX": 148.5,
+        "anchorY": 477,
+        "bodyHeight": 485,
+        "slotX": 297,
+        "slotY": 8
+      },
+      {
+        "x": 603,
+        "y": 8,
+        "width": 278,
+        "height": 499,
+        "anchorX": 138.5,
+        "anchorY": 496,
+        "bodyHeight": 485,
+        "slotX": 603,
+        "slotY": 8
+      },
+      {
+        "x": 889,
+        "y": 8,
+        "width": 451,
+        "height": 484,
+        "anchorX": 294,
+        "anchorY": 481,
+        "bodyHeight": 485,
+        "slotX": 889,
+        "slotY": 8
+      },
+      {
+        "x": 1348,
+        "y": 8,
+        "width": 292,
+        "height": 487,
+        "anchorX": 145.5,
+        "anchorY": 484,
+        "bodyHeight": 485,
+        "slotX": 1348,
+        "slotY": 8
+      },
+      {
+        "x": 1648,
+        "y": 8,
+        "width": 350,
+        "height": 485,
+        "anchorX": 163,
+        "anchorY": 482,
+        "bodyHeight": 485,
+        "slotX": 1648,
+        "slotY": 8
+      }
+    ]
+  },
+  "lionza": {
+    "file": "lionza-entrance-v1",
+    "cell": 521,
+    "bodyHeight": 505,
+    "baseline": 510,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 1035,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 303,
+        "height": 511,
+        "anchorX": 168,
+        "anchorY": 508,
+        "bodyHeight": 505,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 319,
+        "y": 8,
+        "width": 330,
+        "height": 513,
+        "anchorX": 174,
+        "anchorY": 510,
+        "bodyHeight": 505,
+        "slotX": 319,
+        "slotY": 8
+      },
+      {
+        "x": 657,
+        "y": 8,
+        "width": 438,
+        "height": 513,
+        "anchorX": 221.5,
+        "anchorY": 510,
+        "bodyHeight": 505,
+        "slotX": 657,
+        "slotY": 8
+      },
+      {
+        "x": 1103,
+        "y": 8,
+        "width": 427,
+        "height": 499,
+        "anchorX": 222,
+        "anchorY": 496,
+        "bodyHeight": 505,
+        "slotX": 1103,
+        "slotY": 8
+      },
+      {
+        "x": 1538,
+        "y": 8,
+        "width": 453,
+        "height": 496,
+        "anchorX": 212.5,
+        "anchorY": 493,
+        "bodyHeight": 505,
+        "slotX": 1538,
+        "slotY": 8
+      },
+      {
+        "x": 8,
+        "y": 529,
+        "width": 383,
+        "height": 498,
+        "anchorX": 196,
+        "anchorY": 495,
+        "bodyHeight": 505,
+        "slotX": 8,
+        "slotY": 529
+      }
+    ]
+  },
+  "florentino": {
+    "file": "florentino-entrance-v1",
+    "cell": 512,
+    "bodyHeight": 491,
+    "baseline": 500,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 1028,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 363,
+        "height": 497,
+        "anchorX": 180.5,
+        "anchorY": 494,
+        "bodyHeight": 491,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 379,
+        "y": 8,
+        "width": 354,
+        "height": 498,
+        "anchorX": 176,
+        "anchorY": 495,
+        "bodyHeight": 491,
+        "slotX": 379,
+        "slotY": 8
+      },
+      {
+        "x": 741,
+        "y": 8,
+        "width": 358,
+        "height": 484,
+        "anchorX": 178.5,
+        "anchorY": 481,
+        "bodyHeight": 491,
+        "slotX": 741,
+        "slotY": 8
+      },
+      {
+        "x": 1107,
+        "y": 8,
+        "width": 452,
+        "height": 500,
+        "anchorX": 186,
+        "anchorY": 497,
+        "bodyHeight": 491,
+        "slotX": 1107,
+        "slotY": 8
+      },
+      {
+        "x": 1567,
+        "y": 8,
+        "width": 443,
+        "height": 501,
+        "anchorX": 182.5,
+        "anchorY": 498,
+        "bodyHeight": 491,
+        "slotX": 1567,
+        "slotY": 8
+      },
+      {
+        "x": 8,
+        "y": 517,
+        "width": 377,
+        "height": 503,
+        "anchorX": 188,
+        "anchorY": 500,
+        "bodyHeight": 491,
+        "slotX": 8,
+        "slotY": 517
+      }
+    ]
+  },
+  "diablo": {
+    "file": "diablo-entrance-v1",
+    "cell": 515,
+    "bodyHeight": 496,
+    "baseline": 504,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 1037,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 333,
+        "height": 502,
+        "anchorX": 200,
+        "anchorY": 499,
+        "bodyHeight": 496,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 349,
+        "y": 8,
+        "width": 352,
+        "height": 499,
+        "anchorX": 191.5,
+        "anchorY": 496,
+        "bodyHeight": 496,
+        "slotX": 349,
+        "slotY": 8
+      },
+      {
+        "x": 709,
+        "y": 8,
+        "width": 428,
+        "height": 501,
+        "anchorX": 216.5,
+        "anchorY": 498,
+        "bodyHeight": 496,
+        "slotX": 709,
+        "slotY": 8
+      },
+      {
+        "x": 1145,
+        "y": 8,
+        "width": 368,
+        "height": 507,
+        "anchorX": 203,
+        "anchorY": 504,
+        "bodyHeight": 496,
+        "slotX": 1145,
+        "slotY": 8
+      },
+      {
+        "x": 1521,
+        "y": 8,
+        "width": 356,
+        "height": 504,
+        "anchorX": 197,
+        "anchorY": 501,
+        "bodyHeight": 496,
+        "slotX": 1521,
+        "slotY": 8
+      },
+      {
+        "x": 8,
+        "y": 523,
+        "width": 357,
+        "height": 506,
+        "anchorX": 200.5,
+        "anchorY": 503,
+        "bodyHeight": 496,
+        "slotX": 8,
+        "slotY": 523
+      }
+    ]
+  },
+  "momoy": {
+    "file": "momoy-entrance-v1",
+    "cell": 512,
+    "bodyHeight": 486,
+    "baseline": 489,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 1002,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 376,
+        "height": 492,
+        "anchorX": 189,
+        "anchorY": 489,
+        "bodyHeight": 486,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 392,
+        "y": 8,
+        "width": 395,
+        "height": 490,
+        "anchorX": 192,
+        "anchorY": 487,
+        "bodyHeight": 486,
+        "slotX": 392,
+        "slotY": 8
+      },
+      {
+        "x": 795,
+        "y": 8,
+        "width": 404,
+        "height": 470,
+        "anchorX": 201.5,
+        "anchorY": 467,
+        "bodyHeight": 486,
+        "slotX": 795,
+        "slotY": 8
+      },
+      {
+        "x": 1207,
+        "y": 8,
+        "width": 490,
+        "height": 487,
+        "anchorX": 209.5,
+        "anchorY": 484,
+        "bodyHeight": 486,
+        "slotX": 1207,
+        "slotY": 8
+      },
+      {
+        "x": 8,
+        "y": 508,
+        "width": 390,
+        "height": 486,
+        "anchorX": 198,
+        "anchorY": 483,
+        "bodyHeight": 486,
+        "slotX": 8,
+        "slotY": 508
+      },
+      {
+        "x": 406,
+        "y": 508,
+        "width": 412,
+        "height": 484,
+        "anchorX": 210,
+        "anchorY": 481,
+        "bodyHeight": 486,
+        "slotX": 406,
+        "slotY": 508
+      }
+    ]
+  },
+  "tiotigre": {
+    "file": "tiotigre-entrance-v1",
+    "cell": 512,
+    "bodyHeight": 494,
+    "baseline": 500,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 1029,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 381,
+        "height": 500,
+        "anchorX": 225,
+        "anchorY": 497,
+        "bodyHeight": 494,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 397,
+        "y": 8,
+        "width": 370,
+        "height": 496,
+        "anchorX": 204,
+        "anchorY": 493,
+        "bodyHeight": 494,
+        "slotX": 397,
+        "slotY": 8
+      },
+      {
+        "x": 775,
+        "y": 8,
+        "width": 368,
+        "height": 495,
+        "anchorX": 203.5,
+        "anchorY": 492,
+        "bodyHeight": 494,
+        "slotX": 775,
+        "slotY": 8
+      },
+      {
+        "x": 1151,
+        "y": 8,
+        "width": 381,
+        "height": 501,
+        "anchorX": 212.5,
+        "anchorY": 498,
+        "bodyHeight": 494,
+        "slotX": 1151,
+        "slotY": 8
+      },
+      {
+        "x": 1540,
+        "y": 8,
+        "width": 373,
+        "height": 502,
+        "anchorX": 206,
+        "anchorY": 499,
+        "bodyHeight": 494,
+        "slotX": 1540,
+        "slotY": 8
+      },
+      {
+        "x": 8,
+        "y": 518,
+        "width": 377,
+        "height": 503,
+        "anchorX": 204.5,
+        "anchorY": 500,
+        "bodyHeight": 494,
+        "slotX": 8,
+        "slotY": 518
+      }
+    ]
+  },
+  "tioconejo": {
+    "file": "tioconejo-entrance-v1",
+    "cell": 513,
+    "bodyHeight": 497,
+    "baseline": 502,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 521,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 297,
+        "height": 503,
+        "anchorX": 147.5,
+        "anchorY": 500,
+        "bodyHeight": 497,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 313,
+        "y": 8,
+        "width": 203,
+        "height": 505,
+        "anchorX": 97.5,
+        "anchorY": 502,
+        "bodyHeight": 497,
+        "slotX": 313,
+        "slotY": 8
+      },
+      {
+        "x": 524,
+        "y": 8,
+        "width": 309,
+        "height": 502,
+        "anchorX": 146.5,
+        "anchorY": 499,
+        "bodyHeight": 497,
+        "slotX": 524,
+        "slotY": 8
+      },
+      {
+        "x": 841,
+        "y": 8,
+        "width": 385,
+        "height": 500,
+        "anchorX": 167,
+        "anchorY": 497,
+        "bodyHeight": 497,
+        "slotX": 841,
+        "slotY": 8
+      },
+      {
+        "x": 1234,
+        "y": 8,
+        "width": 314,
+        "height": 500,
+        "anchorX": 156.5,
+        "anchorY": 497,
+        "bodyHeight": 497,
+        "slotX": 1234,
+        "slotY": 8
+      },
+      {
+        "x": 1556,
+        "y": 8,
+        "width": 340,
+        "height": 500,
+        "anchorX": 170,
+        "anchorY": 497,
+        "bodyHeight": 497,
+        "slotX": 1556,
+        "slotY": 8
+      }
+    ]
+  },
+  "knoche": {
+    "file": "knoche-entrance-v1",
+    "cell": 512,
+    "bodyHeight": 493,
+    "baseline": 496,
+    "anchorX": 256,
+    "width": 2048,
+    "height": 1009,
+    "frames": [
+      {
+        "x": 8,
+        "y": 8,
+        "width": 321,
+        "height": 499,
+        "anchorX": 160.5,
+        "anchorY": 496,
+        "bodyHeight": 493,
+        "slotX": 8,
+        "slotY": 8
+      },
+      {
+        "x": 337,
+        "y": 8,
+        "width": 331,
+        "height": 495,
+        "anchorX": 165,
+        "anchorY": 492,
+        "bodyHeight": 493,
+        "slotX": 337,
+        "slotY": 8
+      },
+      {
+        "x": 676,
+        "y": 8,
+        "width": 342,
+        "height": 494,
+        "anchorX": 170,
+        "anchorY": 491,
+        "bodyHeight": 493,
+        "slotX": 676,
+        "slotY": 8
+      },
+      {
+        "x": 1026,
+        "y": 8,
+        "width": 343,
+        "height": 487,
+        "anchorX": 171,
+        "anchorY": 484,
+        "bodyHeight": 493,
+        "slotX": 1026,
+        "slotY": 8
+      },
+      {
+        "x": 1377,
+        "y": 8,
+        "width": 354,
+        "height": 491,
+        "anchorX": 176.5,
+        "anchorY": 488,
+        "bodyHeight": 493,
+        "slotX": 1377,
+        "slotY": 8
+      },
+      {
+        "x": 8,
+        "y": 515,
+        "width": 389,
+        "height": 486,
+        "anchorX": 194.5,
+        "anchorY": 483,
+        "bodyHeight": 493,
+        "slotX": 8,
+        "slotY": 515
+      }
+    ]
   }
 }
