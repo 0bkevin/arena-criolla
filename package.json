@@ -15,6 +15,7 @@
     "assets": "node scripts/prepare-assets.mjs && node scripts/prepare-entrance-assets.mjs",
     "assets:entrance": "node scripts/prepare-entrance-assets.mjs",
     "assets:og": "node scripts/generate-og-image.mjs",
+    "assets:brand": "node scripts/generate-brand-assets.mjs",
     "check:assets": "node scripts/validate-character-assets.mjs",
     "test:creator": "tsx --test tests/accounts.test.ts tests/creator-api.test.ts tests/creator.test.ts tests/creator-sprites.test.ts tests/creator-resilience.test.ts tests/adversarial-creator-v31.test.ts tests/provider-contract.test.ts tests/creator-codex.test.ts tests/adversarial-creator-state-v38.test.ts tests/creator-draft-v38.test.ts tests/adversarial-native-import-v38.test.ts tests/creator-api-v38.test.ts",
     "test:adversarial": "tsx --test tests/adversarial-creator-v31.test.ts tests/adversarial-game-v31.test.ts tests/creator-resilience.test.ts tests/provider-contract.test.ts tests/scheduler.test.ts tests/adversarial-creator-state-v38.test.ts tests/creator-draft-v38.test.ts tests/adversarial-native-import-v38.test.ts tests/creator-api-v38.test.ts",
