@@ -1,6 +1,11 @@
 import type { CSSProperties } from "react";
 import { ArrowRight, Check, LockKeyhole, Zap } from "lucide-react";
-import { fighterById, type FighterId } from "../../shared/content";
+import {
+  SUPER_ENERGY_COST,
+  SUPER_UNLOCK_WINS,
+  fighterById,
+  type FighterId,
+} from "../../shared/content";
 import { finaleById } from "../../shared/finales";
 import { Modal } from "./Modal";
 import { Portrait } from "./Portrait";
@@ -53,7 +58,7 @@ export function FighterDetail({
           <h3>Tu libro de combos</h3>
           <div className="combo-list">
             {f.combos.map((combo, i) => {
-              const threshold = [0, 1, 3][i];
+              const threshold = [0, 1, SUPER_UNLOCK_WINS][i];
               const unlocked = wins >= threshold;
               return (
                 <div className={unlocked ? "unlocked" : ""} key={combo}>
@@ -65,7 +70,7 @@ export function FighterDetail({
                     <small>
                       {unlocked
                         ? i === 2
-                          ? "Desbloqueado · 75 de energía"
+                          ? `Desbloqueado · ${SUPER_ENERGY_COST} de energía`
                           : "Listo para pelear"
                         : `Gana ${threshold} ${threshold === 1 ? "pelea" : "peleas"} con ${f.shortName} (${wins}/${threshold})`}
                     </small>

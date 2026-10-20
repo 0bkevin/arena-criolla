@@ -394,8 +394,8 @@ test("adversarial v41: special and super gates charge once on both player sides"
         `${fighter}/P${side + 1}: unlocked super failed`,
       );
       assert.ok(
-        superRun.target.energy >= 25 && superRun.target.energy < 26,
-        `${fighter}/P${side + 1}: super did not charge 75 once`,
+        superRun.target.energy >= 10 && superRun.target.energy < 11,
+        `${fighter}/P${side + 1}: super did not charge 90 once`,
       );
     }
   }

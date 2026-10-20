@@ -109,7 +109,7 @@ async function onlineMatch(
 
 for (const side of [0, 1] as const) {
   test(`rooms synchronize P${side + 1}'s cinematic capture, damage, paused clock and release over real sockets`, async () => {
-    const match = await onlineMatch("canaima", ["capriles", "nacho"], [3, 3]);
+    const match = await onlineMatch("canaima", ["capriles", "nacho"], [2, 2]);
     try {
       const state = match.active.state!;
       state.players.forEach((player, index) => {
@@ -642,8 +642,8 @@ test("anonymous rooms synchronize two players, validate inputs, rematch, and rec
   }
 });
 
-test("rooms reject Vicente's definitive before three wins for both players", async () => {
-  for (const wins of [0, 1, 2]) {
+test("rooms reject Vicente's definitive before two wins for both players", async () => {
+  for (const wins of [0, 1]) {
     const match = await onlineMatch(
       "poliedro",
       ["zavarce", "zavarce"],

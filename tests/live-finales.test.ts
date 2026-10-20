@@ -100,8 +100,8 @@ for (const id of reviewed.filter(isArenaFinalist)) {
     for (const side of [0, 1] as const) {
       for (const reason of ["locked", "energy", "air", "guard", "interrupt"]) {
         const r = setup(id, side, 65);
-        if (reason === "locked") r.source.config.wins = 2;
-        if (reason === "energy") r.source.energy = 74;
+        if (reason === "locked") r.source.config.wins = 1;
+        if (reason === "energy") r.source.energy = 89;
         if (reason === "air") {
           r.source.grounded = false;
           r.source.y -= 90;
@@ -119,7 +119,7 @@ for (const id of reviewed.filter(isArenaFinalist)) {
       const r = setup(id, side);
       r.inputs[side].actions.super++;
       r.advance();
-      assert.equal(r.source.energy, 25);
+      assert.equal(r.source.energy, 10);
       // Move out of the entire forward path during startup, not just a timed hit beat.
       r.target.x = r.source.x - r.source.facing * 260;
       r.advance(8);

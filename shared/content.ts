@@ -1,6 +1,9 @@
 import fighterData from "./fighters.json";
 import stageData from "./stages.json";
 
+export const SUPER_UNLOCK_WINS = 2;
+export const SUPER_ENERGY_COST = 90;
+
 export type FounderFighterId =
   "enrique" | "jesus" | "carlos" | "victor" | "juan" | "kevin";
 export type IconFighterId =

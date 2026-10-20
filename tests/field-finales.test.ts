@@ -66,8 +66,8 @@ test("both live finales preserve progression, cost, interruption and no-overlap 
     for (const side of [0, 1] as const) {
       for (const reason of ["wins", "energy", "guard", "interrupt"]) {
         const r = run(id, side, reason === "interrupt" ? 65 : 180);
-        if (reason === "wins") r.source.config.wins = 2;
-        if (reason === "energy") r.source.energy = 74;
+        if (reason === "wins") r.source.config.wins = 1;
+        if (reason === "energy") r.source.energy = 89;
         if (reason === "guard") r.inputs[side].block = true;
         if (reason === "interrupt") {
           r.inputs[1 - side].actions.light++;
@@ -80,7 +80,7 @@ test("both live finales preserve progression, cost, interruption and no-overlap 
       const r = run(id, side, 600);
       r.inputs[side].actions.super++;
       r.advance();
-      assert.equal(r.source.energy, 25);
+      assert.equal(r.source.energy, 10);
       r.advance(8);
       assert.equal(r.state.fieldFinales?.length, 1);
       r.source.energy = 100;

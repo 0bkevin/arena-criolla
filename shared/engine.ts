@@ -10,6 +10,8 @@ import {
   registerArenaContact,
 } from "./arena-finales";
 import {
+  SUPER_ENERGY_COST,
+  SUPER_UNLOCK_WINS,
   fighterById,
   platformsAtTick,
   type FighterId,
@@ -182,7 +184,8 @@ export function outgoingDamageMultiplier(player: PlayerState): number {
 
 function makePlayer(config: PlayerConfig, index: number): PlayerState {
   return {
-    config,
+    // Room progress can advance after a win; the match keeps its starting counts.
+    config: { ...config },
     x: index === 0 ? 330 : 750,
     y: WORLD.floor,
     vx: 0,
@@ -546,9 +549,13 @@ function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
   )
     return;
   if (attack === "special" && p.energy < 25) return;
-  if (attack === "super" && (p.config.wins < 3 || p.energy < 75)) return;
+  if (
+    attack === "super" &&
+    (p.config.wins < SUPER_UNLOCK_WINS || p.energy < SUPER_ENERGY_COST)
+  )
+    return;
   if (attack === "special") p.energy -= 25;
-  if (attack === "super") p.energy -= 75;
+  if (attack === "super") p.energy -= SUPER_ENERGY_COST;
   p.attack = attack;
   p.attackTick = 0;
   p.attackHit = false;
@@ -1563,8 +1570,8 @@ export function cpuInput(
     next.actions.jump++;
   if (
     difficulty === "hard" &&
-    p.config.wins >= 3 &&
-    p.energy >= 75 &&
+    p.config.wins >= SUPER_UNLOCK_WINS &&
+    p.energy >= SUPER_ENERGY_COST &&
     (finaleById(p.config.fighter)?.mode === "field"
       ? !s.fieldFinales?.some((field) => field.owner === 1) &&
         (isArenaFinalist(p.config.fighter)

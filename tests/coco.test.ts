@@ -267,7 +267,7 @@ test("the Coco finale emits five independent physical transfers, retains live mo
     const r = setup(side, 240);
     r.inputs[side].actions.super++;
     r.advance(1);
-    assert.equal(r.player.energy, 25);
+    assert.equal(r.player.energy, 10);
     r.advance(8);
     r.target.x = r.player.x - r.player.facing * 300;
     r.inputs[1 - side].actions.jump++;

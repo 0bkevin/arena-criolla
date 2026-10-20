@@ -393,8 +393,9 @@ test("Giuseppe recognizes win-gated combos, connects each chained strike with ap
     }
     for (const [wins, energy] of [
       [0, 100],
+      [1, 100],
+      [2, 89],
       [2, 100],
-      [3, 74],
       [3, 100],
     ] as const) {
       const r = setup(side, 200, wins);
@@ -402,7 +403,7 @@ test("Giuseppe recognizes win-gated combos, connects each chained strike with ap
       r.inputs[side].actions.super++;
       r.advance(9);
       if (r.state.finale) r.advance(r.state.finale.duration);
-      if (wins < 3 || energy < 75) {
+      if (wins < 2 || energy < 90) {
         assert.equal(r.player.attack, null);
         assert.equal(r.rival.hp, 100);
       } else {
@@ -473,15 +474,17 @@ function cpuFight() {
       !r.inputs[0].block
     ) {
       const action =
-        Math.abs(dx) < 230 && r.player.energy >= 75
-          ? "super"
-          : Math.abs(dx) < 650 && Math.abs(dx) > 180 && r.player.energy >= 25
-            ? "special"
-            : Math.abs(dx) < 145
-              ? r.state.tick % 3
-                ? "light"
-                : "heavy"
-              : null;
+        !started.has("special") && r.player.energy >= 25
+          ? "special"
+          : Math.abs(dx) < 230 && r.player.energy >= 90
+            ? "super"
+            : Math.abs(dx) < 650 && Math.abs(dx) > 180 && r.player.energy >= 25
+              ? "special"
+              : Math.abs(dx) < 145
+                ? r.state.tick % 3
+                  ? "light"
+                  : "heavy"
+                : null;
       if (action) r.inputs[0].actions[action]++;
     }
     if (
