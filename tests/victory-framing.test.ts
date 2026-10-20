@@ -5,6 +5,7 @@ import { FIGHTERS } from "../shared/content";
 import { presentationById } from "../shared/presentation";
 import { victoryById } from "../src/game/victory";
 import { victoryBodyHeight } from "../src/game/victory-framing";
+import { ATTACK_ART } from "../src/game/attack-art";
 
 test("every winner's painted poses fit beside the title, with room for its victory motion", () => {
   for (const fighter of FIGHTERS) {
@@ -31,6 +32,10 @@ test("every winner's painted poses fit beside the title, with room for its victo
       victoryById(fighter.id).frame,
       presentationById(fighter.id).battleFrame,
     ];
+    const paintedPose = victoryById(fighter.id).paintedPose;
+    const painted = paintedPose
+      ? ATTACK_ART[fighter.id]?.frames[paintedPose]
+      : undefined;
     for (const [width, height] of [
       [1440, 800],
       [1731, 800],
@@ -41,7 +46,14 @@ test("every winner's painted poses fit beside the title, with room for its victo
         Math.min(height, width / 1.45) *
         0.61 *
         ((fighter.displayHeight ?? 177) / 177);
-      const size = victoryBodyHeight(sprite, requested, width, height, frames);
+      const size = victoryBodyHeight(
+        sprite,
+        requested,
+        width,
+        height,
+        frames,
+        painted,
+      );
       assert.ok(
         Number.isFinite(size) && size > 0 && size <= requested,
         fighter.id,
@@ -61,6 +73,20 @@ test("every winner's painted poses fit beside the title, with room for its victo
         assert.ok(
           height * 0.88 - (top + 0.24) * size >= height * 0.1 - 1e-6,
           `${fighter.id}: clips at the top`,
+        );
+      }
+      if (painted) {
+        const body = painted.bodyHeight ?? painted.height;
+        const radius =
+          Math.max(painted.anchorX, painted.width - painted.anchorX) / body;
+        const top = (painted.anchorY ?? painted.height) / body;
+        assert.ok(
+          (radius + 0.18) * size <= width * 0.18 + 1e-6,
+          `${fighter.id}: painted victory crosses into the title`,
+        );
+        assert.ok(
+          height * 0.88 - (top + 0.24) * size >= height * 0.1 - 1e-6,
+          `${fighter.id}: painted victory clips at the top`,
         );
       }
     }

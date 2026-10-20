@@ -208,7 +208,7 @@ export function VictoryScreen({
           )}
         </div>
         <div className="victory-screen-footer">
-          <span>{stageById(state.stage).name}</span>
+          <span>{stageById(state.stage).location}</span>
           <span>
             {mode === "online"
               ? "En línea"

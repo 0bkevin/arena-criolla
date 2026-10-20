@@ -1,9 +1,9 @@
 import type { MatchState } from "../../shared/engine";
 import type { Assets } from "./renderer";
 import { selectionBodyHeight } from "./entrance-framing";
-import { drawArticulatedSprite } from "./gesture-rig";
-import { sampleVictory, VICTORY_DURATION_MS } from "./victory";
+import { VICTORY_DURATION_MS } from "./victory";
 import { victoryActorLayout } from "./victory-framing";
+import { drawVictoryPose } from "./victory-pose";
 import { VICTORY_TRANSITION_MS } from "./victory-types";
 
 const MOVE_DELAY = 160;
@@ -111,22 +111,20 @@ export function playVictoryTransition(
         arena.height,
       );
       const bodyHeight = sprite.entrance ? selectionBodyHeight(sprite) : 450;
-      const pose = sampleVictory(id, VICTORY_DURATION_MS);
       const ctx = carry.getContext("2d")!;
-      ctx.translate(
-        200 + pose.dx * bodyHeight * actor.facing,
-        491 + pose.dy * bodyHeight,
-      );
-      ctx.rotate(pose.rotate * actor.facing);
-      drawArticulatedSprite(
+      ctx.resetTransform();
+      ctx.clearRect(0, 0, carry.width, carry.height);
+      ctx.save();
+      ctx.translate(200, 491);
+      drawVictoryPose(
         ctx,
-        sprite,
+        assets,
         id,
-        pose.frame,
+        VICTORY_DURATION_MS,
         bodyHeight,
         actor.facing,
-        pose.gesture,
       );
+      ctx.restore();
 
       const source = arena.getBoundingClientRect();
       // Canvas can be letterboxed by object-fit: contain on short viewports.

@@ -1,16 +1,10 @@
 import { fighterById } from "../../shared/content";
 import type { MatchState } from "../../shared/engine";
 import { drawSprite } from "./assets";
-import { drawArticulatedSprite } from "./gesture-rig";
 import type { Assets } from "./renderer";
-import {
-  sampleDefeat,
-  sampleVictory,
-  victoryById,
-  VICTORY_DURATION_MS,
-} from "./victory";
-import { drawAttackArt } from "./attack-art";
+import { sampleDefeat, VICTORY_DURATION_MS } from "./victory";
 import { victoryActorLayout } from "./victory-framing";
+import { drawVictoryPose } from "./victory-pose";
 
 /** Screen-space staging keeps even a ringed-out loser visible for the curtain call. */
 export function drawVictory(
@@ -131,37 +125,16 @@ export function drawVictory(
     );
     ctx.fill();
     if (won) {
-      const pose = sampleVictory(id, elapsedMs, reducedMotion);
-      ctx.translate(
-        x + pose.dx * bodyHeight * facing,
-        feet + pose.dy * bodyHeight,
+      ctx.translate(x, feet);
+      drawVictoryPose(
+        ctx,
+        assets,
+        id,
+        elapsedMs,
+        bodyHeight,
+        facing,
+        reducedMotion,
       );
-      ctx.rotate(pose.rotate * facing);
-      const paintedPose = victoryById(id).paintedPose;
-      const painted =
-        paintedPose &&
-        drawAttackArt(
-          ctx,
-          assets.finaleProps,
-          id,
-          paintedPose,
-          0,
-          0,
-          bodyHeight,
-          facing,
-        );
-      if (!painted && reducedMotion)
-        drawSprite(ctx, sprite, sprite.battleFrame, 0, 0, bodyHeight, facing);
-      else if (!painted)
-        drawArticulatedSprite(
-          ctx,
-          sprite,
-          id,
-          pose.frame,
-          bodyHeight,
-          facing,
-          pose.gesture,
-        );
     } else if (winner === null) {
       ctx.translate(x, feet);
       drawSprite(ctx, sprite, sprite.battleFrame, 0, 0, bodyHeight, facing);
