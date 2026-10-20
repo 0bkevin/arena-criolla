@@ -1,0 +1,163 @@
+{
+  "fighter": "javier",
+  "source": "assets/source/finales/attack-overhaul/javier/scolding-v2-grid.png",
+  "file": "javier-scolding-attack-v1",
+  "columns": 2,
+  "rows": 2,
+  "poses": [
+    "headshirt",
+    "fingerwag",
+    "scold",
+    "point"
+  ],
+  "anchorFractions": {
+    "headshirt": 0.48,
+    "fingerwag": 0.525,
+    "scold": 0.5,
+    "point": 0.369
+  },
+  "tool": "image_gen.imagegen",
+  "normalized": "assets/source/finales/attack-overhaul/javier/javier-scolding-attack-v1-packed.png",
+  "destination": "public/assets/javier-scolding-attack-v1.webp",
+  "width": 1024,
+  "height": 1024,
+  "cell": 512,
+  "frames": {
+    "headshirt": {
+      "x": 133,
+      "y": 20,
+      "width": 246,
+      "height": 472,
+      "anchorX": 118.08,
+      "anchorY": 463.8760757314974,
+      "bodyHeight": 461.4388984509466
+    },
+    "fingerwag": {
+      "x": 636,
+      "y": 20,
+      "width": 264,
+      "height": 472,
+      "anchorX": 138.6,
+      "anchorY": 460.5078260869565,
+      "bodyHeight": 458.04521739130433
+    },
+    "scold": {
+      "x": 104,
+      "y": 532,
+      "width": 303,
+      "height": 472,
+      "anchorX": 151.5,
+      "anchorY": 460.6159554730983,
+      "bodyHeight": 457.98886827458256
+    },
+    "point": {
+      "x": 572,
+      "y": 532,
+      "width": 391,
+      "height": 472,
+      "anchorX": 144.279,
+      "anchorY": 462.3673469387755,
+      "bodyHeight": 459.7402597402597
+    }
+  },
+  "objects": [
+    {
+      "pose": "headshirt",
+      "sourceBounds": {
+        "left": 178,
+        "top": 48,
+        "width": 303,
+        "height": 581
+      },
+      "uniformScale": 0.8123924268502581,
+      "width": 246,
+      "height": 472,
+      "visibleSourcePixels": 78020,
+      "transparentSourcePixels": 301601,
+      "coreBounds": {
+        "top": 51,
+        "bottom": 619
+      },
+      "discardedNoise": {
+        "components": 789,
+        "pixels": 4616,
+        "maxAlpha": 1
+      }
+    },
+    {
+      "pose": "fingerwag",
+      "sourceBounds": {
+        "left": 740,
+        "top": 58,
+        "width": 322,
+        "height": 575
+      },
+      "uniformScale": 0.8208695652173913,
+      "width": 264,
+      "height": 472,
+      "visibleSourcePixels": 79789,
+      "transparentSourcePixels": 299067,
+      "coreBounds": {
+        "top": 61,
+        "bottom": 619
+      },
+      "discardedNoise": {
+        "components": 686,
+        "pixels": 3411,
+        "maxAlpha": 1
+      }
+    },
+    {
+      "pose": "scold",
+      "sourceBounds": {
+        "left": 154,
+        "top": 703,
+        "width": 346,
+        "height": 539
+      },
+      "uniformScale": 0.87569573283859,
+      "width": 303,
+      "height": 472,
+      "visibleSourcePixels": 75688,
+      "transparentSourcePixels": 303627,
+      "coreBounds": {
+        "top": 706,
+        "bottom": 1229
+      },
+      "discardedNoise": {
+        "components": 740,
+        "pixels": 4365,
+        "maxAlpha": 1
+      }
+    },
+    {
+      "pose": "point",
+      "sourceBounds": {
+        "left": 733,
+        "top": 705,
+        "width": 447,
+        "height": 539
+      },
+      "uniformScale": 0.87569573283859,
+      "width": 391,
+      "height": 472,
+      "visibleSourcePixels": 78073,
+      "transparentSourcePixels": 302792,
+      "coreBounds": {
+        "top": 708,
+        "bottom": 1233
+      },
+      "discardedNoise": {
+        "components": 755,
+        "pixels": 2550,
+        "maxAlpha": 1
+      }
+    }
+  ],
+  "sourceSha256": "2caebf991975574f9fe3934f964d3c0a5f89fe7d0d44cc384dde1b6a2758db6c",
+  "normalizedSha256": "d851925eb1368c0b201131b0ca71a0a9b8ea4ab0c3a08b55dbebef69597e72a8",
+  "runtimeSha256": "4cebcd51ce4abcdd2b8e112e8ea86206b57ddd88a1e3712bdb4f870528bd2632",
+  "rgbaSha256": "b3aa9a797eb92e7f5270c11e46e2600e465a96408181e73265c9e764d2a5ac97",
+  "alphaSha256": "cdb00a8ede621a7db7c9fc8fa1feec986279c138b97d653cf922aef1250230a6",
+  "lossless": true
+}

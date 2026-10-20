@@ -1,0 +1,29 @@
+{
+  "tool": "image_gen.imagegen",
+  "transparentBackground": true,
+  "raw": "assets/source/finales/attack-overhaul/javier/scolding-v2-generated.png",
+  "rawSha256": "ebeaffc3b6993b107a0b87040f108c8acad5bbf36eef6ae444758282d722c09e",
+  "grid": "assets/source/finales/attack-overhaul/javier/scolding-v2-grid.png",
+  "gridSha256": "2caebf991975574f9fe3934f964d3c0a5f89fe7d0d44cc384dde1b6a2758db6c",
+  "rawWidth": 1205,
+  "rawHeight": 1306,
+  "gridWidth": 1206,
+  "gridHeight": 1306,
+  "operation": "Append exactly one alpha-zero column at the right edge; preserve all original RGBA pixels.",
+  "originalPixelsIdentical": true,
+  "appendedColumnTransparent": true,
+  "canonicalSha256": {
+    "public/assets/javier-v43.webp": "1dd8e6a7abd0d0b8b7891ba31774041ed7c566f8412dd93db6dc26310cfa0bcd",
+    "public/assets/javier-v43-defiant-entrance.webp": "c4b96bb0f58ed4bb0401cfae7d5ebd3c1d94f3341e2e086e386dfaa4bd30b8c6",
+    "assets/source/javier-v43.png": "a29882c8776217c0e5acfa85a285d8393984f5743bef7b7572f6e83ea1d1094d",
+    "assets/source/identity-v43/javier-classic-master.png": "ea49014ec21ccebc3e25262140bff8765099d2076204fbd09b99ba6a69337948"
+  },
+  "prompts": [
+    "prompt-v1.txt",
+    "prompt-v2.txt"
+  ],
+  "references": [
+    "assets/source/identity-v43/javier-classic-master.png",
+    "/home/ubuntu/.t3/userdata/attachments/df28393c-e9df-48e5-b42d-238b622bfd95-2b2c258d-0625-4c2b-8fcf-1f7521312449.png"
+  ]
+}
