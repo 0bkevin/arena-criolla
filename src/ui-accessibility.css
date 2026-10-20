@@ -1,5 +1,24 @@
-/* Shared legibility and input fixes from the full-screen UI review.
-   The device-specific Help dialog owns its layout and type scale. */
+/* Shared mobile dialog titles, legibility and input fixes.
+   The Help dialog owns its content layout and type scale. */
+@media (max-width: 680px), (max-height: 500px) and (orientation: landscape) {
+  .app-shell.arcade-app .modal .modal-header h2,
+  .app-shell .game-page :is(.pause-card, .result-info, .orientation-card) h2 {
+    font-size: 24px;
+    line-height: 1.15;
+    letter-spacing: 0;
+  }
+
+  .app-shell.arcade-app .modal .modal-header {
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .app-shell.arcade-app .help-modal .modal-header {
+    margin: 0;
+    padding: 10px 16px;
+  }
+}
+
 .modal:where(:not(.help-modal)) {
   --dialog-surface: #181c25;
   scrollbar-width: thin;

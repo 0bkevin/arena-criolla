@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ChevronDown, Gamepad2, Keyboard, Smartphone } from "lucide-react";
 import { hasTouchInput } from "../game/mobile";
 import { Modal } from "./Modal";
+import { MobileControlsGuide } from "./MobileControlsGuide";
 import "../help.css";
 
 type Device = "keyboard" | "touch" | "gamepad";
@@ -157,49 +158,53 @@ export function Help({ onClose }: { onClose: () => void }) {
                 Jugador 2 · local
               </button>
             </div>
-          ) : (
+          ) : device === "gamepad" ? (
             <p className="help-device-note">
-              {device === "touch"
-                ? "Juega en horizontal. Mueve con la izquierda y ataca con la derecha."
-                : "Conecta tu mando. Los botones siguen la distribución Xbox."}
+              Conecta tu mando. Los botones siguen la distribución Xbox.
             </p>
-          )}
+          ) : null}
 
-          <div className="help-controls-grid">
-            {[controls.slice(0, 5), controls.slice(5)].map((group, index) => (
-              <dl key={index}>
-                {group.map((control) => (
-                  <div className="help-control" key={control.action}>
-                    <dt>
-                      {control.action}
-                      {"note" in control && <span>{control.note}</span>}
-                    </dt>
-                    <dd>
-                      {device === "keyboard" ? (
-                        (player === 0 ? control.first : control.second).map(
-                          (key) => <kbd key={key}>{key}</kbd>,
-                        )
-                      ) : (
-                        <span className="help-input">{control[device]}</span>
-                      )}
-                    </dd>
-                  </div>
-                ))}
-                {index === 1 && (
-                  <div className="help-control">
-                    <dt>{device === "keyboard" ? "Pausa / menú" : "Pausar"}</dt>
-                    <dd>
-                      {device === "keyboard" ? (
-                        <kbd>Esc</kbd>
-                      ) : (
-                        <span className="help-input">Botón de pausa</span>
-                      )}
-                    </dd>
-                  </div>
-                )}
-              </dl>
-            ))}
-          </div>
+          {device === "touch" ? (
+            <MobileControlsGuide />
+          ) : (
+            <div className="help-controls-grid">
+              {[controls.slice(0, 5), controls.slice(5)].map((group, index) => (
+                <dl key={index}>
+                  {group.map((control) => (
+                    <div className="help-control" key={control.action}>
+                      <dt>
+                        {control.action}
+                        {"note" in control && <span>{control.note}</span>}
+                      </dt>
+                      <dd>
+                        {device === "keyboard" ? (
+                          (player === 0 ? control.first : control.second).map(
+                            (key) => <kbd key={key}>{key}</kbd>,
+                          )
+                        ) : (
+                          <span className="help-input">{control[device]}</span>
+                        )}
+                      </dd>
+                    </div>
+                  ))}
+                  {index === 1 && (
+                    <div className="help-control">
+                      <dt>
+                        {device === "keyboard" ? "Pausa / menú" : "Pausar"}
+                      </dt>
+                      <dd>
+                        {device === "keyboard" ? (
+                          <kbd>Esc</kbd>
+                        ) : (
+                          <span className="help-input">Botón de pausa</span>
+                        )}
+                      </dd>
+                    </div>
+                  )}
+                </dl>
+              ))}
+            </div>
+          )}
 
           {device === "keyboard" && player === 1 && (
             <p className="help-device-note">
