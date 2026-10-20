@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { MUSIC_SECONDS, writeArcadeMusic } from "../src/game/arcade-music";
 import { writeVictoryMusic } from "../src/game/victory-music";
 import { VICTORY_DURATION_MS } from "../src/game/victory-types";
+import type { FinaleState } from "../shared/finales";
 
 test("victory fanfares finish in 3.5 seconds with finite stereo audio and a silent release", () => {
   for (const fighter of [
@@ -262,9 +263,116 @@ test("music mute, pause, stage changes and cleanup never stack background loops"
     audio.stopVictoryMusic();
     audio.stopVictoryMusic();
     assert.equal(sources.at(-1)!.stopped, true);
+    const scene: FinaleState = {
+      owner: 0,
+      target: 1,
+      fighter: "capriles",
+      startedTick: 500,
+      tick: 30,
+      duration: 180,
+      x: 0,
+      y: 0,
+      direction: 1,
+      damage: 30,
+      initialHp: 100,
+    };
+    audio.syncFinaleMusic(scene, false);
+    const coffee = sources.at(-1)!;
+    const beforeFinale = sources.length;
+    assert.equal(
+      coffee.offset,
+      0.5,
+      "capture resumes from the simulation clock",
+    );
+    audio.syncFinaleMusic({ ...scene, tick: 50 }, false);
+    assert.equal(
+      sources.length,
+      beforeFinale,
+      "render frames never stack finale themes",
+    );
+    audio.syncFinaleMusic(scene, true);
+    assert.equal(coffee.stopped, true);
+    audio.syncFinaleMusic({ ...scene, tick: 78 }, false);
+    assert.equal(
+      sources.at(-1)!.offset,
+      1.3,
+      "resume skips notes from the pause",
+    );
+    audio.setSound(false);
+    assert.equal(sources.at(-1)!.stopped, true);
+    audio.syncFinaleMusic({ ...scene, tick: 90 }, false);
+    assert.equal(
+      sources.length,
+      beforeFinale + 1,
+      "muting cannot queue another theme",
+    );
+    audio.setSound(true);
+    audio.syncFinaleMusic(
+      {
+        ...scene,
+        fighter: "nacho",
+        startedTick: 501,
+        tick: 120,
+        duration: 360,
+      },
+      false,
+    );
+    const dance = sources.at(-1)!;
+    assert.equal(dance.offset, 2);
+    assert.equal(
+      dance.destination!.gain.value,
+      0.8,
+      "Nacho's audio stays quiet",
+    );
+    assert.equal(
+      sources.length,
+      beforeFinale + 2,
+      "Nacho plays audio without depending on a video player",
+    );
+    audio.syncFinaleMusic(
+      {
+        ...scene,
+        fighter: "nacho",
+        startedTick: 501,
+        tick: 121,
+        duration: 360,
+      },
+      false,
+    );
+    assert.equal(
+      sources.at(-1),
+      dance,
+      "render frames do not stack the dance audio",
+    );
+    audio.syncFinaleMusic(
+      {
+        ...scene,
+        fighter: "nacho",
+        startedTick: 501,
+        tick: 121,
+        duration: 360,
+      },
+      true,
+    );
+    assert.equal(dance.stopped, true);
+    audio.syncFinaleMusic(
+      {
+        ...scene,
+        fighter: "nacho",
+        startedTick: 501,
+        tick: 270,
+        duration: 360,
+      },
+      false,
+    );
+    assert.equal(sources.at(-1)!.offset, 4.5, "audio resumes with the dancers");
+    audio.syncFinaleMusic(undefined, false);
+    assert.equal(sources.at(-1)!.stopped, true);
+    assert.equal(sources.at(-1)!.destination, undefined);
   } finally {
     audio.stopAmbience();
     audio.stopVictoryMusic();
+    audio.stopFinaleMusic();
     if (previous) Object.defineProperty(globalThis, "AudioContext", previous);
     else Reflect.deleteProperty(globalThis, "AudioContext");
   }

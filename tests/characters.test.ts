@@ -48,22 +48,12 @@ test("the expanded roster contains fifty-two distinct figures and excludes remov
   assert.equal(isFighter("vallenilla"), true);
 });
 
-test("Vicente summons seven tightly packed motorcycles at once without moving himself", () => {
+test("Vicente summons one motorcycle without moving himself", () => {
   const { match, advance } = special("zavarce");
   const origin = match.players[0].x;
   advance(12);
-  assert.equal(match.projectiles.length, 7);
-  assert.equal(new Set(match.projectiles.map((shot) => shot.x)).size, 7);
-  const xs = match.projectiles.map((shot) => shot.x).sort((a, b) => a - b);
-  assert.equal(
-    xs.at(-1)! - xs[0],
-    252,
-    "seven full-sized bikes overlap in a compact, elongated pack",
-  );
-  assert.deepEqual(
-    match.projectiles.map((shot) => shot.formationIndex),
-    [0, 1, 2, 3, 4, 5, 6],
-  );
+  assert.equal(match.projectiles.length, 1);
+  assert.equal(match.projectiles[0].formationIndex, undefined);
   assert.ok(
     match.projectiles.every(
       (shot) => shot.kind === "courier" && shot.vx > 0 && shot.groundOnly,
@@ -103,19 +93,28 @@ test("Simón's notes fan out to cover separate vertical paths", () => {
   assert.ok(match.projectiles.every((projectile) => projectile.vx > 0));
 });
 
-test("Chataing's signal returns toward its source instead of flying forever", () => {
-  const { match, advance } = special("chataing");
+test("Chataing's wired microphone extends, turns and is caught after a miss", () => {
+  const { match, advance } = special("chataing", 950);
   advance(13);
   assert.equal(match.projectiles.length, 1);
   assert.ok(match.projectiles[0].vx > 0);
   const outgoingX = match.projectiles[0].x;
-  advance(35);
+  advance(20);
+  const peakX = match.projectiles[0].x;
+  assert.ok(peakX > outgoingX);
+  assert.equal(match.projectiles[0].age, 23);
+  advance(1);
   assert.equal(match.projectiles.length, 1);
   assert.ok(match.projectiles[0].vx < 0);
-  assert.ok(match.projectiles[0].x > outgoingX);
+  assert.equal(match.projectiles[0].returning, true);
+  assert.ok(match.projectiles[0].x < peakX);
   const returnedX = match.projectiles[0].x;
   advance(5);
   assert.ok(match.projectiles[0].x < returnedX);
+  advance(45);
+  assert.equal(match.projectiles.length, 0);
+  assert.equal(match.players[0].attack, null);
+  assert.equal(match.players[1].hp, 100);
 });
 
 test("the general's ground shock can be avoided with a jump", () => {

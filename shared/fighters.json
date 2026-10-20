@@ -7,7 +7,7 @@
     "title": "La ruta exprés",
     "role": "VELOCIDAD",
     "color": "#a8a0f3",
-    "description": "Lentes negros y chaqueta clara con cohete. Invoca siete moticos Yummy con sus repartidores, aglomeradas en un pelotón alargado que arrolla al rival. Bloquéalas o sáltalas para esquivarlas.",
+    "description": "Lentes negros y chaqueta clara con cohete. Invoca una moto Yummy que carga contra el rival. Bloquéala o sáltala para esquivarla. Su definitiva desata un pelotón de siete motos.",
     "speed": 5.8,
     "damage": 0.94,
     "armor": 1.02,
@@ -18,11 +18,11 @@
     ],
     "ability": "courier",
     "special": "Entrega exprés",
-    "specialUnlockWins": 3,
+    "specialUnlockWins": 0,
     "combos": [
       "Pedido confirmado",
       "Ruta directa",
-      "Cohete a domicilio"
+      "Pelotón Yummy"
     ]
   },
   {
@@ -33,7 +33,7 @@
     "title": "El ritmo de las cuotas",
     "role": "CONTROL",
     "color": "#e6ed7a",
-    "description": "Frente despejada, barba corta y camisa de cuadros. Lanza tres pulsos de crédito separados que obligan al rival a medir cada bloqueo.",
+    "description": "Frente despejada, barba corta y camisa de cuadros. Lanza tres cajas de Cashea y convoca dos mascotas para cobrar la cuota atrasada.",
     "speed": 4.6,
     "damage": 1.01,
     "armor": 0.96,
@@ -46,7 +46,7 @@
     "special": "Tres cuotas",
     "combos": [
       "Cuota inicial",
-      "Pago en cadena",
+      "Cuota atrasada",
       "Límite aprobado"
     ]
   },
@@ -95,8 +95,8 @@
     "ability": "sprint",
     "special": "Sprint tricolor",
     "combos": [
-      "Paso a paso",
-      "Carrera de fondo",
+      "¡Qué manguangua, ah!",
+      "Hay un camino",
       "Meta tricolor"
     ]
   },
@@ -460,7 +460,7 @@
     "name": "Gustavo Dudamel",
     "shortName": "Dudamel",
     "title": "La batuta al mando",
-    "role": "REFLEJO",
+    "role": "DIRECCIÓN",
     "color": "#b6b9ff",
     "speed": 4.8,
     "damage": 0.97,
@@ -471,8 +471,8 @@
       5
     ],
     "ability": "cadenza",
-    "special": "Cadenza de rebote",
-    "description": "Rizos, frac y batuta. Marca un compás defensivo que devuelve los proyectiles cercanos frente a él antes de cerrar con un golpe.",
+    "special": "Cadenza expansiva",
+    "description": "Rizos, frac y batuta. Dirige una onda de notas que viaja hacia el rival, crece en el aire y daña al contacto.",
     "combos": [
       "Primer compás",
       "Cambio de tempo",
@@ -1202,7 +1202,7 @@
     "title": "La estrella del trabajo",
     "role": "CONTROL",
     "color": "#91d6f5",
-    "description": "Chemise azul, lentes y paso firme. Proyecta tres estrellas polares que ralentizan al rival y abren espacio.",
+    "description": "Chemise azul, lentes y paso firme. Arroja tres paquetes de Harina P.A.N. que ralentizan al rival y abren espacio.",
     "speed": 4.8,
     "damage": 0.96,
     "armor": 0.99,
@@ -1212,7 +1212,7 @@
       5
     ],
     "ability": "polar",
-    "special": "Pulso polar",
+    "special": "Reparto P.A.N.",
     "combos": [
       "Paso firme",
       "Cadena de trabajo",
@@ -1252,9 +1252,9 @@
     "name": "Dayana Mendoza",
     "shortName": "Dayana",
     "title": "La reina vinotinto",
-    "role": "PULSOS",
+    "role": "REMATE",
     "color": "#ffe079",
-    "description": "Camiseta vinotinto, detalles tricolor y una sonrisa de reina. Tres pulsos dorados crecientes le dan espacio para avanzar hacia el rival.",
+    "description": "Camiseta vinotinto, detalles tricolor y una sonrisa de reina. Patea un balón de fútbol que viaja hacia el rival.",
     "speed": 5.6,
     "damage": 0.94,
     "armor": 1.03,
@@ -1264,7 +1264,7 @@
       4
     ],
     "ability": "corona",
-    "special": "Pulso vinotinto",
+    "special": "Remate vinotinto",
     "combos": [
       "Saque inicial",
       "Pared de reina",
@@ -1280,7 +1280,7 @@
     "title": "Paso de campaña",
     "role": "EMBESTIDA",
     "color": "#f4b557",
-    "description": "Uniforme rojo y oro, patillas y porte de campaña, basados en un retrato histórico. Una carga breve deja una estela tricolor.",
+    "description": "Uniforme rojo y oro, patillas y porte de campaña. Desenvaina el sable y encadena tres golpes cercanos.",
     "speed": 5.1,
     "damage": 1.04,
     "armor": 0.96,
@@ -1290,7 +1290,7 @@
       3
     ],
     "ability": "liberator",
-    "special": "Carga libertadora",
+    "special": "Sable libertador",
     "combos": [
       "Paso de honor",
       "Marcha de campaña",

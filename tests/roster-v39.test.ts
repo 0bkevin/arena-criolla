@@ -142,7 +142,7 @@ for (const id of reviewed) {
   test(`${id}: light, heavy and special hit once started and respect a facing guard`, () => {
     for (const side of [0, 1] as const)
       for (const attack of ["light", "heavy", "special"] as const) {
-        const gap = attack === "special" ? 120 : 75;
+        const gap = attack === "special" ? (id === "bolivar" ? 80 : 120) : 75;
         const run = setup(id, side, gap);
         run.inputs[side].actions[attack]++;
         run.advance(90);
@@ -230,7 +230,7 @@ for (const id of reviewed) {
   });
 }
 
-test("Lorenzo's three polar stars take different paths and slow their target", () => {
+test("Lorenzo's three P.A.N. packages take different paths and slow their target", () => {
   const run = setup("lorenzo", 0, 270);
   run.inputs[0].actions.special++;
   run.advance(15);
@@ -272,7 +272,7 @@ test("Carolina reflects a projectile during anticipation, then closes the silk a
   }
 });
 
-test("Dayana's expanding flash contains three distinct attack pulses", () => {
+test("Dayana's single football projectile hits once and has no retired radial pulses", () => {
   const run = setup("dayana", 0, 75);
   run.inputs[0].actions.special++;
   const hitTicks: number[] = [];
@@ -282,20 +282,22 @@ test("Dayana's expanding flash contains three distinct attack pulses", () => {
     if (run.rival.hp < hp) hitTicks.push(run.actor.attackTick);
     hp = run.rival.hp;
   }
-  assert.deepEqual(hitTicks, [13, 25, 37]);
+  assert.deepEqual(hitTicks, [21]);
 });
 
-test("Bolívar's charge advances once, brakes and cannot repeatedly hit one opponent", () => {
+test("Bolívar's sabre connects three close strikes without movement or remote reach", () => {
   for (const side of [0, 1] as const) {
-    const run = setup("bolivar", side, 140),
+    const run = setup("bolivar", side, 80),
       x = run.actor.x;
     run.inputs[side].actions.special++;
-    run.advance(28);
-    assert.ok(Math.abs(run.actor.x - x) > 70);
-    assert.equal(run.actor.hits, 1);
-    run.advance(45);
+    run.advance(80);
+    assert.equal(run.actor.x, x);
+    assert.equal(run.actor.hits, 3);
     assert.ok(Math.abs(run.actor.vx) < 0.1);
-    assert.equal(run.actor.hits, 1);
+    const miss = setup("bolivar", side, 140);
+    miss.inputs[side].actions.special++;
+    miss.advance(80);
+    assert.equal(miss.actor.hits, 0);
   }
 });
 

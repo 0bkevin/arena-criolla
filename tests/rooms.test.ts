@@ -2,7 +2,13 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { WebSocket } from "ws";
 import { makeArenaServer } from "../server/index";
-import { emptyInput } from "../shared/engine";
+import {
+  emptyInput,
+  stepMatch,
+  type Input,
+  type MatchState,
+} from "../shared/engine";
+import { finaleById } from "../shared/finales";
 import type { ServerMessage } from "../shared/protocol";
 import {
   FIGHTERS,
@@ -26,8 +32,9 @@ class TestClient {
   async wait<T extends ServerMessage["type"]>(
     type: T,
     predicate: (m: Extract<ServerMessage, { type: T }>) => boolean = () => true,
+    timeoutMs = 4000,
   ): Promise<Extract<ServerMessage, { type: T }>> {
-    const end = Date.now() + 4000;
+    const end = Date.now() + timeoutMs;
     while (Date.now() < end) {
       const index = this.messages.findIndex(
         (m) =>
@@ -97,6 +104,119 @@ async function onlineMatch(
       await server.close();
     },
   };
+}
+
+for (const side of [0, 1] as const) {
+  test(`rooms synchronize P${side + 1}'s cinematic capture, damage, paused clock and release over real sockets`, async () => {
+    const match = await onlineMatch("canaima", ["capriles", "nacho"], [3, 3]);
+    try {
+      const state = match.active.state!;
+      state.players.forEach((player, index) => {
+        player.x = index === 0 ? 330 : 530;
+        player.energy = 100;
+      });
+      const input = emptyInput();
+      input.actions.super++;
+      (side === 0 ? match.a : match.b).send({
+        type: "input",
+        matchId: state.id,
+        input,
+      });
+      const capture = await match.a.wait("state", (message) =>
+        Boolean(message.state.finale),
+      );
+      const remoteCapture = await match.b.wait(
+        "state",
+        (message) =>
+          message.state.finale?.tick === capture.state.finale!.tick &&
+          message.state.finale.startedTick ===
+            capture.state.finale!.startedTick,
+      );
+      assert.deepEqual(capture.state, remoteCapture.state);
+      assert.equal(capture.state.finale!.owner, side);
+      assert.equal(capture.state.finale!.target, 1 - side);
+      assert.equal(capture.state.players[1 - side].hp, 100);
+      const positions = capture.state.players.map((player) => [
+        player.x,
+        player.y,
+      ]);
+      const damageBeats = finaleById(
+        capture.state.finale!.fighter,
+      )!.damageBeats;
+      const beat = await match.a.wait("state", (message) =>
+        Boolean(
+          message.state.finale &&
+          message.state.finale.tick >= damageBeats[0] &&
+          message.state.finale.tick < damageBeats[1],
+        ),
+      );
+      const remoteBeat = await match.b.wait(
+        "state",
+        (message) =>
+          message.state.finale?.tick === beat.state.finale!.tick &&
+          message.state.finale.startedTick === beat.state.finale!.startedTick,
+      );
+      assert.deepEqual(beat.state, remoteBeat.state);
+      assert.equal(beat.state.tick, capture.state.tick);
+      assert.equal(beat.state.remaining, capture.state.remaining);
+      assert.deepEqual(
+        beat.state.players.map((player) => [player.x, player.y]),
+        positions,
+      );
+      assert.equal(beat.state.players[side].hits, 1);
+      assert.ok(
+        Math.abs(
+          beat.state.players[1 - side].hp -
+            (100 - beat.state.finale!.damage / 3),
+        ) < 1e-8,
+      );
+      const replay: MatchState = JSON.parse(JSON.stringify(capture.state));
+      const replayInputs: [Input, Input] = [emptyInput(), emptyInput()];
+      replay.players.forEach((player, index) => {
+        replayInputs[index].actions = { ...player.lastActions };
+      });
+      for (
+        let frame = capture.state.finale!.tick;
+        frame < beat.state.finale!.tick;
+        frame++
+      )
+        stepMatch(replay, replayInputs);
+      assert.deepEqual(
+        replay,
+        beat.state,
+        "network snapshots replay the identical scene between broadcasts",
+      );
+      const released = await match.a.wait(
+        "state",
+        (message) =>
+          !message.state.finale && message.state.players[side].hits === 1,
+        (capture.state.finale!.duration / 60) * 1000 + 1000,
+      );
+      const remoteReleased = await match.b.wait(
+        "state",
+        (message) =>
+          !message.state.finale &&
+          message.state.tick === released.state.tick &&
+          message.state.players[side].hits === 1,
+      );
+      assert.deepEqual(released.state, remoteReleased.state);
+      assert.equal(released.state.players[side].attack, null);
+      assert.equal(released.state.players[1 - side].stocks, 2);
+      assert.ok(
+        Math.abs(
+          released.state.players[1 - side].hp -
+            (100 - capture.state.finale!.damage),
+        ) < 1e-8,
+      );
+      assert.equal(
+        Math.sign(released.state.players[1 - side].vx),
+        side === 0 ? 1 : -1,
+      );
+      assert.ok(released.state.players[side].cooldown > 0);
+    } finally {
+      await match.close();
+    }
+  });
 }
 
 test("stalled online input releases held controls without replaying actions, then recovers", async () => {
@@ -515,21 +635,30 @@ test("anonymous rooms synchronize two players, validate inputs, rematch, and rec
   }
 });
 
-test("rooms reject Vicente's motorcycle special before the final unlock for both players", async () => {
+test("rooms reject Vicente's definitive before three wins for both players", async () => {
   for (const wins of [0, 1, 2]) {
-    const match = await onlineMatch("poliedro", ["zavarce", "zavarce"], [wins, wins]);
+    const match = await onlineMatch(
+      "poliedro",
+      ["zavarce", "zavarce"],
+      [wins, wins],
+    );
     try {
       const state = match.active.state!;
-      state.players.forEach(player => { player.energy = 100; });
+      state.players.forEach((player) => {
+        player.energy = 100;
+      });
       const input = emptyInput();
-      input.actions.special++;
+      input.actions.super++;
       match.a.send({ type: "input", matchId: state.id, input });
       match.b.send({ type: "input", matchId: state.id, input });
-      const received = await match.a.wait("state", message =>
-        message.state.players.every(player => player.lastActions.special === 1),
+      const received = await match.a.wait("state", (message) =>
+        message.state.players.every(
+          (player) => player.lastActions.super === 1,
+        ),
       );
-      const remote = await match.b.wait("state", message =>
-        message.state.tick === received.state.tick,
+      const remote = await match.b.wait(
+        "state",
+        (message) => message.state.tick === received.state.tick,
       );
       assert.deepEqual(remote.state, received.state);
       assert.equal(received.state.projectiles.length, 0);
@@ -545,7 +674,7 @@ test("rooms reject Vicente's motorcycle special before the final unlock for both
   }
 });
 
-test("rooms synchronize the seven-bike pack and its impacts against nine rivals across all stages", async () => {
+test("rooms synchronize the single motorcycle and its impact against nine rivals across all stages", async () => {
   const opponents: FighterId[] = [
     "maite",
     "capriles",
@@ -558,7 +687,11 @@ test("rooms synchronize the seven-bike pack and its impacts against nine rivals 
     "vallenilla",
   ];
   for (const [index, stage] of STAGES.entries()) {
-    const match = await onlineMatch(stage.id, ["zavarce", opponents[index]], [3, 0]);
+    const match = await onlineMatch(
+      stage.id,
+      ["zavarce", opponents[index]],
+      [0, 0],
+    );
     try {
       const state = match.active.state!;
       state.players[0].x = 230;
@@ -571,7 +704,7 @@ test("rooms synchronize the seven-bike pack and its impacts against nine rivals 
         "state",
         (message) =>
           message.state.projectiles.filter((shot) => shot.kind === "courier")
-            .length === 7,
+            .length === 1,
       );
       const right = await match.b.wait(
         "state",
@@ -580,7 +713,7 @@ test("rooms synchronize the seven-bike pack and its impacts against nine rivals 
       assert.deepEqual(left.state, right.state, stage.id + " formation");
       assert.deepEqual(
         left.state.projectiles.map((shot) => shot.formationIndex),
-        [0, 1, 2, 3, 4, 5, 6],
+        [undefined],
       );
       assert.ok(
         left.state.projectiles.every(
@@ -590,7 +723,7 @@ test("rooms synchronize the seven-bike pack and its impacts against nine rivals 
       assert.ok(left.state.players[0].energy < 30);
       const hit = await match.a.wait(
         "state",
-        (message) => message.state.players[0].hits === 7,
+        (message) => message.state.players[0].hits === 1,
       );
       const remoteHit = await match.b.wait(
         "state",
@@ -605,18 +738,18 @@ test("rooms synchronize the seven-bike pack and its impacts against nine rivals 
   }
 });
 
-test("online Dudamel reflects a newly summoned pack from either player on three stages", async () => {
+test("online Carolina reflects a motorcycle from either player on three stages", async () => {
   for (const stage of ["poliedro", "canaima", "merida"] as const) {
     for (const side of [0, 1] as const) {
       const fighters: [FighterId, FighterId] =
-        side === 0 ? ["zavarce", "dudamel"] : ["dudamel", "zavarce"];
+        side === 0 ? ["zavarce", "carolina"] : ["carolina", "zavarce"];
       const match = await onlineMatch(stage, fighters, [3, 3]);
       try {
         const state = match.active.state!;
         const caster = state.players[side],
           reflector = state.players[1 - side];
         caster.x = side === 0 ? 230 : 850;
-        reflector.x = caster.x + (side === 0 ? 80 : -80);
+        reflector.x = caster.x + (side === 0 ? 245 : -245);
         caster.facing = side === 0 ? 1 : -1;
         reflector.facing = -caster.facing;
         state.players.forEach((player) => {
@@ -656,7 +789,7 @@ test("online Dudamel reflects a newly summoned pack from either player on three 
   }
 });
 
-test("anonymous rooms synchronize Lele's launched trap reflected by Dudamel", async () => {
+test("anonymous rooms synchronize Lele's launched trap reflected by Carolina", async () => {
   const server = await makeArenaServer({ serveClient: false });
   await new Promise<void>((resolve) =>
     server.http.listen(0, "127.0.0.1", resolve),
@@ -680,8 +813,8 @@ test("anonymous rooms synchronize Lele's launched trap reflected by Dudamel", as
     b.send({
       type: "join",
       code: room.code,
-      name: "Batuta",
-      fighter: "dudamel",
+      name: "Carolina",
+      fighter: "carolina",
       wins: 0,
     });
     await a.wait("room", (m) => m.room.players.length === 2);
@@ -710,7 +843,7 @@ test("anonymous rooms synchronize Lele's launched trap reflected by Dudamel", as
     ]);
     assert.deepEqual(left.state, right.state);
     assert.equal(left.state.players[0].config.fighter, "lele");
-    assert.equal(left.state.players[1].config.fighter, "dudamel");
+    assert.equal(left.state.players[1].config.fighter, "carolina");
     assert.ok(
       left.state.projectiles.some(
         (p) => p.vx < 0 && p.plantAfter === undefined,

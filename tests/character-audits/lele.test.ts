@@ -116,6 +116,7 @@ test("Lele recognizes and connects base/upgraded combos and enforces super gates
     }
     for (const [wins, energy] of [[0, 100], [2, 100], [3, 74], [3, 75], [3, 100]] as const) {
       const r = setup(side, 200, wins); r.player.energy = energy; r.inputs[side].actions.super++; r.advance(9);
+      if (r.state.finale) r.advance(r.state.finale.duration);
       if (wins < 3 || energy < 75) { assert.equal(r.player.attack, null); assert.equal(r.rival.hp, 100); }
       else { assert.equal(r.player.combo, "Última broma"); assert.equal(r.player.comboBonus, 12); assert.equal(r.player.hits, 1); close(r.rival.hp, 61.3956); }
       emit("super-gate", { side, wins, energy, hp: r.rival.hp, combo: r.player.combo });

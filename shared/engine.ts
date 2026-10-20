@@ -7,6 +7,12 @@ import {
 import { TECHNIQUES, type Technique } from "./techniques";
 import { INTRO_COUNTDOWN_START, INTRO_TOTAL_TICKS } from "./presentation";
 import { MAX_FIGHTER_SEPARATION, WORLD } from "./arena";
+import {
+  finaleById,
+  FINALE_CAPTURE_TICK,
+  FINALE_RANGE,
+  type FinaleState,
+} from "./finales";
 export { WORLD } from "./arena";
 export const ACTIONS = [
   "jump",
@@ -47,6 +53,8 @@ export interface PlayerState {
   vy: number;
   facing: number;
   hp: number;
+  /** Lets a finishing throw reach the blast zone before a lethal HP loss resolves. */
+  knockoutDelay?: number;
   stocks: number;
   energy: number;
   grounded: boolean;
@@ -73,6 +81,8 @@ export interface PlayerState {
   peakCombo: number;
   streak: number;
   lastHitTick: number;
+  /** Active gameplay ticks; paused with hitstop and capture finales. */
+  transformation?: { id: string; ticks: number; damageMultiplier: number };
 }
 export interface Projectile {
   id: number;
@@ -86,6 +96,9 @@ export interface Projectile {
   formationIndex?: number;
   hitInvincibility?: number;
   returnAfter?: number;
+  tether?: { catchX: number; catchY: number; returnSpeed: number };
+  returning?: boolean;
+  connected?: boolean;
   kind: string;
   damage: number;
   force?: number;
@@ -106,6 +119,8 @@ export interface Projectile {
   plantAfter?: number;
   armAfter?: number;
   direction?: number;
+  /** Defaults to special for existing projectiles; retained on reflection. */
+  impact?: "special" | "super";
 }
 export interface Effect {
   id: number;
@@ -133,6 +148,14 @@ export interface MatchState {
   nextId: number;
   shake: number;
   hitstop: number;
+  finale?: FinaleState;
+}
+
+/** Snapshot once for new attacks; reflected shots retain their original damage. */
+export function outgoingDamageMultiplier(player: PlayerState): number {
+  return player.transformation && player.transformation.ticks > 0
+    ? player.transformation.damageMultiplier
+    : 1;
 }
 
 function makePlayer(config: PlayerConfig, index: number): PlayerState {
@@ -219,20 +242,20 @@ function effect(
   if (s.effects.length > 40) s.effects.shift();
 }
 
-function hurt(
+// Guard and counter rules are shared by normal contact and cinematic capture.
+// A defended hit consumes the attack without starting a scene or doing damage.
+function interceptHit(
   s: MatchState,
   attacker: number,
-  damage: number,
-  force: number,
   direction: number,
   x: number,
   y: number,
   impact: NonNullable<Attack>,
-  hitInvincibility = 12,
-): boolean {
+): "immune" | "defended" | undefined {
   const target = s.players[1 - attacker];
   const source = s.players[attacker];
-  if (target.invincible > 0 || target.stocks <= 0) return false;
+  if (target.invincible > 0 || target.stocks <= 0 || target.hp <= 0)
+    return "immune";
   const counter =
     TECHNIQUES[fighterById(target.config.fighter).ability].counter;
   if (
@@ -253,14 +276,16 @@ function hurt(
       hurt(
         s,
         1 - attacker,
-        counter.damage * fighterById(target.config.fighter).damage,
+        counter.damage *
+          fighterById(target.config.fighter).damage *
+          outgoingDamageMultiplier(target),
         counter.force,
         target.facing,
         source.x,
         source.y - 80,
         "special",
       );
-    return true;
+    return "defended";
   }
   if (target.blocking && target.facing === -direction && target.energy > 3) {
     target.energy = Math.max(0, target.energy - 9);
@@ -273,10 +298,22 @@ function hurt(
       strength: 0.8,
     });
     s.hitstop = Math.max(s.hitstop, 2);
-    return true;
+    return "defended";
   }
-  const def = fighterById(target.config.fighter);
-  target.hp = Math.max(0, target.hp - damage * def.armor);
+}
+
+function rewardHit(s: MatchState, attacker: number) {
+  const target = s.players[1 - attacker];
+  const source = s.players[attacker];
+  target.energy = Math.min(100, target.energy + 9);
+  source.energy = Math.min(100, source.energy + 13);
+  source.hits++;
+  source.streak = s.tick - source.lastHitTick < 100 ? source.streak + 1 : 1;
+  source.lastHitTick = s.tick;
+  source.peakCombo = Math.max(source.peakCombo, source.streak);
+}
+
+function launchTarget(target: PlayerState, force: number, direction: number) {
   target.vx = direction * force * (1 + (100 - target.hp) / 90);
   target.recoilVx = target.vx;
   target.vy = -force * 0.65;
@@ -285,13 +322,28 @@ function hurt(
   target.stun = Math.round(force * 2.6 + 5);
   target.attack = null;
   target.cooldown = Math.max(target.cooldown, target.stun);
+}
+
+function hurt(
+  s: MatchState,
+  attacker: number,
+  damage: number,
+  force: number,
+  direction: number,
+  x: number,
+  y: number,
+  impact: NonNullable<Attack>,
+  hitInvincibility = 12,
+): boolean {
+  const interception = interceptHit(s, attacker, direction, x, y, impact);
+  if (interception) return interception === "defended";
+  const target = s.players[1 - attacker];
+  const source = s.players[attacker];
+  const def = fighterById(target.config.fighter);
+  target.hp = Math.max(0, target.hp - damage * def.armor);
+  launchTarget(target, force, direction);
   target.invincible = hitInvincibility;
-  target.energy = Math.min(100, target.energy + 9);
-  source.energy = Math.min(100, source.energy + 13);
-  source.hits++;
-  source.streak = s.tick - source.lastHitTick < 100 ? source.streak + 1 : 1;
-  source.lastHitTick = s.tick;
-  source.peakCombo = Math.max(source.peakCombo, source.streak);
+  rewardHit(s, attacker);
   const strength =
     impact === "super"
       ? 1.8
@@ -316,7 +368,12 @@ function hurt(
 
 function loseStock(s: MatchState, i: number) {
   const p = s.players[i];
+  s.projectiles = s.projectiles.filter(
+    (shot) => !shot.tether || shot.owner !== i,
+  );
   p.stocks--;
+  delete p.knockoutDelay;
+  delete p.transformation;
   p.slowTicks = 0;
   p.rootTicks = 0;
   effect(
@@ -353,9 +410,89 @@ function loseStock(s: MatchState, i: number) {
   p.streak = 0;
 }
 
+function beginFinale(s: MatchState, owner: 0 | 1) {
+  const source = s.players[owner];
+  const target = s.players[1 - owner];
+  const definition = finaleById(source.config.fighter);
+  if (
+    !definition ||
+    definition.mode !== "capture" ||
+    source.hp <= 0 ||
+    target.hp <= 0
+  )
+    return;
+  const direction = target.x >= source.x ? 1 : -1;
+  if (interceptHit(s, owner, direction, target.x, target.y - 80, "super"))
+    return;
+  // Captured actors resume their held props. No suspended cable survives a
+  // cinematic takeover or duplicates a microphone in a canonical capture pose.
+  s.projectiles = s.projectiles.filter((shot) => !shot.tether);
+  s.finale = {
+    owner,
+    target: owner === 0 ? 1 : 0,
+    fighter: source.config.fighter,
+    startedTick: s.tick,
+    tick: 0,
+    duration: definition.duration,
+    x: (source.x + target.x) / 2,
+    y: Math.min(source.y, target.y),
+    direction,
+    initialHp: target.hp,
+    damage:
+      (28 * fighterById(source.config.fighter).damage + source.comboBonus) *
+      fighterById(target.config.fighter).armor,
+  };
+  target.attack = null;
+  target.blocking = false;
+  target.dash = 0;
+  s.hitstop = 0;
+}
+
+function advanceFinale(s: MatchState, inputs: [Input, Input]) {
+  const scene = s.finale!;
+  const source = s.players[scene.owner];
+  const target = s.players[scene.target];
+  // The combat clock also drives moving platforms. Freeze it together with
+  // actors, projectiles, recovery and the round timer; the scene owns its clock.
+  scene.tick++;
+  s.shake *= 0.8;
+  s.effects = s.effects.filter((e) => --e.life > 0);
+  for (let i = 0; i < 2; i++)
+    s.players[i].lastActions = { ...inputs[i].actions };
+  const definition = finaleById(scene.fighter)!;
+  const beat = definition.damageBeats.indexOf(scene.tick);
+  if (beat !== -1) {
+    target.hp = Math.max(
+      0,
+      scene.initialHp -
+        scene.damage * ((beat + 1) / definition.damageBeats.length),
+    );
+    if (beat === 0) rewardHit(s, scene.owner);
+    effect(s, target.x, target.y - 80, "hit", definition.accent, {
+      owner: scene.owner,
+      impact: "super",
+      strength: beat === definition.damageBeats.length - 1 ? 1.8 : 1.2,
+      direction: scene.direction,
+    });
+    s.shake = beat === definition.damageBeats.length - 1 ? 14 : 7;
+  }
+  if (scene.tick >= scene.duration) {
+    source.attack = null;
+    launchTarget(target, definition.release?.force ?? 12, scene.direction);
+    if (definition.release?.knockoutDelay && target.hp <= 0)
+      target.knockoutDelay = definition.release.knockoutDelay;
+    target.invincible = 12;
+    delete s.finale;
+    resolveStocks(s);
+    resolveTimeout(s);
+  }
+}
+
 function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
   const p = s.players[i];
   const def = fighterById(p.config.fighter);
+  // One physical handheld object: it must be caught before another attack starts.
+  if (s.projectiles.some((shot) => shot.owner === i && shot.tether)) return;
   if (
     attack === "special" &&
     (p.config.wins < (def.specialUnlockWins ?? 0) ||
@@ -378,7 +515,9 @@ function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
         ? 33
         : attack === "special"
           ? TECHNIQUES[def.ability].recovery + 1
-          : 42;
+          : finaleById(p.config.fighter)?.mode === "projectile"
+            ? finaleById(p.config.fighter)!.duration + 1
+            : 42;
   p.history = p.history.filter((h) => s.tick - h.tick < 150);
   p.history.push({ action: attack, tick: s.tick });
   if (p.history.length > 3) p.history.shift();
@@ -398,7 +537,10 @@ function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
     p.comboTick = s.tick;
     p.comboBonus = 12;
   }
-  if (attack === "special" || attack === "super")
+  if (
+    attack === "special" ||
+    (attack === "super" && finaleById(p.config.fighter)?.mode !== "projectile")
+  )
     effect(s, p.x, p.y - 75, "special", def.color, {
       owner: i,
       impact: attack,
@@ -424,6 +566,18 @@ function reflectProjectiles(s: MatchState, i: number) {
         Math.abs(dx) < technique.reflect.radius &&
         Math.abs(shot.y - (p.y - 75)) < 95
       ) {
+        if (shot.tether) {
+          if (shot.connected) continue;
+          // A cable cannot change owners. A parry bats the head back along it.
+          shot.returning = true;
+          shot.connected = true;
+          effect(s, shot.x, shot.y, "block", def.color, {
+            owner: i,
+            impact: "special",
+            direction: p.facing,
+          });
+          continue;
+        }
         shot.owner = i;
         shot.direction = p.facing;
         shot.vx = p.facing * Math.max(6, Math.abs(shot.vx));
@@ -456,7 +610,53 @@ function updateAttack(s: MatchState, i: number) {
         ? 11
         : attack === "special"
           ? technique.startup
-          : 9;
+          : FINALE_CAPTURE_TICK;
+  const finale = attack === "super" ? finaleById(p.config.fighter) : undefined;
+  if (finale?.mode === "projectile") {
+    const shot = finale.projectile;
+    if (p.attackTick === activeAt && !p.attackHit && shot) {
+      p.attackHit = true;
+      s.projectiles.push({
+        id: s.nextId++,
+        owner: i,
+        direction: p.facing,
+        x: p.x + p.facing * shot.offsetX,
+        y: p.y - shot.offsetY,
+        vx: p.facing * shot.speed,
+        life: shot.life,
+        age: 0,
+        kind: shot.kind,
+        impact: "super",
+        radius: shot.radius,
+        growth: shot.growth,
+        maxRadius: shot.maxRadius,
+        force: shot.force,
+        damage: (28 * def.damage + p.comboBonus) * outgoingDamageMultiplier(p),
+      });
+      effect(
+        s,
+        p.x + p.facing * shot.offsetX,
+        p.y - shot.offsetY,
+        "special",
+        def.color,
+        { owner: i, impact: "super", direction: p.facing, strength: 1.4 },
+      );
+    }
+    if (p.attackTick >= finale.duration) p.attack = null;
+    return;
+  }
+  if (finale?.mode === "transformation") {
+    if (p.attackTick === activeAt && !p.attackHit && finale.empowerment) {
+      p.attackHit = true;
+      p.transformation = {
+        id: finale.empowerment.id,
+        ticks: finale.empowerment.duration,
+        damageMultiplier: finale.empowerment.damageMultiplier,
+      };
+    }
+    if (p.attackTick > 36) p.attack = null;
+    return;
+  }
   const movingStrike =
     attack === "special" &&
     Boolean(technique.dash) &&
@@ -504,8 +704,9 @@ function updateAttack(s: MatchState, i: number) {
           x:
             p.x +
             p.facing *
-              (48 + (note - (count - 1) / 2) * (projectile.spacing ?? 0)),
-          y: p.y - (projectile.groundOnly ? 42 : 75),
+              ((projectile.offsetX ?? 48) +
+                (note - (count - 1) / 2) * (projectile.spacing ?? 0)),
+          y: p.y - (projectile.offsetY ?? (projectile.groundOnly ? 42 : 75)),
           originY: p.y - 75,
           vx: p.facing * projectile.speed,
           vy:
@@ -515,9 +716,10 @@ function updateAttack(s: MatchState, i: number) {
           formationIndex: projectile.spacing ? note : undefined,
           hitInvincibility: projectile.hitInvincibility,
           returnAfter: projectile.returnAfter,
+          tether: projectile.tether ? { ...projectile.tether } : undefined,
           life: projectile.life,
           kind: def.ability,
-          damage: technique.damage * def.damage,
+          damage: technique.damage * def.damage * outgoingDamageMultiplier(p),
           force: technique.force,
           wave: projectile.wave,
           acceleration: projectile.acceleration,
@@ -538,10 +740,12 @@ function updateAttack(s: MatchState, i: number) {
       }
     } else {
       let range = attack === "light" ? 110 : attack === "heavy" ? 155 : 165;
-      if (attack === "super") range = 245;
+      if (attack === "super") range = FINALE_RANGE;
       if (attack === "special") {
         range =
-          technique.range +
+          (movingStrike
+            ? (technique.contactRange ?? technique.range)
+            : technique.range) +
           pulseIndex *
             (technique.pulseRangeStep ?? (def.ability === "echo" ? 70 : 90));
         const mirrored = technique.mirrorPulse === pulseIndex;
@@ -585,6 +789,10 @@ function updateAttack(s: MatchState, i: number) {
         ) &&
         inFront
       ) {
+        if (attack === "super" && finaleById(p.config.fighter)) {
+          beginFinale(s, i as 0 | 1);
+          return;
+        }
         const damage =
           (attack === "light"
             ? 7
@@ -600,7 +808,7 @@ function updateAttack(s: MatchState, i: number) {
         const connected = hurt(
           s,
           i,
-          damage,
+          damage * outgoingDamageMultiplier(p),
           attack === "light"
             ? 4.5
             : attack === "super"
@@ -721,6 +929,10 @@ function limitRetreat(s: MatchState, origins: number[], carried: number[]) {
 
 export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
   if (s.phase === "finished") return;
+  if (s.finale) {
+    advanceFinale(s, inputs);
+    return;
+  }
   if (s.hitstop > 0) {
     s.hitstop--;
     s.remaining--;
@@ -751,6 +963,12 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     return;
   }
   s.remaining--;
+  // Tick before attacks so activation receives the full authored duration and
+  // both players see the same expiry boundary regardless of update order.
+  for (const player of s.players) {
+    if (player.transformation && --player.transformation.ticks <= 0)
+      delete player.transformation;
+  }
   const movementOrigins = s.players.map((p) => p.x);
   const platformCarry = [0, 0];
   const stagePlatforms = platformsAtTick(s.stage, s.tick);
@@ -785,6 +1003,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
       }
     }
     p.cooldown = Math.max(0, p.cooldown - 1);
+    if (p.knockoutDelay) p.knockoutDelay--;
     p.stun = Math.max(0, p.stun - 1);
     p.slowTicks = Math.max(0, p.slowTicks - 1);
     p.rootTicks = Math.max(0, p.rootTicks - 1);
@@ -797,10 +1016,15 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     }
     const pressed = (key: Action) => input.actions[key] !== p.lastActions[key];
     p.blocking =
-      input.block && p.stun === 0 && !p.attack && p.grounded && p.energy > 0;
+      input.block &&
+      p.hp > 0 &&
+      p.stun === 0 &&
+      !p.attack &&
+      p.grounded &&
+      p.energy > 0;
     if (p.blocking) p.energy = Math.max(0, p.energy - 0.12);
     else p.energy = Math.min(100, p.energy + 0.035);
-    if (p.stun === 0) {
+    if (p.stun === 0 && p.hp > 0) {
       const move = Number(input.right) - Number(input.left);
       if (!p.attack && !p.dash) {
         const acceleration = p.grounded ? 0.35 : 0.08;
@@ -839,7 +1063,10 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
   // Prepare both guards and inputs before contact, then move both fighters after it.
   // Otherwise a P1 hit applies knockback one frame earlier than the mirrored P2 hit.
   for (const player of s.players) if (player.attack) player.attackTick++;
-  for (let i = 0; i < 2; i++) updateAttack(s, i);
+  for (let i = 0; i < 2; i++) {
+    updateAttack(s, i);
+    if (s.finale) return;
+  }
   // Both players must finish spawning shots before either reflector sees this tick's pack.
   for (let i = 0; i < 2; i++) reflectProjectiles(s, i);
   // Predict spacing from the movement that roots actually allow this frame.
@@ -928,9 +1155,40 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
       }
     }
   }
+  // Snapshot interruption before any projectile lands: simultaneous wired casts
+  // get the same chance to connect on either player side.
+  const tetherOwners = s.players.map((p) => ({
+    alive: p.hp > 0 && p.stocks > 0,
+    interrupted: p.attack !== "special" || p.stun > 0,
+  }));
   s.projectiles = s.projectiles.filter((projectile) => {
     projectile.age = (projectile.age || 0) + 1;
     const target = s.players[1 - projectile.owner];
+    if (projectile.tether) {
+      const owner = s.players[projectile.owner];
+      if (!tetherOwners[projectile.owner].alive) return false;
+      if (tetherOwners[projectile.owner].interrupted) {
+        projectile.returning = true;
+        projectile.connected = true;
+      }
+      if (projectile.age >= (projectile.returnAfter ?? Infinity))
+        projectile.returning = true;
+      if (
+        projectile.x + projectile.vx < WORLD.x + 16 ||
+        projectile.x + projectile.vx > WORLD.x + WORLD.width - 16
+      )
+        projectile.returning = true;
+      if (projectile.returning) {
+        const direction = projectile.direction ?? owner.facing;
+        const dx =
+          owner.x + direction * projectile.tether.catchX - projectile.x;
+        const dy = owner.y - projectile.tether.catchY - projectile.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance <= projectile.tether.returnSpeed) return false;
+        projectile.vx = (dx / distance) * projectile.tether.returnSpeed;
+        projectile.vy = (dy / distance) * projectile.tether.returnSpeed;
+      }
+    }
     if (projectile.plantAfter && projectile.age >= projectile.plantAfter) {
       projectile.vx = 0;
       projectile.vy = 0;
@@ -941,7 +1199,11 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
         projectile.maxRadius ?? 48,
         (projectile.radius ?? 12) + projectile.growth,
       );
-    if (projectile.returnAfter && projectile.age === projectile.returnAfter)
+    if (
+      !projectile.tether &&
+      projectile.returnAfter &&
+      projectile.age === projectile.returnAfter
+    )
       projectile.vx *= -1;
     if (projectile.acceleration)
       projectile.vx =
@@ -994,12 +1256,13 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
             target.x >= projectile.x ? 1 : -1,
             target.x,
             target.y - 60,
-            "special",
+            projectile.impact ?? "special",
           );
       }
       return false;
     }
     if (
+      !projectile.connected &&
       (!projectile.armAfter || projectile.age >= projectile.armAfter) &&
       Math.abs(target.x - projectile.x) <
         (projectile.radius ? 20 + projectile.radius : 42) &&
@@ -1017,7 +1280,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
           Math.sign(projectile.vx) || projectile.direction || 1,
           target.x,
           projectile.y,
-          "special",
+          projectile.impact ?? "special",
           projectile.hitInvincibility,
         )
       ) {
@@ -1039,6 +1302,11 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
             fighterById(s.players[projectile.owner].config.fighter).color,
             { owner: projectile.owner, impact: "special", strength: 1.5 },
           );
+        if (projectile.tether) {
+          projectile.connected = true;
+          projectile.returning = true;
+          return true;
+        }
         return false;
       }
     }
@@ -1050,9 +1318,15 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
   });
   // Resolve the whole tick, including projectiles, before deciding the result.
   // Both players can lose a stock together; iteration order must not pick a winner.
+  resolveStocks(s);
+  resolveTimeout(s);
+}
+
+function resolveStocks(s: MatchState) {
   s.players.forEach((p, i) => {
+    if (p.stocks <= 0) return;
     if (
-      p.hp <= 0 ||
+      (p.hp <= 0 && !p.knockoutDelay) ||
       p.x < WORLD.x - 120 ||
       p.x > WORLD.x + WORLD.width + 120 ||
       p.y > WORLD.y + WORLD.height + 140
@@ -1060,14 +1334,17 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
       loseStock(s, i);
   });
   const [first, second] = s.players;
+  if (s.players.some((p) => p.hp <= 0 && (p.knockoutDelay ?? 0) > 0)) return;
   if (first.stocks <= 0 || second.stocks <= 0) {
     s.phase = "finished";
     s.winner = first.stocks <= 0 ? (second.stocks <= 0 ? "draw" : 1) : 0;
   }
-  resolveTimeout(s);
 }
 
 function resolveTimeout(s: MatchState) {
+  // A lethal finishing throw has already decided this stock; finish its short
+  // physical flight (or bounded fallback) before comparing timeout scores.
+  if (s.players.some((p) => p.hp <= 0 && (p.knockoutDelay ?? 0) > 0)) return;
   if (s.remaining <= 0 && s.phase === "playing") {
     const [a, b] = s.players;
     const scoreA = a.stocks * 100 + a.hp;
@@ -1151,7 +1428,14 @@ export function cpuInput(
     difficulty === "hard" &&
     p.config.wins >= 3 &&
     p.energy >= 75 &&
-    Math.abs(dx) < 210 &&
+    (finaleById(p.config.fighter)?.mode === "transformation"
+      ? !p.transformation
+      : finaleById(p.config.fighter)?.mode === "projectile"
+        ? Math.abs(dx) <
+            finaleById(p.config.fighter)!.projectile!.speed *
+              (finaleById(p.config.fighter)!.projectile!.life - 1) &&
+          Math.abs(other.y - p.y) < 100
+        : Math.abs(dx) < 210) &&
     s.tick % 90 === 0
   )
     next.actions.super++;

@@ -221,9 +221,20 @@ export function Help({ onClose }: { onClose: () => void }) {
             </li>
             <li>
               <strong>Energía:</strong> se recarga al golpear y recibir golpes.
-              El súper se desbloquea con tres victorias con ese personaje.
-              El especial de las motos de Vicente también requiere tres
-              victorias con él.
+              La definitiva se desbloquea con tres victorias con ese personaje.
+              Vicente lanza una moto con su especial desde el inicio; el
+              pelotón de siete motos pertenece a su definitiva.
+            </li>
+            <li>
+              <strong>Definitivas:</strong> se desbloquean con tres victorias y
+              cuestan 75 de energía. Cada personaje la ejecuta dentro del
+              escenario. Las capturas requieren acercarse al rival y se pueden
+              evitar bloqueando antes del contacto o alejándose; su secuencia
+              pausa el combate y reparte sus propios impactos. Las
+              transformaciones temporales potencian los ataques mientras la
+              pelea continúa. Otras definitivas, como la onda de Maite, viajan
+              hacia el rival: se pueden bloquear o esquivar y el combate sigue
+              en marcha.
             </li>
             <li>
               <strong>Tiempo:</strong> cada pelea dura 90 segundos. Si se acaba,

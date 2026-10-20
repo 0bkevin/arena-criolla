@@ -36,8 +36,16 @@ function fakeSprite() {
 
 function startBolivarSpecial(attackerIndex: 0 | 1) {
   const state = createMatch("caracas", [
-    { name: "P1", fighter: attackerIndex === 0 ? "bolivar" : "zavarce", wins: 0 },
-    { name: "P2", fighter: attackerIndex === 1 ? "bolivar" : "zavarce", wins: 0 },
+    {
+      name: "P1",
+      fighter: attackerIndex === 0 ? "bolivar" : "zavarce",
+      wins: 0,
+    },
+    {
+      name: "P2",
+      fighter: attackerIndex === 1 ? "bolivar" : "zavarce",
+      wins: 0,
+    },
   ]);
   state.phase = "playing";
   state.players.forEach((player) => {
@@ -93,37 +101,54 @@ function renderedFrame(state: MatchState, attackerIndex: 0 | 1): number {
     stages: { caracas: {} as HTMLImageElement },
   } as unknown as Assets;
   renderMatch(context, state, assets, state.tick * (1000 / 60));
-  assert.notEqual(frame, undefined, "Bolívar must be drawn from a frame texture");
+  assert.notEqual(
+    frame,
+    undefined,
+    "Bolívar must be drawn from a frame texture",
+  );
   return frame!;
 }
 
-test("Bolívar's real dash renders a run pose in either facing direction", () => {
+test("Bolívar's sabre fallback preserves canonical guard, recovery and stun in both directions", () => {
   for (const attackerIndex of [0, 1] as const) {
     const { state, inputs, bolivar } = startBolivarSpecial(attackerIndex);
     assert.equal(bolivar.attack, "special");
     assert.equal(bolivar.dash, 0, "special should begin in startup");
     const startupFrame = renderedFrame(state, attackerIndex);
 
-    for (let tick = 0; tick < 40 && bolivar.dash === 0; tick++)
+    for (let tick = 0; tick < 38; tick++) {
       stepMatch(state, inputs);
-    assert.ok(bolivar.dash > 0, "the engine should reach liberator's dash window");
-    const dashFrame = renderedFrame(state, attackerIndex);
-    assert.ok(
-      [2, 3].includes(dashFrame),
-      `facing=${bolivar.facing}: dash should render run frame 2/3, got frame ${dashFrame}`,
-    );
-    assert.equal(startupFrame, 0, "startup outside the dash holds ready guard");
+      assert.equal(bolivar.dash, 0, "sabre does not create the retired dash");
+      assert.equal(
+        renderedFrame(state, attackerIndex),
+        0,
+        "missing attack atlas keeps canonical guard",
+      );
+    }
+    assert.equal(startupFrame, 0, "startup fallback holds ready guard");
 
     for (let tick = 0; tick < 90 && bolivar.attack; tick++)
       stepMatch(state, inputs);
     assert.equal(bolivar.attack, null, "special should finish its recovery");
-    assert.equal(renderedFrame(state, attackerIndex), 0, "recovery returns to ready guard");
+    assert.equal(
+      renderedFrame(state, attackerIndex),
+      0,
+      "recovery returns to ready guard",
+    );
 
     // Legal settled states retain their own pose selection after this special.
     bolivar.blocking = true;
-    assert.equal(renderedFrame(state, attackerIndex), 1, "block keeps guard pose 1");
+    assert.equal(
+      renderedFrame(state, attackerIndex),
+      1,
+      "block keeps guard pose 1",
+    );
     bolivar.blocking = false;
     bolivar.stun = 2;
-    assert.equal(renderedFrame(state, attackerIndex), 7, "stun keeps hurt pose 7");
+    assert.equal(
+      renderedFrame(state, attackerIndex),
+      7,
+      "stun keeps hurt pose 7",
+    );
   }
 });

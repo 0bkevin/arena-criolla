@@ -19,12 +19,12 @@
     { stage: "guaira", rival: "capriles", side: 1, mode: "guard" },
     { stage: "valencia", rival: "maite", side: 0, mode: "jump" },
     { stage: "canaima", rival: "silbon", side: 1, mode: "hit" },
-    { stage: "maracaibo", rival: "dudamel", side: 0, mode: "reflect", gap: 80 },
+    { stage: "maracaibo", rival: "dudamel", side: 0, mode: "reflect", gap: 260 },
     { stage: "merida", rival: "amanda", side: 1, mode: "counter", gap: 180 },
     { stage: "coro", rival: "diablo", side: 0, mode: "clash" },
     { stage: "roques", rival: "lionza", side: 0, mode: "platform" },
     { stage: "poliedro", rival: "oscar", side: 1, mode: "hit" },
-    { stage: "poliedro", rival: "dudamel", side: 1, mode: "reflect", gap: 80 },
+    { stage: "poliedro", rival: "dudamel", side: 1, mode: "reflect", gap: 260 },
   ];
   const assets = await preloadAssets(
     ["zavarce", ...scenes.map((s) => s.rival)],
@@ -145,7 +145,7 @@
         "Defense failed: " + JSON.stringify(scene),
       );
     if (scene.mode === "hit")
-      check(source.hits === 7, "Expected seven hits: " + JSON.stringify(scene));
+      check(source.hits === 1, "Expected one hit: " + JSON.stringify(scene));
     if (scene.mode === "reflect")
       check(
         reflected.size > 0 && initialReflectorHp === 100,

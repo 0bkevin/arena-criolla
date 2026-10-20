@@ -10,6 +10,12 @@ import entranceManifest from "../../shared/entrance-assets.json";
 import { COMMUNITY_CHARACTERS } from "../../shared/community";
 import { isolateFramePixels } from "./sprite-isolation";
 import courierManifest from "../../shared/courier-assets.json";
+import { finaleAsset } from "../../shared/finales";
+import finaleActors from "../../shared/finale-actor-assets.json";
+import cafeFurniture from "../../shared/finale-cafe-assets.json";
+import finaleDesk from "../../shared/finale-desk-assets.json";
+import perroMujeriego from "../../shared/perro-mujeriego-assets.json";
+import { ATTACK_ART } from "./attack-art";
 
 interface SpriteFrame {
   x: number;
@@ -348,12 +354,52 @@ export async function preloadAssets(
   const hasCourier = fighters.some(
     (id) => fighterById(id).ability === "courier",
   );
-  const [results, courier] = await Promise.all([
+  const hasNacho = fighters.includes("nacho");
+  const finaleFiles = [
+    ...new Set(
+      fighters.flatMap((id) => {
+        const asset = finaleAsset(id);
+        const seated = (
+          finaleActors.seated as Record<string, { file: string }>
+        )[id];
+        const performer = (
+          finaleActors.performers as Record<string, { file: string }>
+        )[id];
+        const dancer = (
+          finaleActors as typeof finaleActors & {
+            dancers?: Record<string, { file: string }>;
+          }
+        ).dancers?.[id];
+        const choreographyDancer = hasNacho
+          ? (perroMujeriego.dancers as Record<string, { file: string }>)[id]
+          : undefined;
+        return [
+          ...(ATTACK_ART[id] ? [ATTACK_ART[id].file] : []),
+          ...(asset ? [asset.file] : []),
+          ...(seated ? [seated.file] : []),
+          ...(performer ? [performer.file] : []),
+          ...(choreographyDancer
+            ? [choreographyDancer.file]
+            : dancer
+              ? [dancer.file]
+              : []),
+          ...(id === "giuseppe" ? [finaleDesk.file] : []),
+          ...(id === "capriles"
+            ? [finaleActors.caprilesCafe.file, cafeFurniture.file]
+            : []),
+        ];
+      }),
+    ),
+  ];
+  const [results, courier, finaleImages] = await Promise.all([
     Promise.all([
       ...fighters.map((id) => loadSprite(id)),
       ...stages.map((id) => loadImage(id)),
     ]),
     hasCourier ? loadImage(courierManifest.file) : undefined,
+    // Decorations can retry next fight without blocking the mandatory fighter
+    // and stage assets; each cinematic also has a geometry-based fallback.
+    Promise.allSettled(finaleFiles.map((file) => loadImage(file))),
   ]);
   return {
     sprites: Object.fromEntries(
@@ -363,5 +409,12 @@ export async function preloadAssets(
       stages.map((id, i) => [id, results[i + fighters.length]]),
     ) as Record<string, HTMLImageElement>,
     courier,
+    finaleProps: Object.fromEntries([
+      ...(courier ? [[courierManifest.file, courier]] : []),
+      ...finaleFiles.flatMap((file, i) => {
+        const result = finaleImages[i];
+        return result.status === "fulfilled" ? [[file, result.value]] : [];
+      }),
+    ]) as Record<string, HTMLImageElement>,
   };
 }
