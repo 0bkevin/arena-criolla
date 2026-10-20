@@ -35,8 +35,8 @@ const animationSignature = (id: FighterId) =>
     }),
   );
 
-test("all 52 built-in fighters have unique, finite, bounded victory motion", () => {
-  assert.equal(FIGHTERS.length, 52);
+test("all 53 built-in fighters have unique, finite, bounded victory motion", () => {
+  assert.equal(FIGHTERS.length, 53);
   assert.deepEqual(
     Object.keys(VICTORIES).sort(),
     FIGHTERS.map((f) => f.id).sort(),

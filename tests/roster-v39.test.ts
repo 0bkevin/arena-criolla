@@ -25,6 +25,7 @@ const reviewed = [
   "lorenzo",
   "carolina",
   "dayana",
+  "deyna",
   "bolivar",
   "edgar",
   "nacho",
@@ -36,7 +37,8 @@ const spriteVersions: Record<Reviewed, string> = {
   javier: "v43",
   lorenzo: "v39",
   carolina: "v39",
-  dayana: "v40",
+  dayana: "v49",
+  deyna: "v1",
   bolivar: "v39",
   edgar: "v39",
   nacho: "v42",
@@ -272,8 +274,8 @@ test("Carolina reflects a projectile during anticipation, then closes the silk a
   }
 });
 
-test("Dayana's single football projectile hits once and has no retired radial pulses", () => {
-  const run = setup("dayana", 0, 75);
+test("Deyna's single football projectile hits once and has no retired radial pulses", () => {
+  const run = setup("deyna", 0, 75);
   run.inputs[0].actions.special++;
   const hitTicks: number[] = [];
   let hp = 100;

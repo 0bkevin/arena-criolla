@@ -33,6 +33,15 @@ export const CULTURE_SOUNDS: Partial<Record<Ability, CultureSound>> = {
     filter: "highpass",
   },
   corona: {
+    notes: [659, 880, 1318],
+    wave: "triangle",
+    spacing: 0.05,
+    duration: 0.13,
+    sweep: 1.15,
+    noise: 6800,
+    filter: "highpass",
+  },
+  football: {
     notes: [110],
     wave: "sine",
     spacing: 0.06,

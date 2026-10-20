@@ -68,7 +68,7 @@ function incoming(x: number, direction = -1): Projectile {
 }
 
 test("sixteen culture figures have distinct sprites and distinct specials", () => {
-  assert.equal(FIGHTERS.length, 52);
+  assert.equal(FIGHTERS.length, 53);
   for (const id of added) {
     const f = fighterById(id);
     assert.equal(f.category, "culture");

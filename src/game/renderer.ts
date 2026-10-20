@@ -10,7 +10,8 @@ import {
 } from "./finales/dudamel";
 import { drawBolivarSpecial } from "./finales/bolivar";
 import { drawLorenzoSpecial, drawLorenzoProjectile } from "./finales/lorenzo";
-import { drawDayanaSpecial, drawDayanaBallProjectile } from "./finales/dayana";
+import { drawDeynaSpecial, drawDeynaBallProjectile } from "./finales/deyna";
+import { drawDayanaSpecial, drawDayanaProjectile } from "./finales/dayana";
 import { fighterById, stageById } from "../../shared/content";
 import type { MatchState } from "../../shared/engine";
 import { finaleById } from "../../shared/finales";
@@ -135,7 +136,8 @@ export function renderMatch(
       drawLloronaProjectile(ctx, assets.finaleProps, projectile) ||
       drawDudamelProjectile(ctx, projectile) ||
       drawLorenzoProjectile(ctx, assets.finaleProps, projectile) ||
-      drawDayanaBallProjectile(ctx, assets.finaleProps, projectile) ||
+      drawDeynaBallProjectile(ctx, assets.finaleProps, projectile) ||
+      drawDayanaProjectile(ctx, assets.finaleProps, projectile) ||
       drawMelanioSignal(ctx, assets.finaleProps, projectile) ||
       drawIconProjectile(ctx, projectile) ||
       drawFounderProjectile(ctx, projectile) ||
@@ -380,7 +382,13 @@ export function renderMatch(
       drawMelanioSpecial(ctx, assets.finaleProps, p, bodyHeight);
     const paintedFootball =
       !paintedSignal &&
-      drawDayanaSpecial(ctx, assets.finaleProps, p, bodyHeight);
+      drawDeynaSpecial(ctx, assets.finaleProps, p, bodyHeight);
+    const paintedPageant = drawDayanaSpecial(
+      ctx,
+      assets.finaleProps,
+      p,
+      bodyHeight,
+    );
     const paintedLlorona = drawLloronaSpecial(
       ctx,
       assets.finaleProps,
@@ -414,7 +422,8 @@ export function renderMatch(
       !paintedGreeting &&
       !paintedMicrophone &&
       !paintedSignal &&
-      !paintedFootball
+      !paintedFootball &&
+      !paintedPageant
     ) {
       drawBody(p.x, p.y + idleBob);
       const tether =

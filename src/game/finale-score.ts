@@ -175,6 +175,14 @@ export function writeFinaleScore(
       drum(tick / 60, true);
     });
   } else if (fighter === "dayana") {
+    [72, 76, 79, 84].forEach((note, i) =>
+      tone(note, 0.12 + i * 0.14, 0.24, 0.065),
+    );
+    profile.damageBeats.forEach((tick) => {
+      tone(84, tick / 60, 0.16, 0.08);
+      tone(91, tick / 60 + 0.04, 0.2, 0.05);
+    });
+  } else if (fighter === "deyna") {
     // One synchronized boot strike and one collective arrival; buffer plays once.
     drum(66 / 60, true, -0.25);
     drum(66 / 60, false, 0.25);

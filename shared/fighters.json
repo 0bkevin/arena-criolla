@@ -1253,10 +1253,10 @@
     "id": "dayana",
     "name": "Dayana Mendoza",
     "shortName": "Dayana",
-    "title": "La reina vinotinto",
-    "role": "REMATE",
+    "title": "Miss Universo 2008",
+    "role": "CORONACIÓN",
     "color": "#ffe079",
-    "description": "Camiseta vinotinto, detalles tricolor y una sonrisa de reina. Patea un balón de fútbol que viaja hacia el rival.",
+    "description": "Vestido amarillo de gala, bordados plateados y pendientes turquesa. Su giro de pasarela lanza una onda de gasa dorada; en la definitiva se corona y deslumbra al rival.",
     "speed": 5.6,
     "damage": 0.94,
     "armor": 1.03,
@@ -1266,13 +1266,39 @@
       4
     ],
     "ability": "corona",
+    "special": "Giro de pasarela",
+    "combos": [
+      "Paso de gala",
+      "Vuelta de reina",
+      "Coronación universal"
+    ],
+    "sprite": "dayana-v49",
+    "category": "culture"
+  },
+  {
+    "id": "deyna",
+    "name": "Deyna Castellanos",
+    "shortName": "Deyna",
+    "title": "La reina del remate",
+    "role": "FÚTBOL",
+    "color": "#bd597a",
+    "description": "Delantera venezolana con la Vinotinto número 9, coleta y botas blancas. Dispara un balón a ras de suelo y reúne a dos compañeras para una volea simultánea.",
+    "speed": 5.6,
+    "damage": 0.94,
+    "armor": 1.03,
+    "stats": [
+      3,
+      5,
+      4
+    ],
+    "ability": "football",
     "special": "Remate vinotinto",
     "combos": [
       "Saque inicial",
-      "Pared de reina",
-      "Gol del universo"
+      "Pared vinotinto",
+      "Gol de media cancha"
     ],
-    "sprite": "dayana-v40",
+    "sprite": "deyna-v1",
     "category": "culture"
   },
   {

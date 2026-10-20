@@ -6336,8 +6336,8 @@
     ]
   },
   "dayana": {
-    "introName": "Paso y saludo a la tribuna",
-    "selectionName": "Paso y saludo a la tribuna",
+    "introName": "Vuelta y saludo de Miss Universo",
+    "selectionName": "Vuelta y saludo de Miss Universo",
     "battleFrame": 0,
     "frameFacing": [
       1,
@@ -6367,27 +6367,27 @@
       {
         "at": 0.18,
         "frame": 0,
-        "dx": 0.010799999999999999,
-        "dy": -0.0036,
-        "rotate": 0.0063,
+        "dx": 0.00864,
+        "dy": -0.00216,
+        "rotate": 0.00315,
         "scaleX": 0.9802,
         "scaleY": 1
       },
       {
         "at": 0.44,
         "frame": 0,
-        "dx": 0.06,
-        "dy": -0.02,
-        "rotate": 0.035,
+        "dx": 0.048,
+        "dy": -0.012,
+        "rotate": 0.0175,
         "scaleX": 0.89,
         "scaleY": 1
       },
       {
         "at": 0.72,
         "frame": 0,
-        "dx": 0.018,
-        "dy": -0.006,
-        "rotate": 0.0105,
+        "dx": 0.0144,
+        "dy": -0.0036,
+        "rotate": 0.00525,
         "scaleX": 0.967,
         "scaleY": 1
       },
@@ -6423,27 +6423,27 @@
       {
         "at": 0.18,
         "frame": 0,
-        "dx": 0.00432,
-        "dy": -0.00144,
-        "rotate": 0.00252,
+        "dx": 0.0034560000000000003,
+        "dy": -0.0008640000000000001,
+        "rotate": 0.00126,
         "scaleX": 0.99208,
         "scaleY": 1
       },
       {
         "at": 0.44,
         "frame": 0,
-        "dx": 0.024,
-        "dy": -0.008,
-        "rotate": 0.014000000000000002,
+        "dx": 0.019200000000000002,
+        "dy": -0.0048,
+        "rotate": 0.007000000000000001,
         "scaleX": 0.956,
         "scaleY": 1
       },
       {
         "at": 0.72,
         "frame": 0,
-        "dx": 0.0072,
-        "dy": -0.0024000000000000002,
-        "rotate": 0.004200000000000001,
+        "dx": 0.00576,
+        "dy": -0.00144,
+        "rotate": 0.0021000000000000003,
         "scaleX": 0.9868,
         "scaleY": 1
       },
@@ -6881,6 +6881,138 @@
       },
       {
         "at": 0.93,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ]
+  },
+  "deyna": {
+    "introName": "Paso y saludo a la tribuna",
+    "selectionName": "Paso y saludo a la tribuna",
+    "battleFrame": 0,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "present",
+    "selectionStyle": "present",
+    "prop": "none",
+    "color": "#bd597a",
+    "durationMs": 2800,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 0,
+        "dx": 0.010799999999999999,
+        "dy": -0.0036,
+        "rotate": 0.0063,
+        "scaleX": 0.9802,
+        "scaleY": 1
+      },
+      {
+        "at": 0.44,
+        "frame": 0,
+        "dx": 0.06,
+        "dy": -0.02,
+        "rotate": 0.035,
+        "scaleX": 0.89,
+        "scaleY": 1
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": 0.018,
+        "dy": -0.006,
+        "rotate": 0.0105,
+        "scaleX": 0.967,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 0,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 0,
+        "dx": 0.00432,
+        "dy": -0.00144,
+        "rotate": 0.00252,
+        "scaleX": 0.99208,
+        "scaleY": 1
+      },
+      {
+        "at": 0.44,
+        "frame": 0,
+        "dx": 0.024,
+        "dy": -0.008,
+        "rotate": 0.014000000000000002,
+        "scaleX": 0.956,
+        "scaleY": 1
+      },
+      {
+        "at": 0.72,
+        "frame": 0,
+        "dx": 0.0072,
+        "dy": -0.0024000000000000002,
+        "rotate": 0.004200000000000001,
+        "scaleX": 0.9868,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
         "frame": 0,
         "dx": 0,
         "dy": 0,

@@ -1934,6 +1934,7 @@ export function drawFinale(
     profile.id === "llorona" ||
     profile.id === "dudamel" ||
     profile.id === "dayana" ||
+    profile.id === "deyna" ||
     profile.id === "melanio" ||
     profile.id === "lorenzo" ||
     profile.id === "bolivar"

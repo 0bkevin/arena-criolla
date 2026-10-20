@@ -505,6 +505,28 @@
       },
       "bodyHeight": 414,
       "anchorX": 110.90977233071372
+    },
+    "dayana": {
+      "file": "dayana-seated-v1",
+      "frame": {
+        "x": 16,
+        "y": 16,
+        "width": 763,
+        "height": 847
+      },
+      "bodyHeight": 841,
+      "anchorX": 396.76
+    },
+    "deyna": {
+      "file": "deyna-seated-v1",
+      "frame": {
+        "x": 16,
+        "y": 16,
+        "width": 590,
+        "height": 823
+      },
+      "bodyHeight": 817,
+      "anchorX": 212.4
     }
   },
   "caprilesCafe": {
@@ -1190,6 +1212,28 @@
       },
       "bodyHeight": 425,
       "anchorX": 142.9822134387352
+    },
+    "dayana": {
+      "file": "perro-mujeriego-dayana-v1",
+      "bodyHeight": 432,
+      "anchorX": 198.5,
+      "frame": {
+        "x": 1081,
+        "y": 47,
+        "width": 397,
+        "height": 443
+      }
+    },
+    "deyna": {
+      "file": "perro-mujeriego-deyna-v1",
+      "bodyHeight": 432,
+      "anchorX": 181,
+      "frame": {
+        "x": 1099,
+        "y": 53,
+        "width": 362,
+        "height": 437
+      }
     }
   }
 }

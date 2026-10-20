@@ -214,7 +214,7 @@ test("a fight keeps both dance lookup keys and retries optional failures without
   }
 });
 
-test("all 2704 ordered matches retain their required artwork and only request relevant seated and dance atlases", async () => {
+test("all 2809 ordered matches retain their required artwork and only request relevant seated and dance atlases", async () => {
   const browser = browserFixture();
   try {
     const { preloadAssets } = await loader("all-pairs");
@@ -267,7 +267,7 @@ test("all 2704 ordered matches retain their required artwork and only request re
       }
     }
     assert.equal(cases, BUILT_IN_FIGHTERS.length ** 2);
-    assert.equal(cases, 2704);
+    assert.equal(cases, BUILT_IN_FIGHTERS.length ** 2);
     assert.equal(browser.count(danceUrl), 1);
     assert.equal(browser.count(alternateUrl), 0);
     for (const [url, requests] of browser.requests)

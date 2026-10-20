@@ -19,20 +19,21 @@ test("main's revised canonical identities remain selected and the authored batch
     javier: "javier-v43",
     nacho: "nacho-v42",
     capriles: "capriles-v39",
-    dayana: "dayana-v40",
+    dayana: "dayana-v49",
+    deyna: "deyna-v1",
   }))
     assert.equal(fighterById(id as FighterId).sprite, sprite);
-  assert.equal(BUILT_IN_FIGHTERS.length, 52);
-  assert.equal(Object.keys(dancers.dancers).length, 46);
+  assert.equal(BUILT_IN_FIGHTERS.length, 53);
+  assert.equal(Object.keys(dancers.dancers).length, 48);
   assert.throws(
     () =>
       requireCompleteDancerRoster(
         Object.keys(dancers.dancers),
         Object.keys(dancers.dancers),
       ),
-    /all 52/,
+    /all 53/,
   );
-  for (const id of CANONICAL_FINALE_FIGHTERS) {
+  for (const id of CANONICAL_FINALE_FIGHTERS.filter(id => id !== "dayana" && id !== "deyna")) {
     assert.equal((actors.seated as Record<string, unknown>)[id], undefined);
     assert.equal((dancers.dancers as Record<string, unknown>)[id], undefined);
   }

@@ -11,18 +11,18 @@ import { type FighterId } from "../shared/content";
 import { finaleById } from "../shared/finales";
 
 import {
-  DAYANA_POSES,
-  DAYANA_CONTACT_TICK,
-  dayanaSpecialPose,
-  drawDayanaFinale,
-} from "../src/game/finales/dayana";
+  DEYNA_POSES,
+  DEYNA_CONTACT_TICK,
+  deynaSpecialPose,
+  drawDeynaFinale,
+} from "../src/game/finales/deyna";
 import { ATTACK_ART } from "../src/game/attack-art";
 import type { FinaleView } from "../src/game/finales/types";
 
 import { createHash } from "node:crypto";
 const sha = (b: Buffer) => createHash("sha256").update(b).digest("hex");
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
-  const a = { name: "Dayana", fighter: "dayana" as const, wins: 3 },
+  const a = { name: "Deyna", fighter: "deyna" as const, wins: 3 },
     b = { name: "Rival", fighter: rival, wins: 3 };
   const state = createMatch("poliedro", side ? [b, a] : [a, b]);
   state.phase = "playing";
@@ -58,13 +58,11 @@ test("football finale captures any canonical rival, damages only on the visible 
       r.advance(8);
       const scene = r.state.finale!;
       assert.ok(scene);
-      assert.deepEqual(finaleById("dayana")!.damageBeats, [
-        DAYANA_CONTACT_TICK,
-      ]);
+      assert.deepEqual(finaleById("deyna")!.damageBeats, [DEYNA_CONTACT_TICK]);
       const positions = r.state.players.map((p) => [p.x, p.y]);
       const timer = r.state.remaining,
         tick = r.state.tick;
-      r.advance(DAYANA_CONTACT_TICK - 1);
+      r.advance(DEYNA_CONTACT_TICK - 1);
       assert.equal(r.target.hp, 100);
       r.advance(1);
       close(r.target.hp, 100 - scene.damage);
@@ -76,7 +74,7 @@ test("football finale captures any canonical rival, damages only on the visible 
         positions,
       );
       r.inputs[side].actions.special++;
-      r.advance(180 - DAYANA_CONTACT_TICK);
+      r.advance(180 - DEYNA_CONTACT_TICK);
       assert.equal(r.state.finale, undefined);
       assert.equal(r.source.attack, null);
       close(r.target.vx, 12 * (1 + (100 - r.target.hp) / 90) * (side ? -1 : 1));
@@ -128,16 +126,16 @@ test("football finale gates, guard, miss, interruption and lethal stocks retain 
   }
 });
 
-test("every Dayana pose and valid intrinsic image is required before the module paints", () => {
-  const sheet = ATTACK_ART.dayana;
+test("every Deyna pose and valid intrinsic image is required before the module paints", () => {
+  const sheet = ATTACK_ART.deyna;
   const run = setup();
   run.cast("special");
-  for (const absent of DAYANA_POSES) {
+  for (const absent of DEYNA_POSES) {
     const frame = sheet.frames[absent];
     delete sheet.frames[absent];
     let touched = false;
     const view = {
-      images: { [sheet.file]: { width: 2560, height: 1024 } },
+      images: { [sheet.file]: { width: 2048, height: 2000 } },
       ctx: new Proxy(
         {},
         {
@@ -148,7 +146,7 @@ test("every Dayana pose and valid intrinsic image is required before the module 
         },
       ),
     } as unknown as FinaleView;
-    assert.equal(drawDayanaFinale(view), false);
+    assert.equal(drawDeynaFinale(view), false);
     assert.equal(touched, false);
     sheet.frames[absent] = frame;
   }
@@ -159,7 +157,7 @@ test("every Dayana pose and valid intrinsic image is required before the module 
     { width: 200, height: 200 },
   ])
     assert.equal(
-      drawDayanaFinale({
+      drawDeynaFinale({
         images: image ? { [sheet.file]: image } : {},
       } as unknown as FinaleView),
       false,
@@ -232,7 +230,7 @@ test("one football launches from the contact boot, costs25 at zero wins, and can
       if (mode === "interrupt") assert.equal(ids.size, 0);
       else if (mode !== "close") assert.equal(ids.size, 1);
       if (launch) {
-        assert.equal(launch.kind, "corona");
+        assert.equal(launch.kind, "football");
         assert.equal(launch.radius, 13);
         assert.equal(launch.vy, 0);
         assert.equal(launch.growth, undefined);
@@ -250,10 +248,10 @@ test("one football launches from the contact boot, costs25 at zero wins, and can
   const shot = r.state.projectiles[0];
   assert.equal(shot.x, r.source.x + 48 + 8);
   assert.equal(shot.y, r.source.y - 16);
-  assert.equal(dayanaSpecialPose(17), "windup");
-  assert.equal(dayanaSpecialPose(20), "contact");
-  assert.equal(dayanaSpecialPose(29), "recover");
-  assert.equal(dayanaSpecialPose(42), undefined);
+  assert.equal(deynaSpecialPose(17), "windup");
+  assert.equal(deynaSpecialPose(20), "contact");
+  assert.equal(deynaSpecialPose(29), "recover");
+  assert.equal(deynaSpecialPose(42), undefined);
 });
 
 test("football cost failure and serialized in-flight replay preserve deterministic engine rules", () => {

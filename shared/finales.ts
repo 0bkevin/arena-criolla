@@ -500,9 +500,18 @@ const entries: readonly Entry[] = [
   ],
   [
     "dayana",
+    "Coronación universal",
+    "theater",
+    "Dayana gira con su vestido amarillo, recibe su corona de 2008 y saluda mientras tres ondas de gasa dorada deslumbran al rival.",
+    "Vestido amarillo, corona y gasa dorada",
+    "Una reina en la arena",
+    "show",
+  ],
+  [
+    "deyna",
     "Volea vinotinto",
     "sport",
-    "Dayana y dos compañeras adultas detrás de ella patean tres balones simultáneamente; la volea golpea al rival al llegar.",
+    "Deyna y dos compañeras adultas detrás de ella patean tres balones simultáneamente; la volea golpea al rival al llegar.",
     "Tres futbolistas y tres balones",
     "La arena se viste de vinotinto",
     "show",
@@ -611,14 +620,16 @@ export const FINALES = Object.fromEntries(
                     ? [48, 70, 92]
                     : id === "chataing" || id === "melanio"
                       ? [114]
-                      : id === "dayana"
+                      : id === "deyna"
                         ? [100]
-                        : id === "george" ||
-                            id === "mcm" ||
-                            id === "lorenzo" ||
-                            id === "bolivar"
-                          ? [96]
-                          : FINALE_DAMAGE_BEATS,
+                        : id === "dayana"
+                          ? [60, 96, 132]
+                          : id === "george" ||
+                              id === "mcm" ||
+                              id === "lorenzo" ||
+                              id === "bolivar"
+                            ? [96]
+                            : FINALE_DAMAGE_BEATS,
         sound,
       },
     ],
@@ -680,6 +691,7 @@ export const CANONICAL_FINALE_FIGHTERS = [
   "lorenzo",
   "carolina",
   "dayana",
+  "deyna",
   "bolivar",
   "edgar",
   "melanio",
