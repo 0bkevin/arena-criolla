@@ -32,17 +32,11 @@ export function StageGallery({
           </div>
           <div className="stage-card-body">
             <span>{stage.location}</span>
-            <div className="stage-tags">
-              <span>
-                {stage.platforms.length
-                  ? `${stage.platforms.length} ${stage.platforms.length === 1 ? "plataforma" : "plataformas"}`
-                  : "A ras del suelo"}
-              </span>
-              {stage.platforms.some((platform) => platform.motion) && (
-                <span>Plataforma móvil</span>
-              )}
-              {stage.artStyle === "pixel" && <span>Pixel art</span>}
-            </div>
+            {stage.artStyle === "pixel" && (
+              <div className="stage-tags">
+                <span>Pixel art</span>
+              </div>
+            )}
           </div>
         </button>
       ))}

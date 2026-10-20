@@ -6,7 +6,7 @@ import { StageGallery } from "../src/components/StageGallery";
 import { STAGES } from "../shared/content";
 
 for (const selected of STAGES) {
-  test(`${selected.id}: stage gallery has no descriptive titles or descriptions`, () => {
+  test(`${selected.id}: stage gallery omits titles, descriptions and platform information`, () => {
     for (const disabled of [false, true]) {
       const html = renderToStaticMarkup(
         createElement(StageGallery, {
@@ -30,7 +30,7 @@ for (const selected of STAGES) {
         disabled ? STAGES.length : 0,
       );
       assert.ok(html.includes("Elegido"));
-      assert.ok(html.includes("plataforma"));
+      assert.doesNotMatch(html, /plataformas?|A ras del suelo/i);
     }
   });
 }
