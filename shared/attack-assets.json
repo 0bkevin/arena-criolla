@@ -216,5 +216,64 @@
         "bodyHeight": 367.779552715655
       }
     }
+  },
+  "simon": {
+    "file": "simon-cuatro-attack-v1",
+    "frames": {
+      "ready": {
+        "x": 80,
+        "y": 20,
+        "width": 352,
+        "height": 472,
+        "anchorX": 144.32,
+        "anchorY": 467.0210970464135,
+        "bodyHeight": 464.0337552742616
+      },
+      "downstroke": {
+        "x": 575,
+        "y": 20,
+        "width": 385,
+        "height": 472,
+        "anchorX": 165.55,
+        "anchorY": 464.86393088552916,
+        "bodyHeight": 459.76673866090715
+      },
+      "upstroke": {
+        "x": 1093,
+        "y": 20,
+        "width": 373,
+        "height": 472,
+        "anchorX": 160.39,
+        "anchorY": 463.8795698924731,
+        "bodyHeight": 458.8043010752688
+      },
+      "accent": {
+        "x": 62,
+        "y": 532,
+        "width": 388,
+        "height": 472,
+        "anchorX": 162.96,
+        "anchorY": 465.7206208425721,
+        "bodyHeight": 463.62749445676275
+      },
+      "horse-trot": {
+        "x": 532,
+        "y": 602,
+        "width": 472,
+        "height": 402,
+        "anchorX": 236,
+        "anchorY": 396.765625,
+        "bodyHeight": 393.625
+      },
+      "horse-spring": {
+        "x": 1044,
+        "y": 568,
+        "width": 472,
+        "height": 436,
+        "anchorX": 236,
+        "anchorY": 432.8481927710843,
+        "bodyHeight": 427.59518072289154
+      }
+    }
   }
 }

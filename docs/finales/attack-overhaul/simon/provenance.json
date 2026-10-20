@@ -1,0 +1,52 @@
+{
+  "tool": "image_gen.imagegen",
+  "acceptedRaw": "assets/source/finales/attack-overhaul/simon/raw-v3.png",
+  "rawFiles": {
+    "assets/source/finales/attack-overhaul/simon/raw-v3.png": "828250a714298567925620f0b2b5f7488fd10580907151af02e194317edcd0b5",
+    "assets/source/finales/attack-overhaul/simon/raw-v1.png": "ca7cd2fba0cb38c9b1a437fa2d6501074b44a6f2bb3c6e59dc0d41b88e84be5c",
+    "assets/source/finales/attack-overhaul/simon/raw-v2.png": "5f561b550f453b3bd6e57cbb707b403680d169b146f0620ff020f7b196902c69"
+  },
+  "canonicalSha256": {
+    "public/assets/zavarce-v5.webp": "3c826ed9a9180d04d94054bd231b028023e53328ab767fd856d25eeae028aa1b",
+    "public/assets/nacho-v42.webp": "bc7e9631ba5a9dcf67ebec8eafa87d0ee04283b79c7521de0831bc5933fad014",
+    "public/assets/simon-v3.webp": "1c87bfd2a13c96dfc205ac0b1e66a9b1c9a0d208fa83c25fc71342a1bd021308",
+    "public/assets/capriles-v39.webp": "3cd05e77341bd37d2e077082c1355d7a4b3cfd5e76a6a203e427a7e7d66dc574"
+  },
+  "referenceSha256": {
+    "docs/finales/attack-overhaul/simon/references/official-cuatro.jpg": "6dcf08d15eaee91ee3651c3c07cfb93ae0b5eed766d5b2be88511d185209d33c"
+  },
+  "sources": [
+    {
+      "title": "Official Simón Díaz biography",
+      "url": "https://simondiaz.com/"
+    },
+    {
+      "title": "Official portrait with cuatro, white liqui-liqui and hat",
+      "url": "https://simondiaz.com/wp-content/uploads/2020/07/foto_cuatro-768x1114.jpg"
+    },
+    {
+      "title": "Venezuelan Ministry of Culture: Simón and tonada",
+      "url": "https://www.mincultura.gob.ve/eventos/venezuela-celebra-el-natalicio-del-defensor-de-la-tonada-llanera-simon-diaz/"
+    }
+  ],
+  "revisions": {
+    "raw-v1": "Initial complete poses; review found too many strings.",
+    "raw-v2": "Targeted four-string correction. Rejected by component packing: top-left shoe touched bottom-left hat; 5 connected figures rather than 6.",
+    "raw-v3": "Targeted separation repair; six complete disconnected figures; accepted."
+  },
+  "audio": "New locally synthesized four-note strums and melody; no recording, quotation, YouTube or voice sample.",
+  "normalization": "Whole connected components moved only; exact reverse RGBA proof in grid-audit.json; no procedural anatomy edits.",
+  "screenshotsSha256": {
+    "docs/finales/attack-overhaul/simon/screenshots/final-missing-art.png": "f0c99df2742837ca1170229dc3b5d68727bae9eb1d9401349a3ff645a12e2014",
+    "docs/finales/attack-overhaul/simon/screenshots/final-p1-edge.png": "1f5e68d787f379503f11d722c3064c041f0f2419aef38b3193e9336129b07360",
+    "docs/finales/attack-overhaul/simon/screenshots/special-p1-release.png": "fec3fcaa453c0b4ab17a90af59e72d8e18044135c28a3f651f5c838ee8ddb12d",
+    "docs/finales/attack-overhaul/simon/screenshots/final-p2-edge.png": "91c8fdd3d42f4a0d87585593f43251d557727d2c19e3a83048b453fec23c4496",
+    "docs/finales/attack-overhaul/simon/screenshots/final-p2-contact.png": "87c341d0abfd9aada5e8190271854d58a96de46caeabe790549d6e9361b3ce2c",
+    "docs/finales/attack-overhaul/simon/screenshots/special-reduced.png": "57fe18b47cecea581139c84af56a4e7846805e2c8a9d06801827c48e7a63e181",
+    "docs/finales/attack-overhaul/simon/screenshots/special-missing-art.png": "929ab80249c9939325ebc1bc631b0e56de8efea5500df1e683f191d3a0483a18",
+    "docs/finales/attack-overhaul/simon/screenshots/final-p1-contact.png": "036125ab379b9530d026bba89c2db892bb95d9c892226661893efddcb54e7f4e",
+    "docs/finales/attack-overhaul/simon/screenshots/final-unequal-reduced.png": "380778af71cfef7a315d400618c460c2211ea03cce82fbcc13c85aff5839d0dd",
+    "docs/finales/attack-overhaul/simon/screenshots/final-close.png": "cd61b94eb142c9a39443242f274ba991f058074c7a87863a6283e84fcf516298",
+    "docs/finales/attack-overhaul/simon/screenshots/special-p2-release.png": "e3c46b60a423bb2baee9274540b65790872682a03ed541a4e9ec995941a34720"
+  }
+}
