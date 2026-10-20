@@ -180,7 +180,11 @@ test("all built-in finales exercise their combat mode against every rival on eit
         assert.equal(r.state.finale, undefined, context);
         close(r.target.hp, 100 - damage, context);
         assert.equal(r.target.stocks, 2, context);
-        assert.equal(Math.sign(r.target.vx), scene.direction, context);
+        assert.equal(
+          Math.sign(r.target.vx),
+          finaleById(fighter.id)?.release?.force === 0 ? 0 : scene.direction,
+          context,
+        );
         close(
           Math.abs(r.target.vx),
           (finaleById(fighter.id)?.release?.force ?? 12) * (1 + damage / 90),
@@ -192,6 +196,44 @@ test("all built-in finales exercise their combat mode against every rival on eit
         scenes++;
       }
   assert.equal(scenes, BUILT_IN_FIGHTERS.length ** 2 * 2);
+});
+
+test("Nacho releases the rival in place without any launch, residual momentum or edge ringout", () => {
+  assert.equal(FINALES.nacho.release?.force, 0);
+  for (const side of [0, 1] as const)
+    for (const direction of [-1, 1])
+      for (const airborne of [false, true]) {
+        const r = setup("nacho", "giuseppe", side);
+        r.target.x = direction > 0 ? WORLD.right - 10 : WORLD.left + 10;
+        r.source.x = r.target.x - direction * 180;
+        r.source.facing = direction;
+        r.target.facing = -direction;
+        if (airborne)
+          for (const player of r.state.players) {
+            player.y = WORLD.floor - 100;
+            player.grounded = false;
+            player.vy = -4;
+          }
+        r.start();
+        assert.equal(r.state.finale?.fighter, "nacho");
+        const position = [r.target.x, r.target.y],
+          stocks = r.target.stocks;
+        // Motion frozen during the dance must not leak into its release.
+        r.target.vx = direction * 8;
+        r.target.recoilVx = direction * 6;
+        r.target.vy = -9;
+        r.advance(FINALES.nacho.duration);
+        assert.equal(r.state.finale, undefined);
+        assert.deepEqual([r.target.x, r.target.y], position);
+        assert.equal(r.target.vx, 0);
+        assert.equal(r.target.recoilVx, 0);
+        assert.equal(r.target.vy, 0);
+        assert.equal(r.target.stun, 0);
+        r.advance(30);
+        close(r.target.x, position[0]);
+        assert.equal(r.target.stocks, stocks);
+        assert.ok(r.target.hp < 100, "the dance retains its damage");
+      }
 });
 
 test("finales keep the three-win and 75-energy gates, and Vicente's single motorcycle is available from zero wins", () => {

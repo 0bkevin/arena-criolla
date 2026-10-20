@@ -510,7 +510,14 @@ function advanceFinale(s: MatchState, inputs: [Input, Input]) {
   }
   if (scene.tick >= scene.duration) {
     source.attack = null;
-    launchTarget(target, definition.release?.force ?? 12, scene.direction);
+    const force = definition.release?.force ?? 12;
+    if (force > 0) launchTarget(target, force, scene.direction);
+    else {
+      target.vx = 0;
+      target.recoilVx = 0;
+      target.vy = 0;
+      target.stun = 0;
+    }
     if (definition.release?.knockoutDelay && target.hp <= 0)
       target.knockoutDelay = definition.release.knockoutDelay;
     target.invincible = 12;

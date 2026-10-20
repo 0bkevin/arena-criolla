@@ -40,7 +40,7 @@ export interface FinaleDefinition {
     force: number;
   };
   duration: number;
-  /** Optional physical finishing throw; ordinary captures keep force12. */
+  /** Optional finishing throw; zero releases in place, ordinary captures keep force12. */
   release?: { force: number; knockoutDelay?: number };
   damageBeats: readonly number[];
   /** Sound and gesture timing for spatial attacks. Damage still requires contact. */
@@ -625,6 +625,7 @@ export const FINALES = Object.fromEntries(
                 : id === "nacho"
                   ? perroMujeriego.durationTicks
                   : FINALE_DURATION,
+        ...(id === "nacho" ? { release: { force: 0 } } : {}),
         damageBeats:
           isArenaFinalist(id) ||
           id === "conde" ||
