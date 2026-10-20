@@ -1,0 +1,14 @@
+Use case: historical-scene. Asset type: transparent 2D fighting-game animation atlas, EIGHT independent full cutout poses in a strict FOUR COLUMN by TWO ROW grid, each isolated in an equal square cell with generous transparent gutters on ALL sides. Wide 2048x1024 canvas.
+Input image 1 is the canonical Juan Vicente Gómez game sprite: preserve his recognizable older angular face, gray moustache, gray temples, dark navy flat peaked cap, dark navy high-collared uniform, modest gold epaulettes, belt and tall black riding boots, adult realistic proportions. Input image 2 is the requested historical mounted formation: use horses, brown leather saddle, reins, bridle and stirrups and dark-uniformed period cavalry followers as visual reference, but do not copy the photographic background. This is early twentieth-century Venezuela, NOT Bolívar.
+Style: exquisite clean hand-inked cel-shaded game illustration matching input image 1. Strong silhouettes, rich restrained brown horses, dark navy clothing, warm skin, subtle highlights. Side view, facing RIGHT in every cell, enough slight three-quarter face to recognize Gómez. Complete realistic horse anatomy with exactly four legs, complete heads, ears, tails, reins, boots and hooves. Adult riders, not chibi. Horse shoulder approximately human chest/shoulder level when standing. Nothing touches a cell border; keep 30-pixel empty gutters and no overlap between cells.
+TOP ROW left to right:
+1. Gómez seated upright on a brown saddled horse, poised to launch, reins in hands, one front hoof lifted. Full mounted pair.
+2. SAME Gómez and SAME horse in fast gallop extended stride, rider inclined forward, forelegs reaching and hindlegs pushing, full pair.
+3. SAME Gómez and SAME horse in gathered gallop stride, four legs in anatomically plausible different positions, rider forward, full pair.
+4. SAME Gómez and SAME horse braking on planted hind legs with forelegs lowering, rider upright pulling reins, all feet remain near ground, not a high rear.
+BOTTOM ROW left to right:
+5. A young adult Venezuelan cavalry trooper in dark navy 1910s uniform, white diagonal leather shoulder belt, brass-trimmed low spiked period helmet, black boots, mounted on a slightly darker brown horse in extended gallop RIGHT. No weapon needed, hands on reins.
+6. SAME trooper and horse in gathered gallop RIGHT.
+7. Gómez dismounting from the SAME stationary brown horse facing RIGHT: Gómez on the near side, both boots close to ground, right hand on saddle, full man and full horse visible, clear silhouette of separated legs. No extra person.
+8. SAME saddled brown horse alone trotting RIGHT, rider absent, full horse, hanging stirrups and reins. 
+True transparent background everywhere outside painted silhouettes. No floor, no landscape, no dust, no shadows, no text, no labels, no grid lines, no extra people, no spark effects. Retain equal scale across mounted poses.

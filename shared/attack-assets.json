@@ -139,5 +139,82 @@
         "bodyHeight": 460.90415913200724
       }
     }
+  },
+  "gomez": {
+    "file": "gomez-cavalry-attack-v1",
+    "frames": {
+      "ready": {
+        "x": 36,
+        "y": 20,
+        "width": 440,
+        "height": 472,
+        "anchorX": 220,
+        "anchorY": 462.56,
+        "bodyHeight": 455.81714285714287
+      },
+      "gallop-extended": {
+        "x": 532,
+        "y": 157,
+        "width": 472,
+        "height": 335,
+        "anchorX": 236,
+        "anchorY": 329.45364238410593,
+        "bodyHeight": 327.23509933774835
+      },
+      "gallop-gathered": {
+        "x": 1044,
+        "y": 80,
+        "width": 472,
+        "height": 412,
+        "anchorX": 278.47999999999996,
+        "anchorY": 400.4485981308411,
+        "bodyHeight": 390.18068535825546
+      },
+      "brake": {
+        "x": 1558,
+        "y": 20,
+        "width": 467,
+        "height": 472,
+        "anchorX": 312.89000000000004,
+        "anchorY": 464.06722689075633,
+        "bodyHeight": 460.10084033613447
+      },
+      "trooper-extended": {
+        "x": 20,
+        "y": 650,
+        "width": 472,
+        "height": 354,
+        "anchorX": 236,
+        "anchorY": 350.61783439490443,
+        "bodyHeight": 346.10828025477707
+      },
+      "trooper-gathered": {
+        "x": 532,
+        "y": 572,
+        "width": 472,
+        "height": 432,
+        "anchorX": 259.6,
+        "anchorY": 424.3086053412463,
+        "bodyHeight": 416.61721068249255
+      },
+      "dismount": {
+        "x": 1044,
+        "y": 578,
+        "width": 472,
+        "height": 426,
+        "anchorX": 202.96,
+        "anchorY": 418.0373831775701,
+        "bodyHeight": 414.05607476635515
+      },
+      "horse-exit": {
+        "x": 1556,
+        "y": 619,
+        "width": 472,
+        "height": 385,
+        "anchorX": 240.72,
+        "anchorY": 373.9297124600639,
+        "bodyHeight": 367.779552715655
+      }
+    }
   }
 }

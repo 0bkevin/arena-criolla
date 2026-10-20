@@ -1,0 +1,299 @@
+{
+  "fighter": "gomez",
+  "source": "assets/source/finales/attack-overhaul/gomez/cavalry-v2-normalized.png",
+  "file": "gomez-cavalry-attack-v1",
+  "columns": 4,
+  "rows": 2,
+  "poses": [
+    "ready",
+    "gallop-extended",
+    "gallop-gathered",
+    "brake",
+    "trooper-extended",
+    "trooper-gathered",
+    "dismount",
+    "horse-exit"
+  ],
+  "anchorFractions": {
+    "ready": 0.5,
+    "gallop-extended": 0.5,
+    "gallop-gathered": 0.59,
+    "brake": 0.67,
+    "trooper-extended": 0.5,
+    "trooper-gathered": 0.55,
+    "dismount": 0.43,
+    "horse-exit": 0.51
+  },
+  "tool": "image_gen.imagegen",
+  "normalized": "assets/source/finales/attack-overhaul/gomez/gomez-cavalry-attack-v1-packed.png",
+  "destination": "public/assets/gomez-cavalry-attack-v1.webp",
+  "width": 2048,
+  "height": 1024,
+  "cell": 512,
+  "frames": {
+    "ready": {
+      "x": 36,
+      "y": 20,
+      "width": 440,
+      "height": 472,
+      "anchorX": 220,
+      "anchorY": 462.56,
+      "bodyHeight": 455.81714285714287
+    },
+    "gallop-extended": {
+      "x": 532,
+      "y": 157,
+      "width": 472,
+      "height": 335,
+      "anchorX": 236,
+      "anchorY": 329.45364238410593,
+      "bodyHeight": 327.23509933774835
+    },
+    "gallop-gathered": {
+      "x": 1044,
+      "y": 80,
+      "width": 472,
+      "height": 412,
+      "anchorX": 278.47999999999996,
+      "anchorY": 400.4485981308411,
+      "bodyHeight": 390.18068535825546
+    },
+    "brake": {
+      "x": 1558,
+      "y": 20,
+      "width": 467,
+      "height": 472,
+      "anchorX": 312.89000000000004,
+      "anchorY": 464.06722689075633,
+      "bodyHeight": 460.10084033613447
+    },
+    "trooper-extended": {
+      "x": 20,
+      "y": 650,
+      "width": 472,
+      "height": 354,
+      "anchorX": 236,
+      "anchorY": 350.61783439490443,
+      "bodyHeight": 346.10828025477707
+    },
+    "trooper-gathered": {
+      "x": 532,
+      "y": 572,
+      "width": 472,
+      "height": 432,
+      "anchorX": 259.6,
+      "anchorY": 424.3086053412463,
+      "bodyHeight": 416.61721068249255
+    },
+    "dismount": {
+      "x": 1044,
+      "y": 578,
+      "width": 472,
+      "height": 426,
+      "anchorX": 202.96,
+      "anchorY": 418.0373831775701,
+      "bodyHeight": 414.05607476635515
+    },
+    "horse-exit": {
+      "x": 1556,
+      "y": 619,
+      "width": 472,
+      "height": 385,
+      "anchorX": 240.72,
+      "anchorY": 373.9297124600639,
+      "bodyHeight": 367.779552715655
+    }
+  },
+  "objects": [
+    {
+      "pose": "ready",
+      "sourceBounds": {
+        "left": 93,
+        "top": 49,
+        "width": 326,
+        "height": 350
+      },
+      "uniformScale": 1.3485714285714285,
+      "width": 440,
+      "height": 472,
+      "visibleSourcePixels": 50304,
+      "transparentSourcePixels": 169456,
+      "coreBounds": {
+        "top": 54,
+        "bottom": 392
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "gallop-extended",
+      "sourceBounds": {
+        "left": 555,
+        "top": 73,
+        "width": 425,
+        "height": 302
+      },
+      "uniformScale": 1.1105882352941177,
+      "width": 472,
+      "height": 335,
+      "visibleSourcePixels": 53895,
+      "transparentSourcePixels": 166875,
+      "coreBounds": {
+        "top": 75,
+        "bottom": 370
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "gallop-gathered",
+      "sourceBounds": {
+        "left": 1096,
+        "top": 63,
+        "width": 368,
+        "height": 321
+      },
+      "uniformScale": 1.2826086956521738,
+      "width": 472,
+      "height": 412,
+      "visibleSourcePixels": 49045,
+      "transparentSourcePixels": 171177,
+      "coreBounds": {
+        "top": 71,
+        "bottom": 375
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "brake",
+      "sourceBounds": {
+        "left": 1615,
+        "top": 45,
+        "width": 353,
+        "height": 357
+      },
+      "uniformScale": 1.3221288515406162,
+      "width": 467,
+      "height": 472,
+      "visibleSourcePixels": 52128,
+      "transparentSourcePixels": 168568,
+      "coreBounds": {
+        "top": 48,
+        "bottom": 396
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "trooper-extended",
+      "sourceBounds": {
+        "left": 46,
+        "top": 515,
+        "width": 419,
+        "height": 314
+      },
+      "uniformScale": 1.126491646778043,
+      "width": 472,
+      "height": 354,
+      "visibleSourcePixels": 52023,
+      "transparentSourcePixels": 168385,
+      "coreBounds": {
+        "top": 519,
+        "bottom": 826
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "trooper-gathered",
+      "sourceBounds": {
+        "left": 584,
+        "top": 503,
+        "width": 368,
+        "height": 337
+      },
+      "uniformScale": 1.2826086956521738,
+      "width": 472,
+      "height": 432,
+      "visibleSourcePixels": 47388,
+      "transparentSourcePixels": 172034,
+      "coreBounds": {
+        "top": 509,
+        "bottom": 834
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "dismount",
+      "sourceBounds": {
+        "left": 1102,
+        "top": 511,
+        "width": 356,
+        "height": 321
+      },
+      "uniformScale": 1.3258426966292134,
+      "width": 472,
+      "height": 426,
+      "visibleSourcePixels": 58375,
+      "transparentSourcePixels": 160436,
+      "coreBounds": {
+        "top": 514,
+        "bottom": 826
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "horse-exit",
+      "sourceBounds": {
+        "left": 1600,
+        "top": 515,
+        "width": 384,
+        "height": 313
+      },
+      "uniformScale": 1.2291666666666667,
+      "width": 472,
+      "height": 385,
+      "visibleSourcePixels": 49937,
+      "transparentSourcePixels": 168571,
+      "coreBounds": {
+        "top": 520,
+        "bottom": 819
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    }
+  ],
+  "sourceSha256": "020d924d66e0592cf96456482f874afef4ec783cdff01d38ac895c21f408eef4",
+  "normalizedSha256": "2faff2c8cf8c7da0eb5cbcece319c0556af1aeedc38579707b0f81b6142af99a",
+  "runtimeSha256": "f739234c1636739ef77411c9c647a61907fe9524ab83281ca7034a58036a3e95",
+  "rgbaSha256": "c3ac39cb6b9867bc23283e35e00fee1df2cf9650e010ec920d264707e6cbd19f",
+  "alphaSha256": "af18d3b7ca6420a10235d614a44307d3a8de35f92799405f3dcd20f574b49a12",
+  "lossless": true
+}

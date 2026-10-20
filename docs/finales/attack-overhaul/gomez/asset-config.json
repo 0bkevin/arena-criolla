@@ -1,0 +1,9 @@
+{
+  "fighter": "gomez",
+  "source": "assets/source/finales/attack-overhaul/gomez/cavalry-v2-normalized.png",
+  "file": "gomez-cavalry-attack-v1",
+  "columns": 4,
+  "rows": 2,
+  "poses": ["ready", "gallop-extended", "gallop-gathered", "brake", "trooper-extended", "trooper-gathered", "dismount", "horse-exit"],
+  "anchorFractions": {"ready":0.5,"gallop-extended":0.5,"gallop-gathered":0.59,"brake":0.67,"trooper-extended":0.5,"trooper-gathered":0.55,"dismount":0.43,"horse-exit":0.51}
+}
