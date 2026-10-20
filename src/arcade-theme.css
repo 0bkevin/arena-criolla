@@ -1711,7 +1711,7 @@ body {
     font-size: 21px;
   }
   .in-lobby .site-footer {
-    margin-bottom: 75px;
+    margin-bottom: 0;
   }
   .in-lobby .mobile-setup-dock {
     position: fixed;
@@ -1933,8 +1933,11 @@ body {
     max-width: 170px;
   }
   .in-lobby .site-footer {
-    gap: 10px;
+    gap: 0 12px;
     flex-wrap: wrap;
+  }
+  .in-lobby .footer-credit {
+    flex-basis: 100%;
   }
   .in-lobby .footer-note {
     display: none;
