@@ -1,0 +1,1007 @@
+{
+  "schema": 1,
+  "runtimeSha256": "c36f58128e2a08be597e19c660232f192254b21057a33d87c5e818f5a20a4e67",
+  "controls": [
+    {
+      "file": "template.html",
+      "sha256": "398c736ae00c2a2e50267b240607aea4bd6f4f2e5723f7db8e422ce884623a8e"
+    },
+    {
+      "file": "audit-browser.js",
+      "sha256": "15c6c3701e8426cd03b6fa2dbb8bed3161459a4bdbfad7c7fe31d77cfcee3057"
+    },
+    {
+      "file": "build-tools.mjs",
+      "sha256": "a7ab2af1811aee2e3f553bd645cc9679cbe394ebd11665bd4e9cf141ffe64f50"
+    }
+  ],
+  "fighters": [
+    "zavarce",
+    "vallenilla",
+    "javier",
+    "capriles",
+    "renny",
+    "gomez",
+    "simon",
+    "conde",
+    "emilio",
+    "maite",
+    "oscar",
+    "puma",
+    "chataing",
+    "george",
+    "mcm",
+    "ali",
+    "gualberto",
+    "reynaldo",
+    "dudamel",
+    "danny",
+    "nacho",
+    "sarcos",
+    "yordano",
+    "lila",
+    "rummy",
+    "chiqui",
+    "norkys",
+    "gabriela",
+    "amanda",
+    "lele",
+    "giuseppe",
+    "silbon",
+    "llorona",
+    "sayona",
+    "lionza",
+    "florentino",
+    "diablo",
+    "knoche",
+    "momoy",
+    "tiotigre",
+    "tioconejo",
+    "enrique",
+    "jesus",
+    "carlos",
+    "victor",
+    "juan",
+    "lorenzo",
+    "carolina",
+    "dayana",
+    "bolivar",
+    "edgar",
+    "melanio"
+  ],
+  "moves": [
+    "light",
+    "heavy",
+    "combo1",
+    "combo2",
+    "special",
+    "final"
+  ],
+  "assets": [
+    {
+      "id": "ali-v15",
+      "source": "public/assets/ali-v15.webp",
+      "sourceSha256": "f6e4ee70627307aaaa6c8f94ad081ebc6bd0f97d16ca21420396b8af69e9e719",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "amanda-v15",
+      "source": "public/assets/amanda-v15.webp",
+      "sourceSha256": "310e60ec4a8c71ddd0476c14fbb4d667268de8821f4a520e65bd6dec85e0fbe9",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "attack-conde-bond-v1",
+      "source": "public/assets/attack-conde-bond-v1.webp",
+      "sourceSha256": "7b00c51556dc4abc801e2d97233c1f51f68467ecfbaa7cbe2d4b524975554c58",
+      "protected": true,
+      "attack": true
+    },
+    {
+      "id": "attack-emilio-chunior-v1",
+      "source": "public/assets/attack-emilio-chunior-v1.webp",
+      "sourceSha256": "e599c7dff02b669590c3cf34ab906ebd3e82584fdc7749280142c179bac709c9",
+      "protected": true,
+      "attack": true
+    },
+    {
+      "id": "attack-maite-greeting",
+      "source": "public/assets/attack-maite-greeting.webp",
+      "sourceSha256": "148c9ee173c05c9fd1fa52a268ca89a1cb530edbd9947793fcdb7b3e17df8c37",
+      "protected": true,
+      "attack": true
+    },
+    {
+      "id": "bolivar-v39",
+      "source": "public/assets/bolivar-v39.webp",
+      "sourceSha256": "853fdf78ee062349dc1d34dcd30224057d59c824cdef7d6aae1466797de9f903",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "capriles-v39",
+      "source": "public/assets/capriles-v39.webp",
+      "sourceSha256": "3cd05e77341bd37d2e077082c1355d7a4b3cfd5e76a6a203e427a7e7d66dc574",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "caracas",
+      "source": "public/assets/caracas.webp",
+      "sourceSha256": "ba069bc7ffeabd21c3198924dde4e1c4cb851b523a77c6ace0b27d304ba12186",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "carlos-v3",
+      "source": "public/assets/carlos-v3.webp",
+      "sourceSha256": "85ed5a5091c23c9ef4bc56944a99b931d3766d66b50332c029ca04dbb0cc97a9",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "carolina-v39",
+      "source": "public/assets/carolina-v39.webp",
+      "sourceSha256": "6812016a88abad4c09220d1be10e80f4b52726070771749098ad545ce027f387",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "chataing-v3",
+      "source": "public/assets/chataing-v3.webp",
+      "sourceSha256": "3fb51d8e201dc9e0dd675f0e7c9fc9ac6118cec2b67a1af557a66f830835eb2c",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "chiqui-v15",
+      "source": "public/assets/chiqui-v15.webp",
+      "sourceSha256": "966cb9797c4c29232ba83b76abf21d0961774c353e9fe15796766f9dbc37f77a",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "conde-v3",
+      "source": "public/assets/conde-v3.webp",
+      "sourceSha256": "adeed4c4096dee5cbf5a342b2a8f1b7253a9e7832bca9a5d88b9fe014f530c40",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "danny-v15",
+      "source": "public/assets/danny-v15.webp",
+      "sourceSha256": "c33108dce4734765f773cd42dd5355beffb59a528b7f2ba7b63c64ea7cb9a8dd",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "dayana-v40",
+      "source": "public/assets/dayana-v40.webp",
+      "sourceSha256": "2dced2c76d3d8823e874a9827fe984aa2b128ddea71cc5f1d18e7b01cfba03f0",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "diablo-v12",
+      "source": "public/assets/diablo-v12.webp",
+      "sourceSha256": "c293aa2687c4f0ae93525e9412d8578292d1f6cb4b57addfb24cbc3761a9cf41",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "dudamel-v15",
+      "source": "public/assets/dudamel-v15.webp",
+      "sourceSha256": "8eeb846a9d84869af918a68785b4e5560c3750c902138f90a32623b766b61a1d",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "edgar-v39",
+      "source": "public/assets/edgar-v39.webp",
+      "sourceSha256": "bf80065cfa2403c5b07203d8abb7f343722a1f7cd0bae9c1c89cbaa6d7104ad4",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "emilio-v3",
+      "source": "public/assets/emilio-v3.webp",
+      "sourceSha256": "fad39cff4b354e801d5ff1038478c442666e35eda2fe97feb112f3da55a37371",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "enrique-v3",
+      "source": "public/assets/enrique-v3.webp",
+      "sourceSha256": "092aa19f0178d94c7eb7c071f16e1d83112dd84ed453068210b46fc98266ca2b",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "finales-cafe-furniture",
+      "source": "public/assets/finales-cafe-furniture.webp",
+      "sourceSha256": "e29dad731b2588d6bdd3ca3001f0738dc11f6b1ede18090d65e1fce9d682aaab",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-capriles-cafe",
+      "source": "public/assets/finales-capriles-cafe.webp",
+      "sourceSha256": "61688450c83efcd05310dd754c9d4501bc761ecc5c95de5f3864baccb5100b84",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-dance-v2-1",
+      "source": "public/assets/finales-dance-v2-1.webp",
+      "sourceSha256": "b52dfee9459c1ec5b088ffc443387193550231d5270841599225fa246050d70b",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-dance-v2-2",
+      "source": "public/assets/finales-dance-v2-2.webp",
+      "sourceSha256": "1bb0ed3b0358054a9e05c3cffd62ac6bebe45cd3b25efd53ba11169f8550012b",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-dance-v2-3",
+      "source": "public/assets/finales-dance-v2-3.webp",
+      "sourceSha256": "871fad3f629051e178b9d7a4c94a009a354248d0d8222e555ac9b8c5d075c482",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-dance-v2-4",
+      "source": "public/assets/finales-dance-v2-4.webp",
+      "sourceSha256": "69b027a37e46cc9c8a04819ead4eac33bbbe834dfaad13fbb2472ac7740123f6",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-dance-v2-5",
+      "source": "public/assets/finales-dance-v2-5.webp",
+      "sourceSha256": "bd1dde2083efebb7cc0bdb6ca91ee84f9dbcf87b79a99835c6f4547361d08f90",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-dance-v2-6",
+      "source": "public/assets/finales-dance-v2-6.webp",
+      "sourceSha256": "5be0eab92c58e1eca457521b0ec5cb3b5196b2dab4d2447476894c04f556a7c6",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-giuseppe-desk-v2",
+      "source": "public/assets/finales-giuseppe-desk-v2.webp",
+      "sourceSha256": "dc86e52ae53910da061870aab7a6452cdec7514a540f603bfaf5bad60b40ac3c",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-giuseppe-hack",
+      "source": "public/assets/finales-giuseppe-hack.webp",
+      "sourceSha256": "e352086be12edc80a4269cb6dd48c50e81d09973f53d6035df1fcc59dd8e9ebf",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-nacho-dance",
+      "source": "public/assets/finales-nacho-dance.webp",
+      "sourceSha256": "47b8221d23025f89938e89b1ee0137aaf741791b7f4bdff8ae4266dd29554866",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-seated-main-v1",
+      "source": "public/assets/finales-seated-main-v1.webp",
+      "sourceSha256": "89392d4abb101ccbf85e687819c454fb266908f4db168a2ce01aa037826b842e",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-seated-v1-1",
+      "source": "public/assets/finales-seated-v1-1.webp",
+      "sourceSha256": "a8d1c965b06e3f8ff1b5b8e2f4b4a4d977ef8f3eb7a925f76c1eb8bcd04fcb46",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-seated-v1-2",
+      "source": "public/assets/finales-seated-v1-2.webp",
+      "sourceSha256": "53ad18a3474b8c5d557c4054fd08e4cdd2db75997f09f81b56da53926457fd3a",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-seated-v1-3",
+      "source": "public/assets/finales-seated-v1-3.webp",
+      "sourceSha256": "cd716a58b385f03802415d4a6460f26135b61f88235c2e89f8f099e32d67e187",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-seated-v1-4",
+      "source": "public/assets/finales-seated-v1-4.webp",
+      "sourceSha256": "ea50ae7bd7216bdf8bad1c2f61d8f0906123d1ec1cdb32a7f19f77f2514be31e",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-seated-v1-5",
+      "source": "public/assets/finales-seated-v1-5.webp",
+      "sourceSha256": "e69289a67be39ac5e789e3378998292eb7c983cca2109656c3873a45571581f8",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-seated-v1-6",
+      "source": "public/assets/finales-seated-v1-6.webp",
+      "sourceSha256": "cb9f11962c3a41c2dd91a113bb25906b647eb3f19cbe47fc7f1aa3ca283c1166",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-v1-1",
+      "source": "public/assets/finales-v1-1.webp",
+      "sourceSha256": "da1ae43684b28775071efe24e2344c5a0fc2ef00b5677cf0339a26923921be6d",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-v1-2",
+      "source": "public/assets/finales-v1-2.webp",
+      "sourceSha256": "39f723ff882bef0b64ae4d871f4fa23c7bbc7217c32ce6426ea77ed08511d713",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-v1-3",
+      "source": "public/assets/finales-v1-3.webp",
+      "sourceSha256": "4b67f5b6eb0bb02dea2de45c03286a3b413d96689997fa864eb98903fe04d577",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-v1-4",
+      "source": "public/assets/finales-v1-4.webp",
+      "sourceSha256": "58d62c710dfcdfb498d7a06bc75ea757a20378735af39903a39906339a4da580",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-v1-5",
+      "source": "public/assets/finales-v1-5.webp",
+      "sourceSha256": "a085cbb7bbe3623c201174b8672174aab1dc4abefa9b71e4feeddb9592d97af9",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "finales-v1-6",
+      "source": "public/assets/finales-v1-6.webp",
+      "sourceSha256": "6bf94fd91e798e21496187ea572920913cc8f33788d61072204e105245ee9fe8",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "florentino-v12",
+      "source": "public/assets/florentino-v12.webp",
+      "sourceSha256": "6179ca2c8b3b68670efac48194d4a40859802108237fde247ea24f11f02a2cdd",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "gabriela-v15",
+      "source": "public/assets/gabriela-v15.webp",
+      "sourceSha256": "d96200570ddf5e356d68c3f09b23697d4301e07ccd33c8a8747bfc2c494f7c75",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "george-v3",
+      "source": "public/assets/george-v3.webp",
+      "sourceSha256": "0e8c94fbdec4ee0403a4affc3360afd2d3782c78445fad3c12c33631d2288896",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "giuseppe-v15",
+      "source": "public/assets/giuseppe-v15.webp",
+      "sourceSha256": "f309915338ac889fa0800a6d90ee5388fdee354d991d4847e9c5cd9dc81317f9",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "gomez-cavalry-attack-v1",
+      "source": "public/assets/gomez-cavalry-attack-v1.webp",
+      "sourceSha256": "f739234c1636739ef77411c9c647a61907fe9524ab83281ca7034a58036a3e95",
+      "protected": true,
+      "attack": true
+    },
+    {
+      "id": "gomez-v3",
+      "source": "public/assets/gomez-v3.webp",
+      "sourceSha256": "ded3579460ac2c0213ff40c409ac225a852d8ed744de018cdad00ce56dc9e27a",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "gualberto-v15",
+      "source": "public/assets/gualberto-v15.webp",
+      "sourceSha256": "e82349ee2166f41518bdcc9d3f8d09ef37b22a32d896c19c4b3c0bcf18673ff8",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "javier-scolding-attack-v1",
+      "source": "public/assets/javier-scolding-attack-v1.webp",
+      "sourceSha256": "4cebcd51ce4abcdd2b8e112e8ea86206b57ddd88a1e3712bdb4f870528bd2632",
+      "protected": true,
+      "attack": true
+    },
+    {
+      "id": "javier-v43",
+      "source": "public/assets/javier-v43.webp",
+      "sourceSha256": "1dd8e6a7abd0d0b8b7891ba31774041ed7c566f8412dd93db6dc26310cfa0bcd",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "jesus-v3",
+      "source": "public/assets/jesus-v3.webp",
+      "sourceSha256": "23e7a46f30083b242ae47884452a836fde3f279efa6b941e03e7212049976c5b",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "juan-v3",
+      "source": "public/assets/juan-v3.webp",
+      "sourceSha256": "1297743434487f854b3cc55bd8a4c4866e0f1afecd99e6e1bfb4e44717e35af2",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "knoche-v46",
+      "source": "public/assets/knoche-v46.webp",
+      "sourceSha256": "1c8fb2c57def02262f80b8a9ae9c6ad3c1e7c26c876c84382e160b4d2d676302",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "lele-v15",
+      "source": "public/assets/lele-v15.webp",
+      "sourceSha256": "6933ffb4df3504ba8d8e691f2bfe0eda97217e0e1a54b0b44f034dd36689b92b",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "lila-v15",
+      "source": "public/assets/lila-v15.webp",
+      "sourceSha256": "838b889f1c5532e5940760b69af7717e98d7e9c01ee865cded81b61bab144597",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "lionza-v12",
+      "source": "public/assets/lionza-v12.webp",
+      "sourceSha256": "cb6461d0549a882321d45bf194ba63eade6e062a9b019c843617e0ca2234b2b1",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "llorona-v12",
+      "source": "public/assets/llorona-v12.webp",
+      "sourceSha256": "ccfbd2062ab918f4e06630eb90fd397a21136b06da589270997765ab0a6a7a06",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "lorenzo-v39",
+      "source": "public/assets/lorenzo-v39.webp",
+      "sourceSha256": "1c43e0b320dcfb23661abddbca3c1d95c0456025679392a9e58d289f439d82e7",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "maite-v3",
+      "source": "public/assets/maite-v3.webp",
+      "sourceSha256": "dd26830e2095f44afc21b5871608d4edef143dc0f9622556031b296df37255e8",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "mcm-v3",
+      "source": "public/assets/mcm-v3.webp",
+      "sourceSha256": "fe36fbec3746e14b3620c395fd7df465605ba7fef3983e99872dd7ce877c242f",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "melanio-v44",
+      "source": "public/assets/melanio-v44.webp",
+      "sourceSha256": "82afe709e2c38606380b6f9b2e79baca3aea5c33e1dee5755d2dc6bc58e0ef80",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "momoy-v12",
+      "source": "public/assets/momoy-v12.webp",
+      "sourceSha256": "824b53d2440da34178b7b412c7db3eaa1b2965e301014e88fcd9e91eeceb45a4",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "nacho-v42",
+      "source": "public/assets/nacho-v42.webp",
+      "sourceSha256": "bc7e9631ba5a9dcf67ebec8eafa87d0ee04283b79c7521de0831bc5933fad014",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "norkys-v15",
+      "source": "public/assets/norkys-v15.webp",
+      "sourceSha256": "0706435320ab9830d3402ffabeafbbdf5c09668c2b3f1ddfbd1359e05f52d08e",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "oscar-v3",
+      "source": "public/assets/oscar-v3.webp",
+      "sourceSha256": "16ac8d91bc04ba36054990217bd7444736e822eb98fc6cfda731a32481300d46",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-ali",
+      "source": "public/assets/perro-mujeriego-v3-ali.webp",
+      "sourceSha256": "bd705a88a779c829325d0bad541cd43b0d373caa81e4cd178868d2cb39791d43",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-amanda",
+      "source": "public/assets/perro-mujeriego-v3-amanda.webp",
+      "sourceSha256": "c0bef515230bd8712a66bc9e051fc0f5e6e760859e5ebe0ec929de005022074e",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-capriles",
+      "source": "public/assets/perro-mujeriego-v3-capriles.webp",
+      "sourceSha256": "c0b159baa7fe7c133c2de642b5ca234513bdc55cc79fd0dfef044cbfb93bcf4e",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-carlos",
+      "source": "public/assets/perro-mujeriego-v3-carlos.webp",
+      "sourceSha256": "5fd15cf609b015ffd98a20fb7ff82da5942629ecd8c917da30a864c24820d595",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-chataing",
+      "source": "public/assets/perro-mujeriego-v3-chataing.webp",
+      "sourceSha256": "26c6c0af2716032af8e5ca926f8bee57d873c493333d1f2ee264e7859d0f7385",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-chiqui",
+      "source": "public/assets/perro-mujeriego-v3-chiqui.webp",
+      "sourceSha256": "242535620ba7268e38767a3f9b6a2589bda148524caa0aebcc7376000ae2f9c9",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-conde",
+      "source": "public/assets/perro-mujeriego-v3-conde.webp",
+      "sourceSha256": "ff20f8fa7e511b021a918a173fbdf8b6403b30df81a7c4d44aaf3e23c5fe6f82",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-danny",
+      "source": "public/assets/perro-mujeriego-v3-danny.webp",
+      "sourceSha256": "bcedf0c5412cfb036fc6b6ed32c24ad683089236d003c7eb00d45a9f0af2fb77",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-diablo",
+      "source": "public/assets/perro-mujeriego-v3-diablo.webp",
+      "sourceSha256": "dcadc594ccb07ab191074b12356ab708a8a20e7ca3ed90347e46dae0f6eadb91",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-dudamel",
+      "source": "public/assets/perro-mujeriego-v3-dudamel.webp",
+      "sourceSha256": "2fc6aebfa695455b1f1e6f81cbfcbf118439f4a80d3128fcaba660383786dde1",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-emilio",
+      "source": "public/assets/perro-mujeriego-v3-emilio.webp",
+      "sourceSha256": "47dadfc3097dacc48895d1ac47c56540136eceeda58aedf7c6f608a267282ce3",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-enrique",
+      "source": "public/assets/perro-mujeriego-v3-enrique.webp",
+      "sourceSha256": "76232946163038854c28ecc0d589ac555c20532aa566558a3b79451a20fab71b",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-florentino",
+      "source": "public/assets/perro-mujeriego-v3-florentino.webp",
+      "sourceSha256": "d103ce9654157d36e93a6dd047139feb347e6f490f8e0dcd83c61f9b707145a5",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-gabriela",
+      "source": "public/assets/perro-mujeriego-v3-gabriela.webp",
+      "sourceSha256": "3c220f3f563be9b0501d29c0c96d211a14658318d46f473f9eb48e996cdaa248",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-george",
+      "source": "public/assets/perro-mujeriego-v3-george.webp",
+      "sourceSha256": "583aadeecd6f192966e96fa5fd9406a6f31aa395f0625841e6e91cf78c34b9df",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-giuseppe",
+      "source": "public/assets/perro-mujeriego-v3-giuseppe.webp",
+      "sourceSha256": "d3e00cf1cff600559f037efba1c7a07c90b79e860dbe910fbde02237263b9fac",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-gomez",
+      "source": "public/assets/perro-mujeriego-v3-gomez.webp",
+      "sourceSha256": "129592dbbe329111a587df8a53f8aedab24c33c67c354c4ea0a1e49d443dd893",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-gualberto",
+      "source": "public/assets/perro-mujeriego-v3-gualberto.webp",
+      "sourceSha256": "b06bb79594059cce6027d62e3c94837b3b901ea5b628bdcc732dabd20512f1d5",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-javier",
+      "source": "public/assets/perro-mujeriego-v3-javier.webp",
+      "sourceSha256": "1a4d5fe1c3aaf10cd37c9b56c9dd125b3bc7d1699520418c01e5cf76bee12d0b",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-jesus",
+      "source": "public/assets/perro-mujeriego-v3-jesus.webp",
+      "sourceSha256": "db8a9fbf02d2225afefdd3aa08b49cd8134fda2b0b16f0553cba238c22032267",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-juan",
+      "source": "public/assets/perro-mujeriego-v3-juan.webp",
+      "sourceSha256": "2a62f886b94b6ccc32794aeac0240ff20722eb96a8e9350691de811fbf64d873",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-knoche",
+      "source": "public/assets/perro-mujeriego-v3-knoche.webp",
+      "sourceSha256": "cb3a5071d7210bc5f1ad2b9697a16ea7bb9589c897731ca8ab32df515516d080",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-lele",
+      "source": "public/assets/perro-mujeriego-v3-lele.webp",
+      "sourceSha256": "c070510877c92ba4184c86156b8cb94d1c56b63372f04cfbccf167c79efd80d1",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-lila",
+      "source": "public/assets/perro-mujeriego-v3-lila.webp",
+      "sourceSha256": "b998d0dd59df04edb51fdf7460cbc82e2fa5ed93e5707eae77d66ab52e4f24fc",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-lionza",
+      "source": "public/assets/perro-mujeriego-v3-lionza.webp",
+      "sourceSha256": "594dc761b1da41de6d7986e42ee0f2e2c6370c0138f37076037a262e9b9ad969",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-llorona",
+      "source": "public/assets/perro-mujeriego-v3-llorona.webp",
+      "sourceSha256": "2f38dfbb2cef82d2f39da137943be111102dfdc80193437c412a88eedcbcb963",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-maite",
+      "source": "public/assets/perro-mujeriego-v3-maite.webp",
+      "sourceSha256": "65a59e2a523ae32e904e15ff258d86faa68b7f8b20b9029bd7c675eb0208533c",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-mcm",
+      "source": "public/assets/perro-mujeriego-v3-mcm.webp",
+      "sourceSha256": "9294f66b623f31b36ef89c49715828d8d658814b07717a7c441a53d8b5fcbb32",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-momoy",
+      "source": "public/assets/perro-mujeriego-v3-momoy.webp",
+      "sourceSha256": "4cb8a04cea16669de5fc866ca3438a2e68dbf38d71ae7d3f238983f6b2466bef",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-nacho",
+      "source": "public/assets/perro-mujeriego-v3-nacho.webp",
+      "sourceSha256": "47b8221d23025f89938e89b1ee0137aaf741791b7f4bdff8ae4266dd29554866",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-norkys",
+      "source": "public/assets/perro-mujeriego-v3-norkys.webp",
+      "sourceSha256": "4c2455a085815fd3d6a783d103cabf97669a04f7acdb1f6c10ac980cbfe0f3c9",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-oscar",
+      "source": "public/assets/perro-mujeriego-v3-oscar.webp",
+      "sourceSha256": "2ec373ff8afed7f8538d8afca3470827b90c526aad9d8c11fe0e0434bc188c59",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-puma",
+      "source": "public/assets/perro-mujeriego-v3-puma.webp",
+      "sourceSha256": "01e16176a1111642260910c258f347260c8bbefb158530a94d3f082c33d12ced",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-renny",
+      "source": "public/assets/perro-mujeriego-v3-renny.webp",
+      "sourceSha256": "06301709bb2e4363665acf8019fc4c09c9d6765c7028f5b78a42416e2a576c7a",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-reynaldo",
+      "source": "public/assets/perro-mujeriego-v3-reynaldo.webp",
+      "sourceSha256": "f36dc58c63cbbb90217e5e32f062c592b6f3083e280ac081118eecc4102b793a",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-rummy",
+      "source": "public/assets/perro-mujeriego-v3-rummy.webp",
+      "sourceSha256": "59371279f03fe545eaad898e35de2566cd9a6fb6b9f0207cf5e4f1df7931e23e",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-sarcos",
+      "source": "public/assets/perro-mujeriego-v3-sarcos.webp",
+      "sourceSha256": "73b7b25002511bcca5e42d574b2f905e945a0e665007b485e38d3cda02725795",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-sayona",
+      "source": "public/assets/perro-mujeriego-v3-sayona.webp",
+      "sourceSha256": "818a07df810a9c2227e72b5f9c47166562f1e553b763c80eb8c47f2aa8dd715a",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-silbon",
+      "source": "public/assets/perro-mujeriego-v3-silbon.webp",
+      "sourceSha256": "7c84ef19112ad91860e872640a35cb0df2eba7d24f609d7e4e23e223a3182f84",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-simon",
+      "source": "public/assets/perro-mujeriego-v3-simon.webp",
+      "sourceSha256": "eaf3df0f84189daec48c09a7e2ce63198151fcb7391cf87afc2dc6af5e7397e8",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-tioconejo",
+      "source": "public/assets/perro-mujeriego-v3-tioconejo.webp",
+      "sourceSha256": "fd350db70ba3925b706a352b067746841a4ffa369e1f1c5b99d14c1605afe6fe",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-tiotigre",
+      "source": "public/assets/perro-mujeriego-v3-tiotigre.webp",
+      "sourceSha256": "a608df0fe17cfca85ae909ab5b259d2aec5a4cf6ea6b9217d6d243831d5b41ca",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-vallenilla",
+      "source": "public/assets/perro-mujeriego-v3-vallenilla.webp",
+      "sourceSha256": "8ca157fa2129c53f64dab078448498a3f7aecb4d7bc50df47dbed611e85977d4",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-victor",
+      "source": "public/assets/perro-mujeriego-v3-victor.webp",
+      "sourceSha256": "cc9bdc0ded9186466f3d59f42a8ca7d892afb73d9399a7bbcad84578b7411f28",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-yordano",
+      "source": "public/assets/perro-mujeriego-v3-yordano.webp",
+      "sourceSha256": "453c361b16719e42fc0c2e925d19201650e4c7cd75b86d9a08549f0edaab4e78",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "perro-mujeriego-v3-zavarce",
+      "source": "public/assets/perro-mujeriego-v3-zavarce.webp",
+      "sourceSha256": "2600dad7fd981cf3bdd288e359cee324d6fc21c888d26888b9b730030ab64511",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "puma-v3",
+      "source": "public/assets/puma-v3.webp",
+      "sourceSha256": "978863d61f2680b6521280a80e7e4297d0a27d5f330592580bb5d8e5e5b31633",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "renny-commercial-attack-v1",
+      "source": "public/assets/renny-commercial-attack-v1.webp",
+      "sourceSha256": "6adbe91ad84404a94ff49085fd03ad9d56496693749697cb18770859531c58b9",
+      "protected": true,
+      "attack": true
+    },
+    {
+      "id": "renny-v3",
+      "source": "public/assets/renny-v3.webp",
+      "sourceSha256": "d73883f1367a65352d5da1bc8dc94a8476e586dc8b067a922c969dc585928cd4",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "reynaldo-v15",
+      "source": "public/assets/reynaldo-v15.webp",
+      "sourceSha256": "bbae71536b439951d16360b04d42c19fb8abd82050a730c0414885ea53e092c8",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "rummy-v15",
+      "source": "public/assets/rummy-v15.webp",
+      "sourceSha256": "e7ddba027ab7e5677dc05d9ca62f8fd7e3f91edaf784ccfeaf056d19a9660e12",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "sarcos-v15",
+      "source": "public/assets/sarcos-v15.webp",
+      "sourceSha256": "2908eb60ae7b4ec9e2b91dd29370101b125707ae3baabc87feefed84693a88f5",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "sayona-v12",
+      "source": "public/assets/sayona-v12.webp",
+      "sourceSha256": "88140873c5e47025b3769ea98022ec281f970b39bb2434fa9248625e2f418ce8",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "silbon-v12",
+      "source": "public/assets/silbon-v12.webp",
+      "sourceSha256": "043b6180033b98ca9bdd8b0f7d94784f8ebc492409333c82a58aceaaddac2a7c",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "simon-cuatro-attack-v1",
+      "source": "public/assets/simon-cuatro-attack-v1.webp",
+      "sourceSha256": "f01366b8215b2bc9be7b4aea500f057c9bd30d7d24db0f35c939656d6b3da85e",
+      "protected": true,
+      "attack": true
+    },
+    {
+      "id": "simon-v3",
+      "source": "public/assets/simon-v3.webp",
+      "sourceSha256": "1c87bfd2a13c96dfc205ac0b1e66a9b1c9a0d208fa83c25fc71342a1bd021308",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "tioconejo-v12",
+      "source": "public/assets/tioconejo-v12.webp",
+      "sourceSha256": "bea4f7df567e454ce37be8f90ff526c5d10c1b2c7d302949b177b600af00d8cd",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "tiotigre-v12",
+      "source": "public/assets/tiotigre-v12.webp",
+      "sourceSha256": "77de7b11324706e36ec12acb8317072d014e3a513a6cbb051aa75fcb34622b92",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "vallenilla-cashea-attack-v1",
+      "source": "public/assets/vallenilla-cashea-attack-v1.webp",
+      "sourceSha256": "5ab30bb7477141a8c0b7a522897a8b2d68b5256a114a7c3fd8b7042fde30c9f3",
+      "protected": true,
+      "attack": true
+    },
+    {
+      "id": "vallenilla-v5",
+      "source": "public/assets/vallenilla-v5.webp",
+      "sourceSha256": "737a655b837760b31f23ae8b9b1dbe1f97d5217bb6fd18786054755beb838bcc",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "victor-v3",
+      "source": "public/assets/victor-v3.webp",
+      "sourceSha256": "68be9adcaefcafa6dfc897887b5186dc6a9c6225735eaea3967dc0c0dba94401",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "yordano-v15",
+      "source": "public/assets/yordano-v15.webp",
+      "sourceSha256": "ec28a19aa6e11e94450be997d11b95080b524375bbd26858016e2859525c3b1f",
+      "protected": true,
+      "attack": false
+    },
+    {
+      "id": "yummy-courier-v1",
+      "source": "public/assets/yummy-courier-v1.webp",
+      "sourceSha256": "957b38cf6291d1ce1bffb71e8114295e01af4e8b977a2b98534274d48c7edf72",
+      "protected": false,
+      "attack": false
+    },
+    {
+      "id": "zavarce-v5",
+      "source": "public/assets/zavarce-v5.webp",
+      "sourceSha256": "3c826ed9a9180d04d94054bd231b028023e53328ab767fd856d25eeae028aa1b",
+      "protected": true,
+      "attack": false
+    }
+  ],
+  "fingerprint": "e6ea13363ce112870c4d5969b55eb0a9beb1c2494bd28cf9a85dd41a8c0ab1b2"
+}

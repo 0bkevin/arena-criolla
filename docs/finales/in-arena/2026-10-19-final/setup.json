@@ -1,0 +1,40 @@
+{
+  "url": "http://localhost:5184/docs/finales/gallery.html",
+  "tabId": "tab_37_c3cfa641-d7e6-4a79-9606-68ffb03b615c",
+  "capturedAtUtc": "2026-10-19T01:18:37.730687+00:00",
+  "positions": [
+    {
+      "x": 435,
+      "y": 555
+    },
+    {
+      "x": 625,
+      "y": 555
+    }
+  ],
+  "fractions": [
+    0.2,
+    0.55,
+    0.85
+  ],
+  "scope": [
+    "vallenilla",
+    "renny",
+    "knoche",
+    "carlos",
+    "juan",
+    "nacho",
+    "capriles"
+  ],
+  "sourceHashes": {
+    "src/game/renderer.ts": "0e55aab3274973a2d0ad2c7b5c46fd070fbc58c87dcb349e67638fe1f7e86920",
+    "src/game/finale-renderer.ts": "ca1016731d948df5f630c5ca308f5108de238fbdf8579e8309f52e218a5d11fb",
+    "scripts/finale-preview-entry.ts": "8209728740d9a561216b63c95c948a3b26e60826dd59a7d098d6d8fb22b52690"
+  },
+  "damageCapturedAtUtc": "2026-10-19T01:21:26.050709+00:00",
+  "damageSourceHashes": {
+    "src/game/renderer.ts": "0e55aab3274973a2d0ad2c7b5c46fd070fbc58c87dcb349e67638fe1f7e86920",
+    "src/game/finale-renderer.ts": "54562b3e1014f8db1bd77a4bd958aef284883b5640dc799a45bfef4c724a2ed7",
+    "scripts/finale-preview-entry.ts": "8209728740d9a561216b63c95c948a3b26e60826dd59a7d098d6d8fb22b52690"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-20T00:07:05Z",
+  "reviewer": "/root/shared_final_readiness_review",
+  "scope": "Read-only integration review of transformation, capture/release/knockoutDelay, wired microphone ordering/reflection, artwork preflight and guide simulation/verifier. Dudamel and final portable publication excluded because still in progress.",
+  "initialChecks": {
+    "focusedPassed": 105,
+    "portableVerifierTestsPassed": 8,
+    "nonDudamelSimulationsPassed": 306
+  },
+  "findings": [
+    {
+      "file": "src/game/finales/chataing.ts",
+      "description": "Neutral microphone helper dereferenced optional artwork metadata even with artwork=false; omitted optional anchorY produced NaN coordinates.",
+      "resolution": "Only read geometry after artwork and hasAttackArt preflight; use shared anchorY??frame.height default.",
+      "regression": "Neutral fallback remains visible with missing frame in either artwork mode; valid image with omitted optional anchorY draws finite coordinates.",
+      "independentRecheck": "Both reported reproductions resolved;10/10Chataing tests pass."
+    }
+  ],
+  "rootFocusedPassed": 34,
+  "rootLog": "/tmp/chataing-fallback-final-review-tests.log",
+  "diffCheckPassed": true,
+  "remaining": "All22 final source suite and frozen312-demo portable browser verification still required."
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "fighter": "vallenilla",
+    "reference": "cashea-mascots",
+    "sourceAttachment": "df28393c-e9df-48e5-b42d-238b622bfd95-b54d8885-5c3c-49e3-beb0-3193f772ade3.png",
+    "file": "docs/finales/attack-overhaul/references/vallenilla-cashea-mascots.png",
+    "sha256": "2f84d0b10e9a285f976a8a1e5fb84902251782500e0f5b0f46b1380088dbc655",
+    "role": "User-provided visual reference"
+  },
+  {
+    "fighter": "vallenilla",
+    "reference": "cashea-logo",
+    "sourceAttachment": "df28393c-e9df-48e5-b42d-238b622bfd95-3e770743-c4a0-4fcd-bac7-b21faf92d391.png",
+    "file": "docs/finales/attack-overhaul/references/vallenilla-cashea-logo.png",
+    "sha256": "2c21bdbd5d0fb2851aa05395b3405002316031b93c36a278a3ac59ee1c652fa7",
+    "role": "User-provided visual reference"
+  },
+  {
+    "fighter": "javier",
+    "reference": "head-shirt-persona",
+    "sourceAttachment": "df28393c-e9df-48e5-b42d-238b622bfd95-2b2c258d-0625-4c2b-8fcf-1f7521312449.png",
+    "file": "docs/finales/attack-overhaul/references/javier-head-shirt-persona.png",
+    "sha256": "3e71d63e1e8cce8e4c3737ba01b14fafeb0af440a6f32b67d183ea17369ea384",
+    "role": "User-provided visual reference"
+  },
+  {
+    "fighter": "renny",
+    "reference": "ladder-pose",
+    "sourceAttachment": "df28393c-e9df-48e5-b42d-238b622bfd95-78506ce4-c7a6-4987-a976-9da89d68d6ef.png",
+    "file": "docs/finales/attack-overhaul/references/renny-ladder-pose.png",
+    "sha256": "a2a1773cf1eadc93afb4042515d75c8c320875855fbb0fd60e94eb3745c435a5",
+    "role": "User-provided visual reference"
+  },
+  {
+    "fighter": "renny",
+    "reference": "showgirls",
+    "sourceAttachment": "df28393c-e9df-48e5-b42d-238b622bfd95-fdecc1e5-b53f-4fed-b515-f7c9f412a099.png",
+    "file": "docs/finales/attack-overhaul/references/renny-showgirls.png",
+    "sha256": "24a309b4aef51710b37f99638bc0420e247f6f3193e919f188f0a4eb27bfb037",
+    "role": "User-provided visual reference"
+  },
+  {
+    "fighter": "gomez",
+    "reference": "mounted-squadron",
+    "sourceAttachment": "df28393c-e9df-48e5-b42d-238b622bfd95-4c6d3e2e-225f-4c6e-8407-c548c16e7415.png",
+    "file": "docs/finales/attack-overhaul/references/gomez-mounted-squadron.png",
+    "sha256": "04232d84c77dd1b3c2deeccac0b896dd6151e884b6532924da4d25536f29f173",
+    "role": "User-provided visual reference"
+  },
+  {
+    "fighter": "conde",
+    "reference": "conde-bond",
+    "sourceAttachment": "df28393c-e9df-48e5-b42d-238b622bfd95-b0e9cc8b-4b6b-40c6-bbc5-5edf594da95d.png",
+    "file": "docs/finales/attack-overhaul/references/conde-conde-bond.png",
+    "sha256": "c3cde9d7e2b164b2f65088db76d78e42183bd38533c40264b59f06707d5adb30",
+    "role": "User-provided visual reference"
+  },
+  {
+    "fighter": "emilio",
+    "reference": "el-chunior",
+    "sourceAttachment": "df28393c-e9df-48e5-b42d-238b622bfd95-55e078c4-165b-4392-b7c8-5a5cdb71d131.png",
+    "file": "docs/finales/attack-overhaul/references/emilio-el-chunior.png",
+    "sha256": "c3934c6e80121524de259d16dfddaa0a61764bac8e18f1128a5a01d5be50c549",
+    "role": "User-provided visual reference"
+  },
+  {
+    "fighter": "mcm",
+    "reference": "rally-truck",
+    "sourceAttachment": "df28393c-e9df-48e5-b42d-238b622bfd95-1a74732c-ab8a-477b-90f5-8907228f7c61.png",
+    "file": "docs/finales/attack-overhaul/references/mcm-rally-truck.png",
+    "sha256": "7051bb5e716bd1f706730d4bf7b4f4233c3d2b2b34d30f4e03de5975aaf33b26",
+    "role": "User-provided visual reference"
+  },
+  {
+    "fighter": "lorenzo",
+    "reference": "polar-truck",
+    "sourceAttachment": "df28393c-e9df-48e5-b42d-238b622bfd95-9f7b5b7c-6c37-4ad8-9c36-045f393d8645.png",
+    "file": "docs/finales/attack-overhaul/references/lorenzo-polar-truck.png",
+    "sha256": "0d74be376ca538f5fa15ce0ed5ae854155514ac648a842c4e89b061e9e6d11e9",
+    "role": "User-provided visual reference"
+  }
+]

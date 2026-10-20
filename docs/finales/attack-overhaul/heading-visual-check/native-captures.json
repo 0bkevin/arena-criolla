@@ -1,0 +1,461 @@
+{
+  "date": "2026-10-19",
+  "tab": "tab_47_c3cfa641-d7e6-4a79-9606-68ffb03b615c",
+  "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+  "viewport": {
+    "width": 1280,
+    "height": 1100
+  },
+  "captures": [
+    {
+      "fighter": "gomez",
+      "direction": 1,
+      "tick": 48,
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw36cs-312f4eb0.png",
+      "localCopy": "gomez-dir1-tick48.png",
+      "state": {
+        "selected": "gomez",
+        "mode": "final",
+        "tick": 48,
+        "direction": 1,
+        "index": 57
+      }
+    },
+    {
+      "fighter": "gomez",
+      "direction": 1,
+      "tick": 12,
+      "state": {
+        "selected": "gomez",
+        "mode": "final",
+        "tick": 12,
+        "direction": 1,
+        "index": 21
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3ovm-5345fa8d.png",
+      "localCopy": "gomez-dir1-tick12.png"
+    },
+    {
+      "fighter": "gomez",
+      "direction": 1,
+      "tick": 70,
+      "state": {
+        "selected": "gomez",
+        "mode": "final",
+        "tick": 70,
+        "direction": 1,
+        "index": 79
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3p2t-f80c6acf.png",
+      "localCopy": "gomez-dir1-tick70.png"
+    },
+    {
+      "fighter": "gomez",
+      "direction": 1,
+      "tick": 92,
+      "state": {
+        "selected": "gomez",
+        "mode": "final",
+        "tick": 92,
+        "direction": 1,
+        "index": 101
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3p9u-9a75c4cf.png",
+      "localCopy": "gomez-dir1-tick92.png"
+    },
+    {
+      "fighter": "gomez",
+      "direction": -1,
+      "tick": 12,
+      "state": {
+        "selected": "gomez",
+        "mode": "final",
+        "tick": 12,
+        "direction": -1,
+        "index": 21
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3phr-1acaa7f5.png",
+      "localCopy": "gomez-dir-1-tick12.png"
+    },
+    {
+      "fighter": "gomez",
+      "direction": -1,
+      "tick": 48,
+      "state": {
+        "selected": "gomez",
+        "mode": "final",
+        "tick": 48,
+        "direction": -1,
+        "index": 57
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3pon-b4e2b7b7.png",
+      "localCopy": "gomez-dir-1-tick48.png"
+    },
+    {
+      "fighter": "gomez",
+      "direction": -1,
+      "tick": 70,
+      "state": {
+        "selected": "gomez",
+        "mode": "final",
+        "tick": 70,
+        "direction": -1,
+        "index": 79
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3pvf-63623e49.png",
+      "localCopy": "gomez-dir-1-tick70.png"
+    },
+    {
+      "fighter": "gomez",
+      "direction": -1,
+      "tick": 92,
+      "state": {
+        "selected": "gomez",
+        "mode": "final",
+        "tick": 92,
+        "direction": -1,
+        "index": 101
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3q2l-7f58f76e.png",
+      "localCopy": "gomez-dir-1-tick92.png"
+    },
+    {
+      "fighter": "mcm",
+      "direction": 1,
+      "tick": 60,
+      "state": {
+        "selected": "mcm",
+        "mode": "final",
+        "tick": 60,
+        "direction": 1,
+        "index": 69
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3uvk-9fb5debb.png",
+      "localCopy": "mcm-dir1-tick60.png"
+    },
+    {
+      "fighter": "mcm",
+      "direction": 1,
+      "tick": 96,
+      "state": {
+        "selected": "mcm",
+        "mode": "final",
+        "tick": 96,
+        "direction": 1,
+        "index": 105
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3v2f-84110ed0.png",
+      "localCopy": "mcm-dir1-tick96.png"
+    },
+    {
+      "fighter": "mcm",
+      "direction": -1,
+      "tick": 60,
+      "state": {
+        "selected": "mcm",
+        "mode": "final",
+        "tick": 60,
+        "direction": -1,
+        "index": 69
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3va9-ebb3d355.png",
+      "localCopy": "mcm-dir-1-tick60.png"
+    },
+    {
+      "fighter": "mcm",
+      "direction": -1,
+      "tick": 96,
+      "state": {
+        "selected": "mcm",
+        "mode": "final",
+        "tick": 96,
+        "direction": -1,
+        "index": 105
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3vh9-8b78a278.png",
+      "localCopy": "mcm-dir-1-tick96.png"
+    },
+    {
+      "fighter": "renny",
+      "direction": 1,
+      "tick": 24,
+      "state": {
+        "selected": "renny",
+        "mode": "final",
+        "tick": 24,
+        "direction": 1,
+        "index": 33
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3vqg-c2faa220.png",
+      "localCopy": "renny-dir1-tick24.png"
+    },
+    {
+      "fighter": "renny",
+      "direction": 1,
+      "tick": 42,
+      "state": {
+        "selected": "renny",
+        "mode": "final",
+        "tick": 42,
+        "direction": 1,
+        "index": 51
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3vxj-88f60767.png",
+      "localCopy": "renny-dir1-tick42.png"
+    },
+    {
+      "fighter": "renny",
+      "direction": 1,
+      "tick": 90,
+      "state": {
+        "selected": "renny",
+        "mode": "final",
+        "tick": 90,
+        "direction": 1,
+        "index": 99
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3w4f-8e054af4.png",
+      "localCopy": "renny-dir1-tick90.png"
+    },
+    {
+      "fighter": "renny",
+      "direction": 1,
+      "tick": 138,
+      "state": {
+        "selected": "renny",
+        "mode": "final",
+        "tick": 138,
+        "direction": 1,
+        "index": 147
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3wbi-61c8b4be.png",
+      "localCopy": "renny-dir1-tick138.png"
+    },
+    {
+      "fighter": "renny",
+      "direction": -1,
+      "tick": 24,
+      "state": {
+        "selected": "renny",
+        "mode": "final",
+        "tick": 24,
+        "direction": -1,
+        "index": 33
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3wje-11523eb6.png",
+      "localCopy": "renny-dir-1-tick24.png"
+    },
+    {
+      "fighter": "renny",
+      "direction": -1,
+      "tick": 42,
+      "state": {
+        "selected": "renny",
+        "mode": "final",
+        "tick": 42,
+        "direction": -1,
+        "index": 51
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3wq8-b2c988f8.png",
+      "localCopy": "renny-dir-1-tick42.png"
+    },
+    {
+      "fighter": "renny",
+      "direction": -1,
+      "tick": 90,
+      "state": {
+        "selected": "renny",
+        "mode": "final",
+        "tick": 90,
+        "direction": -1,
+        "index": 99
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3wy5-e7b524e5.png",
+      "localCopy": "renny-dir-1-tick90.png"
+    },
+    {
+      "fighter": "renny",
+      "direction": -1,
+      "tick": 138,
+      "state": {
+        "selected": "renny",
+        "mode": "final",
+        "tick": 138,
+        "direction": -1,
+        "index": 147
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3x5l-7b72bb57.png",
+      "localCopy": "renny-dir-1-tick138.png"
+    },
+    {
+      "fighter": "oscar",
+      "direction": 1,
+      "tick": 24,
+      "state": {
+        "selected": "oscar",
+        "mode": "final",
+        "tick": 24,
+        "direction": 1,
+        "index": 33
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3xfx-94623955.png",
+      "localCopy": "oscar-dir1-tick24.png"
+    },
+    {
+      "fighter": "oscar",
+      "direction": 1,
+      "tick": 42,
+      "state": {
+        "selected": "oscar",
+        "mode": "final",
+        "tick": 42,
+        "direction": 1,
+        "index": 51
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3xna-0e71971f.png",
+      "localCopy": "oscar-dir1-tick42.png"
+    },
+    {
+      "fighter": "oscar",
+      "direction": 1,
+      "tick": 90,
+      "state": {
+        "selected": "oscar",
+        "mode": "final",
+        "tick": 90,
+        "direction": 1,
+        "index": 99
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3xu9-6702350e.png",
+      "localCopy": "oscar-dir1-tick90.png"
+    },
+    {
+      "fighter": "oscar",
+      "direction": 1,
+      "tick": 138,
+      "state": {
+        "selected": "oscar",
+        "mode": "final",
+        "tick": 138,
+        "direction": 1,
+        "index": 147
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3y1r-dd6fcd0a.png",
+      "localCopy": "oscar-dir1-tick138.png"
+    },
+    {
+      "fighter": "oscar",
+      "direction": -1,
+      "tick": 24,
+      "state": {
+        "selected": "oscar",
+        "mode": "final",
+        "tick": 24,
+        "direction": -1,
+        "index": 33
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3yd9-bbee0bc0.png",
+      "localCopy": "oscar-dir-1-tick24.png"
+    },
+    {
+      "fighter": "oscar",
+      "direction": -1,
+      "tick": 42,
+      "state": {
+        "selected": "oscar",
+        "mode": "final",
+        "tick": 42,
+        "direction": -1,
+        "index": 51
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3ykp-25c1c6cd.png",
+      "localCopy": "oscar-dir-1-tick42.png"
+    },
+    {
+      "fighter": "oscar",
+      "direction": -1,
+      "tick": 90,
+      "state": {
+        "selected": "oscar",
+        "mode": "final",
+        "tick": 90,
+        "direction": -1,
+        "index": 99
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3ys2-ff272078.png",
+      "localCopy": "oscar-dir-1-tick90.png"
+    },
+    {
+      "fighter": "oscar",
+      "direction": -1,
+      "tick": 138,
+      "state": {
+        "selected": "oscar",
+        "mode": "final",
+        "tick": 138,
+        "direction": -1,
+        "index": 147
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3yzf-86c9d577.png",
+      "localCopy": "oscar-dir-1-tick138.png"
+    },
+    {
+      "fighter": "george",
+      "direction": 1,
+      "tick": 24,
+      "state": {
+        "selected": "george",
+        "mode": "final",
+        "tick": 24,
+        "direction": 1,
+        "index": 33
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3z8s-70c7e6ab.png",
+      "localCopy": "george-dir1-tick24.png"
+    },
+    {
+      "fighter": "george",
+      "direction": 1,
+      "tick": 96,
+      "state": {
+        "selected": "george",
+        "mode": "final",
+        "tick": 96,
+        "direction": 1,
+        "index": 105
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3zg6-662873b6.png",
+      "localCopy": "george-dir1-tick96.png"
+    },
+    {
+      "fighter": "george",
+      "direction": -1,
+      "tick": 24,
+      "state": {
+        "selected": "george",
+        "mode": "final",
+        "tick": 24,
+        "direction": -1,
+        "index": 33
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3zog-9568800b.png",
+      "localCopy": "george-dir-1-tick24.png"
+    },
+    {
+      "fighter": "george",
+      "direction": -1,
+      "tick": 96,
+      "state": {
+        "selected": "george",
+        "mode": "final",
+        "tick": 96,
+        "direction": -1,
+        "index": 105
+      },
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw3zva-f7601a4c.png",
+      "localCopy": "george-dir-1-tick96.png"
+    }
+  ],
+  "result": "No DEFINITIVA heading covers a human face in the sampled five finales, in either direction.",
+  "closedOwnTab": true
+}

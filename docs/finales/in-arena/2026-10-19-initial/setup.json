@@ -1,0 +1,27 @@
+{
+  "url": "http://localhost:5184/docs/finales/gallery.html",
+  "tabId": "tab_37_c3cfa641-d7e6-4a79-9606-68ffb03b615c",
+  "capturedAtUtc": "2026-10-19T01:11:23.471038+00:00",
+  "stage": "caracas",
+  "positions": [
+    {
+      "x": 435,
+      "y": 555
+    },
+    {
+      "x": 625,
+      "y": 555
+    }
+  ],
+  "fractions": [
+    0.2,
+    0.55,
+    0.85
+  ],
+  "ownership": "Alternaowner0/1; rival rotativo offset17 para cubrir46afectados.",
+  "sourceHashes": {
+    "src/game/renderer.ts": "19d00863002fff8e6b38c4408ba4a96dc5cfc75fc3ea7c9dd67a6671b70d3cbe",
+    "src/game/finale-renderer.ts": "abd26b2879a2ccc4277de23548e9821775fd15478664dff4eec5f34cb2cb2f35",
+    "scripts/finale-preview-entry.ts": "8209728740d9a561216b63c95c948a3b26e60826dd59a7d098d6d8fb22b52690"
+  }
+}

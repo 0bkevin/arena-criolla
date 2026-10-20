@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-19T23:49:01.998297+00:00",
+  "scope": "Milestone after19 approved characters; final22 suite remains required. Source snapshot covers shared/src/server/tests/package/tsconfig.",
+  "tests": 1120,
+  "passed": 1120,
+  "failed": 0,
+  "durationMs": 84088.653762,
+  "snapshotStable": true,
+  "changedFiles": [],
+  "log": "nineteen-character-full-tests.log"
+}

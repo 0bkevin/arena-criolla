@@ -1,0 +1,1258 @@
+{
+  "purpose": "Extraction/combo-fix equivalence proof against exact pre-extraction controller; no published guide build",
+  "fighters": 52,
+  "movesPerFighter": 4,
+  "verifiedDemos": 208,
+  "allSnapshotsEqual": true,
+  "previousControllerSha256": "197c5fc9eefa858a7557f589d7cc807898446a1ac8ae9900728c7c290adaff90",
+  "rows": [
+    {
+      "fighter": "zavarce",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "984d21f64f0d25f5dd562467b7041caba534fe5ef45e0eae1f5c3c4bd9c10ed1"
+    },
+    {
+      "fighter": "zavarce",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "1ba5097d728649e7c791abf3885e7a58bfe085763c0b2d0c268b61ce0bf3139a"
+    },
+    {
+      "fighter": "zavarce",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "5a10017728d3f0917d81186c09013985c5fcd6dd7798f91394288c54050683e2"
+    },
+    {
+      "fighter": "zavarce",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "58b4a2c8c9a583efce1a9c100ec9f878551d635ebde1b39ea0fe47cf70a4b258"
+    },
+    {
+      "fighter": "vallenilla",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "7e5dbc74061933fb7c836f9b6b96c3b9ed6ba408123b31a4e5b7162357cea391"
+    },
+    {
+      "fighter": "vallenilla",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "cf1abeac253d18d6ae500af40a51a16773b6fad6d471dbc956b88159bbf8b323"
+    },
+    {
+      "fighter": "vallenilla",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "cebbde388a4f4c257349964ae243be09c6de8e899ce418e885aace119dfcdf04"
+    },
+    {
+      "fighter": "vallenilla",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "b0f520e027cf43233e7d45361e3e46d68d0bd261ea03358865b318ac6d414e27"
+    },
+    {
+      "fighter": "javier",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "6ca09caeaacbf2cea92015883a9e4d05435b7af8de00a75e49509f3cabef44e3"
+    },
+    {
+      "fighter": "javier",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "89453f0b5a3f2375b577e83e6bcdeaa5ab7122acf9d212877d182e5193b3c6e9"
+    },
+    {
+      "fighter": "javier",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "a3b81ddd0c0407d921414c322fdba5000d7b3b5bbb9ffdb224919e1985783d41"
+    },
+    {
+      "fighter": "javier",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "8496544f78d535ef4b4ebc0c3afc41687e1c038395d41c58d9643eee1a013bc0"
+    },
+    {
+      "fighter": "capriles",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "7c5b85a61386d26456f554364f9a48d5389b75ad6244cecd1adfaa9d0ea1acdc"
+    },
+    {
+      "fighter": "capriles",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "65a3d952c627b8277db0c18dbbc9717b681e1bdf1f9ce5731f52e695dd441920"
+    },
+    {
+      "fighter": "capriles",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "05f6b9b4c50f94a1a5bd9cfb3f79527b02eb7effbb1bfed76f0e817bb0625cbe"
+    },
+    {
+      "fighter": "capriles",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "e0d50a4e060d57f2240a56334353a76cad582cd69e0260dd482551a8390373d9"
+    },
+    {
+      "fighter": "renny",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "7015f560c8a82850af770aae9ea3373ce4c4cecdb8644e95a590b12c9d348a84"
+    },
+    {
+      "fighter": "renny",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "d303ac821b7613f8df74cfb97bba1241d80f490e50a228f6e7a996c54e60996d"
+    },
+    {
+      "fighter": "renny",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "b836d9d210140860e7aa31d451c36cd51f1573ffef595f49d0c66026c15c43fa"
+    },
+    {
+      "fighter": "renny",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "5701e961032e9c5e564e8f7f08549dce573b53193393ba50db771d2294dbd64f"
+    },
+    {
+      "fighter": "gomez",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "df5b257012a5dffc8949ef302a857e5299037cef358e81b3d4a94ff81be0c81f"
+    },
+    {
+      "fighter": "gomez",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "16e02ecbf167118ac91e98ae6c94b0d63d52ca66f4b34c9a278bb1f45ebd8d0c"
+    },
+    {
+      "fighter": "gomez",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "41f0e14873d96d82b6930fa50532b26c3a53a6613eadcd63e6fe9a4bd864e747"
+    },
+    {
+      "fighter": "gomez",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "b6ac8e252911c5ceb60d20a35afe7092fffaf37be8b00871ed264b17971d91ac"
+    },
+    {
+      "fighter": "simon",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "cff761a4b4a888eb394126c5cd845a64df1ddec2dc408a5e34442ea51e7d0e46"
+    },
+    {
+      "fighter": "simon",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "ea3ab56ebdb782f13fc9ec6e354b391a2333aca4ea22521d8511fae9646011ac"
+    },
+    {
+      "fighter": "simon",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "fb301a37673cce1493bcd34e6a40cf7f7c2d71d217a063643dab9e7ec8f6be61"
+    },
+    {
+      "fighter": "simon",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "bbdf6bb9352422f11ee86853b7db7ce4a95617338412afc2802b8f16999dc056"
+    },
+    {
+      "fighter": "conde",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "51cec12d0a8bbf6bd4b85385165a23c4eca6aabe02dbdb773cfe386f2d4fd610"
+    },
+    {
+      "fighter": "conde",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "dbea41348ea8cd7232d4e99702c26d0a293d35e41ed69da08e38685e0ad1e4d9"
+    },
+    {
+      "fighter": "conde",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "cd2fb8a5d10601eebbf248af967b4a893a8e321e4fdf1bb875793533688a7478"
+    },
+    {
+      "fighter": "conde",
+      "move": "final",
+      "frames": 460,
+      "snapshotsSha256": "6ac53f6612a194a04b716b75368cd0c49310b40b311c43bf83364897fa728419"
+    },
+    {
+      "fighter": "emilio",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "2e86bcf7744d73a732133796b1319f754e4a9a0ee1c9dca32adb1d0050649dcb"
+    },
+    {
+      "fighter": "emilio",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "8e7eb4e26d68cb251743ffdac9645fc994f19aa10b7927c7d98e9f15d34102fe"
+    },
+    {
+      "fighter": "emilio",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "95573c25affcec5661a08b1af80aafc759ef3d372da8b3147094d7cf7edb26d4"
+    },
+    {
+      "fighter": "emilio",
+      "move": "final",
+      "frames": 460,
+      "snapshotsSha256": "ee8b029c3155020f7406de4e375e8b954515b7f9e8b7dc41ba88a03479939cbf"
+    },
+    {
+      "fighter": "maite",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "5a9ce6bcc15e6200268625ea3b9d01a46f8432b57a02809705aa040fd9cddd04"
+    },
+    {
+      "fighter": "maite",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "1355e7536724ab6f65338cb4d443be8a2a3cbbffe346aba25350f544d24f4435"
+    },
+    {
+      "fighter": "maite",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "f8c438e2197b51e0481a9292e89342c7528039eb142b5095e0cc906b1db341ab"
+    },
+    {
+      "fighter": "maite",
+      "move": "final",
+      "frames": 184,
+      "snapshotsSha256": "b0f555b518406992ab6e4e33d7d4b4fbea1b3a72c661262f846b5d9e2b0fadaa"
+    },
+    {
+      "fighter": "oscar",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "131c8a7ebec6577825beab0ec3e37e1184736c3690c2af888311928c00d0ed38"
+    },
+    {
+      "fighter": "oscar",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "3a6e99bd4a368be9b4d6a1ff2eb78709acb0bfe245a21b1fec8e1c864f0f2258"
+    },
+    {
+      "fighter": "oscar",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "5305d17e13e0699334606f2e1a78e82a2852eda975c4d6d4651a94e89dfae1f8"
+    },
+    {
+      "fighter": "oscar",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "d330a3dbf724073949a113421495f88d92ed38202912c0dd2fc9b80c6212df9c"
+    },
+    {
+      "fighter": "puma",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "7884e323b4cd4831a2613d1239fae2f07000a9e032d89988bde6c31a572d7c4a"
+    },
+    {
+      "fighter": "puma",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "20d904a19a17c2cee4a045b0342206a8db50906137e52db316ba57801fcf6957"
+    },
+    {
+      "fighter": "puma",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "00e98e065cf5b2334d328349083d34ad213fd194ffa3dacd9ea12d6aeed1393b"
+    },
+    {
+      "fighter": "puma",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "e8d9b6ffe90ed43d4db49e9ae2afd66d06349d75eb1f933f6507383db92273de"
+    },
+    {
+      "fighter": "chataing",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "49445e8df499e490df43ca321d7218a4649454f026e0b854e5e28a1f47e885ea"
+    },
+    {
+      "fighter": "chataing",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "8345d8ad2a74621985f2179b26c63f4ecdfc4ebfd0860c5de088d2db17e4422d"
+    },
+    {
+      "fighter": "chataing",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "a7b4af35bc96a370f10aea86e2de731684f5f05f66cae67ed3590eec95f165c3"
+    },
+    {
+      "fighter": "chataing",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "b8ef5dff611fbb8fc311867624736ca34c1609d528eef3fcb3d3a557537139de"
+    },
+    {
+      "fighter": "george",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "d69674d0996af3ad8fd72048517b8530ecbe0ce3d8a82e56a950dbecd843ac43"
+    },
+    {
+      "fighter": "george",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "99d63963d8a95636e740b016b6199f2132ffd85aaaf7ebddc032421f265c5132"
+    },
+    {
+      "fighter": "george",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "876eb7ad4ff21824b9ecd4378e11861e60d28ef9c87efd94fb3e791899260ed5"
+    },
+    {
+      "fighter": "george",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "e99d5281aa990ba644110f5b05d990b80dc8d3f9f8c0dec4b243bfa99e4d2bf0"
+    },
+    {
+      "fighter": "mcm",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "0a1f609f28b2625b4331289a2ed0801747c77404d85e13a55715c898fb2f3cd3"
+    },
+    {
+      "fighter": "mcm",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "3b24734b4bcff5a56cf22c376a463d319a745917ff17c920dd8cbe9f2cf3ee3d"
+    },
+    {
+      "fighter": "mcm",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "c06d74e46e716f67805c56deacdeac43383c9a507a6667c3abf014ba22f21259"
+    },
+    {
+      "fighter": "mcm",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "27be9cadc3969c36b255425137ef720ae14819e29909b632f0221e51029fcbea"
+    },
+    {
+      "fighter": "ali",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "035d502027165eb63c1a1b13eca8ae30d798d7585e556983494d9ad1f8ea80fe"
+    },
+    {
+      "fighter": "ali",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "6152a4bec6a34e42ac09fb30baac5860b86ec53fabf814047493192003fecccd"
+    },
+    {
+      "fighter": "ali",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "d8e0f326a0bb8f65d23282628f6d7307503104e204e0210ba458e4907058fb97"
+    },
+    {
+      "fighter": "ali",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "edb58231126945d5c3a11f48c1f67f8ccb24f90f2df7b81e7abfa55ecea55c26"
+    },
+    {
+      "fighter": "gualberto",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "2f2e0c31c4779cc82cb5891106d72d39a0dcc4fe75a8206d4646a47a07daed3b"
+    },
+    {
+      "fighter": "gualberto",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "95cc16a8f49d0527f468d39644e8a3ea419be463397b1afa868748273579efc6"
+    },
+    {
+      "fighter": "gualberto",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "1d32d426f5df400e27003596f9fbe2ba16fab61e0020eedfac7f0f73e5b6fc8f"
+    },
+    {
+      "fighter": "gualberto",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "eda8bccf1430c343aca07f091a9381c72a9121d6b050d091068e5972d4350775"
+    },
+    {
+      "fighter": "reynaldo",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "df3cdf35c4e6605b7e1cdad2ae4e33c1287b9aaa81ecd8ec50702731e59121d2"
+    },
+    {
+      "fighter": "reynaldo",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "38b3003cfb27a347eff4e9a598684528b0571d3f9b31dd03c1bbf9d24b77503b"
+    },
+    {
+      "fighter": "reynaldo",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "751fbedb1ca3bd69cfeda762509a780bc42ca616fa8c55c5bd87e2562651e329"
+    },
+    {
+      "fighter": "reynaldo",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "d281aa0aa6e1a0323ea1e8f08085acc19c18b5c39a8d77886edbc0efb36c931b"
+    },
+    {
+      "fighter": "dudamel",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "e452a9693d438c5cf4b35acd955da79f893f4845ad5676c3e876865b45b79866"
+    },
+    {
+      "fighter": "dudamel",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "e377e9c48f94e2c51881a79689679df1e06ce4d2f73e856e08550e8a8f121e0b"
+    },
+    {
+      "fighter": "dudamel",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "851c145a58c4f0f3d5f283ab1f0556d706c787690cbe43c4e8b5fb4d65465bd4"
+    },
+    {
+      "fighter": "dudamel",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "8089f7ef02b301af9ecefec965bd63a2986000f75a287b8b07ef049164f59e7e"
+    },
+    {
+      "fighter": "danny",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "a5e1d33188893e0812c41ca5464b84f91e8f4a9aba91d7aa63de2c86e396a8ab"
+    },
+    {
+      "fighter": "danny",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "667d0693fb66367faaf97eeca87cc9cd80874aa862870206a695e2a6694109f6"
+    },
+    {
+      "fighter": "danny",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "66d39512eea5a0e3d4b7e185ee1a8bd670de42e83960882254d54d7f8dc0f04a"
+    },
+    {
+      "fighter": "danny",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "744b963b3fbaa928ad92e9073cd28dba5c6a51bf5a4009b7c2094b285ad39c20"
+    },
+    {
+      "fighter": "nacho",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "f7a2c2e137db15922fecbd45cabf5b3e760430d1ed958d62f05074f5bc427a0f"
+    },
+    {
+      "fighter": "nacho",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "51891999c5edab81b5573cbf5e9d1544274c6b70bfc186d8cfd5ae7bfa6e6812"
+    },
+    {
+      "fighter": "nacho",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "bf6f96080036d9e4f99697024e37019d0c1cac66665dfabff59c3930d5b142b0"
+    },
+    {
+      "fighter": "nacho",
+      "move": "final",
+      "frames": 460,
+      "snapshotsSha256": "e3c993faabda36d65f4397e7dce774bd90f714ae23951ac3542106f5d0d0a872"
+    },
+    {
+      "fighter": "sarcos",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "c2549f907074f81a182b7921879bd9d59b4d5a2b0e46c4eaa5580ca484766cad"
+    },
+    {
+      "fighter": "sarcos",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "23ced56722ab0bd86ee512a1b91199fdb3ce0efc33fc84a66c3c23b66b5f33dc"
+    },
+    {
+      "fighter": "sarcos",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "cd3ec2e6c4e7f940278502cfd4bfbd42c08aa4034c09361171fac76059d3102e"
+    },
+    {
+      "fighter": "sarcos",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "ce5cd3f6e8edd0e4a39a0a254b4102d5f0c98ead76641759888876d8b4dc938e"
+    },
+    {
+      "fighter": "yordano",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "fe65aec388697facfe31b1e21ec995169319aefb1b3546a97b21b714012e7b7a"
+    },
+    {
+      "fighter": "yordano",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "3eaba477c555a4e472045867a9776da32e6e571665677b0570c63a828bd5d4e9"
+    },
+    {
+      "fighter": "yordano",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "aa939e609f12956144497a7449a3ef0d0911b01d36bdff29eadcc93953740cee"
+    },
+    {
+      "fighter": "yordano",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "0cd2e8f8fa47258f15d2e855e9943baaaa6c3a2600413df3d88714c5d95a638a"
+    },
+    {
+      "fighter": "lila",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "f070316126db40b503d4ca55521869af0d8d323a21e986e38bc2e11e7ceaf833"
+    },
+    {
+      "fighter": "lila",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "6445134dbfd6e820248861de0d9893121af68c3cdc5c6bbb9ffe946b7b35ed50"
+    },
+    {
+      "fighter": "lila",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "8c7605925c11033049b11995f2b124df70e906f74e988508c357edc69f59b571"
+    },
+    {
+      "fighter": "lila",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "972db4f9117297030acf29268188dc84b5c0c80bf29c0febaee97fb827015fd0"
+    },
+    {
+      "fighter": "rummy",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "3d40b6544b0fbcc7e3679648fd4314c9d1dd2bca3c9d9f9b4f48df3ec96802c1"
+    },
+    {
+      "fighter": "rummy",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "93d902af63cd2fc6ab15639fc0b92601eaf7df83e599a30f9180141be3535093"
+    },
+    {
+      "fighter": "rummy",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "ad11508cf2ce79bca85939fe5554acedce580e0713cd01f2ade72ef800ba3882"
+    },
+    {
+      "fighter": "rummy",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "476ccb3c3bd63b6b8168ac238211cb82a59d8fde246ec64083f18a807805e6f3"
+    },
+    {
+      "fighter": "chiqui",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "d518ad3b921a90a0ab5c7a225956b4616adb1ef56fbc545c01b4bd15f9c70a09"
+    },
+    {
+      "fighter": "chiqui",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "049b7814da8fa369378fdcfe46240e95889fb7931dc6c666be31e438492cfec9"
+    },
+    {
+      "fighter": "chiqui",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "1aa08e2249a911541efbb4404c575ac4771e5b377b3a5723f4b0d30077eda489"
+    },
+    {
+      "fighter": "chiqui",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "214bc0102375654f5cccce7a1f0dce5853f6d450357fbdc96b70c6196f42d454"
+    },
+    {
+      "fighter": "norkys",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "e6e43ea525b377cb527c8915eb357381a14c486fa431f709edd72164ec3b63a6"
+    },
+    {
+      "fighter": "norkys",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "45bfca2283a26845a22e94e489a2424635bd52bf2b4df5bcc6de29b8e1587084"
+    },
+    {
+      "fighter": "norkys",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "cf4614430ae5ed6a112cc25761df8b592210dab07c1f592821b3ccd96c4dcea6"
+    },
+    {
+      "fighter": "norkys",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "5f4d8962978605f7334b4028d9e6bff3c118eac30854679d5149d63fedebc9cd"
+    },
+    {
+      "fighter": "gabriela",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "9c8608511eb40b49d631acaa1702b720c315cd072b95e9bafca4ae273b8b31e6"
+    },
+    {
+      "fighter": "gabriela",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "3b096b93f1eb3e55e6e070feed5fc1ca03429835acbc20e7fdcb407b3a4a15f7"
+    },
+    {
+      "fighter": "gabriela",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "5aa3c3dbdda54fc5868ff2ced4746601d6553e07ffead5d18b1dbbe8466bb19c"
+    },
+    {
+      "fighter": "gabriela",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "767eb45c0cbb8380fcb6f6c67ed3d2df82dc7b1096ae7aa0ffc2430f812bada2"
+    },
+    {
+      "fighter": "amanda",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "462d0df385196371320d33c07b071de6b46f8b3346d9feeec8f5b74219aa29e2"
+    },
+    {
+      "fighter": "amanda",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "0938da7227498dfae1e6a13da105b83472473c7486b5f12108dd5388f9ca5d0f"
+    },
+    {
+      "fighter": "amanda",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "984dae01c753cb2cd177265a2accf4a83525abf0e4341dc19b0cfb4411ef3aa1"
+    },
+    {
+      "fighter": "amanda",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "5673db8ff7806deb39c5f43a231ced61d80e22eb7e88c7fd7de06681d0915d85"
+    },
+    {
+      "fighter": "lele",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "8e9cd9f3a50a7d7aca318901e4c8d0364cd617533be867a63caa29c2f7c3d3c4"
+    },
+    {
+      "fighter": "lele",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "281ee8aef20aa8939218c5381bb0fd717c0c4b609642391a4cf433b163bb3d19"
+    },
+    {
+      "fighter": "lele",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "0aede1f012566027305338efdac9e9d239a4411a7468503e45ade08e765b3c7d"
+    },
+    {
+      "fighter": "lele",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "2d58e0e50bca697ccc785c826ed8bc8d2d900b5f8c1e0b8eb7eadf703e7c2f07"
+    },
+    {
+      "fighter": "giuseppe",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "5b4d3fb1f7ce3b198cba75317a6c4b483719003112dab0d079fb7d6d3e223f40"
+    },
+    {
+      "fighter": "giuseppe",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "05a88f5512be7d5213a806a475d90d71d4e4573de12260382361c5e67ac37e3a"
+    },
+    {
+      "fighter": "giuseppe",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "f340196696985d07e515cf7de55f76265b050dc184275b3f234a41e11c4763bf"
+    },
+    {
+      "fighter": "giuseppe",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "05928d764e2cbb009808c27d6c4f4abd58ff9b615c160daffefa3b7bb636c94b"
+    },
+    {
+      "fighter": "silbon",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "51d070b9c547d7cc456cb1d5d833d3e602af53e072ccc00d2d2b62dd58d0ba72"
+    },
+    {
+      "fighter": "silbon",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "c94c1113ff8a4dc0792f035049fac91064586f7ab921ea679f65c14e9e566b55"
+    },
+    {
+      "fighter": "silbon",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "f43a23c287b6376e36b5e9c1c229b8ea696c329fec568b534b22344d2561a220"
+    },
+    {
+      "fighter": "silbon",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "f888cde69209c0270a1cd57cc12a1abc16b2da6128fd332dc02a57ddcf8a2fa5"
+    },
+    {
+      "fighter": "llorona",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "4893561fdf35d0495dc0283ca7bc5fd94cd7fca1201569f059647c9901650113"
+    },
+    {
+      "fighter": "llorona",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "b2ec0fe47956dcc98a20d483d5f07778a59f91fa7ca2217d06c72f5b9ff53516"
+    },
+    {
+      "fighter": "llorona",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "d8c5b8813d7c0131ca6ac4de52e409d3c5991e153e170b248ae487cabc8943e1"
+    },
+    {
+      "fighter": "llorona",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "e28e8917c9324f9ba48877bf2cf2777b8d68b5064d7e25f80078549295ad34af"
+    },
+    {
+      "fighter": "sayona",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "e0ef25ad2d37c8825b28dfc2b0f21bd36cca96e228fbcff89c29c4eab2c32fc5"
+    },
+    {
+      "fighter": "sayona",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "be4b63b511f54560b8ee048893c870025cfc8be92fd1a466795837f236aac230"
+    },
+    {
+      "fighter": "sayona",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "dfea4428ff31a37665378706db4e4b1db1dbd1e1cb3865bed049e0d60d19a10f"
+    },
+    {
+      "fighter": "sayona",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "41b46ee1249b163732ffa6c900cc89a418c7bfba7b111e3b65f9e8eeb937dee8"
+    },
+    {
+      "fighter": "lionza",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "f8cc843a44ac9e0a17b839c2d4a6c0430f143ba2c6821f1b10c2f4f9f6b4eb0b"
+    },
+    {
+      "fighter": "lionza",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "93afab067e52b394d8d657e420e98494b5143e9732821b6bd5c08b89065222d7"
+    },
+    {
+      "fighter": "lionza",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "7c3925a3381009cc6ad38c2a744d15069116a136d2efc8d6fa6d80f08ad69208"
+    },
+    {
+      "fighter": "lionza",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "7b3c62d14b12a87fcb400a6b45ddd3fb7176c130530ef64a1a417a3694bf8705"
+    },
+    {
+      "fighter": "florentino",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "fe3fda07461c980ea79bd6e11f61c6ee90055adc74d53be09ffbaae9a531df67"
+    },
+    {
+      "fighter": "florentino",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "3e876dfe43aeb457615231f822b20689b6531aa004d08907aa480428b7a7cd77"
+    },
+    {
+      "fighter": "florentino",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "1727c82ab335d1601750a9c8e0af6856c0f34ebf5a63ea2f7796053d988800ff"
+    },
+    {
+      "fighter": "florentino",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "a082c3ee44a056e86b377dc58b703355fa5db5b466c69d9c0da317883b5ac7bb"
+    },
+    {
+      "fighter": "diablo",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "7d233daa63a171ee5d284823cab22313a2906703b1b27a83e40b8ed598a80307"
+    },
+    {
+      "fighter": "diablo",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "254352cc5d6b9cf794270eb956ddf8875f529f9343871af5459faa664ebf3211"
+    },
+    {
+      "fighter": "diablo",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "f33d1cff9c3d5bbc6428dc4747faaa84f287734a2dd8fdf68c0b56b8104b5d01"
+    },
+    {
+      "fighter": "diablo",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "5c1230d4a02d4ff63de8e29fafd0434220bf506b5f549d5f41fc142c162030ce"
+    },
+    {
+      "fighter": "knoche",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "ceebfcec8c83eaa5acb97614a42f9d462c3bfda9994df35546f1af2558a2f784"
+    },
+    {
+      "fighter": "knoche",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "1a0327625d572f2f5b1c82b0132047cbc2566d8ef4cc25f07b79343b0cfecc87"
+    },
+    {
+      "fighter": "knoche",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "52c3404ded5389a469764d8be7b5bcf06e5f0ebacadc953d0020719e32e40f5b"
+    },
+    {
+      "fighter": "knoche",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "baf11d43adb5b7e00f85e19524cb92b232e9f739babcf5f4663e11b5f3577f21"
+    },
+    {
+      "fighter": "momoy",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "db4c197c3e8b5fd5bd23da0f06b162447b38a28c45b345f39df39ea8cab4c00f"
+    },
+    {
+      "fighter": "momoy",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "a47bc2fd9182743e0a405a6fa7accb9be54fd9d803c86f7bef8520effaa67b52"
+    },
+    {
+      "fighter": "momoy",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "833851a72f620567d86fd8ee7903ab11b90b362f7d8475ac3595ca2b49ab3d39"
+    },
+    {
+      "fighter": "momoy",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "c3677bd2c90236ce756a9c31160705d8149f084919d7931fc88019b5f474f761"
+    },
+    {
+      "fighter": "tiotigre",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "7d7aac62584ee7704a73ffe79ace6e0407fdff53cb3624c0d785ee6227e337d4"
+    },
+    {
+      "fighter": "tiotigre",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "91d829525311a4e0a184bd5271d12975013441eaff3d945cbd1b84e952b714cf"
+    },
+    {
+      "fighter": "tiotigre",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "38ca52fb2ea824f62675f8695e3de07b5276e204456c0c01f057e3a4fc7aedf9"
+    },
+    {
+      "fighter": "tiotigre",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "f168ff0017bcc72d04714cadebd2d3dc4249b4f07c6958dce2c3526e0dcc1bd0"
+    },
+    {
+      "fighter": "tioconejo",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "327883daec2d75efe16f470962b5fcd82e71eeae0f80a773dc9287835dc85151"
+    },
+    {
+      "fighter": "tioconejo",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "7f8b4cc44f02f4625b743596e66324470934648e796a61826a8f215cc40e5b4f"
+    },
+    {
+      "fighter": "tioconejo",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "91fe9be818cc3e57703247889409e155a1678e95e6cbb5ec4d32890cbf93e514"
+    },
+    {
+      "fighter": "tioconejo",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "7a24ba11eb2ef96d735f1e4b61716e74d0367212ac0d73830c9f3ade574c4c30"
+    },
+    {
+      "fighter": "enrique",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "01a26548edcdfd3c74b78545bf21bae51468a63d817afc61490c32c7563a04c3"
+    },
+    {
+      "fighter": "enrique",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "e7c240da674d1ca9f039cb02248eb916866ce253b1607720b39684b2494e01d3"
+    },
+    {
+      "fighter": "enrique",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "20246497072aea4a5de861a55d1179c37287f5a1e33182ddef0f5931c9537bb1"
+    },
+    {
+      "fighter": "enrique",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "5025e4eeb95eeb15f5c5e0b9f1ef41d0127ac31099c50cf88654d2ab8279022b"
+    },
+    {
+      "fighter": "jesus",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "37b5dbbf6249a29f5b5d68e3b5d4cddac73f1a12b19a600c8ef7dab1c615e153"
+    },
+    {
+      "fighter": "jesus",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "cd4c6653771cf45b5387ff6a3746593dafe5d65d6addd25f6d0b8fcae4d0946e"
+    },
+    {
+      "fighter": "jesus",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "f5cc99e8d6892cb3fc67588f7a1c1d3b3b1c95645fd8dd513a3380867a44ae31"
+    },
+    {
+      "fighter": "jesus",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "af58ff654add21cf7575a65d1e3f1a053f401d6e18ed2b8d2763865dfbaa3352"
+    },
+    {
+      "fighter": "carlos",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "239b2237bf671bc54bf2e6f203bcafa22377cb496fe2cc33817ee210f23e2e1d"
+    },
+    {
+      "fighter": "carlos",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "8556a870c3621129a25ee6c0a66dec329eafb7d3e05464accecbafadd3efadbf"
+    },
+    {
+      "fighter": "carlos",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "93002a60e87c82c8b3a8d660725db18682e1537f88d4bb1a610f960ac4342412"
+    },
+    {
+      "fighter": "carlos",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "71e0f43fdc3f46764e9fd8ab0bc80edd0ef2d190357f7b80d4b4dc40983a0523"
+    },
+    {
+      "fighter": "victor",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "bc73b6a95672d4c89de69092c074865583be4ff541b873a3db837939055e53c8"
+    },
+    {
+      "fighter": "victor",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "89553649345e8e7a5f4a10929e81d080c34a1b02fb4ba07fbc76c76a0dc7d129"
+    },
+    {
+      "fighter": "victor",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "068338f33f3d3490f42a6095036c0e3a2322c71107e40cc4989b738f5014f8a5"
+    },
+    {
+      "fighter": "victor",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "1b5a17637522e3edcc8048f3f44e409ce509d2d8ff01e246894341208a5b5fa4"
+    },
+    {
+      "fighter": "juan",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "3c3191f5f0dff08d4e6ba884bf925bcfa1169594ad02d4f7ce717a11b8ea120e"
+    },
+    {
+      "fighter": "juan",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "bbf1fa4af6b46e196497b9c487265d1ee3553628e8ee434d1745df890ec10e01"
+    },
+    {
+      "fighter": "juan",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "39da3ff22eedffe677bf1a51c996db52ea75d477593d125126b8e61b3546d651"
+    },
+    {
+      "fighter": "juan",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "5a60f3c78917fa05ce25e90d3a57615f44a737ff9c89f1b4274b8a90219eaadf"
+    },
+    {
+      "fighter": "lorenzo",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "a3c50d3fa83fe320caf6b95a9c292997c8a183eb505e3e8178aeea3d948839b6"
+    },
+    {
+      "fighter": "lorenzo",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "378734ea7f4b1cf67a3784d53fa3972df9f09601c33f3ff8c479c4935c6840da"
+    },
+    {
+      "fighter": "lorenzo",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "752d9db8b961cf06db780e8ad0a5a5e06f371ff79dc60dc7daf574ee1d4a60cb"
+    },
+    {
+      "fighter": "lorenzo",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "b265357e4eeda6b36ebeb6959a3cb4c22fe3000b3f58cc0817fbe19632f3ca1c"
+    },
+    {
+      "fighter": "carolina",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "8776871e529af56368959a4b437f3f438ab20d1cf9af69300807453554397a15"
+    },
+    {
+      "fighter": "carolina",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "22115f3d6d22abf85164e4013127fdae8278ec819475cdd173cc9d61274f9a70"
+    },
+    {
+      "fighter": "carolina",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "12e33148843178f95367006bee533173211ea4fceb323f5ae28a0cafe1d7c770"
+    },
+    {
+      "fighter": "carolina",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "f410924428ac1aac3b2ec2a2f3e0d4ec35fde1666905598417f88f6b4fbef53e"
+    },
+    {
+      "fighter": "dayana",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "a20749cc641b14120724ad781befdea6595e5f13362f90c746194843c36e7d6d"
+    },
+    {
+      "fighter": "dayana",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "4a824a6366a4a68a669116fc6a181462b4dc6008d8a7b82ce4bb1169a4fe2e38"
+    },
+    {
+      "fighter": "dayana",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "4810d59fc604ba29555c47cf954ed236cdaa5e7965fa725faf897dbdaef795a7"
+    },
+    {
+      "fighter": "dayana",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "e530853a24956faebb0777d54cc0b22d29a175d681b9f423e3bf931a54954d24"
+    },
+    {
+      "fighter": "bolivar",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "5699eeb849ab2d1568396b34fa3c34a82d8ebe9e8ed5dfd5e1eddaf8ce460c1e"
+    },
+    {
+      "fighter": "bolivar",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "45458a707a1057098b50f670d19fdaae1e526a61c69199dca17f7e6dd8cd6967"
+    },
+    {
+      "fighter": "bolivar",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "8eb8aa3e89a517df89b21d529d730695ccbd55e4d234ec4efaf7ea8df5108fc3"
+    },
+    {
+      "fighter": "bolivar",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "ae5eefa40103dd62566c8c1effe60c9fadbf12ab44135caaa365139712f6d05d"
+    },
+    {
+      "fighter": "edgar",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "55ddb1d2ba272fec41c445954369beaa54f2e3fd60dbc5d5097116bd72e12b0b"
+    },
+    {
+      "fighter": "edgar",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "808b1e3edbe286f7729925a9401ab78b34cd19b3edf1c46e4610193971b32b49"
+    },
+    {
+      "fighter": "edgar",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "24aeacb8210382dd719356b6f75c67e64422d9c834d52f450d84ddc6734f8b49"
+    },
+    {
+      "fighter": "edgar",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "1be212388b4c31638c6154ba05ad730cb2059ca31110320bd9070bc64194d608"
+    },
+    {
+      "fighter": "melanio",
+      "move": "light",
+      "frames": 78,
+      "snapshotsSha256": "470e95e2ee8c9927cc0b2b5662f11473c074eeffa827d74f2d7ba8a0ccbaac68"
+    },
+    {
+      "fighter": "melanio",
+      "move": "heavy",
+      "frames": 90,
+      "snapshotsSha256": "cd1685a3e68043f7d01c616349bdb4b7e08fd116cbc198eb28ad4fdaf1bbe802"
+    },
+    {
+      "fighter": "melanio",
+      "move": "special",
+      "frames": 180,
+      "snapshotsSha256": "ad0a46f486903e7ba109f4e81452243b275b2dfd7632438caf2fff411b03d574"
+    },
+    {
+      "fighter": "melanio",
+      "move": "final",
+      "frames": 280,
+      "snapshotsSha256": "f1c3425ad3d63b7aaee54942c2dc28b32211d0434ba2e138783a8bac2868f41e"
+    }
+  ]
+}

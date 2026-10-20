@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "transformationSocket": true,
+  "capturedBuffPause": true,
+  "reconnectDuringCapture": true,
+  "lethalDelaySocket": true,
+  "stockCleanup": true,
+  "rangedSuperSocket": true,
+  "rangedReplay": true,
+  "frozenTicks": 350,
+  "flightDelay": 88,
+  "shot": {
+    "id": 0,
+    "owner": 0,
+    "direction": 1,
+    "x": 362,
+    "y": 400,
+    "vx": 12,
+    "life": 53,
+    "age": 2,
+    "kind": "sonic",
+    "impact": "super",
+    "radius": 21.4,
+    "growth": 0.7,
+    "maxRadius": 52,
+    "force": 12,
+    "damage": 38.32
+  }
+}

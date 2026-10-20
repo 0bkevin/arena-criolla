@@ -1,0 +1,106 @@
+{
+  "file": "capriles-en-arena-2026-10-19.mp4",
+  "recordedDate": "2026-10-19",
+  "durationSeconds": 7.695367,
+  "cssViewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "nativeResolution": {
+    "width": 2560,
+    "height": 1600
+  },
+  "audioTracks": 0,
+  "source": {
+    "url": "http://localhost:5183/",
+    "tab": "tab_35_c3cfa641-d7e6-4a79-9606-68ffb03b615c",
+    "recorder": "Native T3 preview_recording_start / preview_recording_stop",
+    "game": "Actual Game component in local mode, internal stepMatch loop"
+  },
+  "fixture": {
+    "stage": "caracas",
+    "fighters": [
+      "capriles",
+      "nacho"
+    ],
+    "wins": [
+      3,
+      3
+    ],
+    "initialEnergy": [
+      100,
+      100
+    ],
+    "initialX": [
+      450,
+      625
+    ],
+    "finaleStateAssigned": false,
+    "productFilesChangedForFixture": false
+  },
+  "activation": {
+    "code": "KeyI",
+    "nativeTrusted": false,
+    "inputMethod": "Synthetic KeyboardEvent dispatched through actual Game window listeners, on the ordinary control mapping; no scene state assigned.",
+    "elapsedFromRecordingMarkMs": 3010,
+    "priorHit": "Synthetic KeyJ successful light attack through actual Game listener",
+    "preCombatSeconds": 3,
+    "postCombatSeconds": 1
+  },
+  "observed": {
+    "activeSamples": 72,
+    "firstTick": 8,
+    "lastTick": 179,
+    "cameras": [
+      {
+        "x": 638.9713684571553,
+        "zoom": 1.44
+      }
+    ],
+    "canvases": [
+      {
+        "left": 28,
+        "top": 64,
+        "width": 1224,
+        "height": 680
+      }
+    ],
+    "buffers": [
+      [
+        1440,
+        800
+      ]
+    ],
+    "huds": [
+      {
+        "left": 53,
+        "top": 86,
+        "width": 1174,
+        "height": 62.5
+      }
+    ],
+    "combatTicks": [
+      249
+    ],
+    "combatTimer": [
+      5148
+    ],
+    "targetHp": [
+      93.7168,
+      81.2592,
+      68.80160000000001,
+      56.34400000000001
+    ],
+    "playerRects": [],
+    "playingTubeVolumes": [],
+    "returnToCombat": true
+  },
+  "verification": {
+    "reviewedVideoFrames": true,
+    "contactSheet": "capriles-en-arena-2026-10-19-contact.webp",
+    "normalArenaVisible": true,
+    "normalHudVisible": true,
+    "normalImpactBurstsHiddenDuringFinale": true,
+    "audio": "Native recorder has no audio track; no music or audio was added."
+  }
+}

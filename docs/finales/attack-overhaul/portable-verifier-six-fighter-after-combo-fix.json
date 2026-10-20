@@ -1,0 +1,3012 @@
+{
+  "schema": 1,
+  "kind": "Portable compressed-media end-to-end verification; not the raw draw/pruning audit",
+  "artifact": {
+    "label": "Temporary six-fighter frozen current bundle after generic combo fix; not final312 verification",
+    "url": "http://localhost:5193/docs/finales/attack-overhaul/.portable-verifier-smoke.html",
+    "fighters": [
+      "javier",
+      "capriles",
+      "conde",
+      "emilio",
+      "maite",
+      "nacho"
+    ],
+    "moves": [
+      "light",
+      "heavy",
+      "combo1",
+      "combo2",
+      "special",
+      "final"
+    ],
+    "embeddedImageIds": 31,
+    "uniqueImagePayloads": 30,
+    "embeddedScriptsSha256": "225764ad46b2d402b9a251930814c8bc7eb60a01649855cccaecc38b4cac79c4",
+    "imageMapSha256": "001e2231ee950e1b823e6971c2787ca1d2dcf2d756543d69742bc7916f2149f3",
+    "fontsLoaded": true
+  },
+  "complete": true,
+  "passed": true,
+  "summary": {
+    "started": true,
+    "complete": true,
+    "demos": 36,
+    "total": 36,
+    "failedDemos": 0,
+    "frames": 5994,
+    "current": null,
+    "fatalErrors": [],
+    "pendingImages": 0,
+    "newlyDecodedImageGroups": 14,
+    "networkAttempts": 0,
+    "allMovesActivated": true,
+    "allDemonstrationsConnect": true,
+    "allMovesHaveExplanation": true,
+    "everyTimelineFrameRendered": true
+  },
+  "errors": [],
+  "networkAttempts": [],
+  "rows": [
+    {
+      "fighter": "javier",
+      "move": "light",
+      "rival": "capriles",
+      "title": "Golpe ligero",
+      "frames": 78,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 93.0742,
+      "finalHp": 93.0742,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 6.925799999999995,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Golpe ligero",
+        "effect": "Ataque corto y rápido. Hace menos daño que el fuerte y permite preparar una cadena de golpes.",
+        "visual": "El personaje pasa brevemente por guardia y extiende el puño. Un arco claro marca el golpe.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "J"
+      },
+      "missingText": false,
+      "renderedFrames": 78,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 77,
+      "contiguous": true
+    },
+    {
+      "fighter": "javier",
+      "move": "heavy",
+      "rival": "capriles",
+      "title": "Golpe fuerte",
+      "frames": 90,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 87.1378,
+      "finalHp": 87.1378,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 11,
+          "kind": "heavy",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 12.862200000000001,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 11,
+          "kind": "heavy",
+          "id": 0
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Golpe fuerte",
+        "effect": "Ataque más lento, con mayor alcance, daño y empuje que el ligero.",
+        "visual": "El personaje prepara y extiende una patada. Un arco dorado más ancho acompaña el impacto.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "K"
+      },
+      "missingText": false,
+      "renderedFrames": 90,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 89,
+      "contiguous": true
+    },
+    {
+      "fighter": "javier",
+      "move": "combo1",
+      "rival": "capriles",
+      "title": "Finta de ceja",
+      "frames": 132,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 77.152,
+      "finalHp": 77.152,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        },
+        {
+          "frame": 45,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 6.925799999999995,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        },
+        {
+          "frame": 55,
+          "kind": "heavy",
+          "hitId": 1,
+          "attackStartFrame": 45,
+          "damage": 15.922200000000004,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        },
+        {
+          "frame": 55,
+          "kind": "heavy",
+          "id": 1
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Finta de ceja",
+        "effect": "Encadena un ligero y un fuerte. La secuencia añade 3 de daño al remate antes de aplicar la armadura rival. Deja acabar cada golpe y completa la secuencia en 2,5 segundos.",
+        "visual": "Una extensión del puño seguida de una patada; el rótulo del combo aparece al iniciar el remate.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "J → K"
+      },
+      "missingText": false,
+      "renderedFrames": 132,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 131,
+      "contiguous": true
+    },
+    {
+      "fighter": "javier",
+      "move": "combo2",
+      "rival": "capriles",
+      "title": "Réplica al instante",
+      "frames": 165,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 66.14620000000001,
+      "finalHp": 66.14620000000001,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        },
+        {
+          "frame": 45,
+          "kind": "light"
+        },
+        {
+          "frame": 89,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 6.925799999999995,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        },
+        {
+          "frame": 50,
+          "kind": "light",
+          "hitId": 1,
+          "attackStartFrame": 45,
+          "damage": 6.925799999999995,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,light",
+          "attackTick": 6
+        },
+        {
+          "frame": 99,
+          "kind": "heavy",
+          "hitId": 2,
+          "attackStartFrame": 89,
+          "damage": 20.002200000000002,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,light,heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        },
+        {
+          "frame": 50,
+          "kind": "light",
+          "id": 1
+        },
+        {
+          "frame": 99,
+          "kind": "heavy",
+          "id": 2
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Réplica al instante",
+        "effect": "Encadena dos ligeros y un fuerte. La secuencia añade 7 de daño al remate antes de aplicar la armadura rival. Deja acabar cada golpe y completa la secuencia en 2,5 segundos.",
+        "visual": "Dos extensiones del puño seguidas de una patada; aparece el rótulo del combo al iniciar el remate.",
+        "requirement": "Se desbloquea con 1 victoria · sin coste de energía",
+        "keys": "J → J → K"
+      },
+      "missingText": false,
+      "renderedFrames": 165,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 164,
+      "contiguous": true
+    },
+    {
+      "fighter": "javier",
+      "move": "special",
+      "rival": "capriles",
+      "title": "Reacción maracucha",
+      "frames": 180,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 84.1696,
+      "finalHp": 84.1696,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "special"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 9,
+          "kind": "special",
+          "hitId": 2,
+          "attackStartFrame": 1,
+          "damage": 15.830399999999997,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "special",
+          "attackTick": 9
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 9,
+          "kind": "special",
+          "id": 2
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Reacción maracucha",
+        "effect": "Se eleva con un ataque circular que alcanza a los dos lados.",
+        "visual": "Javier pasa de guardia a una pose elevada y una patada, rodeado por un arco de giro.",
+        "requirement": "25 de energía",
+        "keys": "L"
+      },
+      "missingText": false,
+      "renderedFrames": 180,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 179,
+      "contiguous": true
+    },
+    {
+      "fighter": "javier",
+      "move": "final",
+      "rival": "capriles",
+      "title": "Regaño de campeonato",
+      "frames": 280,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 60.0568,
+      "finalHp": 100,
+      "initialStocks": 2,
+      "minStocks": 1,
+      "finalStocks": 1,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "super"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 51,
+          "kind": "super",
+          "hitId": 1,
+          "attackStartFrame": 1,
+          "damage": 13.314400000000006,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "super",
+          "attackTick": 9
+        },
+        {
+          "frame": 99,
+          "kind": "super",
+          "hitId": 2,
+          "attackStartFrame": 1,
+          "damage": 13.314399999999992,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "super",
+          "attackTick": 9
+        },
+        {
+          "frame": 147,
+          "kind": "super",
+          "hitId": 3,
+          "attackStartFrame": 1,
+          "damage": 13.3144,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "super",
+          "attackTick": 9
+        }
+      ],
+      "stockEvents": [
+        {
+          "frame": 226,
+          "lost": 1,
+          "hpBefore": 60.0568,
+          "hpAfter": 100
+        }
+      ],
+      "hitEvents": [
+        {
+          "frame": 51,
+          "kind": "super",
+          "id": 1
+        },
+        {
+          "frame": 99,
+          "kind": "super",
+          "id": 2
+        },
+        {
+          "frame": 147,
+          "kind": "super",
+          "id": 3
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": true,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Regaño de campeonato",
+        "effect": "Captura a un rival cercano y le quita vida en 3 impactos. Antes del contacto se puede evitar alejándose o bloqueando. Durante la definitiva se pausan el reloj y el resto del combate.",
+        "visual": "Javier adopta su personaje de comedia con una camiseta negra sobre la cabeza, top rojo y tres regaños: dedo levantado, manos en la cintura y señalamiento final. Cada gesto quita vida al rival, que reacciona en su posición original; al terminar vuelve al combate normal.",
+        "requirement": "3 victorias · 75 de energía · 3 segundos",
+        "keys": "I"
+      },
+      "missingText": false,
+      "renderedFrames": 280,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 279,
+      "contiguous": true
+    },
+    {
+      "fighter": "capriles",
+      "move": "light",
+      "rival": "nacho",
+      "title": "Golpe ligero",
+      "frames": 78,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 93.7168,
+      "finalHp": 93.7168,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 6.283199999999994,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Golpe ligero",
+        "effect": "Ataque corto y rápido. Hace menos daño que el fuerte y permite preparar una cadena de golpes.",
+        "visual": "El personaje pasa brevemente por guardia y extiende el puño. Un arco claro marca el golpe.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "J"
+      },
+      "missingText": false,
+      "renderedFrames": 78,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 77,
+      "contiguous": true
+    },
+    {
+      "fighter": "capriles",
+      "move": "heavy",
+      "rival": "nacho",
+      "title": "Golpe fuerte",
+      "frames": 90,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 88.3312,
+      "finalHp": 88.3312,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 11,
+          "kind": "heavy",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 11.668800000000005,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 11,
+          "kind": "heavy",
+          "id": 0
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Golpe fuerte",
+        "effect": "Ataque más lento, con mayor alcance, daño y empuje que el ligero.",
+        "visual": "El personaje prepara y extiende una patada. Un arco dorado más ancho acompaña el impacto.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "K"
+      },
+      "missingText": false,
+      "renderedFrames": 90,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 89,
+      "contiguous": true
+    },
+    {
+      "fighter": "capriles",
+      "move": "combo1",
+      "rival": "nacho",
+      "title": "¡Qué manguangua, ah!",
+      "frames": 132,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 78.988,
+      "finalHp": 78.988,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        },
+        {
+          "frame": 42,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 6.283199999999994,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        },
+        {
+          "frame": 52,
+          "kind": "heavy",
+          "hitId": 1,
+          "attackStartFrame": 42,
+          "damage": 14.728800000000007,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        },
+        {
+          "frame": 52,
+          "kind": "heavy",
+          "id": 1
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "¡Qué manguangua, ah!",
+        "effect": "Encadena un ligero y un fuerte. La secuencia añade 3 de daño al remate antes de aplicar la armadura rival. Deja acabar cada golpe y completa la secuencia en 2,5 segundos.",
+        "visual": "Una extensión del puño seguida de una patada; el rótulo del combo aparece al iniciar el remate.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "J → K"
+      },
+      "missingText": false,
+      "renderedFrames": 132,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 131,
+      "contiguous": true
+    },
+    {
+      "fighter": "capriles",
+      "move": "combo2",
+      "rival": "nacho",
+      "title": "Hay un camino",
+      "frames": 165,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 68.62480000000002,
+      "finalHp": 68.62480000000002,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        },
+        {
+          "frame": 42,
+          "kind": "light"
+        },
+        {
+          "frame": 83,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 6.283199999999994,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        },
+        {
+          "frame": 47,
+          "kind": "light",
+          "hitId": 1,
+          "attackStartFrame": 42,
+          "damage": 6.283199999999994,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,light",
+          "attackTick": 6
+        },
+        {
+          "frame": 93,
+          "kind": "heavy",
+          "hitId": 2,
+          "attackStartFrame": 83,
+          "damage": 18.80879999999999,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,light,heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        },
+        {
+          "frame": 47,
+          "kind": "light",
+          "id": 1
+        },
+        {
+          "frame": 93,
+          "kind": "heavy",
+          "id": 2
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Hay un camino",
+        "effect": "Encadena dos ligeros y un fuerte. La secuencia añade 7 de daño al remate antes de aplicar la armadura rival. Deja acabar cada golpe y completa la secuencia en 2,5 segundos.",
+        "visual": "Dos extensiones del puño seguidas de una patada; aparece el rótulo del combo al iniciar el remate.",
+        "requirement": "Se desbloquea con 1 victoria · sin coste de energía",
+        "keys": "J → J → K"
+      },
+      "missingText": false,
+      "renderedFrames": 165,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 164,
+      "contiguous": true
+    },
+    {
+      "fighter": "capriles",
+      "move": "special",
+      "rival": "nacho",
+      "title": "Sprint tricolor",
+      "frames": 180,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 85.6384,
+      "finalHp": 85.6384,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "special"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 10,
+          "kind": "special",
+          "hitId": 3,
+          "attackStartFrame": 1,
+          "damage": 14.361599999999996,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "special",
+          "attackTick": 10
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 10,
+          "kind": "special",
+          "id": 3
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Sprint tricolor",
+        "effect": "Avanza rápidamente y golpea al rival que encuentre en su recorrido.",
+        "visual": "Capriles alterna poses de carrera y deja copias de movimiento detrás de él.",
+        "requirement": "25 de energía",
+        "keys": "L"
+      },
+      "missingText": false,
+      "renderedFrames": 180,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 179,
+      "contiguous": true
+    },
+    {
+      "fighter": "capriles",
+      "move": "final",
+      "rival": "nacho",
+      "title": "Cafecito interminable",
+      "frames": 280,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 62.6272,
+      "finalHp": 100,
+      "initialStocks": 2,
+      "minStocks": 1,
+      "finalStocks": 1,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "super"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 51,
+          "kind": "super",
+          "hitId": 1,
+          "attackStartFrame": 1,
+          "damage": 12.4576,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "super",
+          "attackTick": 9
+        },
+        {
+          "frame": 99,
+          "kind": "super",
+          "hitId": 2,
+          "attackStartFrame": 1,
+          "damage": 12.4576,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "super",
+          "attackTick": 9
+        },
+        {
+          "frame": 147,
+          "kind": "super",
+          "hitId": 3,
+          "attackStartFrame": 1,
+          "damage": 12.4576,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "super",
+          "attackTick": 9
+        }
+      ],
+      "stockEvents": [
+        {
+          "frame": 227,
+          "lost": 1,
+          "hpBefore": 62.6272,
+          "hpAfter": 100
+        }
+      ],
+      "hitEvents": [
+        {
+          "frame": 51,
+          "kind": "super",
+          "id": 1
+        },
+        {
+          "frame": 99,
+          "kind": "super",
+          "id": 2
+        },
+        {
+          "frame": 147,
+          "kind": "super",
+          "id": 3
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": true,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Cafecito interminable",
+        "effect": "Captura a un rival cercano y le quita vida en 3 impactos. Antes del contacto se puede evitar alejándose o bloqueando. Durante la definitiva se pausan el reloj y el resto del combate.",
+        "visual": "Una mesa y dos sillas aparecen en la misma arena. Ambos se sientan; Capriles bebe café y abre con «¡Qué manguangua!». Después dice «Maduro tiene la leche acaparada y yo se la voy a sacar de donde sea» en dos bocadillos consecutivos, mientras baja la vida rival.",
+        "requirement": "3 victorias · 75 de energía · 3 segundos",
+        "keys": "I"
+      },
+      "missingText": false,
+      "renderedFrames": 280,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 279,
+      "contiguous": true
+    },
+    {
+      "fighter": "conde",
+      "move": "light",
+      "rival": "capriles",
+      "title": "Golpe ligero",
+      "frames": 78,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 92.146,
+      "finalHp": 92.146,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 7.853999999999999,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Golpe ligero",
+        "effect": "Ataque corto y rápido. Hace menos daño que el fuerte y permite preparar una cadena de golpes.",
+        "visual": "El personaje pasa brevemente por guardia y extiende el puño. Un arco claro marca el golpe.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "J"
+      },
+      "missingText": false,
+      "renderedFrames": 78,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 77,
+      "contiguous": true
+    },
+    {
+      "fighter": "conde",
+      "move": "heavy",
+      "rival": "capriles",
+      "title": "Golpe fuerte",
+      "frames": 90,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 85.414,
+      "finalHp": 85.414,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 11,
+          "kind": "heavy",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 14.585999999999999,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 11,
+          "kind": "heavy",
+          "id": 0
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Golpe fuerte",
+        "effect": "Ataque más lento, con mayor alcance, daño y empuje que el ligero.",
+        "visual": "El personaje prepara y extiende una patada. Un arco dorado más ancho acompaña el impacto.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "K"
+      },
+      "missingText": false,
+      "renderedFrames": 90,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 89,
+      "contiguous": true
+    },
+    {
+      "fighter": "conde",
+      "move": "combo1",
+      "rival": "capriles",
+      "title": "Chiste corto",
+      "frames": 132,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 74.5,
+      "finalHp": 74.5,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        },
+        {
+          "frame": 49,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 7.853999999999999,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        },
+        {
+          "frame": 59,
+          "kind": "heavy",
+          "hitId": 1,
+          "attackStartFrame": 49,
+          "damage": 17.646,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        },
+        {
+          "frame": 59,
+          "kind": "heavy",
+          "id": 1
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Chiste corto",
+        "effect": "Encadena un ligero y un fuerte. La secuencia añade 3 de daño al remate antes de aplicar la armadura rival. Deja acabar cada golpe y completa la secuencia en 2,5 segundos.",
+        "visual": "Una extensión del puño seguida de una patada; el rótulo del combo aparece al iniciar el remate.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "J → K"
+      },
+      "missingText": false,
+      "renderedFrames": 132,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 131,
+      "contiguous": true
+    },
+    {
+      "fighter": "conde",
+      "move": "combo2",
+      "rival": "capriles",
+      "title": "Doble remate",
+      "frames": 165,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 62.566,
+      "finalHp": 62.566,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        },
+        {
+          "frame": 49,
+          "kind": "light"
+        },
+        {
+          "frame": 95,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 7.853999999999999,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        },
+        {
+          "frame": 54,
+          "kind": "light",
+          "hitId": 1,
+          "attackStartFrame": 49,
+          "damage": 7.853999999999999,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,light",
+          "attackTick": 6
+        },
+        {
+          "frame": 105,
+          "kind": "heavy",
+          "hitId": 2,
+          "attackStartFrame": 95,
+          "damage": 21.726,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,light,heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        },
+        {
+          "frame": 54,
+          "kind": "light",
+          "id": 1
+        },
+        {
+          "frame": 105,
+          "kind": "heavy",
+          "id": 2
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Doble remate",
+        "effect": "Encadena dos ligeros y un fuerte. La secuencia añade 7 de daño al remate antes de aplicar la armadura rival. Deja acabar cada golpe y completa la secuencia en 2,5 segundos.",
+        "visual": "Dos extensiones del puño seguidas de una patada; aparece el rótulo del combo al iniciar el remate.",
+        "requirement": "Se desbloquea con 1 victoria · sin coste de energía",
+        "keys": "J → J → K"
+      },
+      "missingText": false,
+      "renderedFrames": 165,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 164,
+      "contiguous": true
+    },
+    {
+      "fighter": "conde",
+      "move": "special",
+      "rival": "capriles",
+      "title": "Remate oriental",
+      "frames": 180,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 77.56,
+      "finalHp": 77.56,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "special"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 14,
+          "kind": "special",
+          "hitId": 2,
+          "attackStartFrame": 1,
+          "damage": 22.439999999999998,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "special",
+          "attackTick": 14
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 14,
+          "kind": "special",
+          "id": 2
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Remate oriental",
+        "effect": "Ejecuta una embestida corta con bastante empuje al conectar.",
+        "visual": "El Conde prepara la guardia y embiste con el brazo extendido durante el contacto, seguido de una recuperación. Como Conde Bond, gira el hombro y el antebrazo.",
+        "requirement": "25 de energía",
+        "keys": "L"
+      },
+      "missingText": false,
+      "renderedFrames": 180,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 179,
+      "contiguous": true
+    },
+    {
+      "fighter": "conde",
+      "move": "final",
+      "rival": "capriles",
+      "title": "Conde Bond",
+      "frames": 460,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 69.39999999999999,
+      "finalHp": 69.39999999999999,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "super"
+        },
+        {
+          "frame": 71,
+          "kind": "light"
+        },
+        {
+          "frame": 100,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 76,
+          "kind": "light",
+          "hitId": 1,
+          "attackStartFrame": 71,
+          "damage": 9.424800000000005,
+          "transformed": true,
+          "multiplier": 1.2,
+          "history": "super,light",
+          "attackTick": 6
+        },
+        {
+          "frame": 110,
+          "kind": "heavy",
+          "hitId": 2,
+          "attackStartFrame": 100,
+          "damage": 21.175200000000004,
+          "transformed": true,
+          "multiplier": 1.2,
+          "history": "super,light,heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 76,
+          "kind": "light",
+          "id": 1
+        },
+        {
+          "frame": 110,
+          "kind": "heavy",
+          "id": 2
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": {
+        "id": "conde-bond",
+        "firstFrame": 9,
+        "lastFrame": 376,
+        "activeTicks": 360,
+        "expired": true,
+        "clockAdvanced": true,
+        "comparisons": [
+          {
+            "frame": 76,
+            "kind": "light",
+            "baselineMove": "light",
+            "baselineDamage": 7.853999999999999,
+            "poweredDamage": 9.424800000000005,
+            "expectedMultiplier": 1.2,
+            "passed": true
+          },
+          {
+            "frame": 110,
+            "kind": "heavy",
+            "baselineMove": "combo1",
+            "baselineDamage": 17.646,
+            "poweredDamage": 21.175200000000004,
+            "expectedMultiplier": 1.2,
+            "passed": true
+          }
+        ]
+      },
+      "terminalReleased": true,
+      "text": {
+        "title": "Conde Bond",
+        "effect": "Se transforma sin necesitar un rival cercano. Durante 6 segundos de combate sus ataques hacen un 20 % más de daño. El combate continúa: la demostración conecta ataques reales y termina al volver a su atuendo habitual.",
+        "visual": "Se pone el sombrero blanco, las gafas negras y el traje de Conde Bond. Conserva el atuendo al caminar, saltar, bloquear y atacar durante seis segundos de combate; al terminar vuelve a su ropa habitual.",
+        "requirement": "3 victorias · 75 de energía · 6 segundos",
+        "keys": "I"
+      },
+      "missingText": false,
+      "renderedFrames": 460,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 459,
+      "contiguous": true
+    },
+    {
+      "fighter": "emilio",
+      "move": "light",
+      "rival": "capriles",
+      "title": "Golpe ligero",
+      "frames": 78,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 92.9314,
+      "finalHp": 92.9314,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 7.0686000000000035,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Golpe ligero",
+        "effect": "Ataque corto y rápido. Hace menos daño que el fuerte y permite preparar una cadena de golpes.",
+        "visual": "El personaje pasa brevemente por guardia y extiende el puño. Un arco claro marca el golpe.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "J"
+      },
+      "missingText": false,
+      "renderedFrames": 78,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 77,
+      "contiguous": true
+    },
+    {
+      "fighter": "emilio",
+      "move": "heavy",
+      "rival": "capriles",
+      "title": "Golpe fuerte",
+      "frames": 90,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 86.8726,
+      "finalHp": 86.8726,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 11,
+          "kind": "heavy",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 13.127399999999994,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 11,
+          "kind": "heavy",
+          "id": 0
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Golpe fuerte",
+        "effect": "Ataque más lento, con mayor alcance, daño y empuje que el ligero.",
+        "visual": "El personaje prepara y extiende una patada. Un arco dorado más ancho acompaña el impacto.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "K"
+      },
+      "missingText": false,
+      "renderedFrames": 90,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 89,
+      "contiguous": true
+    },
+    {
+      "fighter": "emilio",
+      "move": "combo1",
+      "rival": "capriles",
+      "title": "Cambio de gesto",
+      "frames": 132,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 76.744,
+      "finalHp": 76.744,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        },
+        {
+          "frame": 47,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 7.0686000000000035,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        },
+        {
+          "frame": 57,
+          "kind": "heavy",
+          "hitId": 1,
+          "attackStartFrame": 47,
+          "damage": 16.187399999999997,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        },
+        {
+          "frame": 57,
+          "kind": "heavy",
+          "id": 1
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Cambio de gesto",
+        "effect": "Encadena un ligero y un fuerte. La secuencia añade 3 de daño al remate antes de aplicar la armadura rival. Deja acabar cada golpe y completa la secuencia en 2,5 segundos.",
+        "visual": "Una extensión del puño seguida de una patada; el rótulo del combo aparece al iniciar el remate.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "J → K"
+      },
+      "missingText": false,
+      "renderedFrames": 132,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 131,
+      "contiguous": true
+    },
+    {
+      "fighter": "emilio",
+      "move": "combo2",
+      "rival": "capriles",
+      "title": "Segunda voz",
+      "frames": 165,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 65.5954,
+      "finalHp": 65.5954,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        },
+        {
+          "frame": 47,
+          "kind": "light"
+        },
+        {
+          "frame": 92,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 7.0686000000000035,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        },
+        {
+          "frame": 52,
+          "kind": "light",
+          "hitId": 1,
+          "attackStartFrame": 47,
+          "damage": 7.0686000000000035,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,light",
+          "attackTick": 6
+        },
+        {
+          "frame": 102,
+          "kind": "heavy",
+          "hitId": 2,
+          "attackStartFrame": 92,
+          "damage": 20.267399999999995,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,light,heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        },
+        {
+          "frame": 52,
+          "kind": "light",
+          "id": 1
+        },
+        {
+          "frame": 102,
+          "kind": "heavy",
+          "id": 2
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Segunda voz",
+        "effect": "Encadena dos ligeros y un fuerte. La secuencia añade 7 de daño al remate antes de aplicar la armadura rival. Deja acabar cada golpe y completa la secuencia en 2,5 segundos.",
+        "visual": "Dos extensiones del puño seguidas de una patada; aparece el rótulo del combo al iniciar el remate.",
+        "requirement": "Se desbloquea con 1 victoria · sin coste de energía",
+        "keys": "J → J → K"
+      },
+      "missingText": false,
+      "renderedFrames": 165,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 164,
+      "contiguous": true
+    },
+    {
+      "fighter": "emilio",
+      "move": "special",
+      "rival": "capriles",
+      "title": "Doble interpretación",
+      "frames": 180,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 79.804,
+      "finalHp": 79.804,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "special"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 8,
+          "kind": "special",
+          "hitId": 2,
+          "attackStartFrame": 1,
+          "damage": 10.097999999999999,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "special",
+          "attackTick": 8
+        },
+        {
+          "frame": 27,
+          "kind": "special",
+          "hitId": 4,
+          "attackStartFrame": 1,
+          "damage": 10.097999999999999,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "special",
+          "attackTick": 24
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 8,
+          "kind": "special",
+          "id": 2
+        },
+        {
+          "frame": 27,
+          "kind": "special",
+          "id": 4
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Doble interpretación",
+        "effect": "Golpea dos veces; la segunda réplica tiene más alcance.",
+        "visual": "Emilio extiende el brazo y aparecen círculos de eco delante de él.",
+        "requirement": "25 de energía",
+        "keys": "L"
+      },
+      "missingText": false,
+      "renderedFrames": 180,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 179,
+      "contiguous": true
+    },
+    {
+      "fighter": "emilio",
+      "move": "final",
+      "rival": "capriles",
+      "title": "El Chunior",
+      "frames": 460,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 72.0928,
+      "finalHp": 72.0928,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "super"
+        },
+        {
+          "frame": 68,
+          "kind": "light"
+        },
+        {
+          "frame": 94,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 73,
+          "kind": "light",
+          "hitId": 1,
+          "attackStartFrame": 68,
+          "damage": 8.482320000000001,
+          "transformed": true,
+          "multiplier": 1.2,
+          "history": "super,light",
+          "attackTick": 6
+        },
+        {
+          "frame": 104,
+          "kind": "heavy",
+          "hitId": 2,
+          "attackStartFrame": 94,
+          "damage": 19.42488,
+          "transformed": true,
+          "multiplier": 1.2,
+          "history": "super,light,heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 73,
+          "kind": "light",
+          "id": 1
+        },
+        {
+          "frame": 104,
+          "kind": "heavy",
+          "id": 2
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": {
+        "id": "el-chunior",
+        "firstFrame": 9,
+        "lastFrame": 376,
+        "activeTicks": 360,
+        "expired": true,
+        "clockAdvanced": true,
+        "comparisons": [
+          {
+            "frame": 73,
+            "kind": "light",
+            "baselineMove": "light",
+            "baselineDamage": 7.0686000000000035,
+            "poweredDamage": 8.482320000000001,
+            "expectedMultiplier": 1.2,
+            "passed": true
+          },
+          {
+            "frame": 104,
+            "kind": "heavy",
+            "baselineMove": "combo1",
+            "baselineDamage": 16.187399999999997,
+            "poweredDamage": 19.42488,
+            "expectedMultiplier": 1.2,
+            "passed": true
+          }
+        ]
+      },
+      "terminalReleased": true,
+      "text": {
+        "title": "El Chunior",
+        "effect": "Se transforma sin necesitar un rival cercano. Durante 6 segundos de combate sus ataques hacen un 20 % más de daño. El combate continúa: la demostración conecta ataques reales y termina al volver a su atuendo habitual.",
+        "visual": "Se transforma en El Chunior con peluca gris, gafas de aviador, bigote, audífonos y chaqueta beige sobre camisa azul estampada. Conserva el atuendo al moverse, saltar, bloquear y atacar durante seis segundos de combate; sus golpes y las dos réplicas hacen un 20 % más de daño y después vuelve a su ropa habitual.",
+        "requirement": "3 victorias · 75 de energía · 6 segundos",
+        "keys": "I"
+      },
+      "missingText": false,
+      "renderedFrames": 460,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 459,
+      "contiguous": true
+    },
+    {
+      "fighter": "maite",
+      "move": "light",
+      "rival": "capriles",
+      "title": "Golpe ligero",
+      "frames": 78,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 93.2884,
+      "finalHp": 93.2884,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 6.711600000000004,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Golpe ligero",
+        "effect": "Ataque corto y rápido. Hace menos daño que el fuerte y permite preparar una cadena de golpes.",
+        "visual": "El personaje pasa brevemente por guardia y extiende el puño. Un arco claro marca el golpe.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "J"
+      },
+      "missingText": false,
+      "renderedFrames": 78,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 77,
+      "contiguous": true
+    },
+    {
+      "fighter": "maite",
+      "move": "heavy",
+      "rival": "capriles",
+      "title": "Golpe fuerte",
+      "frames": 90,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 87.5356,
+      "finalHp": 87.5356,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 11,
+          "kind": "heavy",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 12.464399999999998,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 11,
+          "kind": "heavy",
+          "id": 0
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Golpe fuerte",
+        "effect": "Ataque más lento, con mayor alcance, daño y empuje que el ligero.",
+        "visual": "El personaje prepara y extiende una patada. Un arco dorado más ancho acompaña el impacto.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "K"
+      },
+      "missingText": false,
+      "renderedFrames": 90,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 89,
+      "contiguous": true
+    },
+    {
+      "fighter": "maite",
+      "move": "combo1",
+      "rival": "capriles",
+      "title": "Primera entrada",
+      "frames": 132,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 77.764,
+      "finalHp": 77.764,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        },
+        {
+          "frame": 47,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 6.711600000000004,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        },
+        {
+          "frame": 57,
+          "kind": "heavy",
+          "hitId": 1,
+          "attackStartFrame": 47,
+          "damage": 15.5244,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        },
+        {
+          "frame": 57,
+          "kind": "heavy",
+          "id": 1
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Primera entrada",
+        "effect": "Encadena un ligero y un fuerte. La secuencia añade 3 de daño al remate antes de aplicar la armadura rival. Deja acabar cada golpe y completa la secuencia en 2,5 segundos.",
+        "visual": "Una extensión del puño seguida de una patada; el rótulo del combo aparece al iniciar el remate.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "J → K"
+      },
+      "missingText": false,
+      "renderedFrames": 132,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 131,
+      "contiguous": true
+    },
+    {
+      "fighter": "maite",
+      "move": "combo2",
+      "rival": "capriles",
+      "title": "Cambio de cámara",
+      "frames": 165,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 66.9724,
+      "finalHp": 66.9724,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        },
+        {
+          "frame": 47,
+          "kind": "light"
+        },
+        {
+          "frame": 93,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 6.711600000000004,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        },
+        {
+          "frame": 52,
+          "kind": "light",
+          "hitId": 1,
+          "attackStartFrame": 47,
+          "damage": 6.711600000000004,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,light",
+          "attackTick": 6
+        },
+        {
+          "frame": 103,
+          "kind": "heavy",
+          "hitId": 2,
+          "attackStartFrame": 93,
+          "damage": 19.6044,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,light,heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        },
+        {
+          "frame": 52,
+          "kind": "light",
+          "id": 1
+        },
+        {
+          "frame": 103,
+          "kind": "heavy",
+          "id": 2
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Cambio de cámara",
+        "effect": "Encadena dos ligeros y un fuerte. La secuencia añade 7 de daño al remate antes de aplicar la armadura rival. Deja acabar cada golpe y completa la secuencia en 2,5 segundos.",
+        "visual": "Dos extensiones del puño seguidas de una patada; aparece el rótulo del combo al iniciar el remate.",
+        "requirement": "Se desbloquea con 1 victoria · sin coste de energía",
+        "keys": "J → J → K"
+      },
+      "missingText": false,
+      "renderedFrames": 165,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 164,
+      "contiguous": true
+    },
+    {
+      "fighter": "maite",
+      "move": "special",
+      "rival": "capriles",
+      "title": "Luz de escenario",
+      "frames": 180,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 84.6592,
+      "finalHp": 84.6592,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "special"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 15,
+          "kind": "special",
+          "hitId": 2,
+          "attackStartFrame": 1,
+          "damage": 15.340800000000002,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "special",
+          "attackTick": 15
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 15,
+          "kind": "special",
+          "id": 2
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Luz de escenario",
+        "effect": "Marca una zona delante de ella y alcanza al rival si está dentro de su distancia.",
+        "visual": "Un cono de luz triangular ilumina el piso frente a Maite.",
+        "requirement": "25 de energía",
+        "keys": "L"
+      },
+      "missingText": false,
+      "renderedFrames": 180,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 179,
+      "contiguous": true
+    },
+    {
+      "fighter": "maite",
+      "move": "final",
+      "rival": "capriles",
+      "title": "¡Buenas noches, Poliedro!",
+      "frames": 184,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 60.9136,
+      "finalHp": 100,
+      "initialStocks": 2,
+      "minStocks": 1,
+      "finalStocks": 1,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "super"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 36,
+          "kind": "super",
+          "hitId": 2,
+          "attackStartFrame": 1,
+          "damage": 39.0864,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "super",
+          "attackTick": 36
+        }
+      ],
+      "stockEvents": [
+        {
+          "frame": 75,
+          "lost": 1,
+          "hpBefore": 60.9136,
+          "hpAfter": 100
+        }
+      ],
+      "hitEvents": [
+        {
+          "frame": 36,
+          "kind": "super",
+          "id": 2
+        }
+      ],
+      "projectiles": [
+        "sonic"
+      ],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "¡Buenas noches, Poliedro!",
+        "effect": "Lanza una onda sonora que viaja por la arena y hace daño una sola vez al tocar al rival. Se puede bloquear de frente, saltar o dejar pasar fuera de alcance. El reloj y el combate continúan; fallar también consume energía.",
+        "visual": "Maite toma aire, alza el micrófono y grita «¡BUENAS NOOOCHES, POLIEDRO DE CARACAS!». Una onda sonora creciente cruza la arena hasta golpear, ser bloqueada o agotarse; el rival conserva su cuerpo y puede moverse durante todo el ataque. Maite baja el micrófono al terminar.",
+        "requirement": "3 victorias · 75 de energía · 1.4 segundos",
+        "keys": "I"
+      },
+      "missingText": false,
+      "renderedFrames": 184,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 183,
+      "contiguous": true
+    },
+    {
+      "fighter": "nacho",
+      "move": "light",
+      "rival": "javier",
+      "title": "Golpe ligero",
+      "frames": 78,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 93.1505,
+      "finalHp": 93.1505,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 6.849500000000006,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Golpe ligero",
+        "effect": "Ataque corto y rápido. Hace menos daño que el fuerte y permite preparar una cadena de golpes.",
+        "visual": "El personaje pasa brevemente por guardia y extiende el puño. Un arco claro marca el golpe.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "J"
+      },
+      "missingText": false,
+      "renderedFrames": 78,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 77,
+      "contiguous": true
+    },
+    {
+      "fighter": "nacho",
+      "move": "heavy",
+      "rival": "javier",
+      "title": "Golpe fuerte",
+      "frames": 90,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 87.2795,
+      "finalHp": 87.2795,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 11,
+          "kind": "heavy",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 12.720500000000001,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 11,
+          "kind": "heavy",
+          "id": 0
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Golpe fuerte",
+        "effect": "Ataque más lento, con mayor alcance, daño y empuje que el ligero.",
+        "visual": "El personaje prepara y extiende una patada. Un arco dorado más ancho acompaña el impacto.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "K"
+      },
+      "missingText": false,
+      "renderedFrames": 90,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 89,
+      "contiguous": true
+    },
+    {
+      "fighter": "nacho",
+      "move": "combo1",
+      "rival": "javier",
+      "title": "Paso primero",
+      "frames": 132,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 77.33999999999999,
+      "finalHp": 77.33999999999999,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        },
+        {
+          "frame": 44,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 6.849500000000006,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        },
+        {
+          "frame": 54,
+          "kind": "heavy",
+          "hitId": 1,
+          "attackStartFrame": 44,
+          "damage": 15.810500000000005,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        },
+        {
+          "frame": 54,
+          "kind": "heavy",
+          "id": 1
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Paso primero",
+        "effect": "Encadena un ligero y un fuerte. La secuencia añade 3 de daño al remate antes de aplicar la armadura rival. Deja acabar cada golpe y completa la secuencia en 2,5 segundos.",
+        "visual": "Una extensión del puño seguida de una patada; el rótulo del combo aparece al iniciar el remate.",
+        "requirement": "Disponible desde el inicio · sin coste de energía",
+        "keys": "J → K"
+      },
+      "missingText": false,
+      "renderedFrames": 132,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 131,
+      "contiguous": true
+    },
+    {
+      "fighter": "nacho",
+      "move": "combo2",
+      "rival": "javier",
+      "title": "Contratiempo",
+      "frames": 165,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 66.37049999999999,
+      "finalHp": 66.37049999999999,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "light"
+        },
+        {
+          "frame": 44,
+          "kind": "light"
+        },
+        {
+          "frame": 87,
+          "kind": "heavy"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "hitId": 0,
+          "attackStartFrame": 1,
+          "damage": 6.849500000000006,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light",
+          "attackTick": 6
+        },
+        {
+          "frame": 49,
+          "kind": "light",
+          "hitId": 1,
+          "attackStartFrame": 44,
+          "damage": 6.849500000000006,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,light",
+          "attackTick": 6
+        },
+        {
+          "frame": 97,
+          "kind": "heavy",
+          "hitId": 2,
+          "attackStartFrame": 87,
+          "damage": 19.930499999999995,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "light,light,heavy",
+          "attackTick": 11
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 6,
+          "kind": "light",
+          "id": 0
+        },
+        {
+          "frame": 49,
+          "kind": "light",
+          "id": 1
+        },
+        {
+          "frame": 97,
+          "kind": "heavy",
+          "id": 2
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Contratiempo",
+        "effect": "Encadena dos ligeros y un fuerte. La secuencia añade 7 de daño al remate antes de aplicar la armadura rival. Deja acabar cada golpe y completa la secuencia en 2,5 segundos.",
+        "visual": "Dos extensiones del puño seguidas de una patada; aparece el rótulo del combo al iniciar el remate.",
+        "requirement": "Se desbloquea con 1 victoria · sin coste de energía",
+        "keys": "J → J → K"
+      },
+      "missingText": false,
+      "renderedFrames": 165,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 164,
+      "contiguous": true
+    },
+    {
+      "fighter": "nacho",
+      "move": "special",
+      "rival": "javier",
+      "title": "Paso sincopado",
+      "frames": 180,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 88.25800000000001,
+      "finalHp": 88.25800000000001,
+      "initialStocks": 2,
+      "minStocks": 2,
+      "finalStocks": 2,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "special"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 7,
+          "kind": "special",
+          "hitId": 2,
+          "attackStartFrame": 1,
+          "damage": 5.870999999999995,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "special",
+          "attackTick": 7
+        },
+        {
+          "frame": 24,
+          "kind": "special",
+          "hitId": 4,
+          "attackStartFrame": 1,
+          "damage": 5.870999999999995,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "special",
+          "attackTick": 21
+        }
+      ],
+      "stockEvents": [],
+      "hitEvents": [
+        {
+          "frame": 7,
+          "kind": "special",
+          "id": 2
+        },
+        {
+          "frame": 24,
+          "kind": "special",
+          "id": 4
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": false,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Paso sincopado",
+        "effect": "Encadena un avance, un retroceso y un remate que vuelve hacia delante.",
+        "visual": "Nacho alterna pasos de carrera, cambia de apoyo y termina con una patada elevada.",
+        "requirement": "25 de energía",
+        "keys": "L"
+      },
+      "missingText": false,
+      "renderedFrames": 180,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 179,
+      "contiguous": true
+    },
+    {
+      "fighter": "nacho",
+      "move": "final",
+      "rival": "javier",
+      "title": "Baile del perro mujeriego",
+      "frames": 460,
+      "passed": true,
+      "failures": [],
+      "active": true,
+      "connected": true,
+      "damagedOrRingout": true,
+      "initialHp": 100,
+      "minHp": 60.242000000000004,
+      "finalHp": 100,
+      "initialStocks": 2,
+      "minStocks": 1,
+      "finalStocks": 1,
+      "attackStarts": [
+        {
+          "frame": 1,
+          "kind": "super"
+        }
+      ],
+      "damageEvents": [
+        {
+          "frame": 93,
+          "kind": "super",
+          "hitId": 1,
+          "attackStartFrame": 1,
+          "damage": 13.25266666666667,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "super",
+          "attackTick": 9
+        },
+        {
+          "frame": 189,
+          "kind": "super",
+          "hitId": 2,
+          "attackStartFrame": 1,
+          "damage": 13.252666666666656,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "super",
+          "attackTick": 9
+        },
+        {
+          "frame": 285,
+          "kind": "super",
+          "hitId": 3,
+          "attackStartFrame": 1,
+          "damage": 13.25266666666667,
+          "transformed": false,
+          "multiplier": 1,
+          "history": "super",
+          "attackTick": 9
+        }
+      ],
+      "stockEvents": [
+        {
+          "frame": 406,
+          "lost": 1,
+          "hpBefore": 60.242000000000004,
+          "hpAfter": 100
+        }
+      ],
+      "hitEvents": [
+        {
+          "frame": 93,
+          "kind": "super",
+          "id": 1
+        },
+        {
+          "frame": 189,
+          "kind": "super",
+          "id": 2
+        },
+        {
+          "frame": 285,
+          "kind": "super",
+          "id": 3
+        }
+      ],
+      "projectiles": [],
+      "reflections": [],
+      "countered": false,
+      "slow": 0,
+      "root": 0,
+      "captured": true,
+      "form": null,
+      "terminalReleased": true,
+      "text": {
+        "title": "Baile del perro mujeriego",
+        "effect": "Captura a un rival cercano y le quita vida en 3 impactos. Antes del contacto se puede evitar alejándose o bloqueando. Durante la definitiva se pausan el reloj y el resto del combate.",
+        "visual": "Nacho y el rival hacen juntos la frase de baile: manos sobre la cara, patitas a ambos lados, barrido del brazo y corazón con los dedos. Dura seis segundos y conserva el escenario.",
+        "requirement": "3 victorias · 75 de energía · 6 segundos",
+        "keys": "I"
+      },
+      "missingText": false,
+      "renderedFrames": 460,
+      "firstRenderedFrame": 0,
+      "lastRenderedFrame": 459,
+      "contiguous": true
+    }
+  ]
+}
