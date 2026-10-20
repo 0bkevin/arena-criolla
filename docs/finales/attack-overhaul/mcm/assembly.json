@@ -1,0 +1,114 @@
+{
+  "method": "Complete generated objects copied without resampling into common cells; packing uniformly scales whole objects. No anatomy painting or masking.",
+  "cell": 1728,
+  "objects": [
+    {
+      "pose": "truck",
+      "source": "truck-grid.png",
+      "sourceBounds": {
+        "left": 101,
+        "top": 50,
+        "width": 1525,
+        "height": 827
+      },
+      "rgbaSha256": "599e3a16d5fd2540ec4ec8ce3f3d6b77b3d15cf246600d57984f3519da70b1b5",
+      "coreHeight": 821
+    },
+    {
+      "pose": "empty",
+      "source": "empty-grid.png",
+      "sourceBounds": {
+        "left": 99,
+        "top": 43,
+        "width": 1498,
+        "height": 650
+      },
+      "rgbaSha256": "93e043b903a1f14a33c13d4d896d8fa88b62accbeca6eb20ace9d9db7e9577e3",
+      "coreHeight": 645
+    },
+    {
+      "pose": "mount",
+      "source": "people-grid.png",
+      "sourceBounds": {
+        "left": 58,
+        "top": 39,
+        "width": 396,
+        "height": 530
+      },
+      "rgbaSha256": "7ac98b6453ae53837c3a8d2c23dacce52e52146b2aebfa0d3aa7d26449e0687b",
+      "coreHeight": 518
+    },
+    {
+      "pose": "dismount",
+      "source": "people-grid.png",
+      "sourceBounds": {
+        "left": 556,
+        "top": 64,
+        "width": 423,
+        "height": 479
+      },
+      "rgbaSha256": "feb0faf500787893b34fc88a07738319ed6c4dd1aec4f4e367023606547e26f0",
+      "coreHeight": 463
+    },
+    {
+      "pose": "man-a",
+      "source": "people-grid.png",
+      "sourceBounds": {
+        "left": 1070,
+        "top": 57,
+        "width": 419,
+        "height": 493
+      },
+      "rgbaSha256": "5f188b942f235334de5afcb663d8ccbf7cee2abe544409411de7261125acbd36",
+      "coreHeight": 481
+    },
+    {
+      "pose": "man-b",
+      "source": "people-grid.png",
+      "sourceBounds": {
+        "left": 37,
+        "top": 666,
+        "width": 438,
+        "height": 491
+      },
+      "rgbaSha256": "7b739b355726c1e1fb8ea069475851d83b05f3bf2f11641a38ccdd0ad4bbaf7c",
+      "coreHeight": 480
+    },
+    {
+      "pose": "woman-a",
+      "source": "people-grid.png",
+      "sourceBounds": {
+        "left": 565,
+        "top": 684,
+        "width": 406,
+        "height": 455
+      },
+      "rgbaSha256": "f5b462280512c5a792a4d81472e2cd3d92a4c4ddaf0a5e1678ff35f577645b75",
+      "coreHeight": 448
+    },
+    {
+      "pose": "woman-b",
+      "source": "people-grid.png",
+      "sourceBounds": {
+        "left": 1061,
+        "top": 675,
+        "width": 437,
+        "height": 474
+      },
+      "rgbaSha256": "2036f0a8730f78f755044980f89479c661555062db24cfde182a03441ac472cf",
+      "coreHeight": 465
+    },
+    {
+      "pose": "flag",
+      "source": "flag-grid.png",
+      "sourceBounds": {
+        "left": 90,
+        "top": 64,
+        "width": 1356,
+        "height": 959
+      },
+      "rgbaSha256": "0fa8cdc6316f206db2d5e207bd935c7b94ea7f30a4fc447e11157618a4888bbf",
+      "coreHeight": 952
+    }
+  ]
+}

@@ -1,0 +1,292 @@
+[
+  {
+    "name": "entry",
+    "key": "final-p1-normal-0",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg40g-ad7a3ddd.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/entry.png",
+    "sha256": "f81e9aad59792fe0312cb66965ef1b23f1606c1969091e358dd1efae8b2819f6"
+  },
+  {
+    "name": "mount",
+    "key": "final-p1-normal-24",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg47i-28150157.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/mount.png",
+    "sha256": "81b5de4dd323b8551b710ed3e02fdaaa1bdaa541c4c68c8ef80f6099e89fccbc"
+  },
+  {
+    "name": "occupied",
+    "key": "final-p1-normal-36",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg4kg-c1ace534.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/occupied.png",
+    "sha256": "ffd24c4dc7fd0091dadbca0779d358891a2292097d30a6bbbd59001ebc4d219c"
+  },
+  {
+    "name": "approach",
+    "key": "final-p1-normal-80",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg4yg-ad9c2d04.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/approach.png",
+    "sha256": "62e5bc31656352168b044aefb6d8b0f56a3885ccd02dc429c0abe69b3bdb8839"
+  },
+  {
+    "name": "before-contact",
+    "key": "final-p1-normal-95",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg599-689abc3c.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/before-contact.png",
+    "sha256": "26abd2f75f93e9681fab60dc1c052f1d51c0c777d176d56e94a75eebd9afe53a"
+  },
+  {
+    "name": "contact-p1",
+    "key": "final-p1-normal-96",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg5pj-95b58311.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/contact-p1.png",
+    "sha256": "1cdcb5f3f67f83799f0a25b02b80dd667c7c51b2edd719cc0a5b6f5cd6876e97"
+  },
+  {
+    "name": "contact-p2",
+    "key": "final-p2-normal-96",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg5w7-c30cf047.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/contact-p2.png",
+    "sha256": "edea965d811baafa0807af49d5d88351f428f7c2eb75abb74409cf45dd50ed0e"
+  },
+  {
+    "name": "impact",
+    "key": "final-p1-normal-104",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg62p-070d146c.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/impact.png",
+    "sha256": "e8276069cb865adbbc2678b9373ac73a895259f37ac426ba5a48870804c2b3cb"
+  },
+  {
+    "name": "reverse",
+    "key": "final-p1-normal-132",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg69j-f05ceff0.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/reverse.png",
+    "sha256": "b2e7d41f71980ee346e8009b6180f0f170657583eae18eaf7fc7149f5738792d"
+  },
+  {
+    "name": "dismount",
+    "key": "final-p1-normal-158",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg6g3-0243048f.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/dismount.png",
+    "sha256": "64628c254a56007fedf6a3dc77ba608d2aff8e6dfa9a2025df7c046d6ba510c7"
+  },
+  {
+    "name": "restored",
+    "key": "final-p1-normal-178",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg6nz-c407c749.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/restored.png",
+    "sha256": "b1eb766c12332ca2dfa220197efa5b7b5ff2d156468f6b37be8ddf2d6faa7e09"
+  },
+  {
+    "name": "release",
+    "key": "final-p1-normal-189",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg6uf-acfd9b3a.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/release.png",
+    "sha256": "244d6c86fcbd1d273cdc29ed1a049eb86f422ffaee05351848a7591ee00e2ada"
+  },
+  {
+    "name": "edge-p1",
+    "key": "final-p1-edge-96",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg70z-a0521fc9.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/edge-p1.png",
+    "sha256": "ac88d92e2c5a32dc952c053bc4b6afdcdf0cce1a5c083d70aac9b960d6d6b603"
+  },
+  {
+    "name": "edge-p2",
+    "key": "final-p2-edge-96",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg77i-5f595fe6.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/edge-p2.png",
+    "sha256": "56302c134f8bef61ed4e1796401d1e40b89d7909f7c9184e8f1a32d686bd5dc4"
+  },
+  {
+    "name": "inward-p1",
+    "key": "final-p1-inward-96",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg7ec-b56116b1.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/inward-p1.png",
+    "sha256": "b3e3b736f61814012ade33186343ad0c76e7f7627329fe1415661e10bdae5b06"
+  },
+  {
+    "name": "close-edge-p2",
+    "key": "final-p2-close-edge-96",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg7ku-c4615c6c.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/close-edge-p2.png",
+    "sha256": "9005471a2c0356f2c1ddb47cfdea14704538d0b78bb44c42034da18a117ca4bc"
+  },
+  {
+    "name": "platform-p1",
+    "key": "final-p1-platform-96",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg7u6-7d0d6fab.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/platform-p1.png",
+    "sha256": "29468cf976ef6b4948a21214575d5929f2c55b0f34937fea907b60353c5c09b7"
+  },
+  {
+    "name": "platform-p2",
+    "key": "final-p2-platform-96",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg82y-e4ec866d.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/platform-p2.png",
+    "sha256": "85c97ac42fec4ecd6c9f39260372cf0e39f440afc0ef2d273e729003dca2ed81"
+  },
+  {
+    "name": "platform-inverse-p1",
+    "key": "final-p1-platform-inverse-96",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg8bw-25e60739.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/platform-inverse-p1.png",
+    "sha256": "009ee984de12ca07c5a546daa7cc787f0e98ca283393d4431ca0febc359ad915"
+  },
+  {
+    "name": "platform-inverse-p2",
+    "key": "final-p2-platform-inverse-96",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg8kp-7abbb1ef.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/platform-inverse-p2.png",
+    "sha256": "238bfcada2e08b6b0fa1b079a539d543132365e00c8c20b094c8f03ecd1e41dd"
+  },
+  {
+    "name": "air-small-p1",
+    "key": "final-p1-air-small-96",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg8rg-7bfdc0b3.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/air-small-p1.png",
+    "sha256": "49f055597e99ae036b20f5b96b2582f50c37d9c3c449ac54d711eec42e3efcd3"
+  },
+  {
+    "name": "air-small-p2",
+    "key": "final-p2-air-small-96",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg8yk-20488349.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/air-small-p2.png",
+    "sha256": "b03954ee610f5a9cfc1f4eec646fd7ca92c345e0db2c25b7ee188f30e8d43116"
+  },
+  {
+    "name": "tall",
+    "key": "final-p1-tall-96",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg95b-d4e25cc2.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/tall.png",
+    "sha256": "08d6f321c6a45d452386a21d4ecf7329a1dfff885255a1b67be4b82e072a636a"
+  },
+  {
+    "name": "small",
+    "key": "final-p1-small-96",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg9c8-605abdf4.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/small.png",
+    "sha256": "655e770e728fa418a2b8d60b4eb0206403638ebacfa538377597882c324f2988"
+  },
+  {
+    "name": "reduced",
+    "key": "final-p1-normal-96",
+    "reduced": true,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg9iq-bd2fb0d7.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/reduced.png",
+    "sha256": "dc9d4fc4b399048c52cf5bf82ab6a95abadaa52d84a164103ce5a6bb0c9724fc"
+  },
+  {
+    "name": "missing",
+    "key": "final-p1-normal-96",
+    "reduced": false,
+    "missing": true,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg9p5-1b68fac8.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/missing.png",
+    "sha256": "632179d061751c654479c66534a1f439039a6346108cb92078c16919414a883a"
+  },
+  {
+    "name": "special-before",
+    "key": "special-p1-gap140-12",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg9vk-1e80d2bc.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/special-before.png",
+    "sha256": "59d77214e21fd539b7c77a0105d6c62c5fac5bb17a6a7a776bb2eb2fddacfa96"
+  },
+  {
+    "name": "special-contact",
+    "key": "special-p1-gap140-13",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftga23-aa220f3d.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/special-contact.png",
+    "sha256": "c5014f9a9c1a12b3d26fb15a17fb68d66d41fc82477bd54b2f5fd6c4b69e01ae"
+  },
+  {
+    "name": "special-miss",
+    "key": "special-p2-gap300-24",
+    "reduced": false,
+    "missing": false,
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftgaow-5781c6b8.png",
+    "file": "docs/finales/attack-overhaul/mcm/screenshots/special-miss.png",
+    "sha256": "a3ec55114e53c184ee92e57ff895dc8ec22bc18234cc7f2f6416de96d75ecb6f"
+  }
+]

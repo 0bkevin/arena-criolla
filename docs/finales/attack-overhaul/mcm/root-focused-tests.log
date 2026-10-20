@@ -1,0 +1,97 @@
+✔ vallenilla: revised attack art retains raw source provenance, complete frames and exact runtime alpha (151.110213ms)
+✔ javier: revised attack art retains raw source provenance, complete frames and exact runtime alpha (74.638678ms)
+✔ renny: revised attack art retains raw source provenance, complete frames and exact runtime alpha (66.468084ms)
+✔ gomez: revised attack art retains raw source provenance, complete frames and exact runtime alpha (132.901595ms)
+✔ simon: revised attack art retains raw source provenance, complete frames and exact runtime alpha (111.855959ms)
+✔ conde: revised attack art retains raw source provenance, complete frames and exact runtime alpha (120.620159ms)
+✔ emilio: revised attack art retains raw source provenance, complete frames and exact runtime alpha (145.681874ms)
+✔ maite: revised attack art retains raw source provenance, complete frames and exact runtime alpha (74.853362ms)
+✔ oscar: revised attack art retains raw source provenance, complete frames and exact runtime alpha (132.112895ms)
+✔ puma: revised attack art retains raw source provenance, complete frames and exact runtime alpha (121.597744ms)
+✔ chataing: revised attack art retains raw source provenance, complete frames and exact runtime alpha (87.924399ms)
+✔ george: revised attack art retains raw source provenance, complete frames and exact runtime alpha (98.005317ms)
+✔ mcm: revised attack art retains raw source provenance, complete frames and exact runtime alpha (145.747423ms)
+✔ every definitive has one generic combat category heading (9.623767ms)
+{"character":"mcm","check":"presentation","evidence":{"intro":"Se yergue y cruza los brazos","choreography":"Se yergue y cruza los brazos","durationMs":2800}}
+{"character":"mcm","check":"movement","evidence":{"side":0,"start":540,"right":664.0003364758498,"left":550.3993270591862,"firstY":454.59999999999997,"finalY":554,"stocks":2}}
+{"character":"mcm","check":"movement","evidence":{"side":1,"start":540,"right":664.0003364758498,"left":550.3993270591862,"firstY":454.59999999999997,"finalY":554,"stocks":2}}
+{"character":"mcm","check":"ordinary-attack","evidence":{"side":0,"action":"light","guard":false,"hp":93.3668,"hits":1,"targetEnergy":100}}
+{"character":"mcm","check":"ordinary-attack","evidence":{"side":0,"action":"light","guard":true,"hp":100,"hits":0,"targetEnergy":85.47999999999979}}
+{"character":"mcm","check":"ordinary-attack","evidence":{"side":0,"action":"heavy","guard":false,"hp":87.6812,"hits":1,"targetEnergy":100}}
+{"character":"mcm","check":"ordinary-attack","evidence":{"side":0,"action":"heavy","guard":true,"hp":100,"hits":0,"targetEnergy":84.87999999999977}}
+{"character":"mcm","check":"ordinary-attack","evidence":{"side":1,"action":"light","guard":false,"hp":93.3668,"hits":1,"targetEnergy":100}}
+{"character":"mcm","check":"ordinary-attack","evidence":{"side":1,"action":"light","guard":true,"hp":100,"hits":0,"targetEnergy":85.47999999999979}}
+{"character":"mcm","check":"ordinary-attack","evidence":{"side":1,"action":"heavy","guard":false,"hp":87.6812,"hits":1,"targetEnergy":100}}
+{"character":"mcm","check":"ordinary-attack","evidence":{"side":1,"action":"heavy","guard":true,"hp":100,"hits":0,"targetEnergy":84.87999999999977}}
+{"character":"mcm","check":"special","evidence":{"side":0,"guard":"idle","origin":180,"movedAtStartup":193,"finalX":367.57142857207583,"minY":516.56,"peakSpeed":13,"finalVx":1.9743428557187466e-16,"impacts":[{"tick":19,"attackTick":19,"hp":85.786,"playerX":310,"targetX":408.1055333333333}],"blockCount":0,"hp":85.786,"targetEnergy":100}}
+{"character":"mcm","check":"special","evidence":{"side":0,"guard":"front","origin":180,"movedAtStartup":193,"finalX":364.4064919791946,"minY":516.56,"peakSpeed":13,"finalVx":1.2833228562171853e-16,"impacts":[],"blockCount":1,"hp":100,"targetEnergy":81.63999999999965}}
+{"character":"mcm","check":"special","evidence":{"side":0,"guard":"rear","origin":180,"movedAtStartup":193,"finalX":367.57142857207583,"minY":516.56,"peakSpeed":13,"finalVx":1.9743428557187466e-16,"impacts":[{"tick":21,"attackTick":21,"hp":85.786,"playerX":336,"targetX":436.95321138242247}],"blockCount":0,"hp":85.786,"targetEnergy":95.91999999999985}}
+{"character":"mcm","check":"special","evidence":{"side":1,"guard":"idle","origin":900,"movedAtStartup":887,"finalX":712.4285714279239,"minY":516.56,"peakSpeed":13,"finalVx":-1.9743428557187466e-16,"impacts":[{"tick":19,"attackTick":19,"hp":85.786,"playerX":770,"targetX":671.8944666666666}],"blockCount":0,"hp":85.786,"targetEnergy":100}}
+{"character":"mcm","check":"special","evidence":{"side":1,"guard":"front","origin":900,"movedAtStartup":887,"finalX":715.5935080208054,"minY":516.56,"peakSpeed":13,"finalVx":-1.2833228562171853e-16,"impacts":[],"blockCount":1,"hp":100,"targetEnergy":81.63999999999965}}
+{"character":"mcm","check":"special","evidence":{"side":1,"guard":"rear","origin":900,"movedAtStartup":887,"finalX":712.4285714279239,"minY":516.56,"peakSpeed":13,"finalVx":-1.9743428557187466e-16,"impacts":[{"tick":21,"attackTick":21,"hp":85.786,"playerX":744,"targetX":643.0467886175771}],"blockCount":0,"hp":85.786,"targetEnergy":95.91999999999985}}
+{"character":"mcm","check":"range-probe","evidence":{"side":0,"gap":80,"hp":85.786,"hits":1,"finalX":353.9129285720757,"finalVx":3.5784067585114987e-20}}
+{"character":"mcm","check":"range-probe","evidence":{"side":0,"gap":180,"hp":85.786,"hits":1,"finalX":367.57142857207583,"finalVx":3.5784067585114987e-20}}
+{"character":"mcm","check":"range-probe","evidence":{"side":0,"gap":270,"hp":85.786,"hits":1,"finalX":367.57142857207583,"finalVx":3.5784067585114987e-20}}
+{"character":"mcm","check":"range-probe","evidence":{"side":0,"gap":278,"hp":85.786,"hits":1,"finalX":367.57142857207583,"finalVx":3.5784067585114987e-20}}
+{"character":"mcm","check":"range-probe","evidence":{"side":0,"gap":279,"hp":100,"hits":0,"finalX":367.57142857207583,"finalVx":9.827199560562205e-21}}
+{"character":"mcm","check":"range-probe","evidence":{"side":0,"gap":280,"hp":100,"hits":0,"finalX":367.57142857207583,"finalVx":9.827199560562205e-21}}
+{"character":"mcm","check":"range-probe","evidence":{"side":0,"gap":300,"hp":100,"hits":0,"finalX":367.57142857207583,"finalVx":9.827199560562205e-21}}
+{"character":"mcm","check":"range-probe","evidence":{"side":0,"gap":345,"hp":100,"hits":0,"finalX":367.57142857207583,"finalVx":9.827199560562205e-21}}
+{"character":"mcm","check":"range-probe","evidence":{"side":0,"gap":400,"hp":100,"hits":0,"finalX":367.57142857207583,"finalVx":9.827199560562205e-21}}
+{"character":"mcm","check":"range-probe","evidence":{"side":0,"gap":620,"hp":100,"hits":0,"finalX":367.57142857207583,"finalVx":9.827199560562205e-21}}
+{"character":"mcm","check":"range-probe","evidence":{"side":1,"gap":80,"hp":85.786,"hits":1,"finalX":726.0870714279235,"finalVx":-3.5784067585114987e-20}}
+{"character":"mcm","check":"range-probe","evidence":{"side":1,"gap":180,"hp":85.786,"hits":1,"finalX":712.4285714279239,"finalVx":-3.5784067585114987e-20}}
+{"character":"mcm","check":"range-probe","evidence":{"side":1,"gap":270,"hp":85.786,"hits":1,"finalX":712.4285714279239,"finalVx":-3.5784067585114987e-20}}
+{"character":"mcm","check":"range-probe","evidence":{"side":1,"gap":278,"hp":85.786,"hits":1,"finalX":712.4285714279239,"finalVx":-3.5784067585114987e-20}}
+{"character":"mcm","check":"range-probe","evidence":{"side":1,"gap":279,"hp":100,"hits":0,"finalX":712.4285714279239,"finalVx":-9.827199560562205e-21}}
+{"character":"mcm","check":"range-probe","evidence":{"side":1,"gap":280,"hp":100,"hits":0,"finalX":712.4285714279239,"finalVx":-9.827199560562205e-21}}
+{"character":"mcm","check":"range-probe","evidence":{"side":1,"gap":300,"hp":100,"hits":0,"finalX":712.4285714279239,"finalVx":-9.827199560562205e-21}}
+{"character":"mcm","check":"range-probe","evidence":{"side":1,"gap":345,"hp":100,"hits":0,"finalX":712.4285714279239,"finalVx":-9.827199560562205e-21}}
+{"character":"mcm","check":"range-probe","evidence":{"side":1,"gap":400,"hp":100,"hits":0,"finalX":712.4285714279239,"finalVx":-9.827199560562205e-21}}
+{"character":"mcm","check":"range-probe","evidence":{"side":1,"gap":620,"hp":100,"hits":0,"finalX":712.4285714279239,"finalVx":-9.827199560562205e-21}}
+{"character":"mcm","check":"combo-gate","evidence":{"side":0,"wins":0,"combo":"Paso decidido","bonus":3,"hits":1,"hp":84.5912}}
+{"character":"mcm","check":"combo-gate","evidence":{"side":0,"wins":1,"combo":"Impulso doble","bonus":7,"hits":1,"hp":80.4712}}
+{"character":"mcm","check":"connected-combo","evidence":{"side":0,"combo":"Paso decidido","hits":2,"hp":77.958,"elapsed":63}}
+{"character":"mcm","check":"connected-combo","evidence":{"side":0,"combo":"Impulso doble","hits":3,"hp":67.20479999999999,"elapsed":105}}
+{"character":"mcm","check":"super-gate","evidence":{"side":0,"wins":0,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"mcm","check":"super-gate","evidence":{"side":0,"wins":2,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"mcm","check":"super-gate","evidence":{"side":0,"wins":3,"energy":74,"hp":100,"attackerEnergy":74.31499999999997,"combo":""}}
+{"character":"mcm","check":"super-gate","evidence":{"side":0,"wins":3,"energy":100,"hp":61.10719999999999,"attackerEnergy":38.28,"combo":"Hasta el final"}}
+{"character":"mcm","check":"combo-gate","evidence":{"side":1,"wins":0,"combo":"Paso decidido","bonus":3,"hits":1,"hp":84.5912}}
+{"character":"mcm","check":"combo-gate","evidence":{"side":1,"wins":1,"combo":"Impulso doble","bonus":7,"hits":1,"hp":80.4712}}
+{"character":"mcm","check":"connected-combo","evidence":{"side":1,"combo":"Paso decidido","hits":2,"hp":77.958,"elapsed":63}}
+{"character":"mcm","check":"connected-combo","evidence":{"side":1,"combo":"Impulso doble","hits":3,"hp":67.20479999999999,"elapsed":105}}
+{"character":"mcm","check":"super-gate","evidence":{"side":1,"wins":0,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"mcm","check":"super-gate","evidence":{"side":1,"wins":2,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"mcm","check":"super-gate","evidence":{"side":1,"wins":3,"energy":74,"hp":100,"attackerEnergy":74.31499999999997,"combo":""}}
+{"character":"mcm","check":"super-gate","evidence":{"side":1,"wins":3,"energy":100,"hp":61.10719999999999,"attackerEnergy":38.28,"combo":"Hasta el final"}}
+{"character":"mcm","check":"cpu-fight","evidence":{"winner":0,"tick":1162,"remaining":4720,"started":["special","super","light","heavy"],"landed":["light","heavy"],"players":[{"fighter":"mcm","hp":77.9131,"stocks":1,"hits":3,"peakCombo":3},{"fighter":"javier","hp":0,"stocks":0,"hits":5,"peakCombo":3}]}}
+✔ MCM retains her identity, unique rally hop and one-shot facing presentation (2.641103ms)
+✔ MCM walks both ways, faces movement, double jumps, rejects a third jump and lands on both sides (7.103495ms)
+✔ MCM light and heavy connect once and respect forward guard on both sides (13.436759ms)
+✔ Marcha firme catches delayed contact, hops, brakes and respects front/rear guards on both sides (13.861329ms)
+✔ rally travel covers its active window and a distant whiff stops without ringout on both sides (11.668612ms)
+✔ MCM recognizes whiff chains and connects chased combos, with win and energy gates on both sides (8.554935ms)
+✔ MCM intro blocks action until the shared timeline completes and faces the rival on either side (1.07421ms)
+✔ a complete MCM fight versus normal CPU finishes and deterministically replays (17.400528ms)
+✔ viewport bounds reverse the complete camera transform and backing-pixel scale (2.04905ms)
+✔ viewport edges remain ordered when the arena is mirrored (0.33745ms)
+✔ full-pose anchor intervals preserve body scale and asymmetric anchors on both facings (2.012085ms)
+✔ a pose wider than the viewport reports an impossible interval without shrinking it (0.187483ms)
+✔ published showgirl art stays fully visible at either ledge under real arena scale and DPR (0.882961ms)
+✔ missing, invalid and noninvertible canvas transforms leave mock positions unchanged (0.313263ms)
+✔ caravan captures any canonical rival, damages only on the visible front contact and releases with the ordinary force (17.540609ms)
+✔ caravan gates, guard, miss, interruption and lethal stocks retain shared rules (9.988747ms)
+✔ every Mcm pose and valid intrinsic image is required before the module paints (0.990204ms)
+✔ rally damages once only within physical dash contact, including the278/279 boundary (11.560989ms)
+✔ captured caravan serializes and resumes identically through impact and ordinary release (7.017245ms)
+✔ caravan uses a real approach before contact and preserves all generated source provenance (66.210425ms)
+✔ transparent margin adds no edits to source RGBA and inversely reproduces every original byte (254.721444ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1759.72688

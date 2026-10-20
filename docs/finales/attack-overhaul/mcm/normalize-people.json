@@ -1,0 +1,16 @@
+{
+  "source": "assets/source/finales/attack-overhaul/mcm/people-padded.png",
+  "destination": "assets/source/finales/attack-overhaul/mcm/people-grid.png",
+  "auditPath": "docs/finales/attack-overhaul/mcm/people-grid-audit.json",
+  "columns": 3,
+  "rows": 2,
+  "poseCount": 6,
+  "poses": [
+    "mount",
+    "dismount",
+    "man-a",
+    "man-b",
+    "woman-a",
+    "woman-b"
+  ]
+}

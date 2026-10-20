@@ -1,0 +1,95 @@
+{
+  "reviewedAt": "2026-10-19T22:19:18Z",
+  "qaReproduction": {
+    "cases": 80,
+    "samples": 1070
+  },
+  "guide": {
+    "summary": {
+      "selected": "mcm",
+      "mode": "final",
+      "frames": 280,
+      "hp": 100,
+      "minHp": 61.48479999999999,
+      "stocks": 1,
+      "props": [
+        "mcm-caravan-attack-v1",
+        "finales-v1-2",
+        "finales-seated-v1-2",
+        "finales-dance-v2-2",
+        "finales-v1-1",
+        "finales-seated-main-v1",
+        "perro-mujeriego-v3-capriles",
+        "finales-capriles-cafe",
+        "finales-cafe-furniture"
+      ],
+      "sprite": "mcm-v3"
+    },
+    "hits": [
+      {
+        "frame": 105,
+        "tick": 96,
+        "hp": 61.48479999999999
+      }
+    ],
+    "release": 189,
+    "stock": 227,
+    "terminal": {
+      "stocks": [
+        2,
+        1
+      ],
+      "capture": null
+    },
+    "frames": 280
+  },
+  "screenshots": [
+    {
+      "key": "final-p1-platform-inverse-96",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg4ep-c27ae9dc.png"
+    },
+    {
+      "key": "final-p2-platform-96",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg4rq-31f58f7f.png"
+    },
+    {
+      "key": "final-p1-normal-158",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg52s-f45edad1.png"
+    },
+    {
+      "key": "final-p2-close-edge-35",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg5e7-8b028567.png"
+    },
+    {
+      "key": "final-p1-normal-178",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftg5kv-a4767444.png"
+    }
+  ],
+  "additionalScreens": [
+    "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftfpfc-262d2009.png",
+    "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftfw9e-c35ae679.png",
+    "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftgqi6-161ab8e1.png"
+  ],
+  "focusedTests": {
+    "passed": 35,
+    "log": "root-focused-tests.log",
+    "strictGuideTypes": "passed"
+  },
+  "guideSpecial": {
+    "frames": 180,
+    "hits": [
+      {
+        "frame": 13,
+        "hp": 85.924,
+        "gap": 96.0948
+      }
+    ],
+    "stocks": 2,
+    "capture": false
+  }
+}

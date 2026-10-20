@@ -1,0 +1,45 @@
+{
+  "method": "Exact40px translation of all RGBA; inverse extraction equals raw including RGB beneath alpha0. Normalizer guards unchanged. Contours visually inspected before padding.",
+  "objects": [
+    {
+      "source": "assets/source/finales/attack-overhaul/mcm/truck-low-grip-raw-v1.png",
+      "padded": "assets/source/finales/attack-overhaul/mcm/truck-padded.png",
+      "margin": 40,
+      "width": 1536,
+      "height": 1024,
+      "sourceRgbaSha256": "79778fa7809385d4e40531830f15db262a6d6926e21129ea05691f60f45713fe",
+      "inverseRgbaSha256": "79778fa7809385d4e40531830f15db262a6d6926e21129ea05691f60f45713fe",
+      "exactInverse": true
+    },
+    {
+      "source": "assets/source/finales/attack-overhaul/mcm/truck-empty-raw-v1.png",
+      "padded": "assets/source/finales/attack-overhaul/mcm/empty-padded.png",
+      "margin": 40,
+      "width": 1536,
+      "height": 1024,
+      "sourceRgbaSha256": "9e8277e630af8983490f37652941e6488a6cbc177a7930a60bc335933b8e7231",
+      "inverseRgbaSha256": "9e8277e630af8983490f37652941e6488a6cbc177a7930a60bc335933b8e7231",
+      "exactInverse": true
+    },
+    {
+      "source": "assets/source/finales/attack-overhaul/mcm/people-raw-v2.png",
+      "padded": "assets/source/finales/attack-overhaul/mcm/people-padded.png",
+      "margin": 40,
+      "width": 1536,
+      "height": 1024,
+      "sourceRgbaSha256": "4733eb842499bcd7a8ee00f135c50418190b09e70ee49d36b2b738889d87a8c5",
+      "inverseRgbaSha256": "4733eb842499bcd7a8ee00f135c50418190b09e70ee49d36b2b738889d87a8c5",
+      "exactInverse": true
+    },
+    {
+      "source": "assets/source/finales/attack-overhaul/mcm/flag-raw-v1.png",
+      "padded": "assets/source/finales/attack-overhaul/mcm/flag-padded.png",
+      "margin": 40,
+      "width": 1536,
+      "height": 1024,
+      "sourceRgbaSha256": "7442f7a09091516df52faca70f1798dc3a8cde89749e48445c60874ffc870da7",
+      "inverseRgbaSha256": "7442f7a09091516df52faca70f1798dc3a8cde89749e48445c60874ffc870da7",
+      "exactInverse": true
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "columns": 1,
+  "rows": 1,
+  "poseCount": 1,
+  "poses": [
+    "truck"
+  ],
+  "sourceWidth": 1616,
+  "sourceHeight": 1104,
+  "width": 1728,
+  "height": 928,
+  "cellWidth": 1728,
+  "cellHeight": 928,
+  "padding": 32,
+  "coreAlphaThreshold": 40,
+  "minimumCorePixels": 1000,
+  "transparentSourcePixels": 1062797,
+  "retainedPixels": 718977,
+  "discardedNoise": {
+    "components": 469,
+    "pixels": 2290,
+    "maxAlpha": 1
+  },
+  "retainedSoftComponents": [
+    {
+      "assignment": "contained",
+      "component": 76,
+      "assignedComponent": 15,
+      "cell": 0,
+      "sourceBounds": {
+        "left": 783,
+        "top": 874,
+        "width": 11,
+        "height": 2
+      },
+      "outputBounds": {
+        "left": 833,
+        "top": 734,
+        "width": 11,
+        "height": 2
+      },
+      "translation": {
+        "x": 50,
+        "y": -140
+      },
+      "pixels": 13,
+      "maxAlpha": 3,
+      "isolatedRgbaSha256": "b70c9cbab954de5acefc062982de492f3ec87d5c964116f0bbb005e7fe37e94b"
+    },
+    {
+      "assignment": "contained",
+      "component": 90,
+      "assignedComponent": 15,
+      "cell": 0,
+      "sourceBounds": {
+        "left": 980,
+        "top": 891,
+        "width": 7,
+        "height": 1
+      },
+      "outputBounds": {
+        "left": 1030,
+        "top": 751,
+        "width": 7,
+        "height": 1
+      },
+      "translation": {
+        "x": 50,
+        "y": -140
+      },
+      "pixels": 7,
+      "maxAlpha": 2,
+      "isolatedRgbaSha256": "08b814f06c238455c32f7e691011cf85a500a24a160a2366bb9aedb1b7b78ad5"
+    }
+  ],
+  "objects": [
+    {
+      "cell": 0,
+      "column": 0,
+      "row": 0,
+      "pose": "truck",
+      "sourceBounds": {
+        "left": 51,
+        "top": 190,
+        "width": 1525,
+        "height": 827
+      },
+      "coreBounds": {
+        "left": 53,
+        "top": 194,
+        "width": 1522,
+        "height": 821
+      },
+      "outputBounds": {
+        "left": 101,
+        "top": 50,
+        "width": 1525,
+        "height": 827
+      },
+      "outputCoreBounds": {
+        "left": 103,
+        "top": 54,
+        "width": 1522,
+        "height": 821
+      },
+      "translation": {
+        "x": 50,
+        "y": -140
+      },
+      "retainedPixels": 718977,
+      "corePixels": 704106,
+      "maxAlpha": 254,
+      "isolatedRgbaSha256": "599e3a16d5fd2540ec4ec8ce3f3d6b77b3d15cf246600d57984f3519da70b1b5"
+    }
+  ],
+  "sourceSha256": "69f3f9cd7bc694e0b83579961287e76a5b5904be63bffb9b5dfe7e236c251ff5",
+  "sourceRgbaSha256": "097b57af595bee6c67c1d79b242c28f592e3c68f796580361f0134a8f964e5ec",
+  "normalizedSha256": "9107d31aa60e3c967b4d8a6e1ff646351213e81a45a87f05902ef27d41ffd84a",
+  "normalizedRgbaSha256": "ef23cd6fe2caf657c9821c0dc732de69a323dfe74a583708890f3d77ca20c19d",
+  "retainedSourceRgbaSha256": "d63673db24e7014ad1573ea1aadd1adc97931d72cfeefbcc8c1e9b9a9efad827",
+  "reconstructedSourceRgbaSha256": "d63673db24e7014ad1573ea1aadd1adc97931d72cfeefbcc8c1e9b9a9efad827",
+  "exactRetainedRgbaRoundtrip": true,
+  "preservation": "Translation only. Every nonzero-alpha RGBA pixel in each retained 8-neighbor component is copied exactly. Detached max-alpha-2-to-39 components are retained inside exactly one complete silhouette's bounds and matching source cell. Additionally, a max-alpha-2 component of at most 8 pixels outside all silhouette bounds may be retained only when actual nonzero-alpha contour pixels of exactly one substantial silhouette are within Chebyshev distance 3, in the matching source cell; its complete bounds are included and assignment distance audited. Only wholly disconnected max-alpha-1 components are discarded. Invisible alpha-zero background RGB is zeroed. No scaling, rotation, painting or anatomy changes.",
+  "source": "assets/source/finales/attack-overhaul/mcm/truck-padded.png",
+  "normalized": "assets/source/finales/attack-overhaul/mcm/truck-grid.png"
+}
