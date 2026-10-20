@@ -3,6 +3,7 @@ body {
   background: #091524;
 }
 .app-shell.in-lobby {
+  --selection-control-height: 35px;
   --ink: #17273f;
   --paper: #fff5db;
   --coin: #ffd45a;
@@ -1918,8 +1919,8 @@ body {
   .in-lobby .arcade-ready.online-ready .arcade-start {
     grid-column: 1;
     margin-top: 0;
-    height: 58px;
-    font-size: 29px;
+    height: var(--selection-control-height);
+    font-size: 21px;
   }
   .in-lobby .ready-room-players {
     gap: 10px;
