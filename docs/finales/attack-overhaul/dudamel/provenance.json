@@ -1,0 +1,57 @@
+{
+  "tool": "image_gen.imagegen",
+  "accepted": [
+    "conductor-raw-v2.png",
+    "orchestra-raw-v2.png"
+  ],
+  "rejected": {
+    "conductor-raw-v1.png": "Outer edge contact detected by normalizer",
+    "orchestra-raw-v1.png": "Cropped bass scroll and rightmost violin"
+  },
+  "files": [
+    {
+      "path": "assets/source/finales/attack-overhaul/dudamel/conductor-raw-v1.png",
+      "sha256": "1b4386c8e124430e997ecf4a749ad4263c1830041138029faf4319af7207c59f"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/dudamel/conductor-raw-v2.png",
+      "sha256": "7c7108d09b4e3ba7eaaac2fc218303bcde4cf844118d5a4e14cec97fc7fb1b8c"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/dudamel/orchestra-raw-v1.png",
+      "sha256": "20cd57648fbb2118ba76e413da9012d9cd78c6e2395a9d3b80e5742b69e616f9"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/dudamel/orchestra-raw-v2.png",
+      "sha256": "410dca0e134d10b6f557d19dca3954df0c4145a415958df0a146c815aa6e3af0"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/dudamel/references/canonical-main.png",
+      "sha256": "04b15676b1bcb6642d23ea0be004e310f114a6f2e0d70358f75e0ed9b207733a"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/dudamel/references/laphil-conducting.jpg",
+      "sha256": "79eab1d289a359c7d486d491c7010e382c47afad251864097ba624a90ab19059"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/dudamel/references/laphil-orchestra.jpg",
+      "sha256": "7a03ab33564f4783cf7506bd1bbe1a1be6561dafd13e8565fd231e32bbc9aee1"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/dudamel/prompts.json",
+      "sha256": "2ea6707d017bf18e814aae9e25c65f6f4c23a46047a2a402ae96f78268d70502"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/dudamel/prompt-conductor-v2.txt",
+      "sha256": "2dc7bcedc2903db61d5d1f34ae24ab65d6dedc376b8a687de5a71a017123c18e"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/dudamel/pack.json",
+      "sha256": "f6fa3f108000e0d674b135de21baa7229cccf49c8f51615ecfccea691569c354"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/dudamel/research.md",
+      "sha256": "f814de210a351f7c084002796315418c537adaf982edd28260f6eb616b68dc9a"
+    }
+  ]
+}

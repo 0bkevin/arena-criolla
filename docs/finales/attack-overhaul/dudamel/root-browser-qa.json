@@ -1,0 +1,1674 @@
+{
+  "cases": 40,
+  "samples": 464,
+  "evidence": [
+    {
+      "side": 1,
+      "move": "special",
+      "scenario": "normal",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 39,
+          "hp": 88.1272
+        }
+      ],
+      "emitted": 1,
+      "hp": 88.1272,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          380,
+          554
+        ],
+        [
+          788.30076213866,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "special",
+      "scenario": "close",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 18,
+          "hp": 88.1272
+        }
+      ],
+      "emitted": 0,
+      "hp": 88.1272,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          380,
+          554
+        ],
+        [
+          563.30076213866,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "special",
+      "scenario": "unequal",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 39,
+          "hp": 88.1272
+        }
+      ],
+      "emitted": 1,
+      "hp": 88.1272,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          380,
+          554
+        ],
+        [
+          788.30076213866,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "special",
+      "scenario": "edge",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 19,
+          "hp": 88.1272
+        }
+      ],
+      "emitted": 1,
+      "hp": 100,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          925,
+          554
+        ],
+        [
+          750,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "special",
+      "scenario": "inward",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 27,
+          "hp": 88.1272
+        }
+      ],
+      "emitted": 1,
+      "hp": 88.1272,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          40,
+          554
+        ],
+        [
+          348.30076213866045,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "special",
+      "scenario": "close-edge",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 18,
+          "hp": 88.1272
+        }
+      ],
+      "emitted": 0,
+      "hp": 88.1272,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          40,
+          554
+        ],
+        [
+          223.30076213866047,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "special",
+      "scenario": "platform",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 33,
+          "hp": 88.1272
+        }
+      ],
+      "emitted": 1,
+      "hp": 88.1272,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          225,
+          418
+        ],
+        [
+          588.30076213866,
+          345
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "special",
+      "scenario": "guard",
+      "paid": 75,
+      "impacts": [],
+      "emitted": 1,
+      "hp": 100,
+      "hits": 0,
+      "released": true,
+      "release": [
+        [
+          380,
+          554
+        ],
+        [
+          662.7857142857141,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "special",
+      "scenario": "tall",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 39,
+          "hp": 88.4764
+        }
+      ],
+      "emitted": 1,
+      "hp": 88.4764,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          380,
+          554
+        ],
+        [
+          787.8609722620807,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "special",
+      "scenario": "small",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 39,
+          "hp": 89.1748
+        }
+      ],
+      "emitted": 1,
+      "hp": 89.1748,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          380,
+          554
+        ],
+        [
+          786.9813925089221,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "final",
+      "scenario": "normal",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 86.6856
+        },
+        {
+          "tick": 90,
+          "hp": 73.3712
+        },
+        {
+          "tick": 138,
+          "hp": 60.0568
+        }
+      ],
+      "emitted": 0,
+      "hp": 60.0568,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          380,
+          554
+        ],
+        [
+          560,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 60.0568,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            380,
+            554
+          ],
+          [
+            560,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          380,
+          554
+        ],
+        [
+          1097.0985599999983,
+          570.1199999999999
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "final",
+      "scenario": "close",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 86.6856
+        },
+        {
+          "tick": 90,
+          "hp": 73.3712
+        },
+        {
+          "tick": 138,
+          "hp": 60.0568
+        }
+      ],
+      "emitted": 0,
+      "hp": 60.0568,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          380,
+          554
+        ],
+        [
+          435,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 60.0568,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            380,
+            554
+          ],
+          [
+            435,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          380,
+          554
+        ],
+        [
+          966.5907008959987,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "final",
+      "scenario": "unequal",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 86.6856
+        },
+        {
+          "tick": 90,
+          "hp": 73.3712
+        },
+        {
+          "tick": 138,
+          "hp": 60.0568
+        }
+      ],
+      "emitted": 0,
+      "hp": 60.0568,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          380,
+          554
+        ],
+        [
+          560,
+          530.7199999999999
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 60.0568,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            380,
+            554
+          ],
+          [
+            560,
+            530.7199999999999
+          ]
+        ]
+      },
+      "release": [
+        [
+          380,
+          554
+        ],
+        [
+          1097.0985599999983,
+          546.8399999999997
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "final",
+      "scenario": "edge",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 86.6856
+        },
+        {
+          "tick": 90,
+          "hp": 73.3712
+        },
+        {
+          "tick": 138,
+          "hp": 60.0568
+        }
+      ],
+      "emitted": 0,
+      "hp": 100,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          925,
+          554
+        ],
+        [
+          1045,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 60.0568,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            925,
+            554
+          ],
+          [
+            1045,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          925,
+          554
+        ],
+        [
+          750,
+          348.92
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "final",
+      "scenario": "inward",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 86.6856
+        },
+        {
+          "tick": 90,
+          "hp": 73.3712
+        },
+        {
+          "tick": 138,
+          "hp": 60.0568
+        }
+      ],
+      "emitted": 0,
+      "hp": 60.0568,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          40,
+          554
+        ],
+        [
+          220,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 60.0568,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            40,
+            554
+          ],
+          [
+            220,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          40,
+          554
+        ],
+        [
+          751.5907008959994,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "final",
+      "scenario": "close-edge",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 86.6856
+        },
+        {
+          "tick": 90,
+          "hp": 73.3712
+        },
+        {
+          "tick": 138,
+          "hp": 60.0568
+        }
+      ],
+      "emitted": 0,
+      "hp": 60.0568,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          40,
+          554
+        ],
+        [
+          95,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 60.0568,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            40,
+            554
+          ],
+          [
+            95,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          40,
+          554
+        ],
+        [
+          626.5907008959998,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "final",
+      "scenario": "platform",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 86.6856
+        },
+        {
+          "tick": 90,
+          "hp": 73.3712
+        },
+        {
+          "tick": 138,
+          "hp": 60.0568
+        }
+      ],
+      "emitted": 0,
+      "hp": 60.0568,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          225,
+          418
+        ],
+        [
+          460,
+          345
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 60.0568,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            225,
+            418
+          ],
+          [
+            460,
+            345
+          ]
+        ]
+      },
+      "release": [
+        [
+          225,
+          418
+        ],
+        [
+          997.0985599999985,
+          361.11999999999995
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "final",
+      "scenario": "guard",
+      "paid": 25,
+      "impacts": [],
+      "emitted": 0,
+      "hp": 100,
+      "hits": 0,
+      "released": true,
+      "release": [
+        [
+          380,
+          554
+        ],
+        [
+          564.2857142857141,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "final",
+      "scenario": "tall",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 87.0772
+        },
+        {
+          "tick": 90,
+          "hp": 74.15440000000001
+        },
+        {
+          "tick": 138,
+          "hp": 61.2316
+        }
+      ],
+      "emitted": 0,
+      "hp": 61.2316,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          380,
+          554
+        ],
+        [
+          560,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 61.2316,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            380,
+            554
+          ],
+          [
+            560,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          380,
+          554
+        ],
+        [
+          1092.2427200000006,
+          570.1199999999999
+        ]
+      ]
+    },
+    {
+      "side": 1,
+      "move": "final",
+      "scenario": "small",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 87.8604
+        },
+        {
+          "tick": 90,
+          "hp": 75.7208
+        },
+        {
+          "tick": 138,
+          "hp": 63.5812
+        }
+      ],
+      "emitted": 0,
+      "hp": 63.5812,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          380,
+          554
+        ],
+        [
+          560,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 63.5812,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            380,
+            554
+          ],
+          [
+            560,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          380,
+          554
+        ],
+        [
+          1078.8227551999983,
+          555.56
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "special",
+      "scenario": "normal",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 39,
+          "hp": 88.1272
+        }
+      ],
+      "emitted": 1,
+      "hp": 88.1272,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          291.69923786133955,
+          554
+        ],
+        [
+          700,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "special",
+      "scenario": "close",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 18,
+          "hp": 88.1272
+        }
+      ],
+      "emitted": 0,
+      "hp": 88.1272,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          516.69923786134,
+          554
+        ],
+        [
+          700,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "special",
+      "scenario": "unequal",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 39,
+          "hp": 88.1272
+        }
+      ],
+      "emitted": 1,
+      "hp": 88.1272,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          291.69923786133955,
+          554
+        ],
+        [
+          700,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "special",
+      "scenario": "edge",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 19,
+          "hp": 88.1272
+        }
+      ],
+      "emitted": 1,
+      "hp": 100,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          330,
+          554
+        ],
+        [
+          155,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "special",
+      "scenario": "inward",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 27,
+          "hp": 88.1272
+        }
+      ],
+      "emitted": 1,
+      "hp": 88.1272,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          731.69923786134,
+          554
+        ],
+        [
+          1040,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "special",
+      "scenario": "close-edge",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 18,
+          "hp": 88.1272
+        }
+      ],
+      "emitted": 0,
+      "hp": 88.1272,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          856.69923786134,
+          554
+        ],
+        [
+          1040,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "special",
+      "scenario": "platform",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 33,
+          "hp": 88.1272
+        }
+      ],
+      "emitted": 1,
+      "hp": 88.1272,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          491.69923786133944,
+          345
+        ],
+        [
+          855,
+          418
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "special",
+      "scenario": "guard",
+      "paid": 75,
+      "impacts": [],
+      "emitted": 1,
+      "hp": 100,
+      "hits": 0,
+      "released": true,
+      "release": [
+        [
+          417.21428571428567,
+          554
+        ],
+        [
+          700,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "special",
+      "scenario": "tall",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 39,
+          "hp": 88.4764
+        }
+      ],
+      "emitted": 1,
+      "hp": 88.4764,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          292.13902773791915,
+          554
+        ],
+        [
+          700,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "special",
+      "scenario": "small",
+      "paid": 75,
+      "impacts": [
+        {
+          "tick": 39,
+          "hp": 89.1748
+        }
+      ],
+      "emitted": 1,
+      "hp": 89.1748,
+      "hits": 1,
+      "released": true,
+      "release": [
+        [
+          293.0186074910787,
+          554
+        ],
+        [
+          700,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "final",
+      "scenario": "normal",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 86.6856
+        },
+        {
+          "tick": 90,
+          "hp": 73.3712
+        },
+        {
+          "tick": 138,
+          "hp": 60.0568
+        }
+      ],
+      "emitted": 0,
+      "hp": 60.0568,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          520,
+          554
+        ],
+        [
+          700,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 60.0568,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            520,
+            554
+          ],
+          [
+            700,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          -17.098560000000077,
+          570.1199999999999
+        ],
+        [
+          700,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "final",
+      "scenario": "close",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 86.6856
+        },
+        {
+          "tick": 90,
+          "hp": 73.3712
+        },
+        {
+          "tick": 138,
+          "hp": 60.0568
+        }
+      ],
+      "emitted": 0,
+      "hp": 60.0568,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          645,
+          554
+        ],
+        [
+          700,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 60.0568,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            645,
+            554
+          ],
+          [
+            700,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          113.40929910400031,
+          554
+        ],
+        [
+          700,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "final",
+      "scenario": "unequal",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 86.6856
+        },
+        {
+          "tick": 90,
+          "hp": 73.3712
+        },
+        {
+          "tick": 138,
+          "hp": 60.0568
+        }
+      ],
+      "emitted": 0,
+      "hp": 60.0568,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          520,
+          530.7199999999999
+        ],
+        [
+          700,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 60.0568,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            520,
+            530.7199999999999
+          ],
+          [
+            700,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          -17.098560000000077,
+          546.8399999999997
+        ],
+        [
+          700,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "final",
+      "scenario": "edge",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 86.6856
+        },
+        {
+          "tick": 90,
+          "hp": 73.3712
+        },
+        {
+          "tick": 138,
+          "hp": 60.0568
+        }
+      ],
+      "emitted": 0,
+      "hp": 100,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          35,
+          554
+        ],
+        [
+          155,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 60.0568,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            35,
+            554
+          ],
+          [
+            155,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          330,
+          348.92
+        ],
+        [
+          155,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "final",
+      "scenario": "inward",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 86.6856
+        },
+        {
+          "tick": 90,
+          "hp": 73.3712
+        },
+        {
+          "tick": 138,
+          "hp": 60.0568
+        }
+      ],
+      "emitted": 0,
+      "hp": 60.0568,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          860,
+          554
+        ],
+        [
+          1040,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 60.0568,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            860,
+            554
+          ],
+          [
+            1040,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          328.40929910400104,
+          554
+        ],
+        [
+          1040,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "final",
+      "scenario": "close-edge",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 86.6856
+        },
+        {
+          "tick": 90,
+          "hp": 73.3712
+        },
+        {
+          "tick": 138,
+          "hp": 60.0568
+        }
+      ],
+      "emitted": 0,
+      "hp": 60.0568,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          985,
+          554
+        ],
+        [
+          1040,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 60.0568,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            985,
+            554
+          ],
+          [
+            1040,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          453.40929910400143,
+          554
+        ],
+        [
+          1040,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "final",
+      "scenario": "platform",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 86.6856
+        },
+        {
+          "tick": 90,
+          "hp": 73.3712
+        },
+        {
+          "tick": 138,
+          "hp": 60.0568
+        }
+      ],
+      "emitted": 0,
+      "hp": 60.0568,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          620,
+          345
+        ],
+        [
+          855,
+          418
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 60.0568,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            620,
+            345
+          ],
+          [
+            855,
+            418
+          ]
+        ]
+      },
+      "release": [
+        [
+          82.90144000000026,
+          361.11999999999995
+        ],
+        [
+          855,
+          418
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "final",
+      "scenario": "guard",
+      "paid": 25,
+      "impacts": [],
+      "emitted": 0,
+      "hp": 100,
+      "hits": 0,
+      "released": true,
+      "release": [
+        [
+          515.7142857142859,
+          554
+        ],
+        [
+          700,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "final",
+      "scenario": "tall",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 87.0772
+        },
+        {
+          "tick": 90,
+          "hp": 74.15440000000001
+        },
+        {
+          "tick": 138,
+          "hp": 61.2316
+        }
+      ],
+      "emitted": 0,
+      "hp": 61.2316,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          520,
+          554
+        ],
+        [
+          700,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 61.2316,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            520,
+            554
+          ],
+          [
+            700,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          -12.242720000000226,
+          570.1199999999999
+        ],
+        [
+          700,
+          554
+        ]
+      ]
+    },
+    {
+      "side": 2,
+      "move": "final",
+      "scenario": "small",
+      "paid": 25,
+      "impacts": [
+        {
+          "tick": 42,
+          "hp": 87.8604
+        },
+        {
+          "tick": 90,
+          "hp": 75.7208
+        },
+        {
+          "tick": 138,
+          "hp": 63.5812
+        }
+      ],
+      "emitted": 0,
+      "hp": 63.5812,
+      "hits": 1,
+      "released": true,
+      "captured": [
+        [
+          520,
+          554
+        ],
+        [
+          700,
+          554
+        ]
+      ],
+      "releaseState": {
+        "frame": 189,
+        "hp": 63.5812,
+        "stocks": [
+          2,
+          2
+        ],
+        "positions": [
+          [
+            520,
+            554
+          ],
+          [
+            700,
+            554
+          ]
+        ]
+      },
+      "release": [
+        [
+          1.1772447999999827,
+          555.56
+        ],
+        [
+          700,
+          554
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+Courier coverage: 0 matchup cases, 0 special clashes, 0 platform cases, 24 interaction cases.
+✔ Carolina reflects the motorcycle with its identity intact (31.028119ms)
+✔ front-facing reflection of newly spawned bikes is independent of player order (1.558822ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 224.79827

@@ -1285,5 +1285,55 @@
         "bodyHeight": 427.28877679697354
       }
     }
+  },
+  "dudamel": {
+    "file": "dudamel-orchestra-attack-v1",
+    "frames": {
+      "ready": {
+        "x": 78,
+        "y": 20,
+        "width": 355,
+        "height": 472,
+        "anchorX": 173.95,
+        "anchorY": 469.34831460674155,
+        "bodyHeight": 466.69662921348316
+      },
+      "upbeat": {
+        "x": 595,
+        "y": 20,
+        "width": 345,
+        "height": 472,
+        "anchorX": 172.5,
+        "anchorY": 465.74834437086093,
+        "bodyHeight": 463.4039735099338
+      },
+      "downbeat": {
+        "x": 20,
+        "y": 554,
+        "width": 472,
+        "height": 450,
+        "anchorX": 188.8,
+        "anchorY": 443.9306358381503,
+        "bodyHeight": 439.59537572254334
+      },
+      "fortissimo": {
+        "x": 568,
+        "y": 532,
+        "width": 400,
+        "height": 472,
+        "anchorX": 176,
+        "anchorY": 467.88132635253055,
+        "bodyHeight": 464.586387434555
+      },
+      "orchestra": {
+        "x": 0,
+        "y": 1024,
+        "width": 1536,
+        "height": 961,
+        "anchorX": 768,
+        "anchorY": 884.12,
+        "bodyHeight": 807.24
+      }
+    }
   }
 }

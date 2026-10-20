@@ -1,0 +1,180 @@
+{
+  "fighter": "dudamel",
+  "source": "assets/source/finales/attack-overhaul/dudamel/conductor-raw-v2.png",
+  "file": "dudamel-orchestra-attack-v1",
+  "columns": 2,
+  "rows": 2,
+  "poses": [
+    "ready",
+    "upbeat",
+    "downbeat",
+    "fortissimo",
+    "orchestra"
+  ],
+  "anchorFractions": {
+    "ready": 0.49,
+    "upbeat": 0.5,
+    "downbeat": 0.4,
+    "fortissimo": 0.44
+  },
+  "tool": "image_gen.imagegen",
+  "normalized": "assets/source/finales/attack-overhaul/dudamel/dudamel-orchestra-attack-v1-packed.png",
+  "destination": "public/assets/dudamel-orchestra-attack-v1.webp",
+  "width": 1536,
+  "height": 1985,
+  "cell": 512,
+  "frames": {
+    "ready": {
+      "x": 78,
+      "y": 20,
+      "width": 355,
+      "height": 472,
+      "anchorX": 173.95,
+      "anchorY": 469.34831460674155,
+      "bodyHeight": 466.69662921348316
+    },
+    "upbeat": {
+      "x": 595,
+      "y": 20,
+      "width": 345,
+      "height": 472,
+      "anchorX": 172.5,
+      "anchorY": 465.74834437086093,
+      "bodyHeight": 463.4039735099338
+    },
+    "downbeat": {
+      "x": 20,
+      "y": 554,
+      "width": 472,
+      "height": 450,
+      "anchorX": 188.8,
+      "anchorY": 443.9306358381503,
+      "bodyHeight": 439.59537572254334
+    },
+    "fortissimo": {
+      "x": 568,
+      "y": 532,
+      "width": 400,
+      "height": 472,
+      "anchorX": 176,
+      "anchorY": 467.88132635253055,
+      "bodyHeight": 464.586387434555
+    },
+    "orchestra": {
+      "x": 0,
+      "y": 1024,
+      "width": 1536,
+      "height": 961,
+      "anchorX": 768,
+      "anchorY": 884.12,
+      "bodyHeight": 807.24
+    }
+  },
+  "objects": [
+    {
+      "pose": "ready",
+      "sourceBounds": {
+        "left": 113,
+        "top": 79,
+        "width": 402,
+        "height": 534
+      },
+      "uniformScale": 0.8838951310861424,
+      "width": 355,
+      "height": 472,
+      "visibleSourcePixels": 85238,
+      "transparentSourcePixels": 298056,
+      "coreBounds": {
+        "top": 82,
+        "bottom": 610
+      },
+      "discardedNoise": {
+        "components": 312,
+        "pixels": 1502,
+        "maxAlpha": 1
+      }
+    },
+    {
+      "pose": "upbeat",
+      "sourceBounds": {
+        "left": 725,
+        "top": 21,
+        "width": 441,
+        "height": 604
+      },
+      "uniformScale": 0.7814569536423841,
+      "width": 345,
+      "height": 472,
+      "visibleSourcePixels": 94592,
+      "transparentSourcePixels": 288343,
+      "coreBounds": {
+        "top": 24,
+        "bottom": 617
+      },
+      "discardedNoise": {
+        "components": 218,
+        "pixels": 1224,
+        "maxAlpha": 1
+      }
+    },
+    {
+      "pose": "downbeat",
+      "sourceBounds": {
+        "left": 73,
+        "top": 701,
+        "width": 544,
+        "height": 519
+      },
+      "uniformScale": 0.8676470588235294,
+      "width": 472,
+      "height": 450,
+      "visibleSourcePixels": 89205,
+      "transparentSourcePixels": 293757,
+      "coreBounds": {
+        "top": 706,
+        "bottom": 1213
+      },
+      "discardedNoise": {
+        "components": 348,
+        "pixels": 1348,
+        "maxAlpha": 1
+      }
+    },
+    {
+      "pose": "fortissimo",
+      "sourceBounds": {
+        "left": 737,
+        "top": 649,
+        "width": 486,
+        "height": 573
+      },
+      "uniformScale": 0.8237347294938918,
+      "width": 400,
+      "height": 472,
+      "visibleSourcePixels": 98014,
+      "transparentSourcePixels": 283158,
+      "coreBounds": {
+        "top": 653,
+        "bottom": 1217
+      },
+      "discardedNoise": {
+        "components": 426,
+        "pixels": 1763,
+        "maxAlpha": 1
+      }
+    }
+  ],
+  "sourceSha256": "7c7108d09b4e3ba7eaaac2fc218303bcde4cf844118d5a4e14cec97fc7fb1b8c",
+  "normalizedSha256": "021ab81df77e62860c42b5473cea694d3152f38f778ffd31c893e4df39788282",
+  "runtimeSha256": "8c05ff60380451fa7aa8b9826126303db20dde08808a9b71d02aa121c96903ca",
+  "rgbaSha256": "9bbffdf03e29ea801fc89ddd75a270d6b5f2e359d66e6285817787e3a75a0a5d",
+  "alphaSha256": "7f49795a049233a4d15f0128402f364c96d68b4f1913b2c3ff8605ac31d9b771",
+  "lossless": true,
+  "orchestra": {
+    "source": "assets/source/finales/attack-overhaul/dudamel/orchestra-raw-v2.png",
+    "sourceSha256": "410dca0e134d10b6f557d19dca3954df0c4145a415958df0a146c815aa6e3af0",
+    "width": 1536,
+    "height": 961
+  },
+  "normalization": "Conductor v2 already lies fully inside four source cells; direct prepareAttackArt retains alpha-2 island and validates gutters. V1 rejected at outer edge. No anatomy painted or cropped."
+}

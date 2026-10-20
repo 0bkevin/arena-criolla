@@ -1,0 +1,60 @@
+{"character":"dudamel","check":"presentation","evidence":{"intro":"Abre los brazos y dirige la orquesta","choreographyMetadata":"Abre los brazos y dirige la orquesta","paintedEntranceOverridesChoreography":true,"frames":[0,1,2,3,4,5,6,7,8,9,10,11]}}
+{"character":"dudamel","check":"movement","evidence":{"side":0,"start":540,"right":646.2860026935858,"left":548.9137089078745,"firstY":454.59999999999997,"finalY":554,"stocks":2}}
+{"character":"dudamel","check":"movement","evidence":{"side":1,"start":540,"right":646.2860026935858,"left":548.9137089078745,"firstY":454.59999999999997,"finalY":554,"stocks":2}}
+{"character":"dudamel","check":"ordinary-attack","evidence":{"side":0,"action":"light","guard":false,"hp":93.0063,"hits":1,"energy":100}}
+{"character":"dudamel","check":"ordinary-attack","evidence":{"side":0,"action":"light","guard":true,"hp":100,"hits":0,"energy":85.47999999999979}}
+{"character":"dudamel","check":"ordinary-attack","evidence":{"side":0,"action":"heavy","guard":false,"hp":87.0117,"hits":1,"energy":100}}
+{"character":"dudamel","check":"ordinary-attack","evidence":{"side":0,"action":"heavy","guard":true,"hp":100,"hits":0,"energy":84.87999999999977}}
+{"character":"dudamel","check":"ordinary-attack","evidence":{"side":1,"action":"light","guard":false,"hp":93.0063,"hits":1,"energy":100}}
+{"character":"dudamel","check":"ordinary-attack","evidence":{"side":1,"action":"light","guard":true,"hp":100,"hits":0,"energy":85.47999999999979}}
+{"character":"dudamel","check":"ordinary-attack","evidence":{"side":1,"action":"heavy","guard":false,"hp":87.0117,"hits":1,"energy":100}}
+{"character":"dudamel","check":"ordinary-attack","evidence":{"side":1,"action":"heavy","guard":true,"hp":100,"hits":0,"energy":84.87999999999977}}
+{"character":"dudamel","check":"special-strike","evidence":{"side":0,"guard":"idle","strikeTick":528,"hp":88.0108,"hits":1,"energy":90.76499999999973,"targetEnergy":100}}
+{"character":"dudamel","check":"special-strike","evidence":{"side":0,"guard":"front","strikeTick":528,"hp":100,"hits":0,"energy":77.79999999999973,"targetEnergy":81.27999999999963}}
+{"character":"dudamel","check":"special-strike","evidence":{"side":0,"guard":"rear","strikeTick":528,"hp":88.0108,"hits":1,"energy":90.76499999999973,"targetEnergy":94.95999999999981}}
+{"character":"dudamel","check":"special-strike","evidence":{"side":1,"guard":"idle","strikeTick":528,"hp":88.0108,"hits":1,"energy":90.76499999999973,"targetEnergy":100}}
+{"character":"dudamel","check":"special-strike","evidence":{"side":1,"guard":"front","strikeTick":528,"hp":100,"hits":0,"energy":77.79999999999973,"targetEnergy":81.27999999999963}}
+{"character":"dudamel","check":"special-strike","evidence":{"side":1,"guard":"rear","strikeTick":528,"hp":88.0108,"hits":1,"energy":90.76499999999973,"targetEnergy":94.95999999999981}}
+{"character":"dudamel","check":"combo-gate","evidence":{"side":0,"wins":0,"combo":"Primer compás","bonus":3,"hits":1,"hp":83.9217}}
+{"character":"dudamel","check":"combo-gate","evidence":{"side":0,"wins":1,"combo":"Cambio de tempo","bonus":7,"hits":1,"hp":79.8017}}
+{"character":"dudamel","check":"connected-combo","evidence":{"side":0,"combo":"Primer compás","hits":2,"hp":76.928,"elapsed":65}}
+{"character":"dudamel","check":"connected-combo","evidence":{"side":0,"combo":"Cambio de tempo","hits":3,"hp":65.81429999999999,"elapsed":110}}
+{"character":"dudamel","check":"super-gate","evidence":{"side":0,"wins":0,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"dudamel","check":"super-gate","evidence":{"side":0,"wins":2,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"dudamel","check":"super-gate","evidence":{"side":0,"wins":3,"energy":74,"hp":100,"attackerEnergy":74.31499999999997,"combo":""}}
+{"character":"dudamel","check":"super-gate","evidence":{"side":0,"wins":3,"energy":100,"hp":59.665200000000006,"attackerEnergy":38.28,"combo":"Gran cadenza"}}
+{"character":"dudamel","check":"combo-gate","evidence":{"side":1,"wins":0,"combo":"Primer compás","bonus":3,"hits":1,"hp":83.9217}}
+{"character":"dudamel","check":"combo-gate","evidence":{"side":1,"wins":1,"combo":"Cambio de tempo","bonus":7,"hits":1,"hp":79.8017}}
+{"character":"dudamel","check":"connected-combo","evidence":{"side":1,"combo":"Primer compás","hits":2,"hp":76.928,"elapsed":65}}
+{"character":"dudamel","check":"connected-combo","evidence":{"side":1,"combo":"Cambio de tempo","hits":3,"hp":65.81429999999999,"elapsed":110}}
+{"character":"dudamel","check":"super-gate","evidence":{"side":1,"wins":0,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"dudamel","check":"super-gate","evidence":{"side":1,"wins":2,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"dudamel","check":"super-gate","evidence":{"side":1,"wins":3,"energy":74,"hp":100,"attackerEnergy":74.31499999999997,"combo":""}}
+{"character":"dudamel","check":"super-gate","evidence":{"side":1,"wins":3,"energy":100,"hp":59.665200000000006,"attackerEnergy":38.28,"combo":"Gran cadenza"}}
+{"character":"dudamel","check":"cpu-fight","evidence":{"winner":1,"tick":1233,"remaining":4634,"started":["super","light","heavy","special"],"landed":["light"],"players":[{"fighter":"dudamel","hp":0,"stocks":0,"hits":3,"peakCombo":2},{"fighter":"javier","hp":79.01889999999999,"stocks":1,"hits":8,"peakCombo":5}]}}
+✔ Dudamel preserves cadenza, all eight facings and the approved one-shot v24 conducting entrance (2.502876ms)
+✔ Dudamel walks, faces both directions, jumps twice, rejects a third jump and lands on both sides (9.110153ms)
+✔ Dudamel light and heavy each connect once and obey a facing guard on both sides (12.207176ms)
+✔ Cadenza spends 25 energy and its tick-18 musical wave hits idle/rear guard and respects frontal guard on both sides (11.65291ms)
+✔ Dudamel recognizes base and upgraded combos, connects every strike with approach inputs, and enforces super gates on both sides (20.775512ms)
+✔ Dudamel intro blocks action until the full shared timeline completes (0.316478ms)
+✔ a complete Dudamel fight versus normal CPU finishes and deterministically replays (20.425795ms)
+✔ Dudamel orchestra finale charges 75 once, drains three equal beats and releases both slots (10.156242ms)
+✔ Dudamel definitive rejects locked, depleted, behind and guarded captures; lethal stock resolves on exit (2.633873ms)
+✔ Dudamel's miss and interrupted startup never start the performance or drain remote health (2.131295ms)
+✔ special travels before damaging, grows to 64 and never reflects (7.694729ms)
+✔ special respects front guard, misses height, obeys energy and loses startup to a real hit (5.009247ms)
+✔ Carolina returns Dudamel's growing notes with original identity and damage (2.142623ms)
+✔ cadenza and finale remain identical after network serialization (14.027322ms)
+✔ original synthesized orchestra has energy at all arrivals and finite samples (17.557888ms)
+✔ raw assets and large orchestra frame preserve audited hashes and anatomical scale (30.635547ms)
+✔ preflight refuses every missing pose before any canvas or actor operation (0.759876ms)
+✔ visible special wave takes radius directly from the physical shot (0.481125ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 266.854037
