@@ -30,3 +30,6 @@ data/
 /docs/finales/in-arena/2026-10-19-final/frames/
 /docs/finales/other-finales-2026-10-19/frames/
 /docs/finales/main-identity-refresh/frames/
+
+# Resumable codec checkpoints are local; complete per-asset audit reports are tracked.
+/docs/performance/lossless-assets/*.progress.jsonl
