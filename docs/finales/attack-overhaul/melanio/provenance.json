@@ -1,0 +1,50 @@
+{
+  "tool": "image_gen.imagegen",
+  "accepted": [
+    "raw-v1.png: record/windup/strike-low/recover whole figures",
+    "raw-v2-special.png: signal-windup and signal pulse whole objects",
+    "raw-v4-high.png: complete strike-high same hand",
+    "raw-v5-release.png: complete compact low signal-release"
+  ],
+  "rejected": {
+    "raw-v1.png:strike-high": "phone switched arms",
+    "raw-v1.png:signal-release": "hand too high and extended for physical origin",
+    "raw-v1.png:signal": "soft halo at source edge, replaced with generous margins",
+    "raw-v2-special.png:signal-release": "clean art but hand still high for physical origin",
+    "raw-v3-high-rejected.png": "incorrect phone arm repeated, unwanted outer glow"
+  },
+  "rawFiles": {
+    "assets/source/finales/attack-overhaul/melanio/raw-v1-padded.png": "899611b729efef48a6c6cea9e53d162dc3c1685915371b87888592b27d3c3a86",
+    "assets/source/finales/attack-overhaul/melanio/raw-v1.png": "89b1e22c3f8c4ad0d4ad09472dd998f8139d7973c2f6718c2a323e3f2021748a",
+    "assets/source/finales/attack-overhaul/melanio/raw-v2-special.png": "240c89d42dcb46bab8ed7b4f1b64081a414d00fdcf833928288d40a92263418a",
+    "assets/source/finales/attack-overhaul/melanio/raw-v3-high-rejected.png": "00250ef9bf5b107de829c44e8c2a643f217f4f1c70d217ddf1387d2c22928fce",
+    "assets/source/finales/attack-overhaul/melanio/raw-v4-high.png": "cac4396073af4be01e4adc5739c045546204fce4347129d9435a3a1aa9638a91",
+    "assets/source/finales/attack-overhaul/melanio/raw-v5-release.png": "bde3c342cd1485dd1111209eb4959ccbb8b8e440169694c70da8ef9d9631c624"
+  },
+  "canonicalSha256": {
+    "assets/source/melanio-v44.png": "0663f358eb789f25da2ae6cf8ace320880b862a953fc23aff18ab33be46be91c",
+    "public/assets/melanio-v44.webp": "82afe709e2c38606380b6f9b2e79baca3aea5c33e1dee5755d2dc6bc58e0ef80"
+  },
+  "referenceSha256": {
+    "docs/finales/attack-overhaul/melanio/references/canonical-punch.png": "ff363a3a2fb637ef469cba170918649520088deff5982c5b0877baa8183c99a1",
+    "docs/finales/attack-overhaul/melanio/references/canonical-standing.png": "22d1cf5cb5f6b8228ce43365e19e5478561a1379a580ede6d0e2767ca88ee629",
+    "docs/finales/attack-overhaul/melanio/references/concordia-2022.jpeg": "a19cd8eca3ce491764dfc25c42777d66ac3d94364844a69ef28a6f6c65c3a414",
+    "docs/finales/attack-overhaul/melanio/references/low-strike-whole.png": "c499ba7a05fd1449f51b8d4375e2a4bc1a25c135c3b83ecee752c489af55065a",
+    "docs/finales/attack-overhaul/melanio/references/special-release-whole.png": "cb7eab29bc252069641b0f76930815615d61465bab420b13a695c54ded44a501"
+  },
+  "promptSha256": {
+    "docs/finales/attack-overhaul/melanio/prompts/v1.txt": "3bb658cb7bcf8b690b3724c373f23a04e71897403d8de6bf428793aa2dae70fc",
+    "docs/finales/attack-overhaul/melanio/prompts/v2-special.txt": "91b5c299504d886e19671650667c2810429371fc625758c26e0bfbce392d2d5a",
+    "docs/finales/attack-overhaul/melanio/prompts/v3-high.txt": "8eeae5433fe7d7bef563d7e166ac876905e6ef6efff450a517a6453cbc3fbb74",
+    "docs/finales/attack-overhaul/melanio/prompts/v4-high.txt": "6f89fa288401a2d8727fc802be710017fc638c3b45650a983f5af4912e1c2bcc",
+    "docs/finales/attack-overhaul/melanio/prompts/v5-release.txt": "12849a0207cba5e721dd84e3657be50b63d2e2851617ff46a0047da47246cb2e"
+  },
+  "sourceScales": {
+    "v1": 1,
+    "v4-high": 0.44,
+    "v2-special-windup": 0.65,
+    "v5-release": 0.378
+  },
+  "scaleRationale": "Uniform whole-figure calibration using cap/face and shoulder size, before per-cell packing; low crouch retains source334px versus record424px instead of enlarging its head.",
+  "notes": "Raw files immutable. Padding40 on v1 preserves every pixel; its unused pulse is retained only in audit, never runtime. Normalization translates exact connected RGBA components; assembly copies complete objects; prepareAttackArt uniformly packs and verifies lossless WebP."
+}

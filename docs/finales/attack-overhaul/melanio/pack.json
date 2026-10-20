@@ -1,0 +1,27 @@
+{
+  "fighter": "melanio",
+  "source": "assets/source/finales/attack-overhaul/melanio/melanio-grid.png",
+  "file": "melanio-phone-signal-attack-v1",
+  "columns": 4,
+  "rows": 2,
+  "poses": [
+    "record",
+    "windup",
+    "strike-high",
+    "strike-low",
+    "recover",
+    "signal-windup",
+    "signal-release",
+    "signal"
+  ],
+  "anchorFractions": {
+    "record": 0.46,
+    "windup": 0.48,
+    "strike-high": 0.452,
+    "strike-low": 0.48,
+    "recover": 0.46,
+    "signal-windup": 0.47,
+    "signal-release": 0.47,
+    "signal": 0.5
+  }
+}

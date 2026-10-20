@@ -1,0 +1,789 @@
+{
+  "at": "2026-10-19 22:47:36 UTC",
+  "note": "Geometry-only check: chosen contact lies on alpha>=100 in each canonical battle frame. Does not replace combat/render QA or phone-edge inspection.",
+  "results": [
+    {
+      "fighter": "zavarce",
+      "pose": "strike-high",
+      "visibleHeight": 300.70422535211264,
+      "contact": {
+        "x": -15.66901408450704,
+        "y": -239
+      },
+      "pixel": {
+        "x": 191,
+        "y": 88,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "vallenilla",
+      "pose": "strike-high",
+      "visibleHeight": 300.67720090293454,
+      "contact": {
+        "x": -17.099322799097067,
+        "y": -239
+      },
+      "pixel": {
+        "x": 188,
+        "y": 91,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "javier",
+      "pose": "strike-high",
+      "visibleHeight": 300.6864988558352,
+      "contact": {
+        "x": -23.340961098398168,
+        "y": -239
+      },
+      "pixel": {
+        "x": 169,
+        "y": 90,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "capriles",
+      "pose": "strike-high",
+      "visibleHeight": 300.7025761124122,
+      "contact": {
+        "x": -26.697892271662763,
+        "y": -239
+      },
+      "pixel": {
+        "x": 189,
+        "y": 88,
+        "alpha": 250
+      },
+      "passed": true
+    },
+    {
+      "fighter": "renny",
+      "pose": "strike-high",
+      "visibleHeight": 287.6993166287016,
+      "contact": {
+        "x": -19.646924829157175,
+        "y": -239
+      },
+      "pixel": {
+        "x": 189,
+        "y": 71,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "gomez",
+      "pose": "strike-high",
+      "visibleHeight": 300.65645514223195,
+      "contact": {
+        "x": -76.80525164113786,
+        "y": -239
+      },
+      "pixel": {
+        "x": 237,
+        "y": 94,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "simon",
+      "pose": "strike-high",
+      "visibleHeight": 300.78534031413614,
+      "contact": {
+        "x": -14.528795811518325,
+        "y": -239
+      },
+      "pixel": {
+        "x": 163,
+        "y": 79,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "conde",
+      "pose": "strike-high",
+      "visibleHeight": 279.9076212471132,
+      "contact": {
+        "x": -46.93995381062356,
+        "y": -239
+      },
+      "pixel": {
+        "x": 236,
+        "y": 59,
+        "alpha": 250
+      },
+      "passed": true
+    },
+    {
+      "fighter": "emilio",
+      "pose": "strike-low",
+      "visibleHeight": 268.7116564417178,
+      "contact": {
+        "x": -36.19631901840491,
+        "y": -156
+      },
+      "pixel": {
+        "x": 243,
+        "y": 184,
+        "alpha": 253
+      },
+      "passed": true
+    },
+    {
+      "fighter": "maite",
+      "pose": "strike-high",
+      "visibleHeight": 299.38524590163934,
+      "contact": {
+        "x": -24.59016393442623,
+        "y": -239
+      },
+      "pixel": {
+        "x": 217,
+        "y": 98,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "oscar",
+      "pose": "strike-high",
+      "visibleHeight": 274.94505494505495,
+      "contact": {
+        "x": -20.439560439560438,
+        "y": -239
+      },
+      "pixel": {
+        "x": 165,
+        "y": 55,
+        "alpha": 253
+      },
+      "passed": true
+    },
+    {
+      "fighter": "puma",
+      "pose": "strike-high",
+      "visibleHeight": 298.7654320987654,
+      "contact": {
+        "x": -22.22222222222222,
+        "y": -239
+      },
+      "pixel": {
+        "x": 202,
+        "y": 97,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "chataing",
+      "pose": "strike-high",
+      "visibleHeight": 290.8536585365854,
+      "contact": {
+        "x": 2.4390243902439024,
+        "y": -239
+      },
+      "pixel": {
+        "x": 173,
+        "y": 85,
+        "alpha": 253
+      },
+      "passed": true
+    },
+    {
+      "fighter": "george",
+      "pose": "strike-high",
+      "visibleHeight": 285.6548856548857,
+      "contact": {
+        "x": -8.731808731808732,
+        "y": -239
+      },
+      "pixel": {
+        "x": 163,
+        "y": 75,
+        "alpha": 253
+      },
+      "passed": true
+    },
+    {
+      "fighter": "mcm",
+      "pose": "strike-high",
+      "visibleHeight": 298.6363636363636,
+      "contact": {
+        "x": -14.147727272727272,
+        "y": -239
+      },
+      "pixel": {
+        "x": 189,
+        "y": 87,
+        "alpha": 253
+      },
+      "passed": true
+    },
+    {
+      "fighter": "ali",
+      "pose": "strike-high",
+      "visibleHeight": 296.66666666666663,
+      "contact": {
+        "x": -38.5,
+        "y": -239
+      },
+      "pixel": {
+        "x": 216,
+        "y": 87,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "gualberto",
+      "pose": "strike-high",
+      "visibleHeight": 297.20279720279717,
+      "contact": {
+        "x": -10.314685314685315,
+        "y": -239
+      },
+      "pixel": {
+        "x": 170,
+        "y": 83,
+        "alpha": 202
+      },
+      "passed": true
+    },
+    {
+      "fighter": "reynaldo",
+      "pose": "strike-high",
+      "visibleHeight": 300,
+      "contact": {
+        "x": -24.24418604651163,
+        "y": -239
+      },
+      "pixel": {
+        "x": 204,
+        "y": 87,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "dudamel",
+      "pose": "strike-high",
+      "visibleHeight": 296.4622641509434,
+      "contact": {
+        "x": -6.8985849056603765,
+        "y": -239
+      },
+      "pixel": {
+        "x": 170,
+        "y": 81,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "danny",
+      "pose": "strike-high",
+      "visibleHeight": 292.73127753303964,
+      "contact": {
+        "x": -11.729074889867842,
+        "y": -239
+      },
+      "pixel": {
+        "x": 181,
+        "y": 81,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "nacho",
+      "pose": "strike-high",
+      "visibleHeight": 300.68965517241384,
+      "contact": {
+        "x": -35.862068965517246,
+        "y": -239
+      },
+      "pixel": {
+        "x": 230,
+        "y": 89,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "sarcos",
+      "pose": "strike-high",
+      "visibleHeight": 300.6928406466513,
+      "contact": {
+        "x": -19.22632794457275,
+        "y": -239
+      },
+      "pixel": {
+        "x": 208,
+        "y": 89,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "yordano",
+      "pose": "strike-high",
+      "visibleHeight": 295.1276102088167,
+      "contact": {
+        "x": -36.7169373549884,
+        "y": -239
+      },
+      "pixel": {
+        "x": 202,
+        "y": 81,
+        "alpha": 247
+      },
+      "passed": true
+    },
+    {
+      "fighter": "lila",
+      "pose": "strike-high",
+      "visibleHeight": 297.2911963882619,
+      "contact": {
+        "x": -28.95033860045147,
+        "y": -239
+      },
+      "pixel": {
+        "x": 215,
+        "y": 86,
+        "alpha": 248
+      },
+      "passed": true
+    },
+    {
+      "fighter": "rummy",
+      "pose": "strike-high",
+      "visibleHeight": 298.6332574031891,
+      "contact": {
+        "x": -26.480637813211846,
+        "y": -239
+      },
+      "pixel": {
+        "x": 187,
+        "y": 87,
+        "alpha": 253
+      },
+      "passed": true
+    },
+    {
+      "fighter": "chiqui",
+      "pose": "strike-high",
+      "visibleHeight": 299.3135011441648,
+      "contact": {
+        "x": -18.36384439359268,
+        "y": -239
+      },
+      "pixel": {
+        "x": 189,
+        "y": 88,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "norkys",
+      "pose": "strike-high",
+      "visibleHeight": 300,
+      "contact": {
+        "x": -32.630979498861045,
+        "y": -239
+      },
+      "pixel": {
+        "x": 213,
+        "y": 89,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "gabriela",
+      "pose": "strike-high",
+      "visibleHeight": 300.6912442396313,
+      "contact": {
+        "x": -20.56451612903226,
+        "y": -239
+      },
+      "pixel": {
+        "x": 198,
+        "y": 89,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "amanda",
+      "pose": "strike-high",
+      "visibleHeight": 296.4871194379391,
+      "contact": {
+        "x": -2.6346604215456675,
+        "y": -239
+      },
+      "pixel": {
+        "x": 156,
+        "y": 82,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "lele",
+      "pose": "strike-high",
+      "visibleHeight": 300,
+      "contact": {
+        "x": -55.689655172413794,
+        "y": -239
+      },
+      "pixel": {
+        "x": 229,
+        "y": 88,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "giuseppe",
+      "pose": "strike-high",
+      "visibleHeight": 300,
+      "contact": {
+        "x": -25.797266514806378,
+        "y": -239
+      },
+      "pixel": {
+        "x": 210,
+        "y": 89,
+        "alpha": 249
+      },
+      "passed": true
+    },
+    {
+      "fighter": "silbon",
+      "pose": "strike-high",
+      "visibleHeight": 313.54695038970675,
+      "contact": {
+        "x": -16.126438203637264,
+        "y": -239
+      },
+      "pixel": {
+        "x": 178,
+        "y": 91,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "llorona",
+      "pose": "strike-high",
+      "visibleHeight": 299.04346366840076,
+      "contact": {
+        "x": -19.382446719248197,
+        "y": -239
+      },
+      "pixel": {
+        "x": 203,
+        "y": 81,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "sayona",
+      "pose": "strike-high",
+      "visibleHeight": 305.8380414312618,
+      "contact": {
+        "x": -41.6195856873823,
+        "y": -239
+      },
+      "pixel": {
+        "x": 210,
+        "y": 89,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "lionza",
+      "pose": "strike-high",
+      "visibleHeight": 305.8181225554107,
+      "contact": {
+        "x": -46.386082138200784,
+        "y": -239
+      },
+      "pixel": {
+        "x": 190,
+        "y": 91,
+        "alpha": 253
+      },
+      "passed": true
+    },
+    {
+      "fighter": "florentino",
+      "pose": "strike-high",
+      "visibleHeight": 300.709219858156,
+      "contact": {
+        "x": -17.19858156028369,
+        "y": -239
+      },
+      "pixel": {
+        "x": 173,
+        "y": 87,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "diablo",
+      "pose": "strike-high",
+      "visibleHeight": 317.70200088570397,
+      "contact": {
+        "x": -46.111961029026936,
+        "y": -239
+      },
+      "pixel": {
+        "x": 224,
+        "y": 105,
+        "alpha": 253
+      },
+      "passed": true
+    },
+    {
+      "fighter": "knoche",
+      "pose": "strike-high",
+      "visibleHeight": 293.8944087278395,
+      "contact": {
+        "x": -14.155464640561076,
+        "y": -239
+      },
+      "pixel": {
+        "x": 171,
+        "y": 81,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "momoy",
+      "pose": "strike-low",
+      "visibleHeight": 237.86972416085078,
+      "contact": {
+        "x": -33.295945496842805,
+        "y": -156
+      },
+      "pixel": {
+        "x": 226,
+        "y": 141,
+        "alpha": 248
+      },
+      "passed": true
+    },
+    {
+      "fighter": "tiotigre",
+      "pose": "strike-high",
+      "visibleHeight": 310.946858672104,
+      "contact": {
+        "x": -52.277940614247484,
+        "y": -239
+      },
+      "pixel": {
+        "x": 245,
+        "y": 93,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "tioconejo",
+      "pose": "strike-low",
+      "visibleHeight": 261.62823006390664,
+      "contact": {
+        "x": -38.663517643789945,
+        "y": -156
+      },
+      "pixel": {
+        "x": 178,
+        "y": 173,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "enrique",
+      "pose": "strike-high",
+      "visibleHeight": 300.68965517241384,
+      "contact": {
+        "x": -21.379310344827587,
+        "y": -239
+      },
+      "pixel": {
+        "x": 170,
+        "y": 89,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "jesus",
+      "pose": "strike-high",
+      "visibleHeight": 300.6880733944954,
+      "contact": {
+        "x": -4.81651376146789,
+        "y": -239
+      },
+      "pixel": {
+        "x": 143,
+        "y": 90,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "carlos",
+      "pose": "strike-high",
+      "visibleHeight": 300.69767441860466,
+      "contact": {
+        "x": -17.441860465116278,
+        "y": -239
+      },
+      "pixel": {
+        "x": 159,
+        "y": 88,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "victor",
+      "pose": "strike-high",
+      "visibleHeight": 300.68965517241384,
+      "contact": {
+        "x": -14.482758620689657,
+        "y": -239
+      },
+      "pixel": {
+        "x": 148,
+        "y": 89,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "juan",
+      "pose": "strike-high",
+      "visibleHeight": 300.6880733944954,
+      "contact": {
+        "x": -8.256880733944953,
+        "y": -239
+      },
+      "pixel": {
+        "x": 159,
+        "y": 90,
+        "alpha": 253
+      },
+      "passed": true
+    },
+    {
+      "fighter": "lorenzo",
+      "pose": "strike-high",
+      "visibleHeight": 300.6928406466513,
+      "contact": {
+        "x": -27.02078521939954,
+        "y": -239
+      },
+      "pixel": {
+        "x": 200,
+        "y": 89,
+        "alpha": 246
+      },
+      "passed": true
+    },
+    {
+      "fighter": "carolina",
+      "pose": "strike-high",
+      "visibleHeight": 300.68965517241384,
+      "contact": {
+        "x": -17.24137931034483,
+        "y": -239
+      },
+      "pixel": {
+        "x": 181,
+        "y": 89,
+        "alpha": 253
+      },
+      "passed": true
+    },
+    {
+      "fighter": "dayana",
+      "pose": "strike-high",
+      "visibleHeight": 300.68965517241384,
+      "contact": {
+        "x": -35.17241379310345,
+        "y": -239
+      },
+      "pixel": {
+        "x": 212,
+        "y": 89,
+        "alpha": 251
+      },
+      "passed": true
+    },
+    {
+      "fighter": "bolivar",
+      "pose": "strike-high",
+      "visibleHeight": 300.68965517241384,
+      "contact": {
+        "x": -13.793103448275863,
+        "y": -239
+      },
+      "pixel": {
+        "x": 190,
+        "y": 89,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "edgar",
+      "pose": "strike-high",
+      "visibleHeight": 300.6928406466513,
+      "contact": {
+        "x": -21.478060046189377,
+        "y": -239
+      },
+      "pixel": {
+        "x": 206,
+        "y": 89,
+        "alpha": 252
+      },
+      "passed": true
+    },
+    {
+      "fighter": "melanio",
+      "pose": "strike-high",
+      "visibleHeight": 300.68965517241384,
+      "contact": {
+        "x": -33.10344827586207,
+        "y": -239
+      },
+      "pixel": {
+        "x": 195,
+        "y": 89,
+        "alpha": 252
+      },
+      "passed": true
+    }
+  ],
+  "total": 52,
+  "passed": 52,
+  "failures": []
+}

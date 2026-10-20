@@ -1,0 +1,102 @@
+{
+  "method": "Complete connected generated silhouettes translated into common cells without resampling; no anatomy editing. Runtime packing uniformly scales complete figures.",
+  "cell": 1280,
+  "objects": [
+    {
+      "pose": "record",
+      "source": "assets/source/finales/attack-overhaul/melanio/v1-grid.png",
+      "sourceBounds": {
+        "left": 120,
+        "top": 39,
+        "width": 335,
+        "height": 433
+      },
+      "coreHeight": 424,
+      "rgbaSha256": "6a29f3a04b1d777fd60bd9165294270558c7610d6dc5d45753663485dcc7cd02"
+    },
+    {
+      "pose": "windup",
+      "source": "assets/source/finales/attack-overhaul/melanio/v1-grid.png",
+      "sourceBounds": {
+        "left": 686,
+        "top": 40,
+        "width": 356,
+        "height": 432
+      },
+      "coreHeight": 424,
+      "rgbaSha256": "8fcb6931532cec5bf38d208354de8c22741a5207afd2489aacc83f77f2e03c4d"
+    },
+    {
+      "pose": "strike-high",
+      "source": "assets/source/finales/attack-overhaul/melanio/high-grid.png",
+      "sourceBounds": {
+        "left": 62,
+        "top": 60,
+        "width": 900,
+        "height": 967
+      },
+      "coreHeight": 958,
+      "rgbaSha256": "23cd6ea0d9bff97fea7281fee13f024cdb0bb3585997a07980eba6b92021f8b9"
+    },
+    {
+      "pose": "strike-low",
+      "source": "assets/source/finales/attack-overhaul/melanio/v1-grid.png",
+      "sourceBounds": {
+        "left": 1821,
+        "top": 84,
+        "width": 390,
+        "height": 344
+      },
+      "coreHeight": 334,
+      "rgbaSha256": "8ca8173f556f144c0db9e5d1790da6b68a48df6e44668cf494c8c5f6b6e48266"
+    },
+    {
+      "pose": "recover",
+      "source": "assets/source/finales/attack-overhaul/melanio/v1-grid.png",
+      "sourceBounds": {
+        "left": 131,
+        "top": 547,
+        "width": 314,
+        "height": 442
+      },
+      "coreHeight": 433,
+      "rgbaSha256": "184021f5a9587e7d35e74210afd37c5d97a0ff70f4864e5a33569e2bc6e37f3c"
+    },
+    {
+      "pose": "signal-windup",
+      "source": "assets/source/finales/attack-overhaul/melanio/special-grid.png",
+      "sourceBounds": {
+        "left": 108,
+        "top": 44,
+        "width": 488,
+        "height": 679
+      },
+      "coreHeight": 667,
+      "rgbaSha256": "084b1dea2376a744efbb62452bda7d585cc865dde9b18110d4357e3b081e2f3f"
+    },
+    {
+      "pose": "signal-release",
+      "source": "assets/source/finales/attack-overhaul/melanio/release-grid.png",
+      "sourceBounds": {
+        "left": 58,
+        "top": 82,
+        "width": 812,
+        "height": 1147
+      },
+      "coreHeight": 1142,
+      "rgbaSha256": "81e199280961717b5290121388030d882829326a7514394e1767c8c6939fa250"
+    },
+    {
+      "pose": "signal",
+      "source": "assets/source/finales/attack-overhaul/melanio/special-grid.png",
+      "sourceBounds": {
+        "left": 1450,
+        "top": 138,
+        "width": 619,
+        "height": 492
+      },
+      "coreHeight": 423,
+      "rgbaSha256": "adf21204e25d37c5ab282a4e2f0625bd98b4b7d4267ab596255747d08bc5406d"
+    }
+  ]
+}

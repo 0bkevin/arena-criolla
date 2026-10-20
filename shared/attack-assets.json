@@ -887,5 +887,82 @@
         "bodyHeight": 458.7972027972028
       }
     }
+  },
+  "melanio": {
+    "file": "melanio-phone-signal-attack-v1",
+    "frames": {
+      "record": {
+        "x": 73,
+        "y": 20,
+        "width": 365,
+        "height": 472,
+        "anchorX": 167.9,
+        "anchorY": 465.459584295612,
+        "bodyHeight": 462.18937644341804
+      },
+      "windup": {
+        "x": 573,
+        "y": 20,
+        "width": 389,
+        "height": 472,
+        "anchorX": 186.72,
+        "anchorY": 465.44444444444446,
+        "bodyHeight": 463.25925925925924
+      },
+      "strike-high": {
+        "x": 1060,
+        "y": 20,
+        "width": 439,
+        "height": 472,
+        "anchorX": 198.428,
+        "anchorY": 468.58324715615305,
+        "bodyHeight": 467.60703205791106
+      },
+      "strike-low": {
+        "x": 1556,
+        "y": 76,
+        "width": 472,
+        "height": 416,
+        "anchorX": 226.56,
+        "anchorY": 411.16279069767444,
+        "bodyHeight": 403.90697674418607
+      },
+      "recover": {
+        "x": 88,
+        "y": 532,
+        "width": 335,
+        "height": 472,
+        "anchorX": 154.1,
+        "anchorY": 467.72850678733033,
+        "bodyHeight": 462.3891402714932
+      },
+      "signal-windup": {
+        "x": 598,
+        "y": 532,
+        "width": 339,
+        "height": 472,
+        "anchorX": 159.32999999999998,
+        "anchorY": 465.7437407952872,
+        "bodyHeight": 463.6583210603829
+      },
+      "signal-release": {
+        "x": 1113,
+        "y": 532,
+        "width": 334,
+        "height": 472,
+        "anchorX": 156.98,
+        "anchorY": 469.94245858761985,
+        "bodyHeight": 469.94245858761985
+      },
+      "signal": {
+        "x": 1556,
+        "y": 629,
+        "width": 472,
+        "height": 375,
+        "anchorX": 236,
+        "anchorY": 351.3719512195122,
+        "bodyHeight": 322.4085365853659
+      }
+    }
   }
 }

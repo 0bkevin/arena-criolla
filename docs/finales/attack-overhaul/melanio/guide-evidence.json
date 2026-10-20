@@ -1,0 +1,57 @@
+{
+  "summary": {
+    "selected": "melanio",
+    "mode": "final",
+    "frames": 280,
+    "hp": 100,
+    "minHp": 59.2,
+    "stocks": 1,
+    "props": [
+      "melanio-phone-signal-attack-v1",
+      "finales-v1-1",
+      "finales-seated-main-v1",
+      "perro-mujeriego-v3-capriles",
+      "finales-capriles-cafe",
+      "finales-cafe-furniture"
+    ],
+    "sprite": "melanio-v44"
+  },
+  "changes": [
+    {
+      "index": 9,
+      "tick": 10,
+      "finaleTick": 0,
+      "hp": 100,
+      "stocks": 2,
+      "finale": true,
+      "vx": 0
+    },
+    {
+      "index": 123,
+      "tick": 10,
+      "finaleTick": 114,
+      "hp": 59.2,
+      "stocks": 2,
+      "finale": true,
+      "vx": 0
+    },
+    {
+      "index": 189,
+      "tick": 10,
+      "hp": 59.2,
+      "stocks": 2,
+      "finale": false,
+      "vx": 17.44
+    },
+    {
+      "index": 226,
+      "tick": 47,
+      "hp": 100,
+      "stocks": 1,
+      "finale": false,
+      "vx": 0
+    }
+  ],
+  "screenshot": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfuomvy-c1703066.png",
+  "note": "Native guide using real super input, engine, renderer and canonical sprites. Demo combo bonus makes damage40.8; configured ordinary release force remains12; ring-out occurs after release."
+}
