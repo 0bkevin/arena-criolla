@@ -3558,7 +3558,6 @@ kbd {
 .character-quote {
   margin: 14px 0;
   padding: 11px 14px;
-  border-left: 2px solid var(--fighter-color);
   background: #ffffff05;
   font-size: 15px;
   line-height: 1.6;
