@@ -4,11 +4,12 @@ import { CULTURE_SOUNDS } from "./game/culture-sounds";
 import { presentationById } from "../shared/presentation";
 import { WORLD } from "../shared/arena";
 import { TECHNIQUES } from "../shared/techniques";
-import { MUSIC_SECONDS, writeArcadeMusic } from "./game/arcade-music";
+import { MUSIC_SECONDS } from "./game/arcade-music";
 import { VICTORY_DURATION_MS } from "./game/victory-types";
-import { writeVictoryMusic } from "./game/victory-music";
-import { type FinaleState } from "../shared/finales";
-import { writeFinaleMusic } from "./game/finale-sounds";
+import { victoryById } from "./game/victory";
+import { preparationWorker } from "./game/preparation-worker";
+import { synthesizeScore, type ScoreRequest } from "./game/music-preparation";
+import { finaleById, type FinaleState } from "../shared/finales";
 
 type SoundKind =
   | "select"
@@ -33,12 +34,83 @@ let context: AudioContext | null = null;
 let effectsBus: GainNode | null = null;
 let reactionsBus: GainNode | null = null;
 let musicBus: GainNode | null = null;
-let musicBuffer: AudioBuffer | null = null;
-let victoryBuffer: { fighter: FighterId | "draw"; buffer: AudioBuffer } | null =
-  null;
+const prepareScore = preparationWorker(
+  () =>
+    new Worker(new URL("./game/music.worker.ts", import.meta.url), {
+      type: "module",
+    }),
+  synthesizeScore,
+);
+const scores = new Map<string, AudioBuffer>();
+const pendingScores = new Map<string, Promise<void>>();
+let ambienceTicket = 0;
+
+function scoreBuffer(request: ScoreRequest): AudioBuffer | undefined {
+  const key = JSON.stringify(request);
+  const cached = scores.get(key);
+  if (cached) {
+    scores.delete(key);
+    scores.set(key, cached);
+    return cached;
+  }
+  if (!context || pendingScores.has(key)) return undefined;
+  const ctx = context;
+  const save = ({ left, right }: ReturnType<typeof synthesizeScore>) => {
+    const buffer = ctx.createBuffer(2, request.length, request.sampleRate);
+    buffer.getChannelData(0).set(left);
+    buffer.getChannelData(1).set(right);
+    scores.set(key, buffer);
+    // Playing sources own their buffers; eviction only affects future preparation.
+    while (scores.size > 12) scores.delete(scores.keys().next().value!);
+  };
+  const result = prepareScore(request);
+  if (result instanceof Promise) {
+    pendingScores.set(
+      key,
+      result.then(save).finally(() => pendingScores.delete(key)),
+    );
+    return undefined;
+  }
+  save(result);
+  return scores.get(key);
+}
+
+/** Prepare only the selected scores; playback always uses the current scene clock. */
+export async function prepareMatchAudio(fighters: FighterId[]) {
+  initAudio();
+  if (!context || !enabled) return;
+  const sampleRate = context.sampleRate;
+  scoreBuffer({
+    kind: "ambience",
+    sampleRate,
+    length: Math.round(sampleRate * MUSIC_SECONDS),
+  });
+  for (const fighter of new Set<FighterId | "draw">([...fighters, "draw"])) {
+    scoreBuffer({
+      kind: "victory",
+      style: fighter === "draw" ? "strings" : victoryById(fighter).music,
+      fighter,
+      sampleRate,
+      length: Math.ceil((sampleRate * VICTORY_DURATION_MS) / 1000),
+    });
+    const finale = fighter === "draw" ? undefined : finaleById(fighter);
+    if (finale && fighter !== "draw")
+      scoreBuffer({
+        kind: "finale",
+        profile: {
+          duration: finale.duration,
+          sound: finale.sound,
+          damageBeats: finale.damageBeats,
+        },
+        fighter,
+        sampleRate,
+        length: Math.ceil((sampleRate * finale.duration) / 60),
+      });
+  }
+  await Promise.all(pendingScores.values());
+}
 let victorySource: AudioBufferSourceNode | null = null;
 let victoryGain: GainNode | null = null;
-let finaleBuffer: { fighter: FighterId; buffer: AudioBuffer } | null = null;
 let finaleSource: AudioBufferSourceNode | null = null;
 let finaleGain: GainNode | null = null;
 let finaleKey = "";
@@ -136,6 +208,7 @@ export function initAudio() {
   } catch {}
 }
 export function stopAmbience() {
+  ambienceTicket++;
   for (const node of ambienceNodes) {
     try {
       if ("stop" in node) (node as AudioBufferSourceNode).stop();
@@ -184,23 +257,23 @@ export function syncFinaleMusic(
   stopFinaleMusic();
   initAudio();
   if (!context || !musicBus || context.state !== "running") return;
-  if (finaleBuffer?.fighter !== scene.fighter) {
-    const buffer = context.createBuffer(
-      2,
-      Math.ceil((context.sampleRate * scene.duration) / 60),
-      context.sampleRate,
-    );
-    writeFinaleMusic(
-      buffer.getChannelData(0),
-      buffer.getChannelData(1),
-      context.sampleRate,
-      scene.fighter,
-    );
-    finaleBuffer = { fighter: scene.fighter, buffer };
-  }
+  const buffer = scoreBuffer({
+    kind: "finale",
+    profile: finaleById(scene.fighter)
+      ? {
+          duration: finaleById(scene.fighter)!.duration,
+          sound: finaleById(scene.fighter)!.sound,
+          damageBeats: finaleById(scene.fighter)!.damageBeats,
+        }
+      : undefined,
+    fighter: scene.fighter,
+    sampleRate: context.sampleRate,
+    length: Math.ceil((context.sampleRate * scene.duration) / 60),
+  });
+  if (!buffer) return;
   finaleKey = key;
   finaleSource = context.createBufferSource();
-  finaleSource.buffer = finaleBuffer.buffer;
+  finaleSource.buffer = buffer;
   finaleGain = context.createGain();
   finaleGain.gain.value = scene.fighter === "nacho" ? 0.8 : 2.4;
   finaleSource.connect(finaleGain);
@@ -221,22 +294,16 @@ export function syncVictoryMusic(
   if (victorySource) return;
   initAudio();
   if (!context || !musicBus || context.state !== "running") return;
-  if (victoryBuffer?.fighter !== fighter) {
-    const buffer = context.createBuffer(
-      2,
-      Math.ceil((context.sampleRate * VICTORY_DURATION_MS) / 1000),
-      context.sampleRate,
-    );
-    writeVictoryMusic(
-      buffer.getChannelData(0),
-      buffer.getChannelData(1),
-      context.sampleRate,
-      fighter,
-    );
-    victoryBuffer = { fighter, buffer };
-  }
+  const buffer = scoreBuffer({
+    kind: "victory",
+    style: fighter === "draw" ? "strings" : victoryById(fighter).music,
+    fighter,
+    sampleRate: context.sampleRate,
+    length: Math.ceil((context.sampleRate * VICTORY_DURATION_MS) / 1000),
+  });
+  if (!buffer) return;
   victorySource = context.createBufferSource();
-  victorySource.buffer = victoryBuffer.buffer;
+  victorySource.buffer = buffer;
   victoryGain = context.createGain();
   victoryGain.gain.value = 2.8;
   victorySource.connect(victoryGain);
@@ -260,19 +327,21 @@ export function startAmbience(stage: StageId) {
   if (!context || !musicBus || activeAmbienceStage === stage) return;
   stopAmbience();
   ambienceStage = stage;
-  activeAmbienceStage = stage;
+  const request: ScoreRequest = {
+    kind: "ambience",
+    sampleRate: context.sampleRate,
+    length: Math.round(context.sampleRate * MUSIC_SECONDS),
+  };
+  const musicBuffer = scoreBuffer(request);
   if (!musicBuffer) {
-    musicBuffer = context.createBuffer(
-      2,
-      Math.round(context.sampleRate * MUSIC_SECONDS),
-      context.sampleRate,
-    );
-    writeArcadeMusic(
-      musicBuffer.getChannelData(0),
-      musicBuffer.getChannelData(1),
-      context.sampleRate,
-    );
+    const ticket = ambienceTicket;
+    void pendingScores.get(JSON.stringify(request))?.then(() => {
+      if (ticket === ambienceTicket && ambienceStage === stage && enabled)
+        startAmbience(stage);
+    });
+    return;
   }
+  activeAmbienceStage = stage;
   const source = context.createBufferSource();
   source.buffer = musicBuffer;
   source.loop = true;

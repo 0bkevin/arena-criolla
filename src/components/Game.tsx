@@ -34,6 +34,7 @@ import {
 } from "../game/controls";
 import {
   initAudio,
+  prepareMatchAudio,
   playReaction,
   preloadReactions,
   sound,
@@ -258,6 +259,9 @@ export function Game(props: Props) {
   };
   useEffect(() => {
     let alive = true;
+    void prepareMatchAudio(
+      initial.players.map((player) => player.config.fighter),
+    );
     void preloadAssets(
       initial.players.map((player) => player.config.fighter),
       [initial.stage],
