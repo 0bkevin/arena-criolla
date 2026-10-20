@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtemp, rm } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import sharp from "sharp";
 import { makeArenaServer } from "../server/index";
 import { publicSiteOrigin } from "../server/seo";
 
@@ -53,7 +54,12 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
   );
   assert.match(
     html,
-    /property="og:image"\s+content="https:\/\/arena\.example\/assets\/og-arena-criolla\.png"/,
+    /property="og:image"\s+content="https:\/\/arena\.example\/assets\/og-arena-criolla\.jpg"/,
+  );
+  assert.match(html, /property="og:image:type"\s+content="image\/jpeg"/);
+  assert.match(
+    html,
+    /name="twitter:image"\s+content="https:\/\/arena\.example\/assets\/og-arena-criolla\.jpg"/,
   );
   assert.ok(html.includes('name="twitter:card" content="summary_large_image"'));
   assert.ok(!html.includes("__ARENA_") && !html.includes("PRIVATE"));
@@ -62,6 +68,10 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
   );
   assert.ok(structured);
   assert.equal(JSON.parse(structured[1]).url, "https://arena.example/");
+  assert.equal(
+    JSON.parse(structured[1]).image,
+    "https://arena.example/assets/og-arena-criolla.jpg",
+  );
 
   for (const route of [
     "/create",
@@ -86,9 +96,15 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
   assert.ok(
     (await sitemap.text()).includes("<loc>https://arena.example/</loc>"),
   );
-  const image = await fetch(`${base}/assets/og-arena-criolla.png`);
+  const image = await fetch(`${base}/assets/og-arena-criolla.jpg`);
   assert.equal(image.status, 200);
-  assert.match(image.headers.get("content-type") ?? "", /image\/png/);
+  assert.match(image.headers.get("content-type") ?? "", /image\/jpeg/);
+  const imageBytes = Buffer.from(await image.arrayBuffer());
+  assert.ok(imageBytes.length < 400_000, "Social image must stay below 400 KB");
+  const metadata = await sharp(imageBytes).metadata();
+  assert.equal(metadata.format, "jpeg");
+  assert.equal(metadata.width, 1200);
+  assert.equal(metadata.height, 630);
   const alias = await fetch(`${base}/index.html`, { redirect: "manual" });
   assert.equal(alias.status, 308);
   assert.equal(alias.headers.get("location"), "/");
