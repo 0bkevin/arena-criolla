@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import atlas from "../docs/character-sprite-qa.json";
+import atlas from "../shared/sprite-assets.json";
 import entrances from "../shared/entrance-assets.json";
 import { loadSprite } from "../src/game/assets";
 import { makeArenaServer } from "../server/index";
@@ -9,9 +9,7 @@ import type { ServerMessage } from "../shared/protocol";
 
 // Exercise the real atlas loader without downloading or decoding images in Node.
 test("static portraits load only their atlas; cinematic requests still load the complete entrance", async () => {
-  const checked = atlas.sprites
-    .find((entry) => entry.id === "renny")!
-    .files.find((entry) => entry.file.endsWith(".webp"))!;
+  const checked = atlas.renny;
   const requests: string[] = [];
   const descriptors = new Map(
     ["Image", "document"].map((name) => [

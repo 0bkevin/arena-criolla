@@ -1,6 +1,6 @@
 import type { FighterId } from "../../shared/content";
 import { COMMUNITY_CHARACTERS } from "../../shared/community";
-import manifest from "../../docs/character-manifest.json";
+import manifest from "../../shared/personalities.json";
 
 export interface CharacterPersonality {
   realName: string;
@@ -8,7 +8,7 @@ export interface CharacterPersonality {
   quote?: { text: string; sourceUrl: string };
   sources: { title: string; url: string }[];
 }
-export const PERSONALITIES = manifest.characters as unknown as Record<
+export const PERSONALITIES = manifest as unknown as Record<
   FighterId,
   CharacterPersonality
 >;

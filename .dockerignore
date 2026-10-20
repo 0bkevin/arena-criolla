@@ -2,9 +2,7 @@ node_modules
 dist
 .git
 assets/source
-docs/*
-!docs/character-sprite-qa.json
-!docs/character-manifest.json
+docs
 tests
 *.log
 .env*
@@ -12,3 +10,8 @@ tests
 data
 assets/archive
 assets/references
+artifacts
+reports
+coverage
+playwright-report
+test-results

@@ -135,22 +135,22 @@ test("Emilio's follow-up strike connects after the first reaction", () => {
 
 test("the shipped roster has no real-person speech and every generic reaction has a verified asset", async () => {
   const manifest = JSON.parse(
-    await readFile("docs/character-manifest.json", "utf8"),
+    await readFile("shared/personalities.json", "utf8"),
   );
   assert.deepEqual(
-    Object.keys(manifest.characters).sort(),
+    Object.keys(manifest).sort(),
     FIGHTERS.map((f) => f.id).sort(),
   );
-  assert.equal(manifest.soundMode, "generic-combat-reactions");
   for (const fighter of FIGHTERS) {
-    const character = manifest.characters[fighter.id];
+    const character = manifest[fighter.id];
     await stat(`public/assets/${fighter.sprite}.webp`);
     assert.equal(character.lines, undefined);
   }
   assert.deepEqual(await readdir("public/audio"), ["arcade"]);
   const evidence = JSON.parse(
-    await readFile("docs/audio-provenance.json", "utf8"),
+    await readFile("assets/audio-provenance.json", "utf8"),
   );
+  assert.equal(evidence.mode, "generic-combat-reactions");
   const files = Object.values(REACTION_CLIPS).flatMap((bank) =>
     Object.values(bank).flat(),
   );

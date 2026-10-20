@@ -1,5 +1,5 @@
 import sharp from "sharp";
-import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
+import { mkdir, readFile, stat } from "node:fs/promises";
 import path from "node:path";
 
 const source = path.resolve("assets/source");
@@ -17,23 +17,17 @@ const pixelStages = new Set(
   stages.filter((s) => s.artStyle === "pixel").map((s) => s.id + ".png"),
 );
 const losslessSprites = new Set([
-  "capriles-v22.png",
   "enrique-v3.png",
   "jesus-v3.png",
   "carlos-v3.png",
   "victor-v3.png",
   "juan-v3.png",
   "capriles-v39.png",
-  "javier-v39.png",
   "lorenzo-v39.png",
   "carolina-v39.png",
-  "dayana-v39.png",
   "bolivar-v39.png",
   "edgar-v39.png",
-  "javier-v40.png",
   "dayana-v40.png",
-  "nacho-v40.png",
-  "javier-v42.png",
   "javier-v43.png",
   "nacho-v42.png",
   "melanio-v44.png",
@@ -69,10 +63,6 @@ const results = await Promise.all(
       saved: `${Math.round((1 - after / before) * 100)}%`,
     };
   }),
-);
-await writeFile(
-  "docs/asset-encoding.json",
-  JSON.stringify(results, null, 2) + "\n",
 );
 const total = results.reduce((sum, item) => sum + item.outputBytes, 0);
 console.log(

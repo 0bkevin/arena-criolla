@@ -9,9 +9,10 @@ const navy = "#091524";
 const cream = "#fff5db";
 const yellow = "#ffd45a";
 const manifest = JSON.parse(
-  await readFile("docs/character-sprite-qa.json", "utf8"),
+  await readFile("shared/sprite-assets.json", "utf8"),
 );
 const fighters = JSON.parse(await readFile("shared/fighters.json", "utf8"));
+const stages = JSON.parse(await readFile("shared/stages.json", "utf8"));
 const svg = (body) =>
   Buffer.from(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${body}</svg>`,
@@ -52,10 +53,7 @@ async function centeredText(value, top, size, color, family = "display") {
 async function fighter(id, center, top, bodyHeight, mirror = false) {
   top = Math.round(top);
   const file = fighters.find((entry) => entry.id === id).sprite;
-  const bounds = manifest.sprites
-    .find((sprite) => sprite.id === id)
-    .files.find((entry) => entry.file === `public/assets/${file}.webp`)
-    .components[0];
+  const bounds = manifest[id].components[0];
   const frame = await sharp(`public/assets/${file}.webp`)
     .extract({
       left: bounds.minX,
@@ -193,7 +191,7 @@ await centeredText(
   "body",
 );
 await centeredText(
-  "46 LUCHADORES  /  9 ESCENARIOS  /  SIN REGISTRO",
+  `${fighters.length} LUCHADORES  /  ${stages.length} ESCENARIOS  /  SIN REGISTRO`,
   604,
   16,
   "#a9c1dd",

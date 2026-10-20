@@ -1,5 +1,5 @@
 import sharp from "sharp";
-import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
+import { copyFile, readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 
 // Normalize generated animation cells without repainting or replacing their alpha.
@@ -77,7 +77,6 @@ await sharp({
   .composite(composites)
   .webp({ lossless: true })
   .toFile(runtime);
-await mkdir("docs/yummy-motos", { recursive: true });
 const bytes = await readFile(runtime);
 const sourceBytes = await readFile(source);
 const manifest = {

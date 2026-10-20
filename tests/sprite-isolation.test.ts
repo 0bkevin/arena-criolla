@@ -1,14 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import sharp from "sharp";
-import atlas from "../docs/character-sprite-qa.json";
+import atlas from "../shared/sprite-assets.json";
 import { isolateFramePixels } from "../src/game/sprite-isolation";
 
 test("Pedro kick and running crops exclude neighboring opaque shoe fragments", async () => {
-  const sprite = atlas.sprites.find((s) => s.id === "vallenilla")!;
-  const file = sprite.files.find(
-    (f) => f.file === "public/assets/vallenilla-v5.webp",
-  )!;
+  const file = atlas.vallenilla;
   for (const index of [2, 6]) {
     const c = file.components[index],
       width = c.maxX - c.minX + 1,
