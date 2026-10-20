@@ -23,6 +23,7 @@ import {
 import { SUPER_ENERGY_COST, SUPER_UNLOCK_WINS } from "../../shared/content";
 import type { Control } from "../game/controls";
 import { TouchInputState } from "../game/touch-input";
+import { touchControlAtPoint } from "../game/touch-target";
 
 interface ButtonProps {
   control: Control;
@@ -51,7 +52,7 @@ function TouchButton({
       aria-label={label}
       aria-description={reason}
       title={reason}
-      disabled={disabled}
+      aria-disabled={disabled || undefined}
       onClick={(event) => onClick(event, control)}
       onContextMenu={(event) => event.preventDefault()}
     >
@@ -121,14 +122,21 @@ export function TouchControls({
         syncPressed();
     };
     const movePointer = (event: globalThis.PointerEvent) => {
-      if (!input.current!.canSlide(event.pointerId)) return;
-      const target = document
-        .elementFromPoint(event.clientX, event.clientY)
-        ?.closest<HTMLButtonElement>("button.touch-button[data-control]");
-      const control =
-        target && root.current?.contains(target) && !target.disabled
-          ? (target.dataset.control as Control)
-          : null;
+      if (!input.current!.hasPointer(event.pointerId)) return;
+      // Chorded mouse/pen releases arrive as moves until the last button lifts.
+      // Only the primary button/contact owns this gesture.
+      if (event.pointerType !== "touch" && (event.buttons & 1) === 0) {
+        releasePointer(event);
+        return;
+      }
+      const control = root.current
+        ? touchControlAtPoint(
+            root.current,
+            event.clientX,
+            event.clientY,
+            input.current!.controlFor(event.pointerId),
+          )
+        : null;
       if (input.current!.move(event.pointerId, control)) syncPressed();
     };
     const releaseKey = (event: globalThis.KeyboardEvent) => {
@@ -152,6 +160,8 @@ export function TouchControls({
     window.addEventListener("keyup", releaseKey, true);
     window.addEventListener("blur", releaseAllInputs);
     window.addEventListener("pagehide", releaseAllInputs);
+    window.addEventListener("orientationchange", releaseAllInputs);
+    screen.orientation?.addEventListener("change", releaseAllInputs);
     document.addEventListener("visibilitychange", releaseWhenHidden);
     return () => {
       window.removeEventListener("pointerup", releasePointer, true);
@@ -161,6 +171,8 @@ export function TouchControls({
       window.removeEventListener("keyup", releaseKey, true);
       window.removeEventListener("blur", releaseAllInputs);
       window.removeEventListener("pagehide", releaseAllInputs);
+      window.removeEventListener("orientationchange", releaseAllInputs);
+      screen.orientation?.removeEventListener("change", releaseAllInputs);
       document.removeEventListener("visibilitychange", releaseWhenHidden);
       // Cleanup releases game inputs without scheduling React state during unmount.
       for (const pointer of input.current!.pointers()) {
@@ -194,22 +206,25 @@ export function TouchControls({
   }, [energy, wins, specialUnlockWins]);
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
-    const button = (event.target as HTMLElement).closest<HTMLButtonElement>(
+    const target = event.target as Element;
+    const button = target.closest<HTMLButtonElement>(
       "button.touch-button[data-control]",
     );
     if (
-      !button ||
-      !event.currentTarget.contains(button) ||
-      button.disabled ||
+      !target.closest(".touch-directions, .touch-actions") ||
+      !event.currentTarget.contains(target) ||
       (event.pointerType !== "touch" && event.button !== 0)
     )
       return;
 
     event.preventDefault();
-    if (
-      input.current!.press(event.pointerId, button.dataset.control as Control)
-    )
-      syncPressed();
+    // Keep tracking a gesture that starts in a gap or on an unavailable attack.
+    // aria-disabled preserves pointer delivery when energy changes mid-gesture.
+    const control =
+      button?.getAttribute("aria-disabled") !== "true"
+        ? ((button?.dataset.control as Control | undefined) ?? null)
+        : null;
+    if (input.current!.press(event.pointerId, control)) syncPressed();
     try {
       event.currentTarget.setPointerCapture(event.pointerId);
     } catch {
@@ -226,7 +241,7 @@ export function TouchControls({
     event.preventDefault();
     event.stopPropagation();
     if (
-      button.disabled ||
+      button.getAttribute("aria-disabled") === "true" ||
       event.repeat ||
       keyboardPointers.current.has(event.code)
     )
@@ -241,6 +256,7 @@ export function TouchControls({
     event: MouseEvent<HTMLButtonElement>,
     control: Control,
   ) => {
+    if (event.currentTarget.getAttribute("aria-disabled") === "true") return;
     const nativeEvent =
       event.nativeEvent as unknown as globalThis.MouseEvent & {
         pointerType?: string;
@@ -349,7 +365,7 @@ export function TouchControls({
               ? `Gana ${specialUnlockWins} peleas con este personaje para desbloquearlo.`
               : energy < 25
                 ? "Necesitas 25 de energía."
-                : undefined
+                : "Toca directamente para activar. No se activa al deslizar."
           }
           pressed={pressed.has("special")}
           onClick={handleAccessibleClick}
@@ -366,7 +382,7 @@ export function TouchControls({
               ? `Gana ${SUPER_UNLOCK_WINS} peleas con este personaje para desbloquearla.`
               : energy < SUPER_ENERGY_COST
                 ? `Necesitas ${SUPER_ENERGY_COST} de energía.`
-                : undefined
+                : "Toca directamente para activar. No se activa al deslizar."
           }
           pressed={pressed.has("super")}
           onClick={handleAccessibleClick}

@@ -6,6 +6,37 @@ export function hasTouchInput() {
   );
 }
 
+/** Reserve the real toolbar/pad height when a hybrid device shows both inputs. */
+export function trackHybridGameChrome(element: HTMLElement) {
+  const chrome = [...element.children].filter((child) =>
+    child.matches(".game-topline, .touch-controls, .game-controls-bar"),
+  );
+  const update = () => {
+    const pageStyle = getComputedStyle(element);
+    let height =
+      parseFloat(pageStyle.paddingTop) + parseFloat(pageStyle.paddingBottom);
+    for (const child of chrome) {
+      const style = getComputedStyle(child);
+      if (style.display === "none") continue;
+      height +=
+        child.getBoundingClientRect().height +
+        parseFloat(style.marginTop) +
+        parseFloat(style.marginBottom);
+    }
+    element.style.setProperty("--match-chrome", `${Math.ceil(height)}px`);
+  };
+  // Observe only chrome: resizing the arena must not feed back into its budget.
+  const observer = new ResizeObserver(update);
+  chrome.forEach((child) => observer.observe(child));
+  window.addEventListener("resize", update);
+  update();
+  return () => {
+    observer.disconnect();
+    window.removeEventListener("resize", update);
+    element.style.removeProperty("--match-chrome");
+  };
+}
+
 /** Keep the arena and its controls inside the area not covered by browser UI. */
 export function trackPlayViewport(element: HTMLElement) {
   const viewport = window.visualViewport;

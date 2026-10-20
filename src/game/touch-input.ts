@@ -1,47 +1,49 @@
 import type { Control } from "./controls";
 
-const SLIDE_CONTROLS = new Set<Control>(["left", "right", "down"]);
+/** Energy-consuming abilities require a new contact or keyboard/AT activation. */
+export function requiresFreshPress(control: Control) {
+  return control === "special" || control === "super";
+}
 
 /** Tracks independent fingers and keyboard holds for the virtual controls. */
 export class TouchInputState {
-  private active = new Map<
-    number,
-    { control: Control | null; slides: boolean }
-  >();
+  private active = new Map<number, { control: Control | null }>();
 
   constructor(
     private readonly onPress: (pointer: number, control: Control) => void,
     private readonly onRelease: (pointer: number) => void,
   ) {}
 
-  press(pointer: number, control: Control) {
+  press(pointer: number, control: Control | null) {
     const previous = this.active.get(pointer);
     if (previous?.control === control) return false;
     if (previous?.control) this.onRelease(pointer);
 
-    this.active.set(pointer, {
-      control,
-      slides: SLIDE_CONTROLS.has(control),
-    });
-    this.onPress(pointer, control);
+    this.active.set(pointer, { control });
+    if (control) this.onPress(pointer, control);
     return true;
   }
 
-  /** Direction fingers follow left/right/down buttons and release in the gaps. */
+  /** Slides transfer immediately, but cannot enter an energy-consuming ability. */
   move(pointer: number, target: Control | null) {
     const active = this.active.get(pointer);
-    if (!active?.slides) return false;
+    if (!active) return false;
 
-    const next = target && SLIDE_CONTROLS.has(target) ? target : null;
-    if (active.control === next) return false;
+    if (target && requiresFreshPress(target) && active.control !== target)
+      target = null;
+    if (active.control === target) return false;
     if (active.control) this.onRelease(pointer);
-    active.control = next;
-    if (next) this.onPress(pointer, next);
+    active.control = target;
+    if (target) this.onPress(pointer, target);
     return true;
   }
 
-  canSlide(pointer: number) {
-    return this.active.get(pointer)?.slides === true;
+  hasPointer(pointer: number) {
+    return this.active.has(pointer);
+  }
+
+  controlFor(pointer: number) {
+    return this.active.get(pointer)?.control ?? null;
   }
 
   release(pointer: number) {
@@ -56,7 +58,7 @@ export class TouchInputState {
     let changed = false;
     for (const [pointer, active] of this.active) {
       if (active.control === control)
-        changed = this.release(pointer) || changed;
+        changed = this.move(pointer, null) || changed;
     }
     return changed;
   }

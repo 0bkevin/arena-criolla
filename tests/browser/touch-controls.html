@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Touch controls regression harness</title>
+  </head>
+  <body>
+    <div id="fixture"></div>
+    <script type="module">
+      import * as audit from "./touch-controls.tsx";
+      window.touchAudit = audit;
+      audit.mount();
+    </script>
+  </body>
+</html>
