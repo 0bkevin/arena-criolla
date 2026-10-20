@@ -1,17 +1,14 @@
-import test from "node:test";
 import assert from "node:assert/strict";
+import test from "node:test";
 
-import { createMatch, emptyInput, stepMatch, WORLD } from "../shared/engine";
-import { finaleById } from "../shared/finales";
+import { WORLD, createMatch, emptyInput, stepMatch } from "../shared/engine";
 import { TECHNIQUES } from "../shared/techniques";
-import { ATTACK_ART } from "../src/game/attack-art";
+import { ATTACK_ART, hasAttackArt } from "../src/game/attack-art";
 import {
   BOLIVAR_POSES,
-  drawBolivarFinale,
-  drawBolivarSpecial,
   bolivarSpecialPose,
+  drawBolivarSpecial,
 } from "../src/game/finales/bolivar";
-import type { FinaleView } from "../src/game/finales/types";
 function setup(side: 0 | 1 = 0, distance = 80, wins = 3, energy = 100) {
   const actor = { name: "Bolívar", fighter: "bolivar" as const, wins },
     rival = { name: "Vicente", fighter: "zavarce" as const, wins: 3 };
@@ -93,89 +90,6 @@ test("Sabre respects range, facing, elevation, guard, low energy and interruptio
     assert.ok(interrupt.source.hp < 100);
   }
 });
-test("Cavalry captures via input, freezes simulation, damages only on 96, releases at origin and serializes", () => {
-  for (const side of [0, 1] as const) {
-    const r = setup(side, 180);
-    r.inputs[side].actions.super++;
-    r.advance(1);
-    assert.equal(r.source.energy, 25);
-    r.advance(8);
-    const f = r.state.finale!;
-    assert.ok(f);
-    assert.deepEqual(finaleById("bolivar")!.damageBeats, [96]);
-    const positions = r.state.players.map((p) => [p.x, p.y]),
-      clock = [r.state.tick, r.state.remaining];
-    r.advance(95);
-    assert.equal(r.target.hp, 100);
-    const copy = JSON.parse(JSON.stringify(r.state));
-    r.advance(1);
-    stepMatch(copy, [...r.inputs]);
-    assert.deepEqual(copy, r.state);
-    assert.ok(r.target.hp < 100);
-    assert.deepEqual(
-      r.state.players.map((p) => [p.x, p.y]),
-      positions,
-    );
-    assert.deepEqual([r.state.tick, r.state.remaining], clock);
-    assert.equal(r.source.hits, 1);
-    r.advance(84);
-    assert.equal(r.state.finale, undefined);
-    assert.deepEqual(
-      r.state.players.map((p) => [p.x, p.y]),
-      positions,
-    );
-    assert.equal(Math.sign(r.target.vx), side ? -1 : 1);
-    assert.equal(r.target.stocks, 2);
-    assert.equal(r.source.attack, null);
-    r.inputs[side].right = true;
-    r.advance(20);
-    assert.notEqual(r.source.x, positions[side][0]);
-  }
-});
-test("Cavalry obeys unlock, depletion, failed capture, defense and death-on-release", () => {
-  for (const side of [0, 1] as const) {
-    for (const [wins, energy] of [
-      [0, 100],
-      [2, 100],
-      [3, 74],
-    ]) {
-      const r = setup(side, 180, wins, energy);
-      r.inputs[side].actions.super++;
-      r.advance(9);
-      assert.equal(r.state.finale, undefined);
-      assert.equal(r.target.hp, 100);
-    }
-    for (const mode of ["miss", "behind", "guard", "interrupt"]) {
-      const r = setup(
-        side,
-        mode === "miss" ? 430 : mode === "behind" ? -180 : 65,
-      );
-      if (mode === "guard") r.inputs[1 - side].block = true;
-      if (mode === "interrupt") {
-        r.inputs[1 - side].actions.light++;
-        r.advance(3);
-      }
-      r.inputs[side].actions.super++;
-      r.advance(1);
-      if (mode === "behind") r.source.facing *= -1;
-      r.advance(99);
-      assert.equal(r.state.finale, undefined);
-      assert.equal(r.target.hp, 100);
-    }
-    for (const stocks of [1, 2]) {
-      const r = setup(side, 180);
-      r.target.hp = 1;
-      r.target.stocks = stocks;
-      r.inputs[side].actions.super++;
-      r.advance(9 + 96);
-      assert.equal(r.target.hp, 0);
-      assert.equal(r.target.stocks, stocks);
-      r.advance(84);
-      assert.equal(r.target.stocks, stocks - 1);
-      assert.equal(r.state.phase, stocks === 1 ? "finished" : "playing");
-    }
-  }
-});
 test("Four sabre phases preserve one blade and fully preflight all fourteen finale poses", () => {
   assert.deepEqual([1, 14, 26, 38, 48].map(bolivarSpecialPose), [
     "draw",
@@ -192,23 +106,23 @@ test("Four sabre phases preserve one blade and fully preflight all fourteen fina
     drawBolivarSpecial({} as CanvasRenderingContext2D, {}, r.source, 177),
     false,
   );
-  let painted = 0;
-  const view = {
-    images: {},
-    body: () => painted++,
-    art: () => painted++,
-  } as unknown as FinaleView;
-  assert.equal(drawBolivarFinale(view), false);
-  assert.equal(painted, 0);
+  assert.equal(hasAttackArt({}, "bolivar", BOLIVAR_POSES), false);
   const sheet = ATTACK_ART.bolivar,
     images = {
-      [sheet.file]: { width: 3584, height: 1024 } as HTMLImageElement,
+      [sheet.file]: {
+        width: Math.max(
+          ...Object.values(sheet.frames).map((f) => f.x + f.width),
+        ),
+        height: Math.max(
+          ...Object.values(sheet.frames).map((f) => f.y + f.height),
+        ),
+      } as HTMLImageElement,
     };
+  assert.equal(hasAttackArt(images, "bolivar", BOLIVAR_POSES), true);
   const saved = sheet.frames["llanero-6"];
   delete sheet.frames["llanero-6"];
   try {
-    assert.equal(drawBolivarFinale({ ...view, images }), false);
-    assert.equal(painted, 0);
+    assert.equal(hasAttackArt(images, "bolivar", BOLIVAR_POSES), false);
   } finally {
     sheet.frames["llanero-6"] = saved;
   }

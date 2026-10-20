@@ -1,3 +1,8 @@
+import {
+  ARENA_FINALES,
+  ARENA_FINALE_CUES,
+  isArenaFinalist,
+} from "./arena-finales";
 import { fighterById, type BuiltInFighterId, type FighterId } from "./content";
 import perroMujeriego from "./perro-mujeriego-choreography.json";
 
@@ -38,6 +43,8 @@ export interface FinaleDefinition {
   /** Optional physical finishing throw; ordinary captures keep force12. */
   release?: { force: number; knockoutDelay?: number };
   damageBeats: readonly number[];
+  /** Sound and gesture timing for spatial attacks. Damage still requires contact. */
+  cueBeats?: readonly number[];
   sound: "coffee" | "dance" | "hack" | "music" | "show" | "engine" | "mystic";
 }
 
@@ -70,7 +77,7 @@ const entries: readonly Entry[] = [
     "zavarce",
     "Pelotón Yummy",
     "transport",
-    "Siete motos Yummy cargan contra el rival en una formación escalonada, con un impacto por repartidor.",
+    "Siete motos Yummy atraviesan la arena en una formación escalonada. Cada moto tiene su propio contacto, se puede bloquear o esquivar y sigue rodando después del impacto.",
     "Pelotón Yummy",
     "¡Pedido en camino!",
     "engine",
@@ -79,7 +86,7 @@ const entries: readonly Entry[] = [
     "vallenilla",
     "Cobro en equipo",
     "technology",
-    "Pedro convoca dos mascotas blancas de Cashea, que rodean al rival y alternan seis puñetazos.",
+    "Pedro convoca dos mascotas blancas de Cashea. Caminan hasta el rival y alternan seis puñetazos de alcance local; el rival puede alejarse, saltar o bloquear cada golpe.",
     "Dos mascotas Cashea",
     "Cuota atrasada",
     "hack",
@@ -88,7 +95,7 @@ const entries: readonly Entry[] = [
     "javier",
     "Regaño de campeonato",
     "theater",
-    "Javier se pone una camiseta negra sobre la cabeza como cabello y regaña al rival con tres gestos cada vez más enfáticos.",
+    "Javier se pone una camiseta sobre la cabeza y regaña con tres ondas cortas que salen de sus gestos. Cada onda debe alcanzar al rival y se puede bloquear o esquivar.",
     "Camiseta sobre la cabeza",
     "¡Y punto!",
     "show",
@@ -106,7 +113,7 @@ const entries: readonly Entry[] = [
     "renny",
     "El comercial del número uno",
     "broadcast",
-    "Sentado en su escalera, Renny presenta un comercial: dos bailarinas con plumas golpean al rival con patadas alternadas y un empuje final.",
+    "Renny se sienta en su escalera y presenta a dos bailarinas. Se acercan, alternan patadas y empujan al rival solo cuando está a su alcance, mientras continúa la pelea.",
     "Escalera y bailarinas del comercial",
     "¡Y ahora, el comercial!",
     "show",
@@ -115,7 +122,7 @@ const entries: readonly Entry[] = [
     "gomez",
     "Carga del escuadrón",
     "transport",
-    "Gómez carga a caballo contra el rival y lo sigue su escolta montada. Tras tres embestidas, vuelve, desmonta y retoma el combate.",
+    "Gómez avanza a caballo y dos escoltas lo siguen por la arena. Cada montura puede conectar una embestida, bloquearse o fallar; Gómez desmonta donde termina su carga.",
     "Caballo y escolta de caballería",
     "¡Escuadrón, adelante!",
     "show",
@@ -124,7 +131,7 @@ const entries: readonly Entry[] = [
     "simon",
     "Caballo de la sabana",
     "music",
-    "Toca el cuatro y hace aparecer una estampida de caballitos de madera al ritmo de una tonada original.",
+    "Toca el cuatro y envía tres caballitos de madera que cruzan las superficies de la arena. Cada juguete tiene su propio contacto y puede saltarse o bloquearse.",
     "Cuatro y caballo de madera",
     "La sabana tiene su son",
     "music",
@@ -160,7 +167,7 @@ const entries: readonly Entry[] = [
     "oscar",
     "Contrabajo del sonero",
     "music",
-    "Toca el contrabajo y lanza tres notas musicales que golpean al rival al llegar a su cuerpo.",
+    "Toca el contrabajo y lanza tres notas musicales reales. Viajan por la arena y pueden golpear, fallar, bloquearse o devolverse con una habilidad de reflejo.",
     "Contrabajo salsero",
     "¡Que suene el bajo!",
     "music",
@@ -169,7 +176,7 @@ const entries: readonly Entry[] = [
     "puma",
     "¡Agárrense de las manos!",
     "music",
-    "Invoca una cadena de bailarines que gira de la mano alrededor del rival, lo atrapa y lo catapulta fuera de la arena.",
+    "Invoca una cadena de bailarines que avanza por la arena. Si alcanza al rival, lo retiene brevemente y puede catapultarlo con un segundo contacto; saltar permite escapar.",
     "Cadena de bailarines",
     "¡Agárrense de las manos!",
     "music",
@@ -178,7 +185,7 @@ const entries: readonly Entry[] = [
     "chataing",
     "¡Vamos a comerciales!",
     "broadcast",
-    "Congela al rival dentro de una pantalla y la revienta de un único microfonazo con cable antes de devolverlo a la arena.",
+    "Coloca una pantalla delante de él. Si el rival entra, lo retiene brevemente y remata con el micrófono; el rival puede bloquear, salir o saltar. El combate continúa.",
     "Pantalla de televisión y micrófono con cable",
     "¡Vamos a comerciales!",
     "show",
@@ -187,7 +194,7 @@ const entries: readonly Entry[] = [
     "george",
     "Se acabó el show",
     "theater",
-    "Hace una reverencia mientras un telón gigante cae sobre el rival, asesta un único golpe y vuelve a levantarse en la misma arena.",
+    "Hace una reverencia y deja caer un telón delante de él. La caída golpea una sola vez al tocar al rival y se puede bloquear o evitar saliendo de su recorrido.",
     "Telón de terciopelo y barra suspendida",
     "Se acabó el show",
     "show",
@@ -196,7 +203,7 @@ const entries: readonly Entry[] = [
     "mcm",
     "Caravana hasta el final",
     "transport",
-    "Sube a la caja trasera de una pickup con bandera venezolana; pasajeros y acompañantes avanzan con ella y el frente golpea una vez al rival.",
+    "Sube a la pickup con bandera venezolana y avanza con pasajeros y acompañantes. El vehículo cruza al rival con una embestida física que se puede bloquear o esquivar.",
     "Pickup, bandera venezolana y acompañantes",
     "Hasta el final",
     "engine",
@@ -205,7 +212,7 @@ const entries: readonly Entry[] = [
     "ali",
     "Canto que hace eco",
     "music",
-    "Rasguea un cuatro de cuatro cuerdas: la onda eleva al rival, seis adultos se unen al coro y la hacen crecer hasta el tercer impacto.",
+    "Rasguea su cuatro acompañado por seis adultos del coro. Emite tres ondas crecientes que recorren la arena; solo dañan al alcanzar al rival y se pueden bloquear, saltar o reflejar.",
     "Cuatro venezolano y coro de seis adultos",
     "La canción sigue viva",
     "music",
@@ -358,7 +365,7 @@ const entries: readonly Entry[] = [
     "llorona",
     "Abrazo del inframundo",
     "folklore",
-    "Atrae al rival con su lamento, revela un rostro aterrador y lo agarra para descender juntos por un portal al inframundo. Ambos regresan antes de retomar el combate.",
+    "Abre un portal local al inframundo, revela su rostro aterrador y encadena un abrazo espectral de corto alcance. El rival puede bloquear, saltar para escapar o interrumpirla con un golpe.",
     "Portal y abrazo espectral",
     "El río no deja escapar",
     "mystic",
@@ -484,7 +491,7 @@ const entries: readonly Entry[] = [
     "lorenzo",
     "Caravana Polar",
     "transport",
-    "Lorenzo se agarra al estribo de un camión Polar y carga junto a otros dos camiones; el frente del principal golpea al rival.",
+    "Lorenzo avanza en el estribo de un camión Polar y otros dos camiones lo siguen. Los tres cruzan la arena, cada uno con una embestida física que puede bloquearse o fallar.",
     "Tres camiones Polar",
     "El trabajo nos une",
     "engine",
@@ -520,7 +527,7 @@ const entries: readonly Entry[] = [
     "bolivar",
     "Marcha de la libertad",
     "theater",
-    "Bolívar monta su caballo y carga con seis llaneros distintos detrás. El caballo conecta un impacto, la tropa retrocede y Bolívar desmonta.",
+    "Bolívar carga a caballo con seis llaneros distintos que lo siguen. Cada montura puede golpear una vez al cruzar al rival; se pueden bloquear o esquivar. Bolívar desmonta donde termina su recorrido.",
     "Caballo y seis llaneros",
     "Adelante, la arena es libre",
     "show",
@@ -538,7 +545,7 @@ const entries: readonly Entry[] = [
     "melanio",
     "Quedó grabado",
     "broadcast",
-    "Graba al rival con un teléfono, lo deslumbra con un flash local y remata con un único golpe del mismo teléfono.",
+    "Graba con su teléfono, lanza un flash de corto alcance y remata con el mismo teléfono. Ambos contactos son locales; se pueden bloquear o evitar, y golpear a Melanio interrumpe la actuación.",
     "Un teléfono y flash local",
     "Todo quedó grabado",
     "hack",
@@ -565,9 +572,9 @@ export const FINALES = Object.fromEntries(
         prop,
         caption,
         accent: fighterById(id).color,
-        ...(id === "puma" ? { release: { force: 34, knockoutDelay: 90 } } : {}),
+        ...(isArenaFinalist(id) ? { cueBeats: ARENA_FINALE_CUES[id] } : {}),
         mode:
-          id === "dayana" || id === "deyna"
+          id === "dayana" || id === "deyna" || isArenaFinalist(id)
             ? "field"
             : id === "conde" || id === "emilio"
               ? "transformation"
@@ -598,8 +605,9 @@ export const FINALES = Object.fromEntries(
               },
             }
           : {}),
-        duration:
-          id === "deyna"
+        duration: isArenaFinalist(id)
+          ? ARENA_FINALES[id].duration
+          : id === "deyna"
             ? 96
             : id === "conde" || id === "emilio"
               ? 360
@@ -609,6 +617,7 @@ export const FINALES = Object.fromEntries(
                   ? perroMujeriego.durationTicks
                   : FINALE_DURATION,
         damageBeats:
+          isArenaFinalist(id) ||
           id === "conde" ||
           id === "emilio" ||
           id === "maite" ||
@@ -620,20 +629,7 @@ export const FINALES = Object.fromEntries(
                   (tick) =>
                     tick * (perroMujeriego.durationTicks / FINALE_DURATION),
                 )
-              : id === "zavarce"
-                ? [42, 58, 74, 90, 106, 122, 138]
-                : id === "vallenilla"
-                  ? [44, 62, 80, 98, 116, 134]
-                  : id === "gomez"
-                    ? [48, 70, 92]
-                    : id === "chataing" || id === "melanio"
-                      ? [114]
-                      : id === "george" ||
-                          id === "mcm" ||
-                          id === "lorenzo" ||
-                          id === "bolivar"
-                        ? [96]
-                        : FINALE_DAMAGE_BEATS,
+              : FINALE_DAMAGE_BEATS,
         sound,
       },
     ],

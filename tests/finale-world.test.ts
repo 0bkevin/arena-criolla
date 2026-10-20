@@ -1,5 +1,6 @@
-import test from "node:test";
 import assert from "node:assert/strict";
+import test from "node:test";
+import { isArenaFinalist } from "../shared/arena-finales";
 import {
   BUILT_IN_FIGHTERS,
   STAGES,
@@ -8,23 +9,23 @@ import {
   type StageId,
 } from "../shared/content";
 import {
+  WORLD,
   createMatch,
   emptyInput,
   stepMatch,
-  WORLD,
   type Input,
   type MatchState,
 } from "../shared/engine";
+import actorAssets from "../shared/finale-actor-assets.json";
 import {
   FINALE_CAPTURE_TICK,
-  finaleById,
   finaleAsset,
+  finaleById,
 } from "../shared/finales";
-import actorAssets from "../shared/finale-actor-assets.json";
 import { advanceArenaCamera, cameraBounds } from "../src/game/arena-camera";
+import { drawFinale } from "../src/game/finale-renderer";
 import { renderMatch, type Assets } from "../src/game/renderer";
 import { drawStage } from "../src/game/stage-renderer";
-import { drawFinale } from "../src/game/finale-renderer";
 
 function setup(
   fighter: FighterId,
@@ -54,7 +55,7 @@ function setup(
     const wasGrounded = state.players[owner].grounded;
     inputs[owner].actions.super++;
     advance(FINALE_CAPTURE_TICK);
-    if (fighter === "dayana" && !wasGrounded) {
+    if ((fighter === "dayana" || isArenaFinalist(fighter)) && !wasGrounded) {
       assert.equal(state.fieldFinales, undefined);
       return;
     }
@@ -85,7 +86,7 @@ test("all built-in finales keep both fighters in their arena on either side of b
             assert.equal(scene, undefined, context);
             assert.equal(r.state.fieldFinales?.length, 1, context);
             const tick = r.state.tick;
-            r.advance(220);
+            r.advance(400);
             assert.ok(r.state.tick > tick, context);
             assert.equal(r.state.stage, stage.id, context);
             assert.equal(r.state.fieldFinales, undefined, context);
@@ -283,7 +284,7 @@ test("airborne and unequal-height captures preserve each fighter's own position 
         assert.notEqual(original[0].y, original[1].y);
         if (finaleById(fighter.id)!.mode === "field") {
           assert.equal(r.state.finale, undefined);
-          if (fighter.id === "dayana") {
+          if (fighter.id === "dayana" || isArenaFinalist(fighter.id)) {
             assert.equal(r.state.fieldFinales, undefined);
             assert.equal(r.state.players[owner].energy, 100);
           } else assert.equal(r.state.fieldFinales?.[0]?.fighter, "deyna");
@@ -481,7 +482,7 @@ test("renderMatch draws every finale over its selected stage and platform surfac
           finaleProps: {},
         } as Assets;
         const actual = recordingContext(width, height);
-        renderMatch(actual.context, r.state, assets, 0, false, camera);
+        renderMatch(actual.context, r.state, assets, 0, true, camera);
         const expected = recordingContext(width, height);
         expected.context.scale(camera.zoom, camera.zoom);
         expected.context.translate(-bounds.x, -bounds.y);

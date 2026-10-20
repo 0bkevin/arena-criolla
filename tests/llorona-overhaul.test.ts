@@ -1,12 +1,10 @@
-import test from "node:test";
 import assert from "node:assert/strict";
-import { createMatch, emptyInput, stepMatch, WORLD } from "../shared/engine";
+import test from "node:test";
+import { createMatch, emptyInput, stepMatch } from "../shared/engine";
 import { finaleById } from "../shared/finales";
 import { TECHNIQUES } from "../shared/techniques";
 
-import { drawLloronaFinale, LLORONA_POSES } from "../src/game/finales/llorona";
 import { ATTACK_ART } from "../src/game/attack-art";
-import type { FinaleView } from "../src/game/finales/types";
 import { writeFinaleMusic } from "../src/game/finale-sounds";
 function setup(side: 0 | 1, wins = 3, energy = 100) {
   const actor = { name: "La Llorona", fighter: "llorona" as const, wins };
@@ -30,118 +28,6 @@ function setup(side: 0 | 1, wins = 3, energy = 100) {
   };
   return { state, source, target, inputs, advance };
 }
-
-test("La Llorona underworld finale charges 75 once, drains three equal beats and releases both slots", () => {
-  for (const side of [0, 1] as const) {
-    const run = setup(side);
-    run.inputs[side].actions.super++;
-    run.advance(1);
-    assert.ok(run.source.energy >= 25 && run.source.energy < 26);
-    run.advance(8);
-    const scene = run.state.finale!;
-    assert.ok(scene);
-    assert.equal(scene.direction, side ? -1 : 1);
-    const beats = finaleById("llorona")!.damageBeats;
-    assert.equal(beats.length, 3);
-    const positions = run.state.players.map((p) => [p.x, p.y]);
-    const clock = run.state.tick;
-    const timer = run.state.remaining;
-    let last = 0;
-    for (const [i, beat] of beats.entries()) {
-      run.advance(beat - last - 1);
-      assert.ok(
-        Math.abs(run.target.hp - (100 - (scene.damage * i) / 3)) < 1e-9,
-      );
-      run.advance(1);
-      assert.ok(
-        Math.abs(run.target.hp - (100 - (scene.damage * (i + 1)) / 3)) < 1e-9,
-      );
-      assert.deepEqual(
-        run.state.players.map((p) => [p.x, p.y]),
-        positions,
-      );
-      assert.equal(run.state.tick, clock);
-      assert.equal(run.state.remaining, timer);
-      assert.equal(run.state.projectiles.length, 0);
-      last = beat;
-    }
-    run.inputs[side].actions.special++;
-    run.advance(scene.duration - last);
-    assert.equal(run.state.finale, undefined);
-    assert.equal(run.source.attack, null);
-    assert.equal(run.target.stocks, 2);
-    assert.equal(run.target.y, WORLD.floor);
-    assert.equal(Math.sign(run.target.vx), side ? -1 : 1);
-    run.advance(55);
-    assert.equal(
-      run.state.projectiles.length,
-      0,
-      "input during capture never queues a summon",
-    );
-    assert.equal(run.source.attack, null);
-  }
-});
-
-test("La Llorona definitive rejects locked, depleted, behind and guarded captures; lethal stock resolves on exit", () => {
-  for (const side of [0, 1] as const) {
-    for (const [wins, energy] of [
-      [0, 100],
-      [2, 100],
-      [3, 74],
-    ]) {
-      const run = setup(side, wins, energy);
-      run.inputs[side].actions.super++;
-      run.advance(9);
-      assert.equal(run.state.finale, undefined);
-      assert.equal(run.target.hp, 100);
-      assert.ok(run.source.energy >= energy);
-    }
-    for (const defense of ["behind", "guard"] as const) {
-      const run = setup(side);
-      if (defense === "guard") run.inputs[1 - side].block = true;
-      run.inputs[side].actions.super++;
-      run.advance(1);
-      if (defense === "behind") run.source.facing *= -1;
-      run.advance(8);
-      assert.equal(run.state.finale, undefined);
-      assert.equal(run.target.hp, 100);
-    }
-    const run = setup(side);
-    run.target.hp = 1;
-    run.target.stocks = 1;
-    run.inputs[side].actions.super++;
-    run.advance(9 + 42);
-    assert.equal(run.target.hp, 0);
-    assert.equal(run.target.stocks, 1);
-    assert.equal(run.state.phase, "playing");
-    run.advance(180 - 42);
-    assert.equal(run.target.stocks, 0);
-    assert.equal(run.state.phase, "finished");
-    assert.equal(run.state.winner, side);
-  }
-});
-
-test("La Llorona's miss and interrupted startup never start the portal or drain remote health", () => {
-  for (const side of [0, 1] as const) {
-    const miss = setup(side);
-    miss.target.x = miss.source.x + miss.source.facing * 360;
-    miss.inputs[side].actions.super++;
-    miss.advance(50);
-    assert.equal(miss.state.finale, undefined);
-    assert.equal(miss.target.hp, 100);
-    assert.equal(miss.source.attack, null);
-    const interrupted = setup(side);
-    interrupted.target.x =
-      interrupted.source.x + interrupted.source.facing * 60;
-    interrupted.inputs[1 - side].actions.light++;
-    interrupted.advance(3);
-    interrupted.inputs[side].actions.super++;
-    interrupted.advance(30);
-    assert.equal(interrupted.state.finale, undefined);
-    assert.equal(interrupted.target.hp, 100);
-    assert.ok(interrupted.source.hp < 100);
-  }
-});
 
 test("special respects front guard, misses height, obeys energy and loses startup to a real hit", () => {
   for (const side of [0, 1] as const) {
@@ -196,33 +82,10 @@ test("original synthesized lament has energy at all arrivals and finite samples"
   writeFinaleMusic(left, right, 6000, "llorona");
   assert.ok(left.every(Number.isFinite));
   assert.ok(right.every(Number.isFinite));
-  for (const beat of [42, 90, 138])
+  for (const beat of finaleById("llorona")!.cueBeats!)
     assert.ok(
       left.slice(beat * 100, beat * 100 + 1000).some((n) => Math.abs(n) > 0.01),
     );
-});
-
-test("preflight refuses every missing pose before any canvas or actor operation", () => {
-  const sheet = ATTACK_ART.llorona;
-  for (const pose of LLORONA_POSES) {
-    const old = sheet.frames[pose];
-    delete sheet.frames[pose];
-    try {
-      const forbidden = () => {
-        throw Error("paint before preflight");
-      };
-      const view = {
-        images: { [sheet.file]: { width: 1024, height: 2048, complete: true } },
-        ctx: new Proxy({}, { get: forbidden }),
-        body: forbidden,
-        art: forbidden,
-        point: forbidden,
-      } as unknown as FinaleView;
-      assert.equal(drawLloronaFinale(view), false);
-    } finally {
-      sheet.frames[pose] = old;
-    }
-  }
 });
 
 test("undertow launches from the low hands at tick15, travels, pulls once and expires", () => {
@@ -258,153 +121,10 @@ test("undertow launches from the low hands at tick15, travels, pulls once and ex
   }
 });
 
-test("surviving stock respawns with both controls restored and no portal state", () => {
-  for (const side of [0, 1] as const) {
-    const r = setup(side);
-    r.target.hp = 1;
-    r.target.stocks = 2;
-    r.inputs[side].actions.super++;
-    r.advance(189);
-    assert.equal(r.state.finale, undefined);
-    assert.equal(r.state.phase, "playing");
-    assert.equal(r.target.stocks, 1);
-    assert.equal(r.target.hp, 100);
-    r.advance(80);
-    const before = r.state.players.map((p) => p.x);
-    r.inputs[0].right = true;
-    r.inputs[1].left = true;
-    r.advance(5);
-    assert.ok(r.state.players[0].x > before[0]);
-    assert.ok(r.state.players[1].x < before[1]);
-    assert.equal(r.state.projectiles.length, 0);
-  }
-});
-
-import { finaleArenaLayout } from "../src/game/finale-layout";
 import {
-  lloronaPhase,
-  lloronaSpecialPose,
   drawLloronaSpecial,
+  lloronaSpecialPose,
 } from "../src/game/finales/llorona";
-
-function record(run: ReturnType<typeof setup>, tick: number, small = false) {
-  const layout = finaleArenaLayout(run.state)!;
-  const art: {
-      pose: string;
-      x: number;
-      feet: number;
-      height: number;
-      alpha: number;
-    }[] = [],
-    bodies: { id: string; x: number; feet: number; height: number }[] = [];
-  const clips: number[][] = [];
-  const ctx = new Proxy(
-    {
-      globalAlpha: 1,
-      rect(...args: number[]) {
-        clips.push(args);
-      },
-    },
-    {
-      get(target, key) {
-        return key in target ? target[key as keyof typeof target] : () => {};
-      },
-    },
-  ) as unknown as CanvasRenderingContext2D;
-  const view = {
-    ctx,
-    state: run.state,
-    profile: finaleById("llorona")!,
-    actor: "llorona",
-    rival: small ? "momoy" : "zavarce",
-    tick,
-    pulse: 0,
-    beat: 0,
-    motion: 1,
-    images: {
-      [ATTACK_ART.llorona.file]: { width: 1024, height: 2048, complete: true },
-    },
-    sprites: {},
-    point: layout.point,
-    viewport: { left: -500, top: -500, right: 1500, bottom: 1500 },
-    art(
-      pose: string,
-      x: number,
-      feet: number,
-      height: number,
-      _facing = 1,
-      alpha = 1,
-    ) {
-      const p = layout.point(x, feet);
-      art.push({ pose, x: p.x, feet: p.y, height, alpha });
-      return true;
-    },
-    body(id: string, x: number, feet: number, height: number) {
-      const p = layout.point(x, feet);
-      bodies.push({ id, x: p.x, feet: p.y, height });
-    },
-    text() {},
-    damage() {},
-    ring() {},
-    bubble() {},
-  } as unknown as FinaleView;
-  assert.equal(drawLloronaFinale(view), true);
-  return { art, bodies, clips, layout };
-}
-
-test("portal stages descend whole bodies through a clipping surface and restore full bodies before release", () => {
-  const r = setup(0);
-  r.inputs[0].actions.super++;
-  r.advance(9);
-  const before = JSON.stringify(r.state);
-  for (const small of [false, true]) {
-    const held = record(r, 78, small),
-      down = record(r, 114, small),
-      hidden = record(r, 138, small),
-      back = record(r, 168, small);
-    const actor = (sample: ReturnType<typeof record>) =>
-      sample.art.find((a) => a.pose !== "portal")!;
-    assert.equal(actor(held).pose, small ? "embrace-low" : "embrace-high");
-    assert.equal(held.bodies[0].id, small ? "momoy" : "zavarce");
-    assert.equal(actor(held).alpha, 1);
-    assert.equal(actor(down).alpha, 1);
-    assert.equal(actor(hidden).alpha, 1);
-    assert.ok(actor(down).feet > actor(held).feet + 50);
-    assert.ok(hidden.bodies[0].feet - held.bodies[0].feet >= 350);
-    assert.ok(hidden.clips.length >= 2);
-    assert.equal(actor(back).feet, actor(held).feet);
-    assert.equal(back.bodies[0].feet, held.bodies[0].feet);
-    assert.equal(actor(back).pose, "recover");
-    const end = record(r, 180, small);
-    assert.ok(end.art.every((a) => a.pose !== "portal"));
-    assert.equal(end.bodies[0].x, end.layout.point(782, 514).x);
-    assert.equal(end.bodies[0].feet, end.layout.point(782, 514).y);
-  }
-  assert.equal(
-    JSON.stringify(r.state),
-    before,
-    "render never changes simulation",
-  );
-});
-
-test("platform capture levels only the illustration, then returns each fighter to its own feet", () => {
-  const r = setup(1);
-  r.source.y = 418;
-  r.target.y = 345;
-  r.source.grounded = true;
-  r.target.grounded = true;
-  r.inputs[1].actions.super++;
-  r.advance(9);
-  assert.ok(r.state.finale);
-  const state = JSON.stringify(r.state),
-    held = record(r, 78),
-    end = record(r, 180);
-  assert.ok(
-    Math.abs(held.bodies[0].feet - held.layout.point(306, 514).y) < 1e-9,
-  );
-  assert.equal(end.bodies[0].feet, end.layout.point(782, 514).y);
-  assert.equal(JSON.stringify(r.state), state);
-});
 
 test("special never draws incomplete art or an attack pose during hitstun", () => {
   const r = setup(0);
@@ -436,16 +156,4 @@ test("special never draws incomplete art or an attack pose during hitstun", () =
     ),
     false,
   );
-});
-
-test("damage phases match the actual capture beats without an execution release", () => {
-  assert.deepEqual(finaleById("llorona")!.damageBeats, [42, 90, 138]);
-  assert.equal(finaleById("llorona")!.release, undefined);
-  assert.deepEqual([42, 90, 138, 168, 180].map(lloronaPhase), [
-    "reveal",
-    "embrace",
-    "underworld",
-    "release",
-    "release",
-  ]);
 });

@@ -1,8 +1,8 @@
+import type { FighterId } from "../../shared/content";
 import {
   RUNWAY_POSE_TICKS,
   SQUAD_LAUNCH_TICK,
 } from "../../shared/field-finales";
-import type { FighterId } from "../../shared/content";
 import type { FinaleDefinition } from "../../shared/finales";
 
 /** Original score, synthesized locally. No commercial song or sampled recording. */
@@ -12,10 +12,12 @@ export function writeFinaleScore(
   sampleRate: number,
   fighter: FighterId,
   profile:
-    Pick<FinaleDefinition, "duration" | "sound" | "damageBeats"> | undefined,
+    | Pick<FinaleDefinition, "duration" | "sound" | "damageBeats" | "cueBeats">
+    | undefined,
 ) {
   if (!profile || sampleRate <= 0) return;
   const duration = profile.duration / 60;
+  const beats = profile.cueBeats ?? profile.damageBeats;
   const identity = [...fighter].reduce((sum, ch) => sum + ch.charCodeAt(0), 0);
   const root = 48 + (identity % 7);
   const style = profile.sound;
@@ -27,7 +29,7 @@ export function writeFinaleScore(
     pan = 0,
     timbre = style,
   ) => {
-    const start = Math.round(at * sampleRate);
+    const start = Math.round(Math.max(0, at) * sampleRate);
     const frequency = 440 * 2 ** ((midi - 69) / 12);
     for (
       let i = 0;
@@ -89,18 +91,18 @@ export function writeFinaleScore(
     [0, 12, 25].forEach((tick, i) =>
       tone(76 - i * 5, tick / 60, 0.65, 0.09, 0, "mystic"),
     );
-    [36, 60, 100, 138, 148, 168].forEach((tick, i) => {
+    [18, 38, 58, 70].forEach((tick, i) => {
       tone([43, 39, 35, 31, 43, 55][i], tick / 60, 0.28, 0.12, 0, "mystic");
       tone([79, 74, 69, 64, 69, 76][i], tick / 60, 0.24, 0.045, 0, "mystic");
     });
-    profile.damageBeats.forEach((tick) => drum(tick / 60, true));
+    beats.forEach((tick) => drum(tick / 60, true));
   } else if (fighter === "dudamel") {
     // Three newly composed orchestral chords: gesture, travel, arrival.
-    profile.damageBeats.forEach((tick, index) => {
+    beats.forEach((tick, index) => {
       [48, 55, 60, 64, 67].forEach((midi, voice) => {
         tone(
           midi + [0, 2, 5][index],
-          (tick - 24) / 60,
+          Math.max(0, tick - 6) / 60,
           0.55,
           0.045,
           (voice - 2) * 0.24,
@@ -132,9 +134,7 @@ export function writeFinaleScore(
     strum(0.04, 0);
     for (const [i, interval] of [0, 2, 7, 5, 4, 2].entries())
       tone(root + 19 + interval, 0.16 + i * 0.42, 0.3, 0.065, 0.1);
-    profile.damageBeats.forEach((tick, index) =>
-      strum(tick / 60, [0, 2, 0][index]),
-    );
+    beats.forEach((tick, index) => strum(tick / 60, [0, 2, 0][index]));
   } else if (fighter === "ali") {
     // Four nylon-like plucks, reentrant A3/D4/F#4/B3. A synthetic vowel choir
     // joins at tick60 and grows into the last impact; no recording or real voice.
@@ -149,11 +149,11 @@ export function writeFinaleScore(
         ),
       );
     for (let voice = 0; voice < 6; voice++) {
-      const at = (60 + voice * 3) / 60;
+      const at = (20 + voice * 3) / 60;
       const start = Math.round(at * sampleRate);
       const frequency =
         440 * 2 ** (([50, 57, 62, 66, 69, 74][voice] - 69) / 12);
-      const length = 2.68 - at;
+      const length = Math.max(0, duration - 0.15 - at);
       for (
         let i = 0;
         i < length * sampleRate &&
@@ -174,7 +174,7 @@ export function writeFinaleScore(
         right[start + i] += value * (0.35 + voice * 0.1);
       }
     }
-    profile.damageBeats.forEach((tick, index) => {
+    beats.forEach((tick, index) => {
       tone(57 + index * 5, tick / 60, 0.22, 0.09 + index * 0.025);
       drum(tick / 60, true);
     });
@@ -204,7 +204,7 @@ export function writeFinaleScore(
     for (let i = 0; i < 6; i++)
       tone(
         30 + i * 2,
-        (54 + i * 7) / 60,
+        (12 + i * 7) / 60,
         0.24,
         0.08,
         ((i % 3) - 1) * 0.35,
@@ -218,15 +218,20 @@ export function writeFinaleScore(
     // into the finale buffer, never retriggered by a render frame.
     tone(root + 31, 18 / 60, 0.09, 0.055);
     tone(root + 36, 22 / 60, 0.09, 0.04);
-    drum(66 / 60, false);
-    tone(root + 43, 66 / 60, 0.045, 0.06);
-    drum(114 / 60, true);
-    drum(114 / 60, false, 0.15);
+    drum(20 / 60, false);
+    tone(root + 43, 20 / 60, 0.045, 0.06);
+    drum(48 / 60, true);
+    drum(48 / 60, false, 0.15);
   } else if (fighter === "oscar") {
     // Original pizzicato bass phrase. Each launch and arrival is audible;
     // no commercial melody, vocal impersonation or sampled performance.
-    profile.damageBeats.forEach((tick, index) => {
-      tone(root - 19 + [0, 7, 5][index], (tick - 24) / 60, 0.48, 0.22);
+    beats.forEach((tick, index) => {
+      tone(
+        root - 19 + [0, 7, 5][index],
+        Math.max(0, tick - 6) / 60,
+        0.48,
+        0.22,
+      );
       tone(root - 7 + [0, 7, 5][index], tick / 60, 0.24, 0.1, 0.15);
       drum(tick / 60, false, index % 2 ? -0.4 : 0.4);
     });
@@ -293,7 +298,7 @@ export function writeFinaleScore(
       if (i % 2 === 0) drum(0.03 + i * 0.3, true);
     }
   }
-  for (const [i, tick] of profile.damageBeats.entries()) {
+  for (const [i, tick] of beats.entries()) {
     const at = tick / 60;
     tone(root + 12 + i * 7, at, 0.22, 0.1, 0.3);
     tone(root - 12, at, 0.17, 0.11, -0.2);

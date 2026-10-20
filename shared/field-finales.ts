@@ -1,10 +1,17 @@
 import { WORLD } from "./arena";
+import {
+  ARENA_FINALES,
+  advanceArenaFinale,
+  isArenaFinalist,
+  type ArenaFinaleActor,
+  type ArenaFinalist,
+} from "./arena-finales";
 import type { MatchState, PlayerState } from "./engine";
 
 /** Temporary arena actors run on ordinary combat ticks; they never capture a rival. */
 export interface FieldFinaleState {
   id: number;
-  fighter: "dayana" | "deyna";
+  fighter: "dayana" | "deyna" | ArenaFinalist;
   owner: 0 | 1;
   startedTick: number;
   tick: number;
@@ -13,6 +20,10 @@ export interface FieldFinaleState {
   y: number;
   direction: number;
   damage: number;
+  actors?: ArenaFinaleActor[];
+  cancelled?: boolean;
+  connected?: boolean;
+  caught?: { x: number; y: number };
 }
 export const SQUAD_COUNT = 5;
 export const SQUAD_LAUNCH_TICK = 24;
@@ -68,7 +79,9 @@ export function fieldFinaleBounds(state: MatchState) {
           const p = squadMember(f, i);
           return { left: p.x - 65, right: p.x + 65 };
         })
-      : [runwayRange(f)],
+      : f.fighter === "dayana"
+        ? [runwayRange(f)]
+        : [],
   );
 }
 export function activeRunway(state: MatchState, player: PlayerState) {
@@ -87,7 +100,8 @@ export function beginFieldFinale(
 ) {
   const player = state.players[owner],
     fighter = player.config.fighter;
-  if (fighter !== "dayana" && fighter !== "deyna") return;
+  if (fighter !== "dayana" && fighter !== "deyna" && !isArenaFinalist(fighter))
+    return;
   if (fighter === "dayana" && !player.grounded) {
     player.attack = null;
     player.cooldown = 12;
@@ -100,7 +114,12 @@ export function beginFieldFinale(
     owner,
     startedTick: state.tick,
     tick: 0,
-    duration: fighter === "dayana" ? RUNWAY_DURATION : SQUAD_DURATION,
+    duration:
+      fighter === "dayana"
+        ? RUNWAY_DURATION
+        : fighter === "deyna"
+          ? SQUAD_DURATION
+          : ARENA_FINALES[fighter].duration,
     x: player.x,
     y: fighter === "deyna" ? WORLD.floor : player.y,
     direction: player.facing,
@@ -127,6 +146,14 @@ export function advanceFieldFinales(state: MatchState) {
     }
     if (field.startedTick !== state.tick) field.tick++;
     if (field.tick >= field.duration) {
+      if (
+        isArenaFinalist(field.fighter) &&
+        !field.cancelled &&
+        player.attack === "super"
+      ) {
+        player.attack = null;
+        player.cooldown = Math.min(player.cooldown, 12);
+      }
       if (field.fighter === "dayana") {
         player.attack = null;
         player.cooldown = 12;
@@ -134,6 +161,7 @@ export function advanceFieldFinales(state: MatchState) {
       }
       return false;
     }
+    if (isArenaFinalist(field.fighter)) advanceArenaFinale(state, field);
     if (field.fighter === "deyna" && field.tick === SQUAD_LAUNCH_TICK) {
       for (let i = 0; i < SQUAD_COUNT; i++) {
         const member = squadMember(field, i);

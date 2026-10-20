@@ -1,21 +1,18 @@
 import { fighterById, type FighterId } from "../../shared/content";
 import type { MatchState } from "../../shared/engine";
-import {
-  finaleAsset,
-  finaleById,
-  CANONICAL_FINALE_FIGHTERS,
-  type FinaleDefinition,
-} from "../../shared/finales";
-import { drawSprite, type SpriteAsset } from "./assets";
 import actorAssets from "../../shared/finale-actor-assets.json";
 import cafeFurniture from "../../shared/finale-cafe-assets.json";
 import hackerDesk from "../../shared/finale-desk-assets.json";
-import perroChoreography from "../../shared/perro-mujeriego-choreography.json";
+import {
+  CANONICAL_FINALE_FIGHTERS,
+  finaleAsset,
+  finaleById,
+  type FinaleDefinition,
+} from "../../shared/finales";
 import perroAssets from "../../shared/perro-mujeriego-assets.json";
+import perroChoreography from "../../shared/perro-mujeriego-choreography.json";
+import { drawSprite, type SpriteAsset } from "./assets";
 import { finaleArenaLayout, type FinaleArenaLayout } from "./finale-layout";
-import { drawAttackArt } from "./attack-art";
-import { drawRevisedFinale } from "./finales/registry";
-import { finaleViewportBounds } from "./finale-viewport";
 import type { FinalePose } from "./finales/types";
 
 type BodyMode = FinalePose;
@@ -1892,97 +1889,7 @@ export function drawFinale(
   ctx.scale(layout.scale * layout.direction, layout.scale);
   ctx.translate(-540, -516);
   ctx.imageSmoothingEnabled = true;
-  const revised = drawRevisedFinale({
-    ctx,
-    state,
-    profile,
-    actor: scene.actor,
-    rival: scene.rival,
-    tick,
-    pulse,
-    beat,
-    motion: scene.motion,
-    images: props,
-    sprites,
-    point: layout.point,
-    viewport: finaleViewportBounds(ctx),
-    body: (id, x, feet, height, facing, mode, offset) =>
-      body(scene, id, x, feet, height, facing, mode, offset),
-    art: (pose, x, feet, height, facing = 1, alpha = 1) => {
-      const at = layout.point(x, feet);
-      return drawAttackArt(
-        ctx,
-        props,
-        scene.actor,
-        pose,
-        at.x,
-        at.y,
-        height,
-        facing,
-        alpha,
-      );
-    },
-    text: (value, x, y, size, color) => text(ctx, value, x, y, size, color),
-    bubble: (value, x, y, width) => bubble(scene, value, x, y, width),
-    ring: (x, y, radius, color, squash) =>
-      ring(scene, x, y, radius, color, squash),
-    damage: (y) => damage(scene, y),
-  });
-  if (revised) {
-    /* The revised sequence already painted its actors and props. */
-  } else if (
-    profile.id === "llorona" ||
-    profile.id === "dudamel" ||
-    profile.id === "dayana" ||
-    profile.id === "deyna" ||
-    profile.id === "melanio" ||
-    profile.id === "lorenzo" ||
-    profile.id === "bolivar"
-  ) {
-    // Optional attack art failure retains both canonical identities, with no old microphone.
-    body(scene, scene.actor, 306, 514, 300, 1, "stand");
-    body(scene, scene.rival, 782, 514, 300, -1, pulse ? "hurt" : "stand");
-    damage(scene, 115);
-  } else if (profile.id === "mcm") {
-    body(scene, scene.actor, 410, 516, 300, 1, "stand");
-    body(scene, scene.rival, 656, 516, 300, -1, pulse ? "hurt" : "stand");
-    damage(scene, 115);
-  } else if (profile.id === "george") {
-    body(scene, scene.actor, 333, 518, 300, 1, "stand");
-    body(scene, scene.rival, 766, 523, 300, -1, pulse ? "hurt" : "stand");
-    damage(scene, 115);
-  } else if (profile.id === "chataing") {
-    body(scene, scene.actor, 341, 516, 300, 1, "stand");
-    body(scene, scene.rival, 744, 516, 290, -1, pulse ? "hurt" : "stand");
-    damage(scene, 115);
-  } else if (profile.id === "javier") {
-    body(scene, scene.actor, 362, 515, 297, 1, "perform");
-    body(scene, scene.rival, 789, 510, 288, -1, pulse ? "recoil" : "stand");
-    damage(scene, 120);
-  } else if (profile.id === "renny") {
-    body(scene, scene.actor, 273, 516, 297, 1, "perform");
-    body(scene, scene.rival, 785, 516, 288, -1, pulse ? "recoil" : "stand");
-    damage(scene, 115);
-  } else if (profile.id === "gomez") {
-    body(scene, scene.actor, 334, 516, 297, 1, "stand");
-    body(scene, scene.rival, 776, 516, 288, -1, pulse ? "hurt" : "stand");
-    damage(scene, 115);
-  } else if (
-    profile.id === "ali" ||
-    profile.id === "simon" ||
-    profile.id === "oscar" ||
-    profile.id === "puma"
-  ) {
-    body(scene, scene.actor, 330, 510, 305, 1, "stand");
-    body(scene, scene.rival, 783, 510, 290, -1, pulse ? "hurt" : "stand");
-    if (pulse) {
-      const contact = scene.layout.point(783, 458);
-      ring(scene, contact.x, contact.y, 30, "#ffe0a6", 0.75);
-    }
-    damage(scene, 115);
-  } else if (
-    (CANONICAL_FINALE_FIGHTERS as readonly string[]).includes(profile.id)
-  )
+  if ((CANONICAL_FINALE_FIGHTERS as readonly string[]).includes(profile.id))
     iconFinale(scene);
   else if (profile.id === "capriles") coffee(scene);
   else if (profile.family === "dance") dance(scene);
@@ -1992,14 +1899,7 @@ export function drawFinale(
   else if (profile.family === "broadcast") broadcast(scene);
   else if (profile.family === "theater") theater(scene);
   else if (profile.family === "folklore") folklore(scene);
-  if (!(
-    revised &&
-    (profile.id === "lorenzo" ||
-      profile.id === "bolivar" ||
-      profile.id === "dudamel" ||
-      profile.id === "llorona")
-  ))
-    text(ctx, "DEFINITIVA", 540, 150, 25, "#ffe5a3");
+  text(ctx, "DEFINITIVA", 540, 150, 25, "#ffe5a3");
   ctx.restore();
   if (previousDirection === undefined) sceneDirections.delete(ctx);
   else sceneDirections.set(ctx, previousDirection);

@@ -167,9 +167,9 @@ for (const side of [0, 1] as const) {
     assert.equal(state.players[side].combo, "Límite aprobado");
     assert.ok(state.players[side].energy < 25.1);
     advance(state, inputs, 55);
-    assert.equal(state.players[side].hits, 1);
-    assert.ok(state.finale);
-    advance(state, inputs, state.finale.duration - state.finale.tick);
+    assert.ok(state.players[side].hits > 0);
+    assert.equal(state.fieldFinales?.[0]?.fighter, "vallenilla");
+    advance(state, inputs, 200);
     assert.ok(state.players[1 - side].hp < 65);
     emit(`super-p${side + 1}`, { hp: state.players[1 - side].hp, hits: state.players[side].hits, combo: state.players[side].combo, energy: state.players[side].energy });
   });

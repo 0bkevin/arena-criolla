@@ -1,78 +1,83 @@
-import {
-  drawLloronaSpecial,
-  drawLloronaProjectile,
-  drawLloronaImpact,
-} from "./finales/llorona";
-import {
-  drawDudamelSpecial,
-  drawDudamelProjectile,
-  drawDudamelImpact,
-} from "./finales/dudamel";
-import { drawBolivarSpecial } from "./finales/bolivar";
-import { drawLorenzoSpecial, drawLorenzoProjectile } from "./finales/lorenzo";
-import {
-  drawDeynaSpecial,
-  drawDeynaBallProjectile,
-  drawDeynaSquad,
-} from "./finales/deyna";
-import {
-  drawDayanaSpecial,
-  drawDayanaRunway,
-  drawDayanaRunwayBody,
-} from "./finales/dayana";
 import { fighterById, stageById } from "../../shared/content";
 import type { MatchState } from "../../shared/engine";
 import { finaleById } from "../../shared/finales";
+import {
+  INTRO_COUNTDOWN_START,
+  entranceProgress,
+  introActor,
+} from "../../shared/presentation";
 import { TECHNIQUES } from "../../shared/techniques";
-import { drawSprite, type preloadAssets } from "./assets";
-import { drawStage } from "./stage-renderer";
-import { drawImpact } from "./effects-renderer";
-import {
-  drawMelanioSpecial,
-  drawMelanioSignal,
-  drawMelanioSignalCharge,
-} from "./finales/melanio";
-import { drawAliSpecial } from "./finales/ali";
-import { simonSpecialPose } from "./finales/simon";
-import {
-  drawMaiteFinaleBody,
-  drawMaiteGreeting,
-  drawSonicProjectile,
-} from "./finales/maite";
 import {
   advanceArenaCamera,
   cameraBounds,
   type ArenaCamera,
 } from "./arena-camera";
 import {
-  entranceProgress,
-  introActor,
-  INTRO_COUNTDOWN_START,
-} from "../../shared/presentation";
-import { drawPresentation } from "./presentation-renderer";
-import { drawIntroCinematic } from "./intro-renderer";
-import { drawVictory } from "./victory-renderer";
-import { drawCultureProjectile, drawCultureSpecial } from "./culture-renderer";
-import { drawFounderProjectile, drawFounderSpecial } from "./founder-renderer";
-import { drawIconProjectile, drawIconSpecial } from "./icon-renderer";
-import { drawCourierMotorcycle } from "./courier-renderer";
-import { drawFinale } from "./finale-renderer";
-import { combatLabel } from "./combat-label";
+  drawArenaFinaleLayer,
+  drawArenaFinaleProjectile,
+  drawArenaPerformer,
+} from "./arena-finale-renderer";
+import { drawSprite, type preloadAssets } from "./assets";
 import { drawAttackArt } from "./attack-art";
+import { combatLabel } from "./combat-label";
+import { drawCourierMotorcycle } from "./courier-renderer";
+import { drawCultureProjectile, drawCultureSpecial } from "./culture-renderer";
+import { drawImpact } from "./effects-renderer";
+import { drawFinale } from "./finale-renderer";
+import { drawAliSpecial } from "./finales/ali";
+import { drawBolivarSpecial } from "./finales/bolivar";
 import {
   drawChataingSpecial,
-  drawWiredMicrophone,
   drawMicrophoneCable,
+  drawWiredMicrophone,
 } from "./finales/chataing";
 import {
-  drawTransformationBody,
-  drawTransformationGauge,
-} from "./transformation-art";
+  drawDayanaRunway,
+  drawDayanaRunwayBody,
+  drawDayanaSpecial,
+} from "./finales/dayana";
+import {
+  drawDeynaBallProjectile,
+  drawDeynaSpecial,
+  drawDeynaSquad,
+} from "./finales/deyna";
+import {
+  drawDudamelImpact,
+  drawDudamelProjectile,
+  drawDudamelSpecial,
+} from "./finales/dudamel";
+import {
+  drawLloronaImpact,
+  drawLloronaProjectile,
+  drawLloronaSpecial,
+} from "./finales/llorona";
+import { drawLorenzoProjectile, drawLorenzoSpecial } from "./finales/lorenzo";
+import {
+  drawMaiteFinaleBody,
+  drawMaiteGreeting,
+  drawSonicProjectile,
+} from "./finales/maite";
+import {
+  drawMelanioSignal,
+  drawMelanioSignalCharge,
+  drawMelanioSpecial,
+} from "./finales/melanio";
+import { simonSpecialPose } from "./finales/simon";
 import {
   drawFolkloreProjectile,
   drawFolkloreSpecial,
   drawFolkloreStatus,
 } from "./folklore-renderer";
+import { drawFounderProjectile, drawFounderSpecial } from "./founder-renderer";
+import { drawIconProjectile, drawIconSpecial } from "./icon-renderer";
+import { drawIntroCinematic } from "./intro-renderer";
+import { drawPresentation } from "./presentation-renderer";
+import { drawStage } from "./stage-renderer";
+import {
+  drawTransformationBody,
+  drawTransformationGauge,
+} from "./transformation-art";
+import { drawVictory } from "./victory-renderer";
 
 export type Assets = Awaited<ReturnType<typeof preloadAssets>>;
 export function renderMatch(
@@ -116,8 +121,10 @@ export function renderMatch(
   for (const field of state.fieldFinales ?? []) {
     if (field.fighter === "deyna")
       drawDeynaSquad(ctx, assets.finaleProps, field, "back");
-    else drawDayanaRunway(ctx, assets.finaleProps, field);
+    else if (field.fighter === "dayana")
+      drawDayanaRunway(ctx, assets.finaleProps, field);
   }
+  drawArenaFinaleLayer(ctx, assets.finaleProps, state, "back", reducedMotion);
   for (const projectile of state.projectiles) {
     if (
       projectile.tether &&
@@ -140,7 +147,9 @@ export function renderMatch(
     ctx.fillStyle = color;
     ctx.strokeStyle = "#ffffff";
     ctx.lineWidth = 2;
-    if (projectile.kind === "sonic") {
+    if (drawArenaFinaleProjectile(ctx, assets.finaleProps, projectile)) {
+      // Original artwork is retained when a projectile changes owners.
+    } else if (projectile.kind === "sonic") {
       drawSonicProjectile(ctx, projectile, reducedMotion);
     } else if (projectile.kind === "courier") {
       if (assets.courier)
@@ -365,6 +374,14 @@ export function renderMatch(
       drawBody(p.x - p.facing * 22, p.y);
       ctx.globalAlpha = opacity;
     }
+    const paintedArena = drawArenaPerformer(
+      ctx,
+      assets.finaleProps,
+      state,
+      p,
+      bodyHeight,
+      reducedMotion,
+    );
     const playingCuatro =
       def.id === "simon" && p.attack === "special" && !p.stun;
     const paintedCuatro =
@@ -440,7 +457,8 @@ export function renderMatch(
       !paintedSignal &&
       !paintedFootball &&
       !paintedPageant &&
-      !paintedRunway
+      !paintedRunway &&
+      !paintedArena
     ) {
       drawBody(p.x, p.y + idleBob);
       const tether =
@@ -619,6 +637,7 @@ export function renderMatch(
   for (const field of state.fieldFinales ?? [])
     if (field.fighter === "deyna")
       drawDeynaSquad(ctx, assets.finaleProps, field, "front");
+  drawArenaFinaleLayer(ctx, assets.finaleProps, state, "front", reducedMotion);
   if (
     state.hitstop > 0 &&
     state.effects.some(
