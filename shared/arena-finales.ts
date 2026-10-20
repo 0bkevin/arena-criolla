@@ -4,10 +4,11 @@ import type { MatchState, PlayerState } from "./engine";
 import type { FieldFinaleState } from "./field-finales";
 import {
   COUTURE_MODEL_COUNT,
+  COUTURE_MODEL_CUES,
   COUTURE_MODEL_HEIGHT,
   COUTURE_MODEL_SPEED,
   coutureModelStart,
-  coutureRunwayRange,
+  coutureModelEnd,
 } from "./couture-runway";
 
 /** The authored batch. The other roster finales retain their existing rules. */
@@ -62,7 +63,7 @@ export const ARENA_FINALES = {
 export type ArenaFinalist = keyof typeof ARENA_FINALES;
 /** Emission/gesture cues for sound, never guaranteed damage times. */
 export const ARENA_FINALE_CUES: Record<ArenaFinalist, readonly number[]> = {
-  carolina: [0, 12, 24, 36],
+  carolina: COUTURE_MODEL_CUES,
   kevin: [12, 26, 40, 54, 68],
   bolivar: [12, 23, 34, 45, 56, 67, 78],
   gomez: [12, 29, 51],
@@ -376,18 +377,19 @@ export function advanceArenaFinale(state: MatchState, field: FieldFinaleState) {
     p.facing = field.direction;
   }
   if (!field.cancelled) {
-    if (field.fighter === "carolina" && tick === 0)
-      for (let i = 0; i < COUTURE_MODEL_COUNT; i++) {
+    if (field.fighter === "carolina") {
+      const index = COUTURE_MODEL_CUES.findIndex((cue) => cue === tick);
+      if (index !== -1)
         spawnActor(
           state,
           field,
           "model",
-          i,
+          index,
           COUTURE_MODEL_HEIGHT,
           COUTURE_MODEL_SPEED,
-          coutureModelStart(field, i),
+          coutureModelStart(field),
         ).life = ARENA_FINALES.carolina.duration;
-      }
+    }
     if (
       field.fighter === "bolivar" &&
       tick >= 23 &&
@@ -512,8 +514,7 @@ export function advanceArenaFinale(state: MatchState, field: FieldFinaleState) {
       if (actor.vy >= 0 && support) actor.vy = 0;
     } else {
       if (actor.kind === "model") {
-        const range = coutureRunwayRange(field),
-          end = actor.direction > 0 ? range.right - 20 : range.left + 20;
+        const end = coutureModelEnd(field);
         actor.vx =
           actor.direction *
           Math.min(COUTURE_MODEL_SPEED, Math.abs(end - actor.x));

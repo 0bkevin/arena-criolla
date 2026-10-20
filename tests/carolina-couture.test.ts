@@ -15,10 +15,16 @@ import { finaleById } from "../shared/finales";
 import {
   coutureRunwayRange,
   COUTURE_MODEL_COUNT,
+  COUTURE_MODEL_CUES,
+  coutureModelStart,
 } from "../shared/couture-runway";
 import { ARENA_FINALES, arenaFinaleContacts } from "../shared/arena-finales";
 import { ATTACK_ART } from "../src/game/attack-art";
 import { arenaHelperPose } from "../src/game/arena-finale-renderer";
+import {
+  carolinaInvocationPose,
+  carolinaPoseHeight,
+} from "../src/game/finales/carolina";
 
 function setup(side: 0 | 1, gap = 180) {
   const a = { name: "Carolina", fighter: "carolina" as const, wins: 3 },
@@ -52,16 +58,18 @@ test("Carolina's four distinct models make four physical, single-use contacts on
     const r = setup(side);
     r.start();
     const field = r.state.fieldFinales![0];
-    assert.equal(field.actors!.length, COUTURE_MODEL_COUNT);
-    assert.equal(new Set(field.actors!.map((a) => a.id)).size, 4);
-    assert.deepEqual(
-      field.actors!.map((a) => a.index),
-      [0, 1, 2, 3],
+    assert.equal(
+      field.actors?.length ?? 0,
+      0,
+      "the models wait for her summon signal",
     );
+    const seen = new Map<number, number>();
     const connected = new Set<number>();
     for (let n = 0; n < 240; n++) {
-      for (const a of field.actors ?? [])
+      for (const a of field.actors ?? []) {
+        seen.set(a.id, a.index);
         if (a.connected) connected.add(a.index);
+      }
       r.advance();
       assert.equal(
         r.state.finale,
@@ -69,6 +77,8 @@ test("Carolina's four distinct models make four physical, single-use contacts on
         "no global capture or staged defender",
       );
     }
+    assert.equal(seen.size, COUTURE_MODEL_COUNT);
+    assert.deepEqual([...seen.values()], [0, 1, 2, 3]);
     assert.equal(connected.size, 4);
     assert.equal(r.source.hits, 4);
     assert.ok(
@@ -95,7 +105,8 @@ test("the procession can be guarded or escaped, and cannot hit a rival above the
     assert.equal(missed.target.hp, 100);
     const above = setup(side);
     above.start();
-    const model = above.state.fieldFinales![0].actors![3];
+    above.advance(COUTURE_MODEL_CUES[0]);
+    const model = above.state.fieldFinales![0].actors![0];
     above.target.x = model.x;
     above.target.y = model.y - 180;
     assert.equal(
@@ -147,6 +158,10 @@ test("the runway and all model feet remain inside the arena at both walls and ra
       const range = coutureRunwayRange({ x, direction });
       assert.ok(range.left >= WORLD.left);
       assert.ok(range.right <= WORLD.right);
+      assert.ok(
+        direction > 0 ? range.left > x : range.right < x,
+        "the caller stands outside the runway at either wall",
+      );
       const r = setup(0, 550);
       r.source.x = x;
       r.source.facing = direction;
@@ -154,7 +169,7 @@ test("the runway and all model feet remain inside the arena at both walls and ra
       const field = r.state.fieldFinales![0];
       const actualRange = coutureRunwayRange(field);
       field.y -= 120;
-      for (const model of field.actors!) {
+      for (const model of field.actors ?? []) {
         model.y = field.y;
         model.previousY = field.y;
       }
@@ -172,8 +187,9 @@ test("the runway and all model feet remain inside the arena at both walls and ra
 });
 
 test("each model has a real two-frame walk cycle, normal body scale and a reduced-motion pose", () => {
-  const r = setup(0);
+  const r = setup(0, 550);
   r.start();
+  r.advance(COUTURE_MODEL_CUES.at(-1)!);
   const field = r.state.fieldFinales![0];
   const poses = new Set<string>();
   for (const actor of field.actors!) {
@@ -200,7 +216,10 @@ test("the twelve complete, unique crops ship in one compact lossless WebP atlas"
     .ensureAlpha()
     .raw()
     .toBuffer({ resolveWithObject: true });
-  assert.ok(info.width * info.height < 2_000_000);
+  assert.ok(
+    info.width * info.height < 2_500_000,
+    "preserve the detailed invocation at native resolution without excess padding",
+  );
   assert.equal(Object.keys(sheet.frames).length, 12);
   const fingerprints = new Set<string>();
   for (const frame of Object.values(sheet.frames)) {
@@ -229,4 +248,48 @@ test("the twelve complete, unique crops ship in one compact lossless WebP atlas"
     fingerprints.add(createHash("sha256").update(crop).digest("hex"));
   }
   assert.equal(fingerprints.size, 12);
+});
+
+test("the models enter one by one in front of Carolina as she gives the summon signal", () => {
+  for (const side of [0, 1] as const) {
+    const r = setup(side, 550);
+    r.start();
+    const field = r.state.fieldFinales![0],
+      start = coutureModelStart(field);
+    for (let tick = 0; tick <= 72; tick++) {
+      assert.equal(field.tick, tick);
+      assert.equal(
+        field.actors?.length ?? 0,
+        COUTURE_MODEL_CUES.filter((cue) => cue <= tick).length,
+      );
+      for (const model of field.actors ?? [])
+        assert.ok((model.x - field.x) * field.direction > 0);
+      if (COUTURE_MODEL_CUES.some((cue) => cue === tick)) {
+        const newest = field.actors!.at(-1)!;
+        assert.ok(Math.abs(newest.x - start) <= 3.21);
+        assert.equal(newest.age, 1);
+      }
+      r.advance();
+    }
+  }
+});
+
+test("Carolina points from a grounded stance like Pedro, with stable size and a quiet reduced-motion pose", () => {
+  assert.equal(carolinaInvocationPose(0), "gather");
+  assert.equal(carolinaInvocationPose(COUTURE_MODEL_CUES[0]), "summon");
+  assert.equal(carolinaInvocationPose(24), "hold");
+  assert.equal(carolinaInvocationPose(34), "recover");
+  for (const tick of [0, 8, 24, 34]) {
+    const pose = carolinaInvocationPose(tick),
+      frame = ATTACK_ART.carolina.frames[pose];
+    assert.equal(
+      frame.anchorY,
+      frame.height,
+      "her heels stay on the arena floor",
+    );
+    assert.ok(Math.abs(carolinaPoseHeight(pose, 177) - 177) < 2);
+    assert.equal(carolinaInvocationPose(tick, true), "summon");
+  }
+  for (const obsolete of ["welcome", "direct", "applaud", "finish"])
+    assert.equal(ATTACK_ART.carolina.frames[obsolete], undefined);
 });

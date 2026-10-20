@@ -20,7 +20,11 @@ import { OSCAR_HEIGHTS } from "./finales/oscar";
 import { CHATAING_BODY_HEIGHTS } from "./finales/chataing";
 import { GEORGE_BODY_HEIGHTS, GEORGE_POSE_SCALE } from "./finales/george";
 import { WORLD } from "../../shared/arena";
-import { carolinaPoseHeight, drawCoutureRunway } from "./finales/carolina";
+import {
+  carolinaInvocationPose,
+  carolinaPoseHeight,
+  drawCoutureRunway,
+} from "./finales/carolina";
 
 type Images = Record<string, HTMLImageElement>;
 const unit = (v: number) => Math.max(0, Math.min(1, v));
@@ -77,8 +81,7 @@ export function arenaPerformerPose(
     pose = "truck";
     size = 145;
   } else if (id === "carolina") {
-    pose =
-      t < 10 ? "welcome" : t < 22 ? "direct" : t < 30 ? "applaud" : "finish";
+    pose = carolinaInvocationPose(t, reducedMotion);
     size = carolinaPoseHeight(pose, height);
   } else if (id === "kevin")
     pose =

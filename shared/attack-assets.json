@@ -1703,11 +1703,11 @@
     }
   },
   "carolina": {
-    "file": "carolina-couture-attack-v1",
+    "file": "carolina-couture-attack-v2",
     "frames": {
       "model-1-a": {
-        "x": 15,
-        "y": 18,
+        "x": 12,
+        "y": 15,
         "width": 280,
         "height": 371,
         "anchorX": 146,
@@ -1715,8 +1715,8 @@
         "bodyHeight": 371
       },
       "model-2-a": {
-        "x": 313,
-        "y": 16,
+        "x": 304,
+        "y": 13,
         "width": 283,
         "height": 373,
         "anchorX": 157,
@@ -1724,8 +1724,8 @@
         "bodyHeight": 373
       },
       "model-3-a": {
-        "x": 614,
-        "y": 16,
+        "x": 599,
+        "y": 13,
         "width": 289,
         "height": 373,
         "anchorX": 148,
@@ -1733,8 +1733,8 @@
         "bodyHeight": 373
       },
       "model-4-a": {
-        "x": 921,
-        "y": 15,
+        "x": 900,
+        "y": 12,
         "width": 304,
         "height": 374,
         "anchorX": 174,
@@ -1742,8 +1742,8 @@
         "bodyHeight": 374
       },
       "model-1-b": {
-        "x": 15,
-        "y": 407,
+        "x": 12,
+        "y": 398,
         "width": 282,
         "height": 364,
         "anchorX": 146,
@@ -1751,8 +1751,8 @@
         "bodyHeight": 364
       },
       "model-2-b": {
-        "x": 315,
-        "y": 409,
+        "x": 306,
+        "y": 400,
         "width": 299,
         "height": 362,
         "anchorX": 165,
@@ -1760,8 +1760,8 @@
         "bodyHeight": 362
       },
       "model-3-b": {
-        "x": 632,
-        "y": 409,
+        "x": 617,
+        "y": 400,
         "width": 283,
         "height": 362,
         "anchorX": 145,
@@ -1769,49 +1769,49 @@
         "bodyHeight": 362
       },
       "model-4-b": {
-        "x": 933,
-        "y": 409,
+        "x": 912,
+        "y": 400,
         "width": 301,
         "height": 362,
         "anchorX": 173,
         "anchorY": 362,
         "bodyHeight": 362
       },
-      "welcome": {
-        "x": 15,
-        "y": 789,
-        "width": 254,
-        "height": 320,
-        "anchorX": 97,
-        "anchorY": 320,
-        "bodyHeight": 320
+      "gather": {
+        "x": 12,
+        "y": 774,
+        "width": 434,
+        "height": 601,
+        "anchorX": 206,
+        "anchorY": 601,
+        "bodyHeight": 601
       },
-      "direct": {
-        "x": 287,
-        "y": 790,
-        "width": 275,
-        "height": 319,
-        "anchorX": 98,
-        "anchorY": 319,
-        "bodyHeight": 319
+      "summon": {
+        "x": 458,
+        "y": 776,
+        "width": 519,
+        "height": 599,
+        "anchorX": 211,
+        "anchorY": 599,
+        "bodyHeight": 599
       },
-      "applaud": {
-        "x": 580,
-        "y": 792,
-        "width": 213,
-        "height": 317,
-        "anchorX": 85,
-        "anchorY": 317,
-        "bodyHeight": 317
+      "hold": {
+        "x": 12,
+        "y": 1389,
+        "width": 520,
+        "height": 598,
+        "anchorX": 214,
+        "anchorY": 598,
+        "bodyHeight": 598
       },
-      "finish": {
-        "x": 811,
-        "y": 797,
-        "width": 188,
-        "height": 312,
-        "anchorX": 152,
-        "anchorY": 312,
-        "bodyHeight": 312
+      "recover": {
+        "x": 544,
+        "y": 1387,
+        "width": 464,
+        "height": 600,
+        "anchorX": 220,
+        "anchorY": 600,
+        "bodyHeight": 600
       }
     }
   }
