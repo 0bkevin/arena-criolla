@@ -23,14 +23,22 @@ test("touch definitive unlocks at two wins and still requires 90 energy", () => 
         /<button\b[^>]*data-control="super"[^>]*>.*?<\/button>/,
       )?.[0];
       assert.ok(button);
-      assert.equal(button.includes('disabled=""'), wins < 2 || energy < 90);
+      assert.equal(
+        button.includes('aria-disabled="true"'),
+        wins < 2 || energy < 90,
+      );
+      assert.doesNotMatch(button, /\sdisabled=/);
       assert.equal(button.includes("lucide-lock-keyhole"), wins < 2);
       if (wins < 2) {
         assert.ok(button.includes("Gana 2 peleas con este personaje"));
       } else if (energy < 90) {
         assert.ok(button.includes("Necesitas 90 de energía."));
       } else {
-        assert.doesNotMatch(button, /aria-description=/);
+        assert.ok(
+          button.includes(
+            "Toca directamente para activar. No se activa al deslizar.",
+          ),
+        );
       }
     }
   }

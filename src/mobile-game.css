@@ -1,7 +1,13 @@
+.touch-controls,
 .touch-button {
   touch-action: none;
   -webkit-touch-callout: none;
+  -webkit-user-select: none;
   user-select: none;
+}
+.touch-button {
+  min-width: 48px;
+  min-height: 48px;
 }
 .touch-button > span {
   font: 700 7px/1 var(--font-body);
@@ -15,8 +21,9 @@
     inset 0 2px 10px #8d6b2b80,
     0 0 9px #ffd45a55;
 }
-.touch-button:disabled {
+.touch-button[aria-disabled="true"] {
   opacity: 0.4;
+  cursor: not-allowed;
 }
 .pause-tools {
   display: grid;

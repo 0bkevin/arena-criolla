@@ -42,6 +42,11 @@ export function MobileControlsGuide() {
         <Smartphone size={20} aria-hidden="true" />
         Juega con el teléfono en horizontal.
       </p>
+      <p>
+        Desliza sin levantar el dedo para moverte, saltar, esquivar, golpear y
+        bloquear. Usa otro dedo para combinar movimiento y ataques. Para
+        Especial y Súper, levanta el dedo y toca el botón directamente.
+      </p>
       <figure className="help-screen-guide">
         <div
           className="help-game-screen"
