@@ -1,0 +1,2896 @@
+{
+  "source": "real gallery canvas renderMatch/drawFinale",
+  "origin": "http://localhost:5194",
+  "ticks": [
+    0,
+    60,
+    102,
+    144,
+    186,
+    222,
+    270,
+    318
+  ],
+  "roles": [
+    0,
+    1
+  ],
+  "results": [
+    {
+      "id": "maite",
+      "file": "perro-mujeriego-v3-maite",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "maite",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "maite",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-nacho.webp",
+        "perro-mujeriego-v3-maite.webp"
+      ],
+      "sourceCrops": [
+        [
+          97,
+          58,
+          318,
+          424
+        ],
+        [
+          610,
+          58,
+          316,
+          424
+        ],
+        [
+          1104,
+          61,
+          351,
+          421
+        ],
+        [
+          1631,
+          61,
+          322,
+          421
+        ],
+        [
+          86,
+          565,
+          340,
+          429
+        ],
+        [
+          593,
+          569,
+          349,
+          425
+        ],
+        [
+          1124,
+          544,
+          311,
+          450
+        ],
+        [
+          1651,
+          563,
+          281,
+          431
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 133.87307032590053,
+          "right": 373.8730703259005,
+          "top": 180,
+          "anchorX": 161.8181818181818,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 1,
+          "left": 133.70378104258336,
+          "right": 372.1943470803192,
+          "top": 180,
+          "anchorX": 162.04249011857706,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 2,
+          "left": 113.80595122678795,
+          "right": 378.71161160414647,
+          "top": 182.2641509433962,
+          "anchorX": 188.40711462450594,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 3,
+          "left": 131.31508688194495,
+          "right": 374.33395480647323,
+          "top": 182.2641509433962,
+          "anchorX": 165.20750988142294,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 4,
+          "left": 121.37325676784249,
+          "right": 377.97703035274816,
+          "top": 176.22641509433964,
+          "anchorX": 178.3804347826087,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 5,
+          "left": 121.96896540702937,
+          "right": 385.36519182212373,
+          "top": 179.24528301886795,
+          "anchorX": 177.59112083568607,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 6,
+          "left": 141.23827280184952,
+          "right": 375.95525393392495,
+          "top": 160.37735849056605,
+          "anchorX": 152.0592885375494,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 7,
+          "left": 149.9406368856738,
+          "right": 362.016108583787,
+          "top": 174.7169811320755,
+          "anchorX": 140.52865612648222,
+          "bodyHeight": 424
+        }
+      ],
+      "bytes": 1731363,
+      "contact": "maite-both-slots.png"
+    },
+    {
+      "id": "simon",
+      "file": "perro-mujeriego-v3-simon",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "simon",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "simon",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-simon.webp"
+      ],
+      "sourceCrops": [
+        [
+          151,
+          50,
+          209,
+          432
+        ],
+        [
+          674,
+          52,
+          187,
+          430
+        ],
+        [
+          1100,
+          47,
+          359,
+          435
+        ],
+        [
+          1669,
+          47,
+          246,
+          435
+        ],
+        [
+          149,
+          559,
+          213,
+          435
+        ],
+        [
+          664,
+          557,
+          207,
+          437
+        ],
+        [
+          1147,
+          544,
+          265,
+          450
+        ],
+        [
+          1682,
+          562,
+          220,
+          432
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 177.03352364221928,
+          "right": 331.8483384570341,
+          "top": 180,
+          "anchorX": 106.60474308300395,
+          "bodyHeight": 432
+        },
+        {
+          "frame": 1,
+          "left": 183.4074074074074,
+          "right": 321.9259259259259,
+          "top": 181.48148148148147,
+          "anchorX": 98,
+          "bodyHeight": 432
+        },
+        {
+          "frame": 2,
+          "left": 104.48850827111696,
+          "right": 370.4144341970429,
+          "top": 177.77777777777777,
+          "anchorX": 204.5405138339921,
+          "bodyHeight": 432
+        },
+        {
+          "frame": 3,
+          "left": 156.3850095154443,
+          "right": 338.60723173766655,
+          "top": 177.77777777777777,
+          "anchorX": 134.4802371541502,
+          "bodyHeight": 432
+        },
+        {
+          "frame": 4,
+          "left": 178.99516908212559,
+          "right": 336.77294685990336,
+          "top": 177.77777777777777,
+          "anchorX": 103.95652173913044,
+          "bodyHeight": 432
+        },
+        {
+          "frame": 5,
+          "left": 182.63153271848924,
+          "right": 335.9648660518226,
+          "top": 176.2962962962963,
+          "anchorX": 99.04743083003953,
+          "bodyHeight": 432
+        },
+        {
+          "frame": 6,
+          "left": 162.28897672375933,
+          "right": 358.58527302005564,
+          "top": 166.66666666666669,
+          "anchorX": 126.5098814229249,
+          "bodyHeight": 432
+        },
+        {
+          "frame": 7,
+          "left": 174.8727858293076,
+          "right": 337.8357487922705,
+          "top": 180,
+          "anchorX": 109.52173913043478,
+          "bodyHeight": 432
+        }
+      ],
+      "bytes": 1672085,
+      "contact": "simon-both-slots.png"
+    },
+    {
+      "id": "conde",
+      "file": "perro-mujeriego-v3-conde",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "conde",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "conde",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-conde.webp",
+        "perro-mujeriego-v3-nacho.webp"
+      ],
+      "sourceCrops": [
+        [
+          156,
+          58,
+          199,
+          424
+        ],
+        [
+          674,
+          61,
+          188,
+          421
+        ],
+        [
+          1108,
+          60,
+          344,
+          422
+        ],
+        [
+          1668,
+          61,
+          248,
+          421
+        ],
+        [
+          138,
+          555,
+          235,
+          439
+        ],
+        [
+          651,
+          553,
+          234,
+          441
+        ],
+        [
+          1141,
+          544,
+          278,
+          450
+        ],
+        [
+          1670,
+          560,
+          244,
+          434
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 177.5071966589604,
+          "right": 327.6958759042434,
+          "top": 180,
+          "anchorX": 104.00296442687747,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 1,
+          "left": 183.24438809754642,
+          "right": 325.1311805503766,
+          "top": 182.2641509433962,
+          "anchorX": 96.40118577075098,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 2,
+          "left": 114.82392422999476,
+          "right": 374.4465657394287,
+          "top": 181.50943396226415,
+          "anchorX": 187.05830039525694,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 3,
+          "left": 153.72839137892458,
+          "right": 340.8982026996793,
+          "top": 182.2641509433962,
+          "anchorX": 135.5098814229249,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 4,
+          "left": 166.54813930941904,
+          "right": 343.90662987545676,
+          "top": 168.67924528301887,
+          "anchorX": 118.52371541501977,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 5,
+          "left": 169.58043105376984,
+          "right": 346.1842046386755,
+          "top": 167.16981132075472,
+          "anchorX": 114.50592885375494,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 6,
+          "left": 148.11574315758074,
+          "right": 357.92706391229774,
+          "top": 160.37735849056605,
+          "anchorX": 142.94664031620553,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 7,
+          "left": 161.67753001715266,
+          "right": 345.8284734133791,
+          "top": 172.45283018867923,
+          "anchorX": 124.97727272727273,
+          "bodyHeight": 424
+        }
+      ],
+      "bytes": 1724380,
+      "contact": "conde-both-slots.png"
+    },
+    {
+      "id": "gualberto",
+      "file": "perro-mujeriego-v3-gualberto",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "gualberto",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "gualberto",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-gualberto.webp"
+      ],
+      "sourceCrops": [
+        [
+          159,
+          57,
+          193,
+          425
+        ],
+        [
+          673,
+          56,
+          189,
+          426
+        ],
+        [
+          1101,
+          53,
+          357,
+          429
+        ],
+        [
+          1662,
+          54,
+          259,
+          428
+        ],
+        [
+          143,
+          556,
+          226,
+          438
+        ],
+        [
+          660,
+          563,
+          216,
+          431
+        ],
+        [
+          1152,
+          544,
+          255,
+          450
+        ],
+        [
+          1680,
+          558,
+          224,
+          436
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 184.4646361311323,
+          "right": 329.7822831899558,
+          "top": 180,
+          "anchorX": 95.00790513833992,
+          "bodyHeight": 425
+        },
+        {
+          "frame": 1,
+          "left": 182.75415019762846,
+          "right": 325.06003255056964,
+          "top": 179.24705882352941,
+          "anchorX": 97.2796442687747,
+          "bodyHeight": 425
+        },
+        {
+          "frame": 2,
+          "left": 108.24496628691003,
+          "right": 377.04496628691004,
+          "top": 176.98823529411766,
+          "anchorX": 196.23715415019763,
+          "bodyHeight": 425
+        },
+        {
+          "frame": 3,
+          "left": 151.67300627760986,
+          "right": 346.68477098349223,
+          "top": 177.74117647058824,
+          "anchorX": 138.5592885375494,
+          "bodyHeight": 425
+        },
+        {
+          "frame": 4,
+          "left": 170.91913508486397,
+          "right": 341.08384096721693,
+          "top": 170.21176470588233,
+          "anchorX": 112.99802371541502,
+          "bodyHeight": 425
+        },
+        {
+          "frame": 5,
+          "left": 174.79903012588437,
+          "right": 337.4343242435314,
+          "top": 175.4823529411765,
+          "anchorX": 107.84503811405985,
+          "bodyHeight": 425
+        },
+        {
+          "frame": 6,
+          "left": 164.1054638456173,
+          "right": 356.1054638456173,
+          "top": 161.1764705882353,
+          "anchorX": 122.04743083003953,
+          "bodyHeight": 425
+        },
+        {
+          "frame": 7,
+          "left": 175.09676819344338,
+          "right": 343.7555917228552,
+          "top": 171.7176470588235,
+          "anchorX": 107.449604743083,
+          "bodyHeight": 425
+        }
+      ],
+      "bytes": 1699167,
+      "contact": "gualberto-both-slots.png"
+    },
+    {
+      "id": "oscar",
+      "file": "perro-mujeriego-v3-oscar",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "oscar",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "oscar",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-oscar.webp"
+      ],
+      "sourceCrops": [
+        [
+          159,
+          42,
+          193,
+          440
+        ],
+        [
+          673,
+          47,
+          189,
+          435
+        ],
+        [
+          1097,
+          51,
+          366,
+          431
+        ],
+        [
+          1666,
+          55,
+          252,
+          427
+        ],
+        [
+          147,
+          568,
+          218,
+          426
+        ],
+        [
+          660,
+          572,
+          215,
+          422
+        ],
+        [
+          1150,
+          546,
+          259,
+          448
+        ],
+        [
+          1677,
+          562,
+          230,
+          432
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 187.48654966909223,
+          "right": 327.8501860327286,
+          "top": 180,
+          "anchorX": 94.20599420499819,
+          "bodyHeight": 440
+        },
+        {
+          "frame": 1,
+          "left": 185.64213564213566,
+          "right": 323.0966810966811,
+          "top": 183.63636363636363,
+          "anchorX": 96.7420634920635,
+          "bodyHeight": 440
+        },
+        {
+          "frame": 2,
+          "left": 103.59245475648638,
+          "right": 369.77427293830453,
+          "top": 186.54545454545456,
+          "anchorX": 209.56037470983122,
+          "bodyHeight": 440
+        },
+        {
+          "frame": 3,
+          "left": 152.74523895077255,
+          "right": 336.0179662234998,
+          "top": 189.45454545454544,
+          "anchorX": 141.97529644268775,
+          "bodyHeight": 440
+        },
+        {
+          "frame": 4,
+          "left": 170.94291588955622,
+          "right": 329.4883704350108,
+          "top": 190.1818181818182,
+          "anchorX": 116.95349065186022,
+          "bodyHeight": 440
+        },
+        {
+          "frame": 5,
+          "left": 178.86147186147184,
+          "right": 335.2251082251082,
+          "top": 193.09090909090907,
+          "anchorX": 106.06547619047619,
+          "bodyHeight": 440
+        },
+        {
+          "frame": 6,
+          "left": 163.7513474667625,
+          "right": 352.11498383039884,
+          "top": 174.1818181818182,
+          "anchorX": 126.84189723320158,
+          "bodyHeight": 440
+        },
+        {
+          "frame": 7,
+          "left": 172.3808839381962,
+          "right": 339.6536112109235,
+          "top": 185.8181818181818,
+          "anchorX": 114.97628458498023,
+          "bodyHeight": 440
+        }
+      ],
+      "bytes": 1659979,
+      "contact": "oscar-both-slots.png"
+    },
+    {
+      "id": "puma",
+      "file": "perro-mujeriego-v3-puma",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "puma",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "puma",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-puma.webp",
+        "perro-mujeriego-v3-nacho.webp"
+      ],
+      "sourceCrops": [
+        [
+          156,
+          47,
+          199,
+          435
+        ],
+        [
+          674,
+          48,
+          187,
+          434
+        ],
+        [
+          1105,
+          51,
+          350,
+          431
+        ],
+        [
+          1656,
+          51,
+          271,
+          431
+        ],
+        [
+          146,
+          555,
+          219,
+          439
+        ],
+        [
+          652,
+          557,
+          231,
+          437
+        ],
+        [
+          1142,
+          544,
+          275,
+          450
+        ],
+        [
+          1673,
+          560,
+          238,
+          434
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 185.31574905188097,
+          "right": 331.70655364958213,
+          "top": 180,
+          "anchorX": 96.08640363259929,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 1,
+          "left": 187.93366952887192,
+          "right": 325.4968879196765,
+          "top": 180.73563218390802,
+          "anchorX": 92.52766798418972,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 2,
+          "left": 110.75126217555004,
+          "right": 368.22252654336614,
+          "top": 182.9425287356322,
+          "anchorX": 197.44750298011166,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 3,
+          "left": 134.28413066194173,
+          "right": 333.6404525010222,
+          "top": 182.9425287356322,
+          "anchorX": 165.45750988142294,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 4,
+          "left": 169.9164962973059,
+          "right": 331.01994457316795,
+          "top": 177.0574712643678,
+          "anchorX": 117.0197628458498,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 5,
+          "left": 165.86034255599475,
+          "right": 335.79137703875335,
+          "top": 178.5287356321839,
+          "anchorX": 122.53359683794466,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 6,
+          "left": 162.55145154695379,
+          "right": 364.85030212166646,
+          "top": 168.9655172413793,
+          "anchorX": 127.03162055335969,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 7,
+          "left": 170.63540956794333,
+          "right": 345.71586933805827,
+          "top": 180.73563218390802,
+          "anchorX": 116.04249011857706,
+          "bodyHeight": 435
+        }
+      ],
+      "bytes": 1657046,
+      "contact": "puma-both-slots.png"
+    },
+    {
+      "id": "zavarce",
+      "file": "perro-mujeriego-v3-zavarce",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "zavarce",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "zavarce",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-zavarce.webp"
+      ],
+      "sourceCrops": [
+        [
+          167,
+          61,
+          178,
+          421
+        ],
+        [
+          682,
+          64,
+          172,
+          418
+        ],
+        [
+          1097,
+          65,
+          365,
+          417
+        ],
+        [
+          1656,
+          68,
+          271,
+          414
+        ],
+        [
+          145,
+          569,
+          221,
+          425
+        ],
+        [
+          657,
+          566,
+          222,
+          428
+        ],
+        [
+          1149,
+          544,
+          261,
+          450
+        ],
+        [
+          1682,
+          565,
+          220,
+          429
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 186.82234093490936,
+          "right": 322.1192530489236,
+          "top": 180,
+          "anchorX": 91.01185770750988,
+          "bodyHeight": 421
+        },
+        {
+          "frame": 1,
+          "left": 189.84244176767157,
+          "right": 320.5787838104269,
+          "top": 182.28028503562945,
+          "anchorX": 87.03853754940711,
+          "bodyHeight": 421
+        },
+        {
+          "frame": 2,
+          "left": 91.42290612413507,
+          "right": 368.85758545905196,
+          "top": 183.04038004750595,
+          "anchorX": 216.52173913043478,
+          "bodyHeight": 421
+        },
+        {
+          "frame": 3,
+          "left": 135.09757494390357,
+          "right": 341.0833231624309,
+          "top": 185.3206650831354,
+          "anchorX": 159.06225296442688,
+          "bodyHeight": 421
+        },
+        {
+          "frame": 4,
+          "left": 171.9381483950316,
+          "right": 339.9191460197347,
+          "top": 176.95961995249405,
+          "anchorX": 110.59387351778656,
+          "bodyHeight": 421
+        },
+        {
+          "frame": 5,
+          "left": 175.7662406213475,
+          "right": 344.5073332579271,
+          "top": 174.6793349168646,
+          "anchorX": 105.55753968253968,
+          "bodyHeight": 421
+        },
+        {
+          "frame": 6,
+          "left": 157.18163979983666,
+          "right": 355.5664378995991,
+          "top": 157.95724465558197,
+          "anchorX": 130.0079051383399,
+          "bodyHeight": 421
+        },
+        {
+          "frame": 7,
+          "left": 172.71476721151407,
+          "right": 339.9356698243407,
+          "top": 173.9192399049881,
+          "anchorX": 109.57213438735178,
+          "bodyHeight": 421
+        }
+      ],
+      "bytes": 1681448,
+      "contact": "zavarce-both-slots.png"
+    },
+    {
+      "id": "vallenilla",
+      "file": "perro-mujeriego-v3-vallenilla",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "vallenilla",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "vallenilla",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-vallenilla.webp"
+      ],
+      "sourceCrops": [
+        [
+          157,
+          48,
+          197,
+          434
+        ],
+        [
+          670,
+          46,
+          195,
+          436
+        ],
+        [
+          1110,
+          51,
+          339,
+          431
+        ],
+        [
+          1666,
+          48,
+          251,
+          434
+        ],
+        [
+          139,
+          566,
+          233,
+          428
+        ],
+        [
+          654,
+          562,
+          227,
+          432
+        ],
+        [
+          1146,
+          544,
+          267,
+          450
+        ],
+        [
+          1676,
+          564,
+          231,
+          430
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 183.36088595836142,
+          "right": 328.61434217955957,
+          "top": 180,
+          "anchorX": 98.51679841897233,
+          "bodyHeight": 434
+        },
+        {
+          "frame": 1,
+          "left": 181.29680697983642,
+          "right": 325.0756088231544,
+          "top": 178.5253456221198,
+          "anchorX": 101.31620553359684,
+          "bodyHeight": 434
+        },
+        {
+          "frame": 2,
+          "left": 110.94544725961276,
+          "right": 360.899364310304,
+          "top": 182.21198156682027,
+          "anchorX": 196.7302371541502,
+          "bodyHeight": 434
+        },
+        {
+          "frame": 3,
+          "left": 152.76035044899,
+          "right": 337.82947487295314,
+          "top": 180,
+          "anchorX": 140.0187747035573,
+          "bodyHeight": 434
+        },
+        {
+          "frame": 4,
+          "left": 168.9968488734267,
+          "right": 340.7940838964682,
+          "top": 184.42396313364054,
+          "anchorX": 117.99802371541502,
+          "bodyHeight": 434
+        },
+        {
+          "frame": 5,
+          "left": 174.82697947214075,
+          "right": 342.2002513615417,
+          "top": 181.4746543778802,
+          "anchorX": 110.0909090909091,
+          "bodyHeight": 434
+        },
+        {
+          "frame": 6,
+          "left": 158.6640680497623,
+          "right": 355.53042749676695,
+          "top": 168.20276497695852,
+          "anchorX": 132.01185770750988,
+          "bodyHeight": 434
+        },
+        {
+          "frame": 7,
+          "left": 166.8169250104734,
+          "right": 337.1395056556347,
+          "top": 182.94930875576034,
+          "anchorX": 120.95454545454545,
+          "bodyHeight": 434
+        }
+      ],
+      "bytes": 1672216,
+      "contact": "vallenilla-both-slots.png"
+    },
+    {
+      "id": "javier",
+      "file": "perro-mujeriego-v3-javier",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "javier",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "javier",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-javier.webp",
+        "perro-mujeriego-v3-nacho.webp"
+      ],
+      "sourceCrops": [
+        [
+          153,
+          49,
+          205,
+          433
+        ],
+        [
+          672,
+          49,
+          191,
+          433
+        ],
+        [
+          1106,
+          48,
+          347,
+          434
+        ],
+        [
+          1656,
+          41,
+          271,
+          441
+        ],
+        [
+          138,
+          553,
+          236,
+          441
+        ],
+        [
+          649,
+          554,
+          237,
+          440
+        ],
+        [
+          1150,
+          544,
+          259,
+          450
+        ],
+        [
+          1672,
+          558,
+          240,
+          436
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 178.57273001122786,
+          "right": 330.0738847456389,
+          "top": 180,
+          "anchorX": 104.76877470355731,
+          "bodyHeight": 433
+        },
+        {
+          "frame": 1,
+          "left": 184.51564140247743,
+          "right": 325.6703758135629,
+          "top": 180,
+          "anchorX": 96.72727272727272,
+          "bodyHeight": 433
+        },
+        {
+          "frame": 2,
+          "left": 101.86988470912559,
+          "right": 358.31330272298237,
+          "top": 179.2609699769053,
+          "anchorX": 208.55731225296444,
+          "bodyHeight": 433
+        },
+        {
+          "frame": 3,
+          "left": 161.3837095728852,
+          "right": 361.6608458315457,
+          "top": 174.08775981524252,
+          "anchorX": 128.02766798418972,
+          "bodyHeight": 433
+        },
+        {
+          "frame": 4,
+          "left": 162.4382148627555,
+          "right": 336.84930031310193,
+          "top": 174.08775981524252,
+          "anchorX": 126.60079051383399,
+          "bodyHeight": 433
+        },
+        {
+          "frame": 5,
+          "left": 170.4879460332819,
+          "right": 345.63806150672303,
+          "top": 174.82678983833716,
+          "anchorX": 115.7084980237154,
+          "bodyHeight": 433
+        },
+        {
+          "frame": 6,
+          "left": 156.93054249696482,
+          "right": 348.3393184784891,
+          "top": 167.43648960739029,
+          "anchorX": 134.05335968379447,
+          "bodyHeight": 433
+        },
+        {
+          "frame": 7,
+          "left": 166.24217473459365,
+          "right": 343.6093802773188,
+          "top": 177.78290993071596,
+          "anchorX": 121.45355731225297,
+          "bodyHeight": 433
+        }
+      ],
+      "bytes": 1662677,
+      "contact": "javier-both-slots.png"
+    },
+    {
+      "id": "capriles",
+      "file": "perro-mujeriego-v3-capriles",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "capriles",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "capriles",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-capriles.webp"
+      ],
+      "sourceCrops": [
+        [
+          160,
+          43,
+          191,
+          439
+        ],
+        [
+          671,
+          43,
+          193,
+          439
+        ],
+        [
+          1103,
+          48,
+          354,
+          434
+        ],
+        [
+          1661,
+          43,
+          261,
+          439
+        ],
+        [
+          149,
+          562,
+          213,
+          432
+        ],
+        [
+          659,
+          563,
+          217,
+          431
+        ],
+        [
+          1144,
+          544,
+          272,
+          450
+        ],
+        [
+          1677,
+          556,
+          230,
+          438
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 188.5437798806126,
+          "right": 327.7692924090864,
+          "top": 180,
+          "anchorX": 92.54150197628458,
+          "bodyHeight": 439
+        },
+        {
+          "frame": 1,
+          "left": 182.69505793800138,
+          "right": 323.3784292364069,
+          "top": 180,
+          "anchorX": 100.56521739130434,
+          "bodyHeight": 439
+        },
+        {
+          "frame": 2,
+          "left": 107.30488804055213,
+          "right": 365.34589031845644,
+          "top": 183.64464692482915,
+          "anchorX": 203.99110671936756,
+          "bodyHeight": 439
+        },
+        {
+          "frame": 3,
+          "left": 148.78543581801975,
+          "right": 339.03600529410176,
+          "top": 180,
+          "anchorX": 147.08498023715416,
+          "bodyHeight": 439
+        },
+        {
+          "frame": 4,
+          "left": 178.05209468158858,
+          "right": 333.3140536793107,
+          "top": 185.1025056947608,
+          "anchorX": 106.93478260869566,
+          "bodyHeight": 439
+        },
+        {
+          "frame": 5,
+          "left": 177.4542773481072,
+          "right": 335.6319538856926,
+          "top": 185.83143507972665,
+          "anchorX": 107.75491326306545,
+          "bodyHeight": 439
+        },
+        {
+          "frame": 6,
+          "left": 157.96620058163091,
+          "right": 356.23499329233704,
+          "top": 171.98177676537586,
+          "anchorX": 134.4901185770751,
+          "bodyHeight": 439
+        },
+        {
+          "frame": 7,
+          "left": 172.5246202742489,
+          "right": 340.17837881639014,
+          "top": 180.72892938496585,
+          "anchorX": 114.51778656126481,
+          "bodyHeight": 439
+        }
+      ],
+      "bytes": 1671078,
+      "contact": "capriles-both-slots.png"
+    },
+    {
+      "id": "renny",
+      "file": "perro-mujeriego-v3-renny",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "renny",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "renny",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-renny.webp"
+      ],
+      "sourceCrops": [
+        [
+          159,
+          58,
+          193,
+          424
+        ],
+        [
+          672,
+          57,
+          192,
+          425
+        ],
+        [
+          1095,
+          54,
+          370,
+          428
+        ],
+        [
+          1672,
+          53,
+          239,
+          429
+        ],
+        [
+          151,
+          565,
+          209,
+          429
+        ],
+        [
+          657,
+          569,
+          221,
+          425
+        ],
+        [
+          1148,
+          544,
+          263,
+          450
+        ],
+        [
+          1682,
+          564,
+          220,
+          430
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 184.68222835409054,
+          "right": 330.34260571258113,
+          "top": 180,
+          "anchorX": 94.49604743083003,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 1,
+          "left": 178.98530837497202,
+          "right": 323.89096875233054,
+          "top": 179.24528301886795,
+          "anchorX": 102.04446640316206,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 2,
+          "left": 97.92557237676189,
+          "right": 377.1708553956298,
+          "top": 176.9811320754717,
+          "anchorX": 209.4486166007905,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 3,
+          "left": 159.75941531806995,
+          "right": 340.136773808636,
+          "top": 176.22641509433964,
+          "anchorX": 127.51877470355731,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 4,
+          "left": 175.95674546946083,
+          "right": 333.69259452606457,
+          "top": 176.22641509433964,
+          "anchorX": 106.05731225296442,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 5,
+          "left": 173.89246028786636,
+          "right": 340.6849131180551,
+          "top": 179.24528301886795,
+          "anchorX": 108.79249011857706,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 6,
+          "left": 159.78850026101873,
+          "right": 358.27906629875457,
+          "top": 160.37735849056605,
+          "anchorX": 127.4802371541502,
+          "bodyHeight": 424
+        },
+        {
+          "frame": 7,
+          "left": 167.26855097322692,
+          "right": 333.30628682228354,
+          "top": 175.47169811320754,
+          "anchorX": 117.56916996047431,
+          "bodyHeight": 424
+        }
+      ],
+      "bytes": 1678938,
+      "contact": "renny-both-slots.png"
+    },
+    {
+      "id": "gomez",
+      "file": "perro-mujeriego-v3-gomez",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "gomez",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "gomez",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-gomez.webp",
+        "perro-mujeriego-v3-nacho.webp"
+      ],
+      "sourceCrops": [
+        [
+          142,
+          47,
+          227,
+          435
+        ],
+        [
+          661,
+          52,
+          214,
+          430
+        ],
+        [
+          1099,
+          49,
+          362,
+          433
+        ],
+        [
+          1642,
+          52,
+          300,
+          430
+        ],
+        [
+          145,
+          563,
+          222,
+          431
+        ],
+        [
+          659,
+          567,
+          218,
+          427
+        ],
+        [
+          1144,
+          544,
+          272,
+          450
+        ],
+        [
+          1668,
+          568,
+          247,
+          426
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 172.85466357730223,
+          "right": 339.8431693244287,
+          "top": 180,
+          "anchorX": 113.02569169960475,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 1,
+          "left": 179.07555313252465,
+          "right": 336.5008404888465,
+          "top": 183.67816091954023,
+          "anchorX": 104.56916996047431,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 2,
+          "left": 105.50556666614176,
+          "right": 371.8044172408544,
+          "top": 181.4712643678161,
+          "anchorX": 204.57837031321355,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 3,
+          "left": 127.58130025896142,
+          "right": 348.2709554313752,
+          "top": 183.67816091954023,
+          "anchorX": 174.5691699604743,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 4,
+          "left": 176.94207441733678,
+          "right": 340.252419244923,
+          "top": 182.9425287356322,
+          "anchorX": 107.46936758893281,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 5,
+          "left": 175.11172840708076,
+          "right": 335.4795444990348,
+          "top": 185.88505747126436,
+          "anchorX": 109.95749419662462,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 6,
+          "left": 167.34032983508246,
+          "right": 367.43228385807095,
+          "top": 168.9655172413793,
+          "anchorX": 120.52173913043478,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 7,
+          "left": 162.21271182590522,
+          "right": 343.9138612511926,
+          "top": 186.62068965517244,
+          "anchorX": 127.49209486166008,
+          "bodyHeight": 435
+        }
+      ],
+      "bytes": 1668761,
+      "contact": "gomez-both-slots.png"
+    },
+    {
+      "id": "emilio",
+      "file": "perro-mujeriego-v3-emilio",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "emilio",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "emilio",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-emilio.webp"
+      ],
+      "sourceCrops": [
+        [
+          157,
+          45,
+          198,
+          437
+        ],
+        [
+          665,
+          48,
+          205,
+          434
+        ],
+        [
+          1121,
+          47,
+          318,
+          435
+        ],
+        [
+          1664,
+          51,
+          256,
+          431
+        ],
+        [
+          138,
+          557,
+          236,
+          437
+        ],
+        [
+          655,
+          563,
+          226,
+          431
+        ],
+        [
+          1142,
+          544,
+          276,
+          450
+        ],
+        [
+          1678,
+          556,
+          227,
+          438
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 182.69675563715958,
+          "right": 327.68531398956236,
+          "top": 180,
+          "anchorX": 100.10474308300395,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 1,
+          "left": 174.68235634627038,
+          "right": 324.79677282224293,
+          "top": 182.19679633867275,
+          "anchorX": 111.0494071146245,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 2,
+          "left": 117.17346984922352,
+          "right": 350.03388174853706,
+          "top": 181.46453089244852,
+          "anchorX": 189.58498023715413,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 3,
+          "left": 160.81345139787084,
+          "right": 348.27340563128047,
+          "top": 184.3935926773455,
+          "anchorX": 129.98913043478262,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 4,
+          "left": 173.94864373513263,
+          "right": 346.76328904405716,
+          "top": 180,
+          "anchorX": 112.05138339920948,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 5,
+          "left": 179.85886524181223,
+          "right": 345.35085608849414,
+          "top": 184.3935926773455,
+          "anchorX": 103.9802371541502,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 6,
+          "left": 156.0790513833992,
+          "right": 358.18431454129393,
+          "top": 170.4805491990847,
+          "anchorX": 136.45454545454547,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 7,
+          "left": 172.46023462161162,
+          "right": 338.68449091451777,
+          "top": 179.26773455377577,
+          "anchorX": 114.08399209486166,
+          "bodyHeight": 437
+        }
+      ],
+      "bytes": 1663285,
+      "contact": "emilio-both-slots.png"
+    },
+    {
+      "id": "chataing",
+      "file": "perro-mujeriego-v3-chataing",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "chataing",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "chataing",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-chataing.webp"
+      ],
+      "sourceCrops": [
+        [
+          170,
+          45,
+          172,
+          437
+        ],
+        [
+          683,
+          44,
+          170,
+          438
+        ],
+        [
+          1105,
+          44,
+          349,
+          438
+        ],
+        [
+          1662,
+          48,
+          259,
+          434
+        ],
+        [
+          150,
+          558,
+          211,
+          436
+        ],
+        [
+          667,
+          556,
+          201,
+          438
+        ],
+        [
+          1145,
+          544,
+          269,
+          450
+        ],
+        [
+          1680,
+          556,
+          223,
+          438
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 190.1207116433462,
+          "right": 316.0703683939183,
+          "top": 180,
+          "anchorX": 89.96640316205534,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 1,
+          "left": 194.63658975588137,
+          "right": 319.1217156140049,
+          "top": 179.26773455377577,
+          "anchorX": 83.7994071146245,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 2,
+          "left": 108.76110020712548,
+          "right": 364.3217409393909,
+          "top": 179.26773455377577,
+          "anchorX": 201.07312252964425,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 3,
+          "left": 140.2767341105815,
+          "right": 329.9334846826639,
+          "top": 182.19679633867275,
+          "anchorX": 158.03458498023716,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 4,
+          "left": 179.256121055345,
+          "right": 333.7641302086631,
+          "top": 180.73226544622423,
+          "anchorX": 104.80335968379447,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 5,
+          "left": 185.3501325060374,
+          "right": 332.5354871971129,
+          "top": 179.26773455377577,
+          "anchorX": 96.48122529644269,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 6,
+          "left": 160.80115049610623,
+          "right": 357.7805555304312,
+          "top": 170.4805491990847,
+          "anchorX": 130.00592885375494,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 7,
+          "left": 174.3936469460298,
+          "right": 337.68884145403894,
+          "top": 179.26773455377577,
+          "anchorX": 111.44367588932806,
+          "bodyHeight": 437
+        }
+      ],
+      "bytes": 1652202,
+      "contact": "chataing-both-slots.png"
+    },
+    {
+      "id": "mcm",
+      "file": "perro-mujeriego-v3-mcm",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "mcm",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "mcm",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-mcm.webp",
+        "perro-mujeriego-v3-nacho.webp"
+      ],
+      "sourceCrops": [
+        [
+          163,
+          47,
+          186,
+          435
+        ],
+        [
+          671,
+          55,
+          193,
+          427
+        ],
+        [
+          1106,
+          51,
+          348,
+          431
+        ],
+        [
+          1670,
+          54,
+          244,
+          428
+        ],
+        [
+          149,
+          558,
+          214,
+          436
+        ],
+        [
+          657,
+          561,
+          222,
+          433
+        ],
+        [
+          1152,
+          544,
+          256,
+          450
+        ],
+        [
+          1678,
+          556,
+          227,
+          438
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 186.49438916905183,
+          "right": 323.3219753759484,
+          "top": 180,
+          "anchorX": 94.48418972332016,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 1,
+          "left": 184.21625550860932,
+          "right": 326.19326700286217,
+          "top": 185.88505747126436,
+          "anchorX": 97.58102766798419,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 2,
+          "left": 108.29276270955432,
+          "right": 364.2927627095543,
+          "top": 182.9425287356322,
+          "anchorX": 200.7895256916996,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 3,
+          "left": 155.24310571986734,
+          "right": 334.73735859343054,
+          "top": 185.14942528735634,
+          "anchorX": 136.96640316205534,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 4,
+          "left": 173.2268411248921,
+          "right": 330.65212848121394,
+          "top": 179.26436781609198,
+          "anchorX": 112.51976284584981,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 5,
+          "left": 173.61137613011675,
+          "right": 336.921720957703,
+          "top": 181.4712643678161,
+          "anchorX": 111.99703557312253,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 6,
+          "left": 163.5978835978836,
+          "right": 351.91972267834336,
+          "top": 168.9655172413793,
+          "anchorX": 125.60912698412699,
+          "bodyHeight": 435
+        },
+        {
+          "frame": 7,
+          "left": 169.2499204942983,
+          "right": 336.23842624142475,
+          "top": 177.79310344827587,
+          "anchorX": 117.92588932806325,
+          "bodyHeight": 435
+        }
+      ],
+      "bytes": 1661788,
+      "contact": "mcm-both-slots.png"
+    },
+    {
+      "id": "ali",
+      "file": "perro-mujeriego-v3-ali",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "ali",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "ali",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-ali.webp"
+      ],
+      "sourceCrops": [
+        [
+          157,
+          67,
+          197,
+          415
+        ],
+        [
+          674,
+          65,
+          188,
+          417
+        ],
+        [
+          1106,
+          57,
+          348,
+          425
+        ],
+        [
+          1673,
+          60,
+          237,
+          422
+        ],
+        [
+          149,
+          561,
+          214,
+          433
+        ],
+        [
+          657,
+          563,
+          222,
+          431
+        ],
+        [
+          1149,
+          544,
+          262,
+          450
+        ],
+        [
+          1681,
+          568,
+          221,
+          426
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 179.68931853897806,
+          "right": 331.5929329968094,
+          "top": 180,
+          "anchorX": 98.96541501976284,
+          "bodyHeight": 415
+        },
+        {
+          "frame": 1,
+          "left": 183.12491071003382,
+          "right": 328.08876613172055,
+          "top": 178.45783132530119,
+          "anchorX": 94.5098814229249,
+          "bodyHeight": 415
+        },
+        {
+          "frame": 2,
+          "left": 96.29298144960794,
+          "right": 364.6303308471983,
+          "top": 172.28915662650604,
+          "anchorX": 207.1200396825397,
+          "bodyHeight": 415
+        },
+        {
+          "frame": 3,
+          "left": 149.96139649885066,
+          "right": 332.7083844506579,
+          "top": 174.6024096385542,
+          "anchorX": 137.51881391555304,
+          "bodyHeight": 415
+        },
+        {
+          "frame": 4,
+          "left": 175.03461767264804,
+          "right": 340.04666586541913,
+          "top": 166.12048192771084,
+          "anchorX": 105.00198020578455,
+          "bodyHeight": 415
+        },
+        {
+          "frame": 5,
+          "left": 171.1548168960427,
+          "right": 342.3355397876089,
+          "top": 167.66265060240966,
+          "anchorX": 110.03359683794466,
+          "bodyHeight": 415
+        },
+        {
+          "frame": 6,
+          "left": 158.47764179246633,
+          "right": 360.5017381780085,
+          "top": 153.0120481927711,
+          "anchorX": 126.47430830039525,
+          "bodyHeight": 415
+        },
+        {
+          "frame": 7,
+          "left": 172.00971474832136,
+          "right": 342.4193533025382,
+          "top": 171.51807228915663,
+          "anchorX": 108.92490118577075,
+          "bodyHeight": 415
+        }
+      ],
+      "bytes": 1687864,
+      "contact": "ali-both-slots.png"
+    },
+    {
+      "id": "reynaldo",
+      "file": "perro-mujeriego-v3-reynaldo",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "reynaldo",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "reynaldo",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-reynaldo.webp"
+      ],
+      "sourceCrops": [
+        [
+          155,
+          52,
+          201,
+          430
+        ],
+        [
+          668,
+          50,
+          200,
+          432
+        ],
+        [
+          1090,
+          49,
+          379,
+          433
+        ],
+        [
+          1655,
+          49,
+          274,
+          433
+        ],
+        [
+          135,
+          567,
+          242,
+          427
+        ],
+        [
+          656,
+          571,
+          223,
+          423
+        ],
+        [
+          1144,
+          544,
+          272,
+          450
+        ],
+        [
+          1670,
+          572,
+          244,
+          422
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 183.0033222591362,
+          "right": 332.5847176079734,
+          "top": 180,
+          "anchorX": 98.08928571428571,
+          "bodyHeight": 430
+        },
+        {
+          "frame": 1,
+          "left": 180.4665812122322,
+          "right": 329.30379051455776,
+          "top": 178.51162790697674,
+          "anchorX": 101.49803149606299,
+          "bodyHeight": 430
+        },
+        {
+          "frame": 2,
+          "left": 88.23825719275669,
+          "right": 370.28476882066366,
+          "top": 177.7674418604651,
+          "anchorX": 225.4298418972332,
+          "bodyHeight": 430
+        },
+        {
+          "frame": 3,
+          "left": 134.26454637374758,
+          "right": 338.1715231179336,
+          "top": 177.7674418604651,
+          "anchorX": 163.5820158102767,
+          "bodyHeight": 430
+        },
+        {
+          "frame": 4,
+          "left": 160.70948689553342,
+          "right": 340.80251015134735,
+          "top": 182.2325581395349,
+          "anchorX": 128.046626984127,
+          "bodyHeight": 430
+        },
+        {
+          "frame": 5,
+          "left": 171.8702086588841,
+          "right": 337.8236970309771,
+          "top": 185.2093023255814,
+          "anchorX": 113.0494071146245,
+          "bodyHeight": 430
+        },
+        {
+          "frame": 6,
+          "left": 155.17602720838312,
+          "right": 357.59463185954587,
+          "top": 165.11627906976742,
+          "anchorX": 135.4822134387352,
+          "bodyHeight": 430
+        },
+        {
+          "frame": 7,
+          "left": 161.68030149829946,
+          "right": 343.2616968471367,
+          "top": 185.95348837209303,
+          "anchorX": 126.74209486166009,
+          "bodyHeight": 430
+        }
+      ],
+      "bytes": 1681921,
+      "contact": "reynaldo-both-slots.png"
+    },
+    {
+      "id": "dudamel",
+      "file": "perro-mujeriego-v3-dudamel",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "dudamel",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "dudamel",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-dudamel.webp",
+        "perro-mujeriego-v3-nacho.webp"
+      ],
+      "sourceCrops": [
+        [
+          148,
+          45,
+          215,
+          437
+        ],
+        [
+          655,
+          44,
+          226,
+          438
+        ],
+        [
+          1083,
+          47,
+          394,
+          435
+        ],
+        [
+          1671,
+          47,
+          242,
+          435
+        ],
+        [
+          146,
+          558,
+          219,
+          436
+        ],
+        [
+          650,
+          568,
+          235,
+          426
+        ],
+        [
+          1145,
+          544,
+          269,
+          450
+        ],
+        [
+          1674,
+          569,
+          236,
+          425
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 180.56363455468022,
+          "right": 338.00070549289535,
+          "top": 180,
+          "anchorX": 103.01778656126483,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 1,
+          "left": 177.70403668563057,
+          "right": 343.1960275323125,
+          "top": 179.26773455377577,
+          "anchorX": 106.92292490118578,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 2,
+          "left": 90.32566637421877,
+          "right": 378.83825218657574,
+          "top": 181.46453089244852,
+          "anchorX": 226.2490118577075,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 3,
+          "left": 166.76274635721455,
+          "right": 343.9709843434846,
+          "top": 181.46453089244852,
+          "anchorX": 121.86462450592884,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 4,
+          "left": 180.50864228796775,
+          "right": 340.87477501107986,
+          "top": 180.73226544622423,
+          "anchorX": 103.09288537549408,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 5,
+          "left": 175.46823580690858,
+          "right": 347.5506156696088,
+          "top": 188.05491990846684,
+          "anchorX": 109.97619047619048,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 6,
+          "left": 161.92849196371233,
+          "right": 358.90789699803724,
+          "top": 170.4805491990847,
+          "anchorX": 128.46640316205534,
+          "bodyHeight": 437
+        },
+        {
+          "frame": 7,
+          "left": 171.76704262805148,
+          "right": 344.581687936976,
+          "top": 188.78718535469108,
+          "anchorX": 115.03063241106719,
+          "bodyHeight": 437
+        }
+      ],
+      "bytes": 1667735,
+      "contact": "dudamel-both-slots.png"
+    },
+    {
+      "id": "danny",
+      "file": "perro-mujeriego-v3-danny",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "danny",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "danny",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [
+        "perro-mujeriego-v3-danny.webp"
+      ],
+      "sourceCrops": [
+        [
+          159,
+          42,
+          193,
+          440
+        ],
+        [
+          671,
+          44,
+          193,
+          438
+        ],
+        [
+          1101,
+          43,
+          357,
+          439
+        ],
+        [
+          1654,
+          43,
+          275,
+          439
+        ],
+        [
+          147,
+          561,
+          217,
+          433
+        ],
+        [
+          651,
+          560,
+          234,
+          434
+        ],
+        [
+          1153,
+          546,
+          253,
+          448
+        ],
+        [
+          1674,
+          566,
+          235,
+          428
+        ]
+      ],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 184.01006108515992,
+          "right": 324.3736974487963,
+          "top": 180,
+          "anchorX": 98.98616600790513,
+          "bodyHeight": 440
+        },
+        {
+          "frame": 1,
+          "left": 185.47979797979798,
+          "right": 325.84343434343435,
+          "top": 181.45454545454544,
+          "anchorX": 96.96527777777777,
+          "bodyHeight": 440
+        },
+        {
+          "frame": 2,
+          "left": 103.23665223665222,
+          "right": 362.8730158730159,
+          "top": 180.72727272727275,
+          "anchorX": 210.04960317460316,
+          "bodyHeight": 440
+        },
+        {
+          "frame": 3,
+          "left": 142.197628458498,
+          "right": 342.197628458498,
+          "top": 180.72727272727275,
+          "anchorX": 156.47826086956522,
+          "bodyHeight": 440
+        },
+        {
+          "frame": 4,
+          "left": 178.30470715055696,
+          "right": 336.1228889687388,
+          "top": 185.09090909090907,
+          "anchorX": 106.83102766798419,
+          "bodyHeight": 440
+        },
+        {
+          "frame": 5,
+          "left": 176.67624865253322,
+          "right": 346.8580668343514,
+          "top": 184.36363636363637,
+          "anchorX": 109.0701581027668,
+          "bodyHeight": 440
+        },
+        {
+          "frame": 6,
+          "left": 164.34199134199133,
+          "right": 348.34199134199133,
+          "top": 174.1818181818182,
+          "anchorX": 126.0297619047619,
+          "bodyHeight": 440
+        },
+        {
+          "frame": 7,
+          "left": 171.95975565936038,
+          "right": 342.8688465684513,
+          "top": 188.72727272727275,
+          "anchorX": 115.55533596837945,
+          "bodyHeight": 440
+        }
+      ],
+      "bytes": 1651886,
+      "contact": "danny-both-slots.png"
+    },
+    {
+      "id": "nacho",
+      "file": "perro-mujeriego-v3-nacho",
+      "frames": 8,
+      "loaded": [
+        {
+          "side": 0,
+          "owner": 0,
+          "target": 1,
+          "actor": "nacho",
+          "rival": "nacho",
+          "ownerV3": true,
+          "targetV3": true
+        },
+        {
+          "side": 1,
+          "owner": 1,
+          "target": 0,
+          "actor": "nacho",
+          "rival": "nacho",
+          "ownerV3": true,
+          "targetV3": true
+        }
+      ],
+      "usedV3Sources": [],
+      "sourceCrops": [],
+      "normalizedBounds": [
+        {
+          "frame": 0,
+          "left": 189.0516050386022,
+          "right": 324.37870784234053,
+          "top": 180,
+          "anchorX": 89.54347826086956,
+          "bodyHeight": 428
+        },
+        {
+          "frame": 1,
+          "left": 185.95327102803736,
+          "right": 319.78504672897196,
+          "top": 177.75700934579442,
+          "anchorX": 93.6875,
+          "bodyHeight": 428
+        },
+        {
+          "frame": 2,
+          "left": 97.34219119468528,
+          "right": 367.24873325076004,
+          "top": 177.00934579439252,
+          "anchorX": 212.20481927710844,
+          "bodyHeight": 428
+        },
+        {
+          "frame": 3,
+          "left": 157.45898234683284,
+          "right": 330.91692627206646,
+          "top": 177.75700934579442,
+          "anchorX": 131.7986111111111,
+          "bodyHeight": 428
+        },
+        {
+          "frame": 4,
+          "left": 173.03298732961474,
+          "right": 331.537660226811,
+          "top": 170.2803738317757,
+          "anchorX": 110.96837944664031,
+          "bodyHeight": 428
+        },
+        {
+          "frame": 5,
+          "left": 174.53285862631657,
+          "right": 337.52351283192405,
+          "top": 171.77570093457945,
+          "anchorX": 108.96230158730158,
+          "bodyHeight": 428
+        },
+        {
+          "frame": 6,
+          "left": 152.0393040523069,
+          "right": 349.42248162240037,
+          "top": 163.5514018691589,
+          "anchorX": 139.04743083003953,
+          "bodyHeight": 428
+        },
+        {
+          "frame": 7,
+          "left": 170.80107864504453,
+          "right": 333.791732850652,
+          "top": 175.51401869158877,
+          "anchorX": 113.95355731225297,
+          "bodyHeight": 428
+        }
+      ],
+      "bytes": 1650130,
+      "contact": "nacho-both-slots.png"
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "browser": "T3 collaborative Chromium",
+  "ticks": [
+    12,
+    60,
+    120
+  ],
+  "rivals": [
+    {
+      "id": "zavarce",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "vallenilla",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "javier",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "capriles",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "renny",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "gomez",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "simon",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "conde",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "emilio",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "maite",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "oscar",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "puma",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "chataing",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "george",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "mcm",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "ali",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "gualberto",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "reynaldo",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "dudamel",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "danny",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "nacho",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "sarcos",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "yordano",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "lila",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "rummy",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "chiqui",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "norkys",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "gabriela",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "amanda",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "lele",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "giuseppe",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "silbon",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "llorona",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "sayona",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "lionza",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "florentino",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "diablo",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "knoche",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "momoy",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "tiotigre",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "tioconejo",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "enrique",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "jesus",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "carlos",
+      "owner": 1,
+      "loaded": true
+    },
+    {
+      "id": "victor",
+      "owner": 0,
+      "loaded": true
+    },
+    {
+      "id": "juan",
+      "owner": 1,
+      "loaded": true
+    }
+  ],
+  "renders": 138,
+  "medianMs": 0.09999990463256836,
+  "p95Ms": 14.899999618530273
+}

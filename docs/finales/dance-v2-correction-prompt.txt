@@ -1,0 +1,4 @@
+Use case: precise-object-edit. This is a production transparent 4-column, 2-row, eight-character sprite atlas.
+Change ONLY the shoes of the FOURTH figure (TOP RIGHT cell): Gabriela Spanic, blonde hair, silver blazer, black shirt and black trousers.
+Replace her incorrect WHITE ANKLE BOOTS with BLACK CLOSED-TOE HIGH-HEEL PUMPS matching her canonical reference (input image 2, same top-right figure). Keep her feet positions, lifted heel / dance step and ankle anatomy intact. No white shoes, no ankle boots.
+Preserve EVERYTHING ELSE in input image1: all seven other figures, Gabriela's face/hair/body/outfit/pose above her shoes, identical painted/inked illustration style, all 8 cell locations and dimensions. Same 4x2 atlas structure, genuine transparent background, full complete separated figures and transparent gutters. Do not add text, props, shadows or accessories.

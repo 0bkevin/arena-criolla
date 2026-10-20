@@ -1,0 +1,74 @@
+{
+  "fighters": [
+    "nacho",
+    "zavarce"
+  ],
+  "ticks": 180,
+  "normal": {
+    "summary": {
+      "owner": {
+        "changedTransitions": 179,
+        "total": 179,
+        "averageChangedArea": 0.17589915932531155
+      },
+      "rival": {
+        "changedTransitions": 179,
+        "total": 179,
+        "averageChangedArea": 0.14447454779857008
+      },
+      "ownerFeet": {
+        "changedTransitions": 179,
+        "total": 179,
+        "averageChangedArea": 0.14776384503279089
+      },
+      "rivalFeet": {
+        "changedTransitions": 179,
+        "total": 179,
+        "averageChangedArea": 0.10231545476626838
+      }
+    },
+    "renderMs": {
+      "median": 0.2999997138977051,
+      "p95": 16.800000190734863,
+      "max": 78.09999990463257
+    }
+  },
+  "reducedMotion": {
+    "summary": {
+      "owner": {
+        "changedTransitions": 0,
+        "total": 179,
+        "averageChangedArea": 0
+      },
+      "rival": {
+        "changedTransitions": 0,
+        "total": 179,
+        "averageChangedArea": 0
+      },
+      "ownerFeet": {
+        "changedTransitions": 0,
+        "total": 179,
+        "averageChangedArea": 0
+      },
+      "rivalFeet": {
+        "changedTransitions": 0,
+        "total": 179,
+        "averageChangedArea": 0
+      }
+    },
+    "renderMs": {
+      "median": 0.19999980926513672,
+      "p95": 0.3000001907348633,
+      "max": 2.5
+    }
+  },
+  "props": [
+    "finales-v1-3",
+    "finales-seated-v1-3",
+    "finales-nacho-dance",
+    "finales-dance-v2-3",
+    "finales-v1-1",
+    "finales-seated-v1-1",
+    "finales-dance-v2-1"
+  ]
+}

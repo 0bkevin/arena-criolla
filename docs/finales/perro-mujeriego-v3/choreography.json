@@ -1,0 +1,92 @@
+{
+  "status": "approved-by-root",
+  "source": {
+    "url": "https://www.youtube.com/shorts/Td2Zs5kiH0Y",
+    "videoId": "Td2Zs5kiH0Y",
+    "watchUrl": "https://www.youtube.com/watch?v=Td2Zs5kiH0Y",
+    "durationSeconds": 50.521,
+    "channel": "Nacho",
+    "browserTab": "tab_2c_c3cfa641-d7e6-4a79-9606-68ffb03b615c"
+  },
+  "segment": {
+    "startSeconds": 34.1,
+    "endSeconds": 40.1,
+    "durationSeconds": 6,
+    "gameDurationTicks": 360
+  },
+  "coordinateConvention": "Izquierda/derecha de pantalla, ambos intérpretes frontales sin reflejo horizontal.",
+  "frames": [
+    {
+      "sourceTimeSeconds": 34.1,
+      "description": "Ambas palmas verticales juntas cubren la cara. Codos delante del pecho; cadera baja, rodillas flexionadas abiertas y tobillos más próximos, rebote sobre los pies.",
+      "index": 0,
+      "gameTick": 0,
+      "referenceScreenshot": "docs/finales/perro-mujeriego-v3/reference-frames/source-34-1s.png"
+    },
+    {
+      "sourceTimeSeconds": 35.1,
+      "description": "Mantiene ambas manos cubriendo la cara; cambia el apoyo del rebote: una rodilla entra y la otra abre, un talón se despega. No cambia de gesto de manos todavía.",
+      "index": 1,
+      "gameTick": 60,
+      "referenceScreenshot": "docs/finales/perro-mujeriego-v3/reference-frames/source-35-1s.png"
+    },
+    {
+      "sourceTimeSeconds": 35.8,
+      "description": "Destapa la cara y lleva ambas manos curvadas como patitas hacia la derecha de pantalla, a altura de pecho. Inclina el torso hacia ese lado; pierna izquierda de pantalla se abre y extiende.",
+      "index": 2,
+      "gameTick": 102,
+      "referenceScreenshot": "docs/finales/perro-mujeriego-v3/reference-frames/source-35-8s.png"
+    },
+    {
+      "sourceTimeSeconds": 36.5,
+      "description": "Las dos patitas se desplazan hacia la izquierda de pantalla; cambia el peso de lado, flexiona ambas rodillas y rota ligeramente la cadera.",
+      "index": 3,
+      "gameTick": 144,
+      "referenceScreenshot": "docs/finales/perro-mujeriego-v3/reference-frames/source-36-5s.png"
+    },
+    {
+      "sourceTimeSeconds": 37.2,
+      "description": "Las patitas vuelven al centro y hacia la derecha de pantalla, con cabeza inclinada y piernas abiertas en otro apoyo del rebote.",
+      "index": 4,
+      "gameTick": 186,
+      "referenceScreenshot": "docs/finales/perro-mujeriego-v3/reference-frames/source-37-2s.png"
+    },
+    {
+      "sourceTimeSeconds": 37.8,
+      "description": "El brazo del lado izquierdo de pantalla barre hacia arriba en diagonal pasando delante de la parte alta de la cara. La otra mano baja a la cintura; rodillas siguen flexionadas.",
+      "index": 5,
+      "gameTick": 222,
+      "referenceScreenshot": "docs/finales/perro-mujeriego-v3/reference-frames/source-37-8s.png"
+    },
+    {
+      "sourceTimeSeconds": 38.6,
+      "description": "Ambos brazos suben abiertos por encima de los hombros, manos separadas sobre la cabeza y dedos curvados preparando el corazón. Los pies empiezan a acercarse.",
+      "index": 6,
+      "gameTick": 270,
+      "referenceScreenshot": "docs/finales/perro-mujeriego-v3/reference-frames/source-38-6s.png"
+    },
+    {
+      "sourceTimeSeconds": 39.4,
+      "description": "Pulgares e índices de ambas manos forman un corazón real delante y por encima de la frente, codos abiertos. Junta los pies y mantiene un pequeño rebote de rodillas.",
+      "index": 7,
+      "gameTick": 318,
+      "referenceScreenshot": "docs/finales/perro-mujeriego-v3/reference-frames/source-39-4s.png"
+    }
+  ],
+  "referenceContactSheet": "assets/source/finales/perro-mujeriego-v3/references/choreography-34-40-contact.png",
+  "strategy": {
+    "characters": 46,
+    "includesNacho": true,
+    "framesPerCharacter": 8,
+    "totalAuthoredFrames": 368,
+    "layout": {
+      "columns": 4,
+      "rows": 2
+    },
+    "rawPattern": "assets/source/finales/perro-mujeriego-v3/{id}-generated.png",
+    "rationale": "Ocho poses pintadas preservan los cambios reales de manos, brazos y piernas. Cuatro más rig no bastan para tapar la cara, articular patitas y formar un corazón con los dedos."
+  },
+  "observedNotInferred": true,
+  "approvedSegmentSeconds": [34.1, 40.1],
+  "frameTimingNote": "Exact alignment: clip starts34.1, ends40.1, and every pose tick equals(sourceTimeSeconds-34.1)*60."
+}
