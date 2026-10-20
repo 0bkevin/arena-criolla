@@ -1,0 +1,348 @@
+[
+  {
+    "side": 0,
+    "action": "light",
+    "damage": 8.565479999999994,
+    "expected": 8.565479999999999,
+    "ticks": 314
+  },
+  {
+    "side": 0,
+    "action": "heavy",
+    "damage": 15.907319999999999,
+    "expected": 15.907319999999999,
+    "ticks": 309
+  },
+  {
+    "side": 0,
+    "action": "special",
+    "damage": 12.236400000000003,
+    "expected": 12.236400000000001,
+    "ticks": 312
+  },
+  {
+    "side": 0,
+    "action": "special-second",
+    "damage": 24.472800000000007,
+    "expected": 24.472800000000003,
+    "ticks": 296
+  },
+  {
+    "side": 0,
+    "activationCost": 75,
+    "duration": 360,
+    "expiryCleared": true,
+    "stockCleared": true
+  },
+  {
+    "side": 1,
+    "action": "light",
+    "damage": 8.565479999999994,
+    "expected": 8.565479999999999,
+    "ticks": 314
+  },
+  {
+    "side": 1,
+    "action": "heavy",
+    "damage": 15.907319999999999,
+    "expected": 15.907319999999999,
+    "ticks": 309
+  },
+  {
+    "side": 1,
+    "action": "special",
+    "damage": 12.236400000000003,
+    "expected": 12.236400000000001,
+    "ticks": 312
+  },
+  {
+    "side": 1,
+    "action": "special-second",
+    "damage": 24.472800000000007,
+    "expected": 24.472800000000003,
+    "ticks": 296
+  },
+  {
+    "side": 1,
+    "activationCost": 75,
+    "duration": 360,
+    "expiryCleared": true,
+    "stockCleared": true
+  },
+  {
+    "key": "0-startup",
+    "painted": []
+  },
+  {
+    "key": "0-activation",
+    "painted": [
+      {
+        "pose": "ready",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "0-ready",
+    "painted": [
+      {
+        "pose": "ready",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "0-run",
+    "painted": [
+      {
+        "pose": "run",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "0-jump",
+    "painted": [
+      {
+        "pose": "jump",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "0-guard",
+    "painted": [
+      {
+        "pose": "guard",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "0-expired",
+    "painted": []
+  },
+  {
+    "key": "0-light",
+    "painted": [
+      {
+        "pose": "punch",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "0-base-light",
+    "painted": []
+  },
+  {
+    "key": "0-heavy",
+    "painted": [
+      {
+        "pose": "kick",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "0-base-heavy",
+    "painted": []
+  },
+  {
+    "key": "0-special",
+    "painted": [
+      {
+        "pose": "retort",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "0-special-second",
+    "painted": [
+      {
+        "pose": "retort",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "0-base-special",
+    "painted": []
+  },
+  {
+    "key": "0-base-special-second",
+    "painted": []
+  },
+  {
+    "key": "0-hurt",
+    "painted": [
+      {
+        "pose": "hurt",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "0-stock-loss",
+    "painted": []
+  },
+  {
+    "key": "0-base-ready",
+    "painted": []
+  },
+  {
+    "key": "0-base-run",
+    "painted": []
+  },
+  {
+    "key": "0-base-jump",
+    "painted": []
+  },
+  {
+    "key": "0-base-guard",
+    "painted": []
+  },
+  {
+    "key": "0-base-hurt",
+    "painted": []
+  },
+  {
+    "key": "1-startup",
+    "painted": []
+  },
+  {
+    "key": "1-activation",
+    "painted": [
+      {
+        "pose": "ready",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "1-ready",
+    "painted": [
+      {
+        "pose": "ready",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "1-run",
+    "painted": [
+      {
+        "pose": "run",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "1-jump",
+    "painted": [
+      {
+        "pose": "jump",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "1-guard",
+    "painted": [
+      {
+        "pose": "guard",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "1-expired",
+    "painted": []
+  },
+  {
+    "key": "1-light",
+    "painted": [
+      {
+        "pose": "punch",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "1-base-light",
+    "painted": []
+  },
+  {
+    "key": "1-heavy",
+    "painted": [
+      {
+        "pose": "kick",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "1-base-heavy",
+    "painted": []
+  },
+  {
+    "key": "1-special",
+    "painted": [
+      {
+        "pose": "retort",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "1-special-second",
+    "painted": [
+      {
+        "pose": "retort",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "1-base-special",
+    "painted": []
+  },
+  {
+    "key": "1-base-special-second",
+    "painted": []
+  },
+  {
+    "key": "1-hurt",
+    "painted": [
+      {
+        "pose": "hurt",
+        "alpha": 1
+      }
+    ]
+  },
+  {
+    "key": "1-stock-loss",
+    "painted": []
+  },
+  {
+    "key": "1-base-ready",
+    "painted": []
+  },
+  {
+    "key": "1-base-run",
+    "painted": []
+  },
+  {
+    "key": "1-base-jump",
+    "painted": []
+  },
+  {
+    "key": "1-base-guard",
+    "painted": []
+  },
+  {
+    "key": "1-base-hurt",
+    "painted": []
+  }
+]

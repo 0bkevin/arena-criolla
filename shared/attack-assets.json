@@ -352,5 +352,82 @@
         "bodyHeight": 460.4596577017115
       }
     }
+  },
+  "emilio": {
+    "file": "attack-emilio-chunior-v1",
+    "frames": {
+      "ready": {
+        "x": 89,
+        "y": 20,
+        "width": 334,
+        "height": 472,
+        "anchorX": 167,
+        "anchorY": 462.279176201373,
+        "bodyHeight": 457.9588100686499
+      },
+      "guard": {
+        "x": 560,
+        "y": 20,
+        "width": 415,
+        "height": 472,
+        "anchorX": 207.5,
+        "anchorY": 464.20754716981133,
+        "bodyHeight": 460.8679245283019
+      },
+      "run": {
+        "x": 1086,
+        "y": 20,
+        "width": 388,
+        "height": 472,
+        "anchorX": 194,
+        "anchorY": 461.0487238979118,
+        "bodyHeight": 454.47795823665894
+      },
+      "jump": {
+        "x": 1598,
+        "y": 20,
+        "width": 387,
+        "height": 472,
+        "anchorX": 193.5,
+        "anchorY": 470.7897435897436,
+        "bodyHeight": 462.3179487179487
+      },
+      "punch": {
+        "x": 20,
+        "y": 542,
+        "width": 472,
+        "height": 462,
+        "anchorX": 236,
+        "anchorY": 454.0148148148148,
+        "bodyHeight": 450.5925925925926
+      },
+      "kick": {
+        "x": 532,
+        "y": 550,
+        "width": 472,
+        "height": 454,
+        "anchorX": 236,
+        "anchorY": 448.39506172839504,
+        "bodyHeight": 445.0320987654321
+      },
+      "hurt": {
+        "x": 1099,
+        "y": 532,
+        "width": 362,
+        "height": 472,
+        "anchorX": 181,
+        "anchorY": 467.28,
+        "bodyHeight": 462.56
+      },
+      "retort": {
+        "x": 1577,
+        "y": 532,
+        "width": 429,
+        "height": 472,
+        "anchorX": 214.5,
+        "anchorY": 466.17283950617286,
+        "bodyHeight": 463.84197530864196
+      }
+    }
   }
 }

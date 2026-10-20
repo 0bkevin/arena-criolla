@@ -1,0 +1,26 @@
+{
+  "frames": 460,
+  "firstForm": 9,
+  "lastForm": 376,
+  "changes": [
+    {
+      "frame": 73,
+      "hp": 91.51768,
+      "attack": "light",
+      "attackTick": 6,
+      "ticks": 296
+    },
+    {
+      "frame": 104,
+      "hp": 72.0928,
+      "attack": "heavy",
+      "attackTick": 11,
+      "ticks": 268
+    }
+  ],
+  "end": {
+    "hp": 72.0928,
+    "hits": 2,
+    "form": null
+  }
+}

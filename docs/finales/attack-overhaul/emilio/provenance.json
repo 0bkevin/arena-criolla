@@ -1,0 +1,31 @@
+{
+  "tool": "image_gen.imagegen",
+  "transparent_background": true,
+  "selected": "el-chunior-v2-raw.png",
+  "generationFiles": [
+    "exec-35a278b2-4150-466b-8fbf-eb22923a3389.png",
+    "exec-13cce7c7-d041-4dda-8959-926bdc03f591.png"
+  ],
+  "files": [
+    {
+      "path": "assets/source/emilio-v3.png",
+      "sha256": "0cec434cc485598e216e8edcfd0256dd62b22c69e7f5e66121e4b69763b08ff5"
+    },
+    {
+      "path": "docs/finales/attack-overhaul/references/emilio-el-chunior.png",
+      "sha256": "c3934c6e80121524de259d16dfddaa0a61764bac8e18f1128a5a01d5be50c549"
+    },
+    {
+      "path": "docs/finales/attack-overhaul/emilio/official-website-reference.png",
+      "sha256": "be2ae8de76446985badb4336510c5c28f0f30b6822ba82c7da1895d782557a62"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/emilio/el-chunior-v1-raw.png",
+      "sha256": "c95bd4833e7ccdb76d6a022bd243e66e518f541de31d0186308a8920e171a729"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/emilio/el-chunior-v2-raw.png",
+      "sha256": "5f5a31ed9b4a6d6a53cb1f49e7e4b68712b30e9007aa23bb585281aab92a2ee5"
+    }
+  ]
+}

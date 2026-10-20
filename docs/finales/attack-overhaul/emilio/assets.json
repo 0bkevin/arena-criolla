@@ -1,0 +1,289 @@
+{
+  "fighter": "emilio",
+  "source": "assets/source/finales/attack-overhaul/emilio/el-chunior-v2-grid.png",
+  "file": "attack-emilio-chunior-v1",
+  "columns": 4,
+  "rows": 2,
+  "poses": [
+    "ready",
+    "guard",
+    "run",
+    "jump",
+    "punch",
+    "kick",
+    "hurt",
+    "retort"
+  ],
+  "tool": "image_gen.imagegen",
+  "normalized": "assets/source/finales/attack-overhaul/emilio/attack-emilio-chunior-v1-packed.png",
+  "destination": "public/assets/attack-emilio-chunior-v1.webp",
+  "width": 2048,
+  "height": 1024,
+  "cell": 512,
+  "frames": {
+    "ready": {
+      "x": 89,
+      "y": 20,
+      "width": 334,
+      "height": 472,
+      "anchorX": 167,
+      "anchorY": 462.279176201373,
+      "bodyHeight": 457.9588100686499
+    },
+    "guard": {
+      "x": 560,
+      "y": 20,
+      "width": 415,
+      "height": 472,
+      "anchorX": 207.5,
+      "anchorY": 464.20754716981133,
+      "bodyHeight": 460.8679245283019
+    },
+    "run": {
+      "x": 1086,
+      "y": 20,
+      "width": 388,
+      "height": 472,
+      "anchorX": 194,
+      "anchorY": 461.0487238979118,
+      "bodyHeight": 454.47795823665894
+    },
+    "jump": {
+      "x": 1598,
+      "y": 20,
+      "width": 387,
+      "height": 472,
+      "anchorX": 193.5,
+      "anchorY": 470.7897435897436,
+      "bodyHeight": 462.3179487179487
+    },
+    "punch": {
+      "x": 20,
+      "y": 542,
+      "width": 472,
+      "height": 462,
+      "anchorX": 236,
+      "anchorY": 454.0148148148148,
+      "bodyHeight": 450.5925925925926
+    },
+    "kick": {
+      "x": 532,
+      "y": 550,
+      "width": 472,
+      "height": 454,
+      "anchorX": 236,
+      "anchorY": 448.39506172839504,
+      "bodyHeight": 445.0320987654321
+    },
+    "hurt": {
+      "x": 1099,
+      "y": 532,
+      "width": 362,
+      "height": 472,
+      "anchorX": 181,
+      "anchorY": 467.28,
+      "bodyHeight": 462.56
+    },
+    "retort": {
+      "x": 1577,
+      "y": 532,
+      "width": 429,
+      "height": 472,
+      "anchorX": 214.5,
+      "anchorY": 466.17283950617286,
+      "bodyHeight": 463.84197530864196
+    }
+  },
+  "objects": [
+    {
+      "pose": "ready",
+      "sourceBounds": {
+        "left": 101,
+        "top": 37,
+        "width": 309,
+        "height": 437
+      },
+      "uniformScale": 1.080091533180778,
+      "width": 334,
+      "height": 472,
+      "visibleSourcePixels": 66076,
+      "transparentSourcePixels": 190245,
+      "coreBounds": {
+        "top": 41,
+        "bottom": 465
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "guard",
+      "sourceBounds": {
+        "left": 581,
+        "top": 44,
+        "width": 373,
+        "height": 424
+      },
+      "uniformScale": 1.1132075471698113,
+      "width": 415,
+      "height": 472,
+      "visibleSourcePixels": 70890,
+      "transparentSourcePixels": 186260,
+      "coreBounds": {
+        "top": 47,
+        "bottom": 461
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "run",
+      "sourceBounds": {
+        "left": 1103,
+        "top": 40,
+        "width": 354,
+        "height": 431
+      },
+      "uniformScale": 1.0951276102088168,
+      "width": 388,
+      "height": 472,
+      "visibleSourcePixels": 74233,
+      "transparentSourcePixels": 180972,
+      "coreBounds": {
+        "top": 46,
+        "bottom": 461
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "jump",
+      "sourceBounds": {
+        "left": 1632,
+        "top": 61,
+        "width": 320,
+        "height": 390
+      },
+      "uniformScale": 1.2102564102564102,
+      "width": 387,
+      "height": 472,
+      "visibleSourcePixels": 64190,
+      "transparentSourcePixels": 192343,
+      "coreBounds": {
+        "top": 68,
+        "bottom": 450
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "punch",
+      "sourceBounds": {
+        "left": 49,
+        "top": 565,
+        "width": 414,
+        "height": 405
+      },
+      "uniformScale": 1.1400966183574879,
+      "width": 472,
+      "height": 462,
+      "visibleSourcePixels": 70645,
+      "transparentSourcePixels": 185844,
+      "coreBounds": {
+        "top": 568,
+        "bottom": 963
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "kick",
+      "sourceBounds": {
+        "left": 557,
+        "top": 565,
+        "width": 421,
+        "height": 405
+      },
+      "uniformScale": 1.1211401425178147,
+      "width": 472,
+      "height": 454,
+      "visibleSourcePixels": 64059,
+      "transparentSourcePixels": 192721,
+      "coreBounds": {
+        "top": 568,
+        "bottom": 965
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "hurt",
+      "sourceBounds": {
+        "left": 1126,
+        "top": 568,
+        "width": 307,
+        "height": 400
+      },
+      "uniformScale": 1.18,
+      "width": 362,
+      "height": 472,
+      "visibleSourcePixels": 67969,
+      "transparentSourcePixels": 188651,
+      "coreBounds": {
+        "top": 572,
+        "bottom": 964
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "retort",
+      "sourceBounds": {
+        "left": 1608,
+        "top": 565,
+        "width": 368,
+        "height": 405
+      },
+      "uniformScale": 1.165432098765432,
+      "width": 429,
+      "height": 472,
+      "visibleSourcePixels": 67231,
+      "transparentSourcePixels": 189295,
+      "coreBounds": {
+        "top": 567,
+        "bottom": 965
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    }
+  ],
+  "sourceSha256": "1a148e66354b9fe50a5231d659faacaae402df8b8c85d511a2fba847a7c8d3e4",
+  "normalizedSha256": "a74761fee9e533ccc96a4520de673528ba8566a27294e5ecf3f10709e4e7762e",
+  "runtimeSha256": "e599c7dff02b669590c3cf34ab906ebd3e82584fdc7749280142c179bac709c9",
+  "rgbaSha256": "327a40d816d95e970f4d7bb9c6dffe9172208e7c3ee76fed1b369df54557ddc5",
+  "alphaSha256": "3f3c0f1f826a0c80500bc889a944bd1916998588c62f14f2e6219f2a9bcada34",
+  "lossless": true
+}
