@@ -1173,6 +1173,20 @@ body {
   margin: 0 auto;
   padding: 12px 0 16px;
 }
+.site-footer .footer-credit {
+  font: 400 12px/1.5 "DM Sans", sans-serif;
+  letter-spacing: 0;
+}
+.footer-credit a {
+  display: inline-block;
+  min-height: 44px;
+  align-content: center;
+  color: var(--coin);
+  text-underline-offset: 3px;
+}
+.footer-credit a:hover {
+  color: var(--paper);
+}
 .in-lobby .footer-criollo,
 .in-lobby .site-footer button {
   color: #b2c2d7;

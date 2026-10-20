@@ -439,6 +439,14 @@ export function App({
           </button>
         </nav>
         <div className="header-right">
+          <button
+            className="icon-button header-help"
+            onClick={() => setModal("help")}
+            aria-label="Ayuda y controles"
+            title="Ayuda y controles"
+          >
+            <CircleHelp size={19} />
+          </button>
           {!active && (
             <button
               className="icon-button header-progress"
@@ -555,6 +563,16 @@ export function App({
           <Trophy size={13} />
           Ranking <span>PRONTO</span>
         </button>
+        <span className="footer-credit">
+          Desarrollado por{" "}
+          <a
+            href="https://kevinbravo.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Kevin Bravo (kevinbravo.com)
+          </a>
+        </span>
       </footer>
       {!active && !modal && !detail && !setupVisible && (
         <div className="mobile-setup-dock">
