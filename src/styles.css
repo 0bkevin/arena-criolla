@@ -1042,17 +1042,6 @@ button {
   font-size: 8px;
   letter-spacing: 1px;
 }
-.stage-card-body h3 {
-  font-family: var(--display);
-  font-size: 23px;
-  margin: 5px 0 8px;
-}
-.stage-card-body p {
-  font-size: 11px;
-  line-height: 1.6;
-  color: #aeb4c5;
-  margin: 0;
-}
 .stage-tags {
   display: flex;
   gap: 5px;
@@ -2105,10 +2094,6 @@ kbd {
   border: 1px solid #ffffff14;
   border-radius: 4px;
   padding: 6px 9px;
-}
-.arena-location > span {
-  color: var(--lime);
-  margin: 0 5px;
 }
 .game-overlay {
   position: absolute;

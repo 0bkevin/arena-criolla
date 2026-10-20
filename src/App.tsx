@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import {
   FIGHTERS,
-  STAGES,
   fighterById,
   isFighter,
   stageById,
@@ -44,6 +43,7 @@ import {
 import { preloadAssets } from "./game/assets";
 import { Portrait } from "./components/Portrait";
 import { FighterDetail } from "./components/FighterDetail";
+import { StageGallery } from "./components/StageGallery";
 import { ArcadeLobby } from "./components/ArcadeLobby";
 import { PixelIcon } from "./components/PixelIcon";
 import { Game, type GameMode } from "./components/Game";
@@ -118,7 +118,7 @@ export function App({
     .toLowerCase()
     .trim();
   const visibleFighters = FIGHTERS.filter((f) =>
-    `${f.name} ${f.shortName} ${f.title} ${f.role}`
+    `${f.name} ${f.shortName} ${f.role}`
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase()
@@ -638,47 +638,14 @@ export function App({
       )}
       {modal === "stages" && (
         <Modal title="Escenarios" wide onClose={() => setModal(null)}>
-          <div className="stage-gallery">
-            {STAGES.map((s, index) => (
-              <button
-                key={s.id}
-                className={`stage-card ${s.artStyle === "pixel" ? "pixel-stage" : ""}`}
-                aria-label={`Seleccionar escenario ${s.name}`}
-                aria-pressed={chosenStage.id === s.id}
-                disabled={Boolean(network.room && !host)}
-                onClick={() => {
-                  selectStage(s.id);
-                  setModal(null);
-                }}
-              >
-                <div className="stage-card-image">
-                  <img src={`/assets/${s.id}.webp`} alt="" loading="lazy" />
-                  <span>{(index + 1).toString().padStart(2, "0")}</span>
-                  {chosenStage.id === s.id && (
-                    <strong>
-                      <Check size={14} /> Elegido
-                    </strong>
-                  )}
-                </div>
-                <div className="stage-card-body">
-                  <span>{s.location}</span>
-                  <h3>{s.name}</h3>
-                  <p>{s.description}</p>
-                  <div className="stage-tags">
-                    <span>
-                      {s.platforms.length
-                        ? `${s.platforms.length} ${s.platforms.length === 1 ? "plataforma" : "plataformas"}`
-                        : "A ras del suelo"}
-                    </span>
-                    {s.platforms.some((p) => p.motion) && (
-                      <span>Plataforma móvil</span>
-                    )}
-                    {s.artStyle === "pixel" && <span>Pixel art</span>}
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
+          <StageGallery
+            selectedStage={chosenStage.id}
+            disabled={Boolean(network.room && !host)}
+            onSelect={(id) => {
+              selectStage(id);
+              setModal(null);
+            }}
+          />
         </Modal>
       )}
       {detail && (
