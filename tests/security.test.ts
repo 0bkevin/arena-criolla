@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { WebSocket } from "ws";
@@ -175,6 +175,10 @@ test("production HTML has fresh CSP nonces and browser protections without cachi
     await rm(folder, { recursive: true, force: true });
   });
   await mkdir(path.join(folder, "dist/assets"), { recursive: true });
+  await copyFile(
+    "public/assets/og-arena-criolla.jpg",
+    path.join(folder, "dist/assets/og-arena-criolla.jpg"),
+  );
   await writeFile(
     path.join(folder, "dist/index.html"),
     '<!doctype html><html><head><script type="application/ld+json">{"url":"__ARENA_ORIGIN__/"}</script></head><body><script type="module" src="/assets/index-Abcd1234.js"></script></body></html>',
