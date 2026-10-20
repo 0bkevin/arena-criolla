@@ -1059,5 +1059,100 @@
         "bodyHeight": 458.8043010752688
       }
     }
+  },
+  "lorenzo": {
+    "file": "lorenzo-polar-attack-v1",
+    "frames": {
+      "windup": {
+        "x": 49,
+        "y": 20,
+        "width": 413,
+        "height": 472,
+        "anchorX": 206.5,
+        "anchorY": 469.50704225352115,
+        "bodyHeight": 464.5211267605634
+      },
+      "throw": {
+        "x": 579,
+        "y": 20,
+        "width": 377,
+        "height": 472,
+        "anchorX": 173.42000000000002,
+        "anchorY": 468.94074074074075,
+        "bodyHeight": 466.75555555555553
+      },
+      "recover": {
+        "x": 1096,
+        "y": 20,
+        "width": 368,
+        "height": 472,
+        "anchorX": 184,
+        "anchorY": 467.28785357737104,
+        "bodyHeight": 457.0782029950083
+      },
+      "bag": {
+        "x": 1655,
+        "y": 20,
+        "width": 274,
+        "height": 472,
+        "anchorX": 137,
+        "anchorY": 468.4907063197026,
+        "bodyHeight": 463.2267657992565
+      },
+      "ride-right": {
+        "x": 2068,
+        "y": 185,
+        "width": 472,
+        "height": 307,
+        "anchorX": 236,
+        "anchorY": 304.38166311300637,
+        "bodyHeight": 303.0724946695096
+      },
+      "ride-left": {
+        "x": 20,
+        "y": 701,
+        "width": 472,
+        "height": 303,
+        "anchorX": 236,
+        "anchorY": 301.6967741935484,
+        "bodyHeight": 301.0451612903226
+      },
+      "truck-right": {
+        "x": 532,
+        "y": 697,
+        "width": 472,
+        "height": 307,
+        "anchorX": 236,
+        "anchorY": 305.02360515021456,
+        "bodyHeight": 303.0472103004292
+      },
+      "truck-left": {
+        "x": 1044,
+        "y": 694,
+        "width": 472,
+        "height": 310,
+        "anchorX": 236,
+        "anchorY": 304.73460721868366,
+        "bodyHeight": 303.41825902335455
+      },
+      "front-right": {
+        "x": 1622,
+        "y": 532,
+        "width": 339,
+        "height": 472,
+        "anchorX": 169.5,
+        "anchorY": 470.5506653019447,
+        "bodyHeight": 467.16888433981575
+      },
+      "front-left": {
+        "x": 2137,
+        "y": 532,
+        "width": 333,
+        "height": 472,
+        "anchorX": 166.5,
+        "anchorY": 470.5536261491318,
+        "bodyHeight": 465.2502553626149
+      }
+    }
   }
 }

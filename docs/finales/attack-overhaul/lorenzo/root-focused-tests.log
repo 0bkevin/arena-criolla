@@ -1,0 +1,47 @@
+✔ complete-scene preflight checks every requested pose against intrinsic loaded dimensions (1.020449ms)
+✔ valid art preserves its exact source crop, anchors, facing, body scale and alpha (0.732244ms)
+✔ legacy optional geometry and boundary anchors remain valid without changing drawing math (0.267643ms)
+✔ missing, unloaded, incomplete and intrinsically undersized images draw nothing (0.972618ms)
+✔ nonfinite, nonpositive and out-of-bounds frame geometry never touches canvas (0.410509ms)
+✔ vallenilla: revised attack art retains raw source provenance, complete frames and exact runtime alpha (118.108553ms)
+✔ javier: revised attack art retains raw source provenance, complete frames and exact runtime alpha (59.6401ms)
+✔ renny: revised attack art retains raw source provenance, complete frames and exact runtime alpha (61.059041ms)
+✔ gomez: revised attack art retains raw source provenance, complete frames and exact runtime alpha (137.503412ms)
+✔ simon: revised attack art retains raw source provenance, complete frames and exact runtime alpha (103.807849ms)
+✔ conde: revised attack art retains raw source provenance, complete frames and exact runtime alpha (112.679652ms)
+✔ emilio: revised attack art retains raw source provenance, complete frames and exact runtime alpha (130.225471ms)
+✔ maite: revised attack art retains raw source provenance, complete frames and exact runtime alpha (72.194809ms)
+✔ oscar: revised attack art retains raw source provenance, complete frames and exact runtime alpha (98.69763ms)
+✔ puma: revised attack art retains raw source provenance, complete frames and exact runtime alpha (103.921851ms)
+✔ chataing: revised attack art retains raw source provenance, complete frames and exact runtime alpha (89.052911ms)
+✔ george: revised attack art retains raw source provenance, complete frames and exact runtime alpha (94.770125ms)
+✔ mcm: revised attack art retains raw source provenance, complete frames and exact runtime alpha (145.684141ms)
+✔ ali: revised attack art retains raw source provenance, complete frames and exact runtime alpha (137.455939ms)
+✔ melanio: revised attack art retains raw source provenance, complete frames and exact runtime alpha (119.608445ms)
+✔ dayana: revised attack art retains raw source provenance, complete frames and exact runtime alpha (130.766177ms)
+✔ lorenzo: revised attack art retains raw source provenance, complete frames and exact runtime alpha (144.684474ms)
+✔ every definitive has one generic combat category heading (7.695738ms)
+✔ refreshed finale identities use main's current canonical art and preserve all eight authored poses losslessly (420.119712ms)
+✔ café guests and dance fallback roles select the refreshed drawings with current provenance (7.349687ms)
+✔ all built-in finales keep both fighters in their arena on either side of both ledges (589.359368ms)
+✔ a finale uses the unchanged normal camera on desktop, mobile and reduced-motion views (72.942247ms)
+✔ moving platforms keep their exact captured phase and resume carrying the attacker after every mirrored finale (28.079198ms)
+✔ airborne and unequal-height captures preserve each fighter's own position instead of moving them to a common scene baseline (15.798101ms)
+✔ vehicle finales keep both painted passengers beside their capture positions throughout the ride (31.878941ms)
+✔ renderMatch draws every finale over its selected stage and platform surfaces using the normal world camera (109.737835ms)
+✔ P.A.N. finale captures any canonical rival, damages only on the visible front contact and releases with the ordinary force (7.793477ms)
+✔ P.A.N. finale gates, guard, miss, interruption and lethal stocks retain shared rules (7.844305ms)
+✔ every Lorenzo pose and valid intrinsic image is required before the module paints (0.743983ms)
+✔ captured P.A.N. finale serializes and resumes identically through impact and ordinary release (4.416513ms)
+✔ preparation and volley remain harmless until a physical P.A.N. contact; all recorded states resume identically (1.118618ms)
+✔ three P.A.N. bags launch from the hand and hit at close range, block, miss and interrupt (9.460481ms)
+✔ P.A.N. cost failure and serialized in-flight replay preserve deterministic engine rules (13.459604ms)
+✔ all complete source silhouettes retain alpha and runtime exact RGBA (131.224048ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2327.98244

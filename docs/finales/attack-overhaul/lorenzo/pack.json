@@ -1,0 +1,24 @@
+{
+  "fighter": "lorenzo",
+  "source": "assets/source/finales/attack-overhaul/lorenzo/lorenzo-grid.png",
+  "file": "lorenzo-polar-attack-v1",
+  "columns": 5,
+  "rows": 2,
+  "poses": [
+    "windup",
+    "throw",
+    "recover",
+    "bag",
+    "ride-right",
+    "ride-left",
+    "truck-right",
+    "truck-left",
+    "front-right",
+    "front-left"
+  ],
+  "anchorFractions": {
+    "windup": 0.5,
+    "throw": 0.46,
+    "recover": 0.5
+  }
+}

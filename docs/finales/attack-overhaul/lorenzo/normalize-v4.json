@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "columns": 1,
+  "rows": 1,
+  "poseCount": 1,
+  "poses": [
+    "throw"
+  ],
+  "sourceWidth": 1254,
+  "sourceHeight": 1254,
+  "width": 992,
+  "height": 1216,
+  "cellWidth": 992,
+  "cellHeight": 1216,
+  "padding": 32,
+  "coreAlphaThreshold": 40,
+  "minimumCorePixels": 1000,
+  "transparentSourcePixels": 1248046,
+  "retainedPixels": 324396,
+  "discardedNoise": {
+    "components": 49,
+    "pixels": 74,
+    "maxAlpha": 1
+  },
+  "retainedSoftComponents": [
+    {
+      "assignment": "contained",
+      "component": 19,
+      "assignedComponent": 2,
+      "cell": 0,
+      "sourceBounds": {
+        "left": 860,
+        "top": 529,
+        "width": 1,
+        "height": 2
+      },
+      "outputBounds": {
+        "left": 728,
+        "top": 492,
+        "width": 1,
+        "height": 2
+      },
+      "translation": {
+        "x": -132,
+        "y": -37
+      },
+      "pixels": 2,
+      "maxAlpha": 2,
+      "isolatedRgbaSha256": "405fd0f8dd30e2fac39ba85575ff5a03435a0f128a950b53df876e78b0deca91"
+    }
+  ],
+  "objects": [
+    {
+      "cell": 0,
+      "column": 0,
+      "row": 0,
+      "pose": "throw",
+      "sourceBounds": {
+        "left": 196,
+        "top": 105,
+        "width": 863,
+        "height": 1080
+      },
+      "coreBounds": {
+        "left": 200,
+        "top": 110,
+        "width": 855,
+        "height": 1068
+      },
+      "outputBounds": {
+        "left": 64,
+        "top": 68,
+        "width": 863,
+        "height": 1080
+      },
+      "outputCoreBounds": {
+        "left": 68,
+        "top": 73,
+        "width": 855,
+        "height": 1068
+      },
+      "translation": {
+        "x": -132,
+        "y": -37
+      },
+      "retainedPixels": 324396,
+      "corePixels": 313530,
+      "maxAlpha": 255,
+      "isolatedRgbaSha256": "4afb2bf0c9199e919e556aa5bea995942f84e56d49ca0002eec60f999e2284f0"
+    }
+  ],
+  "sourceSha256": "7fb60526801b17d474baffe216ca9a8d19a6ed8f7b37404e2245a39dd06c0a8b",
+  "sourceRgbaSha256": "5d99a83126966316fb0a453a4143267a81b22b357c46a9d08643c0d07d668184",
+  "normalizedSha256": "dfac780810b794c842ffe2d156881c11bd62e7847e2904252d2cd7e28b8d3204",
+  "normalizedRgbaSha256": "27b3e5436b808aca1d31866cff411bb96d57c02f738f97212ff5b9ef46fc6b59",
+  "retainedSourceRgbaSha256": "2d77b205a1ef8716b0adeef535cc9fe800717957c35d0f44ec25d6c774066be6",
+  "reconstructedSourceRgbaSha256": "2d77b205a1ef8716b0adeef535cc9fe800717957c35d0f44ec25d6c774066be6",
+  "exactRetainedRgbaRoundtrip": true,
+  "preservation": "Translation only. Every nonzero-alpha RGBA pixel in each retained 8-neighbor component is copied exactly. Detached max-alpha-2-to-39 components are retained inside exactly one complete silhouette's bounds and matching source cell. Additionally, a max-alpha-2 component of at most 8 pixels outside all silhouette bounds may be retained only when actual nonzero-alpha contour pixels of exactly one substantial silhouette are within Chebyshev distance 3, in the matching source cell; its complete bounds are included and assignment distance audited. Only wholly disconnected max-alpha-1 components are discarded. Invisible alpha-zero background RGB is zeroed. No scaling, rotation, painting or anatomy changes.",
+  "source": "assets/source/finales/attack-overhaul/lorenzo/raw-v4.png",
+  "normalized": "assets/source/finales/attack-overhaul/lorenzo/v4-grid.png"
+}

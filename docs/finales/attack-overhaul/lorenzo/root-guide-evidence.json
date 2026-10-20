@@ -1,0 +1,230 @@
+{
+  "at": "2026-10-19 23:45:13 UTC",
+  "tests": {
+    "initial": 39,
+    "postfix": 8,
+    "strictGuideTypes": "passed"
+  },
+  "nativeQA": {
+    "cases": 64,
+    "samples": 924,
+    "scope": "Independent real-input production fixture after final boot-row contact correction."
+  },
+  "rosterContact": {
+    "cases": 208,
+    "passed": true,
+    "evidence": "root-roster-platform-contact-audit.json",
+    "scope": "52 rivals, both slots, floor and unequal platforms; rendered contact frames only."
+  },
+  "guide": {
+    "final": {
+      "summary": {
+        "selected": "lorenzo",
+        "mode": "final",
+        "frames": 280,
+        "hp": 100,
+        "minHp": 60.342400000000005,
+        "stocks": 1,
+        "props": [
+          "lorenzo-polar-attack-v1",
+          "finales-v1-1",
+          "finales-seated-main-v1",
+          "perro-mujeriego-v3-capriles",
+          "finales-capriles-cafe",
+          "finales-cafe-furniture"
+        ],
+        "sprite": "lorenzo-v39"
+      },
+      "hits": [
+        {
+          "frame": 105,
+          "tick": 96,
+          "hp": 60.342400000000005
+        }
+      ],
+      "release": 189,
+      "stockLoss": 226,
+      "terminal": {
+        "stocks": [
+          2,
+          1
+        ],
+        "capture": null,
+        "knockoutDelay": [
+          0,
+          0
+        ]
+      }
+    },
+    "special": {
+      "summary": {
+        "selected": "lorenzo",
+        "mode": "special",
+        "frames": 180,
+        "hp": 86.2912,
+        "minHp": 86.2912,
+        "stocks": 2,
+        "props": [
+          "lorenzo-polar-attack-v1",
+          "finales-v1-1",
+          "finales-seated-main-v1",
+          "perro-mujeriego-v3-capriles",
+          "finales-capriles-cafe",
+          "finales-cafe-furniture"
+        ],
+        "sprite": "lorenzo-v39"
+      },
+      "hits": [
+        {
+          "frame": 32,
+          "hp": 93.1456
+        },
+        {
+          "frame": 47,
+          "hp": 86.2912
+        }
+      ],
+      "release": -1,
+      "stockLoss": -1,
+      "terminal": {
+        "stocks": [
+          2,
+          2
+        ],
+        "capture": null,
+        "knockoutDelay": [
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "guideScreenshot": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfwipaq-89c4b59b.png",
+  "screenshots": [
+    {
+      "key": "special-p2-normal-14",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw9zeb-2fe195c3.png"
+    },
+    {
+      "key": "special-p2-normal-16",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw9zm1-1a0ba464.png"
+    },
+    {
+      "key": "final-p2-normal-35",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfw9zt4-a19d9f21.png"
+    },
+    {
+      "key": "final-p2-normal-36",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfwa000-37c14425.png"
+    },
+    {
+      "key": "final-p2-close-edge-96",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfwa0g7-64df2a82.png"
+    },
+    {
+      "key": "final-p1-platform-96",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfweyjs-308d0d62.png"
+    },
+    {
+      "key": "final-p2-platform-96",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfweyse-70f90e7b.png"
+    },
+    {
+      "key": "final-p1-platform-low-96",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfwez15-2097af49.png"
+    },
+    {
+      "key": "final-p2-platform-low-96",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfwez9h-e4d342cc.png"
+    },
+    {
+      "key": "final-p1-normal-178",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfwhvfz-1ab2a825.png",
+      "marker": {
+        "key": "final-p1-normal-178",
+        "timeOrigin": 1792453302831.1
+      }
+    },
+    {
+      "key": "final-p2-small-96",
+      "reduced": true,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfwhywy-1ca83be6.png",
+      "marker": {
+        "key": "final-p2-small-96",
+        "timeOrigin": 1792453302831.1
+      }
+    },
+    {
+      "key": "final-p1-tall-96",
+      "reduced": false,
+      "missing": true,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfwi2a8-d0548342.png",
+      "marker": {
+        "key": "final-p1-tall-96",
+        "timeOrigin": 1792453302831.1
+      }
+    },
+    {
+      "key": "final-p2-normal-145",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfwi3bl-9977edce.png",
+      "marker": {
+        "key": "final-p2-normal-145",
+        "timeOrigin": 1792453302831.1
+      }
+    },
+    {
+      "key": "final-p2-normal-146",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfwi3iy-131a4be6.png",
+      "marker": {
+        "key": "final-p2-normal-146",
+        "timeOrigin": 1792453302831.1
+      }
+    }
+  ],
+  "rejectedEvidence": {
+    "scope": "Five initial exit/reduced/fallback captures were invalidated by HMR and were discarded; repeated with timeOrigin/key guards.",
+    "supersededPlatform": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfwd383-147c2292.png",
+    "reason": "Empty-truck contour alone still placed the rear boot near rider's face; elevated boot-row selection fixed it."
+  },
+  "visualChecks": [
+    "P.A.N. and POLAR readable in both directions",
+    "Three whole distinct trucks, full-size support perspective",
+    "Rider forward look, supported feet and hand grips",
+    "Mount and dismount, original position restored before release",
+    "Four unequal-platform directions with cab/boot contact and clear rider face",
+    "Viewport containment at close ledges",
+    "Reduced motion and canonical fallback",
+    "Wide guide crop includes all three vehicles and rival"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "source": "assets/source/finales/attack-overhaul/lorenzo/raw-v4.png",
+  "destination": "assets/source/finales/attack-overhaul/lorenzo/v4-grid.png",
+  "auditPath": "docs/finales/attack-overhaul/lorenzo/normalize-v4.json",
+  "columns": 1,
+  "rows": 1,
+  "poseCount": 1,
+  "poses": [
+    "throw"
+  ]
+}

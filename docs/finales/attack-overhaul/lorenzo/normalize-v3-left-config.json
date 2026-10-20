@@ -1,0 +1,11 @@
+{
+  "source": "assets/source/finales/attack-overhaul/lorenzo/v3-left-cell.png",
+  "destination": "assets/source/finales/attack-overhaul/lorenzo/v3-left-grid.png",
+  "auditPath": "docs/finales/attack-overhaul/lorenzo/normalize-v3-left.json",
+  "columns": 1,
+  "rows": 1,
+  "poseCount": 1,
+  "poses": [
+    "ride-left"
+  ]
+}

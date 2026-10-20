@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "columns": 2,
+  "rows": 1,
+  "poseCount": 2,
+  "poses": [
+    "front-right",
+    "front-left"
+  ],
+  "sourceWidth": 1650,
+  "sourceHeight": 1056,
+  "width": 1600,
+  "height": 1120,
+  "cellWidth": 800,
+  "cellHeight": 1120,
+  "padding": 32,
+  "coreAlphaThreshold": 40,
+  "minimumCorePixels": 1000,
+  "transparentSourcePixels": 610446,
+  "retainedPixels": 1130608,
+  "discardedNoise": {
+    "components": 387,
+    "pixels": 1346,
+    "maxAlpha": 1
+  },
+  "retainedSoftComponents": [],
+  "objects": [
+    {
+      "cell": 0,
+      "column": 0,
+      "row": 0,
+      "pose": "front-right",
+      "sourceBounds": {
+        "left": 75,
+        "top": 32,
+        "width": 701,
+        "height": 977
+      },
+      "coreBounds": {
+        "left": 78,
+        "top": 39,
+        "width": 695,
+        "height": 967
+      },
+      "outputBounds": {
+        "left": 49,
+        "top": 71,
+        "width": 701,
+        "height": 977
+      },
+      "outputCoreBounds": {
+        "left": 52,
+        "top": 78,
+        "width": 695,
+        "height": 967
+      },
+      "translation": {
+        "x": -26,
+        "y": 39
+      },
+      "retainedPixels": 572291,
+      "corePixels": 559673,
+      "maxAlpha": 255,
+      "isolatedRgbaSha256": "d227ed1a18208024c373e6e26a8c5a5ac231748891d55f20899a5452584f2213"
+    },
+    {
+      "cell": 1,
+      "column": 1,
+      "row": 0,
+      "pose": "front-left",
+      "sourceBounds": {
+        "left": 894,
+        "top": 32,
+        "width": 691,
+        "height": 979
+      },
+      "coreBounds": {
+        "left": 900,
+        "top": 43,
+        "width": 678,
+        "height": 965
+      },
+      "outputBounds": {
+        "left": 854,
+        "top": 70,
+        "width": 691,
+        "height": 979
+      },
+      "outputCoreBounds": {
+        "left": 860,
+        "top": 81,
+        "width": 678,
+        "height": 965
+      },
+      "translation": {
+        "x": -40,
+        "y": 38
+      },
+      "retainedPixels": 558317,
+      "corePixels": 546477,
+      "maxAlpha": 255,
+      "isolatedRgbaSha256": "2ac882d1a69c72475fec3f238fa6e9ae0cfd0852e77f2530f09eeffa60d20154"
+    }
+  ],
+  "sourceSha256": "9e2503bf5d2671c67f646d50488a760f682b2a7da3078633f94d75a876e3767d",
+  "sourceRgbaSha256": "36338c82670c9266718402b86d0194f845ac02f74abb24f4a0d78c7c24d52546",
+  "normalizedSha256": "3109dfeac957867121da00b1a5b584a71f42a60bcf348e3776de7173aeddebc4",
+  "normalizedRgbaSha256": "4f3f5a6d212855de8a00404c0410f8f4106adf5d9667e5eec719debac556e5bd",
+  "retainedSourceRgbaSha256": "946fb4bf4021f4e10f94d0cc3e0c54e84750ace699365dfdda6687784a183597",
+  "reconstructedSourceRgbaSha256": "946fb4bf4021f4e10f94d0cc3e0c54e84750ace699365dfdda6687784a183597",
+  "exactRetainedRgbaRoundtrip": true,
+  "preservation": "Translation only. Every nonzero-alpha RGBA pixel in each retained 8-neighbor component is copied exactly. Detached max-alpha-2-to-39 components are retained inside exactly one complete silhouette's bounds and matching source cell. Additionally, a max-alpha-2 component of at most 8 pixels outside all silhouette bounds may be retained only when actual nonzero-alpha contour pixels of exactly one substantial silhouette are within Chebyshev distance 3, in the matching source cell; its complete bounds are included and assignment distance audited. Only wholly disconnected max-alpha-1 components are discarded. Invisible alpha-zero background RGB is zeroed. No scaling, rotation, painting or anatomy changes.",
+  "source": "assets/source/finales/attack-overhaul/lorenzo/padded-v6.png",
+  "normalized": "assets/source/finales/attack-overhaul/lorenzo/v6-grid.png"
+}

@@ -1,0 +1,14 @@
+{
+  "source": "assets/source/finales/attack-overhaul/lorenzo/padded-v1.png",
+  "destination": "assets/source/finales/attack-overhaul/lorenzo/v1-grid.png",
+  "auditPath": "docs/finales/attack-overhaul/lorenzo/normalize-v1.json",
+  "columns": 2,
+  "rows": 2,
+  "poseCount": 4,
+  "poses": [
+    "windup",
+    "throw",
+    "recover",
+    "bag"
+  ]
+}
