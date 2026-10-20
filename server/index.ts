@@ -35,6 +35,11 @@ import {
 } from "../shared/protocol";
 import { FixedStepTicker } from "./ticker";
 import { allowedWebSocketOrigin, securityHeaders } from "./security";
+import assetVariants from "../shared/asset-variants.json";
+import {
+  losslessAssetDelivery,
+  type LosslessAssetManifest,
+} from "./asset-variants";
 
 interface Client {
   id: string;
@@ -674,6 +679,13 @@ export async function makeArenaServer(
   let vite:
     Awaited<ReturnType<(typeof import("vite"))["createServer"]>> | undefined;
   if (options.serveClient !== false) {
+    app.get(
+      "/assets/:file",
+      losslessAssetDelivery(
+        path.resolve(options.production ? "dist" : "public"),
+        assetVariants as LosslessAssetManifest,
+      ),
+    );
     const optimizedBackground = path.resolve(
       options.production ? "dist" : "public",
       "assets/caracas.avif",
