@@ -1701,5 +1701,118 @@
         "bodyHeight": 310
       }
     }
+  },
+  "carolina": {
+    "file": "carolina-couture-attack-v1",
+    "frames": {
+      "model-1-a": {
+        "x": 15,
+        "y": 18,
+        "width": 280,
+        "height": 371,
+        "anchorX": 146,
+        "anchorY": 371,
+        "bodyHeight": 371
+      },
+      "model-2-a": {
+        "x": 313,
+        "y": 16,
+        "width": 283,
+        "height": 373,
+        "anchorX": 157,
+        "anchorY": 373,
+        "bodyHeight": 373
+      },
+      "model-3-a": {
+        "x": 614,
+        "y": 16,
+        "width": 289,
+        "height": 373,
+        "anchorX": 148,
+        "anchorY": 373,
+        "bodyHeight": 373
+      },
+      "model-4-a": {
+        "x": 921,
+        "y": 15,
+        "width": 304,
+        "height": 374,
+        "anchorX": 174,
+        "anchorY": 374,
+        "bodyHeight": 374
+      },
+      "model-1-b": {
+        "x": 15,
+        "y": 407,
+        "width": 282,
+        "height": 364,
+        "anchorX": 146,
+        "anchorY": 364,
+        "bodyHeight": 364
+      },
+      "model-2-b": {
+        "x": 315,
+        "y": 409,
+        "width": 299,
+        "height": 362,
+        "anchorX": 165,
+        "anchorY": 362,
+        "bodyHeight": 362
+      },
+      "model-3-b": {
+        "x": 632,
+        "y": 409,
+        "width": 283,
+        "height": 362,
+        "anchorX": 145,
+        "anchorY": 362,
+        "bodyHeight": 362
+      },
+      "model-4-b": {
+        "x": 933,
+        "y": 409,
+        "width": 301,
+        "height": 362,
+        "anchorX": 173,
+        "anchorY": 362,
+        "bodyHeight": 362
+      },
+      "welcome": {
+        "x": 15,
+        "y": 789,
+        "width": 254,
+        "height": 320,
+        "anchorX": 97,
+        "anchorY": 320,
+        "bodyHeight": 320
+      },
+      "direct": {
+        "x": 287,
+        "y": 790,
+        "width": 275,
+        "height": 319,
+        "anchorX": 98,
+        "anchorY": 319,
+        "bodyHeight": 319
+      },
+      "applaud": {
+        "x": 580,
+        "y": 792,
+        "width": 213,
+        "height": 317,
+        "anchorX": 85,
+        "anchorY": 317,
+        "bodyHeight": 317
+      },
+      "finish": {
+        "x": 811,
+        "y": 797,
+        "width": 188,
+        "height": 312,
+        "anchorX": 152,
+        "anchorY": 312,
+        "bodyHeight": 312
+      }
+    }
   }
 }
