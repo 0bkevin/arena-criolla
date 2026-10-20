@@ -76,6 +76,8 @@ npm run build             # Comprueba TypeScript y compila el cliente
 
 `npm run assets` convierte los PNG activos de `assets/source/` a WebP. Si cambias un atlas de personaje, ejecuta después `npm run check:assets` para actualizar sus coordenadas. `npm run assets:og` regenera la imagen para compartir enlaces. Las comprobaciones de rendimiento están en `npm run perf:engine` y `npm run perf:network`; esta última levanta un servidor temporal en tu equipo.
 
+Para comprobar el navegador, ejecuta `npm run dev` y pega en su consola el contenido de `scripts/performance-browser.js`: mide el dibujo de todos los luchadores durante la entrada, la pelea y la victoria. `scripts/pvp-visibility-regression.js` se ejecuta durante una pelea en línea de prueba y comprueba que ocultar la pestaña libera el bloqueo de un mando simulado. Ambos devuelven los resultados en la consola.
+
 ## Publicarlo en un servidor
 
 ```bash
@@ -95,7 +97,11 @@ docker run --rm -p 5173:5173 -v arena-data:/app/data arena-criolla
 
 En `deploy/` están las configuraciones de producción y pruebas, el proxy Caddy y las copias de seguridad. Para el despliegue existente, `production.compose.yaml` lee la configuración de `/etc/arena-criolla/server.env`; `ARENA_IMAGE` selecciona la imagen y `ARENA_DATA_PATH` la carpeta persistente. Los archivos de Compose publican el puerto en la interfaz local para usarlo detrás del proxy. Configura `ARENA_TRUST_PROXY` según tu red si adaptas el despliegue.
 
+Antes de arrancar con Compose, crea la carpeta de datos del host con dueño `1000:1000` y permisos `700`: el contenedor usa ese usuario y necesita escribir SQLite incluso con el taller desactivado. En producción corresponde a `ARENA_DATA_PATH` (por defecto `/workspace/arena-criolla-production/data`); en pruebas, a `/var/lib/arena-criolla-prod-tst`.
+
 Las salas viven en memoria: reiniciar el servidor cierra las partidas. Ejecuta una sola instancia del servidor. Conserva el volumen de datos y respáldalo si utilizas las herramientas de personajes; el script de copias de seguridad y su temporizador están en `deploy/`.
+
+El [mantenimiento pendiente del alojamiento existente](deploy/maintenance.md) conserva las tareas del proxy compartido y del sistema que requieren coordinación con los otros servicios.
 
 ## Licencias
 

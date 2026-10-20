@@ -12,6 +12,7 @@ const manifest = JSON.parse(
   await readFile("shared/sprite-assets.json", "utf8"),
 );
 const fighters = JSON.parse(await readFile("shared/fighters.json", "utf8"));
+const stages = JSON.parse(await readFile("shared/stages.json", "utf8"));
 const svg = (body) =>
   Buffer.from(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${body}</svg>`,
@@ -190,7 +191,7 @@ await centeredText(
   "body",
 );
 await centeredText(
-  "46 LUCHADORES  /  9 ESCENARIOS  /  SIN REGISTRO",
+  `${fighters.length} LUCHADORES  /  ${stages.length} ESCENARIOS  /  SIN REGISTRO`,
   604,
   16,
   "#a9c1dd",

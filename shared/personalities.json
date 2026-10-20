@@ -83,72 +83,43 @@
     "sources": [
       {
         "title": "Referencia facial: tricolor-closeup-2012.jpg",
-        "url": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_Radonski_2.jpg",
-        "kind": "photographic-likeness-reference",
-        "date": "2012-08-26",
-        "note": "Primer plano nítido con gorra tricolor. Referencia principal de anatomía y ropa; foto de archivo, no de 2026."
+        "url": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_Radonski_2.jpg"
       },
       {
         "title": "Referencia facial: casual-frontal-2022.jpg",
-        "url": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_2022.jpg",
-        "kind": "photographic-likeness-reference",
-        "date": "2022-11-05",
-        "note": "Vista frontal: relación entre ojos, nariz, boca y orejas. No se copia la barba completa ni la gorra alternativa."
+        "url": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_2022.jpg"
       },
       {
         "title": "Referencia facial: contemplation-2026.jpg",
-        "url": "https://english.elpais.com/international/2026-02-01/henrique-capriles-venezuelans-will-not-settle-for-just-a-reshuffling-of-power.html",
-        "kind": "photographic-likeness-reference",
-        "date": "2026-01-19",
-        "note": "Primer plano lateral adulto y textura de piel; mismo evento ya documentado en el dossier anterior. Lentes y traje excluidos del atuendo casual solicitado."
+        "url": "https://english.elpais.com/international/2026-02-01/henrique-capriles-venezuelans-will-not-settle-for-just-a-reshuffling-of-power.html"
       },
       {
         "title": "Referencia facial: efe-interview-2025.webp",
-        "url": "https://efe.com/mundo/2025-05-23/henrique-capriles-venezuela/",
-        "kind": "photographic-likeness-reference",
-        "date": "2025-05-23",
-        "note": "Fecha de publicación verificada; vista frontal/oblicua con expresión hablando. Se utiliza para contrastar anatomía, no lentes o chaqueta."
+        "url": "https://efe.com/mundo/2025-05-23/henrique-capriles-venezuela/"
       },
       {
         "title": "Henrique Capriles — visita publicada en su Instagram oficial",
-        "url": "https://www.instagram.com/p/Ddr8Tz5RAAM/",
-        "kind": "official-video",
-        "publishedAt": "2026-09-24T22:21:25.000Z",
-        "inspectedFramesSeconds": [7, 27],
-        "note": "Video original de 46.37 s. Fecha verificada en el elemento time del post y fotogramas inspeccionados en navegador. Gorra gris, lentes ópticos, chemise verde oscuro, jeans y taza; la gorra tricolor y camisa gris del juego provienen de la referencia del usuario, no de este clip."
+        "url": "https://www.instagram.com/p/Ddr8Tz5RAAM/"
       },
       {
         "title": "Entrevista con Román Lozinski — clips publicados por Caraota Digital",
-        "url": "https://tucaraotadigital.com/venezuela/apoyara-a-maria-corina-el-perlazo-de-capriles-sobre-la-posible-fecha-para-las-elecciones-presidenciales/",
-        "kind": "published-video-clips",
-        "publishedAt": "2026-09-15",
-        "inspectedFramesSeconds": [3, 8],
-        "note": "Dos clips descargados y fotogramas inspeccionados: rostro maduro alargado, sienes grises, lentes, camisa verde y chaqueta negra; manos y rostro expresivos al hablar. Se verifica fecha de publicación; no se dispone de metadatos independientes de fecha de grabación."
+        "url": "https://tucaraotadigital.com/venezuela/apoyara-a-maria-corina-el-perlazo-de-capriles-sobre-la-posible-fecha-para-las-elecciones-presidenciales/"
       },
       {
         "title": "Cazadores de Fake News — verifica la procedencia del video del 24 de septiembre",
-        "url": "https://storage.googleapis.com/qurium/www.cazadoresdefakenews.info/video-de-capriles-sin-camisa-y-con-sombrero-de-pirata-creado-con-ia.html",
-        "kind": "video-provenance-verification",
-        "publishedAt": "2026-09-29",
-        "note": "Vincula el post original de hcapriles y distingue el material auténtico con chemise y gorra de una edición falsa; no se utiliza esa edición como referencia."
+        "url": "https://storage.googleapis.com/qurium/www.cazadoresdefakenews.info/video-de-capriles-sin-camisa-y-con-sombrero-de-pirata-creado-con-ia.html"
       },
       {
         "title": "Henrique Capriles: Los venezolanos no nos vamos a conformar solo con un reacomodo en el poder — El País",
-        "url": "https://elpais.com/america/2026-01-25/henrique-capriles-los-venezolanos-no-nos-vamos-a-conformar-solo-con-un-reacomodo-en-el-poder.html",
-        "kind": "published-interview-and-photographs",
-        "note": "La entrevista nombra a Capriles y acredita las fotos de Gaby Oraa (oficina, 23 de enero de 2026) y Miguel Gutiérrez/EFE (rueda de prensa, 19 de enero)."
+        "url": "https://elpais.com/america/2026-01-25/henrique-capriles-los-venezolanos-no-nos-vamos-a-conformar-solo-con-un-reacomodo-en-el-poder.html"
       },
       {
         "title": "Henrique Capriles Radonski in Margarita International Airport — Wikimedia Commons",
-        "url": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_Radonski_in_Margarita_International_Airport.JPG",
-        "kind": "photographic-reference",
-        "note": "Fotografía de Wilfredor/Wilfredo Rodríguez, fechada el 26 de agosto de 2012; consultada para confirmar el rostro y contexto de la gorra tricolor, cuyo estilo tricolor se adopta en v21 a petición del usuario."
+        "url": "https://commons.wikimedia.org/wiki/File:Henrique_Capriles_Radonski_in_Margarita_International_Airport.JPG"
       },
       {
         "title": "Rueda de prensa de Capriles Radonski 2 — Canal Comunidad en iVoox",
-        "url": "https://www.ivoox.com/rueda-prensa-capriles-radonski-2-audios-mp3_rf_1138310_1.html",
-        "kind": "archival-press-conference-audio",
-        "note": "La página identifica el audio como rueda de prensa del candidato Henrique Capriles Radonski. La ficha lo fecha el 29 de marzo de 2012 y da una duración de 26:24."
+        "url": "https://www.ivoox.com/rueda-prensa-capriles-radonski-2-audios-mp3_rf_1138310_1.html"
       }
     ]
   },
@@ -180,57 +151,39 @@
     "sources": [
       {
         "title": "Gen. Juan V. Gomez, Pres't Venez. (Library of Congress, George Grantham Bain Collection, 1910)",
-        "url": "https://www.loc.gov/pictures/item/2014695965/",
-        "kind": "primary-photograph",
-        "note": "Retrato de archivo contemporáneo; usado para rasgos faciales y bigote. La ficha declara que no hay restricciones conocidas de publicación."
+        "url": "https://www.loc.gov/pictures/item/2014695965/"
       },
       {
         "title": "Gómez, 1928 restored (Wikimedia Commons)",
-        "url": "https://commons.wikimedia.org/wiki/File:G%C3%B3mez,_1928_restored.jpg",
-        "kind": "archival-photograph-copy",
-        "note": "La ficha fecha el retrato en 1928; autor original desconocido y restauración atribuida a Wilfredor. Referencia principal para gorra y uniforme de cuello alto, bolsillos, correaje y hombreras discretas."
+        "url": "https://commons.wikimedia.org/wiki/File:G%C3%B3mez,_1928_restored.jpg"
       },
       {
         "title": "Gómez 1930s (Wikimedia Commons)",
-        "url": "https://commons.wikimedia.org/wiki/File:G%C3%B3mez_1930s.jpg",
-        "kind": "archival-photograph-reproduction",
-        "note": "La ficha identifica a Gómez en sus últimos años y atribuye la reproducción a Rostros y Personajes de Venezuela (El Nacional, 2002); fotógrafo original desconocido. Usada solo como referencia de edad y rostro tardío."
+        "url": "https://commons.wikimedia.org/wiki/File:G%C3%B3mez_1930s.jpg"
       },
       {
         "title": "Gómez, 1910 (Library of Congress, George Grantham Bain Collection)",
-        "url": "https://commons.wikimedia.org/wiki/File:Gen._Juan_V._Gomez,_Pres%27t_Venez._LCCN2014695965.jpg",
-        "kind": "primary-photograph-copy",
-        "note": "Copia de la ficha LOC ggbain.15988, negativa de vidrio de Bain News Service."
+        "url": "https://commons.wikimedia.org/wiki/File:Gen._Juan_V._Gomez,_Pres%27t_Venez._LCCN2014695965.jpg"
       },
       {
         "title": "Cine (Diccionario de Historia de Venezuela, Fundación Empresas Polar)",
-        "url": "https://bibliofep.fundacionempresaspolar.org/dhv/entradas/c/cine/",
-        "kind": "historical-film-research",
-        "note": "Resume el establecimiento de los Laboratorios Nacionales, las primeras pruebas de sonido y la transición al cine sonoro; no identifica una voz grabada de Gómez."
+        "url": "https://bibliofep.fundacionempresaspolar.org/dhv/entradas/c/cine/"
       },
       {
         "title": "Juan Vicente Gómez y su época: proyección de la Cinemateca Nacional",
-        "url": "https://www.mincultura.gob.ve/noticias/cinemateca-nacional-proyecto-la-joya-filmica-juan-vicente-gomez-y-su-epoca/",
-        "kind": "film-archive-reference",
-        "note": "La Cinemateca Nacional presentó el documental histórico de archivo de Manuel de Pedro; la nota no ofrece un clip de voz original de Gómez."
+        "url": "https://www.mincultura.gob.ve/noticias/cinemateca-nacional-proyecto-la-joya-filmica-juan-vicente-gomez-y-su-epoca/"
       },
       {
         "title": "Centenario de Bolívar en Santa Marta y Venezuela [fragmentos], catálogo BnF",
-        "url": "https://catalogue.bnf.fr/ark:/12148/cb44522683z",
-        "kind": "film-catalogue",
-        "note": "El catálogo lista a Gómez como participante en fragmentos del archivo cinematográfico de los Acevedo; la ficha no confirma que el fragmento contenga sonido sincronizado ni su voz."
+        "url": "https://catalogue.bnf.fr/ark:/12148/cb44522683z"
       },
       {
         "title": "Andrés Eloy Blanco (Biblioteca Biográfica Venezolana)",
-        "url": "https://www.anhvenezuela.org.ve/wp-content/uploads/2024/09/ANDRES-ELOY-BLANCO-1.pdf",
-        "kind": "historical-audio-context",
-        "note": "La biografía contrasta la escasa intervención pública de Gómez con el uso de la radio por Eleazar López Contreras; no aporta una grabación verificable de Gómez."
+        "url": "https://www.anhvenezuela.org.ve/wp-content/uploads/2024/09/ANDRES-ELOY-BLANCO-1.pdf"
       },
       {
         "title": "Rafael Caldera recuerda la primera alocución radial de Eleazar López Contreras",
-        "url": "https://rafaelcaldera.com/las-exequias-lopez-contreras-1973/",
-        "kind": "historical-audio-attribution",
-        "note": "La fuente atribuye a López Contreras la alocución radial del 19 de diciembre de 1935 y el lema asociado a calma y cordura. No es voz de Gómez."
+        "url": "https://rafaelcaldera.com/las-exequias-lopez-contreras-1973/"
       }
     ]
   },

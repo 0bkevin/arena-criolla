@@ -10,3 +10,8 @@ tests
 data
 assets/archive
 assets/references
+artifacts
+reports
+coverage
+playwright-report
+test-results

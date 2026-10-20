@@ -159,7 +159,15 @@ export function useArenaNetwork() {
       if (document.hidden) wasHidden = true;
       else if (wasHidden) {
         wasHidden = false;
-        wake();
+        // Replacing a healthy socket forfeits an active fight. Waiting rooms
+        // can resume on a fresh connection, but running matches cannot.
+        const activeMatch = state.current;
+        if (
+          socket.current?.readyState !== WebSocket.OPEN ||
+          !activeMatch ||
+          activeMatch.phase === "finished"
+        )
+          wake();
       }
     };
     const pageshow = (event: PageTransitionEvent) => {
