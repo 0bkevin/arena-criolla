@@ -1,0 +1,9 @@
+{
+  "name": "build",
+  "command": "npm run build",
+  "startedAtUtc": "2026-10-20T00:33:07.237296+00:00",
+  "finishedAtUtc": "2026-10-20T00:33:20.728622+00:00",
+  "durationSeconds": 13.491,
+  "exitCode": 0,
+  "log": "docs/finales/attack-overhaul/final-validation/build.log"
+}

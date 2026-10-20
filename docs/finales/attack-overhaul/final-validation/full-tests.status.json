@@ -1,0 +1,9 @@
+{
+  "name": "full-tests",
+  "command": "npx tsx --test --test-concurrency=2 tests/*.test.ts tests/character-audits/*.test.ts",
+  "startedAtUtc": "2026-10-20T00:33:07.213960+00:00",
+  "finishedAtUtc": "2026-10-20T00:34:36.079559+00:00",
+  "durationSeconds": 88.866,
+  "exitCode": 0,
+  "log": "docs/finales/attack-overhaul/final-validation/full-tests.log"
+}

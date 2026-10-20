@@ -1,0 +1,99 @@
+{
+  "createdAtUtc": "2026-10-20T00:34:58.422749+00:00",
+  "allChecksPassed": true,
+  "totalTests": 1171,
+  "totalPassed": 1171,
+  "totalFailed": 0,
+  "checks": [
+    {
+      "name": "full-tests",
+      "command": "npx tsx --test --test-concurrency=2 tests/*.test.ts tests/character-audits/*.test.ts",
+      "startedAtUtc": "2026-10-20T00:33:07.213960+00:00",
+      "finishedAtUtc": "2026-10-20T00:34:36.079559+00:00",
+      "durationSeconds": 88.866,
+      "exitCode": 0,
+      "log": "docs/finales/attack-overhaul/final-validation/full-tests.log",
+      "testMetrics": {
+        "tests": 1156,
+        "suites": 0,
+        "pass": 1156,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 88342.741683
+      }
+    },
+    {
+      "name": "guide-pipeline-tests",
+      "command": "node --test tests/guide-media-pipeline.test.mjs tests/portable-guide-verifier.test.mjs",
+      "startedAtUtc": "2026-10-20T00:33:07.220843+00:00",
+      "finishedAtUtc": "2026-10-20T00:33:07.483049+00:00",
+      "durationSeconds": 0.262,
+      "exitCode": 0,
+      "log": "docs/finales/attack-overhaul/final-validation/guide-pipeline-tests.log",
+      "testMetrics": {
+        "tests": 15,
+        "suites": 0,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 214.420939
+      }
+    },
+    {
+      "name": "typecheck",
+      "command": "npx tsc --noEmit",
+      "startedAtUtc": "2026-10-20T00:33:07.220369+00:00",
+      "finishedAtUtc": "2026-10-20T00:33:16.962209+00:00",
+      "durationSeconds": 9.742,
+      "exitCode": 0,
+      "log": "docs/finales/attack-overhaul/final-validation/typecheck.log"
+    },
+    {
+      "name": "guide-typecheck",
+      "command": "npx tsc --noEmit --strict --target ES2022 --module ESNext --moduleResolution Bundler --lib ES2022,DOM,DOM.Iterable --resolveJsonModule --esModuleInterop --skipLibCheck docs/finales/moveset-guide/guide.ts",
+      "startedAtUtc": "2026-10-20T00:33:07.213696+00:00",
+      "finishedAtUtc": "2026-10-20T00:33:10.940420+00:00",
+      "durationSeconds": 3.727,
+      "exitCode": 0,
+      "log": "docs/finales/attack-overhaul/final-validation/guide-typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": "npm run build",
+      "startedAtUtc": "2026-10-20T00:33:07.237296+00:00",
+      "finishedAtUtc": "2026-10-20T00:33:20.728622+00:00",
+      "durationSeconds": 13.491,
+      "exitCode": 0,
+      "log": "docs/finales/attack-overhaul/final-validation/build.log"
+    },
+    {
+      "name": "diff-check",
+      "command": "git diff --check",
+      "startedAtUtc": "2026-10-20T00:33:07.233763+00:00",
+      "finishedAtUtc": "2026-10-20T00:33:07.262911+00:00",
+      "durationSeconds": 0.029,
+      "exitCode": 0,
+      "log": "docs/finales/attack-overhaul/final-validation/diff-check.log"
+    }
+  ],
+  "inputs": {
+    "createdAtUtc": "2026-10-20T00:34:42.506772+00:00",
+    "stable": true,
+    "beforeFileCount": 604,
+    "afterFileCount": 604,
+    "beforeAggregateSha256": "a6b9d5781ac48c7f340b2b22cf037cc4cdb6bcd19f8601280109afcd3ba4bbb6",
+    "afterAggregateSha256": "a6b9d5781ac48c7f340b2b22cf037cc4cdb6bcd19f8601280109afcd3ba4bbb6",
+    "added": [],
+    "removed": [],
+    "changed": []
+  },
+  "notes": [
+    "The full TypeScript suite includes the 52 guide simulation tests; no redundant simulation-only run was performed.",
+    "The production build emitted the existing >500 kB chunk warning and exited successfully.",
+    "No browser, guide media build, portable browser verification, source edits, or Git mutations were performed by this validation task."
+  ]
+}

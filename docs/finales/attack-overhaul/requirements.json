@@ -1,0 +1,297 @@
+{
+  "version": 1,
+  "requestedAt": "2026-10-19",
+  "workflow": "One dedicated Astra agent per character, sequential research, assets, integration, combat verification, root review before next character.",
+  "global": [
+    "Keep the current arena and camera",
+    "Preserve canonical main identities and Nacho choreography",
+    "No YouTube song or video",
+    "Overhead labels Combo / Ataque especial / Definitiva, except explicitly requested Capriles and Pedro combo copy",
+    "Research every named character; retain sources and generation prompts",
+    "Use transparent generated bitmap art in the existing graphic style",
+    "Verify damage, release, direction, assets and actual in-combat presentation"
+  ],
+  "characters": [
+    {
+      "id": "capriles",
+      "status": "complete",
+      "agent": "/root/capriles_revision",
+      "requests": [
+        "Paso a paso → ¡Qué manguangua, ah!",
+        "Advanced combo Hay un camino",
+        "Café starts Qué manguangua, followed by Maduro tiene la leche acaparada y yo se la voy a sacar de donde sea.",
+        "Review accepted main identity and seated assets"
+      ],
+      "evidence": "capriles/review.md"
+    },
+    {
+      "id": "zavarce",
+      "status": "complete",
+      "requests": [
+        "One motorcycle as regular special",
+        "Move existing motorcycle swarm to unlocked definitive"
+      ],
+      "agent": "/root/zavarce_revision",
+      "evidence": "zavarce/review.md"
+    },
+    {
+      "id": "vallenilla",
+      "status": "complete",
+      "requests": [
+        "Pago en cadena → Cuota atrasada",
+        "Proper branded Cashea box projectile",
+        "Definitive summons two white Cashea mascots that repeatedly strike rival"
+      ],
+      "agent": "/root/vallenilla_revision",
+      "evidence": "vallenilla/review.md"
+    },
+    {
+      "id": "javier",
+      "status": "complete",
+      "requests": [
+        "Definitive uses woman persona with T-shirt on head as hair, scolding rival"
+      ],
+      "agent": "/root/javier_revision",
+      "evidence": "javier/review.md"
+    },
+    {
+      "id": "renny",
+      "status": "complete",
+      "requests": [
+        "Definitive seated on ladder while showgirls perform attacking commercial"
+      ],
+      "agent": "/root/renny_revision",
+      "evidence": "renny/review.md"
+    },
+    {
+      "id": "gomez",
+      "status": "complete",
+      "requests": [
+        "Mounted horseback definitive, military squadron charges rival"
+      ],
+      "agent": "/root/gomez_revision",
+      "evidence": "gomez/review.md"
+    },
+    {
+      "id": "simon",
+      "status": "complete",
+      "requests": [
+        "Replace poor special and definitive art, especially instrument, preserve Tío Simón identity"
+      ],
+      "agent": "/root/simon_revision",
+      "evidence": "simon/review.md"
+    },
+    {
+      "id": "conde",
+      "status": "complete",
+      "requests": [
+        "Definitive temporarily transforms into Conde Bond",
+        "Stronger attacks for several seconds, visible outfit change and expiry"
+      ],
+      "agent": "/root/conde_revision",
+      "implementationDecision": "Self-transformation: real super input,3wins/75energy,9tickstartup,6 seconds active play,+20% outgoing damage,no stacking,expiry/stockloss clear; no automatic captured enemy damage. Same arena/camera.",
+      "evidence": "conde/review.md"
+    },
+    {
+      "id": "emilio",
+      "status": "complete",
+      "requests": [
+        "Definitive temporarily transforms into El Chunior, similar timed stronger attacks"
+      ],
+      "agent": "/root/emilio_revision",
+      "implementationDecision": "El Chunior self-transformation uses existing360-active-tick/+20% system; visible costume through normal combat,expiry/stockloss clear,no capture or automatic damage.",
+      "evidence": "emilio/review.md"
+    },
+    {
+      "id": "maite",
+      "status": "complete",
+      "requests": [
+        "¡BUENAS NOOOCHES, POLIEDRO DE CARACAS! scream",
+        "Ranged damaging sonic wave"
+      ],
+      "agent": "/root/maite_revision",
+      "evidence": "maite/review.md",
+      "implementationDecision": "Actual ranged projectile definitive:3wins/75energy,9tickstartup,traveling growing sonic wave,one real contact,normal combat/guard/jump/reflect/recovery; fullgenerated shouting actor and caption, bounded visual cape containment. No capture."
+    },
+    {
+      "id": "oscar",
+      "status": "complete",
+      "requests": [
+        "Plays double bass firing musical notes at rival"
+      ],
+      "agent": "/root/oscar_revision",
+      "evidence": "oscar/review.md",
+      "implementationDecision": "Captured contrabass performance with four complete playing poses, three authored gold-note flights arriving on damage beats42/90/138, grounded white four-string bass, original low pizzicato synthesis. Existing salsa-spin special verified unchanged."
+    },
+    {
+      "id": "puma",
+      "status": "complete",
+      "requests": [
+        "¡Agárrense de las manos! chain of dancers circles and traps rival, then catapults rival out of arena"
+      ],
+      "agent": "/root/puma_revision",
+      "evidence": "puma/review.md",
+      "implementationDecision": "Four upright linked dancer phases capture the canonical rival, then real force34 release ejects through arena bounds. Optional90-tick lethal-flight grace preserves physical launch, one stock loss and delayed match outcome, including simultaneous projectile draw. Existing special verified unchanged."
+    },
+    {
+      "id": "chataing",
+      "status": "complete",
+      "requests": [
+        "Special throws existing handheld wired microphone as a whip",
+        "¡Vamos a comerciales! definitive traps rival in screen and smashes with microphone"
+      ],
+      "agent": "/root/chataing_revision",
+      "evidence": "chataing/review.md",
+      "implementationDecision": "One real wired microphone projectile, single contact then attached return/recall, owner-preserving parry; whole cast/reel poses prevent duplicate held mic. Definitive freezes canonical rival in local TV and shatters it on single114-tick hit, restores anchors and normal release12. Independent root approval complete."
+    },
+    {
+      "id": "george",
+      "status": "complete",
+      "requests": [
+        "Se acabó el show: bows, giant curtain drops on opponent"
+      ],
+      "agent": "/root/george_revision",
+      "evidence": "george/review.md",
+      "implementationDecision": "Whole present/incline/bow/recovery poses, curtain and short-ring brass rail. One hem contact at96 using actual canonical battleFrame height, covers and withdraws before normal release180/force12. Bounded horizontal presentation spacing, same arena/camera, no engine changes. Two-pulse special verified and visually synchronized; independent root approval complete."
+    },
+    {
+      "id": "mcm",
+      "status": "complete",
+      "requests": [
+        "Stands in pickup bed with Venezuelan flag, supporters in truck and alongside, charges rival"
+      ],
+      "agent": "/root/mcm_revision",
+      "evidence": "mcm/review.md",
+      "implementationDecision": "Whole rear-bed pickup composition, independent eight-star flag and two whole walking supporters. Single tick96 opaque contour contact, bounded horizontal staging, own platform height, return/dismount and ordinary release180/force12. Rally special contactRange110 fixes remote hits without engine changes. Independent root approval complete."
+    },
+    {
+      "id": "ali",
+      "status": "complete",
+      "requests": [
+        "Strums cuatro, wave lifts rival; chorus crowd behind grows wave to final strike"
+      ],
+      "agent": "/root/ali_revision",
+      "evidence": "ali/review.md",
+      "implementationDecision": "Four whole canonical playing poses with one four-string cuatro, six distinct adult singers in two ground-anchored rows, growing wave and canonical rival lift. Three beats42/90/138, ordinary release180/force12; existing ground strum special gets synchronized whole-body gestures at12/24/36. Bounded visual spacing, exact RGBA source provenance, original synthetic score. Independent root approval complete."
+    },
+    {
+      "id": "melanio",
+      "status": "complete",
+      "requests": [
+        "Definitive records rival, flash stuns, finishes with phone hit",
+        "Improve special assets"
+      ],
+      "agent": "/root/melanio_revision",
+      "evidence": "melanio/review.md",
+      "implementationDecision": "One phone integrated into five whole recording/windup/high-low strike/recovery poses, local flash66 and single real contact114. Whole-body bounded step/hop returns to original platform by168, ordinary release180/force12. Signal special keeps balance, improved whole poses and one pulse; first-contact consumption accurately described. Source/whole-object RGBA provenance and independent52canonical contact-point audit retained. Independent root approval complete."
+    },
+    {
+      "id": "dayana",
+      "status": "complete",
+      "requests": [
+        "Special one football at rival",
+        "Definitive with other women players firing multiple footballs simultaneously"
+      ],
+      "agent": "/root/dayana_revision",
+      "evidence": "dayana/review.md",
+      "implementationDecision": "Single physical soccer ball regular special: zero wins/25 energy/startup21/offset48,16/radius13. Capture finale180: Dayana and two adult teammates launch together66, three real silhouette contacts at100 with one collective damage beat, ordinary release12. Helpers on real floor, canonical Dayana retains own platform, bounded horizontal staging; no camera/state mutation."
+    },
+    {
+      "id": "lorenzo",
+      "status": "complete",
+      "requests": [
+        "Special throws multiple Harina P.A.N. packages",
+        "Definitive rides side of Polar truck, two more branded Polar trucks charge rival"
+      ],
+      "agent": "/root/lorenzo_revision",
+      "evidence": "lorenzo/review.md",
+      "implementationDecision": "Three physical branded P.A.N. bags, zero wins/25 energy/startup15, compact throw origin36,107. Capture finale180 with Lorenzo gripping running board of lead Polar truck and two near-frontal companions, one collective impact96 and ordinary release12. Separate left/right branded vehicles, floor anchoring, bounded mount/charge/dismount/return. Empty-vehicle alpha contour plus leading-boot contact for elevated rivals. Documentation-only wide crop; no engine/camera changes."
+    },
+    {
+      "id": "bolivar",
+      "status": "complete",
+      "requests": [
+        "Special draws sword and strikes several times",
+        "Mounted definitive with many charging llaneros; research era-correct attire and equipment"
+      ],
+      "agent": "/root/bolivar_revision",
+      "evidence": "bolivar/review.md",
+      "implementationDecision": "Three local sabre pulses14/26/38, no dash. Capture180 with mounted commander and six distinct llaneros in two rows, collective opaque horse contact96, bounded ground-lane staging and platform return, ordinary release12. Whole-source RGBA soft-island exception independently audited; no shared normalizer weakening."
+    },
+    {
+      "id": "dudamel",
+      "status": "complete",
+      "requests": [
+        "Special baton conducting releases notes and expanding damaging sound waves",
+        "Definitive full orchestra behind, expanding sound/music waves"
+      ],
+      "agent": "/root/dudamel_revision",
+      "evidence": "dudamel/review.md",
+      "implementationDecision": "One physical expanding cadenza projectile: zero wins/25 energy/start18/radius24 to64. Captured orchestra of18 original adults, three circle/opaque-rival contacts42/90/138, ordinary release12. Ground-anchored ensemble, bounded presentation spacing, shared normalizer unchanged, full1536px orchestra frame. Generic reflection regression coverage migrated to Carolina. Own heading above all faces and documentation-only wide crop; no engine/camera mutation."
+    },
+    {
+      "id": "llorona",
+      "status": "complete",
+      "requests": [
+        "Improve special and definitive art",
+        "Attract rival, open underworld portal, frightening face transformation, embrace/grab and descend with rival, restore combat state properly"
+      ],
+      "agent": "/root/llorona_revision",
+      "evidence": "llorona/review.md",
+      "implementationDecision": "Six whole canonical poses with sorrowful/terrifying faces and high/low grips, painted wave and underworld portal. Whole bodies descend behind portal rim, disappear138–147, emerge148–168 and return to captured anchors before normal release180/force12. Existing special/three42/90/138beats/balance retained. ExactRGBA assembly byte copies, no shared normalizer/engine/camera changes."
+    }
+  ],
+  "reviewPage": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+  "guideBuildPending": false,
+  "commonChanges": [
+    "Generic combat headings, Capriles/Pedro requested combo exceptions",
+    "Transparent attack atlas packer with connected-alpha preservation and geometry/RGBA provenance tests",
+    "Per-character finale modules through FinaleView, asset preflight and canonical fallback",
+    "Live guide triggers actual inputs and includes startup/release; shows remaining stocks",
+    "Portable media includes shared/attack-assets.json; final current-source312-demo raw audit, media build and compressed portable verification all pass.",
+    "Core baseline/bodyHeight metadata keeps invisible attached alpha from lifting visible feet; Javier repacked and reviewed, earlier atlas metadata uses compatible fallback.",
+    "Translation-only component normalization preserves generated silhouettes crossing nominal grids; exact retained RGBA reverse-translation proofs and bounded soft-island assignment.",
+    "Viewport geometry keeps helper artwork and mounted commander visible at ledges without changing camera, world anchors or painted scale.",
+    "Regular-special follow-up: Javier kick matches damage frame and range; Capriles rush waits for body contact; Cashea projectiles remain visible after optional-art load failure.",
+    "hasAttackArt validates loaded intrinsic dimensions and complete crop geometry before any scene or individual drawing;43 focused validation/packing/character/edge tests pass."
+  ],
+  "integrationNotes": [
+    "Last full suite885tests:882pass;3transitional failures. Pedro2timing assertions fixed and passing32focusedtests; remainingVicente roomgate test corrected tosuper and both targetednetworktests pass. Fullsuite final rerun stillrequired.",
+    "Do not commit or push; preserve all prior WIP, canonical main art, Nacho dance and offlineguide assets.",
+    "Six-character milestone: full suite935/935 passes in87.3s; tsc and diff check clean. Follow-up Vallenilla foreground paint order passed22 focused tests afterward; final all-character rerun still required.",
+    "First-five follow-up complete:18 actual browser captures; helpers contained at both ledges and all sampled Renny faces visible. Updated Vallenilla physical offsets/foreground rival, Capriles contact timing, Javier kick timing/sweep and visible Cashea asset-failure fallback. Shared23 infrastructure/edge/contact checks pass.",
+    "Conde milestone: full suite966/966 passes in86.3s; build passes (existing >500kB chunk warning). Root independently ran29 Conde/normalizer/art/label tests and inspected live guide:460frames,2 real hits,rival69.4HP/2stocks,no capture,buff expires. Help copy now distinguishes captures and self-transformations; tsc clean afterward.",
+    "Portable budget report saved as guide-budget-projection.json: q34+source-proved unused-sheet placeholders+duplicate alias projects23.35MiB for22 atlases; re-audit source dependencies afterall22. Final build must prepare-media first. README/docs general capture wording still needs final rewrite.",
+    "Emilio root review: final raw v2, P2 eight-pose contact sheet, second echo and live-guide canonical expiry visually approved. Root27 transformation/art/label tests pass; agent49 focused tests, tsc and diff check pass. No engine changes in this step.",
+    "Independent main application UI smoke passed in a private profile: local Conde vs Emilio, energy accrued normally, native i/5 activated both costumes simultaneously at distance,100HP each and unchanged Altamira; screenshot transformation-main-ui.png. Default user progress untouched.",
+    "Portable tooling upgraded and independently reviewed: BUILD.md documents frozen native-browser312-demo/every-frame draw audit, current-source fingerprint guards, exact-dimension/exact-alpha preview copies, protected new attack atlases atq34, optional unused-sheet placeholders and deduplicated payloads. Root6 pipeline tests pass. Smoke312demos/48544frames/0errors correctly invalidated by concurrent edits; final audit and build remain pending afterall22. Static audit server5193 session99335.",
+    "Maite milestone:984/984 fullsuite passed beforeoneadditional provenance test; final70focusedincludesit. Root independently20 Maite/art/label tests pass, build and strict standalone guide types pass. Finalv5raw, P1normal/P2edge and freshguide frame23 visuallyapproved, fullphrase visible. GeneralREADME/finalesREADME/Help wording nowrecognizes3modes. Fullfinalall22rerunstillrequired.",
+    "Oscar approved: four whole musician/white-bass poses with common source-pixel scale, three gold note flights synchronized with42/90/138 damage beats, original low pizzicato. Agent44focused and32 browsercases pass; root25 art/viewport/Oscar tests pass and independently reviewed rawv2, normal hit, closeledge, unequalplatform, contact sheet and freshguide real contacts51/99/147/release. No engine changes. Audio interface search confirms no YouTube UI/player references, only choreography sourceUrl metadata.",
+    "Generic guide correction approved independently: root52 simulation tests and15 media/verifier tests pass. All104 combo demonstrations now connect every required hit through normal movement/attack inputs; pure simulation.ts extracted, other208 demos equivalence proof saved. Portable verifier is ready via verify-portable-browser.js / BUILD.md; smoke36demos5994frames only, final312 compressed rendering stillpending. Local/inline identical preview hashes alias one file to avoid duplicate native auto-inlining.",
+    "Puma approved: linked four-phase ring costume order corrected via targeted generation and exact whole-cell assembly; canonical rival visible, physical release34 and bounded lethalKO delay90 with correct simultaneous draw/stock cleanup. Full1056passes, final72focused; root83 focused beforefinal layering,20after plusfinalbuild/strictguidetypes. Independent realCashea input repro DRAW, freshguide contacts51/99/147/release189/stock202/no pendingdelay. Root reviewed finalraw, B/D faces, closeledge, flight andguide.",
+    "Independent shared integration audit after Puma passed two actual WebSocket clients and reconnect: full transformation state, frozen350 buff ticks during capture, lethal knockoutDelay88 to both peers, stock cleanup, Maite impact:super projectile, and deterministic100-step JSON replay. Evidence shared-transport-review-result.json; captured transformed fighters retain canonical costume poses as an existing documented presentation limitation.",
+    "Chataing approved:1067/1067 fullsuite86.8s,55focused; root22finalfocused, build and strict guide types pass. Whole mic/cable continuity, owner-preserving reflection, TV aperture/floor/phrase corrections reviewed;58browsercases890samples,862miccounts848bounds. Freshguide singlecontact123/release189/ringout227/end280withoutcapture; root-guide-evidence.json. Shared text audit corrected Maite dodge-before-impact wording and Zavarce last-bike exit claim.",
+    "George approved:56focused,60nativecases624samples/25captures, final build passes; root27initial+16postfix focused and strict guide types pass. Corrected actual battleFrame crown contact, short mounting rail, recovery506/463 scale and edge phrase/damage positions. Five v1 objects remain RGBA-identical after whole support replacement. Freshguide hit105/tick96, release189, ringout225, end280withoutcapture; special contacts14/33 show2 real hits. root-guide-evidence.json. No engine changes; final all22fullsuite remains pending.",
+    "MCM approved:55focused,80nativecases1070samples/29agentcaptures, build passes; root35focused and strictguidetypes pass. Root reproduced all80cases and inspected both aerial Momoy contacts, platform directions, mount/dismount, reduced motion and missing-art fallback. Fresh wideguide contact105/tick96,min61.4848,release189,ringout227,end280withoutcapture. Original low-grip whole pickup plus eight-star flag accepted; source/padding RGBA provenance retained. Rally contactRange110 fixes remote hit. No engine changes.",
+    "Ali approved:15ownfocused,80nativecases1130samples, final build/types/diff pass. Root36initial+22postfix focused and strictguidetypes pass; raw actor/four-string detail and six-adult choir inspected. Corrected visible choir faces, real floor on platforms, visual rival damage-label anchor and reduced ring phase. Guide crop100,177,880,880*410/780 retains whole group. Freshguide contacts51/99/147,min58.0576,release189,ringout226; special3contacts26/47/70,min77.7232. No engine changes.",
+    "Melanio approved:52focusedincludingV44/V45legacy,64nativecases814samples/31captures, final build/types/diff pass. Root27initial+8postfixfocused and strictguidetypes pass, reproduced64/814, checked52opaquecontactpoints (geometry only). Regenerated wrong-hand high strike and low signal release; REC and damage labels mirror/anchor correctly. Whole aerial return starts after114 and reaches original platform168. Freshguide contact123/tick114,min59.2,release189,ringout226; specialcontact39,min91.84. No engine changes.",
+    "Dayana approved:68focused/legacy,64nativecases762samples, build/types/diff pass. Root38initial+8postfixfocused and strictguidetypes pass, reproduced64/762 after final recovery anchor, checked104real-input contact frames across52canonicalrivals/bothslots. Threeballslaunch66/contact100/singlebeat, helpersflooranchored. Freshguide contact109/tick100,min60.9136,release189,ringout227; specialcontact37,min85.618. Whole-cell RGBA provenance for six team poses retains alpha2softness without weakeningnormalizer. No engine changes.",
+    "Lorenzo approved:71focused plus8final,64nativecases924samples/29captures/build/types/diff pass. Root39initial+8postfixfocused/strictguidetypes; reproduced64/924 and208real-input contact frames for52rivals/bothslots/floor+platforms. Corrected leftward rider look, compact P.A.N.throw, three full-size visible truck cabs, mounting offsets, heading above roof, empty-vehicle and elevated-boot contour. Freshwideguide hit105/tick96,min60.3424,release189,stock226; special2contacts32/47,min86.2912. WholecelllefttruckRGBA exception independently verified. No engine changes.",
+    "Milestone after19 approved characters: full1120/1120suite passes in84.1s; shared/src/server/tests/package/tsconfig snapshot remained stable. Evidence nineteen-character-suite-result.json and nineteen-character-full-tests.log. This is not the final22 suite or portable312-demo verification.",
+    "Bolívar approved:1127/1127 fullsuite86.2s,60focused/19engine-regression,64nativecases1020samples. Root28focused/strictguidetypes, reproduced64/1020,208real-input contactframes for52rivals/bothslots/floor+platforms and144alpha-layer approach checks. Six full-size riders in2rows, positive33–68pxcharge, no early penetration and0–1pxcontact96. Freshwideguide hit105/min58.0576/release189/stock226; specialcontacts14/29/44/min80.9056. WholeRGBAalpha2island preserved, no engine changes.",
+    "Independent shared readiness review:105focused/8portable-verifier tests and306non-Dudamel guide simulations pass. Fixed neutral microphone fallback reading absent optional art geometry, and omitted anchorY default; root34focused and reviewer10Chataing tests pass. Both reproductions independently resolved. See shared-final-readiness-review.json; final22suite/portable312 remain pending.",
+    "Dudamel approved:1140/1140fullsuite before final heading,45focused and build afterward,52guide tests/types/diff pass. Root29initial+11postfixfocused/strictguidetypes,reproduced40casts464renders and108circle/opaque-alpha contacts(error0.40px,previousgap2.58px), plus208real-input roster casts/624damageframes against52rivals/bothslots/floor+platforms. Three realHP decreases with one shared rewardHit per capture. Freshwideguide hits51/99/147,min60.0568,release189,stock226; specialhit30/min88.1272. Rawv2conductor/orchestra accepted, earliercroppedv1retainedrejected; no engine changes. Root-guide-evidence.json recordsapproval.",
+    "LaLlorona approved22/22:24focused+43integration/types/diff pass. Root35initial+15post-assemblyfocused/strictguidetypes,reproduced44casts536samples;312additional real-input captures52rivals×bothslots×floor/bothunequalplatformdirections with936 production body-mask renders. No body pixels remain visible in underworld; bodies/portal/control/positions restore. Twelve rootnativecaptures include tall inverseplatform/reduced/fallback and full descent. Corrected RGBA assembly premultiplication to exact row copies; independent0mismatches/allalpharetained. Freshguide hits51/99/147,min60.3424,release189,stock226;special32/min88.2496. Finalfullsuite and frozen312portablepublication remain pending.",
+    "Final completion: all22 individual reviews approved. 1156 TypeScript +15 media/verifier tests pass; app/strict guide types, production build and diff check pass with604 frozen inputs unchanged. Raw audit312demos/48544frames and final compressed portable312demos/48544frames both pass, no external requests. Defaultq34 portable24385717bytes, full dimensions/exact source alpha for used media, all20 new attack atlases retained. Native bounded desktop/mobile/intermediate controls and dark/light previews pass. Published inline HTML and standalone offline guide; final-validation/publication.json supersedes earlier pending milestone wording."
+  ],
+  "finalCompletion": {
+    "complete": true,
+    "characterReviews": 22,
+    "automatedTestsPassed": 1171,
+    "rawAndPortableDemosEach": 312,
+    "rawAndPortableFramesEach": 48544,
+    "publication": "final-validation/publication.json",
+    "portableGuide": "../moveset-guide/ataques-arena-criolla.html",
+    "historicalNotes": "integrationNotes records chronological milestones; pending statements there are superseded by this finalCompletion record."
+  }
+}

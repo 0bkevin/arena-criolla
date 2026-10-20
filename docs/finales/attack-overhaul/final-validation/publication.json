@@ -1,0 +1,76 @@
+{
+  "createdAtUtc": "2026-10-20T00:49:27.404674+00:00",
+  "complete": true,
+  "characterReviews": 22,
+  "characterWorkflow": "One dedicated agent per character, sequential character work with independent root approval before the next character.",
+  "automatedTests": {
+    "passed": 1171,
+    "failed": 0,
+    "report": "docs/finales/attack-overhaul/final-validation/report.json"
+  },
+  "rawDrawAudit": {
+    "passed": true,
+    "demos": 312,
+    "frames": 48544,
+    "fingerprint": "c602b9dc5daba5a354b96123e8067ae76b28b1c8a16a6121c9ccd8f0f917e45f",
+    "report": "docs/finales/moveset-guide/draw-audit.json"
+  },
+  "portableVerification": {
+    "passed": true,
+    "demos": 312,
+    "frames": 48544,
+    "externalResourceRequests": 0,
+    "report": "docs/finales/moveset-guide/portable-verification.json"
+  },
+  "ui": {
+    "passed": true,
+    "nativeReport": "docs/finales/attack-overhaul/final-validation/guide-ui-smoke.json",
+    "viewports": [
+      [
+        1280,
+        800
+      ],
+      [
+        360,
+        800
+      ],
+      [
+        768,
+        800
+      ]
+    ],
+    "themePreviews": {
+      "width": 728,
+      "appearances": [
+        "dark",
+        "light"
+      ],
+      "contentHeight": 1337,
+      "consoleMessages": []
+    },
+    "scope": "Bounded visual, native keyboard and mouse confirmation; resized Chromium, not physical-touch or full WCAG testing."
+  },
+  "artifact": {
+    "file": "docs/finales/moveset-guide/ataques-arena-criolla.html",
+    "bytes": 24385717,
+    "sha256": "c86c703ecafe156cd10ad31d24da1b60c60e8925e9a685e3291a35a930cea428",
+    "offline": true,
+    "fighters": 52,
+    "movesPerFighter": 6,
+    "newAttackPreviewRgbQuality": 34,
+    "dimensionsAndAlpha": "Unchanged for used images; unused optional images require current exhaustive draw proof and guarded full-size transparent placeholders. Original game assets untouched."
+  },
+  "threadPublication": {
+    "attachmentId": "df28393c-e9df-48e5-b42d-238b622bfd95-c832ff22-d8e1-46e6-9cf5-b628d98cf43a-html",
+    "title": "Arena Criolla · Ataques y definitivas",
+    "height": 1337
+  },
+  "canonicalPreservationReport": "docs/finales/attack-overhaul/canonical-main-preservation.json",
+  "knownLimitations": [
+    "Some legacy seated reactions retain documented canonical fallback poses; not all52 rivals have newly painted seated art.",
+    "Captured transformed fighters retain canonical costume poses, as documented in shared transport review.",
+    "Per-character dossiers state the actual sampled visual and geometry scope; roster mechanics checks do not claim every possible anatomical hand placement was individually viewed.",
+    "The production build retains its existing >500kB bundle warning."
+  ],
+  "gitCommitOrPushPerformed": false
+}

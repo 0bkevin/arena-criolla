@@ -1,0 +1,9 @@
+{
+  "name": "guide-typecheck",
+  "command": "npx tsc --noEmit --strict --target ES2022 --module ESNext --moduleResolution Bundler --lib ES2022,DOM,DOM.Iterable --resolveJsonModule --esModuleInterop --skipLibCheck docs/finales/moveset-guide/guide.ts",
+  "startedAtUtc": "2026-10-20T00:33:07.213696+00:00",
+  "finishedAtUtc": "2026-10-20T00:33:10.940420+00:00",
+  "durationSeconds": 3.727,
+  "exitCode": 0,
+  "log": "docs/finales/attack-overhaul/final-validation/guide-typecheck.log"
+}
