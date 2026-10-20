@@ -1,21 +1,21 @@
+import { COMMUNITY_CHARACTERS } from "../../shared/community";
 import {
   FIGHTERS,
   STAGES,
   fighterById,
   type FighterId,
 } from "../../shared/content";
-import atlasManifest from "../../shared/sprite-geometry.json";
-import { presentationById } from "../../shared/presentation";
 import entranceManifest from "../../shared/entrance-assets.json";
-import { COMMUNITY_CHARACTERS } from "../../shared/community";
-import { isolateFramePixels } from "./sprite-isolation";
+import { presentationById } from "../../shared/presentation";
+import atlasManifest from "../../shared/sprite-geometry.json";
 import { preparationWorker } from "./preparation-worker";
+import { isolateFramePixels } from "./sprite-isolation";
 
 import courierManifest from "../../shared/courier-assets.json";
-import { finaleAsset } from "../../shared/finales";
 import finaleActors from "../../shared/finale-actor-assets.json";
 import cafeFurniture from "../../shared/finale-cafe-assets.json";
 import finaleDesk from "../../shared/finale-desk-assets.json";
+import { finaleAsset, finaleById } from "../../shared/finales";
 import perroMujeriego from "../../shared/perro-mujeriego-assets.json";
 import { ATTACK_ART } from "./attack-art";
 
@@ -420,7 +420,8 @@ export async function preloadAssets(
   const finaleFiles = [
     ...new Set(
       fighters.flatMap((id) => {
-        const asset = finaleAsset(id);
+        const capture = finaleById(id)?.mode === "capture";
+        const asset = capture ? finaleAsset(id) : undefined;
         const seated = (
           finaleActors.seated as Record<string, { file: string }>
         )[id];
@@ -439,7 +440,7 @@ export async function preloadAssets(
           ...(ATTACK_ART[id] ? [ATTACK_ART[id].file] : []),
           ...(asset ? [asset.file] : []),
           ...(hasSeatedFinale && seated ? [seated.file] : []),
-          ...(performer ? [performer.file] : []),
+          ...(capture && performer ? [performer.file] : []),
           ...(choreographyDancer
             ? [choreographyDancer.file]
             : hasNacho && dancer
