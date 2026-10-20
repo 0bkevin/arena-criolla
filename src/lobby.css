@@ -763,10 +763,6 @@ body {
   color: var(--ink);
   font-size: 11px;
 }
-.arcade-search > span {
-  color: #7a647b;
-  font: 500 10px var(--pixel);
-}
 .arcade-search:focus-within {
   border-color: var(--ink);
 }

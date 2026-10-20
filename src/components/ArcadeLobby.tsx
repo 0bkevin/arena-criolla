@@ -455,9 +455,6 @@ export function ArcadeLobby(props: Props) {
                       }
                     }}
                   />
-                  <span>
-                    {props.fighters.length}/{FIGHTERS.length}
-                  </span>
                 </div>
               )}
               <div

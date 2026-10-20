@@ -3756,10 +3756,6 @@ kbd {
 .fighter-search:focus-within {
   border-color: #dfff7b;
 }
-.fighter-search > span {
-  font-size: 11px;
-  color: #dfff7b;
-}
 @media (min-width: 1024px) {
   .fight-setup {
     position: sticky;

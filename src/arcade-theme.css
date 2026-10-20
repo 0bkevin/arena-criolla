@@ -688,8 +688,11 @@ body {
   margin: 0 0 8px;
   background: #071425;
   color: #b1c4dd;
-  border: 1px solid #ffd45a80;
+  border: 1px solid #344a64;
   border-radius: 4px;
+}
+.in-lobby .arcade-search:focus-within {
+  background: #1a2e46;
 }
 .in-lobby .arcade-search input {
   color: var(--paper);
@@ -700,9 +703,6 @@ body {
 }
 .in-lobby .arcade-search input::placeholder {
   color: #92a5bf;
-}
-.in-lobby .arcade-search > span {
-  color: #a2b5cf;
 }
 .in-lobby .roster-categories {
   gap: 6px;
@@ -1186,6 +1186,9 @@ body {
 .in-lobby .arcade-session input:focus-visible {
   outline: 2px solid var(--coin);
   outline-offset: 3px;
+}
+.in-lobby .arcade-session .arcade-search input:focus-visible {
+  outline: none;
 }
 .in-lobby .modal {
   background: #13243a;
