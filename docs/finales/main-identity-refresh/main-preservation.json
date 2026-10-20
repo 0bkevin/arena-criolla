@@ -1,0 +1,75 @@
+{
+  "main": "da8b0a373ab494d8261d71a4fc27f7db1c9b2299",
+  "files": [
+    {
+      "file": "assets/source/capriles-v39.png",
+      "sha256": "c3b642de30c956e39652c56b0502d8106d72d51dc2e5f6f43e0c848986da9236",
+      "identicalToMain": true
+    },
+    {
+      "file": "public/assets/capriles-v39.webp",
+      "sha256": "3cd05e77341bd37d2e077082c1355d7a4b3cfd5e76a6a203e427a7e7d66dc574",
+      "identicalToMain": true
+    },
+    {
+      "file": "assets/source/capriles-v39-defiant-entrance.png",
+      "sha256": "3d9d512e51b53712f9ca56dddd887334832e7b5f1e90e76a122b9ec9d43c902b",
+      "identicalToMain": true
+    },
+    {
+      "file": "public/assets/capriles-v39-defiant-entrance.webp",
+      "sha256": "551e53eea95afeab53cb442b26dafe821086755c647fd0687cdf9254d5093089",
+      "identicalToMain": true
+    },
+    {
+      "file": "assets/source/nacho-v42.png",
+      "sha256": "a8db309ac56b17832a2988248d098bfef28deb7d9fde9f6d44a9cf090851cbdb",
+      "identicalToMain": true
+    },
+    {
+      "file": "public/assets/nacho-v42.webp",
+      "sha256": "bc7e9631ba5a9dcf67ebec8eafa87d0ee04283b79c7521de0831bc5933fad014",
+      "identicalToMain": true
+    },
+    {
+      "file": "assets/source/nacho-v42-defiant-entrance.png",
+      "sha256": "c94d5e0f0f13bf8771d539c5cbb7117b16d9d97163b98107bfb7e87dd243bbbb",
+      "identicalToMain": true
+    },
+    {
+      "file": "public/assets/nacho-v42-defiant-entrance.webp",
+      "sha256": "2660aae535e94254b68d9c4dd09188e6487f8a172b3a9ef8a01622735ef4a667",
+      "identicalToMain": true
+    },
+    {
+      "file": "assets/source/javier-v43.png",
+      "sha256": "a29882c8776217c0e5acfa85a285d8393984f5743bef7b7572f6e83ea1d1094d",
+      "identicalToMain": true
+    },
+    {
+      "file": "public/assets/javier-v43.webp",
+      "sha256": "1dd8e6a7abd0d0b8b7891ba31774041ed7c566f8412dd93db6dc26310cfa0bcd",
+      "identicalToMain": true
+    },
+    {
+      "file": "assets/source/javier-v43-defiant-entrance.png",
+      "sha256": "3dfc12e9f4ce44ecaf12ce058a5fe4b700d0f36a325ef100af866c44cfb49ec5",
+      "identicalToMain": true
+    },
+    {
+      "file": "public/assets/javier-v43-defiant-entrance.webp",
+      "sha256": "c4b96bb0f58ed4bb0401cfae7d5ebd3c1d94f3341e2e086e386dfaa4bd30b8c6",
+      "identicalToMain": true
+    },
+    {
+      "file": "assets/source/knoche-v46.png",
+      "sha256": "462bca0654e1ce79bc4060967447a9a17a789bf322c1818ef9ddadc89cfbec6b",
+      "identicalToMain": true
+    },
+    {
+      "file": "public/assets/knoche-v46.webp",
+      "sha256": "1c8fb2c57def02262f80b8a9ae9c6ad3c1e7c26c876c84382e160b4d2d676302",
+      "identicalToMain": true
+    }
+  ]
+}

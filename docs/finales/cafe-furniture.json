@@ -1,0 +1,120 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "assets/source/finales/finales-cafe-furniture.png",
+  "normalized": "assets/source/finales/finales-cafe-furniture-packed.png",
+  "destination": "public/assets/finales-cafe-furniture.webp",
+  "sourceWidth": 1254,
+  "sourceHeight": 1254,
+  "width": 1408,
+  "height": 1408,
+  "cellSize": 704,
+  "frames": {
+    "leftChair": {
+      "x": 143,
+      "y": 36,
+      "width": 417,
+      "height": 631
+    },
+    "rightChair": {
+      "x": 848,
+      "y": 31,
+      "width": 415,
+      "height": 642
+    },
+    "table": {
+      "x": 58,
+      "y": 762,
+      "width": 587,
+      "height": 588
+    },
+    "cup": {
+      "x": 904,
+      "y": 866,
+      "width": 304,
+      "height": 379
+    }
+  },
+  "objects": [
+    {
+      "name": "leftChair",
+      "sourceBounds": {
+        "x": 130,
+        "y": 10,
+        "width": 417,
+        "height": 631
+      },
+      "frame": {
+        "x": 143,
+        "y": 36,
+        "width": 417,
+        "height": 631
+      },
+      "pixels": 133469,
+      "corePixels": 115312
+    },
+    {
+      "name": "rightChair",
+      "sourceBounds": {
+        "x": 710,
+        "y": 1,
+        "width": 415,
+        "height": 642
+      },
+      "frame": {
+        "x": 848,
+        "y": 31,
+        "width": 415,
+        "height": 642
+      },
+      "pixels": 133056,
+      "corePixels": 115131
+    },
+    {
+      "name": "table",
+      "sourceBounds": {
+        "x": 78,
+        "y": 656,
+        "width": 587,
+        "height": 588
+      },
+      "frame": {
+        "x": 58,
+        "y": 762,
+        "width": 587,
+        "height": 588
+      },
+      "pixels": 148554,
+      "corePixels": 136866
+    },
+    {
+      "name": "cup",
+      "sourceBounds": {
+        "x": 805,
+        "y": 783,
+        "width": 304,
+        "height": 379
+      },
+      "frame": {
+        "x": 904,
+        "y": 866,
+        "width": 304,
+        "height": 379
+      },
+      "pixels": 53258,
+      "corePixels": 46505
+    }
+  ],
+  "sourceSha256": "b222e64ab9128f2acf5df93c6bbaf2f428519336d1f1c7b01ff0f73a0c269148",
+  "normalizedSha256": "5649a8a9a3b985ad14eb326d94a331e0850480c1987c8d03f5676a0a1482190a",
+  "sha256": "e29dad731b2588d6bdd3ca3001f0738dc11f6b1ede18090d65e1fce9d682aaab",
+  "rgbaSha256": "f4fac45829c9a6a080959016bb23d2e0d74e329a12529cc36a20738f1afe8f40",
+  "alphaSha256": "741f292a5ad4392b855635fd68b0439cde2b36d1aaa2fb40c2b186f76b676187",
+  "discardedNoise": {
+    "components": 1342,
+    "pixels": 6586,
+    "maxAlpha": 1
+  },
+  "preservation": "Source untouched; every RGBA pixel in the four complete nonzero-alpha connected objects is copied exactly. Only disconnected alpha-1 background noise is discarded. No repainting or rescaling.",
+  "bytes": 781176,
+  "encoding": "lossless RGBA"
+}

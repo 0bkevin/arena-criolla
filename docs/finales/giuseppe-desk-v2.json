@@ -1,0 +1,45 @@
+{
+  "tool": "image_gen.imagegen",
+  "source": "assets/source/finales/finales-giuseppe-desk-v2-generated.png",
+  "normalized": "assets/source/finales/finales-giuseppe-desk-v2.png",
+  "destination": "public/assets/finales-giuseppe-desk-v2.webp",
+  "sourceWidth": 1374,
+  "sourceHeight": 1145,
+  "width": 909,
+  "height": 941,
+  "sourceBounds": {
+    "x": 274,
+    "y": 140,
+    "width": 877,
+    "height": 909
+  },
+  "frame": {
+    "x": 16,
+    "y": 16,
+    "width": 877,
+    "height": 909
+  },
+  "pixels": 301008,
+  "corePixels": 287107,
+  "preservedAntialiasSatellites": [
+    {
+      "x": 981,
+      "y": 532,
+      "pixels": 3,
+      "maxAlpha": 2
+    }
+  ],
+  "sourceSha256": "bace82d6712cd879905b43676bf3cd779fc6230201bb58fc164181b37b095b9f",
+  "normalizedSha256": "13e7cf258372dec5b31143fc0cd4b751f16f2d0dcc15d20662ba898a1a0438ac",
+  "sha256": "dc86e52ae53910da061870aab7a6452cdec7514a540f603bfaf5bad60b40ac3c",
+  "rgbaSha256": "7aaef28733012ce96ee9704ebb895d00262e9f313d6db319faead9b13d857354",
+  "alphaSha256": "c68484de613e26b64489b147b88ecc23e630a83bde99c0874b72b3834a20ed35",
+  "discardedNoise": {
+    "components": 242,
+    "pixels": 566,
+    "maxAlpha": 1
+  },
+  "preservation": "Generated source untouched; every RGBA pixel of the complete desk/laptop object and tiny alpha-2 antialias satellites within 2px of its outline is copied exactly with 16px transparent margins. Only small disconnected alpha-1 background noise is discarded. No repainting or rescaling.",
+  "bytes": 404996,
+  "encoding": "lossless RGBA"
+}

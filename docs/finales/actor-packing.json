@@ -1,0 +1,1474 @@
+{
+  "version": 1,
+  "fingerprint": "f615b6c5a7289fbee3ad988ce08107870510b31f320514cbb160c17b537cca52",
+  "cell": 512,
+  "baseline": 482,
+  "danceOverrides": {
+    "manifest": "shared/perro-mujeriego-assets.json",
+    "sha256": "349ff3fe9d7e911b79e00945fd51f1699a71d72996cd3df9314248ef1f4e0453",
+    "ids": [
+      "capriles",
+      "nacho",
+      "javier",
+      "knoche"
+    ]
+  },
+  "assets": [
+    {
+      "file": "finales-seated-v1-1",
+      "raw": "assets/source/finales/finales-seated-v1-1-generated.png",
+      "source": "assets/source/finales/finales-seated-v1-1.png",
+      "runtime": "public/assets/finales-seated-v1-1.webp",
+      "columns": 4,
+      "rows": 2,
+      "inputSha256": "6fdd70ec38c79a1981ac50a00c5981c13e52ff3ad481858368ecd64770e845cd",
+      "sourceSha256": "d3fbeee78754a9fdbd84e173cd6b5e823629dae006585859ef70115656f3044d",
+      "runtimeSha256": "a8d1c965b06e3f8ff1b5b8e2f4b4a4d977ef8f3eb7a925f76c1eb8bcd04fcb46",
+      "frames": [
+        {
+          "frame": {
+            "x": 104,
+            "y": 42,
+            "width": 304,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 125.18192535838291
+        },
+        {
+          "frame": {
+            "x": 619,
+            "y": 39,
+            "width": 298,
+            "height": 443
+          },
+          "bodyHeight": 443,
+          "anchorX": 115.98319507490268
+        },
+        {
+          "frame": {
+            "x": 1132,
+            "y": 41,
+            "width": 296,
+            "height": 441
+          },
+          "bodyHeight": 441,
+          "anchorX": 120.92589680388024
+        },
+        {
+          "frame": {
+            "x": 1638,
+            "y": 40,
+            "width": 308,
+            "height": 442
+          },
+          "bodyHeight": 442,
+          "anchorX": 114.75962313510837
+        },
+        {
+          "frame": {
+            "x": 108,
+            "y": 561,
+            "width": 295,
+            "height": 433
+          },
+          "bodyHeight": 433,
+          "anchorX": 109.63435899459171
+        },
+        {
+          "frame": {
+            "x": 602,
+            "y": 555,
+            "width": 331,
+            "height": 439
+          },
+          "bodyHeight": 439,
+          "anchorX": 126.82239203355985
+        },
+        {
+          "frame": {
+            "x": 1125,
+            "y": 569,
+            "width": 309,
+            "height": 425
+          },
+          "bodyHeight": 425,
+          "anchorX": 105.92497637876909
+        },
+        {
+          "frame": {
+            "x": 1642,
+            "y": 562,
+            "width": 299,
+            "height": 432
+          },
+          "bodyHeight": 432,
+          "anchorX": 104.04461044003487
+        }
+      ],
+      "alphaSha256": "57ddb4048a4d6588591ec292ad933181c3b22e649c6bb202355a9c85bc06aaac",
+      "rgbaSha256": "34a9c71da8b216a2701c8d342779c05d155727de57d543952ddea50382be504b",
+      "fingerprint": "3469f3f6e34ade3909acf0a9007c8d5eee7c60046911931a3c9fa26b22451321"
+    },
+    {
+      "file": "finales-seated-v1-2",
+      "raw": "assets/source/finales/finales-seated-v1-2-generated.png",
+      "source": "assets/source/finales/finales-seated-v1-2.png",
+      "runtime": "public/assets/finales-seated-v1-2.webp",
+      "columns": 4,
+      "rows": 2,
+      "inputSha256": "d325723295b234de8e9dd606cc58e87e26391f8581af6ec7537dde8acc589eee",
+      "sourceSha256": "a65f7dd1f897d99f14cfac085ff4d659e69f6ad1c0945027ffa13a082d6117a0",
+      "runtimeSha256": "53ad18a3474b8c5d557c4054fd08e4cdd2db75997f09f81b56da53926457fd3a",
+      "frames": [
+        {
+          "frame": {
+            "x": 111,
+            "y": 42,
+            "width": 289,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 112.81045155237504
+        },
+        {
+          "frame": {
+            "x": 584,
+            "y": 51,
+            "width": 368,
+            "height": 431
+          },
+          "bodyHeight": 431,
+          "anchorX": 166.04897682961314
+        },
+        {
+          "frame": {
+            "x": 1135,
+            "y": 48,
+            "width": 289,
+            "height": 434
+          },
+          "bodyHeight": 434,
+          "anchorX": 104.29356094314248
+        },
+        {
+          "frame": {
+            "x": 1652,
+            "y": 47,
+            "width": 279,
+            "height": 435
+          },
+          "bodyHeight": 435,
+          "anchorX": 101.25004702612611
+        },
+        {
+          "frame": {
+            "x": 111,
+            "y": 575,
+            "width": 289,
+            "height": 419
+          },
+          "bodyHeight": 419,
+          "anchorX": 103.87015401576257
+        },
+        {
+          "frame": {
+            "x": 637,
+            "y": 576,
+            "width": 262,
+            "height": 418
+          },
+          "bodyHeight": 418,
+          "anchorX": 95.27214073977441
+        },
+        {
+          "frame": {
+            "x": 1156,
+            "y": 583,
+            "width": 247,
+            "height": 411
+          },
+          "bodyHeight": 411,
+          "anchorX": 79.42826631617858
+        },
+        {
+          "frame": {
+            "x": 1606,
+            "y": 575,
+            "width": 371,
+            "height": 419
+          },
+          "bodyHeight": 419,
+          "anchorX": 153.91540768912216
+        }
+      ],
+      "alphaSha256": "b2b566188244f582f4f01d751514ccf23421e04e911a3c3a34f0a3203632cf86",
+      "rgbaSha256": "1e35ca656e0ba0c9ac3d6bd9a5f5d15a5dac216023777f68ecfd00b82da49aa3",
+      "fingerprint": "3469f3f6e34ade3909acf0a9007c8d5eee7c60046911931a3c9fa26b22451321"
+    },
+    {
+      "file": "finales-seated-v1-3",
+      "raw": "assets/source/finales/finales-seated-v1-3-generated.png",
+      "source": "assets/source/finales/finales-seated-v1-3.png",
+      "runtime": "public/assets/finales-seated-v1-3.webp",
+      "columns": 4,
+      "rows": 2,
+      "inputSha256": "274ed8620f943328d2336a77e1add22aeee697a5110bcb9d02e283824a609fcb",
+      "sourceSha256": "c48f426d7419847c87c2dde4694fa457bbf5e61cd599f0560f623b55b3a15f66",
+      "runtimeSha256": "cd716a58b385f03802415d4a6460f26135b61f88235c2e89f8f099e32d67e187",
+      "frames": [
+        {
+          "frame": {
+            "x": 102,
+            "y": 42,
+            "width": 307,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 123.4527515742774
+        },
+        {
+          "frame": {
+            "x": 613,
+            "y": 41,
+            "width": 309,
+            "height": 441
+          },
+          "bodyHeight": 441,
+          "anchorX": 119.09829714813644
+        },
+        {
+          "frame": {
+            "x": 1118,
+            "y": 40,
+            "width": 323,
+            "height": 442
+          },
+          "bodyHeight": 442,
+          "anchorX": 129.29549925591581
+        },
+        {
+          "frame": {
+            "x": 1651,
+            "y": 40,
+            "width": 282,
+            "height": 442
+          },
+          "bodyHeight": 442,
+          "anchorX": 103.99961288864523
+        },
+        {
+          "frame": {
+            "x": 95,
+            "y": 559,
+            "width": 321,
+            "height": 435
+          },
+          "bodyHeight": 435,
+          "anchorX": 129.44753336271808
+        },
+        {
+          "frame": {
+            "x": 614,
+            "y": 559,
+            "width": 307,
+            "height": 435
+          },
+          "bodyHeight": 435,
+          "anchorX": 115.89652217017581
+        },
+        {
+          "frame": {
+            "x": 1122,
+            "y": 559,
+            "width": 316,
+            "height": 435
+          },
+          "bodyHeight": 435,
+          "anchorX": 117.95319321036021
+        },
+        {
+          "frame": {
+            "x": 1639,
+            "y": 561,
+            "width": 306,
+            "height": 433
+          },
+          "bodyHeight": 433,
+          "anchorX": 132.13028732465764
+        }
+      ],
+      "alphaSha256": "807cccd0a0426413dcb97c3531036417ab4e2cb6cd83abf674e09326a1d17db4",
+      "rgbaSha256": "28796d4caecfb22e5ae6a6f7d9c834482a645ce456170a1f0b2b194d76e6040c",
+      "fingerprint": "3469f3f6e34ade3909acf0a9007c8d5eee7c60046911931a3c9fa26b22451321"
+    },
+    {
+      "file": "finales-seated-v1-4",
+      "raw": "assets/source/finales/finales-seated-v1-4-generated.png",
+      "source": "assets/source/finales/finales-seated-v1-4.png",
+      "runtime": "public/assets/finales-seated-v1-4.webp",
+      "columns": 4,
+      "rows": 2,
+      "inputSha256": "ee1b4c31e8a54b276c6f1da86d9ea789a4881243be09e9f7de0c2d74721f79e0",
+      "sourceSha256": "787438e1ed4884ce57cd79cb62e6bce4e7c0f2b38de4937faf9dc955613f5f78",
+      "runtimeSha256": "ea50ae7bd7216bdf8bad1c2f61d8f0906123d1ec1cdb32a7f19f77f2514be31e",
+      "frames": [
+        {
+          "frame": {
+            "x": 120,
+            "y": 42,
+            "width": 271,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 103.15600127179718
+        },
+        {
+          "frame": {
+            "x": 627,
+            "y": 49,
+            "width": 281,
+            "height": 433
+          },
+          "bodyHeight": 433,
+          "anchorX": 101.83923525822681
+        },
+        {
+          "frame": {
+            "x": 1138,
+            "y": 50,
+            "width": 283,
+            "height": 432
+          },
+          "bodyHeight": 432,
+          "anchorX": 92.2120849845021
+        },
+        {
+          "frame": {
+            "x": 1659,
+            "y": 52,
+            "width": 265,
+            "height": 430
+          },
+          "bodyHeight": 430,
+          "anchorX": 76.95444769407926
+        },
+        {
+          "frame": {
+            "x": 90,
+            "y": 580,
+            "width": 331,
+            "height": 414
+          },
+          "bodyHeight": 414,
+          "anchorX": 125.44450674041317
+        },
+        {
+          "frame": {
+            "x": 612,
+            "y": 576,
+            "width": 312,
+            "height": 418
+          },
+          "bodyHeight": 418,
+          "anchorX": 102.3955856467339
+        },
+        {
+          "frame": {
+            "x": 1133,
+            "y": 578,
+            "width": 294,
+            "height": 416
+          },
+          "bodyHeight": 416,
+          "anchorX": 112.56281056720073
+        },
+        {
+          "frame": {
+            "x": 1616,
+            "y": 571,
+            "width": 351,
+            "height": 423
+          },
+          "bodyHeight": 423,
+          "anchorX": 172.27511127399498
+        }
+      ],
+      "alphaSha256": "874ed6fdc0bb636a8e17d96a80e6570eaeb13c8ffe758cdd163b55c586744b1d",
+      "rgbaSha256": "f47114befc72dbd95cab081da791c39c609b3536f8b7495d20c6b7fcba6506d2",
+      "fingerprint": "3469f3f6e34ade3909acf0a9007c8d5eee7c60046911931a3c9fa26b22451321"
+    },
+    {
+      "file": "finales-seated-v1-5",
+      "raw": "assets/source/finales/finales-seated-v1-5-generated.png",
+      "source": "assets/source/finales/finales-seated-v1-5.png",
+      "runtime": "public/assets/finales-seated-v1-5.webp",
+      "columns": 4,
+      "rows": 2,
+      "inputSha256": "fc3dac351fd04a6d65319bdd8840a5c3d5dc4ba523b4c1ea7f0fec36998c347b",
+      "sourceSha256": "28b9bdfb0ee1a08df2111f80bcdd61886c6838b359aea3a5632999a85a8066e7",
+      "runtimeSha256": "e69289a67be39ac5e789e3378998292eb7c983cca2109656c3873a45571581f8",
+      "frames": [
+        {
+          "frame": {
+            "x": 78,
+            "y": 42,
+            "width": 356,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 159.13483696348803
+        },
+        {
+          "frame": {
+            "x": 587,
+            "y": 37,
+            "width": 362,
+            "height": 445
+          },
+          "bodyHeight": 445,
+          "anchorX": 160.52036707766817
+        },
+        {
+          "frame": {
+            "x": 1122,
+            "y": 33,
+            "width": 315,
+            "height": 449
+          },
+          "bodyHeight": 449,
+          "anchorX": 147.99935050206406
+        },
+        {
+          "frame": {
+            "x": 1638,
+            "y": 34,
+            "width": 307,
+            "height": 448
+          },
+          "bodyHeight": 448,
+          "anchorX": 123.07776705985263
+        },
+        {
+          "frame": {
+            "x": 55,
+            "y": 559,
+            "width": 401,
+            "height": 435
+          },
+          "bodyHeight": 435,
+          "anchorX": 207.09873305298086
+        },
+        {
+          "frame": {
+            "x": 583,
+            "y": 574,
+            "width": 369,
+            "height": 420
+          },
+          "bodyHeight": 420,
+          "anchorX": 182.15957756191685
+        },
+        {
+          "frame": {
+            "x": 1119,
+            "y": 579,
+            "width": 321,
+            "height": 415
+          },
+          "bodyHeight": 415,
+          "anchorX": 161.5313538867528
+        },
+        {
+          "frame": {
+            "x": 1600,
+            "y": 576,
+            "width": 384,
+            "height": 418
+          },
+          "bodyHeight": 418,
+          "anchorX": 208.3103590490845
+        }
+      ],
+      "alphaSha256": "8f496287c28e2a1b0c9217054dd8b093fb253670d459c761402bd461a35797b5",
+      "rgbaSha256": "7efa3bd1c536cd17446bd53aebf5e30c70cac38c54ac57bfc8788c3abc45e022",
+      "fingerprint": "3469f3f6e34ade3909acf0a9007c8d5eee7c60046911931a3c9fa26b22451321"
+    },
+    {
+      "file": "finales-seated-v1-6",
+      "raw": "assets/source/finales/finales-seated-v1-6-generated.png",
+      "source": "assets/source/finales/finales-seated-v1-6.png",
+      "runtime": "public/assets/finales-seated-v1-6.webp",
+      "columns": 4,
+      "rows": 2,
+      "inputSha256": "3871b3d2e74274963ff2afd72152ee2db71c9963ecc3d431fb48244222caff45",
+      "sourceSha256": "dcf3254d90c55a726483f86e06c3e65a315d2fea3a256d511e4d8eef0154e0be",
+      "runtimeSha256": "cb9f11962c3a41c2dd91a113bb25906b647eb3f19cbe47fc7f1aa3ca283c1166",
+      "frames": [
+        {
+          "frame": {
+            "x": 141,
+            "y": 42,
+            "width": 229,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 62.97399785708438
+        },
+        {
+          "frame": {
+            "x": 620,
+            "y": 56,
+            "width": 295,
+            "height": 426
+          },
+          "bodyHeight": 426,
+          "anchorX": 119.37273815413253
+        },
+        {
+          "frame": {
+            "x": 1135,
+            "y": 59,
+            "width": 289,
+            "height": 423
+          },
+          "bodyHeight": 423,
+          "anchorX": 108.93786639329181
+        },
+        {
+          "frame": {
+            "x": 1644,
+            "y": 57,
+            "width": 295,
+            "height": 425
+          },
+          "bodyHeight": 425,
+          "anchorX": 112.48078238723646
+        },
+        {
+          "frame": {
+            "x": 108,
+            "y": 579,
+            "width": 296,
+            "height": 415
+          },
+          "bodyHeight": 415,
+          "anchorX": 110.76586274734981
+        },
+        {
+          "frame": {
+            "x": 619,
+            "y": 580,
+            "width": 298,
+            "height": 414
+          },
+          "bodyHeight": 414,
+          "anchorX": 110.90977233071372
+        },
+        {
+          "frame": {
+            "x": 1159,
+            "y": 562,
+            "width": 241,
+            "height": 432
+          },
+          "bodyHeight": 432,
+          "anchorX": 60.01592639862748
+        },
+        {
+          "frame": {
+            "x": 1636,
+            "y": 572,
+            "width": 312,
+            "height": 422
+          },
+          "bodyHeight": 422,
+          "anchorX": 116.83364038133013
+        }
+      ],
+      "alphaSha256": "2b2c7f8f258b041564cde497bc843a61d962622a27471d4ad33d0dc2693614c6",
+      "rgbaSha256": "6a0be58aa458c3f8249c6cfddb60602eb51c3967d25f75c09ce9d3f43f0e997d",
+      "fingerprint": "3469f3f6e34ade3909acf0a9007c8d5eee7c60046911931a3c9fa26b22451321"
+    },
+    {
+      "file": "finales-capriles-cafe",
+      "raw": "assets/source/finales/finales-capriles-cafe-generated.png",
+      "source": "assets/source/finales/finales-capriles-cafe.png",
+      "runtime": "public/assets/finales-capriles-cafe.webp",
+      "columns": 2,
+      "rows": 2,
+      "inputSha256": "9e10fef661d88055437ba117fc0d716f34184b28e46320ba328eaaa69c1973fa",
+      "sourceSha256": "7fc690038cb2799b98f2f32ad7ee516cff3b93da92db7c1b98de1a37b473b3a3",
+      "runtimeSha256": "61688450c83efcd05310dd754c9d4501bc761ecc5c95de5f3864baccb5100b84",
+      "fingerprint": "f615b6c5a7289fbee3ad988ce08107870510b31f320514cbb160c17b537cca52",
+      "frames": [
+        {
+          "frame": {
+            "x": 77,
+            "y": 42,
+            "width": 357,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 149.12970288510098
+        },
+        {
+          "frame": {
+            "x": 602,
+            "y": 41,
+            "width": 331,
+            "height": 441
+          },
+          "bodyHeight": 440,
+          "anchorX": 130.04788684069072
+        },
+        {
+          "frame": {
+            "x": 85,
+            "y": 564,
+            "width": 341,
+            "height": 430
+          },
+          "bodyHeight": 440,
+          "anchorX": 135.19748892363074
+        },
+        {
+          "frame": {
+            "x": 574,
+            "y": 562,
+            "width": 388,
+            "height": 432
+          },
+          "bodyHeight": 440,
+          "anchorX": 156.10722702022218
+        }
+      ],
+      "alphaSha256": "78c43db192c63cc0883414220753394d6a65f5325f2866cdf3a11c164b2376bf",
+      "rgbaSha256": "4f0ce771c0e21074983e5a7269b4b8ed8478cfab6273d1746197a77a3cac1f92"
+    },
+    {
+      "file": "finales-nacho-dance",
+      "raw": "assets/source/finales/finales-nacho-dance-generated.png",
+      "source": "assets/source/finales/finales-nacho-dance.png",
+      "runtime": "public/assets/finales-nacho-dance.webp",
+      "columns": 4,
+      "rows": 2,
+      "inputSha256": "25726d547f8df40320189e757b4415374d08ff637259d252240bfb29cc951e8d",
+      "sourceSha256": "4e803168e2a689f5aa00b109a966f16a9aafb7676db6629eaf37695d0f7115d5",
+      "runtimeSha256": "47b8221d23025f89938e89b1ee0137aaf741791b7f4bdff8ae4266dd29554866",
+      "fingerprint": "f615b6c5a7289fbee3ad988ce08107870510b31f320514cbb160c17b537cca52",
+      "frames": [
+        {
+          "frame": {
+            "x": 145,
+            "y": 42,
+            "width": 221,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 112.43705839933494
+        },
+        {
+          "frame": {
+            "x": 658,
+            "y": 40,
+            "width": 220,
+            "height": 442
+          },
+          "bodyHeight": 440,
+          "anchorX": 110.61414394513994
+        },
+        {
+          "frame": {
+            "x": 1087,
+            "y": 39,
+            "width": 386,
+            "height": 443
+          },
+          "bodyHeight": 440,
+          "anchorX": 256.7207557819022
+        },
+        {
+          "frame": {
+            "x": 1665,
+            "y": 38,
+            "width": 253,
+            "height": 444
+          },
+          "bodyHeight": 440,
+          "anchorX": 124.07028037151038
+        },
+        {
+          "frame": {
+            "x": 135,
+            "y": 558,
+            "width": 242,
+            "height": 436
+          },
+          "bodyHeight": 440,
+          "anchorX": 125.03441457201254
+        },
+        {
+          "frame": {
+            "x": 647,
+            "y": 560,
+            "width": 242,
+            "height": 434
+          },
+          "bodyHeight": 440,
+          "anchorX": 111.15164660113054
+        },
+        {
+          "frame": {
+            "x": 1134,
+            "y": 544,
+            "width": 292,
+            "height": 450
+          },
+          "bodyHeight": 440,
+          "anchorX": 141.67660042793793
+        },
+        {
+          "frame": {
+            "x": 1669,
+            "y": 559,
+            "width": 245,
+            "height": 435
+          },
+          "bodyHeight": 440,
+          "anchorX": 124.64456053264857
+        }
+      ],
+      "alphaSha256": "3b657fd6742d9d6b99b523afd894dc2aa90be8e865b9197ee92f7a2df0b26a0a",
+      "rgbaSha256": "0e600c0e3ed4ca0fbfc26a53dba46856d011dce8125679f65ec158f8e56f9fa4"
+    },
+    {
+      "file": "finales-giuseppe-hack",
+      "raw": "assets/source/finales/finales-giuseppe-hack-generated.png",
+      "source": "assets/source/finales/finales-giuseppe-hack.png",
+      "runtime": "public/assets/finales-giuseppe-hack.webp",
+      "columns": 4,
+      "rows": 2,
+      "inputSha256": "fdd26d6b8f9f682e76eeddb06cfaaa6131ea72404260b2d793b53463b3d68d0c",
+      "sourceSha256": "e26925104ba3ba6dd9fcc297a3e25fef9185952639332e1e1c7a66d4ee147e00",
+      "runtimeSha256": "e352086be12edc80a4269cb6dd48c50e81d09973f53d6035df1fcc59dd8e9ebf",
+      "frames": [
+        {
+          "frame": {
+            "x": 115,
+            "y": 42,
+            "width": 282,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 103.97523953425454
+        },
+        {
+          "frame": {
+            "x": 625,
+            "y": 42,
+            "width": 285,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 108.89361990163749
+        },
+        {
+          "frame": {
+            "x": 1141,
+            "y": 42,
+            "width": 278,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 103.13039581401127
+        },
+        {
+          "frame": {
+            "x": 1652,
+            "y": 47,
+            "width": 279,
+            "height": 435
+          },
+          "bodyHeight": 440,
+          "anchorX": 129.63326516545374
+        },
+        {
+          "frame": {
+            "x": 113,
+            "y": 566,
+            "width": 286,
+            "height": 428
+          },
+          "bodyHeight": 440,
+          "anchorX": 107.02038316936556
+        },
+        {
+          "frame": {
+            "x": 625,
+            "y": 564,
+            "width": 286,
+            "height": 430
+          },
+          "bodyHeight": 440,
+          "anchorX": 111.68405021838761
+        },
+        {
+          "frame": {
+            "x": 1135,
+            "y": 565,
+            "width": 290,
+            "height": 429
+          },
+          "bodyHeight": 440,
+          "anchorX": 108.79653116297582
+        },
+        {
+          "frame": {
+            "x": 1651,
+            "y": 559,
+            "width": 282,
+            "height": 435
+          },
+          "bodyHeight": 440,
+          "anchorX": 103.09614185662575
+        }
+      ],
+      "alphaSha256": "4832c4be015711d9d875ea0e4fdeefec1f3525db47d40b2028bf058c0aad6460",
+      "rgbaSha256": "bc9b06b763699683722248b4d994a09023da9f35f97ed679af771e9891912057",
+      "fingerprint": "3469f3f6e34ade3909acf0a9007c8d5eee7c60046911931a3c9fa26b22451321"
+    },
+    {
+      "file": "finales-dance-v2-1",
+      "raw": "assets/source/finales/finales-dance-v2-1-generated.png",
+      "source": "assets/source/finales/finales-dance-v2-1.png",
+      "runtime": "public/assets/finales-dance-v2-1.webp",
+      "columns": 4,
+      "rows": 2,
+      "inputSha256": "a09dfcc956d8ce34733c9487715f14eb9081aaa7ca3a449bbe213f8b92ed219c",
+      "sourceSha256": "c715cec9ade0f999a4355c87c2608c1307dc8695fc6d28d54c7dc5548c231147",
+      "runtimeSha256": "b52dfee9459c1ec5b088ffc443387193550231d5270841599225fa246050d70b",
+      "fingerprint": "da123f5e7afb937e91f7f319658d963c9db1de231c79879df6d68935c1ce4c0c",
+      "frames": [
+        {
+          "frame": {
+            "x": 105,
+            "y": 42,
+            "width": 302,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 134.34584980237156
+        },
+        {
+          "frame": {
+            "x": 607,
+            "y": 43,
+            "width": 321,
+            "height": 439
+          },
+          "bodyHeight": 439,
+          "anchorX": 155.5438247011952
+        },
+        {
+          "frame": {
+            "x": 1119,
+            "y": 40,
+            "width": 321,
+            "height": 442
+          },
+          "bodyHeight": 442,
+          "anchorX": 148.77674985656913
+        },
+        {
+          "frame": {
+            "x": 1635,
+            "y": 42,
+            "width": 313,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 153.39635294313658
+        },
+        {
+          "frame": {
+            "x": 98,
+            "y": 558,
+            "width": 316,
+            "height": 436
+          },
+          "bodyHeight": 436,
+          "anchorX": 136.52173913043478
+        },
+        {
+          "frame": {
+            "x": 597,
+            "y": 550,
+            "width": 342,
+            "height": 444
+          },
+          "bodyHeight": 444,
+          "anchorX": 167.69338914184533
+        },
+        {
+          "frame": {
+            "x": 1118,
+            "y": 567,
+            "width": 323,
+            "height": 427
+          },
+          "bodyHeight": 427,
+          "anchorX": 161.8874462623813
+        },
+        {
+          "frame": {
+            "x": 1632,
+            "y": 562,
+            "width": 319,
+            "height": 432
+          },
+          "bodyHeight": 432,
+          "anchorX": 156.51383399209487
+        }
+      ],
+      "alphaSha256": "a708e6fca4222c3d60c5a3ecf0616fa865a766ff5b4fb751d9b97dcb3c508533",
+      "rgbaSha256": "8dce4a1e5f33b4675e92847f393736a87bfb9fdfeb46f213f343349ffbd631e2"
+    },
+    {
+      "file": "finales-dance-v2-2",
+      "raw": "assets/source/finales/finales-dance-v2-2-generated.png",
+      "source": "assets/source/finales/finales-dance-v2-2.png",
+      "runtime": "public/assets/finales-dance-v2-2.webp",
+      "columns": 4,
+      "rows": 2,
+      "inputSha256": "05be1c655ece5b1030bd1e5c8dd0c14c5947d45abc5cb678e88cb82e37435e26",
+      "sourceSha256": "ea736f6fbc2ce5f1f71447109d1f11ad2ce92efd98324b95c7a1a78f37f4a680",
+      "runtimeSha256": "1bb0ed3b0358054a9e05c3cffd62ac6bebe45cd3b25efd53ba11169f8550012b",
+      "fingerprint": "da123f5e7afb937e91f7f319658d963c9db1de231c79879df6d68935c1ce4c0c",
+      "frames": [
+        {
+          "frame": {
+            "x": 107,
+            "y": 46,
+            "width": 297,
+            "height": 436
+          },
+          "bodyHeight": 436,
+          "anchorX": 171.51984519104084
+        },
+        {
+          "frame": {
+            "x": 576,
+            "y": 41,
+            "width": 383,
+            "height": 441
+          },
+          "bodyHeight": 441,
+          "anchorX": 197.58300395256916
+        },
+        {
+          "frame": {
+            "x": 1125,
+            "y": 42,
+            "width": 310,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 176.88932806324112
+        },
+        {
+          "frame": {
+            "x": 1636,
+            "y": 34,
+            "width": 311,
+            "height": 448
+          },
+          "bodyHeight": 448,
+          "anchorX": 123.83596837944664
+        },
+        {
+          "frame": {
+            "x": 97,
+            "y": 555,
+            "width": 318,
+            "height": 439
+          },
+          "bodyHeight": 439,
+          "anchorX": 128.3154761904762
+        },
+        {
+          "frame": {
+            "x": 624,
+            "y": 550,
+            "width": 288,
+            "height": 444
+          },
+          "bodyHeight": 444,
+          "anchorX": 113.91369047619048
+        },
+        {
+          "frame": {
+            "x": 1125,
+            "y": 550,
+            "width": 310,
+            "height": 444
+          },
+          "bodyHeight": 444,
+          "anchorX": 130.96343873517787
+        },
+        {
+          "frame": {
+            "x": 1639,
+            "y": 544,
+            "width": 306,
+            "height": 450
+          },
+          "bodyHeight": 450,
+          "anchorX": 148.0909090909091
+        }
+      ],
+      "alphaSha256": "fb8221e0247258b30c55d2e2668dc584f5518b52d08d0d660fb397d064d691ee",
+      "rgbaSha256": "2abd894d19f5c35ff10dda358b56f1904422f3b3c78b55b1f98b3e1e0afa2a49"
+    },
+    {
+      "file": "finales-dance-v2-3",
+      "raw": "assets/source/finales/finales-dance-v2-3-generated.png",
+      "source": "assets/source/finales/finales-dance-v2-3.png",
+      "runtime": "public/assets/finales-dance-v2-3.webp",
+      "columns": 4,
+      "rows": 2,
+      "inputSha256": "073930531130f23a20f3670ddde53a59911790785d03ce12dba68a5691625cda",
+      "sourceSha256": "d63e4b3bc7c2cd13972bfd1bbc20b5fec10bd7980f91b0a4ae42c5c44b710cb0",
+      "runtimeSha256": "871fad3f629051e178b9d7a4c94a009a354248d0d8222e555ac9b8c5d075c482",
+      "fingerprint": "da123f5e7afb937e91f7f319658d963c9db1de231c79879df6d68935c1ce4c0c",
+      "frames": [
+        {
+          "frame": {
+            "x": 92,
+            "y": 45,
+            "width": 327,
+            "height": 437
+          },
+          "bodyHeight": 437,
+          "anchorX": 130.53359683794466
+        },
+        {
+          "frame": {
+            "x": 589,
+            "y": 45,
+            "width": 358,
+            "height": 437
+          },
+          "bodyHeight": 437,
+          "anchorX": 156.484126984127
+        },
+        {
+          "frame": {
+            "x": 1103,
+            "y": 43,
+            "width": 353,
+            "height": 439
+          },
+          "bodyHeight": 439,
+          "anchorX": 131.64822134387353
+        },
+        {
+          "frame": {
+            "x": 1643,
+            "y": 45,
+            "width": 297,
+            "height": 437
+          },
+          "bodyHeight": 437,
+          "anchorX": 137.0625
+        },
+        {
+          "frame": {
+            "x": 63,
+            "y": 548,
+            "width": 386,
+            "height": 446
+          },
+          "bodyHeight": 446,
+          "anchorX": 186.84888844621514
+        },
+        {
+          "frame": {
+            "x": 590,
+            "y": 551,
+            "width": 355,
+            "height": 443
+          },
+          "bodyHeight": 443,
+          "anchorX": 161.5040650406504
+        },
+        {
+          "frame": {
+            "x": 1099,
+            "y": 544,
+            "width": 361,
+            "height": 450
+          },
+          "bodyHeight": 450,
+          "anchorX": 157.61111111111111
+        },
+        {
+          "frame": {
+            "x": 1628,
+            "y": 557,
+            "width": 327,
+            "height": 437
+          },
+          "bodyHeight": 437,
+          "anchorX": 175.302
+        }
+      ],
+      "alphaSha256": "f954dd39f98f888350a6a1c361de8cd308e6d2005778d877f1068d1a9d763420",
+      "rgbaSha256": "003487922ac696e6aef448806adaf17f05b405e7e9fe1336e51a15de963f5a55"
+    },
+    {
+      "file": "finales-dance-v2-4",
+      "raw": "assets/source/finales/finales-dance-v2-4-generated.png",
+      "source": "assets/source/finales/finales-dance-v2-4.png",
+      "runtime": "public/assets/finales-dance-v2-4.webp",
+      "columns": 4,
+      "rows": 2,
+      "inputSha256": "9d41b7eb0f221f356644ce77632ddf36a91a5c8416b4793d0c4de7b09e4cfdc8",
+      "sourceSha256": "90254380b7713d6938e83ba3e1c7a7cca7161e0acc29fc410562181d96c57052",
+      "runtimeSha256": "69b027a37e46cc9c8a04819ead4eac33bbbe834dfaad13fbb2472ac7740123f6",
+      "fingerprint": "da123f5e7afb937e91f7f319658d963c9db1de231c79879df6d68935c1ce4c0c",
+      "frames": [
+        {
+          "frame": {
+            "x": 97,
+            "y": 42,
+            "width": 317,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 141.7707509881423
+        },
+        {
+          "frame": {
+            "x": 613,
+            "y": 39,
+            "width": 309,
+            "height": 443
+          },
+          "bodyHeight": 443,
+          "anchorX": 158.35573122529644
+        },
+        {
+          "frame": {
+            "x": 1107,
+            "y": 43,
+            "width": 346,
+            "height": 439
+          },
+          "bodyHeight": 439,
+          "anchorX": 164.00592885375494
+        },
+        {
+          "frame": {
+            "x": 1635,
+            "y": 50,
+            "width": 314,
+            "height": 432
+          },
+          "bodyHeight": 432,
+          "anchorX": 165.08498023715416
+        },
+        {
+          "frame": {
+            "x": 99,
+            "y": 574,
+            "width": 314,
+            "height": 420
+          },
+          "bodyHeight": 420,
+          "anchorX": 128.7167935392573
+        },
+        {
+          "frame": {
+            "x": 610,
+            "y": 569,
+            "width": 316,
+            "height": 425
+          },
+          "bodyHeight": 425,
+          "anchorX": 157.64151609260307
+        },
+        {
+          "frame": {
+            "x": 1109,
+            "y": 570,
+            "width": 341,
+            "height": 424
+          },
+          "bodyHeight": 424,
+          "anchorX": 154.9179841897233
+        },
+        {
+          "frame": {
+            "x": 1634,
+            "y": 557,
+            "width": 315,
+            "height": 437
+          },
+          "bodyHeight": 437,
+          "anchorX": 142.498031496063
+        }
+      ],
+      "alphaSha256": "9e80b6edc9b0f3bc67f6c58efa8d9323acf9d68f8e0cc10d8fe00463080bc0e9",
+      "rgbaSha256": "e7622ab85b849b8bd824a906935a35a351f9cfeb006d244752629ef23f599f96"
+    },
+    {
+      "file": "finales-dance-v2-5",
+      "raw": "assets/source/finales/finales-dance-v2-5-generated.png",
+      "source": "assets/source/finales/finales-dance-v2-5.png",
+      "runtime": "public/assets/finales-dance-v2-5.webp",
+      "columns": 4,
+      "rows": 2,
+      "inputSha256": "c97c56483094de3b8d598273aa4404dfd94e839290e6bfb3c1501e2e1ea4e2b9",
+      "sourceSha256": "b899ab1de6f3284fd662e4a0d9508eb5cce1f89b73e685cd37e6ea22ccffd74c",
+      "runtimeSha256": "bd1dde2083efebb7cc0bdb6ca91ee84f9dbcf87b79a99835c6f4547361d08f90",
+      "fingerprint": "da123f5e7afb937e91f7f319658d963c9db1de231c79879df6d68935c1ce4c0c",
+      "frames": [
+        {
+          "frame": {
+            "x": 81,
+            "y": 43,
+            "width": 349,
+            "height": 439
+          },
+          "bodyHeight": 439,
+          "anchorX": 195.8201581027668
+        },
+        {
+          "frame": {
+            "x": 578,
+            "y": 40,
+            "width": 380,
+            "height": 442
+          },
+          "bodyHeight": 442,
+          "anchorX": 194.27569169960475
+        },
+        {
+          "frame": {
+            "x": 1114,
+            "y": 42,
+            "width": 331,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 170.54462717234458
+        },
+        {
+          "frame": {
+            "x": 1614,
+            "y": 32,
+            "width": 356,
+            "height": 450
+          },
+          "bodyHeight": 450,
+          "anchorX": 204.01185770750988
+        },
+        {
+          "frame": {
+            "x": 84,
+            "y": 547,
+            "width": 343,
+            "height": 447
+          },
+          "bodyHeight": 447,
+          "anchorX": 203.04688578329882
+        },
+        {
+          "frame": {
+            "x": 589,
+            "y": 554,
+            "width": 357,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 199.91386693017125
+        },
+        {
+          "frame": {
+            "x": 1104,
+            "y": 565,
+            "width": 351,
+            "height": 429
+          },
+          "bodyHeight": 429,
+          "anchorX": 157.7490118577075
+        },
+        {
+          "frame": {
+            "x": 1611,
+            "y": 586,
+            "width": 361,
+            "height": 408
+          },
+          "bodyHeight": 408,
+          "anchorX": 214.2202380952381
+        }
+      ],
+      "alphaSha256": "995b006e91df1253448c871d37ac9fd54cf7f1d144c6a43f4258db6ab86dd19d",
+      "rgbaSha256": "b145cd4bec22046677df981d30b51dae4310c12db7da8ff0cbeed29dd7893dd0"
+    },
+    {
+      "file": "finales-dance-v2-6",
+      "raw": "assets/source/finales/finales-dance-v2-6-generated.png",
+      "source": "assets/source/finales/finales-dance-v2-6.png",
+      "runtime": "public/assets/finales-dance-v2-6.webp",
+      "columns": 4,
+      "rows": 2,
+      "inputSha256": "c8948bb75ac3a3f7f77a59ae207018af024ca32bb870a575d1a2e73fc951aea2",
+      "sourceSha256": "733ea6f9c17f62c571330c436887934dd7a900bd652214a653fdbfee3716399b",
+      "runtimeSha256": "5be0eab92c58e1eca457521b0ec5cb3b5196b2dab4d2447476894c04f556a7c6",
+      "fingerprint": "da123f5e7afb937e91f7f319658d963c9db1de231c79879df6d68935c1ce4c0c",
+      "frames": [
+        {
+          "frame": {
+            "x": 115,
+            "y": 42,
+            "width": 282,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 112.56027667984189
+        },
+        {
+          "frame": {
+            "x": 599,
+            "y": 40,
+            "width": 337,
+            "height": 442
+          },
+          "bodyHeight": 442,
+          "anchorX": 154.33596445824708
+        },
+        {
+          "frame": {
+            "x": 1122,
+            "y": 44,
+            "width": 315,
+            "height": 438
+          },
+          "bodyHeight": 438,
+          "anchorX": 145.6085476262934
+        },
+        {
+          "frame": {
+            "x": 1636,
+            "y": 41,
+            "width": 312,
+            "height": 441
+          },
+          "bodyHeight": 441,
+          "anchorX": 136.07905138339922
+        },
+        {
+          "frame": {
+            "x": 90,
+            "y": 577,
+            "width": 332,
+            "height": 417
+          },
+          "bodyHeight": 417,
+          "anchorX": 144.52788844621514
+        },
+        {
+          "frame": {
+            "x": 599,
+            "y": 569,
+            "width": 338,
+            "height": 425
+          },
+          "bodyHeight": 425,
+          "anchorX": 142.9822134387352
+        },
+        {
+          "frame": {
+            "x": 1129,
+            "y": 556,
+            "width": 301,
+            "height": 438
+          },
+          "bodyHeight": 438,
+          "anchorX": 121.0009881422925
+        },
+        {
+          "frame": {
+            "x": 1637,
+            "y": 576,
+            "width": 309,
+            "height": 418
+          },
+          "bodyHeight": 418,
+          "anchorX": 132.7183794466403
+        }
+      ],
+      "alphaSha256": "739b61f52a12abf6f68960f0e6f1f2c90a0d4405297ae07ec4df6a38cd30f8e7",
+      "rgbaSha256": "7ecf1b80889d3552d27498c5fc8360d03c74b240387381999ef9a25c0dc3ce7c"
+    },
+    {
+      "file": "finales-seated-main-v1",
+      "raw": "assets/source/finales/finales-seated-main-v1-generated.png",
+      "source": "assets/source/finales/finales-seated-main-v1.png",
+      "runtime": "public/assets/finales-seated-main-v1.webp",
+      "columns": 2,
+      "rows": 2,
+      "inputSha256": "eb4761e5b6e028a2c672ac62c89cc9701b66f5432a66576cd5870b8ad1191d8e",
+      "sourceSha256": "fc95bff8fb91b7e9ac9f038585d6bb4092830e810d3d764fe2c9b356bb7645fa",
+      "runtimeSha256": "89392d4abb101ccbf85e687819c454fb266908f4db168a2ce01aa037826b842e",
+      "fingerprint": "f615b6c5a7289fbee3ad988ce08107870510b31f320514cbb160c17b537cca52",
+      "frames": [
+        {
+          "frame": {
+            "x": 90,
+            "y": 42,
+            "width": 331,
+            "height": 440
+          },
+          "bodyHeight": 440,
+          "anchorX": 126.30414022543822
+        },
+        {
+          "frame": {
+            "x": 609,
+            "y": 62,
+            "width": 318,
+            "height": 420
+          },
+          "bodyHeight": 420,
+          "anchorX": 113.266577171327
+        },
+        {
+          "frame": {
+            "x": 90,
+            "y": 546,
+            "width": 331,
+            "height": 448
+          },
+          "bodyHeight": 448,
+          "anchorX": 123.38707614940098
+        },
+        {
+          "frame": {
+            "x": 590,
+            "y": 557,
+            "width": 355,
+            "height": 437
+          },
+          "bodyHeight": 437,
+          "anchorX": 113.1348995517948
+        }
+      ],
+      "alphaSha256": "2e39fb04fc40bf4eddebdedb2910f45f5a44bd481096e2e4112b365c74f620d1",
+      "rgbaSha256": "4bfeac2a30f24a5148afeb6c323120cefee86cdd3fe8880bc6076ded2b1f9a8b"
+    }
+  ]
+}

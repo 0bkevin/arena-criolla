@@ -1,0 +1,9 @@
+Use case: stylized-concept.
+Asset type: production transparent sprite atlas for Arena Criolla, a 2D illustrated fighting game.
+Reference image is the existing game's props atlas. Match EXACTLY its hand-painted warm caramel wood, dark brown ink contours, soft painted highlights, subtle texture, and readable cartoon proportions. Specifically use the two wooden cafe chairs and round pedestal cafe table in its upper-right cell as the visual reference.
+Create a NEW transparent 2-by-2 sprite sheet with FOUR COMPLETELY SEPARATE isolated objects. Equal cells, generous transparent gutter, each object fully inside its own cell, no object crosses a cell edge.
+Top-left: ONE complete empty wooden cafe chair, front/three-quarter view facing inward toward the RIGHT; tall rounded slatted back, round wooden seat, four legs, no armrests.
+Top-right: ONE matching complete empty wooden cafe chair, facing inward toward the LEFT, a matching mirror partner.
+Bottom-left: ONE complete round wooden cafe pedestal table in frontal three-quarter game view, broad ellipse tabletop and carved central pedestal with stable feet. NO chairs. NO cups or other objects on this table.
+Bottom-right: ONE small white coffee cup with saucer, handle and a restrained curl of steam, same illustrated style. NO table or chair.
+All four are separate transparent cutout sprites. No people, no silhouettes, no labels, no lettering, no numbers, no decorative backgrounds, no cast ground shadow outside objects, no panels, no grid, no outlines around cells. Real alpha transparency, with transparent pixels between furniture slats and legs. Preserve full legs and tabletop edges without cropping.

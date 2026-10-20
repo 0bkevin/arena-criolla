@@ -18,3 +18,15 @@ data/
 !/assets/references/stages-v4/
 /assets/archive/
 /docs/character-previews/
+
+# Captured choreography footage is local research, not shipped game art.
+/assets/source/finales/perro-mujeriego-v3/references/choreography-*-contact.png
+/docs/finales/perro-mujeriego-v3/reference-frames/
+/docs/finales/perro-mujeriego-v3/nacho-pilot-comparison.png
+/docs/finales/perro-mujeriego-v3/runtime-player/*.png
+
+# Full-resolution arena captures stay local; compact review boards are retained.
+/docs/finales/in-arena/2026-10-19-initial/frames/
+/docs/finales/in-arena/2026-10-19-final/frames/
+/docs/finales/other-finales-2026-10-19/frames/
+/docs/finales/main-identity-refresh/frames/

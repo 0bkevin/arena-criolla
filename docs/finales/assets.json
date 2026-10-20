@@ -1,0 +1,120 @@
+{
+  "tool": "image_gen.imagegen",
+  "transparentBackground": true,
+  "columns": 4,
+  "rows": 2,
+  "assets": [
+    {
+      "group": 1,
+      "source": "assets/source/finales/finales-v1-1.png",
+      "destination": "public/assets/finales-v1-1.webp",
+      "width": 1536,
+      "height": 1024,
+      "fighters": [
+        "zavarce",
+        "vallenilla",
+        "javier",
+        "capriles",
+        "renny",
+        "gomez",
+        "simon",
+        "conde"
+      ],
+      "sha256": "da1ae43684b28775071efe24e2344c5a0fc2ef00b5677cf0339a26923921be6d",
+      "bytes": 518652
+    },
+    {
+      "group": 2,
+      "source": "assets/source/finales/finales-v1-2.png",
+      "destination": "public/assets/finales-v1-2.webp",
+      "width": 1536,
+      "height": 1024,
+      "fighters": [
+        "emilio",
+        "maite",
+        "oscar",
+        "puma",
+        "chataing",
+        "george",
+        "mcm",
+        "ali"
+      ],
+      "sha256": "39f723ff882bef0b64ae4d871f4fa23c7bbc7217c32ce6426ea77ed08511d713",
+      "bytes": 452774
+    },
+    {
+      "group": 3,
+      "source": "assets/source/finales/finales-v1-3.png",
+      "destination": "public/assets/finales-v1-3.webp",
+      "width": 1536,
+      "height": 1024,
+      "fighters": [
+        "gualberto",
+        "reynaldo",
+        "dudamel",
+        "danny",
+        "nacho",
+        "sarcos",
+        "yordano",
+        "lila"
+      ],
+      "sha256": "4b67f5b6eb0bb02dea2de45c03286a3b413d96689997fa864eb98903fe04d577",
+      "bytes": 659394
+    },
+    {
+      "group": 4,
+      "source": "assets/source/finales/finales-v1-4.png",
+      "destination": "public/assets/finales-v1-4.webp",
+      "width": 1536,
+      "height": 1024,
+      "fighters": [
+        "rummy",
+        "chiqui",
+        "norkys",
+        "gabriela",
+        "amanda",
+        "lele",
+        "giuseppe",
+        "silbon"
+      ],
+      "sha256": "58d62c710dfcdfb498d7a06bc75ea757a20378735af39903a39906339a4da580",
+      "bytes": 555820
+    },
+    {
+      "group": 5,
+      "source": "assets/source/finales/finales-v1-5.png",
+      "destination": "public/assets/finales-v1-5.webp",
+      "width": 1536,
+      "height": 1024,
+      "fighters": [
+        "llorona",
+        "sayona",
+        "lionza",
+        "florentino",
+        "diablo",
+        "knoche",
+        "momoy",
+        "tiotigre"
+      ],
+      "sha256": "a085cbb7bbe3623c201174b8672174aab1dc4abefa9b71e4feeddb9592d97af9",
+      "bytes": 753056
+    },
+    {
+      "group": 6,
+      "source": "assets/source/finales/finales-v1-6.png",
+      "destination": "public/assets/finales-v1-6.webp",
+      "width": 1536,
+      "height": 1024,
+      "fighters": [
+        "tioconejo",
+        "enrique",
+        "jesus",
+        "carlos",
+        "victor",
+        "juan"
+      ],
+      "sha256": "6bf94fd91e798e21496187ea572920913cc8f33788d61072204e105245ee9fe8",
+      "bytes": 359766
+    }
+  ]
+}
