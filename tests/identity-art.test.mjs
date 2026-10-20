@@ -7,7 +7,7 @@ import { webpChunks } from "../scripts/audit-lossless-assets.mjs";
 const files = [
   "dayana-v49",
   "deyna-v1",
-  "dayana-runway-attack-v2",
+  "dayana-runway-attack-v3",
   "deyna-squad-attack-v2",
   "dayana-seated-v1",
   "deyna-seated-v1",
@@ -55,6 +55,7 @@ test("both identities ship compact native-resolution lossless artwork with real 
     "dayana-v40",
     "dayana-football-attack-v1",
     "dayana-pageant-attack-v1",
+    "dayana-runway-attack-v2",
     "deyna-football-attack-v1",
   ])
     await assert.rejects(fs.access(`public/assets/${obsolete}.webp`), {

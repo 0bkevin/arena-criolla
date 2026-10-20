@@ -4,6 +4,7 @@ import {
   createMatch,
   emptyInput,
   stepMatch,
+  WORLD,
   type Input,
 } from "../shared/engine";
 import { fighterById, type FighterId } from "../shared/content";
@@ -65,40 +66,53 @@ test("Dayana is the 2008 beauty queen; Deyna owns all football techniques and th
   assert.notEqual(ATTACK_ART.dayana.file, ATTACK_ART.deyna.file);
 });
 
-test("Dayana's chiffon leaves at body height, hits once on either side, respects guard and disappears after a miss", () => {
+test("Dayana's held-dress twirl hits nearby rivals on both sides without spawning a projectile", () => {
+  assert.equal(TECHNIQUES.corona.projectile, undefined);
+  assert.equal(TECHNIQUES.corona.radial, true);
   for (const side of [0, 1] as const)
-    for (const mode of ["hit", "guard", "miss", "interrupt", "energy"]) {
-      const r = setup(
-        side,
-        "zavarce",
-        mode === "miss" ? 900 : mode === "interrupt" ? 65 : 180,
-      );
+    for (const mode of [
+      "front",
+      "behind",
+      "guard",
+      "miss",
+      "interrupt",
+      "energy",
+      "air",
+    ]) {
+      const r = setup(side, "zavarce", mode === "miss" ? 280 : 95);
       r.source.config.wins = 0;
+      for (const player of r.state.players) {
+        player.y = WORLD.floor;
+        player.grounded = true;
+      }
       if (mode === "guard") r.inputs[1 - side].block = true;
       if (mode === "energy") r.source.energy = 24;
+      if (mode === "air") {
+        r.source.y -= 180;
+        r.source.grounded = false;
+      }
       if (mode === "interrupt") {
         r.inputs[1 - side].actions.light++;
         r.advance(3);
       }
       r.inputs[side].actions.special++;
-      let first: (typeof r.state.projectiles)[number] | undefined;
+      let lowestHP = 100;
       for (let n = 0; n < 120; n++) {
+        if (mode === "behind" && n === 5)
+          r.target.x = r.source.x - r.source.facing * 95;
         r.advance(1);
-        first ??= r.state.projectiles[0] && { ...r.state.projectiles[0] };
+        lowestHP = Math.min(lowestHP, r.target.hp);
+        assert.equal(r.state.projectiles.length, 0, mode);
+        assert.equal(
+          r.state.finale,
+          undefined,
+          "a twirl never captures the rival",
+        );
       }
-      if (mode === "hit") {
-        assert.ok(r.target.hp < 100);
-        assert.equal(r.source.hits, 1);
+      if (mode === "front" || mode === "behind") {
+        assert.ok(lowestHP < 100, mode);
+        assert.equal(r.source.hits, 1, mode);
       } else assert.equal(r.target.hp, 100, mode);
-      if (mode === "energy" || mode === "interrupt")
-        assert.equal(first, undefined);
-      else {
-        assert.equal(first!.kind, "corona");
-        assert.equal(first!.y, r.source.y - 112);
-        assert.equal(first!.radius, 20);
-        assert.equal(Math.sign(first!.vx), side ? -1 : 1);
-      }
-      assert.equal(r.state.projectiles.length, 0);
       assert.equal(r.source.attack, null);
     }
 });
