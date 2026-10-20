@@ -1,0 +1,191 @@
+[
+  {
+    "name": "entry",
+    "key": "final-p1-normal-0",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvigyi-8fb810ee.png"
+  },
+  {
+    "name": "formation",
+    "key": "final-p1-normal-30",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvih5k-44a807bb.png"
+  },
+  {
+    "name": "windup",
+    "key": "final-p1-normal-60",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvihec-26cc812a.png"
+  },
+  {
+    "name": "contact",
+    "key": "final-p1-normal-66",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvihkw-3ba4f62c.png"
+  },
+  {
+    "name": "flight",
+    "key": "final-p1-normal-82",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvihry-d1c688ac.png"
+  },
+  {
+    "name": "impact",
+    "key": "final-p1-normal-100",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvihyc-815efa96.png"
+  },
+  {
+    "name": "recover",
+    "key": "final-p1-normal-140",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvii5a-63ec7100.png"
+  },
+  {
+    "name": "exit",
+    "key": "final-p1-normal-178",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfviibp-63bfb2ac.png"
+  },
+  {
+    "name": "release",
+    "key": "final-p1-normal-189",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfviiib-abfdacfc.png"
+  },
+  {
+    "name": "p2-contact",
+    "key": "final-p2-normal-66",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfviip6-53c2333f.png"
+  },
+  {
+    "name": "p2-impact",
+    "key": "final-p2-normal-100",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfviiw5-b4067fad.png"
+  },
+  {
+    "name": "edge-right",
+    "key": "final-p1-edge-66",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvij2k-859e0188.png"
+  },
+  {
+    "name": "edge-left",
+    "key": "final-p2-edge-66",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvij9c-c04bd684.png"
+  },
+  {
+    "name": "inward",
+    "key": "final-p1-inward-66",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvijg2-311cd363.png"
+  },
+  {
+    "name": "close",
+    "key": "final-p1-close-66",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvijn7-513dedc7.png"
+  },
+  {
+    "name": "platform",
+    "key": "final-p1-platform-66",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvijxt-cbc3886b.png"
+  },
+  {
+    "name": "platform-impact",
+    "key": "final-p1-platform-100",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvik6s-f001c5d5.png"
+  },
+  {
+    "name": "platform-low",
+    "key": "final-p2-platform-low-66",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvikjl-56b2cb86.png"
+  },
+  {
+    "name": "small",
+    "key": "final-p1-small-100",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvikpv-40cd99f7.png"
+  },
+  {
+    "name": "tall",
+    "key": "final-p2-tall-100",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvikwh-6c265b1b.png"
+  },
+  {
+    "name": "special-windup",
+    "key": "special-p1-normal-1",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvil3f-d6630c85.png"
+  },
+  {
+    "name": "special-contact",
+    "key": "special-p1-normal-20",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvilab-9de5a326.png"
+  },
+  {
+    "name": "special-release",
+    "key": "special-p1-normal-21",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvilk6-80ebdf34.png"
+  },
+  {
+    "name": "special-recover",
+    "key": "special-p1-normal-29",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfviltq-ba32e1ad.png"
+  },
+  {
+    "name": "special-p2",
+    "key": "special-p2-normal-20",
+    "reduced": false,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvim20-51bc9005.png"
+  },
+  {
+    "name": "reduced",
+    "key": "final-p2-normal-82",
+    "reduced": true,
+    "missing": false,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvim97-71d1dae3.png"
+  },
+  {
+    "name": "missing-art",
+    "key": "final-p1-normal-66",
+    "reduced": false,
+    "missing": true,
+    "path": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvimg1-0e9da0a7.png"
+  }
+]

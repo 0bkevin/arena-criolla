@@ -1,0 +1,14 @@
+{
+  "source": "assets/source/finales/attack-overhaul/dayana/padded-v1.png",
+  "destination": "assets/source/finales/attack-overhaul/dayana/v1-grid.png",
+  "auditPath": "docs/finales/attack-overhaul/dayana/normalize-v1.json",
+  "columns": 2,
+  "rows": 2,
+  "poseCount": 4,
+  "poses": [
+    "windup",
+    "follow",
+    "recover",
+    "ball"
+  ]
+}

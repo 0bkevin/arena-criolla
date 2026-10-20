@@ -1,0 +1,84 @@
+{
+  "reviewedAt": "2026-10-19 23:03:18 UTC",
+  "raw": "assets/source/finales/attack-overhaul/dayana/raw-v4.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "diagnostic": "root-team-gray.png",
+  "alphaHistogram": {
+    "zero": 1154643,
+    "one": 58727,
+    "twoTo39": 41280,
+    "atLeast40": 318214
+  },
+  "cells": [
+    {
+      "row": 0,
+      "col": 0,
+      "coreBoundsInclusive": [
+        86,
+        36,
+        495,
+        494
+      ],
+      "maxAlphaAtCellEdge": 1
+    },
+    {
+      "row": 0,
+      "col": 1,
+      "coreBoundsInclusive": [
+        92,
+        36,
+        431,
+        494
+      ],
+      "maxAlphaAtCellEdge": 1
+    },
+    {
+      "row": 0,
+      "col": 2,
+      "coreBoundsInclusive": [
+        134,
+        36,
+        373,
+        493
+      ],
+      "maxAlphaAtCellEdge": 1
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "coreBoundsInclusive": [
+        92,
+        33,
+        502,
+        482
+      ],
+      "maxAlphaAtCellEdge": 1
+    },
+    {
+      "row": 1,
+      "col": 1,
+      "coreBoundsInclusive": [
+        90,
+        33,
+        452,
+        484
+      ],
+      "maxAlphaAtCellEdge": 1
+    },
+    {
+      "row": 1,
+      "col": 2,
+      "coreBoundsInclusive": [
+        156,
+        32,
+        400,
+        483
+      ],
+      "maxAlphaAtCellEdge": 1
+    }
+  ],
+  "decision": "Whole-cell RGBA-preserving assembly accepted: every visible core is complete, no alpha>=2 touches a cell boundary, gray composite shows clean complete figures. Includes faint alpha1 background and isolated alpha2 data; global normalizer guard remains unchanged."
+}

@@ -1,0 +1,116 @@
+{
+  "method": "Exact RGBA whole-silhouette translation; no anatomy edits or resampling. Raw-v1 follow-through retained but not used.",
+  "cell": 1600,
+  "objects": [
+    {
+      "pose": "windup",
+      "source": "assets/source/finales/attack-overhaul/dayana/v1-grid.png",
+      "bounds": {
+        "left": 50,
+        "top": 41,
+        "width": 507,
+        "height": 526
+      },
+      "coreHeight": 516
+    },
+    {
+      "pose": "contact",
+      "source": "assets/source/finales/attack-overhaul/dayana/v2-grid.png",
+      "bounds": {
+        "left": 65,
+        "top": 93,
+        "width": 926,
+        "height": 1317
+      },
+      "coreHeight": 1309
+    },
+    {
+      "pose": "recover",
+      "source": "assets/source/finales/attack-overhaul/dayana/v1-grid.png",
+      "bounds": {
+        "left": 144,
+        "top": 664,
+        "width": 319,
+        "height": 496
+      },
+      "coreHeight": 487
+    },
+    {
+      "pose": "ball",
+      "source": "assets/source/finales/attack-overhaul/dayana/v1-grid.png",
+      "bounds": {
+        "left": 844,
+        "top": 842,
+        "width": 136,
+        "height": 140
+      },
+      "coreHeight": 128
+    },
+    {
+      "pose": "a-windup",
+      "source": "assets/source/finales/attack-overhaul/dayana/raw-v4.png",
+      "bounds": {
+        "left": 0,
+        "top": 0,
+        "width": 512,
+        "height": 512
+      },
+      "coreHeight": 459
+    },
+    {
+      "pose": "a-contact",
+      "source": "assets/source/finales/attack-overhaul/dayana/raw-v4.png",
+      "bounds": {
+        "left": 512,
+        "top": 0,
+        "width": 512,
+        "height": 512
+      },
+      "coreHeight": 459
+    },
+    {
+      "pose": "a-recover",
+      "source": "assets/source/finales/attack-overhaul/dayana/raw-v4.png",
+      "bounds": {
+        "left": 1024,
+        "top": 0,
+        "width": 512,
+        "height": 512
+      },
+      "coreHeight": 458
+    },
+    {
+      "pose": "b-windup",
+      "source": "assets/source/finales/attack-overhaul/dayana/raw-v4.png",
+      "bounds": {
+        "left": 0,
+        "top": 512,
+        "width": 512,
+        "height": 512
+      },
+      "coreHeight": 450
+    },
+    {
+      "pose": "b-contact",
+      "source": "assets/source/finales/attack-overhaul/dayana/raw-v4.png",
+      "bounds": {
+        "left": 512,
+        "top": 512,
+        "width": 512,
+        "height": 512
+      },
+      "coreHeight": 452
+    },
+    {
+      "pose": "b-recover",
+      "source": "assets/source/finales/attack-overhaul/dayana/raw-v4.png",
+      "bounds": {
+        "left": 1024,
+        "top": 512,
+        "width": 512,
+        "height": 512
+      },
+      "coreHeight": 452
+    }
+  ]
+}

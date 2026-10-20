@@ -1,0 +1,152 @@
+{
+  "at": "2026-10-19 23:20:26 UTC",
+  "tests": {
+    "initial": 38,
+    "postfix": 8,
+    "strictGuideTypes": "passed"
+  },
+  "nativeQA": {
+    "cases": 64,
+    "samples": 762,
+    "scope": "Independent reproduction after final recovery anchor, real engine inputs and production rendering."
+  },
+  "rosterContact": {
+    "cases": 104,
+    "passed": true,
+    "evidence": "root-roster-contact-audit.json",
+    "scope": "52 canonical opponents in both slots; contact frame only."
+  },
+  "guide": {
+    "final": {
+      "summary": {
+        "selected": "dayana",
+        "mode": "final",
+        "frames": 280,
+        "hp": 100,
+        "minHp": 60.9136,
+        "stocks": 1,
+        "props": [
+          "dayana-football-attack-v1",
+          "finales-v1-1",
+          "finales-seated-main-v1",
+          "perro-mujeriego-v3-capriles",
+          "finales-capriles-cafe",
+          "finales-cafe-furniture"
+        ],
+        "sprite": "dayana-v40"
+      },
+      "hits": [
+        {
+          "frame": 109,
+          "tick": 100,
+          "hp": 60.9136
+        }
+      ],
+      "release": 189,
+      "stockLoss": 227,
+      "terminal": {
+        "stocks": [
+          2,
+          1
+        ],
+        "capture": null
+      }
+    },
+    "special": {
+      "summary": {
+        "selected": "dayana",
+        "mode": "special",
+        "frames": 180,
+        "hp": 85.618,
+        "minHp": 85.618,
+        "stocks": 2,
+        "props": [
+          "dayana-football-attack-v1",
+          "finales-v1-1",
+          "finales-seated-main-v1",
+          "perro-mujeriego-v3-capriles",
+          "finales-capriles-cafe",
+          "finales-cafe-furniture"
+        ],
+        "sprite": "dayana-v40"
+      },
+      "hits": [
+        {
+          "frame": 37,
+          "hp": 85.618
+        }
+      ],
+      "release": -1,
+      "stockLoss": -1,
+      "terminal": {
+        "stocks": [
+          2,
+          2
+        ],
+        "capture": null
+      }
+    }
+  },
+  "guideScreenshot": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvn1ml-d1509211.png",
+  "screenshots": [
+    {
+      "key": "final-p1-normal-66",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvjwut-8e8f7bb1.png"
+    },
+    {
+      "key": "final-p2-platform-100",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvk025-4c8744d3.png"
+    },
+    {
+      "key": "special-p2-normal-21",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvk5e3-88586381.png"
+    },
+    {
+      "key": "final-p1-normal-178",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvmqhb-07cd785f.png"
+    },
+    {
+      "key": "final-p2-close-edge-100",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvmqob-916f4de6.png"
+    },
+    {
+      "key": "final-p1-small-100",
+      "reduced": true,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvmqv8-fef80e6e.png"
+    },
+    {
+      "key": "final-p2-tall-100",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvmr24-ade3e15c.png"
+    },
+    {
+      "key": "final-p1-normal-100",
+      "reduced": false,
+      "missing": true,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfvmr8j-2bccfad8.png"
+    }
+  ],
+  "visualChecks": [
+    "Canonical main identity and distinct adult teammates",
+    "Three simultaneous boot launches and real opaque opponent contacts",
+    "Helpers on floor while Dayana retains her platform",
+    "Whole team at both ledges, tall and short opponents",
+    "Return pose at original position before release",
+    "Reduced motion and canonical fallback",
+    "No guide crop change needed"
+  ]
+}

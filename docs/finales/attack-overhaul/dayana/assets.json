@@ -1,0 +1,367 @@
+{
+  "fighter": "dayana",
+  "source": "assets/source/finales/attack-overhaul/dayana/dayana-grid.png",
+  "file": "dayana-football-attack-v1",
+  "columns": 5,
+  "rows": 2,
+  "poses": [
+    "windup",
+    "contact",
+    "recover",
+    "ball",
+    "a-windup",
+    "a-contact",
+    "a-recover",
+    "b-windup",
+    "b-contact",
+    "b-recover"
+  ],
+  "anchorFractions": {
+    "windup": 0.77,
+    "contact": 0.585,
+    "recover": 0.49,
+    "ball": 0.5,
+    "a-windup": 0.78,
+    "a-contact": 0.65,
+    "a-recover": 0.81,
+    "b-windup": 0.79,
+    "b-contact": 0.55,
+    "b-recover": 0.81
+  },
+  "tool": "image_gen.imagegen",
+  "normalized": "assets/source/finales/attack-overhaul/dayana/dayana-football-attack-v1-packed.png",
+  "destination": "public/assets/dayana-football-attack-v1.webp",
+  "width": 2560,
+  "height": 1024,
+  "cell": 512,
+  "frames": {
+    "windup": {
+      "x": 28,
+      "y": 20,
+      "width": 455,
+      "height": 472,
+      "anchorX": 350.35,
+      "anchorY": 464.8212927756654,
+      "bodyHeight": 463.02661596958177
+    },
+    "contact": {
+      "x": 602,
+      "y": 20,
+      "width": 332,
+      "height": 472,
+      "anchorX": 194.22,
+      "anchorY": 470.2080485952923,
+      "bodyHeight": 469.1328777524677
+    },
+    "recover": {
+      "x": 1128,
+      "y": 20,
+      "width": 304,
+      "height": 472,
+      "anchorX": 148.96,
+      "anchorY": 469.14516129032256,
+      "bodyHeight": 463.43548387096774
+    },
+    "ball": {
+      "x": 1562,
+      "y": 20,
+      "width": 459,
+      "height": 472,
+      "anchorX": 229.5,
+      "anchorY": 455.14285714285717,
+      "bodyHeight": 431.54285714285714
+    },
+    "a-windup": {
+      "x": 2091,
+      "y": 20,
+      "width": 426,
+      "height": 472,
+      "anchorX": 332.28000000000003,
+      "anchorY": 466.95726495726495,
+      "bodyHeight": 462.9230769230769
+    },
+    "a-contact": {
+      "x": 74,
+      "y": 532,
+      "width": 363,
+      "height": 472,
+      "anchorX": 235.95000000000002,
+      "anchorY": 466.94646680942185,
+      "bodyHeight": 463.91434689507497
+    },
+    "a-recover": {
+      "x": 635,
+      "y": 532,
+      "width": 265,
+      "height": 472,
+      "anchorX": 214.65,
+      "anchorY": 464.94017094017096,
+      "bodyHeight": 461.9145299145299
+    },
+    "b-windup": {
+      "x": 1062,
+      "y": 532,
+      "width": 436,
+      "height": 472,
+      "anchorX": 344.44,
+      "anchorY": 462.8051948051948,
+      "bodyHeight": 459.7402597402597
+    },
+    "b-contact": {
+      "x": 1593,
+      "y": 532,
+      "width": 398,
+      "height": 472,
+      "anchorX": 218.9,
+      "anchorY": 460.85836909871244,
+      "bodyHeight": 457.81974248927037
+    },
+    "b-recover": {
+      "x": 2172,
+      "y": 532,
+      "width": 263,
+      "height": 472,
+      "anchorX": 213.03,
+      "anchorY": 461.8494623655914,
+      "bodyHeight": 458.8043010752688
+    }
+  },
+  "objects": [
+    {
+      "pose": "windup",
+      "sourceBounds": {
+        "left": 546,
+        "top": 1044,
+        "width": 507,
+        "height": 526
+      },
+      "uniformScale": 0.8973384030418251,
+      "width": 455,
+      "height": 472,
+      "visibleSourcePixels": 77108,
+      "transparentSourcePixels": 2472268,
+      "coreBounds": {
+        "top": 1046,
+        "bottom": 1562
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "contact",
+      "sourceBounds": {
+        "left": 1937,
+        "top": 253,
+        "width": 926,
+        "height": 1317
+      },
+      "uniformScale": 0.3583902809415338,
+      "width": 332,
+      "height": 472,
+      "visibleSourcePixels": 393283,
+      "transparentSourcePixels": 2145470,
+      "coreBounds": {
+        "top": 256,
+        "bottom": 1565
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "recover",
+      "sourceBounds": {
+        "left": 3840,
+        "top": 1074,
+        "width": 319,
+        "height": 496
+      },
+      "uniformScale": 0.9516129032258065,
+      "width": 304,
+      "height": 472,
+      "visibleSourcePixels": 60101,
+      "transparentSourcePixels": 2490540,
+      "coreBounds": {
+        "top": 1080,
+        "bottom": 1567
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "ball",
+      "sourceBounds": {
+        "left": 5532,
+        "top": 1430,
+        "width": 136,
+        "height": 140
+      },
+      "uniformScale": 3.3714285714285714,
+      "width": 459,
+      "height": 472,
+      "visibleSourcePixels": 12863,
+      "transparentSourcePixels": 2545943,
+      "coreBounds": {
+        "top": 1437,
+        "bottom": 1565
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "a-windup",
+      "sourceBounds": {
+        "left": 7021,
+        "top": 1090,
+        "width": 422,
+        "height": 468
+      },
+      "uniformScale": 1.0085470085470085,
+      "width": 426,
+      "height": 472,
+      "visibleSourcePixels": 54624,
+      "transparentSourcePixels": 2489042,
+      "coreBounds": {
+        "top": 1094,
+        "bottom": 1553
+      },
+      "discardedNoise": {
+        "components": 562,
+        "pixels": 1095,
+        "maxAlpha": 1
+      }
+    },
+    {
+      "pose": "a-contact",
+      "sourceBounds": {
+        "left": 623,
+        "top": 2691,
+        "width": 359,
+        "height": 467
+      },
+      "uniformScale": 1.0107066381156318,
+      "width": 363,
+      "height": 472,
+      "visibleSourcePixels": 48484,
+      "transparentSourcePixels": 2493868,
+      "coreBounds": {
+        "top": 2694,
+        "bottom": 3153
+      },
+      "discardedNoise": {
+        "components": 792,
+        "pixels": 2722,
+        "maxAlpha": 1
+      }
+    },
+    {
+      "pose": "a-recover",
+      "sourceBounds": {
+        "left": 2265,
+        "top": 2691,
+        "width": 263,
+        "height": 468
+      },
+      "uniformScale": 1.0085470085470085,
+      "width": 265,
+      "height": 472,
+      "visibleSourcePixels": 47558,
+      "transparentSourcePixels": 2497022,
+      "coreBounds": {
+        "top": 2694,
+        "bottom": 3152
+      },
+      "discardedNoise": {
+        "components": 290,
+        "pixels": 880,
+        "maxAlpha": 1
+      }
+    },
+    {
+      "pose": "b-windup",
+      "sourceBounds": {
+        "left": 3829,
+        "top": 2688,
+        "width": 427,
+        "height": 462
+      },
+      "uniformScale": 1.0216450216450217,
+      "width": 436,
+      "height": 472,
+      "visibleSourcePixels": 59791,
+      "transparentSourcePixels": 2483635,
+      "coreBounds": {
+        "top": 2691,
+        "bottom": 3141
+      },
+      "discardedNoise": {
+        "components": 783,
+        "pixels": 2060,
+        "maxAlpha": 1
+      }
+    },
+    {
+      "pose": "b-contact",
+      "sourceBounds": {
+        "left": 5423,
+        "top": 2688,
+        "width": 393,
+        "height": 466
+      },
+      "uniformScale": 1.0128755364806867,
+      "width": 398,
+      "height": 472,
+      "visibleSourcePixels": 54113,
+      "transparentSourcePixels": 2487849,
+      "coreBounds": {
+        "top": 2691,
+        "bottom": 3143
+      },
+      "discardedNoise": {
+        "components": 878,
+        "pixels": 3618,
+        "maxAlpha": 1
+      }
+    },
+    {
+      "pose": "b-recover",
+      "sourceBounds": {
+        "left": 7089,
+        "top": 2687,
+        "width": 259,
+        "height": 465
+      },
+      "uniformScale": 1.0150537634408603,
+      "width": 263,
+      "height": 472,
+      "visibleSourcePixels": 53644,
+      "transparentSourcePixels": 2490363,
+      "coreBounds": {
+        "top": 2690,
+        "bottom": 3142
+      },
+      "discardedNoise": {
+        "components": 502,
+        "pixels": 1160,
+        "maxAlpha": 1
+      }
+    }
+  ],
+  "sourceSha256": "53f94e4ebfbefbd57c163971d0851d8c4ce8b4e1d9ff368ea771ab6bde2c616a",
+  "normalizedSha256": "4a029ccc92ba9f61302fd3bf2d5fc1a685ac0dd0f0e2857b22109395316d4874",
+  "runtimeSha256": "1bca23d67a3674e6867c7ae2ffa46fcc647a40c76eba2d1fa3885105ae120bf2",
+  "rgbaSha256": "3e7f38443ef6dcbc948f0b4990beec6c79d73b5617a77e5afc9e1eb01db0bb85",
+  "alphaSha256": "e9e0bac6415e27e45d13b574ba584290f3d4c7dda2275f0919cf1d21362f299d",
+  "lossless": true
+}

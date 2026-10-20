@@ -1,0 +1,46 @@
+✔ complete-scene preflight checks every requested pose against intrinsic loaded dimensions (1.015802ms)
+✔ valid art preserves its exact source crop, anchors, facing, body scale and alpha (0.867799ms)
+✔ legacy optional geometry and boundary anchors remain valid without changing drawing math (0.392072ms)
+✔ missing, unloaded, incomplete and intrinsically undersized images draw nothing (0.284099ms)
+✔ nonfinite, nonpositive and out-of-bounds frame geometry never touches canvas (1.171308ms)
+✔ vallenilla: revised attack art retains raw source provenance, complete frames and exact runtime alpha (148.846851ms)
+✔ javier: revised attack art retains raw source provenance, complete frames and exact runtime alpha (65.869517ms)
+✔ renny: revised attack art retains raw source provenance, complete frames and exact runtime alpha (67.768831ms)
+✔ gomez: revised attack art retains raw source provenance, complete frames and exact runtime alpha (135.783866ms)
+✔ simon: revised attack art retains raw source provenance, complete frames and exact runtime alpha (120.058833ms)
+✔ conde: revised attack art retains raw source provenance, complete frames and exact runtime alpha (169.770314ms)
+✔ emilio: revised attack art retains raw source provenance, complete frames and exact runtime alpha (158.576189ms)
+✔ maite: revised attack art retains raw source provenance, complete frames and exact runtime alpha (82.454076ms)
+✔ oscar: revised attack art retains raw source provenance, complete frames and exact runtime alpha (103.746946ms)
+✔ puma: revised attack art retains raw source provenance, complete frames and exact runtime alpha (126.225856ms)
+✔ chataing: revised attack art retains raw source provenance, complete frames and exact runtime alpha (96.926627ms)
+✔ george: revised attack art retains raw source provenance, complete frames and exact runtime alpha (83.284948ms)
+✔ mcm: revised attack art retains raw source provenance, complete frames and exact runtime alpha (163.083749ms)
+✔ ali: revised attack art retains raw source provenance, complete frames and exact runtime alpha (144.644622ms)
+✔ melanio: revised attack art retains raw source provenance, complete frames and exact runtime alpha (112.474823ms)
+✔ dayana: revised attack art retains raw source provenance, complete frames and exact runtime alpha (155.119794ms)
+✔ every definitive has one generic combat category heading (9.89721ms)
+✔ football finale captures any canonical rival, damages only on the visible front contact and releases with the ordinary force (12.706299ms)
+✔ football finale gates, guard, miss, interruption and lethal stocks retain shared rules (8.610289ms)
+✔ every Dayana pose and valid intrinsic image is required before the module paints (1.846024ms)
+✔ captured football finale serializes and resumes identically through impact and ordinary release (6.983204ms)
+✔ preparation and volley remain harmless until a physical football contact; all recorded states resume identically (1.568956ms)
+✔ one football launches from the contact boot, costs25 at zero wins, and can hit, miss, be blocked or interrupted (14.997745ms)
+✔ football cost failure and serialized in-flight replay preserve deterministic engine rules (12.495119ms)
+✔ six complete raw team cells preserve every RGBA pixel through assembly, including soft alpha islands (443.443611ms)
+✔ refreshed finale identities use main's current canonical art and preserve all eight authored poses losslessly (497.373678ms)
+✔ café guests and dance fallback roles select the refreshed drawings with current provenance (12.10343ms)
+✔ all built-in finales keep both fighters in their arena on either side of both ledges (640.04927ms)
+✔ a finale uses the unchanged normal camera on desktop, mobile and reduced-motion views (78.565128ms)
+✔ moving platforms keep their exact captured phase and resume carrying the attacker after every mirrored finale (32.609893ms)
+✔ airborne and unequal-height captures preserve each fighter's own position instead of moving them to a common scene baseline (16.179216ms)
+✔ vehicle finales keep both painted passengers beside their capture positions throughout the ride (29.398209ms)
+✔ renderMatch draws every finale over its selected stage and platform surfaces using the normal world camera (122.573907ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2943.29008

@@ -1,0 +1,11 @@
+{
+  "source": "assets/source/finales/attack-overhaul/dayana/padded-v2.png",
+  "destination": "assets/source/finales/attack-overhaul/dayana/v2-grid.png",
+  "auditPath": "docs/finales/attack-overhaul/dayana/normalize-v2.json",
+  "columns": 1,
+  "rows": 1,
+  "poseCount": 1,
+  "poses": [
+    "contact"
+  ]
+}
