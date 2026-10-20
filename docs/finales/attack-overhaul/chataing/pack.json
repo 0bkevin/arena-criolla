@@ -1,0 +1,8 @@
+{
+  "fighter": "chataing",
+  "source": "assets/source/finales/attack-overhaul/chataing/chataing-grid.png",
+  "file": "chataing-wired-microphone-attack-v1",
+  "columns": 3,
+  "rows": 2,
+  "poses": ["windup", "cast", "reel", "recover", "microphone", "screen"]
+}

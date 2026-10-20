@@ -588,5 +588,64 @@
         "bodyHeight": 406.35402298850573
       }
     }
+  },
+  "chataing": {
+    "file": "chataing-wired-microphone-attack-v1",
+    "frames": {
+      "windup": {
+        "x": 63,
+        "y": 20,
+        "width": 385,
+        "height": 472,
+        "anchorX": 192.5,
+        "anchorY": 461.80561555075593,
+        "bodyHeight": 459.76673866090715
+      },
+      "cast": {
+        "x": 532,
+        "y": 78,
+        "width": 472,
+        "height": 414,
+        "anchorX": 236,
+        "anchorY": 409.3061224489796,
+        "bodyHeight": 406.48979591836735
+      },
+      "reel": {
+        "x": 1084,
+        "y": 20,
+        "width": 391,
+        "height": 472,
+        "anchorX": 195.5,
+        "anchorY": 462.76521739130436,
+        "bodyHeight": 453.5304347826087
+      },
+      "recover": {
+        "x": 64,
+        "y": 532,
+        "width": 383,
+        "height": 472,
+        "anchorX": 191.5,
+        "anchorY": 465.7758241758242,
+        "bodyHeight": 458.51428571428573
+      },
+      "microphone": {
+        "x": 532,
+        "y": 832,
+        "width": 472,
+        "height": 172,
+        "anchorX": 236,
+        "anchorY": 163.67741935483872,
+        "bodyHeight": 159.05376344086022
+      },
+      "screen": {
+        "x": 1044,
+        "y": 606,
+        "width": 472,
+        "height": 398,
+        "anchorX": 236,
+        "anchorY": 392.3785310734463,
+        "bodyHeight": 389.00564971751413
+      }
+    }
   }
 }

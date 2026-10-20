@@ -1,0 +1,9 @@
+# Luis Chataing: referencias de presentación y micrófono
+
+Consultado el 19 de octubre de 2026. Se inspeccionaron el atlas canónico `assets/source/chataing-v3.png` y dos fotografías del artículo [Luis Chataing: «Algún día celebraremos juntos en una fiesta grande en Caracas»](https://eldiario.com/2022/03/03/luis-chataing-caracas/) (El Diario, entrevista del 3 de marzo de 2022). El entrevistado describe su regreso a los monólogos y su trayectoria en radio y televisión; esta es una entrevista directa para el contexto profesional.
+
+- [Foto de pie con micrófono](https://eldiario.com/wp-content/uploads/2022/03/Luis-Chataing-2-819x1024.jpeg): gafas negras, cabello corto con canas, micrófono de mano con rejilla metálica redonda y mango oscuro; cable que baja desde la mano. Copia local `references/show-standing.jpeg`.
+- [Foto lateral sobre escenario](https://eldiario.com/wp-content/uploads/2022/03/Luis-Chataing-3-1024x683.jpeg): mano del micrófono a la altura de la boca, postura erguida y cable extendido hasta el suelo. Copia local `references/show-gesture.jpeg`.
+- [Diario Libre, «Luis Chataing llega con Todo gira»](https://www.diariolibre.com/revista/cultura/luis-chataing-llega-con-todo-gira-LA6714805), artículo consultado como contexto adicional de sus actuaciones y formato de presentador.
+
+No se atribuye un modelo o marca de micrófono: las fotos no permiten identificarlos con certeza. El arte conserva el micrófono oscuro y el vestuario del atlas aprobado; las fotos guían la rejilla, el agarre y la conexión del cable. El lanzamiento como látigo y la pantalla que atrapa al rival son coreografía ficticia original solicitada por el usuario, no gestos históricos del artista. «¡Vamos a comerciales!» es diálogo de combate solicitado, no cita histórica atribuida a una emisión concreta. No se incorporan videos, música comercial ni imitaciones de voz.

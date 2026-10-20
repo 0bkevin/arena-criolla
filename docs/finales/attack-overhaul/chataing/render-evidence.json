@@ -1,0 +1,900 @@
+[
+  {
+    "key": "final-p1-normal-66",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/final-p1-normal-66.png",
+    "rectangles": [
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 521.5378955881558,
+        "right": 988.8620385352826,
+        "top": 265.10854313507343,
+        "bottom": 659.1657653659134
+      },
+      {
+        "pose": "recover",
+        "alpha": 1,
+        "left": 322.62475249342117,
+        "right": 508.09525008132437,
+        "top": 428.04470112378453,
+        "bottom": 656.614087185117
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-normal-95",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/final-p1-normal-95.png",
+    "rectangles": [
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 521.5378955881558,
+        "right": 988.8620385352826,
+        "top": 265.10854313507343,
+        "bottom": 659.1657653659134
+      },
+      {
+        "pose": "windup",
+        "alpha": 1,
+        "left": 320.5014710388097,
+        "right": 510.2185315359358,
+        "top": 426.03529992764095,
+        "bottom": 658.6234883812605
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-normal-105",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/final-p1-normal-105.png",
+    "rectangles": [
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 521.5378955881558,
+        "right": 988.8620385352826,
+        "top": 265.10854313507343,
+        "bottom": 659.1657653659134
+      },
+      {
+        "pose": "cast",
+        "alpha": 1,
+        "left": 289.07350437321855,
+        "right": 541.646498201527,
+        "top": 434.5752550112512,
+        "bottom": 656.1117368860811
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 484.65895590780536,
+        "right": 535.9035392095648,
+        "top": 396.5574652417723,
+        "bottom": 415.2313388178372
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-normal-114",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/final-p1-normal-114.png",
+    "rectangles": [
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 506.3316593557761,
+        "right": 973.6558023029029,
+        "top": 270.87000540863846,
+        "bottom": 664.9272276394785
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 506.3316593557761,
+        "right": 973.6558023029029,
+        "top": 270.87000540863846,
+        "bottom": 664.9272276394785
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 506.3316593557761,
+        "right": 973.6558023029029,
+        "top": 270.87000540863846,
+        "bottom": 664.9272276394785
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 506.3316593557761,
+        "right": 973.6558023029029,
+        "top": 270.87000540863846,
+        "bottom": 664.9272276394785
+      },
+      {
+        "pose": "cast",
+        "alpha": 1,
+        "left": 273.8672681408388,
+        "right": 526.4402619691473,
+        "top": 440.33671728481625,
+        "bottom": 661.8731991596461
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 622.1029715873568,
+        "right": 673.3475548891162,
+        "top": 460.46932363073586,
+        "bottom": 479.1431972068007
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-normal-126",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/final-p1-normal-126.png",
+    "rectangles": [
+      {
+        "pose": "screen",
+        "alpha": 0.96,
+        "left": 502.1031680467869,
+        "right": 969.4273109939137,
+        "top": 261.7325372134628,
+        "bottom": 655.7897594443028
+      },
+      {
+        "pose": "screen",
+        "alpha": 0.96,
+        "left": 541.9777248068883,
+        "right": 1009.3018677540151,
+        "top": 261.7325372134628,
+        "bottom": 655.7897594443028
+      },
+      {
+        "pose": "screen",
+        "alpha": 0.96,
+        "left": 502.1031680467869,
+        "right": 969.4273109939137,
+        "top": 285.2947762156143,
+        "bottom": 679.3519984464543
+      },
+      {
+        "pose": "screen",
+        "alpha": 0.96,
+        "left": 541.9777248068883,
+        "right": 1009.3018677540151,
+        "top": 285.2947762156143,
+        "bottom": 679.3519984464543
+      },
+      {
+        "pose": "reel",
+        "alpha": 1,
+        "left": 320.1499199389823,
+        "right": 511.57518431312667,
+        "top": 426.7452103406515,
+        "bottom": 657.8263478971634
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 568.0946437844574,
+        "right": 619.3392270862167,
+        "top": 481.8149509822159,
+        "bottom": 500.4888245582808
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-normal-150",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/final-p1-normal-150.png",
+    "rectangles": [
+      {
+        "pose": "recover",
+        "alpha": 1,
+        "left": 322.62475249342117,
+        "right": 508.09525008132437,
+        "top": 428.04470112378453,
+        "bottom": 656.614087185117
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p2-close-edge-66",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/final-p2-close-edge-66.png",
+    "rectangles": [
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 574.1698585789007,
+        "right": 1041.4940015260277,
+        "top": 265.10854313507343,
+        "bottom": 659.1657653659134
+      },
+      {
+        "pose": "recover",
+        "alpha": 1,
+        "left": 1054.936658556296,
+        "right": 1240.407156144199,
+        "top": 428.04470112378453,
+        "bottom": 656.614087185117
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p2-close-edge-126",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/final-p2-close-edge-126.png",
+    "rectangles": [
+      {
+        "pose": "screen",
+        "alpha": 0.96,
+        "left": 594.1071276749554,
+        "right": 1061.4312706220824,
+        "top": 261.7325372134628,
+        "bottom": 655.7897594443028
+      },
+      {
+        "pose": "screen",
+        "alpha": 0.96,
+        "left": 554.2325709148541,
+        "right": 1021.5567138619809,
+        "top": 261.7325372134628,
+        "bottom": 655.7897594443028
+      },
+      {
+        "pose": "screen",
+        "alpha": 0.96,
+        "left": 594.1071276749554,
+        "right": 1061.4312706220824,
+        "top": 285.2947762156143,
+        "bottom": 679.3519984464543
+      },
+      {
+        "pose": "screen",
+        "alpha": 0.96,
+        "left": 554.2325709148541,
+        "right": 1021.5567138619809,
+        "top": 285.2947762156143,
+        "bottom": 679.3519984464543
+      },
+      {
+        "pose": "reel",
+        "alpha": 1,
+        "left": 1051.9592658791792,
+        "right": 1243.3845302533234,
+        "top": 426.7452103406515,
+        "bottom": 657.8263478971634
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 944.1952576763994,
+        "right": 995.4398409781587,
+        "top": 481.8149509822159,
+        "bottom": 500.4888245582808
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-edge-114",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/final-p1-edge-114.png",
+    "rectangles": [
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 806.6342647267668,
+        "right": 1273.9584076738936,
+        "top": 270.87000540863846,
+        "bottom": 664.9272276394785
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 806.6342647267668,
+        "right": 1273.9584076738936,
+        "top": 270.87000540863846,
+        "bottom": 664.9272276394785
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 806.6342647267668,
+        "right": 1273.9584076738936,
+        "top": 270.87000540863846,
+        "bottom": 664.9272276394785
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 806.6342647267668,
+        "right": 1273.9584076738936,
+        "top": 270.87000540863846,
+        "bottom": 664.9272276394785
+      },
+      {
+        "pose": "cast",
+        "alpha": 1,
+        "left": 574.1698533458152,
+        "right": 826.7428471741237,
+        "top": 440.33671728481625,
+        "bottom": 661.8731991596461
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 922.4055539114739,
+        "right": 973.6501372132333,
+        "top": 460.46932363073586,
+        "bottom": 479.1431972068007
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p2-inward-114",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/final-p2-inward-114.png",
+    "rectangles": [
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 574.169843555881,
+        "right": 1041.4939865030078,
+        "top": 270.87000540863846,
+        "bottom": 664.9272276394785
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 574.169843555881,
+        "right": 1041.4939865030078,
+        "top": 270.87000540863846,
+        "bottom": 664.9272276394785
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 574.169843555881,
+        "right": 1041.4939865030078,
+        "top": 270.87000540863846,
+        "bottom": 664.9272276394785
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 574.169843555881,
+        "right": 1041.4939865030078,
+        "top": 270.87000540863846,
+        "bottom": 664.9272276394785
+      },
+      {
+        "pose": "cast",
+        "alpha": 1,
+        "left": 1021.3853954130734,
+        "right": 1273.9583892413818,
+        "top": 440.33671728481625,
+        "bottom": 661.8731991596461
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 874.478090969668,
+        "right": 925.7226742714273,
+        "top": 460.46932363073586,
+        "bottom": 479.1431972068007
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p2-platform-66",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/final-p2-platform-66.png",
+    "rectangles": [
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 380.73793319769413,
+        "right": 848.0620761448209,
+        "top": 6.041589174925775,
+        "bottom": 400.0988114057658
+      },
+      {
+        "pose": "recover",
+        "alpha": 1,
+        "left": 861.5047101282157,
+        "right": 1046.975207716119,
+        "top": 253.9647063300314,
+        "bottom": 482.5340923913638
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-unequal-114",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/final-p1-unequal-114.png",
+    "rectangles": [
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 506.3316593557761,
+        "right": 973.6558023029029,
+        "top": 241.07156857468544,
+        "bottom": 635.1287908055255
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 506.3316593557761,
+        "right": 973.6558023029029,
+        "top": 241.07156857468544,
+        "bottom": 635.1287908055255
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 506.3316593557761,
+        "right": 973.6558023029029,
+        "top": 241.07156857468544,
+        "bottom": 635.1287908055255
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 506.3316593557761,
+        "right": 973.6558023029029,
+        "top": 241.07156857468544,
+        "bottom": 635.1287908055255
+      },
+      {
+        "pose": "cast",
+        "alpha": 1,
+        "left": 273.8672681408388,
+        "right": 526.4402619691473,
+        "top": 440.3366893977501,
+        "bottom": 661.87317127258
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 622.1029715873568,
+        "right": 673.3475548891162,
+        "top": 430.67088679678284,
+        "bottom": 449.3447603728477
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-short-66",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/final-p1-short-66.png",
+    "rectangles": [
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 521.5378955881558,
+        "right": 988.8620385352826,
+        "top": 265.10854313507343,
+        "bottom": 659.1657653659134
+      },
+      {
+        "pose": "recover",
+        "alpha": 1,
+        "left": 322.62475249342117,
+        "right": 508.09525008132437,
+        "top": 428.04470112378453,
+        "bottom": 656.614087185117
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-tall-66",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/final-p1-tall-66.png",
+    "rectangles": [
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 521.5378955881558,
+        "right": 988.8620385352826,
+        "top": 265.10854313507343,
+        "bottom": 659.1657653659134
+      },
+      {
+        "pose": "recover",
+        "alpha": 1,
+        "left": 322.62475249342117,
+        "right": 508.09525008132437,
+        "top": 428.04470112378453,
+        "bottom": 656.614087185117
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "special-p1-normal-10",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/special-p1-normal-10.png",
+    "rectangles": [
+      {
+        "pose": "windup",
+        "alpha": 1,
+        "left": 429.94145380469354,
+        "right": 619.6585227349183,
+        "top": 426.0352898121805,
+        "bottom": 658.6234886045598
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "special-p1-normal-11",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/special-p1-normal-11.png",
+    "rectangles": [
+      {
+        "pose": "reel",
+        "alpha": 1,
+        "left": 429.08735182821886,
+        "right": 620.512624711393,
+        "top": 427.0399904549122,
+        "bottom": 658.121138283194
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 588.0109740567475,
+        "right": 639.252997535202,
+        "top": 506.02351820896655,
+        "bottom": 524.6964589680643
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "special-p1-normal-15",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/special-p1-normal-15.png",
+    "rectangles": [
+      {
+        "pose": "reel",
+        "alpha": 1,
+        "left": 429.08735182821886,
+        "right": 620.512624711393,
+        "top": 427.0399904549122,
+        "bottom": 658.121138283194
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 639.2109729123383,
+        "right": 690.4529963907928,
+        "top": 506.02351820896655,
+        "bottom": 524.6964589680643
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "special-p2-normal-20",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/special-p2-normal-20.png",
+    "rectangles": [
+      {
+        "pose": "reel",
+        "alpha": 1,
+        "left": 652.825796534306,
+        "right": 844.2510694174802,
+        "top": 427.14083898438105,
+        "bottom": 658.2219868126629
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 544.4854257132131,
+        "right": 595.7274491916676,
+        "top": 506.1243667384354,
+        "bottom": 524.7973074975332
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "special-p1-miss-25",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/special-p1-miss-25.png",
+    "rectangles": [
+      {
+        "pose": "cast",
+        "alpha": 1,
+        "left": 180.91349060583929,
+        "right": 433.48649566125056,
+        "top": 434.57524527539965,
+        "bottom": 656.1117369977308
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 549.6109749150544,
+        "right": 600.8529983935089,
+        "top": 506.02351820896655,
+        "bottom": 524.6964589680643
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "special-p1-miss-40",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/special-p1-miss-40.png",
+    "rectangles": [
+      {
+        "pose": "reel",
+        "alpha": 1,
+        "left": 211.48735669195787,
+        "right": 402.912629575132,
+        "top": 427.0399904549122,
+        "bottom": 658.121138283194
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 491.09042934809054,
+        "right": 542.332452826545,
+        "top": 495.2613309495202,
+        "bottom": 513.934271708618
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "special-p1-miss-50",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/special-p1-miss-50.png",
+    "rectangles": [
+      {
+        "pose": "reel",
+        "alpha": 1,
+        "left": 211.48735669195787,
+        "right": 402.912629575132,
+        "top": 427.0399904549122,
+        "bottom": 658.121138283194
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 261.203989173953,
+        "right": 312.4460126524075,
+        "top": 479.8867609806686,
+        "bottom": 498.5597017397664
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "special-p2-reflect-20",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/special-p2-reflect-20.png",
+    "rectangles": [
+      {
+        "pose": "cast",
+        "alpha": 1,
+        "left": 705.7134788756453,
+        "right": 958.2864839310564,
+        "top": 434.57524527539965,
+        "bottom": 656.1117369977308
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 602.3469747128754,
+        "right": 653.5889981913299,
+        "top": 506.02351820896655,
+        "bottom": 524.6964589680643
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "special-p1-interrupt-after-25",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/special-p1-interrupt-after-25.png",
+    "rectangles": [
+      {
+        "pose": "reel",
+        "alpha": 1,
+        "left": 422.5924563435083,
+        "right": 614.0177292266824,
+        "top": 426.42040134980357,
+        "bottom": 657.5015491780854
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 625.4092807159474,
+        "right": 676.6513041944019,
+        "top": 499.55123392217587,
+        "bottom": 518.2241746812737
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "special-p1-double-15",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/special-p1-double-15.png",
+    "rectangles": [
+      {
+        "pose": "reel",
+        "alpha": 1,
+        "left": 429.08735182821886,
+        "right": 620.512624711393,
+        "top": 427.0399904549122,
+        "bottom": 658.121138283194
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 639.2109729123383,
+        "right": 690.4529963907928,
+        "top": 506.02351820896655,
+        "bottom": 524.6964589680643
+      },
+      {
+        "pose": "reel",
+        "alpha": 1,
+        "left": 659.4873466783775,
+        "right": 850.9126195615517,
+        "top": 427.0399904549122,
+        "bottom": 658.121138283194
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 589.5469749989777,
+        "right": 640.7889984774322,
+        "top": 506.02351820896655,
+        "bottom": 524.6964589680643
+      }
+    ],
+    "canonical": 1
+  },
+  {
+    "key": "special-p2-edge-12",
+    "reduced": false,
+    "missing": false,
+    "path": "screenshots/special-p2-edge-12.png",
+    "rectangles": [
+      {
+        "pose": "reel",
+        "alpha": 1,
+        "left": 189.51640137250013,
+        "right": 380.94167425567423,
+        "top": 423.6567712312167,
+        "bottom": 654.7379190594985
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 157.9760288347934,
+        "right": 209.21805231324788,
+        "top": 502.64029898527093,
+        "bottom": 521.3132397443687
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-normal-114",
+    "reduced": true,
+    "missing": false,
+    "path": "screenshots/final-p1-normal-114-reduced.png",
+    "rectangles": [
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 521.5378955881558,
+        "right": 988.8620385352826,
+        "top": 265.10854313507343,
+        "bottom": 659.1657653659134
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 521.5378955881558,
+        "right": 988.8620385352826,
+        "top": 265.10854313507343,
+        "bottom": 659.1657653659134
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 521.5378955881558,
+        "right": 988.8620385352826,
+        "top": 265.10854313507343,
+        "bottom": 659.1657653659134
+      },
+      {
+        "pose": "screen",
+        "alpha": 1,
+        "left": 521.5378955881558,
+        "right": 988.8620385352826,
+        "top": 265.10854313507343,
+        "bottom": 659.1657653659134
+      },
+      {
+        "pose": "cast",
+        "alpha": 1,
+        "left": 289.07350437321855,
+        "right": 541.646498201527,
+        "top": 434.5752550112512,
+        "bottom": 656.1117368860811
+      },
+      {
+        "pose": "microphone",
+        "alpha": 1,
+        "left": 637.3092078197366,
+        "right": 688.5537911214959,
+        "top": 454.7078613571708,
+        "bottom": 473.3817349332357
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "special-p1-miss-25",
+    "reduced": false,
+    "missing": true,
+    "path": "screenshots/special-p1-miss-25-missing.png",
+    "rectangles": [],
+    "canonical": 3
+  },
+  {
+    "key": "final-p1-normal-114",
+    "reduced": false,
+    "missing": true,
+    "path": "screenshots/final-p1-normal-114-missing.png",
+    "rectangles": [],
+    "canonical": 3
+  }
+]

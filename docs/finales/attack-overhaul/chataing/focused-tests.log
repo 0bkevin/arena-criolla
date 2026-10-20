@@ -1,0 +1,106 @@
+✔ complete-scene preflight checks every requested pose against intrinsic loaded dimensions (1.449687ms)
+✔ valid art preserves its exact source crop, anchors, facing, body scale and alpha (1.155563ms)
+✔ legacy optional geometry and boundary anchors remain valid without changing drawing math (0.380444ms)
+✔ missing, unloaded, incomplete and intrinsically undersized images draw nothing (0.419052ms)
+✔ nonfinite, nonpositive and out-of-bounds frame geometry never touches canvas (2.494484ms)
+{"character":"chataing","check":"presentation","evidence":{"intro":"Se yergue y cruza los brazos","choreography":"Se yergue y cruza los brazos"}}
+{"character":"chataing","check":"movement","evidence":{"side":0,"start":540,"right":648.5002944163685,"left":549.0994111767881,"firstY":454.59999999999997,"finalY":554,"stocks":2}}
+{"character":"chataing","check":"movement","evidence":{"side":1,"start":540,"right":648.5002944163685,"left":549.0994111767881,"firstY":454.59999999999997,"finalY":554,"stocks":2}}
+{"character":"chataing","check":"ordinary-attack","evidence":{"side":0,"action":"light","guard":false,"hp":93.1505,"hits":1,"energy":100}}
+{"character":"chataing","check":"ordinary-attack","evidence":{"side":0,"action":"light","guard":true,"hp":100,"hits":0,"energy":85.47999999999979}}
+{"character":"chataing","check":"ordinary-attack","evidence":{"side":0,"action":"heavy","guard":false,"hp":87.2795,"hits":1,"energy":100}}
+{"character":"chataing","check":"ordinary-attack","evidence":{"side":0,"action":"heavy","guard":true,"hp":100,"hits":0,"energy":84.87999999999977}}
+{"character":"chataing","check":"ordinary-attack","evidence":{"side":1,"action":"light","guard":false,"hp":93.1505,"hits":1,"energy":100}}
+{"character":"chataing","check":"ordinary-attack","evidence":{"side":1,"action":"light","guard":true,"hp":100,"hits":0,"energy":85.47999999999979}}
+{"character":"chataing","check":"ordinary-attack","evidence":{"side":1,"action":"heavy","guard":false,"hp":87.2795,"hits":1,"energy":100}}
+{"character":"chataing","check":"ordinary-attack","evidence":{"side":1,"action":"heavy","guard":true,"hp":100,"hits":0,"energy":84.87999999999977}}
+{"character":"chataing","check":"special","evidence":{"side":0,"guard":"idle","emissions":[{"tick":11,"age":1,"vx":10,"damage":11.399999999999999,"kind":"static"}],"impacts":[{"tick":20,"hp":88.258}],"blockCount":0,"hp":88.258,"hits":1}}
+{"character":"chataing","check":"special","evidence":{"side":0,"guard":"front","emissions":[{"tick":11,"age":1,"vx":10,"damage":11.399999999999999,"kind":"static"}],"impacts":[],"blockCount":1,"hp":100,"hits":0}}
+{"character":"chataing","check":"special","evidence":{"side":0,"guard":"rear","emissions":[{"tick":11,"age":1,"vx":10,"damage":11.399999999999999,"kind":"static"}],"impacts":[{"tick":23,"hp":88.258}],"blockCount":0,"hp":88.258,"hits":1}}
+{"character":"chataing","check":"special","evidence":{"side":1,"guard":"idle","emissions":[{"tick":11,"age":1,"vx":-10,"damage":11.399999999999999,"kind":"static"}],"impacts":[{"tick":20,"hp":88.258}],"blockCount":0,"hp":88.258,"hits":1}}
+{"character":"chataing","check":"special","evidence":{"side":1,"guard":"front","emissions":[{"tick":11,"age":1,"vx":-10,"damage":11.399999999999999,"kind":"static"}],"impacts":[],"blockCount":1,"hp":100,"hits":0}}
+{"character":"chataing","check":"special","evidence":{"side":1,"guard":"rear","emissions":[{"tick":11,"age":1,"vx":-10,"damage":11.399999999999999,"kind":"static"}],"impacts":[{"tick":23,"hp":88.258}],"blockCount":0,"hp":88.258,"hits":1}}
+{"character":"chataing","check":"tether-return","evidence":{"side":0,"origin":400,"first":{"age":1,"x":485,"y":446,"returning":false},"peak":{"age":23,"x":705,"y":446,"returning":false},"turn":{"age":24,"x":687.0401206441645,"y":444.7988615717435,"returning":true},"last":{"age":40,"x":399.6820509507968,"y":425.5806467196393,"returning":true}}}
+{"character":"chataing","check":"tether-return","evidence":{"side":1,"origin":680,"first":{"age":1,"x":595,"y":446,"returning":false},"peak":{"age":23,"x":375,"y":446,"returning":false},"turn":{"age":24,"x":392.9598793558355,"y":444.7988615717435,"returning":true},"last":{"age":40,"x":680.3179490492032,"y":425.5806467196393,"returning":true}}}
+{"character":"chataing","check":"range-probe","evidence":{"gap":280,"hp":88.258,"hits":1}}
+{"character":"chataing","check":"range-probe","evidence":{"gap":319,"hp":88.258,"hits":1}}
+{"character":"chataing","check":"range-probe","evidence":{"gap":320,"hp":88.258,"hits":1}}
+{"character":"chataing","check":"range-probe","evidence":{"gap":400,"hp":100,"hits":0}}
+{"character":"chataing","check":"range-probe","evidence":{"gap":460,"hp":100,"hits":0}}
+{"character":"chataing","check":"range-probe","evidence":{"gap":500,"hp":100,"hits":0}}
+{"character":"chataing","check":"cpu-range-probe","evidence":{"start":{"tick":600,"casterX":900,"targetX":400,"energy":100},"input":{"left":true,"right":false,"block":false,"down":false,"actions":{"jump":0,"light":0,"heavy":0,"special":0,"dash":0,"super":0}},"finalCasterX":382.0500000000003,"finalEnergy":100,"targetHp":100,"hits":0}}
+{"character":"chataing","check":"combo-gate","evidence":{"side":0,"wins":0,"combo":"Pregunta directa","bonus":3,"hits":1,"hp":84.1895}}
+{"character":"chataing","check":"combo-gate","evidence":{"side":0,"wins":1,"combo":"Repregunta","bonus":7,"hits":1,"hp":80.0695}}
+{"character":"chataing","check":"connected-combo","evidence":{"side":0,"combo":"Pregunta directa","hits":2,"hp":77.33999999999999,"elapsed":65}}
+{"character":"chataing","check":"connected-combo","evidence":{"side":0,"combo":"Repregunta","hits":3,"hp":66.37049999999999,"elapsed":109}}
+{"character":"chataing","check":"super-gate","evidence":{"side":0,"wins":0,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"chataing","check":"super-gate","evidence":{"side":0,"wins":2,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"chataing","check":"super-gate","evidence":{"side":0,"wins":3,"energy":74,"hp":100,"attackerEnergy":74.31499999999997,"combo":""}}
+{"character":"chataing","check":"super-gate","evidence":{"side":0,"wins":3,"energy":100,"hp":60.242000000000004,"attackerEnergy":38.28,"combo":"Cierre al aire"}}
+{"character":"chataing","check":"combo-gate","evidence":{"side":1,"wins":0,"combo":"Pregunta directa","bonus":3,"hits":1,"hp":84.1895}}
+{"character":"chataing","check":"combo-gate","evidence":{"side":1,"wins":1,"combo":"Repregunta","bonus":7,"hits":1,"hp":80.0695}}
+{"character":"chataing","check":"connected-combo","evidence":{"side":1,"combo":"Pregunta directa","hits":2,"hp":77.33999999999999,"elapsed":65}}
+{"character":"chataing","check":"connected-combo","evidence":{"side":1,"combo":"Repregunta","hits":3,"hp":66.37049999999999,"elapsed":109}}
+{"character":"chataing","check":"super-gate","evidence":{"side":1,"wins":0,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"chataing","check":"super-gate","evidence":{"side":1,"wins":2,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"chataing","check":"super-gate","evidence":{"side":1,"wins":3,"energy":74,"hp":100,"attackerEnergy":74.31499999999997,"combo":""}}
+{"character":"chataing","check":"super-gate","evidence":{"side":1,"wins":3,"energy":100,"hp":60.242000000000004,"attackerEnergy":38.28,"combo":"Cierre al aire"}}
+{"character":"chataing","check":"cpu-fight","evidence":{"winner":1,"tick":1282,"remaining":4590,"started":["special","super","light","heavy"],"landed":["special","super","light"],"players":[{"fighter":"chataing","hp":0,"stocks":0,"hits":8,"peakCombo":6},{"fighter":"javier","hp":88.258,"stocks":1,"hits":6,"peakCombo":3}]}}
+✔ Chataing retains his researched identity, returning microphone and one-shot facing presentations (3.574863ms)
+✔ Chataing walks, faces both directions, double jumps, rejects a third jump and lands on either player side (10.809196ms)
+✔ Chataing light and heavy connect once and respect a facing guard on both sides (10.230583ms)
+✔ Micrófono de vuelta hits idle, blocks toward its flight and defeats rear guard on both sides (13.723843ms)
+✔ the wired microphone turns at age24 and is caught instead of passing through its owner (5.202828ms)
+✔ returning microphone stays bounded and CPU approaches before using it (7.7297ms)
+✔ Chataing recognizes base and upgraded combos, connects all strikes with chase inputs, and enforces super gates (21.936883ms)
+✔ Chataing intro locks combat until the shared timeline finishes and faces either-side rivals (1.62362ms)
+✔ a complete Chataing fight against normal CPU finishes and deterministically replays (21.658072ms)
+✔ the expanded roster contains fifty-two distinct figures and excludes removed fighters (1.117416ms)
+✔ Vicente summons one motorcycle without moving himself (3.506049ms)
+✔ Pedro's installments arrive in three separate pulses and expire after crossing the arena (2.787986ms)
+✔ Simón's notes fan out to cover separate vertical paths (0.706186ms)
+✔ Chataing's wired microphone extends, turns and is caught after a miss (2.398719ms)
+✔ the general's ground shock can be avoided with a jump (2.235813ms)
+✔ Emilio's follow-up strike connects after the first reaction (0.590211ms)
+✔ the shipped roster has no real-person speech and every generic reaction has a verified asset (90.940368ms)
+✔ wired microphone physically connects once, stays attached through block/hit and is caught on both sides (45.95787ms)
+✔ tether follows a jumping owner, serializes, suppresses duplicate casts and recalls after interruption (12.789965ms)
+✔ Carolina parries the wired head back to its original owner without stealing its cable or damage (2.460202ms)
+✔ two Chataings throw two owned microphones simultaneously with symmetric damage and no duplicates (1.631622ms)
+✔ capture takeover and owner stock loss clean up an airborne wired microphone (6.743953ms)
+✔ screen freezes any canonical rival, damages only on the visible smash and releases with the ordinary force (7.264419ms)
+✔ screen gates, guard, miss, interruption and lethal stocks retain shared rules (8.105739ms)
+✔ every Chataing pose and valid intrinsic image is required before either module paints (1.068511ms)
+✔ whole generated poses preserve RGBA provenance and common head scale (53.84626ms)
+✔ combat shows category labels, retains requested character lines, and expires combos (1.144076ms)
+✔ a paid transformation keeps the Definitiva category through recovery without overriding a special (0.360004ms)
+✔ viewport bounds reverse the complete camera transform and backing-pixel scale (2.025595ms)
+✔ viewport edges remain ordered when the arena is mirrored (0.340634ms)
+✔ full-pose anchor intervals preserve body scale and asymmetric anchors on both facings (0.505873ms)
+✔ a pose wider than the viewport reports an impossible interval without shrinking it (0.229316ms)
+✔ published showgirl art stays fully visible at either ledge under real arena scale and DPR (2.674465ms)
+✔ missing, invalid and noninvertible canvas transforms leave mock positions unchanged (0.518592ms)
+✔ all built-in finales exercise their capture or transformation mode against every rival on either side (1020.08392ms)
+✔ finales keep the three-win and 75-energy gates, and Vicente's single motorcycle is available from zero wins (8.329146ms)
+✔ distance, height, facing, spawn protection and a facing guard can prevent capture (0.99426ms)
+✔ a counter and a startup interruption stop a cinematic before capture (0.439192ms)
+✔ cinematics consume inputs without queueing, freeze projectiles, and retain recovery on release (1.562687ms)
+✔ an airborne cinematic freezes actors in place and releases them without teleporting (0.510449ms)
+✔ a moving platform pauses on capture and carries its rider smoothly after release (0.423619ms)
+✔ lethal beats and a timer reaching zero wait until the scene ends to resolve stock or match results (0.492733ms)
+✔ simultaneous supers select one deterministic scene and serialized scenes replay exactly (6.917535ms)
+✔ exact lethal thresholds resolve without floating-point survivors, while a tiny HP advantage survives (59.77249ms)
+✔ community fighters keep their generic definitive until they have a cinematic definition (0.388367ms)
+✔ Javier P1 shows the kick and full sweep when the actual special damages (6.836423ms)
+✔ Capriles P1 crosses the empty gap before his rush connects once (2.670519ms)
+✔ Javier P2 shows the kick and full sweep when the actual special damages (0.599294ms)
+✔ Capriles P2 crosses the empty gap before his rush connects once (0.883423ms)
+✔ a missing Cashea sheet leaves all three damaging boxes visibly represented (2.192957ms)
+ℹ tests 55
+ℹ suites 0
+ℹ pass 55
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1315.751399

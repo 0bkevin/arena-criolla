@@ -1,0 +1,21 @@
+{
+  "tool": "image_gen.imagegen",
+  "acceptedRaw": "assets/source/finales/attack-overhaul/chataing/raw-v2.png",
+  "rawFiles": {
+    "assets/source/finales/attack-overhaul/chataing/raw-v1.png": "af58539f994d02770888dd8ca7f88a9fcfcd6b407224d8bb53b584a42a780c2f",
+    "assets/source/finales/attack-overhaul/chataing/raw-v2.png": "0c40304fcdb5035d33b7b090d210db220c7acbd71efbe55688cf0b4067da6eda"
+  },
+  "canonicalSha256": {
+    "assets/source/chataing-v3.png": "3dab421938906e8e4d0ad112d1b94d90dc73a086a54e89d45050f4ad9356f924",
+    "public/assets/chataing-v3.webp": "3fb51d8e201dc9e0dd675f0e7c9fc9ac6118cec2b67a1af557a66f830835eb2c",
+    "assets/source/chataing-defiant-entrance.png": "d64e20cef0f4c1438faff485c38b3d431a71feb9d2f2cc1cbf07abe94a06a20d"
+  },
+  "referenceSha256": {
+    "docs/finales/attack-overhaul/chataing/references/show-gesture.jpeg": "936cb1e268787bfca2b182dcfedb5a4c50229c1fc21923b63adb60a3f3ecd068",
+    "docs/finales/attack-overhaul/chataing/references/show-standing.jpeg": "06e3fa7ae70b5d2041100ab47b1e76ddbb0209386e725c938f32d3ec0f849723"
+  },
+  "promptSha256": {
+    "docs/finales/attack-overhaul/chataing/prompts/v2.txt": "caaa14638464075183eb7d74dfe3d6845b8ffde652e20acf0ac038418c66784b",
+    "docs/finales/attack-overhaul/chataing/prompts/v1.txt": "9d88dc885c84174caa76b95df586aadb416659b91cc91980a30980964c752c02"
+  }
+}

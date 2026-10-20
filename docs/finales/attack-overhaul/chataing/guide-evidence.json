@@ -1,0 +1,40 @@
+{
+  "summary": {
+    "selected": "chataing",
+    "mode": "final",
+    "frames": 280,
+    "hp": 100,
+    "minHp": 60.62800000000001,
+    "stocks": 1,
+    "props": [
+      "chataing-wired-microphone-attack-v1",
+      "finales-v1-2",
+      "finales-seated-v1-2",
+      "finales-dance-v2-2",
+      "finales-v1-1",
+      "finales-seated-main-v1",
+      "perro-mujeriego-v3-capriles",
+      "finales-capriles-cafe",
+      "finales-cafe-furniture"
+    ],
+    "sprite": "chataing-v3"
+  },
+  "events": [
+    {
+      "frame": 123,
+      "event": "hit",
+      "tick": 114,
+      "hp": 60.62800000000001
+    },
+    {
+      "frame": 189,
+      "event": "release",
+      "stocks": 2
+    },
+    {
+      "frame": 227,
+      "event": "stock",
+      "stocks": 1
+    }
+  ]
+}

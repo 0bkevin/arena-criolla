@@ -1,0 +1,297 @@
+{
+  "version": 1,
+  "columns": 3,
+  "rows": 2,
+  "poseCount": 6,
+  "poses": [
+    "windup",
+    "cast",
+    "reel",
+    "recover",
+    "microphone",
+    "screen"
+  ],
+  "sourceWidth": 1536,
+  "sourceHeight": 1024,
+  "width": 1728,
+  "height": 1088,
+  "cellWidth": 576,
+  "cellHeight": 544,
+  "padding": 32,
+  "coreAlphaThreshold": 40,
+  "minimumCorePixels": 1000,
+  "transparentSourcePixels": 1124479,
+  "retainedPixels": 444362,
+  "discardedNoise": {
+    "components": 1166,
+    "pixels": 4023,
+    "maxAlpha": 1
+  },
+  "retainedSoftComponents": [
+    {
+      "assignment": "contained",
+      "component": 792,
+      "assignedComponent": 632,
+      "cell": 5,
+      "sourceBounds": {
+        "left": 1370,
+        "top": 861,
+        "width": 4,
+        "height": 1
+      },
+      "outputBounds": {
+        "left": 1530,
+        "top": 910,
+        "width": 4,
+        "height": 1
+      },
+      "translation": {
+        "x": 160,
+        "y": 49
+      },
+      "pixels": 4,
+      "maxAlpha": 2,
+      "isolatedRgbaSha256": "40047e510b34d5cc09bdef98b413127e93b2abf19146f9836b48bc164351fa70"
+    }
+  ],
+  "objects": [
+    {
+      "cell": 0,
+      "column": 0,
+      "row": 0,
+      "pose": "windup",
+      "sourceBounds": {
+        "left": 75,
+        "top": 48,
+        "width": 378,
+        "height": 463
+      },
+      "coreBounds": {
+        "left": 81,
+        "top": 50,
+        "width": 369,
+        "height": 451
+      },
+      "outputBounds": {
+        "left": 99,
+        "top": 40,
+        "width": 378,
+        "height": 463
+      },
+      "outputCoreBounds": {
+        "left": 105,
+        "top": 42,
+        "width": 369,
+        "height": 451
+      },
+      "translation": {
+        "x": 24,
+        "y": -8
+      },
+      "retainedPixels": 88869,
+      "corePixels": 78126,
+      "maxAlpha": 254,
+      "isolatedRgbaSha256": "3a988ae62a8fdd12ef6202b0440f4d68e1ab0cdb7bfb14b3bc8b7429d9dd16aa"
+    },
+    {
+      "cell": 1,
+      "column": 1,
+      "row": 0,
+      "pose": "cast",
+      "sourceBounds": {
+        "left": 554,
+        "top": 65,
+        "width": 503,
+        "height": 441
+      },
+      "coreBounds": {
+        "left": 557,
+        "top": 68,
+        "width": 496,
+        "height": 433
+      },
+      "outputBounds": {
+        "left": 612,
+        "top": 51,
+        "width": 503,
+        "height": 441
+      },
+      "outputCoreBounds": {
+        "left": 615,
+        "top": 54,
+        "width": 496,
+        "height": 433
+      },
+      "translation": {
+        "x": 58,
+        "y": -14
+      },
+      "retainedPixels": 84494,
+      "corePixels": 74735,
+      "maxAlpha": 254,
+      "isolatedRgbaSha256": "6fb784b52f9b5bec99927ede4fc40405c0101ff8438f617a2aac3b01c7012781"
+    },
+    {
+      "cell": 2,
+      "column": 2,
+      "row": 0,
+      "pose": "reel",
+      "sourceBounds": {
+        "left": 1112,
+        "top": 50,
+        "width": 381,
+        "height": 460
+      },
+      "coreBounds": {
+        "left": 1116,
+        "top": 59,
+        "width": 374,
+        "height": 442
+      },
+      "outputBounds": {
+        "left": 1249,
+        "top": 42,
+        "width": 381,
+        "height": 460
+      },
+      "outputCoreBounds": {
+        "left": 1253,
+        "top": 51,
+        "width": 374,
+        "height": 442
+      },
+      "translation": {
+        "x": 137,
+        "y": -8
+      },
+      "retainedPixels": 73675,
+      "corePixels": 66086,
+      "maxAlpha": 254,
+      "isolatedRgbaSha256": "af4c8d6add9ace37f534ac53219fd016d812e1e0049fdd017cfef446c673bbed"
+    },
+    {
+      "cell": 3,
+      "column": 0,
+      "row": 1,
+      "pose": "recover",
+      "sourceBounds": {
+        "left": 67,
+        "top": 521,
+        "width": 369,
+        "height": 455
+      },
+      "coreBounds": {
+        "left": 72,
+        "top": 528,
+        "width": 360,
+        "height": 442
+      },
+      "outputBounds": {
+        "left": 103,
+        "top": 588,
+        "width": 369,
+        "height": 455
+      },
+      "outputCoreBounds": {
+        "left": 108,
+        "top": 595,
+        "width": 360,
+        "height": 442
+      },
+      "translation": {
+        "x": 36,
+        "y": 67
+      },
+      "retainedPixels": 73021,
+      "corePixels": 64186,
+      "maxAlpha": 254,
+      "isolatedRgbaSha256": "2c147e69e1e4f554eb3e21cfeab90a2b641908b878d821e5050555489cc75d21"
+    },
+    {
+      "cell": 4,
+      "column": 1,
+      "row": 1,
+      "pose": "microphone",
+      "sourceBounds": {
+        "left": 497,
+        "top": 662,
+        "width": 510,
+        "height": 186
+      },
+      "coreBounds": {
+        "left": 504,
+        "top": 667,
+        "width": 500,
+        "height": 172
+      },
+      "outputBounds": {
+        "left": 609,
+        "top": 723,
+        "width": 510,
+        "height": 186
+      },
+      "outputCoreBounds": {
+        "left": 616,
+        "top": 728,
+        "width": 500,
+        "height": 172
+      },
+      "translation": {
+        "x": 112,
+        "y": 61
+      },
+      "retainedPixels": 53176,
+      "corePixels": 49853,
+      "maxAlpha": 254,
+      "isolatedRgbaSha256": "37ede58d46e5cf6769416d31362c4d322bdf3e2d538b34573f6881d257c796bd"
+    },
+    {
+      "cell": 5,
+      "column": 2,
+      "row": 1,
+      "pose": "screen",
+      "sourceBounds": {
+        "left": 1070,
+        "top": 590,
+        "width": 420,
+        "height": 354
+      },
+      "coreBounds": {
+        "left": 1074,
+        "top": 593,
+        "width": 412,
+        "height": 346
+      },
+      "outputBounds": {
+        "left": 1230,
+        "top": 639,
+        "width": 420,
+        "height": 354
+      },
+      "outputCoreBounds": {
+        "left": 1234,
+        "top": 642,
+        "width": 412,
+        "height": 346
+      },
+      "translation": {
+        "x": 160,
+        "y": 49
+      },
+      "retainedPixels": 71127,
+      "corePixels": 62722,
+      "maxAlpha": 254,
+      "isolatedRgbaSha256": "4d4f958abad86b5ee41707b98cb4e95989e1bca7795e01a802c23dae8ef6362f"
+    }
+  ],
+  "sourceSha256": "0c40304fcdb5035d33b7b090d210db220c7acbd71efbe55688cf0b4067da6eda",
+  "sourceRgbaSha256": "3c30c2eb1bd180364331040a7ff840d6a2c95c1589d162cf09b23e4bbe5c6b79",
+  "normalizedSha256": "a20381564b03567798f43733b9094829a1275e375bf46fb417d5dac54ddb584e",
+  "normalizedRgbaSha256": "df20d00a7199de31185972e491dfd1bd96d9c9d334de8615e1719e1372b596df",
+  "retainedSourceRgbaSha256": "c75636b5d777badfa972fc3e720b8264dd2752c9d57f3eeba4d153f5a7e0bbe2",
+  "reconstructedSourceRgbaSha256": "c75636b5d777badfa972fc3e720b8264dd2752c9d57f3eeba4d153f5a7e0bbe2",
+  "exactRetainedRgbaRoundtrip": true,
+  "preservation": "Translation only. Every nonzero-alpha RGBA pixel in each retained 8-neighbor component is copied exactly. Detached max-alpha-2-to-39 components are retained inside exactly one complete silhouette's bounds and matching source cell. Additionally, a max-alpha-2 component of at most 8 pixels outside all silhouette bounds may be retained only when actual nonzero-alpha contour pixels of exactly one substantial silhouette are within Chebyshev distance 3, in the matching source cell; its complete bounds are included and assignment distance audited. Only wholly disconnected max-alpha-1 components are discarded. Invisible alpha-zero background RGB is zeroed. No scaling, rotation, painting or anatomy changes.",
+  "source": "assets/source/finales/attack-overhaul/chataing/raw-v2.png",
+  "normalized": "assets/source/finales/attack-overhaul/chataing/chataing-grid.png"
+}
