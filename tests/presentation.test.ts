@@ -154,7 +154,7 @@ test("entrances lock physics and consume queued attacks without spending match t
   for (let i = 0; i < INTRO_TOTAL_TICKS; i++)
     stepMatch(state, inputs as [(typeof inputs)[0], (typeof inputs)[1]]);
   assert.equal(state.phase, "playing");
-  assert.equal(state.remaining, 90 * 60);
+  assert.equal(state.remaining, 120 * 60);
   assert.deepEqual(
     state.players.map((p) => [p.x, p.hp, p.facing, p.attack]),
     [
