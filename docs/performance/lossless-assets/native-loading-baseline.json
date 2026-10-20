@@ -1,0 +1,525 @@
+{
+  "scope": "Actual bundled production loader, loopback HTTP, native Chromium. Cold URLs/fresh loader then warm JS/image cache; no network or device throttling.",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+  "createdAtUtc": "2026-10-20T01:03:58.836Z",
+  "rows": [
+    {
+      "label": "baseline",
+      "pair": [
+        "llorona",
+        "dudamel"
+      ],
+      "repeat": 0,
+      "cache": "cold image URLs and fresh loader; immediate warm loader cache",
+      "coldMs": 163.7999997138977,
+      "warmMs": 0.09999990463256836,
+      "requests": 12,
+      "bytes": 11428510,
+      "props": [
+        "llorona-underworld-attack-v1",
+        "finales-v1-5",
+        "finales-seated-v1-5",
+        "finales-dance-v2-5",
+        "dudamel-orchestra-attack-v1",
+        "finales-v1-3",
+        "finales-seated-v1-3",
+        "finales-dance-v2-3"
+      ],
+      "resources": [
+        {
+          "file": "assets/dudamel-v15.webp",
+          "bytes": 320452,
+          "transferBytes": 320752,
+          "durationMs": 7.299999713897705
+        },
+        {
+          "file": "assets/llorona-v12.webp",
+          "bytes": 527370,
+          "transferBytes": 527670,
+          "durationMs": 6
+        },
+        {
+          "file": "assets/dudamel-entrance-v24.webp",
+          "bytes": 1074104,
+          "transferBytes": 1074404,
+          "durationMs": 13.800000190734863
+        },
+        {
+          "file": "assets/caracas.webp",
+          "bytes": 453034,
+          "transferBytes": 453334,
+          "durationMs": 8.900000095367432
+        },
+        {
+          "file": "assets/llorona-underworld-attack-v1.webp",
+          "bytes": 1668148,
+          "transferBytes": 1668448,
+          "durationMs": 18.5
+        },
+        {
+          "file": "assets/finales-v1-5.webp",
+          "bytes": 753056,
+          "transferBytes": 753356,
+          "durationMs": 11.700000286102295
+        },
+        {
+          "file": "assets/finales-seated-v1-5.webp",
+          "bytes": 1221878,
+          "transferBytes": 1222178,
+          "durationMs": 18.200000286102295
+        },
+        {
+          "file": "assets/finales-dance-v2-5.webp",
+          "bytes": 1207918,
+          "transferBytes": 1208218,
+          "durationMs": 19.800000190734863
+        },
+        {
+          "file": "assets/finales-v1-3.webp",
+          "bytes": 659394,
+          "transferBytes": 659694,
+          "durationMs": 20.399999618530273
+        },
+        {
+          "file": "assets/dudamel-orchestra-attack-v1.webp",
+          "bytes": 1751984,
+          "transferBytes": 1752284,
+          "durationMs": 22.799999713897705
+        },
+        {
+          "file": "assets/finales-seated-v1-3.webp",
+          "bytes": 909328,
+          "transferBytes": 909628,
+          "durationMs": 22.199999809265137
+        },
+        {
+          "file": "assets/finales-dance-v2-3.webp",
+          "bytes": 881844,
+          "transferBytes": 882144,
+          "durationMs": 23.199999809265137
+        }
+      ]
+    },
+    {
+      "label": "baseline",
+      "pair": [
+        "capriles",
+        "nacho"
+      ],
+      "repeat": 0,
+      "cache": "cold image URLs and fresh loader; immediate warm loader cache",
+      "coldMs": 113.59999990463257,
+      "warmMs": 0.09999990463256836,
+      "requests": 13,
+      "bytes": 9099484,
+      "props": [
+        "finales-v1-1",
+        "finales-seated-main-v1",
+        "perro-mujeriego-v3-capriles",
+        "finales-capriles-cafe",
+        "finales-cafe-furniture",
+        "finales-v1-3",
+        "finales-nacho-dance",
+        "perro-mujeriego-v3-nacho"
+      ],
+      "resources": [
+        {
+          "file": "assets/capriles-v39.webp",
+          "bytes": 959970,
+          "transferBytes": 960270,
+          "durationMs": 8.900000095367432
+        },
+        {
+          "file": "assets/capriles-v39-defiant-entrance.webp",
+          "bytes": 817940,
+          "transferBytes": 818240,
+          "durationMs": 10
+        },
+        {
+          "file": "assets/nacho-v42.webp",
+          "bytes": 814860,
+          "transferBytes": 815160,
+          "durationMs": 11
+        },
+        {
+          "file": "assets/caracas.webp",
+          "bytes": 453034,
+          "transferBytes": 453334,
+          "durationMs": 9.400000095367432
+        },
+        {
+          "file": "assets/finales-v1-1.webp",
+          "bytes": 518652,
+          "transferBytes": 518952,
+          "durationMs": 10.299999713897705
+        },
+        {
+          "file": "assets/nacho-v42-defiant-entrance.webp",
+          "bytes": 632924,
+          "transferBytes": 633224,
+          "durationMs": 10.5
+        },
+        {
+          "file": "assets/finales-seated-main-v1.webp",
+          "bytes": 463090,
+          "transferBytes": 463390,
+          "durationMs": 13
+        },
+        {
+          "file": "assets/perro-mujeriego-v3-capriles.webp",
+          "bytes": 925518,
+          "transferBytes": 925818,
+          "durationMs": 17
+        },
+        {
+          "file": "assets/finales-capriles-cafe.webp",
+          "bytes": 564862,
+          "transferBytes": 565162,
+          "durationMs": 16.199999809265137
+        },
+        {
+          "file": "assets/finales-cafe-furniture.webp",
+          "bytes": 781176,
+          "transferBytes": 781476,
+          "durationMs": 18
+        },
+        {
+          "file": "assets/finales-v1-3.webp",
+          "bytes": 659394,
+          "transferBytes": 659694,
+          "durationMs": 17.700000286102295
+        },
+        {
+          "file": "assets/finales-nacho-dance.webp",
+          "bytes": 754032,
+          "transferBytes": 754332,
+          "durationMs": 18.59999990463257
+        },
+        {
+          "file": "assets/perro-mujeriego-v3-nacho.webp",
+          "bytes": 754032,
+          "transferBytes": 754332,
+          "durationMs": 19.09999990463257
+        }
+      ]
+    },
+    {
+      "label": "baseline",
+      "pair": [
+        "zavarce",
+        "vallenilla"
+      ],
+      "repeat": 0,
+      "cache": "cold image URLs and fresh loader; immediate warm loader cache",
+      "coldMs": 127.59999990463257,
+      "warmMs": 0,
+      "requests": 10,
+      "bytes": 5575350,
+      "props": [
+        "yummy-courier-v1",
+        "finales-v1-1",
+        "finales-seated-v1-1",
+        "finales-dance-v2-1",
+        "vallenilla-cashea-attack-v1"
+      ],
+      "resources": [
+        {
+          "file": "assets/zavarce-v5.webp",
+          "bytes": 335416,
+          "transferBytes": 335716,
+          "durationMs": 4
+        },
+        {
+          "file": "assets/zavarce-defiant-entrance.webp",
+          "bytes": 483552,
+          "transferBytes": 483852,
+          "durationMs": 6.800000190734863
+        },
+        {
+          "file": "assets/vallenilla-defiant-entrance.webp",
+          "bytes": 524122,
+          "transferBytes": 524422,
+          "durationMs": 8.100000381469727
+        },
+        {
+          "file": "assets/caracas.webp",
+          "bytes": 453034,
+          "transferBytes": 453334,
+          "durationMs": 7.600000381469727
+        },
+        {
+          "file": "assets/yummy-courier-v1.webp",
+          "bytes": 441774,
+          "transferBytes": 442074,
+          "durationMs": 8
+        },
+        {
+          "file": "assets/vallenilla-v5.webp",
+          "bytes": 362180,
+          "transferBytes": 362480,
+          "durationMs": 6.200000286102295
+        },
+        {
+          "file": "assets/finales-v1-1.webp",
+          "bytes": 518652,
+          "transferBytes": 518952,
+          "durationMs": 9.5
+        },
+        {
+          "file": "assets/finales-seated-v1-1.webp",
+          "bytes": 935572,
+          "transferBytes": 935872,
+          "durationMs": 11.400000095367432
+        },
+        {
+          "file": "assets/finales-dance-v2-1.webp",
+          "bytes": 905076,
+          "transferBytes": 905376,
+          "durationMs": 16.09999990463257
+        },
+        {
+          "file": "assets/vallenilla-cashea-attack-v1.webp",
+          "bytes": 615972,
+          "transferBytes": 616272,
+          "durationMs": 12.199999809265137
+        }
+      ]
+    },
+    {
+      "label": "baseline",
+      "pair": [
+        "juan",
+        "dudamel"
+      ],
+      "repeat": 0,
+      "cache": "cold image URLs and fresh loader; immediate warm loader cache",
+      "coldMs": 118.2999997138977,
+      "warmMs": 0.10000038146972656,
+      "requests": 11,
+      "bytes": 8897894,
+      "props": [
+        "finales-v1-6",
+        "finales-seated-v1-6",
+        "finales-dance-v2-6",
+        "dudamel-orchestra-attack-v1",
+        "finales-v1-3",
+        "finales-seated-v1-3",
+        "finales-dance-v2-3"
+      ],
+      "resources": [
+        {
+          "file": "assets/juan-v3.webp",
+          "bytes": 806558,
+          "transferBytes": 806858,
+          "durationMs": 5.400000095367432
+        },
+        {
+          "file": "assets/dudamel-v15.webp",
+          "bytes": 320452,
+          "transferBytes": 320752,
+          "durationMs": 5.200000286102295
+        },
+        {
+          "file": "assets/caracas.webp",
+          "bytes": 453034,
+          "transferBytes": 453334,
+          "durationMs": 8.600000381469727
+        },
+        {
+          "file": "assets/dudamel-entrance-v24.webp",
+          "bytes": 1074104,
+          "transferBytes": 1074404,
+          "durationMs": 14
+        },
+        {
+          "file": "assets/finales-v1-6.webp",
+          "bytes": 359766,
+          "transferBytes": 360066,
+          "durationMs": 8.099999904632568
+        },
+        {
+          "file": "assets/finales-seated-v1-6.webp",
+          "bytes": 845798,
+          "transferBytes": 846098,
+          "durationMs": 12.599999904632568
+        },
+        {
+          "file": "assets/finales-dance-v2-6.webp",
+          "bytes": 835632,
+          "transferBytes": 835932,
+          "durationMs": 14.699999809265137
+        },
+        {
+          "file": "assets/finales-v1-3.webp",
+          "bytes": 659394,
+          "transferBytes": 659694,
+          "durationMs": 15.799999713897705
+        },
+        {
+          "file": "assets/finales-seated-v1-3.webp",
+          "bytes": 909328,
+          "transferBytes": 909628,
+          "durationMs": 17.5
+        },
+        {
+          "file": "assets/finales-dance-v2-3.webp",
+          "bytes": 881844,
+          "transferBytes": 882144,
+          "durationMs": 18.59999990463257
+        },
+        {
+          "file": "assets/dudamel-orchestra-attack-v1.webp",
+          "bytes": 1751984,
+          "transferBytes": 1752284,
+          "durationMs": 17
+        }
+      ]
+    },
+    {
+      "label": "baseline",
+      "pair": [
+        "lorenzo",
+        "dayana"
+      ],
+      "repeat": 0,
+      "cache": "cold image URLs and fresh loader; immediate warm loader cache",
+      "coldMs": 76.59999990463257,
+      "warmMs": 0,
+      "requests": 5,
+      "bytes": 4977550,
+      "props": [
+        "lorenzo-polar-attack-v1",
+        "dayana-football-attack-v1"
+      ],
+      "resources": [
+        {
+          "file": "assets/lorenzo-v39.webp",
+          "bytes": 813092,
+          "transferBytes": 813392,
+          "durationMs": 8.5
+        },
+        {
+          "file": "assets/caracas.webp",
+          "bytes": 453034,
+          "transferBytes": 453334,
+          "durationMs": 6.599999904632568
+        },
+        {
+          "file": "assets/dayana-v40.webp",
+          "bytes": 901378,
+          "transferBytes": 901678,
+          "durationMs": 8.599999904632568
+        },
+        {
+          "file": "assets/dayana-football-attack-v1.webp",
+          "bytes": 1195124,
+          "transferBytes": 1195424,
+          "durationMs": 9.599999904632568
+        },
+        {
+          "file": "assets/lorenzo-polar-attack-v1.webp",
+          "bytes": 1614922,
+          "transferBytes": 1615222,
+          "durationMs": 10
+        }
+      ]
+    },
+    {
+      "label": "baseline",
+      "pair": [
+        "conde",
+        "emilio"
+      ],
+      "repeat": 0,
+      "cache": "cold image URLs and fresh loader; immediate warm loader cache",
+      "coldMs": 129.09999990463257,
+      "warmMs": 0.3000001907348633,
+      "requests": 12,
+      "bytes": 8542346,
+      "props": [
+        "attack-conde-bond-v1",
+        "finales-v1-1",
+        "finales-seated-v1-1",
+        "finales-dance-v2-1",
+        "attack-emilio-chunior-v1",
+        "finales-v1-2",
+        "finales-seated-v1-2",
+        "finales-dance-v2-2"
+      ],
+      "resources": [
+        {
+          "file": "assets/conde-v3.webp",
+          "bytes": 416952,
+          "transferBytes": 417252,
+          "durationMs": 3.4000000953674316
+        },
+        {
+          "file": "assets/emilio-v3.webp",
+          "bytes": 267150,
+          "transferBytes": 267450,
+          "durationMs": 4.400000095367432
+        },
+        {
+          "file": "assets/emilio-defiant-entrance.webp",
+          "bytes": 463908,
+          "transferBytes": 464208,
+          "durationMs": 7
+        },
+        {
+          "file": "assets/caracas.webp",
+          "bytes": 453034,
+          "transferBytes": 453334,
+          "durationMs": 7.800000190734863
+        },
+        {
+          "file": "assets/finales-v1-1.webp",
+          "bytes": 518652,
+          "transferBytes": 518952,
+          "durationMs": 8.799999713897705
+        },
+        {
+          "file": "assets/attack-conde-bond-v1.webp",
+          "bytes": 1054760,
+          "transferBytes": 1055060,
+          "durationMs": 13.099999904632568
+        },
+        {
+          "file": "assets/finales-seated-v1-1.webp",
+          "bytes": 935572,
+          "transferBytes": 935872,
+          "durationMs": 14.099999904632568
+        },
+        {
+          "file": "assets/attack-emilio-chunior-v1.webp",
+          "bytes": 1241458,
+          "transferBytes": 1241758,
+          "durationMs": 16.799999713897705
+        },
+        {
+          "file": "assets/finales-dance-v2-1.webp",
+          "bytes": 905076,
+          "transferBytes": 905376,
+          "durationMs": 14.599999904632568
+        },
+        {
+          "file": "assets/finales-v1-2.webp",
+          "bytes": 452774,
+          "transferBytes": 453074,
+          "durationMs": 13.300000190734863
+        },
+        {
+          "file": "assets/finales-seated-v1-2.webp",
+          "bytes": 891054,
+          "transferBytes": 891354,
+          "durationMs": 16.09999990463257
+        },
+        {
+          "file": "assets/finales-dance-v2-2.webp",
+          "bytes": 941956,
+          "transferBytes": 942256,
+          "durationMs": 17.200000286102295
+        }
+      ]
+    }
+  ]
+}

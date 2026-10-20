@@ -1,0 +1,349 @@
+{
+  "schema": 1,
+  "createdAtUtc": "2026-10-20T01:31:26.825Z",
+  "verifierSha256": "587c97749caf313bf260a540705da2896cf1404c681766286d61fa5f490befd9",
+  "originalFilesUnchanged": 246,
+  "imagesWithVariants": 39,
+  "exactPublishedVariants": 40,
+  "allPublishedVariantsExact": true,
+  "loadingProof": {
+    "ready": true,
+    "phase": "complete",
+    "demos": 312,
+    "totalDemos": 312,
+    "renderedFrames": 48544,
+    "provenanceChecks": 51086,
+    "pixelComparisons": 3300,
+    "fixtures": 882,
+    "totalFixtures": 882,
+    "current": null,
+    "complete": true,
+    "errors": []
+  },
+  "portableGuideArtifactUnchanged": {
+    "file": "docs/finales/moveset-guide/ataques-arena-criolla.html",
+    "sha256": "c86c703ecafe156cd10ad31d24da1b60c60e8925e9a685e3291a35a930cea428"
+  },
+  "proofs": [
+    {
+      "source": "assets/amanda-defiant-entrance.webp",
+      "variant": "assets/optimized/amanda-defiant-entrance-74d663b396f0ca6b.webp",
+      "sha256": "74d663b396f0ca6bc4b91bdc259d6142ee2d663cd62dbd9391a0ae34dce98028",
+      "rgbaSha256": "83a353189d4e3c2fc481bb54bde4a0feaeaca74a3ee7b7db626216010b086a8e",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/attack-emilio-chunior-v1.webp",
+      "variant": "assets/optimized/attack-emilio-chunior-v1-4a18f32f8ddb4b80.webp",
+      "sha256": "4a18f32f8ddb4b80749f1fc12b5db556fe6dc7202e01a6b8b2f6f18c3ef4ee72",
+      "rgbaSha256": "327a40d816d95e970f4d7bb9c6dffe9172208e7c3ee76fed1b369df54557ddc5",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/bolivar-v39.webp",
+      "variant": "assets/optimized/bolivar-v39-d3feb24a33ff9c9c.webp",
+      "sha256": "d3feb24a33ff9c9cd944f1455c4620fe191903f9a481b489c12acfc43e492100",
+      "rgbaSha256": "d5e1885450828d6ff839f04b60f2986ceeb4e13d86498640cb43893e17649b2a",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/canaima.webp",
+      "variant": "assets/optimized/canaima-df6980206a761098.webp",
+      "sha256": "df6980206a761098e55f8d8318261dc7ebeb6f09204dc4b7c833e188ebe41a6e",
+      "rgbaSha256": "77b00d441e844ddd2bb0635efb5263c67fa6aab301d0d4bb04f9fdca0a029aa2",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/chataing-defiant-entrance.webp",
+      "variant": "assets/optimized/chataing-defiant-entrance-ee06dacea558a0e8.webp",
+      "sha256": "ee06dacea558a0e88c0ade49603f1aee5a10bdeb750c2cec064115cf70ed4f7f",
+      "rgbaSha256": "bcf865a41b1694a15fe06ba90ba2724b7c75568193474e6f7d5251839ec5a89e",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/chiqui-defiant-entrance.webp",
+      "variant": "assets/optimized/chiqui-defiant-entrance-fd87dd477e6a76d8.webp",
+      "sha256": "fd87dd477e6a76d8c96eafef6d8692c998535470e99b34057ebf17083df2cef9",
+      "rgbaSha256": "f64f16959024f87035e88c9539fb84b985e7f83e1f2ae9ae359645dad72f9812",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/coro.webp",
+      "variant": "assets/optimized/coro-26865d4180ebea73.webp",
+      "sha256": "26865d4180ebea739beed8c5583a5efedad6d83979cfe4eb9109779c1254940e",
+      "rgbaSha256": "b19a9634e7caefd00993334816797e59955e7be31bc6caefba0404866b7b39bb",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/emilio-defiant-entrance.webp",
+      "variant": "assets/optimized/emilio-defiant-entrance-5d7f9696fabe085c.webp",
+      "sha256": "5d7f9696fabe085c2404d5565fae4f09e1f6c4ac1432e20a271badb587a86dae",
+      "rgbaSha256": "321e2ccfaad4c4680dbb5ac7282b98cdfd2b827402c5020cee62914318c75f16",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/finales-nacho-dance.webp",
+      "variant": "assets/optimized/finales-nacho-dance-90b7e9f5ba5826b7.webp",
+      "sha256": "90b7e9f5ba5826b767d775405cb8c6f99001fef162dcf679407c6a76b2394744",
+      "rgbaSha256": "0e600c0e3ed4ca0fbfc26a53dba46856d011dce8125679f65ec158f8e56f9fa4",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/finales-seated-v1-2.webp",
+      "variant": "assets/optimized/finales-seated-v1-2-e88532474bedc268.webp",
+      "sha256": "e88532474bedc268e580a35bcc85eea1a148e8f0170d715308f669d0efd7978a",
+      "rgbaSha256": "1e35ca656e0ba0c9ac3d6bd9a5f5d15a5dac216023777f68ecfd00b82da49aa3",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/george-defiant-entrance.webp",
+      "variant": "assets/optimized/george-defiant-entrance-027cc6bfa4023335.webp",
+      "sha256": "027cc6bfa4023335df4c6e6cabcacf88f118c58abc4d94ea7472516c7aa5b6dc",
+      "rgbaSha256": "5fb219d73dae70fa1bd68a62d11f23e439d889ec1c207690fd255316537e96b1",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/gomez-defiant-entrance.webp",
+      "variant": "assets/optimized/gomez-defiant-entrance-1717ac5a8029fbc1.webp",
+      "sha256": "1717ac5a8029fbc19acc0a7fe563f3b051f04a9d3122a231c7dcc1b72d332370",
+      "rgbaSha256": "5a9a584ecd82a5e0c182bbd018418be6f43fa59a54949187ecc190a22c42dd9c",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/javier-defiant-entrance.webp",
+      "variant": "assets/optimized/javier-defiant-entrance-574b458ca4069bf1.webp",
+      "sha256": "574b458ca4069bf1712a32aaf082aa7dd640287e8d606c3501c84dfb39ce21a4",
+      "rgbaSha256": "71137bfddefc180a4d537dadf18c4a4b386efe8767a84065107d68050c8d7820",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/lila-defiant-entrance.webp",
+      "variant": "assets/optimized/lila-defiant-entrance-79879660c646479b.webp",
+      "sha256": "79879660c646479b77810328e6b840da2bc38be6e1ad9474e5abf11ffc5c48d8",
+      "rgbaSha256": "b9309c1fc0445f350426b4ac3089473242259b3529eefd4716a706605b66e2a1",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/llorona-underworld-attack-v1.webp",
+      "variant": "assets/optimized/llorona-underworld-attack-v1-780688be63968ff0.webp",
+      "sha256": "780688be63968ff085e5b4c7ffbc34b828c89c13044b722befd2fe0f9e4cc10f",
+      "rgbaSha256": "9f7af244dd6a3101871e5c3fe2379d182760f8a97451762ef26f374013e61b5c",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/maite-defiant-entrance.webp",
+      "variant": "assets/optimized/maite-defiant-entrance-ba835b45150b4124.webp",
+      "sha256": "ba835b45150b4124562d23d9126f69cb9a13d7a47636169c986002a217caa048",
+      "rgbaSha256": "0506383e7fa6c2038a32cbf4779d5589d4bac6f9d3f80149c686d7dce4aa6973",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/maracaibo.webp",
+      "variant": "assets/optimized/maracaibo-18327f7a48b4a158.webp",
+      "sha256": "18327f7a48b4a158396cee7487503cfc14ec9975f269c1d877a9d922f74a6582",
+      "rgbaSha256": "2f7e6406c20760f9e14bc82144e0f415ecf92f994c600358fcc2433771eb3ef2",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/mcm-defiant-entrance.webp",
+      "variant": "assets/optimized/mcm-defiant-entrance-41db5909bb9d91a3.webp",
+      "sha256": "41db5909bb9d91a3640cb07d1ea5f9d55e35c54fc0729b1585b138dcd98f9e36",
+      "rgbaSha256": "8a44e2120b058254f9aae76fd1a3da9f457514d91a202b30a54e73b006ff3337",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/merida.webp",
+      "variant": "assets/optimized/merida-19813e69396d209f.webp",
+      "sha256": "19813e69396d209f7fa7a60b2fc797ff7d002b7155eba177d621d419088a187d",
+      "rgbaSha256": "974bba02618580d935180895c27e74f8b213b98c89d3a531448a580fea27db86",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/nacho-defiant-entrance.webp",
+      "variant": "assets/optimized/nacho-defiant-entrance-c8b83d42cb0f33a9.webp",
+      "sha256": "c8b83d42cb0f33a991427fcd6efc8b0272ac302c7c3600e9f58f0c13be42b36b",
+      "rgbaSha256": "2d8ab3f35d54bef84e92ca0e6632695bec3e3e84099de2b6863d6ca56c36409a",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/og-arena-criolla.png",
+      "variant": "assets/optimized/og-arena-criolla-533097b8cb89d7ab.avif",
+      "sha256": "533097b8cb89d7ab442576733c351fd9162150dae22fa01333abb87d40fd9823",
+      "rgbaSha256": "a5425d73fedc23498751f4c5fd3ff14fcdb2e64ac9bad4adc6a4700a0a6ca8bd",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/og-arena-criolla.png",
+      "variant": "assets/optimized/og-arena-criolla-eb9e9086150f85a5.png",
+      "sha256": "eb9e9086150f85a565a9d259a1d257d524b1d29119cd0929a45881bddfc50bdf",
+      "rgbaSha256": "a5425d73fedc23498751f4c5fd3ff14fcdb2e64ac9bad4adc6a4700a0a6ca8bd",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/oscar-contrabajo-attack-v1.webp",
+      "variant": "assets/optimized/oscar-contrabajo-attack-v1-47413b7f76019a79.webp",
+      "sha256": "47413b7f76019a797136487b581abcfb601a67ce9c5e8aef22b849f17e7caa52",
+      "rgbaSha256": "b684b16785ac0bbf4a6d0876271e738bad13b1ade8026cffa5f4476ef2b737ff",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/oscar-entrance-v24.webp",
+      "variant": "assets/optimized/oscar-entrance-v24-16c0451da5654200.webp",
+      "sha256": "16c0451da5654200a6211b3070390bc80f9bdf5cd69d4bc41a3d04f3bf2b168f",
+      "rgbaSha256": "a76f1d79e31553a14e337a9170d82b992c0e228d8de0bbc026bf6adf0bc9b874",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-chataing.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-chataing-65568c18222630b4.webp",
+      "sha256": "65568c18222630b4e765de2c4e08cea2ba089fcaf21547797f88e47adb7338c5",
+      "rgbaSha256": "cabb1ed9b9e4ca5ff68812a7a1fb067db5da1f1512516d12e234b0ebb86dab4e",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-conde.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-conde-b385eff21a4b7f61.webp",
+      "sha256": "b385eff21a4b7f612a528b1f348f78b1628f5048737877c46db810736308d9be",
+      "rgbaSha256": "640d478c4f1b6a7b1fd0c92c8dd4ef274287bfb8e765af59795d352092a1dd24",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-danny.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-danny-980c3dbdeb5f5505.webp",
+      "sha256": "980c3dbdeb5f5505e29ceaa0f3ec114028c0f59b42c05aea578e84c5b9af1e14",
+      "rgbaSha256": "218ea04ed0403a56d0a5cb68bdd83531184e41cf628c555884dbabe982edc4b4",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-lila.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-lila-369533515f531e95.webp",
+      "sha256": "369533515f531e959f7f534e86fda3fc33d03ecd5c3d64b4853f217de6d2fec6",
+      "rgbaSha256": "68f492ab50b489f90027eba97bc3c6bfd42f93990f18dcd2a43b2c7c7ed98e76",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-llorona.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-llorona-3eb791dca876372f.webp",
+      "sha256": "3eb791dca876372fb1db39d4150285f1c64d2f3aec909a9c2e042914d3828a87",
+      "rgbaSha256": "6237dd65f27b5b4a978c84aa3bee814a5c50dc218f52e8ebc0bb96f1aca487c0",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-nacho.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-nacho-90b7e9f5ba5826b7.webp",
+      "sha256": "90b7e9f5ba5826b767d775405cb8c6f99001fef162dcf679407c6a76b2394744",
+      "rgbaSha256": "0e600c0e3ed4ca0fbfc26a53dba46856d011dce8125679f65ec158f8e56f9fa4",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-oscar.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-oscar-31fbf7ffb2587507.webp",
+      "sha256": "31fbf7ffb25875072dcef7d6899b48ddcff4f8e6b5a4321a0b83b1c2fa0e15d3",
+      "rgbaSha256": "106177e9c3fd500307608c5cc29f2352951e36386785fd1f3d34b8b38b3c9def",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-rummy.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-rummy-48fb96f8110c6d4d.webp",
+      "sha256": "48fb96f8110c6d4d369f04813587383adb099e8cf4d3dccbdf0ae0480d9d41d0",
+      "rgbaSha256": "ac3a156199d1ff3e4df6ed8efc6afa12b281078e375d382af89bc7b9fbde2bf3",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-sayona.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-sayona-2ac12bf67e8cec1b.webp",
+      "sha256": "2ac12bf67e8cec1b90c1c46244455024bb17861336c91a942cf83a8afea9afcb",
+      "rgbaSha256": "b89102fdcc59e71f1f3d187016630d707380e99daf49b4ac091984e0457339ab",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/puma-defiant-entrance.webp",
+      "variant": "assets/optimized/puma-defiant-entrance-39576eff925782aa.webp",
+      "sha256": "39576eff925782aaf3b75b86263880c001d79e9ec21f3a4b897c3a539a23de3c",
+      "rgbaSha256": "fda55f44aa1bdff95cfeff9ce6aedca523253d0af4adb19b5c05ac974592862f",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/reynaldo-defiant-entrance.webp",
+      "variant": "assets/optimized/reynaldo-defiant-entrance-aea5ba722d5622a5.webp",
+      "sha256": "aea5ba722d5622a5c81292b32ee9d49b9f90951376ad71001eaa63e78ca4f6f9",
+      "rgbaSha256": "86ae0f4fdd59537edd6f54dcda7a6d4a4eb93a7361c4b0284aa7e7e9d9ef4621",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/roques.webp",
+      "variant": "assets/optimized/roques-221919d420151b82.webp",
+      "sha256": "221919d420151b8282b5b378da21a58236f7bc5402d5c9cd694d666005d8314d",
+      "rgbaSha256": "36ade8dfc3a5ee47bb9ae87b7e3d06343da5502cd9b33ae9098abc0fbff737e9",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/rummy-defiant-entrance.webp",
+      "variant": "assets/optimized/rummy-defiant-entrance-456745d6c59af976.webp",
+      "sha256": "456745d6c59af976b2c47c8d4dcdbbc80475a5c5a50b15a1ea3d55edb7975c4e",
+      "rgbaSha256": "d61d2b038560ac570d91f80df9235d9a3ffc2f86296d080081b5b83859e3fce5",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/sarcos-defiant-entrance.webp",
+      "variant": "assets/optimized/sarcos-defiant-entrance-57de7d7c947eabdd.webp",
+      "sha256": "57de7d7c947eabddbd8fd201a587e7f15510f67618665d84e8c96caf35f1b355",
+      "rgbaSha256": "1c062a9d43125492714fc343d7333e0052b44ba51c83bc9769f09b5fe23dac5d",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/vallenilla-defiant-entrance.webp",
+      "variant": "assets/optimized/vallenilla-defiant-entrance-9490e49e9ca24cb9.webp",
+      "sha256": "9490e49e9ca24cb96095385ec71a1e7b68f56ef4e6face8ddba11c239cc86eb8",
+      "rgbaSha256": "0dc2c15993a890eddd43ec4823ec84fed225ae00667e502cdb723e7fc2de233c",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    },
+    {
+      "source": "assets/yummy-courier-v1.webp",
+      "variant": "assets/optimized/yummy-courier-v1-835b2c81b4b672ee.webp",
+      "sha256": "835b2c81b4b672eecc9fd4e2873cf193e5d1e379a63f6cdeed021409543d1c10",
+      "rgbaSha256": "d41467ee3877e3964aa257bb2c42a752d9172af57f36a094ea69d73cf4fdf362",
+      "exactStraightRgbaAndSemantics": true,
+      "exactNativeCanvasRgba": true
+    }
+  ]
+}

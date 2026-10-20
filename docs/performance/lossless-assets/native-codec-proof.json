@@ -1,0 +1,849 @@
+{
+  "createdAtUtc": "2026-10-20T01:26:34.932Z",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+  "scope": "All published variants; full native-size sRGB canvas RGBA, plus three independent HTMLImageElement decode timings per format. No resize. Browser canvas uses premultiplied alpha; straight RGBA is separately proven by the codec audit.",
+  "complete": true,
+  "rows": [
+    {
+      "source": "assets/amanda-defiant-entrance.webp",
+      "variant": "assets/optimized/amanda-defiant-entrance-74d663b396f0ca6b.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 467696,
+      "variantBytes": 460920,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "f1438c8014a876dd61e1ec5370784b49b6163d3a1ddf2e19411cf318286a38e6",
+      "originalDecodeMs": [
+        27.700000286102295,
+        23.299999713897705,
+        26.299999713897705
+      ],
+      "variantDecodeMs": [
+        25.40000009536743,
+        35.700000286102295,
+        27.09999990463257
+      ]
+    },
+    {
+      "source": "assets/attack-emilio-chunior-v1.webp",
+      "variant": "assets/optimized/attack-emilio-chunior-v1-4a18f32f8ddb4b80.webp",
+      "width": 2048,
+      "height": 1024,
+      "originalBytes": 1241458,
+      "variantBytes": 1226788,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "bec83c015d6eeb2a82b1abe1def993e8f0008f9883e1d4261bb6cec6d4588ec9",
+      "originalDecodeMs": [
+        49,
+        42.89999961853027,
+        50
+      ],
+      "variantDecodeMs": [
+        47.59999990463257,
+        44.40000009536743,
+        39.90000009536743
+      ]
+    },
+    {
+      "source": "assets/bolivar-v39.webp",
+      "variant": "assets/optimized/bolivar-v39-d3feb24a33ff9c9c.webp",
+      "width": 2048,
+      "height": 1024,
+      "originalBytes": 899734,
+      "variantBytes": 889722,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "051cecf2f30cb99381be2614c50cef2a8eaf60a3a85629f21ca4b7198136adb1",
+      "originalDecodeMs": [
+        34.60000038146973,
+        34.700000286102295,
+        36.90000009536743
+      ],
+      "variantDecodeMs": [
+        37.80000019073486,
+        32.60000038146973,
+        35.09999990463257
+      ]
+    },
+    {
+      "source": "assets/canaima.webp",
+      "variant": "assets/optimized/canaima-df6980206a761098.webp",
+      "width": 540,
+      "height": 320,
+      "originalBytes": 113498,
+      "variantBytes": 108104,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "77b00d441e844ddd2bb0635efb5263c67fa6aab301d0d4bb04f9fdca0a029aa2",
+      "originalDecodeMs": [
+        6.400000095367432,
+        6.199999809265137,
+        6.599999904632568
+      ],
+      "variantDecodeMs": [
+        5.200000286102295,
+        5.400000095367432,
+        4.700000286102295
+      ]
+    },
+    {
+      "source": "assets/chataing-defiant-entrance.webp",
+      "variant": "assets/optimized/chataing-defiant-entrance-ee06dacea558a0e8.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 397926,
+      "variantBytes": 393062,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "ada83f0165a2421e5a19dafbfc1c972b672d4329720ddad66c5bc3dfc0c34435",
+      "originalDecodeMs": [
+        23.600000381469727,
+        23.199999809265137,
+        22.09999990463257
+      ],
+      "variantDecodeMs": [
+        24.90000009536743,
+        21.699999809265137,
+        25.200000286102295
+      ]
+    },
+    {
+      "source": "assets/chiqui-defiant-entrance.webp",
+      "variant": "assets/optimized/chiqui-defiant-entrance-fd87dd477e6a76d8.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 595372,
+      "variantBytes": 588854,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "fe1039e71745b88c5e605937377dffea29c9683336a6eb9c1195bc7cc01f272c",
+      "originalDecodeMs": [
+        29.90000009536743,
+        25.799999713897705,
+        23.700000286102295
+      ],
+      "variantDecodeMs": [
+        24,
+        24.699999809265137,
+        25.90000009536743
+      ]
+    },
+    {
+      "source": "assets/coro.webp",
+      "variant": "assets/optimized/coro-26865d4180ebea73.webp",
+      "width": 540,
+      "height": 320,
+      "originalBytes": 103950,
+      "variantBytes": 99298,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "b19a9634e7caefd00993334816797e59955e7be31bc6caefba0404866b7b39bb",
+      "originalDecodeMs": [
+        8.700000286102295,
+        5.099999904632568,
+        5.699999809265137
+      ],
+      "variantDecodeMs": [
+        6.5,
+        11.099999904632568,
+        4.900000095367432
+      ]
+    },
+    {
+      "source": "assets/emilio-defiant-entrance.webp",
+      "variant": "assets/optimized/emilio-defiant-entrance-5d7f9696fabe085c.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 463908,
+      "variantBytes": 458490,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "947d3c3ce03a2a33e19a5fcd83e858d05355cc805eaaa606bc292093ce457b6e",
+      "originalDecodeMs": [
+        34.30000019073486,
+        30.40000009536743,
+        26
+      ],
+      "variantDecodeMs": [
+        27.5,
+        27.5,
+        24.59999990463257
+      ]
+    },
+    {
+      "source": "assets/finales-nacho-dance.webp",
+      "variant": "assets/optimized/finales-nacho-dance-90b7e9f5ba5826b7.webp",
+      "width": 2048,
+      "height": 1024,
+      "originalBytes": 754032,
+      "variantBytes": 742720,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "5850db6766e3ea55210446223663e6a4628c9f5633f4cb363cda2573e27b4f95",
+      "originalDecodeMs": [
+        33.80000019073486,
+        31.800000190734863,
+        35.5
+      ],
+      "variantDecodeMs": [
+        36.40000009536743,
+        32.5,
+        35.5
+      ]
+    },
+    {
+      "source": "assets/finales-seated-v1-2.webp",
+      "variant": "assets/optimized/finales-seated-v1-2-e88532474bedc268.webp",
+      "width": 2048,
+      "height": 1024,
+      "originalBytes": 891054,
+      "variantBytes": 881098,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "78b582472b6eea6e314e9b32c198e5b3fb496e6ae63d826bc24c4066fe0bb185",
+      "originalDecodeMs": [
+        42.90000009536743,
+        50.69999980926514,
+        34.5
+      ],
+      "variantDecodeMs": [
+        38.40000009536743,
+        37.09999990463257,
+        33.69999980926514
+      ]
+    },
+    {
+      "source": "assets/george-defiant-entrance.webp",
+      "variant": "assets/optimized/george-defiant-entrance-027cc6bfa4023335.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 401610,
+      "variantBytes": 396232,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "1509891b4f2981413f1025fa7f5946801da6bcb302998abf20ec040a980db07b",
+      "originalDecodeMs": [
+        25.90000009536743,
+        27.299999713897705,
+        26.800000190734863
+      ],
+      "variantDecodeMs": [
+        25.40000009536743,
+        25.09999990463257,
+        27.199999809265137
+      ]
+    },
+    {
+      "source": "assets/gomez-defiant-entrance.webp",
+      "variant": "assets/optimized/gomez-defiant-entrance-1717ac5a8029fbc1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 430820,
+      "variantBytes": 426410,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "f8b8c2c1ecd34ef6e2bc95a92379d35307ea6294327e56c276396e6f5e0179ea",
+      "originalDecodeMs": [
+        24,
+        26,
+        25.5
+      ],
+      "variantDecodeMs": [
+        23.299999713897705,
+        26.300000190734863,
+        25.59999990463257
+      ]
+    },
+    {
+      "source": "assets/javier-defiant-entrance.webp",
+      "variant": "assets/optimized/javier-defiant-entrance-574b458ca4069bf1.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 438978,
+      "variantBytes": 433352,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "9148807abac7550c970ec0c87ee97f943e252e79d8611185827fa80ba88f76de",
+      "originalDecodeMs": [
+        23.59999990463257,
+        24.800000190734863,
+        25.699999809265137
+      ],
+      "variantDecodeMs": [
+        25.199999809265137,
+        22.700000286102295,
+        27.90000009536743
+      ]
+    },
+    {
+      "source": "assets/lila-defiant-entrance.webp",
+      "variant": "assets/optimized/lila-defiant-entrance-79879660c646479b.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 528890,
+      "variantBytes": 519056,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "91abcde38630de3f51004d9519ba2c8fa6120e0e04c2cfb818b8c3b1548ba53c",
+      "originalDecodeMs": [
+        26.800000190734863,
+        27.90000009536743,
+        27.600000381469727
+      ],
+      "variantDecodeMs": [
+        27.5,
+        26.5,
+        29.5
+      ]
+    },
+    {
+      "source": "assets/llorona-underworld-attack-v1.webp",
+      "variant": "assets/optimized/llorona-underworld-attack-v1-780688be63968ff0.webp",
+      "width": 1024,
+      "height": 2048,
+      "originalBytes": 1668148,
+      "variantBytes": 1650438,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "b286e4941fa7230e6b53e4980ac9ba56b890c42d49fac721b8d6f959736067dc",
+      "originalDecodeMs": [
+        56.30000019073486,
+        51.09999990463257,
+        47.19999980926514
+      ],
+      "variantDecodeMs": [
+        54.10000038146973,
+        54.30000019073486,
+        54.299999713897705
+      ]
+    },
+    {
+      "source": "assets/maite-defiant-entrance.webp",
+      "variant": "assets/optimized/maite-defiant-entrance-ba835b45150b4124.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 730206,
+      "variantBytes": 720830,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "5eb4a92113e0c6e3baa394eeb6e26c1020983ff21723150652d9b9deda4016b4",
+      "originalDecodeMs": [
+        29.5,
+        28.299999713897705,
+        34
+      ],
+      "variantDecodeMs": [
+        32.5,
+        35.09999990463257,
+        35.09999990463257
+      ]
+    },
+    {
+      "source": "assets/maracaibo.webp",
+      "variant": "assets/optimized/maracaibo-18327f7a48b4a158.webp",
+      "width": 540,
+      "height": 320,
+      "originalBytes": 97438,
+      "variantBytes": 93174,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "2f7e6406c20760f9e14bc82144e0f415ecf92f994c600358fcc2433771eb3ef2",
+      "originalDecodeMs": [
+        5.200000286102295,
+        5.800000190734863,
+        5.799999713897705
+      ],
+      "variantDecodeMs": [
+        4.900000095367432,
+        6.399999618530273,
+        4.900000095367432
+      ]
+    },
+    {
+      "source": "assets/mcm-defiant-entrance.webp",
+      "variant": "assets/optimized/mcm-defiant-entrance-41db5909bb9d91a3.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 491838,
+      "variantBytes": 486408,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "1575837465f3ca81cd70c89547da7312f5a423ff3201a08013979db1d0d05350",
+      "originalDecodeMs": [
+        25.899999618530273,
+        26,
+        27.100000381469727
+      ],
+      "variantDecodeMs": [
+        26.699999809265137,
+        25,
+        27.59999990463257
+      ]
+    },
+    {
+      "source": "assets/merida.webp",
+      "variant": "assets/optimized/merida-19813e69396d209f.webp",
+      "width": 540,
+      "height": 320,
+      "originalBytes": 127230,
+      "variantBytes": 119594,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "974bba02618580d935180895c27e74f8b213b98c89d3a531448a580fea27db86",
+      "originalDecodeMs": [
+        6.100000381469727,
+        7,
+        6.800000190734863
+      ],
+      "variantDecodeMs": [
+        6,
+        4.800000190734863,
+        5.599999904632568
+      ]
+    },
+    {
+      "source": "assets/nacho-defiant-entrance.webp",
+      "variant": "assets/optimized/nacho-defiant-entrance-c8b83d42cb0f33a9.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 508930,
+      "variantBytes": 502490,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "476d1fc5d377520ff960e3a1c7f9aae27279c50a928f24a0d8188c1d27a6f29c",
+      "originalDecodeMs": [
+        29.100000381469727,
+        25.200000286102295,
+        25.800000190734863
+      ],
+      "variantDecodeMs": [
+        26.799999713897705,
+        35.89999961853027,
+        26
+      ]
+    },
+    {
+      "source": "assets/og-arena-criolla.png",
+      "variant": "assets/optimized/og-arena-criolla-533097b8cb89d7ab.avif",
+      "width": 1200,
+      "height": 630,
+      "originalBytes": 1754898,
+      "variantBytes": 1019272,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "a5425d73fedc23498751f4c5fd3ff14fcdb2e64ac9bad4adc6a4700a0a6ca8bd",
+      "originalDecodeMs": [
+        22.100000381469727,
+        23.90000009536743,
+        25
+      ],
+      "variantDecodeMs": [
+        104.60000038146973,
+        110.19999980926514,
+        120.7999997138977
+      ]
+    },
+    {
+      "source": "assets/og-arena-criolla.png",
+      "variant": "assets/optimized/og-arena-criolla-eb9e9086150f85a5.png",
+      "width": 1200,
+      "height": 630,
+      "originalBytes": 1754898,
+      "variantBytes": 1298766,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "a5425d73fedc23498751f4c5fd3ff14fcdb2e64ac9bad4adc6a4700a0a6ca8bd",
+      "originalDecodeMs": [
+        21.800000190734863,
+        22.100000381469727,
+        23.90000009536743
+      ],
+      "variantDecodeMs": [
+        18.09999990463257,
+        21,
+        19.40000009536743
+      ]
+    },
+    {
+      "source": "assets/oscar-contrabajo-attack-v1.webp",
+      "variant": "assets/optimized/oscar-contrabajo-attack-v1-47413b7f76019a79.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 731482,
+      "variantBytes": 723126,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "ee8f2018069fce882be9a91d231d396465978393438901a3058c93410432b9a3",
+      "originalDecodeMs": [
+        34.59999990463257,
+        28.200000286102295,
+        32.40000009536743
+      ],
+      "variantDecodeMs": [
+        31.59999990463257,
+        33.700000286102295,
+        30.699999809265137
+      ]
+    },
+    {
+      "source": "assets/oscar-entrance-v24.webp",
+      "variant": "assets/optimized/oscar-entrance-v24-16c0451da5654200.webp",
+      "width": 2048,
+      "height": 1536,
+      "originalBytes": 1188492,
+      "variantBytes": 1172426,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "36891c0eabd54908bc1155038c510deea7022c87b77614718165bb92329ddf42",
+      "originalDecodeMs": [
+        55.799999713897705,
+        52.90000009536743,
+        57.5
+      ],
+      "variantDecodeMs": [
+        47.19999980926514,
+        49.5,
+        53
+      ]
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-chataing.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-chataing-65568c18222630b4.webp",
+      "width": 2048,
+      "height": 1024,
+      "originalBytes": 727156,
+      "variantBytes": 718796,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "1a0e4c84c22b73b1e20b8af2779da7c676567e2e882e4dfb532d4675aafac9cb",
+      "originalDecodeMs": [
+        33,
+        33,
+        30.699999809265137
+      ],
+      "variantDecodeMs": [
+        36.09999990463257,
+        32.5,
+        29.600000381469727
+      ]
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-conde.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-conde-b385eff21a4b7f61.webp",
+      "width": 2048,
+      "height": 1024,
+      "originalBytes": 1034946,
+      "variantBytes": 1010292,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "fad0dde487da13eceeb8761caacc6c83d6be52faf000735e3d2f223421e002f4",
+      "originalDecodeMs": [
+        37.80000019073486,
+        38,
+        41.19999980926514
+      ],
+      "variantDecodeMs": [
+        35.69999980926514,
+        38,
+        38.69999980926514
+      ]
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-danny.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-danny-980c3dbdeb5f5505.webp",
+      "width": 2048,
+      "height": 1024,
+      "originalBytes": 712486,
+      "variantBytes": 704822,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "d9f6ce3487d9a4d9e62f2a9983cfa1aeb3e16533f762d8e16d825e53ac393f1a",
+      "originalDecodeMs": [
+        34.80000019073486,
+        34.19999980926514,
+        31.199999809265137
+      ],
+      "variantDecodeMs": [
+        34.5,
+        31.59999990463257,
+        32.40000009536743
+      ]
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-lila.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-lila-369533515f531e95.webp",
+      "width": 2048,
+      "height": 1024,
+      "originalBytes": 789810,
+      "variantBytes": 781650,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "b6ab5261b65e4f503cbce2e5a70d4dfa8604c1dd4cd883c6523311013a9fcc8a",
+      "originalDecodeMs": [
+        39.59999990463257,
+        36.299999713897705,
+        37.59999990463257
+      ],
+      "variantDecodeMs": [
+        39,
+        39.200000286102295,
+        35.5
+      ]
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-llorona.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-llorona-3eb791dca876372f.webp",
+      "width": 2048,
+      "height": 1024,
+      "originalBytes": 1209088,
+      "variantBytes": 1188446,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "2559d8dd0730dde951a4827e28ab0a8dcc49ced45dc818743e0c656e557df76a",
+      "originalDecodeMs": [
+        45.59999990463257,
+        42.90000009536743,
+        44.90000009536743
+      ],
+      "variantDecodeMs": [
+        42.30000019073486,
+        41.90000009536743,
+        40.09999990463257
+      ]
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-nacho.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-nacho-90b7e9f5ba5826b7.webp",
+      "width": 2048,
+      "height": 1024,
+      "originalBytes": 754032,
+      "variantBytes": 742720,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "5850db6766e3ea55210446223663e6a4628c9f5633f4cb363cda2573e27b4f95",
+      "originalDecodeMs": [
+        43.80000019073486,
+        35.59999990463257,
+        37.30000019073486
+      ],
+      "variantDecodeMs": [
+        38.700000286102295,
+        34.59999990463257,
+        31.90000009536743
+      ]
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-oscar.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-oscar-31fbf7ffb2587507.webp",
+      "width": 2048,
+      "height": 1024,
+      "originalBytes": 792478,
+      "variantBytes": 776542,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "c6d619bbaf3eb2c88d47894d5db5a1b999ae728fdd0d86eac7dc637ed0724d34",
+      "originalDecodeMs": [
+        35.10000038146973,
+        33.40000009536743,
+        32.80000019073486
+      ],
+      "variantDecodeMs": [
+        33.89999961853027,
+        34.80000019073486,
+        36.40000009536743
+      ]
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-rummy.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-rummy-48fb96f8110c6d4d.webp",
+      "width": 2048,
+      "height": 1024,
+      "originalBytes": 888144,
+      "variantBytes": 877114,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "af6b71bf3afeef13fc5fc80fedf24904b10dc9c55422075720168502fd481088",
+      "originalDecodeMs": [
+        37.30000019073486,
+        34.799999713897705,
+        33.5
+      ],
+      "variantDecodeMs": [
+        31.800000190734863,
+        37.80000019073486,
+        37.90000009536743
+      ]
+    },
+    {
+      "source": "assets/perro-mujeriego-v3-sayona.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-sayona-2ac12bf67e8cec1b.webp",
+      "width": 2048,
+      "height": 1024,
+      "originalBytes": 1037534,
+      "variantBytes": 1023654,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "650a128b63b4ff2b52a48557070a513d1c658d16a0fe7cf18a1028029e83b827",
+      "originalDecodeMs": [
+        43.39999961853027,
+        39.90000009536743,
+        39.59999990463257
+      ],
+      "variantDecodeMs": [
+        41.69999980926514,
+        45.19999980926514,
+        40.299999713897705
+      ]
+    },
+    {
+      "source": "assets/puma-defiant-entrance.webp",
+      "variant": "assets/optimized/puma-defiant-entrance-39576eff925782aa.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 402104,
+      "variantBytes": 398000,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "5df2c7507789fff1fbddc6ceddb40c39e8029ba527e896b37e6e593a3a96f8c1",
+      "originalDecodeMs": [
+        26.700000286102295,
+        23.100000381469727,
+        26.40000009536743
+      ],
+      "variantDecodeMs": [
+        27.59999990463257,
+        21.40000009536743,
+        29.200000286102295
+      ]
+    },
+    {
+      "source": "assets/reynaldo-defiant-entrance.webp",
+      "variant": "assets/optimized/reynaldo-defiant-entrance-aea5ba722d5622a5.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 518074,
+      "variantBytes": 512576,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "256b751d978fed352c0154d562985c2dcd3b147cdfc1a3cce049fbd7f1959556",
+      "originalDecodeMs": [
+        29.5,
+        26.299999713897705,
+        38.09999990463257
+      ],
+      "variantDecodeMs": [
+        29.199999809265137,
+        30.09999990463257,
+        25.300000190734863
+      ]
+    },
+    {
+      "source": "assets/roques.webp",
+      "variant": "assets/optimized/roques-221919d420151b82.webp",
+      "width": 540,
+      "height": 320,
+      "originalBytes": 101594,
+      "variantBytes": 96734,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "36ade8dfc3a5ee47bb9ae87b7e3d06343da5502cd9b33ae9098abc0fbff737e9",
+      "originalDecodeMs": [
+        6.300000190734863,
+        5,
+        5
+      ],
+      "variantDecodeMs": [
+        6.099999904632568,
+        5.099999904632568,
+        4.799999713897705
+      ]
+    },
+    {
+      "source": "assets/rummy-defiant-entrance.webp",
+      "variant": "assets/optimized/rummy-defiant-entrance-456745d6c59af976.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 568712,
+      "variantBytes": 554856,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "f102e60eb315182f552baa7aa8229155295e2bac4f11147364ef152b1d4db06e",
+      "originalDecodeMs": [
+        26.09999990463257,
+        25.40000009536743,
+        25.600000381469727
+      ],
+      "variantDecodeMs": [
+        26.90000009536743,
+        25.700000286102295,
+        24.300000190734863
+      ]
+    },
+    {
+      "source": "assets/sarcos-defiant-entrance.webp",
+      "variant": "assets/optimized/sarcos-defiant-entrance-57de7d7c947eabdd.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 433966,
+      "variantBytes": 429360,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "9c31f00ac93a42285348c3d2f02ea351e18f8db6a4b9369ec917f5a81f38bc33",
+      "originalDecodeMs": [
+        26.59999990463257,
+        24.90000009536743,
+        24.90000009536743
+      ],
+      "variantDecodeMs": [
+        26.299999713897705,
+        25.09999990463257,
+        22.199999809265137
+      ]
+    },
+    {
+      "source": "assets/vallenilla-defiant-entrance.webp",
+      "variant": "assets/optimized/vallenilla-defiant-entrance-9490e49e9ca24cb9.webp",
+      "width": 1536,
+      "height": 1024,
+      "originalBytes": 524122,
+      "variantBytes": 516250,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "fa857be8e5a0e4f5784dfea867b0db9f539aafaa2083d666e5dd8a2f98ea3f75",
+      "originalDecodeMs": [
+        26.09999990463257,
+        23.299999713897705,
+        26.5
+      ],
+      "variantDecodeMs": [
+        23.5,
+        22.09999990463257,
+        24.5
+      ]
+    },
+    {
+      "source": "assets/yummy-courier-v1.webp",
+      "variant": "assets/optimized/yummy-courier-v1-835b2c81b4b672ee.webp",
+      "width": 896,
+      "height": 640,
+      "originalBytes": 441774,
+      "variantBytes": 432472,
+      "differingChannels": 0,
+      "maxDelta": 0,
+      "canvasSha256": "f3aed232128dcee2d869c94c7427f3097a4943395e62d5d5b6521d57964392cb",
+      "originalDecodeMs": [
+        13.200000286102295,
+        15.199999809265137,
+        13.699999809265137
+      ],
+      "variantDecodeMs": [
+        16,
+        15,
+        15.199999809265137
+      ]
+    }
+  ],
+  "errors": []
+}

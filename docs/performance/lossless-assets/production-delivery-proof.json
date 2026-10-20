@@ -1,0 +1,288 @@
+{
+  "createdAtUtc": "2026-10-20T01:31:44.052Z",
+  "scope": "Real makeArenaServer production mode, dist files from npm run build, every published response hash and MIME checked. No public deployment.",
+  "complete": true,
+  "homepageStatus": 200,
+  "rows": [
+    {
+      "source": "amanda-defiant-entrance.webp",
+      "variant": "assets/optimized/amanda-defiant-entrance-74d663b396f0ca6b.webp",
+      "bytes": 460920,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "attack-emilio-chunior-v1.webp",
+      "variant": "assets/optimized/attack-emilio-chunior-v1-4a18f32f8ddb4b80.webp",
+      "bytes": 1226788,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "bolivar-v39.webp",
+      "variant": "assets/optimized/bolivar-v39-d3feb24a33ff9c9c.webp",
+      "bytes": 889722,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "canaima.webp",
+      "variant": "assets/optimized/canaima-df6980206a761098.webp",
+      "bytes": 108104,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "chataing-defiant-entrance.webp",
+      "variant": "assets/optimized/chataing-defiant-entrance-ee06dacea558a0e8.webp",
+      "bytes": 393062,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "chiqui-defiant-entrance.webp",
+      "variant": "assets/optimized/chiqui-defiant-entrance-fd87dd477e6a76d8.webp",
+      "bytes": 588854,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "coro.webp",
+      "variant": "assets/optimized/coro-26865d4180ebea73.webp",
+      "bytes": 99298,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "emilio-defiant-entrance.webp",
+      "variant": "assets/optimized/emilio-defiant-entrance-5d7f9696fabe085c.webp",
+      "bytes": 458490,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "finales-nacho-dance.webp",
+      "variant": "assets/optimized/finales-nacho-dance-90b7e9f5ba5826b7.webp",
+      "bytes": 742720,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "finales-seated-v1-2.webp",
+      "variant": "assets/optimized/finales-seated-v1-2-e88532474bedc268.webp",
+      "bytes": 881098,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "george-defiant-entrance.webp",
+      "variant": "assets/optimized/george-defiant-entrance-027cc6bfa4023335.webp",
+      "bytes": 396232,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "gomez-defiant-entrance.webp",
+      "variant": "assets/optimized/gomez-defiant-entrance-1717ac5a8029fbc1.webp",
+      "bytes": 426410,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "javier-defiant-entrance.webp",
+      "variant": "assets/optimized/javier-defiant-entrance-574b458ca4069bf1.webp",
+      "bytes": 433352,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "lila-defiant-entrance.webp",
+      "variant": "assets/optimized/lila-defiant-entrance-79879660c646479b.webp",
+      "bytes": 519056,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "llorona-underworld-attack-v1.webp",
+      "variant": "assets/optimized/llorona-underworld-attack-v1-780688be63968ff0.webp",
+      "bytes": 1650438,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "maite-defiant-entrance.webp",
+      "variant": "assets/optimized/maite-defiant-entrance-ba835b45150b4124.webp",
+      "bytes": 720830,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "maracaibo.webp",
+      "variant": "assets/optimized/maracaibo-18327f7a48b4a158.webp",
+      "bytes": 93174,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "mcm-defiant-entrance.webp",
+      "variant": "assets/optimized/mcm-defiant-entrance-41db5909bb9d91a3.webp",
+      "bytes": 486408,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "merida.webp",
+      "variant": "assets/optimized/merida-19813e69396d209f.webp",
+      "bytes": 119594,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "nacho-defiant-entrance.webp",
+      "variant": "assets/optimized/nacho-defiant-entrance-c8b83d42cb0f33a9.webp",
+      "bytes": 502490,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "og-arena-criolla.png",
+      "variant": "assets/optimized/og-arena-criolla-533097b8cb89d7ab.avif",
+      "bytes": 1019272,
+      "contentType": "image/avif",
+      "vary": "Accept"
+    },
+    {
+      "source": "og-arena-criolla.png",
+      "variant": "assets/optimized/og-arena-criolla-eb9e9086150f85a5.png",
+      "bytes": 1298766,
+      "contentType": "image/png",
+      "vary": "Accept"
+    },
+    {
+      "source": "oscar-contrabajo-attack-v1.webp",
+      "variant": "assets/optimized/oscar-contrabajo-attack-v1-47413b7f76019a79.webp",
+      "bytes": 723126,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "oscar-entrance-v24.webp",
+      "variant": "assets/optimized/oscar-entrance-v24-16c0451da5654200.webp",
+      "bytes": 1172426,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "perro-mujeriego-v3-chataing.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-chataing-65568c18222630b4.webp",
+      "bytes": 718796,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "perro-mujeriego-v3-conde.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-conde-b385eff21a4b7f61.webp",
+      "bytes": 1010292,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "perro-mujeriego-v3-danny.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-danny-980c3dbdeb5f5505.webp",
+      "bytes": 704822,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "perro-mujeriego-v3-lila.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-lila-369533515f531e95.webp",
+      "bytes": 781650,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "perro-mujeriego-v3-llorona.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-llorona-3eb791dca876372f.webp",
+      "bytes": 1188446,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "perro-mujeriego-v3-nacho.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-nacho-90b7e9f5ba5826b7.webp",
+      "bytes": 742720,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "perro-mujeriego-v3-oscar.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-oscar-31fbf7ffb2587507.webp",
+      "bytes": 776542,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "perro-mujeriego-v3-rummy.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-rummy-48fb96f8110c6d4d.webp",
+      "bytes": 877114,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "perro-mujeriego-v3-sayona.webp",
+      "variant": "assets/optimized/perro-mujeriego-v3-sayona-2ac12bf67e8cec1b.webp",
+      "bytes": 1023654,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "puma-defiant-entrance.webp",
+      "variant": "assets/optimized/puma-defiant-entrance-39576eff925782aa.webp",
+      "bytes": 398000,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "reynaldo-defiant-entrance.webp",
+      "variant": "assets/optimized/reynaldo-defiant-entrance-aea5ba722d5622a5.webp",
+      "bytes": 512576,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "roques.webp",
+      "variant": "assets/optimized/roques-221919d420151b82.webp",
+      "bytes": 96734,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "rummy-defiant-entrance.webp",
+      "variant": "assets/optimized/rummy-defiant-entrance-456745d6c59af976.webp",
+      "bytes": 554856,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "sarcos-defiant-entrance.webp",
+      "variant": "assets/optimized/sarcos-defiant-entrance-57de7d7c947eabdd.webp",
+      "bytes": 429360,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "vallenilla-defiant-entrance.webp",
+      "variant": "assets/optimized/vallenilla-defiant-entrance-9490e49e9ca24cb9.webp",
+      "bytes": 516250,
+      "contentType": "image/webp",
+      "vary": null
+    },
+    {
+      "source": "yummy-courier-v1.webp",
+      "variant": "assets/optimized/yummy-courier-v1-835b2c81b4b672ee.webp",
+      "bytes": 432472,
+      "contentType": "image/webp",
+      "vary": null
+    }
+  ]
+}
