@@ -4,6 +4,7 @@ body {
 }
 .app-shell.in-lobby {
   --selection-control-height: 35px;
+  --selection-fill: #ffd45a33;
   --ink: #17273f;
   --paper: #fff5db;
   --coin: #ffd45a;
@@ -712,7 +713,7 @@ body {
   height: 29px;
   padding: 4px 7px;
   background: #07162966;
-  border: 1px solid #6983a343;
+  border: 1px solid transparent;
   border-radius: 3px;
   color: #bccae0;
   box-shadow: none;
@@ -725,16 +726,15 @@ body {
   color: #a2b1c6;
 }
 .in-lobby .roster-categories button[aria-pressed="true"] {
-  background: #ffd45a0b;
+  background: var(--selection-fill);
   color: var(--paper);
-  border-color: var(--coin);
-  box-shadow: 0 0 0 1px var(--coin);
+  box-shadow: none;
 }
 .in-lobby .roster-categories button[aria-pressed="true"] span {
   color: #e6d39b;
 }
 .in-lobby .roster-categories button:not([aria-pressed="true"]):hover {
-  border-color: #c4d2e67a;
+  background: #ffffff12;
 }
 .in-lobby .fighter-grid {
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -961,9 +961,8 @@ body {
 }
 .in-lobby .arcade-stage.selected {
   color: var(--paper);
-  background: #ffd45a09;
-  border-color: var(--coin);
-  box-shadow: 0 0 0 1px var(--coin);
+  background: var(--selection-fill);
+  box-shadow: none;
 }
 .in-lobby .arcade-stage:not(.selected):hover:enabled {
   border-color: #cfdef1;
