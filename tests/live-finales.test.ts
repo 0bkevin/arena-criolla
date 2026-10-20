@@ -280,6 +280,12 @@ test("notes and expanding waves are ordinary reflected projectiles with retained
       r.advance(13); // first emission is now in flight
       const shot = r.state.projectiles.find((p) => p.impact === "super");
       assert.ok(shot, id);
+      if (id === "dudamel")
+        assert.equal(
+          shot.kind,
+          "cadenza",
+          "the orchestral waves retain their musical notation artwork",
+        );
       const damage = shot.damage,
         art = shot.finaleArt;
       r.inputs[1 - side].actions.special++;

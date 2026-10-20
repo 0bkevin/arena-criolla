@@ -300,7 +300,13 @@ function fireWave(
     vx: field.direction * (scold ? 7 : 9),
     age: 0,
     life: scold ? 22 : 100,
-    kind: note ? "finale-note" : scold ? "broadcast" : "sonic",
+    kind: note
+      ? "finale-note"
+      : scold
+        ? "broadcast"
+        : field.fighter === "dudamel"
+          ? "cadenza"
+          : "sonic",
     impact: "super",
     radius: note ? 15 : 20,
     ...(note || scold ? {} : { growth: 0.25 }),
