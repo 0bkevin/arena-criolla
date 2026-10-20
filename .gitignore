@@ -8,7 +8,8 @@ dist/
 
 # Private creator storage and local artwork workspaces.
 /data/
-/assets/
+/assets/*
+!/assets/icon.svg
 
 # Retain operational instructions, not generated reports or captures.
 /docs/*

@@ -2,6 +2,7 @@
   {
     "id": "zavarce",
     "sprite": "zavarce-v5",
+    "category": "founders",
     "name": "Vicente Zavarce",
     "shortName": "Vicente",
     "title": "La ruta exprés",
@@ -28,6 +29,7 @@
   {
     "id": "vallenilla",
     "sprite": "vallenilla-v5",
+    "category": "founders",
     "name": "Pedro Vallenilla",
     "shortName": "Pedro",
     "title": "El ritmo de las cuotas",
@@ -1068,7 +1070,7 @@
   {
     "id": "enrique",
     "sprite": "enrique-v3",
-    "category": "culture",
+    "category": "founders",
     "name": "Enrique Rivas",
     "shortName": "Enrique",
     "title": "El balance de Fina",
@@ -1094,7 +1096,7 @@
   {
     "id": "jesus",
     "sprite": "jesus-v3",
-    "category": "culture",
+    "category": "founders",
     "name": "Jesús Castillo",
     "shortName": "Jesús",
     "title": "Kontigo sin fronteras",
@@ -1120,7 +1122,7 @@
   {
     "id": "carlos",
     "sprite": "carlos-v3",
-    "category": "culture",
+    "category": "founders",
     "name": "Carlos García Ottati",
     "shortName": "Carlos",
     "title": "El arranque de Kavak",
@@ -1146,7 +1148,7 @@
   {
     "id": "victor",
     "sprite": "victor-v3",
-    "category": "culture",
+    "category": "founders",
     "name": "Víctor Cárdenas",
     "shortName": "Víctor",
     "title": "La diagonal de Slash",
@@ -1172,7 +1174,7 @@
   {
     "id": "juan",
     "sprite": "juan-v3",
-    "category": "culture",
+    "category": "founders",
     "name": "Juan José Pocaterra",
     "shortName": "Juan José",
     "title": "Vikua y La Wawa",

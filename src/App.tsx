@@ -62,8 +62,16 @@ export function App({
   communityRevision: _communityRevision,
 }: { communityRevision?: number } = {}) {
   const [mode, setMode] = useState<GameMode>("practice");
-  const [fighter, setFighter] = useState<FighterId>("zavarce");
-  const [rival, setRival] = useState<FighterId>("javier");
+  const [initialMatchup] = useState(() => {
+    // Pick two distinct fighters once, without shuffling or copying the roster.
+    const first = Math.floor(Math.random() * FIGHTERS.length);
+    const second =
+      (first + 1 + Math.floor(Math.random() * (FIGHTERS.length - 1))) %
+      FIGHTERS.length;
+    return [FIGHTERS[first].id, FIGHTERS[second].id] as const;
+  });
+  const [fighter, setFighter] = useState<FighterId>(initialMatchup[0]);
+  const [rival, setRival] = useState<FighterId>(initialMatchup[1]);
   const [fighterQuery, setFighterQuery] = useState("");
   const [stage, setStage] = useState<StageId>("caracas");
   const [name, setName] = useState(() => getPreference("name", ""));
@@ -87,7 +95,9 @@ export function App({
   const secondNameInput = useRef<HTMLInputElement>(null);
   const fighterSearchInput = useRef<HTMLInputElement>(null);
   const setupPanel = useRef<HTMLElement>(null);
+  const footer = useRef<HTMLElement>(null);
   const [setupVisible, setSetupVisible] = useState(true);
+  const [footerVisible, setFooterVisible] = useState(false);
   const network = useArenaNetwork();
   useEffect(() => {
     if (!isFighter(fighter)) {
@@ -121,10 +131,18 @@ export function App({
   useEffect(() => {
     if (active || !setupPanel.current) return;
     const observer = new IntersectionObserver(
-      ([entry]) => setSetupVisible(entry.isIntersecting),
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.target === setupPanel.current)
+            setSetupVisible(entry.isIntersecting);
+          else if (entry.target === footer.current)
+            setFooterVisible(entry.isIntersecting);
+        }
+      },
       { threshold: 0.08 },
     );
     observer.observe(setupPanel.current);
+    if (footer.current) observer.observe(footer.current);
     return () => observer.disconnect();
   }, [active]);
 
@@ -404,8 +422,8 @@ export function App({
             }
           }}
         >
-          <span className="brand-icon">
-            <PixelIcon kind="gamepad" size={22} />
+          <span className="brand-icon" aria-hidden="true">
+            <img src="/assets/arena-icon.svg" width="29" height="29" alt="" />
           </span>
           <span className="brand-name">
             ARENA
@@ -440,6 +458,14 @@ export function App({
           </button>
         </nav>
         <div className="header-right">
+          <button
+            className="icon-button header-help"
+            onClick={() => setModal("help")}
+            aria-label="Ayuda y controles"
+            title="Ayuda y controles"
+          >
+            <CircleHelp size={19} />
+          </button>
           {!active && (
             <button
               className="icon-button header-progress"
@@ -548,7 +574,7 @@ export function App({
         />
       )}
 
-      <footer className="site-footer page-width">
+      <footer className="site-footer page-width" ref={footer}>
         <span className="footer-note">
           Parodia arcade · Habilidades ficticias
         </span>
@@ -556,8 +582,18 @@ export function App({
           <Trophy size={13} />
           Ranking <span>PRONTO</span>
         </button>
+        <span className="footer-credit">
+          Desarrollado por{" "}
+          <a
+            href="https://kevinbravo.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Kevin Bravo (kevinbravo.com)
+          </a>
+        </span>
       </footer>
-      {!active && !modal && !detail && !setupVisible && (
+      {!active && !modal && !detail && !setupVisible && !footerVisible && (
         <div className="mobile-setup-dock">
           <span>
             <strong>{chosen.name}</strong>
