@@ -1,0 +1,26 @@
+{
+  "tool": "image_gen.imagegen",
+  "mode": "built-in; transparent_background=true",
+  "prompts": [
+    "Use case: stylized-concept. Asset type: high quality transparent game sprite sheet, exactly 3 columns x 2 rows in equal rectangular cells, landscape 1536x1024.\nCreate SIX isolated full-body/item sprites in illustrated 2D fighting game style. Input 1 is the canonical Pedro Vallenilla sprite sheet: preserve his exact adult male identity, balding head, close dark beard, blue-and-white checked rolled-sleeve shirt, dark blue trousers, white sneakers, normal human proportions, confident smiling expression. Input 2 is the Cashea mascot design reference: preserve white humanoid body, pointed triangular nose, small black oval eyes, friendly curved smile, no ears/hair, thick flowing black outlines, mitten hands and tapered feet; give subtle cool gray painted volume consistent with the game, never a generic ghost, robot or plush. Input 3 is the brand logo reference: exact black geometric open C on vivid yellow.\nGrid content LEFT TO RIGHT:\nTOP ROW cell1: a substantial cubic Cashea delivery box, three-quarter view, bright yellow cardboard, dark seams and folded lid, the large black geometric C logo from input3 prominently on the front side. The entire solid box visible, no floating pieces.\nTOP ROW cell2: full-body canonical Pedro, facing RIGHT three-quarter profile, feet planted, one hand extended pointing to summon helpers, other hand raised confidently. No box in this cell.\nTOP ROW cell3: ONE full-body white Cashea mascot from input2, facing RIGHT, ready boxing guard with both fists up.\nBOTTOM ROW cell1: ONE same full-body mascot facing RIGHT, strong extended straight punch; rightward fist fully visible, other fist guarding, feet planted widely.\nBOTTOM ROW cell2: ONE same full-body mascot facing RIGHT, dynamic forward hook punch, torso rotated, fist projecting right at shoulder height, rear fist tucked, whole feet visible.\nBOTTOM ROW cell3: ONE same full-body mascot facing RIGHT, rising uppercut with front fist at head height and powerful bent knees, whole feet visible.\nEach sprite entirely inside its own cell with at least 60px transparent gutter on every cell edge. Sprite height roughly 370px, box 260px. Empty background MUST be actual alpha transparency, no opaque white/yellow/black background or checkerboard. Cleanly separated silhouettes, no grid lines, no cell labels, no captions, no lettering other than black brand C on yellow box, no shadows on ground, no motion streaks or floating impact effects. Full hands, fingers, shoes and pointed noses preserved. Highly polished hand-drawn game illustration, crisp contours, restrained painterly cel shading.",
+    "Precisely correct this game sprite sheet while preserving all six subjects, poses, brand C design, Pedro identity and costumes. Remove ALL background, glows, haze, colored aura and ground shadows completely: empty pixels must be alpha=0, true transparent PNG, tightly clean silhouette edges. Re-layout as exactly 3 columns × 2 rows of 512×512 cells on 1536×1024 canvas. Uniformly REDUCE each complete sprite so every sprite fits entirely within its own cell with minimum 60 transparent pixels at all four edges, including Pedro's pointing finger and both shoes. First row box / Pedro pointing / mascot guard; second row mascot jab / mascot hook / mascot uppercut. Preserve complete anatomy and fine painted detail. No cropping, no removed or disconnected limbs, no text, no grid, no opaque background, no glow. The only change is removing background/glows and creating correct transparent gutters by scaling and centering each whole pose.",
+    "Targeted correction to attached six-sprite transparent game sheet: change ONLY the TOP CENTER Pedro figure. Scale that WHOLE person uniformly down to exactly 70% of current size and center it at x=768,y=270. His ENTIRE pointing finger must stop BEFORE x=960. His leftmost shoe must be AFTER x=576. Keep face, checked shirt, trousers, white shoes, pointing pose exactly the same. Do not change any of the other five sprites, their positions, colors, poses or sizes. Keep original 1536x1024 canvas and true transparent background with zero-alpha empty pixels. No background, no glow, no new marks. SIX complete sprites on 3x2 grid, not seven."
+  ],
+  "inputs": [
+    "assets/source/vallenilla-v5.png",
+    "/home/ubuntu/.t3/userdata/attachments/df28393c-e9df-48e5-b42d-238b622bfd95-b54d8885-5c3c-49e3-beb0-3193f772ade3.png",
+    "/home/ubuntu/.t3/userdata/attachments/df28393c-e9df-48e5-b42d-238b622bfd95-3e770743-c4a0-4fcd-bac7-b21faf92d391.png"
+  ],
+  "sources": [
+    "https://www.cashea.app/",
+    "https://www.endeavor.org.ar/emprendedores/pedro-vallenilla/",
+    "https://x.com/somoscashea",
+    "https://pbs.twimg.com/profile_banners/1573692721851777030/1752683531"
+  ],
+  "notes": [
+    "Official Cashea site: installment purchase model and black geometric C on yellow.",
+    "Endeavor entrepreneur profile: Pedro Vallenilla is Cashea cofounder/CEO.",
+    "Official Cashea X banner: white pointed-nose figure, black contours, yellow background.",
+    "User supplied two-figure illustration controls mascot silhouette and relative sizing. Combat poses are fictional game choreography."
+  ]
+}

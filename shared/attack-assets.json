@@ -1,0 +1,61 @@
+{
+  "vallenilla": {
+    "file": "vallenilla-cashea-attack-v1",
+    "frames": {
+      "box": {
+        "x": 20,
+        "y": 116,
+        "width": 472,
+        "height": 376,
+        "anchorX": 236,
+        "anchorY": 370.7595818815331,
+        "bodyHeight": 362.89895470383277
+      },
+      "summon": {
+        "x": 532,
+        "y": 28,
+        "width": 472,
+        "height": 464,
+        "anchorX": 236,
+        "anchorY": 459.8938053097345,
+        "bodyHeight": 455.78761061946904
+      },
+      "guard": {
+        "x": 1085,
+        "y": 20,
+        "width": 389,
+        "height": 472,
+        "anchorX": 194.5,
+        "anchorY": 463.0460704607046,
+        "bodyHeight": 459.20867208672087
+      },
+      "jab": {
+        "x": 20,
+        "y": 578,
+        "width": 472,
+        "height": 426,
+        "anchorX": 236,
+        "anchorY": 404.6406685236769,
+        "bodyHeight": 398.7075208913649
+      },
+      "hook": {
+        "x": 532,
+        "y": 598,
+        "width": 472,
+        "height": 406,
+        "anchorX": 236,
+        "anchorY": 395.73595505617976,
+        "bodyHeight": 390.03370786516854
+      },
+      "uppercut": {
+        "x": 1094,
+        "y": 532,
+        "width": 371,
+        "height": 472,
+        "anchorX": 185.5,
+        "anchorY": 468.32207792207794,
+        "bodyHeight": 463.41818181818184
+      }
+    }
+  }
+}

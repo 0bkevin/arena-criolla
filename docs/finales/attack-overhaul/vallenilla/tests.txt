@@ -1,0 +1,59 @@
+✔ vallenilla: revised attack art retains raw source provenance, complete frames and exact runtime alpha (135.146756ms)
+✔ every definitive has one generic combat category heading (6.60915ms)
+{"character":"vallenilla","check":"presentation-definition","evidence":{"intro":"Se yergue y cruza los brazos","choreography":"Se yergue y cruza los brazos","actualBeats":[{"head":0,"lean":0,"back":0,"front":0,"backX":0,"backY":0,"frontX":0,"frontY":0,"cloth":0,"at":0},{"head":0,"lean":-0.01125,"back":0,"front":-0.0825,"backX":0,"backY":0,"frontX":0,"frontY":-0.0075,"cloth":0,"at":0.22},{"head":0,"lean":-0.045,"back":0,"front":-0.33,"backX":0,"backY":0,"frontX":0,"frontY":-0.03,"cloth":0,"at":0.5},{"head":0,"lean":-0.01575,"back":0,"front":-0.11549999999999999,"backX":0,"backY":0,"frontX":0,"frontY":-0.010499999999999999,"cloth":0,"at":0.76},{"head":0,"lean":0,"back":0,"front":0,"backX":0,"backY":0,"frontX":0,"frontY":0,"cloth":0,"at":0.9},{"head":0,"lean":0,"back":0,"front":0,"backX":0,"backY":0,"frontX":0,"frontY":0,"cloth":0,"at":1}]}}
+{"character":"vallenilla","check":"movement-p1","evidence":{"start":330,"right":376.7057347059963,"finalX":264.5887543943361,"firstJumpY":454.59999999999997,"landedY":554,"facing":1}}
+{"character":"vallenilla","check":"light-p1","evidence":{"idleHp":92.7179,"idleHits":1,"blockHp":100,"blockEnergy":89.43999999999994}}
+{"character":"vallenilla","check":"heavy-p1","evidence":{"idleHp":86.4761,"idleHits":1,"blockHp":100,"blockEnergy":89.43999999999994}}
+{"character":"vallenilla","check":"special-idle-p1","evidence":{"spawned":[{"tick":11,"vx":9,"damage":6.0600000000000005,"kind":"installments"},{"tick":21,"vx":9,"damage":6.0600000000000005,"kind":"installments"},{"tick":31,"vx":9,"damage":6.0600000000000005,"kind":"installments"}],"impacts":[{"tick":69,"hp":93.7582,"hits":1},{"tick":86,"hp":87.5164,"hits":2},{"tick":127,"hp":100,"hits":2}],"energy":56.73999999999968,"actorX":330,"targetX":750}}
+{"character":"vallenilla","check":"special-block-p1","evidence":{"blocks":[32,42,52],"targetEnergy":58.59999999999978,"costAfterOneTick":75,"targetHp":100}}
+{"character":"vallenilla","check":"special-midrange-p1","evidence":{"hits":3,"hp":81.2746,"actorX":330,"lockedEnergy":24.035}}
+{"character":"vallenilla","check":"combos-p1","evidence":[{"wins":0,"combo":"Cuota inicial","bonus":3,"hits":2,"targetHp":76.104,"peakCombo":2},{"wins":1,"combo":"Cuota atrasada","bonus":7,"hits":3,"targetHp":64.7019,"peakCombo":3}]}
+{"character":"vallenilla","check":"super-p1","evidence":{"hp":58.511599999999994,"hits":1,"combo":"Límite aprobado","energy":38.28}}
+{"character":"vallenilla","check":"movement-p2","evidence":{"start":750,"right":796.7057347059963,"finalX":684.5887543943363,"firstJumpY":454.59999999999997,"landedY":554,"facing":-1}}
+{"character":"vallenilla","check":"light-p2","evidence":{"idleHp":92.7179,"idleHits":1,"blockHp":100,"blockEnergy":89.43999999999994}}
+{"character":"vallenilla","check":"heavy-p2","evidence":{"idleHp":86.4761,"idleHits":1,"blockHp":100,"blockEnergy":89.43999999999994}}
+{"character":"vallenilla","check":"special-idle-p2","evidence":{"spawned":[{"tick":11,"vx":-9,"damage":6.0600000000000005,"kind":"installments"},{"tick":21,"vx":-9,"damage":6.0600000000000005,"kind":"installments"},{"tick":31,"vx":-9,"damage":6.0600000000000005,"kind":"installments"}],"impacts":[{"tick":69,"hp":93.7582,"hits":1},{"tick":86,"hp":87.5164,"hits":2},{"tick":127,"hp":100,"hits":2}],"energy":56.73999999999968,"actorX":750,"targetX":330}}
+{"character":"vallenilla","check":"special-block-p2","evidence":{"blocks":[32,42,52],"targetEnergy":58.59999999999978,"costAfterOneTick":75,"targetHp":100}}
+{"character":"vallenilla","check":"special-midrange-p2","evidence":{"hits":3,"hp":81.2746,"actorX":750,"lockedEnergy":24.035}}
+{"character":"vallenilla","check":"combos-p2","evidence":[{"wins":0,"combo":"Cuota inicial","bonus":3,"hits":2,"targetHp":76.104,"peakCombo":2},{"wins":1,"combo":"Cuota atrasada","bonus":7,"hits":3,"targetHp":64.7019,"peakCombo":3}]}
+{"character":"vallenilla","check":"super-p2","evidence":{"hp":58.511599999999994,"hits":1,"combo":"Límite aprobado","energy":38.28}}
+{"character":"vallenilla","check":"intro","evidence":{"totalTicks":510,"start":330,"finishX":330,"phase":"playing"}}
+{"character":"vallenilla","check":"cpu-fight","evidence":{"difficulty":"hard","frames":363,"simulationTicks":336,"phase":"finished","winner":0,"started":["special"],"hitKinds":["special"],"players":[{"fighter":"vallenilla","hp":100,"stocks":1,"hits":9,"peakCombo":9},{"fighter":"javier","hp":0,"stocks":0,"hits":0,"peakCombo":0}]}}
+✔ Vallenilla has the researched identity, dedicated installment technique and mirrored ready stance (2.713533ms)
+✔ Vallenilla P1: walks both directions, faces the movement, jumps twice and lands (5.956517ms)
+✔ Vallenilla P1: light connects once against idle and is blocked facing forward (2.347411ms)
+✔ Vallenilla P1: heavy connects once against idle and is blocked facing forward (1.694426ms)
+✔ Vallenilla P1: special spawns exactly three staggered boxes and damages an idle distant opponent (6.847851ms)
+✔ Vallenilla P1: continuous guard blocks all three installment pulses (1.979655ms)
+✔ Vallenilla P1: all three boxes hit at midrange and insufficient energy rejects the special (2.182764ms)
+✔ Vallenilla P1: basic and upgraded movement-assisted combos connect (2.873425ms)
+✔ Vallenilla P1: definitive requires three wins and 75 energy, then lands with its name (0.997595ms)
+✔ Vallenilla P2: walks both directions, faces the movement, jumps twice and lands (1.975971ms)
+✔ Vallenilla P2: light connects once against idle and is blocked facing forward (0.587998ms)
+✔ Vallenilla P2: heavy connects once against idle and is blocked facing forward (0.494946ms)
+✔ Vallenilla P2: special spawns exactly three staggered boxes and damages an idle distant opponent (1.35255ms)
+✔ Vallenilla P2: continuous guard blocks all three installment pulses (1.174152ms)
+✔ Vallenilla P2: all three boxes hit at midrange and insufficient energy rejects the special (1.092588ms)
+✔ Vallenilla P2: basic and upgraded movement-assisted combos connect (1.295165ms)
+✔ Vallenilla P2: definitive requires three wins and 75 energy, then lands with its name (0.27884ms)
+✔ Vallenilla introduction gates fighting, then settles facing the opponent (0.365881ms)
+✔ Vallenilla fights a hard CPU with real movement, jumps, special and ordinary attacks to a result (4.174158ms)
+✔ all built-in finales keep both fighters in their arena on either side of both ledges (461.445377ms)
+✔ a finale uses the unchanged normal camera on desktop, mobile and reduced-motion views (58.583717ms)
+✔ moving platforms keep their exact captured phase and resume carrying the attacker after every mirrored finale (21.138989ms)
+✔ airborne and unequal-height captures preserve each fighter's own position instead of moving them to a common scene baseline (12.712127ms)
+✔ vehicle finales keep both painted passengers beside their capture positions throughout the ride (31.603816ms)
+✔ renderMatch draws every finale over its selected stage and platform surfaces using the normal world camera (103.570442ms)
+✔ Pedro's painted body anchors stay at both captured world positions, including unequal heights (4.38078ms)
+✔ Pedro paints exactly two complete mascot crops; six beats alternate jab, hook and uppercut (2.023903ms)
+✔ Pedro refuses missing or unloaded artwork before painting any partial scene (0.239401ms)
+✔ Pedro two-mascot finale charges 75 once, drains six equal beats and releases both slots (3.093838ms)
+✔ Pedro definitive rejects locked, depleted, behind and guarded captures; lethal stock resolves on exit (5.067945ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 996.982446
