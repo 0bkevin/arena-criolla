@@ -54,21 +54,22 @@ import { Help } from "./components/Help";
 import { beginMobilePlay, leaveLandscape } from "./game/mobile";
 
 type ModalName =
-  "help" | "fighters" | "stages" | "progress" | "rooms" | "ranking" | null;
+  "help" | "fighters" | "stages" | "progress" | "rooms" | null;
 const colorStyle = (color: string): React.CSSProperties =>
   ({ "--fighter-color": color }) as React.CSSProperties;
 
 export function App({
   communityRevision: _communityRevision,
 }: { communityRevision?: number } = {}) {
+  const selectableFighters = FIGHTERS.filter((item) => item.id !== "dayana");
   const [mode, setMode] = useState<GameMode>("practice");
   const [initialMatchup] = useState(() => {
     // Pick two distinct fighters once, without shuffling or copying the roster.
-    const first = Math.floor(Math.random() * FIGHTERS.length);
+    const first = Math.floor(Math.random() * selectableFighters.length);
     const second =
-      (first + 1 + Math.floor(Math.random() * (FIGHTERS.length - 1))) %
-      FIGHTERS.length;
-    return [FIGHTERS[first].id, FIGHTERS[second].id] as const;
+      (first + 1 + Math.floor(Math.random() * (selectableFighters.length - 1))) %
+      selectableFighters.length;
+    return [selectableFighters[first].id, selectableFighters[second].id] as const;
   });
   const [fighter, setFighter] = useState<FighterId>(initialMatchup[0]);
   const [rival, setRival] = useState<FighterId>(initialMatchup[1]);
@@ -120,7 +121,7 @@ export function App({
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
     .trim();
-  const visibleFighters = FIGHTERS.filter((f) =>
+  const visibleFighters = selectableFighters.filter((f) =>
     `${f.name} ${f.shortName} ${f.title} ${f.role}`
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
@@ -575,23 +576,27 @@ export function App({
       )}
 
       <footer className="site-footer page-width" ref={footer}>
-        <span className="footer-note">
-          Parodia arcade · Habilidades ficticias
+        <span className="footer-brand">
+          <img src="/assets/arena-icon.svg" width="26" height="26" alt="" />
+          <span className="footer-brand-name">
+            ARENA <span>CRIOLLA</span>
+          </span>
+          <span className="flag-mark" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
         </span>
-        <button onClick={() => setModal("ranking")}>
-          <Trophy size={13} />
-          Ranking <span>PRONTO</span>
-        </button>
-        <span className="footer-credit">
-          Desarrollado por{" "}
+        <p className="footer-credit">
+          Hecho por{" "}
           <a
             href="https://kevinbravo.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Kevin Bravo (kevinbravo.com)
+            Kevin Bravo
           </a>
-        </span>
+        </p>
       </footer>
       {!active && !modal && !detail && !setupVisible && !footerVisible && (
         <div className="mobile-setup-dock">
@@ -613,7 +618,7 @@ export function App({
       {modal === "fighters" && (
         <Modal title="Luchadores" wide onClose={() => setModal(null)}>
           <div className="roster-grid">
-            {FIGHTERS.map((f) => (
+            {selectableFighters.map((f) => (
               <button
                 key={f.id}
                 onClick={() => {
@@ -761,28 +766,6 @@ export function App({
               </p>
             </div>
           )}
-        </Modal>
-      )}
-      {modal === "ranking" && (
-        <Modal title="La próxima ronda" onClose={() => setModal(null)}>
-          <div className="coming-soon">
-            <Trophy size={44} />
-            <span className="eyebrow">RANKING GLOBAL</span>
-            <h3>Los mejores tendrán su lugar.</h3>
-            <p>
-              La clasificación por victorias llegará más adelante. Mientras
-              tanto, puedes pelear sin cuentas y desbloquear los combos de tus
-              luchadores favoritos.
-            </p>
-            <button
-              className="primary-button"
-              onClick={() => {
-                setModal("progress");
-              }}
-            >
-              Ver mi progreso <ArrowRight size={16} />
-            </button>
-          </div>
         </Modal>
       )}
       {modal === "rooms" && (

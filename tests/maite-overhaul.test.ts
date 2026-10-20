@@ -82,7 +82,7 @@ test("a ranged finale spends75 once, travels before contact, hits once and recov
       assert.equal(r.source.hits, 1);
       assert.equal(r.state.projectiles.length, 0);
       assert.equal(r.source.attack, null);
-      assert.equal(r.state.remaining, 5400 - 120);
+      assert.equal(r.state.remaining, 120 * 60 - 120);
       assert.equal(r.source.x, side ? 900 : 180);
       if (gap >= 430)
         assert.ok(contactFrame > 25, "distant hit cannot be instantaneous");

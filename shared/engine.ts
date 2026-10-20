@@ -228,7 +228,7 @@ export function createMatch(
     id,
     stage,
     tick: 0,
-    remaining: 90 * 60,
+    remaining: 120 * 60,
     phase: "intro",
     winner: null,
     players: [makePlayer(configs[0], 0), makePlayer(configs[1], 1)],

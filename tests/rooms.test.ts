@@ -86,7 +86,8 @@ async function onlineMatch(
   await a.wait("room", (message) => message.room.players.length === 2);
   a.send({ type: "ready", ready: true });
   b.send({ type: "ready", ready: true });
-  await Promise.all([a.wait("start"), b.wait("start")]);
+  const starts = await Promise.all([a.wait("start"), b.wait("start")]);
+  for (const start of starts) assert.equal(start.state.remaining, 120 * 60);
   const active = server.rooms.get(room.code)!;
   active.state!.phase = "playing";
   active.state!.players.forEach((player) => {
@@ -329,6 +330,8 @@ test("rematches reject previous-match input and accept the first fresh action", 
     ]);
     assert.deepEqual(next.state, peer.state);
     assert.notEqual(next.state.id, previousId);
+    assert.equal(next.state.remaining, 120 * 60);
+    assert.equal(next.state.phase, "intro");
     input.right = true;
     input.actions.jump = 5;
     match.a.send({ type: "input", matchId: previousId, input });

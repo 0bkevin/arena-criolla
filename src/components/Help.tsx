@@ -237,8 +237,9 @@ export function Help({ onClose }: { onClose: () => void }) {
               en marcha.
             </li>
             <li>
-              <strong>Tiempo:</strong> cada pelea dura 90 segundos. Si se acaba,
-              gana quien conserve más vidas y, si empatan, más salud.
+              <strong>Tiempo:</strong> cada pelea dura un máximo de 2 minutos.
+              Si se acaba, gana quien conserve más vidas y, si empatan, más
+              salud.
             </li>
           </ul>
         </details>

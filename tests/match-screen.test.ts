@@ -13,6 +13,7 @@ function renderScreen(
   height: number,
   touchPoints = touch ? 1 : 0,
   finale?: BuiltInFighterId,
+  remaining?: number,
 ) {
   const values = {
     innerWidth: width,
@@ -43,6 +44,7 @@ function renderScreen(
       "match-screen-test",
     );
     initial.phase = "playing";
+    if (remaining !== undefined) initial.remaining = remaining;
     if (finale) {
       const profile = finaleById(finale)!;
       initial.finale = {
@@ -79,6 +81,45 @@ function renderScreen(
     }
   }
 }
+
+test("the match clock shows minutes until 99 seconds remain", () => {
+  for (const [remaining, label] of [
+    [120 * 60, "2 min"],
+    [100 * 60, "2 min"],
+    [99 * 60 + 1, "2 min"],
+    [99 * 60, "99"],
+    [98 * 60 + 1, "99"],
+    [9 * 60, "09"],
+    [61, "02"],
+    [60, "01"],
+    [1, "01"],
+    [0, "00"],
+  ] as const) {
+    for (const [touch, width, height] of [
+      [false, 1280, 800],
+      [false, 320, 568],
+      [true, 844, 390],
+    ] as const) {
+      const html = renderScreen(
+        touch,
+        width,
+        height,
+        touch ? 1 : 0,
+        undefined,
+        remaining,
+      );
+      const minutesClass =
+        label === "2 min" ? ' class="match-clock-minutes"' : "";
+      assert.ok(
+        html.includes(
+          `<div class="match-clock"><strong${minutesClass}>${label}</strong></div>`,
+        ),
+        `clock at ${remaining} ticks and ${width}px should display only ${label}`,
+      );
+      assert.equal((html.match(/class="stock-hearts"/g) ?? []).length, 2);
+    }
+  }
+});
 
 test("small keyboard windows keep keyboard help without rendering a touch pad", () => {
   for (const [width, height] of [

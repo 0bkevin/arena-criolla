@@ -250,8 +250,8 @@ body:has(.game-page.is-touch) {
 .game-page.is-touch .match-clock > strong {
   font-size: 25px;
 }
-.game-page.is-touch .match-clock > span {
-  font-size: 8px;
+.game-page.is-touch .match-clock > .match-clock-minutes {
+  font-size: 16px;
 }
 .game-page.is-touch .health-track {
   height: 14px;

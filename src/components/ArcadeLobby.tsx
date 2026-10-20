@@ -82,6 +82,7 @@ const stageLabels: Record<StageId, string> = {
 };
 
 export function ArcadeLobby(props: Props) {
+  const selectableFighters = FIGHTERS.filter((item) => item.id !== "dayana");
   const { mode, fighter, rival, stage, network } = props;
   const [target, setTarget] = useState<"p1" | "p2">("p1");
   const [searchOpen, setSearchOpen] = useState(false);
@@ -468,7 +469,7 @@ export function ArcadeLobby(props: Props) {
                     ["founders", "Founders"],
                     ["culture", "Cultura"],
                     ["folklore", "Leyendas"],
-                    ...(FIGHTERS.some((f) => f.category === "community")
+                    ...(selectableFighters.some((f) => f.category === "community")
                       ? [["community", "Panas"] as const]
                       : []),
                   ] as const
@@ -484,7 +485,7 @@ export function ArcadeLobby(props: Props) {
                     {label}
                     <span>
                       {
-                        FIGHTERS.filter(
+                        selectableFighters.filter(
                           (item) =>
                             value === "all" ||
                             (item.category ?? "culture") === value,
@@ -520,7 +521,7 @@ export function ArcadeLobby(props: Props) {
                       <div className="fighter-card-art">
                         <span className="fighter-index" aria-hidden="true">
                           {String(
-                            FIGHTERS.findIndex(
+                            selectableFighters.findIndex(
                               (entry) => entry.id === item.id,
                             ) + 1,
                           ).padStart(2, "0")}
