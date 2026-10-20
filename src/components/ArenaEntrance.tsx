@@ -6,9 +6,11 @@ import "../arena-entrance.css";
 
 export function ArenaEntrance({
   ready,
+  fontsReady,
   onComplete,
 }: {
   ready: boolean;
+  fontsReady: boolean;
   onComplete: (restoreFocus: boolean) => void;
 }) {
   const entrance = useRef<HTMLDivElement>(null);
@@ -18,7 +20,7 @@ export function ArenaEntrance({
   const [introPlayed, setIntroPlayed] = useState(false);
   const [artReady, setArtReady] = useState(false);
   const settledArt = useRef(new Set<string>());
-  const leaving = ready && introPlayed;
+  const leaving = ready && fontsReady && introPlayed;
   const settleArt = (fighter: string) => {
     settledArt.current.add(fighter);
     if (settledArt.current.size === 2) setArtReady(true);
@@ -40,13 +42,13 @@ export function ArenaEntrance({
   }, []);
 
   useEffect(() => {
-    if (!artReady && !reducedMotion) return;
+    if (!fontsReady || (!artReady && !reducedMotion)) return;
     const timer = window.setTimeout(
       () => setIntroPlayed(true),
       reducedMotion ? 0 : 2200,
     );
     return () => window.clearTimeout(timer);
-  }, [artReady, reducedMotion]);
+  }, [artReady, fontsReady, reducedMotion]);
 
   useEffect(() => {
     if (!leaving) return;
@@ -63,9 +65,9 @@ export function ArenaEntrance({
   return (
     <div
       ref={entrance}
-      className={`arena-entrance ${artReady ? "is-playing" : "is-preparing"}${leaving ? " is-leaving" : ""}`}
+      className={`arena-entrance ${artReady ? "is-playing" : "is-preparing"}${fontsReady ? "" : " is-loading-fonts"}${leaving ? " is-leaving" : ""}`}
       onKeyDown={(event) => {
-        if (event.key === "Escape" && ready) setIntroPlayed(true);
+        if (event.key === "Escape" && ready && fontsReady) setIntroPlayed(true);
       }}
     >
       <div className="arena-entrance-stage">
@@ -156,7 +158,7 @@ export function ArenaEntrance({
       <button
         type="button"
         className="arena-entrance-skip"
-        disabled={!ready}
+        disabled={!ready || !fontsReady}
         aria-disabled={leaving || undefined}
         onClick={() => {
           if (!leaving) setIntroPlayed(true);

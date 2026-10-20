@@ -1,30 +1,8 @@
-@font-face {
-  font-family: Barlow Condensed;
-  src: url("/fonts/barlow-800.ttf") format("truetype");
-  font-weight: 700 900;
-  font-display: swap;
-}
-@font-face {
-  font-family: Barlow Condensed;
-  src: url("/fonts/barlow-800-italic.ttf") format("truetype");
-  font-weight: 700 900;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: DM Sans;
-  src: url("/fonts/dm-sans-400.ttf") format("truetype");
-  font-weight: 400 600;
-  font-display: swap;
-}
-@font-face {
-  font-family: DM Sans;
-  src: url("/fonts/dm-sans-700.ttf") format("truetype");
-  font-weight: 700 900;
-  font-display: swap;
-}
 :root {
-  font-family: "DM Sans", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-display: "Barlow Condensed", Impact, sans-serif;
+  --font-pixel: "Pixelify Sans", monospace;
+  font-family: var(--font-body);
   color: #f0f1f4;
   background: #101218;
   font-synthesis: none;
@@ -35,7 +13,7 @@
   --text: #f0f1f4;
   --muted: #9296a4;
   --lime: #dfff7b;
-  --display: "Barlow Condensed", Impact, sans-serif;
+  --display: var(--font-display);
   color-scheme: dark;
 }
 * {
@@ -1421,7 +1399,7 @@ button {
 }
 kbd {
   display: inline-block;
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-body);
   background: #202632;
   border: 1px solid #414959;
   border-bottom-width: 2px;
@@ -1836,9 +1814,7 @@ kbd {
   min-width: 0;
   margin: 0;
   min-height: 44px;
-  font:
-    500 13px/1.4 "DM Sans",
-    sans-serif;
+  font: 500 13px/1.4 var(--font-body);
   letter-spacing: 0.5px;
   text-align: left;
 }
@@ -3814,9 +3790,7 @@ kbd {
 }
 .cinematic-name > strong {
   display: block;
-  font:
-    italic 800 clamp(16px, 2.6vw, 34px)/1.08 "Barlow Condensed",
-    sans-serif;
+  font: italic 800 clamp(16px, 2.6vw, 34px)/1.08 var(--font-display);
   text-shadow: 0 2px 10px #070d18;
 }
 .skip-entrances {
@@ -3829,9 +3803,7 @@ kbd {
   display: flex;
   align-items: center;
   gap: 6px;
-  font:
-    500 12px "DM Sans",
-    sans-serif;
+  font: 500 12px var(--font-body);
   color: #c1ccdb;
   background: #070d1866;
   border: 1px solid transparent;

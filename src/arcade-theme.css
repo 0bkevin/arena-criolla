@@ -19,7 +19,7 @@ body {
   --text: #eef2fa;
   --muted: #a3b3ca;
   --lime: #ffd45a;
-  --display: "Barlow Condensed", Impact, sans-serif;
+  --display: var(--font-display);
   color-scheme: dark;
   color: var(--text);
   background: radial-gradient(
@@ -82,9 +82,7 @@ body {
 .in-lobby .site-header .main-nav button {
   height: 30px;
   padding: 0 11px;
-  font:
-    500 12px "DM Sans",
-    sans-serif;
+  font: 500 12px var(--font-body);
   color: var(--muted);
   border: 1px solid transparent;
   border-radius: 4px;
@@ -180,9 +178,7 @@ body {
 }
 .in-lobby .marquee-copy p {
   color: #a6c0da;
-  font:
-    500 11px "DM Sans",
-    sans-serif;
+  font: 500 11px var(--font-body);
   letter-spacing: 0.1px;
 }
 .in-lobby .marquee-culture {
@@ -250,16 +246,12 @@ body {
     color 140ms;
 }
 .in-lobby .arcade-modes button > span:not(.mode-slot) {
-  font:
-    700 15px/1 "DM Sans",
-    sans-serif;
+  font: 700 15px/1 var(--font-body);
 }
 .in-lobby .arcade-modes small {
   display: block;
   margin-top: 5px;
-  font:
-    700 6px "DM Sans",
-    sans-serif;
+  font: 700 6px var(--font-body);
   letter-spacing: 0.7px;
 }
 .in-lobby .arcade-modes button > svg {
@@ -308,9 +300,7 @@ body {
 }
 .in-lobby .arcade-progress {
   color: #aebed4;
-  font:
-    500 11px "DM Sans",
-    sans-serif;
+  font: 500 11px var(--font-body);
 }
 .in-lobby .arcade-progress > svg:first-child {
   color: var(--coin);
@@ -565,9 +555,7 @@ body {
 .in-lobby .contender-identity p {
   min-height: 13px;
   color: #afbdd2;
-  font:
-    500 10px/1.25 "DM Sans",
-    sans-serif;
+  font: 500 10px/1.25 var(--font-body);
 }
 .in-lobby .contender-moves {
   position: static;
@@ -577,9 +565,7 @@ body {
   padding: 7px 4px;
   border-top: 1px solid #ffffff09;
   color: #b8c8da;
-  font:
-    500 10px "DM Sans",
-    sans-serif;
+  font: 500 10px var(--font-body);
 }
 .in-lobby .contender-moves > svg:first-child {
   color: var(--coin);
@@ -605,9 +591,7 @@ body {
 .in-lobby .waiting-message {
   display: block;
   padding: 8px 0;
-  font:
-    500 10px "DM Sans",
-    sans-serif;
+  font: 500 10px var(--font-body);
   color: var(--muted);
 }
 .in-lobby .arcade-roster {
@@ -700,9 +684,7 @@ body {
 .in-lobby .arcade-search input {
   color: var(--paper);
   background: transparent;
-  font:
-    400 12px "DM Sans",
-    sans-serif;
+  font: 400 12px var(--font-body);
 }
 .in-lobby .arcade-search input::placeholder {
   color: #92a5bf;
@@ -720,12 +702,10 @@ body {
   border-radius: 3px;
   color: #bccae0;
   box-shadow: none;
-  font:
-    500 12px "DM Sans",
-    sans-serif;
+  font: 500 12px var(--font-body);
 }
 .in-lobby .roster-categories button span {
-  font: 500 10px "DM Sans", sans-serif;
+  font: 500 10px var(--font-body);
   color: #a2b1c6;
 }
 .in-lobby .roster-categories button[aria-pressed="true"] {
@@ -864,9 +844,7 @@ body {
   border-radius: 0 0 3px 3px;
 }
 .in-lobby .fighter-card-caption strong {
-  font:
-    700 11px/1.25 "DM Sans",
-    sans-serif;
+  font: 700 11px/1.25 var(--font-body);
   color: #ecf0f8;
   letter-spacing: -0.15px;
   overflow-wrap: anywhere;
@@ -875,9 +853,7 @@ body {
   padding-top: 9px;
   gap: 12px;
   color: #c4d2e6;
-  font:
-    400 10px "DM Sans",
-    sans-serif;
+  font: 400 10px var(--font-body);
 }
 .in-lobby .roster-pagination button {
   width: 29px;
@@ -899,9 +875,7 @@ body {
 .in-lobby .fighter-empty {
   min-height: 191px;
   color: #bbcce0;
-  font:
-    500 12px "DM Sans",
-    sans-serif;
+  font: 500 12px var(--font-body);
 }
 .in-lobby .fighter-empty button {
   color: var(--coin);
@@ -930,15 +904,11 @@ body {
 }
 .in-lobby .selected-stage-name {
   color: #afc2d9;
-  font:
-    400 9px "DM Sans",
-    sans-serif;
+  font: 400 9px var(--font-body);
 }
 .in-lobby .arcade-stage-heading > button {
   color: var(--coin);
-  font:
-    500 10px "DM Sans",
-    sans-serif;
+  font: 500 10px var(--font-body);
   padding-block: 0;
 }
 .in-lobby .arcade-stage-heading > button:hover {
@@ -961,9 +931,7 @@ body {
   height: 37px;
 }
 .in-lobby .arcade-stage strong {
-  font:
-    400 10px/1.1 "DM Sans",
-    sans-serif;
+  font: 400 10px/1.1 var(--font-body);
   padding: 6px 2px;
 }
 .in-lobby .arcade-stage.selected {
@@ -1038,9 +1006,7 @@ body {
   border-radius: 4px;
   background: #071527;
   color: var(--paper);
-  font:
-    400 11px "DM Sans",
-    sans-serif;
+  font: 400 11px var(--font-body);
   box-shadow: inset 0 2px 4px #020b1944;
 }
 .in-lobby .ready-name input::placeholder {
@@ -1064,9 +1030,7 @@ body {
 .in-lobby .ready-difficulty button {
   height: 30px;
   color: #b5c5da;
-  font:
-    500 11px "DM Sans",
-    sans-serif;
+  font: 500 11px var(--font-body);
   padding: 0 5px;
   background: #071527;
   border: 1px solid #879ab657;
@@ -1168,7 +1132,7 @@ body {
 }
 .footer-brand-name {
   color: var(--paper);
-  font: italic 800 20px/1 "Barlow Condensed", sans-serif;
+  font: italic 800 20px/1 var(--font-display);
   letter-spacing: 0;
   white-space: nowrap;
 }
@@ -1187,7 +1151,7 @@ body {
 .site-footer .footer-credit {
   margin: 0;
   color: #a3b3ca;
-  font: 400 12px/1.5 "DM Sans", sans-serif;
+  font: 400 12px/1.5 var(--font-body);
   letter-spacing: 0;
 }
 .footer-credit a {
