@@ -1,0 +1,58 @@
+{
+  "selected": "george",
+  "mode": "final",
+  "frames": 280,
+  "contacts": [
+    105
+  ],
+  "captureContactTick": 96,
+  "release": 189,
+  "rivalStockLoss": 225,
+  "minimumRivalHP": 57.2008,
+  "terminalPlayers": [
+    {
+      "hp": 100,
+      "stocks": 2,
+      "attack": null
+    },
+    {
+      "hp": 100,
+      "stocks": 1,
+      "attack": null
+    }
+  ],
+  "terminalCapture": false,
+  "screenshot": "screenshots/root-guide-contact.png",
+  "rootReview": [
+    "Canonical sprite and actual stage photo",
+    "Raw-v1 and final support assembly on gray",
+    "Visible crown contact after battleFrame geometry correction",
+    "Complete cloth cover and withdrawal",
+    "P2 platform and close edge label separation",
+    "Tall Silbon and small Momoy identity",
+    "Recovered actor scale and special second beat"
+  ],
+  "tests": {
+    "firstFocused": 27,
+    "finalFocused": 16,
+    "strictGuideTypes": true,
+    "build": "Agent final build.log reviewed, no engine changes"
+  },
+  "specialGuide": {
+    "contacts": [
+      {
+        "frame": 14,
+        "attackTick": 14,
+        "hp": 89.086
+      },
+      {
+        "frame": 33,
+        "attackTick": 30,
+        "hp": 78.172
+      }
+    ],
+    "frames": 180,
+    "terminalStocks": 2,
+    "twoRealContacts": true
+  }
+}

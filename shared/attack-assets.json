@@ -647,5 +647,64 @@
         "bodyHeight": 389.00564971751413
       }
     }
+  },
+  "george": {
+    "file": "george-curtain-attack-v1",
+    "frames": {
+      "present": {
+        "x": 94,
+        "y": 20,
+        "width": 324,
+        "height": 472,
+        "anchorX": 162,
+        "anchorY": 466.5009708737864,
+        "bodyHeight": 463.7514563106796
+      },
+      "incline": {
+        "x": 659,
+        "y": 20,
+        "width": 217,
+        "height": 472,
+        "anchorX": 108.5,
+        "anchorY": 469.05613305613304,
+        "bodyHeight": 461.2058212058212
+      },
+      "bow": {
+        "x": 1123,
+        "y": 20,
+        "width": 313,
+        "height": 472,
+        "anchorX": 156.5,
+        "anchorY": 462.3179487179487,
+        "bodyHeight": 458.6871794871795
+      },
+      "recover": {
+        "x": 122,
+        "y": 532,
+        "width": 268,
+        "height": 472,
+        "anchorX": 134,
+        "anchorY": 462.1871101871102,
+        "bodyHeight": 454.3367983367983
+      },
+      "curtain": {
+        "x": 532,
+        "y": 603,
+        "width": 472,
+        "height": 401,
+        "anchorX": 236,
+        "anchorY": 393.8869179600887,
+        "bodyHeight": 384.99556541019956
+      },
+      "support": {
+        "x": 1044,
+        "y": 951,
+        "width": 472,
+        "height": 53,
+        "anchorX": 236,
+        "anchorY": 51.20338983050848,
+        "bodyHeight": 50.30508474576271
+      }
+    }
   }
 }

@@ -1,0 +1,11 @@
+{
+  "source": "assets/source/finales/attack-overhaul/george/support-raw-v2.png",
+  "destination": "assets/source/finales/attack-overhaul/george/support-grid.png",
+  "auditPath": "docs/finales/attack-overhaul/george/support-grid-audit.json",
+  "columns": 1,
+  "rows": 1,
+  "poseCount": 1,
+  "poses": [
+    "support"
+  ]
+}

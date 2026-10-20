@@ -1,0 +1,16 @@
+# George Harris — referencias observadas
+
+Investigación realizada el19 de octubre de2026. Identidad confirmada en `shared/fighters.json`: `george`, George Harris, atlas canónico `george-v3`, especial «Remate en dos tiempos». La definitiva de la petición, «Se acabó el show», es una ficción del juego: no se afirma que George deje caer telones sobre personas.
+
+## Fuentes consultadas y fotografías vistas
+
+- [Sitio oficial de George Harris](https://elgeorgeharris.com/): abierto mediante búsqueda web. Presenta al comediante, sus actuaciones, residencia de Miami y gira. No se abrió ningún enlace a YouTube ni se descargó audio. La página es la fuente primaria de identidad y contexto de actuación; sus horarios no forman parte del juego.
+- [Retrato distribuido por el sitio oficial](https://framerusercontent.com/images/orQzDxOGZUjyZlJGSkQvDRzCo.png?width=2731&height=4096): descargado e inspeccionado realmente en `assets/source/finales/attack-overhaul/george/references/official-portrait.png`. Muestra cabello castaño peinado hacia atrás con volumen, barba y bigote recortados, cejas marcadas, rostro alargado y gesto abierto. Lleva chaqueta negra con decoración brillante. Se usa el rostro; la chaqueta NO sustituye la camiseta del atlas canónico.
+- [Fotografía de escenario de EL PAÍS](https://imagenes.elpais.com/resizer/v2/BAZ3H32PR5C6ZKFVLKZSIPIKME.jpg?auth=41a180457084be0b8a0a9194540dcaf328a9e88b49f2390218b3cb9fd7a76c6d&width=1960), vinculada en [la entrevista del18 de agosto de2025](https://elpais.com/us/entretenimiento/2025-08-18/george-harris-el-humor-te-ayuda-a-superar-el-duelo-migratorio.html): descargada y vista como `references/stage.jpg`. Se consultó la imagen, no el texto íntegro de la entrevista. Aparece George de cuerpo entero, cabello hacia atrás, barba, micrófono de mano, camisa negra con botones, pantalones oscuros y zapatos blancos; detrás hay un telón azul de pliegues profundos. La metadata antigua describía una camiseta de manga corta, pero la foto realmente vista tiene una camisa con botones y mangas recogidas. El vestuario entregado conserva la camiseta negra del canon, no esa descripción imprecisa.
+- `public/assets/george-v3.webp`, visto antes de generar, establece camiseta negra con estrella dorada pequeña, pantalón negro, zapatillas blancas, reloj y micrófono con rejilla metálica. El atlas original y su PNG fuente se mantienen intactos; sus hashes están en `provenance.json`.
+
+## Decisiones e incertidumbres
+
+La reverencia y el cierre del telón proceden del encargo, no de una anécdota atribuida al actor. El terciopelo rojo y la barra dorada son diseño de utilería de ficción; los pliegues y volumen se contrastaron con la fotografía real del telón azul. No se atribuye fabricante al micrófono ni al soporte. No se evaluó identidad por voz ni se usó grabación, música comercial o voz sintética imitativa. La definitiva conserva la síntesis original compartida del perfil «show».
+
+El retrato y la foto de escenario se recuperaron desde sus URLs porque los archivos antiguos mencionados en `docs/characters-v3/george.json` no existían en este checkout. Se guardaron las descargas nuevas y sus hashes. Toda referencia introducida al generador fue vista primero. El segundo generado solo reemplaza el soporte completo; no vuelve a generar ni retoca los cinco objetos aprobados del primer resultado.

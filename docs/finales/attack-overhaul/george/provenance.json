@@ -1,0 +1,19 @@
+{
+  "tool": "image_gen.imagegen",
+  "rawFiles": {
+    "assets/source/finales/attack-overhaul/george/raw-v1.png": "20eccc59adc5b934b72b9d04909d316ff5669bec2f7a029f47942889eb129e74",
+    "assets/source/finales/attack-overhaul/george/support-raw-v2.png": "2adf81287495aaeb27c376d1af8f2fc555ec752ac86f8056df43cdb5f7a73fff"
+  },
+  "canonicalSha256": {
+    "public/assets/george-v3.webp": "0e8c94fbdec4ee0403a4affc3360afd2d3782c78445fad3c12c33631d2288896",
+    "assets/source/george-v3.png": "e6a4dc535171f87a9a82931f40e3325d14899c7830d56cf490f2ee0e2ddb0649"
+  },
+  "referenceSha256": {
+    "assets/source/finales/attack-overhaul/george/references/official-portrait.png": "631f8bc11ca3b080d0831dbcafd91623a03c30ff93679a171f590563a2b9e104",
+    "assets/source/finales/attack-overhaul/george/references/stage.jpg": "5f41414e3ade0c389054a5ca8487fa140060d3ab81c518a0c2427c0f4ecd23bc"
+  },
+  "promptSha256": {
+    "docs/finales/attack-overhaul/george/prompts/v1.txt": "4e35cb95657e272253d4753aef783f9bf543caa8161bf8dde0f1164af1a21af8",
+    "docs/finales/attack-overhaul/george/prompts/support-v2.txt": "22584f18999450ae9851337e2e8e45fc95b3b4143db7f97a62e48122ea7c8aaf"
+  }
+}

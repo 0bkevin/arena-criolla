@@ -1,0 +1,15 @@
+{
+  "fighter": "george",
+  "source": "assets/source/finales/attack-overhaul/george/accepted-grid.png",
+  "file": "george-curtain-attack-v1",
+  "columns": 3,
+  "rows": 2,
+  "poses": [
+    "present",
+    "incline",
+    "bow",
+    "recover",
+    "curtain",
+    "support"
+  ]
+}
