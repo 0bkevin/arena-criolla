@@ -3579,27 +3579,6 @@ kbd {
   color: var(--fighter-color);
   text-decoration: none;
 }
-.character-references {
-  margin: 12px 0 18px;
-  color: #9da8ba;
-  font-size: 11px;
-}
-.character-references summary {
-  cursor: pointer;
-}
-.character-references > div {
-  display: grid;
-  gap: 8px;
-  padding: 12px 0 0;
-}
-.character-references a {
-  color: var(--fighter-color);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  line-height: 1.5;
-}
 @media (max-width: 900px), (max-height: 500px) and (orientation: landscape) {
   .arena-wrap:has(.pause-card) {
     min-height: 260px;

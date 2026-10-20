@@ -63,7 +63,6 @@
     .checkbox-label,
     .rooms-list span,
     .rooms-list-heading > span,
-    .character-references,
     .recent-matches > div,
     .recent-matches small,
     .recent-matches .won,
@@ -95,7 +94,6 @@
     .roster-grid strong,
     .special-description,
     .detail-info > .eyebrow,
-    .character-references a,
     .character-quote a
   ) {
   color: color-mix(in srgb, var(--fighter-color) 65%, #ffffff);
@@ -105,14 +103,9 @@
     .primary-button,
     .secondary-button,
     .text-button,
-    .rooms-list button,
-    .character-references summary,
-    .character-references a
+    .rooms-list button
   ) {
   min-height: 44px;
-}
-.modal:where(:not(.help-modal)) .character-references summary {
-  align-content: center;
 }
 .modal:where(:not(.help-modal)) input:not([type="checkbox"]) {
   min-height: 44px;

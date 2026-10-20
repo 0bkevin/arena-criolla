@@ -957,23 +957,6 @@ function FighterDetail({
               </a>
             </blockquote>
           )}
-          {personality.sources.length > 0 && (
-            <details className="character-references">
-              <summary>Fotos, videos y referencias</summary>
-              <div>
-                {personality.sources.map((source) => (
-                  <a
-                    key={source.url}
-                    href={source.url}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {source.title} <ArrowRight size={12} />
-                  </a>
-                ))}
-              </div>
-            </details>
-          )}
           <div className="special-description">
             <Zap size={18} />
             <div>
