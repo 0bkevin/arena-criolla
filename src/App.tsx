@@ -54,7 +54,7 @@ import { Help } from "./components/Help";
 import { beginMobilePlay, leaveLandscape } from "./game/mobile";
 
 type ModalName =
-  "help" | "fighters" | "stages" | "progress" | "rooms" | "ranking" | null;
+  "help" | "fighters" | "stages" | "progress" | "rooms" | null;
 const colorStyle = (color: string): React.CSSProperties =>
   ({ "--fighter-color": color }) as React.CSSProperties;
 
@@ -576,23 +576,27 @@ export function App({
       )}
 
       <footer className="site-footer page-width" ref={footer}>
-        <span className="footer-note">
-          Parodia arcade · Habilidades ficticias
+        <span className="footer-brand">
+          <img src="/assets/arena-icon.svg" width="26" height="26" alt="" />
+          <span className="footer-brand-name">
+            ARENA <span>CRIOLLA</span>
+          </span>
+          <span className="flag-mark" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
         </span>
-        <button onClick={() => setModal("ranking")}>
-          <Trophy size={13} />
-          Ranking <span>PRONTO</span>
-        </button>
-        <span className="footer-credit">
-          Desarrollado por{" "}
+        <p className="footer-credit">
+          Hecho por{" "}
           <a
             href="https://kevinbravo.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Kevin Bravo (kevinbravo.com)
+            Kevin Bravo
           </a>
-        </span>
+        </p>
       </footer>
       {!active && !modal && !detail && !setupVisible && !footerVisible && (
         <div className="mobile-setup-dock">
@@ -762,28 +766,6 @@ export function App({
               </p>
             </div>
           )}
-        </Modal>
-      )}
-      {modal === "ranking" && (
-        <Modal title="La próxima ronda" onClose={() => setModal(null)}>
-          <div className="coming-soon">
-            <Trophy size={44} />
-            <span className="eyebrow">RANKING GLOBAL</span>
-            <h3>Los mejores tendrán su lugar.</h3>
-            <p>
-              La clasificación por victorias llegará más adelante. Mientras
-              tanto, puedes pelear sin cuentas y desbloquear los combos de tus
-              luchadores favoritos.
-            </p>
-            <button
-              className="primary-button"
-              onClick={() => {
-                setModal("progress");
-              }}
-            >
-              Ver mi progreso <ArrowRight size={16} />
-            </button>
-          </div>
         </Modal>
       )}
       {modal === "rooms" && (

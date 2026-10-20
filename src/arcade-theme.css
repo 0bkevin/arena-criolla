@@ -1145,42 +1145,75 @@ body {
   color: var(--coin);
   font-size: 10px;
 }
-.in-lobby .site-footer {
+.app-shell .site-footer {
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
   color: #9eafc6;
-  border-color: #ffffff0a;
+  border-top: 0;
   margin: 0 auto;
-  padding: 8px 0 max(12px, env(safe-area-inset-bottom));
-  gap: 4px 16px;
-  flex-wrap: wrap;
+  padding: 8px 0 max(16px, env(safe-area-inset-bottom));
+  text-align: center;
+}
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-brand > img {
+  display: block;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+.footer-brand-name {
+  color: var(--paper);
+  font: italic 800 20px/1 "Barlow Condensed", sans-serif;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.footer-brand-name > span {
+  color: var(--coin);
+}
+.footer-brand .flag-mark {
+  width: 12px;
+  height: 9px;
+  flex-shrink: 0;
+  transform: none;
+}
+.footer-brand .flag-mark i {
+  flex: 1;
 }
 .site-footer .footer-credit {
+  margin: 0;
+  color: #a3b3ca;
   font: 400 12px/1.5 "DM Sans", sans-serif;
   letter-spacing: 0;
 }
 .footer-credit a {
   display: inline-block;
-  min-height: 44px;
+  min-height: 28px;
   align-content: center;
-  color: var(--coin);
+  color: var(--paper);
+  font-weight: 700;
   text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 .footer-credit a:hover {
-  color: var(--paper);
+  color: var(--coin);
 }
-.in-lobby .footer-criollo,
-.in-lobby .site-footer button {
-  color: #b2c2d7;
+.footer-credit a:focus-visible {
+  outline: 2px solid var(--coin);
+  outline-offset: 4px;
+  border-radius: 2px;
 }
-.in-lobby .footer-criollo > svg {
-  width: 18px;
-  height: 18px;
-}
-.in-lobby .footer-note {
-  color: #879bb7;
-}
-.in-lobby .site-footer button > span {
-  border-color: #637a9666;
-  color: #a8bad4;
+@media (min-width: 901px) {
+  .app-shell .site-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px;
+    text-align: left;
+  }
 }
 .in-lobby .mobile-setup-dock {
   display: none;
@@ -1910,16 +1943,6 @@ body {
   .in-lobby .arcade-help-strip > span:first-child {
     font-size: 8px;
     max-width: 170px;
-  }
-  .in-lobby .site-footer {
-    gap: 0 12px;
-    flex-wrap: wrap;
-  }
-  .in-lobby .footer-credit {
-    flex-basis: 100%;
-  }
-  .in-lobby .footer-note {
-    display: none;
   }
   .in-lobby .mobile-setup-dock {
     left: 10px;
