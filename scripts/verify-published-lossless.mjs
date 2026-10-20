@@ -5,6 +5,7 @@ import assert from "node:assert/strict";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { decodedImage, sourceFiles } from "./audit-lossless-assets.mjs";
 import { compareImages } from "./audit-lossless-avif.mjs";
+import { verifyRuntimeProof } from "./verify-runtime-proof.mjs";
 
 const base = "docs/performance/lossless-assets";
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -57,8 +58,15 @@ export async function verifyPublishedLossless() {
   assert.deepEqual(native.errors, []);
   assert.deepEqual(loading.errors, []);
   assert.equal(loading.status.complete, true);
-  for (const [file, hash] of Object.entries(loading.inputs.fingerprints))
-    assert.equal(sha(await fs.readFile(file)), hash, file);
+  let runtimeProof;
+  for (const [file, hash] of Object.entries(loading.inputs.fingerprints)) {
+    const current = sha(await fs.readFile(file));
+    if (file === "src/game/assets.ts" && current !== hash) {
+      // Preserve the original compression proof. A later loader is accepted
+      // only with a complete, source-bound equivalence proof against that loader.
+      runtimeProof = await verifyRuntimeProof(hash);
+    } else assert.equal(current, hash, file);
+  }
   const proofs = [];
   for (const entry of Object.values(manifest.assets)) {
     const before = await decodedImage(
@@ -107,6 +115,14 @@ export async function verifyPublishedLossless() {
     exactPublishedVariants: proofs.length,
     allPublishedVariantsExact: true,
     loadingProof: loading.status,
+    ...(runtimeProof
+      ? {
+          runtimeProof: {
+            ...runtimeProof,
+            directory: "docs/performance/runtime",
+          },
+        }
+      : {}),
     portableGuideArtifactUnchanged: { file: guide, sha256: guideHash },
     proofs,
   };

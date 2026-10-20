@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "createdAtUtc": "2026-10-20T01:31:26.825Z",
-  "verifierSha256": "587c97749caf313bf260a540705da2896cf1404c681766286d61fa5f490befd9",
+  "createdAtUtc": "2026-10-20T02:02:27.650Z",
+  "verifierSha256": "c2d4f30a1f32d8c525010879b4a0bb4e025e66fc1a1ecf6125bd2957ea93233f",
   "originalFilesUnchanged": 246,
   "imagesWithVariants": 39,
   "exactPublishedVariants": 40,
@@ -19,6 +19,12 @@
     "current": null,
     "complete": true,
     "errors": []
+  },
+  "runtimeProof": {
+    "sprites": 52,
+    "portraits": 1664,
+    "scores": 212,
+    "directory": "docs/performance/runtime"
   },
   "portableGuideArtifactUnchanged": {
     "file": "docs/finales/moveset-guide/ataques-arena-criolla.html",

@@ -33,3 +33,6 @@ data/
 
 # Resumable codec checkpoints are local; complete per-asset audit reports are tracked.
 /docs/performance/lossless-assets/*.progress.jsonl
+
+# Reproducible baseline bundle for the runtime performance fixture.
+/docs/performance/runtime/baseline.js
