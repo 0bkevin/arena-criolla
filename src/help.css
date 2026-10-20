@@ -20,6 +20,7 @@
 
 .help-modal .modal-header {
   flex-shrink: 0;
+  margin: 0;
   padding: 20px 32px 16px;
   border-bottom: 1px solid #30455f;
 }
@@ -136,6 +137,243 @@
 .help-device-note {
   margin: 0 0 12px;
   color: var(--help-muted);
+}
+
+.help-rotate-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--help-muted);
+}
+
+.help-rotate-note svg {
+  flex-shrink: 0;
+  transform: rotate(90deg);
+  color: #ffd45a;
+}
+
+.help-screen-guide {
+  max-width: 640px;
+  margin: 0 auto 20px;
+}
+
+.help-game-screen {
+  container-type: inline-size;
+  overflow: hidden;
+  border: 1px solid #5d779c;
+  border-radius: 12px;
+  background: #0a1829;
+}
+
+.help-screen-art {
+  position: relative;
+  aspect-ratio: 2 / 1;
+  background:
+    linear-gradient(#08132255, #08132222),
+    url("/assets/caracas.webp") center / cover;
+}
+
+.help-screen-hud {
+  position: absolute;
+  top: 4%;
+  left: 8%;
+  right: 8%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 3cqw;
+  align-items: start;
+  color: #fff5db;
+  font-size: 2.8cqw;
+  line-height: 1;
+  text-shadow: 0 1px 3px #081322;
+}
+
+.help-screen-hud > div:last-child {
+  text-align: right;
+}
+
+.help-screen-hud i,
+.help-screen-hud small {
+  display: block;
+  height: 1.5cqw;
+  margin-top: 1cqw;
+  border-radius: 2px;
+  background: #b6a4ff;
+}
+
+.help-screen-hud > div:last-child i {
+  background: #ff9ec7;
+}
+
+.help-screen-hud small {
+  width: 65%;
+  height: 0.8cqw;
+  background: #d7ef75;
+}
+
+.help-screen-hud > div:last-child small {
+  margin-left: auto;
+}
+
+.help-screen-hud > strong {
+  font: 800 5cqw/1 var(--font-display);
+}
+
+.help-screen-pause {
+  position: absolute;
+  top: 4%;
+  right: 2%;
+  width: 3.5cqw;
+  height: 3.5cqw;
+  color: #fff5db;
+}
+
+.help-screen-art .help-screen-fighter {
+  position: absolute;
+  bottom: 13%;
+  width: 19%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+}
+
+.help-screen-fighter-left {
+  left: 31%;
+}
+
+.help-screen-fighter-right {
+  right: 28%;
+}
+
+.help-screen-pad {
+  position: absolute;
+  bottom: 4%;
+  display: grid;
+  grid-template-columns: repeat(3, 8cqw);
+  grid-template-rows: repeat(3, 8cqw);
+  gap: 1cqw;
+}
+
+.help-screen-movement {
+  left: 2%;
+}
+
+.help-screen-combat {
+  right: 2%;
+  grid-template-rows: repeat(2, 8cqw);
+}
+
+.help-screen-pad > span {
+  display: grid;
+  place-items: center;
+  background: #10233ae6;
+  border: 1px solid #adc5e680;
+  border-radius: 2cqw;
+  color: #edf2fa;
+}
+
+.help-screen-pad svg {
+  width: 4cqw;
+  height: 4cqw;
+}
+
+.help-pad-jump {
+  grid-area: 1 / 2;
+}
+.help-pad-left {
+  grid-area: 2 / 1;
+}
+.help-pad-right {
+  grid-area: 2 / 3;
+}
+.help-pad-dash {
+  grid-area: 3 / 1;
+}
+.help-pad-down {
+  grid-area: 3 / 2;
+}
+.help-pad-block {
+  grid-area: 1 / 1;
+}
+.help-pad-super {
+  grid-area: 1 / 3;
+}
+.help-pad-light {
+  grid-area: 2 / 1;
+}
+.help-pad-heavy {
+  grid-area: 2 / 2;
+}
+.help-pad-special {
+  grid-area: 2 / 3;
+}
+
+.help-screen-pad :is(.help-pad-super, .help-pad-special) {
+  color: #ffdc79;
+  border-color: #ffd45a88;
+}
+
+.help-screen-guide figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--help-muted);
+}
+
+.help-screen-guide figcaption > span:last-child {
+  text-align: right;
+}
+
+.help-screen-guide figcaption strong {
+  display: block;
+  color: #fff5db;
+}
+
+.help-touch-legend {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.help-touch-legend h4 {
+  margin: 0 0 4px;
+  color: #fff5db;
+  font-size: 16px;
+}
+
+.help-touch-legend dl {
+  margin: 0;
+}
+
+.help-touch-legend dl > div {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 2px 8px;
+  align-content: start;
+  min-height: 64px;
+  padding-block: 10px;
+  border-bottom: 1px solid #30455f;
+}
+
+.help-touch-legend svg {
+  grid-row: 1 / 3;
+  margin-top: 1px;
+  color: #ffd45a;
+}
+
+.help-touch-legend dt {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.help-touch-legend dd {
+  grid-column: 2;
+  margin: 0;
+  color: var(--help-muted);
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .help-controls-grid {
@@ -274,19 +512,23 @@
   }
 
   .help-modal .modal-header {
-    padding: 16px 20px;
+    padding: 10px 16px;
   }
 
   .arcade-app .help-modal .modal-header h2 {
-    font-size: 34px;
+    font-size: 24px;
   }
 
   .help-content {
-    padding: 20px;
+    padding: 16px;
   }
 
   .help-goal {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
+  }
+
+  .help-content h3 {
+    font-size: 18px;
   }
 
   .help-controls-heading {
@@ -319,7 +561,7 @@
   }
 
   .help-footer {
-    padding: 12px 20px;
+    padding: 10px 16px;
   }
 
   .help-done {
