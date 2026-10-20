@@ -1,9 +1,0 @@
-{
-  "fighter": "simon",
-  "source": "assets/source/finales/attack-overhaul/simon/simon-grid.png",
-  "file": "simon-cuatro-attack-v1",
-  "columns": 3,
-  "rows": 2,
-  "poses": ["ready", "downstroke", "upstroke", "accent", "horse-trot", "horse-spring"],
-  "anchorFractions": { "ready": 0.41, "downstroke": 0.43, "upstroke": 0.43, "accent": 0.42 }
-}

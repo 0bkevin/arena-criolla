@@ -1,8 +1,0 @@
-{
-  "fighter": "vallenilla",
-  "source": "assets/source/finales/attack-overhaul/vallenilla/cashea-v3-generated.png",
-  "file": "vallenilla-cashea-attack-v1",
-  "columns": 3,
-  "rows": 2,
-  "poses": ["box", "summon", "guard", "jab", "hook", "uppercut"]
-}

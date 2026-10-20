@@ -1,9 +1,0 @@
-{
-  "source": "assets/source/finales/attack-overhaul/gomez/cavalry-v2-raw.png",
-  "destination": "assets/source/finales/attack-overhaul/gomez/cavalry-v2-normalized.png",
-  "auditPath": "docs/finales/attack-overhaul/gomez/normalization.json",
-  "columns": 4,
-  "rows": 2,
-  "poseCount": 8,
-  "poses": ["ready", "gallop-extended", "gallop-gathered", "brake", "trooper-extended", "trooper-gathered", "dismount", "horse-exit"]
-}

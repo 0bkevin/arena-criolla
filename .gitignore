@@ -6,33 +6,11 @@ dist/
 !.env.example
 .DS_Store
 
-# Private creator storage (accounts, sessions, uploaded photos, generated art)
-data/
+# Private creator storage and local artwork workspaces.
+/data/
+/assets/
 
-# Downloaded research media and retired assets stay local.
-/assets/references/*
-!/assets/references/audio-reactions-v8/
-!/assets/references/entrances-v24/
-!/assets/references/entrances-v25/
-!/assets/references/pixel-v26/
-!/assets/references/stages-v4/
-/assets/archive/
-/docs/character-previews/
-
-# Captured choreography footage is local research, not shipped game art.
-/assets/source/finales/perro-mujeriego-v3/references/choreography-*-contact.png
-/docs/finales/perro-mujeriego-v3/reference-frames/
-/docs/finales/perro-mujeriego-v3/nacho-pilot-comparison.png
-/docs/finales/perro-mujeriego-v3/runtime-player/*.png
-
-# Full-resolution arena captures stay local; compact review boards are retained.
-/docs/finales/in-arena/2026-10-19-initial/frames/
-/docs/finales/in-arena/2026-10-19-final/frames/
-/docs/finales/other-finales-2026-10-19/frames/
-/docs/finales/main-identity-refresh/frames/
-
-# Resumable codec checkpoints are local; complete per-asset audit reports are tracked.
-/docs/performance/lossless-assets/*.progress.jsonl
-
-# Reproducible baseline bundle for the runtime performance fixture.
-/docs/performance/runtime/baseline.js
+# Retain operational instructions, not generated reports or captures.
+/docs/*
+!/docs/creator-codex.md
+!/docs/codex-operator-oracle.md

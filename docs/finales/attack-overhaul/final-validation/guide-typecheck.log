@@ -1,3 +1,0 @@
-Command: npx tsc --noEmit --strict --target ES2022 --module ESNext --moduleResolution Bundler --lib ES2022,DOM,DOM.Iterable --resolveJsonModule --esModuleInterop --skipLibCheck docs/finales/moveset-guide/guide.ts
-Started UTC: 2026-10-20T00:33:07.213696+00:00
-

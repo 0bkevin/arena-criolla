@@ -1,8 +1,0 @@
-{
-  "source": "assets/source/finales/attack-overhaul/melanio/raw-v1.png",
-  "padded": "assets/source/finales/attack-overhaul/melanio/raw-v1-padded.png",
-  "padding": 40,
-  "exactOriginalRgbaRoundtrip": true,
-  "originalRgbaSha256": "2ddd324487c4e172f67a60abd29d7701e84957ac57ccdbe22d621c8f6eee9388",
-  "inverseRgbaSha256": "2ddd324487c4e172f67a60abd29d7701e84957ac57ccdbe22d621c8f6eee9388"
-}

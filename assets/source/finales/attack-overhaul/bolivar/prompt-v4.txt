@@ -1,6 +1,0 @@
-Use case: precise-object-edit. Repaint ONLY the first FOUR complete llanero cavalry characters from reference sheet, at equal scale, each a standalone complete horse+rider+lance. Production 2 columns x 2 rows layout with a VERY WIDE EMPTY TRANSPARENT BORDER AND CROSS-SHAPED GUTTER: each figure's bounding box must fit within 80% of its cell, at least 90px transparent gap between any two silhouettes. Never connect lance tips to neighboring horse tails. No background or shadow. Retain exact character costumes, hands, horses, faces and hand-inked style of reference:
-top-left cream shirt/red kerchief/dark man/bay horse;
-top-right blue shirt/yellow kerchief/tan man/dapple grey;
-bottom-left rust red shirt/black hat/black horse;
-bottom-right yellow shirt/blue kerchief/dark man/chestnut white blaze.
-All face right, all fully mounted at gallop. Keep all four horse hooves, tail, entire rider/head/hat and every lance tip inside own cell. Left hand holds actual connected reins; right hand grips one complete diagonal lance, make lance somewhat steeper to keep full weapon inside its cell. True alpha transparency. No text, floor, trails, halo, motion blur, labels or grid.
