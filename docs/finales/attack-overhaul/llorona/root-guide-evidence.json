@@ -1,0 +1,181 @@
+{
+  "approved": true,
+  "initialFocusedPassed": 35,
+  "postfixFocusedPassed": 15,
+  "strictGuideTypesPassed": true,
+  "nativeScenarios": 44,
+  "nativeSamples": 536,
+  "rosterCasts": 312,
+  "rosterRenderedFrames": 936,
+  "rosterScope": "52rivals×2slots×floor+bothunequalplatformdirections. Actual production clipping/body masks show0bodypixels inunderworld,visiblegrip/return,portalclosedbefore release,andrestoredphysicalpositions. Not hand-placement proof for everyrival.",
+  "rgbaSourceAssemblyExact": true,
+  "guide": {
+    "final": {
+      "summary": {
+        "selected": "llorona",
+        "mode": "final",
+        "frames": 280,
+        "hp": 100,
+        "minHp": 60.342400000000005,
+        "stocks": 1,
+        "props": [
+          "llorona-underworld-attack-v1",
+          "finales-v1-5",
+          "finales-seated-v1-5",
+          "finales-dance-v2-5",
+          "finales-v1-1",
+          "finales-seated-main-v1",
+          "perro-mujeriego-v3-capriles",
+          "finales-capriles-cafe",
+          "finales-cafe-furniture"
+        ],
+        "sprite": "llorona-v12"
+      },
+      "hits": [
+        {
+          "frame": 51,
+          "tick": 42,
+          "hp": 86.7808
+        },
+        {
+          "frame": 99,
+          "tick": 90,
+          "hp": 73.5616
+        },
+        {
+          "frame": 147,
+          "tick": 138,
+          "hp": 60.342400000000005
+        }
+      ],
+      "release": 189,
+      "stockLoss": 226,
+      "terminal": {
+        "stocks": [
+          2,
+          1
+        ],
+        "capture": null,
+        "knockoutDelay": [
+          0,
+          0
+        ]
+      }
+    },
+    "special": {
+      "summary": {
+        "selected": "llorona",
+        "mode": "special",
+        "frames": 180,
+        "hp": 88.2496,
+        "minHp": 88.2496,
+        "stocks": 2,
+        "props": [
+          "llorona-underworld-attack-v1",
+          "finales-v1-5",
+          "finales-seated-v1-5",
+          "finales-dance-v2-5",
+          "finales-v1-1",
+          "finales-seated-main-v1",
+          "perro-mujeriego-v3-capriles",
+          "finales-capriles-cafe",
+          "finales-cafe-furniture"
+        ],
+        "sprite": "llorona-v12"
+      },
+      "hits": [
+        {
+          "frame": 32,
+          "hp": 88.2496
+        }
+      ],
+      "release": -1,
+      "stockLoss": -1,
+      "terminal": {
+        "stocks": [
+          2,
+          2
+        ],
+        "capture": null,
+        "knockoutDelay": [
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "guideScreenshot": {
+    "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+    "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfy6vkf-e1a58960.png"
+  },
+  "nativeScreenshots": [
+    {
+      "key": "final-p1-normal-78",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfy1qux-b5f01fe7.png"
+    },
+    {
+      "key": "final-p2-tall-90",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfy1r8t-feda40b4.png"
+    },
+    {
+      "key": "final-p1-small-90",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfy1rij-da6cde29.png"
+    },
+    {
+      "key": "final-p1-normal-114",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfy1rr4-41c387dd.png"
+    },
+    {
+      "key": "final-p1-normal-138",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfy1rza-dede52af.png"
+    },
+    {
+      "key": "final-p2-platform-158",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfy1sa3-deaf0348.png"
+    },
+    {
+      "key": "final-p1-edge-178",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfy1shz-2d3daa05.png"
+    },
+    {
+      "key": "special-p1-close-15",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfy1spu-c088a74b.png"
+    },
+    {
+      "key": "final-p1-tall-platform-reverse-78",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfy62ep-be30a836.png"
+    },
+    {
+      "key": "final-p2-tall-platform-reverse-78",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfy62nw-cb4bb380.png"
+    },
+    {
+      "key": "final-p1-normal-114",
+      "reduced": true,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfy62vw-4cd25b0b.png"
+    },
+    {
+      "key": "final-p2-normal-78",
+      "reduced": false,
+      "missing": true,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfy633k-b617d2bb.png"
+    }
+  ]
+}

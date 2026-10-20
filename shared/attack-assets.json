@@ -1335,5 +1335,82 @@
         "bodyHeight": 807.24
       }
     }
+  },
+  "llorona": {
+    "file": "llorona-underworld-attack-v1",
+    "frames": {
+      "lure": {
+        "x": 61,
+        "y": 20,
+        "width": 389,
+        "height": 472,
+        "anchorX": 202.28,
+        "anchorY": 466.36978131212726,
+        "bodyHeight": 464.493041749503
+      },
+      "cast": {
+        "x": 532,
+        "y": 65,
+        "width": 472,
+        "height": 427,
+        "anchorX": 250.16000000000003,
+        "anchorY": 416.96367521367523,
+        "bodyHeight": 412.4017094017094
+      },
+      "reveal": {
+        "x": 20,
+        "y": 582,
+        "width": 472,
+        "height": 422,
+        "anchorX": 245.44,
+        "anchorY": 413.5412026726058,
+        "bodyHeight": 410.7216035634744
+      },
+      "embrace-high": {
+        "x": 545,
+        "y": 532,
+        "width": 446,
+        "height": 472,
+        "anchorX": 231.92000000000002,
+        "anchorY": 465.201646090535,
+        "bodyHeight": 461.3168724279835
+      },
+      "embrace-low": {
+        "x": 20,
+        "y": 1131,
+        "width": 472,
+        "height": 385,
+        "anchorX": 245.44,
+        "anchorY": 374.7705314009662,
+        "bodyHeight": 371.0507246376812
+      },
+      "recover": {
+        "x": 580,
+        "y": 1044,
+        "width": 376,
+        "height": 472,
+        "anchorX": 195.52,
+        "anchorY": 469.1736526946108,
+        "bodyHeight": 464.4630738522954
+      },
+      "portal": {
+        "x": 20,
+        "y": 1833,
+        "width": 472,
+        "height": 195,
+        "anchorX": 236,
+        "anchorY": 190.71428571428572,
+        "bodyHeight": 188.92857142857142
+      },
+      "wave": {
+        "x": 532,
+        "y": 1646,
+        "width": 472,
+        "height": 382,
+        "anchorX": 236,
+        "anchorY": 378.740614334471,
+        "bodyHeight": 376.7849829351536
+      }
+    }
   }
 }

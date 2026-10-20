@@ -1,0 +1,47 @@
+{
+  "tool": "image_gen.imagegen",
+  "accepted": [
+    "poses-raw-v1.png",
+    "effects-raw-v1.png"
+  ],
+  "sourceApproval": "Root reviewed both raw sheets; runtime acceptance pending.",
+  "processing": "Six full figure components translated by normalizeAttackGrid with exact retained RGBA. Effects split at x1392 inside empty core gutter1350..1433, including every droplet/wisp. All eight objects packed losslessly. No anatomy painted, masked, shortened or removed. Grid assembly uses exact RGBA row copies (not alpha compositing) before the uniform per-cell resize.",
+  "files": [
+    {
+      "path": "assets/source/finales/attack-overhaul/llorona/poses-raw-v1.png",
+      "sha256": "89a4f10c6ad9139d7b0b7418bc098a68ca1ea93ecffede278c9531521212c7fc"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/llorona/effects-raw-v1.png",
+      "sha256": "e94ada60e0f57c1d3aa14e325cce347b17f332499f92b0a26d3fa9ee1d1a13c7"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/llorona/poses-normalized-v1.png",
+      "sha256": "d73f436062bb6737698d6a1837b92290506a7428811f77a6d5d607f83276a0a5"
+    },
+    {
+      "path": "assets/source/finales/attack-overhaul/llorona/combined-v1.png",
+      "sha256": "d38d73d4e1a0e4ae2be297d86666f78e88f1b42c5f7cd120790465489125d091"
+    },
+    {
+      "path": "docs/finales/attack-overhaul/llorona/references/canonical-main.webp",
+      "sha256": "ccfbd2062ab918f4e06630eb90fd397a21136b06da589270997765ab0a6a7a06"
+    },
+    {
+      "path": "docs/finales/attack-overhaul/llorona/references/theatre.jpg",
+      "sha256": "d192b2742f3a97e20f36180f88b9a08c1699c1ef9a7e32b0cb6697625a6dd096"
+    },
+    {
+      "path": "docs/finales/attack-overhaul/llorona/references/embrace.jpg",
+      "sha256": "f1b5c55af64dd08f8a3d713aac1a8dbb139bf83ff97cc2ef454f6a73c6bf51df"
+    },
+    {
+      "path": "docs/finales/attack-overhaul/llorona/prompts/poses-v1.txt",
+      "sha256": "c419182a5fa9eca5762d6d0ad86de7935b43c3175123c7c385bf523d79c9e88c"
+    },
+    {
+      "path": "docs/finales/attack-overhaul/llorona/prompts/effects-v1.txt",
+      "sha256": "ce8487f3d85be3178819c3a3c6f9a55c69f90e6c74889e475d9593be517f018b"
+    }
+  ]
+}

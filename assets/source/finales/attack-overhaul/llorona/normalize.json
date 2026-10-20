@@ -1,0 +1,16 @@
+{
+  "source": "assets/source/finales/attack-overhaul/llorona/poses-raw-v1.png",
+  "destination": "assets/source/finales/attack-overhaul/llorona/poses-normalized-v1.png",
+  "auditPath": "docs/finales/attack-overhaul/llorona/normalization.json",
+  "columns": 2,
+  "rows": 3,
+  "poseCount": 6,
+  "poses": [
+    "lure",
+    "cast",
+    "reveal",
+    "embrace-high",
+    "embrace-low",
+    "recover"
+  ]
+}
