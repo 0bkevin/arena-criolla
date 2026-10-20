@@ -58,7 +58,7 @@ test("Conde Bond activates at tick9 out of range in either slot with cost and no
     assert.equal(r.state.finale, undefined);
     assert.equal(r.target.hp, 100);
     assert.equal(r.source.hits, 0);
-    close(r.source.energy, 25.28);
+    close(r.source.energy, 10.28);
     const tick = r.state.tick,
       x = r.target.x;
     r.inputs[1 - side].left = true;
@@ -72,13 +72,13 @@ test("Conde Bond activates at tick9 out of range in either slot with cost and no
 test("self-transform respects unlock, energy, stun, guard, cooldown, stale input and interrupted startup", () => {
   for (const side of [0, 1] as const) {
     for (const [wins, energy] of [
-      [2, 100],
-      [3, 74],
-      [3, 75],
+      [1, 100],
+      [2, 89],
+      [2, 90],
     ]) {
       const r = setup(side, 500, wins, energy);
       r.activate();
-      assert.equal(!!r.source.transformation, wins === 3 && energy >= 75);
+      assert.equal(!!r.source.transformation, wins >= 2 && energy >= 90);
     }
     for (const gate of ["stun", "cooldown", "guard", "stale"] as const) {
       const r = setup(side);
@@ -139,7 +139,7 @@ test("360 active ticks expire exactly; hitstop/capture pause time; paid refresh 
   refresh.activate();
   assert.equal(refresh.source.transformation?.ticks, 360);
   assert.equal(outgoingDamageMultiplier(refresh.source), 1.2);
-  close(refresh.source.energy, 25.28);
+  close(refresh.source.energy, 10.28);
   refresh.state.hitstop = 5;
   refresh.advance(5);
   assert.equal(refresh.source.transformation?.ticks, 360);

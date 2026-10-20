@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDown, Gamepad2, Keyboard, Smartphone } from "lucide-react";
+import { SUPER_ENERGY_COST, SUPER_UNLOCK_WINS } from "../../shared/content";
 import { hasTouchInput } from "../game/mobile";
 import { Modal } from "./Modal";
 import { MobileControlsGuide } from "./MobileControlsGuide";
@@ -75,7 +76,7 @@ const controls = [
   },
   {
     action: "Súper",
-    note: "3 victorias · 75 de energía",
+    note: `${SUPER_UNLOCK_WINS} victorias · ${SUPER_ENERGY_COST} de energía`,
     first: ["I"],
     second: ["5"],
     touch: "Súper",
@@ -226,9 +227,9 @@ export function Help({ onClose }: { onClose: () => void }) {
             </li>
             <li>
               <strong>Energía:</strong> se recarga al golpear y recibir golpes.
-              La definitiva se desbloquea con tres victorias con ese personaje.
-              Vicente lanza una moto con su especial desde el inicio; el
-              pelotón de siete motos pertenece a su definitiva.
+              La definitiva se desbloquea con {SUPER_UNLOCK_WINS} victorias con
+              ese personaje. Vicente lanza una moto con su especial desde el
+              inicio; el pelotón de siete motos pertenece a su definitiva.
             </li>
             <li>
               <strong>Tiempo:</strong> cada pelea dura un máximo de 2 minutos.

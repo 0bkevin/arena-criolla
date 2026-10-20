@@ -159,7 +159,7 @@ for (const side of [0, 1] as const) {
     assert.equal(locked.p.attack, null);
   });
 
-  test(`Javier P${side + 1}: basic/upgraded combo and three-win definitive`, () => {
+  test(`Javier P${side + 1}: basic/upgraded combo and two-win definitive`, () => {
     const basic = setup(side, 0, 25);
     basic.inputs[side].actions.light++;
     advance(basic.s, basic.inputs, 25);
@@ -182,13 +182,13 @@ for (const side of [0, 1] as const) {
       assert.ok(combo.p.hits >= 2);
       console.log(JSON.stringify({ check: "combo", side, wins, name: combo.p.combo, bonus: combo.p.comboBonus, hits: combo.p.hits, hp: combo.target.hp, history: combo.p.history }));
     }
-    for (const wins of [0, 2, 3]) {
+    for (const wins of [0, 1, 2, 3]) {
       const superMove = setup(side, wins, 150);
       superMove.p.energy = 100;
       superMove.inputs[side].actions.super++;
       stepMatch(superMove.s, superMove.inputs);
-      assert.equal(superMove.p.attack, wins >= 3 ? "super" : null);
-      if (wins >= 3) {
+      assert.equal(superMove.p.attack, wins >= 2 ? "super" : null);
+      if (wins >= 2) {
         assert.equal(superMove.p.combo, "Remate de mialma");
         assert.equal(superMove.p.comboBonus, 12);
         advance(superMove.s, superMove.inputs, 8);
@@ -200,7 +200,7 @@ for (const side of [0, 1] as const) {
       }
     }
     const lowEnergy = setup(side, 3);
-    lowEnergy.p.energy = 74;
+    lowEnergy.p.energy = 89;
     lowEnergy.inputs[side].actions.super++;
     stepMatch(lowEnergy.s, lowEnergy.inputs);
     assert.equal(lowEnergy.p.attack, null);
@@ -214,7 +214,7 @@ function scriptedInput(s: MatchState, prior: Input): Input {
   next.right = dx > 95;
   next.block = false;
   if (p.cooldown === 0 && p.stun === 0 && Math.abs(dx) < 165) {
-    const action: Action = p.energy >= 75 && s.tick % 180 < 20 ? "super" : p.energy >= 25 && s.tick % 100 < 20 ? "special" : s.tick % 3 ? "light" : "heavy";
+    const action: Action = p.energy >= 90 && s.tick % 180 < 20 ? "super" : p.energy >= 25 && s.tick % 100 < 20 ? "special" : s.tick % 3 ? "light" : "heavy";
     next.actions[action]++;
   }
   if (target.y < p.y - 70 && s.tick % 34 === 0) next.actions.jump++;

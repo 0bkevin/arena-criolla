@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import {
   FIGHTERS,
+  SUPER_UNLOCK_WINS,
   fighterById,
   isFighter,
   stageById,
@@ -692,7 +693,7 @@ export function App({
                     {count} {count === 1 ? "victoria" : "victorias"}
                   </span>
                   <small>
-                    {count >= 3
+                    {count >= SUPER_UNLOCK_WINS
                       ? "3/3 combos"
                       : count >= 1
                         ? "2/3 combos"

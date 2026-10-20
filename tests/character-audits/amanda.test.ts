@@ -183,10 +183,10 @@ test("Amanda recognizes base and upgraded combos, connects chase sequences and e
       assert.equal(r.player.hits, attacks.length); assert.equal(r.player.combo, advanced ? "Cambio de acto" : "Entrada a escena");
       emit("connected-combo", { side, combo: r.player.combo, hits: r.player.hits, hp: r.rival.hp, elapsed: r.state.tick - INTRO_TOTAL_TICKS });
     }
-    for (const [wins, energy] of [[0, 100], [2, 100], [3, 74], [3, 100]] as const) {
+    for (const [wins, energy] of [[0, 100], [1, 100], [2, 89], [2, 100], [3, 100]] as const) {
       const r = setup(side, 200, wins); r.player.energy = energy; r.inputs[side].actions.super++; r.advance(9);
       if (r.state.finale) r.advance(r.state.finale.duration);
-      if (wins < 3 || energy < 75) { assert.equal(r.player.attack, null); assert.equal(r.rival.hp, 100); }
+      if (wins < 2 || energy < 90) { assert.equal(r.player.attack, null); assert.equal(r.rival.hp, 100); }
       else { assert.equal(r.player.combo, "Telón final"); assert.equal(r.player.comboBonus, 12); assert.equal(r.player.hits, 1); close(r.rival.hp, 57.358); }
       emit("super-gate", { side, wins, energy, hp: r.rival.hp, attackerEnergy: r.player.energy, combo: r.player.combo });
     }
@@ -214,7 +214,7 @@ function cpuFight() {
     r.inputs[0].block = n >= 120 && r.rival.attack === "heavy" && Math.abs(dx) < 190 && r.state.tick % 100 < 20;
     if (n >= 120 && !r.player.cooldown && !r.player.stun && !r.inputs[0].block) {
       const counter = r.rival.attack && Math.abs(dx) < 220 && r.player.energy >= 25;
-      const action = counter ? "special" : Math.abs(dx) < 230 && r.player.energy >= 75 ? "super" : Math.abs(dx) < 125 && r.player.energy >= 25 && r.state.tick % 5 === 0 ? "special" : Math.abs(dx) < 145 ? (r.state.tick % 3 ? "light" : "heavy") : null;
+      const action = counter ? "special" : Math.abs(dx) < 230 && r.player.energy >= 90 ? "super" : Math.abs(dx) < 125 && r.player.energy >= 25 && r.state.tick % 5 === 0 ? "special" : Math.abs(dx) < 145 ? (r.state.tick % 3 ? "light" : "heavy") : null;
       if (action) r.inputs[0].actions[action]++;
     }
     if ((r.rival.y < r.player.y - 60 || r.player.x < 120 || r.player.x > 960) && r.player.jumps < 2 && r.state.tick % 34 === 0) r.inputs[0].actions.jump++;

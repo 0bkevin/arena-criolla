@@ -180,14 +180,14 @@ for (const id of reviewed) {
       run.advance(1);
       assert.equal(run.actor.combo, fighterById(id).combos[advanced ? 1 : 0]);
     }
-    for (const wins of [0, 2, 3]) {
+    for (const wins of [0, 1, 2, 3]) {
       const run = setup(id, 0, 160, wins);
       run.inputs[0].actions.super++;
       run.advance(1);
-      assert.equal(run.actor.attack, wins < 3 ? null : "super");
-      if (wins === 3) {
+      assert.equal(run.actor.attack, wins < 2 ? null : "super");
+      if (wins >= 2) {
         assert.equal(run.actor.combo, fighterById(id).combos[2]);
-        assert.ok(run.actor.energy < 26);
+        assert.ok(run.actor.energy < 11);
       }
     }
   });

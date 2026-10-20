@@ -167,11 +167,11 @@ for (const side of [0, 1] as const) {
       assert.equal(run.player.hits, 1);
       emit("combo-gate", { side, wins, name: run.player.combo, bonus: run.player.comboBonus, hits: run.player.hits, hp: run.rival.hp, note: "setup lights are outside range; heavy lands" });
     }
-    for (const wins of [0, 2, 3]) {
+    for (const wins of [0, 1, 2, 3]) {
       const run = setup(side, 200, wins);
       run.inputs[side].actions.super++; run.advance(9);
       if (run.state.finale) run.advance(run.state.finale.duration);
-      if (wins < 3) { assert.equal(run.player.attack, null); assert.equal(run.rival.hp, 100); }
+      if (wins < 2) { assert.equal(run.player.attack, null); assert.equal(run.rival.hp, 100); }
       else {
         assert.equal(run.player.combo, "Meta tricolor");
         assert.equal(run.player.comboBonus, 12);
@@ -182,7 +182,7 @@ for (const side of [0, 1] as const) {
       emit("super-gate", { side, wins, hp: run.rival.hp, energy: run.player.energy, combo: run.player.combo });
     }
     const depleted = setup(side, 200, 3);
-    depleted.player.energy = 74;
+    depleted.player.energy = 89;
     depleted.inputs[side].actions.super++; depleted.advance(1);
     assert.equal(depleted.player.attack, null);
   });
@@ -252,7 +252,7 @@ function cpuBout() {
     run.inputs[0].right = steps >= 180 && dx > 80;
     run.inputs[0].block = steps >= 180 && target.attack === "heavy" && Math.abs(dx) < 160 && run.state.tick % 120 < 30;
     if (steps >= 180 && !p.cooldown && !p.stun && !run.inputs[0].block && Math.abs(dx) < 220) {
-      const attack = p.energy >= 75 && run.state.tick % 180 < 30 ? "super" : p.energy >= 25 && run.state.tick % 100 < 35 ? "special" : Math.abs(dx) < 145 ? run.state.tick % 3 ? "light" : "heavy" : null;
+      const attack = p.energy >= 90 && run.state.tick % 180 < 30 ? "super" : p.energy >= 25 && run.state.tick % 100 < 35 ? "special" : Math.abs(dx) < 145 ? run.state.tick % 3 ? "light" : "heavy" : null;
       if (attack) run.inputs[0].actions[attack]++;
     }
     if ((target.y < p.y - 70 || p.x < 120 || p.x > 960) && p.jumps < 2 && run.state.tick % 34 === 0) run.inputs[0].actions.jump++;

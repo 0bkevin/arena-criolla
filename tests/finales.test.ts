@@ -192,7 +192,7 @@ test("all built-in finales exercise their combat mode against every rival on eit
         );
         assert.equal(r.source.attack, null, context);
         assert.equal(r.source.hits, 1, context);
-        close(r.source.energy, 38.28, context);
+        close(r.source.energy, 23.28, context);
         scenes++;
       }
   assert.equal(scenes, BUILT_IN_FIGHTERS.length ** 2 * 2);
@@ -236,13 +236,13 @@ test("Nacho releases the rival in place without any launch, residual momentum or
       }
 });
 
-test("finales keep the three-win and 75-energy gates, and Vicente's single motorcycle is available from zero wins", () => {
+test("finales keep the two-win and 90-energy gates, and Vicente's single motorcycle is available from zero wins", () => {
   for (const fighter of BUILT_IN_FIGHTERS)
     for (const [wins, energy] of [
       [0, 100],
-      [2, 100],
-      [3, 74],
-      [3, 75],
+      [1, 100],
+      [2, 89],
+      [2, 90],
     ] as const) {
       const r = setup(fighter.id);
       r.source.config.wins = wins;
@@ -255,12 +255,12 @@ test("finales keep the three-win and 75-energy gates, and Vicente's single motor
           r.state.fieldFinales?.length ||
           r.state.projectiles.some((p) => p.impact === "super"),
         ),
-        wins === 3 && energy >= 75,
+        wins >= 2 && energy >= 90,
         `${fighter.id}/${wins}/${energy}`,
       );
       if (!r.state.finale) assert.equal(r.target.hp, 100);
     }
-  for (const wins of [0, 2, 3]) {
+  for (const wins of [0, 1, 2, 3]) {
     const r = setup("zavarce");
     r.source.config.wins = wins;
     r.inputs[0].actions.special++;
@@ -303,7 +303,7 @@ test("distance, height, facing, spawn protection and a facing guard can prevent 
         );
       }
       assert.ok(
-        r.source.energy < 26,
+        r.source.energy < 11,
         "a missed or defended super still costs energy",
       );
     }

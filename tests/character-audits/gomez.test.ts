@@ -153,12 +153,12 @@ for (const side of [0, 1] as const) {
     const lockedSpecial = setup(side); lockedSpecial.actor.energy = 24;
     lockedSpecial.inputs[side].actions.special++; stepMatch(lockedSpecial.state, lockedSpecial.inputs);
     assert.equal(lockedSpecial.actor.attack, null);
-    for (const [wins, energy] of [[0, 100], [2, 100], [3, 74], [3, 100]] as const) {
+    for (const [wins, energy] of [[0, 100], [1, 100], [2, 89], [2, 100], [3, 100]] as const) {
       const run = setup(side, wins, 150); run.actor.energy = energy; run.inputs[side].actions.super++;
-      stepMatch(run.state, run.inputs); const unlocked = wins >= 3 && energy >= 75;
+      stepMatch(run.state, run.inputs); const unlocked = wins >= 2 && energy >= 90;
       assert.equal(run.actor.attack, unlocked ? "super" : null);
       if (unlocked) {
-        assert.equal(run.actor.combo, "Golpe de mando"); assert.equal(run.actor.comboBonus, 12); close(run.actor.energy, 25);
+        assert.equal(run.actor.combo, "Golpe de mando"); assert.equal(run.actor.comboBonus, 12); close(run.actor.energy, 10);
         advance(run.state, run.inputs, 8);
         assert.equal(run.state.fieldFinales?.[0]?.fighter, "gomez");
         advance(run.state, run.inputs, 280);
@@ -182,7 +182,7 @@ test("Gómez completes a full hard CPU bout with finite physics and actual hits"
       const next = { ...inputs[0], actions: { ...inputs[0].actions } };
       next.left = dx < -95; next.right = dx > 95; next.block = false;
       if (!actor.cooldown && !actor.stun && Math.abs(dx) < 165) {
-        const action = actor.energy >= 75 && state.tick % 180 < 20 ? "super" : actor.energy >= 25 && state.tick % 100 < 25 ? "special" : state.tick % 3 ? "light" : "heavy";
+        const action = actor.energy >= 90 && state.tick % 180 < 20 ? "super" : actor.energy >= 25 && state.tick % 100 < 25 ? "special" : state.tick % 3 ? "light" : "heavy";
         next.actions[action]++;
       }
       if ((target.y < actor.y - 70 || actor.x < WORLD.left + 30 || actor.x > WORLD.right - 30) && actor.jumps < 2 && state.tick % 34 === 0) next.actions.jump++;

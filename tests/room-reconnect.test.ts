@@ -1,7 +1,11 @@
 import test, { type TestContext } from "node:test";
 import assert from "node:assert/strict";
+import { createElement, createRef } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { WebSocket } from "ws";
 import { makeArenaServer } from "../server/index";
+import { VictoryScreen } from "../src/components/VictoryScreen";
+import { preloadAssets } from "../src/game/assets";
 import type { ServerMessage } from "../shared/protocol";
 import {
   ARENA_SOCKET_PROTOCOL,
@@ -31,9 +35,17 @@ class Peer {
   send(message: object) {
     this.socket.send(JSON.stringify(message));
   }
-  async wait<T extends ServerMessage["type"]>(type: T) {
+  async wait<T extends ServerMessage["type"]>(
+    type: T,
+    predicate: (message: Extract<ServerMessage, { type: T }>) => boolean = () =>
+      true,
+  ) {
     for (let i = 0; i < 150; i++) {
-      const index = this.messages.findIndex((message) => message.type === type);
+      const index = this.messages.findIndex(
+        (message) =>
+          message.type === type &&
+          predicate(message as Extract<ServerMessage, { type: T }>),
+      );
       if (index >= 0)
         return this.messages.splice(index, 1)[0] as Extract<
           ServerMessage,
@@ -117,6 +129,94 @@ test("returning before an old socket closes does not delete or duplicate the pla
   );
   assert.equal(f.host.socket.readyState, WebSocket.CLOSED);
 });
+
+for (const winner of [0, 1] as const) {
+  for (const wins of [0, 1, 2]) {
+    test(`P${winner + 1} preserves finished-match progression after win ${wins + 1} on reconnect and rematch`, async (t) => {
+      const f = await fixture(t);
+      if (f.room.players[0].wins !== wins) {
+        f.host.send({ type: "select", fighter: "capriles", wins });
+        await f.host.wait(
+          "room",
+          (message) => message.room.players[0].wins === wins,
+        );
+      }
+      const guest = new Peer(f.url);
+      const guestWelcome = await guest.wait("welcome");
+      assert.ok(guestWelcome.resumeToken);
+      guest.send({
+        type: "join",
+        code: f.room.code,
+        name: "Guest",
+        fighter: "zavarce",
+        wins,
+      });
+      await f.host.wait("room", (message) => message.room.players.length === 2);
+      f.host.send({ type: "ready", ready: true });
+      guest.send({ type: "ready", ready: true });
+      await Promise.all([f.host.wait("start"), guest.wait("start")]);
+      const active = f.server.rooms.get(f.room.code)!;
+      active.state!.phase = "playing";
+      active.state!.remaining = 1;
+      active.state!.players[1 - winner].hp = 1;
+      const finished = await f.host.wait(
+        "state",
+        (message) => message.state.phase === "finished",
+      );
+      const resultRoom = await f.host.wait(
+        "room",
+        (message) => message.room.status === "finished",
+      );
+      assert.equal(finished.state.winner, winner);
+      assert.equal(resultRoom.room.players[winner].wins, wins + 1);
+
+      // Mobile wake replaces a socket before the previous connection closes.
+      const replacement = new Peer(
+        f.url,
+        winner === 0 ? f.token : guestWelcome.resumeToken,
+      );
+      assert.equal((await replacement.wait("welcome")).resumed, true);
+      const resumed = await replacement.wait("start");
+      assert.equal(resumed.index, winner);
+      assert.deepEqual(resumed.state, finished.state);
+      const assets = await preloadAssets([], []);
+      for (const state of [finished.state, resumed.state]) {
+        assert.equal(state.players[winner].config.wins, wins);
+        const html = renderToStaticMarkup(
+          createElement(VictoryScreen, {
+            state,
+            mode: "online",
+            localIndex: winner,
+            active: true,
+            overlayRef: createRef<HTMLDivElement>(),
+            sourceCanvas: createRef<HTMLCanvasElement>(),
+            sourceTitle: createRef<HTMLHeadingElement>(),
+            assets,
+            skipTransition: true,
+            onReady() {},
+            onRematch() {},
+            onExit() {},
+          }),
+        );
+        assert.equal(html.includes("Nuevo combo desbloqueado"), wins === 0);
+        assert.equal(html.includes("Definitiva desbloqueada"), wins === 1);
+        assert.equal(html.includes('class="victory-screen-unlock"'), wins < 2);
+      }
+
+      const opponent = winner === 0 ? guest : f.host;
+      replacement.send({ type: "rematch" });
+      opponent.send({ type: "rematch" });
+      const [rematch, remote] = await Promise.all([
+        replacement.wait("start"),
+        opponent.wait("start"),
+      ]);
+      assert.notEqual(rematch.state.id, finished.state.id);
+      assert.deepEqual(rematch.state, remote.state);
+      assert.equal(rematch.state.players[winner].config.wins, wins + 1);
+      assert.equal(rematch.state.players[1 - winner].config.wins, wins);
+    });
+  }
+}
 
 test("an invited player recovers their own slot and cannot start while the host is away", async (t) => {
   const f = await fixture(t);

@@ -201,12 +201,12 @@ test("Zavarce specials, advanced combo, and definitive enforce their energy and 
     assert.ok(Math.abs((100 - run.rival.hp) - (13 * 0.94 + bonus) * 1.03) < 1e-9);
     console.log("combo-gate", JSON.stringify({ wins, combo: run.player.combo, bonus, hp: run.rival.hp, hits: run.player.hits, note: "two setup lights are deliberately outside range; the heavy lands" }));
   }
-  for (const side of [0, 1] as const) for (const wins of [0, 3]) {
+  for (const side of [0, 1] as const) for (const wins of [0, 1, 2, 3]) {
     const run = setup(side, 200, wins);
     run.inputs[side].actions.super++;
     run.advance(9);
     if (run.state.fieldFinales) run.advance(320);
-    if (wins < 3) {
+    if (wins < 2) {
       assert.equal(run.player.attack, null);
       assert.equal(run.rival.hp, 100);
     } else {
@@ -219,7 +219,7 @@ test("Zavarce specials, advanced combo, and definitive enforce their energy and 
     console.log("super-gate", JSON.stringify({ side, wins, hp: run.rival.hp, energy: run.player.energy, combo: run.player.combo }));
   }
   const depleted = setup(0, 200, 3);
-  depleted.player.energy = 74;
+  depleted.player.energy = 89;
   depleted.inputs[0].actions.super++;
   depleted.advance(1);
   assert.equal(depleted.player.attack, null);
@@ -294,7 +294,7 @@ function cpuFight() {
     run.inputs[0].right = n >= 240 && dx > 70;
     run.inputs[0].block = n >= 240 && target.attack === "heavy" && Math.abs(dx) < 155 && run.state.tick % 120 < 30;
     if (n >= 240 && p.cooldown === 0 && !run.inputs[0].block && p.stun === 0) {
-      const attack = Math.abs(dx) < 230 && p.energy >= 75 ? "super" : Math.abs(dx) < 160 && p.energy >= 25 && run.state.tick % 80 < 30 ? "special" : Math.abs(dx) < 145 ? (run.state.tick % 3 ? "light" : "heavy") : null;
+      const attack = Math.abs(dx) < 230 && p.energy >= 90 ? "super" : Math.abs(dx) < 160 && p.energy >= 25 && run.state.tick % 80 < 30 ? "special" : Math.abs(dx) < 145 ? (run.state.tick % 3 ? "light" : "heavy") : null;
       if (attack) { run.inputs[0].actions[attack]++; used.add(attack); }
     }
     if ((target.y < p.y - 70 || p.x < 120 || p.x > 960) && p.jumps < 2 && run.state.tick % 34 === 0) run.inputs[0].actions.jump++;

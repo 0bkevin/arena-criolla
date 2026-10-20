@@ -20,6 +20,7 @@ import {
   Swords,
   Zap,
 } from "lucide-react";
+import { SUPER_ENERGY_COST, SUPER_UNLOCK_WINS } from "../../shared/content";
 import type { Control } from "../game/controls";
 import { TouchInputState } from "../game/touch-input";
 
@@ -187,7 +188,7 @@ export function TouchControls({
     let changed = false;
     if (wins < specialUnlockWins || energy < 25)
       changed = input.current!.releaseControl("special") || changed;
-    if (wins < 3 || energy < 75)
+    if (wins < SUPER_UNLOCK_WINS || energy < SUPER_ENERGY_COST)
       changed = input.current!.releaseControl("super") || changed;
     if (changed) syncPressed();
   }, [energy, wins, specialUnlockWins]);
@@ -359,18 +360,18 @@ export function TouchControls({
           control="super"
           label="Definitiva"
           text="Súper"
-          disabled={wins < 3 || energy < 75}
+          disabled={wins < SUPER_UNLOCK_WINS || energy < SUPER_ENERGY_COST}
           reason={
-            wins < 3
-              ? "Gana 3 peleas con este personaje para desbloquearla."
-              : energy < 75
-                ? "Necesitas 75 de energía."
+            wins < SUPER_UNLOCK_WINS
+              ? `Gana ${SUPER_UNLOCK_WINS} peleas con este personaje para desbloquearla.`
+              : energy < SUPER_ENERGY_COST
+                ? `Necesitas ${SUPER_ENERGY_COST} de energía.`
                 : undefined
           }
           pressed={pressed.has("super")}
           onClick={handleAccessibleClick}
         >
-          {wins < 3 ? <LockKeyhole /> : <Zap />}
+          {wins < SUPER_UNLOCK_WINS ? <LockKeyhole /> : <Zap />}
         </TouchButton>
       </div>
     </div>

@@ -115,11 +115,13 @@ test("a special consumes energy and a projectile can hit a distant opponent", ()
 });
 
 test("character wins unlock the advanced combo and gate the definitive", () => {
-  const locked = setup(0);
-  locked.state.players[0].energy = 100;
-  locked.inputs[0].actions.super++;
-  stepMatch(locked.state, locked.inputs);
-  assert.equal(locked.state.players[0].attack, null);
+  for (const wins of [0, 1]) {
+    const locked = setup(wins);
+    locked.state.players[0].energy = 100;
+    locked.inputs[0].actions.super++;
+    stepMatch(locked.state, locked.inputs);
+    assert.equal(locked.state.players[0].attack, null);
+  }
   const first = setup(1);
   first.inputs[0].actions.light++;
   advance(first.state, first.inputs, 23);
@@ -129,12 +131,32 @@ test("character wins unlock the advanced combo and gate the definitive", () => {
   stepMatch(first.state, first.inputs);
   assert.equal(first.state.players[0].combo, "Ruta directa");
   assert.equal(first.state.players[0].comboBonus, 7);
-  const unlocked = setup(3);
+  const unlocked = setup(2);
   unlocked.state.players[0].energy = 100;
   unlocked.inputs[0].actions.super++;
   stepMatch(unlocked.state, unlocked.inputs);
   assert.equal(unlocked.state.players[0].attack, "super");
-  assert.ok(unlocked.state.players[0].energy < 26);
+  assert.equal(unlocked.state.players[0].energy, 10);
+});
+
+test("the definitive requires and consumes 90 energy for either player", () => {
+  for (const side of [0, 1] as const) {
+    for (const [energy, attack, remaining] of [
+      [75, null, 75.035],
+      [89, null, 89.035],
+      [90, "super", 0.035],
+      [100, "super", 10],
+    ] as const) {
+      const { state, inputs } = setup(2);
+      const player = state.players[side];
+      player.config.wins = 2;
+      player.energy = energy;
+      inputs[side].actions.super++;
+      stepMatch(state, inputs);
+      assert.equal(player.attack, attack);
+      assert.ok(Math.abs(player.energy - remaining) < 1e-8);
+    }
+  }
 });
 
 test("every stage runs for 120 seconds after the intro and stops at timeout", () => {

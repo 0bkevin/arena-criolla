@@ -37,7 +37,7 @@ function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const cast = (move: "special" | "super") => {
     inputs[side].actions[move]++;
     advance(1);
-    assert.equal(source.energy, move === "special" ? 75 : 25);
+    assert.equal(source.energy, move === "special" ? 75 : 10);
   };
   return { state, source, target, inputs, advance, cast };
 }

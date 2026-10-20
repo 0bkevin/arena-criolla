@@ -47,13 +47,13 @@ const close = (a: number, b: number) =>
 const damage = (rival: FighterId = "zavarce") =>
   (28 * 0.94 + 12) * fighterById(rival).armor;
 
-test("a ranged finale spends75 once, travels before contact, hits once and recovers in both slots/directions", () => {
+test("a ranged finale spends90 once, travels before contact, hits once and recovers in both slots/directions", () => {
   for (const side of [0, 1] as const)
     for (const gap of [55, 180, 430, 650]) {
       const r = setup(side, gap);
       r.start();
       r.advance();
-      close(r.source.energy, 25);
+      close(r.source.energy, 10);
       let count = 0,
         contactFrame = 0,
         prior: Projectile | undefined;
@@ -92,9 +92,9 @@ test("a ranged finale spends75 once, travels before contact, hits once and recov
 test("unlock, energy, whiff, front/rear guard and invincibility retain actual combat rules", () => {
   for (const side of [0, 1] as const) {
     for (const [wins, energy] of [
-      [2, 100],
-      [3, 74],
-      [3, 75],
+      [1, 100],
+      [2, 89],
+      [2, 90],
     ]) {
       const r = setup(side);
       r.source.config.wins = wins;
@@ -103,7 +103,7 @@ test("unlock, energy, whiff, front/rear guard and invincibility retain actual co
       r.advance(9);
       assert.equal(
         r.state.projectiles.length,
-        wins === 3 && energy >= 75 ? 1 : 0,
+        wins >= 2 && energy >= 90 ? 1 : 0,
       );
     }
     for (const scenario of ["miss", "front", "rear", "immune"] as const) {
@@ -218,8 +218,9 @@ test("super projectile snapshots outgoing damage and preserves super impact afte
 
 test("hard CPU chooses the ranged super outside capture range, but gates and recovery prevent repeat casts", () => {
   const r = setup(1, 430);
+  r.source.config.wins = 2;
   r.state.tick = 90;
-  r.source.energy = 100;
+  r.source.energy = 90;
   const ai = cpuInput(r.state, emptyInput(), "hard");
   assert.equal(ai.actions.super, 1);
   r.inputs[1] = ai;
@@ -232,12 +233,14 @@ test("hard CPU chooses the ranged super outside capture range, but gates and rec
   assert.ok(r.source.energy > 99);
   const locked = setup(1);
   locked.state.tick = 90;
-  locked.source.config.wins = 2;
+  locked.source.config.wins = 1;
   assert.equal(cpuInput(locked.state, emptyInput(), "hard").actions.super, 0);
-  const poor = setup(1);
-  poor.state.tick = 90;
-  poor.source.energy = 74;
-  assert.equal(cpuInput(poor.state, emptyInput(), "hard").actions.super, 0);
+  for (const energy of [75, 89]) {
+    const poor = setup(1);
+    poor.state.tick = 90;
+    poor.source.energy = energy;
+    assert.equal(cpuInput(poor.state, emptyInput(), "hard").actions.super, 0);
+  }
 });
 
 function recordingContext(
