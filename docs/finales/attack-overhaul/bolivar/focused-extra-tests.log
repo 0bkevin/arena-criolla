@@ -1,0 +1,27 @@
+✔ Bolívar draws once and lands exactly three local sabre strikes with a single energy debit (5.2495ms)
+✔ Sabre respects range, facing, elevation, guard, low energy and interruption (11.989919ms)
+✔ Cavalry captures via input, freezes simulation, damages only on 96, releases at origin and serializes (1.919347ms)
+✔ Cavalry obeys unlock, depletion, failed capture, defense and death-on-release (8.570471ms)
+✔ Four sabre phases preserve one blade and fully preflight all fourteen finale poses (1.260632ms)
+✔ Raw assets, references and canonical identity remain hashed and alpha island is lossless (63.044747ms)
+✔ the intro gates combat and starts after the countdown (2.430397ms)
+✔ light hits remove health and apply knockback exactly once per attack (1.00801ms)
+✔ blocking prevents damage when facing the attacker and costs energy (0.375166ms)
+✔ a second jump works in the air; a third is rejected; landing resets it (1.792054ms)
+✔ crossing the arena boundary costs a stock and the final stock ends the match (0.305311ms)
+✔ a special consumes energy and a projectile can hit a distant opponent (2.420442ms)
+✔ character wins unlock the advanced combo and gate the definitive (0.574798ms)
+✔ timeout uses remaining stocks and health, including a true draw (0.184458ms)
+✔ simultaneous final-stock knockouts and ringouts end in a draw (0.803262ms)
+✔ simultaneous stock losses count both players before choosing a winner (0.278028ms)
+✔ projectile knockouts resolve before timeout, including simultaneous final hits (0.396298ms)
+✔ all active characters execute their individual specials with finite physics (29.88631ms)
+✔ equal initial states and inputs produce identical simulation states (12.056059ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 290.387352

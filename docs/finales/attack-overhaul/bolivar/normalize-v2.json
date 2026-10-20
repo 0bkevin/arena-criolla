@@ -1,0 +1,244 @@
+{
+  "version": 1,
+  "columns": 2,
+  "rows": 2,
+  "poseCount": 4,
+  "poses": [
+    "ready",
+    "gallop-a",
+    "gallop-b",
+    "horse"
+  ],
+  "sourceWidth": 1600,
+  "sourceHeight": 1088,
+  "width": 1600,
+  "height": 1216,
+  "cellWidth": 800,
+  "cellHeight": 608,
+  "padding": 32,
+  "coreAlphaThreshold": 40,
+  "minimumCorePixels": 1000,
+  "transparentSourcePixels": 1206574,
+  "retainedPixels": 526317,
+  "discardedNoise": {
+    "components": 2254,
+    "pixels": 7909,
+    "maxAlpha": 1
+  },
+  "retainedSoftComponents": [
+    {
+      "assignment": "contained",
+      "component": 781,
+      "assignedComponent": 1,
+      "cell": 0,
+      "sourceBounds": {
+        "left": 199,
+        "top": 359,
+        "width": 1,
+        "height": 1
+      },
+      "outputBounds": {
+        "left": 139,
+        "top": 365,
+        "width": 1,
+        "height": 1
+      },
+      "translation": {
+        "x": -60,
+        "y": 6
+      },
+      "pixels": 1,
+      "maxAlpha": 2,
+      "isolatedRgbaSha256": "a9b1b6c5d980f1d2d2c1eaf5b33b8241ba6603a8a371e46671902e77c1496c3f"
+    },
+    {
+      "assignment": "contained",
+      "component": 2250,
+      "assignedComponent": 1190,
+      "cell": 3,
+      "sourceBounds": {
+        "left": 1316,
+        "top": 1028,
+        "width": 15,
+        "height": 1
+      },
+      "outputBounds": {
+        "left": 1315,
+        "top": 1112,
+        "width": 15,
+        "height": 1
+      },
+      "translation": {
+        "x": -1,
+        "y": 84
+      },
+      "pixels": 15,
+      "maxAlpha": 2,
+      "isolatedRgbaSha256": "010ca90b5bae36aa27edd468d6fd7e81867bef169aa1633b58f8f1ac2d4037ae"
+    }
+  ],
+  "objects": [
+    {
+      "cell": 0,
+      "column": 0,
+      "row": 0,
+      "pose": "ready",
+      "sourceBounds": {
+        "left": 181,
+        "top": 32,
+        "width": 558,
+        "height": 532
+      },
+      "coreBounds": {
+        "left": 189,
+        "top": 37,
+        "width": 548,
+        "height": 525
+      },
+      "outputBounds": {
+        "left": 121,
+        "top": 38,
+        "width": 558,
+        "height": 532
+      },
+      "outputCoreBounds": {
+        "left": 129,
+        "top": 43,
+        "width": 548,
+        "height": 525
+      },
+      "translation": {
+        "x": -60,
+        "y": 6
+      },
+      "retainedPixels": 134654,
+      "corePixels": 119308,
+      "maxAlpha": 254,
+      "isolatedRgbaSha256": "15483f64745dc488600cd0d1fba60f843087145ca967ecae4d1171abb78ae7e3"
+    },
+    {
+      "cell": 1,
+      "column": 1,
+      "row": 0,
+      "pose": "gallop-a",
+      "sourceBounds": {
+        "left": 801,
+        "top": 32,
+        "width": 687,
+        "height": 524
+      },
+      "coreBounds": {
+        "left": 812,
+        "top": 37,
+        "width": 673,
+        "height": 516
+      },
+      "outputBounds": {
+        "left": 856,
+        "top": 42,
+        "width": 687,
+        "height": 524
+      },
+      "outputCoreBounds": {
+        "left": 867,
+        "top": 47,
+        "width": 673,
+        "height": 516
+      },
+      "translation": {
+        "x": 55,
+        "y": 10
+      },
+      "retainedPixels": 144898,
+      "corePixels": 127536,
+      "maxAlpha": 254,
+      "isolatedRgbaSha256": "1778c234c71496f2d11aee87ba7a7ab914796522d9a88a2f13cdfa2453eafc58"
+    },
+    {
+      "cell": 2,
+      "column": 0,
+      "row": 1,
+      "pose": "gallop-b",
+      "sourceBounds": {
+        "left": 145,
+        "top": 541,
+        "width": 594,
+        "height": 483
+      },
+      "coreBounds": {
+        "left": 155,
+        "top": 544,
+        "width": 581,
+        "height": 476
+      },
+      "outputBounds": {
+        "left": 103,
+        "top": 670,
+        "width": 594,
+        "height": 483
+      },
+      "outputCoreBounds": {
+        "left": 113,
+        "top": 673,
+        "width": 581,
+        "height": 476
+      },
+      "translation": {
+        "x": -42,
+        "y": 129
+      },
+      "retainedPixels": 127753,
+      "corePixels": 112533,
+      "maxAlpha": 254,
+      "isolatedRgbaSha256": "95c5979bdbdc457cb09f0befed32d6066c2cb785da574e4a07181da21ba5a5a8"
+    },
+    {
+      "cell": 3,
+      "column": 1,
+      "row": 1,
+      "pose": "horse",
+      "sourceBounds": {
+        "left": 909,
+        "top": 618,
+        "width": 583,
+        "height": 420
+      },
+      "coreBounds": {
+        "left": 916,
+        "top": 621,
+        "width": 574,
+        "height": 413
+      },
+      "outputBounds": {
+        "left": 908,
+        "top": 702,
+        "width": 583,
+        "height": 420
+      },
+      "outputCoreBounds": {
+        "left": 915,
+        "top": 705,
+        "width": 574,
+        "height": 413
+      },
+      "translation": {
+        "x": -1,
+        "y": 84
+      },
+      "retainedPixels": 119012,
+      "corePixels": 104505,
+      "maxAlpha": 254,
+      "isolatedRgbaSha256": "b647067845cca3757fa7222381052b44d931b67dbc5c8181237ea139694dacfb"
+    }
+  ],
+  "sourceSha256": "02ce5109bcddc4aa22a79da9789a2245b1a2f0b37fd8027754b543b958d4a5a8",
+  "sourceRgbaSha256": "3aa8220766265553ed2e7ac9407340bbeac298234d20579729ce9bb02401b138",
+  "normalizedSha256": "54a0f38d4c13d122a5fa83306d5838582bdd5f715f3da61cd0b28db3ba106aa4",
+  "normalizedRgbaSha256": "daa842b45b3dddb46f909997264cac4e5d5fd4211ea892ff309b72bc8f03cf54",
+  "retainedSourceRgbaSha256": "cb8bc53cec8cbf4433af7a6dd7f23b93a562db6aee75247f12e0ed297b6fe0c7",
+  "reconstructedSourceRgbaSha256": "cb8bc53cec8cbf4433af7a6dd7f23b93a562db6aee75247f12e0ed297b6fe0c7",
+  "exactRetainedRgbaRoundtrip": true,
+  "preservation": "Translation only. Every nonzero-alpha RGBA pixel in each retained 8-neighbor component is copied exactly. Detached max-alpha-2-to-39 components are retained inside exactly one complete silhouette's bounds and matching source cell. Additionally, a max-alpha-2 component of at most 8 pixels outside all silhouette bounds may be retained only when actual nonzero-alpha contour pixels of exactly one substantial silhouette are within Chebyshev distance 3, in the matching source cell; its complete bounds are included and assignment distance audited. Only wholly disconnected max-alpha-1 components are discarded. Invisible alpha-zero background RGB is zeroed. No scaling, rotation, painting or anatomy changes.",
+  "source": "assets/source/finales/attack-overhaul/bolivar/padded-v2.png",
+  "normalized": "assets/source/finales/attack-overhaul/bolivar/v2-grid.png"
+}

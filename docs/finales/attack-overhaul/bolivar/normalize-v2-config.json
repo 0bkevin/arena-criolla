@@ -1,0 +1,14 @@
+{
+  "source": "assets/source/finales/attack-overhaul/bolivar/padded-v2.png",
+  "destination": "assets/source/finales/attack-overhaul/bolivar/v2-grid.png",
+  "auditPath": "docs/finales/attack-overhaul/bolivar/normalize-v2.json",
+  "columns": 2,
+  "rows": 2,
+  "poseCount": 4,
+  "poses": [
+    "ready",
+    "gallop-a",
+    "gallop-b",
+    "horse"
+  ]
+}

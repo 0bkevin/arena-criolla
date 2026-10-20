@@ -1,0 +1,12 @@
+{
+  "source": "assets/source/finales/attack-overhaul/bolivar/padded-v5.png",
+  "destination": "assets/source/finales/attack-overhaul/bolivar/v5-grid.png",
+  "auditPath": "docs/finales/attack-overhaul/bolivar/normalize-v5.json",
+  "columns": 2,
+  "rows": 1,
+  "poseCount": 2,
+  "poses": [
+    "llanero-5",
+    "llanero-6"
+  ]
+}

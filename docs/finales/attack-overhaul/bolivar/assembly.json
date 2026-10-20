@@ -1,0 +1,159 @@
+{
+  "method": "Complete generated figures; exact RGBA translation only",
+  "parts": [
+    {
+      "pose": "draw",
+      "source": "assets/source/finales/attack-overhaul/bolivar/v1-grid.png",
+      "bounds": {
+        "left": 240,
+        "top": 37,
+        "width": 447,
+        "height": 502
+      },
+      "coreHeight": 494
+    },
+    {
+      "pose": "slash",
+      "source": "assets/source/finales/attack-overhaul/bolivar/v1-grid.png",
+      "bounds": {
+        "left": 1020,
+        "top": 38,
+        "width": 743,
+        "height": 500
+      },
+      "coreHeight": 493
+    },
+    {
+      "pose": "cut",
+      "source": "assets/source/finales/attack-overhaul/bolivar/v1-grid.png",
+      "bounds": {
+        "left": 198,
+        "top": 609,
+        "width": 532,
+        "height": 509
+      },
+      "coreHeight": 502
+    },
+    {
+      "pose": "thrust",
+      "source": "assets/source/finales/attack-overhaul/bolivar/v1-grid.png",
+      "bounds": {
+        "left": 984,
+        "top": 624,
+        "width": 815,
+        "height": 479
+      },
+      "coreHeight": 468
+    },
+    {
+      "pose": "ready",
+      "source": "assets/source/finales/attack-overhaul/bolivar/v2-grid.png",
+      "bounds": {
+        "left": 121,
+        "top": 38,
+        "width": 558,
+        "height": 532
+      },
+      "coreHeight": 525
+    },
+    {
+      "pose": "gallop-a",
+      "source": "assets/source/finales/attack-overhaul/bolivar/v2-grid.png",
+      "bounds": {
+        "left": 856,
+        "top": 42,
+        "width": 687,
+        "height": 524
+      },
+      "coreHeight": 516
+    },
+    {
+      "pose": "gallop-b",
+      "source": "assets/source/finales/attack-overhaul/bolivar/v2-grid.png",
+      "bounds": {
+        "left": 103,
+        "top": 670,
+        "width": 594,
+        "height": 483
+      },
+      "coreHeight": 476
+    },
+    {
+      "pose": "horse",
+      "source": "assets/source/finales/attack-overhaul/bolivar/v2-grid.png",
+      "bounds": {
+        "left": 908,
+        "top": 702,
+        "width": 583,
+        "height": 420
+      },
+      "coreHeight": 413
+    },
+    {
+      "pose": "llanero-1",
+      "source": "assets/source/finales/attack-overhaul/bolivar/v4-grid.png",
+      "bounds": {
+        "left": 56,
+        "top": 58,
+        "width": 560,
+        "height": 491
+      },
+      "coreHeight": 486
+    },
+    {
+      "pose": "llanero-2",
+      "source": "assets/source/finales/attack-overhaul/bolivar/v4-grid.png",
+      "bounds": {
+        "left": 736,
+        "top": 53,
+        "width": 543,
+        "height": 502
+      },
+      "coreHeight": 491
+    },
+    {
+      "pose": "llanero-3",
+      "source": "assets/source/finales/attack-overhaul/bolivar/v4-grid.png",
+      "bounds": {
+        "left": 46,
+        "top": 657,
+        "width": 579,
+        "height": 509
+      },
+      "coreHeight": 501
+    },
+    {
+      "pose": "llanero-4",
+      "source": "assets/source/finales/attack-overhaul/bolivar/v4-grid.png",
+      "bounds": {
+        "left": 717,
+        "top": 655,
+        "width": 582,
+        "height": 514
+      },
+      "coreHeight": 510
+    },
+    {
+      "pose": "llanero-5",
+      "source": "assets/source/finales/attack-overhaul/bolivar/v5-grid.png",
+      "bounds": {
+        "left": 67,
+        "top": 62,
+        "width": 858,
+        "height": 804
+      },
+      "coreHeight": 798
+    },
+    {
+      "pose": "llanero-6",
+      "source": "assets/source/finales/attack-overhaul/bolivar/v5-grid.png",
+      "bounds": {
+        "left": 1053,
+        "top": 67,
+        "width": 870,
+        "height": 793
+      },
+      "coreHeight": 788
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "method": "Whole 8-connected components and uniquely adjacent alpha-2 island, exact RGBA translation",
+  "rawIsland": {
+    "pixels": 16,
+    "maxAlpha": 2,
+    "bounds": [
+      387,
+      498,
+      402,
+      498
+    ]
+  },
+  "distances": [
+    {
+      "all": 2,
+      "core": 2
+    },
+    {
+      "all": 458,
+      "core": 464
+    },
+    {
+      "all": 461,
+      "core": 466
+    },
+    {
+      "all": 44,
+      "core": 45
+    }
+  ],
+  "owner": 0,
+  "discardedAlpha1": 1128,
+  "assignments": [
+    {
+      "col": 0,
+      "row": 0,
+      "pixels": 135103,
+      "bounds": {
+        "minX": 95,
+        "minY": 8,
+        "maxX": 654,
+        "maxY": 498
+      },
+      "dx": 75,
+      "dy": 362
+    },
+    {
+      "col": 1,
+      "row": 0,
+      "pixels": 138662,
+      "bounds": {
+        "minX": 860,
+        "minY": 8,
+        "maxX": 1402,
+        "maxY": 509
+      },
+      "dx": 218,
+      "dy": 351
+    },
+    {
+      "col": 1,
+      "row": 1,
+      "pixels": 146804,
+      "bounds": {
+        "minX": 863,
+        "minY": 496,
+        "maxX": 1444,
+        "maxY": 1009
+      },
+      "dx": 196,
+      "dy": 751
+    },
+    {
+      "col": 0,
+      "row": 1,
+      "pixels": 136332,
+      "bounds": {
+        "minX": 97,
+        "minY": 497,
+        "maxX": 675,
+        "maxY": 1005
+      },
+      "dx": 63,
+      "dy": 755
+    }
+  ],
+  "exactRetainedRgbaRoundtrip": true,
+  "sha256": "5dc7d3c268c05d4b7ba51b0896f2613d65e666692dfb6cf04f87141db865711a"
+}

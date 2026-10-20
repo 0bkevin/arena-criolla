@@ -1,0 +1,155 @@
+{
+  "approved": true,
+  "focusedPassed": 28,
+  "strictGuideTypes": true,
+  "cases": 64,
+  "samples": 1020,
+  "rosterCasts": 208,
+  "layerChecks": 144,
+  "guide": {
+    "final": {
+      "summary": {
+        "selected": "bolivar",
+        "mode": "final",
+        "frames": 280,
+        "hp": 100,
+        "minHp": 58.057599999999994,
+        "stocks": 1,
+        "props": [
+          "bolivar-llaneros-attack-v1",
+          "finales-v1-1",
+          "finales-seated-main-v1",
+          "perro-mujeriego-v3-capriles",
+          "finales-capriles-cafe",
+          "finales-cafe-furniture"
+        ],
+        "sprite": "bolivar-v39"
+      },
+      "hits": [
+        {
+          "frame": 105,
+          "tick": 96,
+          "hp": 58.057599999999994
+        }
+      ],
+      "release": 189,
+      "stockLoss": 226,
+      "terminal": {
+        "stocks": [
+          2,
+          1
+        ],
+        "capture": null,
+        "knockoutDelay": [
+          0,
+          0
+        ]
+      }
+    },
+    "special": {
+      "summary": {
+        "selected": "bolivar",
+        "mode": "special",
+        "frames": 180,
+        "hp": 80.90559999999999,
+        "minHp": 80.90559999999999,
+        "stocks": 2,
+        "props": [
+          "bolivar-llaneros-attack-v1",
+          "finales-v1-1",
+          "finales-seated-main-v1",
+          "perro-mujeriego-v3-capriles",
+          "finales-capriles-cafe",
+          "finales-cafe-furniture"
+        ],
+        "sprite": "bolivar-v39"
+      },
+      "hits": [
+        {
+          "frame": 14,
+          "hp": 93.6352
+        },
+        {
+          "frame": 29,
+          "hp": 87.2704
+        },
+        {
+          "frame": 44,
+          "hp": 80.90559999999999
+        }
+      ],
+      "release": -1,
+      "stockLoss": -1,
+      "terminal": {
+        "stocks": [
+          2,
+          2
+        ],
+        "capture": null,
+        "knockoutDelay": [
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "screenshots": [
+    {
+      "key": "special-p1-normal-14",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfx3bxr-6b5163df.png"
+    },
+    {
+      "key": "special-p1-normal-26",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfx48cj-9497e050.png"
+    },
+    {
+      "key": "special-p1-normal-38",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfx48js-b9adb954.png"
+    },
+    {
+      "key": "final-p2-edge-96",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfx48u4-4fecc5d7.png"
+    },
+    {
+      "key": "final-p1-platform-30",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfx494d-7fc84ad6.png"
+    },
+    {
+      "key": "final-p2-platform-low-178",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfx49ec-71696f02.png"
+    },
+    {
+      "key": "special-p1-normal-46",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfx4xbe-e816a421.png"
+    },
+    {
+      "key": "final-p1-normal-96",
+      "reduced": true,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfx4xjt-203e6052.png"
+    },
+    {
+      "key": "final-p2-platform-96",
+      "reduced": false,
+      "missing": true,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfx4xun-6d02c9b6.png"
+    },
+    {
+      "key": "guide-final-105",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfx55rc-e000982f.png"
+    }
+  ],
+  "fullSuitePassed": 1127
+}

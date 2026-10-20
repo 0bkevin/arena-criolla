@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "columns": 2,
+  "rows": 1,
+  "poseCount": 2,
+  "poses": [
+    "llanero-5",
+    "llanero-6"
+  ],
+  "sourceWidth": 1838,
+  "sourceHeight": 951,
+  "width": 1984,
+  "height": 928,
+  "cellWidth": 992,
+  "cellHeight": 928,
+  "padding": 32,
+  "coreAlphaThreshold": 40,
+  "minimumCorePixels": 1000,
+  "transparentSourcePixels": 1105873,
+  "retainedPixels": 640995,
+  "discardedNoise": {
+    "components": 604,
+    "pixels": 1070,
+    "maxAlpha": 1
+  },
+  "retainedSoftComponents": [
+    {
+      "assignment": "contained",
+      "component": 378,
+      "assignedComponent": 17,
+      "cell": 1,
+      "sourceBounds": {
+        "left": 1519,
+        "top": 694,
+        "width": 11,
+        "height": 3
+      },
+      "outputBounds": {
+        "left": 1654,
+        "top": 682,
+        "width": 11,
+        "height": 3
+      },
+      "translation": {
+        "x": 135,
+        "y": -12
+      },
+      "pixels": 12,
+      "maxAlpha": 2,
+      "isolatedRgbaSha256": "26be715a597dfd5e3c8adeb31a4f645731b6a8964024d238b79ae301a1cd1eb0"
+    }
+  ],
+  "objects": [
+    {
+      "cell": 0,
+      "column": 0,
+      "row": 0,
+      "pose": "llanero-5",
+      "sourceBounds": {
+        "left": 39,
+        "top": 74,
+        "width": 858,
+        "height": 804
+      },
+      "coreBounds": {
+        "left": 52,
+        "top": 77,
+        "width": 843,
+        "height": 798
+      },
+      "outputBounds": {
+        "left": 67,
+        "top": 62,
+        "width": 858,
+        "height": 804
+      },
+      "outputCoreBounds": {
+        "left": 80,
+        "top": 65,
+        "width": 843,
+        "height": 798
+      },
+      "translation": {
+        "x": 28,
+        "y": -12
+      },
+      "retainedPixels": 317565,
+      "corePixels": 291391,
+      "maxAlpha": 255,
+      "isolatedRgbaSha256": "159d1605b4ae44c8cd8f5153b5e7b26f9cabb6709ecf952f7a233b4197657670"
+    },
+    {
+      "cell": 1,
+      "column": 1,
+      "row": 0,
+      "pose": "llanero-6",
+      "sourceBounds": {
+        "left": 918,
+        "top": 79,
+        "width": 870,
+        "height": 793
+      },
+      "coreBounds": {
+        "left": 926,
+        "top": 82,
+        "width": 854,
+        "height": 788
+      },
+      "outputBounds": {
+        "left": 1053,
+        "top": 67,
+        "width": 870,
+        "height": 793
+      },
+      "outputCoreBounds": {
+        "left": 1061,
+        "top": 70,
+        "width": 854,
+        "height": 788
+      },
+      "translation": {
+        "x": 135,
+        "y": -12
+      },
+      "retainedPixels": 323430,
+      "corePixels": 295166,
+      "maxAlpha": 255,
+      "isolatedRgbaSha256": "2853812de526099f87adc781bd2ce091ef933b51b7640e8b185a83673810fa9e"
+    }
+  ],
+  "sourceSha256": "65be15dbd73f898ed86026426c2d3d869b8f89020999f14ca5923387d7841704",
+  "sourceRgbaSha256": "fa9c39cec5cc68f04ee421dc963a6ab95cd7cc9aeb664a5d5b2aae4fc76fdd32",
+  "normalizedSha256": "fd13ae0be73dc60cf82c2c2f6263e9743a786e5b710487dddbf918ca4c5ce1ea",
+  "normalizedRgbaSha256": "04ad0bc07eb9ddbb1b7cf39b2be16e27478cdce3d6c20d8a3c82777d63dc0021",
+  "retainedSourceRgbaSha256": "d886699f8f2eacdb3c78a9d6d3d03eaf223aee4d88dcb98723d65eb7e46cd00e",
+  "reconstructedSourceRgbaSha256": "d886699f8f2eacdb3c78a9d6d3d03eaf223aee4d88dcb98723d65eb7e46cd00e",
+  "exactRetainedRgbaRoundtrip": true,
+  "preservation": "Translation only. Every nonzero-alpha RGBA pixel in each retained 8-neighbor component is copied exactly. Detached max-alpha-2-to-39 components are retained inside exactly one complete silhouette's bounds and matching source cell. Additionally, a max-alpha-2 component of at most 8 pixels outside all silhouette bounds may be retained only when actual nonzero-alpha contour pixels of exactly one substantial silhouette are within Chebyshev distance 3, in the matching source cell; its complete bounds are included and assignment distance audited. Only wholly disconnected max-alpha-1 components are discarded. Invisible alpha-zero background RGB is zeroed. No scaling, rotation, painting or anatomy changes.",
+  "source": "assets/source/finales/attack-overhaul/bolivar/padded-v5.png",
+  "normalized": "assets/source/finales/attack-overhaul/bolivar/v5-grid.png"
+}

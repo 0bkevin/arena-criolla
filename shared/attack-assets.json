@@ -1154,5 +1154,136 @@
         "bodyHeight": 465.2502553626149
       }
     }
+  },
+  "bolivar": {
+    "file": "bolivar-llaneros-attack-v1",
+    "frames": {
+      "draw": {
+        "x": 46,
+        "y": 20,
+        "width": 420,
+        "height": 472,
+        "anchorX": 214.20000000000002,
+        "anchorY": 468.2390438247012,
+        "bodyHeight": 464.47808764940237
+      },
+      "slash": {
+        "x": 532,
+        "y": 174,
+        "width": 472,
+        "height": 318,
+        "anchorX": 160.48000000000002,
+        "anchorY": 315.456,
+        "bodyHeight": 313.548
+      },
+      "cut": {
+        "x": 1044,
+        "y": 40,
+        "width": 472,
+        "height": 452,
+        "anchorX": 236,
+        "anchorY": 448.4479371316306,
+        "bodyHeight": 445.78388998035365
+      },
+      "thrust": {
+        "x": 1556,
+        "y": 215,
+        "width": 472,
+        "height": 277,
+        "anchorX": 160.48000000000002,
+        "anchorY": 271.7954070981211,
+        "bodyHeight": 270.63883089770354
+      },
+      "ready": {
+        "x": 2068,
+        "y": 42,
+        "width": 472,
+        "height": 450,
+        "anchorX": 236,
+        "anchorY": 448.30827067669173,
+        "bodyHeight": 444.07894736842104
+      },
+      "gallop-a": {
+        "x": 2580,
+        "y": 132,
+        "width": 472,
+        "height": 360,
+        "anchorX": 236,
+        "anchorY": 357.9389312977099,
+        "bodyHeight": 354.5038167938931
+      },
+      "gallop-b": {
+        "x": 3092,
+        "y": 108,
+        "width": 472,
+        "height": 384,
+        "anchorX": 236,
+        "anchorY": 380.8198757763975,
+        "bodyHeight": 378.4347826086956
+      },
+      "horse": {
+        "x": 20,
+        "y": 664,
+        "width": 472,
+        "height": 340,
+        "anchorX": 236,
+        "anchorY": 336.76190476190476,
+        "bodyHeight": 334.3333333333333
+      },
+      "llanero-1": {
+        "x": 532,
+        "y": 590,
+        "width": 472,
+        "height": 414,
+        "anchorX": 236,
+        "anchorY": 412.31364562118125,
+        "bodyHeight": 409.78411405295316
+      },
+      "llanero-2": {
+        "x": 1044,
+        "y": 568,
+        "width": 472,
+        "height": 436,
+        "anchorX": 236,
+        "anchorY": 429.0517928286853,
+        "bodyHeight": 426.44621513944224
+      },
+      "llanero-3": {
+        "x": 1556,
+        "y": 589,
+        "width": 472,
+        "height": 415,
+        "anchorX": 236,
+        "anchorY": 410.92337917485264,
+        "bodyHeight": 408.4774066797643
+      },
+      "llanero-4": {
+        "x": 2068,
+        "y": 587,
+        "width": 472,
+        "height": 417,
+        "anchorX": 236,
+        "anchorY": 415.3774319066148,
+        "bodyHeight": 413.7548638132296
+      },
+      "llanero-5": {
+        "x": 2580,
+        "y": 562,
+        "width": 472,
+        "height": 442,
+        "anchorX": 236,
+        "anchorY": 440.35074626865674,
+        "bodyHeight": 438.7014925373134
+      },
+      "llanero-6": {
+        "x": 3092,
+        "y": 574,
+        "width": 472,
+        "height": 430,
+        "anchorX": 236,
+        "anchorY": 428.9155107187894,
+        "bodyHeight": 427.28877679697354
+      }
+    }
   }
 }
