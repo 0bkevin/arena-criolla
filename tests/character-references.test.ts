@@ -26,7 +26,7 @@ for (const fighter of BUILT_IN_FIGHTERS) {
       );
       assert.doesNotMatch(
         html,
-        /<a\b|<details\b|<blockquote\b|character-identity|class="eyebrow"/i,
+        /<a\b|<details\b|<blockquote\b|character-identity|class="eyebrow"|finale-detail-note/i,
       );
       assert.ok(
         !text.includes(fighter.description),
@@ -48,7 +48,6 @@ for (const fighter of BUILT_IN_FIGHTERS) {
       );
       if (finale) {
         assert.ok(html.includes(finale.description));
-        assert.ok(html.includes("finale-detail-note"));
       }
       if (fighter.specialUnlockWins !== undefined) {
         assert.ok(
