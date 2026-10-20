@@ -27,11 +27,11 @@ const founders: FounderFighterId[] = [
 ];
 const techniques = ["ledger", "settlement", "ignition", "slash", "grid"];
 
-test("the Founders collection includes Lorenzo Mendoza and all seven startup founders", () => {
+test("the Founders collection includes Lorenzo Mendoza, Coco Wallet and all seven original startup founders", () => {
   const collection = FIGHTERS.filter((fighter) => fighter.category === "founders");
   assert.deepEqual(
     new Set(collection.map((fighter) => fighter.id)),
-    new Set(["zavarce", "vallenilla", ...founders, "lorenzo"]),
+    new Set(["zavarce", "vallenilla", ...founders, "lorenzo", "kevin"]),
   );
   for (const id of ["carolina", "javier", "silbon"] as const)
     assert.notEqual(fighterById(id).category, "founders", id);

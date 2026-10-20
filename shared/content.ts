@@ -2,7 +2,7 @@ import fighterData from "./fighters.json";
 import stageData from "./stages.json";
 
 export type FounderFighterId =
-  "enrique" | "jesus" | "carlos" | "victor" | "juan";
+  "enrique" | "jesus" | "carlos" | "victor" | "juan" | "kevin";
 export type IconFighterId =
   "lorenzo" | "carolina" | "dayana" | "deyna" | "bolivar" | "edgar" | "melanio";
 
@@ -109,6 +109,7 @@ export type Ability =
   | "ignition"
   | "slash"
   | "grid"
+  | "remittance"
   | "polar"
   | "couture"
   | "corona"

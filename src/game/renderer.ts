@@ -69,6 +69,7 @@ import {
   drawFolkloreStatus,
 } from "./folklore-renderer";
 import { drawFounderProjectile, drawFounderSpecial } from "./founder-renderer";
+import { drawCocoProjectile, drawCocoSpecial } from "./finales/coco";
 import { drawIconProjectile, drawIconSpecial } from "./icon-renderer";
 import { drawIntroCinematic } from "./intro-renderer";
 import { drawPresentation } from "./presentation-renderer";
@@ -160,6 +161,7 @@ export function renderMatch(
       drawLorenzoProjectile(ctx, assets.finaleProps, projectile) ||
       drawDeynaBallProjectile(ctx, assets.finaleProps, projectile) ||
       drawMelanioSignal(ctx, assets.finaleProps, projectile) ||
+      drawCocoProjectile(ctx, assets.finaleProps, projectile) ||
       drawIconProjectile(ctx, projectile) ||
       drawFounderProjectile(ctx, projectile) ||
       drawCultureProjectile(ctx, projectile) ||
@@ -446,7 +448,9 @@ export function renderMatch(
       p,
       bodyHeight,
     );
+    const paintedCoco = drawCocoSpecial(ctx, assets.finaleProps, p, bodyHeight);
     if (
+      !paintedCoco &&
       !paintedLlorona &&
       !paintedConductor &&
       !paintedSabre &&

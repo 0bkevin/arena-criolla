@@ -51,6 +51,14 @@ function routine(
 
 // Fictional gestures inspired by each business, not claims about personal habits.
 export const FOUNDER_CHOREOGRAPHIES = {
+  kevin: routine(
+    "Confirma el envío y entra en guardia",
+    { head: -0.08, front: -0.26, frontX: 0.03, back: -0.09, lean: 0.02 },
+    [
+      [-0.11, 0.35],
+      [0.14, 0.34],
+    ],
+  ),
   enrique: routine(
     "Revisa y confirma el balance",
     { head: 0.12, front: -0.25, frontY: -0.035, back: 0.11, lean: -0.025 },

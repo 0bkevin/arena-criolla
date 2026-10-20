@@ -75,7 +75,18 @@ export function arenaPerformerPose(
   } else if (id === "mcm") {
     pose = "truck";
     size = 145;
-  } else if (id === "vallenilla") pose = "summon";
+  } else if (id === "kevin")
+    pose =
+      t < 8
+        ? "draw"
+        : t < 12
+          ? "tap"
+          : t >= 74
+            ? "recover"
+            : t % 14 < 7
+              ? "network"
+              : "send";
+  else if (id === "vallenilla") pose = "summon";
   else if (id === "javier")
     pose =
       t < 15 ? "headshirt" : t < 32 ? "fingerwag" : t < 54 ? "scold" : "point";

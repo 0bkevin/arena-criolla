@@ -1362,9 +1362,9 @@
     "role": "COMUNICACIÓN",
     "color": "#78dfc8",
     "description": "Periodista venezolano y director de Humano Derecho Radio. En esta adaptación arcade ficticia, lanza una señal digital que regresa con una curva visible; mide el tiempo y la guardia para abrir espacio.",
-    "speed": 5.0,
-    "damage": 1.0,
-    "armor": 1.0,
+    "speed": 5,
+    "damage": 1,
+    "armor": 1,
     "stats": [
       4,
       4,
@@ -1378,5 +1378,31 @@
       "Red en marcha"
     ],
     "category": "culture"
+  },
+  {
+    "id": "kevin",
+    "sprite": "kevin-coco-v2",
+    "category": "founders",
+    "name": "Kevin Charles",
+    "shortName": "Kevin",
+    "title": "Coco, sin fronteras",
+    "role": "REMESAS",
+    "color": "#00dc8e",
+    "description": "Cofundador de Coco Wallet, creada en 2019. Chaqueta azul marino, camiseta negra y acentos verdes. Confirma pagos desde su teléfono y encadena remesas que deben alcanzar al rival.",
+    "speed": 5.1,
+    "damage": 0.96,
+    "armor": 1,
+    "stats": [
+      3,
+      4,
+      4
+    ],
+    "ability": "remittance",
+    "special": "Pago al toque",
+    "combos": [
+      "Saldo al día",
+      "Envío encadenado",
+      "Red sin fronteras"
+    ]
   }
 ]

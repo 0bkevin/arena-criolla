@@ -1624,5 +1624,82 @@
         "bodyHeight": 293
       }
     }
+  },
+  "kevin": {
+    "file": "kevin-coco-attack-v2",
+    "frames": {
+      "draw": {
+        "x": 18,
+        "y": 18,
+        "width": 320,
+        "height": 448,
+        "anchorX": 165.39298058306002,
+        "anchorY": 448,
+        "bodyHeight": 448
+      },
+      "tap": {
+        "x": 358,
+        "y": 26,
+        "width": 314,
+        "height": 440,
+        "anchorX": 144.32936186161245,
+        "anchorY": 440,
+        "bodyHeight": 440
+      },
+      "send": {
+        "x": 692,
+        "y": 27,
+        "width": 395,
+        "height": 439,
+        "anchorX": 216.4645000287907,
+        "anchorY": 439,
+        "bodyHeight": 439
+      },
+      "network": {
+        "x": 1107,
+        "y": 20,
+        "width": 387,
+        "height": 446,
+        "anchorX": 170,
+        "anchorY": 446,
+        "bodyHeight": 446
+      },
+      "recover": {
+        "x": 18,
+        "y": 512,
+        "width": 312,
+        "height": 409,
+        "anchorX": 166.69815460337998,
+        "anchorY": 409,
+        "bodyHeight": 409
+      },
+      "celebrate": {
+        "x": 350,
+        "y": 486,
+        "width": 305,
+        "height": 435,
+        "anchorX": 155,
+        "anchorY": 435,
+        "bodyHeight": 388
+      },
+      "token": {
+        "x": 675,
+        "y": 630,
+        "width": 287,
+        "height": 291,
+        "anchorX": 146.37765408371308,
+        "anchorY": 291,
+        "bodyHeight": 291
+      },
+      "receipt": {
+        "x": 982,
+        "y": 611,
+        "width": 285,
+        "height": 310,
+        "anchorX": 168.27509141848319,
+        "anchorY": 310,
+        "bodyHeight": 310
+      }
+    }
   }
 }

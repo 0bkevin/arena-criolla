@@ -3311,6 +3311,75 @@
           "bodyHeight": 432
         }
       ]
+    },
+    "kevin": {
+      "file": "perro-mujeriego-kevin-coco-v2",
+      "frames": [
+        {
+          "x": 18,
+          "y": 19,
+          "width": 224,
+          "height": 417,
+          "bodyHeight": 417,
+          "anchorX": 110.49409448818898
+        },
+        {
+          "x": 262,
+          "y": 18,
+          "width": 188,
+          "height": 418,
+          "bodyHeight": 418,
+          "anchorX": 85.44268774703556
+        },
+        {
+          "x": 470,
+          "y": 22,
+          "width": 368,
+          "height": 414,
+          "bodyHeight": 414,
+          "anchorX": 215.998031496063
+        },
+        {
+          "x": 858,
+          "y": 26,
+          "width": 263,
+          "height": 410,
+          "bodyHeight": 410,
+          "anchorX": 149.59288537549406
+        },
+        {
+          "x": 18,
+          "y": 479,
+          "width": 227,
+          "height": 388,
+          "bodyHeight": 388,
+          "anchorX": 106.9209486166008
+        },
+        {
+          "x": 265,
+          "y": 478,
+          "width": 224,
+          "height": 389,
+          "bodyHeight": 389,
+          "anchorX": 111.26383399209486
+        },
+        {
+          "x": 509,
+          "y": 456,
+          "width": 255,
+          "height": 411,
+          "bodyHeight": 411,
+          "anchorX": 114.94565217391305
+        },
+        {
+          "x": 784,
+          "y": 475,
+          "width": 217,
+          "height": 392,
+          "bodyHeight": 392,
+          "anchorX": 104.0494071146245
+        }
+      ]
     }
   }
 }

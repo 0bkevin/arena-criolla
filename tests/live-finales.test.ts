@@ -272,8 +272,8 @@ test("guard keeps its chosen direction while a mounted attacker crosses it", () 
     }
 });
 
-test("notes and expanding waves are ordinary reflected projectiles with retained damage and art", () => {
-  for (const id of ["oscar", "ali", "dudamel"] as const)
+test("notes, waves and Coco transfers reflect with retained damage and artwork", () => {
+  for (const id of ["oscar", "ali", "dudamel", "kevin"] as const)
     for (const side of [0, 1] as const) {
       const r = setup(id, side, 310, "caracas", "carolina");
       r.start();

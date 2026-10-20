@@ -27,9 +27,11 @@ export const REVIEWED_FINALISTS = [
   "dudamel",
   "llorona",
   "deyna",
+  "kevin",
 ] as const satisfies readonly FighterId[];
 
 export const ARENA_FINALES = {
+  kevin: { duration: 96, recovery: 82, riding: false },
   bolivar: { duration: 220, recovery: 104, riding: true },
   gomez: { duration: 180, recovery: 104, riding: true },
   zavarce: { duration: 210, recovery: 24, riding: false },
@@ -51,6 +53,7 @@ export const ARENA_FINALES = {
 export type ArenaFinalist = keyof typeof ARENA_FINALES;
 /** Emission/gesture cues for sound, never guaranteed damage times. */
 export const ARENA_FINALE_CUES: Record<ArenaFinalist, readonly number[]> = {
+  kevin: [12, 26, 40, 54, 68],
   bolivar: [12, 23, 34, 45, 56, 67, 78],
   gomez: [12, 29, 51],
   zavarce: [0, 12, 24, 36, 48, 60, 72],
@@ -423,6 +426,32 @@ export function advanceArenaFinale(state: MatchState, field: FieldFinaleState) {
     if (["oscar", "ali", "dudamel", "javier"].includes(field.fighter)) {
       const index = [12, 36, 60].indexOf(tick);
       if (index !== -1) fireWave(state, field, index, 3);
+    }
+    if (field.fighter === "kevin") {
+      const cues = ARENA_FINALE_CUES.kevin,
+        index = cues.indexOf(tick);
+      if (index !== -1)
+        state.projectiles.push({
+          id: state.nextId++,
+          owner: field.owner,
+          direction: field.direction,
+          x: p.x + field.direction * 48,
+          y: p.y - (index % 2 ? 84 : 112),
+          vx: field.direction * 9.5,
+          age: 0,
+          life: 80,
+          kind: "remittance",
+          impact: "super",
+          radius: 17,
+          damage: field.damage / cues.length,
+          force: index === cues.length - 1 ? 7 : 2.6,
+          hitInvincibility: 5,
+          finaleArt: {
+            fighter: "kevin",
+            pose: index % 2 ? "receipt" : "token",
+            height: 34,
+          },
+        });
     }
   }
   if (field.caught && target.rootTicks && target.rootKind === "screen")

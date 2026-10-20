@@ -527,6 +527,51 @@
       },
       "bodyHeight": 817,
       "anchorX": 212.4
+    },
+    "kevin": {
+      "file": "kevin-coco-seated-v2",
+      "frame": {
+        "x": 18,
+        "y": 18,
+        "width": 442,
+        "height": 611
+      },
+      "bodyHeight": 611,
+      "anchorX": 151.13416266786277,
+      "frames": [
+        {
+          "x": 18,
+          "y": 18,
+          "width": 442,
+          "height": 611,
+          "bodyHeight": 611,
+          "anchorX": 151.13416266786277
+        },
+        {
+          "x": 480,
+          "y": 29,
+          "width": 449,
+          "height": 600,
+          "bodyHeight": 600,
+          "anchorX": 154.39143410562178
+        },
+        {
+          "x": 18,
+          "y": 658,
+          "width": 464,
+          "height": 571,
+          "bodyHeight": 571,
+          "anchorX": 205.74440490043045
+        },
+        {
+          "x": 502,
+          "y": 649,
+          "width": 455,
+          "height": 580,
+          "bodyHeight": 580,
+          "anchorX": 163.46493063485158
+        }
+      ]
     }
   },
   "caprilesCafe": {
@@ -1234,6 +1279,17 @@
         "width": 362,
         "height": 437
       }
+    },
+    "kevin": {
+      "file": "perro-mujeriego-kevin-coco-v2",
+      "frame": {
+        "x": 470,
+        "y": 22,
+        "width": 368,
+        "height": 414
+      },
+      "bodyHeight": 414,
+      "anchorX": 215.998031496063
     }
   }
 }

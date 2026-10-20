@@ -51,7 +51,7 @@ test("ten folklore fighters retain complete assets alongside the culture roster"
       "tioconejo",
     ],
   );
-  assert.equal(FIGHTERS.filter((f) => f.category !== "folklore").length, 43);
+  assert.equal(FIGHTERS.filter((f) => f.category !== "folklore").length, 44);
   assert.ok(
     [
       "zavarce",

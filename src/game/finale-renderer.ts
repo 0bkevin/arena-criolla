@@ -36,7 +36,10 @@ interface CafeActorFrame extends ActorBounds {
   anchorX: number;
 }
 const actorManifest = actorAssets as unknown as {
-  seated: Record<string, FinaleActorFrame & { file: string }>;
+  seated: Record<
+    string,
+    FinaleActorFrame & { file: string; frames?: CafeActorFrame[] }
+  >;
   caprilesCafe: { file: string; frames: CafeActorFrame[] };
   performers?: Partial<
     Record<FighterId, { file: string; frames: CafeActorFrame[] }>
@@ -632,7 +635,30 @@ function drawSeatedActor(
   const asset = actorManifest.seated[id];
   const image = asset && scene.props[asset.file];
   if (!asset || !image?.width || !image.height) return false;
-  return drawActorFrame(scene.ctx, image, asset, x, feet, height, facing);
+  const frames = asset.frames,
+    index =
+      !scene.motion || !frames?.length
+        ? 0
+        : Math.min(
+            frames.length - 1,
+            Math.floor((scene.tick * frames.length) / scene.profile.duration),
+          ),
+    frame = frames?.[index];
+  return drawActorFrame(
+    scene.ctx,
+    image,
+    frame
+      ? {
+          frame,
+          bodyHeight: frame.bodyHeight,
+          anchorX: frame.anchorX,
+        }
+      : asset,
+    x,
+    feet,
+    height,
+    facing,
+  );
 }
 function drawCafeActor(scene: Scene, x: number, feet: number, height: number) {
   const asset = actorManifest.caprilesCafe;

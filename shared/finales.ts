@@ -452,6 +452,15 @@ const entries: readonly Entry[] = [
     "hack",
   ],
   [
+    "kevin",
+    "Red sin fronteras",
+    "technology",
+    "Kevin activa Coco en su teléfono y envía cinco remesas verdes en dos alturas. Cada ficha o comprobante cruza la arena y solo daña al conectar; se puede bloquear, saltar o interrumpir el envío mientras la pelea continúa.",
+    "Teléfono, fichas Coco y comprobantes",
+    "¡Envío confirmado!",
+    "hack",
+  ],
+  [
     "jesus",
     "Transferencia instantánea",
     "technology",

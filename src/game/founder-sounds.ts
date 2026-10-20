@@ -12,6 +12,15 @@ interface FounderSound {
 
 // Short original synth cues; total note trains stay below half a second.
 export const FOUNDER_SOUNDS = {
+  remittance: {
+    notes: [659, 831, 988],
+    wave: "sine",
+    spacing: 0.04,
+    duration: 0.1,
+    sweep: 1.05,
+    noise: 1400,
+    filter: "lowpass",
+  },
   ledger: {
     notes: [392, 523, 659],
     wave: "triangle",

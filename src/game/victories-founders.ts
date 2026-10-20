@@ -2,6 +2,17 @@ import type { FounderFighterId } from "../../shared/content";
 import type { VictoryProfile } from "./victory-types";
 
 export const FOUNDER_VICTORIES = {
+  kevin: {
+    name: "Envío confirmado",
+    frame: 1,
+    paintedPose: "celebrate",
+    movement: "rise",
+    gesture: { head: 0.08, front: -0.18, back: -0.22, lean: 0.02 },
+    lift: 0.025,
+    travel: 0.015,
+    twist: -0.015,
+    music: "percussion",
+  },
   enrique: {
     name: "Balance a favor",
     frame: 0,
