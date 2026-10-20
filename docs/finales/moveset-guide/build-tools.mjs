@@ -47,9 +47,9 @@ export async function compileGuide() {
     plugins: [{ name: "standalone-guide-assets", setup(plugin) {
       plugin.onLoad({ filter: /src\/game\/assets\.ts$/ }, async args => {
         let contents = await fs.readFile(args.path, "utf8");
-        const source = 'image.src = id.startsWith("custom_")\n          ? `/api/community/assets/${id}/sprite.webp`\n          : `/assets/${id}.webp`;';
+        const source = 'function imageSource(id: string): string {\n  return id.startsWith("custom_")\n    ? `/api/community/assets/${id}/sprite.webp`\n    : `/assets/${id}.webp`;\n}';
         if (!contents.includes(source)) throw Error("Review image loader adaptation: upstream changed");
-        contents = contents.replace(source, 'const uri = (globalThis as unknown as { __arenaGuideImages: Record<string,string> }).__arenaGuideImages[id]; if (!uri) { reject(new Error(`Falta la imagen de ${id}`)); return; } image.src = uri;');
+        contents = contents.replace(source, 'function imageSource(id: string): string { const uri = (globalThis as unknown as { __arenaGuideImages: Record<string,string> }).__arenaGuideImages[id]; if (!uri) throw new Error(`Falta la imagen de ${id}`); return uri; }');
         const preload = "...fighters.map((id) => loadSprite(id)),";
         if (!contents.includes(preload)) throw Error("Review entrance adaptation: upstream changed");
         contents = contents.replace(preload, "...fighters.map((id) => loadSprite(id, { entrance: false })),");

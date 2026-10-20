@@ -49,6 +49,15 @@ export interface SpriteAsset {
 const images = new Map<string, Promise<HTMLImageElement>>();
 const sprites = new Map<FighterId, Promise<SpriteAsset>>();
 const cinematicSprites = new Map<FighterId, Promise<SpriteAsset>>();
+// These two published files contain the exact same eight painted dance poses.
+const nachoDanceImage = "perro-mujeriego-v3-nacho";
+const legacyNachoDanceImage = "finales-nacho-dance";
+const seatedFinaleActors = new Set<FighterId>([
+  "capriles",
+  "juan",
+  "carlos",
+  "florentino",
+]);
 
 function portraitCenter(image: HTMLImageElement, frame: SpriteFrame): number {
   const band = document.createElement("canvas");
@@ -78,24 +87,38 @@ function portraitCenter(image: HTMLImageElement, frame: SpriteFrame): number {
   return frame.x + (weight ? weightedX / weight : frame.width / 2);
 }
 
+function imageSource(id: string): string {
+  return id.startsWith("custom_")
+    ? `/api/community/assets/${id}/sprite.webp`
+    : `/assets/${id}.webp`;
+}
+
 export function loadImage(id: string): Promise<HTMLImageElement> {
-  if (!images.has(id)) {
+  const imageId = id === legacyNachoDanceImage ? nachoDanceImage : id;
+  if (!images.has(imageId)) {
     images.set(
-      id,
+      imageId,
       new Promise<HTMLImageElement>((resolve, reject) => {
         const image = new Image();
-        image.src = id.startsWith("custom_")
-          ? `/api/community/assets/${id}/sprite.webp`
-          : `/assets/${id}.webp`;
+        let alternate =
+          imageId === nachoDanceImage ? legacyNachoDanceImage : undefined;
         image.onload = () => resolve(image);
-        image.onerror = () =>
-          reject(new Error(`No se pudo cargar el asset ${id}.`));
+        image.onerror = () => {
+          // Keep the older URL as a recovery source, without downloading the
+          // same bitmap twice during a successful load.
+          if (alternate) {
+            const next = alternate;
+            alternate = undefined;
+            image.src = imageSource(next);
+          } else reject(new Error(`No se pudo cargar el asset ${id}.`));
+        };
+        image.src = imageSource(imageId);
       }),
     );
     // Failed requests must not poison later attempts from a new fight.
-    void images.get(id)!.catch(() => images.delete(id));
+    void images.get(imageId)!.catch(() => images.delete(imageId));
   }
-  return images.get(id)!;
+  return images.get(imageId)!;
 }
 function loadSpriteGeometry(id: FighterId): Promise<SpriteAsset> {
   if (!sprites.has(id)) {
@@ -355,6 +378,8 @@ export async function preloadAssets(
     (id) => fighterById(id).ability === "courier",
   );
   const hasNacho = fighters.includes("nacho");
+  // Coffee, the two vehicle rides and the musical duel seat both fighters.
+  const hasSeatedFinale = fighters.some((id) => seatedFinaleActors.has(id));
   const finaleFiles = [
     ...new Set(
       fighters.flatMap((id) => {
@@ -376,11 +401,11 @@ export async function preloadAssets(
         return [
           ...(ATTACK_ART[id] ? [ATTACK_ART[id].file] : []),
           ...(asset ? [asset.file] : []),
-          ...(seated ? [seated.file] : []),
+          ...(hasSeatedFinale && seated ? [seated.file] : []),
           ...(performer ? [performer.file] : []),
           ...(choreographyDancer
             ? [choreographyDancer.file]
-            : dancer
+            : hasNacho && dancer
               ? [dancer.file]
               : []),
           ...(id === "giuseppe" ? [finaleDesk.file] : []),

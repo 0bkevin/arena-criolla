@@ -3,13 +3,19 @@ import test from "node:test";
 import vm from "node:vm";
 import fs from "node:fs/promises";
 import sharp from "sharp";
-import { imageMapScript, injectImageMap, placeholderDrawGuard, previewFileAliases, validateDrawAudit } from "../docs/finales/moveset-guide/build-tools.mjs";
+import { compileGuide, imageMapScript, injectImageMap, placeholderDrawGuard, previewFileAliases, validateDrawAudit } from "../docs/finales/moveset-guide/build-tools.mjs";
 import { compactGuideImage } from "../docs/finales/moveset-guide/prepare-media.mjs";
 
 const inputs = {
   fingerprint: "current", fighters: ["a", "b"], moves: ["light", "special", "final"],
   assets: [{ id: "fighter", protected: true }, { id: "new-attack", protected: true }, { id: "used", protected: false }, { id: "unused", protected: false }],
 };
+test("portable guide compiles both primary and alias image loads against its embedded map", async () => {
+  const runtime = Buffer.from(await compileGuide()).toString();
+  assert.match(runtime, /__arenaGuideImages/);
+  assert.doesNotMatch(runtime, /\/api\/community\/assets\//);
+  assert.doesNotMatch(runtime, /`\/assets\/\$\{/);
+});
 function validAudit() {
   return { schema: 1, fingerprint: "current", complete: true, fighters: inputs.fighters, moves: inputs.moves, errors: [], pendingImages: [], usedAssets: ["used"], cases: inputs.fighters.flatMap(fighter => inputs.moves.map(move => ({ fighter, move, frames: 4, renderedFrames: 4, firstFrame: 0, lastFrame: 3, contiguous: true, activatedFinal: true, drawnAssets: ["used"] }))) };
 }
