@@ -1,0 +1,508 @@
+[
+  {
+    "name": "final-p1-normal-18",
+    "rectangles": [
+      {
+        "pose": "release",
+        "alpha": 1,
+        "left": 469.9784715740994,
+        "right": 629.6956938457395,
+        "top": 396.16564964702525,
+        "bottom": 655.2258864587576
+      },
+      {
+        "pose": "note",
+        "alpha": 1,
+        "left": 550.9572730133683,
+        "right": 586.3738860320594,
+        "top": 496.79433432747567,
+        "bottom": 547.9155616816721
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p1-normal-30",
+    "rectangles": [
+      {
+        "pose": "pull",
+        "alpha": 1,
+        "left": 467.98219575451475,
+        "right": 633.9377799623568,
+        "top": 397.2495836922626,
+        "bottom": 655.7678534813763
+      },
+      {
+        "pose": "note",
+        "alpha": 1,
+        "left": 635.1620673882634,
+        "right": 670.5786804069545,
+        "top": 492.263134630172,
+        "bottom": 543.3843619843684
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p1-normal-90",
+    "rectangles": [
+      {
+        "pose": "ready",
+        "alpha": 1,
+        "left": 477.20642573091976,
+        "right": 633.1941800164042,
+        "top": 400.82853045064576,
+        "bottom": 658.2628661945221
+      },
+      {
+        "pose": "note",
+        "alpha": 1,
+        "left": 725.4013861644092,
+        "right": 760.8179991831004,
+        "top": 518.498079875074,
+        "bottom": 569.6193072292705
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p1-normal-114",
+    "rectangles": [
+      {
+        "pose": "accent",
+        "alpha": 1,
+        "left": 467.58940745134225,
+        "right": 634.7724551065983,
+        "top": 409.17285818987375,
+        "bottom": 655.7678534813763
+      },
+      {
+        "pose": "note-pair",
+        "alpha": 1,
+        "left": 539.8847384923307,
+        "right": 597.446420553097,
+        "top": 493.11239342733694,
+        "bottom": 552.4336028873407
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p1-normal-138",
+    "rectangles": [
+      {
+        "pose": "ready",
+        "alpha": 1,
+        "left": 488.3780764821906,
+        "right": 644.365830767675,
+        "top": 399.70438313690534,
+        "bottom": 657.1387188807817
+      },
+      {
+        "pose": "note-pair",
+        "alpha": 1,
+        "left": 725.5005023946425,
+        "right": 783.0621844554088,
+        "top": 513.6919916611948,
+        "bottom": 573.0132011211986
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p1-normal-178",
+    "rectangles": [
+      {
+        "pose": "ready",
+        "alpha": 1,
+        "left": 474.2652526855251,
+        "right": 630.2530069710095,
+        "top": 397.2495836922626,
+        "bottom": 654.6839194361389
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p2-normal-42",
+    "rectangles": [
+      {
+        "pose": "pull",
+        "alpha": 1,
+        "left": 647.7566584000376,
+        "right": 813.7122426078797,
+        "top": 398.82705619118303,
+        "bottom": 657.3453259802967
+      },
+      {
+        "pose": "note",
+        "alpha": 1,
+        "left": 526.9109635805446,
+        "right": 562.3275765992357,
+        "top": 516.4966056156112,
+        "bottom": 567.6178329698076
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p2-normal-114",
+    "rectangles": [
+      {
+        "pose": "accent",
+        "alpha": 1,
+        "left": 645.2275162831723,
+        "right": 812.4105639384284,
+        "top": 409.17285818987375,
+        "bottom": 655.7678534813763
+      },
+      {
+        "pose": "note-pair",
+        "alpha": 1,
+        "left": 682.5535508366736,
+        "right": 740.1152328974399,
+        "top": 493.11239342733694,
+        "bottom": 552.4336028873407
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p1-close-30",
+    "rectangles": [
+      {
+        "pose": "pull",
+        "alpha": 1,
+        "left": 346.3822121848095,
+        "right": 512.3377963926515,
+        "top": 397.2495836922626,
+        "bottom": 655.7678534813763
+      },
+      {
+        "pose": "note",
+        "alpha": 1,
+        "left": 513.5620838185582,
+        "right": 548.9786968372493,
+        "top": 492.263134630172,
+        "bottom": 543.3843619843684
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p1-close-138",
+    "rectangles": [
+      {
+        "pose": "ready",
+        "alpha": 1,
+        "left": 366.7780929124853,
+        "right": 522.7658471979697,
+        "top": 399.70438313690534,
+        "bottom": 657.1387188807817
+      },
+      {
+        "pose": "note-pair",
+        "alpha": 1,
+        "left": 603.9005188249372,
+        "right": 661.4622008857035,
+        "top": 513.6919916611948,
+        "bottom": 573.0132011211986
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p2-close-42",
+    "rectangles": [
+      {
+        "pose": "pull",
+        "alpha": 1,
+        "left": 769.3566419697428,
+        "right": 935.3122261775849,
+        "top": 398.82705619118303,
+        "bottom": 657.3453259802967
+      },
+      {
+        "pose": "note",
+        "alpha": 1,
+        "left": 648.5109471502498,
+        "right": 683.9275601689409,
+        "top": 516.4966056156112,
+        "bottom": 567.6178329698076
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p1-edge-138",
+    "rectangles": [
+      {
+        "pose": "ready",
+        "alpha": 1,
+        "left": 890.2980805336181,
+        "right": 1046.2858348191023,
+        "top": 399.70438313690534,
+        "bottom": 657.1387188807817
+      },
+      {
+        "pose": "note-pair",
+        "alpha": 1,
+        "left": 1127.4204833991962,
+        "right": 1184.9821654599627,
+        "top": 513.6919916611948,
+        "bottom": 573.0132011211986
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p2-edge-138",
+    "rectangles": [
+      {
+        "pose": "ready",
+        "alpha": 1,
+        "left": 268.12648687571084,
+        "right": 424.11424116119525,
+        "top": 399.70438313690534,
+        "bottom": 657.1387188807817
+      },
+      {
+        "pose": "note-pair",
+        "alpha": 1,
+        "left": 129.4301562348505,
+        "right": 186.99183829561687,
+        "top": 513.6919916611948,
+        "bottom": 573.0132011211986
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p1-unequal-42-reduced",
+    "rectangles": [
+      {
+        "pose": "pull",
+        "alpha": 1,
+        "left": 467.98219575451475,
+        "right": 633.9377799623568,
+        "top": 397.24955580519645,
+        "bottom": 655.7678255943101
+      },
+      {
+        "pose": "note",
+        "alpha": 1,
+        "left": 719.3668617631587,
+        "right": 754.7834747818498,
+        "top": 485.12069628273787,
+        "bottom": 536.2419236369343
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p2-unequal-42-reduced",
+    "rectangles": [
+      {
+        "pose": "pull",
+        "alpha": 1,
+        "left": 646.0621914274138,
+        "right": 812.0177756352559,
+        "top": 397.24955580519645,
+        "bottom": 655.7678255943101
+      },
+      {
+        "pose": "note",
+        "alpha": 1,
+        "left": 525.2164966079208,
+        "right": 560.6331096266119,
+        "top": 485.12069628273787,
+        "bottom": 536.2419236369343
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p1-normal-42-missing",
+    "rectangles": [],
+    "canonical": 3
+  },
+  {
+    "name": "special-p1-normal-8",
+    "rectangles": [],
+    "canonical": 3
+  },
+  {
+    "name": "special-p2-normal-8",
+    "rectangles": [],
+    "canonical": 3
+  },
+  {
+    "name": "special-p1-normal-60",
+    "rectangles": [],
+    "canonical": 3
+  },
+  {
+    "name": "final-p1-inward-42",
+    "rectangles": [
+      {
+        "pose": "pull",
+        "alpha": 1,
+        "left": 72.87667159630959,
+        "right": 238.83225580415166,
+        "top": 398.82705619118303,
+        "bottom": 657.3453259802967
+      },
+      {
+        "pose": "note",
+        "alpha": 1,
+        "left": 324.2613376049535,
+        "right": 359.6779506236446,
+        "top": 516.4966056156112,
+        "bottom": 567.6178329698076
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p2-inward-42",
+    "rectangles": [
+      {
+        "pose": "pull",
+        "alpha": 1,
+        "left": 1044.5566495308663,
+        "right": 1210.5122337387083,
+        "top": 398.82705619118303,
+        "bottom": 657.3453259802967
+      },
+      {
+        "pose": "note",
+        "alpha": 1,
+        "left": 923.7109547113735,
+        "right": 959.1275677300646,
+        "top": 516.4966056156112,
+        "bottom": 567.6178329698076
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p1-close-edge-30",
+    "rectangles": [
+      {
+        "pose": "pull",
+        "alpha": 1,
+        "left": 6.434396799188214,
+        "right": 172.38998100703026,
+        "top": 397.2495836922626,
+        "bottom": 655.7678534813763
+      },
+      {
+        "pose": "note",
+        "alpha": 1,
+        "left": 125.98818098948655,
+        "right": 161.40479400817773,
+        "top": 492.263134630172,
+        "bottom": 543.3843619843684
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p1-close-edge-42",
+    "rectangles": [
+      {
+        "pose": "pull",
+        "alpha": 1,
+        "left": 6.434388494382425,
+        "right": 172.3899727022245,
+        "top": 398.82705619118303,
+        "bottom": 657.3453259802967
+      },
+      {
+        "pose": "note",
+        "alpha": 1,
+        "left": 164.26135489355516,
+        "right": 199.67796791224634,
+        "top": 516.4966056156112,
+        "bottom": 567.6178329698076
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p2-close-edge-138",
+    "rectangles": [
+      {
+        "pose": "ready",
+        "alpha": 1,
+        "left": 1114.388162516255,
+        "right": 1270.3759168017393,
+        "top": 399.70438313690534,
+        "bottom": 657.1387188807817
+      },
+      {
+        "pose": "note-pair",
+        "alpha": 1,
+        "left": 1088.1501110816316,
+        "right": 1145.7117931423982,
+        "top": 513.6919916611948,
+        "bottom": 573.0132011211986
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p1-platform-42",
+    "rectangles": [
+      {
+        "pose": "pull",
+        "alpha": 1,
+        "left": 313.38866722949314,
+        "right": 479.3442514373352,
+        "top": 224.7470613974299,
+        "bottom": 483.26533118654356
+      },
+      {
+        "pose": "note",
+        "alpha": 1,
+        "left": 631.4613283925761,
+        "right": 666.8779414112672,
+        "top": 248.9766115951492,
+        "bottom": 300.09783894934566
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p2-platform-138",
+    "rectangles": [
+      {
+        "pose": "ready",
+        "alpha": 1,
+        "left": 826.3344864247837,
+        "right": 982.322240710268,
+        "top": 225.62438834315213,
+        "bottom": 483.05872408702845
+      },
+      {
+        "pose": "note-pair",
+        "alpha": 1,
+        "left": 620.9501375826109,
+        "right": 678.5118196433772,
+        "top": 246.17199764073268,
+        "bottom": 305.49320710073647
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "name": "final-p1-normal-189",
+    "rectangles": [],
+    "canonical": 3
+  },
+  {
+    "name": "final-p2-normal-189",
+    "rectangles": [],
+    "canonical": 3
+  }
+]

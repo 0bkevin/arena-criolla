@@ -1,0 +1,21 @@
+{
+  "fighter": "oscar",
+  "source": "assets/source/finales/attack-overhaul/oscar/oscar-grid.png",
+  "file": "oscar-contrabajo-attack-v1",
+  "columns": 3,
+  "rows": 2,
+  "poses": [
+    "ready",
+    "pull",
+    "release",
+    "accent",
+    "note",
+    "note-pair"
+  ],
+  "anchorFractions": {
+    "ready": 0.32,
+    "pull": 0.32,
+    "release": 0.32,
+    "accent": 0.32
+  }
+}

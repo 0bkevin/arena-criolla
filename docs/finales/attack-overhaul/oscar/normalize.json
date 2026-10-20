@@ -1,0 +1,16 @@
+{
+  "source": "assets/source/finales/attack-overhaul/oscar/raw-v2.png",
+  "destination": "assets/source/finales/attack-overhaul/oscar/oscar-grid.png",
+  "auditPath": "docs/finales/attack-overhaul/oscar/grid-audit.json",
+  "columns": 3,
+  "rows": 2,
+  "poseCount": 6,
+  "poses": [
+    "ready",
+    "pull",
+    "release",
+    "accent",
+    "note",
+    "note-pair"
+  ]
+}

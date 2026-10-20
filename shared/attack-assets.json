@@ -470,5 +470,64 @@
         "bodyHeight": 447.58490566037733
       }
     }
+  },
+  "oscar": {
+    "file": "oscar-contrabajo-attack-v1",
+    "frames": {
+      "ready": {
+        "x": 113,
+        "y": 20,
+        "width": 286,
+        "height": 472,
+        "anchorX": 91.52,
+        "anchorY": 470.0126315789474,
+        "bodyHeight": 466.03789473684213
+      },
+      "pull": {
+        "x": 616,
+        "y": 20,
+        "width": 303,
+        "height": 472,
+        "anchorX": 96.96000000000001,
+        "anchorY": 468.04192872117403,
+        "bodyHeight": 465.0733752620545
+      },
+      "release": {
+        "x": 1134,
+        "y": 20,
+        "width": 291,
+        "height": 472,
+        "anchorX": 93.12,
+        "anchorY": 469.0376569037657,
+        "bodyHeight": 464.10041841004187
+      },
+      "accent": {
+        "x": 96,
+        "y": 532,
+        "width": 320,
+        "height": 472,
+        "anchorX": 102.4,
+        "anchorY": 467.85054945054947,
+        "bodyHeight": 463.7010989010989
+      },
+      "note": {
+        "x": 604,
+        "y": 532,
+        "width": 327,
+        "height": 472,
+        "anchorX": 163.5,
+        "anchorY": 464.625,
+        "bodyHeight": 460.2
+      },
+      "note-pair": {
+        "x": 1051,
+        "y": 532,
+        "width": 458,
+        "height": 472,
+        "anchorX": 229,
+        "anchorY": 459.7402597402597,
+        "bodyHeight": 456.6753246753247
+      }
+    }
   }
 }

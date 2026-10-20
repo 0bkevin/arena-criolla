@@ -1,0 +1,38 @@
+# Óscar D’León — Contrabajo del sonero
+
+Estado: implementación, revisión del agente y aprobación independiente del principal completadas. Personaje 11 de 22.
+
+La definitiva ahora muestra a Óscar tocando un contrabajo blanco. Cuatro ilustraciones completas alternan preparación, pulsación, liberación de los dedos y acento; las manos y el instrumento forman parte de la misma figura. Tres notas doradas salen de la zona de pulsación en 18/66/114 y llegan al torso del rival en 42/90/138, exactamente cuando disminuye su vida. El último acento usa una pareja de notas. El rival conserva su cuerpo canónico y reacciona al golpe; ya no baila junto a un instrumento decorativo.
+
+Se conserva el modo de captura, tres victorias, 75 de energía, 9 cuadros de preparación y 180 de secuencia. Las notas de esta secuencia son trayectorias visuales deterministas dentro de una captura; no son proyectiles libres del motor. Antes de capturar se puede bloquear, alejarse, quedar detrás o interrumpir la preparación. Durante la captura se pausan física y reloj; al terminar se libera al rival con el retroceso existente. No hay cambio de arena ni cámara. Los 32 casos del navegador comienzan con entradas reales `super` o `special`, nunca con un estado de definitiva creado a mano.
+
+## Referencias y arte
+
+Se inspeccionaron el cuerpo canónico, la [fotografía original de Darmstadt 2009](https://commons.wikimedia.org/wiki/File:Oscar_D%27Le%C3%B3n_2009.jpg) de hvd69 y el [retrato publicado por North Sea Jazz](https://www.northseajazz.com/-/media/northseajazz/rotterdam/shows/2014/oscar-dleon.jpg). El [programa del festival](https://www.northseajazz.com/en/program/2014/sunday-13-july/18465-oscar-dleon/) describe su aprendizaje autodidacta del bajo. Estas referencias guían la mano izquierda en el diapasón, el pizzicato derecho, su bigote y sonrisa y el color blanco del contrabajo. El instrumento personalizado de la foto tiene un cuerpo distinto: el juego adopta deliberadamente una caja acústica convencional, con cuatro cuerdas, dos efes, puente, cordal, voluta y pica. No se incrustan fotografías.
+
+Los originales generados con `image_gen.imagegen` están en `assets/source/finales/attack-overhaul/oscar/raw-v1.png` y `raw-v2.png`; prompts y hashes en este dossier. v1 se rechazó por alfa pegado al borde exterior. v2 corrigió el espacio y pasó la normalización de seis siluetas completas. La comprobación inversa conserva RGBA exacto de todos los píxeles retenidos; el WebP publicado también pasa la comparación RGBA sin pérdida. Los fondos marrones de la vista original están bajo alfa cero; `raw-v2-gray.png` permite inspeccionar la transparencia sobre gris neutro.
+
+La calibración usa 425 píxeles de coronilla a suela en v2 para un cuerpo de 305 unidades. La voluta queda por encima de la cabeza. Las cuatro poses usan una sola escala de píxel fuente, compensando el tamaño que aplicó el empaquetador; el acento de rodillas flexionadas baja la cabeza sin agrandarla. La pica y el zapato de apoyo permanecen en la altura capturada. El ancla horizontal 0.32 se sitúa dentro de la base de apoyo del músico, no en el centro del conjunto músico-instrumento.
+
+En capturas estrechas se permite un paso atrás exclusivamente visual. Entra y sale durante 12 cuadros y se limita al intervalo común visible de las cuatro poses, manteniendo la misma escala, piso y posiciones físicas. Incluso con el atacante junto al borde y el rival a 55 unidades, el contrabajo y ambos cuerpos siguen legibles. La contención impide toda desaparición de la figura; en esa situación extrema el rival queda parcialmente delante del lado derecho de la caja, como muestran las capturas `close-edge`. No se cambia la cámara para separarlos.
+
+## Mecánica, sonido y especial
+
+Contra Zavarce, cada nota resta 13.6952 HP, para 41.0856 en total. El contador de impactos del motor registra una captura; el ensayo registra por separado las tres reducciones de salud. Ambas orientaciones gastan 75 una vez y liberan en el cuadro 189 del ensayo (9+180). `releaseState` registra las posiciones al liberar; `release` registra el seguimiento posterior, que puede incluir caída del borde y pérdida de vida. La guardia frontal evita toda reducción. Los controles introducidos durante la captura no quedan en cola. Las pruebas incluyen resolución de la última vida después de la secuencia y rechazo por victorias/energía insuficientes, distancia, espalda e interrupción.
+
+La frase musical se sintetiza localmente: pizzicatos graves en las tres salidas, acentos cortos al llegar y percusión ligera. Es una composición nueva, sin melodía reconocible citada, grabación comercial, voz imitada ni YouTube. Las pruebas verifican repetibilidad, señal finita, nivel audible y silencio final.
+
+El especial «Giro del sonero» se revisó con entradas reales para ambos jugadores: pose canónica de giro, impulso vertical, anillo y contacto en el cuadro 8. Gasta 25 y resta 16.4832 contra Zavarce, una vez; guardia frontal lo bloquea y recupera normalmente. No usa instrumento y sigue siendo coherente como paso de salsa. Se conserva sin cambios. En el ensayo de plataformas a 235 unidades falla por distancia, como corresponde a su alcance 140.
+
+## Evidencia y comprobaciones
+
+- 44/44 pruebas enfocadas pasan: `tests/oscar-overhaul.test.ts`, auditoría de Óscar, arte, definitivas y límites del viewport. Cubren entradas reales, gates, daño y tiempos, liberación, pérdida de stock, contacto de cada nota en distintas distancias/alturas, escala común, todas las poses obligatorias, imágenes inválidas y procedencia.
+- `npx tsc --noEmit` y `git diff --check` pasan. No hubo cambios del motor; la suite completa queda para el cierre del conjunto.
+- 32 casos reales en `scripts/oscar-overhaul-browser-qa.js`: especial/definitiva, P1/P2, normal, cercano, altura desigual, atacante mirando hacia fuera y hacia dentro desde ambos bordes, captura cercana contra el borde, plataformas a distintas alturas y guardia. La prueba de plataformas empieza en Valencia y permanece allí; las demás empiezan en Poliedro y permanecen allí. Ninguna secuencia sustituye su arena.
+- 29 capturas nativas guardadas en `screenshots/`. Se inspeccionaron `contact-sheet.png` y `edge-platform-sheet.png`, además de la captura normal a resolución completa. Incluyen salida/vuelo/contacto, acento final, recuperación canónica, lados, extremos, plataformas, movimiento reducido y ausencia de atlas.
+- Sin atlas válido o con cualquiera de las seis poses ausente, se usa cuerpo canónico, reacción y anillo; no aparece el viejo contrabajo flotante. El preflight ocurre antes de dibujar cualquier parte de la escena.
+- `browser-evidence.json` conserva salud/coste/liberación de 32 casos; `render-evidence.json` conserva recortes y límites reales de 28 capturas seleccionadas. La captura normal 42 inicial es la vigésima novena imagen.
+
+La guía fuente describe la nueva interpretación. No se regeneraron HTML portátil ni medios. No se modificaron cuerpos canónicos, core del motor ni otros personajes. El atlas nuevo mide 1536×1024; configuración reproducible en `normalize.json` y `pack.json`. No se hicieron commits ni pushes.
+
+Aprobación independiente del principal: arte v2 sobre gris, captura normal, borde cercano, plataformas a distinta altura, hoja de contacto y guía recién cargada inspeccionados. Escala, instrumento, manos, apoyo, reacción y notas aprobados. Pasaron25 pruebas independientes de Óscar/arte/viewport (`/tmp/oscar-root-tests.txt`). La guía confirmó tres contactos reales en51/99/147 (ticks de secuencia42/90/138), mínimo58.9144HP, posterior pérdida normal de una vida y liberación completa. Puma puede comenzar.
