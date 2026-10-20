@@ -152,7 +152,7 @@ test("all built-in finales keep both fighters in their arena on either side of b
           assert.equal(r.state.finale, undefined);
           assert.equal(
             Math.sign(r.state.players[1 - owner].vx),
-            direction,
+            finaleById(fighter.id)?.release?.force === 0 ? 0 : direction,
             context + ": normal world knockback follows the attacker",
           );
           scenes++;

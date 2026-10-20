@@ -6994,5 +6994,137 @@
         "scaleY": 1
       }
     ]
+  },
+  "kevin": {
+    "introName": "Confirma el envío y entra en guardia",
+    "selectionName": "Coco listo para la pelea",
+    "battleFrame": 1,
+    "frameFacing": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "introStyle": "greet",
+    "selectionStyle": "greet",
+    "prop": "none",
+    "color": "#00dc8e",
+    "durationMs": 2800,
+    "introBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.44,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.72,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "selectionBeats": [
+      {
+        "at": 0,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.18,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.44,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.72,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 0.9,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "at": 1,
+        "frame": 1,
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ]
   }
 }

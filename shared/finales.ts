@@ -40,7 +40,7 @@ export interface FinaleDefinition {
     force: number;
   };
   duration: number;
-  /** Optional physical finishing throw; ordinary captures keep force12. */
+  /** Optional finishing throw; zero releases in place, ordinary captures keep force12. */
   release?: { force: number; knockoutDelay?: number };
   damageBeats: readonly number[];
   /** Sound and gesture timing for spatial attacks. Damage still requires contact. */
@@ -259,7 +259,7 @@ const entries: readonly Entry[] = [
     "dance",
     "Nacho y su rival hacen pasos laterales, giro de hombros y un remate sincronizado sobre una pista de luces.",
     "Pista de baile y micrófono",
-    "Los dos a bailar",
+    "Voy a aceptar que soy",
     "dance",
   ],
   [
@@ -452,6 +452,15 @@ const entries: readonly Entry[] = [
     "hack",
   ],
   [
+    "kevin",
+    "Red sin fronteras",
+    "technology",
+    "Kevin activa Coco en su teléfono y envía cinco remesas verdes en dos alturas. Cada ficha o comprobante cruza la arena y solo daña al conectar; se puede bloquear, saltar o interrumpir el envío mientras la pelea continúa.",
+    "Teléfono, fichas Coco y comprobantes",
+    "¡Envío confirmado!",
+    "hack",
+  ],
+  [
     "jesus",
     "Transferencia instantánea",
     "technology",
@@ -500,8 +509,8 @@ const entries: readonly Entry[] = [
     "carolina",
     "Colección de cierre",
     "theater",
-    "Traza tres arcos de seda alrededor del rival y cierra la colección con un destello de alta costura.",
-    "Cintas de seda",
+    "Presenta una pasarela con cuatro modelos que desfilan y dañan al rival por contacto. Cada modelo puede bloquearse o esquivarse mientras la pelea continúa.",
+    "Pasarela y cuatro modelos",
     "La última puntada",
     "show",
   ],
@@ -616,6 +625,7 @@ export const FINALES = Object.fromEntries(
                 : id === "nacho"
                   ? perroMujeriego.durationTicks
                   : FINALE_DURATION,
+        ...(id === "nacho" ? { release: { force: 0 } } : {}),
         damageBeats:
           isArenaFinalist(id) ||
           id === "conde" ||

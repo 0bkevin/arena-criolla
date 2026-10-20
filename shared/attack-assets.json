@@ -1624,5 +1624,195 @@
         "bodyHeight": 293
       }
     }
+  },
+  "kevin": {
+    "file": "kevin-coco-attack-v2",
+    "frames": {
+      "draw": {
+        "x": 18,
+        "y": 18,
+        "width": 320,
+        "height": 448,
+        "anchorX": 165.39298058306002,
+        "anchorY": 448,
+        "bodyHeight": 448
+      },
+      "tap": {
+        "x": 358,
+        "y": 26,
+        "width": 314,
+        "height": 440,
+        "anchorX": 144.32936186161245,
+        "anchorY": 440,
+        "bodyHeight": 440
+      },
+      "send": {
+        "x": 692,
+        "y": 27,
+        "width": 395,
+        "height": 439,
+        "anchorX": 216.4645000287907,
+        "anchorY": 439,
+        "bodyHeight": 439
+      },
+      "network": {
+        "x": 1107,
+        "y": 20,
+        "width": 387,
+        "height": 446,
+        "anchorX": 170,
+        "anchorY": 446,
+        "bodyHeight": 446
+      },
+      "recover": {
+        "x": 18,
+        "y": 512,
+        "width": 312,
+        "height": 409,
+        "anchorX": 166.69815460337998,
+        "anchorY": 409,
+        "bodyHeight": 409
+      },
+      "celebrate": {
+        "x": 350,
+        "y": 486,
+        "width": 305,
+        "height": 435,
+        "anchorX": 155,
+        "anchorY": 435,
+        "bodyHeight": 388
+      },
+      "token": {
+        "x": 675,
+        "y": 630,
+        "width": 287,
+        "height": 291,
+        "anchorX": 146.37765408371308,
+        "anchorY": 291,
+        "bodyHeight": 291
+      },
+      "receipt": {
+        "x": 982,
+        "y": 611,
+        "width": 285,
+        "height": 310,
+        "anchorX": 168.27509141848319,
+        "anchorY": 310,
+        "bodyHeight": 310
+      }
+    }
+  },
+  "carolina": {
+    "file": "carolina-couture-attack-v2",
+    "frames": {
+      "model-1-a": {
+        "x": 12,
+        "y": 15,
+        "width": 280,
+        "height": 371,
+        "anchorX": 146,
+        "anchorY": 371,
+        "bodyHeight": 371
+      },
+      "model-2-a": {
+        "x": 304,
+        "y": 13,
+        "width": 283,
+        "height": 373,
+        "anchorX": 157,
+        "anchorY": 373,
+        "bodyHeight": 373
+      },
+      "model-3-a": {
+        "x": 599,
+        "y": 13,
+        "width": 289,
+        "height": 373,
+        "anchorX": 148,
+        "anchorY": 373,
+        "bodyHeight": 373
+      },
+      "model-4-a": {
+        "x": 900,
+        "y": 12,
+        "width": 304,
+        "height": 374,
+        "anchorX": 174,
+        "anchorY": 374,
+        "bodyHeight": 374
+      },
+      "model-1-b": {
+        "x": 12,
+        "y": 398,
+        "width": 282,
+        "height": 364,
+        "anchorX": 146,
+        "anchorY": 364,
+        "bodyHeight": 364
+      },
+      "model-2-b": {
+        "x": 306,
+        "y": 400,
+        "width": 299,
+        "height": 362,
+        "anchorX": 165,
+        "anchorY": 362,
+        "bodyHeight": 362
+      },
+      "model-3-b": {
+        "x": 617,
+        "y": 400,
+        "width": 283,
+        "height": 362,
+        "anchorX": 145,
+        "anchorY": 362,
+        "bodyHeight": 362
+      },
+      "model-4-b": {
+        "x": 912,
+        "y": 400,
+        "width": 301,
+        "height": 362,
+        "anchorX": 173,
+        "anchorY": 362,
+        "bodyHeight": 362
+      },
+      "gather": {
+        "x": 12,
+        "y": 774,
+        "width": 434,
+        "height": 601,
+        "anchorX": 206,
+        "anchorY": 601,
+        "bodyHeight": 601
+      },
+      "summon": {
+        "x": 458,
+        "y": 776,
+        "width": 519,
+        "height": 599,
+        "anchorX": 211,
+        "anchorY": 599,
+        "bodyHeight": 599
+      },
+      "hold": {
+        "x": 12,
+        "y": 1389,
+        "width": 520,
+        "height": 598,
+        "anchorX": 214,
+        "anchorY": 598,
+        "bodyHeight": 598
+      },
+      "recover": {
+        "x": 544,
+        "y": 1387,
+        "width": 464,
+        "height": 600,
+        "anchorX": 220,
+        "anchorY": 600,
+        "bodyHeight": 600
+      }
+    }
   }
 }

@@ -36,7 +36,10 @@ interface CafeActorFrame extends ActorBounds {
   anchorX: number;
 }
 const actorManifest = actorAssets as unknown as {
-  seated: Record<string, FinaleActorFrame & { file: string }>;
+  seated: Record<
+    string,
+    FinaleActorFrame & { file: string; frames?: CafeActorFrame[] }
+  >;
   caprilesCafe: { file: string; frames: CafeActorFrame[] };
   performers?: Partial<
     Record<FighterId, { file: string; frames: CafeActorFrame[] }>
@@ -54,6 +57,16 @@ const DANCE_SOURCE_HEIGHT = 560;
 const DANCE_CENTER = 256;
 const DANCE_BASELINE = 500;
 const DANCE_HEAD_TOP = 180;
+const NACHO_FINALE_LYRICS = [
+  "Síii",
+  "Voy a aceptar que soy",
+  "Un perro mujeriego",
+  "que conoció el amor",
+  "Y lo quiere a su lado",
+  "hasta viejo",
+  "Con la mente en las nubes",
+  "y los pies en el suelo",
+];
 
 /** The continuous 34–40 second reference phrase, with one clock for both roles. */
 export function sampleFinaleDance(tick: number, reducedMotion = false) {
@@ -632,7 +645,30 @@ function drawSeatedActor(
   const asset = actorManifest.seated[id];
   const image = asset && scene.props[asset.file];
   if (!asset || !image?.width || !image.height) return false;
-  return drawActorFrame(scene.ctx, image, asset, x, feet, height, facing);
+  const frames = asset.frames,
+    index =
+      !scene.motion || !frames?.length
+        ? 0
+        : Math.min(
+            frames.length - 1,
+            Math.floor((scene.tick * frames.length) / scene.profile.duration),
+          ),
+    frame = frames?.[index];
+  return drawActorFrame(
+    scene.ctx,
+    image,
+    frame
+      ? {
+          frame,
+          bodyHeight: frame.bodyHeight,
+          anchorX: frame.anchorX,
+        }
+      : asset,
+    x,
+    feet,
+    height,
+    facing,
+  );
 }
 function drawCafeActor(scene: Scene, x: number, feet: number, height: number) {
   const asset = actorManifest.caprilesCafe;
@@ -1085,25 +1121,14 @@ function dance(scene: Scene) {
     : 504 - Math.abs(rhythm) * (joropo ? 13 : 5);
   body(scene, actor, 382 + walk, feet, 302, 1, "dance");
   body(scene, rival, 699 + walk, feet, 293, 1, "dance");
-  const choreographedSteps = [
-    "CARA Y REBOTE",
-    "CAMBIA EL APOYO",
-    "PATITAS A LA DERECHA",
-    "PATITAS A LA IZQUIERDA",
-    "PATITAS AL CENTRO",
-    "BARRIDO DE BRAZO",
-    "BRAZOS ARRIBA",
-    "CORAZÓN",
-  ];
-  const step = nacho
-    ? choreographedSteps[pair.frame]
-    : tick < 55
-      ? "PASO A PASO"
-      : tick < 105
-        ? "HOMBROS Y CADERA"
-        : tick < 150
-          ? "GIRO Y REMATE"
-          : "¡LOS DOS A TIEMPO!";
+  if (nacho) {
+    ctx.save();
+    ctx.shadowColor = "#11151f";
+    ctx.shadowBlur = 5;
+    // Lyrics follow the scene clock even when the dancers use reduced motion.
+    text(ctx, NACHO_FINALE_LYRICS[sampleFinaleDance(tick).frame], 540, 190, 30);
+    ctx.restore();
+  }
 
   for (let n = 0; n < 5; n++)
     note(

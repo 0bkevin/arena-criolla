@@ -11,11 +11,16 @@ import {
   finaleAsset,
 } from "../shared/finales";
 
-test("all 46 authored final attacks have their own unique generated prop cell and scene", async () => {
+test("the 46 original prop cells and later canonical or painted arena finales cover the roster", async () => {
   const expected = new Set<string>(FINALE_ASSET_GROUPS.flat());
   const roster = BUILT_IN_FIGHTERS.map(({ id }) => id).sort();
   assert.deepEqual(Object.keys(FINALES).sort(), roster);
-  assert.deepEqual([...expected, ...CANONICAL_FINALE_FIGHTERS].sort(), roster);
+  assert.deepEqual(
+    [...expected, ...CANONICAL_FINALE_FIGHTERS, "kevin"].sort(),
+    roster,
+  );
+  assert.equal(FINALES.kevin.mode, "field");
+  assert.equal(finaleAsset("kevin"), undefined);
   for (const id of CANONICAL_FINALE_FIGHTERS)
     assert.equal(finaleAsset(id), undefined);
   const cells = new Set<string>();

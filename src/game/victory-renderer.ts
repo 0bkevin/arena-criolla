@@ -3,7 +3,13 @@ import type { MatchState } from "../../shared/engine";
 import { drawSprite } from "./assets";
 import { drawArticulatedSprite } from "./gesture-rig";
 import type { Assets } from "./renderer";
-import { sampleDefeat, sampleVictory, VICTORY_DURATION_MS } from "./victory";
+import {
+  sampleDefeat,
+  sampleVictory,
+  victoryById,
+  VICTORY_DURATION_MS,
+} from "./victory";
+import { drawAttackArt } from "./attack-art";
 
 /** Screen-space staging keeps even a ringed-out loser visible for the curtain call. */
 export function drawVictory(
@@ -97,9 +103,22 @@ export function drawVictory(
         feet + pose.dy * bodyHeight,
       );
       ctx.rotate(pose.rotate * facing);
-      if (reducedMotion)
+      const paintedPose = victoryById(id).paintedPose;
+      const painted =
+        paintedPose &&
+        drawAttackArt(
+          ctx,
+          assets.finaleProps,
+          id,
+          paintedPose,
+          0,
+          0,
+          bodyHeight,
+          facing,
+        );
+      if (!painted && reducedMotion)
         drawSprite(ctx, sprite, sprite.battleFrame, 0, 0, bodyHeight, facing);
-      else
+      else if (!painted)
         drawArticulatedSprite(
           ctx,
           sprite,

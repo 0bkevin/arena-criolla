@@ -30,8 +30,8 @@ function special(fighter: FighterId, rivalX = 750) {
   return { match, advance, inputs };
 }
 
-test("the expanded roster contains fifty-three distinct figures and excludes removed fighters", () => {
-  assert.equal(FIGHTERS.length, 53);
+test("the expanded roster contains fifty-four distinct figures and excludes removed fighters", () => {
+  assert.equal(FIGHTERS.length, 54);
   assert.equal(
     new Set(FIGHTERS.map((fighter) => fighter.id)).size,
     FIGHTERS.length,

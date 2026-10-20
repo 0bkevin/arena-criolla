@@ -2,6 +2,14 @@ import { WORLD } from "./arena";
 import { platformsAtTick, type FighterId } from "./content";
 import type { MatchState, PlayerState } from "./engine";
 import type { FieldFinaleState } from "./field-finales";
+import {
+  COUTURE_MODEL_COUNT,
+  COUTURE_MODEL_CUES,
+  COUTURE_MODEL_HEIGHT,
+  COUTURE_MODEL_SPEED,
+  coutureModelStart,
+  coutureModelEnd,
+} from "./couture-runway";
 
 /** The authored batch. The other roster finales retain their existing rules. */
 export const REVIEWED_FINALISTS = [
@@ -27,9 +35,13 @@ export const REVIEWED_FINALISTS = [
   "dudamel",
   "llorona",
   "deyna",
+  "kevin",
+  "carolina",
 ] as const satisfies readonly FighterId[];
 
 export const ARENA_FINALES = {
+  carolina: { duration: 196, recovery: 36, riding: false },
+  kevin: { duration: 96, recovery: 82, riding: false },
   bolivar: { duration: 220, recovery: 104, riding: true },
   gomez: { duration: 180, recovery: 104, riding: true },
   zavarce: { duration: 210, recovery: 24, riding: false },
@@ -51,6 +63,8 @@ export const ARENA_FINALES = {
 export type ArenaFinalist = keyof typeof ARENA_FINALES;
 /** Emission/gesture cues for sound, never guaranteed damage times. */
 export const ARENA_FINALE_CUES: Record<ArenaFinalist, readonly number[]> = {
+  carolina: COUTURE_MODEL_CUES,
+  kevin: [12, 26, 40, 54, 68],
   bolivar: [12, 23, 34, 45, 56, 67, 78],
   gomez: [12, 29, 51],
   zavarce: [0, 12, 24, 36, 48, 60, 72],
@@ -83,6 +97,7 @@ export interface ArenaFinaleActor {
     | "woodhorse"
     | "handchain"
     | "curtain"
+    | "model"
     | "supporter";
   index: number;
   x: number;
@@ -128,26 +143,30 @@ export function arenaActorReach(actor: ArenaFinaleActor) {
             : 0,
     halfWidth: melee
       ? 42
-      : actor.kind === "curtain"
-        ? 100
-        : actor.kind === "truck"
-          ? 75
-          : actor.kind === "handchain"
-            ? actor.caughtTick === undefined
-              ? 85
-              : 105
-            : 32,
+      : actor.kind === "model"
+        ? 26
+        : actor.kind === "curtain"
+          ? 100
+          : actor.kind === "truck"
+            ? 75
+            : actor.kind === "handchain"
+              ? actor.caughtTick === undefined
+                ? 85
+                : 105
+              : 32,
     top: melee
       ? 155
-      : actor.kind === "curtain"
-        ? 24
-        : actor.kind === "truck"
-          ? 160
-          : actor.kind === "woodhorse"
-            ? 105
-            : actor.kind === "handchain" && actor.caughtTick !== undefined
-              ? 165
-              : 140,
+      : actor.kind === "model"
+        ? 158
+        : actor.kind === "curtain"
+          ? 24
+          : actor.kind === "truck"
+            ? 160
+            : actor.kind === "woodhorse"
+              ? 105
+              : actor.kind === "handchain" && actor.caughtTick !== undefined
+                ? 165
+                : 140,
     feetOffset: actor.kind === "curtain" ? 12 : 0,
     bottom: actor.kind === "curtain" ? 0 : melee ? 8 : 10,
   };
@@ -358,6 +377,19 @@ export function advanceArenaFinale(state: MatchState, field: FieldFinaleState) {
     p.facing = field.direction;
   }
   if (!field.cancelled) {
+    if (field.fighter === "carolina") {
+      const index = COUTURE_MODEL_CUES.findIndex((cue) => cue === tick);
+      if (index !== -1)
+        spawnActor(
+          state,
+          field,
+          "model",
+          index,
+          COUTURE_MODEL_HEIGHT,
+          COUTURE_MODEL_SPEED,
+          coutureModelStart(field),
+        ).life = ARENA_FINALES.carolina.duration;
+    }
     if (
       field.fighter === "bolivar" &&
       tick >= 23 &&
@@ -424,6 +456,32 @@ export function advanceArenaFinale(state: MatchState, field: FieldFinaleState) {
       const index = [12, 36, 60].indexOf(tick);
       if (index !== -1) fireWave(state, field, index, 3);
     }
+    if (field.fighter === "kevin") {
+      const cues = ARENA_FINALE_CUES.kevin,
+        index = cues.indexOf(tick);
+      if (index !== -1)
+        state.projectiles.push({
+          id: state.nextId++,
+          owner: field.owner,
+          direction: field.direction,
+          x: p.x + field.direction * 48,
+          y: p.y - (index % 2 ? 84 : 112),
+          vx: field.direction * 9.5,
+          age: 0,
+          life: 80,
+          kind: "remittance",
+          impact: "super",
+          radius: 17,
+          damage: field.damage / cues.length,
+          force: index === cues.length - 1 ? 7 : 2.6,
+          hitInvincibility: 5,
+          finaleArt: {
+            fighter: "kevin",
+            pose: index % 2 ? "receipt" : "token",
+            height: 34,
+          },
+        });
+    }
   }
   if (field.caught && target.rootTicks && target.rootKind === "screen")
     field.caught = { x: target.x, y: target.y };
@@ -455,6 +513,20 @@ export function advanceArenaFinale(state: MatchState, field: FieldFinaleState) {
       actor.y = actor.vy >= 0 && support ? support.y : nextY;
       if (actor.vy >= 0 && support) actor.vy = 0;
     } else {
+      if (actor.kind === "model") {
+        const end = coutureModelEnd(field);
+        actor.vx =
+          actor.direction *
+          Math.min(COUTURE_MODEL_SPEED, Math.abs(end - actor.x));
+        if (Math.abs(end - actor.x) <= COUTURE_MODEL_SPEED)
+          actor.life = Math.min(actor.life, 12);
+        // This temporary walkway supports its models, just as Dayana's does.
+        // Other fighters keep their ordinary movement and platform physics.
+        actor.x += actor.vx;
+        actor.y = field.y;
+        actor.vy = 0;
+        return actor.life > 0;
+      }
       if (actor.kind === "supporter")
         actor.vx = rideMoving(field)
           ? field.direction * rideSpeed(field.fighter)
@@ -621,8 +693,10 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
             ? 0.25
             : field.fighter === "bolivar" || field.fighter === "zavarce"
               ? 1 / 7
-              : 1 / 3,
-          actor.kind === "handchain" ? 1 : 4.5,
+              : actor.kind === "model"
+                ? 1 / COUTURE_MODEL_COUNT
+                : 1 / 3,
+          actor.kind === "handchain" ? 1 : actor.kind === "model" ? 3 : 4.5,
           target.x,
           target.y - 70,
           actor.direction,

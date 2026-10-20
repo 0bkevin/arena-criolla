@@ -3769,5 +3769,104 @@
         "slotY": 515
       }
     ]
+  },
+  "kevin": {
+    "file": "kevin-coco-entrance-v2",
+    "cell": 512,
+    "bodyHeight": 446,
+    "baseline": 494,
+    "anchorX": 256,
+    "width": 1232,
+    "height": 944,
+    "frames": [
+      {
+        "x": 18,
+        "y": 18,
+        "width": 224,
+        "height": 446,
+        "slotX": 16,
+        "slotY": 16,
+        "anchorX": 100.00214974023754,
+        "anchorY": 446,
+        "bodyHeight": 446
+      },
+      {
+        "x": 262,
+        "y": 19,
+        "width": 247,
+        "height": 445,
+        "slotX": 260,
+        "slotY": 17,
+        "anchorX": 105.52404933437705,
+        "anchorY": 445,
+        "bodyHeight": 446
+      },
+      {
+        "x": 529,
+        "y": 19,
+        "width": 242,
+        "height": 445,
+        "slotX": 527,
+        "slotY": 17,
+        "anchorX": 115.09332756165954,
+        "anchorY": 445,
+        "bodyHeight": 446
+      },
+      {
+        "x": 791,
+        "y": 18,
+        "width": 249,
+        "height": 446,
+        "slotX": 789,
+        "slotY": 16,
+        "anchorX": 107.04920879589054,
+        "anchorY": 446,
+        "bodyHeight": 446
+      },
+      {
+        "x": 18,
+        "y": 484,
+        "width": 258,
+        "height": 434,
+        "slotX": 16,
+        "slotY": 482,
+        "anchorX": 102.44622087820666,
+        "anchorY": 434,
+        "bodyHeight": 446
+      },
+      {
+        "x": 296,
+        "y": 486,
+        "width": 277,
+        "height": 432,
+        "slotX": 294,
+        "slotY": 484,
+        "anchorX": 120.64899338701737,
+        "anchorY": 432,
+        "bodyHeight": 446
+      },
+      {
+        "x": 593,
+        "y": 485,
+        "width": 282,
+        "height": 433,
+        "slotX": 591,
+        "slotY": 483,
+        "anchorX": 126.23843519350886,
+        "anchorY": 433,
+        "bodyHeight": 446
+      },
+      {
+        "x": 895,
+        "y": 492,
+        "width": 304,
+        "height": 426,
+        "slotX": 893,
+        "slotY": 490,
+        "anchorX": 159.47260497332363,
+        "anchorY": 426,
+        "bodyHeight": 446
+      }
+    ]
   }
 }

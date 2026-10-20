@@ -211,7 +211,11 @@ for (const side of [0, 1] as const) {
       );
       assert.equal(
         Math.sign(released.state.players[1 - side].vx),
-        side === 0 ? 1 : -1,
+        finaleById(capture.state.finale!.fighter)?.release?.force === 0
+          ? 0
+          : side === 0
+            ? 1
+            : -1,
       );
       assert.ok(released.state.players[side].cooldown > 0);
     } finally {
@@ -655,9 +659,7 @@ test("rooms reject Vicente's definitive before three wins for both players", asy
       match.a.send({ type: "input", matchId: state.id, input });
       match.b.send({ type: "input", matchId: state.id, input });
       const received = await match.a.wait("state", (message) =>
-        message.state.players.every(
-          (player) => player.lastActions.super === 1,
-        ),
+        message.state.players.every((player) => player.lastActions.super === 1),
       );
       const remote = await match.b.wait(
         "state",

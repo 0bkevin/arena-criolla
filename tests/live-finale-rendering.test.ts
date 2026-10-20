@@ -146,8 +146,8 @@ test.before(async () => {
   images[courier.file] = bitmap(m.width, m.height);
 });
 
-test("the reviewed batch contains all 21 painted attack sets and the Yummy couriers", () => {
-  assert.equal(REVIEWED_FINALISTS.length, 22);
+test("the reviewed batch contains every painted attack set and the Yummy couriers", () => {
+  assert.equal(REVIEWED_FINALISTS.length, 24);
   assert.deepEqual(
     [...Object.keys(ATTACK_ART), "zavarce"].sort(),
     [...REVIEWED_FINALISTS].sort(),
