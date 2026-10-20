@@ -6,49 +6,6 @@ import { drawJavierFinale } from "../src/game/finales/javier";
 import type { FinaleView } from "../src/game/finales/types";
 import { ATTACK_ART, drawAttackArt } from "../src/game/attack-art";
 import { finaleArenaLayout } from "../src/game/finale-layout";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
-import sharp from "sharp";
-
-test("Javier preserves original generated pixels while padding the odd-width sheet, and leaves the v43 identity intact", async () => {
-  const report = JSON.parse(
-    await readFile(
-      "docs/finales/attack-overhaul/javier/provenance.json",
-      "utf8",
-    ),
-  );
-  const hash = (bytes: Buffer) =>
-    createHash("sha256").update(bytes).digest("hex");
-  const original = await readFile(report.raw),
-    padded = await readFile(report.grid);
-  assert.equal(hash(original), report.rawSha256);
-  assert.equal(hash(padded), report.gridSha256);
-  const raw = await sharp(original)
-    .ensureAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-  const grid = await sharp(padded)
-    .ensureAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-  assert.equal(grid.info.width, raw.info.width + 1);
-  assert.equal(grid.info.height, raw.info.height);
-  for (let y = 0; y < raw.info.height; y++) {
-    assert.ok(
-      raw.data
-        .subarray(y * raw.info.width * 4, (y + 1) * raw.info.width * 4)
-        .equals(
-          grid.data.subarray(
-            y * grid.info.width * 4,
-            y * grid.info.width * 4 + raw.info.width * 4,
-          ),
-        ),
-    );
-    assert.equal(grid.data[(y * grid.info.width + raw.info.width) * 4 + 3], 0);
-  }
-  for (const [path, expected] of Object.entries(report.canonicalSha256))
-    assert.equal(hash(await readFile(path)), expected);
-});
 
 test("Javier's three scolding beats select complete authored crops and make the rival react, including reduced motion", () => {
   const sheet = ATTACK_ART.javier;

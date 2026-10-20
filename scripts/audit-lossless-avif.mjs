@@ -305,7 +305,7 @@ async function auditOne(file, { candidateDirectory, fallback, avifenc }) {
 
 export async function runAvifAudit({
   directory = "public",
-  output = "docs/performance/lossless-assets/avif-audit.json",
+  output = path.join(os.tmpdir(), "arena-avif-audit.json"),
   candidateDirectory,
   workers = 1,
   fallback = "auto",

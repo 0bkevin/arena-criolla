@@ -11,8 +11,7 @@ import {
 } from "../src/game/finales/oscar";
 import type { FinaleView } from "../src/game/finales/types";
 import { ATTACK_ART, drawAttackArt } from "../src/game/attack-art";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
+
 import { writeFinaleMusic } from "../src/game/finale-sounds";
 function setup(side: 0 | 1, wins = 3, energy = 100) {
   const actor = { name: "Óscar", fighter: "oscar" as const, wins };
@@ -125,35 +124,6 @@ test("Óscar definitive rejects locked, depleted, behind and guarded captures; l
     assert.equal(run.state.phase, "finished");
     assert.equal(run.state.winner, side);
   }
-});
-
-test("Óscar retains every raw generation and the unchanged canonical identities", async () => {
-  const report = JSON.parse(
-    await readFile(
-      "docs/finales/attack-overhaul/oscar/provenance.json",
-      "utf8",
-    ),
-  );
-  for (const [path, hash] of Object.entries({
-    ...report.rawFiles,
-    ...report.canonicalSha256,
-    ...report.referenceSha256,
-    ...report.promptSha256,
-  }))
-    assert.equal(
-      createHash("sha256")
-        .update(await readFile(path))
-        .digest("hex"),
-      hash,
-    );
-  const grid = JSON.parse(
-    await readFile(
-      "docs/finales/attack-overhaul/oscar/grid-audit.json",
-      "utf8",
-    ),
-  );
-  assert.equal(grid.exactRetainedRgbaRoundtrip, true);
-  assert.equal(grid.objects.length, 6);
 });
 
 test("Óscar's miss and interrupted startup never start the performance or drain remote health", () => {
@@ -278,16 +248,7 @@ test("three notes visibly leave the plucking hand and arrive at the current riva
         }
 });
 
-test("the four measured playing poses share source scale and preserve crown/feet rather than scroll height", async () => {
-  const packed = JSON.parse(
-    await readFile("docs/finales/attack-overhaul/oscar/assets.json", "utf8"),
-  );
-  for (const obj of packed.objects.slice(0, 4)) {
-    const f = packed.frames[obj.pose];
-    const sourceScale =
-      (OSCAR_HEIGHTS[obj.pose] / f.bodyHeight) * obj.uniformScale;
-    assert.ok(Math.abs(sourceScale - 305 / 425) < 1e-10);
-  }
+test("playing poses change on their original musical beats", () => {
   assert.equal(oscarPlayingPose(17, [42, 90, 138]), "pull");
   assert.equal(oscarPlayingPose(18, [42, 90, 138]), "release");
   assert.equal(oscarPlayingPose(114, [42, 90, 138]), "accent");

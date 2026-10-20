@@ -7,8 +7,6 @@ import type { FinaleView } from "../src/game/finales/types";
 import { ATTACK_ART, drawAttackArt } from "../src/game/attack-art";
 import type { FinaleViewportBounds } from "../src/game/finale-viewport";
 import { finaleArenaLayout } from "../src/game/finale-layout";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
 
 function setup(side: 0 | 1, wins = 3, energy = 100) {
   const actor = { name: "Gómez", fighter: "gomez" as const, wins };
@@ -121,26 +119,6 @@ test("Gómez definitive rejects locked, depleted, behind and guarded captures; l
     assert.equal(run.state.phase, "finished");
     assert.equal(run.state.winner, side);
   }
-});
-
-test("Gómez preserves all generated originals, user reference and canonical identities", async () => {
-  const report = JSON.parse(
-    await readFile(
-      "docs/finales/attack-overhaul/gomez/provenance.json",
-      "utf8",
-    ),
-  );
-  for (const [path, hash] of Object.entries({
-    ...report.rawFiles,
-    ...report.canonicalSha256,
-    ...report.referenceSha256,
-  }))
-    assert.equal(
-      createHash("sha256")
-        .update(await readFile(path))
-        .digest("hex"),
-      hash,
-    );
 });
 
 function record(

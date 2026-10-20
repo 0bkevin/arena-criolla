@@ -5,7 +5,7 @@ import { createMatch, emptyInput, stepMatch, WORLD } from "../shared/engine";
 import { FINALE_CAPTURE_TICK } from "../shared/finales";
 import { fighterById } from "../shared/content";
 import { presentationById } from "../shared/presentation";
-import spriteManifest from "../docs/character-sprite-qa.json";
+import spriteManifest from "../shared/sprite-geometry.json";
 import type { SpriteAsset } from "../src/game/assets";
 import { ATTACK_ART, type AttackArtFrame } from "../src/game/attack-art";
 import { advanceArenaCamera, cameraBounds } from "../src/game/arena-camera";

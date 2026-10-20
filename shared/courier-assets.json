@@ -57,7 +57,6 @@
     }
   ],
   "runtime": "public/assets/yummy-courier-v1.webp",
-  "source": "assets/source/yummy-courier-v1.png",
   "runtimeSha256": "957b38cf6291d1ce1bffb71e8114295e01af4e8b977a2b98534274d48c7edf72",
   "sourceSha256": "9de80b5bc7e3aeca25a2463f687319d78ddc6e626d6acbcc007297befa088cbf",
   "alpha": true

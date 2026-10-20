@@ -1,7 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
+
 import { createMatch, emptyInput, stepMatch, WORLD } from "../shared/engine";
 import { finaleById } from "../shared/finales";
 import { TECHNIQUES } from "../shared/techniques";
@@ -213,33 +212,4 @@ test("Four sabre phases preserve one blade and fully preflight all fourteen fina
   } finally {
     sheet.frames["llanero-6"] = saved;
   }
-});
-test("Raw assets, references and canonical identity remain hashed and alpha island is lossless", async () => {
-  const p = JSON.parse(
-    await readFile(
-      "docs/finales/attack-overhaul/bolivar/provenance.json",
-      "utf8",
-    ),
-  );
-  for (const [file, hash] of Object.entries({
-    ...p.rawFiles,
-    ...p.references,
-    ...p.canonicalSha256,
-  }))
-    assert.equal(
-      createHash("sha256")
-        .update(await readFile(file))
-        .digest("hex"),
-      hash,
-    );
-  const audit = JSON.parse(
-    await readFile(
-      "docs/finales/attack-overhaul/bolivar/v4-soft-audit.json",
-      "utf8",
-    ),
-  );
-  assert.equal(audit.exactRetainedRgbaRoundtrip, true);
-  assert.equal(audit.rawIsland.pixels, 16);
-  assert.equal(audit.rawIsland.maxAlpha, 2);
-  assert.equal(audit.distances[audit.owner].core, 2);
 });

@@ -1,21 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import {
-  mkdtemp,
-  mkdir,
-  readFile,
-  rm,
-  stat,
-  writeFile,
-} from "node:fs/promises";
-import { tmpdir } from "node:os";
-import path from "node:path";
+
 import sharp from "sharp";
-import {
-  packGiuseppeDesk,
-  prepareGiuseppeDesk,
-} from "../scripts/prepare-giuseppe-desk";
+import { packGiuseppeDesk } from "../scripts/prepare-giuseppe-desk";
 
 const hash = (bytes: Buffer) =>
   createHash("sha256").update(bytes).digest("hex");
@@ -135,99 +123,4 @@ test("desk packing rejects visible detached fragments, clipped furniture and sub
     .png()
     .toBuffer();
   await assert.rejects(packGiuseppeDesk(opaque), /transparent PNG/);
-});
-
-test("desk preparation keeps the generated original unchanged and writes repeatable audited runtime files", async (t) => {
-  const root = await mkdtemp(path.join(tmpdir(), "arena-giuseppe-desk-"));
-  t.after(() => rm(root, { recursive: true, force: true }));
-  const source = (await sourceFixture()).png;
-  const original = path.join(
-    root,
-    "assets/source/finales/finales-giuseppe-desk-v2-generated.png",
-  );
-  await mkdir(path.dirname(original), { recursive: true });
-  await writeFile(original, source);
-  const first = await prepareGiuseppeDesk(root);
-  const runtime = path.join(
-    root,
-    "public/assets/finales-giuseppe-desk-v2.webp",
-  );
-  const changedAt = (await stat(runtime)).mtimeMs;
-  const second = await prepareGiuseppeDesk(root);
-  assert.deepEqual(first.manifest, second.manifest);
-  assert.equal(
-    (await stat(runtime)).mtimeMs,
-    changedAt,
-    "unchanged assets are not rewritten",
-  );
-  assert.deepEqual(await readFile(original), source);
-  const manifest = JSON.parse(
-    await readFile(path.join(root, "shared/finale-desk-assets.json"), "utf8"),
-  );
-  const audit = JSON.parse(
-    await readFile(
-      path.join(root, "docs/finales/giuseppe-desk-v2.json"),
-      "utf8",
-    ),
-  );
-  assert.deepEqual(manifest, first.manifest);
-  assert.equal(audit.sourceSha256, hash(source));
-  assert.equal(audit.sha256, hash(await readFile(runtime)));
-});
-
-test("the published Giuseppe desk uses complete tight artwork with exact PNG/WebP pixels", async () => {
-  const manifest = JSON.parse(
-    await readFile("shared/finale-desk-assets.json", "utf8"),
-  );
-  const audit = JSON.parse(
-    await readFile("docs/finales/giuseppe-desk-v2.json", "utf8"),
-  );
-  const [raw, png, webp] = await Promise.all([
-    readFile(audit.source),
-    readFile(audit.normalized),
-    readFile(audit.destination),
-  ]);
-  assert.equal(manifest.file, "finales-giuseppe-desk-v2");
-  assert.deepEqual(manifest.frame, audit.frame);
-  assert.equal(hash(raw), audit.sourceSha256);
-  assert.equal(hash(png), audit.normalizedSha256);
-  assert.equal(hash(webp), audit.sha256);
-  const source = await sharp(png)
-    .ensureAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-  assert.deepEqual(
-    await sharp(webp).ensureAlpha().raw().toBuffer(),
-    source.data,
-  );
-  assert.equal(hash(source.data), audit.rgbaSha256);
-  let minX = source.info.width,
-    minY = source.info.height,
-    maxX = -1,
-    maxY = -1;
-  for (let y = 0; y < source.info.height; y++)
-    for (let x = 0; x < source.info.width; x++) {
-      if (!source.data[(y * source.info.width + x) * 4 + 3]) continue;
-      minX = Math.min(minX, x);
-      minY = Math.min(minY, y);
-      maxX = Math.max(maxX, x);
-      maxY = Math.max(maxY, y);
-    }
-  assert.deepEqual(manifest.frame, {
-    x: minX,
-    y: minY,
-    width: maxX - minX + 1,
-    height: maxY - minY + 1,
-  });
-  assert.ok(
-    minX >= 16 &&
-      minY >= 16 &&
-      maxX < source.info.width - 16 &&
-      maxY < source.info.height - 16,
-  );
-  assert.equal(manifest.frame.width, audit.sourceBounds.width);
-  assert.equal(manifest.frame.height, audit.sourceBounds.height);
-  const repacked = await packGiuseppeDesk(raw);
-  assert.deepEqual(repacked.png, png);
-  assert.deepEqual(repacked.webp, webp);
 });

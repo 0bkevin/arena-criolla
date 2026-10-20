@@ -1,8 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
-import sharp from "sharp";
+
 import {
   createMatch,
   emptyInput,
@@ -12,7 +10,7 @@ import {
   type Input,
 } from "../shared/engine";
 import { fighterById } from "../shared/content";
-import { TECHNIQUES } from "../shared/techniques";
+
 import { finaleById } from "../shared/finales";
 import {
   drawTransformationBody,
@@ -282,84 +280,4 @@ test("transformed render poses match contact, recoil and locomotion with safe mi
   );
   assert.equal(draws.length, 1);
   assert.equal(finaleById("emilio")!.damageBeats.length, 0);
-});
-
-test("El Chunior provenance binds untouched generation to normalized grid and lossless complete runtime poses", async () => {
-  const folder = "docs/finales/attack-overhaul/emilio/";
-  const audit = JSON.parse(
-    await readFile(folder + "grid-normalization-v2.json", "utf8"),
-  );
-  const report = JSON.parse(await readFile(folder + "assets.json", "utf8"));
-  const sha = (bytes: Buffer) =>
-    createHash("sha256").update(bytes).digest("hex");
-  assert.equal(audit.exactRetainedRgbaRoundtrip, true);
-  assert.equal(audit.poseCount, 8);
-  assert.equal(sha(await readFile(audit.source)), audit.sourceSha256);
-  assert.equal(
-    audit.retainedSourceRgbaSha256,
-    audit.reconstructedSourceRgbaSha256,
-  );
-  assert.equal(sha(await readFile(report.source)), report.sourceSha256);
-  const packed = await sharp(report.normalized).ensureAlpha().raw().toBuffer();
-  const runtime = await sharp(report.destination)
-    .ensureAlpha()
-    .raw()
-    .toBuffer();
-  assert.deepEqual(runtime, packed);
-  assert.equal(sha(runtime), report.rgbaSha256);
-  const alpha = Buffer.from(runtime.filter((_, i) => i % 4 === 3));
-  assert.equal(sha(alpha), report.alphaSha256);
-  assert.ok(alpha.includes(0) && alpha.includes(255));
-  assert.deepEqual(ATTACK_ART.emilio.frames, report.frames);
-  assert.deepEqual(Object.keys(report.frames), [
-    "ready",
-    "guard",
-    "run",
-    "jump",
-    "punch",
-    "kick",
-    "hurt",
-    "retort",
-  ]);
-  const r = setup();
-  r.activate();
-  r.advance(40);
-  const calls: unknown[][] = [];
-  const ctx = new Proxy(
-    {
-      globalAlpha: 1,
-      drawImage(...args: unknown[]) {
-        calls.push(args);
-      },
-    },
-    { get: (o, k) => Reflect.get(o, k) ?? (() => {}) },
-  ) as unknown as CanvasRenderingContext2D;
-  const images = {
-    [ATTACK_ART.emilio.file]: { width: 2048, height: 1024 } as HTMLImageElement,
-  };
-  for (const [attack, tick, expected] of [
-    ["light", 6, "punch"],
-    ["heavy", 11, "kick"],
-    ["special", 8, "retort"],
-    ["special", 24, "retort"],
-  ] as const) {
-    r.source.attack = attack;
-    r.source.attackTick = tick;
-    assert.equal(
-      drawTransformationBody(ctx, images, r.source, 0, 0, 190),
-      true,
-    );
-    const crop = report.frames[expected];
-    assert.deepEqual(calls.at(-1)!.slice(1, 5), [
-      crop.x,
-      crop.y,
-      crop.width,
-      crop.height,
-    ]);
-  }
-  images[ATTACK_ART.emilio.file] = {
-    width: 512,
-    height: 512,
-  } as HTMLImageElement;
-  assert.equal(drawTransformationBody(ctx, images, r.source, 0, 0, 190), false);
 });

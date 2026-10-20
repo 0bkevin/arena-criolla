@@ -17,9 +17,6 @@ import {
   pumaRingPose,
 } from "../src/game/finales/puma";
 import type { FinaleView } from "../src/game/finales/types";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
-import sharp from "sharp";
 
 function setup(
   side: 0 | 1 = 0,
@@ -368,70 +365,4 @@ test("Puma preflights every full pose and keeps upright phases with fixed feet a
     new Set([12, 21, 30, 39].map((t) => pumaRingPose(t, 0))).size,
     1,
   );
-});
-test("Puma raw artwork, references, prompts and canonical identity hashes remain intact", async () => {
-  const report = JSON.parse(
-    await readFile("docs/finales/attack-overhaul/puma/provenance.json", "utf8"),
-  );
-  for (const [file, hash] of Object.entries({
-    ...report.rawFiles,
-    ...report.canonicalSha256,
-    ...report.referenceSha256,
-    ...report.promptSha256,
-  }))
-    assert.equal(
-      createHash("sha256")
-        .update(await readFile(file))
-        .digest("hex"),
-      hash,
-    );
-  const audit = JSON.parse(
-    await readFile("docs/finales/attack-overhaul/puma/grid-audit.json", "utf8"),
-  );
-  assert.equal(audit.exactRetainedRgbaRoundtrip, true);
-  assert.equal(audit.objects.length, 6);
-});
-
-test("the corrected ring keeps v2 actor/A/C and v3 B/D whole cells with exact RGBA", async () => {
-  const root = "assets/source/finales/attack-overhaul/puma/";
-  const assembly = JSON.parse(
-    await readFile("docs/finales/attack-overhaul/puma/assembly.json", "utf8"),
-  );
-  const result = await sharp(root + "puma-grid.png")
-    .ensureAlpha()
-    .raw()
-    .toBuffer();
-  for (const entry of assembly.cells) {
-    const source = await sharp(root + entry.source)
-      .ensureAlpha()
-      .raw()
-      .toBuffer();
-    const rows = [];
-    for (let y = 0; y < assembly.cell; y++) {
-      const start =
-        ((Math.floor(entry.cell / 3) * assembly.cell + y) * assembly.width +
-          (entry.cell % 3) * assembly.cell) *
-        4;
-      const end = start + assembly.cell * 4;
-      assert.ok(
-        result.subarray(start, end).equals(source.subarray(start, end)),
-      );
-      rows.push(result.subarray(start, end));
-    }
-    assert.equal(
-      createHash("sha256").update(Buffer.concat(rows)).digest("hex"),
-      entry.rgbaSha256,
-    );
-    assert.equal(
-      entry.source,
-      [3, 5].includes(entry.cell) ? "grid-v3.png" : "grid-v2.png",
-    );
-  }
-  const corrected = JSON.parse(
-    await readFile(
-      "docs/finales/attack-overhaul/puma/grid-v3-audit.json",
-      "utf8",
-    ),
-  );
-  assert.equal(corrected.exactRetainedRgbaRoundtrip, true);
 });

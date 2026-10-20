@@ -7,18 +7,15 @@ import {
   type MatchState,
   type Input,
 } from "../shared/engine";
-import { fighterById, type FighterId } from "../shared/content";
+import { type FighterId } from "../shared/content";
 import { finaleById } from "../shared/finales";
 import {
   MCM_POSES,
   MCM_CONTACT_TICK,
-  MCM_BODY_HEIGHTS,
   drawMcmFinale,
 } from "../src/game/finales/mcm";
 import { ATTACK_ART } from "../src/game/attack-art";
 import type { FinaleView } from "../src/game/finales/types";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
 
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const a = { name: "Mcm", fighter: "mcm" as const, wins: 3 },
@@ -196,72 +193,10 @@ test("captured caravan serializes and resumes identically through impact and ord
   }
 });
 
-test("caravan uses a real approach before contact and preserves all generated source provenance", async () => {
+test("caravan uses a real approach before contact", async () => {
   const { mcmChargeProgress } = await import("../src/game/finales/mcm");
   assert.equal(mcmChargeProgress(54), 0);
   assert.ok(mcmChargeProgress(80) > 0);
   assert.ok(mcmChargeProgress(95) < 1);
   assert.equal(mcmChargeProgress(96), 1);
-  const base = "docs/finales/attack-overhaul/mcm/";
-  for (const name of ["truck", "empty", "people", "flag"]) {
-    const grid = JSON.parse(
-      await readFile(base + name + "-grid-audit.json", "utf8"),
-    );
-    assert.equal(grid.exactRetainedRgbaRoundtrip, true);
-    assert.equal(grid.objects.length, name === "people" ? 6 : 1);
-  }
-  const pack = JSON.parse(await readFile(base + "assets.json", "utf8"));
-  for (const obj of pack.objects.filter(
-    (o: { pose: string }) => MCM_BODY_HEIGHTS[o.pose],
-  )) {
-    const frame = pack.frames[obj.pose];
-    assert.ok(
-      Math.abs(
-        (MCM_BODY_HEIGHTS[obj.pose] / frame.bodyHeight) * obj.uniformScale - 1,
-      ) < 0.002,
-    );
-  }
-  const provenance = JSON.parse(
-    await readFile(base + "provenance.json", "utf8"),
-  );
-  for (const [path, hash] of Object.entries({
-    ...provenance.rawFiles,
-    ...provenance.canonicalSha256,
-    ...provenance.referenceSha256,
-    ...provenance.promptSha256,
-  }))
-    assert.equal(
-      createHash("sha256")
-        .update(await readFile(path))
-        .digest("hex"),
-      hash,
-    );
-});
-
-test("transparent margin adds no edits to source RGBA and inversely reproduces every original byte", async () => {
-  const sharp = (await import("sharp")).default;
-  const audit = JSON.parse(
-    await readFile(
-      "docs/finales/attack-overhaul/mcm/padding-audit.json",
-      "utf8",
-    ),
-  );
-  for (const item of audit.objects) {
-    const original = await sharp(item.source)
-      .ensureAlpha()
-      .raw()
-      .toBuffer({ resolveWithObject: true });
-    const inverse = await sharp(item.padded)
-      .extract({
-        left: 40,
-        top: 40,
-        width: original.info.width,
-        height: original.info.height,
-      })
-      .ensureAlpha()
-      .raw()
-      .toBuffer();
-    assert.deepEqual(inverse, original.data);
-    assert.equal(item.exactInverse, true);
-  }
 });

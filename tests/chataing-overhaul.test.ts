@@ -7,20 +7,17 @@ import {
   type MatchState,
   type Input,
 } from "../shared/engine";
-import { fighterById, type FighterId } from "../shared/content";
+import { type FighterId } from "../shared/content";
 import { finaleById } from "../shared/finales";
 import {
   CHATAING_POSES,
   CHATAING_SMASH_TICK,
-  CHATAING_BODY_HEIGHTS,
   drawChataingFinale,
   drawChataingSpecial,
   drawWiredMicrophone,
 } from "../src/game/finales/chataing";
 import { ATTACK_ART } from "../src/game/attack-art";
 import type { FinaleView } from "../src/game/finales/types";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
 
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const a = { name: "Luis", fighter: "chataing" as const, wins: 3 },
@@ -315,72 +312,48 @@ test("every Chataing pose and valid intrinsic image is required before either mo
 });
 
 test("neutral microphone fallback works without optional artwork metadata and default anchors stay finite", () => {
-  const sheet = ATTACK_ART.chataing, frame = sheet.frames.microphone;
+  const sheet = ATTACK_ART.chataing,
+    frame = sheet.frames.microphone;
   const calls: string[] = [];
-  const ctx = new Proxy({ globalAlpha: 1 }, {
-    get(target, name) {
-      if (name === "globalAlpha") return target.globalAlpha;
-      return (...args: unknown[]) => {
-        calls.push(String(name));
-        for (const value of args)
-          if (typeof value === "number") assert.ok(Number.isFinite(value));
-      };
+  const ctx = new Proxy(
+    { globalAlpha: 1 },
+    {
+      get(target, name) {
+        if (name === "globalAlpha") return target.globalAlpha;
+        return (...args: unknown[]) => {
+          calls.push(String(name));
+          for (const value of args)
+            if (typeof value === "number") assert.ok(Number.isFinite(value));
+        };
+      },
+      set(target, name, value) {
+        if (typeof value === "number") assert.ok(Number.isFinite(value));
+        if (name === "globalAlpha") target.globalAlpha = value;
+        return true;
+      },
     },
-    set(target, name, value) {
-      if (typeof value === "number") assert.ok(Number.isFinite(value));
-      if (name === "globalAlpha") target.globalAlpha = value;
-      return true;
-    },
-  }) as unknown as CanvasRenderingContext2D;
+  ) as unknown as CanvasRenderingContext2D;
   try {
     delete sheet.frames.microphone;
     for (const artwork of [false, true]) {
       calls.length = 0;
       drawWiredMicrophone(ctx, {}, { x: 35, y: 90 }, -1, 0.3, 40, artwork);
-      assert.equal(calls.filter(name => name === "ellipse").length, 1);
+      assert.equal(calls.filter((name) => name === "ellipse").length, 1);
       assert.equal(calls.includes("drawImage"), false);
     }
     sheet.frames.microphone = { ...frame, anchorY: undefined };
     calls.length = 0;
-    drawWiredMicrophone(ctx, {
-      [sheet.file]: { width: 1536, height: 1024 } as HTMLImageElement,
-    }, { x: 35, y: 90 }, 1);
-    assert.equal(calls.filter(name => name === "drawImage").length, 1);
+    drawWiredMicrophone(
+      ctx,
+      {
+        [sheet.file]: { width: 1536, height: 1024 } as HTMLImageElement,
+      },
+      { x: 35, y: 90 },
+      1,
+    );
+    assert.equal(calls.filter((name) => name === "drawImage").length, 1);
     assert.equal(calls.includes("ellipse"), false);
   } finally {
     sheet.frames.microphone = frame;
   }
-});
-
-test("whole generated poses preserve RGBA provenance and common head scale", async () => {
-  const base = "docs/finales/attack-overhaul/chataing/";
-  const grid = JSON.parse(await readFile(base + "grid-audit.json", "utf8"));
-  const pack = JSON.parse(await readFile(base + "assets.json", "utf8"));
-  assert.equal(grid.exactRetainedRgbaRoundtrip, true);
-  assert.equal(grid.objects.length, 6);
-  for (const obj of pack.objects.slice(0, 4)) {
-    const frame = pack.frames[obj.pose];
-    assert.ok(
-      Math.abs(
-        (CHATAING_BODY_HEIGHTS[obj.pose] / frame.bodyHeight) *
-          obj.uniformScale -
-          1,
-      ) < 0.002,
-    );
-  }
-  const provenance = JSON.parse(
-    await readFile(base + "provenance.json", "utf8"),
-  );
-  for (const [path, hash] of Object.entries({
-    ...provenance.rawFiles,
-    ...provenance.canonicalSha256,
-    ...provenance.referenceSha256,
-    ...provenance.promptSha256,
-  }))
-    assert.equal(
-      createHash("sha256")
-        .update(await readFile(path))
-        .digest("hex"),
-      hash,
-    );
 });

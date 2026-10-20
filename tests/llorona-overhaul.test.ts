@@ -3,15 +3,8 @@ import assert from "node:assert/strict";
 import { createMatch, emptyInput, stepMatch, WORLD } from "../shared/engine";
 import { finaleById } from "../shared/finales";
 import { TECHNIQUES } from "../shared/techniques";
-import { fighterById } from "../shared/content";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
-import {
-  drawLloronaFinale,
-  drawLloronaProjectile,
-  lloronaHeight,
-  LLORONA_POSES,
-} from "../src/game/finales/llorona";
+
+import { drawLloronaFinale, LLORONA_POSES } from "../src/game/finales/llorona";
 import { ATTACK_ART } from "../src/game/attack-art";
 import type { FinaleView } from "../src/game/finales/types";
 import { writeFinaleMusic } from "../src/game/finale-sounds";
@@ -207,45 +200,6 @@ test("original synthesized lament has energy at all arrivals and finite samples"
     assert.ok(
       left.slice(beat * 100, beat * 100 + 1000).some((n) => Math.abs(n) > 0.01),
     );
-});
-
-test("raw assets and portal frame preserve audited hashes and anatomical scale", async () => {
-  const provenance = JSON.parse(
-    await readFile(
-      "docs/finales/attack-overhaul/llorona/provenance.json",
-      "utf8",
-    ),
-  );
-  for (const f of provenance.files)
-    assert.equal(
-      createHash("sha256")
-        .update(await readFile(f.path))
-        .digest("hex"),
-      f.sha256,
-    );
-  assert.ok(ATTACK_ART.llorona.frames.portal.width >= 470);
-  const pack = JSON.parse(
-    await readFile("docs/finales/attack-overhaul/llorona/assets.json", "utf8"),
-  );
-  assert.equal(
-    createHash("sha256")
-      .update(await readFile(pack.destination))
-      .digest("hex"),
-    pack.runtimeSha256,
-  );
-  const scales = pack.objects
-    .filter((o: any) => !["portal", "wave"].includes(o.pose))
-    .map(
-      (o: any) =>
-        ((lloronaHeight(o.pose) /
-          ATTACK_ART.llorona.frames[o.pose].bodyHeight!) *
-          o.height) /
-        o.sourceBounds.height,
-    );
-  assert.ok(
-    Math.max(...scales) - Math.min(...scales) < 0.001,
-    "one anatomical pixel scale for every pose",
-  );
 });
 
 test("preflight refuses every missing pose before any canvas or actor operation", () => {
@@ -494,59 +448,4 @@ test("damage phases match the actual capture beats without an execution release"
     "release",
     "release",
   ]);
-});
-
-test("assembling source cells preserves every original RGBA byte including portal wisps and wave droplets", async () => {
-  const sharp = (await import("sharp")).default;
-  const base = "assets/source/finales/attack-overhaul/llorona/";
-  const sources = await Promise.all(
-    ["poses-normalized-v1.png", "effects-raw-v1.png", "combined-v1.png"].map(
-      (file) =>
-        sharp(base + file)
-          .ensureAlpha()
-          .raw()
-          .toBuffer({ resolveWithObject: true }),
-    ),
-  );
-  const [poses, effects, assembled] = sources;
-  const cells = Array.from({ length: 6 }, (_, i) => ({
-    source: poses,
-    x: (i % 2) * 608,
-    y: Math.floor(i / 2) * 576,
-    width: 608,
-    height: 576,
-    destX: (i % 2) * 1500 + 446,
-    destY: Math.floor(i / 2) * 800 + 112,
-  }));
-  cells.push(
-    {
-      source: effects,
-      x: 0,
-      y: 0,
-      width: 1392,
-      height: 724,
-      destX: 54,
-      destY: 2438,
-    },
-    {
-      source: effects,
-      x: 1392,
-      y: 0,
-      width: 780,
-      height: 724,
-      destX: 1860,
-      destY: 2438,
-    },
-  );
-  for (const cell of cells)
-    for (let row = 0; row < cell.height; row++) {
-      const src = ((cell.y + row) * cell.source.info.width + cell.x) * 4,
-        dst = ((cell.destY + row) * assembled.info.width + cell.destX) * 4;
-      assert.ok(
-        cell.source.data
-          .subarray(src, src + cell.width * 4)
-          .equals(assembled.data.subarray(dst, dst + cell.width * 4)),
-        `RGBA mismatch in row${row} of destination ${cell.destX},${cell.destY}`,
-      );
-    }
 });

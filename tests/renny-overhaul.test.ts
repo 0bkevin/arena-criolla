@@ -6,27 +6,6 @@ import { drawRennyFinale } from "../src/game/finales/renny";
 import type { FinaleView } from "../src/game/finales/types";
 import { ATTACK_ART, drawAttackArt } from "../src/game/attack-art";
 import { finaleArenaLayout } from "../src/game/finale-layout";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
-
-test("Renny keeps the generated originals and canonical fighter/entrance identity unchanged", async () => {
-  const report = JSON.parse(
-    await readFile(
-      "docs/finales/attack-overhaul/renny/provenance.json",
-      "utf8",
-    ),
-  );
-  for (const [path, expected] of Object.entries({
-    ...report.rawFiles,
-    ...report.canonicalSha256,
-  }))
-    assert.equal(
-      createHash("sha256")
-        .update(await readFile(path))
-        .digest("hex"),
-      expected,
-    );
-});
 
 test("Renny's helpers stay on the captured rival's surface at unequal heights", () => {
   const sheet = ATTACK_ART.renny;

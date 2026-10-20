@@ -4,7 +4,7 @@ import { loadImage, preloadAssets } from "../src/game/assets";
 import { makeDefinition } from "../server/creator/pipeline";
 import { registerCommunityCharacter } from "../shared/community";
 import { deterministicCreatorProvider } from "./fixtures/creator-provider";
-import atlas from "../docs/character-sprite-qa.json";
+import atlas from "../shared/sprite-geometry.json";
 import { fighterById } from "../shared/content";
 import { finaleAsset } from "../shared/finales";
 

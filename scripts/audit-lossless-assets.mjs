@@ -245,7 +245,7 @@ export async function auditAsset(file, { candidateDirectory }) {
 }
 export async function runAudit({
   directory = "public",
-  output = "docs/performance/lossless-assets/per-asset-audit.json",
+  output = path.join(os.tmpdir(), "arena-per-asset-audit.json"),
   candidateDirectory,
   workers = 2,
 } = {}) {

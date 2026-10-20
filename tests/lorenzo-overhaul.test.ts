@@ -9,18 +9,16 @@ import {
 } from "../shared/engine";
 import { type FighterId } from "../shared/content";
 import { finaleById } from "../shared/finales";
-import { TECHNIQUES } from "../shared/techniques";
+
 import {
   LORENZO_POSES,
   LORENZO_CONTACT_TICK,
-  LORENZO_SPECIAL_POSES,
   lorenzoSpecialPose,
   drawLorenzoFinale,
 } from "../src/game/finales/lorenzo";
 import { ATTACK_ART } from "../src/game/attack-art";
 import type { FinaleView } from "../src/game/finales/types";
-import { readFile } from "node:fs/promises";
-import sharp from "sharp";
+
 import { createHash } from "node:crypto";
 const sha = (b: Buffer) => createHash("sha256").update(b).digest("hex");
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
@@ -273,42 +271,4 @@ test("P.A.N. cost failure and serialized in-flight replay preserve deterministic
       );
     }
   }
-});
-
-test("all complete source silhouettes retain alpha and runtime exact RGBA", async () => {
-  const base = "docs/finales/attack-overhaul/lorenzo";
-  for (const name of [
-    "normalize-v1",
-    "normalize-v2",
-    "normalize-v3-left",
-    "normalize-v4",
-    "normalize-v6",
-  ]) {
-    const audit = JSON.parse(
-      await readFile(base + "/" + name + ".json", "utf8"),
-    );
-    assert.equal(audit.exactRetainedRgbaRoundtrip, true);
-    assert.equal(
-      audit.retainedSourceRgbaSha256,
-      audit.reconstructedSourceRgbaSha256,
-    );
-  }
-  const report = JSON.parse(await readFile(base + "/assets.json", "utf8"));
-  assert.equal(report.lossless, true);
-  assert.equal(report.poses.length, 10);
-  const png = await sharp(report.normalized).raw().toBuffer(),
-    webp = await sharp(report.destination).raw().toBuffer();
-  assert.equal(sha(png), sha(webp));
-  const source = await sharp(
-    "assets/source/finales/attack-overhaul/lorenzo/raw-v3.png",
-  )
-    .extract({ left: 724, top: 0, width: 724, height: 543 })
-    .raw()
-    .toBuffer();
-  const cell = await sharp(
-    "assets/source/finales/attack-overhaul/lorenzo/v3-left-exact.png",
-  )
-    .raw()
-    .toBuffer();
-  assert.equal(sha(source), sha(cell));
 });

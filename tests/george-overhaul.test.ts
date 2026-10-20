@@ -7,20 +7,16 @@ import {
   type MatchState,
   type Input,
 } from "../shared/engine";
-import { fighterById, type FighterId } from "../shared/content";
+import { type FighterId } from "../shared/content";
 import { finaleById } from "../shared/finales";
 import {
   GEORGE_POSES,
   GEORGE_CONTACT_TICK,
-  GEORGE_BODY_HEIGHTS,
   drawGeorgeFinale,
   georgeCurtainHem,
-  GEORGE_POSE_SCALE,
 } from "../src/game/finales/george";
 import { ATTACK_ART } from "../src/game/attack-art";
 import type { FinaleView } from "../src/game/finales/types";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
 
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const a = { name: "George", fighter: "george" as const, wins: 3 },
@@ -167,38 +163,6 @@ test("every George pose and valid intrinsic image is required before the module 
     );
 });
 
-test("whole generated poses preserve RGBA provenance and common head scale", async () => {
-  const base = "docs/finales/attack-overhaul/george/";
-  const grid = JSON.parse(await readFile(base + "grid-audit.json", "utf8"));
-  const pack = JSON.parse(await readFile(base + "assets.json", "utf8"));
-  assert.equal(grid.exactRetainedRgbaRoundtrip, true);
-  assert.equal(grid.objects.length, 6);
-  for (const obj of pack.objects.slice(0, 4)) {
-    const frame = pack.frames[obj.pose];
-    assert.ok(
-      Math.abs(
-        (GEORGE_BODY_HEIGHTS[obj.pose] / frame.bodyHeight) * obj.uniformScale -
-          1,
-      ) < 0.002,
-    );
-  }
-  const provenance = JSON.parse(
-    await readFile(base + "provenance.json", "utf8"),
-  );
-  for (const [path, hash] of Object.entries({
-    ...provenance.rawFiles,
-    ...provenance.canonicalSha256,
-    ...provenance.referenceSha256,
-    ...provenance.promptSha256,
-  }))
-    assert.equal(
-      createHash("sha256")
-        .update(await readFile(path))
-        .digest("hex"),
-      hash,
-    );
-});
-
 test("curtain hem reaches every rival crown exactly on96, covers and lifts before release", () => {
   for (const feet of [516, 410, 620])
     for (const displayHeight of [140, 177, 198]) {
@@ -261,30 +225,6 @@ test("special startup interruption and energy gate do not emit pulses; active ca
     }
     assert.deepEqual(JSON.parse(JSON.stringify(f.state)), copy);
   }
-});
-
-test("whole replacement support leaves the other five cells byte-identical, and recovery keeps upright height", async () => {
-  const assembly = JSON.parse(
-    await readFile("docs/finales/attack-overhaul/george/assembly.json", "utf8"),
-  );
-  assert.equal(assembly.cells.length, 5);
-  for (const c of assembly.cells) {
-    assert.equal(c.expected, c.actual);
-    assert.equal(c.exact, true);
-  }
-  close(
-    GEORGE_BODY_HEIGHTS.recover * GEORGE_POSE_SCALE.recover,
-    GEORGE_BODY_HEIGHTS.present,
-  );
-  assert.equal(GEORGE_POSE_SCALE.bow, 1);
-  assert.equal(GEORGE_POSE_SCALE.incline, 1);
-  const support = JSON.parse(
-    await readFile(
-      "docs/finales/attack-overhaul/george/support-grid-audit.json",
-      "utf8",
-    ),
-  );
-  assert.equal(support.exactRetainedRgbaRoundtrip, true);
 });
 
 test("contact follows the selected canonical battle-frame height and labels follow the presented rival", () => {

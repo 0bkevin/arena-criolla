@@ -7,7 +7,7 @@ import {
   type FighterId,
 } from "../shared/content";
 import { finaleAsset } from "../shared/finales";
-import atlas from "../docs/character-sprite-qa.json";
+import atlas from "../shared/sprite-geometry.json";
 import attackArt from "../shared/attack-assets.json";
 import actors from "../shared/finale-actor-assets.json";
 import cafe from "../shared/finale-cafe-assets.json";

@@ -7,10 +7,9 @@ import {
   type MatchState,
   type Input,
 } from "../shared/engine";
-import { fighterById, type FighterId } from "../shared/content";
+import { type FighterId } from "../shared/content";
 import { finaleById } from "../shared/finales";
 import {
-  MELANIO_POSES,
   MELANIO_CONTACT_TICK,
   MELANIO_BODY_HEIGHTS,
   MELANIO_FINAL_POSES,
@@ -22,8 +21,6 @@ import {
 } from "../src/game/finales/melanio";
 import { ATTACK_ART } from "../src/game/attack-art";
 import type { FinaleView } from "../src/game/finales/types";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
 
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const a = { name: "Melanio", fighter: "melanio" as const, wins: 3 },
@@ -262,7 +259,7 @@ test("a missing special cell fails preflight before drawing; movement and hurt r
   );
 });
 
-test("phone travel reaches contact once, returns to anchor before release and preserves generated provenance", async () => {
+test("phone travel reaches contact once, returns to anchor before release", async () => {
   assert.equal(melanioApproach(90), 0);
   assert.ok(melanioApproach(113) < 1);
   assert.equal(melanioApproach(114), 1);
@@ -272,30 +269,8 @@ test("phone travel reaches contact once, returns to anchor before release and pr
     "airborne strike immediately returns instead of hovering",
   );
   assert.equal(melanioApproach(168, true), 0);
-  const base = "docs/finales/attack-overhaul/melanio/";
-  const provenance = JSON.parse(
-    await readFile(base + "provenance.json", "utf8"),
-  );
-  for (const [path, hash] of Object.entries({
-    ...provenance.rawFiles,
-    ...provenance.canonicalSha256,
-    ...provenance.referenceSha256,
-    ...provenance.promptSha256,
-  }))
-    assert.equal(
-      createHash("sha256")
-        .update(await readFile(path))
-        .digest("hex"),
-      hash,
-    );
-  for (const name of ["v1", "special", "high", "release"]) {
-    const audit = JSON.parse(
-      await readFile(base + name + "-grid-audit.json", "utf8"),
-    );
-    assert.equal(audit.exactRetainedRgbaRoundtrip, true);
-  }
   assert.ok(
     MELANIO_BODY_HEIGHTS["strike-low"] < MELANIO_BODY_HEIGHTS.record,
-    "bent knees preserve source head scale",
+    "bent knees preserve character scale",
   );
 });

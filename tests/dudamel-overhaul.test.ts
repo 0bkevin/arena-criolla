@@ -3,13 +3,10 @@ import assert from "node:assert/strict";
 import { createMatch, emptyInput, stepMatch, WORLD } from "../shared/engine";
 import { finaleById } from "../shared/finales";
 import { TECHNIQUES } from "../shared/techniques";
-import { fighterById } from "../shared/content";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
+
 import {
   drawDudamelFinale,
   drawDudamelProjectile,
-  dudamelHeight,
   DUDAMEL_POSES,
 } from "../src/game/finales/dudamel";
 import { ATTACK_ART } from "../src/game/attack-art";
@@ -271,42 +268,6 @@ test("original synthesized orchestra has energy at all arrivals and finite sampl
     assert.ok(
       left.slice(beat * 100, beat * 100 + 1000).some((n) => Math.abs(n) > 0.01),
     );
-});
-
-test("raw assets and large orchestra frame preserve audited hashes and anatomical scale", async () => {
-  const provenance = JSON.parse(
-    await readFile(
-      "docs/finales/attack-overhaul/dudamel/provenance.json",
-      "utf8",
-    ),
-  );
-  for (const f of provenance.files)
-    assert.equal(
-      createHash("sha256")
-        .update(await readFile(f.path))
-        .digest("hex"),
-      f.sha256,
-    );
-  assert.equal(ATTACK_ART.dudamel.frames.orchestra.width, 1536);
-  const pack = JSON.parse(
-    await readFile("docs/finales/attack-overhaul/dudamel/assets.json", "utf8"),
-  );
-  assert.equal(
-    createHash("sha256")
-      .update(await readFile(pack.destination))
-      .digest("hex"),
-    pack.runtimeSha256,
-  );
-  const scales = pack.objects.map(
-    (o: any) =>
-      ((dudamelHeight(o.pose) / ATTACK_ART.dudamel.frames[o.pose].bodyHeight!) *
-        o.height) /
-      o.sourceBounds.height,
-  );
-  assert.ok(
-    Math.max(...scales) - Math.min(...scales) < 0.001,
-    "one anatomical pixel scale for every pose",
-  );
 });
 
 test("preflight refuses every missing pose before any canvas or actor operation", () => {

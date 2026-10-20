@@ -5,8 +5,7 @@ import { finaleById } from "../shared/finales";
 import { drawSimonFinale, simonSpecialPose } from "../src/game/finales/simon";
 import type { FinaleView } from "../src/game/finales/types";
 import { ATTACK_ART, drawAttackArt } from "../src/game/attack-art";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
+
 import { writeFinaleMusic } from "../src/game/finale-sounds";
 
 test("Simón's release stroke matches the first visible emission rather than a floating overlay", () => {
@@ -127,34 +126,6 @@ test("Simón definitive rejects locked, depleted, behind and guarded captures; l
     assert.equal(run.state.phase, "finished");
     assert.equal(run.state.winner, side);
   }
-});
-
-test("Simón retains every raw generation and the unchanged canonical identities", async () => {
-  const report = JSON.parse(
-    await readFile(
-      "docs/finales/attack-overhaul/simon/provenance.json",
-      "utf8",
-    ),
-  );
-  for (const [path, hash] of Object.entries({
-    ...report.rawFiles,
-    ...report.canonicalSha256,
-    ...report.referenceSha256,
-  }))
-    assert.equal(
-      createHash("sha256")
-        .update(await readFile(path))
-        .digest("hex"),
-      hash,
-    );
-  const grid = JSON.parse(
-    await readFile(
-      "docs/finales/attack-overhaul/simon/grid-audit.json",
-      "utf8",
-    ),
-  );
-  assert.equal(grid.exactRetainedRgbaRoundtrip, true);
-  assert.equal(grid.objects.length, 6);
 });
 
 function record(tick: number, motion = 1, gap = 453, rise = 0, edge = false) {

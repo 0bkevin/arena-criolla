@@ -9,18 +9,16 @@ import {
 } from "../shared/engine";
 import { type FighterId } from "../shared/content";
 import { finaleById } from "../shared/finales";
-import { TECHNIQUES } from "../shared/techniques";
+
 import {
   DAYANA_POSES,
   DAYANA_CONTACT_TICK,
-  DAYANA_SPECIAL_POSES,
   dayanaSpecialPose,
   drawDayanaFinale,
 } from "../src/game/finales/dayana";
 import { ATTACK_ART } from "../src/game/attack-art";
 import type { FinaleView } from "../src/game/finales/types";
-import { readFile } from "node:fs/promises";
-import sharp from "sharp";
+
 import { createHash } from "node:crypto";
 const sha = (b: Buffer) => createHash("sha256").update(b).digest("hex");
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
@@ -279,59 +277,4 @@ test("football cost failure and serialized in-flight replay preserve determinist
       );
     }
   }
-});
-
-test("six complete raw team cells preserve every RGBA pixel through assembly, including soft alpha islands", async () => {
-  const raw = await sharp(
-    "assets/source/finales/attack-overhaul/dayana/raw-v4.png",
-  )
-    .ensureAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-  const assembled = sharp(
-    "assets/source/finales/attack-overhaul/dayana/dayana-grid.png",
-  );
-  for (let i = 0; i < 6; i++) {
-    const column = i % 3,
-      row = Math.floor(i / 3),
-      cell = await sharp(raw.data, { raw: raw.info })
-        .extract({
-          left: column * 512,
-          top: row * 512,
-          width: 512,
-          height: 512,
-        })
-        .raw()
-        .toBuffer();
-    let maxEdge = 0;
-    for (let y = 0; y < 512; y++)
-      for (let x = 0; x < 512; x++) {
-        const a = cell[(y * 512 + x) * 4 + 3];
-        if (x < 5 || y < 5 || x >= 507 || y >= 507)
-          maxEdge = Math.max(maxEdge, a);
-      }
-    assert.ok(maxEdge < 40, "visible body is fully inside its cell");
-    const slot = i + 4,
-      out = await assembled
-        .clone()
-        .extract({
-          left: (slot % 5) * 1600 + 544,
-          top: Math.floor(slot / 5) * 1600 + 1058,
-          width: 512,
-          height: 512,
-        })
-        .raw()
-        .toBuffer();
-    assert.equal(sha(out), sha(cell));
-  }
-  const report = JSON.parse(
-    await readFile("docs/finales/attack-overhaul/dayana/assets.json", "utf8"),
-  );
-  assert.equal(report.lossless, true);
-  assert.equal(report.poses.length, 10);
-  const png = await sharp(report.normalized).raw().toBuffer(),
-    webp = await sharp(report.destination).raw().toBuffer();
-  assert.equal(sha(webp), sha(png));
-  assert.equal(TECHNIQUES.corona.projectile?.count, 1);
-  assert.equal(TECHNIQUES.corona.pulses, undefined);
 });

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import atlas from "../docs/character-sprite-qa.json";
+import atlas from "../shared/sprite-geometry.json";
 import entrances from "../shared/entrance-assets.json";
 import { loadSprite } from "../src/game/assets";
 import { makeArenaServer } from "../server/index";

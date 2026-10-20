@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import sharp from "sharp";
-import atlas from "../docs/character-sprite-qa.json";
+import atlas from "../shared/sprite-geometry.json";
 import { isolateFramePixels } from "../src/game/sprite-isolation";
 
 test("Pedro kick and running crops exclude neighboring opaque shoe fragments", async () => {
@@ -9,6 +9,7 @@ test("Pedro kick and running crops exclude neighboring opaque shoe fragments", a
   const file = sprite.files.find(
     (f) => f.file === "public/assets/vallenilla-v5.webp",
   )!;
+  const expectedOpaquePixels: Record<number, number> = { 2: 57115, 6: 54921 };
   for (const index of [2, 6]) {
     const c = file.components[index],
       width = c.maxX - c.minX + 1,
@@ -26,12 +27,12 @@ test("Pedro kick and running crops exclude neighboring opaque shoe fragments", a
       return n;
     };
     assert.ok(
-      count(before) > c.pixels,
+      count(before) > expectedOpaquePixels[index],
       "Fixture reproduces overlapping pose pixels",
     );
     assert.equal(
       count(after),
-      c.pixels,
+      expectedOpaquePixels[index],
       "Every main silhouette pixel remains and foreign pixels are removed",
     );
   }

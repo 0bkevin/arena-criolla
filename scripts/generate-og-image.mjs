@@ -9,7 +9,7 @@ const navy = "#091524";
 const cream = "#fff5db";
 const yellow = "#ffd45a";
 const manifest = JSON.parse(
-  await readFile("docs/character-sprite-qa.json", "utf8"),
+  await readFile("shared/sprite-geometry.json", "utf8"),
 );
 const fighters = JSON.parse(await readFile("shared/fighters.json", "utf8"));
 const svg = (body) =>

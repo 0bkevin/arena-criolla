@@ -4,7 +4,7 @@ import {
   fighterById,
   type FighterId,
 } from "../../shared/content";
-import atlasManifest from "./generated/sprite-geometry.json";
+import atlasManifest from "../../shared/sprite-geometry.json";
 import { presentationById } from "../../shared/presentation";
 import entranceManifest from "../../shared/entrance-assets.json";
 import { COMMUNITY_CHARACTERS } from "../../shared/community";

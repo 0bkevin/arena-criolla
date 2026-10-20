@@ -1,11 +1,6 @@
 {
   "schema": 1,
-  "createdAtUtc": "2026-10-20T01:23:42.987Z",
-  "policy": "Full decoded RGBA including invisible RGB and color/orientation metadata unchanged. Original files retained; explicit AVIF negotiation and verified original-format fallback. Only practical savings above the recorded bytes/ratio thresholds are published.",
-  "audits": {
-    "losslessSha256": "4ce4a8e3d0bb24578a5670b569970c0b3da355393c52539e160b78ae3053c2bb",
-    "avifSha256": "77f1aee89b4ff2812c94e9eb8bbe9323360eeab55bb17a0d5c1216118a8ac46e"
-  },
+  "policy": "Exact decoded RGBA, dimensions and metadata. Serve smaller verified files with original-file fallbacks.",
   "assets": {
     "amanda-defiant-entrance.webp": {
       "source": "assets/amanda-defiant-entrance.webp",

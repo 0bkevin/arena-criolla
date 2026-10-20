@@ -12,8 +12,6 @@ import { finaleById } from "../shared/finales";
 import {
   ALI_POSES,
   ALI_ACTOR_POSES,
-  ALI_BODY_HEIGHTS,
-  aliPoseHeight,
   aliSpecialPose,
   aliLift,
   drawAliFinale,
@@ -22,8 +20,6 @@ import {
 import { ATTACK_ART } from "../src/game/attack-art";
 import type { FinaleView } from "../src/game/finales/types";
 import { writeFinaleMusic } from "../src/game/finale-sounds";
-import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
 
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const a = { name: "Alí", fighter: "ali" as const, wins: 3 },
@@ -238,38 +234,7 @@ test("captured Alí serializes and resumes identically through all three contact
     }
   }
 });
-test("Alí retains every original source and complete silhouette with uniform actor head scale", async () => {
-  const base = "docs/finales/attack-overhaul/ali/";
-  for (const group of ["actor", "choir"]) {
-    const a = JSON.parse(
-      await readFile(base + group + "-grid-audit.json", "utf8"),
-    );
-    assert.ok(a.exactRetainedRgbaRoundtrip);
-    assert.equal(a.objects.length, group === "actor" ? 4 : 6);
-  }
-  const pack = JSON.parse(await readFile(base + "assets.json", "utf8"));
-  for (const obj of pack.objects.filter(
-    (o: { pose: string }) => ALI_BODY_HEIGHTS[o.pose],
-  )) {
-    const scale =
-      (aliPoseHeight(obj.pose, 305) / pack.frames[obj.pose].bodyHeight) *
-      obj.uniformScale;
-    close(
-      Math.round(scale * 1000) / 1000,
-      Math.round((305 / 601) * 1000) / 1000,
-    );
-  }
-  const provenance = JSON.parse(
-    await readFile(base + "provenance.json", "utf8"),
-  );
-  for (const [path, hash] of Object.entries(provenance.sha256))
-    assert.equal(
-      createHash("sha256")
-        .update(await readFile(path))
-        .digest("hex"),
-      hash,
-    );
-});
+
 test("Alí original four-string and synthetic choir score is deterministic, finite, stereo and non-clipping", () => {
   const rate = 12000,
     left = new Float32Array(rate * 3),

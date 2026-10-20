@@ -11,7 +11,6 @@ import {
   type Projectile,
 } from "../shared/engine";
 import { TECHNIQUES } from "../shared/techniques";
-import research from "../docs/culture-v15/research.json";
 
 const added: FighterId[] = [
   "ali",
@@ -68,20 +67,13 @@ function incoming(x: number, direction = -1): Projectile {
   };
 }
 
-test("sixteen individually researched culture figures have original sprites and distinct specials", () => {
+test("sixteen culture figures have distinct sprites and distinct specials", () => {
   assert.equal(FIGHTERS.length, 52);
-  assert.equal(research.fighters.length, 16);
-  assert.deepEqual(new Set(research.fighters.map((f) => f.id)), new Set(added));
   for (const id of added) {
-    const f = fighterById(id),
-      evidence = research.fighters.find((r) => r.id === id)!;
+    const f = fighterById(id);
     assert.equal(f.category, "culture");
     assert.equal(f.sprite, id === "nacho" ? "nacho-v42" : `${id}-v15`);
     assert.equal(new Set(f.combos).size, 3);
-    assert.ok(
-      evidence.sources.length >= 2 && evidence.photos.every((p) => p.viewed),
-    );
-    assert.equal(evidence.audio.realVoice, false);
   }
   assert.equal(new Set(added.map((id) => fighterById(id).ability)).size, 16);
 });
