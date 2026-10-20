@@ -61,14 +61,15 @@ const colorStyle = (color: string): React.CSSProperties =>
 export function App({
   communityRevision: _communityRevision,
 }: { communityRevision?: number } = {}) {
+  const selectableFighters = FIGHTERS.filter((item) => item.id !== "dayana");
   const [mode, setMode] = useState<GameMode>("practice");
   const [initialMatchup] = useState(() => {
     // Pick two distinct fighters once, without shuffling or copying the roster.
-    const first = Math.floor(Math.random() * FIGHTERS.length);
+    const first = Math.floor(Math.random() * selectableFighters.length);
     const second =
-      (first + 1 + Math.floor(Math.random() * (FIGHTERS.length - 1))) %
-      FIGHTERS.length;
-    return [FIGHTERS[first].id, FIGHTERS[second].id] as const;
+      (first + 1 + Math.floor(Math.random() * (selectableFighters.length - 1))) %
+      selectableFighters.length;
+    return [selectableFighters[first].id, selectableFighters[second].id] as const;
   });
   const [fighter, setFighter] = useState<FighterId>(initialMatchup[0]);
   const [rival, setRival] = useState<FighterId>(initialMatchup[1]);
@@ -120,7 +121,7 @@ export function App({
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
     .trim();
-  const visibleFighters = FIGHTERS.filter((f) =>
+  const visibleFighters = selectableFighters.filter((f) =>
     `${f.name} ${f.shortName} ${f.title} ${f.role}`
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
@@ -613,7 +614,7 @@ export function App({
       {modal === "fighters" && (
         <Modal title="Luchadores" wide onClose={() => setModal(null)}>
           <div className="roster-grid">
-            {FIGHTERS.map((f) => (
+            {selectableFighters.map((f) => (
               <button
                 key={f.id}
                 onClick={() => {
