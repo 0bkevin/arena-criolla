@@ -1,0 +1,355 @@
+{
+  "fighter": "ali",
+  "source": "assets/source/finales/attack-overhaul/ali/accepted-grid.png",
+  "file": "ali-cuatro-choir-attack-v1",
+  "columns": 5,
+  "rows": 2,
+  "poses": [
+    "ready",
+    "upstroke",
+    "downstroke",
+    "accent",
+    "choir-a",
+    "choir-b",
+    "choir-c",
+    "choir-d",
+    "choir-e",
+    "choir-f"
+  ],
+  "tool": "image_gen.imagegen",
+  "normalized": "assets/source/finales/attack-overhaul/ali/ali-cuatro-choir-attack-v1-packed.png",
+  "destination": "public/assets/ali-cuatro-choir-attack-v1.webp",
+  "width": 2560,
+  "height": 1024,
+  "cell": 512,
+  "frames": {
+    "ready": {
+      "x": 75,
+      "y": 20,
+      "width": 362,
+      "height": 472,
+      "anchorX": 181,
+      "anchorY": 462.8051948051948,
+      "bodyHeight": 460.5064935064935
+    },
+    "upstroke": {
+      "x": 587,
+      "y": 20,
+      "width": 361,
+      "height": 472,
+      "anchorX": 180.5,
+      "anchorY": 462.7752442996743,
+      "bodyHeight": 460.4690553745928
+    },
+    "downstroke": {
+      "x": 1089,
+      "y": 20,
+      "width": 381,
+      "height": 472,
+      "anchorX": 190.5,
+      "anchorY": 464.2495894909688,
+      "bodyHeight": 462.69950738916253
+    },
+    "accent": {
+      "x": 1600,
+      "y": 20,
+      "width": 384,
+      "height": 472,
+      "anchorX": 192,
+      "anchorY": 468.06666666666666,
+      "bodyHeight": 463.3466666666667
+    },
+    "choir-a": {
+      "x": 2160,
+      "y": 20,
+      "width": 287,
+      "height": 472,
+      "anchorX": 143.5,
+      "anchorY": 466.5622119815668,
+      "bodyHeight": 460.036866359447
+    },
+    "choir-b": {
+      "x": 111,
+      "y": 532,
+      "width": 290,
+      "height": 472,
+      "anchorX": 145,
+      "anchorY": 469.7630331753555,
+      "bodyHeight": 466.4075829383886
+    },
+    "choir-c": {
+      "x": 628,
+      "y": 532,
+      "width": 279,
+      "height": 472,
+      "anchorX": 139.5,
+      "anchorY": 467.6796338672769,
+      "bodyHeight": 460.11899313501146
+    },
+    "choir-d": {
+      "x": 1137,
+      "y": 532,
+      "width": 286,
+      "height": 472,
+      "anchorX": 143,
+      "anchorY": 459.1272727272727,
+      "bodyHeight": 455.90909090909093
+    },
+    "choir-e": {
+      "x": 1633,
+      "y": 532,
+      "width": 318,
+      "height": 472,
+      "anchorX": 159,
+      "anchorY": 461.14942528735634,
+      "bodyHeight": 455.7241379310345
+    },
+    "choir-f": {
+      "x": 2157,
+      "y": 532,
+      "width": 293,
+      "height": 472,
+      "anchorX": 146.5,
+      "anchorY": 462.0979020979021,
+      "bodyHeight": 458.7972027972028
+    }
+  },
+  "objects": [
+    {
+      "pose": "ready",
+      "sourceBounds": {
+        "left": 148,
+        "top": 76,
+        "width": 472,
+        "height": 616
+      },
+      "uniformScale": 0.7662337662337663,
+      "width": 362,
+      "height": 472,
+      "visibleSourcePixels": 115582,
+      "transparentSourcePixels": 461903,
+      "coreBounds": {
+        "top": 79,
+        "bottom": 680
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "upstroke",
+      "sourceBounds": {
+        "left": 917,
+        "top": 77,
+        "width": 469,
+        "height": 614
+      },
+      "uniformScale": 0.7687296416938111,
+      "width": 361,
+      "height": 472,
+      "visibleSourcePixels": 114199,
+      "transparentSourcePixels": 462712,
+      "coreBounds": {
+        "top": 80,
+        "bottom": 679
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "downstroke",
+      "sourceBounds": {
+        "left": 1674,
+        "top": 79,
+        "width": 492,
+        "height": 609
+      },
+      "uniformScale": 0.7750410509031199,
+      "width": 381,
+      "height": 472,
+      "visibleSourcePixels": 115252,
+      "transparentSourcePixels": 462143,
+      "coreBounds": {
+        "top": 81,
+        "bottom": 678
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "accent",
+      "sourceBounds": {
+        "left": 2444,
+        "top": 84,
+        "width": 488,
+        "height": 600
+      },
+      "uniformScale": 0.7866666666666666,
+      "width": 384,
+      "height": 472,
+      "visibleSourcePixels": 117331,
+      "transparentSourcePixels": 460488,
+      "coreBounds": {
+        "top": 90,
+        "bottom": 679
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "choir-a",
+      "sourceBounds": {
+        "left": 3324,
+        "top": 167,
+        "width": 264,
+        "height": 434
+      },
+      "uniformScale": 1.087557603686636,
+      "width": 287,
+      "height": 472,
+      "visibleSourcePixels": 52434,
+      "transparentSourcePixels": 531148,
+      "coreBounds": {
+        "top": 173,
+        "bottom": 596
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "choir-b",
+      "sourceBounds": {
+        "left": 254,
+        "top": 941,
+        "width": 259,
+        "height": 422
+      },
+      "uniformScale": 1.1184834123222749,
+      "width": 290,
+      "height": 472,
+      "visibleSourcePixels": 51073,
+      "transparentSourcePixels": 531676,
+      "coreBounds": {
+        "top": 944,
+        "bottom": 1361
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "choir-c",
+      "sourceBounds": {
+        "left": 1023,
+        "top": 933,
+        "width": 258,
+        "height": 437
+      },
+      "uniformScale": 1.080091533180778,
+      "width": 279,
+      "height": 472,
+      "visibleSourcePixels": 52230,
+      "transparentSourcePixels": 528961,
+      "coreBounds": {
+        "top": 940,
+        "bottom": 1366
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "choir-d",
+      "sourceBounds": {
+        "left": 1786,
+        "top": 932,
+        "width": 267,
+        "height": 440
+      },
+      "uniformScale": 1.0727272727272728,
+      "width": 286,
+      "height": 472,
+      "visibleSourcePixels": 65447,
+      "transparentSourcePixels": 516992,
+      "coreBounds": {
+        "top": 935,
+        "bottom": 1360
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "choir-e",
+      "sourceBounds": {
+        "left": 2541,
+        "top": 934,
+        "width": 293,
+        "height": 435
+      },
+      "uniformScale": 1.085057471264368,
+      "width": 318,
+      "height": 472,
+      "visibleSourcePixels": 51110,
+      "transparentSourcePixels": 531775,
+      "coreBounds": {
+        "top": 939,
+        "bottom": 1359
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "choir-f",
+      "sourceBounds": {
+        "left": 3323,
+        "top": 937,
+        "width": 266,
+        "height": 429
+      },
+      "uniformScale": 1.1002331002331003,
+      "width": 293,
+      "height": 472,
+      "visibleSourcePixels": 53565,
+      "transparentSourcePixels": 529310,
+      "coreBounds": {
+        "top": 940,
+        "bottom": 1357
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    }
+  ],
+  "sourceSha256": "ad64a307d9d5371e0c120a3b2054c4ae8a884f4731c15186cbf0f0f59a67b2e7",
+  "normalizedSha256": "33b29fa5d54948111c4eab41c1e8428bd36abd26e8dc76567cf1b1600eb41633",
+  "runtimeSha256": "34ca2fac3315666d6d0f2281cd5f7b1d439832c50d0c7ccbb1d5862b62832db8",
+  "rgbaSha256": "2052a640d9be8cf311348994e68fd9a07ff8202390930e6a89c8ba3d2b9f1180",
+  "alphaSha256": "bb630e632a20c50af541cfa62dd8a4e553b79a5a41c2451da130b71f440e7ce1",
+  "lossless": true
+}

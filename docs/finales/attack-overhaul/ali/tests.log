@@ -1,0 +1,67 @@
+✔ Alí waves retain all three damage beats, capture clock and physical positions, ordinary release and control on both slots (11.11692ms)
+✔ Alí unlock, cost, guard, miss, interruption and lethal stocks retain shared rules (8.987539ms)
+✔ Alí special downstrokes coincide with all real ground projectile emissions in both directions (1.850602ms)
+✔ all ten poses preflight before any finale paint; four actor poses preflight before any special paint (0.888551ms)
+✔ captured Alí serializes and resumes identically through all three contacts and release (5.282749ms)
+✔ Alí retains every original source and complete silhouette with uniform actor head scale (31.704287ms)
+✔ Alí original four-string and synthetic choir score is deterministic, finite, stereo and non-clipping (48.071686ms)
+{"character":"ali","check":"presentation","evidence":{"intro":"Invitación de cantautor","choreography":"Invitación de cantautor"}}
+{"character":"ali","check":"movement","evidence":{"side":0,"start":540,"right":635.2145440796703,"left":547.9851975633037,"firstY":454.59999999999997,"finalY":554,"stocks":2}}
+{"character":"ali","check":"movement","evidence":{"side":1,"start":540,"right":635.2145440796703,"left":547.9851975633037,"firstY":454.59999999999997,"finalY":554,"stocks":2}}
+{"character":"ali","check":"ordinary-attack","evidence":{"side":0,"action":"light","guard":false,"hp":92.5016,"hits":1,"energy":100}}
+{"character":"ali","check":"ordinary-attack","evidence":{"side":0,"action":"light","guard":true,"hp":100,"hits":0,"energy":85.47999999999979}}
+{"character":"ali","check":"ordinary-attack","evidence":{"side":0,"action":"heavy","guard":false,"hp":86.0744,"hits":1,"energy":100}}
+{"character":"ali","check":"ordinary-attack","evidence":{"side":0,"action":"heavy","guard":true,"hp":100,"hits":0,"energy":84.87999999999977}}
+{"character":"ali","check":"ordinary-attack","evidence":{"side":1,"action":"light","guard":false,"hp":92.5016,"hits":1,"energy":100}}
+{"character":"ali","check":"ordinary-attack","evidence":{"side":1,"action":"light","guard":true,"hp":100,"hits":0,"energy":85.47999999999979}}
+{"character":"ali","check":"ordinary-attack","evidence":{"side":1,"action":"heavy","guard":false,"hp":86.0744,"hits":1,"energy":100}}
+{"character":"ali","check":"ordinary-attack","evidence":{"side":1,"action":"heavy","guard":true,"hp":100,"hits":0,"energy":84.87999999999977}}
+{"character":"ali","check":"special","evidence":{"side":0,"guard":"idle","positions":[180,460],"jumpTicks":[],"energyAfterCost":75,"emissions":[{"tick":12,"vx":8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":24,"vx":8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":36,"vx":8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512}],"impacts":[{"tick":34,"hp":92.5016,"energy":100,"hits":1},{"tick":53,"hp":85.00319999999999,"energy":100,"hits":2},{"tick":72,"hp":77.50479999999999,"energy":100,"hits":3}],"blockCount":0,"hp":77.50479999999999,"hits":3,"attackerEnergy":100,"targetEnergy":100}}
+{"character":"ali","check":"special","evidence":{"side":0,"guard":"front","positions":[180,460],"jumpTicks":[],"energyAfterCost":75,"emissions":[{"tick":12,"vx":8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":24,"vx":8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":36,"vx":8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512}],"impacts":[],"blockCount":3,"hp":100,"hits":0,"attackerEnergy":80.70499999999944,"targetEnergy":53.319999999999894}}
+{"character":"ali","check":"special","evidence":{"side":0,"guard":"rear","positions":[180,460],"jumpTicks":[],"energyAfterCost":75,"emissions":[{"tick":12,"vx":8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":24,"vx":8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":36,"vx":8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512}],"impacts":[{"tick":41,"hp":92.5016,"energy":100,"hits":1},{"tick":61,"hp":85.00319999999999,"energy":100,"hits":2},{"tick":81,"hp":77.50479999999999,"energy":100,"hits":3}],"blockCount":0,"hp":77.50479999999999,"hits":3,"attackerEnergy":100,"targetEnergy":92.0799999999997}}
+{"character":"ali","check":"special","evidence":{"side":0,"guard":"jump","positions":[180,460],"jumpTicks":[15,37],"energyAfterCost":75,"emissions":[{"tick":12,"vx":8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":24,"vx":8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":36,"vx":8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512}],"impacts":[],"blockCount":0,"hp":100,"hits":0,"attackerEnergy":80.91499999999942,"targetEnergy":100}}
+{"character":"ali","check":"special","evidence":{"side":1,"guard":"idle","positions":[900,620],"jumpTicks":[],"energyAfterCost":75,"emissions":[{"tick":12,"vx":-8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":24,"vx":-8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":36,"vx":-8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512}],"impacts":[{"tick":34,"hp":92.5016,"energy":100,"hits":1},{"tick":53,"hp":85.00319999999999,"energy":100,"hits":2},{"tick":72,"hp":77.50479999999999,"energy":100,"hits":3}],"blockCount":0,"hp":77.50479999999999,"hits":3,"attackerEnergy":100,"targetEnergy":100}}
+{"character":"ali","check":"special","evidence":{"side":1,"guard":"front","positions":[900,620],"jumpTicks":[],"energyAfterCost":75,"emissions":[{"tick":12,"vx":-8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":24,"vx":-8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":36,"vx":-8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512}],"impacts":[],"blockCount":3,"hp":100,"hits":0,"attackerEnergy":80.70499999999944,"targetEnergy":53.319999999999894}}
+{"character":"ali","check":"special","evidence":{"side":1,"guard":"rear","positions":[900,620],"jumpTicks":[],"energyAfterCost":75,"emissions":[{"tick":12,"vx":-8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":24,"vx":-8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":36,"vx":-8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512}],"impacts":[{"tick":41,"hp":92.5016,"energy":100,"hits":1},{"tick":61,"hp":85.00319999999999,"energy":100,"hits":2},{"tick":81,"hp":77.50479999999999,"energy":100,"hits":3}],"blockCount":0,"hp":77.50479999999999,"hits":3,"attackerEnergy":100,"targetEnergy":92.0799999999997}}
+{"character":"ali","check":"special","evidence":{"side":1,"guard":"jump","positions":[900,620],"jumpTicks":[15,37],"energyAfterCost":75,"emissions":[{"tick":12,"vx":-8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":24,"vx":-8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512},{"tick":36,"vx":-8.5,"damage":7.28,"kind":"strum","groundOnly":true,"y":512}],"impacts":[],"blockCount":0,"hp":100,"hits":0,"attackerEnergy":80.91499999999942,"targetEnergy":100}}
+{"character":"ali","check":"range-probe","evidence":{"gap":25,"hp":77.50479999999999,"hits":3,"observedShots":1,"playerX":171,"targetX":393.2986208118634,"targetStocks":2}}
+{"character":"ali","check":"range-probe","evidence":{"gap":80,"hp":77.50479999999999,"hits":3,"observedShots":2,"playerX":180,"targetX":447.3382274091312,"targetStocks":2}}
+{"character":"ali","check":"range-probe","evidence":{"gap":120,"hp":77.50479999999999,"hits":3,"observedShots":3,"playerX":180,"targetX":487.9725240059633,"targetStocks":2}}
+{"character":"ali","check":"range-probe","evidence":{"gap":520,"hp":85.00319999999999,"hits":2,"observedShots":3,"playerX":180,"targetX":820.9958318799271,"targetStocks":2}}
+{"character":"ali","check":"range-probe","evidence":{"gap":620,"hp":100,"hits":0,"observedShots":3,"playerX":180,"targetX":800,"targetStocks":2}}
+{"character":"ali","check":"range-probe","evidence":{"gap":720,"hp":100,"hits":0,"observedShots":3,"playerX":180,"targetX":900,"targetStocks":2}}
+{"character":"ali","check":"range-probe","evidence":{"gap":790,"hp":100,"hits":0,"observedShots":3,"playerX":180,"targetX":970,"targetStocks":2}}
+{"character":"ali","check":"range-probe","evidence":{"gap":805,"hp":100,"hits":0,"observedShots":3,"playerX":180,"targetX":985,"targetStocks":2}}
+{"character":"ali","check":"combo-gate","evidence":{"side":0,"wins":0,"combo":"Primer acorde","bonus":3,"hits":1,"hp":82.9844}}
+{"character":"ali","check":"combo-gate","evidence":{"side":0,"wins":1,"combo":"Cuerda firme","bonus":7,"hits":1,"hp":78.8644}}
+{"character":"ali","check":"connected-combo","evidence":{"side":0,"combo":"Primer acorde","hits":2,"hp":75.48599999999999,"elapsed":67}}
+{"character":"ali","check":"connected-combo","evidence":{"side":0,"combo":"Cuerda firme","hits":3,"hp":63.867599999999996,"elapsed":114}}
+{"character":"ali","check":"super-gate","evidence":{"side":0,"wins":0,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"ali","check":"super-gate","evidence":{"side":0,"wins":2,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"ali","check":"super-gate","evidence":{"side":0,"wins":3,"energy":74,"hp":100,"attackerEnergy":74.31499999999997,"combo":""}}
+{"character":"ali","check":"super-gate","evidence":{"side":0,"wins":3,"energy":100,"hp":57.64639999999999,"attackerEnergy":38.28,"combo":"Rasgueo del pueblo"}}
+{"character":"ali","check":"combo-gate","evidence":{"side":1,"wins":0,"combo":"Primer acorde","bonus":3,"hits":1,"hp":82.9844}}
+{"character":"ali","check":"combo-gate","evidence":{"side":1,"wins":1,"combo":"Cuerda firme","bonus":7,"hits":1,"hp":78.8644}}
+{"character":"ali","check":"connected-combo","evidence":{"side":1,"combo":"Primer acorde","hits":2,"hp":75.48599999999999,"elapsed":67}}
+{"character":"ali","check":"connected-combo","evidence":{"side":1,"combo":"Cuerda firme","hits":3,"hp":63.867599999999996,"elapsed":114}}
+{"character":"ali","check":"super-gate","evidence":{"side":1,"wins":0,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"ali","check":"super-gate","evidence":{"side":1,"wins":2,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"ali","check":"super-gate","evidence":{"side":1,"wins":3,"energy":74,"hp":100,"attackerEnergy":74.31499999999997,"combo":""}}
+{"character":"ali","check":"super-gate","evidence":{"side":1,"wins":3,"energy":100,"hp":57.64639999999999,"attackerEnergy":38.28,"combo":"Rasgueo del pueblo"}}
+{"character":"ali","check":"cpu-fight","evidence":{"winner":0,"tick":1387,"remaining":4462,"started":["special","super","heavy","light"],"landed":["special","super","light","heavy"],"players":[{"fighter":"ali","hp":93.4816,"stocks":1,"hits":16,"peakCombo":7},{"fighter":"javier","hp":0,"stocks":0,"hits":3,"peakCombo":2}]}}
+✔ Alí retains his researched identity, three ground strums, one-shot selection and both facings (1.945685ms)
+✔ Alí walks, faces both directions, jumps twice, rejects a third jump and lands on both sides (6.684554ms)
+✔ Alí light and heavy each connect once and obey a facing guard on both sides (8.251928ms)
+✔ Rasgueo del pueblo emits three staggered ground strums, guards correctly and can be jumped on both sides (13.518362ms)
+✔ strum range and close-pulse probes log real collisions without prescribing an unfixed behavior (9.202622ms)
+✔ Alí recognizes base and upgraded combos, connects every strike with approach inputs, and enforces super gates on both sides (6.082886ms)
+✔ Alí intro blocks action until the full shared timeline completes (0.316197ms)
+✔ a complete Alí fight versus normal CPU finishes and deterministically replays (15.310065ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 289.455488

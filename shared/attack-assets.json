@@ -792,5 +792,100 @@
         "bodyHeight": 327.89380530973455
       }
     }
+  },
+  "ali": {
+    "file": "ali-cuatro-choir-attack-v1",
+    "frames": {
+      "ready": {
+        "x": 75,
+        "y": 20,
+        "width": 362,
+        "height": 472,
+        "anchorX": 181,
+        "anchorY": 462.8051948051948,
+        "bodyHeight": 460.5064935064935
+      },
+      "upstroke": {
+        "x": 587,
+        "y": 20,
+        "width": 361,
+        "height": 472,
+        "anchorX": 180.5,
+        "anchorY": 462.7752442996743,
+        "bodyHeight": 460.4690553745928
+      },
+      "downstroke": {
+        "x": 1089,
+        "y": 20,
+        "width": 381,
+        "height": 472,
+        "anchorX": 190.5,
+        "anchorY": 464.2495894909688,
+        "bodyHeight": 462.69950738916253
+      },
+      "accent": {
+        "x": 1600,
+        "y": 20,
+        "width": 384,
+        "height": 472,
+        "anchorX": 192,
+        "anchorY": 468.06666666666666,
+        "bodyHeight": 463.3466666666667
+      },
+      "choir-a": {
+        "x": 2160,
+        "y": 20,
+        "width": 287,
+        "height": 472,
+        "anchorX": 143.5,
+        "anchorY": 466.5622119815668,
+        "bodyHeight": 460.036866359447
+      },
+      "choir-b": {
+        "x": 111,
+        "y": 532,
+        "width": 290,
+        "height": 472,
+        "anchorX": 145,
+        "anchorY": 469.7630331753555,
+        "bodyHeight": 466.4075829383886
+      },
+      "choir-c": {
+        "x": 628,
+        "y": 532,
+        "width": 279,
+        "height": 472,
+        "anchorX": 139.5,
+        "anchorY": 467.6796338672769,
+        "bodyHeight": 460.11899313501146
+      },
+      "choir-d": {
+        "x": 1137,
+        "y": 532,
+        "width": 286,
+        "height": 472,
+        "anchorX": 143,
+        "anchorY": 459.1272727272727,
+        "bodyHeight": 455.90909090909093
+      },
+      "choir-e": {
+        "x": 1633,
+        "y": 532,
+        "width": 318,
+        "height": 472,
+        "anchorX": 159,
+        "anchorY": 461.14942528735634,
+        "bodyHeight": 455.7241379310345
+      },
+      "choir-f": {
+        "x": 2157,
+        "y": 532,
+        "width": 293,
+        "height": 472,
+        "anchorX": 146.5,
+        "anchorY": 462.0979020979021,
+        "bodyHeight": 458.7972027972028
+      }
+    }
   }
 }

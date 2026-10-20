@@ -1,0 +1,223 @@
+{
+  "method": "Native T3 preview_snapshot(save:true); exact copied PNG bytes. Revision2 captures are final after damage-label correction.",
+  "snapshots": [
+    {
+      "key": "final-p1-normal-18",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftwbct-2e219185.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-normal-18.png"
+    },
+    {
+      "key": "final-p1-normal-42",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftwe9e-4d99dfcc.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-normal-42.png"
+    },
+    {
+      "key": "final-p1-normal-90",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftwhcm-8a3cd4ed.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-normal-90.png"
+    },
+    {
+      "key": "final-p1-normal-138",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftwjyy-63052388.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-normal-138.png"
+    },
+    {
+      "key": "final-p1-normal-178",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftwrxk-2c6dd8e2.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-normal-178.png"
+    },
+    {
+      "key": "final-p1-normal-189",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftwsbp-f85f3aab.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-normal-189.png"
+    },
+    {
+      "key": "final-p1-close-138",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftwsp0-091fac3e.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-close-138.png"
+    },
+    {
+      "key": "final-p2-edge-138",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftwt0p-642af622.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p2-edge-138.png"
+    },
+    {
+      "key": "final-p1-edge-138",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftx1cc-c03fd160.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-edge-138.png"
+    },
+    {
+      "key": "final-p2-inward-138",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftx1n8-aa66f5e0.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p2-inward-138.png"
+    },
+    {
+      "key": "final-p1-tall-138",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftx1zs-7efeb237.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-tall-138.png"
+    },
+    {
+      "key": "final-p2-small-138",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftx2bs-b7e6496e.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p2-small-138.png"
+    },
+    {
+      "key": "final-p1-platform-138",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftx8zl-a28c0307.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-platform-138.png"
+    },
+    {
+      "key": "final-p2-platform-inverse-138",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftx9ic-81e9883c.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p2-platform-inverse-138.png"
+    },
+    {
+      "key": "special-p1-normal-12",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftxa03-b2222f1a.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/special-p1-normal-12.png"
+    },
+    {
+      "key": "special-p2-normal-36",
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftxab0-9cd2f2b0.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/special-p2-normal-36.png"
+    },
+    {
+      "key": "final-p1-normal-18",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzt1w-dbfaa94e.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-normal-18-v2.png"
+    },
+    {
+      "key": "final-p1-normal-42",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzucf-dd0266f1.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-normal-42-v2.png"
+    },
+    {
+      "key": "final-p1-normal-90",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzumd-04428530.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-normal-90-v2.png"
+    },
+    {
+      "key": "final-p1-normal-138",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzuum-7de095ae.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-normal-138-v2.png"
+    },
+    {
+      "key": "final-p1-normal-178",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzv2h-3a577cf7.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-normal-178-v2.png"
+    },
+    {
+      "key": "final-p1-normal-189",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzvad-52e67f9b.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-normal-189-v2.png"
+    },
+    {
+      "key": "final-p1-close-138",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzvi8-78edfe86.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-close-138-v2.png"
+    },
+    {
+      "key": "final-p2-edge-138",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzvpl-c590ceff.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p2-edge-138-v2.png"
+    },
+    {
+      "key": "final-p1-edge-138",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzvx2-c1657805.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-edge-138-v2.png"
+    },
+    {
+      "key": "final-p2-inward-138",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzw4d-11e8a521.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p2-inward-138-v2.png"
+    },
+    {
+      "key": "final-p1-tall-138",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzwbt-eb62d53d.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-tall-138-v2.png"
+    },
+    {
+      "key": "final-p2-small-138",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzwja-756fda2b.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p2-small-138-v2.png"
+    },
+    {
+      "key": "final-p1-platform-138",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzwtl-8b6b0b0f.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-platform-138-v2.png"
+    },
+    {
+      "key": "final-p2-platform-inverse-138",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzx3h-0fe4e502.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p2-platform-inverse-138-v2.png"
+    },
+    {
+      "key": "special-p1-normal-12",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzxb2-ee9a90e3.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/special-p1-normal-12-v2.png"
+    },
+    {
+      "key": "special-p2-normal-36",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzxiy-4019aa9d.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/special-p2-normal-36-v2.png"
+    },
+    {
+      "key": "final-p1-close-edge-138",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzxqv-f04c328a.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-close-edge-138-v2.png"
+    },
+    {
+      "key": "final-p2-close-edge-138",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzxyn-0a58706e.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p2-close-edge-138-v2.png"
+    },
+    {
+      "key": "special-p2-normal-39",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzy6h-4b9b5504.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/special-p2-normal-39-v2.png"
+    },
+    {
+      "key": "final-p2-close-edge-138-reduced",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzyee-5772617d.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p2-close-edge-138-reduced.png"
+    },
+    {
+      "key": "final-p1-normal-90-missing",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzyrz-bfccf892.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/final-p1-normal-90-missing.png"
+    },
+    {
+      "key": "special-p1-normal-12-missing",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzz3b-bff2a463.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/special-p1-normal-12-missing.png"
+    },
+    {
+      "key": "guide-final-147",
+      "revision": 2,
+      "native": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvfu08gs-469bc037.png",
+      "file": "docs/finales/attack-overhaul/ali/screenshots/guide-final-147.png"
+    }
+  ]
+}

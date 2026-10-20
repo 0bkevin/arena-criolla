@@ -1,0 +1,125 @@
+{
+  "method": "Whole generated silhouettes copied at exact RGBA without resampling into common cells, then uniformly packed; no anatomy painting or masking.",
+  "objects": [
+    {
+      "pose": "ready",
+      "group": "actor",
+      "sourceBounds": {
+        "left": 111,
+        "top": 13,
+        "width": 472,
+        "height": 616
+      },
+      "coreHeight": 601,
+      "rgbaSha256": "817c5ed7f92182c57038f62ec2c88ce4eb6de590267ea87a2b0741c102dd56b4"
+    },
+    {
+      "pose": "upstroke",
+      "group": "actor",
+      "sourceBounds": {
+        "left": 708,
+        "top": 15,
+        "width": 469,
+        "height": 614
+      },
+      "coreHeight": 599,
+      "rgbaSha256": "5f44771b020ee8b493ddb70064cd6fe0d88e5ffe2f6ffc749f0b45ac8ba9cb00"
+    },
+    {
+      "pose": "downstroke",
+      "group": "actor",
+      "sourceBounds": {
+        "left": 113,
+        "top": 627,
+        "width": 492,
+        "height": 609
+      },
+      "coreHeight": 597,
+      "rgbaSha256": "2fbf2caccb2a7e1cc66077e24086b6d91aa6b14439289b7eaefd58616fe2a940"
+    },
+    {
+      "pose": "accent",
+      "group": "actor",
+      "sourceBounds": {
+        "left": 724,
+        "top": 632,
+        "width": 488,
+        "height": 600
+      },
+      "coreHeight": 589,
+      "rgbaSha256": "6aea86e5b31e470216b55d234172342403c31a275a5e1e1ca34c85c2577faa6c"
+    },
+    {
+      "pose": "choir-a",
+      "group": "choir",
+      "sourceBounds": {
+        "left": 179,
+        "top": 102,
+        "width": 264,
+        "height": 434
+      },
+      "coreHeight": 423,
+      "rgbaSha256": "36409f95b9bdf77d38c83e2267aa4d3a221322238db53d064158bb2967956fe7"
+    },
+    {
+      "pose": "choir-b",
+      "group": "choir",
+      "sourceBounds": {
+        "left": 626,
+        "top": 113,
+        "width": 259,
+        "height": 422
+      },
+      "coreHeight": 417,
+      "rgbaSha256": "724655592d4f56b26e6f49be979d2841d3a61b3eae1e144dfc524db249e5cf67"
+    },
+    {
+      "pose": "choir-c",
+      "group": "choir",
+      "sourceBounds": {
+        "left": 1029,
+        "top": 101,
+        "width": 258,
+        "height": 437
+      },
+      "coreHeight": 426,
+      "rgbaSha256": "66cf8772fdb27f98c4b2c7e278c2eaf73606ad2012dc9d5878919b47e069f0f6"
+    },
+    {
+      "pose": "choir-d",
+      "group": "choir",
+      "sourceBounds": {
+        "left": 184,
+        "top": 565,
+        "width": 267,
+        "height": 440
+      },
+      "coreHeight": 425,
+      "rgbaSha256": "56661ac0f29a976362c4df0428c1776639daecd9b58502d7af05df1347573dba"
+    },
+    {
+      "pose": "choir-e",
+      "group": "choir",
+      "sourceBounds": {
+        "left": 597,
+        "top": 570,
+        "width": 293,
+        "height": 435
+      },
+      "coreHeight": 420,
+      "rgbaSha256": "041654548dacfe2d4b14db60c0d359d6cc22c8b0f479656dc4274a572adccf7f"
+    },
+    {
+      "pose": "choir-f",
+      "group": "choir",
+      "sourceBounds": {
+        "left": 1042,
+        "top": 574,
+        "width": 266,
+        "height": 429
+      },
+      "coreHeight": 417,
+      "rgbaSha256": "aff56e9ad72901af0b8be91531c6bc105e6ce1342208789c9fb59dc5753b3569"
+    }
+  ]
+}

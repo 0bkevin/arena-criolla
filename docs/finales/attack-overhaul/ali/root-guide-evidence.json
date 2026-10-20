@@ -1,0 +1,159 @@
+{
+  "reviewedAt": "2026-10-19 22:34:15 UTC",
+  "focusedInitial": 36,
+  "focusedFinal": 22,
+  "strictGuideTypes": "passed",
+  "qa": {
+    "cases": 80,
+    "samples": 1130
+  },
+  "guide": {
+    "summary": {
+      "selected": "ali",
+      "mode": "final",
+      "frames": 280,
+      "hp": 100,
+      "minHp": 58.057599999999994,
+      "stocks": 1,
+      "props": [
+        "ali-cuatro-choir-attack-v1",
+        "finales-v1-2",
+        "finales-seated-v1-2",
+        "finales-dance-v2-2",
+        "finales-v1-1",
+        "finales-seated-main-v1",
+        "perro-mujeriego-v3-capriles",
+        "finales-capriles-cafe",
+        "finales-cafe-furniture"
+      ],
+      "sprite": "ali-v15"
+    },
+    "hits": [
+      {
+        "frame": 51,
+        "tick": 42,
+        "hp": 86.0192
+      },
+      {
+        "frame": 99,
+        "tick": 90,
+        "hp": 72.0384
+      },
+      {
+        "frame": 147,
+        "tick": 138,
+        "hp": 58.057599999999994
+      }
+    ],
+    "release": 189,
+    "stockLoss": 226,
+    "terminal": {
+      "stocks": [
+        2,
+        1
+      ],
+      "capture": null
+    },
+    "frames": 280
+  },
+  "special": {
+    "summary": {
+      "selected": "ali",
+      "mode": "special",
+      "frames": 180,
+      "hp": 77.72319999999999,
+      "minHp": 77.72319999999999,
+      "stocks": 2,
+      "props": [
+        "ali-cuatro-choir-attack-v1",
+        "finales-v1-2",
+        "finales-seated-v1-2",
+        "finales-dance-v2-2",
+        "finales-v1-1",
+        "finales-seated-main-v1",
+        "perro-mujeriego-v3-capriles",
+        "finales-capriles-cafe",
+        "finales-cafe-furniture"
+      ],
+      "sprite": "ali-v15"
+    },
+    "hits": [
+      {
+        "frame": 26,
+        "hp": 92.5744
+      },
+      {
+        "frame": 47,
+        "hp": 85.1488
+      },
+      {
+        "frame": 70,
+        "hp": 77.72319999999999
+      }
+    ]
+  },
+  "screenshots": [
+    {
+      "key": "final-p1-platform-138",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftwqsi-fbcfecbf.png"
+    },
+    {
+      "key": "final-p2-platform-inverse-138",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftwrep-2e99d6ec.png"
+    },
+    {
+      "key": "final-p2-edge-138",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftwrlr-6ea5325e.png"
+    },
+    {
+      "key": "final-p1-small-138",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftwrt6-b4e502f0.png"
+    },
+    {
+      "key": "final-p2-tall-138",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftws57-5b709c0a.png"
+    },
+    {
+      "key": "special-p1-normal-24",
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftwshg-e59a738d.png"
+    },
+    {
+      "key": "final-p1-normal-178",
+      "reduced": false,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftx9c4-e67983d9.png"
+    },
+    {
+      "key": "final-p2-close-edge-138",
+      "reduced": true,
+      "missing": false,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftx9t1-077c1d14.png"
+    },
+    {
+      "key": "final-p1-normal-90",
+      "reduced": false,
+      "missing": true,
+      "url": "http://localhost:5184/docs/finales/attack-overhaul/review.html",
+      "screenshotPath": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftxa4v-cc8f0630.png"
+    }
+  ],
+  "finalScreenshots": [
+    {
+      "name": "root-close-edge-final.png",
+      "source": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzgi6-4243c94a.png"
+    },
+    {
+      "name": "root-guide-final.png",
+      "source": "/home/ubuntu/.t3/userdata/browser-artifacts/browser-screenshot-localhost-mvftzqjk-afc57281.png"
+    }
+  ],
+  "note": "Initial root screenshots precede damage-label correction; finalScreenshots show accepted correction. Actor/choir geometry unchanged."
+}

@@ -1,0 +1,30 @@
+✔ Alí waves retain all three damage beats, capture clock and physical positions, ordinary release and control on both slots (11.671797ms)
+✔ Alí unlock, cost, guard, miss, interruption and lethal stocks retain shared rules (9.719402ms)
+✔ Alí special downstrokes coincide with all real ground projectile emissions in both directions (1.55079ms)
+✔ all ten poses preflight before any finale paint; four actor poses preflight before any special paint (1.281804ms)
+✔ captured Alí serializes and resumes identically through all three contacts and release (6.493135ms)
+✔ Alí retains every original source and complete silhouette with uniform actor head scale (22.408022ms)
+✔ Alí original four-string and synthetic choir score is deterministic, finite, stereo and non-clipping (66.169498ms)
+✔ vallenilla: revised attack art retains raw source provenance, complete frames and exact runtime alpha (133.635272ms)
+✔ javier: revised attack art retains raw source provenance, complete frames and exact runtime alpha (60.021333ms)
+✔ renny: revised attack art retains raw source provenance, complete frames and exact runtime alpha (57.500221ms)
+✔ gomez: revised attack art retains raw source provenance, complete frames and exact runtime alpha (129.743941ms)
+✔ simon: revised attack art retains raw source provenance, complete frames and exact runtime alpha (98.594241ms)
+✔ conde: revised attack art retains raw source provenance, complete frames and exact runtime alpha (125.14942ms)
+✔ emilio: revised attack art retains raw source provenance, complete frames and exact runtime alpha (140.835283ms)
+✔ maite: revised attack art retains raw source provenance, complete frames and exact runtime alpha (73.982694ms)
+✔ oscar: revised attack art retains raw source provenance, complete frames and exact runtime alpha (95.963232ms)
+✔ puma: revised attack art retains raw source provenance, complete frames and exact runtime alpha (111.61954ms)
+✔ chataing: revised attack art retains raw source provenance, complete frames and exact runtime alpha (88.985536ms)
+✔ george: revised attack art retains raw source provenance, complete frames and exact runtime alpha (99.632367ms)
+✔ mcm: revised attack art retains raw source provenance, complete frames and exact runtime alpha (158.345678ms)
+✔ ali: revised attack art retains raw source provenance, complete frames and exact runtime alpha (125.692088ms)
+✔ every definitive has one generic combat category heading (8.680716ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1772.310631
