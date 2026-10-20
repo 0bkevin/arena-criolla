@@ -1,0 +1,266 @@
+{
+  "specials": {
+    "courier": [
+      "Invoca una moto que carga contra el rival por el suelo. Se evita saltando o bloqueando.",
+      "Un repartidor Yummy entra en su motocicleta y atraviesa la arena hacia el rival."
+    ],
+    "installments": [
+      "Lanza tres cajas de Cashea separadas para obligar al rival a medir varios bloqueos.",
+      "Tres cajas amarillas con la C negra de Cashea salen una detrás de otra."
+    ],
+    "spin": [
+      "Se eleva con un ataque circular que alcanza a los dos lados.",
+      "Javier pasa de guardia a una pose elevada y una patada, rodeado por un arco de giro."
+    ],
+    "sprint": [
+      "Avanza rápidamente y golpea al rival que encuentre en su recorrido.",
+      "Capriles alterna poses de carrera y deja copias de movimiento detrás de él."
+    ],
+    "broadcast": [
+      "Lanza dos ondas de transmisión con una pausa entre ellas.",
+      "Dos grupos de arcos de radio viajan hacia el rival."
+    ],
+    "command": [
+      "Golpea a rivales cercanos que estén en el suelo. Un salto permite evitarlo.",
+      "Gómez prepara el paso y una onda ovalada se expande a ras del piso."
+    ],
+    "cuatro": [
+      "Lanza tres notas en abanico para cubrir distintas alturas.",
+      "Simón sujeta el cuatro con ambas manos y rasguea sus cuatro cuerdas; tres notas salen del acorde en abanico."
+    ],
+    "whirl": [
+      "Ejecuta una embestida corta con bastante empuje al conectar.",
+      "El Conde prepara la guardia y embiste con el brazo extendido durante el contacto, seguido de una recuperación. Como Conde Bond, gira el hombro y el antebrazo."
+    ],
+    "echo": [
+      "Golpea dos veces; la segunda réplica tiene más alcance.",
+      "Emilio extiende el brazo y aparecen círculos de eco delante de él."
+    ],
+    "spotlight": [
+      "Marca una zona delante de ella y alcanza al rival si está dentro de su distancia.",
+      "Un cono de luz triangular ilumina el piso frente a Maite."
+    ],
+    "salsa": [
+      "Salta con un golpe circular que también puede alcanzar rivales elevados.",
+      "Óscar sube con un arco de giro alrededor del cuerpo."
+    ],
+    "roar": [
+      "Lanza un ataque frontal de gran empuje para acercar al rival al borde.",
+      "Un cono de energía se abre delante del Puma como una onda de voz."
+    ],
+    "static": [
+      "Lanza el micrófono sujeto por su cable; solo golpea al tocar al rival y vuelve a su mano tras el impacto o al alcanzar su extensión.",
+      "Chataing suelta su único micrófono, maneja el cable como un látigo y lo recoge antes de volver a atacar."
+    ],
+    "punchline": [
+      "Conecta dos remates separados; el segundo llega más lejos.",
+      "George conserva su micrófono y marca dos remates con ondas breves separadas por una pausa; la segunda aparece más lejos."
+    ],
+    "rally": [
+      "Avanza con un salto bajo; golpea solo al llegar al cuerpo del rival y después frena.",
+      "María Corina se impulsa hacia delante con una pequeña elevación y estela."
+    ],
+    "strum": [
+      "Rasguea un cuatro de cuatro cuerdas: cada gesto emite una onda baja en los fotogramas 12, 24 y 36.",
+      "Cuesta 25 de energía; las tres ondas avanzan por el suelo, se pueden bloquear de frente o esquivar saltando."
+    ],
+    "tremolo": [
+      "Dispara dos notas que se separan y luego regresan.",
+      "Dos figuras de vibración musical se abren y vuelven hacia Gualberto."
+    ],
+    "lasso": [
+      "El lazo atrae al rival y lo ralentiza brevemente si no bloquea.",
+      "Un aro dorado con cuerda viaja hacia delante y regresa."
+    ],
+    "cadenza": [
+      "Marca un compás con la batuta y lanza una onda de notas que crece mientras viaja. Daña al contacto; se puede bloquear, esquivar o devolver con un reflector.",
+      "Dudamel prepara, dirige y recupera la batuta. Las notas flotan dentro de la onda visible cuyo radio aumenta de 24 a 64."
+    ],
+    "crescendo": [
+      "Lanza una onda lenta cuyo tamaño aumenta mientras avanza.",
+      "Una burbuja sonora luminosa va creciendo al acercarse al rival."
+    ],
+    "syncopate": [
+      "Encadena un avance, un retroceso y un remate que vuelve hacia delante.",
+      "Nacho alterna pasos de carrera, cambia de apoyo y termina con una patada elevada."
+    ],
+    "jackpot": [
+      "Arroja un premio que rebota dos veces y explota al terminar su recorrido.",
+      "Una caja de premio gira y rebota antes del destello final."
+    ],
+    "fountain": [
+      "Lanza tres gotas con retrasos distintos y trayectorias altas.",
+      "Las gotas salen en parábola, como chorros de un manantial. El rival salta en esta demostración para mostrar el alcance en altura."
+    ],
+    "cocotero": [
+      "Dispara cinco proyectiles en abanico para cubrir varias rutas.",
+      "Cinco hojas luminosas se abren frente a Lila."
+    ],
+    "zapateo": [
+      "Avanza con cuatro golpes de suelo; el último empuja más. Se evita saltando.",
+      "Rummy alterna apoyos y patadas bajas mientras aparecen marcas de zapateo."
+    ],
+    "runway": [
+      "Hace un avance muy rápido y corto, con un golpe de bastante empuje.",
+      "Chiquinquirá cruza una distancia breve con poses de carrera y estelas."
+    ],
+    "pivot": [
+      "Salta hacia atrás y golpea alrededor de su cuerpo en dos tiempos.",
+      "Norkys pasa de un salto de retirada a una patada de cierre."
+    ],
+    "mirror": [
+      "Golpea al frente y después desde detrás del rival, obligándolo a cambiar la guardia.",
+      "Aparece una segunda silueta de Gabriela al otro lado del oponente."
+    ],
+    "curtain": [
+      "Puede detener un golpe frontal durante su ventana de contraataque y responder si el rival está cerca.",
+      "Amanda mantiene una pose de guardia y responde al impacto. El rival de la demostración ataca para mostrar la contra."
+    ],
+    "audit": [
+      "Dispara tres paquetes de datos que oscilan y aceleran hasta un límite.",
+      "Paquetes digitales luminosos viajan con una curva ondulada desde Giuseppe."
+    ],
+    "prank": [
+      "Retrocede y deja una trampa de suelo que se arma tras una breve espera.",
+      "Lele se aparta y una cáscara viaja por el piso antes de quedar lista para hacer tropezar."
+    ],
+    "whistle": [
+      "Lanza un silbido que oscila y aumenta su velocidad.",
+      "Una señal de silbido luminosa serpentea por la arena."
+    ],
+    "undertow": [
+      "Lanza una ola espectral que atrae al rival cuando lo golpea. Un bloqueo frontal detiene el daño y la atracción; la ola puede fallar por distancia o altura.",
+      "La Llorona junta las manos, extiende los brazos y envía una ola de agua turquesa antes de recuperar su postura."
+    ],
+    "haunt": [
+      "Se desplaza de golpe una distancia corta hacia el rival y golpea.",
+      "La Sayona desaparece de su posición y reaparece más cerca entre señales espectrales."
+    ],
+    "wildspirit": [
+      "Invoca una danta que avanza por el suelo. Requiere estar apoyada en el piso y puede evitarse saltando.",
+      "Una danta de luz recorre la arena a ras del suelo."
+    ],
+    "verse": [
+      "Lanza una nota que ajusta su altura hacia la del rival mientras sigue avanzando.",
+      "La copla musical curva suavemente su recorrido para seguir la altura del oponente."
+    ],
+    "hellfire": [
+      "Arroja fuego en parábola con una explosión al impactar o terminar su recorrido.",
+      "Un proyectil de fuego sube, cae y estalla con un fogonazo."
+    ],
+    "elixir": [
+      "Arroja un frasco que reduce temporalmente la velocidad del rival si conecta.",
+      "Un vial verde describe una parábola corta; el rival queda marcado por el efecto de lentitud."
+    ],
+    "roots": [
+      "Invoca raíces bajo un rival en tierra y le inmoviliza los pies. Un salto evita o rompe la sujeción.",
+      "Raíces y marcas de vegetación aparecen a nivel del piso."
+    ],
+    "pounce": [
+      "Se abalanza con un salto y dos golpes circulares cercanos.",
+      "Tío Tigre salta hacia delante y deja señales de zarpazo alrededor del cuerpo."
+    ],
+    "trickster": [
+      "Salta hacia atrás y lanza una zanahoria que rebota una vez.",
+      "Tío Conejo se retira por el aire mientras la zanahoria cruza y rebota en la arena."
+    ],
+    "ledger": [
+      "Lanza dos paquetes de balance con una pausa entre ambos.",
+      "Dos documentos contables luminosos salen en secuencia."
+    ],
+    "settlement": [
+      "Lanza un aro de transferencia que regresa a su punto de salida.",
+      "Un aro con señales de transferencia viaja de ida y vuelta."
+    ],
+    "ignition": [
+      "Acelera hacia delante y conecta una embestida corta.",
+      "Carlos se lanza con poses de carrera, marcas de aceleración y estelas."
+    ],
+    "slash": [
+      "Acorta la distancia con un desplazamiento instantáneo y un golpe cercano.",
+      "Víctor cambia de posición y aparece un corte diagonal de luz."
+    ],
+    "grid": [
+      "Una red dirigida al suelo inmoviliza brevemente al rival que esté apoyado.",
+      "Nodos y conexiones urbanas se encienden a los pies del oponente."
+    ],
+    "polar": [
+      "Arroja tres paquetes de Harina P.A.N. en abanico; ralentizan al rival al conectar y pueden bloquearse.",
+      "Lorenzo prepara el lanzamiento y abre la mano; las bolsas amarillas con marca P.A.N. siguen sus proyectiles físicos sin invertir el texto."
+    ],
+    "couture": [
+      "Puede devolver proyectiles frontales durante su preparación y cerrar con un corte.",
+      "Carolina dibuja un arco de seda con una línea de puntadas. En la demostración recibe un proyectil para mostrar el reflejo."
+    ],
+    "corona": [
+      "Patea un único balón de fútbol que avanza en línea recta, se puede bloquear y puede fallar.",
+      "Dayana prepara la pierna, toca el balón con la bota y recupera el equilibrio; el balón visible sigue su posición física."
+    ],
+    "liberator": [
+      "Desenvaina el sable y encadena tres golpes cercanos. Cuesta 25 de energía; cada golpe se puede bloquear o esquivar y el alcance no crece.",
+      "Bolívar extrae una única hoja de su vaina, da un corte horizontal, un corte descendente y una estocada antes de envainar."
+    ],
+    "retake": [
+      "Abre una ventana de contraataque para detener un golpe frontal y responder de cerca.",
+      "Una claqueta pequeña y un arco defensivo marcan la anticipación. El rival de la demostración ataca para activar la contra."
+    ],
+    "signal": [
+      "Lanza una señal ondulante; si no conecta en la ida, invierte el recorrido y puede acertar al regresar. Desaparece al primer impacto.",
+      "Melanio reúne la señal entre sus manos y la suelta con la palma. El pulso curvo verde sigue su trayectoria real y adquiere un halo dorado al regresar."
+    ]
+  },
+  "finals": {
+    "zavarce": "Siete repartidores Yummy cargan en motocicleta contra el rival con siete impactos escalonados.",
+    "vallenilla": "Pedro señala al rival y convoca dos mascotas blancas de Cashea. Se colocan a ambos lados y alternan seis puñetazos antes de retirarse.",
+    "javier": "Javier adopta su personaje de comedia con una camiseta negra sobre la cabeza, top rojo y tres regaños: dedo levantado, manos en la cintura y señalamiento final. Cada gesto quita vida al rival, que reacciona en su posición original; al terminar vuelve al combate normal.",
+    "capriles": "Una mesa y dos sillas aparecen en la misma arena. Ambos se sientan; Capriles bebe café y abre con «¡Qué manguangua!». Después dice «Maduro tiene la leche acaparada y yo se la voy a sacar de donde sea» en dos bocadillos consecutivos, mientras baja la vida rival.",
+    "renny": "Renny presenta el comercial sentado en una escalera. Dos bailarinas con tocados de plumas alternan patadas contra el rival y rematan con un empuje conjunto, dentro de la misma arena.",
+    "gomez": "Gómez embiste a caballo y su escolta montada lo sigue contra el rival. Después de tres impactos, regresa y desmonta para continuar el combate.",
+    "simon": "Simón interpreta una tonada original con el cuatro entre sus manos. Tres caballitos de madera saltan hacia el rival y cada contacto coincide con un acento musical.",
+    "conde": "Se pone el sombrero blanco, las gafas negras y el traje de Conde Bond. Conserva el atuendo al caminar, saltar, bloquear y atacar durante seis segundos de combate; al terminar vuelve a su ropa habitual.",
+    "emilio": "Se transforma en El Chunior con peluca gris, gafas de aviador, bigote, audífonos y chaqueta beige sobre camisa azul estampada. Conserva el atuendo al moverse, saltar, bloquear y atacar durante seis segundos de combate; sus golpes y las dos réplicas hacen un 20 % más de daño y después vuelve a su ropa habitual.",
+    "maite": "Maite toma aire, alza el micrófono y grita «¡BUENAS NOOOCHES, POLIEDRO DE CARACAS!». Una onda sonora creciente cruza la arena hasta golpear, ser bloqueada o agotarse; el rival puede moverse y esquivarla antes del impacto. Maite baja el micrófono al terminar.",
+    "oscar": "Óscar pulsa las cuerdas de su contrabajo blanco. Tres notas doradas viajan desde el instrumento y golpean el torso del rival al llegar; el último acento lanza una pareja de notas.",
+    "puma": "El Puma invita a tomarse de las manos. Cuatro bailarines enlazados giran en ronda y atrapan al rival, cuya cara permanece visible. Tras tres impactos, lo catapultan físicamente fuera de la arena: pierde una vida al cruzar el límite y reaparece si le quedan vidas.",
+    "chataing": "El rival queda congelado dentro de una televisión de la arena. Chataing toma su micrófono con cable, revienta la pantalla de un microfonazo y lo recoge mientras el rival vuelve al combate.",
+    "george": "George hace una reverencia y baja un telón de terciopelo sobre el rival: el borde dorado toca su cabeza en un único golpe, lo cubre y vuelve a levantarse sin cambiar de escenario.",
+    "mcm": "María Corina sube a la caja trasera de una pickup con bandera venezolana. Pasajeros y acompañantes avanzan con ella; el frente conecta un golpe, la camioneta retrocede y ella baja antes de recuperar el control.",
+    "ali": "Alí rasguea un cuatro de cuatro cuerdas. La primera onda golpea y eleva al rival; seis adultos se unen al coro detrás y la onda crece con los impactos de los fotogramas 42, 90 y 138. El rival desciende y recupera el control al finalizar los 180 fotogramas. Requiere 3 victorias y 75 de energía.",
+    "gualberto": "La utilería del instrumento queda entre ambos y se desplazan ondas y notas al ritmo de sus gestos.",
+    "reynaldo": "Un caballo dorado se desliza por la arena y aros de lazo pulsan alrededor del rival.",
+    "dudamel": "Dudamel dirige delante de dieciocho músicos adultos de cuerdas, maderas, metales y percusión. Tres ondas de notas crecen durante el viaje y golpean al rival al llegar; ambos conservan el escenario y la cámara.",
+    "danny": "Un gran corazón de neón se expande con los impactos sobre ondas de agua y luz.",
+    "nacho": "Nacho y el rival hacen juntos la frase de baile: manos sobre la cara, patitas a ambos lados, barrido del brazo y corazón con los dedos. Dura seis segundos y conserva el escenario.",
+    "sarcos": "El rival aparece sobre un podio junto a tres cajas de regalo; los rótulos van revelando las sorpresas.",
+    "yordano": "Un piano y una fuente quedan en la arena; tres curvas de agua se iluminan una tras otra.",
+    "lila": "Los dos personajes se balancean y doblan las piernas junto a una palmera; tres cocos dibujados marcan el ritmo.",
+    "rummy": "Ambos personajes rebotan y cambian de apoyo junto al arpa mientras las flores de sabana acompañan los pasos.",
+    "chiqui": "Los dos se desplazan de lado con poses de baile; cámaras y anillos de flash se dibujan alrededor.",
+    "norkys": "Norkys gesticula junto al foco y el libreto; cambian los textos de audición y se iluminan los números de toma.",
+    "gabriela": "Dos copias translúcidas de Gabriela aparecen dentro de espejos, mientras ella gesticula y el rival reacciona a los golpes.",
+    "amanda": "Amanda hace pequeños gestos teatrales mientras cambian las frases del monólogo y el rival reacciona a los impactos.",
+    "lele": "Un teléfono grande enmarca la acción; rótulos cómicos y señales de la broma suben alrededor del rival.",
+    "giuseppe": "Giuseppe se sienta ante su portátil, alterna ocho poses de tecleo y envía luces de datos desde el rival. La barra pierde vida en tres descargas.",
+    "silbon": "Cinco huesos dibujados giran alrededor del rival y anillos de silbido pulsan junto al saco.",
+    "llorona": "La Llorona atrae al rival con su lamento, abre un portal y revela un rostro aterrador. Lo agarra con ambas manos, descienden juntos tras el borde del portal y regresan enteros antes de que se cierre y continúe el combate.",
+    "sayona": "Copias espectrales aparecen a los lados del rival, entre velas y el dibujo del velo.",
+    "lionza": "Hojas dibujadas giran alrededor del rival mientras María Lionza gesticula junto a la utilería de Sorte.",
+    "florentino": "Los dos se sientan para el contrapunteo; cambian las respuestas y pasan cintas de coplas y notas musicales.",
+    "diablo": "Figuras de llamas parpadean junto al arpa de fuego y cambian los rótulos del amanecer.",
+    "knoche": "Frascos y un gabinete aparecen entre ambos; tres nubes de niebla suben mientras Knoche mezcla su fórmula con gestos.",
+    "momoy": "Líneas onduladas de agua cruzan el piso alrededor del rival, entre la utilería de laguna y pequeños círculos.",
+    "tiotigre": "Tres marcas de garras se encienden en secuencia mientras Tío Tigre gesticula y el rival recibe los impactos.",
+    "tioconejo": "Una cuerda conecta la trampa; a mitad del ataque aparece un agujero y el rival desciende ligeramente.",
+    "enrique": "Enrique adopta una pose de tecleo junto al libro y la calculadora mientras cambian los rótulos contables.",
+    "jesus": "Monedas recorren un arco entre dos carteras dibujadas mientras el rival reacciona a las transferencias.",
+    "carlos": "El auto y las dos figuras sentadas se balancean en su sitio; líneas de velocidad y rótulos de marcha sugieren la aceleración.",
+    "victor": "Tres cortes diagonales se iluminan y engrosan sucesivamente junto a una tarjeta de neón.",
+    "juan": "El autobús y los dos pasajeros sentados se balancean; se iluminan nodos del recorrido y cambian las paradas.",
+    "lorenzo": "Lorenzo salta al estribo de un camión Polar y se agarra al pasamanos. Otros dos camiones lo acompañan; el principal embiste al rival y Lorenzo regresa a su lugar.",
+    "carolina": "Cintas de seda dibujan arcos entre los dos combatientes y marcan el cierre de la colección.",
+    "dayana": "Dayana y dos futbolistas adultas originales aparecen en formación, con las compañeras detrás. Las tres patean a la vez y sus tres balones llegan juntos al rival antes de recuperar el control.",
+    "bolivar": "Bolívar monta un caballo de campaña y carga con seis llaneros de ropa y caballos distintos. La caballería avanza por el suelo y el caballo del comandante conecta un impacto; después retroceden, Bolívar desmonta y ambos combatientes vuelven a su posición. Una captura elevada incluye un breve descenso visual a la pista.",
+    "edgar": "Tres claquetas numeradas aparecen frente al rival y acompañan las tomas del remate.",
+    "melanio": "Graba al rival con un solo teléfono, lo aturde con un flash local y se acerca para golpearlo una vez con el mismo aparato. Grabar y deslumbrar no quitan vida; el daño llega al contacto del teléfono. Después regresa a su posición."
+  }
+}
