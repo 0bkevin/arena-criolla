@@ -128,13 +128,11 @@
   flex-shrink: 0;
 }
 .modal:where(:not(.help-modal)) .code-input {
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-body);
   letter-spacing: 0;
 }
 .in-lobby .arcade-modes small {
-  font:
-    700 10px/1.3 "DM Sans",
-    sans-serif;
+  font: 700 10px/1.3 var(--font-body);
   letter-spacing: 0;
 }
 .in-lobby .arcade-modes #mode-practice.selected small,
@@ -165,9 +163,7 @@
   padding-right: 52px;
 }
 .in-lobby .ready-room strong {
-  font:
-    700 13px/1.6 "DM Sans",
-    sans-serif;
+  font: 700 13px/1.6 var(--font-body);
   overflow-wrap: anywhere;
   word-break: break-all;
   min-width: 0;

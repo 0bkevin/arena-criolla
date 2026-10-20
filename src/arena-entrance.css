@@ -115,9 +115,7 @@
 }
 .arena-entrance-versus {
   color: #fff5db;
-  font:
-    italic 800 clamp(76px, 11vw, 96px) / 1 "Barlow Condensed",
-    sans-serif;
+  font: italic 800 clamp(76px, 11vw, 96px) / 1 var(--font-display);
   letter-spacing: -0.04em;
   text-shadow: 0 5px 12px #071124b3;
   transform: translate(-50%, -50%) rotate(-12deg);
@@ -136,9 +134,7 @@
   justify-content: center;
   gap: 16px;
   margin: 0;
-  font:
-    italic 800 clamp(64px, 9vw, 96px) / 0.9 "Barlow Condensed",
-    sans-serif;
+  font: italic 800 clamp(64px, 9vw, 96px) / 0.9 var(--font-display);
   letter-spacing: -0.025em;
   text-shadow: 0 5px 18px #030a12;
 }

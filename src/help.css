@@ -10,9 +10,7 @@
   border: 1px solid #5d779c;
   border-radius: 12px;
   box-shadow: 0 24px 80px #020b1999;
-  font:
-    400 16px/1.5 "DM Sans",
-    sans-serif;
+  font: 400 16px/1.5 var(--font-body);
 }
 
 .help-modal[open] {
@@ -28,9 +26,7 @@
 
 .arcade-app .help-modal .modal-header h2 {
   color: #fff5db;
-  font:
-    italic 800 40px/1.1 "Barlow Condensed",
-    sans-serif;
+  font: italic 800 40px/1.1 var(--font-display);
   letter-spacing: 0;
 }
 
@@ -191,9 +187,7 @@
   background: #203752;
   border: 1px solid #5d779c;
   border-radius: 5px;
-  font:
-    700 16px/1.5 "DM Sans",
-    sans-serif;
+  font: 700 16px/1.5 var(--font-body);
   text-align: center;
   white-space: nowrap;
 }

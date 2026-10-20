@@ -4,9 +4,7 @@
   user-select: none;
 }
 .touch-button > span {
-  font:
-    700 7px/1 "DM Sans",
-    sans-serif;
+  font: 700 7px/1 var(--font-body);
   letter-spacing: 0;
 }
 .touch-button.is-pressed {
@@ -468,9 +466,7 @@ body:has(.game-page.is-touch) {
   margin-bottom: 22px;
 }
 .orientation-card h2 {
-  font:
-    italic 800 34px/1.1 "Barlow Condensed",
-    sans-serif;
+  font: italic 800 34px/1.1 var(--font-display);
   color: #fff0c3;
 }
 .orientation-card p {
