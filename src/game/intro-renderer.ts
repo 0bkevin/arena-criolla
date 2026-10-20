@@ -23,7 +23,10 @@ export function introCamera(
   const facing = side === 0 ? 1 : -1;
   const push = reducedMotion ? 0 : Math.min(1, tick / INTRO_COUNTDOWN_START);
   const framing = id ? CHOREOGRAPHIES[id].camera : undefined;
-  const height = (framing?.height ?? 760) + push * (sprite.entrance ? 15 : 35);
+  const fullBody = sprite.entrance?.fullBody;
+  const height = fullBody
+    ? 465
+    : (framing?.height ?? 760) + push * (sprite.entrance ? 15 : 35);
   const targetX = (side === 0 ? 282 : 798) + (framing?.shift ?? 0) * facing;
   const scale = height / sprite.bodyHeight;
   const source = sprite.frames[frame];
@@ -37,9 +40,11 @@ export function introCamera(
   return {
     x: targetX - headX,
     targetX,
-    feet: sprite.entrance
-      ? 120 + height
-      : 170 + top - source.height * scale * 0.14,
+    feet: fullBody
+      ? 595
+      : sprite.entrance
+        ? 120 + height
+        : 170 + top - source.height * scale * 0.14,
     height,
     facing,
   };

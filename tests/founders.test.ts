@@ -1,7 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { FIGHTERS, fighterById, type FounderFighterId } from "../shared/content";
+import {
+  FIGHTERS,
+  fighterById,
+  type FounderFighterId,
+} from "../shared/content";
 import { CHOREOGRAPHIES, sampleGesture, REST } from "../shared/choreography";
+import entrances from "../shared/entrance-assets.json";
 import { presentationById } from "../shared/presentation";
 import { victoryById } from "../src/game/victory";
 import {
@@ -23,7 +28,9 @@ const founders: FounderFighterId[] = [
 const techniques = ["ledger", "settlement", "ignition", "slash", "grid"];
 
 test("the Founders collection contains all seven startup founders", () => {
-  const collection = FIGHTERS.filter((fighter) => fighter.category === "founders");
+  const collection = FIGHTERS.filter(
+    (fighter) => fighter.category === "founders",
+  );
   assert.deepEqual(
     new Set(collection.map((fighter) => fighter.id)),
     new Set(["zavarce", "vallenilla", ...founders]),
@@ -67,7 +74,7 @@ function startSpecial(
   stepMatch(state, inputs);
 }
 
-test("the five founders have complete, distinct presentation, choreography, and victory identities", () => {
+test("the five founders have distinct painted entrances and complete choreography and victory identities", () => {
   const fighters = founders.map(fighterById);
   for (const field of ["name", "sprite", "ability", "special"] as const) {
     assert.equal(
@@ -114,7 +121,7 @@ test("the five founders have complete, distinct presentation, choreography, and 
     assert.equal(victoryById(id).name.length > 0, true, id);
   }
   assert.equal(
-    new Set(founders.map((id) => CHOREOGRAPHIES[id].name)).size,
+    new Set(founders.map((id) => entrances[id].file)).size,
     founders.length,
   );
   assert.equal(

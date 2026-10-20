@@ -49,7 +49,14 @@ export interface EntranceAsset {
   bodyHeight: number;
   baseline: number;
   anchorX: number;
-  frames: SpriteFrame[];
+  /** Full-body gestures keep the gown and football inside the versus panel. */
+  fullBody?: boolean;
+  ball?: { x: number; y: number; width: number; height: number };
+  frames: (SpriteFrame & {
+    anchorX?: number;
+    anchorY?: number;
+    bodyHeight?: number;
+  })[];
 }
 export interface SpriteAsset {
   image: HTMLImageElement;
@@ -295,7 +302,11 @@ export function loadSprite(
   options: { entrance?: boolean } = {},
 ): Promise<SpriteAsset> {
   const geometry = loadSpriteGeometry(id);
-  const manifest = entranceManifest[id as keyof typeof entranceManifest];
+  const manifest = (
+    entranceManifest as Partial<
+      Record<FighterId, Omit<EntranceAsset, "image"> & { file: string }>
+    >
+  )[id];
   if (options.entrance === false || !manifest) return geometry;
   if (!cinematicSprites.has(id)) {
     cinematicSprites.set(
