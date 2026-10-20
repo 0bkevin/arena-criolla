@@ -867,12 +867,17 @@ export function Game(props: Props) {
               );
             })}
             <div className="match-clock">
-              <strong>
-                {Math.ceil(view.remaining / 60)
-                  .toString()
-                  .padStart(2, "0")}
+              <strong
+                className={
+                  view.remaining > 99 * 60 ? "match-clock-minutes" : undefined
+                }
+              >
+                {view.remaining > 99 * 60
+                  ? "2 min"
+                  : Math.ceil(view.remaining / 60)
+                      .toString()
+                      .padStart(2, "0")}
               </strong>
-              <span>2 VIDAS</span>
             </div>
           </div>
         )}

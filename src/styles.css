@@ -2117,12 +2117,9 @@ kbd {
   line-height: 1;
   color: #fff;
 }
-.match-clock span {
-  display: block;
-  font-size: 6px;
-  color: #c8cdda;
-  letter-spacing: 2px;
-  margin-top: 3px;
+.match-clock strong.match-clock-minutes {
+  font-size: 22px;
+  white-space: nowrap;
 }
 .arena-location {
   position: absolute;
@@ -3345,10 +3342,8 @@ kbd {
   .match-clock strong {
     font-size: 22px;
   }
-  .match-clock span {
-    font-size: 4px;
-    letter-spacing: 1px;
-    margin-top: 1px;
+  .match-clock strong.match-clock-minutes {
+    font-size: 16px;
   }
   .arena-location {
     font-size: 4px;
