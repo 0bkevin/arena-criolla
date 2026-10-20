@@ -20,6 +20,7 @@ import {
   FIGHTERS,
   STAGES,
   fighterById,
+  type FighterCategory,
   type FighterId,
   type StageDefinition,
   type StageId,
@@ -89,9 +90,7 @@ export function ArcadeLobby(props: Props) {
     setSearchOpen(false);
     document.querySelector<HTMLButtonElement>(".roster-search-toggle")?.focus();
   };
-  const [category, setCategory] = useState<
-    "all" | "culture" | "folklore" | "community"
-  >("all");
+  const [category, setCategory] = useState<"all" | FighterCategory>("all");
   const rosterGrid = useRef<HTMLDivElement>(null);
   const [pageSize, setPageSize] = useState(MIN_PAGE_SIZE);
   // Keep the page's fighter anchor when a rotation changes its capacity.
@@ -469,6 +468,7 @@ export function ArcadeLobby(props: Props) {
                 {(
                   [
                     ["all", "Todos"],
+                    ["founders", "Founders"],
                     ["culture", "Cultura"],
                     ["folklore", "Leyendas"],
                     ...(FIGHTERS.some((f) => f.category === "community")

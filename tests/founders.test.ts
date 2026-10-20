@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { fighterById, type FounderFighterId } from "../shared/content";
+import { FIGHTERS, fighterById, type FounderFighterId } from "../shared/content";
 import { CHOREOGRAPHIES, sampleGesture, REST } from "../shared/choreography";
 import { presentationById } from "../shared/presentation";
 import { victoryById } from "../src/game/victory";
@@ -21,6 +21,16 @@ const founders: FounderFighterId[] = [
   "juan",
 ];
 const techniques = ["ledger", "settlement", "ignition", "slash", "grid"];
+
+test("the Founders collection contains all seven startup founders", () => {
+  const collection = FIGHTERS.filter((fighter) => fighter.category === "founders");
+  assert.deepEqual(
+    new Set(collection.map((fighter) => fighter.id)),
+    new Set(["zavarce", "vallenilla", ...founders]),
+  );
+  for (const id of ["lorenzo", "carolina", "javier", "silbon"] as const)
+    assert.notEqual(fighterById(id).category, "founders", id);
+});
 
 function setup(fighter: FounderFighterId, attacker: 0 | 1 = 0) {
   const state = createMatch("caracas", [
