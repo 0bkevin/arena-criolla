@@ -15,6 +15,7 @@ test("portable guide compiles both primary and alias image loads against its emb
   assert.match(runtime, /__arenaGuideImages/);
   assert.doesNotMatch(runtime, /\/api\/community\/assets\//);
   assert.doesNotMatch(runtime, /`\/assets\/\$\{/);
+  assert.doesNotMatch(runtime, /new Worker\(/, "portable HTML cannot depend on sibling workers");
 });
 function validAudit() {
   return { schema: 1, fingerprint: "current", complete: true, fighters: inputs.fighters, moves: inputs.moves, errors: [], pendingImages: [], usedAssets: ["used"], cases: inputs.fighters.flatMap(fighter => inputs.moves.map(move => ({ fighter, move, frames: 4, renderedFrames: 4, firstFrame: 0, lastFrame: 3, contiguous: true, activatedFinal: true, drawnAssets: ["used"] }))) };

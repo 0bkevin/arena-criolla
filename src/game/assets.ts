@@ -4,11 +4,13 @@ import {
   fighterById,
   type FighterId,
 } from "../../shared/content";
-import atlasManifest from "../../docs/character-sprite-qa.json";
+import atlasManifest from "./generated/sprite-geometry.json";
 import { presentationById } from "../../shared/presentation";
 import entranceManifest from "../../shared/entrance-assets.json";
 import { COMMUNITY_CHARACTERS } from "../../shared/community";
 import { isolateFramePixels } from "./sprite-isolation";
+import { preparationWorker } from "./preparation-worker";
+
 import courierManifest from "../../shared/courier-assets.json";
 import { finaleAsset } from "../../shared/finales";
 import finaleActors from "../../shared/finale-actor-assets.json";
@@ -16,6 +18,22 @@ import cafeFurniture from "../../shared/finale-cafe-assets.json";
 import finaleDesk from "../../shared/finale-desk-assets.json";
 import perroMujeriego from "../../shared/perro-mujeriego-assets.json";
 import { ATTACK_ART } from "./attack-art";
+
+const isolatePixels = preparationWorker(
+  () =>
+    new Worker(new URL("./sprite.worker.ts", import.meta.url), {
+      type: "module",
+    }),
+  ({
+    pixels,
+    width,
+    height,
+  }: {
+    pixels: Uint8ClampedArray;
+    width: number;
+    height: number;
+  }) => isolateFramePixels(pixels, width, height),
+);
 
 interface SpriteFrame {
   x: number;
@@ -124,7 +142,7 @@ function loadSpriteGeometry(id: FighterId): Promise<SpriteAsset> {
   if (!sprites.has(id)) {
     sprites.set(
       id,
-      loadImage(fighterById(id).sprite).then((image) => {
+      loadImage(fighterById(id).sprite).then(async (image) => {
         const cellWidth = image.width / 4;
         const cellHeight = image.height / 2;
         const community = COMMUNITY_CHARACTERS.get(id);
@@ -160,7 +178,7 @@ function loadSpriteGeometry(id: FighterId): Promise<SpriteAsset> {
             slotX: (index % 4) * cellWidth,
             slotY: Math.floor(index / 4) * cellHeight,
           }));
-          const frameTextures = isolateOverlappingFrames(image, frames);
+          const frameTextures = await isolateOverlappingFrames(image, frames);
           return {
             image,
             frameTextures,
@@ -253,7 +271,7 @@ function loadSpriteGeometry(id: FighterId): Promise<SpriteAsset> {
         }));
         return {
           image,
-          frameTextures: isolateOverlappingFrames(image, frames),
+          frameTextures: await isolateOverlappingFrames(image, frames),
           cellWidth,
           cellHeight,
           baseline: first[0].maxY + 1,
@@ -302,40 +320,48 @@ export function spriteFrameSource(sprite: SpriteAsset, frame: number) {
     y: isolated ? 0 : source.y,
   };
 }
-function isolateOverlappingFrames(
+async function isolateOverlappingFrames(
   image: HTMLImageElement,
   frames: SpriteFrame[],
 ) {
-  return frames.map((frame, index) => {
-    const overlaps = frames.some(
-      (other, n) =>
-        n !== index &&
-        frame.x < other.x + other.width &&
-        frame.x + frame.width > other.x &&
-        frame.y < other.y + other.height &&
-        frame.y + frame.height > other.y,
-    );
-    if (!overlaps) return undefined;
-    const canvas = document.createElement("canvas");
-    canvas.width = frame.width;
-    canvas.height = frame.height;
-    const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
-    ctx.drawImage(
-      image,
-      frame.x,
-      frame.y,
-      frame.width,
-      frame.height,
-      0,
-      0,
-      frame.width,
-      frame.height,
-    );
-    const pixels = ctx.getImageData(0, 0, frame.width, frame.height);
-    pixels.data.set(isolateFramePixels(pixels.data, frame.width, frame.height));
-    ctx.putImageData(pixels, 0, 0);
-    return canvas;
-  });
+  return Promise.all(
+    frames.map(async (frame, index) => {
+      const overlaps = frames.some(
+        (other, n) =>
+          n !== index &&
+          frame.x < other.x + other.width &&
+          frame.x + frame.width > other.x &&
+          frame.y < other.y + other.height &&
+          frame.y + frame.height > other.y,
+      );
+      if (!overlaps) return undefined;
+      const canvas = document.createElement("canvas");
+      canvas.width = frame.width;
+      canvas.height = frame.height;
+      const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
+      ctx.drawImage(
+        image,
+        frame.x,
+        frame.y,
+        frame.width,
+        frame.height,
+        0,
+        0,
+        frame.width,
+        frame.height,
+      );
+      const pixels = ctx.getImageData(0, 0, frame.width, frame.height);
+      pixels.data.set(
+        await isolatePixels({
+          pixels: pixels.data,
+          width: frame.width,
+          height: frame.height,
+        }),
+      );
+      ctx.putImageData(pixels, 0, 0);
+      return canvas;
+    }),
+  );
 }
 export function drawSprite(
   ctx: CanvasRenderingContext2D,

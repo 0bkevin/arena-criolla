@@ -44,9 +44,19 @@ export async function compileGuide() {
   const result = await build({
     entryPoints: [path.join(base, "guide.ts")], bundle: true, write: false, minify: true,
     format: "iife", platform: "browser", target: "es2022", legalComments: "none", metafile: true,
+    // A downloaded HTML file has no sibling worker files. Use the exact local
+    // algorithm and remove module URL references from this standalone build.
+    define: { "import.meta.url": '""' },
     plugins: [{ name: "standalone-guide-assets", setup(plugin) {
+      plugin.onLoad({ filter: /src\/game\/preparation-worker\.ts$/ }, () => ({
+        contents: "export const preparationWorker = (_create, fallback) => fallback;",
+        loader: "js",
+      }));
       plugin.onLoad({ filter: /src\/game\/assets\.ts$/ }, async args => {
         let contents = await fs.readFile(args.path, "utf8");
+        const workerFactory = /new Worker\(new URL\("\.\/sprite\.worker\.ts", import\.meta\.url\), \{\s*type: "module",\s*\}\)/;
+        if (!workerFactory.test(contents)) throw Error("Review worker adaptation: upstream changed");
+        contents = contents.replace(workerFactory, "null!");
         const source = 'function imageSource(id: string): string {\n  return id.startsWith("custom_")\n    ? `/api/community/assets/${id}/sprite.webp`\n    : `/assets/${id}.webp`;\n}';
         if (!contents.includes(source)) throw Error("Review image loader adaptation: upstream changed");
         contents = contents.replace(source, 'function imageSource(id: string): string { const uri = (globalThis as unknown as { __arenaGuideImages: Record<string,string> }).__arenaGuideImages[id]; if (!uri) throw new Error(`Falta la imagen de ${id}`); return uri; }');

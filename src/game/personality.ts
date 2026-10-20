@@ -1,6 +1,6 @@
 import type { FighterId } from "../../shared/content";
 import { COMMUNITY_CHARACTERS } from "../../shared/community";
-import manifest from "../../docs/character-manifest.json";
+import manifest from "./generated/character-personalities.json";
 
 export interface CharacterPersonality {
   realName: string;
