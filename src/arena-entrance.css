@@ -16,6 +16,15 @@
 .arena-entrance.is-preparing .arena-entrance-stage {
   visibility: hidden;
 }
+.arena-entrance.is-loading-fonts
+  :is(
+    .arena-entrance-title,
+    .arena-entrance-versus,
+    .arena-entrance-status,
+    .arena-entrance-skip
+  ) {
+  visibility: hidden;
+}
 .arena-entrance-scenery {
   position: absolute;
   inset: -4%;

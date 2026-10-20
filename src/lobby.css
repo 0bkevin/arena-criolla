@@ -1,9 +1,3 @@
-@font-face {
-  font-family: "Pixelify Sans";
-  src: url("/fonts/pixelify-sans.ttf") format("truetype");
-  font-weight: 400 700;
-  font-display: swap;
-}
 :root {
   --pixel: var(--font-pixel);
   --ink: #112c58;
