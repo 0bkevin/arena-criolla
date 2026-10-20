@@ -4,12 +4,15 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { Game } from "../src/components/Game";
 import { createMatch } from "../shared/engine";
+import { finaleById } from "../shared/finales";
+import type { BuiltInFighterId } from "../shared/content";
 
 function renderScreen(
   touch: boolean,
   width: number,
   height: number,
   touchPoints = touch ? 1 : 0,
+  finale?: BuiltInFighterId,
 ) {
   const values = {
     innerWidth: width,
@@ -40,6 +43,22 @@ function renderScreen(
       "match-screen-test",
     );
     initial.phase = "playing";
+    if (finale) {
+      const profile = finaleById(finale)!;
+      initial.finale = {
+        owner: 0,
+        target: 1,
+        fighter: finale,
+        startedTick: 12,
+        tick: 60,
+        duration: profile.duration,
+        x: 450,
+        y: 554,
+        direction: 1,
+        damage: 30,
+        initialHp: 100,
+      };
+    }
     return renderToStaticMarkup(
       createElement(Game, {
         initial,
@@ -88,5 +107,36 @@ test("landscape touch screens retain their complete control pad", () => {
     const screen = renderScreen(true, width, height);
     assert.match(screen, /class="touch-controls"/);
     assert.equal((screen.match(/data-control=/g) || []).length, 10);
+  }
+});
+
+test("finales retain the normal HUD, keyboard help and touch pad layout", () => {
+  for (const fighter of ["capriles", "nacho", "giuseppe"] as const) {
+    for (const touch of [false, true]) {
+      const screen = renderScreen(touch, 844, 390, touch ? 1 : 0, fighter);
+      assert.match(screen, /class="match-hud"/);
+      assert.equal((screen.match(/class="health-track"/g) || []).length, 2);
+      assert.match(screen, /class="game-controls-bar"/);
+      assert.match(screen, /class="arena-wrap"/);
+      if (touch) assert.match(screen, /class="touch-controls"/);
+    }
+  }
+});
+
+test("Nacho's finale has no embedded video or YouTube player on any game layout", () => {
+  for (const [width, height] of [
+    [1280, 800],
+    [844, 390],
+    [390, 844],
+  ]) {
+    for (const touch of [false, true]) {
+      const screen = renderScreen(touch, width, height, touch ? 1 : 0, "nacho");
+      assert.doesNotMatch(
+        screen,
+        /<iframe\b|<video\b|nacho-finale-clip|youtube(?:-nocookie)?\.com/i,
+      );
+      assert.match(screen, /class="match-hud"/);
+      assert.match(screen, /class="arena-wrap"/);
+    }
   }
 });

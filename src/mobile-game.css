@@ -90,6 +90,11 @@
   font-size: 10px;
   letter-spacing: 0.5px;
 }
+/* Preserve the control pad's space while the finale freezes combat. */
+.game-page[data-finale] > .touch-controls {
+  visibility: hidden;
+  pointer-events: none;
+}
 #root:fullscreen {
   background: #081322;
   overflow: auto;

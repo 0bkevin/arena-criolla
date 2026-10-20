@@ -137,6 +137,7 @@ export interface FighterDefinition {
   stats: [number, number, number];
   ability: Ability;
   special: string;
+  specialUnlockWins?: number;
   combos: [string, string, string];
 }
 

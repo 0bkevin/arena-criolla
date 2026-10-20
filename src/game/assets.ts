@@ -4,12 +4,36 @@ import {
   fighterById,
   type FighterId,
 } from "../../shared/content";
-import atlasManifest from "../../docs/character-sprite-qa.json";
+import atlasManifest from "../../shared/sprite-geometry.json";
 import { presentationById } from "../../shared/presentation";
 import entranceManifest from "../../shared/entrance-assets.json";
 import { COMMUNITY_CHARACTERS } from "../../shared/community";
 import { isolateFramePixels } from "./sprite-isolation";
+import { preparationWorker } from "./preparation-worker";
+
 import courierManifest from "../../shared/courier-assets.json";
+import { finaleAsset } from "../../shared/finales";
+import finaleActors from "../../shared/finale-actor-assets.json";
+import cafeFurniture from "../../shared/finale-cafe-assets.json";
+import finaleDesk from "../../shared/finale-desk-assets.json";
+import perroMujeriego from "../../shared/perro-mujeriego-assets.json";
+import { ATTACK_ART } from "./attack-art";
+
+const isolatePixels = preparationWorker(
+  () =>
+    new Worker(new URL("./sprite.worker.ts", import.meta.url), {
+      type: "module",
+    }),
+  ({
+    pixels,
+    width,
+    height,
+  }: {
+    pixels: Uint8ClampedArray;
+    width: number;
+    height: number;
+  }) => isolateFramePixels(pixels, width, height),
+);
 
 interface SpriteFrame {
   x: number;
@@ -43,6 +67,15 @@ export interface SpriteAsset {
 const images = new Map<string, Promise<HTMLImageElement>>();
 const sprites = new Map<FighterId, Promise<SpriteAsset>>();
 const cinematicSprites = new Map<FighterId, Promise<SpriteAsset>>();
+// These two published files contain the exact same eight painted dance poses.
+const nachoDanceImage = "perro-mujeriego-v3-nacho";
+const legacyNachoDanceImage = "finales-nacho-dance";
+const seatedFinaleActors = new Set<FighterId>([
+  "capriles",
+  "juan",
+  "carlos",
+  "florentino",
+]);
 
 function portraitCenter(image: HTMLImageElement, frame: SpriteFrame): number {
   const band = document.createElement("canvas");
@@ -72,30 +105,44 @@ function portraitCenter(image: HTMLImageElement, frame: SpriteFrame): number {
   return frame.x + (weight ? weightedX / weight : frame.width / 2);
 }
 
+function imageSource(id: string): string {
+  return id.startsWith("custom_")
+    ? `/api/community/assets/${id}/sprite.webp`
+    : `/assets/${id}.webp`;
+}
+
 export function loadImage(id: string): Promise<HTMLImageElement> {
-  if (!images.has(id)) {
+  const imageId = id === legacyNachoDanceImage ? nachoDanceImage : id;
+  if (!images.has(imageId)) {
     images.set(
-      id,
+      imageId,
       new Promise<HTMLImageElement>((resolve, reject) => {
         const image = new Image();
-        image.src = id.startsWith("custom_")
-          ? `/api/community/assets/${id}/sprite.webp`
-          : `/assets/${id}.webp`;
+        let alternate =
+          imageId === nachoDanceImage ? legacyNachoDanceImage : undefined;
         image.onload = () => resolve(image);
-        image.onerror = () =>
-          reject(new Error(`No se pudo cargar el asset ${id}.`));
+        image.onerror = () => {
+          // Keep the older URL as a recovery source, without downloading the
+          // same bitmap twice during a successful load.
+          if (alternate) {
+            const next = alternate;
+            alternate = undefined;
+            image.src = imageSource(next);
+          } else reject(new Error(`No se pudo cargar el asset ${id}.`));
+        };
+        image.src = imageSource(imageId);
       }),
     );
     // Failed requests must not poison later attempts from a new fight.
-    void images.get(id)!.catch(() => images.delete(id));
+    void images.get(imageId)!.catch(() => images.delete(imageId));
   }
-  return images.get(id)!;
+  return images.get(imageId)!;
 }
 function loadSpriteGeometry(id: FighterId): Promise<SpriteAsset> {
   if (!sprites.has(id)) {
     sprites.set(
       id,
-      loadImage(fighterById(id).sprite).then((image) => {
+      loadImage(fighterById(id).sprite).then(async (image) => {
         const cellWidth = image.width / 4;
         const cellHeight = image.height / 2;
         const community = COMMUNITY_CHARACTERS.get(id);
@@ -131,7 +178,7 @@ function loadSpriteGeometry(id: FighterId): Promise<SpriteAsset> {
             slotX: (index % 4) * cellWidth,
             slotY: Math.floor(index / 4) * cellHeight,
           }));
-          const frameTextures = isolateOverlappingFrames(image, frames);
+          const frameTextures = await isolateOverlappingFrames(image, frames);
           return {
             image,
             frameTextures,
@@ -224,7 +271,7 @@ function loadSpriteGeometry(id: FighterId): Promise<SpriteAsset> {
         }));
         return {
           image,
-          frameTextures: isolateOverlappingFrames(image, frames),
+          frameTextures: await isolateOverlappingFrames(image, frames),
           cellWidth,
           cellHeight,
           baseline: first[0].maxY + 1,
@@ -273,40 +320,48 @@ export function spriteFrameSource(sprite: SpriteAsset, frame: number) {
     y: isolated ? 0 : source.y,
   };
 }
-function isolateOverlappingFrames(
+async function isolateOverlappingFrames(
   image: HTMLImageElement,
   frames: SpriteFrame[],
 ) {
-  return frames.map((frame, index) => {
-    const overlaps = frames.some(
-      (other, n) =>
-        n !== index &&
-        frame.x < other.x + other.width &&
-        frame.x + frame.width > other.x &&
-        frame.y < other.y + other.height &&
-        frame.y + frame.height > other.y,
-    );
-    if (!overlaps) return undefined;
-    const canvas = document.createElement("canvas");
-    canvas.width = frame.width;
-    canvas.height = frame.height;
-    const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
-    ctx.drawImage(
-      image,
-      frame.x,
-      frame.y,
-      frame.width,
-      frame.height,
-      0,
-      0,
-      frame.width,
-      frame.height,
-    );
-    const pixels = ctx.getImageData(0, 0, frame.width, frame.height);
-    pixels.data.set(isolateFramePixels(pixels.data, frame.width, frame.height));
-    ctx.putImageData(pixels, 0, 0);
-    return canvas;
-  });
+  return Promise.all(
+    frames.map(async (frame, index) => {
+      const overlaps = frames.some(
+        (other, n) =>
+          n !== index &&
+          frame.x < other.x + other.width &&
+          frame.x + frame.width > other.x &&
+          frame.y < other.y + other.height &&
+          frame.y + frame.height > other.y,
+      );
+      if (!overlaps) return undefined;
+      const canvas = document.createElement("canvas");
+      canvas.width = frame.width;
+      canvas.height = frame.height;
+      const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
+      ctx.drawImage(
+        image,
+        frame.x,
+        frame.y,
+        frame.width,
+        frame.height,
+        0,
+        0,
+        frame.width,
+        frame.height,
+      );
+      const pixels = ctx.getImageData(0, 0, frame.width, frame.height);
+      pixels.data.set(
+        await isolatePixels({
+          pixels: pixels.data,
+          width: frame.width,
+          height: frame.height,
+        }),
+      );
+      ctx.putImageData(pixels, 0, 0);
+      return canvas;
+    }),
+  );
 }
 export function drawSprite(
   ctx: CanvasRenderingContext2D,
@@ -348,12 +403,54 @@ export async function preloadAssets(
   const hasCourier = fighters.some(
     (id) => fighterById(id).ability === "courier",
   );
-  const [results, courier] = await Promise.all([
+  const hasNacho = fighters.includes("nacho");
+  // Coffee, the two vehicle rides and the musical duel seat both fighters.
+  const hasSeatedFinale = fighters.some((id) => seatedFinaleActors.has(id));
+  const finaleFiles = [
+    ...new Set(
+      fighters.flatMap((id) => {
+        const asset = finaleAsset(id);
+        const seated = (
+          finaleActors.seated as Record<string, { file: string }>
+        )[id];
+        const performer = (
+          finaleActors.performers as Record<string, { file: string }>
+        )[id];
+        const dancer = (
+          finaleActors as typeof finaleActors & {
+            dancers?: Record<string, { file: string }>;
+          }
+        ).dancers?.[id];
+        const choreographyDancer = hasNacho
+          ? (perroMujeriego.dancers as Record<string, { file: string }>)[id]
+          : undefined;
+        return [
+          ...(ATTACK_ART[id] ? [ATTACK_ART[id].file] : []),
+          ...(asset ? [asset.file] : []),
+          ...(hasSeatedFinale && seated ? [seated.file] : []),
+          ...(performer ? [performer.file] : []),
+          ...(choreographyDancer
+            ? [choreographyDancer.file]
+            : hasNacho && dancer
+              ? [dancer.file]
+              : []),
+          ...(id === "giuseppe" ? [finaleDesk.file] : []),
+          ...(id === "capriles"
+            ? [finaleActors.caprilesCafe.file, cafeFurniture.file]
+            : []),
+        ];
+      }),
+    ),
+  ];
+  const [results, courier, finaleImages] = await Promise.all([
     Promise.all([
       ...fighters.map((id) => loadSprite(id)),
       ...stages.map((id) => loadImage(id)),
     ]),
     hasCourier ? loadImage(courierManifest.file) : undefined,
+    // Decorations can retry next fight without blocking the mandatory fighter
+    // and stage assets; each cinematic also has a geometry-based fallback.
+    Promise.allSettled(finaleFiles.map((file) => loadImage(file))),
   ]);
   return {
     sprites: Object.fromEntries(
@@ -363,5 +460,12 @@ export async function preloadAssets(
       stages.map((id, i) => [id, results[i + fighters.length]]),
     ) as Record<string, HTMLImageElement>,
     courier,
+    finaleProps: Object.fromEntries([
+      ...(courier ? [[courierManifest.file, courier]] : []),
+      ...finaleFiles.flatMap((file, i) => {
+        const result = finaleImages[i];
+        return result.status === "fulfilled" ? [[file, result.value]] : [];
+      }),
+    ]) as Record<string, HTMLImageElement>,
   };
 }

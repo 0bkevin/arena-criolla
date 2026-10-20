@@ -27,7 +27,7 @@ test("Zavarce content and one-shot presentation retain their identity and facing
   const fighter = fighterById("zavarce");
   assert.equal(fighter.ability, "courier");
   assert.equal(fighter.special, "Entrega exprés");
-  assert.deepEqual(fighter.combos, ["Pedido confirmado", "Ruta directa", "Cohete a domicilio"]);
+  assert.deepEqual(fighter.combos, ["Pedido confirmado", "Ruta directa", "Pelotón Yummy"]);
   assert.equal(presentationById("zavarce").introStyle, "defiant");
   assert.equal(presentationById("zavarce").prop, "none");
   assert.equal(selectionProgress("zavarce", 2800), 1);
@@ -92,9 +92,9 @@ test("Zavarce light and heavy land once, with the correct damage and knockback, 
   }
 });
 
-test("Entrega exprés summons seven motorcycles together in a compact formation and recovers without dashing", () => {
+test("Entrega exprés summons one motorcycle and recovers without dashing", () => {
   for (const side of [0, 1] as const) {
-    const run = setup(side, 600, 0);
+    const run = setup(side, 600, 3);
     run.rival.invincible = 1000;
     const startX = run.player.x;
     const spawned = new Map<number, number>();
@@ -111,7 +111,7 @@ test("Entrega exprés summons seven motorcycles together in a compact formation 
         assert.equal(shot.groundOnly, true);
       }
     }
-    assert.deepEqual([...spawned.values()], Array(7).fill(12));
+    assert.deepEqual([...spawned.values()], [12]);
     assert.equal(run.player.x, startX);
     assert.equal(run.player.dash, 0);
     assert.equal(run.player.invincible, 0);
@@ -122,7 +122,7 @@ test("Entrega exprés summons seven motorcycles together in a compact formation 
   }
 });
 
-test("the compact Yummy pack hits or is blocked on either side, with each motorcycle consumed once", () => {
+test("the single Yummy motorcycle hits or is blocked on either side and is consumed once", () => {
   for (const side of [0, 1] as const) {
     for (const gap of [120, 420]) {
       for (const blocking of [false, true]) {
@@ -143,11 +143,11 @@ test("the compact Yummy pack hits or is blocked on either side, with each motorc
         }
         assert.equal(run.state.projectiles.length, 0);
         if (blocking) assert.equal(run.player.hits, 0);
-        else assert.equal(run.player.hits, gap === 120 ? 5 : 7);
+        else assert.equal(run.player.hits, 1);
         if (blocking) {
           assert.equal(run.rival.hp, 100);
-          assert.equal(blockEffects, gap === 120 ? 6 : 7);
-          assert.ok(run.rival.energy < 30);
+          assert.equal(blockEffects, 1);
+          assert.ok(run.rival.energy < 100);
         } else {
           const expected = run.player.hits * TECHNIQUES.courier.damage * 0.94 * 1.03;
           assert.ok(Math.abs(100 - run.rival.hp - expected) < 1e-9);
@@ -205,11 +205,12 @@ test("Zavarce specials, advanced combo, and definitive enforce their energy and 
     const run = setup(side, 200, wins);
     run.inputs[side].actions.super++;
     run.advance(9);
+    if (run.state.finale) run.advance(run.state.finale.duration);
     if (wins < 3) {
       assert.equal(run.player.attack, null);
       assert.equal(run.rival.hp, 100);
     } else {
-      assert.equal(run.player.combo, "Cohete a domicilio");
+      assert.equal(run.player.combo, "Pelotón Yummy");
       assert.ok(Math.abs((100 - run.rival.hp) - (28 * 0.94 + 12) * 1.03) < 1e-9);
       assert.equal(run.player.hits, 1);
       assert.ok(run.player.energy < 39);
@@ -221,6 +222,38 @@ test("Zavarce specials, advanced combo, and definitive enforce their energy and 
   depleted.inputs[0].actions.super++;
   depleted.advance(1);
   assert.equal(depleted.player.attack, null);
+});
+
+test("Vicente can use his single motorcycle special from zero wins, for either player", () => {
+  for (const side of [0, 1] as const) {
+    for (const wins of [0, 1, 2, 3, 4]) {
+      for (const energy of [24, 25, 100]) {
+        const run = setup(side, 600, wins);
+        run.player.energy = energy;
+        run.inputs[side].actions.special++;
+        run.advance(12);
+        const unlocked = energy >= 25;
+        assert.equal(run.player.attack, unlocked ? "special" : null);
+        assert.equal(run.state.projectiles.length, unlocked ? 1 : 0);
+        assert.equal(run.player.cooldown > 0, unlocked);
+        assert.equal(run.state.effects.some(e => e.kind === "special"), unlocked);
+        if (!unlocked) {
+          assert.ok(run.player.energy >= energy, "a locked special spends no energy");
+          assert.deepEqual(run.player.history, []);
+          assert.equal(run.rival.hp, 100);
+        }
+      }
+    }
+  }
+});
+
+test("the CPU can use Vicente's motorcycle from zero wins", () => {
+  for (const wins of [0, 1, 2, 3]) {
+    const run = setup(1, 300, wins);
+    run.state.tick = 600;
+    const input = cpuInput(run.state, emptyInput(), "normal");
+    assert.equal(input.actions.special, 1);
+  }
 });
 
 test("both named input combos can also connect every strike on both sides with real approach inputs", () => {

@@ -6,15 +6,12 @@ dist/
 !.env.example
 .DS_Store
 
-# Private creator storage (accounts, sessions, uploaded photos, generated art)
-data/
+# Private creator storage and local artwork workspaces.
+/data/
+/assets/*
+!/assets/icon.svg
 
-# Downloaded research media and retired assets stay local.
-/assets/references/*
-!/assets/references/audio-reactions-v8/
-!/assets/references/entrances-v24/
-!/assets/references/entrances-v25/
-!/assets/references/pixel-v26/
-!/assets/references/stages-v4/
-/assets/archive/
-/docs/character-previews/
+# Retain operational instructions, not generated reports or captures.
+/docs/*
+!/docs/creator-codex.md
+!/docs/codex-operator-oracle.md

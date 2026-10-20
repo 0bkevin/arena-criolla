@@ -202,22 +202,6 @@ export function drawCultureSpecial(
       );
       ctx.stroke();
     }
-  } else if (ability === "cadenza") {
-    ctx.globalAlpha = p.attackTick >= 5 && p.attackTick <= 22 ? 0.75 : 0.25;
-    for (let stave = -2; stave <= 2; stave++) {
-      ctx.beginPath();
-      ctx.moveTo(x + p.facing * 25, y + stave * 13);
-      ctx.quadraticCurveTo(
-        x + p.facing * 90,
-        y + stave * 17 - 20,
-        x + p.facing * 145,
-        y + stave * 13,
-      );
-      ctx.stroke();
-    }
-    ctx.beginPath();
-    ctx.ellipse(x + p.facing * 85, y, 32, 72, 0, 0, Math.PI * 2);
-    ctx.stroke();
   } else if (ability === "curtain") {
     ctx.globalAlpha = p.attackTick >= 6 && p.attackTick <= 26 ? 0.7 : 0.2;
     const front = x + p.facing * 58;

@@ -70,11 +70,7 @@ export function drawIconSpecial(
   p: PlayerState,
   progress: number,
 ) {
-  if (
-    !["polar", "couture", "corona", "liberator", "retake", "signal"].includes(
-      ability,
-    )
-  )
+  if (!["polar", "couture", "liberator", "retake", "signal"].includes(ability))
     return;
   ctx.save();
   ctx.translate(p.x, p.y);
@@ -103,23 +99,6 @@ export function drawIconSpecial(
     ctx.bezierCurveTo(95, -130, reach - 25, -120, reach - 8, -70);
     ctx.stroke();
     ctx.setLineDash([]);
-  } else if (ability === "corona") {
-    ctx.strokeStyle = "#ffe494";
-    ctx.fillStyle = "#fff6c7";
-    for (let pulse = 0; pulse < 3; pulse++) {
-      const age = t - pulse * 12;
-      if (progress < 0 || age < 0 || age > 14) continue;
-      const radius = 135 + pulse * 36;
-      ctx.globalAlpha = (1 - age / 15) * 0.7;
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.ellipse(0, -75, radius, 72, 0, 0, Math.PI * 2);
-      ctx.stroke();
-      for (let n = 0; n < 5; n++) {
-        const angle = n * Math.PI * 0.4 - Math.PI / 2;
-        star(ctx, Math.cos(angle) * radius, -75 + Math.sin(angle) * 72, 6);
-      }
-    }
   } else if (ability === "liberator") {
     for (const [n, color] of ["#ffe16b", "#6bafff", "#f87970"].entries()) {
       ctx.strokeStyle = color;

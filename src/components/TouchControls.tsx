@@ -66,12 +66,14 @@ export function TouchControls({
   reset,
   energy,
   wins,
+  specialUnlockWins = 0,
 }: {
   onPress: (pointer: number, control: Control) => void;
   onRelease: (pointer: number) => void;
   reset: number;
   energy: number;
   wins: number;
+  specialUnlockWins?: number;
 }) {
   const root = useRef<HTMLDivElement>(null);
   const callbacks = useRef({ onPress, onRelease });
@@ -183,12 +185,12 @@ export function TouchControls({
 
   useLayoutEffect(() => {
     let changed = false;
-    if (energy < 25)
+    if (wins < specialUnlockWins || energy < 25)
       changed = input.current!.releaseControl("special") || changed;
     if (wins < 3 || energy < 75)
       changed = input.current!.releaseControl("super") || changed;
     if (changed) syncPressed();
-  }, [energy, wins]);
+  }, [energy, wins, specialUnlockWins]);
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     const button = (event.target as HTMLElement).closest<HTMLButtonElement>(
@@ -340,12 +342,18 @@ export function TouchControls({
           control="special"
           label="Ataque especial"
           text="Especial"
-          disabled={energy < 25}
-          reason={energy < 25 ? "Necesitas 25 de energía." : undefined}
+          disabled={wins < specialUnlockWins || energy < 25}
+          reason={
+            wins < specialUnlockWins
+              ? `Gana ${specialUnlockWins} peleas con este personaje para desbloquearlo.`
+              : energy < 25
+                ? "Necesitas 25 de energía."
+                : undefined
+          }
           pressed={pressed.has("special")}
           onClick={handleAccessibleClick}
         >
-          <Zap />
+          {wins < specialUnlockWins ? <LockKeyhole /> : <Zap />}
         </TouchButton>
         <TouchButton
           control="super"

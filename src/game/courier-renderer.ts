@@ -21,7 +21,7 @@ export function drawCourierMotorcycle(
   const scale = 154 / atlas.bodyHeight;
   const width = frame.width * scale;
   const height = frame.height * scale;
-  const floor = 42 + depths[rank];
+  const floor = 42 + (shot.formationIndex === undefined ? 0 : depths[rank]);
   ctx.save();
   ctx.shadowBlur = 0;
   ctx.drawImage(

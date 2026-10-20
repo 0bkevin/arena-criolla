@@ -512,7 +512,7 @@ test("adversarial v41: all reviewed fighters complete deterministic CPU matches 
   }
 });
 
-test("adversarial v41: Dayana's pulse chain resumes after each hitstop without extra pulse hits", () => {
+test("adversarial v41: Dayana's football resumes after hitstop without duplicate hits", () => {
   const run = setup("canaima", "dayana", 0, "zavarce", 80);
   run.inputs[0].actions.special++;
   const hitTicks: number[] = [];
@@ -525,11 +525,11 @@ test("adversarial v41: Dayana's pulse chain resumes after each hitstop without e
     if (run.other.hp < priorHp) hitTicks.push(run.target.attackTick);
     priorHp = run.other.hp;
   }
-  assert.deepEqual(hitTicks, [13, 25, 37]);
+  assert.deepEqual(hitTicks, [21]);
   assert.ok(
-    hitstopPauses >= 3,
-    "each pulse impact should pause the shared simulation",
+    hitstopPauses >= 1,
+    "the football impact should pause the shared simulation",
   );
-  assert.equal(run.target.hits, 3);
-  assertFiniteState(run.state, "dayana/canaima/pulse-hitstop");
+  assert.equal(run.target.hits, 1);
+  assertFiniteState(run.state, "dayana/canaima/football-hitstop");
 });

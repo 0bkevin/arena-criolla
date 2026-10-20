@@ -22,6 +22,7 @@ import {
   type StageId,
 } from "../shared/content";
 import { createMatch, type MatchState } from "../shared/engine";
+import { finaleById } from "../shared/finales";
 import {
   isRoomCode,
   normalizeRoomCode,
@@ -966,6 +967,7 @@ function FighterDetail({
 }) {
   const f = fighterById(fighter);
   const personality = personalityById(fighter);
+  const finale = finaleById(fighter);
   return (
     <Modal title={f.name} wide onClose={onClose}>
       <div className="fighter-detail" style={colorStyle(f.color)}>
@@ -1011,12 +1013,23 @@ function FighterDetail({
             </details>
           )}
           <div className="special-description">
-            <Zap size={18} />
+            {wins < (f.specialUnlockWins ?? 0) ? (
+              <LockKeyhole size={18} />
+            ) : (
+              <Zap size={18} />
+            )}
             <div>
               <strong>{f.special}</strong>
               <span>
                 <kbd>L</kbd> Especial · 25 de energía
               </span>
+              {f.specialUnlockWins !== undefined && (
+                <span>
+                  {wins < f.specialUnlockWins
+                    ? `Gana ${f.specialUnlockWins} peleas con ${f.shortName} (${wins}/${f.specialUnlockWins})`
+                    : "Especial desbloqueado"}
+                </span>
+              )}
             </div>
           </div>
           <h3>Tu libro de combos</h3>
@@ -1030,7 +1043,7 @@ function FighterDetail({
                     {unlocked ? <Check size={16} /> : <LockKeyhole size={15} />}
                   </span>
                   <div>
-                    <strong>{combo}</strong>
+                    <strong>{i === 2 && finale ? finale.title : combo}</strong>
                     <small>
                       {unlocked
                         ? i === 2
@@ -1038,12 +1051,22 @@ function FighterDetail({
                           : "Listo para pelear"
                         : `Gana ${threshold} ${threshold === 1 ? "pelea" : "peleas"} con ${f.shortName} (${wins}/${threshold})`}
                     </small>
+                    {i === 2 && finale && <small>{finale.description}</small>}
                   </div>
                   <kbd>{["J → K", "J → J → K", "I"][i]}</kbd>
                 </div>
               );
             })}
           </div>
+          {finale && (
+            <p className="finale-detail-note">
+              {finale.mode === "projectile"
+                ? "La definitiva lanza una onda a distancia. Puede bloquearse o esquivarse y consume 75 de energía, incluso si falla."
+                : finale.mode === "transformation"
+                  ? "La definitiva transforma al personaje durante seis segundos de combate. Sus ataques hacen un 20 % más de daño y consume 75 de energía."
+                  : "La definitiva atrapa al rival a corta distancia. Puede bloquearse antes de que empiece la escena y consume 75 de energía."}
+            </p>
+          )}
           <button className="primary-button" onClick={onSelect}>
             Elegir a {f.shortName} <ArrowRight size={17} />
           </button>

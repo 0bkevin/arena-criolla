@@ -63,7 +63,7 @@ test("MCM light and heavy connect once and respect forward guard on both sides",
 
 test("Marcha firme catches delayed contact, hops, brakes and respects front/rear guards on both sides", () => {
   for (const side of [0, 1] as const) for (const guard of ["idle", "front", "rear"] as const) {
-    const r = setup(side, 280); const origin = r.player.x; const impacts: unknown[] = []; const blocks = new Set<number>();
+    const r = setup(side, 220); const origin = r.player.x; const impacts: unknown[] = []; const blocks = new Set<number>();
     r.inputs[1 - side].block = guard !== "idle";
     if (guard === "rear") r.inputs[1 - side][side === 0 ? "right" : "left"] = true;
     r.inputs[side].actions.special++; r.advance(1); close(r.player.energy, 75);
@@ -86,10 +86,10 @@ test("Marcha firme catches delayed contact, hops, brakes and respects front/rear
 });
 
 test("rally travel covers its active window and a distant whiff stops without ringout on both sides", () => {
-  for (const side of [0, 1] as const) for (const gap of [80, 180, 345, 400, 620]) {
+  for (const side of [0, 1] as const) for (const gap of [80, 180, 270, 278, 279, 280, 300, 345, 400, 620]) {
     const r = setup(side, gap); r.inputs[side].actions.special++; r.advance(100);
     assert.equal(r.player.stocks, 2); assert.equal(r.player.grounded, true); assert.ok(Math.abs(r.player.vx) < 0.001);
-    assert.equal(r.player.hits, gap <= 345 ? 1 : 0);
+    assert.equal(r.player.hits, gap <= 278 ? 1 : 0);
     emit("range-probe", { side, gap, hp: r.rival.hp, hits: r.player.hits, finalX: r.player.x, finalVx: r.player.vx });
   }
 });
@@ -119,6 +119,7 @@ test("MCM recognizes whiff chains and connects chased combos, with win and energ
     }
     for (const [wins, energy] of [[0, 100], [2, 100], [3, 74], [3, 100]] as const) {
       const r = setup(side, 200, wins); r.player.energy = energy; r.inputs[side].actions.super++; r.advance(9);
+      if (r.state.finale) r.advance(r.state.finale.duration);
       if (wins < 3 || energy < 75) { assert.equal(r.player.attack, null); assert.equal(r.rival.hp, 100); }
       else { assert.equal(r.player.combo, "Hasta el final"); assert.equal(r.player.comboBonus, 12); assert.equal(r.player.hits, 1); close(r.rival.hp, 61.1072); }
       emit("super-gate", { side, wins, energy, hp: r.rival.hp, attackerEnergy: r.player.energy, combo: r.player.combo });

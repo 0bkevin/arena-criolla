@@ -4,8 +4,16 @@ import { loadImage, preloadAssets } from "../src/game/assets";
 import { makeDefinition } from "../server/creator/pipeline";
 import { registerCommunityCharacter } from "../shared/community";
 import { deterministicCreatorProvider } from "./fixtures/creator-provider";
+import atlas from "../shared/sprite-geometry.json";
+import { fighterById } from "../shared/content";
+import { finaleAsset } from "../shared/finales";
 
-function browserFixture() {
+function browserFixture(
+  options: {
+    fail?: (url: string, attempt: number) => boolean;
+    canonicalGeometry?: boolean;
+  } = {},
+) {
   const descriptors = new Map(
     ["Image", "document"].map((name) => [
       name,
@@ -13,13 +21,26 @@ function browserFixture() {
     ]),
   );
   let attempts = 0;
+  const requests = new Map<string, number>();
   class FixtureImage {
     width = 8;
     height = 4;
     onload: (() => void) | null = null;
     onerror: (() => void) | null = null;
-    set src(_value: string) {
-      const fail = ++attempts === 1;
+    set src(value: string) {
+      attempts++;
+      const attempt = (requests.get(value) ?? 0) + 1;
+      requests.set(value, attempt);
+      if (options.canonicalGeometry) {
+        const checked = atlas.sprites
+          .flatMap((entry) => entry.files)
+          .find((file) => file.file === `public${value}` && file.passed);
+        if (checked) {
+          this.width = checked.width;
+          this.height = checked.height;
+        }
+      }
+      const fail = options.fail ? options.fail(value, attempt) : attempts === 1;
       queueMicrotask(() => (fail ? this.onerror?.() : this.onload?.()));
     }
   }
@@ -35,13 +56,22 @@ function browserFixture() {
         height: 0,
         getContext: () => ({
           drawImage() {},
-          getImageData: () => ({ data: new Uint8ClampedArray(16) }),
+          putImageData() {},
+          getImageData: (
+            _x: number,
+            _y: number,
+            width: number,
+            height: number,
+          ) => ({
+            data: new Uint8ClampedArray(width * height * 4),
+          }),
         }),
       }),
     },
   });
   return {
     attempts: () => attempts,
+    requests: (url: string) => requests.get(url) ?? 0,
     restore: () => {
       for (const [name, descriptor] of descriptors) {
         if (descriptor) Object.defineProperty(globalThis, name, descriptor);
@@ -108,5 +138,72 @@ test("the real fighter preload retries both sprite and image layers after a fail
     assert.equal(browser.attempts(), 2);
   } finally {
     browser.restore();
+  }
+});
+
+test("a built-in fight survives a failed finale decoration and retries it without reloading its fighter or stage", async () => {
+  const fighter = fighterById("zavarce");
+  const decoration = finaleAsset(fighter.id)!.file;
+  const decorationUrl = `/assets/${decoration}.webp`;
+  const spriteUrl = `/assets/${fighter.sprite}.webp`;
+  const stageUrl = "/assets/caracas.webp";
+  const browser = browserFixture({
+    canonicalGeometry: true,
+    fail: (url, attempt) => url === decorationUrl && attempt === 1,
+  });
+  try {
+    const fallback = await preloadAssets([fighter.id], ["caracas"]);
+    assert.equal(fallback.sprites[fighter.id].frames.length, 8);
+    assert.ok(fallback.stages.caracas);
+    assert.equal(fallback.finaleProps[decoration], undefined);
+    assert.equal(browser.requests(decorationUrl), 1);
+
+    const recovered = await preloadAssets([fighter.id], ["caracas"]);
+    assert.ok(recovered.finaleProps[decoration]);
+    assert.equal(recovered.sprites[fighter.id], fallback.sprites[fighter.id]);
+    assert.equal(recovered.stages.caracas, fallback.stages.caracas);
+    assert.equal(browser.requests(decorationUrl), 2);
+    assert.equal(browser.requests(spriteUrl), 1);
+    assert.equal(browser.requests(stageUrl), 1);
+
+    const cached = await preloadAssets([fighter.id], ["caracas"]);
+    assert.equal(
+      cached.finaleProps[decoration],
+      recovered.finaleProps[decoration],
+    );
+    assert.equal(browser.requests(decorationUrl), 2);
+  } finally {
+    browser.restore();
+  }
+});
+
+test("mandatory built-in fighter and stage failures still reject, then recover on a later fight", async () => {
+  for (const [id, stage, failedLayer] of [
+    ["javier", "guaira", "fighter"],
+    ["capriles", "valencia", "stage"],
+  ] as const) {
+    const fighter = fighterById(id);
+    const failedAsset = failedLayer === "fighter" ? fighter.sprite : stage;
+    const failedUrl = `/assets/${failedAsset}.webp`;
+    const browser = browserFixture({
+      canonicalGeometry: true,
+      fail: (url, attempt) => url === failedUrl && attempt === 1,
+    });
+    try {
+      await assert.rejects(preloadAssets([id], [stage]), (error) => {
+        assert.ok(error instanceof Error);
+        assert.equal(
+          error.message,
+          `No se pudo cargar el asset ${failedAsset}.`,
+        );
+        return true;
+      });
+      const recovered = await preloadAssets([id], [stage]);
+      assert.equal(recovered.sprites[id].frames.length, 8);
+      assert.ok(recovered.stages[stage]);
+      assert.equal(browser.requests(failedUrl), 2, `${failedLayer} can retry`);
+    } finally {
+      browser.restore();
+    }
   }
 });

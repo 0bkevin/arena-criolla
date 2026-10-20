@@ -1,0 +1,29 @@
+{
+  "file": "finales-cafe-furniture",
+  "frames": {
+    "leftChair": {
+      "x": 143,
+      "y": 36,
+      "width": 417,
+      "height": 631
+    },
+    "rightChair": {
+      "x": 848,
+      "y": 31,
+      "width": 415,
+      "height": 642
+    },
+    "table": {
+      "x": 58,
+      "y": 762,
+      "width": 587,
+      "height": 588
+    },
+    "cup": {
+      "x": 904,
+      "y": 866,
+      "width": 304,
+      "height": 379
+    }
+  }
+}
