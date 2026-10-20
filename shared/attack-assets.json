@@ -529,5 +529,64 @@
         "bodyHeight": 456.6753246753247
       }
     }
+  },
+  "puma": {
+    "file": "puma-handchain-attack-v1",
+    "frames": {
+      "summon": {
+        "x": 56,
+        "y": 20,
+        "width": 399,
+        "height": 472,
+        "anchorX": 199.5,
+        "anchorY": 461.4256619144603,
+        "bodyHeight": 455.6578411405295
+      },
+      "release": {
+        "x": 583,
+        "y": 20,
+        "width": 369,
+        "height": 472,
+        "anchorX": 184.5,
+        "anchorY": 470.0414937759336,
+        "bodyHeight": 461.2282157676349
+      },
+      "ring-a": {
+        "x": 1044,
+        "y": 70,
+        "width": 472,
+        "height": 422,
+        "anchorX": 236,
+        "anchorY": 420.12860310421286,
+        "bodyHeight": 412.6430155210643
+      },
+      "ring-b": {
+        "x": 20,
+        "y": 600,
+        "width": 472,
+        "height": 404,
+        "anchorX": 236,
+        "anchorY": 398.42758620689654,
+        "bodyHeight": 395.6413793103448
+      },
+      "ring-c": {
+        "x": 532,
+        "y": 560,
+        "width": 472,
+        "height": 444,
+        "anchorX": 236,
+        "anchorY": 435.9088838268793,
+        "bodyHeight": 431.8633257403189
+      },
+      "ring-d": {
+        "x": 1044,
+        "y": 591,
+        "width": 472,
+        "height": 413,
+        "anchorX": 236,
+        "anchorY": 408.2528735632184,
+        "bodyHeight": 406.35402298850573
+      }
+    }
   }
 }

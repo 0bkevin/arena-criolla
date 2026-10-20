@@ -1,0 +1,16 @@
+✔ Puma charges once, freezes capture positions and clock, deals all three beats and releases physically (3.953684ms)
+✔ center and both ledges eject resistant and lethal rivals exactly once, in either slot and final stock (47.424444ms)
+✔ lethal throw cannot act or receive damage; serialized flight replays and timeout waits for its stock (1.419752ms)
+✔ bounded lethal-delay fallback expires and resets, without changing ordinary capture release (0.915641ms)
+✔ a real Cashea box killing Puma during a lethal last-stock flight resolves a draw in either slot (1.092517ms)
+✔ Puma rejects unlock, energy, guard, behind, out-of-range and interrupted attempts (7.361205ms)
+✔ Puma preflights every full pose and keeps upright phases with fixed feet and canonical rival (3.544967ms)
+✔ Puma raw artwork, references, prompts and canonical identity hashes remain intact (41.31737ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 310.705926

@@ -1,0 +1,24 @@
+{
+  "tool": "image_gen.imagegen",
+  "transparentBackground": true,
+  "accepted": "v2 summon/release/ring-a/ring-c and v3 ring-b/ring-d complete normalized cells",
+  "rawFiles": {
+    "assets/source/finales/attack-overhaul/puma/raw-v3.png": "e8f887f4a97a8a4dc4580ec5577e64614c4805dc46a2b35a32125b9d1d1c3909",
+    "assets/source/finales/attack-overhaul/puma/raw-v1.png": "de028b692f48fddcfd934e9790cbc915a5e6538ada2e7aca7b30e3fddc7fec6e",
+    "assets/source/finales/attack-overhaul/puma/raw-v2.png": "4e23687ed7074b26bd73bc503d40ac43ea6b394ac945f1af587acac2002a7357"
+  },
+  "canonicalSha256": {
+    "assets/source/puma-v3.png": "9eee683802badae3cf8713f0b0076c6b15d2a2896c1da62ff2e922e4c9b3ed0d",
+    "assets/source/puma-defiant-entrance.png": "bed5a25eb55607eb5e45a20949f3c6bc964ccf4751d03edd6319e8a66a5b4555",
+    "public/assets/puma-v3.webp": "978863d61f2680b6521280a80e7e4297d0a27d5f330592580bb5d8e5e5b31633",
+    "public/assets/puma-defiant-entrance.webp": "41535e369362bf79087ab1199321ed9740079c6addf3c67e179064e981af41f7"
+  },
+  "referenceSha256": {
+    "docs/finales/attack-overhaul/puma/references/eldiario-concert.jpg": "5e6bdd5a5265c74cb3bc6d70a5585432011fb81ba8a58e430bebb60b18f98578"
+  },
+  "promptSha256": {
+    "docs/finales/attack-overhaul/puma/prompt-v3.txt": "cf3a7c702417411b35dd97372672b9570e69d8644cf672717a8c4260e6f577b8",
+    "docs/finales/attack-overhaul/puma/prompt-v2.txt": "d9d618392ca765242f7e269dcb63070096ee07cae59b434f616a70077816df7a",
+    "docs/finales/attack-overhaul/puma/prompt-v1.txt": "bdbcee8265f0a934d61ceae8bc922b2ba0277e9abf39adc0f60e454570df08cc"
+  }
+}

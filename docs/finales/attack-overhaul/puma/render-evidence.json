@@ -1,0 +1,388 @@
+[
+  {
+    "key": "final-p1-normal-12",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-ring-a.png",
+    "rectangles": [
+      {
+        "pose": "summon",
+        "alpha": 1,
+        "left": 401.36031981307536,
+        "right": 603.0556481114414,
+        "top": 420.34835540311224,
+        "bottom": 658.9453352447885
+      },
+      {
+        "pose": "ring-a",
+        "alpha": 1,
+        "left": 636.4230221425246,
+        "right": 873.9769119809139,
+        "top": 442.15256187443,
+        "bottom": 654.5418447384137
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-normal-21",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-ring-b.png",
+    "rectangles": [
+      {
+        "pose": "summon",
+        "alpha": 1,
+        "left": 401.36031981307536,
+        "right": 603.0556481114414,
+        "top": 420.34835540311224,
+        "bottom": 658.9453352447885
+      },
+      {
+        "pose": "ring-b",
+        "alpha": 1,
+        "left": 631.3188987789449,
+        "right": 879.0810353444936,
+        "top": 444.4574641509121,
+        "bottom": 656.5250556180342
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-normal-30",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-ring-c.png",
+    "rectangles": [
+      {
+        "pose": "summon",
+        "alpha": 1,
+        "left": 401.36031981307536,
+        "right": 603.0556481114414,
+        "top": 420.34835540311224,
+        "bottom": 658.9453352447885
+      },
+      {
+        "pose": "ring-c",
+        "alpha": 1,
+        "left": 641.7092541334646,
+        "right": 868.6906799899739,
+        "top": 443.9745193007649,
+        "bottom": 657.4909453183287
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-normal-39",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-ring-d.png",
+    "rectangles": [
+      {
+        "pose": "summon",
+        "alpha": 1,
+        "left": 401.36031981307536,
+        "right": 603.0556481114414,
+        "top": 420.34835540311224,
+        "bottom": 658.9453352447885
+      },
+      {
+        "pose": "ring-d",
+        "alpha": 1,
+        "left": 634.5847548254121,
+        "right": 875.8151792980264,
+        "top": 444.9495320395887,
+        "bottom": 656.0261534531261
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-normal-174",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-windup.png",
+    "rectangles": [
+      {
+        "pose": "release",
+        "alpha": 1,
+        "left": 421.36524870791203,
+        "right": 605.6427395823976,
+        "top": 418.86267623121546,
+        "bottom": 654.5780575124003
+      },
+      {
+        "pose": "ring-c",
+        "alpha": 1,
+        "left": 641.7092541334646,
+        "right": 868.6906799899739,
+        "top": 443.9745193007649,
+        "bottom": 657.4909453183287
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-normal-179",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-last-capture.png",
+    "rectangles": [
+      {
+        "pose": "release",
+        "alpha": 1,
+        "left": 430.77858284470125,
+        "right": 615.0560737191868,
+        "top": 418.86267623121546,
+        "bottom": 654.5780575124003
+      },
+      {
+        "pose": "ring-c",
+        "alpha": 0.5,
+        "left": 641.7092541334646,
+        "right": 868.6906799899739,
+        "top": 443.9745193007649,
+        "bottom": 657.4909453183287
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-normal-190",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-launch.png",
+    "rectangles": [],
+    "canonical": 3
+  },
+  {
+    "key": "final-p1-normal-194",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-flight.png",
+    "rectangles": [],
+    "canonical": 3
+  },
+  {
+    "key": "final-p1-normal-203",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-respawn.png",
+    "rectangles": [],
+    "canonical": 4
+  },
+  {
+    "key": "final-p1-close-edge-42",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-close-edge.png",
+    "rectangles": [
+      {
+        "pose": "summon",
+        "alpha": 1,
+        "left": 6.041598363038574,
+        "right": 207.73692666140465,
+        "top": 421.92582790203267,
+        "bottom": 660.5228077437089
+      },
+      {
+        "pose": "ring-d",
+        "alpha": 1,
+        "left": 212.8340351411033,
+        "right": 454.06445961371753,
+        "top": 446.5270045385091,
+        "bottom": 657.6036259520465
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p2-close-edge-42",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p2-close-edge.png",
+    "rectangles": [
+      {
+        "pose": "summon",
+        "alpha": 1,
+        "left": 1072.2630742125014,
+        "right": 1273.9584025108672,
+        "top": 421.92582790203267,
+        "bottom": 660.5228077437089
+      },
+      {
+        "pose": "ring-d",
+        "alpha": 1,
+        "left": 825.9355412601884,
+        "right": 1067.1659657328028,
+        "top": 446.5270045385091,
+        "bottom": 657.6036259520465
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-edge-178",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-edge-end.png",
+    "rectangles": [
+      {
+        "pose": "release",
+        "alpha": 1,
+        "left": 894.8159030590264,
+        "right": 1079.0933939335118,
+        "top": 418.86267623121546,
+        "bottom": 654.5780575124003
+      },
+      {
+        "pose": "ring-c",
+        "alpha": 1,
+        "left": 1042.455503966427,
+        "right": 1269.4369298229362,
+        "top": 443.9745193007649,
+        "bottom": 657.4909453183287
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-edge-190",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-edge-launch.png",
+    "rectangles": [],
+    "canonical": 3
+  },
+  {
+    "key": "final-p2-edge-42",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p2-edge.png",
+    "rectangles": [
+      {
+        "pose": "summon",
+        "alpha": 1,
+        "left": 276.7187861995252,
+        "right": 478.4141144978913,
+        "top": 421.92582790203267,
+        "bottom": 660.5228077437089
+      },
+      {
+        "pose": "ring-d",
+        "alpha": 1,
+        "left": 9.307443327542032,
+        "right": 250.53786780015628,
+        "top": 446.5270045385091,
+        "bottom": 657.6036259520465
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p2-edge-190",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p2-edge-launch.png",
+    "rectangles": [],
+    "canonical": 3
+  },
+  {
+    "key": "final-p1-platform-90",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-platform.png",
+    "rectangles": [
+      {
+        "pose": "summon",
+        "alpha": 1,
+        "left": 269.9868474554464,
+        "right": 471.68217575381254,
+        "top": 249.84730736774227,
+        "bottom": 488.44428720941846
+      },
+      {
+        "pose": "ring-a",
+        "alpha": 1,
+        "left": 552.857546200569,
+        "right": 790.4114360389583,
+        "top": 178.21151461235115,
+        "bottom": 390.6007974763349
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p2-platform-90",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p2-platform.png",
+    "rectangles": [
+      {
+        "pose": "summon",
+        "alpha": 1,
+        "left": 820.3868444384592,
+        "right": 1022.0821727368253,
+        "top": 249.84730736774227,
+        "bottom": 488.44428720941846
+      },
+      {
+        "pose": "ring-a",
+        "alpha": 1,
+        "left": 501.6575841533134,
+        "right": 739.2114739917027,
+        "top": 178.21151461235115,
+        "bottom": 390.6007974763349
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-last-stock-194",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-lethal-flight.png",
+    "rectangles": [],
+    "canonical": 3
+  },
+  {
+    "key": "final-p1-last-stock-199",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-finished.png",
+    "rectangles": [],
+    "canonical": 4
+  },
+  {
+    "key": "special-p1-normal-16",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-special.png",
+    "rectangles": [],
+    "canonical": 3
+  },
+  {
+    "key": "special-p2-normal-16",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p2-special.png",
+    "rectangles": [],
+    "canonical": 3
+  },
+  {
+    "key": "final-p2-edge-90",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p2-reduced.png",
+    "reduced": true,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "summon",
+        "alpha": 1,
+        "left": 275.0243192269015,
+        "right": 476.71964752526765,
+        "top": 420.34835540311224,
+        "bottom": 658.9453352447885
+      },
+      {
+        "pose": "ring-a",
+        "alpha": 1,
+        "left": 11.145741996333825,
+        "right": 248.69963183472322,
+        "top": 442.15256187443,
+        "bottom": 654.5418447384137
+      }
+    ],
+    "canonical": 2
+  },
+  {
+    "key": "final-p1-normal-90",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-fallback.png",
+    "reduced": false,
+    "missing": true,
+    "rectangles": [],
+    "canonical": 3
+  },
+  {
+    "key": "final-p1-normal-42",
+    "file": "docs/finales/attack-overhaul/puma/screenshots/p1-normal-42.png",
+    "rectangles": [
+      {
+        "pose": "summon",
+        "alpha": 1,
+        "left": 403.05478678569915,
+        "right": 604.7501150840652,
+        "top": 421.92582790203267,
+        "bottom": 660.5228077437089
+      },
+      {
+        "pose": "ring-d",
+        "alpha": 1,
+        "left": 636.2792217980359,
+        "right": 877.5096462706501,
+        "top": 446.5270045385091,
+        "bottom": 657.6036259520465
+      }
+    ],
+    "canonical": 2
+  }
+]

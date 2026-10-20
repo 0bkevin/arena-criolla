@@ -1,0 +1,126 @@
+✔ complete-scene preflight checks every requested pose against intrinsic loaded dimensions (1.504951ms)
+✔ valid art preserves its exact source crop, anchors, facing, body scale and alpha (1.195764ms)
+✔ legacy optional geometry and boundary anchors remain valid without changing drawing math (0.406915ms)
+✔ missing, unloaded, incomplete and intrinsically undersized images draw nothing (0.459093ms)
+✔ nonfinite, nonpositive and out-of-bounds frame geometry never touches canvas (0.671964ms)
+✔ vallenilla: revised attack art retains raw source provenance, complete frames and exact runtime alpha (216.681082ms)
+✔ javier: revised attack art retains raw source provenance, complete frames and exact runtime alpha (80.002942ms)
+✔ renny: revised attack art retains raw source provenance, complete frames and exact runtime alpha (72.911052ms)
+✔ gomez: revised attack art retains raw source provenance, complete frames and exact runtime alpha (180.795796ms)
+✔ simon: revised attack art retains raw source provenance, complete frames and exact runtime alpha (149.489558ms)
+✔ conde: revised attack art retains raw source provenance, complete frames and exact runtime alpha (132.401269ms)
+✔ emilio: revised attack art retains raw source provenance, complete frames and exact runtime alpha (137.113156ms)
+✔ maite: revised attack art retains raw source provenance, complete frames and exact runtime alpha (87.2677ms)
+✔ oscar: revised attack art retains raw source provenance, complete frames and exact runtime alpha (110.495873ms)
+✔ puma: revised attack art retains raw source provenance, complete frames and exact runtime alpha (106.754256ms)
+✔ every definitive has one generic combat category heading (6.180934ms)
+✔ complete silhouettes may cross source grid lines and reverse translation preserves their exact RGBA (79.109112ms)
+✔ overlapping source bounding boxes never borrow another silhouette or isolated alpha-1 noise (70.813318ms)
+✔ core centers preserve pose order even when long alpha-1 tails cross several source cells (45.694914ms)
+✔ detached soft pixels are retained exactly with their unique containing silhouette and audited separately (74.472028ms)
+✔ soft components with ambiguous containment or a different source cell and tiny visible fragments reject (36.722709ms)
+✔ complete silhouettes crossing horizontal grid lines preserve all rows in order (26.73361ms)
+✔ missing cells, duplicate cell centers and every extra visible or soft component reject (76.799778ms)
+✔ bad grid requests, truly clipped silhouettes, opaque backgrounds and non-PNG input reject (30.795607ms)
+✔ file normalization writes verifiable provenance and cannot overwrite the raw source (85.995051ms)
+✔ a tiny alpha2 island within three contour pixels is retained with an explicit distance audit (37.151346ms)
+✔ adjacent island exception rejects distance, higher alpha, excess size and ambiguous contours (33.813399ms)
+{"character":"puma","check":"presentation","evidence":{"intro":"Se yergue y cruza los brazos","choreography":"Se yergue y cruza los brazos","durationMs":2800}}
+{"character":"puma","check":"movement","evidence":{"side":0,"start":540,"right":628.5716689113214,"left":547.4280907565621,"firstY":454.59999999999997,"finalY":554,"stocks":2}}
+{"character":"puma","check":"movement","evidence":{"side":1,"start":540,"right":628.5716689113214,"left":547.4280907565621,"firstY":454.59999999999997,"finalY":554,"stocks":2}}
+{"character":"puma","check":"ordinary-attack","evidence":{"side":0,"action":"light","guard":false,"hp":91.9248,"hits":1,"targetEnergy":100}}
+{"character":"puma","check":"ordinary-attack","evidence":{"side":0,"action":"light","guard":true,"hp":100,"hits":0,"targetEnergy":85.47999999999979}}
+{"character":"puma","check":"ordinary-attack","evidence":{"side":0,"action":"heavy","guard":false,"hp":85.00319999999999,"hits":1,"targetEnergy":100}}
+{"character":"puma","check":"ordinary-attack","evidence":{"side":0,"action":"heavy","guard":true,"hp":100,"hits":0,"targetEnergy":84.87999999999977}}
+{"character":"puma","check":"ordinary-attack","evidence":{"side":1,"action":"light","guard":false,"hp":91.9248,"hits":1,"targetEnergy":100}}
+{"character":"puma","check":"ordinary-attack","evidence":{"side":1,"action":"light","guard":true,"hp":100,"hits":0,"targetEnergy":85.47999999999979}}
+{"character":"puma","check":"ordinary-attack","evidence":{"side":1,"action":"heavy","guard":false,"hp":85.00319999999999,"hits":1,"targetEnergy":100}}
+{"character":"puma","check":"ordinary-attack","evidence":{"side":1,"action":"heavy","guard":true,"hp":100,"hits":0,"targetEnergy":84.87999999999977}}
+{"character":"puma","check":"special","evidence":{"side":0,"guard":"idle","positions":[180,380],"energyAfterCost":75,"hit":{"tick":526,"hp":81.5424,"vx":14.461013333333334,"vy":-7.280000000000001,"energy":100},"hpAt56Calls":81.5424,"hits":1,"targetX":870.7256827952267,"attackerEnergy":89.81999999999982}}
+{"character":"puma","check":"special","evidence":{"side":0,"guard":"front","positions":[180,380],"energyAfterCost":75,"hit":{"tick":526,"hp":100,"vx":1.5,"vy":0,"energy":89.07999999999993},"hpAt56Calls":100,"hits":0,"targetX":384.2857140691216,"attackerEnergy":76.85499999999982}}
+{"character":"puma","check":"special","evidence":{"side":0,"guard":"rear","positions":[180,380],"energyAfterCost":75,"hit":{"tick":526,"hp":81.5424,"vx":14.461013333333334,"vy":-7.280000000000001,"energy":100},"hpAt56Calls":81.5424,"hits":1,"targetX":891.6274382204177,"attackerEnergy":89.81999999999982}}
+{"character":"puma","check":"special","evidence":{"side":1,"guard":"idle","positions":[900,700],"energyAfterCost":75,"hit":{"tick":526,"hp":81.5424,"vx":-14.461013333333334,"vy":-7.280000000000001,"energy":100},"hpAt56Calls":81.5424,"hits":1,"targetX":209.27431720477327,"attackerEnergy":89.81999999999982}}
+{"character":"puma","check":"special","evidence":{"side":1,"guard":"front","positions":[900,700],"energyAfterCost":75,"hit":{"tick":526,"hp":100,"vx":-1.5,"vy":0,"energy":89.07999999999993},"hpAt56Calls":100,"hits":0,"targetX":695.7142859308789,"attackerEnergy":76.85499999999982}}
+{"character":"puma","check":"special","evidence":{"side":1,"guard":"rear","positions":[900,700],"energyAfterCost":75,"hit":{"tick":526,"hp":81.5424,"vx":-14.461013333333334,"vy":-7.280000000000001,"energy":100},"hpAt56Calls":81.5424,"hits":1,"targetX":188.37256177958204,"attackerEnergy":89.81999999999982}}
+{"character":"puma","check":"range","evidence":{"side":0,"gap":80,"hp":81.5424,"hits":1,"targetX":274.4610133333333}}
+{"character":"puma","check":"range","evidence":{"side":0,"gap":200,"hp":81.5424,"hits":1,"targetX":394.4610133333333}}
+{"character":"puma","check":"range","evidence":{"side":0,"gap":259,"hp":81.5424,"hits":1,"targetX":453.4610133333333}}
+{"character":"puma","check":"range","evidence":{"side":0,"gap":260,"hp":100,"hits":0,"targetX":440}}
+{"character":"puma","check":"range","evidence":{"side":0,"gap":280,"hp":100,"hits":0,"targetX":460}}
+{"character":"puma","check":"range","evidence":{"side":1,"gap":80,"hp":81.5424,"hits":1,"targetX":805.5389866666667}}
+{"character":"puma","check":"range","evidence":{"side":1,"gap":200,"hp":81.5424,"hits":1,"targetX":685.5389866666667}}
+{"character":"puma","check":"range","evidence":{"side":1,"gap":259,"hp":81.5424,"hits":1,"targetX":626.5389866666667}}
+{"character":"puma","check":"range","evidence":{"side":1,"gap":260,"hp":100,"hits":0,"targetX":640}}
+{"character":"puma","check":"range","evidence":{"side":1,"gap":280,"hp":100,"hits":0,"targetX":620}}
+{"character":"puma","check":"rear-target","evidence":{"side":0,"attackerX":180,"targetX":100,"lockedFacing":1,"hits":0}}
+{"character":"puma","check":"rear-target","evidence":{"side":1,"attackerX":900,"targetX":980,"lockedFacing":-1,"hits":0}}
+{"character":"puma","check":"combo-gate","evidence":{"side":0,"wins":0,"combo":"Primer rugido","bonus":3,"hp":81.91319999999999}}
+{"character":"puma","check":"combo-gate","evidence":{"side":0,"wins":1,"combo":"Crescendo","bonus":7,"hp":77.7932}}
+{"character":"puma","check":"connected-combo","evidence":{"side":0,"combo":"Primer rugido","hits":2,"hp":73.838,"elapsed":69}}
+{"character":"puma","check":"connected-combo","evidence":{"side":0,"combo":"Crescendo","hits":3,"hp":61.64280000000001,"elapsed":118}}
+{"character":"puma","check":"super-gate","evidence":{"side":0,"wins":0,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"puma","check":"super-gate","evidence":{"side":0,"wins":2,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"puma","check":"super-gate","evidence":{"side":0,"wins":3,"energy":74,"hp":100,"attackerEnergy":74.31499999999997,"combo":""}}
+{"character":"puma","check":"super-gate","evidence":{"side":0,"wins":3,"energy":100,"hp":55.3392,"attackerEnergy":38.28,"combo":"Último aplauso"}}
+{"character":"puma","check":"combo-gate","evidence":{"side":1,"wins":0,"combo":"Primer rugido","bonus":3,"hp":81.91319999999999}}
+{"character":"puma","check":"combo-gate","evidence":{"side":1,"wins":1,"combo":"Crescendo","bonus":7,"hp":77.7932}}
+{"character":"puma","check":"connected-combo","evidence":{"side":1,"combo":"Primer rugido","hits":2,"hp":73.838,"elapsed":69}}
+{"character":"puma","check":"connected-combo","evidence":{"side":1,"combo":"Crescendo","hits":3,"hp":61.64280000000001,"elapsed":118}}
+{"character":"puma","check":"super-gate","evidence":{"side":1,"wins":0,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"puma","check":"super-gate","evidence":{"side":1,"wins":2,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"puma","check":"super-gate","evidence":{"side":1,"wins":3,"energy":74,"hp":100,"attackerEnergy":74.31499999999997,"combo":""}}
+{"character":"puma","check":"super-gate","evidence":{"side":1,"wins":3,"energy":100,"hp":55.3392,"attackerEnergy":38.28,"combo":"Último aplauso"}}
+{"character":"puma","check":"cpu-fight","evidence":{"winner":0,"tick":988,"remaining":4900,"started":["super","light","heavy"],"landed":["light","super"],"players":[{"fighter":"puma","hp":100,"stocks":1,"hits":6,"peakCombo":6},{"fighter":"javier","hp":0,"stocks":0,"hits":1,"peakCombo":1}]}}
+✔ Puma retains researched identity, one forward roar and one-shot presentation in both facings (6.257009ms)
+✔ Puma walks both directions, double jumps, rejects a third jump and lands on both sides (20.782953ms)
+✔ Puma light and heavy connect once and respect forward guard on both sides (20.816464ms)
+✔ Rugido del Puma hits once at startup16, blocks front guard, defeats rear guard and obeys energy gate on both sides (12.035977ms)
+✔ Puma forward roar range is exclusive at260 and misses a rival behind the locked facing (9.791231ms)
+✔ Puma recognizes combo upgrades, connects full chains with approach inputs and enforces super gates on both sides (17.083302ms)
+✔ Puma intro rejects movement and attacks until the shared timeline ends (0.984676ms)
+✔ a complete Puma fight versus normal CPU finishes and exactly replays (20.665005ms)
+✔ both dancers follow the contiguous six-second source phrase once at its observed timestamps (4.052653ms)
+✔ the support bounce leaves the painted patitas, heart, arms and face entirely unchanged (12.972731ms)
+✔ Nacho's visual drain follows the six-second profile beats, not the short finale clock (2.933456ms)
+✔ finale props use world coordinates and never cover or reframe the arena viewport (2.072707ms)
+✔ coffee stages complete chairs behind both actors and one isolated table in front (0.983422ms)
+✔ legacy guest dance poses remain available outside Nacho's dedicated finale (0.205791ms)
+✔ Giuseppe alternates illustrated keyboard presses between preparation and signoff (0.291811ms)
+✔ seated atlas padding does not shrink a rival or move their feet (0.18529ms)
+✔ captured fighters bend through hips and knees while their head keeps its likeness (1.101141ms)
+✔ paired dance alternates feet without translating either fighter's face (0.588848ms)
+✔ all built-in finales have distinct finite original scores with safe levels and a silent ending (615.839455ms)
+✔ all built-in finales keep both fighters in their arena on either side of both ledges (990.118597ms)
+✔ a finale uses the unchanged normal camera on desktop, mobile and reduced-motion views (126.738856ms)
+✔ moving platforms keep their exact captured phase and resume carrying the attacker after every mirrored finale (28.722961ms)
+✔ airborne and unequal-height captures preserve each fighter's own position instead of moving them to a common scene baseline (18.364455ms)
+✔ vehicle finales keep both painted passengers beside their capture positions throughout the ride (39.862286ms)
+✔ renderMatch draws every finale over its selected stage and platform surfaces using the normal world camera (114.463928ms)
+✔ all built-in finales exercise their capture or transformation mode against every rival on either side (1253.746161ms)
+✔ finales keep the three-win and 75-energy gates, and Vicente's single motorcycle is available from zero wins (14.110407ms)
+✔ distance, height, facing, spawn protection and a facing guard can prevent capture (1.947599ms)
+✔ a counter and a startup interruption stop a cinematic before capture (0.729281ms)
+✔ cinematics consume inputs without queueing, freeze projectiles, and retain recovery on release (2.616847ms)
+✔ an airborne cinematic freezes actors in place and releases them without teleporting (0.403478ms)
+✔ a moving platform pauses on capture and carries its rider smoothly after release (0.41137ms)
+✔ lethal beats and a timer reaching zero wait until the scene ends to resolve stock or match results (0.718503ms)
+✔ simultaneous supers select one deterministic scene and serialized scenes replay exactly (8.787908ms)
+✔ exact lethal thresholds resolve without floating-point survivors, while a tiny HP advantage survives (86.50485ms)
+✔ community fighters keep their generic definitive until they have a cinematic definition (0.531682ms)
+✔ Puma charges once, freezes capture positions and clock, deals all three beats and releases physically (12.536292ms)
+✔ center and both ledges eject resistant and lethal rivals exactly once, in either slot and final stock (114.038998ms)
+✔ lethal throw cannot act or receive damage; serialized flight replays and timeout waits for its stock (2.627013ms)
+✔ bounded lethal-delay fallback expires and resets, without changing ordinary capture release (1.597399ms)
+✔ a real Cashea box killing Puma during a lethal last-stock flight resolves a draw in either slot (1.856431ms)
+✔ Puma rejects unlock, energy, guard, behind, out-of-range and interrupted attempts (22.438391ms)
+✔ Puma preflights every full pose and keeps upright phases with fixed feet and canonical rival (5.223249ms)
+✔ Puma raw artwork, references, prompts and canonical identity hashes remain intact (95.448823ms)
+✔ the corrected ring keeps v2 actor/A/C and v3 B/D whole cells with exact RGBA (221.261231ms)
+ℹ tests 72
+ℹ suites 0
+ℹ pass 72
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1792.471234
