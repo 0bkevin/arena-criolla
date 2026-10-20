@@ -443,7 +443,10 @@ export function Game(props: Props) {
       setAmbiencePaused(
         quiet || state.phase === "finished" || Boolean(state.finale),
       );
-      syncFinaleMusic(state.finale, quiet || state.phase === "finished");
+      syncFinaleMusic(
+        state.finale ?? state.fieldFinales?.[0],
+        quiet || state.phase === "finished",
+      );
       if (state.phase === "finished") {
         if (!victoryStarted) {
           victoryStarted = true;

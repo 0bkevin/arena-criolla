@@ -51,10 +51,16 @@ function setup(
     for (let i = 0; i < frames; i++) stepMatch(state, inputs);
   };
   const start = () => {
+    const wasGrounded = state.players[owner].grounded;
     inputs[owner].actions.super++;
     advance(FINALE_CAPTURE_TICK);
+    if (fighter === "dayana" && !wasGrounded) {
+      assert.equal(state.fieldFinales, undefined);
+      return;
+    }
     assert.ok(
       state.finale ||
+        state.fieldFinales?.length ||
         state.players[owner].transformation ||
         state.projectiles.some((p) => p.impact === "super"),
     );
@@ -75,6 +81,17 @@ test("all built-in finales keep both fighters in their arena on either side of b
           r.start();
           const scene = r.state.finale!;
           const context = `${fighter.id}/${stage.id}/owner${owner}/direction${direction}`;
+          if (finaleById(fighter.id)!.mode === "field") {
+            assert.equal(scene, undefined, context);
+            assert.equal(r.state.fieldFinales?.length, 1, context);
+            const tick = r.state.tick;
+            r.advance(220);
+            assert.ok(r.state.tick > tick, context);
+            assert.equal(r.state.stage, stage.id, context);
+            assert.equal(r.state.fieldFinales, undefined, context);
+            scenes++;
+            continue;
+          }
           if (finaleById(fighter.id)!.mode === "projectile") {
             assert.equal(scene, undefined, context);
             assert.equal(r.state.projectiles.length, 1, context);
@@ -264,6 +281,18 @@ test("airborne and unequal-height captures preserve each fighter's own position 
         r.start();
         const original = positions(r.state);
         assert.notEqual(original[0].y, original[1].y);
+        if (finaleById(fighter.id)!.mode === "field") {
+          assert.equal(r.state.finale, undefined);
+          if (fighter.id === "dayana") {
+            assert.equal(r.state.fieldFinales, undefined);
+            assert.equal(r.state.players[owner].energy, 100);
+          } else assert.equal(r.state.fieldFinales?.[0]?.fighter, "deyna");
+          const y = r.state.players[owner].y;
+          r.advance(1);
+          assert.notEqual(r.state.players[owner].y, y);
+          assert.equal(r.state.stage, "guaira");
+          continue;
+        }
         if (finaleById(fighter.id)!.mode === "projectile") {
           assert.equal(r.state.finale, undefined);
           const y = r.state.players[owner].y;

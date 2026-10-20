@@ -2,8 +2,6 @@ import { drawLloronaFinale } from "./llorona";
 import { drawDudamelFinale } from "./dudamel";
 import { drawBolivarFinale } from "./bolivar";
 import { drawLorenzoFinale } from "./lorenzo";
-import { drawDeynaFinale } from "./deyna";
-import { drawDayanaFinale } from "./dayana";
 import type { FinaleSequence, FinaleView } from "./types";
 import { drawMelanioFinale } from "./melanio";
 import { drawAliFinale } from "./ali";
@@ -24,8 +22,6 @@ const sequences: Record<string, FinaleSequence> = {
   llorona: drawLloronaFinale,
   dudamel: drawDudamelFinale,
   bolivar: drawBolivarFinale,
-  dayana: drawDayanaFinale,
-  deyna: drawDeynaFinale,
   lorenzo: drawLorenzoFinale,
   ali: drawAliFinale,
   melanio: drawMelanioFinale,

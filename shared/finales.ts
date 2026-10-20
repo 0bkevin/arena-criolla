@@ -20,7 +20,7 @@ export interface FinaleDefinition {
   prop: string;
   caption: string;
   accent: string;
-  mode: "capture" | "transformation" | "projectile";
+  mode: "capture" | "transformation" | "projectile" | "field";
   empowerment?: { id: string; duration: number; damageMultiplier: number };
   /** A normal combat projectile: no capture, homing or scheduled remote damage. */
   projectile?: {
@@ -500,19 +500,19 @@ const entries: readonly Entry[] = [
   ],
   [
     "dayana",
-    "Coronación universal",
+    "Pasarela universal",
     "theater",
-    "Dayana gira con su vestido amarillo, recibe su corona de 2008 y saluda mientras tres ondas de gasa dorada deslumbran al rival.",
-    "Vestido amarillo, corona y gasa dorada",
+    "Hace aparecer una pasarela, avanza con su vestido amarillo y posa tres veces; cada pose daña al rival cercano. La pelea continúa y el recorrido se puede interrumpir.",
+    "Pasarela iluminada y vestido amarillo",
     "Una reina en la arena",
     "show",
   ],
   [
     "deyna",
-    "Volea vinotinto",
+    "Pelotón vinotinto",
     "sport",
-    "Deyna y dos compañeras adultas detrás de ella patean tres balones simultáneamente; la volea golpea al rival al llegar.",
-    "Tres futbolistas y tres balones",
+    "Deyna convoca cinco compañeras en pelotón que disparan cinco balones reales mientras ambos luchadores conservan el control. Los balones se pueden esquivar, bloquear o reflejar.",
+    "Cinco compañeras y cinco balones",
     "La arena se viste de vinotinto",
     "show",
   ],
@@ -567,11 +567,13 @@ export const FINALES = Object.fromEntries(
         accent: fighterById(id).color,
         ...(id === "puma" ? { release: { force: 34, knockoutDelay: 90 } } : {}),
         mode:
-          id === "conde" || id === "emilio"
-            ? "transformation"
-            : id === "maite"
-              ? "projectile"
-              : "capture",
+          id === "dayana" || id === "deyna"
+            ? "field"
+            : id === "conde" || id === "emilio"
+              ? "transformation"
+              : id === "maite"
+                ? "projectile"
+                : "capture",
         ...(id === "maite"
           ? {
               projectile: {
@@ -597,15 +599,21 @@ export const FINALES = Object.fromEntries(
             }
           : {}),
         duration:
-          id === "conde" || id === "emilio"
-            ? 360
-            : id === "maite"
-              ? 84
-              : id === "nacho"
-                ? perroMujeriego.durationTicks
-                : FINALE_DURATION,
+          id === "deyna"
+            ? 96
+            : id === "conde" || id === "emilio"
+              ? 360
+              : id === "maite"
+                ? 84
+                : id === "nacho"
+                  ? perroMujeriego.durationTicks
+                  : FINALE_DURATION,
         damageBeats:
-          id === "conde" || id === "emilio" || id === "maite"
+          id === "conde" ||
+          id === "emilio" ||
+          id === "maite" ||
+          id === "deyna" ||
+          id === "dayana"
             ? []
             : id === "nacho"
               ? FINALE_DAMAGE_BEATS.map(
@@ -620,16 +628,12 @@ export const FINALES = Object.fromEntries(
                     ? [48, 70, 92]
                     : id === "chataing" || id === "melanio"
                       ? [114]
-                      : id === "deyna"
-                        ? [100]
-                        : id === "dayana"
-                          ? [60, 96, 132]
-                          : id === "george" ||
-                              id === "mcm" ||
-                              id === "lorenzo" ||
-                              id === "bolivar"
-                            ? [96]
-                            : FINALE_DAMAGE_BEATS,
+                      : id === "george" ||
+                          id === "mcm" ||
+                          id === "lorenzo" ||
+                          id === "bolivar"
+                        ? [96]
+                        : FINALE_DAMAGE_BEATS,
         sound,
       },
     ],

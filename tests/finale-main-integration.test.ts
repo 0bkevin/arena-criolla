@@ -33,7 +33,9 @@ test("main's revised canonical identities remain selected and the authored batch
       ),
     /all 53/,
   );
-  for (const id of CANONICAL_FINALE_FIGHTERS.filter(id => id !== "dayana" && id !== "deyna")) {
+  for (const id of CANONICAL_FINALE_FIGHTERS.filter(
+    (id) => id !== "dayana" && id !== "deyna",
+  )) {
     assert.equal((actors.seated as Record<string, unknown>)[id], undefined);
     assert.equal((dancers.dancers as Record<string, unknown>)[id], undefined);
   }
@@ -84,7 +86,9 @@ test("all six incoming fighters remain visible in their finales, Capriles's chai
   });
   try {
     for (const incoming of CANONICAL_FINALE_FIGHTERS)
-      for (const source of [incoming, "capriles", "nacho"] as const)
+      for (const source of ([incoming, "capriles", "nacho"] as const).filter(
+        (source) => finaleById(source)?.mode === "capture",
+      ))
         for (const owner of [0, 1] as const) {
           const target = source === incoming ? "javier" : incoming;
           const state = createMatch(

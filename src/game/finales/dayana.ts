@@ -1,22 +1,25 @@
-import { fighterById } from "../../../shared/content";
+import {
+  activeRunway,
+  runwayRange,
+  runwayWalking,
+  RUNWAY_POSE_TICKS,
+  type FieldFinaleState,
+} from "../../../shared/field-finales";
+import type { MatchState } from "../../../shared/engine";
 import type { PlayerState, Projectile } from "../../../shared/engine";
 import { ATTACK_ART, drawAttackArt, hasAttackArt } from "../attack-art";
-import { finaleArtXRange } from "../finale-viewport";
-import type { FinaleView } from "./types";
 
 export const DAYANA_SPECIAL_POSES = ["present", "turn", "sash-wave"] as const;
 export const DAYANA_POSES = [
   ...DAYANA_SPECIAL_POSES,
-  "crowned",
-  "salute",
-  "crown",
+  "walk-a",
+  "walk-b",
+  "walk-c",
+  "walk-d",
+  "pose-hip",
+  "pose-wave",
+  "runway",
 ] as const;
-export const DAYANA_CONTACT_TICKS = [60, 96, 132] as const;
-const clamp = (n: number, lo = 0, hi = 1) => Math.max(lo, Math.min(hi, n));
-const smooth = (n: number) => {
-  const t = clamp(n);
-  return t * t * (3 - 2 * t);
-};
 /** A raised hand or flared hem must not change the size of her head. */
 export const dayanaPoseHeight = (pose: string, height: number) =>
   (height * ATTACK_ART.dayana.frames[pose].bodyHeight!) /
@@ -80,12 +83,13 @@ export function drawDayanaSpecial(
 ) {
   if (
     p.config.fighter !== "dayana" ||
-    p.attack !== "special" ||
+    (p.attack !== "special" && p.attack !== "super") ||
     p.stun ||
     !hasAttackArt(images, "dayana", DAYANA_SPECIAL_POSES)
   )
     return false;
-  const pose = dayanaSpecialPose(p.attackTick);
+  const pose =
+    p.attack === "super" ? "present" : dayanaSpecialPose(p.attackTick);
   if (!pose) return false;
   return drawAttackArt(
     ctx,
@@ -99,82 +103,72 @@ export function drawDayanaSpecial(
   );
 }
 
-/** Gown, coronation and three golden flourishes stay inside the existing arena. */
-export function drawDayanaFinale(view: FinaleView): boolean {
-  if (!hasAttackArt(view.images, "dayana", DAYANA_POSES)) return false;
-  const { ctx, tick } = view,
-    source = view.point(306, 514),
-    target = view.point(782, 514);
-  const poses = ["present", "turn", "crowned", "salute"];
-  const ranges = poses.map((p) =>
-    finaleArtXRange(
-      view.viewport,
-      ATTACK_ART.dayana.frames[p],
-      dayanaPoseHeight(p, 300),
-    ),
-  );
-  const minX = Math.max(...ranges.map((r) => r.minX)),
-    maxX = Math.min(...ranges.map((r) => r.maxX));
-  const endX = clamp(source.x, minX, maxX),
-    blend = Math.min(smooth(tick / 12), smooth((180 - tick) / 12));
-  const x = source.x + (endX - source.x) * blend;
-  const pose =
-    tick < 18
-      ? "present"
-      : tick < 60
-        ? "turn"
-        : tick < 96
-          ? "crowned"
-          : "salute";
-  const h = (300 * (fighterById(view.rival).displayHeight ?? 177)) / 177;
-  view.body(view.rival, 782, 514, 300, -1, view.pulse ? "hurt" : "stand");
+export function runwayPose(tick: number) {
+  if (runwayWalking(tick))
+    return ["walk-a", "walk-b", "walk-c", "walk-d"][Math.floor(tick / 6) % 4];
+  return tick < 60 ? "pose-hip" : "pose-wave";
+}
+export function drawDayanaRunway(
+  ctx: CanvasRenderingContext2D,
+  images: Record<string, HTMLImageElement>,
+  field: FieldFinaleState,
+) {
+  if (!hasAttackArt(images, "dayana", DAYANA_POSES)) return false;
+  const range = runwayRange(field),
+    frame = ATTACK_ART.dayana.frames.runway,
+    width = range.right - range.left;
+  const alpha = Math.min(1, field.tick / 8, (field.duration - field.tick) / 12);
   drawAttackArt(
     ctx,
-    view.images,
+    images,
+    "dayana",
+    "runway",
+    (range.left + range.right) / 2,
+    field.y + 18,
+    (width * frame.bodyHeight!) / frame.width,
+    1,
+    alpha,
+  );
+  return true;
+}
+/** Her real fighter walks on the temporary runway and remains vulnerable throughout. */
+export function drawDayanaRunwayBody(
+  ctx: CanvasRenderingContext2D,
+  images: Record<string, HTMLImageElement>,
+  state: MatchState,
+  player: PlayerState,
+  height: number,
+) {
+  const field = activeRunway(state, player);
+  if (!field || !hasAttackArt(images, "dayana", DAYANA_POSES)) return false;
+  const pose = runwayPose(field.tick),
+    frame = ATTACK_ART.dayana.frames[pose],
+    reference = ATTACK_ART.dayana.frames["walk-a"];
+  drawAttackArt(
+    ctx,
+    images,
     "dayana",
     pose,
-    x,
-    source.y,
-    dayanaPoseHeight(pose, 300),
+    player.x,
+    player.y,
+    (height * frame.bodyHeight!) / reference.bodyHeight!,
+    field.direction,
   );
-  if (tick >= 40 && tick < 60) {
-    const settle = smooth((tick - 40) / 20);
-    drawAttackArt(
+  // A short flourish marks the same local contact area as the simulation pose.
+  const at = RUNWAY_POSE_TICKS.find(
+    (t) => field.tick >= t && field.tick < t + 10,
+  );
+  if (at !== undefined) {
+    const fade = 1 - (field.tick - at) / 10;
+    ribbon(
       ctx,
-      view.images,
-      "dayana",
-      "crown",
-      x + 4,
-      source.y - 290 - (1 - settle) * (view.motion ? 45 : 12),
-      35,
-      1,
-      settle,
+      images,
+      player.x + field.direction * 65,
+      player.y - 90,
+      48,
+      field.direction,
+      fade,
     );
   }
-  for (const [i, at] of DAYANA_CONTACT_TICKS.entries()) {
-    const start = at - 22;
-    if (tick < start || tick >= at + 12) continue;
-    const travel = clamp((tick - start) / 22),
-      fade = 1 - clamp((tick - at) / 12);
-    const toY = target.y - h * (0.43 + i * 0.12);
-    const px = x + 65 + (target.x - 18 - x - 65) * travel;
-    const py =
-      source.y -
-      140 +
-      (toY - source.y + 140) * travel -
-      Math.sin(travel * Math.PI) * (view.motion ? 28 : 0);
-    ribbon(ctx, view.images, px, py, 66, 1, fade);
-    if (tick >= at) {
-      ctx.save();
-      ctx.globalAlpha *= fade;
-      ctx.strokeStyle = "#fff1a3";
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.arc(target.x - 18, toY, 22 + (tick - at) * 2, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.restore();
-    }
-  }
-  view.damage(115);
   return true;
 }

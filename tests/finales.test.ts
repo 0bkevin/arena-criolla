@@ -64,7 +64,7 @@ function close(actual: number, expected: number, message?: string) {
   );
 }
 
-test("all built-in finales exercise their capture or transformation mode against every rival on either side", () => {
+test("all built-in finales exercise their combat mode against every rival on either side", () => {
   assert.equal(BUILT_IN_FIGHTERS.length, 53);
   assert.equal(Object.keys(FINALES).length, BUILT_IN_FIGHTERS.length);
   let scenes = 0;
@@ -75,6 +75,29 @@ test("all built-in finales exercise their capture or transformation mode against
         r.start();
         const context = `${fighter.id} → ${rival.id}, P${side + 1}`;
         const scene = r.state.finale;
+        if (finaleById(fighter.id)!.mode === "field") {
+          assert.equal(scene, undefined, context);
+          assert.equal(r.state.fieldFinales?.[0]?.fighter, fighter.id, context);
+          assert.equal(
+            r.target.hp,
+            100,
+            context + ": no automatic capture damage",
+          );
+          const tick = r.state.tick,
+            remaining = r.state.remaining;
+          r.inputs[1 - side].actions.jump++;
+          r.advance(12);
+          assert.ok(r.state.tick > tick, context + ": combat clock continues");
+          assert.ok(
+            r.state.remaining < remaining,
+            context + ": round timer continues",
+          );
+          assert.ok(r.target.y < WORLD.floor, context + ": rival can jump");
+          r.advance(320);
+          assert.equal(r.state.fieldFinales, undefined, context);
+          scenes++;
+          continue;
+        }
         if (finaleById(fighter.id)!.mode === "projectile") {
           assert.equal(scene, undefined, context);
           assert.equal(
@@ -187,6 +210,7 @@ test("finales keep the three-win and 75-energy gates, and Vicente's single motor
         Boolean(
           r.state.finale ||
           r.source.transformation ||
+          r.state.fieldFinales?.length ||
           r.state.projectiles.some((p) => p.impact === "super"),
         ),
         wins === 3 && energy >= 75,
@@ -414,6 +438,7 @@ test("exact lethal thresholds resolve without floating-point survivors, while a 
       for (const margin of [0, -0.0001, 0.0001]) {
         const r = setup(fighter.id, "javier", side);
         const damage = (28 * fighter.damage + 12) * fighterById("javier").armor;
+        if (finaleById(fighter.id)!.mode === "field") continue;
         if (finaleById(fighter.id)!.mode === "transformation") {
           r.target.hp = Math.max(0.0001, damage + margin);
           r.start();

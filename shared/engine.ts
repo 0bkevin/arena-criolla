@@ -1,4 +1,12 @@
 import {
+  beginFieldFinale,
+  advanceFieldFinales,
+  activeRunway,
+  supportRunway,
+  runwayContacts,
+  type FieldFinaleState,
+} from "./field-finales";
+import {
   fighterById,
   platformsAtTick,
   type FighterId,
@@ -149,6 +157,7 @@ export interface MatchState {
   shake: number;
   hitstop: number;
   finale?: FinaleState;
+  fieldFinales?: FieldFinaleState[];
 }
 
 /** Snapshot once for new attacks; reflected shots retain their original damage. */
@@ -374,6 +383,8 @@ function loseStock(s: MatchState, i: number) {
   p.stocks--;
   delete p.knockoutDelay;
   delete p.transformation;
+  s.fieldFinales = s.fieldFinales?.filter((field) => field.owner !== i);
+  if (!s.fieldFinales?.length) delete s.fieldFinales;
   p.slowTicks = 0;
   p.rootTicks = 0;
   effect(
@@ -442,6 +453,13 @@ function beginFinale(s: MatchState, owner: 0 | 1) {
       (28 * fighterById(source.config.fighter).damage + source.comboBonus) *
       fighterById(target.config.fighter).armor,
   };
+  if (activeRunway(s, target)) {
+    s.fieldFinales = s.fieldFinales?.filter(
+      (field) => s.players[field.owner] !== target,
+    );
+    if (!s.fieldFinales?.length) delete s.fieldFinales;
+    target.cooldown = Math.min(target.cooldown, 12);
+  }
   target.attack = null;
   target.blocking = false;
   target.dash = 0;
@@ -499,6 +517,12 @@ function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
       (TECHNIQUES[def.ability].requiresGround && !p.grounded))
   )
     return;
+  if (
+    attack === "super" &&
+    (s.fieldFinales?.some((field) => field.owner === i) ||
+      (p.config.fighter === "dayana" && !p.grounded))
+  )
+    return;
   if (attack === "special" && p.energy < 25) return;
   if (attack === "super" && (p.config.wins < 3 || p.energy < 75)) return;
   if (attack === "special") p.energy -= 25;
@@ -518,6 +542,7 @@ function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
           : finaleById(p.config.fighter)?.mode === "projectile"
             ? finaleById(p.config.fighter)!.duration + 1
             : 42;
+  if (attack === "super" && p.config.fighter === "dayana") p.cooldown = 190;
   p.history = p.history.filter((h) => s.tick - h.tick < 150);
   p.history.push({ action: attack, tick: s.tick });
   if (p.history.length > 3) p.history.shift();
@@ -612,6 +637,21 @@ function updateAttack(s: MatchState, i: number) {
           ? technique.startup
           : FINALE_CAPTURE_TICK;
   const finale = attack === "super" ? finaleById(p.config.fighter) : undefined;
+  if (finale?.mode === "field") {
+    if (p.attackTick === activeAt && !p.attackHit) {
+      p.attackHit = true;
+      beginFieldFinale(
+        s,
+        i as 0 | 1,
+        (28 * def.damage + p.comboBonus) * outgoingDamageMultiplier(p),
+      );
+    }
+    if (p.config.fighter === "deyna" && p.attackTick >= 24) {
+      p.attack = null;
+      p.cooldown = 0;
+    }
+    return;
+  }
   if (finale?.mode === "projectile") {
     const shot = finale.projectile;
     if (p.attackTick === activeAt && !p.attackHit && shot) {
@@ -1037,6 +1077,13 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
         else if (p.grounded) p.facing = s.players[1 - i].x >= p.x ? 1 : -1;
       }
       if (pressed("jump") && p.jumps < 2 && !p.blocking) {
+        if (activeRunway(s, p)) {
+          s.fieldFinales = s.fieldFinales?.filter(
+            (field) => s.players[field.owner] !== p,
+          );
+          p.attack = null;
+          p.cooldown = 12;
+        }
         p.rootTicks = 0;
         p.vy = p.jumps === 0 ? -12.8 : -11;
         p.jumps++;
@@ -1067,6 +1114,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     updateAttack(s, i);
     if (s.finale) return;
   }
+  advanceFieldFinales(s);
   // Both players must finish spawning shots before either reflector sees this tick's pack.
   for (let i = 0; i < 2; i++) reflectProjectiles(s, i);
   // Predict spacing from the movement that roots actually allow this frame.
@@ -1125,6 +1173,19 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
       p.recoilVx = (p.recoilVx ?? 0) * 0.89;
     }
   }
+  supportRunway(s);
+  for (const hit of runwayContacts(s))
+    hurt(
+      s,
+      hit.owner,
+      hit.damage,
+      hit.force,
+      hit.direction,
+      hit.x,
+      hit.y,
+      "super",
+      8,
+    );
   const [a, b] = s.players;
   if (
     Math.abs(a.x - b.x) < 43 &&
@@ -1138,7 +1199,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     b.x += sign * push;
     // Body separation can push a fighter beyond the surface checked above.
     for (const p of s.players) {
-      if (!p.grounded) continue;
+      if (!p.grounded || activeRunway(s, p)) continue;
       const support =
         p.supportPlatform === -1
           ? { x: WORLD.left, width: WORLD.right - WORLD.left }
@@ -1346,6 +1407,19 @@ function resolveTimeout(s: MatchState) {
   // physical flight (or bounded fallback) before comparing timeout scores.
   if (s.players.some((p) => p.hp <= 0 && (p.knockoutDelay ?? 0) > 0)) return;
   if (s.remaining <= 0 && s.phase === "playing") {
+    supportRunway(s);
+    for (const hit of runwayContacts(s))
+      hurt(
+        s,
+        hit.owner,
+        hit.damage,
+        hit.force,
+        hit.direction,
+        hit.x,
+        hit.y,
+        "super",
+        8,
+      );
     const [a, b] = s.players;
     const scoreA = a.stocks * 100 + a.hp;
     const scoreB = b.stocks * 100 + b.hp;
@@ -1428,14 +1502,17 @@ export function cpuInput(
     difficulty === "hard" &&
     p.config.wins >= 3 &&
     p.energy >= 75 &&
-    (finaleById(p.config.fighter)?.mode === "transformation"
-      ? !p.transformation
-      : finaleById(p.config.fighter)?.mode === "projectile"
-        ? Math.abs(dx) <
-            finaleById(p.config.fighter)!.projectile!.speed *
-              (finaleById(p.config.fighter)!.projectile!.life - 1) &&
-          Math.abs(other.y - p.y) < 100
-        : Math.abs(dx) < 210) &&
+    (finaleById(p.config.fighter)?.mode === "field"
+      ? !s.fieldFinales?.some((field) => field.owner === 1) &&
+        (p.config.fighter !== "dayana" || p.grounded)
+      : finaleById(p.config.fighter)?.mode === "transformation"
+        ? !p.transformation
+        : finaleById(p.config.fighter)?.mode === "projectile"
+          ? Math.abs(dx) <
+              finaleById(p.config.fighter)!.projectile!.speed *
+                (finaleById(p.config.fighter)!.projectile!.life - 1) &&
+            Math.abs(other.y - p.y) < 100
+          : Math.abs(dx) < 210) &&
     s.tick % 90 === 0
   )
     next.actions.super++;

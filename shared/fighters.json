@@ -1256,7 +1256,7 @@
     "title": "Miss Universo 2008",
     "role": "CORONACIÓN",
     "color": "#ffe079",
-    "description": "Vestido amarillo de gala, bordados plateados y pendientes turquesa. Su giro de pasarela lanza una onda de gasa dorada; en la definitiva se corona y deslumbra al rival.",
+    "description": "Vestido amarillo de gala, bordados plateados y pendientes turquesa. Su giro de pasarela lanza una onda de gasa dorada; en la definitiva recorre una pasarela y posa para golpear al rival cercano.",
     "speed": 5.6,
     "damage": 0.94,
     "armor": 1.03,
@@ -1270,7 +1270,7 @@
     "combos": [
       "Paso de gala",
       "Vuelta de reina",
-      "Coronación universal"
+      "Pasarela universal"
     ],
     "sprite": "dayana-v49",
     "category": "culture"
@@ -1282,7 +1282,7 @@
     "title": "La reina del remate",
     "role": "FÚTBOL",
     "color": "#bd597a",
-    "description": "Delantera venezolana con la Vinotinto número 9, coleta y botas blancas. Dispara un balón a ras de suelo y reúne a dos compañeras para una volea simultánea.",
+    "description": "Delantera venezolana con la Vinotinto número 9, coleta y botas blancas. Dispara un balón a ras de suelo y convoca a cinco compañeras que disparan un pelotón de balones sin detener la pelea.",
     "speed": 5.6,
     "damage": 0.94,
     "armor": 1.03,

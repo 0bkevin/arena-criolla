@@ -1,3 +1,7 @@
+import {
+  RUNWAY_POSE_TICKS,
+  SQUAD_LAUNCH_TICK,
+} from "../../shared/field-finales";
 import type { FighterId } from "../../shared/content";
 import type { FinaleDefinition } from "../../shared/finales";
 
@@ -176,18 +180,16 @@ export function writeFinaleScore(
     });
   } else if (fighter === "dayana") {
     [72, 76, 79, 84].forEach((note, i) =>
-      tone(note, 0.12 + i * 0.14, 0.24, 0.065),
+      tone(note, 0.12 + i * 0.14, 0.24, 0.065, i % 2 ? 0.22 : -0.22),
     );
-    profile.damageBeats.forEach((tick) => {
-      tone(84, tick / 60, 0.16, 0.08);
-      tone(91, tick / 60 + 0.04, 0.2, 0.05);
+    RUNWAY_POSE_TICKS.forEach((tick) => {
+      tone(84, tick / 60, 0.16, 0.08, 0.25);
+      tone(91, tick / 60 + 0.04, 0.2, 0.05, -0.2);
     });
   } else if (fighter === "deyna") {
-    // One synchronized boot strike and one collective arrival; buffer plays once.
-    drum(66 / 60, true, -0.25);
-    drum(66 / 60, false, 0.25);
-    drum(100 / 60, true);
-    tone(45, 100 / 60, 0.16, 0.1);
+    drum(SQUAD_LAUNCH_TICK / 60, true, -0.25);
+    drum(SQUAD_LAUNCH_TICK / 60, false, 0.25);
+    tone(45, SQUAD_LAUNCH_TICK / 60, 0.16, 0.1);
   } else if (fighter === "bolivar") {
     // Original hoof rhythm and short bugle-like interval; no historical song sample.
     for (let tick = 36; tick < 138; tick += 9) {

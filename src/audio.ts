@@ -245,7 +245,12 @@ export function stopFinaleMusic() {
 
 /** The simulation clock is authoritative, including reconnects and unmuting. */
 export function syncFinaleMusic(
-  scene: FinaleState | undefined,
+  scene:
+    | Pick<
+        FinaleState,
+        "fighter" | "owner" | "startedTick" | "tick" | "duration"
+      >
+    | undefined,
   paused: boolean,
 ) {
   if (!scene || paused || !enabled || scene.tick >= scene.duration) {
