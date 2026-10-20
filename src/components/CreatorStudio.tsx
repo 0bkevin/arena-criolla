@@ -753,7 +753,7 @@ export function CreatorStudio({
                       accept="image/jpeg,image/png,image/webp"
                       multiple
                       disabled={submitting || draft.submitted}
-                      aria-label="Subir fotos de referencia"
+                      aria-label="Subir tus fotos"
                       onChange={(e) => {
                         addPhotos(Array.from(e.target.files || []));
                         e.target.value = "";
@@ -763,10 +763,7 @@ export function CreatorStudio({
                       <div className="creator-photo-grid">
                         {previews.map((url, index) => (
                           <div className="creator-photo" key={url}>
-                            <img
-                              src={url}
-                              alt={`Tu foto de referencia ${index + 1}`}
-                            />
+                            <img src={url} alt={`Tu foto ${index + 1}`} />
                             <button
                               type="button"
                               disabled={submitting || draft.submitted}

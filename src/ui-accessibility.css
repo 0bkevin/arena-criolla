@@ -45,8 +45,7 @@
   height: 44px;
   flex-shrink: 0;
 }
-.modal:where(:not(.help-modal))
-  :is(p, .help-note, .character-identity, .character-identity span) {
+.modal:where(:not(.help-modal)) :is(p, .help-note) {
   font-size: 13px;
   line-height: 1.7;
 }
@@ -82,7 +81,6 @@
     .checkbox-label,
     .rooms-list span,
     .rooms-list-heading > span,
-    .character-references,
     .recent-matches > div,
     .recent-matches small,
     .recent-matches .won,
@@ -109,29 +107,12 @@
   color: #acb9cf;
 }
 .modal:where(:not(.help-modal))
-  :is(
-    .roster-grid span,
-    .roster-grid strong,
-    .special-description,
-    .detail-info > .eyebrow,
-    .character-references a,
-    .character-quote a
-  ) {
+  :is(.roster-grid span, .roster-grid strong, .special-description) {
   color: color-mix(in srgb, var(--fighter-color) 65%, #ffffff);
 }
 .modal:where(:not(.help-modal))
-  :is(
-    .primary-button,
-    .secondary-button,
-    .text-button,
-    .rooms-list button,
-    .character-references summary,
-    .character-references a
-  ) {
+  :is(.primary-button, .secondary-button, .text-button, .rooms-list button) {
   min-height: 44px;
-}
-.modal:where(:not(.help-modal)) .character-references summary {
-  align-content: center;
 }
 .modal:where(:not(.help-modal)) input:not([type="checkbox"]) {
   min-height: 44px;
