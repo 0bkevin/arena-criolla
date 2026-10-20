@@ -2766,9 +2766,6 @@ body {
     padding-inline: 4px;
     gap: 3px;
   }
-  .roster-categories button > svg {
-    display: none;
-  }
   .roster-categories button span {
     font-size: 9px;
   }

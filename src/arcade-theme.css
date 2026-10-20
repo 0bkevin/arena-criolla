@@ -4,7 +4,7 @@ body {
 }
 .app-shell.in-lobby {
   --selection-control-height: 35px;
-  --selection-fill: #ffd45a33;
+  --selection-fill: #31465f;
   --ink: #17273f;
   --paper: #fff5db;
   --coin: #ffd45a;
@@ -712,29 +712,33 @@ body {
   min-height: 29px;
   height: 29px;
   padding: 4px 7px;
-  background: #07162966;
+  background: #0b1a2d;
   border: 1px solid transparent;
   border-radius: 3px;
   color: #bccae0;
   box-shadow: none;
   font:
-    500 11px "DM Sans",
+    500 12px "DM Sans",
     sans-serif;
 }
 .in-lobby .roster-categories button span {
-  font: 500 9px var(--pixel);
+  font: 500 10px "DM Sans", sans-serif;
   color: #a2b1c6;
 }
 .in-lobby .roster-categories button[aria-pressed="true"] {
   background: var(--selection-fill);
-  color: var(--paper);
+  color: var(--coin);
+  font-weight: 700;
   box-shadow: none;
 }
 .in-lobby .roster-categories button[aria-pressed="true"] span {
-  color: #e6d39b;
+  color: #d6e3f3;
 }
 .in-lobby .roster-categories button:not([aria-pressed="true"]):hover {
-  background: #ffffff12;
+  background: #20354c;
+}
+.in-lobby .roster-categories button:is(:hover, :active) {
+  transform: none;
 }
 .in-lobby .fighter-grid {
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -1977,9 +1981,6 @@ body {
   .in-lobby .roster-categories button {
     font-size: 11px;
     gap: 4px;
-  }
-  .in-lobby .roster-categories button > svg {
-    display: none;
   }
   .in-lobby .fighter-card-caption strong {
     font-size: 10px;

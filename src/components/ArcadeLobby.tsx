@@ -484,9 +484,6 @@ export function ArcadeLobby(props: Props) {
                       setPageStart(0);
                     }}
                   >
-                    {value === "folklore" && (
-                      <PixelIcon kind="star" size={12} />
-                    )}
                     {label}
                     <span>
                       {
