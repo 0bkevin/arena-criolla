@@ -208,6 +208,15 @@ export const ENTRANCE_ACTIONS: Partial<Record<FighterId, EntranceAction>> = {
     ],
   },
 };
+/** Keep the authored signature pose on the result screen, before its release. */
+export function entrancePoseProgress(id: FighterId): number {
+  return (
+    ENTRANCE_ACTIONS[id]?.frames
+      .filter((frame) => frame.phase === "hold" || frame.phase === "pose")
+      .at(-1)?.at ?? 1
+  );
+}
+
 export function sampleEntranceAction(id: FighterId, progress: number) {
   const action = ENTRANCE_ACTIONS[id],
     t = Math.max(0, Math.min(1, progress));
