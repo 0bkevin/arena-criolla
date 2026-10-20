@@ -1,19 +1,19 @@
-import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import test from "node:test";
+import attackArt from "../shared/attack-assets.json";
 import {
   BUILT_IN_FIGHTERS,
   fighterById,
   type FighterId,
 } from "../shared/content";
-import { finaleAsset } from "../shared/finales";
-import atlas from "../shared/sprite-geometry.json";
-import attackArt from "../shared/attack-assets.json";
+import courier from "../shared/courier-assets.json";
 import actors from "../shared/finale-actor-assets.json";
 import cafe from "../shared/finale-cafe-assets.json";
 import desk from "../shared/finale-desk-assets.json";
+import { finaleAsset, finaleById } from "../shared/finales";
 import choreography from "../shared/perro-mujeriego-assets.json";
-import courier from "../shared/courier-assets.json";
+import atlas from "../shared/sprite-geometry.json";
 
 const primaryDance = "perro-mujeriego-v3-nacho";
 const alternateDance = "finales-nacho-dance";
@@ -214,7 +214,7 @@ test("a fight keeps both dance lookup keys and retries optional failures without
   }
 });
 
-test("all 2704 ordered matches retain their required artwork and only request relevant seated and dance atlases", async () => {
+test("all 2809 ordered matches retain their required artwork and only request relevant seated and dance atlases", async () => {
   const browser = browserFixture();
   try {
     const { preloadAssets } = await loader("all-pairs");
@@ -229,8 +229,12 @@ test("all 2704 ordered matches retain their required artwork and only request re
         for (const id of ids) {
           for (const file of [
             attacks[id]?.file,
-            finaleAsset(id)?.file,
-            performers[id]?.file,
+            finaleById(id)?.mode === "capture"
+              ? finaleAsset(id)?.file
+              : undefined,
+            finaleById(id)?.mode === "capture"
+              ? performers[id]?.file
+              : undefined,
           ])
             if (file) expected.add(file);
           if (hasSeats && seated[id]) expected.add(seated[id].file);
@@ -267,7 +271,7 @@ test("all 2704 ordered matches retain their required artwork and only request re
       }
     }
     assert.equal(cases, BUILT_IN_FIGHTERS.length ** 2);
-    assert.equal(cases, 2704);
+    assert.equal(cases, BUILT_IN_FIGHTERS.length ** 2);
     assert.equal(browser.count(danceUrl), 1);
     assert.equal(browser.count(alternateUrl), 0);
     for (const [url, requests] of browser.requests)

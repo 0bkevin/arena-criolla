@@ -116,6 +116,7 @@ async function startPair(
 const NEW_FIGHTERS = [
   "javier",
   "dayana",
+  "deyna",
   "nacho",
   "capriles",
   "lorenzo",

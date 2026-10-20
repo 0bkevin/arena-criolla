@@ -155,9 +155,9 @@ test("La Llorona recognizes base and upgraded combos, connects every strike with
     for (const [wins, energy] of [[0, 100], [2, 100], [3, 74], [3, 75], [3, 100]] as const) {
       const r = setup(side, 200, wins); r.player.energy = energy;
       r.inputs[side].actions.super++; r.advance(9);
-      if (r.state.finale) r.advance(r.state.finale.duration);
+      if (r.state.fieldFinales) { assert.equal(r.state.fieldFinales[0].fighter, "llorona"); assert.equal(r.rival.hp, 100); r.advance(320); }
       if (wins < 3 || energy < 75) { assert.equal(r.player.attack, null); assert.equal(r.rival.hp, 100); }
-      else { assert.equal(r.player.combo, "Crecida de medianoche"); assert.equal(r.player.comboBonus, 12); assert.equal(r.player.hits, 1); close(r.rival.hp, 59.9536); }
+      else { assert.equal(r.player.combo, "Crecida de medianoche"); assert.equal(r.player.comboBonus, 12); assert.equal(r.state.finale, undefined); assert.equal(r.player.attack, null); }
       emit("super-gate", { side, wins, energy, hp: r.rival.hp, attackerEnergy: r.player.energy, combo: r.player.combo });
     }
   }

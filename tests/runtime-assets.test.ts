@@ -28,7 +28,7 @@ test("runtime personality and geometry metadata cover the complete shipped roste
 });
 
 test("every seated guest, dancer, performer and furniture frame has visible artwork inside its shipped atlas", async () => {
-  const ids = FINALE_ASSET_GROUPS.flat().sort();
+  const ids = [...FINALE_ASSET_GROUPS.flat(), "dayana", "deyna"].sort();
   assert.deepEqual(Object.keys(actors.seated).sort(), ids);
   assert.deepEqual(Object.keys(actors.dancers).sort(), ids);
   assert.deepEqual(Object.keys(dancers.dancers).sort(), ids);

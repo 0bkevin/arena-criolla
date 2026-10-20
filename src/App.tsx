@@ -61,15 +61,14 @@ const colorStyle = (color: string): React.CSSProperties =>
 export function App({
   communityRevision: _communityRevision,
 }: { communityRevision?: number } = {}) {
-  const selectableFighters = FIGHTERS.filter((item) => item.id !== "dayana");
   const [mode, setMode] = useState<GameMode>("practice");
   const [initialMatchup] = useState(() => {
     // Pick two distinct fighters once, without shuffling or copying the roster.
-    const first = Math.floor(Math.random() * selectableFighters.length);
+    const first = Math.floor(Math.random() * FIGHTERS.length);
     const second =
-      (first + 1 + Math.floor(Math.random() * (selectableFighters.length - 1))) %
-      selectableFighters.length;
-    return [selectableFighters[first].id, selectableFighters[second].id] as const;
+      (first + 1 + Math.floor(Math.random() * (FIGHTERS.length - 1))) %
+      FIGHTERS.length;
+    return [FIGHTERS[first].id, FIGHTERS[second].id] as const;
   });
   const [fighter, setFighter] = useState<FighterId>(initialMatchup[0]);
   const [rival, setRival] = useState<FighterId>(initialMatchup[1]);
@@ -121,7 +120,7 @@ export function App({
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
     .trim();
-  const visibleFighters = selectableFighters.filter((f) =>
+  const visibleFighters = FIGHTERS.filter((f) =>
     `${f.name} ${f.shortName} ${f.title} ${f.role}`
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
@@ -618,7 +617,7 @@ export function App({
       {modal === "fighters" && (
         <Modal title="Luchadores" wide onClose={() => setModal(null)}>
           <div className="roster-grid">
-            {selectableFighters.map((f) => (
+            {FIGHTERS.map((f) => (
               <button
                 key={f.id}
                 onClick={() => {
@@ -1047,7 +1046,9 @@ function FighterDetail({
                 ? "La definitiva lanza una onda a distancia. Puede bloquearse o esquivarse y consume 75 de energía, incluso si falla."
                 : finale.mode === "transformation"
                   ? "La definitiva transforma al personaje durante seis segundos de combate. Sus ataques hacen un 20 % más de daño y consume 75 de energía."
-                  : "La definitiva atrapa al rival a corta distancia. Puede bloquearse antes de que empiece la escena y consume 75 de energía."}
+                  : finale.mode === "field"
+                    ? "La definitiva ocurre en la arena mientras la pelea continúa. Consume 75 de energía; sus impactos dependen del alcance y del contacto."
+                    : "La definitiva atrapa al rival a corta distancia. Puede bloquearse antes de que empiece la escena y consume 75 de energía."}
             </p>
           )}
           <button className="primary-button" onClick={onSelect}>

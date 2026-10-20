@@ -1,17 +1,11 @@
-import test from "node:test";
 import assert from "node:assert/strict";
-import { createMatch, emptyInput, stepMatch, WORLD } from "../shared/engine";
+import test from "node:test";
+import { createMatch, emptyInput, stepMatch } from "../shared/engine";
 import { finaleById } from "../shared/finales";
 import { TECHNIQUES } from "../shared/techniques";
 
-import {
-  drawDudamelFinale,
-  drawDudamelProjectile,
-  DUDAMEL_POSES,
-} from "../src/game/finales/dudamel";
-import { ATTACK_ART } from "../src/game/attack-art";
-import type { FinaleView } from "../src/game/finales/types";
 import { writeFinaleMusic } from "../src/game/finale-sounds";
+import { drawDudamelProjectile } from "../src/game/finales/dudamel";
 function setup(side: 0 | 1, wins = 3, energy = 100) {
   const actor = { name: "Dudamel", fighter: "dudamel" as const, wins };
   const rival = { name: "Vicente", fighter: "zavarce" as const, wins: 3 };
@@ -34,118 +28,6 @@ function setup(side: 0 | 1, wins = 3, energy = 100) {
   };
   return { state, source, target, inputs, advance };
 }
-
-test("Dudamel orchestra finale charges 75 once, drains three equal beats and releases both slots", () => {
-  for (const side of [0, 1] as const) {
-    const run = setup(side);
-    run.inputs[side].actions.super++;
-    run.advance(1);
-    assert.ok(run.source.energy >= 25 && run.source.energy < 26);
-    run.advance(8);
-    const scene = run.state.finale!;
-    assert.ok(scene);
-    assert.equal(scene.direction, side ? -1 : 1);
-    const beats = finaleById("dudamel")!.damageBeats;
-    assert.equal(beats.length, 3);
-    const positions = run.state.players.map((p) => [p.x, p.y]);
-    const clock = run.state.tick;
-    const timer = run.state.remaining;
-    let last = 0;
-    for (const [i, beat] of beats.entries()) {
-      run.advance(beat - last - 1);
-      assert.ok(
-        Math.abs(run.target.hp - (100 - (scene.damage * i) / 3)) < 1e-9,
-      );
-      run.advance(1);
-      assert.ok(
-        Math.abs(run.target.hp - (100 - (scene.damage * (i + 1)) / 3)) < 1e-9,
-      );
-      assert.deepEqual(
-        run.state.players.map((p) => [p.x, p.y]),
-        positions,
-      );
-      assert.equal(run.state.tick, clock);
-      assert.equal(run.state.remaining, timer);
-      assert.equal(run.state.projectiles.length, 0);
-      last = beat;
-    }
-    run.inputs[side].actions.special++;
-    run.advance(scene.duration - last);
-    assert.equal(run.state.finale, undefined);
-    assert.equal(run.source.attack, null);
-    assert.equal(run.target.stocks, 2);
-    assert.equal(run.target.y, WORLD.floor);
-    assert.equal(Math.sign(run.target.vx), side ? -1 : 1);
-    run.advance(55);
-    assert.equal(
-      run.state.projectiles.length,
-      0,
-      "input during capture never queues a summon",
-    );
-    assert.equal(run.source.attack, null);
-  }
-});
-
-test("Dudamel definitive rejects locked, depleted, behind and guarded captures; lethal stock resolves on exit", () => {
-  for (const side of [0, 1] as const) {
-    for (const [wins, energy] of [
-      [0, 100],
-      [2, 100],
-      [3, 74],
-    ]) {
-      const run = setup(side, wins, energy);
-      run.inputs[side].actions.super++;
-      run.advance(9);
-      assert.equal(run.state.finale, undefined);
-      assert.equal(run.target.hp, 100);
-      assert.ok(run.source.energy >= energy);
-    }
-    for (const defense of ["behind", "guard"] as const) {
-      const run = setup(side);
-      if (defense === "guard") run.inputs[1 - side].block = true;
-      run.inputs[side].actions.super++;
-      run.advance(1);
-      if (defense === "behind") run.source.facing *= -1;
-      run.advance(8);
-      assert.equal(run.state.finale, undefined);
-      assert.equal(run.target.hp, 100);
-    }
-    const run = setup(side);
-    run.target.hp = 1;
-    run.target.stocks = 1;
-    run.inputs[side].actions.super++;
-    run.advance(9 + 42);
-    assert.equal(run.target.hp, 0);
-    assert.equal(run.target.stocks, 1);
-    assert.equal(run.state.phase, "playing");
-    run.advance(180 - 42);
-    assert.equal(run.target.stocks, 0);
-    assert.equal(run.state.phase, "finished");
-    assert.equal(run.state.winner, side);
-  }
-});
-
-test("Dudamel's miss and interrupted startup never start the performance or drain remote health", () => {
-  for (const side of [0, 1] as const) {
-    const miss = setup(side);
-    miss.target.x = miss.source.x + miss.source.facing * 360;
-    miss.inputs[side].actions.super++;
-    miss.advance(50);
-    assert.equal(miss.state.finale, undefined);
-    assert.equal(miss.target.hp, 100);
-    assert.equal(miss.source.attack, null);
-    const interrupted = setup(side);
-    interrupted.target.x =
-      interrupted.source.x + interrupted.source.facing * 60;
-    interrupted.inputs[1 - side].actions.light++;
-    interrupted.advance(3);
-    interrupted.inputs[side].actions.super++;
-    interrupted.advance(30);
-    assert.equal(interrupted.state.finale, undefined);
-    assert.equal(interrupted.target.hp, 100);
-    assert.ok(interrupted.source.hp < 100);
-  }
-});
 
 test("special travels before damaging, grows to 64 and never reflects", () => {
   assert.equal(TECHNIQUES.cadenza.reflect, undefined);
@@ -264,33 +146,10 @@ test("original synthesized orchestra has energy at all arrivals and finite sampl
   writeFinaleMusic(left, right, 6000, "dudamel");
   assert.ok(left.every(Number.isFinite));
   assert.ok(right.every(Number.isFinite));
-  for (const beat of [42, 90, 138])
+  for (const beat of finaleById("dudamel")!.cueBeats!)
     assert.ok(
       left.slice(beat * 100, beat * 100 + 1000).some((n) => Math.abs(n) > 0.01),
     );
-});
-
-test("preflight refuses every missing pose before any canvas or actor operation", () => {
-  const sheet = ATTACK_ART.dudamel;
-  for (const pose of DUDAMEL_POSES) {
-    const old = sheet.frames[pose];
-    delete sheet.frames[pose];
-    try {
-      const forbidden = () => {
-        throw Error("paint before preflight");
-      };
-      const view = {
-        images: { [sheet.file]: { width: 1536, height: 1985, complete: true } },
-        ctx: new Proxy({}, { get: forbidden }),
-        body: forbidden,
-        art: forbidden,
-        point: forbidden,
-      } as unknown as FinaleView;
-      assert.equal(drawDudamelFinale(view), false);
-    } finally {
-      sheet.frames[pose] = old;
-    }
-  }
 });
 
 test("visible special wave takes radius directly from the physical shot", () => {

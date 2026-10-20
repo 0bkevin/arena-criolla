@@ -3173,6 +3173,144 @@
           "anchorX": 118.54841897233202
         }
       ]
+    },
+    "dayana": {
+      "file": "perro-mujeriego-dayana-v1",
+      "frames": [
+        {
+          "x": 82,
+          "y": 48,
+          "width": 347,
+          "height": 442,
+          "anchorX": 173.5,
+          "bodyHeight": 432
+        },
+        {
+          "x": 602,
+          "y": 48,
+          "width": 332,
+          "height": 442,
+          "anchorX": 166,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1081,
+          "y": 47,
+          "width": 397,
+          "height": 443,
+          "anchorX": 198.5,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1603,
+          "y": 50,
+          "width": 377,
+          "height": 440,
+          "anchorX": 188.5,
+          "bodyHeight": 432
+        },
+        {
+          "x": 61,
+          "y": 582,
+          "width": 389,
+          "height": 420,
+          "anchorX": 194.5,
+          "bodyHeight": 432
+        },
+        {
+          "x": 572,
+          "y": 568,
+          "width": 391,
+          "height": 434,
+          "anchorX": 195.5,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1092,
+          "y": 569,
+          "width": 376,
+          "height": 433,
+          "anchorX": 188,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1621,
+          "y": 569,
+          "width": 342,
+          "height": 433,
+          "anchorX": 171,
+          "bodyHeight": 432
+        }
+      ]
+    },
+    "deyna": {
+      "file": "perro-mujeriego-deyna-v1",
+      "frames": [
+        {
+          "x": 76,
+          "y": 49,
+          "width": 360,
+          "height": 441,
+          "anchorX": 180,
+          "bodyHeight": 432
+        },
+        {
+          "x": 645,
+          "y": 53,
+          "width": 245,
+          "height": 437,
+          "anchorX": 122.5,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1099,
+          "y": 53,
+          "width": 362,
+          "height": 437,
+          "anchorX": 181,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1612,
+          "y": 54,
+          "width": 360,
+          "height": 436,
+          "anchorX": 180,
+          "bodyHeight": 432
+        },
+        {
+          "x": 118,
+          "y": 594,
+          "width": 276,
+          "height": 408,
+          "anchorX": 138,
+          "bodyHeight": 432
+        },
+        {
+          "x": 573,
+          "y": 594,
+          "width": 390,
+          "height": 408,
+          "anchorX": 195,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1162,
+          "y": 571,
+          "width": 236,
+          "height": 431,
+          "anchorX": 118,
+          "bodyHeight": 432
+        },
+        {
+          "x": 1679,
+          "y": 581,
+          "width": 226,
+          "height": 421,
+          "anchorX": 113,
+          "bodyHeight": 432
+        }
+      ]
     }
   }
 }

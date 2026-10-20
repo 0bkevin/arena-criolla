@@ -1,22 +1,22 @@
-import test from "node:test";
 import assert from "node:assert/strict";
+import test from "node:test";
 
+import { fighterById } from "../shared/content";
 import {
+  cpuInput,
   createMatch,
   emptyInput,
-  stepMatch,
-  cpuInput,
   outgoingDamageMultiplier,
+  stepMatch,
   type Input,
 } from "../shared/engine";
-import { fighterById } from "../shared/content";
 
 import { finaleById } from "../shared/finales";
+import { ATTACK_ART } from "../src/game/attack-art";
 import {
   drawTransformationBody,
   transformationPose,
 } from "../src/game/transformation-art";
-import { ATTACK_ART } from "../src/game/attack-art";
 
 function setup(side: 0 | 1 = 0, gap = 500, wins = 3, energy = 100) {
   const emilio = { name: "Emilio", fighter: "emilio" as const, wins };
@@ -149,6 +149,7 @@ test("360 active ticks expire exactly; hitstop/capture pause time; paid refresh 
   assert.equal(refresh.source.transformation?.ticks, 360);
   refresh.advance(40);
   refresh.target.x = refresh.source.x + 100;
+  refresh.target.config.fighter = "capriles";
   refresh.inputs[1].actions.super++;
   refresh.advance(9);
   assert.ok(refresh.state.finale);

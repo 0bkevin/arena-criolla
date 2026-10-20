@@ -1,18 +1,36 @@
+import { MAX_FIGHTER_SEPARATION, WORLD } from "./arena";
+import {
+  ARENA_FINALES,
+  activeArenaPerformance,
+  arenaFinaleContacts,
+  arenaFinaleInRange,
+  cancelArenaPerformance,
+  isArenaFinalist,
+  mountedFinale,
+  registerArenaContact,
+} from "./arena-finales";
 import {
   fighterById,
   platformsAtTick,
   type FighterId,
   type StageId,
 } from "./content";
-import { TECHNIQUES, type Technique } from "./techniques";
-import { INTRO_COUNTDOWN_START, INTRO_TOTAL_TICKS } from "./presentation";
-import { MAX_FIGHTER_SEPARATION, WORLD } from "./arena";
 import {
-  finaleById,
+  activeRunway,
+  advanceFieldFinales,
+  beginFieldFinale,
+  runwayContacts,
+  supportRunway,
+  type FieldFinaleState,
+} from "./field-finales";
+import {
   FINALE_CAPTURE_TICK,
   FINALE_RANGE,
+  finaleById,
   type FinaleState,
 } from "./finales";
+import { INTRO_COUNTDOWN_START, INTRO_TOTAL_TICKS } from "./presentation";
+import { TECHNIQUES, type Technique } from "./techniques";
 export { WORLD } from "./arena";
 export const ACTIONS = [
   "jump",
@@ -70,6 +88,7 @@ export interface PlayerState {
   stun: number;
   slowTicks: number;
   rootTicks: number;
+  rootKind?: "chain" | "screen" | "spectral" | "flash";
   invincible: number;
   dash: number;
   lastActions: Record<Action, number>;
@@ -94,6 +113,8 @@ export interface Projectile {
   vy?: number;
   age?: number;
   formationIndex?: number;
+  /** Preserve the original painted projectile when ownership changes on a parry. */
+  finaleArt?: { fighter: FighterId; pose: string; height: number };
   hitInvincibility?: number;
   returnAfter?: number;
   tether?: { catchX: number; catchY: number; returnSpeed: number };
@@ -149,6 +170,7 @@ export interface MatchState {
   shake: number;
   hitstop: number;
   finale?: FinaleState;
+  fieldFinales?: FieldFinaleState[];
 }
 
 /** Snapshot once for new attacks; reflected shots retain their original damage. */
@@ -374,8 +396,11 @@ function loseStock(s: MatchState, i: number) {
   p.stocks--;
   delete p.knockoutDelay;
   delete p.transformation;
+  s.fieldFinales = s.fieldFinales?.filter((field) => field.owner !== i);
+  if (!s.fieldFinales?.length) delete s.fieldFinales;
   p.slowTicks = 0;
   p.rootTicks = 0;
+  delete p.rootKind;
   effect(
     s,
     Math.max(WORLD.x + 30, Math.min(WORLD.x + WORLD.width - 30, p.x)),
@@ -442,6 +467,13 @@ function beginFinale(s: MatchState, owner: 0 | 1) {
       (28 * fighterById(source.config.fighter).damage + source.comboBonus) *
       fighterById(target.config.fighter).armor,
   };
+  if (activeRunway(s, target)) {
+    s.fieldFinales = s.fieldFinales?.filter(
+      (field) => s.players[field.owner] !== target,
+    );
+    if (!s.fieldFinales?.length) delete s.fieldFinales;
+    target.cooldown = Math.min(target.cooldown, 12);
+  }
   target.attack = null;
   target.blocking = false;
   target.dash = 0;
@@ -499,6 +531,13 @@ function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
       (TECHNIQUES[def.ability].requiresGround && !p.grounded))
   )
     return;
+  if (
+    attack === "super" &&
+    (s.fieldFinales?.some((field) => field.owner === i) ||
+      ((p.config.fighter === "dayana" || isArenaFinalist(p.config.fighter)) &&
+        !p.grounded))
+  )
+    return;
   if (attack === "special" && p.energy < 25) return;
   if (attack === "super" && (p.config.wins < 3 || p.energy < 75)) return;
   if (attack === "special") p.energy -= 25;
@@ -518,6 +557,9 @@ function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
           : finaleById(p.config.fighter)?.mode === "projectile"
             ? finaleById(p.config.fighter)!.duration + 1
             : 42;
+  if (attack === "super" && p.config.fighter === "dayana") p.cooldown = 190;
+  if (attack === "super" && isArenaFinalist(p.config.fighter))
+    p.cooldown = ARENA_FINALES[p.config.fighter].recovery + FINALE_CAPTURE_TICK;
   p.history = p.history.filter((h) => s.tick - h.tick < 150);
   p.history.push({ action: attack, tick: s.tick });
   if (p.history.length > 3) p.history.shift();
@@ -612,6 +654,21 @@ function updateAttack(s: MatchState, i: number) {
           ? technique.startup
           : FINALE_CAPTURE_TICK;
   const finale = attack === "super" ? finaleById(p.config.fighter) : undefined;
+  if (finale?.mode === "field") {
+    if (p.attackTick === activeAt && !p.attackHit) {
+      p.attackHit = true;
+      beginFieldFinale(
+        s,
+        i as 0 | 1,
+        (28 * def.damage + p.comboBonus) * outgoingDamageMultiplier(p),
+      );
+    }
+    if (p.config.fighter === "deyna" && p.attackTick >= 24) {
+      p.attack = null;
+      p.cooldown = 0;
+    }
+    return;
+  }
   if (finale?.mode === "projectile") {
     const shot = finale.projectile;
     if (p.attackTick === activeAt && !p.attackHit && shot) {
@@ -835,6 +892,7 @@ function updateAttack(s: MatchState, i: number) {
           other.hp < healthBefore
         ) {
           other.rootTicks = technique.snare;
+          delete other.rootKind;
           other.vx = 0;
           other.recoilVx = 0;
           other.vy = 0;
@@ -1007,6 +1065,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     p.stun = Math.max(0, p.stun - 1);
     p.slowTicks = Math.max(0, p.slowTicks - 1);
     p.rootTicks = Math.max(0, p.rootTicks - 1);
+    if (!p.rootTicks) delete p.rootKind;
     p.invincible = Math.max(0, p.invincible - 1);
     p.dash = Math.max(0, p.dash - 1);
     const brake = TECHNIQUES[def.ability].dash?.brake;
@@ -1034,10 +1093,32 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
           acceleration;
         p.recoilVx = (p.recoilVx ?? 0) * (1 - acceleration);
         if (move) p.facing = move;
-        else if (p.grounded) p.facing = s.players[1 - i].x >= p.x ? 1 : -1;
+        else if (
+          p.grounded &&
+          !(
+            p.blocking &&
+            s.fieldFinales?.some(
+              (field) =>
+                field.owner !== i &&
+                (mountedFinale(field) ||
+                  field.fighter === "zavarce" ||
+                  field.fighter === "simon"),
+            )
+          )
+        )
+          p.facing = s.players[1 - i].x >= p.x ? 1 : -1;
       }
       if (pressed("jump") && p.jumps < 2 && !p.blocking) {
+        cancelArenaPerformance(s, p);
+        if (activeRunway(s, p)) {
+          s.fieldFinales = s.fieldFinales?.filter(
+            (field) => s.players[field.owner] !== p,
+          );
+          p.attack = null;
+          p.cooldown = 12;
+        }
         p.rootTicks = 0;
+        delete p.rootKind;
         p.vy = p.jumps === 0 ? -12.8 : -11;
         p.jumps++;
         p.grounded = false;
@@ -1067,6 +1148,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     updateAttack(s, i);
     if (s.finale) return;
   }
+  advanceFieldFinales(s);
   // Both players must finish spawning shots before either reflector sees this tick's pack.
   for (let i = 0; i < 2; i++) reflectProjectiles(s, i);
   // Predict spacing from the movement that roots actually allow this frame.
@@ -1125,12 +1207,47 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
       p.recoilVx = (p.recoilVx ?? 0) * 0.89;
     }
   }
+  supportRunway(s);
+  for (const hit of runwayContacts(s))
+    hurt(
+      s,
+      hit.owner,
+      hit.damage,
+      hit.force,
+      hit.direction,
+      hit.x,
+      hit.y,
+      "super",
+      8,
+    );
+  for (const contact of arenaFinaleContacts(s)) {
+    const target = s.players[1 - contact.owner],
+      hp = target.hp;
+    if (
+      hurt(
+        s,
+        contact.owner,
+        contact.damage,
+        contact.force,
+        contact.direction,
+        contact.x,
+        contact.y,
+        "super",
+        5,
+      )
+    )
+      registerArenaContact(s, contact, target.hp < hp);
+  }
   const [a, b] = s.players;
   if (
     Math.abs(a.x - b.x) < 43 &&
     Math.abs(a.y - b.y) < 80 &&
     !a.dash &&
-    !b.dash
+    !b.dash &&
+    ![a, b].some((p) => {
+      const field = activeArenaPerformance(s, p);
+      return field && mountedFinale(field);
+    })
   ) {
     const sign = b.x >= a.x ? 1 : -1;
     const push = (43 - Math.abs(a.x - b.x)) / 2;
@@ -1138,7 +1255,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     b.x += sign * push;
     // Body separation can push a fighter beyond the surface checked above.
     for (const p of s.players) {
-      if (!p.grounded) continue;
+      if (!p.grounded || activeRunway(s, p)) continue;
       const support =
         p.supportPlatform === -1
           ? { x: WORLD.left, width: WORLD.right - WORLD.left }
@@ -1346,6 +1463,19 @@ function resolveTimeout(s: MatchState) {
   // physical flight (or bounded fallback) before comparing timeout scores.
   if (s.players.some((p) => p.hp <= 0 && (p.knockoutDelay ?? 0) > 0)) return;
   if (s.remaining <= 0 && s.phase === "playing") {
+    supportRunway(s);
+    for (const hit of runwayContacts(s))
+      hurt(
+        s,
+        hit.owner,
+        hit.damage,
+        hit.force,
+        hit.direction,
+        hit.x,
+        hit.y,
+        "super",
+        8,
+      );
     const [a, b] = s.players;
     const scoreA = a.stocks * 100 + a.hp;
     const scoreB = b.stocks * 100 + b.hp;
@@ -1428,14 +1558,19 @@ export function cpuInput(
     difficulty === "hard" &&
     p.config.wins >= 3 &&
     p.energy >= 75 &&
-    (finaleById(p.config.fighter)?.mode === "transformation"
-      ? !p.transformation
-      : finaleById(p.config.fighter)?.mode === "projectile"
-        ? Math.abs(dx) <
-            finaleById(p.config.fighter)!.projectile!.speed *
-              (finaleById(p.config.fighter)!.projectile!.life - 1) &&
-          Math.abs(other.y - p.y) < 100
-        : Math.abs(dx) < 210) &&
+    (finaleById(p.config.fighter)?.mode === "field"
+      ? !s.fieldFinales?.some((field) => field.owner === 1) &&
+        (isArenaFinalist(p.config.fighter)
+          ? arenaFinaleInRange(p, other)
+          : (p.config.fighter !== "dayana" || p.grounded) && Math.abs(dx) < 520)
+      : finaleById(p.config.fighter)?.mode === "transformation"
+        ? !p.transformation
+        : finaleById(p.config.fighter)?.mode === "projectile"
+          ? Math.abs(dx) <
+              finaleById(p.config.fighter)!.projectile!.speed *
+                (finaleById(p.config.fighter)!.projectile!.life - 1) &&
+            Math.abs(other.y - p.y) < 100
+          : Math.abs(dx) < 210) &&
     s.tick % 90 === 0
   )
     next.actions.super++;

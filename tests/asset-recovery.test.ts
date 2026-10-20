@@ -1,12 +1,12 @@
-import test from "node:test";
 import assert from "node:assert/strict";
-import { loadImage, preloadAssets } from "../src/game/assets";
+import test from "node:test";
 import { makeDefinition } from "../server/creator/pipeline";
+import attackArt from "../shared/attack-assets.json";
 import { registerCommunityCharacter } from "../shared/community";
-import { deterministicCreatorProvider } from "./fixtures/creator-provider";
-import atlas from "../shared/sprite-geometry.json";
 import { fighterById } from "../shared/content";
-import { finaleAsset } from "../shared/finales";
+import atlas from "../shared/sprite-geometry.json";
+import { loadImage, preloadAssets } from "../src/game/assets";
+import { deterministicCreatorProvider } from "./fixtures/creator-provider";
 
 function browserFixture(
   options: {
@@ -142,8 +142,8 @@ test("the real fighter preload retries both sprite and image layers after a fail
 });
 
 test("a built-in fight survives a failed finale decoration and retries it without reloading its fighter or stage", async () => {
-  const fighter = fighterById("zavarce");
-  const decoration = finaleAsset(fighter.id)!.file;
+  const fighter = fighterById("melanio");
+  const decoration = attackArt.melanio.file;
   const decorationUrl = `/assets/${decoration}.webp`;
   const spriteUrl = `/assets/${fighter.sprite}.webp`;
   const stageUrl = "/assets/caracas.webp";

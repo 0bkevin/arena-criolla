@@ -294,15 +294,15 @@ test("Dudamel recognizes base and upgraded combos, connects every strike with ap
       r.player.energy = energy;
       r.inputs[side].actions.super++;
       r.advance(9);
-      if (r.state.finale) r.advance(r.state.finale.duration);
+      if (r.state.fieldFinales) { assert.equal(r.state.fieldFinales[0].fighter, "dudamel"); assert.equal(r.rival.hp, 100); r.advance(320); }
       if (wins < 3 || energy < 75) {
         assert.equal(r.player.attack, null);
         assert.equal(r.rival.hp, 100);
       } else {
         assert.equal(r.player.combo, "Gran cadenza");
         assert.equal(r.player.comboBonus, 12);
-        assert.equal(r.player.hits, 1);
-        close(r.rival.hp, 59.6652);
+        assert.equal(r.state.finale, undefined);
+        assert.equal(r.player.attack, null);
       }
       emit("super-gate", {
         side,

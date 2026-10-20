@@ -12,10 +12,10 @@ import { presentationById, selectionProgress } from "../shared/presentation";
 import manifest from "../shared/entrance-assets.json";
 import sharp from "sharp";
 
-test("all 24 default fighters have matching profiles, actions, and dedicated artwork", () => {
+test("all 34 default fighters have matching profiles, actions, and dedicated artwork", () => {
   const expected = [...DEFAULT_ENTRANCE_FIGHTERS].sort();
-  assert.equal(expected.length, 24);
-  assert.equal(new Set(expected).size, 24);
+  assert.equal(expected.length, 34);
+  assert.equal(new Set(expected).size, 34);
   for (const style of ["introStyle", "selectionStyle"] as const)
     assert.deepEqual(
       FIGHTERS.filter(

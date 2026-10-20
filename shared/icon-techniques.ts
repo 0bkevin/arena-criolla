@@ -32,6 +32,16 @@ export const ICON_TECHNIQUES = {
   corona: {
     startup: 21,
     recovery: 54,
+    range: 140,
+    height: 110,
+    damage: 15,
+    force: 8,
+    radial: true,
+    requiresGround: true,
+  },
+  football: {
+    startup: 21,
+    recovery: 54,
     range: 550,
     height: 130,
     damage: 15,

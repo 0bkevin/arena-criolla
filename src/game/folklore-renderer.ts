@@ -191,11 +191,18 @@ export function drawFolkloreStatus(
 ) {
   if (!p.slowTicks && !p.rootTicks) return;
   ctx.save();
-  ctx.strokeStyle = p.rootTicks ? "#9fe1a9" : "#c0ff91";
+  const theatrical = p.rootTicks && p.rootKind;
+  ctx.strokeStyle = theatrical
+    ? p.rootKind === "spectral"
+      ? "#b1e9ef"
+      : "#eed79f"
+    : p.rootTicks
+      ? "#9fe1a9"
+      : "#c0ff91";
   ctx.lineWidth = 3;
   ctx.shadowColor = ctx.strokeStyle;
   ctx.shadowBlur = 8;
-  if (p.rootTicks) {
+  if (p.rootTicks && !theatrical) {
     for (let i = -1; i <= 1; i++) {
       ctx.beginPath();
       ctx.moveTo(p.x + i * 20, p.y + 4);
@@ -212,7 +219,11 @@ export function drawFolkloreStatus(
   ctx.fillStyle = "#eaffdd";
   ctx.strokeStyle = "#163929";
   ctx.lineWidth = 3;
-  const label = p.rootTicks ? "RAÍCES · SALTA" : "LENTITUD";
+  const label = theatrical
+    ? "SALTA PARA ESCAPAR"
+    : p.rootTicks
+      ? "RAÍCES · SALTA"
+      : "LENTITUD";
   ctx.strokeText(label, p.x, p.y - 220);
   ctx.fillText(label, p.x, p.y - 220);
   ctx.restore();

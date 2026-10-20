@@ -1,6 +1,6 @@
 # Arena Criolla
 
-Juego de pelea en español con 52 personajes, nueve escenarios, partidas contra CPU, dos jugadores locales y salas públicas o privadas por WebSocket. Incluye plataformas, doble salto, bloqueo, combos, especiales y definitivas propias de cada personaje.
+Juego de pelea en español con 53 personajes, nueve escenarios, partidas contra CPU, dos jugadores locales y salas públicas o privadas por WebSocket. Incluye plataformas, doble salto, bloqueo, combos, especiales y definitivas propias de cada personaje.
 
 ## Desarrollo
 
@@ -45,7 +45,7 @@ npm run check:assets
 npm run build
 ```
 
-`check:assets` comprueba directamente las 52 imágenes públicas: transparencia, ocho siluetas completas y geometría coincidente. Las pruebas también verifican los frames de ataques, actores, muebles y bailarines, y comparan los píxeles y metadatos de todas las variantes comprimidas con sus originales públicos.
+`check:assets` comprueba directamente las 53 imágenes públicas: transparencia, ocho siluetas completas y geometría coincidente. Las pruebas también verifican los frames de ataques, actores, muebles y bailarines, y comparan los píxeles y metadatos de todas las variantes comprimidas con sus originales públicos.
 
 La CI comprueba dependencias, pruebas, assets, compilación, vulnerabilidades de la imagen y el arranque HTTP/WebSocket. `scripts/security-smoke.mjs` permite comprobar una instancia local o desplegada.
 
