@@ -2,14 +2,19 @@ import {
   activeRunway,
   runwayRange,
   runwayWalking,
-  RUNWAY_POSE_TICKS,
   type FieldFinaleState,
 } from "../../../shared/field-finales";
 import type { MatchState } from "../../../shared/engine";
-import type { PlayerState, Projectile } from "../../../shared/engine";
+import type { PlayerState } from "../../../shared/engine";
 import { ATTACK_ART, drawAttackArt, hasAttackArt } from "../attack-art";
 
-export const DAYANA_SPECIAL_POSES = ["present", "turn", "sash-wave"] as const;
+export const DAYANA_SPECIAL_POSES = [
+  "present",
+  "spin-front",
+  "spin-side",
+  "spin-back",
+  "spin-finish",
+] as const;
 export const DAYANA_POSES = [
   ...DAYANA_SPECIAL_POSES,
   "walk-a",
@@ -18,6 +23,8 @@ export const DAYANA_POSES = [
   "walk-d",
   "pose-hip",
   "pose-wave",
+  "pose-shoulder",
+  "pose-front",
   "runway",
 ] as const;
 /** A raised hand or flared hem must not change the size of her head. */
@@ -25,55 +32,11 @@ export const dayanaPoseHeight = (pose: string, height: number) =>
   (height * ATTACK_ART.dayana.frames[pose].bodyHeight!) /
   ATTACK_ART.dayana.frames.present.bodyHeight!;
 export function dayanaSpecialPose(tick: number) {
-  return tick < 15
-    ? "present"
-    : tick < 35
-      ? "turn"
-      : tick < 48
-        ? "present"
-        : undefined;
-}
-function ribbon(
-  ctx: CanvasRenderingContext2D,
-  images: Record<string, HTMLImageElement>,
-  x: number,
-  y: number,
-  height: number,
-  facing = 1,
-  alpha = 1,
-) {
-  if (!hasAttackArt(images, "dayana", ["sash-wave"])) return false;
-  const f = ATTACK_ART.dayana.frames["sash-wave"];
-  return drawAttackArt(
-    ctx,
-    images,
-    "dayana",
-    "sash-wave",
-    x,
-    y + ((f.anchorY! - f.height / 2) * height) / f.bodyHeight!,
-    height,
-    facing,
-    alpha,
-  );
-}
-/** Painted chiffon is centred on the physical projectile, including after reflection. */
-export function drawDayanaProjectile(
-  ctx: CanvasRenderingContext2D,
-  images: Record<string, HTMLImageElement>,
-  shot: Projectile,
-) {
-  if (shot.kind !== "corona") return false;
-  const diameter = (shot.radius ?? 20) * 2;
-  if (ribbon(ctx, images, 0, 0, diameter)) return true;
-  // Keep the actual hit location visible if optional attack artwork cannot load.
-  ctx.save();
-  ctx.strokeStyle = "#ffe079";
-  ctx.lineWidth = 7;
-  ctx.beginPath();
-  ctx.arc(0, 0, diameter * 0.4, -1.3, 1.3);
-  ctx.stroke();
-  ctx.restore();
-  return true;
+  if (tick < 10) return "spin-front";
+  if (tick < 19) return "spin-side";
+  if (tick < 27) return "spin-back";
+  if (tick < 42) return "spin-finish";
+  return tick < 54 ? "present" : undefined;
 }
 export function drawDayanaSpecial(
   ctx: CanvasRenderingContext2D,
@@ -106,7 +69,9 @@ export function drawDayanaSpecial(
 export function runwayPose(tick: number) {
   if (runwayWalking(tick))
     return ["walk-a", "walk-b", "walk-c", "walk-d"][Math.floor(tick / 6) % 4];
-  return tick < 60 ? "pose-hip" : "pose-wave";
+  if (tick < 60) return "pose-hip";
+  if (tick < 108) return "pose-shoulder";
+  return tick < 158 ? "pose-front" : "pose-wave";
 }
 export function drawDayanaRunway(
   ctx: CanvasRenderingContext2D,
@@ -154,21 +119,5 @@ export function drawDayanaRunwayBody(
     (height * frame.bodyHeight!) / reference.bodyHeight!,
     field.direction,
   );
-  // A short flourish marks the same local contact area as the simulation pose.
-  const at = RUNWAY_POSE_TICKS.find(
-    (t) => field.tick >= t && field.tick < t + 10,
-  );
-  if (at !== undefined) {
-    const fade = 1 - (field.tick - at) / 10;
-    ribbon(
-      ctx,
-      images,
-      player.x + field.direction * 65,
-      player.y - 90,
-      48,
-      field.direction,
-      fade,
-    );
-  }
   return true;
 }

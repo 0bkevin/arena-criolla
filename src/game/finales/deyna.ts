@@ -154,6 +154,7 @@ export function drawDeynaSquad(
   ctx: CanvasRenderingContext2D,
   images: Record<string, HTMLImageElement>,
   field: FieldFinaleState,
+  layer?: "back" | "front",
 ) {
   if (!hasAttackArt(images, "deyna", DEYNA_POSES)) return false;
   const pose =
@@ -163,8 +164,9 @@ export function drawDeynaSquad(
         ? "contact"
         : "recover";
   const alpha = Math.min(1, field.tick / 8, (field.duration - field.tick) / 12);
-  for (let i = SQUAD_COUNT - 1; i >= 0; i--) {
+  for (let i = 0; i < SQUAD_COUNT; i++) {
     const member = squadMember(field, i);
+    if (layer && member.layer !== layer) continue;
     drawAttackArt(
       ctx,
       images,

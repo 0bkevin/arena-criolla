@@ -26,18 +26,28 @@ export const RUNWAY_WALK_WINDOWS = [
 ] as const;
 export const RUNWAY_SPEED = 3;
 export const RUNWAY_LENGTH = 330;
+// A compact huddle surrounds the captain: rear row, flanks and two forwards.
+const SQUAD_OFFSETS = [
+  { x: -85, y: -18, height: 167, layer: "back" },
+  { x: -22, y: -27, height: 163, layer: "back" },
+  { x: 72, y: -14, height: 170, layer: "back" },
+  { x: -50, y: 3, height: 177, layer: "front" },
+  { x: 40, y: 6, height: 180, layer: "front" },
+] as const;
 const clamp = (n: number, a: number, b: number) => Math.max(a, Math.min(b, n));
 export const runwayWalking = (tick: number) =>
   RUNWAY_WALK_WINDOWS.some(([a, b]) => tick >= a && tick < b);
 export function squadMember(field: FieldFinaleState, index: number) {
+  const offset = SQUAD_OFFSETS[index];
   const anchor =
     field.direction > 0
-      ? clamp(field.x, WORLD.left + 270, WORLD.right - 60)
-      : clamp(field.x, WORLD.left + 60, WORLD.right - 270);
+      ? clamp(field.x, WORLD.left + 150, WORLD.right - 137)
+      : clamp(field.x, WORLD.left + 137, WORLD.right - 150);
   return {
-    x: anchor - field.direction * (48 + index * 43),
-    y: field.y - (index % 2) * 8,
-    height: 177 - (index % 2) * 10,
+    x: anchor + field.direction * offset.x,
+    y: field.y + offset.y,
+    height: offset.height,
+    layer: offset.layer,
   };
 }
 export function runwayRange(field: FieldFinaleState) {

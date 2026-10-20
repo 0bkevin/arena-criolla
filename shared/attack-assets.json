@@ -966,38 +966,20 @@
     }
   },
   "dayana": {
-    "file": "dayana-runway-attack-v2",
+    "file": "dayana-runway-attack-v3",
     "frames": {
       "present": {
         "x": 8,
-        "y": 8,
+        "y": 685,
         "width": 425,
         "height": 506,
         "anchorX": 272,
         "anchorY": 503,
         "bodyHeight": 500
       },
-      "turn": {
-        "x": 441,
-        "y": 8,
-        "width": 583,
-        "height": 496,
-        "anchorX": 303.16,
-        "anchorY": 493,
-        "bodyHeight": 490
-      },
-      "sash-wave": {
-        "x": 1032,
-        "y": 8,
-        "width": 470,
-        "height": 396,
-        "anchorX": 235,
-        "anchorY": 393,
-        "bodyHeight": 390
-      },
       "walk-a": {
-        "x": 1510,
-        "y": 8,
+        "x": 830,
+        "y": 1203,
         "width": 395,
         "height": 479,
         "anchorX": 240.95,
@@ -1005,8 +987,8 @@
         "bodyHeight": 473
       },
       "walk-b": {
-        "x": 8,
-        "y": 522,
+        "x": 1624,
+        "y": 1203,
         "width": 330,
         "height": 479,
         "anchorX": 201.29999999999998,
@@ -1014,8 +996,8 @@
         "bodyHeight": 473
       },
       "walk-c": {
-        "x": 346,
-        "y": 522,
+        "x": 872,
+        "y": 685,
         "width": 414,
         "height": 472,
         "anchorX": 252.54,
@@ -1023,8 +1005,8 @@
         "bodyHeight": 466
       },
       "walk-d": {
-        "x": 768,
-        "y": 522,
+        "x": 1233,
+        "y": 1203,
         "width": 383,
         "height": 475,
         "anchorX": 233.63,
@@ -1032,8 +1014,8 @@
         "bodyHeight": 469
       },
       "pose-hip": {
-        "x": 1159,
-        "y": 522,
+        "x": 954,
+        "y": 173,
         "width": 454,
         "height": 484,
         "anchorX": 249.70000000000002,
@@ -1041,8 +1023,8 @@
         "bodyHeight": 478
       },
       "pose-wave": {
-        "x": 1621,
-        "y": 522,
+        "x": 8,
+        "y": 1203,
         "width": 405,
         "height": 476,
         "anchorX": 214.65,
@@ -1051,12 +1033,66 @@
       },
       "runway": {
         "x": 8,
-        "y": 1014,
+        "y": 8,
         "width": 1952,
         "height": 157,
         "anchorX": 976,
         "anchorY": 154,
         "bodyHeight": 151
+      },
+      "spin-front": {
+        "x": 484,
+        "y": 173,
+        "width": 462,
+        "height": 490,
+        "anchorX": 277.2,
+        "anchorY": 487,
+        "bodyHeight": 484
+      },
+      "spin-side": {
+        "x": 1416,
+        "y": 173,
+        "width": 447,
+        "height": 492,
+        "anchorX": 272.67,
+        "anchorY": 489,
+        "bodyHeight": 486
+      },
+      "spin-back": {
+        "x": 1294,
+        "y": 685,
+        "width": 414,
+        "height": 488,
+        "anchorX": 244.26,
+        "anchorY": 485,
+        "bodyHeight": 482
+      },
+      "spin-finish": {
+        "x": 8,
+        "y": 173,
+        "width": 468,
+        "height": 504,
+        "anchorX": 294.84,
+        "anchorY": 501,
+        "bodyHeight": 498
+      },
+      "pose-shoulder": {
+        "x": 421,
+        "y": 1203,
+        "width": 401,
+        "height": 501,
+        "anchorX": 244.60999999999999,
+        "anchorY": 498,
+        "bodyHeight": 495
+      },
+      "pose-front": {
+        "x": 441,
+        "y": 685,
+        "width": 423,
+        "height": 510,
+        "anchorX": 211.5,
+        "anchorY": 507,
+        "bodyHeight": 504
       }
     }
   },

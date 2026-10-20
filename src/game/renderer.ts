@@ -17,7 +17,6 @@ import {
 } from "./finales/deyna";
 import {
   drawDayanaSpecial,
-  drawDayanaProjectile,
   drawDayanaRunway,
   drawDayanaRunwayBody,
 } from "./finales/dayana";
@@ -116,7 +115,7 @@ export function renderMatch(
   }
   for (const field of state.fieldFinales ?? []) {
     if (field.fighter === "deyna")
-      drawDeynaSquad(ctx, assets.finaleProps, field);
+      drawDeynaSquad(ctx, assets.finaleProps, field, "back");
     else drawDayanaRunway(ctx, assets.finaleProps, field);
   }
   for (const projectile of state.projectiles) {
@@ -151,7 +150,6 @@ export function renderMatch(
       drawDudamelProjectile(ctx, projectile) ||
       drawLorenzoProjectile(ctx, assets.finaleProps, projectile) ||
       drawDeynaBallProjectile(ctx, assets.finaleProps, projectile) ||
-      drawDayanaProjectile(ctx, assets.finaleProps, projectile) ||
       drawMelanioSignal(ctx, assets.finaleProps, projectile) ||
       drawIconProjectile(ctx, projectile) ||
       drawFounderProjectile(ctx, projectile) ||
@@ -618,6 +616,9 @@ export function renderMatch(
     drawMaiteGreeting(ctx, p);
     ctx.restore();
   });
+  for (const field of state.fieldFinales ?? [])
+    if (field.fighter === "deyna")
+      drawDeynaSquad(ctx, assets.finaleProps, field, "front");
   if (
     state.hitstop > 0 &&
     state.effects.some(

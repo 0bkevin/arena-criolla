@@ -32,18 +32,12 @@ export const ICON_TECHNIQUES = {
   corona: {
     startup: 21,
     recovery: 54,
-    range: 430,
-    height: 145,
+    range: 140,
+    height: 110,
     damage: 15,
     force: 8,
-    projectile: {
-      speed: 7,
-      life: 55,
-      count: 1,
-      radius: 20,
-      offsetX: 48,
-      offsetY: 112,
-    },
+    radial: true,
+    requiresGround: true,
   },
   football: {
     startup: 21,
