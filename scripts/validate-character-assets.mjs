@@ -1,12 +1,12 @@
 import sharp from "sharp";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 
 const requested = process.argv.indexOf("--sprite");
 const fighters =
   requested >= 0
     ? [{ id: process.argv[requested + 1], sprite: process.argv[requested + 1] }]
     : JSON.parse(await readFile("shared/fighters.json", "utf8"));
-const sprites = [];
+const sprites = {};
 for (const { id, sprite } of fighters) {
   const results = [];
   for (const file of [
@@ -89,17 +89,13 @@ for (const { id, sprite } of fighters) {
     JSON.stringify(results[1].components)
   )
     throw new Error(`El WebP altera las siluetas de ${id}`);
-  sprites.push({ id, files: results });
+  const { file, width, height, components } = results[1];
+  sprites[id] = { file, width, height, components };
   console.log(`${id}: PNG y WebP, ocho poses completas y alfa válido.`);
 }
 if (requested < 0) {
-  await mkdir("docs", { recursive: true });
   await writeFile(
-    "docs/character-sprite-qa.json",
-    JSON.stringify(
-      { version: 15, checkedAt: new Date().toISOString(), sprites },
-      null,
-      2,
-    ) + "\n",
+    "shared/sprite-assets.json",
+    JSON.stringify(sprites, null, 2) + "\n",
   );
 }

@@ -1,5 +1,5 @@
 import sharp from "sharp";
-import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
+import { mkdir, readFile, stat } from "node:fs/promises";
 import path from "node:path";
 
 const source = path.resolve("assets/source");
@@ -69,10 +69,6 @@ const results = await Promise.all(
       saved: `${Math.round((1 - after / before) * 100)}%`,
     };
   }),
-);
-await writeFile(
-  "docs/asset-encoding.json",
-  JSON.stringify(results, null, 2) + "\n",
 );
 const total = results.reduce((sum, item) => sum + item.outputBytes, 0);
 console.log(

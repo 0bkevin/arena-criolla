@@ -4,7 +4,7 @@ import {
   fighterById,
   type FighterId,
 } from "../../shared/content";
-import atlasManifest from "../../docs/character-sprite-qa.json";
+import atlasManifest from "../../shared/sprite-assets.json";
 import { presentationById } from "../../shared/presentation";
 import entranceManifest from "../../shared/entrance-assets.json";
 import { COMMUNITY_CHARACTERS } from "../../shared/community";
@@ -111,14 +111,9 @@ function loadSpriteGeometry(id: FighterId): Promise<SpriteAsset> {
             battleFrame: community.presentation.battleFrame,
           };
         }
-        const checked = atlasManifest.sprites
-          .find((entry) => entry.id === id)
-          ?.files.find(
-            (file) =>
-              file.file === `public/assets/${fighterById(id).sprite}.webp`,
-          );
+        const checked = atlasManifest[id as keyof typeof atlasManifest];
         if (
-          checked?.passed &&
+          checked?.file === `public/assets/${fighterById(id).sprite}.webp` &&
           checked.width === image.width &&
           checked.height === image.height &&
           checked.components.length === 8

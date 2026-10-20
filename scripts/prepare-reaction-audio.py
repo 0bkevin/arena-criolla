@@ -76,7 +76,6 @@ provenance = {
     "sources": sources,
     "processing": "Mono MP3, 44.1 kHz; 90 Hz high-pass and 7500 Hz low-pass; per-clip gain targets RMS 0.13 and peak <= 0.78 before encoding; 8 ms fade-in, 18 ms fade-out. No speech synthesis or pitch changes.",
     "clips": clips,
-    "retiredSpeechArchive": "assets/archive/v8-original-voices/",
 }
-(root / "docs/audio-provenance.json").write_text(json.dumps(provenance, ensure_ascii=False, indent=2) + "\n")
+(root / "assets/audio-provenance.json").write_text(json.dumps(provenance, ensure_ascii=False, indent=2) + "\n")
 print(f"Prepared {len(clips)} generic reactions, {sum(clip['bytes'] for clip in clips):,} bytes.")
