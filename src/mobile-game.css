@@ -9,6 +9,28 @@
   min-width: 48px;
   min-height: 48px;
 }
+/* The component is only mounted when touch is available. Hybrid tablets and
+   laptops still need their pad when a mouse is the primary pointing device. */
+.game-page:not(.is-touch) .touch-controls {
+  display: flex;
+}
+.game-page:not(.is-touch) .touch-directions,
+.game-page:not(.is-touch) .touch-actions {
+  flex-wrap: wrap;
+  max-width: 49%;
+}
+@media (max-width: 650px) {
+  .arcade-app .game-page:not(.is-touch):has(> .touch-controls) {
+    width: calc(100% - 16px);
+  }
+  .game-page:not(.is-touch) .touch-directions,
+  .game-page:not(.is-touch) .touch-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 48px);
+    gap: 2px;
+    max-width: none;
+  }
+}
 .touch-button > span {
   font: 700 7px/1 var(--font-body);
   letter-spacing: 0;

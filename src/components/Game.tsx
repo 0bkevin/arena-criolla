@@ -1,6 +1,7 @@
 import {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type MutableRefObject,
@@ -63,6 +64,7 @@ import {
   enterLandscape,
   hasTouchInput,
   leaveLandscape,
+  trackHybridGameChrome,
   trackPlayViewport,
 } from "../game/mobile";
 import { arenaCanvasSize } from "../game/viewport";
@@ -127,6 +129,16 @@ export function Game(props: Props) {
   const [assetError, setAssetError] = useState("");
   const [view, setView] = useState(initial);
   const [fullscreenError, setFullscreenError] = useState("");
+  useLayoutEffect(() => {
+    if (
+      !device.touch &&
+      touchControlsAvailable &&
+      !paused &&
+      view.phase === "playing" &&
+      page.current
+    )
+      return trackHybridGameChrome(page.current);
+  }, [device.touch, touchControlsAvailable, paused, view.phase]);
   useEffect(() => {
     if (device.touch && page.current) return trackPlayViewport(page.current);
   }, [device.touch]);
