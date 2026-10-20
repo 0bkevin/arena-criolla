@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type MutableRefObject } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type MutableRefObject,
+} from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -7,9 +13,8 @@ import {
   Heart,
   Pause,
   Play,
-  RotateCcw,
+  SkipForward,
   Smartphone,
-  Trophy,
   Volume2,
   VolumeX,
   Zap,
@@ -49,8 +54,10 @@ import {
   syncFinaleMusic,
   stopFinaleMusic,
 } from "../audio";
-import { victoryById, VICTORY_DURATION_MS } from "../game/victory";
+import { VICTORY_DURATION_MS } from "../game/victory";
 import { Portrait } from "./Portrait";
+import { VictoryScreen } from "./VictoryScreen";
+import { VenezuelaStars } from "./CriolloArt";
 import { TouchControls } from "./TouchControls";
 import {
   enterLandscape,
@@ -90,6 +97,7 @@ export function Game(props: Props) {
   const orientationGate = useRef<HTMLDivElement>(null);
   const pauseOverlay = useRef<HTMLDivElement>(null);
   const resultOverlay = useRef<HTMLDivElement>(null);
+  const victoryTitle = useRef<HTMLHeadingElement>(null);
   const wrapper = useRef<HTMLDivElement>(null);
   const inputs = useRef(makeInputs());
   const sources = useRef<[ControlSources, ControlSources]>([
@@ -102,8 +110,13 @@ export function Game(props: Props) {
     touch: hasTouchInput(),
     portrait: innerHeight > innerWidth,
   }));
+  const [resultReady, setResultReady] = useState(false);
+  const [resultMounted, setResultMounted] = useState(false);
+  const [victorySkipped, setVictorySkipped] = useState(false);
+  const victorySkippedRef = useRef(false);
+  const finishResultTransition = useCallback(() => setResultReady(true), []);
   const touchControlsAvailable = device.touch || navigator.maxTouchPoints > 0;
-  const portraitBlocked = device.touch && device.portrait;
+  const portraitBlocked = device.touch && device.portrait && !resultMounted;
   const blockedRef = useRef(portraitBlocked);
   blockedRef.current = portraitBlocked;
   const callbacks = useRef(props);
@@ -113,7 +126,6 @@ export function Game(props: Props) {
   const [assets, setAssets] = useState<Assets | null>(null);
   const [assetError, setAssetError] = useState("");
   const [view, setView] = useState(initial);
-  const [resultReady, setResultReady] = useState(false);
   const [fullscreenError, setFullscreenError] = useState("");
   useEffect(() => {
     if (device.touch && page.current) return trackPlayViewport(page.current);
@@ -256,6 +268,14 @@ export function Game(props: Props) {
       return;
     applyControl(inputs.current[0], "dash", true);
     if (mode === "online") callbacks.current.onInput?.(inputs.current[0]);
+  };
+  const skipVictory = () => {
+    if (view.phase !== "finished" || !assets || victorySkippedRef.current)
+      return;
+    victorySkippedRef.current = true;
+    stopVictoryMusic();
+    setVictorySkipped(true);
+    setResultMounted(true);
   };
   useEffect(() => {
     let alive = true;
@@ -460,16 +480,20 @@ export function Game(props: Props) {
             victoryElapsed + elapsed,
           );
         }
-        syncVictoryMusic(
-          typeof state.winner === "number"
-            ? state.players[state.winner].config.fighter
-            : "draw",
-          victoryElapsed,
-          quiet,
-        );
+        if (victorySkippedRef.current) {
+          victoryElapsed = VICTORY_DURATION_MS;
+        } else {
+          syncVictoryMusic(
+            typeof state.winner === "number"
+              ? state.players[state.winner].config.fighter
+              : "draw",
+            victoryElapsed,
+            quiet,
+          );
+        }
         if (victoryElapsed >= VICTORY_DURATION_MS && !finaleComplete) {
           finaleComplete = true;
-          setResultReady(true);
+          setResultMounted(true);
         }
       }
       if (
@@ -733,7 +757,6 @@ export function Game(props: Props) {
   const winnerDef = winner ? fighterById(winner.config.fighter) : null;
   const specialUnlockWins =
     fighterById(view.players[localIndex].config.fighter).specialUnlockWins ?? 0;
-  const localWinner = view.winner === localIndex;
   const presenting = view.phase === "intro" ? introActor(view.tick) : null;
   const intro = view.phase === "intro";
   const cinematic = intro && presenting !== null;
@@ -747,8 +770,17 @@ export function Game(props: Props) {
       data-result-ready={resultReady}
       data-finale={view.finale?.fighter}
     >
-      {!intro && (
-        <div className="game-topline">
+      {celebrating && assets && !portraitBlocked && (
+        <button className="victory-skip" onClick={skipVictory}>
+          Saltar animación <SkipForward size={16} aria-hidden="true" />
+        </button>
+      )}
+      {!intro && !resultReady && (
+        <div
+          className="game-topline"
+          inert={resultMounted}
+          style={resultMounted ? { visibility: "hidden" } : undefined}
+        >
           <button
             className="text-button"
             aria-label="Volver a la selección"
@@ -999,87 +1031,34 @@ export function Game(props: Props) {
         {celebrating && (
           <div
             className="victory-announcement"
+            data-winner={view.winner ?? "draw"}
+            style={resultMounted ? { visibility: "hidden" } : undefined}
             role="status"
             aria-live="polite"
           >
-            <span className="eyebrow">
-              <Trophy size={16} aria-hidden="true" />
-              {winnerDef ? "¡VICTORIA!" : "¡EMPATE!"}
-            </span>
-            <strong>{winnerDef?.name ?? "Quedaron tablas"}</strong>
-            <span className="victory-signature">
-              {winnerDef
-                ? victoryById(winnerDef.id).name
-                : "Una pausa antes de la revancha"}
-            </span>
+            <h2 ref={victoryTitle}>
+              <span>{winnerDef ? winnerDef.shortName : "Quedaron"} </span>
+              <strong>{winnerDef ? "ganó." : "tablas."}</strong>
+            </h2>
+            <VenezuelaStars className="victory-announcement-stars" />
           </div>
         )}
-        {view.phase === "finished" && resultReady && (
-          <div
-            ref={resultOverlay}
-            className="game-overlay result-overlay"
-            role="dialog"
-            aria-modal={activeOverlay === "result"}
-            aria-hidden={activeOverlay !== "result"}
-            aria-labelledby="result-title"
-          >
-            <div className="result-card">
-              <div className="result-art">
-                {winnerDef && <Portrait fighter={winnerDef.id} />}
-              </div>
-              <div className="result-info">
-                <span className="eyebrow">
-                  <Trophy size={14} />
-                  {view.winner === "draw"
-                    ? "QUEDARON TABLAS"
-                    : mode === "local"
-                      ? "TENEMOS GANADOR"
-                      : localWinner
-                        ? "LA VICTORIA ES TUYA"
-                        : "ESTA SE LA LLEVÓ TU RIVAL"}
-                </span>
-                <h2 id="result-title">
-                  {winner ? `${winner.config.name} gana.` : "¡Empate!"}
-                </h2>
-                <div className="result-stats">
-                  <div>
-                    <strong>{view.players[localIndex].hits}</strong>
-                    <span>Golpes conectados</span>
-                  </div>
-                  <div>
-                    <strong>{view.players[localIndex].peakCombo}</strong>
-                    <span>Mejor racha</span>
-                  </div>
-                </div>
-                {winner &&
-                  (mode === "local" || localWinner) &&
-                  (winner.config.wins === 0 || winner.config.wins === 2) && (
-                    <div className="unlock-toast">
-                      <Zap size={16} />
-                      <span>
-                        {winner.config.wins === 0
-                          ? "Nuevo combo desbloqueado"
-                          : winnerDef?.specialUnlockWins === 3
-                            ? "Especial y definitiva desbloqueados"
-                            : "Definitiva desbloqueada"}{" "}
-                        para {winnerDef?.shortName}
-                      </span>
-                    </div>
-                  )}
-                <button
-                  className="primary-button"
-                  disabled={props.rematchWaiting}
-                  onClick={props.onRematch}
-                >
-                  <RotateCcw size={17} />
-                  {props.rematchWaiting ? "Esperando a tu pana…" : "¡Revancha!"}
-                </button>
-                <button className="text-button" onClick={props.onExit}>
-                  Volver a la selección <ArrowRight size={15} />
-                </button>
-              </div>
-            </div>
-          </div>
+        {view.phase === "finished" && resultMounted && assets && (
+          <VictoryScreen
+            state={view}
+            mode={mode}
+            localIndex={localIndex}
+            active={activeOverlay === "result"}
+            overlayRef={resultOverlay}
+            sourceCanvas={canvas}
+            sourceTitle={victoryTitle}
+            assets={assets}
+            onReady={finishResultTransition}
+            skipTransition={victorySkipped}
+            rematchWaiting={props.rematchWaiting}
+            onRematch={props.onRematch}
+            onExit={props.onExit}
+          />
         )}
       </div>
       {!intro && (

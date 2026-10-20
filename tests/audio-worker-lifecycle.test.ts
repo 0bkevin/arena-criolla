@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import type { FinaleState } from "../shared/finales";
 import type { ScoreRequest } from "../src/game/music-preparation";
+import { VICTORY_DURATION_MS } from "../src/game/victory-types";
 
 test("late scores cannot resurrect stopped/muted scenes and resume at the current clock", async () => {
   class Param {
@@ -130,7 +131,7 @@ test("late scores cannot resurrect stopped/muted scenes and resume at the curren
     audio.syncFinaleMusic(undefined, false);
     assert.equal(sources.at(-1)!.stopped, true);
     audio.syncVictoryMusic("zavarce", 0, false);
-    audio.syncVictoryMusic("zavarce", 3500, false);
+    audio.syncVictoryMusic("zavarce", VICTORY_DURATION_MS, false);
     worker!.finish();
     await settle();
     assert.equal(sources.length, 2, "finished victory cannot start late");

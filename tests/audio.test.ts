@@ -5,7 +5,7 @@ import { writeVictoryMusic } from "../src/game/victory-music";
 import { VICTORY_DURATION_MS } from "../src/game/victory-types";
 import type { FinaleState } from "../shared/finales";
 
-test("victory fanfares finish in 3.5 seconds with finite stereo audio and a silent release", () => {
+test("victory fanfares retain their closing chord and end silently", () => {
   for (const fighter of [
     "oscar",
     "ali",
@@ -27,6 +27,16 @@ test("victory fanfares finish in 3.5 seconds with finite stereo audio and a sile
         }
         assert.ok(peak > 0.04 && peak < 0.8, `${fighter}: peak=${peak}`);
         assert.equal(channel[0], 0);
+        // The closing chord starts around 2s; strings decay naturally well
+        // before the end of the full 3.5s celebration.
+        const closing = channel.subarray(
+          Math.floor(channel.length * 0.6),
+          Math.floor(channel.length * 0.95),
+        );
+        assert.ok(
+          closing.some((sample) => Math.abs(sample) > 0.001),
+          `${fighter}: the closing chord must remain audible`,
+        );
         assert.ok(Math.abs(channel.at(-1)!) < 0.0001, "no click at the ending");
       }
       assert.notDeepEqual(left, right, "the fanfare has a stereo spread");

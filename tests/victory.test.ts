@@ -13,8 +13,13 @@ import {
   victoryById,
 } from "../src/game/victory";
 import { drawVictory } from "../src/game/victory-renderer";
+import {
+  VICTORY_DURATION_MS,
+  VICTORY_TRANSITION_MS,
+} from "../src/game/victory-types";
 
-const sampleTimes = [0, 210, 700, 1400, 2100, 2800, 3500];
+const at = (progress: number) => progress * VICTORY_DURATION_MS;
+const sampleTimes = [0, 0.06, 0.2, 0.4, 0.6, 0.8, 1].map(at);
 const round = (value: number) => Math.round(value * 1e6) / 1e6;
 const animationSignature = (id: FighterId) =>
   JSON.stringify(
@@ -48,7 +53,7 @@ test("all 54 built-in fighters have unique, finite, bounded victory motion", () 
     assert.ok(profile.name.length > 0, `${fighter.id}: missing animation name`);
     signatures.add(animationSignature(fighter.id));
 
-    for (let elapsed = 0; elapsed <= 3500; elapsed += 50) {
+    for (let elapsed = 0; elapsed <= VICTORY_DURATION_MS; elapsed += 25) {
       const pose = sampleVictory(fighter.id, elapsed);
       for (const [key, value] of Object.entries(pose.gesture)) {
         assert.ok(Number.isFinite(value), `${fighter.id}: nonfinite ${key}`);
@@ -86,19 +91,24 @@ test("all 54 built-in fighters have unique, finite, bounded victory motion", () 
   );
 });
 
-test("victory and defeat settle at 3500ms and hold instead of replaying", () => {
+test("the full celebration plays before the transition and actors settle before the handoff", () => {
+  assert.equal(VICTORY_DURATION_MS, 3500);
+  assert.equal(VICTORY_DURATION_MS + VICTORY_TRANSITION_MS, 4200);
   for (const fighter of FIGHTERS) {
-    const atEnd = sampleVictory(fighter.id, 3500);
-    for (const afterEnd of [3501, 4200, 7000, 14000])
+    const atEnd = sampleVictory(fighter.id, at(1));
+    for (const afterEnd of [at(1) + 1, at(1.2), at(2), at(4)])
       assert.deepEqual(sampleVictory(fighter.id, afterEnd), atEnd, fighter.id);
   }
-  const defeatedAtEnd = sampleDefeat(3500);
-  for (const afterEnd of [3501, 4200, 7000, 14000])
+  const defeatedAtEnd = sampleDefeat(at(1));
+  for (const afterEnd of [at(1) + 1, at(1.2), at(2), at(4)])
     assert.deepEqual(sampleDefeat(afterEnd), defeatedAtEnd);
 
   // Both actors move during the curtain call and reach a stable endpoint.
-  assert.notDeepEqual(sampleVictory("nacho", 1400), sampleVictory("nacho", 0));
-  assert.notDeepEqual(sampleDefeat(1400), sampleDefeat(0));
+  assert.notDeepEqual(
+    sampleVictory("nacho", at(0.4)),
+    sampleVictory("nacho", 0),
+  );
+  assert.notDeepEqual(sampleDefeat(at(0.4)), sampleDefeat(0));
 });
 
 test("jump celebrations prepare on the ground and land before the final hold", () => {
@@ -108,28 +118,28 @@ test("jump celebrations prepare on the ground and land before the final hold", (
   assert.ok(jumpers.length > 0);
   for (const fighter of jumpers) {
     assert.equal(sampleVictory(fighter.id, 0).frame, 0, fighter.id);
-    assert.equal(sampleVictory(fighter.id, 1400).frame, 4, fighter.id);
-    assert.equal(sampleVictory(fighter.id, 2800).frame, 0, fighter.id);
-    assert.equal(sampleVictory(fighter.id, 3500).frame, 0, fighter.id);
+    assert.equal(sampleVictory(fighter.id, at(0.4)).frame, 4, fighter.id);
+    assert.equal(sampleVictory(fighter.id, at(0.8)).frame, 0, fighter.id);
+    assert.equal(sampleVictory(fighter.id, at(1)).frame, 0, fighter.id);
   }
 });
 
 test("reduced motion keeps both actors static and community fighters use the fallback", () => {
   for (const fighter of FIGHTERS) {
-    const pose = sampleVictory(fighter.id, 1400, true);
+    const pose = sampleVictory(fighter.id, at(0.4), true);
     assert.deepEqual(pose.gesture, { at: pose.progress, ...REST }, fighter.id);
     assert.equal(pose.dx, 0, fighter.id);
     assert.equal(pose.dy, 0, fighter.id);
     assert.equal(pose.rotate, 0, fighter.id);
   }
-  assert.deepEqual(sampleDefeat(1400, true), { dx: 0, dy: 0, rotate: 0 });
+  assert.deepEqual(sampleDefeat(at(0.4), true), { dx: 0, dy: 0, rotate: 0 });
   assert.equal(
     victoryById("custom_community-test").name,
     "Un saludo a la arena",
   );
   assert.deepEqual(
-    sampleVictory("custom_community-test", 3500),
-    sampleVictory("custom_another_id", 3500),
+    sampleVictory("custom_community-test", at(1)),
+    sampleVictory("custom_another_id", at(1)),
   );
 });
 
@@ -149,7 +159,7 @@ test("sampled victory poses keep their rig mesh upright and within the body", ()
   for (const fighter of FIGHTERS) {
     const rig = CHOREOGRAPHIES[fighter.id];
     const frame = victoryById(fighter.id).frame;
-    for (const elapsed of [1050, 1400, 1750, 2100]) {
+    for (const elapsed of [0.3, 0.4, 0.5, 0.6].map(at)) {
       const gesture = sampleVictory(fighter.id, elapsed).gesture;
       for (let y = 0.03; y < 0.9; y += 0.1)
         for (let x = -0.28; x < 0.3; x += 0.1) {
@@ -246,7 +256,7 @@ test("drawVictory stages a ringed-out zero-stock loser on screen", () => {
     },
   ) as unknown as CanvasRenderingContext2D;
 
-  drawVictory(ctx, state, assets, 3500, true);
+  drawVictory(ctx, state, assets, at(1), true);
 
   assert.ok(
     drawnImages.includes(loserSprite.image),
