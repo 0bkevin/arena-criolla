@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtemp, rm } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import sharp from "sharp";
@@ -52,14 +52,16 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
   assert.ok(
     html.includes('<link rel="canonical" href="https://arena.example/"'),
   );
+  const imageUrl = html.match(/property="og:image"\s+content="([^"]+)"/)?.[1];
+  assert.ok(imageUrl);
   assert.match(
-    html,
-    /property="og:image"\s+content="https:\/\/arena\.example\/assets\/og-arena-criolla\.jpg"/,
+    imageUrl,
+    /^https:\/\/arena\.example\/assets\/og-arena-criolla-[a-f0-9]{16}\.jpg$/,
   );
   assert.match(html, /property="og:image:type"\s+content="image\/jpeg"/);
-  assert.match(
-    html,
-    /name="twitter:image"\s+content="https:\/\/arena\.example\/assets\/og-arena-criolla\.jpg"/,
+  assert.equal(
+    html.match(/name="twitter:image"\s+content="([^"]+)"/)?.[1],
+    imageUrl,
   );
   assert.ok(html.includes('name="twitter:card" content="summary_large_image"'));
   assert.ok(!html.includes("__ARENA_") && !html.includes("PRIVATE"));
@@ -68,10 +70,7 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
   );
   assert.ok(structured);
   assert.equal(JSON.parse(structured[1]).url, "https://arena.example/");
-  assert.equal(
-    JSON.parse(structured[1]).image,
-    "https://arena.example/assets/og-arena-criolla.jpg",
-  );
+  assert.equal(JSON.parse(structured[1]).image, imageUrl);
 
   for (const route of [
     "/create",
@@ -96,7 +95,7 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
   assert.ok(
     (await sitemap.text()).includes("<loc>https://arena.example/</loc>"),
   );
-  const image = await fetch(`${base}/assets/og-arena-criolla.jpg`);
+  const image = await fetch(base + new URL(imageUrl).pathname);
   assert.equal(image.status, 200);
   assert.match(image.headers.get("content-type") ?? "", /image\/jpeg/);
   const imageBytes = Buffer.from(await image.arrayBuffer());
@@ -105,6 +104,8 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
   assert.equal(metadata.format, "jpeg");
   assert.equal(metadata.width, 1200);
   assert.equal(metadata.height, 630);
+  const legacyImage = await fetch(`${base}/assets/og-arena-criolla.jpg`);
+  assert.deepEqual(Buffer.from(await legacyImage.arrayBuffer()), imageBytes);
   const alias = await fetch(`${base}/index.html`, { redirect: "manual" });
   assert.equal(alias.status, 308);
   assert.equal(alias.headers.get("location"), "/");
@@ -121,4 +122,103 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
     );
     assert.ok(!home.includes("ABC123"));
   }
+});
+
+test("social previews get a new image URL when the deployed JPEG changes", async (t) => {
+  const previous = process.cwd();
+  const folder = await mkdtemp(path.join(os.tmpdir(), "arena-social-cache-"));
+  t.after(() => rm(folder, { recursive: true, force: true }));
+  await mkdir(path.join(folder, "dist/assets"), { recursive: true });
+  await writeFile(
+    path.join(folder, "dist/index.html"),
+    await readFile("index.html"),
+  );
+  const current = await readFile("public/assets/og-arena-criolla.jpg");
+  const updated = await sharp(current).jpeg({ quality: 60 }).toBuffer();
+  const urls: string[] = [];
+
+  for (const bytes of [current, current, updated]) {
+    await writeFile(
+      path.join(folder, "dist/assets/og-arena-criolla.jpg"),
+      bytes,
+    );
+    let server: Awaited<ReturnType<typeof makeArenaServer>>;
+    try {
+      process.chdir(folder);
+      server = await makeArenaServer({
+        production: true,
+        creator: {
+          dataDir: path.join(folder, "private"),
+          databasePath: ":memory:",
+          provider: null,
+        },
+      });
+    } finally {
+      process.chdir(previous);
+    }
+    try {
+      await new Promise<void>((resolve) =>
+        server.http.listen(0, "127.0.0.1", resolve),
+      );
+      const address = server.http.address();
+      assert.ok(address && typeof address !== "string");
+      const base = `http://127.0.0.1:${address.port}`;
+      for (const agent of [
+        "Twitterbot/1.0",
+        "facebookexternalhit/1.1",
+        "LinkedInBot/1.0",
+      ]) {
+        const page = await fetch(base, { headers: { "User-Agent": agent } });
+        assert.equal(page.headers.get("cache-control"), "no-store");
+        const html = await page.text();
+        const imageUrl = html.match(
+          /property="og:image"\s+content="([^"]+)"/,
+        )?.[1];
+        assert.ok(imageUrl);
+        const imagePath = new URL(imageUrl).pathname;
+        assert.match(
+          imagePath,
+          /^\/assets\/og-arena-criolla-[a-f0-9]{16}\.jpg$/,
+        );
+        assert.equal(
+          html.match(/name="twitter:image"\s+content="([^"]+)"/)?.[1],
+          imageUrl,
+        );
+        assert.ok(!html.includes("__ARENA_"));
+        const image = await fetch(base + imagePath, {
+          headers: { "User-Agent": agent, Accept: "image/avif,image/webp,*/*" },
+          redirect: "manual",
+        });
+        assert.equal(image.status, 200);
+        assert.equal(image.headers.get("content-type"), "image/jpeg");
+        assert.equal(
+          image.headers.get("cache-control"),
+          "public, max-age=31536000, immutable",
+        );
+        assert.deepEqual(Buffer.from(await image.arrayBuffer()), bytes);
+        if (agent === "Twitterbot/1.0") urls.push(imagePath);
+        else assert.equal(imagePath, urls.at(-1));
+      }
+      if (urls.length === 3) {
+        const retired = await fetch(base + urls[1], { redirect: "manual" });
+        assert.equal(retired.status, 302);
+        assert.equal(retired.headers.get("location"), urls[2]);
+        assert.equal(retired.headers.get("cache-control"), "no-store");
+        const refreshed = await fetch(base + urls[1]);
+        assert.deepEqual(Buffer.from(await refreshed.arrayBuffer()), updated);
+      }
+    } finally {
+      await server.close();
+    }
+  }
+  assert.equal(
+    urls[0],
+    urls[1],
+    "unchanged images keep a stable URL across deploys",
+  );
+  assert.notEqual(
+    urls[1],
+    urls[2],
+    "changed images must never reuse a cached URL",
+  );
 });

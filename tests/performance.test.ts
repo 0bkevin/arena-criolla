@@ -174,7 +174,8 @@ test("each match update is serialized once and delivered identically to both pla
 });
 
 test("production caches fingerprinted assets and negotiates one shared background", async () => {
-  const { mkdtemp, mkdir, writeFile, rm } = await import("node:fs/promises");
+  const { copyFile, mkdtemp, mkdir, writeFile, rm } =
+    await import("node:fs/promises");
   const { tmpdir } = await import("node:os");
   const path = await import("node:path");
   const folder = await mkdtemp(path.join(tmpdir(), "arena-cache-test-"));
@@ -182,6 +183,10 @@ test("production caches fingerprinted assets and negotiates one shared backgroun
   let server: Awaited<ReturnType<typeof makeArenaServer>> | undefined;
   try {
     await mkdir(path.join(folder, "dist/assets"), { recursive: true });
+    await copyFile(
+      "public/assets/og-arena-criolla.jpg",
+      path.join(folder, "dist/assets/og-arena-criolla.jpg"),
+    );
     await writeFile(
       path.join(folder, "dist/index.html"),
       "<!doctype html><html><body>arena</body></html>",
