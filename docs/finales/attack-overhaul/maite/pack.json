@@ -1,0 +1,19 @@
+{
+  "fighter": "maite",
+  "source": "assets/source/finales/attack-overhaul/maite/greeting-v5-normalized.png",
+  "file": "attack-maite-greeting",
+  "columns": 2,
+  "rows": 2,
+  "poses": [
+    "breath",
+    "shout",
+    "sustain",
+    "recover"
+  ],
+  "anchorFractions": {
+    "breath": 0.53,
+    "shout": 0.51,
+    "sustain": 0.45,
+    "recover": 0.53
+  }
+}

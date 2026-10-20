@@ -1,0 +1,163 @@
+{
+  "fighter": "maite",
+  "source": "assets/source/finales/attack-overhaul/maite/greeting-v5-normalized.png",
+  "file": "attack-maite-greeting",
+  "columns": 2,
+  "rows": 2,
+  "poses": [
+    "breath",
+    "shout",
+    "sustain",
+    "recover"
+  ],
+  "anchorFractions": {
+    "breath": 0.53,
+    "shout": 0.51,
+    "sustain": 0.45,
+    "recover": 0.53
+  },
+  "tool": "image_gen.imagegen",
+  "normalized": "assets/source/finales/attack-overhaul/maite/attack-maite-greeting-packed.png",
+  "destination": "public/assets/attack-maite-greeting.webp",
+  "width": 1024,
+  "height": 1024,
+  "cell": 512,
+  "frames": {
+    "breath": {
+      "x": 20,
+      "y": 20,
+      "width": 472,
+      "height": 472,
+      "anchorX": 250.16000000000003,
+      "anchorY": 467.3267326732673,
+      "bodyHeight": 464.990099009901
+    },
+    "shout": {
+      "x": 536,
+      "y": 20,
+      "width": 464,
+      "height": 472,
+      "anchorX": 236.64000000000001,
+      "anchorY": 465.25714285714287,
+      "bodyHeight": 463.0095238095238
+    },
+    "sustain": {
+      "x": 20,
+      "y": 581,
+      "width": 472,
+      "height": 423,
+      "anchorX": 212.4,
+      "anchorY": 411.81490384615387,
+      "bodyHeight": 405.7139423076923
+    },
+    "recover": {
+      "x": 532,
+      "y": 540,
+      "width": 472,
+      "height": 464,
+      "anchorX": 250.16000000000003,
+      "anchorY": 453.0566037735849,
+      "bodyHeight": 447.58490566037733
+    }
+  },
+  "objects": [
+    {
+      "pose": "breath",
+      "sourceBounds": {
+        "left": 70,
+        "top": 54,
+        "width": 404,
+        "height": 404
+      },
+      "uniformScale": 1.1683168316831682,
+      "width": 472,
+      "height": 472,
+      "visibleSourcePixels": 78989,
+      "transparentSourcePixels": 192020,
+      "coreBounds": {
+        "top": 56,
+        "bottom": 454
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "shout",
+      "sourceBounds": {
+        "left": 609,
+        "top": 46,
+        "width": 413,
+        "height": 420
+      },
+      "uniformScale": 1.1238095238095238,
+      "width": 464,
+      "height": 472,
+      "visibleSourcePixels": 83162,
+      "transparentSourcePixels": 186220,
+      "coreBounds": {
+        "top": 48,
+        "bottom": 460
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "sustain",
+      "sourceBounds": {
+        "left": 40,
+        "top": 560,
+        "width": 464,
+        "height": 416
+      },
+      "uniformScale": 1.0172413793103448,
+      "width": 472,
+      "height": 423,
+      "visibleSourcePixels": 94014,
+      "transparentSourcePixels": 173851,
+      "coreBounds": {
+        "top": 566,
+        "bottom": 965
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    },
+    {
+      "pose": "recover",
+      "sourceBounds": {
+        "left": 600,
+        "top": 556,
+        "width": 431,
+        "height": 424
+      },
+      "uniformScale": 1.0951276102088168,
+      "width": 472,
+      "height": 464,
+      "visibleSourcePixels": 89117,
+      "transparentSourcePixels": 180684,
+      "coreBounds": {
+        "top": 561,
+        "bottom": 970
+      },
+      "discardedNoise": {
+        "components": 0,
+        "pixels": 0,
+        "maxAlpha": 0
+      }
+    }
+  ],
+  "sourceSha256": "64533f4ff0c00e210554c16a0bdc780b8e9d2e8c48717d394fbaa505e51c70e5",
+  "normalizedSha256": "10e5d54d573a503c558b74c6b8f955fd175a912ee6bbe69cecab25f92919a47c",
+  "runtimeSha256": "1ff12fd85d27c9179ef5ff8c583ea786548d2d403dd87faeeb098b96e76b60fb",
+  "rgbaSha256": "aa78d06f9786e071b5eaee3fd5dedfb361b3512da16dae4c8835264f2c7b26e4",
+  "alphaSha256": "a32634276ed214a1ecccbb6c39eb54cd0202fb84447197e7a28c4793574669ed",
+  "lossless": true
+}

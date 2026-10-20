@@ -1,0 +1,2004 @@
+[
+  {
+    "side": 1,
+    "move": "final",
+    "scenario": "normal",
+    "paid": 25,
+    "impacts": [
+      {
+        "frame": 36,
+        "damage": 39.0864,
+        "hp": 60.9136,
+        "positions": [
+          [
+            320,
+            554
+          ],
+          [
+            750,
+            554
+          ]
+        ],
+        "waveBefore": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 682,
+            "y": 400,
+            "vx": 12,
+            "life": 28,
+            "age": 27,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 38.90000000000001,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ],
+    "recovery": {
+      "frame": 91,
+      "hp": 100,
+      "stocks": [
+        2,
+        1
+      ],
+      "positions": [
+        [
+          320,
+          554
+        ],
+        [
+          750,
+          348.92
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 1,
+    "hp": 100,
+    "stocks": [
+      2,
+      1
+    ],
+    "remaining": 5220,
+    "travel": [
+      {
+        "frame": 9,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 370,
+            "y": 400,
+            "vx": 12,
+            "life": 54,
+            "age": 1,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 20.7,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 16,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 454,
+            "y": 400,
+            "vx": 12,
+            "life": 47,
+            "age": 8,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 25.599999999999994,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 27,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 586,
+            "y": 400,
+            "vx": 12,
+            "life": 36,
+            "age": 19,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 33.29999999999999,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 32,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 646,
+            "y": 400,
+            "vx": 12,
+            "life": 31,
+            "age": 24,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 36.800000000000004,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "side": 1,
+    "move": "final",
+    "scenario": "close",
+    "paid": 25,
+    "impacts": [
+      {
+        "frame": 9,
+        "damage": 39.0864,
+        "hp": 60.9136,
+        "positions": [
+          [
+            320,
+            554
+          ],
+          [
+            375,
+            554
+          ]
+        ],
+        "waveBefore": []
+      }
+    ],
+    "recovery": {
+      "frame": 91,
+      "hp": 60.9136,
+      "stocks": [
+        2,
+        2
+      ],
+      "positions": [
+        [
+          320,
+          554
+        ],
+        [
+          958.3210923425897,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 1,
+    "hp": 60.9136,
+    "stocks": [
+      2,
+      2
+    ],
+    "remaining": 5220,
+    "travel": []
+  },
+  {
+    "side": 1,
+    "move": "final",
+    "scenario": "edge-out",
+    "paid": 25,
+    "impacts": [
+      {
+        "frame": 12,
+        "damage": 39.0864,
+        "hp": 60.9136,
+        "positions": [
+          [
+            925,
+            554
+          ],
+          [
+            1045,
+            554
+          ]
+        ],
+        "waveBefore": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 999,
+            "y": 400,
+            "vx": 12,
+            "life": 52,
+            "age": 3,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 22.099999999999998,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ],
+    "recovery": {
+      "frame": 91,
+      "hp": 100,
+      "stocks": [
+        2,
+        1
+      ],
+      "positions": [
+        [
+          925,
+          554
+        ],
+        [
+          750,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 1,
+    "hp": 100,
+    "stocks": [
+      2,
+      1
+    ],
+    "remaining": 5220,
+    "travel": [
+      {
+        "frame": 9,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 975,
+            "y": 400,
+            "vx": 12,
+            "life": 54,
+            "age": 1,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 20.7,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "side": 1,
+    "move": "final",
+    "scenario": "edge-in",
+    "paid": 25,
+    "impacts": [
+      {
+        "frame": 36,
+        "damage": 39.0864,
+        "hp": 60.9136,
+        "positions": [
+          [
+            35,
+            554
+          ],
+          [
+            465,
+            554
+          ]
+        ],
+        "waveBefore": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 397,
+            "y": 400,
+            "vx": 12,
+            "life": 28,
+            "age": 27,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 38.90000000000001,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ],
+    "recovery": {
+      "frame": 91,
+      "hp": 60.9136,
+      "stocks": [
+        2,
+        2
+      ],
+      "positions": [
+        [
+          35,
+          554
+        ],
+        [
+          1048.2688209148857,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 1,
+    "hp": 60.9136,
+    "stocks": [
+      2,
+      2
+    ],
+    "remaining": 5220,
+    "travel": [
+      {
+        "frame": 9,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 85,
+            "y": 400,
+            "vx": 12,
+            "life": 54,
+            "age": 1,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 20.7,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 16,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 169,
+            "y": 400,
+            "vx": 12,
+            "life": 47,
+            "age": 8,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 25.599999999999994,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 27,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 301,
+            "y": 400,
+            "vx": 12,
+            "life": 36,
+            "age": 19,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 33.29999999999999,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 32,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 361,
+            "y": 400,
+            "vx": 12,
+            "life": 31,
+            "age": 24,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 36.800000000000004,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "side": 1,
+    "move": "final",
+    "scenario": "guard",
+    "paid": 25,
+    "impacts": [],
+    "recovery": {
+      "frame": 86,
+      "hp": 100,
+      "stocks": [
+        2,
+        2
+      ],
+      "positions": [
+        [
+          320,
+          554
+        ],
+        [
+          752.7857142827982,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 0,
+    "hp": 100,
+    "stocks": [
+      2,
+      2
+    ],
+    "remaining": 5220,
+    "travel": [
+      {
+        "frame": 9,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 370,
+            "y": 400,
+            "vx": 12,
+            "life": 54,
+            "age": 1,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 20.7,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 16,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 454,
+            "y": 400,
+            "vx": 12,
+            "life": 47,
+            "age": 8,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 25.599999999999994,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 27,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 586,
+            "y": 400,
+            "vx": 12,
+            "life": 36,
+            "age": 19,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 33.29999999999999,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 32,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 646,
+            "y": 400,
+            "vx": 12,
+            "life": 31,
+            "age": 24,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 36.800000000000004,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "side": 1,
+    "move": "final",
+    "scenario": "miss",
+    "paid": 25,
+    "impacts": [],
+    "recovery": {
+      "frame": 84,
+      "hp": 100,
+      "stocks": [
+        2,
+        2
+      ],
+      "positions": [
+        [
+          90,
+          554
+        ],
+        [
+          990,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 0,
+    "hp": 100,
+    "stocks": [
+      2,
+      2
+    ],
+    "remaining": 5220,
+    "travel": [
+      {
+        "frame": 9,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 140,
+            "y": 400,
+            "vx": 12,
+            "life": 54,
+            "age": 1,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 20.7,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 16,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 224,
+            "y": 400,
+            "vx": 12,
+            "life": 47,
+            "age": 8,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 25.599999999999994,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 27,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 356,
+            "y": 400,
+            "vx": 12,
+            "life": 36,
+            "age": 19,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 33.29999999999999,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 32,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 416,
+            "y": 400,
+            "vx": 12,
+            "life": 31,
+            "age": 24,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 36.800000000000004,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 45,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 572,
+            "y": 400,
+            "vx": 12,
+            "life": 18,
+            "age": 37,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 45.90000000000004,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 60,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 752,
+            "y": 400,
+            "vx": 12,
+            "life": 3,
+            "age": 52,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 52,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "side": 1,
+    "move": "final",
+    "scenario": "jump",
+    "paid": 25,
+    "impacts": [],
+    "recovery": {
+      "frame": 84,
+      "hp": 100,
+      "stocks": [
+        2,
+        2
+      ],
+      "positions": [
+        [
+          320,
+          554
+        ],
+        [
+          750,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 0,
+    "hp": 100,
+    "stocks": [
+      2,
+      2
+    ],
+    "remaining": 5220,
+    "travel": [
+      {
+        "frame": 9,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 370,
+            "y": 400,
+            "vx": 12,
+            "life": 54,
+            "age": 1,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 20.7,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 16,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 454,
+            "y": 400,
+            "vx": 12,
+            "life": 47,
+            "age": 8,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 25.599999999999994,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 27,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 586,
+            "y": 400,
+            "vx": 12,
+            "life": 36,
+            "age": 19,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 33.29999999999999,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 32,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 646,
+            "y": 400,
+            "vx": 12,
+            "life": 31,
+            "age": 24,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 36.800000000000004,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 45,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 802,
+            "y": 400,
+            "vx": 12,
+            "life": 18,
+            "age": 37,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 45.90000000000004,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 60,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 0,
+            "direction": 1,
+            "x": 982,
+            "y": 400,
+            "vx": 12,
+            "life": 3,
+            "age": 52,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 52,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "side": 1,
+    "move": "special",
+    "scenario": "normal",
+    "paid": 75,
+    "impacts": [
+      {
+        "frame": 15,
+        "damage": 15.340800000000002,
+        "hp": 84.6592,
+        "positions": [
+          [
+            320,
+            554
+          ],
+          [
+            578.1931733333333,
+            549.97
+          ]
+        ],
+        "waveBefore": []
+      }
+    ],
+    "recovery": {
+      "frame": 48,
+      "hp": 84.6592,
+      "stocks": [
+        2,
+        2
+      ],
+      "positions": [
+        [
+          320,
+          554
+        ],
+        [
+          749.1449064948916,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 1,
+    "hp": 84.6592,
+    "stocks": [
+      2,
+      2
+    ],
+    "remaining": 5220,
+    "travel": []
+  },
+  {
+    "side": 1,
+    "move": "special",
+    "scenario": "guard",
+    "paid": 75,
+    "impacts": [],
+    "recovery": {
+      "frame": 47,
+      "hp": 100,
+      "stocks": [
+        2,
+        2
+      ],
+      "positions": [
+        [
+          320,
+          554
+        ],
+        [
+          574.285707488401,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 0,
+    "hp": 100,
+    "stocks": [
+      2,
+      2
+    ],
+    "remaining": 5220,
+    "travel": []
+  },
+  {
+    "side": 2,
+    "move": "final",
+    "scenario": "normal",
+    "paid": 25,
+    "impacts": [
+      {
+        "frame": 36,
+        "damage": 39.0864,
+        "hp": 60.9136,
+        "positions": [
+          [
+            330,
+            554
+          ],
+          [
+            760,
+            554
+          ]
+        ],
+        "waveBefore": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 398,
+            "y": 400,
+            "vx": -12,
+            "life": 28,
+            "age": 27,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 38.90000000000001,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ],
+    "recovery": {
+      "frame": 91,
+      "hp": 100,
+      "stocks": [
+        1,
+        2
+      ],
+      "positions": [
+        [
+          330,
+          348.92
+        ],
+        [
+          760,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 1,
+    "hp": 100,
+    "stocks": [
+      1,
+      2
+    ],
+    "remaining": 5220,
+    "travel": [
+      {
+        "frame": 9,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 710,
+            "y": 400,
+            "vx": -12,
+            "life": 54,
+            "age": 1,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 20.7,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 16,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 626,
+            "y": 400,
+            "vx": -12,
+            "life": 47,
+            "age": 8,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 25.599999999999994,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 27,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 494,
+            "y": 400,
+            "vx": -12,
+            "life": 36,
+            "age": 19,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 33.29999999999999,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 32,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 434,
+            "y": 400,
+            "vx": -12,
+            "life": 31,
+            "age": 24,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 36.800000000000004,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "side": 2,
+    "move": "final",
+    "scenario": "close",
+    "paid": 25,
+    "impacts": [
+      {
+        "frame": 9,
+        "damage": 39.0864,
+        "hp": 60.9136,
+        "positions": [
+          [
+            705,
+            554
+          ],
+          [
+            760,
+            554
+          ]
+        ],
+        "waveBefore": []
+      }
+    ],
+    "recovery": {
+      "frame": 91,
+      "hp": 60.9136,
+      "stocks": [
+        2,
+        2
+      ],
+      "positions": [
+        [
+          121.67890765740978,
+          554
+        ],
+        [
+          760,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 1,
+    "hp": 60.9136,
+    "stocks": [
+      2,
+      2
+    ],
+    "remaining": 5220,
+    "travel": []
+  },
+  {
+    "side": 2,
+    "move": "final",
+    "scenario": "edge-out",
+    "paid": 25,
+    "impacts": [
+      {
+        "frame": 12,
+        "damage": 39.0864,
+        "hp": 60.9136,
+        "positions": [
+          [
+            35,
+            554
+          ],
+          [
+            155,
+            554
+          ]
+        ],
+        "waveBefore": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 81,
+            "y": 400,
+            "vx": -12,
+            "life": 52,
+            "age": 3,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 22.099999999999998,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ],
+    "recovery": {
+      "frame": 91,
+      "hp": 100,
+      "stocks": [
+        1,
+        2
+      ],
+      "positions": [
+        [
+          330,
+          554
+        ],
+        [
+          155,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 1,
+    "hp": 100,
+    "stocks": [
+      1,
+      2
+    ],
+    "remaining": 5220,
+    "travel": [
+      {
+        "frame": 9,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 105,
+            "y": 400,
+            "vx": -12,
+            "life": 54,
+            "age": 1,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 20.7,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "side": 2,
+    "move": "final",
+    "scenario": "edge-in",
+    "paid": 25,
+    "impacts": [
+      {
+        "frame": 36,
+        "damage": 39.0864,
+        "hp": 60.9136,
+        "positions": [
+          [
+            615,
+            554
+          ],
+          [
+            1045,
+            554
+          ]
+        ],
+        "waveBefore": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 683,
+            "y": 400,
+            "vx": -12,
+            "life": 28,
+            "age": 27,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 38.90000000000001,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ],
+    "recovery": {
+      "frame": 91,
+      "hp": 60.9136,
+      "stocks": [
+        2,
+        2
+      ],
+      "positions": [
+        [
+          31.73117908511247,
+          554
+        ],
+        [
+          1045,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 1,
+    "hp": 60.9136,
+    "stocks": [
+      2,
+      2
+    ],
+    "remaining": 5220,
+    "travel": [
+      {
+        "frame": 9,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 995,
+            "y": 400,
+            "vx": -12,
+            "life": 54,
+            "age": 1,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 20.7,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 16,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 911,
+            "y": 400,
+            "vx": -12,
+            "life": 47,
+            "age": 8,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 25.599999999999994,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 27,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 779,
+            "y": 400,
+            "vx": -12,
+            "life": 36,
+            "age": 19,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 33.29999999999999,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 32,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 719,
+            "y": 400,
+            "vx": -12,
+            "life": 31,
+            "age": 24,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 36.800000000000004,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "side": 2,
+    "move": "final",
+    "scenario": "guard",
+    "paid": 25,
+    "impacts": [],
+    "recovery": {
+      "frame": 86,
+      "hp": 100,
+      "stocks": [
+        2,
+        2
+      ],
+      "positions": [
+        [
+          327.2142857172015,
+          554
+        ],
+        [
+          760,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 0,
+    "hp": 100,
+    "stocks": [
+      2,
+      2
+    ],
+    "remaining": 5220,
+    "travel": [
+      {
+        "frame": 9,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 710,
+            "y": 400,
+            "vx": -12,
+            "life": 54,
+            "age": 1,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 20.7,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 16,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 626,
+            "y": 400,
+            "vx": -12,
+            "life": 47,
+            "age": 8,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 25.599999999999994,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 27,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 494,
+            "y": 400,
+            "vx": -12,
+            "life": 36,
+            "age": 19,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 33.29999999999999,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 32,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 434,
+            "y": 400,
+            "vx": -12,
+            "life": 31,
+            "age": 24,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 36.800000000000004,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "side": 2,
+    "move": "final",
+    "scenario": "miss",
+    "paid": 25,
+    "impacts": [],
+    "recovery": {
+      "frame": 84,
+      "hp": 100,
+      "stocks": [
+        2,
+        2
+      ],
+      "positions": [
+        [
+          90,
+          554
+        ],
+        [
+          990,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 0,
+    "hp": 100,
+    "stocks": [
+      2,
+      2
+    ],
+    "remaining": 5220,
+    "travel": [
+      {
+        "frame": 9,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 940,
+            "y": 400,
+            "vx": -12,
+            "life": 54,
+            "age": 1,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 20.7,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 16,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 856,
+            "y": 400,
+            "vx": -12,
+            "life": 47,
+            "age": 8,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 25.599999999999994,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 27,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 724,
+            "y": 400,
+            "vx": -12,
+            "life": 36,
+            "age": 19,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 33.29999999999999,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 32,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 664,
+            "y": 400,
+            "vx": -12,
+            "life": 31,
+            "age": 24,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 36.800000000000004,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 45,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 508,
+            "y": 400,
+            "vx": -12,
+            "life": 18,
+            "age": 37,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 45.90000000000004,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 60,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 328,
+            "y": 400,
+            "vx": -12,
+            "life": 3,
+            "age": 52,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 52,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "side": 2,
+    "move": "final",
+    "scenario": "jump",
+    "paid": 25,
+    "impacts": [],
+    "recovery": {
+      "frame": 84,
+      "hp": 100,
+      "stocks": [
+        2,
+        2
+      ],
+      "positions": [
+        [
+          330,
+          554
+        ],
+        [
+          760,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 0,
+    "hp": 100,
+    "stocks": [
+      2,
+      2
+    ],
+    "remaining": 5220,
+    "travel": [
+      {
+        "frame": 9,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 710,
+            "y": 400,
+            "vx": -12,
+            "life": 54,
+            "age": 1,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 20.7,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 16,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 626,
+            "y": 400,
+            "vx": -12,
+            "life": 47,
+            "age": 8,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 25.599999999999994,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 27,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 494,
+            "y": 400,
+            "vx": -12,
+            "life": 36,
+            "age": 19,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 33.29999999999999,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 32,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 434,
+            "y": 400,
+            "vx": -12,
+            "life": 31,
+            "age": 24,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 36.800000000000004,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 45,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 278,
+            "y": 400,
+            "vx": -12,
+            "life": 18,
+            "age": 37,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 45.90000000000004,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      },
+      {
+        "frame": 60,
+        "shots": [
+          {
+            "id": 0,
+            "owner": 1,
+            "direction": -1,
+            "x": 98,
+            "y": 400,
+            "vx": -12,
+            "life": 3,
+            "age": 52,
+            "kind": "sonic",
+            "impact": "super",
+            "radius": 52,
+            "growth": 0.7,
+            "maxRadius": 52,
+            "force": 12,
+            "damage": 38.32
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "side": 2,
+    "move": "special",
+    "scenario": "normal",
+    "paid": 75,
+    "impacts": [
+      {
+        "frame": 15,
+        "damage": 15.340800000000002,
+        "hp": 84.6592,
+        "positions": [
+          [
+            501.80682666666667,
+            549.97
+          ],
+          [
+            760,
+            554
+          ]
+        ],
+        "waveBefore": []
+      }
+    ],
+    "recovery": {
+      "frame": 48,
+      "hp": 84.6592,
+      "stocks": [
+        2,
+        2
+      ],
+      "positions": [
+        [
+          330.8550935051086,
+          554
+        ],
+        [
+          760,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 1,
+    "hp": 84.6592,
+    "stocks": [
+      2,
+      2
+    ],
+    "remaining": 5220,
+    "travel": []
+  },
+  {
+    "side": 2,
+    "move": "special",
+    "scenario": "guard",
+    "paid": 75,
+    "impacts": [],
+    "recovery": {
+      "frame": 47,
+      "hp": 100,
+      "stocks": [
+        2,
+        2
+      ],
+      "positions": [
+        [
+          505.71429251159856,
+          554
+        ],
+        [
+          760,
+          554
+        ]
+      ],
+      "projectiles": 0
+    },
+    "hits": 0,
+    "hp": 100,
+    "stocks": [
+      2,
+      2
+    ],
+    "remaining": 5220,
+    "travel": []
+  }
+]

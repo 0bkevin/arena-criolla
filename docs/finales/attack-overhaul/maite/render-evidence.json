@@ -1,0 +1,709 @@
+[
+  {
+    "key": "final-p1-normal-5",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "breath",
+        "anchorX": 364.7999918460846,
+        "left": 242.91299155539602,
+        "right": 472.8884638019782,
+        "top": 425.90149801804796,
+        "bottom": 655.8769702646301,
+        "presentationOffsetX": -0.000006370246410369873
+      }
+    ],
+    "labels": [
+      "P1",
+      "DEFINITIVA",
+      "P2"
+    ],
+    "boxes": []
+  },
+  {
+    "key": "final-p1-normal-9",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "shout",
+        "anchorX": 364.7999918460846,
+        "left": 244.37550677079133,
+        "right": 480.50194809489574,
+        "top": 416.83379262478604,
+        "bottom": 657.0313794889612,
+        "presentationOffsetX": -0.000006370246410369873
+      }
+    ],
+    "labels": [
+      "P1",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "P2"
+    ],
+    "boxes": [
+      {
+        "left": 166.39999628067017,
+        "top": 220.95999506115913,
+        "right": 563.199987411499,
+        "bottom": 293.91999343037605
+      }
+    ]
+  },
+  {
+    "key": "final-p1-normal-16",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "shout",
+        "anchorX": 364.7999918460846,
+        "left": 244.37550677079133,
+        "right": 480.50194809489574,
+        "top": 416.83379262478604,
+        "bottom": 657.0313794889612,
+        "presentationOffsetX": -0.000006370246410369873
+      }
+    ],
+    "labels": [
+      "P1",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "P2"
+    ],
+    "boxes": [
+      {
+        "left": 166.39999628067017,
+        "top": 220.95999506115913,
+        "right": 563.199987411499,
+        "bottom": 293.91999343037605
+      }
+    ]
+  },
+  {
+    "key": "final-p1-normal-27",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "sustain",
+        "anchorX": 364.7999918460846,
+        "left": 246.19094762470297,
+        "right": 509.76660144999545,
+        "top": 423.63307323782965,
+        "bottom": 659.8460002888862,
+        "presentationOffsetX": -0.000006370246410369873
+      }
+    ],
+    "labels": [
+      "P1",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "P2"
+    ],
+    "boxes": [
+      {
+        "left": 166.39999628067017,
+        "top": 220.95999506115913,
+        "right": 563.199987411499,
+        "bottom": 293.91999343037605
+      }
+    ]
+  },
+  {
+    "key": "final-p1-normal-36",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "sustain",
+        "anchorX": 348.61055617279044,
+        "left": 230.00151195140882,
+        "right": 493.5771657767013,
+        "top": 419.11006949371176,
+        "bottom": 655.3229965447683,
+        "presentationOffsetX": -0.000005628771646115638
+      }
+    ],
+    "labels": [
+      "P1",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "P2",
+      "¡BOOM!"
+    ],
+    "boxes": [
+      {
+        "left": 150.210560607376,
+        "top": 216.4369913170413,
+        "right": 547.0105517382049,
+        "bottom": 289.3969896862582
+      }
+    ]
+  },
+  {
+    "key": "final-p1-normal-50",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "sustain",
+        "anchorX": 338.43564795295174,
+        "left": 219.82660373157012,
+        "right": 483.4022575568626,
+        "top": 423.16728097376586,
+        "bottom": 659.3802080248224,
+        "presentationOffsetX": -0.000004783890744874952
+      }
+    ],
+    "labels": [
+      "P1",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "P2",
+      "¡BOOM!"
+    ],
+    "boxes": [
+      {
+        "left": 140.0356523875373,
+        "top": 220.4942027970953,
+        "right": 536.8356435183662,
+        "bottom": 293.4542011663122
+      }
+    ]
+  },
+  {
+    "key": "final-p1-normal-70",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "sustain",
+        "anchorX": 150.766845703125,
+        "left": 41.62187580065314,
+        "right": 284.1662533617017,
+        "top": 441.982632094108,
+        "bottom": 659.347614526997,
+        "presentationOffsetX": -0.0000033659667906249524
+      }
+    ],
+    "labels": [
+      "P1",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "P2"
+    ],
+    "boxes": [
+      {
+        "left": 14.134391784667969,
+        "top": 255.48128084515895,
+        "right": 379.2728462219238,
+        "bottom": 322.6196418223318
+      }
+    ]
+  },
+  {
+    "key": "final-p1-normal-100",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [],
+    "labels": [
+      "P1",
+      "P2"
+    ],
+    "boxes": []
+  },
+  {
+    "key": "final-p2-normal-9",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "shout",
+        "anchorX": 915.1999795436859,
+        "left": 799.4980232948748,
+        "right": 1035.6244646189791,
+        "top": 416.83379262478604,
+        "bottom": 657.0313794889612,
+        "presentationOffsetX": -0.00001598149538040161
+      }
+    ],
+    "labels": [
+      "P1",
+      "P2",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!"
+    ],
+    "boxes": [
+      {
+        "left": 716.7999839782715,
+        "top": 220.95999506115913,
+        "right": 1113.5999751091003,
+        "bottom": 293.91999343037605
+      }
+    ]
+  },
+  {
+    "key": "final-p2-normal-27",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "sustain",
+        "anchorX": 915.1999795436859,
+        "left": 770.233369939775,
+        "right": 1033.8090237650674,
+        "top": 423.63307323782965,
+        "bottom": 659.8460002888862,
+        "presentationOffsetX": -0.00001598149538040161
+      }
+    ],
+    "labels": [
+      "P1",
+      "P2",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!"
+    ],
+    "boxes": [
+      {
+        "left": 716.7999839782715,
+        "top": 220.95999506115913,
+        "right": 1113.5999751091003,
+        "bottom": 293.91999343037605
+      }
+    ]
+  },
+  {
+    "key": "final-p2-normal-36",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "sustain",
+        "anchorX": 899.0105438703918,
+        "left": 754.0439342664808,
+        "right": 1017.6195880917734,
+        "top": 419.11006949371176,
+        "bottom": 655.3229965447683,
+        "presentationOffsetX": -0.000015240020729834214
+      }
+    ],
+    "labels": [
+      "P1",
+      "P2",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "¡BOOM!"
+    ],
+    "boxes": [
+      {
+        "left": 700.6105483049773,
+        "top": 216.4369913170413,
+        "right": 1097.4105394358062,
+        "bottom": 289.3969896862582
+      }
+    ]
+  },
+  {
+    "key": "final-p2-normal-70",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "sustain",
+        "anchorX": 1129.2331257156038,
+        "left": 995.8337180570271,
+        "right": 1238.3780956180756,
+        "top": 441.982632094108,
+        "bottom": 659.347614526997,
+        "presentationOffsetX": -0.000020899332412227523
+      }
+    ],
+    "labels": [
+      "P1",
+      "P2",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!"
+    ],
+    "boxes": [
+      {
+        "left": 900.7271537780762,
+        "top": 255.48128084515895,
+        "right": 1265.865608215332,
+        "bottom": 322.6196418223318
+      }
+    ]
+  },
+  {
+    "key": "final-p1-close-9",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "shout",
+        "anchorX": 470.8610441629353,
+        "left": 350.436559087642,
+        "right": 586.5630004117464,
+        "top": 422.79612708624404,
+        "bottom": 662.9937139504192,
+        "presentationOffsetX": -0.000007760097730624693
+      }
+    ],
+    "labels": [
+      "P1",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "P2",
+      "¡BOOM!"
+    ],
+    "boxes": [
+      {
+        "left": 272.46104859752086,
+        "top": 226.92232952261713,
+        "right": 669.2610397283497,
+        "bottom": 299.88232789183405
+      }
+    ]
+  },
+  {
+    "key": "final-p2-close-9",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "shout",
+        "anchorX": 778.0610372964802,
+        "left": 662.3590810476691,
+        "right": 898.4855223717734,
+        "top": 422.79612708624404,
+        "bottom": 662.9937139504192,
+        "presentationOffsetX": -0.000013124515817253268
+      }
+    ],
+    "labels": [
+      "P1",
+      "P2",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "¡BOOM!"
+    ],
+    "boxes": [
+      {
+        "left": 579.6610417310658,
+        "top": 226.92232952261713,
+        "right": 976.4610328618946,
+        "bottom": 299.88232789183405
+      }
+    ]
+  },
+  {
+    "key": "final-p1-edge-in-36",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "sustain",
+        "anchorX": 136.86681090563206,
+        "left": 18.257766684250456,
+        "right": 281.8334205095429,
+        "top": 419.11006949371176,
+        "bottom": 655.3229965447683,
+        "presentationOffsetX": 23.57519338126083
+      }
+    ],
+    "labels": [
+      "P1",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "P2",
+      "¡BOOM!"
+    ],
+    "boxes": [
+      {
+        "left": 15.359999656677246,
+        "top": 216.4369913170413,
+        "right": 412.1599907875061,
+        "bottom": 289.3969896862582
+      }
+    ]
+  },
+  {
+    "key": "final-p2-edge-in-36",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "sustain",
+        "anchorX": 1140.9305384630584,
+        "left": 995.9639288591475,
+        "right": 1259.53958268444,
+        "top": 419.11006949371176,
+        "bottom": 655.3229965447683,
+        "presentationOffsetX": -0.000019464499928290024
+      }
+    ],
+    "labels": [
+      "P1",
+      "P2",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "¡BOOM!"
+    ],
+    "boxes": [
+      {
+        "left": 867.8400092124939,
+        "top": 216.4369913170413,
+        "right": 1264.6400003433228,
+        "bottom": 289.3969896862582
+      }
+    ]
+  },
+  {
+    "key": "final-p1-edge-out-12",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "shout",
+        "anchorX": 1021.0180655573736,
+        "left": 900.5935804820804,
+        "right": 1136.7200218061846,
+        "top": 410.0673541773949,
+        "bottom": 650.2649410415701,
+        "presentationOffsetX": -0.00001779189119588409
+      }
+    ],
+    "labels": [
+      "P1",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "P2",
+      "¡BOOM!"
+    ],
+    "boxes": [
+      {
+        "left": 822.6180699919591,
+        "top": 214.193556613768,
+        "right": 1219.418061122788,
+        "bottom": 287.15355498298493
+      }
+    ]
+  },
+  {
+    "key": "final-p2-edge-out-12",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "shout",
+        "anchorX": 293.9780818079839,
+        "left": 178.27612555917278,
+        "right": 414.4025668832772,
+        "top": 410.0673541773949,
+        "bottom": 650.2649410415701,
+        "presentationOffsetX": -0.0000050961017734607594
+      }
+    ],
+    "labels": [
+      "P1",
+      "P2",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "¡BOOM!"
+    ],
+    "boxes": [
+      {
+        "left": 95.5780862425695,
+        "top": 214.193556613768,
+        "right": 492.37807737339836,
+        "bottom": 287.15355498298493
+      }
+    ]
+  },
+  {
+    "key": "final-p1-guard-40",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "sustain",
+        "anchorX": 364.62226235786966,
+        "left": 246.01321813648804,
+        "right": 509.5888719617805,
+        "top": 423.63307323782965,
+        "bottom": 659.8460002888862,
+        "presentationOffsetX": -0.000005452240088743565
+      }
+    ],
+    "labels": [
+      "P1",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "P2"
+    ],
+    "boxes": [
+      {
+        "left": 166.22226679245523,
+        "top": 220.95999506115913,
+        "right": 563.0222579232841,
+        "bottom": 293.91999343037605
+      }
+    ]
+  },
+  {
+    "key": "final-p2-jump-32",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "sustain",
+        "anchorX": 915.1999795436859,
+        "left": 770.233369939775,
+        "right": 1033.8090237650674,
+        "top": 423.63307323782965,
+        "bottom": 659.8460002888862,
+        "presentationOffsetX": -0.00001598149538040161
+      }
+    ],
+    "labels": [
+      "P1",
+      "P2",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!"
+    ],
+    "boxes": [
+      {
+        "left": 716.7999839782715,
+        "top": 220.95999506115913,
+        "right": 1113.5999751091003,
+        "bottom": 293.91999343037605
+      }
+    ]
+  },
+  {
+    "key": "final-p1-normal-27",
+    "reduced": true,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "sustain",
+        "anchorX": 364.7999918460846,
+        "left": 246.19094762470297,
+        "right": 509.76660144999545,
+        "top": 423.63307323782965,
+        "bottom": 659.8460002888862,
+        "presentationOffsetX": -0.000006370246410369873
+      }
+    ],
+    "labels": [
+      "P1",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "P2"
+    ],
+    "boxes": [
+      {
+        "left": 166.39999628067017,
+        "top": 220.95999506115913,
+        "right": 563.199987411499,
+        "bottom": 293.91999343037605
+      }
+    ]
+  },
+  {
+    "key": "final-p2-normal-27",
+    "reduced": true,
+    "missing": false,
+    "rectangles": [
+      {
+        "pose": "sustain",
+        "anchorX": 915.1999795436859,
+        "left": 770.233369939775,
+        "right": 1033.8090237650674,
+        "top": 423.63307323782965,
+        "bottom": 659.8460002888862,
+        "presentationOffsetX": -0.00001598149538040161
+      }
+    ],
+    "labels": [
+      "P1",
+      "P2",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!"
+    ],
+    "boxes": [
+      {
+        "left": 716.7999839782715,
+        "top": 220.95999506115913,
+        "right": 1113.5999751091003,
+        "bottom": 293.91999343037605
+      }
+    ]
+  },
+  {
+    "key": "final-p1-normal-27",
+    "reduced": false,
+    "missing": true,
+    "rectangles": [],
+    "labels": [
+      "P1",
+      "DEFINITIVA",
+      "¡BUENAS NOOOCHES,",
+      "POLIEDRO DE CARACAS!",
+      "P2"
+    ],
+    "boxes": [
+      {
+        "left": 166.39999628067017,
+        "top": 220.95999506115913,
+        "right": 563.199987411499,
+        "bottom": 293.91999343037605
+      }
+    ]
+  },
+  {
+    "key": "special-p1-normal-16",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [],
+    "labels": [
+      "P1",
+      "ATAQUE ESPECIAL",
+      "P2"
+    ],
+    "boxes": []
+  },
+  {
+    "key": "special-p2-normal-16",
+    "reduced": false,
+    "missing": false,
+    "rectangles": [],
+    "labels": [
+      "P1",
+      "P2",
+      "ATAQUE ESPECIAL"
+    ],
+    "boxes": []
+  }
+]

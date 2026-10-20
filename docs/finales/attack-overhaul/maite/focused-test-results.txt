@@ -1,0 +1,126 @@
+✔ complete-scene preflight checks every requested pose against intrinsic loaded dimensions (1.49844ms)
+✔ valid art preserves its exact source crop, anchors, facing, body scale and alpha (1.117005ms)
+✔ legacy optional geometry and boundary anchors remain valid without changing drawing math (0.409598ms)
+✔ missing, unloaded, incomplete and intrinsically undersized images draw nothing (0.434856ms)
+✔ nonfinite, nonpositive and out-of-bounds frame geometry never touches canvas (0.66319ms)
+✔ vallenilla: revised attack art retains raw source provenance, complete frames and exact runtime alpha (275.031316ms)
+✔ javier: revised attack art retains raw source provenance, complete frames and exact runtime alpha (116.609335ms)
+✔ renny: revised attack art retains raw source provenance, complete frames and exact runtime alpha (82.069969ms)
+✔ gomez: revised attack art retains raw source provenance, complete frames and exact runtime alpha (207.008077ms)
+✔ simon: revised attack art retains raw source provenance, complete frames and exact runtime alpha (194.370874ms)
+✔ conde: revised attack art retains raw source provenance, complete frames and exact runtime alpha (255.34009ms)
+✔ emilio: revised attack art retains raw source provenance, complete frames and exact runtime alpha (162.038418ms)
+✔ maite: revised attack art retains raw source provenance, complete frames and exact runtime alpha (101.838061ms)
+✔ every definitive has one generic combat category heading (9.582135ms)
+✔ complete silhouettes may cross source grid lines and reverse translation preserves their exact RGBA (111.596533ms)
+✔ overlapping source bounding boxes never borrow another silhouette or isolated alpha-1 noise (49.832075ms)
+✔ core centers preserve pose order even when long alpha-1 tails cross several source cells (55.924877ms)
+✔ detached soft pixels are retained exactly with their unique containing silhouette and audited separately (79.630719ms)
+✔ soft components with ambiguous containment or a different source cell and tiny visible fragments reject (49.271641ms)
+✔ complete silhouettes crossing horizontal grid lines preserve all rows in order (46.956297ms)
+✔ missing cells, duplicate cell centers and every extra visible or soft component reject (108.172347ms)
+✔ bad grid requests, truly clipped silhouettes, opaque backgrounds and non-PNG input reject (67.604146ms)
+✔ file normalization writes verifiable provenance and cannot overwrite the raw source (108.262502ms)
+✔ a tiny alpha2 island within three contour pixels is retained with an explicit distance audit (44.504448ms)
+✔ adjacent island exception rejects distance, higher alpha, excess size and ambiguous contours (157.056643ms)
+{"character":"maite","check":"presentation","evidence":{"name":"Se yergue y cruza los brazos","choreography":"Se yergue y cruza los brazos","duration":2800}}
+{"character":"maite","check":"movement","evidence":{"side":0,"right":644.0717109708025,"left":548.72800663896,"firstY":454.59999999999997,"finalY":554}}
+{"character":"maite","check":"movement","evidence":{"side":1,"right":644.0717109708025,"left":548.72800663896,"firstY":454.59999999999997,"finalY":554}}
+{"character":"maite","check":"ordinary-attack","evidence":{"side":0,"action":"light","guard":false,"hp":93.2226,"hits":1,"energy":100}}
+{"character":"maite","check":"ordinary-attack","evidence":{"side":0,"action":"light","guard":true,"hp":100,"hits":0,"energy":85.47999999999979}}
+{"character":"maite","check":"ordinary-attack","evidence":{"side":0,"action":"heavy","guard":false,"hp":87.4134,"hits":1,"energy":100}}
+{"character":"maite","check":"ordinary-attack","evidence":{"side":0,"action":"heavy","guard":true,"hp":100,"hits":0,"energy":84.87999999999977}}
+{"character":"maite","check":"ordinary-attack","evidence":{"side":1,"action":"light","guard":false,"hp":93.2226,"hits":1,"energy":100}}
+{"character":"maite","check":"ordinary-attack","evidence":{"side":1,"action":"light","guard":true,"hp":100,"hits":0,"energy":85.47999999999979}}
+{"character":"maite","check":"ordinary-attack","evidence":{"side":1,"action":"heavy","guard":false,"hp":87.4134,"hits":1,"energy":100}}
+{"character":"maite","check":"ordinary-attack","evidence":{"side":1,"action":"heavy","guard":true,"hp":100,"hits":0,"energy":84.87999999999977}}
+{"character":"maite","check":"special","evidence":{"side":0,"guard":"idle","origin":180,"finalX":180,"energyAfterCost":75,"impacts":[{"call":15,"tick":525,"hp":84.50880000000001,"gap":188.20487111111112}],"blocks":0,"hp":84.50880000000001,"hits":1,"defenderEnergy":100}}
+{"character":"maite","check":"special","evidence":{"side":0,"guard":"front","origin":180,"finalX":180,"energyAfterCost":75,"impacts":[],"blocks":1,"hp":100,"hits":0,"defenderEnergy":79.23999999999955}}
+{"character":"maite","check":"special","evidence":{"side":0,"guard":"rear","origin":180,"finalX":180,"energyAfterCost":75,"impacts":[{"call":15,"tick":525,"hp":84.50880000000001,"gap":207.51911022678945}],"blocks":0,"hp":84.50880000000001,"hits":1,"defenderEnergy":92.79999999999973}}
+{"character":"maite","check":"special","evidence":{"side":1,"guard":"idle","origin":900,"finalX":900,"energyAfterCost":75,"impacts":[{"call":15,"tick":525,"hp":84.50880000000001,"gap":-188.20487111111106}],"blocks":0,"hp":84.50880000000001,"hits":1,"defenderEnergy":100}}
+{"character":"maite","check":"special","evidence":{"side":1,"guard":"front","origin":900,"finalX":900,"energyAfterCost":75,"impacts":[],"blocks":1,"hp":100,"hits":0,"defenderEnergy":79.23999999999955}}
+{"character":"maite","check":"special","evidence":{"side":1,"guard":"rear","origin":900,"finalX":900,"energyAfterCost":75,"impacts":[{"call":15,"tick":525,"hp":84.50880000000001,"gap":-207.51911022678973}],"blocks":0,"hp":84.50880000000001,"hits":1,"defenderEnergy":92.79999999999973}}
+{"character":"maite","check":"range-probe","evidence":{"side":0,"gap":80,"hp":84.50880000000001,"hits":1}}
+{"character":"maite","check":"range-probe","evidence":{"side":0,"gap":250,"hp":84.50880000000001,"hits":1}}
+{"character":"maite","check":"range-probe","evidence":{"side":0,"gap":299,"hp":84.50880000000001,"hits":1}}
+{"character":"maite","check":"range-probe","evidence":{"side":0,"gap":300,"hp":100,"hits":0}}
+{"character":"maite","check":"range-probe","evidence":{"side":0,"gap":301,"hp":100,"hits":0}}
+{"character":"maite","check":"range-probe","evidence":{"side":1,"gap":80,"hp":84.50880000000001,"hits":1}}
+{"character":"maite","check":"range-probe","evidence":{"side":1,"gap":250,"hp":84.50880000000001,"hits":1}}
+{"character":"maite","check":"range-probe","evidence":{"side":1,"gap":299,"hp":84.50880000000001,"hits":1}}
+{"character":"maite","check":"range-probe","evidence":{"side":1,"gap":300,"hp":100,"hits":0}}
+{"character":"maite","check":"range-probe","evidence":{"side":1,"gap":301,"hp":100,"hits":0}}
+{"character":"maite","check":"vertical-and-rear","evidence":{"side":0,"jumpTargetHp":84.50880000000001,"jumpTargetY":425.37,"fixedRearHp":100}}
+{"character":"maite","check":"vertical-and-rear","evidence":{"side":1,"jumpTargetHp":84.50880000000001,"jumpTargetY":425.37,"fixedRearHp":100}}
+{"character":"maite","check":"combo-gate","evidence":{"side":0,"wins":0,"combo":"Primera entrada","bonus":3,"hits":1,"hp":84.3234}}
+{"character":"maite","check":"combo-gate","evidence":{"side":0,"wins":1,"combo":"Cambio de cámara","bonus":7,"hits":1,"hp":80.2034}}
+{"character":"maite","check":"connected-combo","evidence":{"side":0,"combo":"Primera entrada","hits":2,"hp":77.546,"elapsed":66}}
+{"character":"maite","check":"connected-combo","evidence":{"side":0,"combo":"Cambio de cámara","hits":3,"hp":66.6486,"elapsed":111}}
+{"character":"maite","check":"super-gate","evidence":{"side":0,"wins":0,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"maite","check":"super-gate","evidence":{"side":0,"wins":2,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"maite","check":"super-gate","evidence":{"side":0,"wins":3,"energy":74,"hp":100,"attackerEnergy":75.36499999999987,"combo":""}}
+{"character":"maite","check":"super-gate","evidence":{"side":0,"wins":3,"energy":75,"hp":60.5304,"attackerEnergy":14.12,"combo":"Gran final"}}
+{"character":"maite","check":"super-gate","evidence":{"side":0,"wins":3,"energy":100,"hp":60.5304,"attackerEnergy":39.08499999999995,"combo":"Gran final"}}
+{"character":"maite","check":"combo-gate","evidence":{"side":1,"wins":0,"combo":"Primera entrada","bonus":3,"hits":1,"hp":84.3234}}
+{"character":"maite","check":"combo-gate","evidence":{"side":1,"wins":1,"combo":"Cambio de cámara","bonus":7,"hits":1,"hp":80.2034}}
+{"character":"maite","check":"connected-combo","evidence":{"side":1,"combo":"Primera entrada","hits":2,"hp":77.546,"elapsed":66}}
+{"character":"maite","check":"connected-combo","evidence":{"side":1,"combo":"Cambio de cámara","hits":3,"hp":66.6486,"elapsed":111}}
+{"character":"maite","check":"super-gate","evidence":{"side":1,"wins":0,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"maite","check":"super-gate","evidence":{"side":1,"wins":2,"energy":100,"hp":100,"attackerEnergy":100,"combo":""}}
+{"character":"maite","check":"super-gate","evidence":{"side":1,"wins":3,"energy":74,"hp":100,"attackerEnergy":75.36499999999987,"combo":""}}
+{"character":"maite","check":"super-gate","evidence":{"side":1,"wins":3,"energy":75,"hp":60.5304,"attackerEnergy":14.12,"combo":"Gran final"}}
+{"character":"maite","check":"super-gate","evidence":{"side":1,"wins":3,"energy":100,"hp":60.5304,"attackerEnergy":39.08499999999995,"combo":"Gran final"}}
+{"character":"maite","check":"cpu-fight","evidence":{"winner":0,"tick":1083,"remaining":4808,"started":["super","light","heavy","special"],"landed":["light","special"],"players":[{"fighter":"maite","hp":80.5861,"stocks":1,"hits":3,"peakCombo":2},{"fighter":"javier","hp":0,"stocks":0,"hits":2,"peakCombo":1}]}}
+✔ Maite retains her researched identity, spotlight and one-shot greeting in both facings (5.62124ms)
+✔ Maite walks, faces both directions, double jumps, rejects a third jump and lands on both sides (33.505897ms)
+✔ Maite light and heavy connect once and respect facing guard on both sides (26.591545ms)
+✔ Luz de escenario hits idle, respects front guard and defeats rear guard at proper range on both sides (26.935004ms)
+✔ spotlight range, rear exclusion and vertical reach exercise actual engine collisions (10.976349ms)
+✔ Maite recognizes base and upgraded combos, connects every strike with chase inputs and enforces super gates (30.85703ms)
+✔ Maite intro blocks actions until its shared timeline completes and faces the rival on either side (0.637492ms)
+✔ a complete Maite fight versus normal CPU finishes and deterministically replays (40.165904ms)
+✔ both dancers follow the contiguous six-second source phrase once at its observed timestamps (6.360235ms)
+✔ the support bounce leaves the painted patitas, heart, arms and face entirely unchanged (24.311556ms)
+✔ Nacho's visual drain follows the six-second profile beats, not the short finale clock (3.076551ms)
+✔ finale props use world coordinates and never cover or reframe the arena viewport (1.033438ms)
+✔ coffee stages complete chairs behind both actors and one isolated table in front (1.061561ms)
+✔ legacy guest dance poses remain available outside Nacho's dedicated finale (0.270278ms)
+✔ Giuseppe alternates illustrated keyboard presses between preparation and signoff (0.190327ms)
+✔ seated atlas padding does not shrink a rival or move their feet (0.216617ms)
+✔ captured fighters bend through hips and knees while their head keeps its likeness (0.542399ms)
+✔ paired dance alternates feet without translating either fighter's face (0.394565ms)
+✔ all built-in finales have distinct finite original scores with safe levels and a silent ending (923.619924ms)
+✔ all built-in finales keep both fighters in their arena on either side of both ledges (1220.447322ms)
+✔ a finale uses the unchanged normal camera on desktop, mobile and reduced-motion views (144.26867ms)
+✔ moving platforms keep their exact captured phase and resume carrying the attacker after every mirrored finale (38.366098ms)
+✔ airborne and unequal-height captures preserve each fighter's own position instead of moving them to a common scene baseline (26.257923ms)
+✔ vehicle finales keep both painted passengers beside their capture positions throughout the ride (57.666355ms)
+✔ renderMatch draws every finale over its selected stage and platform surfaces using the normal world camera (184.174872ms)
+✔ all built-in finales exercise their capture or transformation mode against every rival on either side (1685.989761ms)
+✔ finales keep the three-win and 75-energy gates, and Vicente's single motorcycle is available from zero wins (9.593553ms)
+✔ distance, height, facing, spawn protection and a facing guard can prevent capture (1.546784ms)
+✔ a counter and a startup interruption stop a cinematic before capture (0.70253ms)
+✔ cinematics consume inputs without queueing, freeze projectiles, and retain recovery on release (3.084402ms)
+✔ an airborne cinematic freezes actors in place and releases them without teleporting (0.537541ms)
+✔ a moving platform pauses on capture and carries its rider smoothly after release (0.558813ms)
+✔ lethal beats and a timer reaching zero wait until the scene ends to resolve stock or match results (1.035672ms)
+✔ simultaneous supers select one deterministic scene and serialized scenes replay exactly (12.158692ms)
+✔ exact lethal thresholds resolve without floating-point survivors, while a tiny HP advantage survives (81.403063ms)
+✔ community fighters keep their generic definitive until they have a cinematic definition (1.295674ms)
+✔ a ranged finale spends75 once, travels before contact, hits once and recovers in both slots/directions (26.389491ms)
+✔ unlock, energy, whiff, front/rear guard and invincibility retain actual combat rules (22.388785ms)
+✔ moving targets change contact timing, double-jumps evade, and falling targets can enter the wave (3.92399ms)
+✔ startup can be interrupted; an already emitted wave survives interruption and has normal projectile terrain behavior (6.94006ms)
+✔ super projectile snapshots outgoing damage and preserves super impact after a real reflector (7.538903ms)
+✔ hard CPU chooses the ranged super outside capture range, but gates and recovery prevent repeat casts (0.584552ms)
+✔ complete art preflight gives visible canonical fallback before painting any partial body (0.744734ms)
+✔ full phrase and all pose crops remain in viewport at both edges and guide canvas heights without moving state (4.755164ms)
+✔ Maite provenance binds every raw generation and canonical reference to lossless complete runtime art (941.285524ms)
+ℹ tests 70
+ℹ suites 0
+ℹ pass 70
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2126.517201

@@ -1,0 +1,84 @@
+{
+  "tool": "image_gen.imagegen",
+  "acceptedRaw": "assets/source/finales/attack-overhaul/maite/greeting-v5-raw.png",
+  "rawFiles": {
+    "assets/source/finales/attack-overhaul/maite/greeting-v1-raw.png": "24c277b4df332f5145e9db2e008b71f2155515af9480942103b7a83cc4a88dbc",
+    "assets/source/finales/attack-overhaul/maite/greeting-v2-raw.png": "3b908a2464e8fb9cd4accae4673d3db8e1430907768f89e26ea085529dd8b83a",
+    "assets/source/finales/attack-overhaul/maite/greeting-v3-raw.png": "211783704c14db2c5580e9fc8139465a2f88e3fd5fed82f479157d9600e14a99",
+    "assets/source/finales/attack-overhaul/maite/greeting-v4-raw.png": "01f5e52065d9b85d70fd0eb84b35045807a6c83ed1241d7695d82209f7774c02",
+    "assets/source/finales/attack-overhaul/maite/greeting-v5-raw.png": "53d4231c288e4f2d5d463edc39bd60bd8b6fcdf23c97707fb2d803b9f48349e7"
+  },
+  "canonicalSha256": {
+    "assets/source/maite-v3.png": "e06efe6fd6b7d863b8ccd11fd81394953758c4d74965b25ba9649a9a34675af4",
+    "public/assets/maite-v3.webp": "dd26830e2095f44afc21b5871608d4edef143dc0f9622556031b296df37255e8",
+    "public/assets/maite-defiant-entrance.webp": "9cbf6acf02d1af7f2adc689531337b66054f7a3b774e6ae22e554b3689a5ed22"
+  },
+  "referenceSha256": {
+    "docs/finales/attack-overhaul/maite/reference-2022.jpg": "e9b34fdb99a5c362833f9b717e64fe2ffc1707f8bf4dbc8135aa7d31d2132af8",
+    "docs/finales/attack-overhaul/maite/reference-portrait.jpg": "ee43048d5acd2c97327bcf3da717f5cdb0d308d6547b0c59b8b72bc0d23a87ff"
+  },
+  "prompts": {
+    "docs/finales/attack-overhaul/maite/prompt-v1.txt": "9279e0d3aadf69388fccfbf6a7f15d02edba9a7fc2bb2a644c41e8c4b88a037a",
+    "docs/finales/attack-overhaul/maite/prompt-v2.txt": "17735f592b2ebe2475206f62642a38199fc439497f3db352cffd4005bdd086a5",
+    "docs/finales/attack-overhaul/maite/prompt-v3.txt": "4d26d551676d7ecd99005b58dc8fa8dec5702befff5a767e349d35d934b93124",
+    "docs/finales/attack-overhaul/maite/prompt-v4-retry.txt": "8110c7b757573d2310859204b9c9600e90e76b1cd8748d925c94f87fe1dacb95",
+    "docs/finales/attack-overhaul/maite/prompt-v4.txt": "c5d28f473f4cda13634681234ee071afea9488052a83009d6465ff2c745e52e1",
+    "docs/finales/attack-overhaul/maite/prompt-v5.txt": "c60da17f0e6bfcb1d0948047b9ce68c3afe0f69d2d180fe115c12636139aceb2"
+  },
+  "sources": [
+    {
+      "title": "Miss Venezuela official 2022 event report",
+      "url": "https://www.missvenezuela.com/noticias/diana-silva-es-miss-venezuela-2022-y-andrea-rubio-es-miss-international-venezuela-2022"
+    },
+    {
+      "title": "Contemporary greeting and orange costume report",
+      "url": "https://eldiario.com/2022/11/16/miss-venezuela-2022-en-el-poliedro-de-caracas/"
+    },
+    {
+      "title": "Stage costume photograph",
+      "url": "https://media.noticiaalminuto.com/wp-content/uploads/2022/11/MAITE-2.jpg"
+    },
+    {
+      "title": "Editorial portrait 2024",
+      "url": "https://media.elestimulo.com/uploads/2024/07/maiite-delgado-1a-1100x572.jpg"
+    }
+  ],
+  "revisions": {
+    "v1": "Identity and expressions accepted; outer alpha edge rejected by normalizer.",
+    "v2": "Requested margins still too tight at raised hand; rejected.",
+    "v3": "Full four figures pass normalization, but flowing cape too wide for extreme arena edge.",
+    "v4": "Targeted compact hanging cape edit; initial attempt returned output moderation error other (no asset), benign illustration retry succeeded. Top gutter still rejected.",
+    "v5": "Targeted generous gutters on compact cape version; accepted. Full four figures, clean margins; all raw outputs retained unchanged."
+  },
+  "normalization": "Translation of whole connected figures only;381337 retained pixels exact RGBA reverse reconstruction.6532 wholly disconnected alpha1 noise pixels omitted by shared normalizer. No anatomy painting. See grid-audit.json.",
+  "wave": "Analytic concentric arcs in canvas tied directly to live projectile radius, no bitmap wave and no opponent baked into actor sheet.",
+  "audio": "Original local resonant pressure sweep once at emission; no new recording, voice sample, song or video.",
+  "screenshotsSha256": {
+    "docs/finales/attack-overhaul/maite/screenshots/final-p1-close-9.png": "b32df9a98cf7f73ecbbed315f143a3d5f8b17c4c0ca0ae1a5ca7b558dfc3fc4b",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p1-edge-in-36.png": "87bf8864725b36726c6fb9516ac2392ac8ffbb42e1723caf029db5bb4cb65229",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p1-edge-out-12.png": "17c8be93fb94ab23e3597a10a449cc0143b5a5aee5a869900c1f3577ee985303",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p1-guard-40.png": "d40c5aeaef5401034d1997ba31b2913f5076a072ec55fd625df4088244fd0cc4",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p1-normal-100.png": "043ed287a0bcd093bf0a06b796ad0fda5a3c14f9ec5404dfbb3ea66ce5150595",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p1-normal-16.png": "9b33bb0d3d0f2933c198868d1046414fdc80e5b8847a0c97697a1eeb4b496a34",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p1-normal-27-missing.png": "f2ecb9243234b804ff53935be637ad337dd23e9f6f07f959322b39bcdfa5ebc7",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p1-normal-27-reduced.png": "74b291197dca1237de2447e2cc1a10a73f9301ab5012d7a446682bb9f8b51fbc",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p1-normal-27.png": "4861dc3853d88cff6c0e5696b35462ee2e941eb188dff4c6a5930b8ebd09541f",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p1-normal-36.png": "75ec4497c1a35aa14c7f253f27fbbdf47a3b8db55de70a9d019731644012680d",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p1-normal-5.png": "423dfe040d9113871255f73c734520b3f9bfd11eb9103f3f7249160ff3fd66f1",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p1-normal-50.png": "cbf0e5cff8bb21325815804f16ca33c952f0642c75ef2b57deb606613f039324",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p1-normal-70.png": "1692dc70747b9c9d9d7fbdcd7a7034b2e2413c8cd24b834280129fb951205e49",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p1-normal-9.png": "627ebbe9b924ab60d25b90e66d12da8613f367781a3ea79ee0a4799804156573",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p2-close-9.png": "df5639227cb4802aac4a3f6f67529c732b2439b75c726f5000c485bcba1c8264",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p2-edge-in-36.png": "940dc6e5654f309ec8076430a1516c4848ddbbb2d755831dc9e0db6379594c53",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p2-edge-out-12.png": "e9b2eff81abf0b512b08602962efa27cc42fea2a074c756c3681359653bceebe",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p2-jump-32.png": "ef60303053ffa014c190483364895be48b047c502425f00c1cc6c4e6a711f0c0",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p2-normal-27-reduced.png": "59417127a22787200bbdc6faad6cca1e682938995a2b4b035d9ab9cb8d27768d",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p2-normal-27.png": "141a071dbf73129d200b8b8ccfb90d10ad460fcdc248f2022a00dd0fbe184485",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p2-normal-36.png": "4a3670397c92d93c205d208598ada56eb7a0096357f311c96e1d22afc0f00a19",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p2-normal-70.png": "b8f738a56ddb3cd5c27f49c9ca0d8c514e90c0b9336cf9979852e4e7a365585b",
+    "docs/finales/attack-overhaul/maite/screenshots/final-p2-normal-9.png": "20640f64ff98de1e96c255d941c7dfce8f0f6c392bf90ab829773ed9b596f48d",
+    "docs/finales/attack-overhaul/maite/screenshots/guide-wave.png": "4f3708912bbadb6e6680f6f3a59fd12ccc4de1bd54661e41c85de209c1ee1847",
+    "docs/finales/attack-overhaul/maite/screenshots/special-p1-normal-16.png": "5380a688afc39f473f98db3af4ed4a394b0598a5050d9ec7b1b99616bdeac629",
+    "docs/finales/attack-overhaul/maite/screenshots/special-p2-normal-16.png": "8ee1239862d528baa7529914b07819f799e62816ab71578e0668b832be9af740"
+  }
+}

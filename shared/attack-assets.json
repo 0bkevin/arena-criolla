@@ -429,5 +429,46 @@
         "bodyHeight": 463.84197530864196
       }
     }
+  },
+  "maite": {
+    "file": "attack-maite-greeting",
+    "frames": {
+      "breath": {
+        "x": 20,
+        "y": 20,
+        "width": 472,
+        "height": 472,
+        "anchorX": 250.16000000000003,
+        "anchorY": 467.3267326732673,
+        "bodyHeight": 464.990099009901
+      },
+      "shout": {
+        "x": 536,
+        "y": 20,
+        "width": 464,
+        "height": 472,
+        "anchorX": 236.64000000000001,
+        "anchorY": 465.25714285714287,
+        "bodyHeight": 463.0095238095238
+      },
+      "sustain": {
+        "x": 20,
+        "y": 581,
+        "width": 472,
+        "height": 423,
+        "anchorX": 212.4,
+        "anchorY": 411.81490384615387,
+        "bodyHeight": 405.7139423076923
+      },
+      "recover": {
+        "x": 532,
+        "y": 540,
+        "width": 472,
+        "height": 464,
+        "anchorX": 250.16000000000003,
+        "anchorY": 453.0566037735849,
+        "bodyHeight": 447.58490566037733
+      }
+    }
   }
 }
