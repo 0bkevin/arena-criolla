@@ -50,7 +50,7 @@ export function MobileControlsGuide() {
                 <i />
                 <small />
               </div>
-              <strong>90</strong>
+              <strong>120</strong>
               <div>
                 <span>Rival</span>
                 <i />

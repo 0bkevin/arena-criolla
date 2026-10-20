@@ -217,9 +217,7 @@
 }
 
 .help-screen-hud > strong {
-  font:
-    800 5cqw/1 "Barlow Condensed",
-    sans-serif;
+  font: 800 5cqw/1 var(--font-display);
 }
 
 .help-screen-pause {
