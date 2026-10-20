@@ -1,0 +1,163 @@
+{
+  "fighter": "renny",
+  "source": "assets/source/finales/attack-overhaul/renny/commercial-v2-raw.png",
+  "file": "renny-commercial-attack-v1",
+  "columns": 2,
+  "rows": 2,
+  "poses": [
+    "ladder",
+    "present",
+    "kick",
+    "push"
+  ],
+  "anchorFractions": {
+    "ladder": 0.45,
+    "present": 0.51,
+    "kick": 0.413,
+    "push": 0.365
+  },
+  "tool": "image_gen.imagegen",
+  "normalized": "assets/source/finales/attack-overhaul/renny/renny-commercial-attack-v1-packed.png",
+  "destination": "public/assets/renny-commercial-attack-v1.webp",
+  "width": 1024,
+  "height": 1024,
+  "cell": 512,
+  "frames": {
+    "ladder": {
+      "x": 56,
+      "y": 20,
+      "width": 400,
+      "height": 472,
+      "anchorX": 180,
+      "anchorY": 464.94205607476636,
+      "bodyHeight": 461.41308411214953
+    },
+    "present": {
+      "x": 623,
+      "y": 20,
+      "width": 290,
+      "height": 472,
+      "anchorX": 147.9,
+      "anchorY": 467.1340206185567,
+      "bodyHeight": 460.64604810996565
+    },
+    "kick": {
+      "x": 60,
+      "y": 532,
+      "width": 392,
+      "height": 472,
+      "anchorX": 161.896,
+      "anchorY": 463.9591141396934,
+      "bodyHeight": 461.54684838160136
+    },
+    "push": {
+      "x": 553,
+      "y": 532,
+      "width": 430,
+      "height": 472,
+      "anchorX": 156.95,
+      "anchorY": 466.0253164556962,
+      "bodyHeight": 460.90415913200724
+    }
+  },
+  "objects": [
+    {
+      "pose": "ladder",
+      "sourceBounds": {
+        "left": 158,
+        "top": 60,
+        "width": 453,
+        "height": 535
+      },
+      "uniformScale": 0.8822429906542056,
+      "width": 400,
+      "height": 472,
+      "visibleSourcePixels": 93106,
+      "transparentSourcePixels": 257519,
+      "coreBounds": {
+        "top": 64,
+        "bottom": 587
+      },
+      "discardedNoise": {
+        "components": 1244,
+        "pixels": 11426,
+        "maxAlpha": 1
+      }
+    },
+    {
+      "pose": "present",
+      "sourceBounds": {
+        "left": 771,
+        "top": 26,
+        "width": 357,
+        "height": 582
+      },
+      "uniformScale": 0.8109965635738832,
+      "width": 290,
+      "height": 472,
+      "visibleSourcePixels": 57899,
+      "transparentSourcePixels": 308445,
+      "coreBounds": {
+        "top": 34,
+        "bottom": 602
+      },
+      "discardedNoise": {
+        "components": 1734,
+        "pixels": 10501,
+        "maxAlpha": 1
+      }
+    },
+    {
+      "pose": "kick",
+      "sourceBounds": {
+        "left": 127,
+        "top": 638,
+        "width": 488,
+        "height": 587
+      },
+      "uniformScale": 0.8040885860306644,
+      "width": 392,
+      "height": 472,
+      "visibleSourcePixels": 62658,
+      "transparentSourcePixels": 297129,
+      "coreBounds": {
+        "top": 641,
+        "bottom": 1215
+      },
+      "discardedNoise": {
+        "components": 1956,
+        "pixels": 15253,
+        "maxAlpha": 1
+      }
+    },
+    {
+      "pose": "push",
+      "sourceBounds": {
+        "left": 690,
+        "top": 656,
+        "width": 504,
+        "height": 553
+      },
+      "uniformScale": 0.8535262206148282,
+      "width": 430,
+      "height": 472,
+      "visibleSourcePixels": 62823,
+      "transparentSourcePixels": 294332,
+      "coreBounds": {
+        "top": 662,
+        "bottom": 1202
+      },
+      "discardedNoise": {
+        "components": 1597,
+        "pixels": 10242,
+        "maxAlpha": 1
+      }
+    }
+  ],
+  "sourceSha256": "c9f8dc5ea3501fe1e59ac6d94aced3ce22d6ac2ccb5c5c2527c70e80fdba2796",
+  "normalizedSha256": "0e552ae8d9f2b345b1d68d0b51dbddb8f6abf7972fe94be67b2f7e5154baf834",
+  "runtimeSha256": "6adbe91ad84404a94ff49085fd03ad9d56496693749697cb18770859531c58b9",
+  "rgbaSha256": "f79945e337de5066bb19d9aacc31b95069594c84ae07933800739508a41b5d03",
+  "alphaSha256": "402389c5f0318429d71594be91e5905c77e27d18dda9525c938f6319bb18c693",
+  "lossless": true
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "side": 1,
+    "energyAfterInput": 25,
+    "damageBeats": 3,
+    "damage": 40.8,
+    "paintedActors": 3,
+    "released": true
+  },
+  {
+    "side": 2,
+    "energyAfterInput": 25,
+    "damageBeats": 3,
+    "damage": 40.8,
+    "paintedActors": 3,
+    "released": true
+  }
+]

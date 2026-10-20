@@ -1,0 +1,14 @@
+{
+  "fighter": "renny",
+  "source": "assets/source/finales/attack-overhaul/renny/commercial-v2-raw.png",
+  "file": "renny-commercial-attack-v1",
+  "columns": 2,
+  "rows": 2,
+  "poses": ["ladder", "present", "kick", "push"],
+  "anchorFractions": {
+    "ladder": 0.45,
+    "present": 0.51,
+    "kick": 0.413,
+    "push": 0.365
+  }
+}

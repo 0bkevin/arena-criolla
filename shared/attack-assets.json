@@ -98,5 +98,46 @@
         "bodyHeight": 459.7402597402597
       }
     }
+  },
+  "renny": {
+    "file": "renny-commercial-attack-v1",
+    "frames": {
+      "ladder": {
+        "x": 56,
+        "y": 20,
+        "width": 400,
+        "height": 472,
+        "anchorX": 180,
+        "anchorY": 464.94205607476636,
+        "bodyHeight": 461.41308411214953
+      },
+      "present": {
+        "x": 623,
+        "y": 20,
+        "width": 290,
+        "height": 472,
+        "anchorX": 147.9,
+        "anchorY": 467.1340206185567,
+        "bodyHeight": 460.64604810996565
+      },
+      "kick": {
+        "x": 60,
+        "y": 532,
+        "width": 392,
+        "height": 472,
+        "anchorX": 161.896,
+        "anchorY": 463.9591141396934,
+        "bodyHeight": 461.54684838160136
+      },
+      "push": {
+        "x": 553,
+        "y": 532,
+        "width": 430,
+        "height": 472,
+        "anchorX": 156.95,
+        "anchorY": 466.0253164556962,
+        "bodyHeight": 460.90415913200724
+      }
+    }
   }
 }
