@@ -1,19 +1,38 @@
 {
   "name": "Arena Criolla",
   "short_name": "Arena Criolla",
+  "description": "Elige tu personaje y échate una partida con tus panas, en el mismo dispositivo o en línea. También puedes jugar contra la CPU. Gratis y sin registro.",
   "lang": "es",
   "start_url": "/",
   "scope": "/",
   "display": "fullscreen",
   "orientation": "landscape",
-  "background_color": "#081322",
-  "theme_color": "#081322",
+  "background_color": "#091524",
+  "theme_color": "#091524",
   "icons": [
     {
-      "src": "/assets/arena-icon.svg",
+      "src": "/assets/arena-icon.svg?v=strike",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
+    },
+    {
+      "src": "/assets/arena-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/arena-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/arena-icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

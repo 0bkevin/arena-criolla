@@ -403,8 +403,8 @@ export function App({
             }
           }}
         >
-          <span className="brand-icon">
-            <PixelIcon kind="gamepad" size={22} />
+          <span className="brand-icon" aria-hidden="true">
+            <img src="/assets/arena-icon.svg" width="29" height="29" alt="" />
           </span>
           <span className="brand-name">
             ARENA

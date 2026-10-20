@@ -1,5 +1,8 @@
 # Arena Criolla
 
+Elige tu personaje y échate una partida con tus panas, en el mismo dispositivo
+o en línea. También puedes jugar contra la CPU. Gratis y sin registro.
+
 ## Licencia y distribución
 
 El código y los materiales originales del proyecto se distribuyen bajo **GPL-3.0-only**; el texto completo está en [LICENSE](LICENSE). Los sonidos de terceros conservan CC0 y las fuentes conservan SIL Open Font License; consulta [ASSET-LICENSES.txt](ASSET-LICENSES.txt).
@@ -32,6 +35,14 @@ Abre `http://localhost:5173`. El servidor escucha en todas las interfaces: para 
 - **En línea:** crea una sala pública o privada, comparte la invitación y ambos marcan «Estoy listo». Cada persona usa los controles del jugador 1 en su dispositivo.
 
 Las salas y las partidas en red funcionan en el servidor Node por WebSocket, sin cuentas. El servidor está desplegado en Oracle y disponible en https://arenacriolla.com/. Las direcciones https://arena.kevinbravo.com/ y https://www.arenacriolla.com/ redirigen al dominio principal, conservando ruta y parámetros.
+
+## Marca del juego
+
+El logo es un puño que avanza con una estela detrás. Lo verás en la cabecera,
+la pestaña del navegador y los accesos de móvil. El SVG editable está en
+`public/assets/arena-mark.svg`; `npm run assets:brand` regenera el favicon,
+los PNG y `assets/icon.svg` con el amarillo de los botones. Consulta
+[los archivos y la procedencia de la marca](docs/brand/README.md).
 
 ## Taller desactivado
 
