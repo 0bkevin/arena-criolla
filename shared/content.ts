@@ -116,10 +116,12 @@ export type Ability =
   | "retake"
   | "signal";
 
+export type FighterCategory = "culture" | "folklore" | "founders" | "community";
+
 export interface FighterDefinition {
   id: FighterId;
   sprite: string;
-  category?: "culture" | "folklore" | "community";
+  category?: FighterCategory;
   displayHeight?: number;
   portraitScale?: number;
   portraitLift?: number;

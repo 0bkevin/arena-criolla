@@ -763,10 +763,6 @@ body {
   color: var(--ink);
   font-size: 11px;
 }
-.arcade-search > span {
-  color: #7a647b;
-  font: 500 10px var(--pixel);
-}
 .arcade-search:focus-within {
   border-color: var(--ink);
 }
@@ -2765,9 +2761,6 @@ body {
     font-size: 12px;
     padding-inline: 4px;
     gap: 3px;
-  }
-  .roster-categories button > svg {
-    display: none;
   }
   .roster-categories button span {
     font-size: 9px;
