@@ -76,17 +76,6 @@ export function FighterDetail({
               );
             })}
           </div>
-          {finale && (
-            <p className="finale-detail-note">
-              {finale.mode === "projectile"
-                ? "La definitiva lanza una onda a distancia. Puede bloquearse o esquivarse y consume 75 de energía, incluso si falla."
-                : finale.mode === "transformation"
-                  ? "La definitiva transforma al personaje durante seis segundos de combate. Sus ataques hacen un 20 % más de daño y consume 75 de energía."
-                  : finale.mode === "field"
-                    ? "La definitiva ocurre en la arena mientras la pelea continúa. Consume 75 de energía; sus impactos dependen del alcance y del contacto."
-                    : "La definitiva atrapa al rival a corta distancia. Puede bloquearse antes de que empiece la escena y consume 75 de energía."}
-            </p>
-          )}
           <button className="primary-button" onClick={onSelect}>
             Elegir a {f.shortName} <ArrowRight size={17} />
           </button>

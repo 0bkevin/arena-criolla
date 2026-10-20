@@ -1497,12 +1497,6 @@ kbd {
   color: var(--fighter-color);
   letter-spacing: 3px;
 }
-.detail-info > p {
-  font-size: 11px;
-  line-height: 1.8;
-  color: #a7b0c2;
-  margin-top: 10px;
-}
 .special-description {
   display: flex;
   align-items: center;
@@ -3203,9 +3197,6 @@ kbd {
     text-align: right;
     right: 17px;
     font-size: 7px;
-  }
-  .detail-info > p {
-    font-size: 10px;
   }
   .combo-list strong {
     font-size: 11px;
