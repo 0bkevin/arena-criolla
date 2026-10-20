@@ -259,7 +259,7 @@ const entries: readonly Entry[] = [
     "dance",
     "Nacho y su rival hacen pasos laterales, giro de hombros y un remate sincronizado sobre una pista de luces.",
     "Pista de baile y micrófono",
-    "Los dos a bailar",
+    "Voy a aceptar que soy",
     "dance",
   ],
   [
