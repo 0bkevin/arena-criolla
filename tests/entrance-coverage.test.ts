@@ -12,6 +12,7 @@ import { presentationById } from "../shared/presentation";
 import entrances from "../shared/entrance-assets.json";
 import attacks from "../shared/attack-assets.json";
 import { drawEntranceAction } from "../src/game/entrance-renderer";
+import { selectionBodyHeight } from "../src/game/entrance-framing";
 import { introCamera } from "../src/game/intro-renderer";
 import { drawPresentation } from "../src/game/presentation-renderer";
 import type { EntranceAsset, SpriteAsset } from "../src/game/assets";
@@ -255,3 +256,21 @@ test("Deyna's single painted football follows finite instep contacts and remains
   assert.equal(sampleEntranceAction("deyna", 1), null);
 });
 
+test("one stable selection scale keeps every new silhouette inside its portrait for both facings", () => {
+  for (const id of added) {
+    const sprite = fixture(id),
+      height = selectionBodyHeight(sprite);
+    assert.ok(height > 150 && height <= 375, id);
+    for (const frame of sprite.entrance!.frames) {
+      const body = frame.bodyHeight ?? sprite.entrance!.bodyHeight;
+      const anchor =
+        frame.anchorX ?? sprite.entrance!.anchorX - frame.x + frame.slotX;
+      for (const facing of [-1, 1]) {
+        const a = 200 - (facing * anchor * height) / body;
+        const b = a + (facing * frame.width * height) / body;
+        assert.ok(Math.min(a, b) >= 15.99, `${id}: left silhouette margin`);
+        assert.ok(Math.max(a, b) <= 384.01, `${id}: right silhouette margin`);
+      }
+    }
+  }
+});

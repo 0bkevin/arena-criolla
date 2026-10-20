@@ -3,6 +3,7 @@ import { fighterById, type FighterId } from "../../shared/content";
 import { drawSprite, loadSprite } from "../game/assets";
 import { presentationById, selectionProgress } from "../../shared/presentation";
 import { drawPresentation } from "../game/presentation-renderer";
+import { selectionBodyHeight } from "../game/entrance-framing";
 
 export function Portrait({
   fighter,
@@ -42,7 +43,7 @@ export function Portrait({
           ? 690 * (def.portraitScale ?? 1)
           : animated
             ? asset.entrance
-              ? 375
+              ? selectionBodyHeight(asset)
               : 450
             : 480;
         const portraitOffset = bust
