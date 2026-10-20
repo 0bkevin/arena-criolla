@@ -33,10 +33,12 @@ export function requestSiteOrigin(
 export function renderSiteHtml(
   template: string,
   origin: string,
+  socialImagePath: string,
   nonce?: string,
 ): string {
   // Room invitations and other query parameters must not become canonical URLs.
   const html = template
+    .replaceAll("__ARENA_SOCIAL_IMAGE_PATH__", socialImagePath)
     .replaceAll("__ARENA_ORIGIN__", origin)
     .replaceAll("__ARENA_PAGE_URL__", origin + "/");
   return nonce ? html.replace(/<script\b/g, `<script nonce="${nonce}"`) : html;

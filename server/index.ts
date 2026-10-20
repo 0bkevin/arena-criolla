@@ -2,7 +2,7 @@ import "dotenv/config";
 import express from "express";
 import { makeCreatorService, type CreatorOptions } from "./creator/router";
 import { createServer } from "node:http";
-import { randomBytes, randomUUID } from "node:crypto";
+import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { readFile } from "node:fs/promises";
@@ -679,12 +679,29 @@ export async function makeArenaServer(
   let vite:
     Awaited<ReturnType<(typeof import("vite"))["createServer"]>> | undefined;
   if (options.serveClient !== false) {
+    const publicRoot = path.resolve(options.production ? "dist" : "public");
+    const socialImage = await readFile(
+      path.join(publicRoot, "assets/og-arena-criolla.jpg"),
+    );
+    // Social apps cache their own image copies. A changed JPEG needs a new URL.
+    const socialImageVersion = createHash("sha256")
+      .update(socialImage)
+      .digest("hex")
+      .slice(0, 16);
+    const socialImagePath = `/assets/og-arena-criolla-${socialImageVersion}.jpg`;
+    app.get(socialImagePath, (_req, res) => {
+      res
+        .set("Cache-Control", "public, max-age=31536000, immutable")
+        .type("image/jpeg")
+        .send(socialImage);
+    });
+    // Previously crawled pages may still reference a retired image version.
+    app.get(/^\/assets\/og-arena-criolla-[a-f0-9]{16}\.jpg$/i, (_req, res) => {
+      res.set("Cache-Control", "no-store").redirect(302, socialImagePath);
+    });
     app.get(
       "/assets/:file",
-      losslessAssetDelivery(
-        path.resolve(options.production ? "dist" : "public"),
-        assetVariants as LosslessAssetManifest,
-      ),
+      losslessAssetDelivery(publicRoot, assetVariants as LosslessAssetManifest),
     );
     const optimizedBackground = path.resolve(
       options.production ? "dist" : "public",
@@ -755,6 +772,7 @@ export async function makeArenaServer(
             renderSiteHtml(
               template,
               requestSiteOrigin(req, configuredOrigin),
+              socialImagePath,
               res.locals.cspNonce,
             ),
           );
@@ -786,6 +804,7 @@ export async function makeArenaServer(
         const html = renderSiteHtml(
           template,
           requestSiteOrigin(req, configuredOrigin),
+          socialImagePath,
         );
         res
           .type("html")

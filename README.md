@@ -24,6 +24,10 @@ npm start
 
 El contenedor de producción conserva solo la aplicación, los assets públicos y las dependencias necesarias. Los datos privados del creador se guardan en el volumen configurado con `ARENA_DATA_DIR`; las credenciales y los archivos `.env` quedan fuera del repositorio.
 
+La imagen para compartir se sirve como JPEG de 1200 × 630. Su URL incluye una huella del archivo que cambia automáticamente al desplegar una imagen nueva; Open Graph, Twitter y los datos estructurados usan la misma URL. Después de regenerarla con `npm run assets:og`, vuelve a compilar y desplegar para publicar la nueva versión. Las peticiones a versiones retiradas se redirigen temporalmente a la imagen actual.
+
+Después de desplegar, comprueba `https://arenacriolla.com/` y la dirección exacta compartida con [Sharing Debugger de Meta](https://developers.facebook.com/tools/debug/) y [Post Inspector de LinkedIn](https://www.linkedin.com/post-inspector/). Cada plataforma conserva su propia caché; borrar o reemplazar el archivo del servidor no elimina las copias de las redes ni garantiza que cambien las publicaciones existentes. En X y otras aplicaciones, compartir una URL con un parámetro nuevo, como `?preview=2`, puede provocar una consulta nueva, pero depende de cómo normalicen y almacenen el enlace. El canonical del sitio permanece sin parámetros.
+
 ## Assets y calidad
 
 - `public/`: imágenes, audio, fuentes y archivos web utilizados por el juego.
