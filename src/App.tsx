@@ -61,8 +61,16 @@ export function App({
   communityRevision: _communityRevision,
 }: { communityRevision?: number } = {}) {
   const [mode, setMode] = useState<GameMode>("practice");
-  const [fighter, setFighter] = useState<FighterId>("zavarce");
-  const [rival, setRival] = useState<FighterId>("javier");
+  const [initialMatchup] = useState(() => {
+    // Pick two distinct fighters once, without shuffling or copying the roster.
+    const first = Math.floor(Math.random() * FIGHTERS.length);
+    const second =
+      (first + 1 + Math.floor(Math.random() * (FIGHTERS.length - 1))) %
+      FIGHTERS.length;
+    return [FIGHTERS[first].id, FIGHTERS[second].id] as const;
+  });
+  const [fighter, setFighter] = useState<FighterId>(initialMatchup[0]);
+  const [rival, setRival] = useState<FighterId>(initialMatchup[1]);
   const [fighterQuery, setFighterQuery] = useState("");
   const [stage, setStage] = useState<StageId>("caracas");
   const [name, setName] = useState(() => getPreference("name", ""));
