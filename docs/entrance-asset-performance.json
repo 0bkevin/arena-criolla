@@ -1,0 +1,92 @@
+{
+  "scope": "Entrance image payload only; excludes JavaScript, styles, fonts and the rest of the lobby.",
+  "baseline": {
+    "fighterBytes": 81540,
+    "backgroundBytes": 453034,
+    "totalBytes": 534574
+  },
+  "optimized": {
+    "fighterAvifBytes": 58795,
+    "fighterWebpFallbackBytes": 80968,
+    "backgroundAvifBytes": 320952,
+    "totalAvifBytes": 379747,
+    "reductionPercent": 28.96
+  },
+  "encoding": {
+    "source": "Original PNG artwork, validated sprite crops, original dimensions",
+    "fighters": {
+      "avifQuality": 80,
+      "chromaSubsampling": "4:4:4",
+      "webpQuality": 88,
+      "webpAlphaQuality": 100
+    },
+    "background": {
+      "avifQuality": 75,
+      "chromaSubsampling": "4:4:4"
+    },
+    "runtimeEncoding": false,
+    "rebuild": "npm run assets:entrance"
+  },
+  "delivery": {
+    "fighters": "AVIF selected by picture, WebP fallback, content-hashed filenames cached for one year",
+    "background": "Explicit AVIF Accept support selects AVIF at the same /assets/caracas.webp URL used by the lobby and game; Vary: Accept; WebP fallback; ETag validation",
+    "coldProductionBrowser": {
+      "images": [
+        {
+          "url": "/assets/entrance-renny-6ecaf5776eb9.avif",
+          "bytes": 31171,
+          "transferred": 31471,
+          "initiator": "img"
+        },
+        {
+          "url": "/assets/entrance-capriles-9268a32ce4f3.avif",
+          "bytes": 27624,
+          "transferred": 27924,
+          "initiator": "img"
+        },
+        {
+          "url": "/assets/caracas.webp",
+          "bytes": 320952,
+          "transferred": 321252,
+          "initiator": "css"
+        }
+      ],
+      "totalImageBytes": 379747,
+      "backgroundRequests": 1,
+      "fallbackWebpRequests": 0
+    },
+    "warmProductionBrowser": [
+      {
+        "url": "/assets/entrance-renny-6ecaf5776eb9.avif",
+        "bytes": 31171,
+        "transferred": 0,
+        "initiator": "img"
+      },
+      {
+        "url": "/assets/entrance-capriles-9268a32ce4f3.avif",
+        "bytes": 27624,
+        "transferred": 0,
+        "initiator": "img"
+      },
+      {
+        "url": "/assets/caracas.webp",
+        "bytes": 320952,
+        "transferred": 0,
+        "initiator": "css"
+      },
+      {
+        "url": "/assets/caracas.webp",
+        "bytes": 0,
+        "transferred": 300,
+        "initiator": "css"
+      }
+    ],
+    "warmImageBodyBytes": 0,
+    "limitations": "Local production server, Chromium, desktop viewport. Transfer sizes demonstrate bytes and cache behavior, not latency on a physical mobile network."
+  },
+  "verification": [
+    "Compared compressed artwork side by side with the source at rendered scale.",
+    "Production cache, Accept negotiation, q=0, conditional 304 and missing AVIF fallback covered by tests/performance.test.ts.",
+    "Existing security tests and production build pass."
+  ]
+}

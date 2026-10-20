@@ -674,6 +674,25 @@ export async function makeArenaServer(
   let vite:
     Awaited<ReturnType<(typeof import("vite"))["createServer"]>> | undefined;
   if (options.serveClient !== false) {
+    const optimizedBackground = path.resolve(
+      options.production ? "dist" : "public",
+      "assets/caracas.avif",
+    );
+    app.get("/assets/caracas.webp", (req, res, next) => {
+      // One shared URL avoids fetching separate splash and gameplay backgrounds.
+      // Explicit AVIF support is required; image/* alone is not sufficient.
+      res.vary("Accept");
+      if (!req.accepts().includes("image/avif")) return next();
+      res.sendFile(optimizedBackground, (error) => {
+        if (!error) return;
+        if (
+          (error as NodeJS.ErrnoException).code === "ENOENT" &&
+          !res.headersSent
+        )
+          next();
+        else next(error);
+      });
+    });
     app.get("/robots.txt", (req, res) => {
       const origin = requestSiteOrigin(req, configuredOrigin);
       res
@@ -701,8 +720,14 @@ export async function makeArenaServer(
         express.static(dist, {
           index: false,
           setHeaders: (res, file) => {
-            // Vite fingerprints these files; a new build produces a new URL.
-            if (/[-\w]+-[\w-]{8}\.(?:js|css)$/.test(path.basename(file)))
+            // Both Vite bundles and generated cutouts change URL with content.
+            const name = path.basename(file);
+            if (
+              /[-\w]+-[\w-]{8}\.(?:js|css)$/.test(name) ||
+              /^entrance-(?:renny|capriles)-[a-f0-9]{12}\.(?:avif|webp)$/.test(
+                name,
+              )
+            )
               res.setHeader(
                 "Cache-Control",
                 "public, max-age=31536000, immutable",

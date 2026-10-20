@@ -5,6 +5,7 @@ import entrances from "../shared/entrance-assets.json";
 import { loadSprite } from "../src/game/assets";
 import { makeArenaServer } from "../server/index";
 import { WebSocket } from "ws";
+import { get } from "node:http";
 import type { ServerMessage } from "../shared/protocol";
 
 // Exercise the real atlas loader without downloading or decoding images in Node.
@@ -172,7 +173,7 @@ test("each match update is serialized once and delivered identically to both pla
   }
 });
 
-test("production caches fingerprinted bundles while keeping HTML and API responses fresh", async () => {
+test("production caches fingerprinted assets and negotiates one shared background", async () => {
   const { mkdtemp, mkdir, writeFile, rm } = await import("node:fs/promises");
   const { tmpdir } = await import("node:os");
   const path = await import("node:path");
@@ -190,6 +191,16 @@ test("production caches fingerprinted bundles while keeping HTML and API respons
       "console.log('arena')",
     );
     await writeFile(path.join(folder, "dist/assets/caracas.webp"), "fixture");
+    await writeFile(
+      path.join(folder, "dist/assets/caracas.avif"),
+      "avif-fixture",
+    );
+    const cutouts = [
+      "entrance-renny-012345abcdef.avif",
+      "entrance-renny-fedcba543210.webp",
+    ];
+    for (const file of cutouts)
+      await writeFile(path.join(folder, "dist/assets", file), "cutout-fixture");
     process.chdir(folder);
     server = await makeArenaServer({
       production: true,
@@ -208,6 +219,14 @@ test("production caches fingerprinted bundles while keeping HTML and API respons
       bundle.headers.get("cache-control"),
       "public, max-age=31536000, immutable",
     );
+    for (const file of cutouts) {
+      const response = await fetch(`${base}/assets/${file}`);
+      assert.equal(response.status, 200);
+      assert.equal(
+        response.headers.get("cache-control"),
+        "public, max-age=31536000, immutable",
+      );
+    }
     for (const route of ["/", "/api/health", "/assets/caracas.webp"]) {
       const response = await fetch(base + route);
       assert.equal(response.status, 200);
@@ -216,6 +235,70 @@ test("production caches fingerprinted bundles while keeping HTML and API respons
         /immutable/,
       );
     }
+
+    for (const [accept, expectedType, expectedBody] of [
+      ["image/avif,image/webp;q=0.9", "image/avif", "avif-fixture"],
+      ["image/webp,image/*;q=0.8", "image/webp", "fixture"],
+      ["image/avif;q=0,image/webp", "image/webp", "fixture"],
+      ["*/*", "image/webp", "fixture"],
+    ]) {
+      const response = await fetch(`${base}/assets/caracas.webp`, {
+        headers: { Accept: accept },
+      });
+      assert.equal(response.status, 200);
+      assert.match(
+        response.headers.get("content-type") ?? "",
+        new RegExp(expectedType),
+      );
+      assert.match(response.headers.get("vary") ?? "", /\bAccept\b/);
+      assert.doesNotMatch(
+        response.headers.get("cache-control") ?? "",
+        /immutable/,
+      );
+      assert.equal(await response.text(), expectedBody);
+
+      // Raw HTTP preserves browser validation headers; fetch adds no-cache.
+      const cached = await new Promise<{
+        status: number | undefined;
+        bytes: number;
+        vary: string | undefined;
+      }>((resolve, reject) => {
+        get(
+          `${base}/assets/caracas.webp`,
+          {
+            headers: {
+              Accept: accept,
+              "If-None-Match": response.headers.get("etag")!,
+            },
+          },
+          (result) => {
+            let bytes = 0;
+            result.on("data", (chunk: Buffer) => {
+              bytes += chunk.length;
+            });
+            result.on("end", () =>
+              resolve({
+                status: result.statusCode,
+                bytes,
+                vary: result.headers.vary,
+              }),
+            );
+            result.on("error", reject);
+          },
+        ).on("error", reject);
+      });
+      assert.equal(cached.status, 304);
+      assert.equal(cached.bytes, 0);
+      assert.match(cached.vary ?? "", /\bAccept\b/);
+    }
+
+    await rm(path.join(folder, "dist/assets/caracas.avif"));
+    const fallback = await fetch(`${base}/assets/caracas.webp`, {
+      headers: { Accept: "image/avif,image/webp" },
+    });
+    assert.equal(fallback.status, 200);
+    assert.match(fallback.headers.get("content-type") ?? "", /image\/webp/);
+    assert.equal(await fallback.text(), "fixture");
   } finally {
     process.chdir(previous);
     await server?.close();
