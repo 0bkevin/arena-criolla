@@ -1042,17 +1042,6 @@ button {
   font-size: 8px;
   letter-spacing: 1px;
 }
-.stage-card-body h3 {
-  font-family: var(--display);
-  font-size: 23px;
-  margin: 5px 0 8px;
-}
-.stage-card-body p {
-  font-size: 11px;
-  line-height: 1.6;
-  color: #aeb4c5;
-  margin: 0;
-}
 .stage-tags {
   display: flex;
   gap: 5px;
@@ -1507,9 +1496,6 @@ kbd {
   font-size: 8px;
   color: var(--fighter-color);
   letter-spacing: 3px;
-}
-.detail-info > .eyebrow {
-  color: var(--fighter-color);
 }
 .detail-info > p {
   font-size: 11px;
@@ -2108,10 +2094,6 @@ kbd {
   border: 1px solid #ffffff14;
   border-radius: 4px;
   padding: 6px 9px;
-}
-.arena-location > span {
-  color: var(--lime);
-  margin: 0 5px;
 }
 .game-overlay {
   position: absolute;
@@ -3514,54 +3496,6 @@ kbd {
 }
 .fighter-card-caption {
   flex: 1;
-}
-.character-identity {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin: 14px 0;
-  font-size: 12px;
-}
-.character-identity span {
-  color: #9da8ba;
-  line-height: 1.5;
-}
-.character-quote {
-  margin: 14px 0;
-  padding: 11px 14px;
-  background: #ffffff05;
-  font-size: 15px;
-  line-height: 1.6;
-}
-.character-quote a {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 5px;
-  font-size: 10px;
-  color: var(--fighter-color);
-  text-decoration: none;
-}
-.character-references {
-  margin: 12px 0 18px;
-  color: #9da8ba;
-  font-size: 11px;
-}
-.character-references summary {
-  cursor: pointer;
-}
-.character-references > div {
-  display: grid;
-  gap: 8px;
-  padding: 12px 0 0;
-}
-.character-references a {
-  color: var(--fighter-color);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  line-height: 1.5;
 }
 @media (max-width: 900px), (max-height: 500px) and (orientation: landscape) {
   .arena-wrap:has(.pause-card) {

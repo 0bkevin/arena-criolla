@@ -591,7 +591,7 @@ export function ArcadeLobby(props: Props) {
               <h2>ESCENARIO</h2>
             </div>
             <span className="sr-only" aria-live="polite">
-              {stage.name}
+              {stage.location}
             </span>
             <button onClick={() => props.onModal("stages")}>
               Ver mapa <ArrowRight size={13} />
@@ -607,7 +607,7 @@ export function ArcadeLobby(props: Props) {
               <button
                 key={item.id}
                 className={`arcade-stage ${item.id === stage.id ? "selected" : ""}`}
-                aria-label={`Elegir escenario ${item.name}`}
+                aria-label={`Elegir escenario ${item.location}`}
                 aria-pressed={item.id === stage.id}
                 disabled={stageLocked}
                 onClick={() => props.onStage(item.id)}

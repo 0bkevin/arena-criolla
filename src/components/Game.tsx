@@ -826,7 +826,7 @@ export function Game(props: Props) {
           className="arena-canvas"
           width={ARENA_VIEW.width}
           height={ARENA_VIEW.height}
-          aria-label={`Combate entre ${view.players[0].config.name} y ${view.players[1].config.name} en ${stage.name}`}
+          aria-label={`Combate entre ${view.players[0].config.name} y ${view.players[1].config.name} en ${stage.location}`}
         />
         {!cinematic && view.phase !== "finished" && (
           <div className="match-hud">
@@ -885,9 +885,7 @@ export function Game(props: Props) {
           </div>
         )}
         {!cinematic && view.phase !== "finished" && (
-          <span className="arena-location">
-            {stage.location} <span> / </span> {stage.name}
-          </span>
+          <span className="arena-location">{stage.location}</span>
         )}
         {!assets && (
           <div className="game-overlay loading-overlay">
