@@ -34,6 +34,10 @@ const desktopBanner = new URL(
   "../assets/lobby-cast-banner.webp",
   import.meta.url,
 ).href;
+const tabletBanner = new URL(
+  "../assets/lobby-cast-banner-tablet.webp",
+  import.meta.url,
+).href;
 const mobileBanner = new URL(
   "../assets/lobby-cast-banner-mobile.webp",
   import.meta.url,
@@ -187,12 +191,23 @@ export function ArcadeLobby(props: Props) {
           Elige tus luchadores
         </h1>
         <picture className="marquee-art" aria-hidden="true">
-          <source media="(max-width: 600px)" srcSet={mobileBanner} />
+          <source
+            media="(max-width: 600px)"
+            srcSet={mobileBanner}
+            width="1280"
+            height="427"
+          />
+          <source
+            media="(max-width: 1100px)"
+            srcSet={tabletBanner}
+            width="1983"
+            height="308"
+          />
           <img
             src={desktopBanner}
             alt=""
-            width="2560"
-            height="480"
+            width="2172"
+            height="248"
             loading="eager"
             fetchPriority="high"
             decoding="async"
@@ -516,13 +531,6 @@ export function ArcadeLobby(props: Props) {
                       }
                     >
                       <div className="fighter-card-art">
-                        <span className="fighter-index" aria-hidden="true">
-                          {String(
-                            FIGHTERS.findIndex(
-                              (entry) => entry.id === item.id,
-                            ) + 1,
-                          ).padStart(2, "0")}
-                        </span>
                         <Portrait fighter={item.id} bust />
                         <div className="fighter-player-tags">
                           {p1 && <span className="tag-p1">{ownLabel}</span>}
@@ -602,7 +610,7 @@ export function ArcadeLobby(props: Props) {
             aria-label="Escenarios de Venezuela"
             onKeyDown={handleStageKeys}
           >
-            {STAGES.map((item, index) => (
+            {STAGES.map((item) => (
               <button
                 key={item.id}
                 className={`arcade-stage ${item.id === stage.id ? "selected" : ""}`}
@@ -613,9 +621,6 @@ export function ArcadeLobby(props: Props) {
               >
                 <span className="stage-thumbnail">
                   <img src={`/assets/${item.id}.webp`} alt="" />
-                  <span className="stage-number">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
                   {item.id === stage.id && (
                     <span className="stage-tick">
                       <Check size={12} />
@@ -740,12 +745,6 @@ export function ArcadeLobby(props: Props) {
             </div>
           )}
         </section>
-      </div>
-
-      <div className="arcade-help-strip">
-        <button onClick={() => props.onModal("help")}>
-          Cómo jugar <ArrowRight size={14} />
-        </button>
       </div>
     </main>
   );

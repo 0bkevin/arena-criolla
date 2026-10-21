@@ -417,19 +417,16 @@ export function App({
           >
             Luchadores
           </button>
-          <button onClick={() => setModal("help")} aria-label="Cómo jugar">
-            <CircleHelp size={15} />
-            <span>Cómo jugar</span>
-          </button>
         </nav>
         <div className="header-right">
           <button
             className="icon-button header-help"
             onClick={() => setModal("help")}
-            aria-label="Ayuda y controles"
-            title="Ayuda y controles"
+            aria-label="Cómo jugar"
+            title="Cómo jugar"
           >
-            <CircleHelp size={19} />
+            <CircleHelp size={19} aria-hidden="true" />
+            <span>Cómo jugar</span>
           </button>
           {!active && (
             <button
@@ -640,9 +637,7 @@ export function App({
                   <span>
                     {count} {count === 1 ? "victoria" : "victorias"}
                   </span>
-                  <small>
-                    {count >= 1 ? "3/3 combos" : "2/3 combos"}
-                  </small>
+                  <small>{count >= 1 ? "3/3 combos" : "2/3 combos"}</small>
                 </div>
               );
             })}
@@ -721,6 +716,7 @@ export function App({
                 className="primary-button"
                 disabled={!network.connected}
                 onClick={() => {
+                  network.setError("");
                   network.send({
                     type: "create",
                     fighter,

@@ -762,7 +762,9 @@ export async function makeArenaServer(
             const name = path.basename(file);
             if (
               /[-\w]+-[\w-]{8}\.(?:js|css)$/.test(name) ||
-              /^lobby-cast-banner(?:-mobile)?-[\w-]{8}\.webp$/.test(name) ||
+              /^lobby-cast-banner(?:-(?:mobile|tablet))?-[\w-]{8}\.webp$/.test(
+                name,
+              ) ||
               /^entrance-(?:renny|capriles)-[a-f0-9]{12}\.(?:avif|webp)$/.test(
                 name,
               )

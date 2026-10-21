@@ -190,6 +190,7 @@ test("production HTML has fresh CSP nonces and browser protections without cachi
   const bannerNames = [
     "lobby-cast-banner-Abcd1234.webp",
     "lobby-cast-banner-mobile-Efgh5678.webp",
+    "lobby-cast-banner-tablet-Ijkl9012.webp",
     "lobby-cast-banner.webp",
   ];
   for (const name of bannerNames)
