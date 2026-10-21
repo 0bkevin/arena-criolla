@@ -16,7 +16,9 @@ type CastMember = {
 /**
  * Compose the lobby's static cast portraits from the original game artwork.
  * Import /scripts/render-lobby-banner.ts in the dev browser, call
- * renderLobbyBanners(), and export its canvases as WebP at 0.9.
+ * renderLobbyBanners(), and export its canvases as WebP at 0.9 into src/assets/
+ * as lobby-cast-banner.webp and lobby-cast-banner-mobile.webp. Vite fingerprints
+ * these files for the HTML preloads, component URLs and immutable browser cache.
  * Only the exported images ship with the lobby, not the extra sprite atlases.
  */
 export async function renderLobbyBanners() {

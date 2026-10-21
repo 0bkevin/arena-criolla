@@ -30,6 +30,15 @@ import type { GameMode } from "./Game";
 import { Portrait } from "./Portrait";
 import { PixelIcon } from "./PixelIcon";
 
+const desktopBanner = new URL(
+  "../assets/lobby-cast-banner.webp",
+  import.meta.url,
+).href;
+const mobileBanner = new URL(
+  "../assets/lobby-cast-banner-mobile.webp",
+  import.meta.url,
+).href;
+
 interface Props {
   mode: GameMode;
   fighter: FighterId;
@@ -178,15 +187,13 @@ export function ArcadeLobby(props: Props) {
           Elige tus luchadores
         </h1>
         <picture className="marquee-art" aria-hidden="true">
-          <source
-            media="(max-width: 600px)"
-            srcSet="/assets/lobby-cast-banner-mobile.webp"
-          />
+          <source media="(max-width: 600px)" srcSet={mobileBanner} />
           <img
-            src="/assets/lobby-cast-banner.webp"
+            src={desktopBanner}
             alt=""
             width="2560"
             height="480"
+            loading="eager"
             fetchPriority="high"
             decoding="async"
           />

@@ -187,6 +187,13 @@ test("production HTML has fresh CSP nonces and browser protections without cachi
     path.join(folder, "dist/assets/index-Abcd1234.js"),
     "export {};",
   );
+  const bannerNames = [
+    "lobby-cast-banner-Abcd1234.webp",
+    "lobby-cast-banner-mobile-Efgh5678.webp",
+    "lobby-cast-banner.webp",
+  ];
+  for (const name of bannerNames)
+    await writeFile(path.join(folder, "dist/assets", name), "banner fixture");
   try {
     process.chdir(folder);
     server = await makeArenaServer({
@@ -256,4 +263,14 @@ test("production HTML has fresh CSP nonces and browser protections without cachi
     asset.headers.get("cache-control") ?? "",
     /max-age=31536000, immutable/,
   );
+  for (const name of bannerNames) {
+    const banner = await fetch(`${base}/assets/${name}`);
+    assert.equal(banner.status, 200);
+    assert.match(banner.headers.get("content-type") ?? "", /image\/webp/);
+    const cache = banner.headers.get("cache-control") ?? "";
+    if (name === "lobby-cast-banner.webp")
+      assert.doesNotMatch(cache, /immutable/);
+    else assert.match(cache, /max-age=31536000, immutable/);
+    await banner.arrayBuffer();
+  }
 });
