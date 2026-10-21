@@ -7,6 +7,23 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <meta name="theme-color" content="#091524" />
+    <!-- Warm only the matching banner while higher-priority entrance art loads. -->
+    <link
+      rel="preload"
+      href="/src/assets/lobby-cast-banner-mobile.webp"
+      as="image"
+      type="image/webp"
+      media="(max-width: 600px)"
+      fetchpriority="low"
+    />
+    <link
+      rel="preload"
+      href="/src/assets/lobby-cast-banner.webp"
+      as="image"
+      type="image/webp"
+      media="not all and (max-width: 600px)"
+      fetchpriority="low"
+    />
     <link
       rel="preload"
       href="/fonts/dm-sans-400.ttf"
