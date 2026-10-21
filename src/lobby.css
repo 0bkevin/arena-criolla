@@ -189,66 +189,17 @@ body {
   background: #23395b;
   box-shadow: 0 4px 0 var(--ink);
 }
-.marquee-landscape {
+.marquee-art {
   position: absolute;
   inset: 0;
-  z-index: -2;
-  background:
-    linear-gradient(90deg, #153b7990, #153b7918),
-    url("/assets/caracas.webp") center 40% / cover;
-  image-rendering: pixelated;
-}
-.marquee-sunshine {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 53%;
-  z-index: -1;
-  background:
-    radial-gradient(#bc812a23 1px, transparent 1px) 0 0 / 10px 10px,
-    linear-gradient(110deg, #ffdb78, #ffce52);
-  clip-path: polygon(
-    0 0,
-    90% 0,
-    90% 15%,
-    93% 15%,
-    93% 35%,
-    96% 35%,
-    96% 65%,
-    98% 65%,
-    98% 85%,
-    100% 85%,
-    100% 100%,
-    0 100%
-  );
-}
-.marquee-copy {
-  padding-left: 26px;
-  position: relative;
-  z-index: 2;
-}
-.marquee-culture {
-  position: absolute;
-  left: 48%;
-  top: 50%;
-  width: 112px;
-  transform: translateY(-50%);
-  pointer-events: none;
-  filter: drop-shadow(2px 3px 0 #07112488);
-}
-.marquee-culture > svg {
   display: block;
-  color: var(--paper);
-  width: 108px;
-  height: 22px;
-  margin: 0 auto 5px;
 }
-.marquee-culture > div {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-}
-.marquee-culture [data-criollo-motif="cuatro"] {
-  transform: rotate(-10deg);
+.marquee-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 .arcade-eyebrow {
   display: flex;
@@ -257,72 +208,6 @@ body {
   font: 500 10px var(--pixel);
   letter-spacing: 1.2px;
   color: var(--ink);
-}
-.marquee-copy h1 {
-  font: 700 clamp(38px, 4.6vw, 58px)/1.05 var(--pixel);
-  letter-spacing: -1.5px;
-  margin: 5px 0 4px;
-  text-shadow: 2px 2px 0 #fff0b3;
-  color: var(--ink);
-}
-.marquee-copy h1 > span:first-child {
-  color: #c84536;
-  text-shadow:
-    2px 2px 0 #ffeda8,
-    4px 4px 0 var(--ink);
-}
-.title-spark {
-  display: inline-block;
-  font-size: 24px;
-  margin-left: 13px;
-  color: var(--ink);
-  vertical-align: 7px;
-  text-shadow: none;
-}
-.marquee-copy p {
-  font-size: 11px;
-  color: #354963;
-  letter-spacing: 0.1px;
-}
-.marquee-fight {
-  position: absolute;
-  inset: 0 0 0 57%;
-}
-.marquee-fight .portrait {
-  position: absolute;
-  width: 165px;
-  height: 206px;
-  top: 4px;
-  filter: drop-shadow(3px 3px 0 #22162b88);
-}
-.marquee-renny {
-  left: 8%;
-  transform: rotate(-4deg);
-}
-.marquee-capriles {
-  right: 7%;
-  transform: rotate(4deg);
-}
-.marquee-vs {
-  position: absolute;
-  top: 36px;
-  left: 44%;
-  font: 700 37px var(--pixel);
-  color: var(--coin);
-  text-shadow: 3px 3px 0 #311e38;
-  transform: rotate(-7deg);
-}
-.marquee-stamp {
-  position: absolute;
-  bottom: 12px;
-  right: 15px;
-  padding: 4px 7px;
-  background: var(--coral);
-  color: var(--ink);
-  border: 2px solid var(--ink);
-  font: 700 10px var(--pixel);
-  transform: rotate(-5deg);
-  box-shadow: 2px 2px 0 var(--ink);
 }
 .arcade-mode-row {
   display: flex;
@@ -1677,58 +1562,9 @@ body {
   .arcade-marquee {
     height: 103px;
   }
-  .marquee-copy {
-    padding-left: 15px;
-  }
   .arcade-eyebrow {
     font-size: 8px;
     letter-spacing: 0.3px;
-  }
-  .marquee-copy h1 {
-    font-size: 37px;
-    letter-spacing: -0.8px;
-    max-width: 240px;
-    line-height: 0.95;
-    margin: 7px 0 5px;
-  }
-  .marquee-copy h1 > span:first-child {
-    display: block;
-  }
-  .title-spark {
-    display: none;
-  }
-  .marquee-copy p {
-    display: none;
-  }
-  .marquee-fight {
-    left: 44%;
-  }
-  .marquee-fight .portrait {
-    width: 108px;
-    height: 135px;
-    top: 4px;
-  }
-  .marquee-renny {
-    left: 0;
-  }
-  .marquee-capriles {
-    right: -3%;
-  }
-  .marquee-vs {
-    top: 40px;
-    left: 42%;
-    font-size: 24px;
-  }
-  .marquee-stamp {
-    right: 7px;
-    bottom: 5px;
-    font-size: 7px;
-    padding: 3px 4px;
-  }
-  .marquee-landscape {
-    background:
-      linear-gradient(90deg, #153b7970, #153b7910),
-      url("/assets/caracas.webp") center / cover;
   }
   .arcade-mode-row {
     margin: 13px 0;
@@ -2174,31 +2010,9 @@ body {
   .site-header .server-status {
     margin: 0 2px;
   }
-  .marquee-copy {
-    padding-left: 11px;
-  }
-  .marquee-copy h1 {
-    font-size: 32px;
-  }
   .arcade-eyebrow {
     font-size: 7px;
     gap: 4px;
-  }
-  .marquee-fight {
-    left: 47%;
-  }
-  .marquee-fight .portrait {
-    width: 96px;
-    height: 120px;
-    top: 4px;
-  }
-  .marquee-vs {
-    font-size: 19px;
-    left: 43%;
-  }
-  .marquee-stamp {
-    font-size: 6px;
-    right: 4px;
   }
   .arcade-home .arcade-modes button {
     gap: 4px;
@@ -2314,9 +2128,6 @@ body {
   .arcade-marquee {
     height: 92px;
   }
-  .marquee-copy h1 {
-    font-size: 46px;
-  }
   .arcade-mode-row {
     margin-block: 8px;
   }
@@ -2431,33 +2242,7 @@ body {
   }
 }
 
-@media (max-width: 1100px) {
-  .marquee-culture {
-    width: 96px;
-    left: 44%;
-  }
-  .marquee-culture > div {
-    display: none;
-  }
-  .marquee-culture > svg {
-    width: 96px;
-    height: 20px;
-  }
-}
 @media (max-width: 900px) {
-  .marquee-culture {
-    left: auto;
-    right: 9px;
-    top: 9px;
-    transform: none;
-    width: 74px;
-    filter: drop-shadow(1px 1px 0 #07112488);
-  }
-  .marquee-culture > svg {
-    width: 74px;
-    height: 15px;
-    margin: 0;
-  }
   .cabinet-bolts {
     gap: 4px;
   }
@@ -2517,18 +2302,6 @@ body {
   }
   .arcade-marquee {
     height: 105px;
-  }
-  .marquee-copy h1 {
-    display: flex;
-    gap: 10px;
-    font-size: 44px;
-    max-width: none;
-  }
-  .marquee-copy h1 > span:first-child {
-    display: inline;
-  }
-  .marquee-fight {
-    left: 58%;
   }
   .arcade-home .arcade-modes button > span:not(.mode-slot) {
     font-size: 16px;

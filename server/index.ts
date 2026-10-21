@@ -758,10 +758,11 @@ export async function makeArenaServer(
         express.static(dist, {
           index: false,
           setHeaders: (res, file) => {
-            // Both Vite bundles and generated cutouts change URL with content.
+            // Bundles, lobby banners and generated cutouts change URL with content.
             const name = path.basename(file);
             if (
               /[-\w]+-[\w-]{8}\.(?:js|css)$/.test(name) ||
+              /^lobby-cast-banner(?:-mobile)?-[\w-]{8}\.webp$/.test(name) ||
               /^entrance-(?:renny|capriles)-[a-f0-9]{12}\.(?:avif|webp)$/.test(
                 name,
               )
