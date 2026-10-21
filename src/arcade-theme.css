@@ -118,6 +118,34 @@ body {
   color: var(--coin);
   background: #ffffff08;
 }
+.site-header .header-help {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font: 500 12px var(--font-body);
+  white-space: nowrap;
+}
+.site-header .icon-button.header-help,
+.site-header .icon-button.header-help:hover {
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.site-header .header-help:focus-visible {
+  outline: none;
+}
+.site-header .header-help:focus-visible svg {
+  stroke-width: 3;
+}
+.site-header .header-help > span {
+  display: none;
+}
+@media (min-width: 901px) {
+  .site-header .header-help > span {
+    display: inline;
+  }
+}
 .in-lobby .arcade-home {
   padding-top: 10px;
   padding-bottom: 0;
@@ -1049,18 +1077,6 @@ body {
 .in-lobby .ready .ready-player-dot {
   background: #8ad6a7;
 }
-.in-lobby .arcade-help-strip {
-  color: var(--muted);
-  min-height: 40px;
-}
-.in-lobby .arcade-help-strip > span:first-child {
-  color: #a9bcd3;
-  font: 500 9px var(--pixel);
-}
-.in-lobby .arcade-help-strip > button {
-  color: var(--coin);
-  font-size: 10px;
-}
 .app-shell .site-footer {
   flex-direction: column;
   justify-content: center;
@@ -1867,14 +1883,6 @@ body {
   }
   .in-lobby .ready-room-players {
     gap: 10px;
-  }
-  .in-lobby .arcade-help-strip {
-    gap: 8px;
-    min-height: 52px;
-  }
-  .in-lobby .arcade-help-strip > span:first-child {
-    font-size: 8px;
-    max-width: 170px;
   }
   .in-lobby .mobile-setup-dock {
     left: 10px;

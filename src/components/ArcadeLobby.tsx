@@ -731,12 +731,6 @@ export function ArcadeLobby(props: Props) {
           )}
         </section>
       </div>
-
-      <div className="arcade-help-strip">
-        <button onClick={() => props.onModal("help")}>
-          Cómo jugar <ArrowRight size={14} />
-        </button>
-      </div>
     </main>
   );
 }
