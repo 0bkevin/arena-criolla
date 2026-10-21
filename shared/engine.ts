@@ -11,7 +11,6 @@ import {
 } from "./arena-finales";
 import {
   SUPER_ENERGY_COST,
-  SUPER_UNLOCK_WINS,
   fighterById,
   platformsAtTick,
   type FighterId,
@@ -549,11 +548,7 @@ function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
   )
     return;
   if (attack === "special" && p.energy < 25) return;
-  if (
-    attack === "super" &&
-    (p.config.wins < SUPER_UNLOCK_WINS || p.energy < SUPER_ENERGY_COST)
-  )
-    return;
+  if (attack === "super" && p.energy < SUPER_ENERGY_COST) return;
   if (attack === "special") p.energy -= 25;
   if (attack === "super") p.energy -= SUPER_ENERGY_COST;
   p.attack = attack;
@@ -1570,7 +1565,6 @@ export function cpuInput(
     next.actions.jump++;
   if (
     difficulty === "hard" &&
-    p.config.wins >= SUPER_UNLOCK_WINS &&
     p.energy >= SUPER_ENERGY_COST &&
     (finaleById(p.config.fighter)?.mode === "field"
       ? !s.fieldFinales?.some((field) => field.owner === 1) &&

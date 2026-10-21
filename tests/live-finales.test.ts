@@ -96,11 +96,11 @@ function setup(
 }
 
 for (const id of reviewed.filter(isArenaFinalist)) {
-  test(`${id}: unlock, cost, one active field, spatial misses and vulnerable startup`, () => {
+  test(`${id}: cost, one active field, spatial misses and vulnerable startup from zero wins`, () => {
     for (const side of [0, 1] as const) {
-      for (const reason of ["locked", "energy", "air", "guard", "interrupt"]) {
+      for (const reason of ["energy", "air", "guard", "interrupt"]) {
         const r = setup(id, side, 65);
-        if (reason === "locked") r.source.config.wins = 1;
+        r.source.config.wins = 0;
         if (reason === "energy") r.source.energy = 89;
         if (reason === "air") {
           r.source.grounded = false;
@@ -117,6 +117,7 @@ for (const id of reviewed.filter(isArenaFinalist)) {
         assert.equal(r.source.hits, 0);
       }
       const r = setup(id, side);
+      r.source.config.wins = 0;
       r.inputs[side].actions.super++;
       r.advance();
       assert.equal(r.source.energy, 10);

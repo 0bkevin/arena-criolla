@@ -69,16 +69,18 @@ test("Conde Bond activates at tick9 out of range in either slot with cost and no
   }
 });
 
-test("self-transform respects unlock, energy, stun, guard, cooldown, stale input and interrupted startup", () => {
+test("self-transform is available from zero wins and respects energy, stun, guard, cooldown, stale input and interrupted startup", () => {
   for (const side of [0, 1] as const) {
     for (const [wins, energy] of [
+      [0, 89],
+      [0, 90],
       [1, 100],
       [2, 89],
       [2, 90],
     ]) {
       const r = setup(side, 500, wins, energy);
       r.activate();
-      assert.equal(!!r.source.transformation, wins >= 2 && energy >= 90);
+      assert.equal(!!r.source.transformation, energy >= 90);
     }
     for (const gate of ["stun", "cooldown", "guard", "stale"] as const) {
       const r = setup(side);

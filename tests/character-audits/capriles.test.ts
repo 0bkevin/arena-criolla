@@ -171,14 +171,11 @@ for (const side of [0, 1] as const) {
       const run = setup(side, 200, wins);
       run.inputs[side].actions.super++; run.advance(9);
       if (run.state.finale) run.advance(run.state.finale.duration);
-      if (wins < 2) { assert.equal(run.player.attack, null); assert.equal(run.rival.hp, 100); }
-      else {
-        assert.equal(run.player.combo, "Meta tricolor");
-        assert.equal(run.player.comboBonus, 12);
-        close(100 - run.rival.hp, (28 * 0.88 + 12) * 1.03);
-        assert.equal(run.player.hits, 1);
-        assert.ok(run.player.energy < 39);
-      }
+      assert.equal(run.player.combo, "Meta tricolor");
+      assert.equal(run.player.comboBonus, 12);
+      close(100 - run.rival.hp, (28 * 0.88 + 12) * 1.03);
+      assert.equal(run.player.hits, 1);
+      assert.ok(run.player.energy < 39);
       emit("super-gate", { side, wins, hp: run.rival.hp, energy: run.player.energy, combo: run.player.combo });
     }
     const depleted = setup(side, 200, 3);

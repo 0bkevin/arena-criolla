@@ -199,8 +199,8 @@ for (const winner of [0, 1] as const) {
           }),
         );
         assert.equal(html.includes("Nuevo combo desbloqueado"), wins === 0);
-        assert.equal(html.includes("Definitiva desbloqueada"), wins === 1);
-        assert.equal(html.includes('class="victory-screen-unlock"'), wins < 2);
+        assert.equal(html.includes("Definitiva desbloqueada"), false);
+        assert.equal(html.includes('class="victory-screen-unlock"'), wins === 0);
       }
 
       const opponent = winner === 0 ? guest : f.host;

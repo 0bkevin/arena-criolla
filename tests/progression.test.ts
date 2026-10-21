@@ -7,7 +7,7 @@ import { TouchControls } from "../src/components/TouchControls";
 import { VictoryScreen } from "../src/components/VictoryScreen";
 import { preloadAssets } from "../src/game/assets";
 
-test("touch definitive unlocks at two wins and still requires 90 energy", () => {
+test("touch definitive is available from zero wins and still requires 90 energy", () => {
   for (const wins of [0, 1, 2, 3]) {
     for (const energy of [0, 75, 89, 90, 100]) {
       const html = renderToStaticMarkup(
@@ -25,13 +25,12 @@ test("touch definitive unlocks at two wins and still requires 90 energy", () => 
       assert.ok(button);
       assert.equal(
         button.includes('aria-disabled="true"'),
-        wins < 2 || energy < 90,
+        energy < 90,
       );
       assert.doesNotMatch(button, /\sdisabled=/);
-      assert.equal(button.includes("lucide-lock-keyhole"), wins < 2);
-      if (wins < 2) {
-        assert.ok(button.includes("Gana 2 peleas con este personaje"));
-      } else if (energy < 90) {
+      assert.ok(!button.includes("lucide-lock-keyhole"));
+      assert.ok(!button.includes("Gana"));
+      if (energy < 90) {
         assert.ok(button.includes("Necesitas 90 de energía."));
       } else {
         assert.ok(
@@ -44,7 +43,7 @@ test("touch definitive unlocks at two wins and still requires 90 energy", () => 
   }
 });
 
-test("the second victory announces the definitive for either local player and the online winner", async () => {
+test("victories announce only newly unlocked combos for either local player and the online winner", async () => {
   const assets = await preloadAssets([], []);
   for (const mode of ["local", "online"] as const) {
     for (const winner of [0, 1] as const) {
@@ -75,7 +74,7 @@ test("the second victory announces the definitive for either local player and th
         const localVictory = mode === "local" || winner === 0;
         assert.equal(
           html.includes("Definitiva desbloqueada"),
-          localVictory && wins === 1,
+          false,
         );
         assert.equal(
           html.includes("Nuevo combo desbloqueado"),
@@ -83,7 +82,7 @@ test("the second victory announces the definitive for either local player and th
         );
         assert.equal(
           html.includes('class="victory-screen-unlock"'),
-          localVictory && wins < 2,
+          localVictory && wins === 0,
         );
       }
     }

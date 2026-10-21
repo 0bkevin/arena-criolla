@@ -236,10 +236,14 @@ test("Nacho releases the rival in place without any launch, residual momentum or
       }
 });
 
-test("finales keep the two-win and 90-energy gates, and Vicente's single motorcycle is available from zero wins", () => {
+test("finales are available from zero wins and keep the 90-energy cost, and Vicente's single motorcycle is available from zero wins", () => {
   for (const fighter of BUILT_IN_FIGHTERS)
     for (const [wins, energy] of [
+      [0, 89],
+      [0, 90],
       [0, 100],
+      [1, 89],
+      [1, 90],
       [1, 100],
       [2, 89],
       [2, 90],
@@ -255,7 +259,7 @@ test("finales keep the two-win and 90-energy gates, and Vicente's single motorcy
           r.state.fieldFinales?.length ||
           r.state.projectiles.some((p) => p.impact === "super"),
         ),
-        wins >= 2 && energy >= 90,
+        energy >= 90,
         `${fighter.id}/${wins}/${energy}`,
       );
       if (!r.state.finale) assert.equal(r.target.hp, 100);

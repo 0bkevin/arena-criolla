@@ -147,7 +147,7 @@ test("Simón recognizes base and upgraded combos, connects every strike with app
       const r = setup(side, 200, wins); r.player.energy = energy;
       r.inputs[side].actions.super++; r.advance(9);
       if (r.state.fieldFinales) { assert.equal(r.state.fieldFinales[0].fighter, "simon"); assert.equal(r.rival.hp, 100); r.advance(320); }
-      if (wins < 2 || energy < 90) { assert.equal(r.player.attack, null); assert.equal(r.rival.hp, 100); }
+      if (energy < 90) { assert.equal(r.player.attack, null); assert.equal(r.rival.hp, 100); }
       else { assert.equal(r.player.combo, "Tonada de la arena"); assert.equal(r.player.comboBonus, 12); assert.equal(r.state.finale, undefined); assert.equal(r.player.attack, null); }
       emit("super-gate", { side, wins, energy, hp: r.rival.hp, attackerEnergy: r.player.energy, combo: r.player.combo });
     }

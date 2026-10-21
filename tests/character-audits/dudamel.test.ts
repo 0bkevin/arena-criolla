@@ -296,7 +296,7 @@ test("Dudamel recognizes base and upgraded combos, connects every strike with ap
       r.inputs[side].actions.super++;
       r.advance(9);
       if (r.state.fieldFinales) { assert.equal(r.state.fieldFinales[0].fighter, "dudamel"); assert.equal(r.rival.hp, 100); r.advance(320); }
-      if (wins < 2 || energy < 90) {
+      if (energy < 90) {
         assert.equal(r.player.attack, null);
         assert.equal(r.rival.hp, 100);
       } else {

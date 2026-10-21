@@ -155,13 +155,13 @@ for (const side of [0, 1] as const) {
     emit(`combos-p${side + 1}`, results);
   });
 
-  test(`Vallenilla P${side + 1}: definitive requires two wins and 90 energy, then lands with its name`, () => {
-    for (const [wins, energy] of [[1, 100], [2, 89]] as const) {
+  test(`Vallenilla P${side + 1}: definitive requires 90 energy from zero wins, then lands with its name`, () => {
+    for (const [wins, energy] of [[0, 89], [1, 89], [2, 89]] as const) {
       const { state, inputs } = setup(side, wins, 160); state.players[side].energy = energy;
       press(inputs, side, "super"); advance(state, inputs, 1);
       assert.equal(state.players[side].attack, null);
     }
-    const { state, inputs } = setup(side, 2, 160);
+    const { state, inputs } = setup(side, 0, 160);
     press(inputs, side, "super"); advance(state, inputs, 1);
     assert.equal(state.players[side].attack, "super");
     assert.equal(state.players[side].combo, "Límite aprobado");

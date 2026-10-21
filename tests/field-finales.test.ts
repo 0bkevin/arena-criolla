@@ -61,12 +61,12 @@ function until(r: ReturnType<typeof run>, condition: () => boolean, max = 400) {
   assert.ok(condition(), "simulation reached condition");
 }
 
-test("both live finales preserve progression, cost, interruption and no-overlap gates", () => {
+test("both live finales are available from zero wins and preserve cost, interruption and no-overlap gates", () => {
   for (const id of ["dayana", "deyna"] as const)
     for (const side of [0, 1] as const) {
-      for (const reason of ["wins", "energy", "guard", "interrupt"]) {
+      for (const reason of ["energy", "guard", "interrupt"]) {
         const r = run(id, side, reason === "interrupt" ? 65 : 180);
-        if (reason === "wins") r.source.config.wins = 1;
+        r.source.config.wins = 0;
         if (reason === "energy") r.source.energy = 89;
         if (reason === "guard") r.inputs[side].block = true;
         if (reason === "interrupt") {
@@ -78,6 +78,7 @@ test("both live finales preserve progression, cost, interruption and no-overlap 
         assert.equal(r.state.finale, undefined);
       }
       const r = run(id, side, 600);
+      r.source.config.wins = 0;
       r.inputs[side].actions.super++;
       r.advance();
       assert.equal(r.source.energy, 10);

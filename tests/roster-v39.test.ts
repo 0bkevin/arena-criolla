@@ -162,7 +162,7 @@ for (const id of reviewed) {
       }
   });
 
-  test(`${id}: special energy and three named combo unlocks enforce their gates`, () => {
+  test(`${id}: special energy and advanced combo gates preserve the definitive from zero wins`, () => {
     const depleted = setup(id);
     depleted.actor.energy = 24;
     depleted.inputs[0].actions.special++;
@@ -184,11 +184,9 @@ for (const id of reviewed) {
       const run = setup(id, 0, 160, wins);
       run.inputs[0].actions.super++;
       run.advance(1);
-      assert.equal(run.actor.attack, wins < 2 ? null : "super");
-      if (wins >= 2) {
-        assert.equal(run.actor.combo, fighterById(id).combos[2]);
-        assert.ok(run.actor.energy < 11);
-      }
+      assert.equal(run.actor.attack, "super");
+      assert.equal(run.actor.combo, fighterById(id).combos[2]);
+      assert.ok(run.actor.energy < 11);
     }
   });
 

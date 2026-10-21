@@ -191,15 +191,13 @@ test("all three named combos and the super gate follow shared engine rules", () 
       assert.equal(r.player.combo, expected);
       assert.equal(r.player.comboBonus, bonus);
     }
-    const noSuper = setup(side, 80, 0);
-    noSuper.inputs[side].actions["super"]++;
-    noSuper.advance(1);
-    assert.equal(noSuper.player.attack, null);
-    const gatedSuper = setup(side, 80, 3);
-    gatedSuper.inputs[side].actions["super"]++;
-    gatedSuper.advance(1);
-    assert.equal(gatedSuper.player.attack, "super");
-    assert.equal(gatedSuper.player.combo, "Red en marcha");
+    for (const wins of [0, 1, 2, 3]) {
+      const superMove = setup(side, 80, wins);
+      superMove.inputs[side].actions.super++;
+      superMove.advance(1);
+      assert.equal(superMove.player.attack, "super");
+      assert.equal(superMove.player.combo, "Red en marcha");
+    }
   }
 });
 
