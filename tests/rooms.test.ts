@@ -9,7 +9,7 @@ import {
   type MatchState,
 } from "../shared/engine";
 import { finaleById } from "../shared/finales";
-import type { ServerMessage } from "../shared/protocol";
+import type { ClientMessage, ServerMessage } from "../shared/protocol";
 import {
   FIGHTERS,
   STAGES,
@@ -51,6 +51,62 @@ class TestClient {
     throw new Error(`Timed out waiting for ${type}`);
   }
 }
+
+test("players create, find, join and start a room without choosing names", async (t) => {
+  const server = await makeArenaServer({ serveClient: false });
+  t.after(() => server.close());
+  await new Promise<void>((resolve) =>
+    server.http.listen(0, "127.0.0.1", resolve),
+  );
+  const address = server.http.address();
+  assert.ok(address && typeof address === "object");
+  const url = `ws://127.0.0.1:${address.port}/ws`;
+  const host = new TestClient(url);
+  const guest = new TestClient(url);
+  await Promise.all([host.wait("welcome"), guest.wait("welcome")]);
+
+  host.send({
+    type: "create",
+    fighter: "zavarce",
+    stage: "caracas",
+    wins: 2,
+    private: false,
+  } satisfies ClientMessage);
+  const { room } = await host.wait("room");
+  assert.equal(room.players[0].name, "Jugador 1");
+  assert.equal(room.name, `Sala ${room.code.slice(0, 6)}`);
+  const listed = await guest.wait("rooms", (message) =>
+    message.rooms.some((listedRoom) => listedRoom.code === room.code),
+  );
+  assert.equal(listed.rooms.find((r) => r.code === room.code)?.name, room.name);
+
+  guest.send({
+    type: "join",
+    code: room.code,
+    fighter: "zavarce",
+    wins: 0,
+  } satisfies ClientMessage);
+  const joined = await host.wait(
+    "room",
+    (message) => message.room.players.length === 2,
+  );
+  assert.deepEqual(
+    joined.room.players.map((player) => player.name),
+    ["Jugador 1", "Jugador 2"],
+  );
+  host.send({ type: "ready", ready: true });
+  guest.send({ type: "ready", ready: true });
+  const starts = await Promise.all([host.wait("start"), guest.wait("start")]);
+  assert.deepEqual(starts[0].state, starts[1].state);
+  assert.deepEqual(
+    starts[0].state.players.map((player) => player.config.name),
+    ["Jugador 1", "Jugador 2"],
+  );
+  assert.deepEqual(
+    starts[0].state.players.map((player) => player.config.wins),
+    [2, 0],
+  );
+});
 
 async function onlineMatch(
   stage: (typeof STAGES)[number]["id"] = "poliedro",

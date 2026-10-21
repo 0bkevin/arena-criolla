@@ -1095,9 +1095,10 @@ body {
 }
 .arcade-ready {
   display: grid;
-  grid-template-columns:
-    minmax(150px, 0.8fr) minmax(140px, 1fr) minmax(200px, 1fr)
-    minmax(200px, 1.05fr);
+  grid-template-columns: minmax(150px, 0.8fr) minmax(200px, 1fr) minmax(
+      200px,
+      1.05fr
+    );
   align-items: center;
   gap: 20px;
   padding: 14px 20px 17px;
@@ -1128,11 +1129,6 @@ body {
   font: 700 17px/1.05 var(--pixel);
   display: block;
 }
-.ready-name {
-  min-width: 0;
-  position: relative;
-}
-.ready-name label,
 .ready-difficulty > span {
   display: flex;
   justify-content: space-between;
@@ -1140,35 +1136,6 @@ body {
   font: 500 10px var(--pixel);
   color: #513a46;
   margin-bottom: 5px;
-}
-.ready-name label > span {
-  color: var(--ink);
-}
-.p2-name label > span {
-  color: var(--ink);
-}
-.ready-name input {
-  width: 100%;
-  height: 36px;
-  padding: 0 10px;
-  border: 2px solid #a26662;
-  border-radius: 2px;
-  background: var(--paper);
-  color: var(--ink);
-  font-size: 12px;
-  transition:
-    border-color 130ms,
-    box-shadow 130ms;
-}
-.ready-name input::placeholder {
-  color: #657591;
-}
-.ready-name input:focus {
-  border-color: var(--ink) !important;
-  box-shadow: 2px 2px 0 #29203e26;
-}
-.ready-name input.field-error {
-  border-color: #ad4058;
 }
 .arcade-home .form-error {
   color: #702537;
@@ -2131,11 +2098,6 @@ body {
   .ready-intro strong {
     font-size: 18px;
   }
-  .ready-name input {
-    height: 41px;
-    font-size: 13px;
-  }
-  .ready-name label,
   .ready-difficulty > span {
     font-size: 11px;
   }
@@ -2376,9 +2338,6 @@ body {
   .arcade-ready {
     padding-inline: 10px;
     gap: 12px 8px;
-  }
-  .ready-name label {
-    font-size: 10px;
   }
   .mobile-setup-dock {
     left: 10px;
