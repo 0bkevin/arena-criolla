@@ -151,7 +151,7 @@ body {
   padding-bottom: 0;
 }
 .in-lobby .arcade-marquee {
-  height: 92px;
+  height: 112px;
   position: relative;
   display: flex;
   align-items: center;
@@ -1171,7 +1171,7 @@ body {
 }
 @media (min-width: 1440px) {
   .in-lobby .arcade-marquee {
-    height: 105px;
+    height: 124px;
   }
   .in-lobby .site-header {
     height: 48px;
@@ -1301,7 +1301,7 @@ body {
     padding-top: 8px;
   }
   .in-lobby .arcade-marquee {
-    height: 105px;
+    height: 120px;
   }
   .in-lobby .arcade-eyebrow {
     font-size: 7px;
@@ -1620,8 +1620,11 @@ body {
   }
 }
 @media (max-width: 600px) {
+  .in-lobby .arcade-marquee {
+    height: 124px;
+  }
   .in-lobby .marquee-art img {
-    object-position: center 70%;
+    object-position: center 30%;
   }
   .in-lobby .site-header,
   .in-lobby .home-page,
@@ -1747,6 +1750,19 @@ body {
   .in-lobby .mobile-setup-dock {
     left: 10px;
     right: 10px;
+  }
+}
+@media (min-width: 601px) and (max-width: 1100px) {
+  .in-lobby .arcade-marquee {
+    height: auto;
+    max-height: 124px;
+    aspect-ratio: 1983 / 308;
+  }
+}
+@media (max-width: 380px) {
+  .in-lobby .arcade-marquee {
+    height: auto;
+    aspect-ratio: 1280 / 427;
   }
 }
 @media (max-width: 360px) {

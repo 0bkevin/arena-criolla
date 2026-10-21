@@ -14,12 +14,13 @@ type CastMember = {
 };
 
 /**
- * Compose the lobby's static cast portraits from the original game artwork.
+ * Recreate the original two-row reference artwork from the game sprites.
  * Import /scripts/render-lobby-banner.ts in the dev browser, call
- * renderLobbyBanners(), and export its canvases as WebP at 0.9 into src/assets/
- * as lobby-cast-banner.webp and lobby-cast-banner-mobile.webp. Vite fingerprints
- * these files for the HTML preloads, component URLs and immutable browser cache.
- * Only the exported images ship with the lobby, not the extra sprite atlases.
+ * renderLobbyBanners(), and export its canvases as reference images.
+ * The production banners were recomposed for a compact single row with image_gen;
+ * see lobby-banner-art.json for their prompts. Do not overwrite them with these
+ * taller reference canvases. Vite fingerprints the production WebP assets for
+ * preloading and immutable browser caching; sprite atlases stay out of the lobby.
  */
 export async function renderLobbyBanners() {
   // Two staggered rows borrow the OG cover's portrait rhythm. Similar head
