@@ -131,27 +131,6 @@ button {
   margin-top: 4px;
   color: var(--lime);
 }
-.flag-mark {
-  width: 15px;
-  height: 11px;
-  display: flex;
-  flex-direction: column;
-  transform: skew(-8deg);
-  border-radius: 1px;
-  overflow: hidden;
-}
-.flag-mark i {
-  height: 4px;
-}
-.flag-mark i:nth-child(1) {
-  background: #f6d668;
-}
-.flag-mark i:nth-child(2) {
-  background: #6b9afb;
-}
-.flag-mark i:nth-child(3) {
-  background: #ef6570;
-}
 .main-nav {
   display: flex;
   gap: 29px;
