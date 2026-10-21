@@ -22,6 +22,7 @@
     "scripts/creator-codex",
     "scripts/creator-import.ts",
     "scripts/performance-audit.ts",
+    "scripts/render-lobby-banner.ts",
     "vite.config.ts"
   ]
 }

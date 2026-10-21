@@ -29,7 +29,6 @@ import type { useArenaNetwork } from "../network";
 import type { GameMode } from "./Game";
 import { Portrait } from "./Portrait";
 import { PixelIcon } from "./PixelIcon";
-import { VenezuelaStars } from "./CriolloArt";
 
 interface Props {
   mode: GameMode;
@@ -174,30 +173,24 @@ export function ArcadeLobby(props: Props) {
 
   return (
     <main className="page-width home-page arcade-home">
-      <section
-        className="arcade-marquee"
-        aria-label="Bienvenido a Arena Criolla"
-      >
-        <div className="marquee-landscape" aria-hidden="true" />
-        <div className="marquee-sunshine" aria-hidden="true" />
-        <div className="marquee-copy">
-          <h1>
-            ARENA <span>CRIOLLA</span>
-          </h1>
-        </div>
-        <div className="marquee-culture" aria-hidden="true">
-          <VenezuelaStars />
-        </div>
-        <div className="marquee-fight" aria-hidden="true">
-          <Portrait fighter="renny" frame={5} className="marquee-renny" />
-          <span className="marquee-vs">VS</span>
-          <Portrait
-            fighter="capriles"
-            facing={-1}
-            frame={1}
-            className="marquee-capriles"
+      <section className="arcade-marquee" aria-labelledby="lobby-banner-title">
+        <h1 id="lobby-banner-title" className="sr-only">
+          Elige tus luchadores
+        </h1>
+        <picture className="marquee-art" aria-hidden="true">
+          <source
+            media="(max-width: 600px)"
+            srcSet="/assets/lobby-cast-banner-mobile-v4.webp"
           />
-        </div>
+          <img
+            src="/assets/lobby-cast-banner-v5.webp"
+            alt=""
+            width="2560"
+            height="480"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
       </section>
 
       <div className="arcade-mode-row">

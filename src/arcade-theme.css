@@ -120,7 +120,7 @@ body {
   padding-bottom: 0;
 }
 .in-lobby .arcade-marquee {
-  height: 92px;
+  height: clamp(168px, 18vw, 240px);
   position: relative;
   display: flex;
   align-items: center;
@@ -131,24 +131,6 @@ body {
   background: #172b43;
   box-shadow: inset 0 1px 0 #ffffff0c;
 }
-.in-lobby .marquee-landscape {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background:
-    linear-gradient(90deg, #12283be6, #12283b30 64%, #12283b08),
-    url("/assets/caracas.webp") center 35% / cover;
-}
-.in-lobby .marquee-sunshine {
-  width: 54%;
-  z-index: -1;
-  background: linear-gradient(110deg, #1b3450f5, #12233ce8);
-  clip-path: polygon(0 0, 100% 0, 84% 100%, 0 100%);
-}
-.in-lobby .marquee-copy {
-  padding-left: 21px;
-  z-index: 2;
-}
 .in-lobby .arcade-eyebrow {
   color: #a9c1dd;
   font: 500 8px var(--pixel);
@@ -156,61 +138,6 @@ body {
 }
 .in-lobby .arcade-eyebrow svg {
   color: var(--coin);
-}
-.in-lobby .marquee-copy h1 {
-  font: italic 800 46px/1.02 var(--display);
-  color: var(--paper);
-  letter-spacing: -0.7px;
-  margin: 5px 0 3px;
-  text-shadow:
-    2px 2px 0 #091524,
-    3px 3px 0 #fff5db28;
-}
-.in-lobby .marquee-copy h1 > span {
-  color: var(--coin);
-  text-shadow:
-    2px 2px 0 #8a6a27,
-    3px 3px 0 #071124;
-}
-.in-lobby .marquee-copy p {
-  color: #a6c0da;
-  font: 500 11px var(--font-body);
-  letter-spacing: 0.1px;
-}
-.in-lobby .marquee-culture {
-  left: 48%;
-  top: 49%;
-  width: 110px;
-  transform: rotate(-12deg);
-}
-.in-lobby .marquee-culture > svg {
-  width: 108px;
-  height: 22px;
-  color: #fff5dbb0;
-}
-.in-lobby .marquee-fight {
-  inset: 0 0 0 57%;
-}
-.in-lobby .marquee-fight .portrait {
-  width: 145px;
-  height: 181px;
-  top: 2px;
-  filter: drop-shadow(2px 3px 0 #071124aa);
-}
-.in-lobby .marquee-renny {
-  left: 8%;
-  transform: rotate(-4deg);
-}
-.in-lobby .marquee-capriles {
-  right: 7%;
-  transform: rotate(4deg);
-}
-.in-lobby .marquee-vs {
-  top: 27px;
-  left: 44%;
-  font: italic 800 36px var(--display);
-  color: var(--coin);
-  text-shadow: 2px 3px 0 #071124;
 }
 .in-lobby .arcade-mode-row {
   gap: 20px;
@@ -1231,16 +1158,6 @@ body {
   .in-lobby .site-header {
     height: 48px;
   }
-  .in-lobby .arcade-marquee {
-    height: 105px;
-  }
-  .in-lobby .marquee-copy h1 {
-    font-size: 50px;
-  }
-  .in-lobby .marquee-fight .portrait {
-    width: 162px;
-    height: 203px;
-  }
   .in-lobby .arcade-modes {
     width: 800px;
   }
@@ -1366,40 +1283,11 @@ body {
     padding-top: 8px;
   }
   .in-lobby .arcade-marquee {
-    height: 105px;
-  }
-  .in-lobby .marquee-copy {
-    padding-left: 15px;
+    height: clamp(110px, 18vw, 168px);
   }
   .in-lobby .arcade-eyebrow {
     font-size: 7px;
     letter-spacing: 0.4px;
-  }
-  .in-lobby .marquee-copy h1 {
-    font-size: 42px;
-    max-width: 230px;
-  }
-  .in-lobby .marquee-copy h1 > span {
-    display: inline;
-  }
-  .in-lobby .marquee-copy p {
-    display: block;
-    font-size: 10px;
-  }
-  .in-lobby .marquee-fight {
-    left: 49%;
-  }
-  .in-lobby .marquee-fight .portrait {
-    width: 135px;
-    height: 169px;
-    top: 5px;
-  }
-  .in-lobby .marquee-vs {
-    font-size: 28px;
-    top: 39px;
-  }
-  .in-lobby .marquee-culture {
-    display: none;
   }
   .in-lobby .arcade-mode-row {
     margin: 10px 0;
@@ -1714,6 +1602,9 @@ body {
   }
 }
 @media (max-width: 600px) {
+  .in-lobby .arcade-marquee {
+    height: clamp(160px, 50vw, 240px);
+  }
   .in-lobby .site-header,
   .in-lobby .home-page,
   .in-lobby .site-footer {
@@ -1729,46 +1620,12 @@ body {
   .in-lobby .site-header .server-status {
     margin-inline: 2px;
   }
-  .in-lobby .marquee-copy {
-    padding-left: 12px;
-  }
-  .in-lobby .marquee-copy h1 {
-    font-size: 36px;
-    line-height: 0.95;
-    width: 160px;
-    margin-top: 8px;
-  }
-  .in-lobby .marquee-copy h1 > span {
-    display: block;
-  }
-  .in-lobby .marquee-copy p {
-    display: none;
-  }
   .in-lobby .arcade-eyebrow {
     font-size: 6px;
     letter-spacing: 0.2px;
   }
   .in-lobby .arcade-eyebrow > svg {
     width: 10px;
-  }
-  .in-lobby .marquee-fight {
-    left: 47%;
-  }
-  .in-lobby .marquee-fight .portrait {
-    width: 110px;
-    height: 138px;
-    top: 17px;
-  }
-  .in-lobby .marquee-renny {
-    left: -4%;
-  }
-  .in-lobby .marquee-capriles {
-    right: -9%;
-  }
-  .in-lobby .marquee-vs {
-    left: 41%;
-    top: 44px;
-    font-size: 23px;
   }
   .in-lobby .arcade-modes button,
   .in-lobby .arcade-modes #mode-local,
@@ -1909,18 +1766,6 @@ body {
   }
   .in-lobby .arcade-modes small {
     font-size: 4.5px;
-  }
-  .in-lobby .marquee-copy h1 {
-    font-size: 33px;
-    width: 145px;
-  }
-  .in-lobby .marquee-fight {
-    left: 50%;
-  }
-  .in-lobby .marquee-fight .portrait {
-    width: 95px;
-    height: 119px;
-    top: 24px;
   }
   .in-lobby .contender-stage {
     height: 158px;
