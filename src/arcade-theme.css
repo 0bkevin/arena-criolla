@@ -72,10 +72,6 @@ body {
   margin-left: 4px;
   gap: 7px;
 }
-.in-lobby .site-header .flag-mark {
-  width: 12px;
-  height: 9px;
-}
 .in-lobby .site-header .main-nav {
   gap: 8px;
 }
@@ -1121,15 +1117,6 @@ body {
 }
 .footer-brand-name > span {
   color: var(--coin);
-}
-.footer-brand .flag-mark {
-  width: 12px;
-  height: 9px;
-  flex-shrink: 0;
-  transform: none;
-}
-.footer-brand .flag-mark i {
-  flex: 1;
 }
 .site-footer .footer-credit {
   margin: 0;

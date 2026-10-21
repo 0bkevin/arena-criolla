@@ -399,14 +399,7 @@ export function App({
           </span>
           <span className="brand-name">
             ARENA
-            <span>
-              CRIOLLA
-              <span className="flag-mark">
-                <i />
-                <i />
-                <i />
-              </span>
-            </span>
+            <span>CRIOLLA</span>
           </span>
         </button>
         <nav className="main-nav" aria-label="Navegación principal">
@@ -537,11 +530,6 @@ export function App({
           <img src="/assets/arena-icon.svg" width="26" height="26" alt="" />
           <span className="footer-brand-name">
             ARENA <span>CRIOLLA</span>
-          </span>
-          <span className="flag-mark" aria-hidden="true">
-            <i />
-            <i />
-            <i />
           </span>
         </span>
         <p className="footer-credit">
