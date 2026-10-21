@@ -71,8 +71,6 @@ export function App({
   const [rival, setRival] = useState<FighterId>(initialMatchup[1]);
   const [fighterQuery, setFighterQuery] = useState("");
   const [stage, setStage] = useState<StageId>("caracas");
-  const [name, setName] = useState(() => getPreference("name", ""));
-  const [secondName, setSecondName] = useState("Pana 2");
   const [difficulty, setDifficulty] = useState<"easy" | "normal" | "hard">(
     "normal",
   );
@@ -83,13 +81,10 @@ export function App({
   const [modal, setModal] = useState<ModalName>(null);
   const [detail, setDetail] = useState<FighterId | null>(null);
   const [localMatch, setLocalMatch] = useState<MatchState | null>(null);
-  const [formError, setFormError] = useState("");
   const [notice, setNotice] = useState("");
   const [rematchWaiting, setRematchWaiting] = useState(false);
   const [joinCode, setJoinCode] = useState("");
   const [privateRoom, setPrivateRoom] = useState(false);
-  const nameInput = useRef<HTMLInputElement>(null);
-  const secondNameInput = useRef<HTMLInputElement>(null);
   const fighterSearchInput = useRef<HTMLInputElement>(null);
   const setupPanel = useRef<HTMLElement>(null);
   const footer = useRef<HTMLElement>(null);
@@ -109,8 +104,6 @@ export function App({
   const chosen = fighterById(fighter);
   const chosenStage = stageById(network.room?.stage || stage);
   const wins = Number(progress.wins[fighter]) || 0;
-  const secondNameError =
-    mode === "local" && Boolean(formError) && Boolean(name.trim());
   const host = network.room?.host === network.id;
   const searchTerm = fighterQuery
     .normalize("NFD")
@@ -147,9 +140,6 @@ export function App({
     setSound(audio);
     setPreference("sound", audio);
   }, [audio]);
-  useEffect(() => {
-    setPreference("name", name);
-  }, [name]);
   useEffect(() => {
     if (network.room) {
       setMode("online");
@@ -226,7 +216,6 @@ export function App({
     leaveLandscape();
     if (network.room) network.send({ type: "leave" });
     setMode(next);
-    setFormError("");
     network.setError("");
     clickSound();
   };
@@ -302,25 +291,11 @@ export function App({
         ? "auto"
         : "smooth",
     });
-    if (!name.trim()) nameInput.current?.focus({ preventScroll: true });
-  };
-  const validateName = () => {
-    if (!name.trim()) {
-      setFormError("Pon tu apodo y entramos a la arena.");
-      if (modal === "rooms") document.getElementById("lobby-name")?.focus();
-      else nameInput.current?.focus();
-      return false;
-    }
-    setFormError("");
-    return true;
+    setupPanel.current
+      ?.querySelector<HTMLButtonElement>(".arcade-start")
+      ?.focus({ preventScroll: true });
   };
   const startLocal = () => {
-    if (!validateName()) return;
-    if (mode === "local" && !secondName.trim()) {
-      setFormError("Tu pana también necesita un apodo.");
-      secondNameInput.current?.focus();
-      return;
-    }
     initAudio();
     stopReactions();
     preloadReactions();
@@ -332,12 +307,12 @@ export function App({
         stage,
         [
           {
-            name: name.trim(),
+            name: "Jugador 1",
             fighter,
             wins: Number(saved.wins[fighter]) || 0,
           },
           {
-            name: mode === "practice" ? "CPU" : secondName.trim(),
+            name: mode === "practice" ? "CPU" : "Jugador 2",
             fighter: rival,
             wins: Number(saved.wins[rival]) || 0,
           },
@@ -526,26 +501,12 @@ export function App({
           fighter={fighter}
           rival={rival}
           stage={chosenStage}
-          name={name}
-          secondName={secondName}
           difficulty={difficulty}
           query={fighterQuery}
           fighters={visibleFighters}
           network={network}
-          formError={formError}
-          secondNameError={secondNameError}
-          nameInput={nameInput}
-          secondNameInput={secondNameInput}
           searchInput={fighterSearchInput}
           setupPanel={setupPanel}
-          onName={(value) => {
-            setName(value);
-            setFormError("");
-          }}
-          onSecondName={(value) => {
-            setSecondName(value);
-            setFormError("");
-          }}
           onQuery={setFighterQuery}
           onClearQuery={clearFighterSearch}
           onFighter={selectFighter}
@@ -748,24 +709,9 @@ export function App({
               <Radio size={13} /> Actualizar
             </button>
           </div>
-          <div className="lobby-name">
-            <label className="field-label" htmlFor="lobby-name">
-              Tu apodo
-            </label>
-            <input
-              id="lobby-name"
-              className="plain-input"
-              value={name}
-              maxLength={20}
-              onChange={(e) => {
-                setName(e.target.value);
-                setFormError("");
-              }}
-            />
-          </div>
-          {(formError || network.error) && (
+          {network.error && (
             <p className="form-error" role="alert">
-              {formError || network.error}
+              {network.error}
             </p>
           )}
           <div className="lobby-grid">
@@ -787,10 +733,8 @@ export function App({
                 className="primary-button"
                 disabled={!network.connected}
                 onClick={() => {
-                  if (!validateName()) return;
                   network.send({
                     type: "create",
-                    name: name.trim(),
                     fighter,
                     stage,
                     wins,
@@ -806,7 +750,6 @@ export function App({
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  if (!validateName()) return;
                   if (!isRoomCode(joinCode)) {
                     network.setError(
                       "El código de sala debe tener 32 caracteres hexadecimales.",
@@ -816,7 +759,6 @@ export function App({
                   network.send({
                     type: "join",
                     code: joinCode,
-                    name: name.trim(),
                     fighter,
                     wins,
                   });
@@ -874,14 +816,12 @@ export function App({
                   <button
                     className="secondary-button"
                     onClick={() => {
-                      if (validateName())
-                        network.send({
-                          type: "join",
-                          code: room.code,
-                          name: name.trim(),
-                          fighter,
-                          wins,
-                        });
+                      network.send({
+                        type: "join",
+                        code: room.code,
+                        fighter,
+                        wins,
+                      });
                     }}
                   >
                     Unirme <ArrowRight size={14} />

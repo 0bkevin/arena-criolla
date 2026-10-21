@@ -57,7 +57,11 @@ class Peer {
   }
 }
 
-async function fixture(t: TestContext, grace = 1000) {
+async function fixture(
+  t: TestContext,
+  grace = 1000,
+  hostIdentity: { name?: string } = { name: "Host" },
+) {
   const server = await makeArenaServer({
     serveClient: false,
     roomReconnectGraceMs: grace,
@@ -74,7 +78,7 @@ async function fixture(t: TestContext, grace = 1000) {
   assert.ok(welcome.resumeToken);
   host.send({
     type: "create",
-    name: "Host",
+    ...hostIdentity,
     fighter: "capriles",
     stage: "guaira",
     wins: 2,
@@ -91,6 +95,106 @@ async function disconnected(
   for (let i = 0; i < 100 && server.clients.has(id); i++) await pause(5);
   assert.equal(server.clients.has(id), false);
 }
+
+for (const departure of ["leave", "expiry", "playing-disconnect"] as const) {
+  test(`automatic player labels follow room slots after host ${departure}`, async (t) => {
+    const f = await fixture(t, 150, {});
+    const guest = new Peer(f.url);
+    const guestWelcome = await guest.wait("welcome");
+    guest.send({
+      type: "join",
+      code: f.room.code,
+      fighter: "capriles",
+      wins: 2,
+    });
+    await guest.wait("room", (message) => message.room.players.length === 2);
+    if (departure === "playing-disconnect") {
+      f.host.send({ type: "ready", ready: true });
+      guest.send({ type: "ready", ready: true });
+      await Promise.all([f.host.wait("start"), guest.wait("start")]);
+    }
+    if (departure === "leave") {
+      f.host.send({ type: "leave" });
+      await f.host.wait("left");
+    } else {
+      f.host.socket.terminate();
+      if (departure === "expiry") {
+        const reserved = await guest.wait("room", (message) =>
+          message.room.players.some((player) => player.connected === false),
+        );
+        assert.deepEqual(
+          reserved.room.players.map((player) => player.name),
+          ["Jugador 1", "Jugador 2"],
+        );
+      }
+    }
+    const { room: promoted } = await guest.wait(
+      "room",
+      (message) => message.room.host === guestWelcome.id,
+    );
+    assert.equal(promoted.name, f.room.name);
+    assert.equal(promoted.players[0].id, guestWelcome.id);
+    assert.equal(promoted.players[0].name, "Jugador 1");
+    assert.equal(promoted.players[0].wins, 2);
+
+    const newcomer = new Peer(f.url);
+    await newcomer.wait("welcome");
+    newcomer.send({
+      type: "join",
+      code: f.room.code,
+      fighter: "capriles",
+      wins: 0,
+    });
+    const { room: joined } = await newcomer.wait("room");
+    assert.deepEqual(
+      joined.players.map((player) => player.name),
+      ["Jugador 1", "Jugador 2"],
+    );
+    guest.send({ type: "ready", ready: true });
+    newcomer.send({ type: "ready", ready: true });
+    const [first, second] = await Promise.all([
+      guest.wait("start"),
+      newcomer.wait("start"),
+    ]);
+    assert.equal(first.index, 0);
+    assert.equal(second.index, 1);
+    assert.deepEqual(first.state, second.state);
+    assert.deepEqual(
+      first.state.players.map((player) => player.config.name),
+      ["Jugador 1", "Jugador 2"],
+    );
+
+    // Replacing the promoted player's socket must preserve their new slot.
+    const returning = new Peer(f.url, guestWelcome.resumeToken);
+    assert.equal((await returning.wait("welcome")).resumed, true);
+    const resumed = await returning.wait("start");
+    assert.equal(resumed.index, 0);
+    assert.deepEqual(
+      resumed.state.players.map((player) => player.config.name),
+      ["Jugador 1", "Jugador 2"],
+    );
+  });
+}
+
+test("host promotion preserves an explicit legacy nickname that resembles an automatic label", async (t) => {
+  const f = await fixture(t);
+  const guest = new Peer(f.url);
+  const welcome = await guest.wait("welcome");
+  guest.send({
+    type: "join",
+    code: f.room.code,
+    name: "Jugador 2",
+    fighter: "zavarce",
+    wins: 0,
+  });
+  await guest.wait("room");
+  f.host.send({ type: "leave" });
+  const { room } = await guest.wait(
+    "room",
+    (message) => message.room.host === welcome.id,
+  );
+  assert.equal(room.players[0].name, "Jugador 2");
+});
 
 test("the host resumes the same private room, identity and selected settings", async (t) => {
   const f = await fixture(t);

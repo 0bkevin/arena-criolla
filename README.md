@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-Abre `http://localhost:5173`. El servidor escucha en todas las interfaces; otros dispositivos de la misma red pueden entrar usando la IP del equipo. Escribe un apodo, elige personaje y escenario y comienza la pelea. Los controles de teclado, mando y pantalla táctil se explican dentro del juego.
+Abre `http://localhost:5173`. El servidor escucha en todas las interfaces; otros dispositivos de la misma red pueden entrar usando la IP del equipo. Elige personaje y escenario y comienza la pelea; los jugadores reciben una etiqueta automática, sin escribir un apodo. Los controles de teclado, mando y pantalla táctil se explican dentro del juego.
 
 ## Compilación y producción
 

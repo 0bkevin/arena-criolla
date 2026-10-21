@@ -25,7 +25,7 @@ export type ClientMessage =
   | { type: "list" }
   | {
       type: "create";
-      name: string;
+      name?: string;
       fighter: FighterId;
       stage: StageId;
       wins: number;
@@ -34,7 +34,7 @@ export type ClientMessage =
   | {
       type: "join";
       code: string;
-      name: string;
+      name?: string;
       fighter: FighterId;
       wins: number;
     }

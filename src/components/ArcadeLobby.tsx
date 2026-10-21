@@ -36,20 +36,12 @@ interface Props {
   fighter: FighterId;
   rival: FighterId;
   stage: StageDefinition;
-  name: string;
-  secondName: string;
   difficulty: "easy" | "normal" | "hard";
   query: string;
   fighters: typeof FIGHTERS;
   network: ReturnType<typeof useArenaNetwork>;
-  formError: string;
-  secondNameError: boolean;
-  nameInput: RefObject<HTMLInputElement | null>;
-  secondNameInput: RefObject<HTMLInputElement | null>;
   searchInput: RefObject<HTMLInputElement | null>;
   setupPanel: RefObject<HTMLElement | null>;
-  onName: (name: string) => void;
-  onSecondName: (name: string) => void;
   onQuery: (query: string) => void;
   onClearQuery: () => void;
   onFighter: (id: FighterId) => void;
@@ -129,7 +121,13 @@ export function ArcadeLobby(props: Props) {
     else props.onFighter(pick.id);
     setPageStart(roster.findIndex((item) => item.id === pick.id));
   };
-  const rivalLabel = mode === "practice" ? "CPU" : "P2";
+  // Selection targets are relative to this client; labels follow room slots.
+  const ownLabel =
+    mode === "online" && network.room?.players[1]?.id === network.id
+      ? "P2"
+      : "P1";
+  const rivalLabel =
+    mode === "practice" ? "CPU" : ownLabel === "P2" ? "P1" : "P2";
   const handleStageKeys = (event: KeyboardEvent<HTMLDivElement>) => {
     if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
     const buttons = Array.from(
@@ -296,11 +294,11 @@ export function ArcadeLobby(props: Props) {
               >
                 <button
                   className={`contender-player ${!pickingRival ? "editing" : ""}`}
-                  aria-label="Elegir luchador para P1"
+                  aria-label={`Elegir luchador para ${ownLabel}`}
                   aria-pressed={!pickingRival}
                   onClick={() => setTarget("p1")}
                 >
-                  <span>P1</span>
+                  <span>{ownLabel}</span>
                   <span className="pixel-cursor" aria-hidden="true">
                     ◂
                   </span>
@@ -400,10 +398,10 @@ export function ArcadeLobby(props: Props) {
                   <button
                     className={!pickingRival ? "active p1" : "p1"}
                     aria-pressed={!pickingRival}
-                    aria-label="Elegir luchador para P1"
+                    aria-label={`Elegir luchador para ${ownLabel}`}
                     onClick={() => setTarget("p1")}
                   >
-                    P1
+                    {ownLabel}
                   </button>
                   {mode !== "online" && (
                     <button
@@ -420,7 +418,7 @@ export function ArcadeLobby(props: Props) {
                   className="roster-random"
                   onClick={surpriseFighter}
                   disabled={!roster.some((item) => item.id !== activeFighter)}
-                  aria-label={`Elegir luchador al azar para ${pickingRival ? rivalLabel : "P1"}`}
+                  aria-label={`Elegir luchador al azar para ${pickingRival ? rivalLabel : ownLabel}`}
                   title="Sorpréndeme"
                 >
                   <PixelIcon kind="dice" size={19} />
@@ -527,7 +525,7 @@ export function ArcadeLobby(props: Props) {
                         </span>
                         <Portrait fighter={item.id} bust />
                         <div className="fighter-player-tags">
-                          {p1 && <span className="tag-p1">P1</span>}
+                          {p1 && <span className="tag-p1">{ownLabel}</span>}
                           {p2 && <span className="tag-p2">{rivalLabel}</span>}
                         </div>
                       </div>
@@ -578,7 +576,8 @@ export function ArcadeLobby(props: Props) {
                 </div>
               )}
               <span className="sr-only" role="status">
-                Luchador seleccionado para {pickingRival ? rivalLabel : "P1"}:{" "}
+                Luchador seleccionado para{" "}
+                {pickingRival ? rivalLabel : ownLabel}:{" "}
                 {fighterById(activeFighter).name}.
               </span>
             </div>
@@ -633,7 +632,7 @@ export function ArcadeLobby(props: Props) {
         </section>
 
         <section
-          className={`arcade-ready ${mode === "local" ? "local-ready" : ""} ${mode === "online" ? "online-ready" : ""}`}
+          className={`arcade-ready ${mode === "local" ? "local-ready" : ""} ${mode === "online" ? "online-ready" : ""} ${network.room ? "in-room" : ""}`}
           ref={props.setupPanel}
           id="prepare-fight"
           aria-label="Preparar pelea"
@@ -644,74 +643,13 @@ export function ArcadeLobby(props: Props) {
               <strong>PREPARAR PELEA</strong>
             </div>
           </div>
-          {!network.room ? (
-            <div className="ready-name">
-              <label htmlFor="player-name">
-                TU APODO <span>P1</span>
-              </label>
-              <input
-                ref={props.nameInput}
-                id="player-name"
-                className={
-                  props.formError && !props.secondNameError ? "field-error" : ""
-                }
-                value={props.name}
-                maxLength={20}
-                autoComplete="nickname"
-                aria-invalid={
-                  Boolean(props.formError) && !props.secondNameError
-                }
-                aria-describedby={
-                  props.formError && !props.secondNameError
-                    ? "player-name-error"
-                    : undefined
-                }
-                onChange={(e) => props.onName(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && mode !== "online") props.onStart();
-                }}
-              />
-              {props.formError && !props.secondNameError && (
-                <p className="form-error" id="player-name-error" role="alert">
-                  {props.formError}
-                </p>
-              )}
-            </div>
-          ) : (
+          {network.room && (
             <div className="ready-room">
               <span>CÓDIGO DE SALA</span>
               <strong>{network.room.code}</strong>
               <button aria-label="Copiar invitación" onClick={props.onInvite}>
                 <Copy size={16} />
               </button>
-            </div>
-          )}
-          {mode === "local" && (
-            <div className="ready-name p2-name">
-              <label htmlFor="second-name">
-                TU PANA <span>P2</span>
-              </label>
-              <input
-                ref={props.secondNameInput}
-                id="second-name"
-                aria-label="Apodo del jugador 2"
-                className={props.secondNameError ? "field-error" : ""}
-                value={props.secondName}
-                maxLength={20}
-                aria-invalid={props.secondNameError}
-                aria-describedby={
-                  props.secondNameError ? "second-name-error" : undefined
-                }
-                onChange={(e) => props.onSecondName(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") props.onStart();
-                }}
-              />
-              {props.secondNameError && (
-                <p className="form-error" id="second-name-error" role="alert">
-                  {props.formError}
-                </p>
-              )}
             </div>
           )}
           {mode === "practice" && (

@@ -45,6 +45,7 @@ interface Client {
   id: string;
   socket: WebSocket;
   room: string | null;
+  nickname: string;
   input: Input;
   inputAt: number;
   alive: boolean;
@@ -67,8 +68,8 @@ const cleanName = (value: unknown) =>
     ? value
         .replace(/[\u0000-\u001f<>]/g, "")
         .trim()
-        .slice(0, 20) || "Pana"
-    : "Pana";
+        .slice(0, 20)
+    : "";
 const cleanWins = (value: unknown) =>
   Number.isFinite(value)
     ? Math.min(9999, Math.max(0, Math.floor(Number(value))))
@@ -229,6 +230,7 @@ export async function makeArenaServer(
     forgetSession(client);
     const room = client.room && rooms.get(client.room);
     client.room = null;
+    client.nickname = "";
     client.input = emptyInput();
     if (room) {
       const wasPlaying =
@@ -237,8 +239,10 @@ export async function makeArenaServer(
       room.view.players = room.view.players.filter((p) => p.id !== client.id);
       room.state = null;
       room.view.status = "waiting";
-      room.view.players.forEach((p) => {
+      room.view.players.forEach((p, index) => {
         p.ready = false;
+        // Automatic labels follow the new slots; explicit legacy nicknames stay.
+        p.name = room.clients[index].nickname || `Jugador ${index + 1}`;
       });
       if (room.clients.length === 0) rooms.delete(room.view.code);
       else {
@@ -348,6 +352,7 @@ export async function makeArenaServer(
           id: randomUUID(),
           socket,
           room: null,
+          nickname: "",
           input: emptyInput(),
           inputAt: performance.now(),
           alive: true,
@@ -473,10 +478,11 @@ export async function makeArenaServer(
         do {
           code = randomBytes(16).toString("hex").toUpperCase();
         } while (rooms.has(code));
-        const name = cleanName(message.name);
+        const nickname = cleanName(message.name);
+        client.nickname = nickname;
         const player: RoomPlayer = {
           id: client.id,
-          name,
+          name: nickname || "Jugador 1",
           fighter: message.fighter,
           ready: false,
           wins: cleanWins(message.wins),
@@ -484,7 +490,9 @@ export async function makeArenaServer(
         const room: Room = {
           view: {
             code,
-            name: `La sala de ${name}`,
+            name: nickname
+              ? `La sala de ${nickname}`
+              : `Sala ${code.slice(0, 6)}`,
             stage: message.stage,
             players: [player],
             status: "waiting",
@@ -518,10 +526,11 @@ export async function makeArenaServer(
           error(client, "Esa sala está ocupada. Crea una nueva o elige otra.");
           return;
         }
+        client.nickname = cleanName(message.name);
         room.clients.push(client);
         room.view.players.push({
           id: client.id,
-          name: cleanName(message.name),
+          name: client.nickname || "Jugador 2",
           fighter: message.fighter,
           ready: false,
           wins: cleanWins(message.wins),

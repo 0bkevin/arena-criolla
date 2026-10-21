@@ -147,7 +147,6 @@
     .contender-identity > span,
     .contender-identity p,
     .contender-player > span:nth-child(2),
-    .ready-name label,
     .ready-difficulty > span,
     .ready-room > span,
     .ready-online-status,
@@ -172,7 +171,7 @@
 .in-lobby .ready-room > button {
   width: 44px;
 }
-.in-lobby :is(.ready-name input, .arcade-search input) {
+.in-lobby .arcade-search input {
   font-size: 16px;
 }
 .in-lobby
@@ -232,12 +231,6 @@
   .modal:where(:not(.help-modal)) .controls-table .table-heading {
     font-size: 10px;
     padding-inline: 3px;
-  }
-  .modal:where(:not(.help-modal)) .lobby-name {
-    align-items: stretch;
-  }
-  .modal:where(:not(.help-modal)) .lobby-name .plain-input {
-    width: 100%;
   }
   .in-lobby .arcade-modes button > svg {
     display: none;
