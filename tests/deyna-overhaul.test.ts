@@ -6,7 +6,7 @@ import {
   stepMatch,
   type MatchState,
   type Input,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 import { type FighterId } from "../shared/content";
 
 import { deynaSpecialPose } from "../src/game/finales/deyna";

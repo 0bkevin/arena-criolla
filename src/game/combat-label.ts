@@ -3,6 +3,7 @@ import type { PlayerState } from "../../shared/engine";
 
 /** The category stays readable in combat; requested character lines keep their voice. */
 export function combatLabel(player: PlayerState, tick: number): string {
+  if (player.superChargeTicks > 0) return "Cargando definitiva";
   if (player.attack === "super") return "Definitiva";
   if (player.attack === "special") return "Ataque especial";
   if (!player.combo || tick - player.comboTick >= 75) return "";

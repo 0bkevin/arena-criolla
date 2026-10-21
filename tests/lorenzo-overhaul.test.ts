@@ -7,7 +7,7 @@ import {
   stepMatch,
   type Input,
   type MatchState,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 
 import { lorenzoSpecialPose } from "../src/game/finales/lorenzo";
 

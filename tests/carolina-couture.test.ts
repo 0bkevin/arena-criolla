@@ -9,7 +9,7 @@ import {
   stepMatch,
   WORLD,
   type Input,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 import { fighterById } from "../shared/content";
 import { finaleById } from "../shared/finales";
 import {

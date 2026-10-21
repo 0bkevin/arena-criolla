@@ -9,6 +9,7 @@ import {
 } from "../src/game/controls";
 import { createMatch, stepMatch } from "../shared/engine";
 import { INTRO_TOTAL_TICKS } from "../shared/presentation";
+import { SUPER_CHARGE_TICKS } from "../shared/content";
 
 test("J remains Vicente's basic punch before and after unlocking his special", () => {
   for (const wins of [0, 3]) {
@@ -184,6 +185,36 @@ test("disconnecting P1's controller preserves P2's controls and assigns replacem
   }
 });
 
+test("gamepads hold the definitive between polls and release it on key-up or disconnect", () => {
+  const original = Object.getOwnPropertyDescriptor(navigator, "getGamepads");
+  try {
+    for (const withSources of [false, true]) {
+      const inputs = makeInputs();
+      const sources: [ControlSources, ControlSources] = [new ControlSources(inputs[0]), new ControlSources(inputs[1])];
+      const pad = { index: 0, connected: true, axes: [0, 0], buttons: Array.from({ length: 16 }, () => ({ pressed: false })) };
+      Object.defineProperty(navigator, "getGamepads", { configurable: true, value: () => [pad] });
+      const controls = new GamepadControls(withSources ? sources : undefined);
+      pad.buttons[7].pressed = true;
+      controls.update(inputs, 1);
+      controls.update(inputs, 1);
+      assert.equal(inputs[0].superHeld, true);
+      assert.equal(inputs[0].actions.super, 1);
+      pad.buttons[7].pressed = false;
+      controls.update(inputs, 1);
+      assert.equal(inputs[0].superHeld, false);
+      pad.buttons[7].pressed = true;
+      controls.update(inputs, 1);
+      pad.connected = false;
+      controls.update(inputs, 1);
+      assert.equal(inputs[0].superHeld, false);
+      assert.equal(inputs[0].actions.super, 2);
+    }
+  } finally {
+    if (original) Object.defineProperty(navigator, "getGamepads", original);
+    else Reflect.deleteProperty(navigator, "getGamepads");
+  }
+});
+
 for (const control of [
   "jump",
   "light",
@@ -206,6 +237,11 @@ for (const control of [
     sources.press("finger", control);
     stepMatch(match, inputs);
     const player = match.players[0];
+    if (control === "super") {
+      assert.equal(player.attack, null);
+      assert.equal(inputs[0].superHeld, true);
+      for (let frame = 1; frame < SUPER_CHARGE_TICKS; frame++) stepMatch(match, inputs);
+    }
     if (control === "jump") assert.ok(player.vy < 0 && player.jumps === 1);
     else if (control === "dash") assert.ok(player.dash > 0);
     else assert.equal(player.attack, control);

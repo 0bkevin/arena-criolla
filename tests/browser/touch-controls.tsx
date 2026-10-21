@@ -5,6 +5,8 @@ import { StrictMode, type ComponentProps } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { flushSync } from "react-dom";
 import { TouchControls } from "../../src/components/TouchControls";
+import { createMatch, emptyInput, stepMatch } from "../../shared/engine";
+import { SUPER_CHARGE_TICKS } from "../../shared/content";
 import {
   ControlSources,
   makeInputs,
@@ -67,6 +69,7 @@ export function mount(
   mobile = options.mobile ?? true;
   props = {
     energy: options.energy ?? 100,
+    superUsed: false,
     wins: options.wins ?? 3,
     reset: 0,
     onPress: (pointer, control) => {
@@ -88,7 +91,7 @@ export function update(changes: Partial<ComponentProps<typeof TouchControls>>) {
 }
 
 /** Exercise the real game's arena, toolbar, pad and keyboard hints together. */
-export async function mountHybridGame() {
+export async function mountHybridGame(options: { energy?: number } = {}) {
   unmount();
   if (matchMedia("(pointer: coarse)").matches)
     throw new Error("Hybrid regression requires a fine primary pointer");
@@ -116,6 +119,7 @@ export async function mountHybridGame() {
     { name: "P2", fighter: "javier", wins: 3 },
   ]);
   initial.phase = "playing";
+  if (options.energy !== undefined) initial.players[0].energy = options.energy;
   initial.remaining = 360000;
   const noop = () => {};
   root = createRoot(document.getElementById("fixture")!);
@@ -163,6 +167,29 @@ export function gameLayout() {
       arena.height > 0 &&
       Math.abs(arena.width / arena.height - 1.8) < 0.01,
   };
+}
+
+/** Reproduce a stalled frame against the production Game, not a prepared charge. */
+export async function chargeStallRegression() {
+  const waitUntil = async (ready: () => boolean, timeout: number) => {
+    const deadline = Date.now() + timeout;
+    while (!ready() && Date.now() < deadline)
+      await new Promise(resolve => setTimeout(resolve, 30));
+    if (!ready()) throw new Error("Production charge did not reach its expected state");
+  };
+  try {
+    await mountHybridGame({ energy: 100 });
+    await waitUntil(() => !document.querySelector(".loading-overlay"), 10000);
+    button("super").click();
+    window.setTimeout(() => {
+      const until = performance.now() + 400;
+      while (performance.now() < until) { /* Simulate a stalled browser frame. */ }
+    }, 150);
+    await waitUntil(() => document.querySelector(".super-charge-status")?.textContent === "Usada", 3000);
+    return { pass: true, status: "Usada" };
+  } finally {
+    mount();
+  }
 }
 
 const button = (control: Control) =>
@@ -438,6 +465,80 @@ export async function run() {
     pointer("pointerup", 1, "super");
     pointer("pointerdown", 1, "super");
     equal(input.actions.super, 2);
+  });
+  await test("a used super stays unavailable after energy recovery and blocks every input path", () => {
+    pointer("pointerdown", 1, "super");
+    equal(input.actions.super, 1);
+    update({ superUsed: true, energy: 100 });
+    equal(state().pressed, []);
+    equal(button("super").getAttribute("aria-disabled"), "true");
+    equal(button("super").textContent?.includes("Usada"), true);
+    update({ energy: 0 });
+    update({ energy: 100 });
+    pointer("pointerup", 1, "super");
+    pointer("pointerdown", 2, "super");
+    pointer("pointerup", 2, "super");
+    button("super").click();
+    button("super").dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+    button("super").dispatchEvent(new KeyboardEvent("keyup", { key: "Enter", bubbles: true }));
+    equal(input.actions.super, 1, "spent super must reject fresh pointer, click and keyboard input");
+    update({ superUsed: false, reset: 1 });
+    equal(button("super").getAttribute("aria-disabled"), null);
+    pointer("pointerdown", 3, "super");
+    equal(input.actions.super, 2, "a new fight restores the super");
+  });
+  await test("holding the real touch button charges, early release cancels, and a full hold activates once", () => {
+    const match = createMatch("caracas", [
+      { name: "Uno", fighter: "capriles", wins: 0 },
+      { name: "Dos", fighter: "javier", wins: 0 },
+    ]);
+    match.phase = "playing";
+    match.players[0].energy = 100;
+    const other = emptyInput();
+    pointer("pointerdown", 1, "super");
+    equal(input.superHeld, true);
+    for (let frame = 0; frame < SUPER_CHARGE_TICKS - 1; frame++) stepMatch(match, [input, other]);
+    equal(match.players[0].superUsed, false);
+    update({ superChargeTicks: match.players[0].superChargeTicks });
+    equal(button("super").textContent?.includes(`${Math.floor((SUPER_CHARGE_TICKS - 1) / SUPER_CHARGE_TICKS * 100)}%`), true);
+    pointer("pointerup", 1, "super");
+    stepMatch(match, [input, other]);
+    equal(match.players[0].superChargeTicks, 0);
+    equal(match.players[0].energy, 100);
+    pointer("pointerdown", 2, "super");
+    for (let frame = 0; frame < SUPER_CHARGE_TICKS; frame++) stepMatch(match, [input, other]);
+    equal(match.players[0].attack, "super");
+    update({ superUsed: true, superChargeTicks: 0, energy: match.players[0].energy });
+    equal(input.superHeld, false);
+    equal(button("super").getAttribute("aria-disabled"), "true");
+  });
+  await test("accessible clicks keep the super held long enough and reset cancels that hold", async () => {
+    button("super").click();
+    equal(input.superHeld, true);
+    await new Promise(resolve => setTimeout(resolve, 150));
+    equal(input.superHeld, true, "a super must outlive the old 100ms tap timer");
+    update({ reset: 1 });
+    equal(input.superHeld, false);
+    await new Promise(resolve => setTimeout(resolve, 100));
+    equal(input.superHeld, false);
+  });
+  await test("accessible super holds follow charge completion and can be cancelled with another click", async () => {
+    button("super").click();
+    update({ superChargeTicks: 1 });
+    await new Promise(resolve => setTimeout(resolve, 1200));
+    equal(input.superHeld, true, "an active charge cannot expire in wall time");
+    update({ superChargeTicks: 0, superUsed: true, energy: 10 });
+    equal(input.superHeld, false);
+    update({ superUsed: false, energy: 100 });
+    button("super").click();
+    update({ superChargeTicks: 1 });
+    button("super").click();
+    equal(input.superHeld, false, "another accessible click cancels for free");
+    update({ superChargeTicks: 0 });
+    button("super").click();
+    update({ superChargeTicks: 1 });
+    update({ superChargeTicks: 0 });
+    equal(input.superHeld, false, "ending the active charge releases its virtual input");
   });
   await test("gestures can start in pad gaps; unrelated pointers cannot activate buttons", () => {
     pointer("pointermove", 50, "light");

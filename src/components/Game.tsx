@@ -20,7 +20,11 @@ import {
   VolumeX,
   Zap,
 } from "lucide-react";
-import { fighterById, stageById } from "../../shared/content";
+import {
+  fighterById,
+  stageById,
+  SUPER_CHARGE_SECONDS_LABEL,
+} from "../../shared/content";
 import { INTRO_COUNTDOWN_START, introActor } from "../../shared/presentation";
 import {
   cpuInput,
@@ -60,6 +64,7 @@ import { Portrait } from "./Portrait";
 import { VictoryScreen } from "./VictoryScreen";
 import { VenezuelaStars } from "./CriolloArt";
 import { TouchControls } from "./TouchControls";
+import { SuperMeter } from "./SuperMeter";
 import {
   enterLandscape,
   hasTouchInput,
@@ -904,9 +909,7 @@ export function Game(props: Props) {
                         />
                       ))}
                     </div>
-                    <div className="energy-track">
-                      <div style={{ width: `${p.energy}%` }} />
-                    </div>
+                    <SuperMeter player={p} tick={view.tick} />
                     <Zap size={12} />
                     <span>{Math.floor(p.energy)}%</span>
                   </div>
@@ -1081,6 +1084,8 @@ export function Game(props: Props) {
               onRelease={touchRelease}
               reset={touchReset}
               energy={view.players[localIndex].energy}
+              superUsed={view.players[localIndex].superUsed}
+              superChargeTicks={view.players[localIndex].superChargeTicks}
               wins={view.players[localIndex].config.wins}
               specialUnlockWins={specialUnlockWins}
             />
@@ -1098,7 +1103,11 @@ export function Game(props: Props) {
               </span>
               <span>
                 <kbd>U</kbd> Bloquear <kbd>⇧</kbd> Esquivar <kbd>I</kbd>{" "}
-                Definitiva
+                Definitiva (
+                {view.players[localIndex].superUsed
+                  ? "usada"
+                  : `mantén ${SUPER_CHARGE_SECONDS_LABEL} s`}
+                )
               </span>
               <button
                 className="text-button"

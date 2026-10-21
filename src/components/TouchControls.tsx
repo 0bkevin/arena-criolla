@@ -20,7 +20,11 @@ import {
   Swords,
   Zap,
 } from "lucide-react";
-import { SUPER_ENERGY_COST } from "../../shared/content";
+import {
+  SUPER_ENERGY_COST,
+  SUPER_CHARGE_TICKS,
+  SUPER_CHARGE_SECONDS_LABEL,
+} from "../../shared/content";
 import type { Control } from "../game/controls";
 import { TouchInputState } from "../game/touch-input";
 import { touchControlAtPoint } from "../game/touch-target";
@@ -67,6 +71,8 @@ export function TouchControls({
   onRelease,
   reset,
   energy,
+  superUsed,
+  superChargeTicks = 0,
   wins,
   specialUnlockWins = 0,
 }: {
@@ -74,6 +80,8 @@ export function TouchControls({
   onRelease: (pointer: number) => void;
   reset: number;
   energy: number;
+  superUsed: boolean;
+  superChargeTicks?: number;
   wins: number;
   specialUnlockWins?: number;
 }) {
@@ -90,11 +98,25 @@ export function TouchControls({
   const [pressed, setPressed] = useState<Set<Control>>(() => new Set());
   const keyboardPointers = useRef(new Map<string, number>());
   const tapTimers = useRef(new Map<number, number>());
+  const accessibleSuper = useRef<{
+    pointer: number;
+    started: boolean;
+    frame: number;
+  } | null>(null);
   const nextVirtualPointer = useRef(-1);
 
   const syncPressed = () => setPressed(input.current!.pressedControls());
 
+  const releaseAccessibleSuper = () => {
+    const hold = accessibleSuper.current;
+    if (!hold) return false;
+    accessibleSuper.current = null;
+    window.cancelAnimationFrame(hold.frame);
+    return input.current!.release(hold.pointer);
+  };
+
   const releaseAll = () => {
+    releaseAccessibleSuper();
     const target = root.current;
     for (const pointer of input.current!.pointers()) {
       if (pointer < 0) continue;
@@ -175,6 +197,7 @@ export function TouchControls({
       screen.orientation?.removeEventListener("change", releaseAllInputs);
       document.removeEventListener("visibilitychange", releaseWhenHidden);
       // Cleanup releases game inputs without scheduling React state during unmount.
+      releaseAccessibleSuper();
       for (const pointer of input.current!.pointers()) {
         if (pointer < 0) continue;
         try {
@@ -200,10 +223,23 @@ export function TouchControls({
     let changed = false;
     if (wins < specialUnlockWins || energy < 25)
       changed = input.current!.releaseControl("special") || changed;
-    if (energy < SUPER_ENERGY_COST)
+    if (superUsed || energy < SUPER_ENERGY_COST)
       changed = input.current!.releaseControl("super") || changed;
+    const hold = accessibleSuper.current;
+    if (hold) {
+      if (superChargeTicks > 0) {
+        hold.started = true;
+        window.cancelAnimationFrame(hold.frame);
+      }
+      if (
+        superUsed ||
+        energy < SUPER_ENERGY_COST ||
+        (hold.started && superChargeTicks === 0)
+      )
+        changed = releaseAccessibleSuper() || changed;
+    }
     if (changed) syncPressed();
-  }, [energy, wins, specialUnlockWins]);
+  }, [energy, superUsed, superChargeTicks, wins, specialUnlockWins]);
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     const target = event.target as Element;
@@ -263,9 +299,31 @@ export function TouchControls({
       };
     // Pointer down already activated the game; detail 0 is keyboard or AT click.
     if (event.detail !== 0 || nativeEvent.pointerType) return;
+    if (control === "super" && accessibleSuper.current) {
+      if (releaseAccessibleSuper()) syncPressed();
+      return;
+    }
     const pointer = nextVirtualPointer.current--;
     input.current!.press(pointer, control);
     syncPressed();
+    if (control === "super") {
+      // Follow simulation progress instead of expiring a valid charge in wall time.
+      const hold = { pointer, started: false, frame: 0 };
+      accessibleSuper.current = hold;
+      let elapsed = 0;
+      let last = performance.now();
+      const releaseIfRejected = (now: number) => {
+        if (accessibleSuper.current !== hold || hold.started) return;
+        // Match the game's elapsed-time cap so a stalled frame cannot expire this.
+        elapsed += Math.min(100, Math.max(0, now - last));
+        last = now;
+        if (elapsed >= 2000) {
+          if (releaseAccessibleSuper()) syncPressed();
+        } else hold.frame = window.requestAnimationFrame(releaseIfRejected);
+      };
+      hold.frame = window.requestAnimationFrame(releaseIfRejected);
+      return;
+    }
     const timer = window.setTimeout(() => {
       tapTimers.current.delete(pointer);
       if (input.current!.release(pointer)) syncPressed();
@@ -375,12 +433,20 @@ export function TouchControls({
         <TouchButton
           control="super"
           label="Definitiva"
-          text="Súper"
-          disabled={energy < SUPER_ENERGY_COST}
+          text={
+            superUsed
+              ? "Usada"
+              : superChargeTicks > 0
+                ? `${Math.floor((superChargeTicks / SUPER_CHARGE_TICKS) * 100)}%`
+                : "Cargar"
+          }
+          disabled={superUsed || energy < SUPER_ENERGY_COST}
           reason={
-            energy < SUPER_ENERGY_COST
-              ? `Necesitas ${SUPER_ENERGY_COST} de energía.`
-              : "Toca directamente para activar. No se activa al deslizar."
+            superUsed
+              ? "Ya usaste la definitiva en esta pelea. Solo se puede usar una vez."
+              : energy < SUPER_ENERGY_COST
+                ? `Necesitas ${SUPER_ENERGY_COST} de energía. Un uso por pelea.`
+                : `Mantén pulsado ${SUPER_CHARGE_SECONDS_LABEL} segundos para cargar. Un golpe interrumpe la carga y cuesta 15 de energía. Un uso por pelea. No se activa al deslizar.`
           }
           pressed={pressed.has("super")}
           onClick={handleAccessibleClick}
