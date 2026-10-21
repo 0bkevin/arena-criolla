@@ -123,7 +123,7 @@ test("Puma recognizes combo upgrades, connects full chains with approach inputs 
     for (const [wins, energy] of [[0, 100], [1, 100], [2, 89], [2, 100], [3, 100]] as const) {
       const r = setup(side, 200, wins); r.player.energy = energy; r.inputs[side].actions.super++; r.advance(9);
       if (r.state.fieldFinales) { assert.equal(r.state.fieldFinales[0].fighter, "puma"); assert.equal(r.rival.hp, 100); r.advance(320); }
-      if (wins < 2 || energy < 90) { assert.equal(r.player.attack, null); assert.equal(r.rival.hp, 100); }
+      if (energy < 90) { assert.equal(r.player.attack, null); assert.equal(r.rival.hp, 100); }
       else { assert.equal(r.player.combo, "Último aplauso"); assert.equal(r.player.comboBonus, 12); assert.equal(r.state.finale, undefined); assert.equal(r.player.attack, null); }
       emit("super-gate", { side, wins, energy, hp: r.rival.hp, attackerEnergy: r.player.energy, combo: r.player.combo });
     }

@@ -642,39 +642,46 @@ test("anonymous rooms synchronize two players, validate inputs, rematch, and rec
   }
 });
 
-test("rooms reject Vicente's definitive before two wins for both players", async () => {
+test("rooms allow Vicente's definitive from zero wins and enforce its energy cost for both players", async () => {
   for (const wins of [0, 1]) {
-    const match = await onlineMatch(
-      "poliedro",
-      ["zavarce", "zavarce"],
-      [wins, wins],
-    );
-    try {
-      const state = match.active.state!;
-      state.players.forEach((player) => {
-        player.energy = 100;
-      });
-      const input = emptyInput();
-      input.actions.super++;
-      match.a.send({ type: "input", matchId: state.id, input });
-      match.b.send({ type: "input", matchId: state.id, input });
-      const received = await match.a.wait("state", (message) =>
-        message.state.players.every((player) => player.lastActions.super === 1),
+    for (const energy of [89, 90]) {
+      const match = await onlineMatch(
+        "poliedro",
+        ["zavarce", "zavarce"],
+        [wins, wins],
       );
-      const remote = await match.b.wait(
-        "state",
-        (message) => message.state.tick === received.state.tick,
-      );
-      assert.deepEqual(remote.state, received.state);
-      assert.equal(received.state.projectiles.length, 0);
-      for (const player of received.state.players) {
-        assert.equal(player.config.wins, wins);
-        assert.equal(player.attack, null);
-        assert.equal(player.energy, 100);
-        assert.equal(player.cooldown, 0);
+      try {
+        const state = match.active.state!;
+        state.players.forEach((player) => {
+          player.energy = energy;
+        });
+        const input = emptyInput();
+        input.actions.super++;
+        match.a.send({ type: "input", matchId: state.id, input });
+        match.b.send({ type: "input", matchId: state.id, input });
+        const received = await match.a.wait("state", (message) =>
+          message.state.players.every((player) => player.lastActions.super === 1),
+        );
+        const remote = await match.b.wait(
+          "state",
+          (message) => message.state.tick === received.state.tick,
+        );
+        assert.deepEqual(remote.state, received.state);
+        assert.equal(received.state.projectiles.length, 0);
+        for (const player of received.state.players) {
+          assert.equal(player.config.wins, wins);
+          assert.equal(player.attack, energy >= 90 ? "super" : null);
+          if (energy >= 90) {
+            assert.ok(player.energy < 1);
+            assert.ok(player.cooldown > 0);
+          } else {
+            assert.ok(player.energy >= 89 && player.energy < 90);
+            assert.equal(player.cooldown, 0);
+          }
+        }
+      } finally {
+        await match.close();
       }
-    } finally {
-      await match.close();
     }
   }
 });

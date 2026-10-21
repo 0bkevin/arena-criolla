@@ -122,7 +122,7 @@ test("Maite recognizes base and upgraded combos, connects every strike with chas
     for (const [wins, energy] of [[0, 100], [1, 100], [2, 89], [2, 90], [2, 100], [3, 100]] as const) {
       const r = setup(side, 200, wins); r.player.energy = energy; r.inputs[side].actions.super++; r.advance(9);
       r.advance(30);
-      if (wins < 2 || energy < 90) { assert.equal(r.player.attack, null); assert.equal(r.rival.hp, 100); }
+      if (energy < 90) { assert.equal(r.player.attack, null); assert.equal(r.rival.hp, 100); }
       else { assert.equal(r.player.combo, "Gran final"); assert.equal(r.player.comboBonus, 12); assert.equal(r.player.hits, 1); close(r.rival.hp, 100 - (28 * 0.94 + 12) * 1.03); }
       emit("super-gate", { side, wins, energy, hp: r.rival.hp, attackerEnergy: r.player.energy, combo: r.player.combo });
     }

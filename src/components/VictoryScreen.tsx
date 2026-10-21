@@ -1,10 +1,6 @@
 import { useLayoutEffect, type CSSProperties, type RefObject } from "react";
 import { ArrowRight, RotateCcw, Trophy, Zap } from "lucide-react";
-import {
-  SUPER_UNLOCK_WINS,
-  fighterById,
-  stageById,
-} from "../../shared/content";
+import { fighterById, stageById } from "../../shared/content";
 import type { MatchState } from "../../shared/engine";
 import type { GameMode } from "./Game";
 import { VenezuelaStars } from "./CriolloArt";
@@ -74,7 +70,8 @@ export function VictoryScreen({
   const unlocked =
     winner &&
     (mode === "local" || localWinner) &&
-    (winner.config.wins === 0 || winner.config.wins === SUPER_UNLOCK_WINS - 1);
+    (winner.config.wins === 0 ||
+      winner.config.wins + 1 === fighter?.specialUnlockWins);
 
   return (
     <div
@@ -146,9 +143,7 @@ export function VictoryScreen({
               <span>
                 {winner.config.wins === 0
                   ? "Nuevo combo desbloqueado"
-                  : fighter?.specialUnlockWins === SUPER_UNLOCK_WINS
-                    ? "Especial y definitiva desbloqueados"
-                    : "Definitiva desbloqueada"}{" "}
+                  : "Especial desbloqueado"}{" "}
                 para {fighter?.shortName}
               </span>
             </p>

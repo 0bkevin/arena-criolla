@@ -403,7 +403,7 @@ test("Giuseppe recognizes win-gated combos, connects each chained strike with ap
       r.inputs[side].actions.super++;
       r.advance(9);
       if (r.state.finale) r.advance(r.state.finale.duration);
-      if (wins < 2 || energy < 90) {
+      if (energy < 90) {
         assert.equal(r.player.attack, null);
         assert.equal(r.rival.hp, 100);
       } else {

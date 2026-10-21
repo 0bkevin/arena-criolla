@@ -159,7 +159,7 @@ for (const side of [0, 1] as const) {
     assert.equal(locked.p.attack, null);
   });
 
-  test(`Javier P${side + 1}: basic/upgraded combo and two-win definitive`, () => {
+  test(`Javier P${side + 1}: basic/upgraded combo and definitive from zero wins`, () => {
     const basic = setup(side, 0, 25);
     basic.inputs[side].actions.light++;
     advance(basic.s, basic.inputs, 25);
@@ -187,17 +187,15 @@ for (const side of [0, 1] as const) {
       superMove.p.energy = 100;
       superMove.inputs[side].actions.super++;
       stepMatch(superMove.s, superMove.inputs);
-      assert.equal(superMove.p.attack, wins >= 2 ? "super" : null);
-      if (wins >= 2) {
-        assert.equal(superMove.p.combo, "Remate de mialma");
-        assert.equal(superMove.p.comboBonus, 12);
-        advance(superMove.s, superMove.inputs, 8);
-        assert.equal(superMove.s.fieldFinales?.[0]?.fighter, "javier");
-        advance(superMove.s, superMove.inputs, 200);
-        close(superMove.target.hp, 100 - (28 * 0.97 + 12) * 1.02);
-        assert.equal(superMove.p.hits, 3);
-        console.log(JSON.stringify({ check: "super", side, hp: superMove.target.hp, energy: superMove.p.energy, name: superMove.p.combo }));
-      }
+      assert.equal(superMove.p.attack, "super");
+      assert.equal(superMove.p.combo, "Remate de mialma");
+      assert.equal(superMove.p.comboBonus, 12);
+      advance(superMove.s, superMove.inputs, 8);
+      assert.equal(superMove.s.fieldFinales?.[0]?.fighter, "javier");
+      advance(superMove.s, superMove.inputs, 200);
+      close(superMove.target.hp, 100 - (28 * 0.97 + 12) * 1.02);
+      assert.equal(superMove.p.hits, 3);
+      console.log(JSON.stringify({ check: "super", side, hp: superMove.target.hp, energy: superMove.p.energy, name: superMove.p.combo }));
     }
     const lowEnergy = setup(side, 3);
     lowEnergy.p.energy = 89;

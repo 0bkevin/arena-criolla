@@ -419,17 +419,17 @@ export async function run() {
     pointer("pointerup", 1, "block");
     equal(input.block, false);
   });
-  await test("super unlocks at two wins and still requires a fresh press", () => {
-    update({ wins: 1, energy: 90 });
+  await test("super is available from zero wins and energy recovery requires a fresh press", () => {
+    update({ wins: 0, energy: 89 });
     pointer("pointerdown", 1, "super");
     equal(input.actions.super, 0);
-    update({ wins: 2 });
+    update({ energy: 90 });
     equal(button("super").getAttribute("aria-disabled"), null);
     pointer("pointermove", 1, "super");
-    equal(input.actions.super, 0, "unlocking must not activate a held contact");
+    equal(input.actions.super, 0, "energy recovery must not activate a held contact");
     pointer("pointerup", 1, "super");
     pointer("pointerdown", 1, "super");
-    equal(input.actions.super, 1, "two wins enable a fresh press");
+    equal(input.actions.super, 1, "zero wins allow a fresh press with enough energy");
     update({ energy: 89 });
     equal(state().pressed, []);
     update({ energy: 90 });

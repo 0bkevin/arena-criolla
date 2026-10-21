@@ -155,7 +155,7 @@ for (const side of [0, 1] as const) {
     assert.equal(lockedSpecial.actor.attack, null);
     for (const [wins, energy] of [[0, 100], [1, 100], [2, 89], [2, 100], [3, 100]] as const) {
       const run = setup(side, wins, 150); run.actor.energy = energy; run.inputs[side].actions.super++;
-      stepMatch(run.state, run.inputs); const unlocked = wins >= 2 && energy >= 90;
+      stepMatch(run.state, run.inputs); const unlocked = energy >= 90;
       assert.equal(run.actor.attack, unlocked ? "super" : null);
       if (unlocked) {
         assert.equal(run.actor.combo, "Golpe de mando"); assert.equal(run.actor.comboBonus, 12); close(run.actor.energy, 10);

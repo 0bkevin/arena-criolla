@@ -6,14 +6,13 @@ import {
   ArrowUp,
   ChevronsRight,
   Flame,
-  LockKeyhole,
   Pause,
   Shield,
   Smartphone,
   Swords,
   Zap,
 } from "lucide-react";
-import { SUPER_ENERGY_COST, SUPER_UNLOCK_WINS } from "../../shared/content";
+import { SUPER_ENERGY_COST } from "../../shared/content";
 import { Portrait } from "./Portrait";
 
 const movement = [
@@ -29,9 +28,9 @@ const combat = [
   { icon: Flame, label: "Fuerte", note: "Ataque pesado" },
   { icon: Zap, label: "Especial", note: "Consume 25 de energía" },
   {
-    icon: LockKeyhole,
+    icon: Zap,
     label: "Súper",
-    note: `${SUPER_UNLOCK_WINS} victorias · ${SUPER_ENERGY_COST} de energía`,
+    note: `${SUPER_ENERGY_COST} de energía`,
   },
 ];
 
@@ -101,7 +100,7 @@ export function MobileControlsGuide() {
                 <Shield />
               </span>
               <span className="help-pad-super">
-                <LockKeyhole />
+                <Zap />
               </span>
               <span className="help-pad-light">
                 <Swords />

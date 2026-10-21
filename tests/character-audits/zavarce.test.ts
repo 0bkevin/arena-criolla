@@ -206,16 +206,11 @@ test("Zavarce specials, advanced combo, and definitive enforce their energy and 
     run.inputs[side].actions.super++;
     run.advance(9);
     if (run.state.fieldFinales) run.advance(320);
-    if (wins < 2) {
-      assert.equal(run.player.attack, null);
-      assert.equal(run.rival.hp, 100);
-    } else {
-      assert.equal(run.player.combo, "Pelotón Yummy");
-      assert.ok(run.player.hits > 0 && run.player.hits <= 7);
-      assert.ok(run.rival.hp < 100 || run.rival.stocks < 2);
-      assert.ok(run.player.hits <= 7);
-      assert.ok(run.player.energy >= 25 && run.player.energy <= 100);
-    }
+    assert.equal(run.player.combo, "Pelotón Yummy");
+    assert.ok(run.player.hits > 0 && run.player.hits <= 7);
+    assert.ok(run.rival.hp < 100 || run.rival.stocks < 2);
+    assert.ok(run.player.hits <= 7);
+    assert.ok(run.player.energy >= 25 && run.player.energy <= 100);
     console.log("super-gate", JSON.stringify({ side, wins, hp: run.rival.hp, energy: run.player.energy, combo: run.player.combo }));
   }
   const depleted = setup(0, 200, 3);

@@ -146,9 +146,9 @@ recommendations, and this game's chosen slide behavior:
 - Astra's focused follow-up found no remaining actionable issues. It also checked
   650×500/651×500 breakpoint transitions, hybrid/mobile mode changes, and unmount
   cleanup, with no observer-loop or browser error events.
-- Integration with `main` preserves the updated two-win, 90-energy Súper rule.
-  A browser regression verifies that unlocking the ability or recovering energy
-  during a contact cannot activate it; a fresh direct press is still required.
+- Súper is available from zero wins and costs 90 energy. A browser regression
+  verifies that recovering energy during a contact cannot activate it; a fresh
+  direct press is still required.
 
 The browser suite dispatches synthetic DOM PointerEvents through real React
 handlers and real coordinate hit-testing. It exercises the capture-failure

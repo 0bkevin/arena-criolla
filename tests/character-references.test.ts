@@ -9,7 +9,8 @@ import { finaleById } from "../shared/finales";
 for (const fighter of BUILT_IN_FIGHTERS) {
   test(`${fighter.id}: detail omits the entire overview and references, retaining moves and progression`, () => {
     const finale = finaleById(fighter.id);
-    const winCounts = new Set([0, 1, 2, 3, fighter.specialUnlockWins ?? 0]);
+    // Saved progression can contain a negative count; baseline moves stay available.
+    const winCounts = new Set([-1, 0, 1, 2, 3, fighter.specialUnlockWins ?? 0]);
     for (const wins of winCounts) {
       const html = renderToStaticMarkup(
         createElement(FighterDetail, {
@@ -44,8 +45,9 @@ for (const fighter of BUILT_IN_FIGHTERS) {
       );
       assert.equal(
         (html.match(/class="unlocked"/g) ?? []).length,
-        [0, 1, 2].filter((threshold) => wins >= threshold).length,
+        wins >= 1 ? 3 : 2,
       );
+      assert.ok(html.includes("Disponible · 90 de energía"));
       if (finale) {
         assert.ok(html.includes(finale.description));
       }

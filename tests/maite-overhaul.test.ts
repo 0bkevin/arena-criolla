@@ -89,9 +89,11 @@ test("a ranged finale spends90 once, travels before contact, hits once and recov
     }
 });
 
-test("unlock, energy, whiff, front/rear guard and invincibility retain actual combat rules", () => {
+test("energy, whiff, front/rear guard and invincibility retain actual combat rules", () => {
   for (const side of [0, 1] as const) {
     for (const [wins, energy] of [
+      [0, 89],
+      [0, 90],
       [1, 100],
       [2, 89],
       [2, 90],
@@ -103,7 +105,7 @@ test("unlock, energy, whiff, front/rear guard and invincibility retain actual co
       r.advance(9);
       assert.equal(
         r.state.projectiles.length,
-        wins >= 2 && energy >= 90 ? 1 : 0,
+        energy >= 90 ? 1 : 0,
       );
     }
     for (const scenario of ["miss", "front", "rear", "immune"] as const) {
@@ -218,7 +220,7 @@ test("super projectile snapshots outgoing damage and preserves super impact afte
 
 test("hard CPU chooses the ranged super outside capture range, but gates and recovery prevent repeat casts", () => {
   const r = setup(1, 430);
-  r.source.config.wins = 2;
+  r.source.config.wins = 0;
   r.state.tick = 90;
   r.source.energy = 90;
   const ai = cpuInput(r.state, emptyInput(), "hard");
@@ -231,10 +233,12 @@ test("hard CPU chooses the ranged super outside capture range, but gates and rec
   r.advance();
   assert.equal(r.state.projectiles.length, 1);
   assert.ok(r.source.energy > 99);
-  const locked = setup(1);
-  locked.state.tick = 90;
-  locked.source.config.wins = 1;
-  assert.equal(cpuInput(locked.state, emptyInput(), "hard").actions.super, 0);
+  for (const wins of [0, 1]) {
+    const fresh = setup(1);
+    fresh.state.tick = 90;
+    fresh.source.config.wins = wins;
+    assert.equal(cpuInput(fresh.state, emptyInput(), "hard").actions.super, 1);
+  }
   for (const energy of [75, 89]) {
     const poor = setup(1);
     poor.state.tick = 90;

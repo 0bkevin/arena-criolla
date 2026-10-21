@@ -163,7 +163,7 @@ test("Rummy recognizes base and upgraded combos, connects every strike with appr
       const r = setup(side, 200, wins); r.player.energy = energy;
       r.inputs[side].actions.super++; r.advance(9);
       if (r.state.finale) r.advance(r.state.finale.duration);
-      if (wins < 2 || energy < 90) { assert.equal(r.player.attack, null); assert.equal(r.rival.hp, 100); }
+      if (energy < 90) { assert.equal(r.player.attack, null); assert.equal(r.rival.hp, 100); }
       else { assert.equal(r.player.combo, "Zapateo final"); assert.equal(r.player.comboBonus, 12); assert.equal(r.player.hits, 1); close(r.rival.hp, 59.6652); }
       emit("super-gate", { side, wins, energy, hp: r.rival.hp, attackerEnergy: r.player.energy, combo: r.player.combo });
     }

@@ -20,7 +20,7 @@ import {
   Swords,
   Zap,
 } from "lucide-react";
-import { SUPER_ENERGY_COST, SUPER_UNLOCK_WINS } from "../../shared/content";
+import { SUPER_ENERGY_COST } from "../../shared/content";
 import type { Control } from "../game/controls";
 import { TouchInputState } from "../game/touch-input";
 import { touchControlAtPoint } from "../game/touch-target";
@@ -200,7 +200,7 @@ export function TouchControls({
     let changed = false;
     if (wins < specialUnlockWins || energy < 25)
       changed = input.current!.releaseControl("special") || changed;
-    if (wins < SUPER_UNLOCK_WINS || energy < SUPER_ENERGY_COST)
+    if (energy < SUPER_ENERGY_COST)
       changed = input.current!.releaseControl("super") || changed;
     if (changed) syncPressed();
   }, [energy, wins, specialUnlockWins]);
@@ -376,18 +376,16 @@ export function TouchControls({
           control="super"
           label="Definitiva"
           text="Súper"
-          disabled={wins < SUPER_UNLOCK_WINS || energy < SUPER_ENERGY_COST}
+          disabled={energy < SUPER_ENERGY_COST}
           reason={
-            wins < SUPER_UNLOCK_WINS
-              ? `Gana ${SUPER_UNLOCK_WINS} peleas con este personaje para desbloquearla.`
-              : energy < SUPER_ENERGY_COST
-                ? `Necesitas ${SUPER_ENERGY_COST} de energía.`
-                : "Toca directamente para activar. No se activa al deslizar."
+            energy < SUPER_ENERGY_COST
+              ? `Necesitas ${SUPER_ENERGY_COST} de energía.`
+              : "Toca directamente para activar. No se activa al deslizar."
           }
           pressed={pressed.has("super")}
           onClick={handleAccessibleClick}
         >
-          {wins < SUPER_UNLOCK_WINS ? <LockKeyhole /> : <Zap />}
+          <Zap />
         </TouchButton>
       </div>
     </div>

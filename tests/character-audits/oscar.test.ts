@@ -355,7 +355,7 @@ test("Oscar combos recognize whiff chains, connect with chase inputs and apply w
       r.inputs[side].actions.super++;
       r.advance(9);
       if (r.state.fieldFinales) { assert.equal(r.state.fieldFinales[0].fighter, "oscar"); assert.equal(r.rival.hp, 100); r.advance(320); }
-      if (wins < 2 || energy < 90) {
+      if (energy < 90) {
         assert.equal(r.player.attack, null);
         assert.equal(r.rival.hp, 100);
       } else {
