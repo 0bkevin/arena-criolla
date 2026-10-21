@@ -151,7 +151,7 @@ body {
   padding-bottom: 0;
 }
 .in-lobby .arcade-marquee {
-  height: clamp(168px, 18vw, 240px);
+  height: 92px;
   position: relative;
   display: flex;
   align-items: center;
@@ -1170,6 +1170,9 @@ body {
   }
 }
 @media (min-width: 1440px) {
+  .in-lobby .arcade-marquee {
+    height: 105px;
+  }
   .in-lobby .site-header {
     height: 48px;
   }
@@ -1298,7 +1301,7 @@ body {
     padding-top: 8px;
   }
   .in-lobby .arcade-marquee {
-    height: clamp(110px, 18vw, 168px);
+    height: 105px;
   }
   .in-lobby .arcade-eyebrow {
     font-size: 7px;
@@ -1617,8 +1620,8 @@ body {
   }
 }
 @media (max-width: 600px) {
-  .in-lobby .arcade-marquee {
-    height: clamp(160px, 50vw, 240px);
+  .in-lobby .marquee-art img {
+    object-position: center 70%;
   }
   .in-lobby .site-header,
   .in-lobby .home-page,
