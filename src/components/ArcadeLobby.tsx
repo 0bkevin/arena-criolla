@@ -516,13 +516,6 @@ export function ArcadeLobby(props: Props) {
                       }
                     >
                       <div className="fighter-card-art">
-                        <span className="fighter-index" aria-hidden="true">
-                          {String(
-                            FIGHTERS.findIndex(
-                              (entry) => entry.id === item.id,
-                            ) + 1,
-                          ).padStart(2, "0")}
-                        </span>
                         <Portrait fighter={item.id} bust />
                         <div className="fighter-player-tags">
                           {p1 && <span className="tag-p1">{ownLabel}</span>}
@@ -602,7 +595,7 @@ export function ArcadeLobby(props: Props) {
             aria-label="Escenarios de Venezuela"
             onKeyDown={handleStageKeys}
           >
-            {STAGES.map((item, index) => (
+            {STAGES.map((item) => (
               <button
                 key={item.id}
                 className={`arcade-stage ${item.id === stage.id ? "selected" : ""}`}
@@ -613,9 +606,6 @@ export function ArcadeLobby(props: Props) {
               >
                 <span className="stage-thumbnail">
                   <img src={`/assets/${item.id}.webp`} alt="" />
-                  <span className="stage-number">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
                   {item.id === stage.id && (
                     <span className="stage-tick">
                       <Check size={12} />
