@@ -716,6 +716,7 @@ export function App({
                 className="primary-button"
                 disabled={!network.connected}
                 onClick={() => {
+                  network.setError("");
                   network.send({
                     type: "create",
                     fighter,
