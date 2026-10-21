@@ -10,6 +10,9 @@ test("combat shows category labels, retains requested character lines, and expir
   ]);
   const p = state.players[0];
   assert.equal(combatLabel(p, 0), "");
+  p.superChargeTicks = 20;
+  assert.equal(combatLabel(p, 0), "Cargando definitiva");
+  p.superChargeTicks = 0;
   p.combo = "Old named combo";
   p.comboTick = 100;
   assert.equal(combatLabel(p, 174), "Combo");

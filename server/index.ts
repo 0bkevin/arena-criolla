@@ -596,6 +596,7 @@ export async function makeArenaServer(
         safe.right = input.right === true;
         safe.block = input.block === true;
         safe.down = input.down === true;
+        safe.superHeld = input.superHeld === true;
         for (const action of ACTIONS) {
           const n = input.actions[action];
           if (
@@ -642,6 +643,7 @@ export async function makeArenaServer(
           client.input.right = false;
           client.input.block = false;
           client.input.down = false;
+          client.input.superHeld = false;
         });
         stepMatch(room.state, [room.clients[0].input, room.clients[1].input]);
         if (tick % 2 === 0 || room.state.phase === "finished") {

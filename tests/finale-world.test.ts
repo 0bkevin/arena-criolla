@@ -15,7 +15,7 @@ import {
   stepMatch,
   type Input,
   type MatchState,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 import actorAssets from "../shared/finale-actor-assets.json";
 import {
   FINALE_CAPTURE_TICK,

@@ -6,7 +6,7 @@ import {
   stepMatch,
   type MatchState,
   type PlayerConfig,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 import { TECHNIQUES } from "../shared/techniques";
 import { renderMatch, type Assets } from "../src/game/renderer";
 import type { SpriteAsset } from "../src/game/assets";

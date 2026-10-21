@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { fighterById } from "../../shared/content";
 import { TECHNIQUES } from "../../shared/techniques";
 import { CHOREOGRAPHIES } from "../../shared/choreography";
-import { createMatch, cpuInput, emptyInput, stepMatch, WORLD, type Input } from "../../shared/engine";
+import { createMatch, cpuInput, emptyInput, stepMatch, WORLD, type Input } from "../helpers/charged-finale-engine";
 import { INTRO_TOTAL_TICKS, normalizedFacing, presentationById, selectionProgress } from "../../shared/presentation";
 
 type Side = 0 | 1;

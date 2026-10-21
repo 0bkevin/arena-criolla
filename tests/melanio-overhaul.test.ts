@@ -7,7 +7,7 @@ import {
   stepMatch,
   type Input,
   type MatchState,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 import { ATTACK_ART } from "../src/game/attack-art";
 import {
   MELANIO_SPECIAL_POSES,

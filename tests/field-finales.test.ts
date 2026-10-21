@@ -7,7 +7,7 @@ import {
   WORLD,
   type Input,
   type MatchState,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 import { fighterById, type FighterId } from "../shared/content";
 import {
   SQUAD_COUNT,
