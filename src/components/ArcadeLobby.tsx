@@ -180,10 +180,10 @@ export function ArcadeLobby(props: Props) {
         <picture className="marquee-art" aria-hidden="true">
           <source
             media="(max-width: 600px)"
-            srcSet="/assets/lobby-cast-banner-mobile-v4.webp"
+            srcSet="/assets/lobby-cast-banner-mobile.webp"
           />
           <img
-            src="/assets/lobby-cast-banner-v5.webp"
+            src="/assets/lobby-cast-banner.webp"
             alt=""
             width="2560"
             height="480"
