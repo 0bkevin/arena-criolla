@@ -471,9 +471,12 @@ body {
 }
 .in-lobby .contender-identity {
   position: relative;
+  display: grid;
+  place-items: center;
   min-height: 0;
   margin: 0;
-  padding: 10px 8px 8px;
+  padding: 9px 8px;
+  text-align: center;
   isolation: isolate;
 }
 .in-lobby .contender-identity::before {
@@ -1396,7 +1399,7 @@ body {
   .in-lobby .contender-identity {
     grid-area: auto;
     text-align: center;
-    padding: 10px 8px 8px;
+    padding: 9px 8px;
   }
   .in-lobby .contender-identity > span {
     margin-bottom: 0;
