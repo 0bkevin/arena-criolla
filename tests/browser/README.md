@@ -78,6 +78,23 @@ It mounts the production `Game`, including the arena, toolbar, pad, and keyboard
 hints. `unmount()` or the next `mount()` restores the device properties. This is
 a layout regression fixture, not hardware emulation.
 
+## Victory timing validation
+
+With the same Vite server running, open
+`http://localhost:5174/tests/browser/victory-timing.html` and run
+`await victoryTiming.run()` in the console. All fifteen scenarios must pass.
+
+This mounts the production `Game` in React StrictMode with an actual engine
+knockout. Controlled frame timestamps verify that the result appears after two
+active seconds at normal and slow frame rates in local, online, and practice
+modes. Window blur, hidden tabs, and real help dialogs suspend the clock even
+when no frame runs while blocked. The audit also checks seven stars, one result
+callback, immutable match state, and frame-loop cleanup after unmount.
+
+The harness restores its browser clock and visibility overrides after each run.
+It uses a simulated remote state for online mode; it does not exercise network
+transport.
+
 ## Interaction contract
 
 - A contact beginning anywhere inside a control group can slide between movement,

@@ -1,12 +1,17 @@
-import { useLayoutEffect, type CSSProperties, type RefObject } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  type CSSProperties,
+  type RefObject,
+} from "react";
 import { ArrowRight, RotateCcw, Trophy, Zap } from "lucide-react";
 import { fighterById, stageById } from "../../shared/content";
 import type { MatchState } from "../../shared/engine";
 import type { GameMode } from "./Game";
 import { VenezuelaStars } from "./CriolloArt";
 import { Portrait } from "./Portrait";
-import type { Assets } from "../game/renderer";
 import { playVictoryTransition } from "../game/victory-transition";
+import { startVictoryMusic } from "../audio";
 
 interface Props {
   state: MatchState;
@@ -14,56 +19,35 @@ interface Props {
   localIndex: number;
   active: boolean;
   overlayRef: RefObject<HTMLDivElement | null>;
-  sourceCanvas: RefObject<HTMLCanvasElement | null>;
-  sourceTitle: RefObject<HTMLHeadingElement | null>;
-  assets: Assets;
   onReady: () => void;
-  skipTransition: boolean;
   rematchWaiting?: boolean;
   onRematch: () => void;
   onExit: () => void;
 }
 
-/** The final curtain comes after the fighter's in-arena celebration. */
+/** The result appears directly after the last impact and brief knockout hold. */
 export function VictoryScreen({
   state,
   mode,
   localIndex,
   active,
   overlayRef,
-  sourceCanvas,
-  sourceTitle,
-  assets,
   onReady,
-  skipTransition,
   rematchWaiting,
   onRematch,
   onExit,
 }: Props) {
   useLayoutEffect(() => {
-    if (skipTransition || !overlayRef.current || !sourceCanvas.current) {
+    if (!overlayRef.current) {
       onReady();
       return;
     }
-    return playVictoryTransition(
-      overlayRef.current,
-      sourceCanvas.current,
-      sourceTitle.current,
-      state,
-      assets,
-      onReady,
-    );
-  }, [
-    state.id,
-    assets,
-    overlayRef,
-    sourceCanvas,
-    sourceTitle,
-    onReady,
-    skipTransition,
-  ]);
+    return playVictoryTransition(overlayRef.current, onReady);
+  }, [state.id, overlayRef, onReady]);
   const winner =
     typeof state.winner === "number" ? state.players[state.winner] : null;
+  const musicFighter = winner?.config.fighter ?? "draw";
+  useEffect(() => startVictoryMusic(musicFighter), [state.id, musicFighter]);
   const fighter = winner ? fighterById(winner.config.fighter) : null;
   const localWinner = state.winner === localIndex;
   const stats = mode === "local" && winner ? winner : state.players[localIndex];
@@ -166,7 +150,7 @@ export function VictoryScreen({
           </div>
         </div>
         <div className="victory-screen-art" aria-hidden="true">
-          <VenezuelaStars className="victory-screen-stars" />
+          <VenezuelaStars className="victory-screen-stars" count={7} />
           {fighter ? (
             <div className="victory-screen-figure">
               <Portrait
@@ -176,11 +160,6 @@ export function VictoryScreen({
                 animated
                 holdPose
                 repeat
-              />
-              <canvas
-                className="victory-screen-carry"
-                width={400}
-                height={500}
               />
             </div>
           ) : (

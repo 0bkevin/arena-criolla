@@ -13,10 +13,7 @@ import {
   victoryById,
 } from "../src/game/victory";
 import { drawVictory } from "../src/game/victory-renderer";
-import {
-  VICTORY_DURATION_MS,
-  VICTORY_TRANSITION_MS,
-} from "../src/game/victory-types";
+import { VICTORY_DURATION_MS } from "../src/game/victory-types";
 
 const at = (progress: number) => progress * VICTORY_DURATION_MS;
 const sampleTimes = [0, 0.06, 0.2, 0.4, 0.6, 0.8, 1].map(at);
@@ -91,9 +88,7 @@ test("all 54 built-in fighters have unique, finite, bounded victory motion", () 
   );
 });
 
-test("the full celebration plays before the transition and actors settle before the handoff", () => {
-  assert.equal(VICTORY_DURATION_MS, 3500);
-  assert.equal(VICTORY_DURATION_MS + VICTORY_TRANSITION_MS, 4200);
+test("victory poses settle at a bounded endpoint", () => {
   for (const fighter of FIGHTERS) {
     const atEnd = sampleVictory(fighter.id, at(1));
     for (const afterEnd of [at(1) + 1, at(1.2), at(2), at(4)])

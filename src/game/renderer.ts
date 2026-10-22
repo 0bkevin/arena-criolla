@@ -78,18 +78,22 @@ import {
   drawTransformationBody,
   drawTransformationGauge,
 } from "./transformation-art";
-import { drawVictory } from "./victory-renderer";
+import { KNOCKOUT_RECOIL_MS, sampleKnockout } from "./knockout";
 
 export type Assets = Awaited<ReturnType<typeof preloadAssets>>;
 export function renderMatch(
   ctx: CanvasRenderingContext2D,
-  state: MatchState,
+  match: MatchState,
   assets: Assets,
   time: number,
   reducedMotion = false,
   camera?: ArenaCamera,
-  victoryElapsed = 0,
+  knockoutElapsed = 0,
 ) {
+  const state =
+    match.phase === "finished"
+      ? sampleKnockout(match, knockoutElapsed, reducedMotion)
+      : match;
   const { width, height } = ctx.canvas;
   ctx.clearRect(0, 0, width, height);
   if (state.phase === "intro" && state.tick < INTRO_COUNTDOWN_START) {
@@ -114,11 +118,6 @@ export function renderMatch(
   const bg = assets.stages[state.stage];
   const stage = stageById(state.stage);
   drawStage(ctx, stage, bg, state.tick, bounds);
-  if (state.phase === "finished") {
-    ctx.restore();
-    drawVictory(ctx, state, assets, victoryElapsed, reducedMotion);
-    return;
-  }
   for (const field of state.fieldFinales ?? []) {
     if (field.fighter === "deyna")
       drawDeynaSquad(ctx, assets.finaleProps, field, "back");
@@ -249,10 +248,24 @@ export function renderMatch(
     return;
   }
   state.players.forEach((p, i) => {
-    if (p.stocks <= 0) return;
     const def = fighterById(p.config.fighter);
     const bodyHeight = def.displayHeight ?? 177;
     const sprite = assets.sprites[p.config.fighter];
+    if (p.stocks <= 0) {
+      if (state.phase === "finished") {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        if (!reducedMotion)
+          ctx.rotate(
+            Math.sign(p.vx || -p.facing) *
+              Math.min(1, knockoutElapsed / KNOCKOUT_RECOIL_MS) *
+              0.8,
+          );
+        drawSprite(ctx, sprite, 7, 0, 0, bodyHeight, p.facing);
+        ctx.restore();
+      }
+      return;
+    }
     ctx.save();
     ctx.fillStyle = "#090c1670";
     ctx.beginPath();
