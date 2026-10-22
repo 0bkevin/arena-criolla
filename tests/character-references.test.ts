@@ -61,7 +61,7 @@ for (const fighter of BUILT_IN_FIGHTERS) {
       assert.ok(html.includes("Mis movimientos"));
       assert.doesNotMatch(text, /Vista previa|Mis movimientos/);
       assert.ok(html.includes('class="help-devices"'));
-      assert.ok(html.includes('class="help-done"'));
+      assert.ok(html.includes('class="dialog-done help-done"'));
       assert.ok(html.includes("Combos"));
       assert.ok(html.includes('data-fighter="' + fighter.id + '"'));
       assert.equal((html.match(/class="move-shortcut"/g) ?? []).length, 6);

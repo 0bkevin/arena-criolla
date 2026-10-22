@@ -1,6 +1,8 @@
-.modal.fighter-moves-modal {
-  --help-muted: #b5c3d8;
+.arcade-app .modal.fighter-moves-modal {
+  --dialog-muted: #b5c3d8;
   padding: 18px;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 .modal.fighter-moves-modal[open] {
   display: grid;
@@ -9,7 +11,7 @@
 }
 .app-shell.arcade-app .modal.fighter-moves-modal .modal-header {
   position: static;
-  padding-block: 0;
+  padding: 0;
   margin: 0;
 }
 .arcade-app .modal.fighter-moves-modal .fighter-detail {
@@ -62,7 +64,7 @@
 }
 .fighter-moves-modal .move-list-intro {
   margin: 0 0 8px;
-  color: var(--help-muted);
+  color: var(--dialog-muted);
   font-size: 13px;
   line-height: 1.45;
 }
@@ -206,7 +208,7 @@
   }
 }
 @media (max-width: 800px) {
-  .modal.fighter-moves-modal {
+  .arcade-app .modal.fighter-moves-modal {
     padding: 16px;
   }
   .modal.fighter-moves-modal[open] {
@@ -215,7 +217,8 @@
   .app-shell.arcade-app .modal.fighter-moves-modal .modal-header {
     position: sticky;
     top: -16px;
-    padding-block: 8px;
+    padding: 8px 0;
+    background: #13243a;
     margin-bottom: 16px;
   }
   .arcade-app .modal.fighter-moves-modal .fighter-detail {

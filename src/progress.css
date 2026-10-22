@@ -1,0 +1,75 @@
+.progress-modal {
+  --dialog-width: 520px;
+  --dialog-max-height: 480px;
+}
+
+.progress-content .progress-metrics {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+}
+
+.progress-content .progress-metrics strong {
+  font-size: clamp(24px, 7vw, 32px);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.progress-content .progress-metrics span {
+  color: var(--dialog-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.progress-content h3 {
+  margin: 24px 0 12px;
+  font-size: 16px;
+}
+
+.progress-content .recent-matches > div {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 12px;
+  padding-block: 12px;
+  border-color: #30455f;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.progress-content .recent-matches > div > span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.progress-content .recent-matches :is(.won, .lost) {
+  justify-self: start;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.progress-content .recent-matches :is(.lost, small) {
+  color: var(--dialog-muted);
+}
+
+.progress-content .recent-matches small {
+  font-size: 12px;
+}
+
+.progress-content .empty-progress {
+  padding: 24px 0;
+  color: var(--dialog-muted);
+}
+
+.progress-content .empty-progress > svg {
+  flex-shrink: 0;
+}
+
+.progress-content .empty-progress p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (min-width: 901px) and (pointer: fine) {
+  .progress-modal {
+    --dialog-width: 500px;
+  }
+}

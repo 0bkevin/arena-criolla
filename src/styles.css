@@ -1,89 +1,5 @@
-:root {
-  --font-body: "DM Sans", sans-serif;
-  --font-display: "Barlow Condensed", Impact, sans-serif;
-  --font-pixel: "Pixelify Sans", monospace;
-  font-family: var(--font-body);
-  color: #f0f1f4;
-  background: #101218;
-  font-synthesis: none;
-  --bg: #101218;
-  --panel: #191c24;
-  --panel-deep: #15181f;
-  --line: #2b2e38;
-  --text: #f0f1f4;
-  --muted: #9296a4;
-  --lime: #dfff7b;
-  --display: var(--font-display);
-  color-scheme: dark;
-}
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-  min-width: 320px;
-}
-button,
-input,
-select {
-  font: inherit;
-}
-button {
-  color: inherit;
-  cursor: pointer;
-  border: 0;
-  background: none;
-}
-button:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-button,
-a,
-input,
-select {
-  outline-offset: 4px;
-}
-button:focus-visible,
-a:focus-visible {
-  outline: 2px solid var(--lime);
-}
-input:focus,
-select:focus {
-  outline: 0;
-  border-color: var(--lime) !important;
-}
-button {
-  touch-action: manipulation;
-}
-button,
-select,
-input {
-  -webkit-tap-highlight-color: transparent;
-}
-button svg {
-  flex-shrink: 0;
-}
-a {
-  color: var(--lime);
-}
-p,
-h1,
-h2,
-h3 {
-  margin: 0;
-}
-button {
-  transition:
-    background 0.16s,
-    border-color 0.16s,
-    color 0.16s,
-    transform 0.16s;
-}
-::selection {
-  background: var(--lime);
-  color: var(--bg);
-}
+@import "./base.css";
+
 .page-width {
   width: calc(100% - 96px);
   max-width: 1264px;
@@ -1563,34 +1479,6 @@ kbd {
   font-size: 9px;
   color: #a0aec2;
   margin-top: 5px;
-}
-.progress-roster > div {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 10px;
-  border-bottom: 1px solid #2c3647;
-  padding: 13px 0;
-}
-.progress-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-}
-.progress-roster strong {
-  font-size: 11px;
-  flex: 1;
-}
-.progress-roster > div > span:not(.progress-dot) {
-  color: #91a0b8;
-  font-size: 9px;
-}
-.progress-roster small {
-  background: #242e3d;
-  padding: 3px 5px;
-  border-radius: 3px;
-  color: #8c9db6;
-  font-size: 8px;
 }
 .empty-progress {
   display: flex;
@@ -3126,18 +3014,6 @@ kbd {
   }
   .progress-metrics > div {
     padding: 12px 5px;
-  }
-  .progress-roster strong {
-    font-size: 10px;
-  }
-  .progress-roster > div {
-    gap: 6px;
-  }
-  .progress-roster > div > span:not(.progress-dot) {
-    font-size: 8px;
-  }
-  .progress-roster small {
-    font-size: 7px;
   }
   .lobby-grid {
     grid-template-columns: 1fr;

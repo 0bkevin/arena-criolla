@@ -1,7 +1,7 @@
 /* Shared mobile dialog titles, legibility and input fixes.
-   The Help dialog owns its content layout and type scale. */
+   Content dialogs share their own frame and type scale. */
 @media (max-width: 680px), (max-height: 500px) and (orientation: landscape) {
-  .app-shell.arcade-app .modal:where(:not(.help-modal)) .modal-header h2,
+  .app-shell.arcade-app .modal:where(:not(.content-modal)) .modal-header h2,
   .app-shell .game-page :is(.pause-card, .result-info, .orientation-card) h2 {
     font-size: 24px;
     line-height: 1.15;
@@ -13,32 +13,32 @@
     margin-bottom: 12px;
   }
 
-  .app-shell.arcade-app .help-modal .modal-header {
+  .app-shell.arcade-app .content-modal .modal-header {
     margin: 0;
   }
 }
 
-.modal:where(:not(.help-modal)) {
+.modal:where(:not(.content-modal)) {
   --dialog-surface: #181c25;
   scrollbar-width: thin;
   scrollbar-color: #6682a2 var(--dialog-surface);
   scroll-padding-block: 80px 24px;
 }
-.in-lobby .modal:where(:not(.help-modal)) {
+.in-lobby .modal:where(:not(.content-modal)) {
   --dialog-surface: #13243a;
 }
-.modal:where(:not(.help-modal)) .modal-header {
+.modal:where(:not(.content-modal)) .modal-header {
   position: sticky;
   top: -26px;
   z-index: 3;
   padding-block: 12px;
   background: var(--dialog-surface);
 }
-.modal:where(:not(.help-modal)) .modal-header h2 {
+.modal:where(:not(.content-modal)) .modal-header h2 {
   min-width: 0;
   overflow-wrap: anywhere;
 }
-.modal:where(:not(.help-modal)) .modal-header .icon-button {
+.modal:where(:not(.content-modal)) .modal-header .icon-button {
   width: 44px;
   min-width: 44px;
   height: 44px;
@@ -53,24 +53,24 @@
   color: #ff7b7b;
   background: transparent;
 }
-.modal:where(:not(.help-modal)) :is(p, .help-note) {
+.modal:where(:not(.content-modal)) :is(p, .help-note) {
   font-size: 13px;
   line-height: 1.7;
 }
-.modal:where(:not(.help-modal))
+.modal:where(:not(.content-modal))
   :is(.help-section, .rules-grid h3, .detail-info > h3) {
   font-size: 15px;
 }
-.modal:where(:not(.help-modal))
+.modal:where(:not(.content-modal))
   :is(.controls-table > div, .controls-table .table-heading, kbd) {
   font-size: 12px;
   letter-spacing: 0;
 }
-.modal:where(:not(.help-modal)) .controls-table kbd {
+.modal:where(:not(.content-modal)) .controls-table kbd {
   white-space: normal;
   overflow-wrap: anywhere;
 }
-.modal:where(:not(.help-modal))
+.modal:where(:not(.content-modal))
   :is(
     .roster-grid p,
     .roster-grid strong,
@@ -81,8 +81,6 @@
     .special-description kbd,
     .combo-list small,
     .combo-list kbd,
-    .progress-roster small,
-    .progress-roster > div > span:not(.progress-dot),
     .progress-metrics span,
     .lobby-meta,
     .field-label,
@@ -98,44 +96,43 @@
   line-height: 1.5;
   letter-spacing: 0;
 }
-.modal:where(:not(.help-modal))
+.modal:where(:not(.content-modal))
   :is(
     .combo-list strong,
     .special-description strong,
-    .progress-roster strong,
     .rooms-list strong,
     .gamepad-note strong
   ) {
   font-size: 13px;
 }
-.modal:where(:not(.help-modal)) .combo-list small {
+.modal:where(:not(.content-modal)) .combo-list small {
   color: #acb9cf;
 }
-.modal:where(:not(.help-modal)) .recent-matches small {
+.modal:where(:not(.content-modal)) .recent-matches small {
   color: #acb9cf;
 }
-.modal:where(:not(.help-modal))
+.modal:where(:not(.content-modal))
   :is(.roster-grid span, .roster-grid strong, .special-description) {
   color: color-mix(in srgb, var(--fighter-color) 65%, #ffffff);
 }
-.modal:where(:not(.help-modal))
+.modal:where(:not(.content-modal))
   :is(.primary-button, .secondary-button, .text-button, .rooms-list button) {
   min-height: 44px;
 }
-.modal:where(:not(.help-modal)) input:not([type="checkbox"]) {
+.modal:where(:not(.content-modal)) input:not([type="checkbox"]) {
   min-height: 44px;
   font-size: 16px;
 }
-.modal:where(:not(.help-modal)) .checkbox-label {
+.modal:where(:not(.content-modal)) .checkbox-label {
   min-height: 44px;
   cursor: pointer;
 }
-.modal:where(:not(.help-modal)) .checkbox-label input {
+.modal:where(:not(.content-modal)) .checkbox-label input {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
 }
-.modal:where(:not(.help-modal)) .code-input {
+.modal:where(:not(.content-modal)) .code-input {
   font-family: var(--font-body);
   letter-spacing: 0;
 }
@@ -208,33 +205,19 @@
   }
 }
 @media (max-width: 600px) {
-  .modal:where(:not(.help-modal)) .rules-grid,
-  .modal:where(:not(.help-modal)) .roster-grid {
+  .modal:where(:not(.content-modal)) .rules-grid,
+  .modal:where(:not(.content-modal)) .roster-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-  .modal:where(:not(.help-modal)) .progress-roster > div {
-    display: grid;
-    grid-template-columns: 6px minmax(0, 1fr) auto;
-    gap: 7px;
-  }
-  .modal:where(:not(.help-modal)) .progress-roster strong {
-    grid-column: 2 / -1;
-  }
-  .modal:where(:not(.help-modal))
-    .progress-roster
-    > div
-    > span:not(.progress-dot) {
-    grid-column: 2;
-  }
-  .modal:where(:not(.help-modal)) .progress-metrics > div {
+  .modal:where(:not(.content-modal)) .progress-metrics > div {
     min-width: 0;
     padding: 12px 4px;
   }
-  .modal:where(:not(.help-modal)) .controls-table > div {
+  .modal:where(:not(.content-modal)) .controls-table > div {
     grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 1fr));
     gap: 5px;
   }
-  .modal:where(:not(.help-modal)) .controls-table .table-heading {
+  .modal:where(:not(.content-modal)) .controls-table .table-heading {
     font-size: 10px;
     padding-inline: 3px;
   }
@@ -304,7 +287,7 @@
   .arcade-app .modal .modal-header {
     gap: 12px;
   }
-  .arcade-app .modal:where(:not(.help-modal)) .modal-header {
+  .arcade-app .modal:where(:not(.content-modal)) .modal-header {
     top: -20px;
     padding-block: 8px;
   }
@@ -397,9 +380,6 @@
   .arcade-app .modal .progress-metrics strong {
     font-size: 26px;
   }
-  .arcade-app .modal .progress-roster > div {
-    padding-block: 10px;
-  }
   .arcade-app .modal .lobby-grid {
     gap: 12px;
     margin-top: 12px;
@@ -415,60 +395,154 @@
     gap: 12px;
   }
 
-  .arcade-app .modal:is(.help-modal, .fighter-moves-modal) {
-    width: min(880px, calc(100vw - 64px));
-  }
-  .arcade-app .modal.help-modal {
+  .arcade-app .modal.content-modal {
+    width: min(var(--dialog-width, 880px), calc(100vw - 64px));
     padding: 0;
     font-size: 14px;
   }
-  .arcade-app .help-modal .modal-header {
+  .arcade-app .content-modal .modal-header {
     padding: 14px 24px;
   }
-  .arcade-app .help-modal .help-content {
+  .arcade-app .content-modal .dialog-content {
     padding: 16px 24px;
   }
-  .arcade-app .help-modal .help-content h3 {
+  .arcade-app .content-modal .dialog-content h3 {
     font-size: 16px;
   }
-  :is(.help-modal, .fighter-moves-modal) .help-devices {
+  .content-modal .help-devices {
     gap: 4px;
     padding: 3px;
     border-radius: 8px;
   }
-  :is(.help-modal, .fighter-moves-modal) .help-devices button {
+  .content-modal .help-devices button {
     min-height: 32px;
     padding: 5px 10px;
     gap: 6px;
     font-size: 13px;
     font-weight: 700;
   }
-  :is(.help-modal, .fighter-moves-modal) .help-devices svg {
+  .content-modal .help-devices svg {
     width: 16px;
     height: 16px;
   }
-  .help-modal .help-players {
+  .content-modal .help-players {
     gap: 8px 20px;
   }
-  .help-modal .help-players button {
+  .content-modal .help-players button {
     min-height: 34px;
     padding-block: 6px;
     font-size: 13px;
   }
-  .help-modal .help-more {
+  .content-modal .help-more {
     margin-top: 12px;
   }
-  .help-modal .help-more summary {
+  .content-modal .help-more summary {
     min-height: 34px;
     font-size: 13px;
   }
-  .help-modal .help-footer {
+  .content-modal .dialog-footer {
     padding: 10px 24px;
   }
-  :is(.help-modal, .fighter-moves-modal) .help-done {
+  .content-modal .dialog-done {
     min-width: 128px;
     min-height: 36px;
     padding: 7px 18px;
     font-size: 14px;
+  }
+}
+
+/* Give mobile controls room for their labels and keep the layout inside notches. */
+@media (max-width: 900px), (pointer: coarse) {
+  .app-shell.in-lobby {
+    --selection-control-height: 44px;
+  }
+}
+
+@media (max-width: 900px) {
+  .app-shell.in-lobby {
+    --lobby-gutter: 14px;
+    --lobby-left: max(var(--lobby-gutter), env(safe-area-inset-left));
+    --lobby-right: max(var(--lobby-gutter), env(safe-area-inset-right));
+  }
+  .in-lobby :is(.site-header, .home-page, .site-footer) {
+    width: calc(100% - var(--lobby-left) - var(--lobby-right));
+    margin-left: var(--lobby-left);
+    margin-right: var(--lobby-right);
+  }
+  .in-lobby .site-header {
+    height: auto;
+    min-height: calc(52px + env(safe-area-inset-top));
+    padding-top: env(safe-area-inset-top);
+  }
+  .in-lobby .mobile-setup-dock {
+    left: var(--lobby-left);
+    right: var(--lobby-right);
+    bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+  .in-lobby .mobile-setup-dock strong {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .in-lobby .mobile-setup-dock button {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .app-shell.in-lobby {
+    --lobby-gutter: 10px;
+  }
+}
+
+@media (max-width: 680px) {
+  .modal:where(:not(.content-modal)) {
+    max-width: calc(
+      100% - 24px - env(safe-area-inset-left) - env(safe-area-inset-right)
+    );
+    max-height: calc(
+      100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom)
+    );
+    padding: 16px;
+  }
+  .modal:where(:not(.content-modal)) .modal-header {
+    top: -16px;
+  }
+  .fighter-detail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .detail-art {
+    height: clamp(180px, 60vw, 240px);
+  }
+  .detail-art .portrait {
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 5;
+    margin-top: 0;
+  }
+  .detail-info,
+  .special-description > div {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .special-description > svg {
+    flex-shrink: 0;
+  }
+  .combo-list > div {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+  }
+  .combo-list > div > kbd {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 380px) {
+  .in-lobby .roster-categories {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .in-lobby .roster-categories button {
+    font-size: 13px;
   }
 }

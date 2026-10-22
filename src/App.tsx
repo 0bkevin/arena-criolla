@@ -35,6 +35,7 @@ import {
 } from "./storage";
 import {
   initAudio,
+  listenForAudioActivation,
   preloadReactions,
   setSound,
   sound,
@@ -50,6 +51,16 @@ import { Game, type GameMode } from "./components/Game";
 import { Modal } from "./components/Modal";
 import { Help } from "./components/Help";
 import { beginMobilePlay, leaveLandscape } from "./game/mobile";
+import "./dialog.css";
+import "./styles.css";
+import "./lobby.css";
+import "./arcade-theme.css";
+import "./mobile-game.css";
+import "./ui-accessibility.css";
+import "./victory-screen.css";
+import "./desktop-controls.css";
+import "./progress.css";
+import "./fighter-moves.css";
 
 type ModalName = "help" | "fighters" | "stages" | "progress" | "rooms" | null;
 const colorStyle = (color: string): React.CSSProperties =>
@@ -140,6 +151,7 @@ export function App({
     setSound(audio);
     setPreference("sound", audio);
   }, [audio]);
+  useEffect(listenForAudioActivation, []);
   useEffect(() => {
     if (network.room) {
       setMode("online");
@@ -603,70 +615,67 @@ export function App({
         />
       )}
       {modal === "progress" && (
-        <Modal title="Mi progreso" onClose={() => setModal(null)}>
-          <p className="modal-intro">
-            Guardado en este navegador. Todos los combos disponibles desde el
-            inicio.
-          </p>
-          <div className="progress-metrics">
-            <div>
-              <strong>{progress.played}</strong>
-              <span>Peleas</span>
-            </div>
-            <div>
-              <strong>{totalWins}</strong>
-              <span>Victorias</span>
-            </div>
-            <div>
-              <strong>{progress.bestCombo}</strong>
-              <span>Mejor racha</span>
-            </div>
-          </div>
-          <div className="progress-roster">
-            {FIGHTERS.map((f) => {
-              const count = Number(progress.wins[f.id]) || 0;
-              return (
-                <div key={f.id}>
-                  <span
-                    className="progress-dot"
-                    style={{ background: f.color }}
-                  />
-                  <strong>{f.name}</strong>
-                  <span>
-                    {count} {count === 1 ? "victoria" : "victorias"}
-                  </span>
-                  <small>3/3 combos</small>
-                </div>
-              );
-            })}
-          </div>
-          {progress.recent.length > 0 ? (
-            <>
-              <h3 className="help-section">Últimas peleas</h3>
-              <div className="recent-matches">
-                {progress.recent.slice(0, 5).map((m, i) => (
-                  <div key={i}>
-                    <span className={m.won ? "won" : "lost"}>
-                      {m.won ? "VICTORIA" : "PARTIDA"}
-                    </span>
-                    <span>
-                      {fighterById(m.fighter).shortName} <small>vs.</small>{" "}
-                      {fighterById(m.rival).shortName}
-                    </span>
-                  </div>
-                ))}
+        <Modal
+          title="Mi progreso"
+          className="progress-modal content-modal"
+          onClose={() => setModal(null)}
+        >
+          <div className="dialog-content progress-content">
+            <div className="progress-metrics">
+              <div>
+                <strong>{progress.played}</strong>
+                <span>Peleas</span>
               </div>
-            </>
-          ) : (
-            <div className="empty-progress">
-              <Trophy size={29} />
-              <p>
-                Tu primera victoria está esperando.
-                <br />
-                Elige tu luchador y empieza a jugar.
-              </p>
+              <div>
+                <strong>{totalWins}</strong>
+                <span>Victorias</span>
+              </div>
+              <div>
+                <strong>{progress.bestCombo}</strong>
+                <span>Mejor racha</span>
+              </div>
             </div>
-          )}
+            {progress.recent.length > 0 ? (
+              <>
+                <h3 id="progress-history-title">Historial de peleas</h3>
+                <div
+                  className="recent-matches"
+                  role="list"
+                  aria-labelledby="progress-history-title"
+                >
+                  {progress.recent.map((m, i) => (
+                    <div key={i} role="listitem">
+                      <span className={m.won ? "won" : "lost"}>
+                        {m.won ? "VICTORIA" : "PARTIDA"}
+                      </span>
+                      <span>
+                        {fighterById(m.fighter).shortName} <small>vs.</small>{" "}
+                        {fighterById(m.rival).shortName}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="empty-progress">
+                <Trophy size={29} />
+                <p>
+                  Todavía no has registrado peleas.
+                  <br />
+                  Elige tu luchador y empieza a jugar.
+                </p>
+              </div>
+            )}
+          </div>
+          <div className="dialog-footer">
+            <button
+              type="button"
+              className="dialog-done"
+              onClick={() => setModal(null)}
+            >
+              Entendido
+            </button>
+          </div>
         </Modal>
       )}
       {modal === "rooms" && (

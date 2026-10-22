@@ -1,5 +1,38 @@
 # Controls validation
 
+## Mobile audio validation
+
+Run `npx tsx --test tests/audio-mobile-lifecycle.test.ts` for deterministic
+regressions covering blocked touch-start activation, touch-release retries,
+interrupted contexts, foreground/page restoration, pending and rejected resume
+requests, unmuting, background silence, and StrictMode listener cleanup.
+
+With the standalone Vite server below, open
+`http://localhost:5174/tests/browser/audio-lifecycle.html`, click a control in the
+lobby using native browser input, then run `await audioAudit.run()` in the console.
+Reload before repeating the audit. `audioAudit.unmount()` removes the fixture.
+
+This mounts the production App in StrictMode and measures samples from the real
+Web Audio graph. Its five scenarios check music output after interaction, silent
+mute and audible unmute, hidden-page silence and foreground recovery from an
+actual suspended context, combat effects, and decoding all 18 MP3 reaction assets
+with audible fighter reactions. Recovery must retain one context and one music
+loop. The fixture deliberately attempts audio startup outside a gesture, like an
+online match arriving; autoplay policy depends on the browser profile.
+
+On 2026-10-22, all five scenarios passed in Chromium 154 on Linux at 915×412,
+including zero measured output while muted. These are real rendering and
+synthesized lifecycle checks. Resizing does not emulate Android/iOS activation
+policies, physical touch, device speakers, calls, or screen locking.
+
+The activation listeners follow the
+[HTML user activation model](https://html.spec.whatwg.org/multipage/interaction.html#activation-triggering-input-event)
+and [Chrome Web Audio guidance](https://developer.chrome.com/blog/web-audio-autoplay):
+touch/pen release and touchend can grant activation; touch pointerdown alone does
+not. Resume is invoked synchronously inside capture listeners, including when a
+game control prevents a compatibility click. Fresh gestures and foreground
+restoration retry pending resumes; render frames reuse the existing request.
+
 ## Dialog and game overlay layout review
 
 With the standalone Vite server below, open
@@ -136,6 +169,24 @@ callback, immutable match state, and frame-loop cleanup after unmount.
 The harness restores its browser clock and visibility overrides after each run.
 It uses a simulated remote state for online mode; it does not exercise network
 transport.
+
+## Loading screen validation
+
+With the same Vite server, open
+`http://localhost:5174/tests/browser/loading-screen.html` and run
+`await loadingScreenAudit.run()` in the console. All nine scenarios must pass.
+
+This mounts the production `ArenaEntrance` in React StrictMode. It checks that
+the animation and its completion clock both wait for entrance fonts, Escape
+works from initial BODY focus after readiness, unavailable skip controls cannot
+bypass readiness, failed or delayed illustrations do not block entry, completion
+happens once, and unmount clears timers and global keyboard listeners.
+
+Timers and image load/error events are controlled. Reduced motion is explicitly
+simulated with the production media-rule declarations and matching JavaScript
+preference branch; this is not OS-level media emulation. The harness restores
+all browser overrides after each run. Real startup networking, visual animation,
+responsive layouts, and physical-device performance need separate browser review.
 
 ## Interaction contract
 

@@ -1,67 +1,3 @@
-.arcade-app .modal:is(.help-modal, .fighter-moves-modal) {
-  width: min(1000px, calc(100vw - 48px));
-  max-width: none;
-  max-height: calc(100dvh - 48px);
-}
-
-.arcade-app .modal.help-modal {
-  --help-muted: #b5c3d8;
-  padding: 0;
-  overflow: hidden;
-  color: #eef2fa;
-  background: #13243a;
-  border: 1px solid #5d779c;
-  border-radius: 12px;
-  box-shadow: 0 24px 80px #020b1999;
-  font: 400 16px/1.5 var(--font-body);
-}
-
-.help-modal[open] {
-  display: flex;
-  flex-direction: column;
-}
-
-.help-modal .modal-header {
-  flex-shrink: 0;
-  margin: 0;
-  padding: 16px 24px;
-  border-bottom: 1px solid #30455f;
-}
-
-.arcade-app .help-modal .modal-header h2 {
-  color: #fff5db;
-  font: italic 800 28px/1.1 var(--font-display);
-  letter-spacing: 0;
-}
-
-.arcade-app .help-modal .icon-button {
-  width: 44px;
-  height: 44px;
-  color: var(--help-muted);
-  border-radius: 6px;
-}
-
-.help-modal .icon-button:hover {
-  background: #ffffff0d;
-  color: #fff5db;
-}
-
-.help-content {
-  min-height: 0;
-  padding: 20px 24px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-color: #5d779c #13243a;
-  scrollbar-width: thin;
-}
-
-.help-content h3 {
-  color: #fff5db;
-  font-size: 20px;
-  line-height: 1.3;
-  font-weight: 700;
-}
-
 .help-view-switcher {
   display: flex;
   justify-content: flex-start;
@@ -88,7 +24,7 @@
   min-height: 30px;
   padding: 4px 8px;
   border-radius: 4px;
-  color: var(--help-muted);
+  color: var(--dialog-muted);
   font-size: 13px;
   font-weight: 600;
   line-height: 1.2;
@@ -127,7 +63,7 @@
   min-height: 44px;
   padding: 8px 0;
   border-bottom: 2px solid transparent;
-  color: var(--help-muted);
+  color: var(--dialog-muted);
   font-size: 16px;
 }
 
@@ -143,7 +79,7 @@
 
 .help-device-note {
   margin: 0 0 12px;
-  color: var(--help-muted);
+  color: var(--dialog-muted);
 }
 
 .help-screen-guide {
@@ -200,12 +136,12 @@
 
 .help-touch-basics dt svg {
   flex-shrink: 0;
-  color: var(--help-muted);
+  color: var(--dialog-muted);
 }
 
 .help-touch-basics dd {
   margin: 0 0 0 28px;
-  color: var(--help-muted);
+  color: var(--dialog-muted);
   font-size: 12px;
   line-height: 1.4;
 }
@@ -213,7 +149,7 @@
 .help-touch-method {
   max-width: 72ch;
   margin: 16px 0 0;
-  color: var(--help-muted);
+  color: var(--dialog-muted);
   font-size: 13px;
   line-height: 1.5;
 }
@@ -345,30 +281,39 @@
 .help-pad-jump {
   grid-area: 1 / 2;
 }
+
 .help-pad-left {
   grid-area: 2 / 1;
 }
+
 .help-pad-right {
   grid-area: 2 / 3;
 }
+
 .help-pad-dash {
   grid-area: 3 / 1;
 }
+
 .help-pad-down {
   grid-area: 3 / 2;
 }
+
 .help-pad-block {
   grid-area: 1 / 1;
 }
+
 .help-pad-super {
   grid-area: 1 / 3;
 }
+
 .help-pad-light {
   grid-area: 2 / 1;
 }
+
 .help-pad-heavy {
   grid-area: 2 / 2;
 }
+
 .help-pad-special {
   grid-area: 2 / 3;
 }
@@ -384,7 +329,7 @@
   gap: 16px;
   margin-top: 10px;
   font-size: 14px;
-  color: var(--help-muted);
+  color: var(--dialog-muted);
 }
 
 .help-screen-guide figcaption > span:last-child {
@@ -443,7 +388,7 @@
   gap: 10px;
   min-height: 44px;
   width: fit-content;
-  color: var(--help-muted);
+  color: var(--dialog-muted);
   font-size: 13px;
   cursor: pointer;
   list-style: none;
@@ -467,7 +412,7 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px 32px;
   margin: 12px 0 0;
-  color: var(--help-muted);
+  color: var(--dialog-muted);
   font-size: 13px;
   line-height: 1.5;
 }
@@ -593,34 +538,6 @@
   color: #eef2fa;
 }
 
-.help-footer {
-  display: flex;
-  flex-shrink: 0;
-  justify-content: flex-end;
-  padding: 12px 24px;
-}
-
-.help-done {
-  min-width: 160px;
-  min-height: 48px;
-  padding: 10px 24px;
-  color: #17273f;
-  background: #ffd45a;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.5;
-}
-
-.help-done:hover {
-  background: #ffe28c;
-}
-
-.help-modal :is(button, summary):focus-visible {
-  outline: 2px solid #ffd45a;
-  outline-offset: 3px;
-}
-
 @media (max-width: 900px) {
   .help-view-switcher {
     justify-content: center;
@@ -641,29 +558,12 @@
 }
 
 @media (max-width: 680px) {
-  .arcade-app .modal:is(.help-modal, .fighter-moves-modal) {
-    width: calc(100vw - 24px);
-    max-height: calc(100dvh - 24px);
-  }
-
-  .help-content {
-    padding: 16px;
-  }
-
-  .help-content h3 {
-    font-size: 18px;
-  }
-
   .help-players {
     gap: 8px 16px;
   }
 
   .help-players button {
     font-size: 14px;
-  }
-
-  .help-footer {
-    padding: 10px 16px;
   }
 }
 
@@ -674,63 +574,7 @@
 }
 
 @media (max-height: 500px) and (orientation: landscape) {
-  .arcade-app .modal:is(.help-modal, .fighter-moves-modal) {
-    width: min(880px, calc(100vw - 24px));
-    max-height: calc(100dvh - 16px);
-  }
-
-  .arcade-app .help-modal .modal-header {
-    min-height: 0;
-  }
-
-  .arcade-app .help-modal .help-content {
-    padding: 12px 16px;
-    font-size: 14px;
-  }
-
-  .help-modal .help-content h3 {
-    font-size: 16px;
-  }
-
   .help-view-switcher {
     margin-bottom: 20px;
-  }
-
-  .arcade-app .help-modal .help-footer {
-    padding: 8px 16px;
-  }
-}
-
-@media (max-width: 680px), (max-height: 500px) and (orientation: landscape) {
-  .arcade-app .help-modal .modal-header {
-    padding: 2px 16px;
-  }
-
-  .arcade-app .help-modal .modal-header h2 {
-    font-size: 20px;
-  }
-
-  .arcade-app .help-modal .modal-header .icon-button svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  .arcade-app .help-modal .help-footer {
-    padding: 8px 16px;
-  }
-
-  :is(.help-modal, .fighter-moves-modal) .help-done {
-    position: relative;
-    width: auto;
-    min-width: 112px;
-    min-height: 36px;
-    padding: 6px 16px;
-    font-size: 13px;
-  }
-
-  :is(.help-modal, .fighter-moves-modal) .help-done::before {
-    content: "";
-    position: absolute;
-    inset: -4px 0;
   }
 }

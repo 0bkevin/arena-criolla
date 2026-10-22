@@ -24,6 +24,12 @@ let exits = 0;
 let rematches = 0;
 const settle = () => new Promise((resolve) => setTimeout(resolve, 100));
 
+async function prepareFonts() {
+  const loading = loadInterfaceFonts();
+  await loading.ready;
+  loading.activateInterface();
+}
+
 export function unmount() {
   if (root) flushSync(() => root!.unmount());
   root = undefined;
@@ -74,7 +80,7 @@ export async function mount(
       else Reflect.deleteProperty(target, property);
     }
   };
-  await loadInterfaceFonts();
+  await prepareFonts();
   const initial = createMatch("caracas", [
     { fighter: "zavarce", name: "Jugador uno", wins: 0 },
     { fighter: "javier", name: "Jugador dos", wins: 0 },
@@ -138,7 +144,7 @@ export function state() {
 /** Cover the actual App transition, including the original roster trigger. */
 export async function runRosterNavigation() {
   unmount();
-  await loadInterfaceFonts();
+  await prepareFonts();
   root = createRoot(document.getElementById("fixture")!);
   flushSync(() =>
     root!.render(
@@ -239,7 +245,7 @@ export async function runRosterNavigation() {
 /** The live canvas must stay inside its grid row when a short viewport scrolls. */
 export async function runMovePreviewLayout(fighter: FighterId = "maite") {
   unmount();
-  await loadInterfaceFonts();
+  await prepareFonts();
   root = createRoot(document.getElementById("fixture")!);
   flushSync(() =>
     root!.render(

@@ -181,7 +181,7 @@ export function FighterDetail({
     <Modal
       title={f.name}
       wide
-      className="fighter-moves-modal"
+      className="content-modal fighter-moves-modal"
       onClose={onClose}
     >
       <div
@@ -236,7 +236,7 @@ export function FighterDetail({
           <h3 id="move-combos-title">Combos</h3>
           {moveList(true)}
         </section>
-        <button type="button" className="help-done" onClick={onSelect}>
+        <button type="button" className="dialog-done help-done" onClick={onSelect}>
           Elegir a {f.shortName} <ArrowRight size={16} aria-hidden="true" />
         </button>
       </div>

@@ -4,14 +4,22 @@ import { VenezuelaStars } from "./CriolloArt";
 import entranceAssets from "../entrance-assets.json";
 import "../arena-entrance.css";
 
+// Preserve the comic burst used by the entrance on main.
+const IMPACT_BURST_PATH =
+  "m100 0 12 62 43-43-22 60 67-12-56 35 48 37-66-9 12 62-38-49-34 57 7-66-65 19 49-42L0 84l65-3-37-55 54 38z";
+
 export function ArenaEntrance({
   ready,
   fontsReady,
+  displayFontReady = true,
   onComplete,
+  onRetry,
 }: {
   ready: boolean;
   fontsReady: boolean;
+  displayFontReady?: boolean;
   onComplete: (restoreFocus: boolean) => void;
+  onRetry?: () => void;
 }) {
   const entrance = useRef<HTMLDivElement>(null);
   const [reducedMotion, setReducedMotion] = useState(
@@ -20,6 +28,7 @@ export function ArenaEntrance({
   const [introPlayed, setIntroPlayed] = useState(false);
   const [artReady, setArtReady] = useState(false);
   const settledArt = useRef(new Set<string>());
+  const playing = fontsReady && (artReady || reducedMotion);
   const leaving = ready && fontsReady && introPlayed;
   const settleArt = (fighter: string) => {
     settledArt.current.add(fighter);
@@ -42,13 +51,23 @@ export function ArenaEntrance({
   }, []);
 
   useEffect(() => {
-    if (!fontsReady || (!artReady && !reducedMotion)) return;
+    if (!playing) return;
     const timer = window.setTimeout(
       () => setIntroPlayed(true),
       reducedMotion ? 0 : 2200,
     );
     return () => window.clearTimeout(timer);
-  }, [artReady, fontsReady, reducedMotion]);
+  }, [playing, reducedMotion]);
+
+  useEffect(() => {
+    const skip = (event: KeyboardEvent) => {
+      if (event.key !== "Escape" || !ready || !fontsReady || leaving) return;
+      event.preventDefault();
+      setIntroPlayed(true);
+    };
+    window.addEventListener("keydown", skip);
+    return () => window.removeEventListener("keydown", skip);
+  }, [ready, fontsReady, leaving]);
 
   useEffect(() => {
     if (!leaving) return;
@@ -65,10 +84,7 @@ export function ArenaEntrance({
   return (
     <div
       ref={entrance}
-      className={`arena-entrance ${artReady ? "is-playing" : "is-preparing"}${fontsReady ? "" : " is-loading-fonts"}${leaving ? " is-leaving" : ""}`}
-      onKeyDown={(event) => {
-        if (event.key === "Escape" && ready && fontsReady) setIntroPlayed(true);
-      }}
+      className={`arena-entrance ${playing ? "is-playing" : "is-preparing"}${fontsReady ? "" : " is-loading-fonts"}${displayFontReady ? "" : " has-fallback-display"}${leaving ? " is-leaving" : ""}`}
     >
       <div className="arena-entrance-stage">
         <div className="arena-entrance-scenery" aria-hidden="true" />
@@ -89,59 +105,73 @@ export function ArenaEntrance({
           <path d="M0 90 440 320M0 260 390 365M0 510 410 420M0 720 450 465M1200 90 760 320M1200 260 810 365M1200 510 790 420M1200 720 750 465" />
         </svg>
         <div className="arena-entrance-duel" aria-hidden="true">
-          <picture className="arena-entrance-fighter arena-entrance-fighter-left">
-            <source type="image/avif" srcSet={entranceAssets.renny.avif} />
-            <img
-              src={entranceAssets.renny.webp}
-              alt=""
-              width={entranceAssets.renny.width}
-              height={entranceAssets.renny.height}
-              draggable={false}
-              decoding="async"
-              fetchPriority="high"
-              onLoad={() => settleArt("renny")}
-              onError={(event) => {
-                event.currentTarget.hidden = true;
-                settleArt("renny");
-              }}
-            />
-          </picture>
-          <picture className="arena-entrance-fighter arena-entrance-fighter-right">
-            <source type="image/avif" srcSet={entranceAssets.capriles.avif} />
-            <img
-              src={entranceAssets.capriles.webp}
-              alt=""
-              width={entranceAssets.capriles.width}
-              height={entranceAssets.capriles.height}
-              draggable={false}
-              decoding="async"
-              fetchPriority="high"
-              onLoad={() => settleArt("capriles")}
-              onError={(event) => {
-                event.currentTarget.hidden = true;
-                settleArt("capriles");
-              }}
-            />
-          </picture>
-          <svg className="arena-entrance-impact" viewBox="0 0 200 200">
-            <path d="m100 0 12 62 43-43-22 60 67-12-56 35 48 37-66-9 12 62-38-49-34 57 7-66-65 19 49-42L0 84l65-3-37-55 54 38z" />
-          </svg>
-          <div className="arena-entrance-sparks">
-            {[-165, -140, -110, -70, -35, -15, 15, 40, 75, 110, 145, 170].map(
-              (angle, index) => (
-                <i
-                  key={angle}
-                  style={
-                    {
-                      "--spark-angle": `${angle}deg`,
-                      "--spark-distance": `${130 + (index % 3) * 45}px`,
-                    } as CSSProperties
-                  }
+          <div className="arena-entrance-matchup">
+            <div className="arena-entrance-fighter arena-entrance-fighter-left">
+              <picture>
+                <source type="image/avif" srcSet={entranceAssets.renny.avif} />
+                <img
+                  src={entranceAssets.renny.webp}
+                  alt=""
+                  width={entranceAssets.renny.width}
+                  height={entranceAssets.renny.height}
+                  draggable={false}
+                  decoding="async"
+                  fetchPriority="high"
+                  onLoad={() => settleArt("renny")}
+                  onError={(event) => {
+                    event.currentTarget.hidden = true;
+                    settleArt("renny");
+                  }}
                 />
-              ),
-            )}
+              </picture>
+            </div>
+            <div className="arena-entrance-fighter arena-entrance-fighter-right">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcSet={entranceAssets.capriles.avif}
+                />
+                <img
+                  src={entranceAssets.capriles.webp}
+                  alt=""
+                  width={entranceAssets.capriles.width}
+                  height={entranceAssets.capriles.height}
+                  draggable={false}
+                  decoding="async"
+                  fetchPriority="high"
+                  onLoad={() => settleArt("capriles")}
+                  onError={(event) => {
+                    event.currentTarget.hidden = true;
+                    settleArt("capriles");
+                  }}
+                />
+              </picture>
+            </div>
+            <svg className="arena-entrance-impact" viewBox="0 0 200 200">
+              <path d={IMPACT_BURST_PATH} />
+              <path
+                className="arena-entrance-impact-core"
+                d={IMPACT_BURST_PATH}
+                transform="translate(100 100) scale(.42) translate(-100 -100)"
+              />
+            </svg>
+            <div className="arena-entrance-sparks">
+              {[-165, -140, -110, -70, -35, -15, 15, 40, 75, 110, 145, 170].map(
+                (angle, index) => (
+                  <i
+                    key={angle}
+                    style={
+                      {
+                        "--spark-angle": `${angle}deg`,
+                        "--spark-distance": `${13 + (index % 3) * 4.5}cqw`,
+                      } as CSSProperties
+                    }
+                  />
+                ),
+              )}
+            </div>
+            <span className="arena-entrance-versus">VS</span>
           </div>
-          <span className="arena-entrance-versus">VS</span>
         </div>
         <div className="arena-entrance-brand">
           <h1 className="arena-entrance-title" aria-label="Arena Criolla">
@@ -151,21 +181,32 @@ export function ArenaEntrance({
           <VenezuelaStars className="arena-entrance-stars" />
         </div>
       </div>
-      <p className="arena-entrance-status" role="status">
-        {ready ? "Entrando a la arena…" : "Abriendo la arena…"}
-      </p>
       <div className="arena-entrance-exit-slash" aria-hidden="true" />
-      <button
-        type="button"
-        className="arena-entrance-skip"
-        disabled={!ready || !fontsReady}
-        aria-disabled={leaving || undefined}
-        onClick={() => {
-          if (!leaving) setIntroPlayed(true);
-        }}
-      >
-        Saltar intro <ArrowRight size={16} aria-hidden="true" />
-      </button>
+      <div className="arena-entrance-footer">
+        <p className="arena-entrance-status" role="status">
+          {onRetry
+            ? "No pudimos abrir la arena."
+            : ready
+              ? "Entrando a la arena…"
+              : "Abriendo la arena…"}
+        </p>
+        <button
+          type="button"
+          className="arena-entrance-skip"
+          disabled={!fontsReady || (!ready && !onRetry)}
+          aria-disabled={leaving || undefined}
+          onClick={() => {
+            if (onRetry) {
+              onRetry();
+              return;
+            }
+            if (!leaving) setIntroPlayed(true);
+          }}
+        >
+          {onRetry ? "Reintentar" : "Saltar intro"}{" "}
+          <ArrowRight size={16} aria-hidden="true" />
+        </button>
+      </div>
     </div>
   );
 }

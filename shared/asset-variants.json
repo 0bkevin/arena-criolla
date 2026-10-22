@@ -264,19 +264,19 @@
     },
     "og-arena-criolla.png": {
       "source": "assets/og-arena-criolla.png",
-      "sourceSha256": "21792e380b51cd1b600efe34a0ad905d83d8990d9a283ad15c4e088c264eba8b",
-      "rgbaSha256": "82e7e844672bc2f3bf5b496e3506c9de7a4f25bdeb6d585c80c82a59fc1779a2",
+      "sourceSha256": "0def2fb5da5bfe957a6385c320df000ed72ddf7e8396c82698e6bbc2c3b0e004",
+      "rgbaSha256": "d363401ccb08e05250954322c711e8bac72d0b55dd529caa53ea0a6452b95add",
       "variants": [
         {
-          "file": "assets/optimized/og-arena-criolla-d0ebb491bfa75a1f.png",
-          "sha256": "d0ebb491bfa75a1fc533f2b81cb81fc9a7bf6b46f22db024ee9d960c6299628c",
-          "bytes": 1269334,
+          "file": "assets/optimized/og-arena-criolla-ea8f12d8f27c5f6a.png",
+          "sha256": "ea8f12d8f27c5f6a72ed5348a1e4b2508173fbc23e21cc91e916ba1bf2bba655",
+          "bytes": 1432205,
           "contentType": "image/png"
         },
         {
-          "file": "assets/optimized/og-arena-criolla-de6ab3c3e33e239c.avif",
-          "sha256": "de6ab3c3e33e239c81c2319678e4d68270d403ec852bec2613c4304cb1bf1d64",
-          "bytes": 1088362,
+          "file": "assets/optimized/og-arena-criolla-8715d6219cb59ee6.avif",
+          "sha256": "8715d6219cb59ee623d4fd591c4aff390fa5bdaacdd8cd954b6b7c76799ac1eb",
+          "bytes": 1121193,
           "contentType": "image/avif"
         }
       ]
