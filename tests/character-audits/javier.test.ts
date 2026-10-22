@@ -176,8 +176,8 @@ for (const side of [0, 1] as const) {
       advance(combo.s, combo.inputs, 25);
       combo.inputs[side].actions.heavy++;
       stepMatch(combo.s, combo.inputs);
-      assert.equal(combo.p.combo, wins ? "Réplica al instante" : "Finta de ceja");
-      assert.equal(combo.p.comboBonus, wins ? 7 : 3);
+      assert.equal(combo.p.combo, "Réplica al instante");
+      assert.equal(combo.p.comboBonus, 7);
       advance(combo.s, combo.inputs, 16);
       assert.ok(combo.p.hits >= 2);
       console.log(JSON.stringify({ check: "combo", side, wins, name: combo.p.combo, bonus: combo.p.comboBonus, hits: combo.p.hits, hp: combo.target.hp, history: combo.p.history }));

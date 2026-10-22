@@ -224,7 +224,7 @@ test("Cadenza spends 25 energy and its tick-18 musical wave hits idle/rear guard
     }
 });
 
-test("Dudamel recognizes base and upgraded combos, connects every strike with approach inputs, and enforces super gates on both sides", () => {
+test("Dudamel recognizes both combos from zero wins, connects every strike with approach inputs, and enforces super gates on both sides", () => {
   for (const side of [0, 1] as const) {
     for (const wins of [0, 1]) {
       const r = setup(side, 140, wins);
@@ -234,9 +234,9 @@ test("Dudamel recognizes base and upgraded combos, connects every strike with ap
       }
       r.inputs[side].actions.heavy++;
       r.advance(11);
-      assert.equal(r.player.combo, wins ? "Cambio de tempo" : "Primer compás");
-      assert.equal(r.player.comboBonus, wins ? 7 : 3);
-      close(r.rival.hp, 100 - (13 * 0.97 + (wins ? 7 : 3)) * 1.03);
+      assert.equal(r.player.combo, "Cambio de tempo");
+      assert.equal(r.player.comboBonus, 7);
+      close(r.rival.hp, 100 - (13 * 0.97 + 7) * 1.03);
       emit("combo-gate", {
         side,
         wins,
@@ -247,7 +247,7 @@ test("Dudamel recognizes base and upgraded combos, connects every strike with ap
       });
     }
     for (const advanced of [false, true]) {
-      const r = setup(side, 80, advanced ? 1 : 0);
+      const r = setup(side, 80, 0);
       const attacks = advanced
         ? (["light", "light", "heavy"] as const)
         : (["light", "heavy"] as const);

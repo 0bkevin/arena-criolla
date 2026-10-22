@@ -54,8 +54,7 @@ export function VictoryScreen({
   const unlocked =
     winner &&
     (mode === "local" || localWinner) &&
-    (winner.config.wins === 0 ||
-      winner.config.wins + 1 === fighter?.specialUnlockWins);
+    winner.config.wins + 1 === fighter?.specialUnlockWins;
 
   return (
     <div
@@ -123,10 +122,7 @@ export function VictoryScreen({
             <p className="victory-screen-unlock">
               <Zap size={16} aria-hidden="true" />
               <span>
-                {winner.config.wins === 0
-                  ? "Nuevo combo desbloqueado"
-                  : "Especial desbloqueado"}{" "}
-                para {fighter?.shortName}
+                Especial desbloqueado para {fighter?.shortName}
               </span>
             </p>
           )}

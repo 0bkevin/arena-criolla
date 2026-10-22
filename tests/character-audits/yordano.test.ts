@@ -119,12 +119,12 @@ test("Yordano recognizes and connects base/upgraded combos with chase inputs and
       const r = setup(side, 140, wins);
       for (let n = 0; n < 2; n++) { r.inputs[side].actions.light++; r.advance(23); }
       r.inputs[side].actions.heavy++; r.advance(11);
-      assert.equal(r.player.combo, wins ? "Ida y vuelta" : "Agua clara"); assert.equal(r.player.comboBonus, wins ? 7 : 3);
-      close(r.rival.hp, 100 - (13 + (wins ? 7 : 3)) * 1.03);
+      assert.equal(r.player.combo, "Ida y vuelta"); assert.equal(r.player.comboBonus, 7);
+      close(r.rival.hp, 100 - (13 + 7) * 1.03);
       emit("combo-win-gate", { side, wins, combo: r.player.combo, bonus: r.player.comboBonus, hits: r.player.hits, hp: r.rival.hp });
     }
     for (const advanced of [false, true]) {
-      const r = setup(side, 80, advanced ? 1 : 0), attacks = advanced ? ["light", "light", "heavy"] as const : ["light", "heavy"] as const;
+      const r = setup(side, 80, 0), attacks = advanced ? ["light", "light", "heavy"] as const : ["light", "heavy"] as const;
       for (const action of attacks) {
         for (let n = 0; n < 70 && (r.player.cooldown || Math.abs(r.rival.x - r.player.x) > 80 || !r.rival.grounded); n++) { const dx = r.rival.x - r.player.x; r.inputs[side].left = dx < -70; r.inputs[side].right = dx > 70; r.advance(1); }
         r.inputs[side].left = false; r.inputs[side].right = false; r.advance(8); r.inputs[side].actions[action]++; r.advance(action === "light" ? 23 : 14);

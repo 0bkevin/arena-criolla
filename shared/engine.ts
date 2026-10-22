@@ -622,7 +622,7 @@ function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
     p.comboTick = s.tick;
     p.comboBonus = 3;
   }
-  if (p.config.wins >= 1 && sequence === "light,light,heavy") {
+  if (sequence === "light,light,heavy") {
     p.combo = def.combos[1];
     p.comboTick = s.tick;
     p.comboBonus = 7;

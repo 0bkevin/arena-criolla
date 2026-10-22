@@ -109,18 +109,18 @@ test("fan range and airborne trajectories remain finite and expire without linge
   }
 });
 
-test("Lila recognizes base/advanced combos, connects chasing chains and enforces super win/energy gates on both sides", () => {
+test("Lila recognizes base/advanced combos, connects chasing chains and enforces super energy gates on both sides", () => {
   for (const side of [0, 1] as const) {
     for (const wins of [0, 1]) {
       const r = setup(side, 140, wins);
       for (let n = 0; n < 2; n++) { r.inputs[side].actions.light++; r.advance(23); }
       r.inputs[side].actions.heavy++; r.advance(11);
-      assert.equal(r.player.combo, wins ? "Giro dorado" : "Destello zuliano"); assert.equal(r.player.comboBonus, wins ? 7 : 3);
-      close(r.rival.hp, 100 - (13 * 1.08 + (wins ? 7 : 3)) * 1.03);
+      assert.equal(r.player.combo, "Giro dorado"); assert.equal(r.player.comboBonus, 7);
+      close(r.rival.hp, 100 - (13 * 1.08 + 7) * 1.03);
       emit("combo-gate", { side, wins, combo: r.player.combo, bonus: r.player.comboBonus, hits: r.player.hits, hp: r.rival.hp });
     }
     for (const advanced of [false, true]) {
-      const r = setup(side, 80, advanced ? 1 : 0);
+      const r = setup(side, 80, 0);
       const attacks = advanced ? ["light", "light", "heavy"] as const : ["light", "heavy"] as const;
       for (const action of attacks) {
         for (let n = 0; n < 70 && (r.player.cooldown || Math.abs(r.rival.x - r.player.x) > 80 || !r.rival.grounded); n++) {

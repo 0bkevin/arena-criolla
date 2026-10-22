@@ -43,7 +43,7 @@ test("touch definitive is available from zero wins and still requires 90 energy"
   }
 });
 
-test("victories announce only newly unlocked combos for either local player and the online winner", async () => {
+test("victories never announce combo unlocks for either local player or the online winner", () => {
   for (const mode of ["local", "online"] as const) {
     for (const winner of [0, 1] as const) {
       for (const wins of [0, 1, 2, 3]) {
@@ -66,18 +66,17 @@ test("victories announce only newly unlocked combos for either local player and 
             onExit() {},
           }),
         );
-        const localVictory = mode === "local" || winner === 0;
         assert.equal(
           html.includes("Definitiva desbloqueada"),
           false,
         );
         assert.equal(
           html.includes("Nuevo combo desbloqueado"),
-          localVictory && wins === 0,
+          false,
         );
         assert.equal(
           html.includes('class="victory-screen-unlock"'),
-          localVictory && wins === 0,
+          false,
         );
       }
     }

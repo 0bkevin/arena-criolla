@@ -284,7 +284,7 @@ test("Oscar special obeys 140 horizontal range and reaches an actually jumping r
   }
 });
 
-test("Oscar combos recognize whiff chains, connect with chase inputs and apply win and energy super gates", () => {
+test("Oscar combos recognize whiff chains, connect with chase inputs and apply super energy gates", () => {
   for (const side of [0, 1] as const) {
     for (const wins of [0, 1]) {
       const r = setup(side, 140, wins);
@@ -294,9 +294,9 @@ test("Oscar combos recognize whiff chains, connect with chase inputs and apply w
       }
       r.inputs[side].actions.heavy++;
       r.advance(11);
-      assert.equal(r.player.combo, wins ? "Síncopa doble" : "Paso de salsa");
-      assert.equal(r.player.comboBonus, wins ? 7 : 3);
-      close(r.rival.hp, 100 - (13 * 1.01 + (wins ? 7 : 3)) * 1.03);
+      assert.equal(r.player.combo, "Síncopa doble");
+      assert.equal(r.player.comboBonus, 7);
+      close(r.rival.hp, 100 - (13 * 1.01 + 7) * 1.03);
       emit("combo-gate", {
         side,
         wins,
@@ -306,7 +306,7 @@ test("Oscar combos recognize whiff chains, connect with chase inputs and apply w
       });
     }
     for (const advanced of [false, true]) {
-      const r = setup(side, 80, advanced ? 1 : 0),
+      const r = setup(side, 80, 0),
         attacks = advanced
           ? (["light", "light", "heavy"] as const)
           : (["light", "heavy"] as const);

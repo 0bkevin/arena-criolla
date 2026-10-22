@@ -112,15 +112,15 @@ test("pivot respects energy and range gates on either side", () => {
   }
 });
 
-test("Norkys recognizes base and upgraded combos, connects strikes with pursuit, and enforces super gates on either side", () => {
+test("Norkys recognizes both combos from zero wins, connects strikes with pursuit, and enforces super gates on either side", () => {
   for (const side of [0, 1] as const) {
     for (const wins of [0, 1]) {
       const r = setup(side, 140, wins); for (let n = 0; n < 2; n++) { r.inputs[side].actions.light++; r.advance(23); }
-      r.inputs[side].actions.heavy++; r.advance(11); assert.equal(r.player.combo, wins ? "Giro de escena" : "Cambio de perfil"); assert.equal(r.player.comboBonus, wins ? 7 : 3);
-      close(r.rival.hp, 100 - (13 * 0.95 + (wins ? 7 : 3)) * 1.03);
+      r.inputs[side].actions.heavy++; r.advance(11); assert.equal(r.player.combo, "Giro de escena"); assert.equal(r.player.comboBonus, 7);
+      close(r.rival.hp, 100 - (13 * 0.95 + 7) * 1.03);
     }
     for (const advanced of [false, true]) {
-      const r = setup(side, 80, advanced ? 1 : 0), attacks = advanced ? ["light", "light", "heavy"] as const : ["light", "heavy"] as const;
+      const r = setup(side, 80, 0), attacks = advanced ? ["light", "light", "heavy"] as const : ["light", "heavy"] as const;
       for (const action of attacks) {
         for (let n = 0; n < 70 && (r.player.cooldown || Math.abs(r.rival.x - r.player.x) > 80 || !r.rival.grounded); n++) { const dx = r.rival.x - r.player.x; r.inputs[side].left = dx < -70; r.inputs[side].right = dx > 70; r.advance(1); }
         r.inputs[side].left = false; r.inputs[side].right = false; r.advance(8); r.inputs[side].actions[action]++; r.advance(action === "light" ? 23 : 14);

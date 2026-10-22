@@ -607,7 +607,8 @@ export function App({
       {modal === "progress" && (
         <Modal title="Mi progreso" onClose={() => setModal(null)}>
           <p className="modal-intro">
-            Guardado en este navegador. Desbloqueos por luchador.
+            Guardado en este navegador. Todos los combos disponibles desde el
+            inicio.
           </p>
           <div className="progress-metrics">
             <div>
@@ -636,7 +637,7 @@ export function App({
                   <span>
                     {count} {count === 1 ? "victoria" : "victorias"}
                   </span>
-                  <small>{count >= 1 ? "3/3 combos" : "2/3 combos"}</small>
+                  <small>3/3 combos</small>
                 </div>
               );
             })}

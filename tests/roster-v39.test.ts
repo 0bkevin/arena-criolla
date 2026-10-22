@@ -162,14 +162,14 @@ for (const id of reviewed) {
       }
   });
 
-  test(`${id}: special energy and advanced combo gates preserve the definitive from zero wins`, () => {
+  test(`${id}: both combos and definitive are available from zero wins with ability energy costs`, () => {
     const depleted = setup(id);
     depleted.actor.energy = 24;
     depleted.inputs[0].actions.special++;
     depleted.advance(1);
     assert.equal(depleted.actor.attack, null);
     for (const advanced of [false, true]) {
-      const run = setup(id, 0, 450, advanced ? 1 : 0);
+      const run = setup(id, 0, 450, 0);
       run.inputs[0].actions.light++;
       run.advance(23);
       if (advanced) {

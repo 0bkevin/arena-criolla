@@ -224,8 +224,8 @@ export function Help({ onClose }: { onClose: () => void }) {
           </summary>
           <ul>
             <li>
-              <strong>Combos:</strong> {light} → {heavy} desde el inicio;{" "}
-              {light} → {light} → {heavy} tras una victoria con ese personaje.
+              <strong>Combos:</strong> {light} → {heavy} y {light} → {light} →{" "}
+              {heavy} están disponibles desde el inicio con todos los personajes.
               Deja terminar cada golpe y completa la secuencia en 2,5 segundos.
             </li>
             <li>
