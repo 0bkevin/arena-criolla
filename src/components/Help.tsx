@@ -1,14 +1,5 @@
 import { useState } from "react";
-import {
-  ArrowRight,
-  ChevronDown,
-  Flame,
-  Gamepad2,
-  Keyboard,
-  Smartphone,
-  Swords,
-  Zap,
-} from "lucide-react";
+import { ArrowRight, ChevronDown, Flame, Swords, Zap } from "lucide-react";
 import {
   SUPER_ENERGY_COST,
   SUPER_CHARGE_SECONDS_LABEL,
@@ -19,15 +10,10 @@ import { Modal } from "./Modal";
 import { MobileControlsGuide } from "./MobileControlsGuide";
 import { DesktopControlsGuide } from "./DesktopControls";
 import { GamepadControlsGuide } from "./GamepadControlsGuide";
+import { ControlDeviceTabs, type ControlDevice } from "./ControlDeviceTabs";
 import "../help.css";
 
-type Device = "keyboard" | "touch" | "gamepad";
-
-const devices = [
-  { id: "keyboard", label: "Teclado", icon: Keyboard },
-  { id: "touch", label: "Teléfono", icon: Smartphone },
-  { id: "gamepad", label: "Mando", icon: Gamepad2 },
-] as const;
+type Device = ControlDevice;
 
 function ActionInput({
   action,
@@ -94,23 +80,7 @@ export function Help({ onClose }: { onClose: () => void }) {
             Controles
           </h3>
           <div className="help-view-switcher">
-            <div
-              className="help-devices"
-              role="group"
-              aria-label="Dispositivo de juego"
-            >
-              {devices.map(({ id, label, icon: Icon }) => (
-                <button
-                  key={id}
-                  type="button"
-                  aria-pressed={device === id}
-                  onClick={() => setDevice(id)}
-                >
-                  <Icon size={19} aria-hidden="true" />
-                  {label}
-                </button>
-              ))}
-            </div>
+            <ControlDeviceTabs device={device} onChange={setDevice} />
           </div>
 
           {device === "keyboard" ? (

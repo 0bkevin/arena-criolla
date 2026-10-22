@@ -29,6 +29,13 @@ import type { Control } from "../game/controls";
 import { TouchInputState } from "../game/touch-input";
 import { touchControlAtPoint } from "../game/touch-target";
 
+export const TOUCH_ATTACK_BUTTONS = {
+  light: { Icon: Swords, label: "Golpe ligero", text: "Golpe" },
+  heavy: { Icon: Flame, label: "Golpe fuerte", text: "Fuerte" },
+  special: { Icon: Zap, label: "Ataque especial", text: "Especial" },
+  super: { Icon: Zap, label: "Definitiva", text: "Cargar" },
+} as const;
+
 interface ButtonProps {
   control: Control;
   label: string;
@@ -397,26 +404,26 @@ export function TouchControls({
         </TouchButton>
         <TouchButton
           control="light"
-          label="Golpe ligero"
-          text="Golpe"
+          label={TOUCH_ATTACK_BUTTONS.light.label}
+          text={TOUCH_ATTACK_BUTTONS.light.text}
           pressed={pressed.has("light")}
           onClick={handleAccessibleClick}
         >
-          <Swords />
+          <TOUCH_ATTACK_BUTTONS.light.Icon />
         </TouchButton>
         <TouchButton
           control="heavy"
-          label="Golpe fuerte"
-          text="Fuerte"
+          label={TOUCH_ATTACK_BUTTONS.heavy.label}
+          text={TOUCH_ATTACK_BUTTONS.heavy.text}
           pressed={pressed.has("heavy")}
           onClick={handleAccessibleClick}
         >
-          <Flame />
+          <TOUCH_ATTACK_BUTTONS.heavy.Icon />
         </TouchButton>
         <TouchButton
           control="special"
-          label="Ataque especial"
-          text="Especial"
+          label={TOUCH_ATTACK_BUTTONS.special.label}
+          text={TOUCH_ATTACK_BUTTONS.special.text}
           disabled={wins < specialUnlockWins || energy < 25}
           reason={
             wins < specialUnlockWins
@@ -428,17 +435,21 @@ export function TouchControls({
           pressed={pressed.has("special")}
           onClick={handleAccessibleClick}
         >
-          {wins < specialUnlockWins ? <LockKeyhole /> : <Zap />}
+          {wins < specialUnlockWins ? (
+            <LockKeyhole />
+          ) : (
+            <TOUCH_ATTACK_BUTTONS.special.Icon />
+          )}
         </TouchButton>
         <TouchButton
           control="super"
-          label="Definitiva"
+          label={TOUCH_ATTACK_BUTTONS.super.label}
           text={
             superUsed
               ? "Usada"
               : superChargeTicks > 0
                 ? `${Math.floor((superChargeTicks / SUPER_CHARGE_TICKS) * 100)}%`
-                : "Cargar"
+                : TOUCH_ATTACK_BUTTONS.super.text
           }
           disabled={superUsed || energy < SUPER_ENERGY_COST}
           reason={
@@ -451,7 +462,7 @@ export function TouchControls({
           pressed={pressed.has("super")}
           onClick={handleAccessibleClick}
         >
-          <Zap />
+          <TOUCH_ATTACK_BUTTONS.super.Icon />
         </TouchButton>
       </div>
     </div>
