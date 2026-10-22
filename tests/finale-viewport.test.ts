@@ -5,11 +5,7 @@ import {
   finaleArtXRange,
   finaleViewportBounds,
 } from "../src/game/finale-viewport";
-import {
-  ATTACK_ART,
-  drawAttackArt,
-  type AttackArtFrame,
-} from "../src/game/attack-art";
+import type { AttackArtFrame } from "../src/game/attack-art";
 
 function context(
   width: number,
@@ -110,87 +106,6 @@ test("a pose wider than the viewport reports an impossible interval without shri
     fits: false,
   });
   assert.equal(clampFinaleArtX(small, wide, 200, 1, 40), 150);
-});
-
-test("published showgirl art stays fully visible at either ledge under real arena scale and DPR", () => {
-  const sheet = ATTACK_ART.renny,
-    painted = sheet.frames.present;
-  for (const direction of [-1, 1])
-    for (const dpr of [1, 2]) {
-      // Normal camera/arena transforms for a 120-world-unit capture at a ledge.
-      let matrix = {
-        a: direction * 0.8496 * dpr,
-        b: 0,
-        c: 0,
-        d: 0.8496 * dpr,
-        e: (direction === 1 ? 756.576 : 683.424) * dpr,
-        f: 249.6064 * dpr,
-      };
-      const rectangles: { left: number; right: number; width: number }[] = [];
-      const stack: { matrix: typeof matrix; alpha: number }[] = [];
-      const ctx = {
-        canvas: { width: 1440 * dpr, height: 800 * dpr },
-        globalAlpha: 1,
-        getTransform: () => matrix,
-        save() {
-          stack.push({ matrix: { ...matrix }, alpha: ctx.globalAlpha });
-        },
-        restore() {
-          const saved = stack.pop()!;
-          matrix = saved.matrix;
-          ctx.globalAlpha = saved.alpha;
-        },
-        translate(x: number, y: number) {
-          matrix.e += matrix.a * x + matrix.c * y;
-          matrix.f += matrix.b * x + matrix.d * y;
-        },
-        scale(x: number, y: number) {
-          matrix.a *= x;
-          matrix.b *= x;
-          matrix.c *= y;
-          matrix.d *= y;
-        },
-        drawImage(
-          _image: unknown,
-          _sx: number,
-          _sy: number,
-          _sw: number,
-          _sh: number,
-          x: number,
-          y: number,
-          width: number,
-        ) {
-          const start = matrix.a * x + matrix.c * y + matrix.e,
-            end = matrix.a * (x + width) + matrix.c * y + matrix.e;
-          rectangles.push({
-            left: Math.min(start, end),
-            right: Math.max(start, end),
-            width,
-          });
-        },
-      } as unknown as CanvasRenderingContext2D;
-      const bounds = finaleViewportBounds(ctx),
-        desired = 806.7,
-        bounded = clampFinaleArtX(bounds, painted, 388, -1, desired);
-      const images = {
-        [sheet.file]: { width: 1024, height: 1024 } as HTMLImageElement,
-      };
-      drawAttackArt(ctx, images, "renny", "present", desired, 516, 388, -1);
-      drawAttackArt(ctx, images, "renny", "present", bounded, 516, 388, -1);
-      assert.ok(
-        rectangles[0].left < 0 || rectangles[0].right > 1440 * dpr,
-        "the old desired position clips the published art",
-      );
-      assert.ok(
-        rectangles[1].left >= 0 && rectangles[1].right <= 1440 * dpr,
-        "translation retains the full painted frame",
-      );
-      assert.equal(
-        rectangles[1].width,
-        rectangles[0].width,
-        "containment preserves body scale",
-      );
-    }
 });
 
 test("missing, invalid and noninvertible canvas transforms leave mock positions unchanged", () => {

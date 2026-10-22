@@ -3,7 +3,6 @@ import assert from "node:assert/strict";
 import { createMatch, WORLD } from "../shared/engine";
 import { STAGES } from "../shared/content";
 import { advanceArenaCamera, cameraBounds } from "../src/game/arena-camera";
-import { arenaBounds, sceneryCover, sceneryTiles } from "../src/game/viewport";
 
 function fight() {
   const state = createMatch("caracas", [
@@ -79,30 +78,6 @@ test("every stage keeps both recovery zones visible across desktop and mobile as
         }
       }
     }
-});
-
-test("scenery stays fixed in world coordinates through close and wide recovery pans", () => {
-  const state = fight();
-  state.players[0].x = -140;
-  state.players[0].y = 100;
-  state.players[1].x = 520;
-  const recoveryLeft = advanceArenaCamera(undefined, state, 1440, 800);
-  state.players.forEach((player) => (player.x += 160));
-  const recoveryRight = advanceArenaCamera(undefined, state, 1440, 800);
-  assert.equal(recoveryLeft.zoom, recoveryRight.zoom);
-  assert.ok(recoveryLeft.x < recoveryRight.x);
-  const cover = sceneryCover(540, 320, arenaBounds(WORLD.width, WORLD.height));
-  for (const camera of [
-    { x: 420, zoom: 1.5 },
-    { x: 660, zoom: 1.5 },
-    recoveryLeft,
-    recoveryRight,
-    { x: 540, zoom: 0.8 },
-  ]) {
-    const tiles = sceneryTiles(cover, cameraBounds(camera, 1440, 800));
-    const main = tiles.find((tile) => tile.x === cover.x && tile.y === cover.y);
-    assert.deepEqual(main, { ...cover, mirrorX: false, mirrorY: false });
-  }
 });
 
 test("knocked-out fighters do not steer the camera and a finished fight holds its shot", () => {

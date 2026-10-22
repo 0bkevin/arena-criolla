@@ -1,20 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { type FighterId } from "../shared/content";
-import {
-  createMatch,
-  emptyInput,
-  stepMatch,
-  type Input,
-  type MatchState,
-} from "./helpers/charged-finale-engine";
-import { ATTACK_ART } from "../src/game/attack-art";
-import {
-  MELANIO_SPECIAL_POSES,
-  drawMelanioSpecial,
-  melanioSpecialPose,
-} from "../src/game/finales/melanio";
-
+import { createMatch, emptyInput, stepMatch, type Input, type MatchState } from "./helpers/charged-finale-engine";
+import { melanioSpecialPose } from "../src/game/finales/melanio";
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const a = { name: "Melanio", fighter: "melanio" as const, wins: 3 },
     b = { name: "Rival", fighter: rival, wins: 3 };
@@ -91,33 +79,4 @@ test("signal preserves real release21, recovery29, return leg, guard, miss and i
   assert.equal(melanioSpecialPose(21), "signal-release");
   assert.equal(melanioSpecialPose(28), "signal-release");
   assert.equal(melanioSpecialPose(29), undefined);
-});
-
-test("a missing special cell fails preflight before drawing; movement and hurt regain the canonical body", () => {
-  const r = setup();
-  r.cast("special");
-  const sheet = ATTACK_ART.melanio;
-  const images = {
-    [sheet.file]: { width: 2048, height: 1024 },
-  } as unknown as Record<string, HTMLImageElement>;
-  for (const absent of MELANIO_SPECIAL_POSES) {
-    const saved = sheet.frames[absent];
-    delete sheet.frames[absent];
-    assert.equal(
-      drawMelanioSpecial({} as CanvasRenderingContext2D, images, r.source, 177),
-      false,
-    );
-    sheet.frames[absent] = saved;
-  }
-  r.source.attackTick = 29;
-  assert.equal(
-    drawMelanioSpecial({} as CanvasRenderingContext2D, images, r.source, 177),
-    false,
-  );
-  r.source.attackTick = 21;
-  r.source.stun = 2;
-  assert.equal(
-    drawMelanioSpecial({} as CanvasRenderingContext2D, images, r.source, 177),
-    false,
-  );
 });

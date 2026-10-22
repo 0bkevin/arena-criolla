@@ -12,10 +12,6 @@ export const PERFORMER_ATLASES = [
   { id: "nacho", file: "finales-nacho-dance" },
   { id: "giuseppe", file: "finales-giuseppe-hack" },
 ] as const;
-export const DANCER_ATLASES = FINALE_ASSET_GROUPS.map((ids, index) => ({
-  file: `finales-dance-v2-${index + 1}`,
-  ids: [...ids],
-}));
 // A separate sheet refreshes identities without repainting approved neighbours.
 export const SEATED_IDENTITY_REFRESH = {
   file: "finales-seated-main-v1",
@@ -466,13 +462,6 @@ export async function prepareFinaleActors(
       rows: 2,
       anchor: "head" as const,
     })),
-    ...DANCER_ATLASES.map(({ file, ids }) => ({
-      file,
-      ids,
-      columns: 4,
-      rows: 2,
-      anchor: "dance" as const,
-    })),
     ...(refreshRaw ||
     prior?.assets.some(({ file }) => file === SEATED_IDENTITY_REFRESH.file) ||
     options.only?.includes(SEATED_IDENTITY_REFRESH.file)
@@ -583,7 +572,7 @@ export async function prepareFinaleActors(
     }
   }
   // Retain unselected published actors byte-for-byte. Cache fingerprints belong
-  // to each atlas so a new dance run cannot mark untouched older output current.
+  // to each atlas so preparing one cannot mark untouched older output current.
   const assets = allInputs.flatMap(({ file }) => {
     const updated = selectedAssets.find((entry) => entry.file === file);
     if (updated) return [updated];
@@ -614,44 +603,6 @@ export async function prepareFinaleActors(
         file: refreshedSeats.file,
         ...refreshedSeats.frames[slot],
       };
-  const dancers: Record<string, { file: string } & ActorGeometry> = {};
-  for (const { file, ids } of DANCER_ATLASES) {
-    const asset = assets.find((entry) => entry.file === file);
-    if (!asset) continue;
-    for (const [slot, id] of ids.entries())
-      dancers[id] = { file, ...asset.frames[slot] };
-  }
-  // The fallback dance role must share the refreshed identity as well. Reuse a
-  // real authored pose from its current eight-frame atlas, never the old V2 face.
-  let danceOverrides:
-    { manifest: string; sha256: string; ids: readonly string[] } | undefined;
-  if (refreshedSeats) {
-    const manifest = "shared/perro-mujeriego-assets.json";
-    const bytes = await readFile(path.join(root, manifest));
-    const current = JSON.parse(bytes.toString()) as {
-      dancers: Record<
-        string,
-        {
-          file: string;
-          frames: (ActorFrame & { bodyHeight: number; anchorX: number })[];
-        }
-      >;
-    };
-    for (const id of SEATED_IDENTITY_REFRESH.ids) {
-      const entry = current.dancers[id];
-      if (!entry || entry.frames.length !== 8)
-        throw new Error(
-          `${id}: prepare sus ocho poses actuales antes del atlas sentado`,
-        );
-      const { bodyHeight, anchorX, ...frame } = entry.frames[2];
-      dancers[id] = { file: entry.file, frame, bodyHeight, anchorX };
-    }
-    danceOverrides = {
-      manifest,
-      sha256: hash(bytes),
-      ids: SEATED_IDENTITY_REFRESH.ids,
-    };
-  }
   const flattenFrames = (asset: PackingAudit) =>
     asset.frames.map(({ frame, bodyHeight, anchorX }) => ({
       ...frame,
@@ -671,7 +622,6 @@ export async function prepareFinaleActors(
       ? { file: cafe.file, frames: flattenFrames(cafe) }
       : undefined,
     performers,
-    dancers,
   };
   for (const item of pending) {
     await writeChanged(path.join(root, item.source), item.png);
@@ -689,7 +639,6 @@ export async function prepareFinaleActors(
         fingerprint,
         cell: ACTOR_CELL,
         baseline: ACTOR_BASELINE,
-        ...(danceOverrides ? { danceOverrides } : {}),
         assets,
       },
       null,

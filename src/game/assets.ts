@@ -439,11 +439,6 @@ export async function preloadAssets(
         const performer = (
           finaleActors.performers as Record<string, { file: string }>
         )[id];
-        const dancer = (
-          finaleActors as typeof finaleActors & {
-            dancers?: Record<string, { file: string }>;
-          }
-        ).dancers?.[id];
         const choreographyDancer = hasNacho
           ? (perroMujeriego.dancers as Record<string, { file: string }>)[id]
           : undefined;
@@ -452,11 +447,7 @@ export async function preloadAssets(
           ...(asset ? [asset.file] : []),
           ...(hasSeatedFinale && seated ? [seated.file] : []),
           ...(capture && performer ? [performer.file] : []),
-          ...(choreographyDancer
-            ? [choreographyDancer.file]
-            : hasNacho && dancer
-              ? [dancer.file]
-              : []),
+          ...(choreographyDancer ? [choreographyDancer.file] : []),
           ...(finales.has(id) && id === "giuseppe" ? [finaleDesk.file] : []),
           ...(finales.has(id) && id === "capriles"
             ? [finaleActors.caprilesCafe.file, cafeFurniture.file]

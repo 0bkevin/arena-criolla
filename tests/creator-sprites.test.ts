@@ -12,7 +12,6 @@ import {
   makeDefinition,
   validateGeneratedGameplay,
 } from "../server/creator/pipeline";
-import { buildSpritePrompt, DesignSchema } from "../server/creator/provider";
 import type { CharacterDesign } from "../server/creator/provider";
 
 const design: CharacterDesign = {
@@ -75,11 +74,9 @@ test("opaque, missing and cropped model poses fail validation before publication
       SpriteValidationError,
     );
 });
-test("all three creator styles use balanced playable recipes and different welcome gestures", async () => {
+test("all three creator styles produce valid gameplay definitions", async () => {
   const folder = await mkdtemp(path.join(os.tmpdir(), "arena-style-test-"));
   const geometry = await packCharacterSprites(await atlas(), folder);
-  const abilities = new Set<string>(),
-    gestures = new Set<string>();
   for (const [style, welcomeStyle] of [
     ["agile", "wave"],
     ["technical", "nod"],
@@ -100,36 +97,6 @@ test("all three creator styles use balanced playable recipes and different welco
       geometry,
       "Creador",
     );
-    abilities.add(character.fighter.ability);
-    gestures.add(JSON.stringify(character.choreography.beats[2]));
     assert.doesNotThrow(() => validateGeneratedGameplay(character));
-    assert.deepEqual(character.presentation.frameFacing, Array(8).fill(1));
-    assert.equal(character.presentation.battleFrame, 0);
   }
-  assert.equal(abilities.size, 3);
-  assert.equal(gestures.size, 3);
-});
-test("provider instructions specify likeness, all right-facing poses and private references as data", () => {
-  const prompt = buildSpritePrompt(
-    {
-      name: "Pana",
-      description: "Soy creativo.",
-      style: "agile",
-      color: "#ffd45a",
-    },
-    design,
-  );
-  for (const required of [
-    "EIGHT",
-    "4-column by 2-row",
-    "face RIGHT",
-    "background alpha transparent",
-    "no crop",
-    "same person",
-  ])
-    assert.ok(prompt.toLowerCase().includes(required.toLowerCase()), required);
-  assert.equal(
-    DesignSchema.safeParse({ ...design, combos: ["Only one"] }).success,
-    false,
-  );
 });

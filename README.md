@@ -52,7 +52,11 @@ npm run build
 npm start
 ```
 
-Las pruebas cubren combate, personajes, red y almacenamiento; `check:assets` revisa los sprites públicos. La CI también comprueba dependencias, la imagen de producción y el arranque HTTP/WebSocket.
+Las pruebas se centran en combate, red, almacenamiento, seguridad, controles, recuperación de assets y audio. `check:assets` valida transparencia, ocho siluetas completas y geometría coincidente en los sprites públicos.
+
+La CI distribuye las pruebas entre dos runners y compila la imagen de producción en paralelo, con caché de Docker y de la base de vulnerabilidades. Conserva la auditoría de dependencias, la validación de sprites, los tipos y el arranque HTTP/WebSocket. Se ejecuta en los PR y en `main`, sin duplicar cada PR con otro run por push de la rama. `scripts/security-smoke.mjs` permite comprobar una instancia local o desplegada.
+
+Los criterios de selección de pruebas y la organización de CI están en [testing.md](docs/testing.md).
 
 `npm start` sirve la aplicación compilada. Para configurar el dominio, el contenedor o las imágenes al compartir enlaces, consulta la [guía de despliegue](docs/deployment.md).
 

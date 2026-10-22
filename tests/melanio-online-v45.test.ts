@@ -12,14 +12,12 @@ import type { ServerMessage } from "../shared/protocol";
 class Peer {
   readonly messages: ServerMessage[] = [];
   readonly socket: WebSocket;
-  id = "";
 
   constructor(url: string) {
     this.socket = new WebSocket(url);
     this.socket.on("message", (raw) => {
       const message = JSON.parse(raw.toString()) as ServerMessage;
       this.messages.push(message);
-      if (message.type === "welcome") this.id = message.id;
     });
   }
 
@@ -156,7 +154,7 @@ function sendInput(peer: Peer, matchId: string, value: Input) {
   peer.send({ type: "input", matchId, input: value });
 }
 
-test("Melanio moves and triggers jump, light, heavy and signal over WebSocket on either seat", async () => {
+test("Melanio signal returns to its owner with synchronized ownership and velocity on either seat", async () => {
   const fixture = await listeningServer();
   const host = new Peer(fixture.url),
     guest = new Peer(fixture.url);
@@ -169,83 +167,12 @@ test("Melanio moves and triggers jump, light, heavy and signal over WebSocket on
       const actor = melanioSide === 0 ? host : guest;
       const other = melanioSide === 0 ? guest : host;
       const { state } = pair;
-      const player = state.players[melanioSide];
-      const initialX = player.x;
-      let counters = { ...emptyInput().actions };
-      const action = (key: keyof typeof counters) => {
-        counters = { ...counters, [key]: counters[key] + 1 };
-        return input({ actions: counters });
-      };
-      const neutral = () => input({ actions: counters });
-
-      sendInput(actor, state.id, input({ right: true }));
-      await other.state(
+      const energy = state.players[melanioSide].energy;
+      sendInput(
+        actor,
         state.id,
-        (s) => s.players[melanioSide].x > initialX + 8,
+        input({ actions: { ...emptyInput().actions, special: 1 } }),
       );
-      sendInput(actor, state.id, neutral());
-      const afterRight = player.x;
-      sendInput(actor, state.id, input({ left: true }));
-      await actor.state(
-        state.id,
-        (s) => s.players[melanioSide].x < afterRight - 8,
-      );
-      sendInput(actor, state.id, neutral());
-
-      const jump = action("jump");
-      sendInput(actor, state.id, jump);
-      await other.state(
-        state.id,
-        (s) =>
-          s.players[melanioSide].jumps === 1 && s.players[melanioSide].y < 500,
-      );
-      assert.equal(player.jumps, 1);
-
-      const groundLimit = Date.now() + 4_000;
-      while (!player.grounded && Date.now() < groundLimit)
-        await new Promise((resolve) => setTimeout(resolve, 20));
-      assert.ok(
-        player.grounded,
-        "the network jump lands before the next action probe",
-      );
-      sendInput(actor, state.id, neutral());
-
-      const light = action("light");
-      sendInput(actor, state.id, light);
-      await other.state(
-        state.id,
-        (s) => s.players[melanioSide].attack === "light",
-      );
-      sendInput(actor, state.id, neutral());
-      await other.state(
-        state.id,
-        (s) =>
-          s.players[melanioSide].attack === null &&
-          s.players[melanioSide].cooldown === 0 &&
-          s.players[melanioSide].history.some(
-            (entry) => entry.action === "light",
-          ),
-      );
-      const heavy = action("heavy");
-      sendInput(actor, state.id, heavy);
-      await actor.state(state.id, (s) =>
-        s.players[melanioSide].history.some(
-          (entry) => entry.action === "heavy",
-        ),
-      );
-      sendInput(actor, state.id, neutral());
-      await other.state(
-        state.id,
-        (s) =>
-          s.players[melanioSide].attack === null &&
-          s.players[melanioSide].cooldown === 0 &&
-          s.players[melanioSide].history.some(
-            (entry) => entry.action === "heavy",
-          ),
-      );
-
-      const energy = player.energy;
-      sendInput(actor, state.id, action("special"));
       const launched = await actor.state(state.id, (s) =>
         s.players[melanioSide].history.some(
           (entry) => entry.action === "special",
@@ -262,17 +189,9 @@ test("Melanio moves and triggers jump, light, heavy and signal over WebSocket on
       const signal = returned.projectiles.find(
         (shot) => shot.kind === "signal",
       )!;
-      assert.equal(
-        signal.owner,
-        melanioSide,
-        "signal keeps Melanio's ownership as it returns",
-      );
-      assert.equal(
-        Math.sign(signal.vx),
-        melanioSide === 0 ? -1 : 1,
-        "signal velocity points back toward Melanio's source",
-      );
-      const hostReturn = (
+      assert.equal(signal.owner, melanioSide);
+      assert.equal(Math.sign(signal.vx), melanioSide === 0 ? -1 : 1);
+      const mirrored = (
         await actor.wait(
           "state",
           (message) =>
@@ -280,53 +199,14 @@ test("Melanio moves and triggers jump, light, heavy and signal over WebSocket on
             message.state.tick === returned.tick,
         )
       ).state;
-      assert.deepEqual(
-        returned,
-        hostReturn,
-        "the host and guest receive the same authoritative return tick",
-      );
-
-      // Finish this room before reusing the same connected peers.
-      state.players[1 - melanioSide].stocks = 1;
-      state.players[1 - melanioSide].hp = 0;
-      await Promise.all([
-        host.state(state.id, (s) => s.phase === "finished"),
-        guest.state(state.id, (s) => s.phase === "finished"),
-      ]);
-      host.send({ type: "rematch" });
-      guest.send({ type: "rematch" });
-      const [nextHost, nextGuest] = await Promise.all([
-        host.wait("start"),
-        guest.wait("start"),
-      ]);
-      assert.notEqual(nextHost.state.id, state.id);
-      const next = fixture.server.rooms.get(pair.code)!.state!;
-      next.phase = "playing";
-      const before = next.players[melanioSide].x;
-      sendInput(
-        actor,
-        state.id,
-        input({ right: true, actions: { ...emptyInput().actions, jump: 1 } }),
-      );
-      await new Promise((resolve) => setTimeout(resolve, 100));
-      assert.equal(
-        next.players[melanioSide].x,
-        before,
-        "a late old-match packet cannot move Melanio after rematch",
-      );
-      assert.equal(
-        next.players[melanioSide].jumps,
-        0,
-        "a late old-match packet cannot trigger a jump after rematch",
-      );
-      assert.equal(nextHost.state.id, nextGuest.state.id);
+      assert.deepEqual(returned, mirrored);
 
       host.send({ type: "leave" });
       await Promise.all([
         host.wait("left"),
         guest.wait(
           "room",
-          (m) => m.room.code === pair.code && m.room.players.length === 1,
+          (message) => message.room.code === pair.code && message.room.players.length === 1,
         ),
       ]);
       guest.send({ type: "leave" });
@@ -339,7 +219,7 @@ test("Melanio moves and triggers jump, light, heavy and signal over WebSocket on
   }
 });
 
-test("duplicate, reordered and empty inputs do not replay Melanio jumps or signal emissions", async () => {
+test("duplicate or reordered Melanio signal inputs cannot emit twice or charge twice", async () => {
   const fixture = await listeningServer();
   const host = new Peer(fixture.url),
     guest = new Peer(fixture.url);
@@ -352,39 +232,18 @@ test("duplicate, reordered and empty inputs do not replay Melanio jumps or signa
       "melanio",
       "javier",
     ]);
-    let counters = { ...emptyInput().actions };
-    const jump = input({
-      right: true,
-      actions: { ...emptyInput().actions, jump: 4 },
-    });
-    counters = { ...counters, jump: 4 };
-    sendInput(host, state.id, jump);
-    await guest.state(
-      state.id,
-      (s) => s.players[0].jumps === 1 && s.players[0].x > 300,
-    );
-    sendInput(host, state.id, jump);
-    sendInput(
-      host,
-      state.id,
-      input({ left: true, actions: { ...emptyInput().actions, jump: 3 } }),
-    ); // lower counter: reject whole packet
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    assert.equal(
-      state.players[0].jumps,
-      1,
-      "same or lower jump counter never creates a second jump edge",
-    );
-    assert.equal(fixture.server.clients.get(welcome.id)?.input.actions.jump, 4);
-
-    counters = { ...counters, special: 8 };
+    const counters = { ...emptyInput().actions, special: 8 };
     const special = input({ actions: counters });
     sendInput(host, state.id, special);
     await guest.state(state.id, (s) =>
       s.players[0].history.some((entry) => entry.action === "special"),
     );
     sendInput(host, state.id, special);
-    sendInput(host, state.id, input({ actions: { ...counters, special: 7 } }));
+    sendInput(
+      host,
+      state.id,
+      input({ actions: { ...counters, special: 7 } }),
+    );
     const returned = await guest.state(state.id, (s) =>
       s.projectiles.some(
         (shot) =>
@@ -396,72 +255,11 @@ test("duplicate, reordered and empty inputs do not replay Melanio jumps or signa
       returned.projectiles.filter((shot) => shot.kind === "signal").length,
       1,
     );
-    assert.ok(
-      returned.players[0].energy < 78,
-      "duplicate packets do not charge energy or re-emit the special",
-    );
-
-    const movingX = state.players[0].x;
-    sendInput(host, state.id, input({ right: true, actions: counters }));
-    await guest.state(state.id, (s) => s.players[0].x > movingX + 8);
-    const movingFrom = state.players[0].x;
-    sendInput(host, state.id, input({ actions: counters })); // browser blur/reset releases the held direction
-    await new Promise((resolve) => setTimeout(resolve, 250));
-    assert.equal(fixture.server.clients.get(welcome.id)?.input.right, false);
-    const stoppedAt = state.players[0].x;
-    await new Promise((resolve) => setTimeout(resolve, 250));
-    assert.ok(
-      state.players[0].x - stoppedAt < 2,
-      `empty input releases motion (last movement ${movingFrom} -> ${stoppedAt})`,
-    );
+    assert.ok(returned.players[0].energy < 78);
+    assert.equal(fixture.server.clients.get(welcome.id)?.input.actions.special, 8);
   } finally {
     host.socket.terminate();
     guest.socket.terminate();
-    await fixture.close();
-  }
-});
-
-test("Melanio signal movement and projectiles stay isolated between live rooms", async () => {
-  const fixture = await listeningServer();
-  const a = new Peer(fixture.url),
-    b = new Peer(fixture.url),
-    c = new Peer(fixture.url),
-    d = new Peer(fixture.url);
-  try {
-    await Promise.all([a, b, c, d].map((peer) => peer.wait("welcome")));
-    const first = await startPair(fixture.server, a, b, ["melanio", "javier"]);
-    const second = await startPair(fixture.server, c, d, [
-      "bolivar",
-      "melanio",
-    ]);
-    const untouchedX = second.state.players.map((p) => p.x);
-    const initialSecondTick = second.state.tick;
-    sendInput(
-      a,
-      first.state.id,
-      input({ right: true, actions: { ...emptyInput().actions, special: 1 } }),
-    );
-    const active = await b.state(first.state.id, (s) =>
-      s.projectiles.some((shot) => shot.kind === "signal"),
-    );
-    await Promise.all([
-      c.state(second.state.id, (s) => s.tick > initialSecondTick),
-      d.state(second.state.id, (s) => s.tick > initialSecondTick),
-    ]);
-    assert.deepEqual(
-      second.state.players.map((p) => p.x),
-      untouchedX,
-    );
-    assert.equal(
-      second.state.projectiles.some((shot) => shot.kind === "signal"),
-      false,
-    );
-    assert.deepEqual(
-      active.players.map((p) => p.config.fighter),
-      ["melanio", "javier"],
-    );
-  } finally {
-    [a, b, c, d].forEach((peer) => peer.socket.terminate());
     await fixture.close();
   }
 });

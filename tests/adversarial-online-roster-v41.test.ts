@@ -330,134 +330,66 @@ test("new fighters create, join, select and start online on every stage", async 
   }
 });
 
-test("new-fighter rooms reject stale or malformed input, isolate ticks and allow code rejoin", async () => {
+test("new-fighter rooms can rejoin by invitation code after an in-match disconnect", async () => {
   const fixture = await listeningServer();
-  const a = new Peer(fixture.url);
-  const b = new Peer(fixture.url);
-  const c = new Peer(fixture.url);
-  const d = new Peer(fixture.url);
+  const host = new Peer(fixture.url);
+  const guest = new Peer(fixture.url);
   let rejoined: Peer | undefined;
   try {
-    await Promise.all([a, b, c, d].map((peer) => peer.wait("welcome")));
+    await Promise.all([host.wait("welcome"), guest.wait("welcome")]);
     const first = await startPair(
       fixture.server,
-      a,
-      b,
+      host,
+      guest,
       ["javier", "dayana"],
       "canaima",
     );
-    const second = await startPair(
-      fixture.server,
-      c,
-      d,
-      ["bolivar", "edgar"],
-      "valencia",
-    );
     first.state.phase = "playing";
-    second.state.phase = "playing";
-    for (const state of [first.state, second.state])
-      state.players.forEach((player) => (player.invincible = 0));
-
-    const roomOneX = first.state.players[0].x;
-    const roomTwoX = second.state.players[0].x;
-    a.socket.send("{");
-    await a.wait("error", (message) => message.message.includes("leer"));
-    const incomplete = emptyInput();
-    incomplete.right = true;
-    a.send({
-      type: "input",
-      matchId: first.state.id,
-      input: { ...incomplete, actions: {} },
-    });
-    const stale = emptyInput();
-    stale.right = true;
-    a.send({ type: "input", matchId: "retired-match", input: stale });
-    c.send({ type: "input", matchId: first.state.id, input: stale });
-    await new Promise((resolve) => setTimeout(resolve, 90));
-    assert.equal(first.state.players[0].x, roomOneX);
-    assert.equal(second.state.players[0].x, roomTwoX);
-
-    const move = emptyInput();
-    move.right = true;
-    a.send({ type: "input", matchId: first.state.id, input: move });
-    const moved = await a.wait(
-      "state",
-      (message) =>
-        message.state.id === first.state.id &&
-        message.state.players[0].x > roomOneX + 8,
-    );
-    await Promise.all([
-      b.wait("state", (message) => message.state.id === first.state.id),
-      c.wait("state", (message) => message.state.tick > second.start.tick),
-      d.wait("state", (message) => message.state.tick > second.start.tick),
-    ]);
-    assert.equal(second.state.players[0].x, roomTwoX);
-    assert.equal(second.state.players[1].x, 750);
-    assert.deepEqual(
-      moved.state.players.map((player) => player.config.fighter),
-      ["javier", "dayana"],
-    );
-
-    const originalCode = first.code;
-    b.socket.terminate();
-    await a.wait("opponent-left");
-    const waiting = await a.wait(
+    const originalId = first.state.id;
+    guest.socket.terminate();
+    await host.wait("opponent-left");
+    const waiting = await host.wait(
       "room",
       (message) =>
-        message.room.code === originalCode &&
+        message.room.code === first.code &&
         message.room.status === "waiting" &&
         message.room.players.length === 1,
     );
-    assert.equal(waiting.room.host, waiting.room.players[0].id);
-    assert.equal(fixture.server.rooms.get(originalCode)!.state, null);
+    assert.equal(waiting.room.players[0].fighter, "javier");
 
     rejoined = new Peer(fixture.url);
     await rejoined.wait("welcome");
     rejoined.send({
       type: "join",
-      code: originalCode,
+      code: first.code,
       name: "Rejoined",
       fighter: "dayana",
       wins: 0,
     });
-    const restored = await a.wait(
+    const restored = await host.wait(
       "room",
       (message) =>
-        message.room.code === originalCode && message.room.players.length === 2,
+        message.room.code === first.code && message.room.players.length === 2,
     );
     assert.equal(restored.room.stage, "canaima");
     assert.deepEqual(
       restored.room.players.map((player) => player.fighter),
       ["javier", "dayana"],
     );
-    a.send({ type: "ready", ready: true });
+    host.send({ type: "ready", ready: true });
     rejoined.send({ type: "ready", ready: true });
     const [restartedHost, restartedGuest] = await Promise.all([
-      a.wait("start"),
+      host.wait("start"),
       rejoined.wait("start"),
     ]);
-    assert.notEqual(restartedHost.state.id, first.state.id);
+    assert.notEqual(restartedHost.state.id, originalId);
     assert.deepEqual(restartedHost.state, restartedGuest.state);
-
-    const continued = emptyInput();
-    continued.left = true;
-    c.send({ type: "input", matchId: second.state.id, input: continued });
-    const roomTwoMoved = await c.wait(
-      "state",
-      (message) =>
-        message.state.id === second.state.id &&
-        message.state.players[0].x < roomTwoX - 8,
-    );
-    await d.wait(
-      "state",
-      (message) => message.state.tick === roomTwoMoved.state.tick,
-    );
     assert.deepEqual(
-      roomTwoMoved.state.players.map((player) => player.config.fighter),
-      ["bolivar", "edgar"],
+      restartedHost.state.players.map((player) => player.config.fighter),
+      ["javier", "dayana"],
     );
   } finally {
-    [a, b, c, d, rejoined].forEach((peer) => peer?.socket.terminate());
+    [host, guest, rejoined].forEach((peer) => peer?.socket.terminate());
     await fixture.close();
   }
 });

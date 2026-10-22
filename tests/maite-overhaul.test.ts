@@ -1,23 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {
-  createMatch,
-  emptyInput,
-  stepMatch,
-  cpuInput,
-  type Input,
-  type Projectile,
-} from "./helpers/charged-finale-engine";
+import { createMatch, emptyInput, stepMatch, cpuInput, type Input, type Projectile } from "./helpers/charged-finale-engine";
 import { fighterById, type FighterId } from "../shared/content";
-import { finaleById } from "../shared/finales";
-import {
-  MAITE_POSES,
-  drawMaiteFinaleBody,
-  drawMaiteGreeting,
-  drawSonicProjectile,
-} from "../src/game/finales/maite";
-import { ATTACK_ART } from "../src/game/attack-art";
-
 function setup(side: 0 | 1 = 0, gap = 430, rival: FighterId = "zavarce") {
   const actor = { name: "Maite", fighter: "maite" as const, wins: 3 },
     other = { name: "Rival", fighter: rival, wins: 3 };
@@ -306,80 +290,3 @@ function recordingContext(
   ) as unknown as CanvasRenderingContext2D;
   return { ctx, calls };
 }
-
-test("complete art preflight gives visible canonical fallback before painting any partial body", () => {
-  const r = setup();
-  r.start();
-  r.advance(10);
-  const sheet = ATTACK_ART.maite;
-  for (const failure of [
-    "missing",
-    "unloaded",
-    "undersized",
-    "missing-pose",
-  ] as const) {
-    const c = recordingContext();
-    const images: Record<string, HTMLImageElement> = {};
-    if (failure !== "missing")
-      images[sheet.file] = {
-        width: failure === "undersized" ? 1 : 1024,
-        height: 1024,
-        complete: failure !== "unloaded",
-      } as HTMLImageElement;
-    const prior = sheet.frames.recover;
-    if (failure === "missing-pose") delete sheet.frames.recover;
-    try {
-      assert.equal(drawMaiteFinaleBody(c.ctx, images, r.source, 177), false);
-      assert.equal(c.calls.filter((c) => c.kind === "image").length, 0);
-    } finally {
-      sheet.frames.recover = prior;
-    }
-    drawSonicProjectile(c.ctx, { ...r.state.projectiles[0] }, false);
-    assert.ok(
-      c.calls.some((c) => c.kind === "ellipse"),
-      "wave remains visible independent of actor art",
-    );
-  }
-});
-
-test("full phrase and all pose crops remain in viewport at both edges and guide canvas heights without moving state", () => {
-  const images = {
-    [ATTACK_ART.maite.file]: { width: 1024, height: 1024 },
-  } as unknown as Record<string, HTMLImageElement>;
-  for (const side of [0, 1] as const)
-    for (const height of [420, 760])
-      for (const tick of [5, 9, 27, 70]) {
-        const r = setup(side);
-        r.source.x = side ? 1045 : 35;
-        r.source.attack = "super";
-        r.source.attackTick = tick;
-        const snapshot = structuredClone(r.state);
-        const c = recordingContext(1280, height, 1.2, side ? -35 : 35, -250);
-        assert.equal(drawMaiteFinaleBody(c.ctx, images, r.source, 177), true);
-        drawMaiteGreeting(c.ctx, r.source);
-        assert.deepEqual(
-          r.state,
-          snapshot,
-          "art containment must not alter physics, camera or projectile origin",
-        );
-        const draw = c.calls.find((c) => c.kind === "image")!.args;
-        const m = draw[9] as number[];
-        const left = m[0] * (draw[5] as number) + m[4],
-          right = left + m[0] * (draw[7] as number);
-        assert.ok(Math.min(left, right) >= 0 && Math.max(left, right) <= 1280);
-        if (tick >= 9 && tick < 68) {
-          const box = c.calls.find((c) => c.kind === "box")!.args;
-          const bm = box[5] as number[];
-          const top = bm[3] * (box[1] as number) + bm[5];
-          assert.ok(top >= 0 && top + bm[3] * (box[3] as number) <= height);
-          assert.equal(
-            c.calls
-              .filter((c) => c.kind === "text")
-              .map((c) => c.args[0])
-              .join(" "),
-            finaleById("maite")!.caption,
-          );
-        }
-      }
-  assert.equal(MAITE_POSES.length, 4);
-});

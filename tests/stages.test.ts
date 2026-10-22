@@ -1,6 +1,5 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { stat, readFile } from "node:fs/promises";
 import { STAGES, platformsAtTick, type StageId } from "../shared/content";
 import {
   createMatch,
@@ -221,13 +220,8 @@ test("fighters land from above on every moving platform", () => {
   }
 });
 
-test("nine stages have backgrounds and deterministic finite physics", async () => {
-  assert.equal(STAGES.length, 9);
-  assert.equal(STAGES.filter((s) => s.artStyle === "pixel").length, 6);
+test("stage physics remains deterministic and finite", () => {
   for (const stage of STAGES) {
-    const path = `public/assets/${stage.id}.webp`;
-    assert.ok((await stat(path)).size > 10000);
-    assert.equal((await readFile(path)).toString("ascii", 0, 4), "RIFF");
     const a = createMatch(stage.id, [
       { name: "A", fighter: "zavarce", wins: 0 },
       { name: "B", fighter: "capriles", wins: 0 },

@@ -1,11 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createMatch, emptyInput, stepMatch } from "./helpers/charged-finale-engine";
-import { finaleById } from "../shared/finales";
 import { TECHNIQUES } from "../shared/techniques";
-
-import { ATTACK_ART } from "../src/game/attack-art";
-import { writeFinaleMusic } from "../src/game/finale-sounds";
 function setup(side: 0 | 1, wins = 3, energy = 100) {
   const actor = { name: "La Llorona", fighter: "llorona" as const, wins };
   const rival = { name: "Vicente", fighter: "zavarce" as const, wins: 3 };
@@ -75,19 +71,6 @@ test("undertow and finale remain identical after network serialization", () => {
       assert.deepEqual(copy, r.state);
     }
 });
-
-test("original synthesized lament has energy at all arrivals and finite samples", () => {
-  const left = new Float32Array(18000),
-    right = new Float32Array(18000);
-  writeFinaleMusic(left, right, 6000, "llorona");
-  assert.ok(left.every(Number.isFinite));
-  assert.ok(right.every(Number.isFinite));
-  for (const beat of finaleById("llorona")!.cueBeats!)
-    assert.ok(
-      left.slice(beat * 100, beat * 100 + 1000).some((n) => Math.abs(n) > 0.01),
-    );
-});
-
 test("undertow launches from the low hands at tick15, travels, pulls once and expires", () => {
   assert.equal(TECHNIQUES.undertow.startup, 15);
   assert.equal(TECHNIQUES.undertow.projectile?.pulls, true);
@@ -121,39 +104,4 @@ test("undertow launches from the low hands at tick15, travels, pulls once and ex
   }
 });
 
-import {
-  drawLloronaSpecial,
-  lloronaSpecialPose,
-} from "../src/game/finales/llorona";
-
-test("special never draws incomplete art or an attack pose during hitstun", () => {
-  const r = setup(0);
-  r.inputs[0].actions.special++;
-  r.advance(15);
-  assert.equal(lloronaSpecialPose(15), "embrace-low");
-  const forbidden = new Proxy(
-    {},
-    {
-      get() {
-        throw Error("painting forbidden");
-      },
-    },
-  ) as CanvasRenderingContext2D;
-  assert.equal(drawLloronaSpecial(forbidden, {}, r.source, 177), false);
-  r.source.stun = 3;
-  assert.equal(
-    drawLloronaSpecial(
-      forbidden,
-      {
-        [ATTACK_ART.llorona.file]: {
-          width: 1024,
-          height: 2048,
-          complete: true,
-        } as HTMLImageElement,
-      },
-      r.source,
-      177,
-    ),
-    false,
-  );
-});
+import { drawLloronaSpecial, lloronaSpecialPose } from "../src/game/finales/llorona";

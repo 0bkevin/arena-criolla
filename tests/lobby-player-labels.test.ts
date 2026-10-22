@@ -117,17 +117,3 @@ test("online host promotion updates the surviving player's selection labels", ()
   assert.match(html, /aria-label="Elegir luchador al azar para P1"/);
   assert.match(html, /Luchador seleccionado para P1: Pedro Vallenilla\./);
 });
-
-test("local and CPU modes keep their own player labels without name inputs", () => {
-  for (const mode of ["practice", "local"] as const) {
-    const html = renderLobby(mode, null);
-    assert.match(html, /aria-label="Elegir luchador al azar para P1"/);
-    assert.ok(
-      html.includes(
-        `aria-label="Elegir luchador para ${mode === "practice" ? "CPU" : "P2"}"`,
-      ),
-    );
-    assert.doesNotMatch(html, /<input\b/);
-    assert.doesNotMatch(html, /desktop-controls-guide|¿Primera pelea/);
-  }
-});

@@ -44,7 +44,6 @@ const actorManifest = actorAssets as unknown as {
   performers?: Partial<
     Record<FighterId, { file: string; frames: CafeActorFrame[] }>
   >;
-  dancers?: Partial<Record<FighterId, FinaleActorFrame & { file: string }>>;
 };
 const perroManifest = perroAssets as unknown as {
   dancers: Partial<
@@ -391,8 +390,6 @@ function danceSource(scene: Scene, id: FighterId, frameIndex: number) {
     id === "nacho" ? actorManifest.performers?.nacho : undefined;
   const performerFrame = performer?.frames[frameIndex];
   const performerImage = performer && scene.props[performer.file];
-  const dancer = actorManifest.dancers?.[id];
-  const dancerImage = dancer && scene.props[dancer.file];
   let frame: FinaleActorFrame | undefined;
   let image: HTMLImageElement | undefined;
   if (recordedFrame && recordedImage?.width) {
@@ -409,9 +406,6 @@ function danceSource(scene: Scene, id: FighterId, frameIndex: number) {
       anchorX: performerFrame.anchorX,
     };
     image = performerImage;
-  } else if (dancer && dancerImage?.width) {
-    frame = dancer;
-    image = dancerImage;
   }
   const sprite = scene.sprites[id];
   let key: string;

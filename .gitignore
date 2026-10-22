@@ -17,3 +17,4 @@ dist/
 !/docs/development.md
 !/docs/creator-codex.md
 !/docs/codex-operator-oracle.md
+!/docs/testing.md

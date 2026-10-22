@@ -717,6 +717,9 @@ export const CANONICAL_FINALE_FIGHTERS = [
 ] as const satisfies readonly BuiltInFighterId[];
 
 export function finaleAsset(id: FighterId) {
+  // Capriles uses the cafe atlases. The other fighters in the first two batches
+  // now use field, transformation or projectile finales with their own artwork.
+  if (id === "capriles" || finaleById(id)?.mode !== "capture") return undefined;
   for (const [group, ids] of FINALE_ASSET_GROUPS.entries()) {
     const index = (ids as readonly string[]).indexOf(id);
     if (index !== -1)

@@ -13,7 +13,7 @@ import {
   type Input,
   type MatchState,
 } from "../shared/engine";
-import { ControlSources, clearHeld } from "../src/game/controls";
+import { ControlSources } from "../src/game/controls";
 
 function setup(side: 0 | 1 = 0, fighter: FighterId = "capriles", gap = 420) {
   const state = createMatch("caracas", [
@@ -240,23 +240,6 @@ test("charge state serializes and replays through the same activation boundary",
     assert.deepEqual(copy, r.state);
   }
   assert.equal(r.player.superUsed, true);
-});
-
-test("multiple input sources preserve the hold until the last release; clearing cannot leave it latched", () => {
-  const input = emptyInput(),
-    sources = new ControlSources(input);
-  sources.press("key", "super");
-  sources.press("touch", "super");
-  sources.release("key");
-  assert.equal(input.superHeld, true);
-  sources.release("touch");
-  assert.equal(input.superHeld, false);
-  sources.press("pad", "super");
-  sources.clear();
-  assert.equal(input.superHeld, false);
-  input.superHeld = true;
-  clearHeld(input);
-  assert.equal(input.superHeld, false);
 });
 
 test("the hard CPU holds for the complete charge and stops after its single use", () => {

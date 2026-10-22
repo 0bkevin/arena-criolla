@@ -1,21 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {
-  STAGES,
-  platformsAtTick,
-  type FighterId,
-  type StageId,
-} from "../shared/content";
-import {
-  cpuInput,
-  createMatch,
-  emptyInput,
-  stepMatch,
-  WORLD,
-  type Input,
-  type MatchState,
-} from "./helpers/charged-finale-engine";
-
+import { STAGES, platformsAtTick, type FighterId, type StageId } from "../shared/content";
+import { cpuInput, createMatch, emptyInput, stepMatch, WORLD, type Input, type MatchState } from "./helpers/charged-finale-engine";
 const reviewed = [
   "javier",
   "dayana",

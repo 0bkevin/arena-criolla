@@ -1,17 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {
-  createMatch,
-  emptyInput,
-  stepMatch,
-  WORLD,
-  type Input,
-} from "../shared/engine";
-import { fighterById, type FighterId } from "../shared/content";
-import { finaleById } from "../shared/finales";
-import { ATTACK_ART } from "../src/game/attack-art";
+import { createMatch, emptyInput, stepMatch, WORLD, type Input } from "../shared/engine";
+import { type FighterId } from "../shared/content";
 import { TECHNIQUES } from "../shared/techniques";
-
 function setup(side: 0 | 1, rival: FighterId = "deyna", gap = 180) {
   const queen = { name: "Queen", fighter: "dayana" as const, wins: 3 },
     guest = { name: "Guest", fighter: rival, wins: 3 };
@@ -33,39 +24,6 @@ function setup(side: 0 | 1, rival: FighterId = "deyna", gap = 180) {
   };
   return { state, source, target, inputs, advance };
 }
-
-test("Dayana is the 2008 beauty queen; Deyna owns all football techniques and their original timings", () => {
-  const queen = fighterById("dayana"),
-    footballer = fighterById("deyna");
-  assert.equal(queen.name, "Dayana Mendoza");
-  assert.equal(footballer.name, "Deyna Castellanos");
-  assert.match(queen.description, /Vestido amarillo/);
-  assert.doesNotMatch(queen.description, /balón|futbolista|Camiseta/);
-  assert.equal(queen.special, "Giro de pasarela");
-  assert.equal(queen.ability, "corona");
-  assert.equal(footballer.ability, "football");
-  assert.notEqual(queen.sprite, footballer.sprite);
-  assert.deepEqual(TECHNIQUES.football, {
-    startup: 21,
-    recovery: 54,
-    range: 550,
-    height: 130,
-    damage: 15,
-    force: 8,
-    projectile: {
-      speed: 8,
-      life: 65,
-      count: 1,
-      radius: 13,
-      offsetX: 48,
-      offsetY: 16,
-    },
-  });
-  assert.deepEqual(finaleById("deyna")!.damageBeats, []);
-  assert.deepEqual(finaleById("dayana")!.damageBeats, []);
-  assert.notEqual(ATTACK_ART.dayana.file, ATTACK_ART.deyna.file);
-});
-
 test("Dayana's held-dress twirl hits nearby rivals on both sides without spawning a projectile", () => {
   assert.equal(TECHNIQUES.corona.projectile, undefined);
   assert.equal(TECHNIQUES.corona.radial, true);

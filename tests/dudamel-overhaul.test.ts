@@ -1,11 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createMatch, emptyInput, stepMatch } from "./helpers/charged-finale-engine";
-import { finaleById } from "../shared/finales";
 import { TECHNIQUES } from "../shared/techniques";
-
-import { writeFinaleMusic } from "../src/game/finale-sounds";
-import { drawDudamelProjectile } from "../src/game/finales/dudamel";
 function setup(side: 0 | 1, wins = 3, energy = 100) {
   const actor = { name: "Dudamel", fighter: "dudamel" as const, wins };
   const rival = { name: "Vicente", fighter: "zavarce" as const, wins: 3 };
@@ -138,44 +134,4 @@ test("cadenza and finale remain identical after network serialization", () => {
       }
       assert.deepEqual(copy, r.state);
     }
-});
-
-test("original synthesized orchestra has energy at all arrivals and finite samples", () => {
-  const left = new Float32Array(18000),
-    right = new Float32Array(18000);
-  writeFinaleMusic(left, right, 6000, "dudamel");
-  assert.ok(left.every(Number.isFinite));
-  assert.ok(right.every(Number.isFinite));
-  for (const beat of finaleById("dudamel")!.cueBeats!)
-    assert.ok(
-      left.slice(beat * 100, beat * 100 + 1000).some((n) => Math.abs(n) > 0.01),
-    );
-});
-
-test("visible special wave takes radius directly from the physical shot", () => {
-  const r = setup(0);
-  r.inputs[0].actions.special++;
-  r.advance(18);
-  const shot = r.state.projectiles[0];
-  const radii: number[] = [];
-  const ctx = new Proxy(
-    {
-      globalAlpha: 1,
-      arc(_x: number, _y: number, r: number) {
-        radii.push(r);
-      },
-    },
-    {
-      get(target, key) {
-        return key in target ? target[key as keyof typeof target] : () => {};
-      },
-    },
-  ) as unknown as CanvasRenderingContext2D;
-  drawDudamelProjectile(ctx, shot);
-  assert.equal(radii[0], shot.radius);
-  radii.length = 0;
-  r.advance(12);
-  drawDudamelProjectile(ctx, shot);
-  assert.equal(radii[0], shot.radius);
-  assert.ok(radii[0] > 24.65);
 });

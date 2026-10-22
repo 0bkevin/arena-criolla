@@ -1,16 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { type FighterId } from "../shared/content";
-import {
-  createMatch,
-  emptyInput,
-  stepMatch,
-  type Input,
-  type MatchState,
-} from "./helpers/charged-finale-engine";
-
+import { createMatch, emptyInput, stepMatch, type Input, type MatchState } from "./helpers/charged-finale-engine";
 import { lorenzoSpecialPose } from "../src/game/finales/lorenzo";
-
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const a = { name: "Lorenzo", fighter: "lorenzo" as const, wins: 3 },
     b = { name: "Rival", fighter: rival, wins: 3 };

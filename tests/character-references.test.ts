@@ -6,7 +6,6 @@ import { FighterDetail } from "../src/components/FighterDetail";
 import { BUILT_IN_FIGHTERS } from "../shared/content";
 import { finaleById } from "../shared/finales";
 import { moveDemoLabel } from "../src/game/move-demo";
-
 for (const fighter of BUILT_IN_FIGHTERS) {
   test(
     fighter.id +
