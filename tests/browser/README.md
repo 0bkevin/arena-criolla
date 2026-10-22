@@ -1,5 +1,38 @@
 # Controls validation
 
+## Mobile audio validation
+
+Run `npx tsx --test tests/audio-mobile-lifecycle.test.ts` for deterministic
+regressions covering blocked touch-start activation, touch-release retries,
+interrupted contexts, foreground/page restoration, pending and rejected resume
+requests, unmuting, background silence, and StrictMode listener cleanup.
+
+With the standalone Vite server below, open
+`http://localhost:5174/tests/browser/audio-lifecycle.html`, click a control in the
+lobby using native browser input, then run `await audioAudit.run()` in the console.
+Reload before repeating the audit. `audioAudit.unmount()` removes the fixture.
+
+This mounts the production App in StrictMode and measures samples from the real
+Web Audio graph. Its five scenarios check music output after interaction, silent
+mute and audible unmute, hidden-page silence and foreground recovery from an
+actual suspended context, combat effects, and decoding all 18 MP3 reaction assets
+with audible fighter reactions. Recovery must retain one context and one music
+loop. The fixture deliberately attempts audio startup outside a gesture, like an
+online match arriving; autoplay policy depends on the browser profile.
+
+On 2026-10-22, all five scenarios passed in Chromium 154 on Linux at 915×412,
+including zero measured output while muted. These are real rendering and
+synthesized lifecycle checks. Resizing does not emulate Android/iOS activation
+policies, physical touch, device speakers, calls, or screen locking.
+
+The activation listeners follow the
+[HTML user activation model](https://html.spec.whatwg.org/multipage/interaction.html#activation-triggering-input-event)
+and [Chrome Web Audio guidance](https://developer.chrome.com/blog/web-audio-autoplay):
+touch/pen release and touchend can grant activation; touch pointerdown alone does
+not. Resume is invoked synchronously inside capture listeners, including when a
+game control prevents a compatibility click. Fresh gestures and foreground
+restoration retry pending resumes; render frames reuse the existing request.
+
 ## Dialog and game overlay layout review
 
 With the standalone Vite server below, open
