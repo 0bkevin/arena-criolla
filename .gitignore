@@ -13,6 +13,8 @@ dist/
 
 # Retain operational instructions, not generated reports or captures.
 /docs/*
+!/docs/deployment.md
+!/docs/development.md
 !/docs/creator-codex.md
 !/docs/codex-operator-oracle.md
 !/docs/testing.md

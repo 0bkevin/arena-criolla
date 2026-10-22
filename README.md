@@ -1,64 +1,71 @@
+[![Arena Criolla: personajes venezolanos frente a frente](public/assets/og-arena-criolla.jpg)](https://arenacriolla.com/)
+
 # Arena Criolla
 
-Juego de pelea en español con 54 personajes, nueve escenarios, partidas contra CPU, dos jugadores locales y salas públicas o privadas por WebSocket. Incluye plataformas, doble salto, bloqueo, combos, especiales y definitivas propias de cada personaje.
+Un juego de pelea donde los mitos, la música, el humor y las figuras de Venezuela se encuentran en la misma arena. Juega desde el navegador, sin instalar nada ni crear una cuenta.
 
-## Desarrollo
+**[Jugar ahora](https://arenacriolla.com/)** · [Desarrollo local](#desarrollo-local) · [Despliegue](docs/deployment.md) · [Licencia](LICENSE)
 
-Requiere Node.js 24 o posterior.
+## Elige a tu pana y pelea
+
+- **55 personajes** con especiales, combos y definitivas propios.
+- **9 escenarios** inspirados en Venezuela, de Caracas a Canaima y Los Roques.
+- **Tres formas de jugar:** contra la CPU, dos jugadores en el mismo equipo o partidas en línea en salas públicas y privadas.
+- **Combate con plataformas:** doble salto, bloqueo y ataques para encontrar tu estilo.
+- **Teclado, mando o pantalla táctil.** Los controles se explican dentro del juego.
+
+Para jugar con alguien a distancia, crea una sala y comparte su enlace de invitación. El servidor simula el combate y mantiene la partida sincronizada.
+
+## Desarrollo local
+
+Necesitas **Node.js 24 o posterior** y npm.
 
 ```sh
+git clone https://github.com/0bkevin/arena-criolla.git
+cd arena-criolla
 npm ci
 npm run dev
 ```
 
-Abre `http://localhost:5173`. El servidor escucha en todas las interfaces; otros dispositivos de la misma red pueden entrar usando la IP del equipo. Elige personaje y escenario y comienza la pelea; los jugadores reciben una etiqueta automática, sin escribir un apodo. Los controles de teclado, mando y pantalla táctil se explican dentro del juego.
+Abre [localhost:5173](http://localhost:5173). También puedes entrar desde otro dispositivo de la misma red usando la IP de tu equipo. El juego público funciona sin claves de API; las opciones del servidor están en [`.env.example`](.env.example).
 
-## Compilación y producción
+## Cómo está construido
 
-```sh
-npm run build
-npm start
+React y TypeScript para la interfaz, Canvas 2D para la pelea y Node.js con Express y WebSocket para el servidor. El motor de combate se comparte entre cliente y servidor.
+
+```text
+src/       Interfaz, renderizado, controles y audio
+shared/    Motor de combate, personajes, escenarios y protocolo de red
+server/    Servidor HTTP, salas y simulación en línea
+public/    Imágenes, sonidos y fuentes
+tests/     Pruebas de combate, red, interfaz y assets
+deploy/    Contenedores, proxy y copias de seguridad
+docs/      Guías de operación y creación privada de personajes
 ```
 
-`PORT` cambia el puerto y `.env.example` documenta las opciones de configuración. El servidor entrega la aplicación compilada y simula las partidas en línea. La configuración de contenedores, proxy y copias de seguridad está en `deploy/`.
-
-El contenedor de producción conserva solo la aplicación, los assets públicos y las dependencias necesarias. Los datos privados del creador se guardan en el volumen configurado con `ARENA_DATA_DIR`; las credenciales y los archivos `.env` quedan fuera del repositorio.
-
-La imagen para compartir se sirve como JPEG de 1200 × 630. Su URL incluye una huella del archivo que cambia automáticamente al desplegar una imagen nueva; Open Graph, Twitter y los datos estructurados usan la misma URL. Después de regenerarla con `npm run assets:og`, vuelve a compilar y desplegar para publicar la nueva versión. Las peticiones a versiones retiradas se redirigen temporalmente a la imagen actual.
-
-Después de desplegar, comprueba `https://arenacriolla.com/` y la dirección exacta compartida con [Sharing Debugger de Meta](https://developers.facebook.com/tools/debug/) y [Post Inspector de LinkedIn](https://www.linkedin.com/post-inspector/). Cada plataforma conserva su propia caché; borrar o reemplazar el archivo del servidor no elimina las copias de las redes ni garantiza que cambien las publicaciones existentes. En X y otras aplicaciones, compartir una URL con un parámetro nuevo, como `?preview=2`, puede provocar una consulta nueva, pero depende de cómo normalicen y almacenen el enlace. El canonical del sitio permanece sin parámetros.
-
-## Assets y calidad
-
-- `public/`: imágenes, audio, fuentes y archivos web utilizados por el juego.
-- `shared/`: personajes, escenarios, movimientos, geometría de sprites y manifiestos de animación y compresión.
-- `src/` y `server/`: interfaz, renderizado, audio, simulación y servidor.
-- `tests/`: pruebas de combate, renderizado, red, almacenamiento, seguridad y preparación de assets.
-
-Los ataques usan los escenarios de la pelea. Capriles y sus invitados tienen poses sentadas; Nacho y su rival bailan con poses propias. La música se sintetiza localmente y no incorpora reproductores ni grabaciones de YouTube.
-
-La entrega de imágenes utiliza variantes más pequeñas con píxeles y metadatos idénticos. Los originales públicos siguen disponibles como fallback. Los workers preparan música y recortes de sprites sin bloquear la interfaz, con el mismo algoritmo local como recuperación.
-
-Los informes, capturas, vídeos, referencias y generaciones intermedias se retiraron del árbol de trabajo. El juego no necesita descargarlos ni reconstruir sus imágenes para compilar. Los metadatos compactos de `shared/` son datos de ejecución, no informes generados durante el build.
-
-## Validación
+## Validar y compilar
 
 ```sh
 npm test
 npm run check:assets
 npm run build
+npm start
 ```
 
-`check:assets` comprueba directamente los sprites públicos: transparencia, ocho siluetas completas y geometría coincidente. Las pruebas se centran en combate, red, seguridad, controles, recuperación de assets y audio. Los inventarios estéticos, las migraciones de artwork y las comprobaciones repetidas por personaje se retiraron; las herramientas de auditoría y compresión siguen disponibles para trabajar con imágenes.
+Las pruebas se centran en combate, red, almacenamiento, seguridad, controles, recuperación de assets y audio. `check:assets` valida transparencia, ocho siluetas completas y geometría coincidente en los sprites públicos.
 
 La CI distribuye las pruebas entre dos runners y compila la imagen de producción en paralelo, con caché de Docker y de la base de vulnerabilidades. Conserva la auditoría de dependencias, la validación de sprites, los tipos y el arranque HTTP/WebSocket. Se ejecuta en los PR y en `main`, sin duplicar cada PR con otro run por push de la rama. `scripts/security-smoke.mjs` permite comprobar una instancia local o desplegada.
 
-Los criterios de selección y la organización de CI están en [testing.md](docs/testing.md).
+Los criterios de selección de pruebas y la organización de CI están en [testing.md](docs/testing.md).
 
-## Creador privado
+`npm start` sirve la aplicación compilada. Para configurar el dominio, el contenedor o las imágenes al compartir enlaces, consulta la [guía de despliegue](docs/deployment.md).
 
-El taller público está desactivado; las partidas y los personajes publicados funcionan sin cuenta. Los módulos conservados del creador se prueban de forma aislada. La generación privada y la importación del operador se documentan en [creator-codex.md](docs/creator-codex.md) y [codex-operator-oracle.md](docs/codex-operator-oracle.md).
+## Contribuir
+
+Crea una rama por tarea desde `origin/main`, mantén los cambios acotados y ejecuta las validaciones antes de abrir un PR. La configuración para nuevos hilos de T3 Code está documentada en la [guía de desarrollo](docs/development.md).
+
+El taller público de personajes está desactivado. El flujo privado del operador se documenta en [creación de personajes](docs/creator-codex.md) y [configuración en Oracle](docs/codex-operator-oracle.md).
 
 ## Licencia
 
-El código y los materiales originales se distribuyen bajo [GPL-3.0-only](LICENSE). Los sonidos de terceros conservan CC0 y las fuentes SIL Open Font License; consulta [ASSET-LICENSES.txt](ASSET-LICENSES.txt).
+Código y materiales originales bajo [GPL-3.0-only](LICENSE). Los sonidos de terceros conservan CC0 y las fuentes, SIL Open Font License. Consulta las atribuciones en [ASSET-LICENSES.txt](ASSET-LICENSES.txt).
