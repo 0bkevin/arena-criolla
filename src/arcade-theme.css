@@ -470,9 +470,12 @@ body {
 }
 .in-lobby .contender-identity {
   position: relative;
-  min-height: 67px;
+  display: grid;
+  place-items: center;
+  min-height: 0;
   margin: 0;
-  padding: 10px 8px 8px;
+  padding: 9px 8px;
+  text-align: center;
   isolation: isolate;
 }
 .in-lobby .contender-identity::before {
@@ -1394,9 +1397,8 @@ body {
   }
   .in-lobby .contender-identity {
     grid-area: auto;
-    min-height: 66px;
     text-align: center;
-    padding: 10px 8px 8px;
+    padding: 9px 8px;
   }
   .in-lobby .contender-identity > span {
     margin-bottom: 0;
@@ -1683,7 +1685,6 @@ body {
     height: 179px;
   }
   .in-lobby .contender-identity {
-    min-height: 75px;
     padding: 9px 7px;
   }
   .in-lobby .contender-identity h3 {
