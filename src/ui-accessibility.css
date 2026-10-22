@@ -549,8 +549,9 @@
   }
 }
 
-@media (max-width: 900px) {
-  /* Compact visuals retain a 44px tap area without enlarging other controls. */
+@media (max-width: 900px),
+  (max-width: 1100px) and (max-height: 600px) and (orientation: landscape) and (pointer: coarse) {
+  /* Compact visuals retain a 44px tap area, including on wide landscape phones. */
   .app-shell.in-lobby {
     --selection-control-height: 36px;
   }
@@ -673,6 +674,10 @@
   .in-lobby .contender-player > span:first-child {
     font-size: 11px;
   }
+  .in-lobby .contender-moves {
+    /* Relative hit-area positioning must not reactivate old mobile offsets. */
+    inset: auto;
+  }
   .in-lobby .roster-toolbar {
     gap: 8px;
     margin-bottom: 8px;
@@ -702,7 +707,7 @@
     width: 16px;
     height: 16px;
   }
-  .arcade-app .modal .modal-header .icon-button {
+  .app-shell.arcade-app .modal .modal-header .icon-button {
     width: 36px;
     min-width: 36px;
     height: 36px;
@@ -715,6 +720,10 @@
   }
   .arcade-app .modal:where(:not(.help-modal)) .modal-header {
     padding-block: 8px;
+  }
+  .arcade-app .help-modal .modal-header {
+    /* Keep the expanded close-button target inside the clipped dialog. */
+    padding-block: 4px;
   }
   .arcade-app .modal :is(.primary-button, .secondary-button, .text-button) {
     min-height: 36px;
@@ -738,7 +747,8 @@
     padding-block: 6px;
     font-size: 12px;
   }
-  .game-page .pause-card button {
+  .game-page .pause-card button,
+  .game-page.is-touch .pause-card :is(.primary-button, .secondary-button) {
     min-height: 36px;
     height: auto;
     padding: 7px 10px;
