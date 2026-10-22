@@ -571,7 +571,6 @@ export function App({
               >
                 <Portrait fighter={f.id} />
                 <div>
-                  <span>{f.role}</span>
                   <h3>{f.name}</h3>
                   <strong>
                     Ver movimientos <ArrowRight size={13} />

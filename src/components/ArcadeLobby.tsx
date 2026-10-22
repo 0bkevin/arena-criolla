@@ -332,7 +332,6 @@ export function ArcadeLobby(props: Props) {
                   <span className="contender-shadow" />
                 </div>
                 <div className="contender-identity" key={`name-${fighter}`}>
-                  <span>{chosen.role}</span>
                   <h3>{chosen.name}</h3>
                 </div>
                 <button
@@ -387,7 +386,6 @@ export function ArcadeLobby(props: Props) {
                   className="contender-identity"
                   key={`rival-${opponent?.id || "waiting"}`}
                 >
-                  {opponent && <span>{opponent.role}</span>}
                   <h3>{opponent?.name || "Esperando rival"}</h3>
                 </div>
                 {opponent ? (

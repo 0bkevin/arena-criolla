@@ -31,7 +31,6 @@ export function FighterDetail({
         <div className="detail-art">
           <span className="detail-backdrop" />
           <Portrait fighter={f.id} />
-          <span>{f.role}</span>
         </div>
         <div className="detail-info">
           <div className="special-description">
