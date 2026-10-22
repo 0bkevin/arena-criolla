@@ -106,6 +106,7 @@ export function Game(props: Props) {
     new ControlSources(inputs.current[0]),
     new ControlSources(inputs.current[1]),
   ]);
+  const focusedRef = useRef(true);
   const keys = useRef(new Set<string>());
   const [touchReset, setTouchReset] = useState(0);
   const [device, setDevice] = useState(() => ({
@@ -168,6 +169,7 @@ export function Game(props: Props) {
   const isGameQuiet = () =>
     pausedRef.current ||
     blockedRef.current ||
+    !focusedRef.current ||
     Boolean(document.querySelector("dialog[open]")) ||
     document.hidden;
   const syncAmbiencePause = (phase = introView.current.phase) =>
@@ -314,38 +316,51 @@ export function Game(props: Props) {
   useEffect(() => {
     const release = releaseInputs;
     const handler = (event: KeyboardEvent, down: boolean) => {
+      // Always release an accepted key, even if modifiers/focus changed since
+      // keydown. Browser shortcuts and editable controls only suppress presses.
+      if (!down) {
+        if (!keys.current.delete(event.code)) return;
+        const [index] = KEY_MAP[event.code];
+        sources.current[index].release(`key:${event.code}`);
+        if (mode === "online") callbacks.current.onInput?.(inputs.current[0]);
+        return;
+      }
+      if (
+        !focusedRef.current ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.altKey ||
+        event.isComposing ||
+        event.keyCode === 229
+      )
+        return;
       if (
         event.target instanceof HTMLElement &&
         (event.target.matches("input, textarea, select") ||
           event.target.isContentEditable)
       )
         return;
-      if (down && document.querySelector("dialog[open]")) return;
+      if (document.querySelector("dialog[open]")) return;
       const nativeActivation =
         (event.code === "Enter" || event.code === "Space") &&
         event.target instanceof HTMLElement &&
         event.target.closest("button, a[href], summary, [role='button']");
       // Holding a gameplay key across an overlay must not activate its newly
       // focused button. Check before the paused/finished/orientation guards.
-      if (down && event.repeat && nativeActivation) {
+      if (event.repeat && nativeActivation) {
         event.preventDefault();
         return;
       }
-      if (down && blockedRef.current) return;
+      if (blockedRef.current) return;
       if (introView.current.phase === "finished") return;
-      if (event.code === "Escape" && down && !event.repeat) {
-        setPaused((value) => {
-          pausedRef.current = !value;
-          return !value;
-        });
-        release();
+      if (event.code === "Escape" && !event.repeat) {
+        togglePause();
         return;
       }
-      if ((pausedRef.current || blockedRef.current) && down) return;
-      if (down && nativeActivation) return;
+      if (pausedRef.current) return;
+      if (nativeActivation) return;
       if (
         event.code === "Space" &&
-        down &&
         !event.repeat &&
         introView.current.phase === "intro" &&
         introView.current.tick < INTRO_COUNTDOWN_START
@@ -357,29 +372,34 @@ export function Game(props: Props) {
       const mapping = KEY_MAP[event.code];
       if (!mapping || (mapping[0] === 1 && mode !== "local")) return;
       event.preventDefault();
-      if (down && (event.repeat || keys.current.has(event.code))) return;
-      if (down) keys.current.add(event.code);
-      else keys.current.delete(event.code);
+      if (event.repeat || keys.current.has(event.code)) return;
+      keys.current.add(event.code);
       const [index, control] = mapping;
-      if (down) sources.current[index].press(`key:${event.code}`, control);
-      else sources.current[index].release(`key:${event.code}`);
+      sources.current[index].press(`key:${event.code}`, control);
       if (mode === "online") callbacks.current.onInput?.(inputs.current[0]);
     };
     const keyDown = (event: KeyboardEvent) => handler(event, true);
     const keyUp = (event: KeyboardEvent) => handler(event, false);
     const blur = () => {
+      focusedRef.current = false;
       release();
       if (mode !== "online" && introView.current.phase !== "finished") {
         pausedRef.current = true;
         setPaused(true);
       }
     };
+    const focus = () => {
+      focusedRef.current = !document.hidden;
+    };
     const hidden = () => {
       if (document.hidden) blur();
+      else focusedRef.current = document.hasFocus();
     };
+    focusedRef.current = document.hasFocus();
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyUp);
     window.addEventListener("blur", blur);
+    window.addEventListener("focus", focus);
     window.addEventListener("pagehide", blur);
     document.addEventListener("visibilitychange", hidden);
     return () => {
@@ -387,6 +407,7 @@ export function Game(props: Props) {
       window.removeEventListener("keydown", keyDown);
       window.removeEventListener("keyup", keyUp);
       window.removeEventListener("blur", blur);
+      window.removeEventListener("focus", focus);
       window.removeEventListener("pagehide", blur);
       document.removeEventListener("visibilitychange", hidden);
     };
@@ -744,13 +765,14 @@ export function Game(props: Props) {
 
   const togglePause = () => {
     releaseInputs();
-    pausedRef.current = !paused;
-    setPaused(!paused);
+    pausedRef.current = !pausedRef.current;
+    setPaused(pausedRef.current);
   };
   const touchPress = (pointer: number, control: Control) => {
     if (
       pausedRef.current ||
       blockedRef.current ||
+      !focusedRef.current ||
       view.phase !== "playing" ||
       document.querySelector("dialog[open]")
     )
