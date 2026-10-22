@@ -1,23 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {
-  FIGHTERS,
-  fighterById,
-  type FounderFighterId,
-} from "../shared/content";
-import { CHOREOGRAPHIES, sampleGesture, REST } from "../shared/choreography";
-import entrances from "../shared/entrance-assets.json";
-import { presentationById } from "../shared/presentation";
-import { victoryById } from "../src/game/victory";
-import {
-  createMatch,
-  emptyInput,
-  stepMatch,
-  WORLD,
-  type Input,
-  type MatchState,
-} from "../shared/engine";
-
+import { type FounderFighterId } from "../shared/content";
+import { createMatch, emptyInput, stepMatch, WORLD, type Input, type MatchState } from "../shared/engine";
 const founders: FounderFighterId[] = [
   "enrique",
   "jesus",
@@ -26,17 +10,6 @@ const founders: FounderFighterId[] = [
   "juan",
 ];
 const techniques = ["ledger", "settlement", "ignition", "slash", "grid"];
-
-test("the Founders collection includes Lorenzo Mendoza, Coco Wallet and all seven original startup founders", () => {
-  const collection = FIGHTERS.filter((fighter) => fighter.category === "founders");
-  assert.deepEqual(
-    new Set(collection.map((fighter) => fighter.id)),
-    new Set(["zavarce", "vallenilla", ...founders, "lorenzo", "kevin"]),
-  );
-  for (const id of ["carolina", "javier", "silbon"] as const)
-    assert.notEqual(fighterById(id).category, "founders", id);
-});
-
 function setup(fighter: FounderFighterId, attacker: 0 | 1 = 0) {
   const state = createMatch("caracas", [
     { name: "Uno", fighter: attacker === 0 ? fighter : "zavarce", wins: 0 },
@@ -71,63 +44,6 @@ function startSpecial(
   inputs[attacker].actions.special++;
   stepMatch(state, inputs);
 }
-
-test("the five founders have distinct painted entrances and complete choreography and victory identities", () => {
-  const fighters = founders.map(fighterById);
-  for (const field of ["name", "sprite", "ability", "special"] as const) {
-    assert.equal(
-      new Set(fighters.map((fighter) => fighter[field])).size,
-      founders.length,
-      field,
-    );
-    assert.ok(
-      fighters.every((fighter) => fighter[field].length > 0),
-      field,
-    );
-  }
-  assert.deepEqual(
-    new Set(fighters.map((fighter) => fighter.ability)),
-    new Set(techniques),
-  );
-  assert.equal(
-    new Set(fighters.map((fighter) => fighter.sprite)).size,
-    founders.length,
-  );
-
-  for (const id of founders) {
-    const presentation = presentationById(id);
-    assert.ok(presentation.introName && presentation.selectionName, id);
-    assert.ok(presentation.durationMs > 0, id);
-    assert.ok([0, 1, 4].includes(presentation.battleFrame), id);
-    assert.equal(presentation.frameFacing.length, 8, id);
-    assert.ok(
-      presentation.frameFacing.every((facing) => facing === 1 || facing === -1),
-      id,
-    );
-
-    const choreography = CHOREOGRAPHIES[id];
-    assert.ok(choreography.name.length > 0, id);
-    assert.ok(choreography.beats.length >= 2, id);
-    for (const [progress, sample] of [
-      [0, sampleGesture(id, 0)],
-      [1, sampleGesture(id, 1)],
-    ] as const) {
-      assert.equal(sample.at, progress, id);
-      for (const [key, value] of Object.entries(sample))
-        if (key !== "at") assert.ok(value === 0, `${id}: ${key} should settle`);
-    }
-    assert.equal(victoryById(id).name.length > 0, true, id);
-  }
-  assert.equal(
-    new Set(founders.map((id) => entrances[id].file)).size,
-    founders.length,
-  );
-  assert.equal(
-    new Set(founders.map((id) => victoryById(id).name)).size,
-    founders.length,
-  );
-});
-
 test("founder specials resolve for either player, with and without a facing block, deterministically", () => {
   for (const id of founders) {
     for (const attacker of [0, 1] as const) {

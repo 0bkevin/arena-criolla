@@ -1,14 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-
 import { WORLD, createMatch, emptyInput, stepMatch } from "../shared/engine";
 import { TECHNIQUES } from "../shared/techniques";
 import { ATTACK_ART, hasAttackArt } from "../src/game/attack-art";
-import {
-  BOLIVAR_POSES,
-  bolivarSpecialPose,
-  drawBolivarSpecial,
-} from "../src/game/finales/bolivar";
+import { BOLIVAR_POSES, bolivarSpecialPose, drawBolivarSpecial } from "../src/game/finales/bolivar";
 function setup(side: 0 | 1 = 0, distance = 80, wins = 3, energy = 100) {
   const actor = { name: "Bolívar", fighter: "bolivar" as const, wins },
     rival = { name: "Vicente", fighter: "zavarce" as const, wins: 3 };

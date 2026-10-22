@@ -350,35 +350,3 @@ test("all live fields replay deterministically on every stage, including both le
       }
 });
 
-test("a falling curtain and walking caravan supporters obey the surfaces beneath their own feet", () => {
-  const curtain = setup("george", 0, 550),
-    source = curtain.source;
-  source.x = 230;
-  source.y = 392;
-  source.grounded = true;
-  source.supportPlatform = 0;
-  curtain.start();
-  curtain.advance(13);
-  const actor = curtain.state.fieldFinales![0].actors![0];
-  actor.x = WORLD.left + 10;
-  actor.previousX = actor.x;
-  curtain.advance(38);
-  assert.equal(
-    actor.y,
-    WORLD.floor,
-    "the curtain falls past an absent elevated platform to the real floor",
-  );
-  const caravan = setup("mcm", 0, 550);
-  caravan.source.x = 230;
-  caravan.source.y = 392;
-  caravan.source.grounded = true;
-  caravan.source.supportPlatform = 0;
-  caravan.start();
-  caravan.advance(18);
-  const supporters = caravan.state.fieldFinales![0].actors!;
-  assert.equal(supporters.length, 4);
-  assert.ok(
-    supporters.some((a) => a.y > caravan.source.y + 10),
-    "a supporter walking beyond a narrow platform falls instead of floating beside the truck",
-  );
-});

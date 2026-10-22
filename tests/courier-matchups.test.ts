@@ -1,24 +1,9 @@
 import test, { after } from "node:test";
 import assert from "node:assert/strict";
 import { writeFileSync } from "node:fs";
-import {
-  FIGHTERS,
-  STAGES,
-  fighterById,
-  platformsAtTick,
-  type FighterId,
-  type StageId,
-} from "../shared/content";
-import {
-  createMatch,
-  emptyInput,
-  stepMatch,
-  WORLD,
-  type Input,
-  type MatchState,
-} from "../shared/engine";
+import { FIGHTERS, STAGES, fighterById, platformsAtTick, type FighterId, type StageId } from "../shared/content";
+import { createMatch, emptyInput, stepMatch, type Input, type MatchState } from "../shared/engine";
 import { TECHNIQUES } from "../shared/techniques";
-
 type Side = 0 | 1;
 type Defense = "idle" | "guard" | "double-jump" | "backward-guard";
 const defenses: Defense[] = ["idle", "guard", "double-jump", "backward-guard"];

@@ -1,9 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { simonSpecialPose } from "../src/game/finales/simon";
-
 import { writeFinaleMusic } from "../src/game/finale-sounds";
-
 test("Simón's release stroke matches the first visible emission rather than a floating overlay", () => {
   assert.equal(simonSpecialPose(11), "ready");
   assert.equal(simonSpecialPose(12), "downstroke");

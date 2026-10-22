@@ -1,16 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { existsSync } from "node:fs";
 import { FIGHTERS, type FighterId } from "../shared/content";
-import {
-  createMatch,
-  emptyInput,
-  stepMatch,
-  WORLD,
-  type Input,
-} from "../shared/engine";
+import { createMatch, emptyInput, stepMatch, WORLD, type Input } from "../shared/engine";
 import { TECHNIQUES } from "../shared/techniques";
-
 function special(fighter: FighterId, rivalX = 950) {
   const match = createMatch("guaira", [
     { name: "Leyenda", fighter, wins: 3 },
@@ -33,52 +25,6 @@ function special(fighter: FighterId, rivalX = 950) {
   };
   return { match, inputs, advance, until };
 }
-
-test("ten folklore fighters retain complete assets alongside the culture roster", () => {
-  const legends = FIGHTERS.filter((f) => f.category === "folklore");
-  assert.deepEqual(
-    legends.map((f) => f.id),
-    [
-      "silbon",
-      "llorona",
-      "sayona",
-      "lionza",
-      "florentino",
-      "diablo",
-      "knoche",
-      "momoy",
-      "tiotigre",
-      "tioconejo",
-    ],
-  );
-  assert.equal(FIGHTERS.filter((f) => f.category !== "folklore").length, 45);
-  assert.ok(
-    [
-      "zavarce",
-      "vallenilla",
-      "javier",
-      "capriles",
-      "renny",
-      "gomez",
-      "simon",
-      "conde",
-      "emilio",
-      "maite",
-      "oscar",
-      "puma",
-      "chataing",
-      "george",
-      "mcm",
-    ].every((id) => FIGHTERS.some((f) => f.id === id)),
-  );
-  assert.equal(new Set(legends.map((f) => f.special)).size, 10);
-  for (const fighter of legends) {
-    assert.equal(fighter.combos.length, 3);
-    for (const path of [`../public/assets/${fighter.sprite}.webp`])
-      assert.ok(existsSync(new URL(path, import.meta.url)), `Missing ${path}`);
-  }
-});
-
 test("El Silbón's whistle waves vertically and accelerates up to its speed cap", () => {
   const { match, advance } = special("silbon");
   match.players[1].invincible = 300;

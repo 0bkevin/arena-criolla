@@ -1,16 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { type FighterId } from "../shared/content";
-import {
-  createMatch,
-  emptyInput,
-  stepMatch,
-  type Input,
-  type MatchState,
-} from "./helpers/charged-finale-engine";
+import { createMatch, emptyInput, stepMatch, type Input, type MatchState } from "./helpers/charged-finale-engine";
 import { ATTACK_ART } from "../src/game/attack-art";
 import { drawWiredMicrophone } from "../src/game/finales/chataing";
-
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const a = { name: "Luis", fighter: "chataing" as const, wins: 3 },
     b = { name: "Rival", fighter: rival, wins: 3 };

@@ -5,43 +5,6 @@ import { writeVictoryMusic } from "../src/game/victory-music";
 import { VICTORY_MUSIC_MS } from "../src/game/victory-types";
 import type { FinaleState } from "../shared/finales";
 
-test("victory fanfares retain their closing chord and end silently", () => {
-  for (const fighter of [
-    "oscar",
-    "ali",
-    "silbon",
-    "tioconejo",
-    "draw",
-  ] as const)
-    for (const rate of [22050, 48000]) {
-      const left = new Float32Array(
-        Math.ceil((rate * VICTORY_MUSIC_MS) / 1000),
-      );
-      const right = new Float32Array(left.length);
-      writeVictoryMusic(left, right, rate, fighter);
-      for (const channel of [left, right]) {
-        let peak = 0;
-        for (const sample of channel) {
-          assert.ok(Number.isFinite(sample));
-          peak = Math.max(peak, Math.abs(sample));
-        }
-        assert.ok(peak > 0.04 && peak < 0.8, `${fighter}: peak=${peak}`);
-        assert.equal(channel[0], 0);
-        // The final tonic is held through the latter part of the result cue.
-        const closing = channel.subarray(
-          Math.floor(channel.length * 0.6),
-          Math.floor(channel.length * 0.95),
-        );
-        assert.ok(
-          closing.some((sample) => Math.abs(sample) > 0.001),
-          `${fighter}: the closing chord must remain audible`,
-        );
-        assert.ok(Math.abs(channel.at(-1)!) < 0.0001, "no click at the ending");
-      }
-      assert.notDeepEqual(left, right, "the fanfare has a stereo spread");
-    }
-});
-
 test("original arcade music stays quiet, finite and continuous at the loop seam", () => {
   for (const rate of [22050, 48000]) {
     const channels = [

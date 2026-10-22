@@ -3,7 +3,6 @@ import assert from "node:assert/strict";
 import { createMatch, emptyInput, stepMatch, type Input } from "./helpers/charged-finale-engine";
 import { INTRO_TOTAL_TICKS } from "../shared/presentation";
 import { drawFinale } from "../src/game/finale-renderer";
-
 for (const side of [0, 1] as const) {
   for (const reducedMotion of [false, true]) {
     test(`Capriles P${side + 1} café delivers the requested dialogue in readable beats (reduced motion: ${reducedMotion})`, () => {

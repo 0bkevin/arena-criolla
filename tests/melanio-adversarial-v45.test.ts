@@ -1,21 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {
-  STAGES,
-  platformsAtTick,
-  type FighterId,
-  type StageId,
-} from "../shared/content";
-import {
-  cpuInput,
-  createMatch,
-  emptyInput,
-  stepMatch,
-  WORLD,
-  type Input,
-  type MatchState,
-} from "../shared/engine";
-
+import { STAGES, platformsAtTick, type FighterId, type StageId } from "../shared/content";
+import { cpuInput, createMatch, emptyInput, stepMatch, WORLD, type Input, type MatchState } from "../shared/engine";
 const rivals = [
   "vallenilla", // multi-shot projectile
   "gomez", // grounded control and snare

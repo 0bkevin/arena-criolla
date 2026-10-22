@@ -1,17 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { FIGHTERS, fighterById, type FighterId } from "../shared/content";
-import {
-  createMatch,
-  emptyInput,
-  stepMatch,
-  cpuInput,
-  WORLD,
-  type Input,
-  type Projectile,
-} from "../shared/engine";
+import { fighterById, type FighterId } from "../shared/content";
+import { createMatch, emptyInput, stepMatch, cpuInput, WORLD, type Input, type Projectile } from "../shared/engine";
 import { TECHNIQUES } from "../shared/techniques";
-
 const added: FighterId[] = [
   "ali",
   "gualberto",
@@ -66,18 +57,6 @@ function incoming(x: number, direction = -1): Projectile {
     direction,
   };
 }
-
-test("sixteen culture figures have distinct sprites and distinct specials", () => {
-  assert.equal(FIGHTERS.length, 55);
-  for (const id of added) {
-    const f = fighterById(id);
-    assert.equal(f.category, "culture");
-    assert.equal(f.sprite, id === "nacho" ? "nacho-v42" : `${id}-v15`);
-    assert.equal(new Set(f.combos).size, 3);
-  }
-  assert.equal(new Set(added.map((id) => fighterById(id).ability)).size, 16);
-});
-
 test("Alí sends three timed ground waves that an airborne rival avoids", () => {
   const s = special("ali");
   s.advance(36);

@@ -1,28 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { fighterById, type FighterId } from "../shared/content";
-import { TECHNIQUES } from "../shared/techniques";
-import {
-  createMatch,
-  cpuInput,
-  emptyInput,
-  stepMatch,
-  WORLD,
-  type Input,
-} from "../shared/engine";
-import {
-  INTRO_TOTAL_TICKS,
-  normalizedFacing,
-  presentationById,
-  selectionProgress,
-} from "../shared/presentation";
-import {
-  ENTRANCE_ACTIONS,
-  sampleEntranceAction,
-} from "../shared/entrance-actions";
-import entranceAssets from "../shared/entrance-assets.json";
-import { CHOREOGRAPHIES } from "../shared/choreography";
-
+import { type FighterId } from "../shared/content";
+import { createMatch, emptyInput, stepMatch, type Input } from "../shared/engine";
+import { INTRO_TOTAL_TICKS } from "../shared/presentation";
 function setup(
   side: 0 | 1 = 0,
   gap = 280,

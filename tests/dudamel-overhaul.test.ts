@@ -3,7 +3,6 @@ import test from "node:test";
 import { createMatch, emptyInput, stepMatch } from "./helpers/charged-finale-engine";
 import { finaleById } from "../shared/finales";
 import { TECHNIQUES } from "../shared/techniques";
-
 import { writeFinaleMusic } from "../src/game/finale-sounds";
 import { drawDudamelProjectile } from "../src/game/finales/dudamel";
 function setup(side: 0 | 1, wins = 3, energy = 100) {

@@ -1,22 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import type { FighterId } from "../shared/content";
-import {
-  createMatch,
-  emptyInput,
-  stepMatch,
-  type Input,
-  type MatchState,
-} from "./helpers/charged-finale-engine";
+import { createMatch, emptyInput, stepMatch, type Input, type MatchState } from "./helpers/charged-finale-engine";
 import { ATTACK_ART, hasAttackArt } from "../src/game/attack-art";
 import { writeFinaleMusic } from "../src/game/finale-sounds";
-import {
-  ALI_ACTOR_POSES,
-  ALI_POSES,
-  aliSpecialPose,
-  drawAliSpecial,
-} from "../src/game/finales/ali";
-
+import { ALI_ACTOR_POSES, ALI_POSES, aliSpecialPose, drawAliSpecial } from "../src/game/finales/ali";
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const a = { name: "Alí", fighter: "ali" as const, wins: 3 },
     b = { name: "Rival", fighter: rival, wins: 3 };

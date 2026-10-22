@@ -1,22 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { fighterById } from "../shared/content";
-import {
-  cpuInput,
-  createMatch,
-  emptyInput,
-  outgoingDamageMultiplier,
-  stepMatch,
-  type Input,
-} from "./helpers/charged-finale-engine";
+import { cpuInput, createMatch, emptyInput, outgoingDamageMultiplier, stepMatch, type Input } from "./helpers/charged-finale-engine";
 import { finaleById } from "../shared/finales";
 import { TECHNIQUES } from "../shared/techniques";
 import { ATTACK_ART } from "../src/game/attack-art";
-import {
-  drawTransformationBody,
-  transformationPose,
-} from "../src/game/transformation-art";
-
+import { drawTransformationBody, transformationPose } from "../src/game/transformation-art";
 function setup(side: 0 | 1 = 0, gap = 500, wins = 3, energy = 100) {
   const conde = { name: "Conde", fighter: "conde" as const, wins };
   const rival = { name: "Rival", fighter: "javier" as const, wins: 3 };

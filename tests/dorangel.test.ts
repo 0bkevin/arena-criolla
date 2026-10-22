@@ -2,33 +2,14 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile } from "node:fs/promises";
 import sharp from "sharp";
-import {
-  createMatch,
-  emptyInput,
-  stepMatch,
-  WORLD,
-  type Input,
-} from "./helpers/charged-finale-engine";
-import {
-  fighterById,
-  STAGES,
-  platformsAtTick,
-  type FighterId,
-  type StageId,
-} from "../shared/content";
-import {
-  DORANGEL_BITE,
-  DORANGEL_FINALE,
-  DORANGEL_POT,
-  dorangelPot,
-  dorangelPotIsHot,
-} from "../shared/dorangel";
+import { createMatch, emptyInput, stepMatch, WORLD, type Input } from "./helpers/charged-finale-engine";
+import { fighterById, STAGES, platformsAtTick, type FighterId, type StageId } from "../shared/content";
+import { DORANGEL_BITE, DORANGEL_FINALE, DORANGEL_POT, dorangelPot, dorangelPotIsHot } from "../shared/dorangel";
 import { TECHNIQUES } from "../shared/techniques";
 import entrances from "../shared/entrance-assets.json";
 import actors from "../shared/finale-actor-assets.json";
 import dancers from "../shared/perro-mujeriego-assets.json";
 import { ATTACK_ART } from "../src/game/attack-art";
-
 test("Dorángel ships every native pose and prop in bounded transparent lossless atlases", async () => {
   assert.equal(fighterById("dorangel").displayHeight, 177);
   assert.equal(entrances.dorangel.frames.length, 6);

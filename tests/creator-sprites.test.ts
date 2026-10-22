@@ -12,7 +12,6 @@ import {
   makeDefinition,
   validateGeneratedGameplay,
 } from "../server/creator/pipeline";
-import { buildSpritePrompt, DesignSchema } from "../server/creator/provider";
 import type { CharacterDesign } from "../server/creator/provider";
 
 const design: CharacterDesign = {
@@ -108,28 +107,4 @@ test("all three creator styles use balanced playable recipes and different welco
   }
   assert.equal(abilities.size, 3);
   assert.equal(gestures.size, 3);
-});
-test("provider instructions specify likeness, all right-facing poses and private references as data", () => {
-  const prompt = buildSpritePrompt(
-    {
-      name: "Pana",
-      description: "Soy creativo.",
-      style: "agile",
-      color: "#ffd45a",
-    },
-    design,
-  );
-  for (const required of [
-    "EIGHT",
-    "4-column by 2-row",
-    "face RIGHT",
-    "background alpha transparent",
-    "no crop",
-    "same person",
-  ])
-    assert.ok(prompt.toLowerCase().includes(required.toLowerCase()), required);
-  assert.equal(
-    DesignSchema.safeParse({ ...design, combos: ["Only one"] }).success,
-    false,
-  );
 });

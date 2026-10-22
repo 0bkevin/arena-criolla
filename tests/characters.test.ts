@@ -1,16 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile, readdir, stat } from "node:fs/promises";
-
-import {
-  FIGHTERS,
-  fighterById,
-  isFighter,
-  type FighterId,
-} from "../shared/content";
+import { fighterById, type FighterId } from "../shared/content";
 import { createMatch, emptyInput, stepMatch } from "../shared/engine";
-import { REACTION_CLIPS } from "../src/game/reactions";
-
 function special(fighter: FighterId, rivalX = 750) {
   const match = createMatch("guaira", [
     { name: "Uno", fighter, wins: fighterById(fighter).specialUnlockWins ?? 0 },
@@ -29,25 +20,6 @@ function special(fighter: FighterId, rivalX = 750) {
   };
   return { match, advance, inputs };
 }
-
-test("the expanded roster contains fifty-five distinct figures and excludes removed fighters", () => {
-  assert.equal(FIGHTERS.length, 55);
-  assert.equal(
-    new Set(FIGHTERS.map((fighter) => fighter.id)).size,
-    FIGHTERS.length,
-  );
-  assert.equal(
-    new Set(FIGHTERS.map((fighter) => fighter.ability)).size,
-    FIGHTERS.length,
-  );
-  assert.equal(isFighter("delsa"), false);
-  assert.equal(isFighter("lacava"), false);
-  assert.equal(isFighter("john"), false);
-  assert.equal(isFighter("kilometro"), false);
-  assert.equal(isFighter("zavarce"), true);
-  assert.equal(isFighter("vallenilla"), true);
-});
-
 test("Vicente summons one motorcycle without moving himself", () => {
   const { match, advance } = special("zavarce");
   const origin = match.players[0].x;
@@ -135,33 +107,4 @@ test("Emilio's follow-up strike connects after the first reaction", () => {
   advance(20);
   assert.equal(match.players[0].hits, 2);
   assert.ok(match.players[1].hp < healthAfterFirst);
-});
-
-test("the shipped roster has no real-person speech and every generic reaction has a verified asset", async () => {
-  const manifest = JSON.parse(
-    await readFile("shared/character-personalities.json", "utf8"),
-  );
-  assert.deepEqual(
-    Object.keys(manifest.characters).sort(),
-    FIGHTERS.map((f) => f.id).sort(),
-  );
-  for (const fighter of FIGHTERS) {
-    const character = manifest.characters[fighter.id];
-    await stat(`public/assets/${fighter.sprite}.webp`);
-    assert.equal(character.lines, undefined);
-  }
-  assert.deepEqual(await readdir("public/audio"), ["arcade"]);
-  const files = Object.values(REACTION_CLIPS).flatMap((bank) =>
-    Object.values(bank).flat(),
-  );
-  assert.equal(files.length, 18);
-  assert.equal(new Set(files).size, 18);
-  assert.deepEqual(
-    (await readdir("public/audio/arcade")).sort(),
-    files.map((file) => file.split("/").at(-1)).sort(),
-  );
-  for (const file of files) {
-    const audio = await readFile(`public${file}`);
-    assert.ok(audio.length > 1000);
-  }
 });

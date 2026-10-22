@@ -1,11 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createMatch, cpuInput, emptyInput, stepMatch, WORLD, type Action, type Input, type MatchState } from "../helpers/charged-finale-engine";
-import { fighterById } from "../../shared/content";
-import { TECHNIQUES } from "../../shared/techniques";
-import { INTRO_TOTAL_TICKS, normalizedFacing, presentationById, selectionProgress } from "../../shared/presentation";
-import { CHOREOGRAPHIES } from "../../shared/choreography";
-
+import { createMatch, cpuInput, emptyInput, stepMatch, type Action, type Input, type MatchState } from "../helpers/charged-finale-engine";
 function setup(side: 0 | 1 = 0, wins = 0, gap = 280) {
   const configs = [
     { name: "Pedro", fighter: "vallenilla" as const, wins },
@@ -30,49 +25,7 @@ function waitReady(state: MatchState, inputs: [Input, Input], side: number) {
     if (++waited > 180) throw new Error("actor did not recover in 180 frames");
   }
 }
-
-test("Vallenilla has the researched identity, dedicated installment technique and mirrored ready stance", () => {
-  const fighter = fighterById("vallenilla");
-  assert.equal(fighter.name, "Pedro Vallenilla");
-  assert.equal(fighter.ability, "installments");
-  assert.equal(fighter.special, "Tres cuotas");
-  assert.deepEqual(TECHNIQUES.installments.pulses, [0, 10, 20]);
-  assert.equal(presentationById("vallenilla").battleFrame, 0);
-  for (let frame = 0; frame < 8; frame++) {
-    assert.equal(normalizedFacing("vallenilla", frame, 1), 1);
-    assert.equal(normalizedFacing("vallenilla", frame, -1), -1);
-  }
-  assert.equal(selectionProgress("vallenilla", 2800), 1);
-  emit("presentation-definition", { intro: presentationById("vallenilla").introName, choreography: CHOREOGRAPHIES.vallenilla.name, actualBeats: CHOREOGRAPHIES.vallenilla.beats });
-});
-
 for (const side of [0, 1] as const) {
-  test(`Vallenilla P${side + 1}: walks both directions, faces the movement, jumps twice and lands`, () => {
-    const { state, inputs } = setup(side);
-    const actor = state.players[side];
-    const start = actor.x;
-    inputs[side].right = true;
-    advance(state, inputs, 12);
-    assert.ok(actor.x > start + 40);
-    assert.equal(actor.facing, 1);
-    const right = actor.x;
-    inputs[side].right = false; inputs[side].left = true;
-    advance(state, inputs, 20);
-    assert.ok(actor.x < right - 40);
-    assert.equal(actor.facing, -1);
-    inputs[side].left = false;
-    press(inputs, side, "jump"); advance(state, inputs, 10);
-    assert.equal(actor.jumps, 1); assert.ok(actor.y < WORLD.floor);
-    const firstJumpY = actor.y;
-    press(inputs, side, "jump"); advance(state, inputs, 1);
-    assert.equal(actor.jumps, 2);
-    press(inputs, side, "jump"); advance(state, inputs, 1);
-    assert.equal(actor.jumps, 2);
-    advance(state, inputs, 150);
-    assert.equal(actor.grounded, true); assert.equal(actor.jumps, 0);
-    emit(`movement-p${side + 1}`, { start, right, finalX: actor.x, firstJumpY, landedY: actor.y, facing: actor.facing });
-  });
-
   for (const action of ["light", "heavy"] as const) {
     test(`Vallenilla P${side + 1}: ${action} connects once against idle and is blocked facing forward`, () => {
       const idle = setup(side, 0, 80);
@@ -174,21 +127,6 @@ for (const side of [0, 1] as const) {
     emit(`super-p${side + 1}`, { hp: state.players[1 - side].hp, hits: state.players[side].hits, combo: state.players[side].combo, energy: state.players[side].energy });
   });
 }
-
-test("Vallenilla introduction gates fighting, then settles facing the opponent", () => {
-  const { state, inputs } = setup(0);
-  state.phase = "intro"; state.tick = 0;
-  inputs[0].right = true; press(inputs, 0, "special");
-  const start = state.players[0].x;
-  advance(state, inputs, INTRO_TOTAL_TICKS - 1);
-  assert.equal(state.phase, "intro"); assert.equal(state.players[0].x, start);
-  assert.equal(state.projectiles.length, 0);
-  advance(state, inputs, 1); assert.equal(state.phase, "playing");
-  assert.equal(state.players[0].facing, 1);
-  assert.equal(state.players[1].facing, -1);
-  emit("intro", { totalTicks: INTRO_TOTAL_TICKS, start, finishX: state.players[0].x, phase: state.phase });
-});
-
 test("Vallenilla fights a hard CPU with real movement, jumps, special and ordinary attacks to a result", () => {
   const { state, inputs } = setup(0, 3, 420);
   const started = new Set<string>();

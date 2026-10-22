@@ -49,9 +49,11 @@ npm run check:assets
 npm run build
 ```
 
-`check:assets` comprueba directamente las 54 imágenes públicas: transparencia, ocho siluetas completas y geometría coincidente. Las pruebas también verifican los frames de ataques, actores, muebles y bailarines, y comparan los píxeles y metadatos de todas las variantes comprimidas con sus originales públicos.
+`check:assets` comprueba directamente los sprites públicos: transparencia, ocho siluetas completas y geometría coincidente. Las pruebas se centran en combate, red, seguridad, controles, recuperación de assets y audio. Los inventarios estéticos, las migraciones de artwork y las comprobaciones repetidas por personaje se retiraron; las herramientas de auditoría y compresión siguen disponibles para trabajar con imágenes.
 
-La CI comprueba dependencias, pruebas, assets, compilación, vulnerabilidades de la imagen y el arranque HTTP/WebSocket. `scripts/security-smoke.mjs` permite comprobar una instancia local o desplegada.
+La CI distribuye las pruebas entre dos runners y compila la imagen de producción en paralelo, con caché de Docker y de la base de vulnerabilidades. Conserva la auditoría de dependencias, la validación de sprites, los tipos y el arranque HTTP/WebSocket. Se ejecuta en los PR y en `main`, sin duplicar cada PR con otro run por push de la rama. `scripts/security-smoke.mjs` permite comprobar una instancia local o desplegada.
+
+Los criterios de selección y la organización de CI están en [testing.md](docs/testing.md).
 
 ## Creador privado
 

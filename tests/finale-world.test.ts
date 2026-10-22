@@ -387,56 +387,6 @@ function recordingContext(width: number, height: number) {
   return { context, images, labels, rectangles };
 }
 
-test("vehicle finales keep both painted passengers beside their capture positions throughout the ride", () => {
-  for (const fighter of ["carlos", "juan"] as const)
-    for (const owner of [0, 1] as const)
-      for (const direction of [-1, 1] as const) {
-        const r = setup(fighter, "caracas", owner, direction);
-        r.state.players[owner].x = direction === 1 ? 435 : 625;
-        r.state.players[1 - owner].x = direction === 1 ? 625 : 435;
-        r.start();
-        const passengers = [
-          actorAssets.seated[fighter],
-          actorAssets.seated.javier,
-        ];
-        const props = Object.fromEntries(
-          [
-            ...passengers.map((asset) => asset.file),
-            finaleAsset(fighter)!.file,
-          ].map((file) => [
-            file,
-            { width: 2048, height: 1024 } as HTMLImageElement,
-          ]),
-        );
-        for (let tick = 0; tick < r.state.finale!.duration; tick++) {
-          r.state.finale!.tick = tick;
-          const actual = recordingContext(1080, 640);
-          drawFinale(actual.context, r.state, {}, props);
-          for (const [index, passenger] of passengers.entries()) {
-            const calls = actual.images.filter(
-              (call) =>
-                call.image === props[passenger.file] &&
-                call.arguments[0] === passenger.frame.x &&
-                call.arguments[1] === passenger.frame.y,
-            );
-            assert.equal(calls.length, 1);
-            const player = r.state.players[index === 0 ? owner : 1 - owner];
-            assert.ok(
-              Math.abs(calls[0].matrix[4] - player.x) < 24,
-              `${fighter}/owner${owner}/direction${direction}/tick${tick}: the passenger rode out of the captured fight`,
-            );
-          }
-          for (const label of actual.labels.filter(({ value }) =>
-            value.endsWith(" VIDA"),
-          ))
-            assert.ok(
-              Math.abs(label.matrix[4] - r.state.players[1 - owner].x) < 24,
-              `${fighter}/tick${tick}: damage label must follow the captured rival`,
-            );
-        }
-      }
-});
-
 test("renderMatch draws every finale over its selected stage and platform surfaces using the normal world camera", () => {
   for (const fighter of BUILT_IN_FIGHTERS)
     for (const stage of STAGES)

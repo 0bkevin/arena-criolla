@@ -1,23 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {
-  createMatch,
-  emptyInput,
-  stepMatch,
-  cpuInput,
-  type Input,
-  type Projectile,
-} from "./helpers/charged-finale-engine";
+import { createMatch, emptyInput, stepMatch, cpuInput, type Input, type Projectile } from "./helpers/charged-finale-engine";
 import { fighterById, type FighterId } from "../shared/content";
 import { finaleById } from "../shared/finales";
-import {
-  MAITE_POSES,
-  drawMaiteFinaleBody,
-  drawMaiteGreeting,
-  drawSonicProjectile,
-} from "../src/game/finales/maite";
+import { MAITE_POSES, drawMaiteFinaleBody, drawMaiteGreeting, drawSonicProjectile } from "../src/game/finales/maite";
 import { ATTACK_ART } from "../src/game/attack-art";
-
 function setup(side: 0 | 1 = 0, gap = 430, rival: FighterId = "zavarce") {
   const actor = { name: "Maite", fighter: "maite" as const, wins: 3 },
     other = { name: "Rival", fighter: rival, wins: 3 };

@@ -174,8 +174,8 @@ This mounts the production `Game` in React StrictMode with an actual engine
 knockout. Controlled frame timestamps verify that the result appears after two
 active seconds at normal and slow frame rates in local, online, and practice
 modes. Window blur, hidden tabs, and real help dialogs suspend the clock even
-when no frame runs while blocked. The audit also checks seven stars, one result
-callback, immutable match state, and frame-loop cleanup after unmount.
+when no frame runs while blocked. The audit also checks one result callback,
+immutable match state, and frame-loop cleanup after unmount.
 
 The harness restores its browser clock and visibility overrides after each run.
 It uses a simulated remote state for online mode; it does not exercise network

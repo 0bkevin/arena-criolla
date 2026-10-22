@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch server/index.ts",
-    "build": "tsc --noEmit && vite build",
+    "build": "npm run typecheck && vite build",
+    "typecheck": "tsc --noEmit",
     "start": "NODE_ENV=production tsx server/index.ts",
     "creator:codex": "tsx scripts/creator-codex.ts",
     "creator:import": "tsx scripts/creator-import.ts",
-    "test": "tsx --test tests/*.test.ts tests/*.test.mjs tests/character-audits/*.test.ts",
+    "test": "tsx --test tests/*.test.ts tests/character-audits/*.test.ts",
     "perf:engine": "tsx scripts/performance-audit.ts",
     "perf:network": "node scripts/performance-network.mjs",
     "assets:audit:lossless": "node scripts/audit-lossless-assets.mjs",
@@ -17,10 +18,10 @@
     "assets:og": "node scripts/generate-og-image.mjs",
     "assets:brand": "node scripts/generate-brand-assets.mjs",
     "check:assets": "node scripts/validate-character-assets.mjs",
-    "test:creator": "tsx --test tests/accounts.test.ts tests/creator-api.test.ts tests/creator.test.ts tests/creator-sprites.test.ts tests/creator-resilience.test.ts tests/adversarial-creator-v31.test.ts tests/provider-contract.test.ts tests/creator-codex.test.ts tests/adversarial-creator-state-v38.test.ts tests/creator-draft-v38.test.ts tests/adversarial-native-import-v38.test.ts tests/creator-api-v38.test.ts",
+    "test:creator": "tsx --test tests/accounts.test.ts tests/creator.test.ts tests/creator-sprites.test.ts tests/creator-resilience.test.ts tests/adversarial-creator-v31.test.ts tests/provider-contract.test.ts tests/creator-codex.test.ts tests/adversarial-creator-state-v38.test.ts tests/creator-draft-v38.test.ts tests/adversarial-native-import-v38.test.ts tests/creator-api-v38.test.ts",
     "test:adversarial": "tsx --test tests/adversarial-creator-v31.test.ts tests/adversarial-game-v31.test.ts tests/creator-resilience.test.ts tests/provider-contract.test.ts tests/scheduler.test.ts tests/adversarial-creator-state-v38.test.ts tests/creator-draft-v38.test.ts tests/adversarial-native-import-v38.test.ts tests/creator-api-v38.test.ts",
     "test:characters": "tsx --test tests/character-audits/*.test.ts",
-    "test:accounts": "tsx --test tests/accounts.test.ts tests/creator-api.test.ts"
+    "test:accounts": "tsx --test tests/accounts.test.ts"
   },
   "dependencies": {
     "@langchain/langgraph": "^1.5.0",

@@ -3,7 +3,6 @@ import test from "node:test";
 import { createMatch, emptyInput, stepMatch } from "./helpers/charged-finale-engine";
 import { finaleById } from "../shared/finales";
 import { TECHNIQUES } from "../shared/techniques";
-
 import { ATTACK_ART } from "../src/game/attack-art";
 import { writeFinaleMusic } from "../src/game/finale-sounds";
 function setup(side: 0 | 1, wins = 3, energy = 100) {
@@ -121,11 +120,7 @@ test("undertow launches from the low hands at tick15, travels, pulls once and ex
   }
 });
 
-import {
-  drawLloronaSpecial,
-  lloronaSpecialPose,
-} from "../src/game/finales/llorona";
-
+import { drawLloronaSpecial, lloronaSpecialPose } from "../src/game/finales/llorona";
 test("special never draws incomplete art or an attack pose during hitstun", () => {
   const r = setup(0);
   r.inputs[0].actions.special++;

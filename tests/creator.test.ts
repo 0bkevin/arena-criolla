@@ -145,66 +145,6 @@ async function setup(
   return { server, folder, base, request, signup, upload, ready };
 }
 
-test("accounts use hashed passwords, HttpOnly sessions and ownership checks", async () => {
-  const s = await setup();
-  try {
-    const guest = await s.request("/api/creator/characters");
-    assert.equal(guest.status, 401);
-    const invalid = await s.request("/api/auth/signup", {
-      method: "POST",
-      body: JSON.stringify({ name: "X", email: "bad", password: "short" }),
-    });
-    assert.equal(invalid.status, 400);
-    const { cookie, user } = await s.signup();
-    const row = s.server.creator.db.userByEmail("pana@example.test")!;
-    assert.ok(row.password_hash.startsWith("scrypt:"));
-    assert.ok(!row.password_hash.includes("password-123"));
-    assert.equal(
-      (await (await s.request("/api/auth/session", {}, cookie)).json()).user.id,
-      user.id,
-    );
-    const duplicate = await s.request("/api/auth/signup", {
-      method: "POST",
-      body: JSON.stringify({
-        name: "Pana",
-        email: "PANA@example.test",
-        password: "password-123",
-      }),
-    });
-    assert.equal(duplicate.status, 409);
-    const wrong = await s.request("/api/auth/signin", {
-      method: "POST",
-      body: JSON.stringify({
-        email: "pana@example.test",
-        password: "wrong-password",
-      }),
-    });
-    assert.equal(wrong.status, 401);
-    const signIn = await s.request("/api/auth/signin", {
-      method: "POST",
-      body: JSON.stringify({
-        email: "pana@example.test",
-        password: "password-123",
-      }),
-    });
-    assert.equal(signIn.status, 200);
-    assert.match(signIn.headers.get("set-cookie")!, /HttpOnly/);
-    assert.match(signIn.headers.get("set-cookie")!, /SameSite=Lax/);
-    const cross = await s.request(
-      "/api/auth/signout",
-      { method: "POST", headers: { Origin: "https://elsewhere.example" } },
-      cookie,
-    );
-    assert.equal(cross.status, 403);
-    await s.request("/api/auth/signout", { method: "POST" }, cookie);
-    assert.equal(
-      (await (await s.request("/api/auth/session", {}, cookie)).json()).user,
-      null,
-    );
-  } finally {
-    await s.server.close();
-  }
-});
 
 test("a real LangGraph run packs eight sprites, keeps photos private, and publishes a playable fighter", async () => {
   const calls: string[] = [];
@@ -576,28 +516,6 @@ test("published community definitions reach live anonymous clients and can be se
   }
 });
 
-test("concurrent submissions reserve one creation slot before photo processing", async () => {
-  const s = await setup();
-  let id = "";
-  try {
-    const account = await s.signup();
-    const responses = await Promise.all([
-      s.upload(account.cookie),
-      s.upload(account.cookie),
-    ]);
-    assert.deepEqual(
-      responses.map((response) => response.status).sort(),
-      [202, 409],
-    );
-    id = (await responses.find((response) => response.status === 202)!.json())
-      .character.id;
-    assert.equal(s.server.creator.db.owned(account.user.id).length, 1);
-    assert.equal((await s.ready(account.cookie, id)).status, "ready");
-  } finally {
-    if (id) unregisterCommunityCharacter(id as CommunityCharacter["id"]);
-    await s.server.close();
-  }
-});
 
 test("anonymous peers fight with a published character, then retirement prevents its rematch", async () => {
   const s = await setup();

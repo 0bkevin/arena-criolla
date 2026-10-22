@@ -1,14 +1,14 @@
 FROM node:24-alpine3.24 AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --no-audit --no-fund
 COPY . .
 RUN npm run build
 
 FROM node:24-alpine3.24 AS dependencies
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
+RUN npm ci --omit=dev --no-audit --no-fund
 
 # Copy only Node and application dependencies. npm, npx, Yarn and their unused
 # dependency trees belong to the build stages, not the public game container.

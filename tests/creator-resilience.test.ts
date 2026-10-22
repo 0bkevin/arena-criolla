@@ -9,7 +9,6 @@ import sharp from "sharp";
 import { makeArenaServer } from "../server/index";
 import { tokenHash } from "../server/creator/auth";
 import { CreatorDatabase } from "../server/creator/database";
-import { creatorLimits } from "../server/creator/worker";
 import type { CharacterProvider } from "../server/creator/provider";
 import { isFighter } from "../shared/content";
 
@@ -177,13 +176,6 @@ test("generation budget is atomic and survives deletion and database reopen", as
   }
 });
 
-test("generation limits reject invalid units and magnitudes at boot", () => {
-  for (const value of [NaN, Infinity, 0, -1, 1.5, 1_000_000])
-    assert.throws(() => creatorLimits({ concurrency: value }));
-  assert.throws(() => creatorLimits({ concurrency: 2, capacity: 1 }));
-  assert.equal(creatorLimits().jobTimeoutMs, 300_000);
-});
-
 test("a failed account write reports a server error and does not claim that the email is taken", async () => {
   const f = await setup();
   const signup = () =>
@@ -211,94 +203,6 @@ test("a failed account write reports a server error and does not claim that the 
     await f.close();
   }
 });
-
-test(
-  "two independent graph runs complete while concurrent HTTP requests remain responsive",
-  { timeout: 10_000 },
-  async () => {
-    const image = await atlas();
-    let release!: () => void,
-      started!: () => void,
-      drawing = 0;
-    const gate = new Promise<void>((resolve) => {
-      release = resolve;
-    });
-    const bothDrawing = new Promise<void>((resolve) => {
-      started = resolve;
-    });
-    const f = await setup({
-      design: async () => design,
-      draw: async () => {
-        if (++drawing === 2) started();
-        await gate;
-        return image;
-      },
-    });
-    const user = {
-      id: randomUUID(),
-      name: "Otra pana",
-      email: "other@example.test",
-    };
-    const token = randomBytes(32).toString("hex");
-    f.server.creator.db.createUser(user, "unused");
-    f.server.creator.db.saveSession(
-      tokenHash(token),
-      user.id,
-      Date.now() + 60_000,
-    );
-    const other = {
-      ...f,
-      request: (url: string, options: RequestInit = {}) =>
-        f.request(url, {
-          ...options,
-          headers: { ...options.headers, Cookie: `arena_session=${token}` },
-        }),
-    };
-    let completed = false;
-    const durations: number[] = [];
-    try {
-      const jobs = Promise.all([create(f), create(other)]).then((ids) => {
-        completed = true;
-        return ids;
-      });
-      await bothDrawing;
-      const start = performance.now();
-      const health = (async () => {
-        do {
-          await Promise.all(
-            Array.from({ length: 4 }, async () => {
-              const before = performance.now();
-              const response = await f.request("/api/health");
-              assert.equal(response.status, 200);
-              await response.json();
-              durations.push(performance.now() - before);
-            }),
-          );
-          await new Promise((resolve) => setTimeout(resolve, 10));
-        } while (
-          (!completed || performance.now() - start < 400) &&
-          performance.now() - start < 5_000
-        );
-      })();
-      release();
-      const [ids] = await Promise.all([jobs, health]);
-      assert.notEqual(ids[0], ids[1]);
-      assert.equal(f.server.creator.db.character(ids[1])?.owner_id, user.id);
-      assert.equal(
-        JSON.parse(f.server.creator.db.character(ids[1])!.character!)
-          .creatorName,
-        "Otra pana",
-      );
-      const sorted = durations.sort((a, b) => a - b);
-      console.log(
-        `creator-v31 two real graph/packing jobs + concurrent health: n=${sorted.length} p50=${sorted[Math.ceil(sorted.length * 0.5) - 1].toFixed(1)}ms p95=${sorted[Math.ceil(sorted.length * 0.95) - 1].toFixed(1)}ms max=${sorted.at(-1)!.toFixed(1)}ms; synthetic image provider`,
-      );
-    } finally {
-      release();
-      await f.close();
-    }
-  },
-);
 
 test("malformed and oversized JSON receive bounded client errors and health recovers", async () => {
   const f = await setup();

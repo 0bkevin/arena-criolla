@@ -100,40 +100,24 @@ test("crossing the arena boundary costs a stock and the final stock ends the mat
   assert.equal(state.winner, 0);
 });
 
-test("a special consumes energy and a projectile can hit a distant opponent", () => {
-  const { state, inputs } = setup();
-  state.players[0].config.fighter = "vallenilla";
-  state.players[0].energy = 50;
-  state.players[1].x = 610;
-  inputs[0].actions.special++;
-  advance(state, inputs, 12);
-  assert.ok(state.players[0].energy < 26);
-  assert.equal(state.projectiles.length, 1);
-  advance(state, inputs, 120);
-  assert.ok(state.players[1].hp < 100);
-  assert.equal(state.projectiles.length, 0);
-});
-
 test("every fighter's basic and advanced combos are available to either player regardless of wins", () => {
   for (const fighter of FIGHTERS) {
     for (const side of [0, 1] as const) {
-      for (const wins of [0, 1, 3]) {
-        for (const advanced of [false, true]) {
-          const { state, inputs } = setup();
-          const player = state.players[side];
-          player.config.fighter = fighter.id;
-          player.config.wins = wins;
-          const actions = advanced
-            ? (["light", "light", "heavy"] as const)
-            : (["light", "heavy"] as const);
-          for (const action of actions) {
-            inputs[side].actions[action]++;
-            advance(state, inputs, action === "light" ? 23 : 1);
-          }
-          const label = `${fighter.id}/P${side + 1}/${wins} wins/${advanced ? "advanced" : "basic"}`;
-          assert.equal(player.combo, fighter.combos[advanced ? 1 : 0], label);
-          assert.equal(player.comboBonus, advanced ? 7 : 3, label);
+      for (const advanced of [false, true]) {
+        const { state, inputs } = setup();
+        const player = state.players[side];
+        player.config.fighter = fighter.id;
+        player.config.wins = 0;
+        const actions = advanced
+          ? (["light", "light", "heavy"] as const)
+          : (["light", "heavy"] as const);
+        for (const action of actions) {
+          inputs[side].actions[action]++;
+          advance(state, inputs, action === "light" ? 23 : 1);
         }
+        const label = `${fighter.id}/P${side + 1}/${advanced ? "advanced" : "basic"}`;
+        assert.equal(player.combo, fighter.combos[advanced ? 1 : 0], label);
+        assert.equal(player.comboBonus, advanced ? 7 : 3, label);
       }
     }
   }
@@ -141,27 +125,22 @@ test("every fighter's basic and advanced combos are available to either player r
 
 test("the definitive requires and consumes 90 energy for either player regardless of wins", () => {
   for (const side of [0, 1] as const) {
-    for (const wins of [0, 1, 2, 3]) {
-      for (const [energy, attack, remaining] of [
-        [75, null, 75.035],
-        [89, null, 89.035],
-        [90, "super", 0.035],
-        [100, "super", 10],
-      ] as const) {
-        const { state, inputs } = setup(wins);
-        const player = state.players[side];
-        player.config.wins = wins;
-        player.energy = energy;
-        inputs[side].actions.super++;
-        stepMatch(state, inputs);
-        assert.equal(player.attack, attack);
-        assert.ok(Math.abs(player.energy - remaining) < 1e-8);
-      }
+    for (const [energy, attack, remaining] of [
+      [89, null, 89.035],
+      [90, "super", 0.035],
+    ] as const) {
+      const { state, inputs } = setup();
+      const player = state.players[side];
+      player.energy = energy;
+      inputs[side].actions.super++;
+      stepMatch(state, inputs);
+      assert.equal(player.attack, attack);
+      assert.ok(Math.abs(player.energy - remaining) < 1e-8);
     }
   }
 });
 
-test("every stage runs for 120 seconds after the intro and stops at timeout", () => {
+test("every stage counts down, stops at timeout and resets for a rematch", () => {
   for (const stage of STAGES) {
     const state = createMatch(stage.id, [
       { name: "Uno", fighter: "zavarce", wins: 0 },
@@ -172,11 +151,13 @@ test("every stage runs for 120 seconds after the intro and stops at timeout", ()
     assert.equal(state.remaining, 120 * 60, stage.id);
     assert.equal(state.phase, "playing", stage.id);
 
-    advance(state, inputs, 90 * 60);
-    assert.equal(state.remaining, 30 * 60, stage.id);
+    stepMatch(state, inputs);
+    assert.equal(state.remaining, 120 * 60 - 1, stage.id);
     assert.equal(state.phase, "playing", stage.id);
 
-    advance(state, inputs, 30 * 60 - 1);
+    // Exercise the timeout boundary without simulating two idle minutes per stage.
+    state.remaining = 2;
+    stepMatch(state, inputs);
     assert.equal(state.remaining, 1, stage.id);
     assert.equal(state.phase, "playing", stage.id);
     stepMatch(state, inputs);

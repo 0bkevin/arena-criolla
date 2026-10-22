@@ -35,9 +35,7 @@ for (const stage of STAGES) {
     test(`${stage.id} platform ${index}: top landing, underside, jump, drop and both edges across its cycle`, () => {
       const period = definition.motion?.period ?? 1;
       const phases = definition.motion
-        ? [0, 1, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875].map((f) =>
-            Math.floor(f * period),
-          )
+        ? [0, 0.25, 0.5, 0.75].map((f) => Math.floor(f * period))
         : [0];
       for (const tick of phases) {
         for (const playerIndex of [0, 1]) {

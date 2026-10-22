@@ -183,10 +183,6 @@ export async function run() {
           `${mode}/${scenario}: result callback must fire once`,
         );
         check(
-          document.querySelectorAll(".victory-screen-stars path").length === 7,
-          "The result must have seven stars",
-        );
-        check(
           JSON.stringify(initial) === snapshot,
           "Presentation must not mutate the decided match",
         );

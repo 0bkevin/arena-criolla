@@ -1,8 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-
 import { writeFinaleMusic } from "../src/game/finale-sounds";
-
 test("the original bass cue is deterministic, finite, audible and fades to silence", () => {
   const rate = 12000,
     length = 3 * rate;
