@@ -50,6 +50,12 @@ import { Game, type GameMode } from "./components/Game";
 import { Modal } from "./components/Modal";
 import { Help } from "./components/Help";
 import { beginMobilePlay, leaveLandscape } from "./game/mobile";
+import "./styles.css";
+import "./lobby.css";
+import "./arcade-theme.css";
+import "./mobile-game.css";
+import "./ui-accessibility.css";
+import "./victory-screen.css";
 
 type ModalName = "help" | "fighters" | "stages" | "progress" | "rooms" | null;
 const colorStyle = (color: string): React.CSSProperties =>

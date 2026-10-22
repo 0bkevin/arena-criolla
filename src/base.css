@@ -1,0 +1,86 @@
+:root {
+  --font-body: "DM Sans", sans-serif;
+  --font-display: "Barlow Condensed", Impact, sans-serif;
+  --font-pixel: "Pixelify Sans", monospace;
+  font-family: var(--font-body);
+  color: #f0f1f4;
+  background: #101218;
+  font-synthesis: none;
+  --bg: #101218;
+  --panel: #191c24;
+  --panel-deep: #15181f;
+  --line: #2b2e38;
+  --text: #f0f1f4;
+  --muted: #9296a4;
+  --lime: #dfff7b;
+  --display: var(--font-display);
+  color-scheme: dark;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button {
+  color: inherit;
+  cursor: pointer;
+  border: 0;
+  background: none;
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+button,
+a,
+input,
+select {
+  outline-offset: 4px;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--lime);
+}
+input:focus,
+select:focus {
+  outline: 0;
+  border-color: var(--lime) !important;
+}
+button {
+  touch-action: manipulation;
+}
+button,
+select,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+button svg {
+  flex-shrink: 0;
+}
+a {
+  color: var(--lime);
+}
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+button {
+  transition:
+    background 0.16s,
+    border-color 0.16s,
+    color 0.16s,
+    transform 0.16s;
+}
+::selection {
+  background: var(--lime);
+  color: var(--bg);
+}
