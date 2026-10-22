@@ -1,0 +1,204 @@
+.controls-guide {
+  --guide-accent: #ffd45a;
+  --guide-text: #eef2fa;
+  --guide-muted: #b5c3d8;
+  color: var(--guide-text);
+  font: 400 14px/1.45 var(--font-body);
+}
+.controls-guide-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0 0 16px;
+  color: var(--guide-muted);
+  font-size: 13px;
+}
+.controls-guide-groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+}
+.controls-guide-group {
+  min-width: 0;
+}
+.controls-guide-group h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.controls-guide-group h4 > svg,
+.controls-tried > svg {
+  color: #8ad6a7;
+}
+.desktop-controls-guide kbd,
+.arcade-app .game-controls-bar kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 30px;
+  height: 30px;
+  margin: 0;
+  padding: 0 7px;
+  border: 1px solid #657c98;
+  border-bottom-width: 3px;
+  border-radius: 4px;
+  color: #fff5db;
+  background: #1d3450;
+  font: 700 13px/1 var(--font-body);
+}
+.desktop-controls-guide kbd.is-held {
+  color: #102137;
+  background: var(--guide-accent);
+  border-color: var(--guide-accent);
+  transform: translateY(2px);
+}
+.controls-guide-list {
+  margin: 0;
+}
+.controls-guide-list > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+}
+.controls-guide dd {
+  display: flex;
+  gap: 4px;
+  margin: 0;
+}
+.controls-guide dt {
+  font-size: 13px;
+}
+.controls-guide small {
+  display: block;
+  color: var(--guide-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.controls-guide-footer {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 24px;
+}
+.controls-guide-extra h4 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.controls-combo-keys {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.controls-tried {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8ad6a7;
+  font-size: 12px;
+}
+.arcade-app .game-controls-bar {
+  gap: 10px 20px;
+  padding: 8px 0;
+}
+.combat-controls-players {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+}
+.combat-controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+}
+.combat-controls-row > span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #bdcce0;
+  font: 400 12px/1.4 var(--font-body);
+}
+.combat-menu-hint {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #bdcce0;
+  font: 400 12px var(--font-body);
+}
+.skip-entrances kbd {
+  font: 500 11px var(--font-body);
+  color: inherit;
+  border: 1px solid #657c98;
+  padding: 3px 5px;
+  border-radius: 3px;
+  background: #14243a;
+}
+.combat-player-label {
+  color: #ffd45a;
+  font: 700 12px var(--font-body);
+}
+.combat-player-1 {
+  color: #ffac96;
+}
+.arcade-app .game-controls-bar kbd {
+  min-width: 24px;
+  height: 24px;
+  padding-inline: 5px;
+  font-size: 11px;
+}
+.arcade-app .game-controls-bar .text-button {
+  margin-left: auto;
+  color: #ffd45a;
+  font: 500 12px var(--font-body);
+}
+.game-controls-bar button:focus-visible {
+  outline: 2px solid #ffd45a;
+  outline-offset: 3px;
+}
+.arcade-app .game-page:not(.is-touch):has(.combat-player-label) {
+  --match-chrome: 150px;
+}
+.arcade-app .game-page:not(.is-touch).is-intro:has(> .game-controls-bar) {
+  width: calc(100% - 32px);
+  max-width: 1600px;
+}
+.arcade-app .game-page:not(.is-touch).is-intro > .game-controls-bar {
+  margin-top: 8px;
+}
+.arcade-app
+  .game-page:not(.is-touch).is-intro:has(> .game-controls-bar)
+  .arena-wrap {
+  width: min(100%, calc((100dvh - var(--match-chrome)) * 1.8));
+}
+@media (max-width: 760px) {
+  .controls-guide-groups,
+  .controls-guide-footer {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+@media (max-width: 700px) {
+  .arcade-app .game-controls-bar {
+    align-items: flex-start;
+  }
+  .combat-controls-row {
+    gap: 6px 12px;
+  }
+  .combat-controls-row > span {
+    font-size: 11px;
+  }
+}
