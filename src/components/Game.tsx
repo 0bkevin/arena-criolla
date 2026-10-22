@@ -111,6 +111,8 @@ export function Game(props: Props) {
     new ControlSources(inputs.current[0]),
     new ControlSources(inputs.current[1]),
   ]);
+  const gamepads = useRef(new GamepadControls(sources.current));
+  const focusedRef = useRef(true);
   const keys = useRef(new Set<string>());
   const [touchReset, setTouchReset] = useState(0);
   const [device, setDevice] = useState(() => ({
@@ -173,6 +175,7 @@ export function Game(props: Props) {
   const isGameQuiet = () =>
     pausedRef.current ||
     blockedRef.current ||
+    !focusedRef.current ||
     Boolean(document.querySelector("dialog[open]")) ||
     document.hidden;
   const syncAmbiencePause = (phase = introView.current.phase) =>
@@ -181,11 +184,19 @@ export function Game(props: Props) {
         phase === "finished" ||
         Boolean(introView.current.finale),
     );
-  const releaseInputs = () => {
+  const releaseInputs = (menuAvailable = false) => {
+    gamepads.current.suspend(inputs.current, { menu: menuAvailable });
     sources.current.forEach((source) => source.clear());
     keys.current.clear();
     setTouchReset((value) => value + 1);
     if (mode === "online") callbacks.current.onInput?.(inputs.current[0]);
+  };
+  const openHelp = () => {
+    releaseInputs();
+    // The modal returns focus here, restoring P2's Enter dodge on close.
+    if (!pausedRef.current && !blockedRef.current)
+      canvas.current?.focus({ preventScroll: true });
+    callbacks.current.onHelp();
   };
   useEffect(() => {
     if (view.finale) releaseInputs();
@@ -319,38 +330,51 @@ export function Game(props: Props) {
   useEffect(() => {
     const release = releaseInputs;
     const handler = (event: KeyboardEvent, down: boolean) => {
+      // Always release an accepted key, even if modifiers/focus changed since
+      // keydown. Browser shortcuts and editable controls only suppress presses.
+      if (!down) {
+        if (!keys.current.delete(event.code)) return;
+        const [index] = KEY_MAP[event.code];
+        sources.current[index].release(`key:${event.code}`);
+        if (mode === "online") callbacks.current.onInput?.(inputs.current[0]);
+        return;
+      }
+      if (
+        !focusedRef.current ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.altKey ||
+        event.isComposing ||
+        event.keyCode === 229
+      )
+        return;
       if (
         event.target instanceof HTMLElement &&
         (event.target.matches("input, textarea, select") ||
           event.target.isContentEditable)
       )
         return;
-      if (down && document.querySelector("dialog[open]")) return;
+      if (document.querySelector("dialog[open]")) return;
       const nativeActivation =
         (event.code === "Enter" || event.code === "Space") &&
         event.target instanceof HTMLElement &&
         event.target.closest("button, a[href], summary, [role='button']");
       // Holding a gameplay key across an overlay must not activate its newly
       // focused button. Check before the paused/finished/orientation guards.
-      if (down && event.repeat && nativeActivation) {
+      if (event.repeat && nativeActivation) {
         event.preventDefault();
         return;
       }
-      if (down && blockedRef.current) return;
+      if (blockedRef.current) return;
       if (introView.current.phase === "finished") return;
-      if (event.code === "Escape" && down && !event.repeat) {
-        setPaused((value) => {
-          pausedRef.current = !value;
-          return !value;
-        });
-        release();
+      if (event.code === "Escape" && !event.repeat) {
+        togglePause();
         return;
       }
-      if ((pausedRef.current || blockedRef.current) && down) return;
-      if (down && nativeActivation) return;
+      if (pausedRef.current) return;
+      if (nativeActivation) return;
       if (
         event.code === "Space" &&
-        down &&
         !event.repeat &&
         introView.current.phase === "intro" &&
         introView.current.tick < INTRO_COUNTDOWN_START
@@ -362,29 +386,34 @@ export function Game(props: Props) {
       const mapping = KEY_MAP[event.code];
       if (!mapping || (mapping[0] === 1 && mode !== "local")) return;
       event.preventDefault();
-      if (down && (event.repeat || keys.current.has(event.code))) return;
-      if (down) keys.current.add(event.code);
-      else keys.current.delete(event.code);
+      if (event.repeat || keys.current.has(event.code)) return;
+      keys.current.add(event.code);
       const [index, control] = mapping;
-      if (down) sources.current[index].press(`key:${event.code}`, control);
-      else sources.current[index].release(`key:${event.code}`);
+      sources.current[index].press(`key:${event.code}`, control);
       if (mode === "online") callbacks.current.onInput?.(inputs.current[0]);
     };
     const keyDown = (event: KeyboardEvent) => handler(event, true);
     const keyUp = (event: KeyboardEvent) => handler(event, false);
     const blur = () => {
+      focusedRef.current = false;
       release();
       if (mode !== "online" && introView.current.phase !== "finished") {
         pausedRef.current = true;
         setPaused(true);
       }
     };
+    const focus = () => {
+      focusedRef.current = !document.hidden;
+    };
     const hidden = () => {
       if (document.hidden) blur();
+      else focusedRef.current = document.hasFocus();
     };
+    focusedRef.current = document.hasFocus();
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyUp);
     window.addEventListener("blur", blur);
+    window.addEventListener("focus", focus);
     window.addEventListener("pagehide", blur);
     document.addEventListener("visibilitychange", hidden);
     return () => {
@@ -392,6 +421,7 @@ export function Game(props: Props) {
       window.removeEventListener("keydown", keyDown);
       window.removeEventListener("keyup", keyUp);
       window.removeEventListener("blur", blur);
+      window.removeEventListener("focus", focus);
       window.removeEventListener("pagehide", blur);
       document.removeEventListener("visibilitychange", hidden);
     };
@@ -435,7 +465,6 @@ export function Game(props: Props) {
       tick: initial.tick,
       x: p.x,
     }));
-    const gamepads = new GamepadControls(sources.current);
     const positions = initial.players.map((p) => ({ x: p.x, y: p.y }));
     const animate = (now: number) => {
       const elapsed = Math.min(100, now - last);
@@ -460,8 +489,18 @@ export function Game(props: Props) {
       const quiet = isGameQuiet();
       setReactionsPaused(quiet || Boolean(state.finale));
       if (dialogOpen) sources.current.forEach((source) => source.clear());
-      if (!quiet && state.phase !== "finished")
-        gamepads.update(inputs.current, mode === "local" ? 2 : 1);
+      const menuAvailable =
+        focusedRef.current &&
+        !document.hidden &&
+        !blockedRef.current &&
+        !dialogOpen &&
+        state.phase !== "finished";
+      const pausePressed = gamepads.current.update(
+        inputs.current,
+        mode === "local" ? 2 : 1,
+        { gameplay: menuAvailable && !pausedRef.current, menu: menuAvailable },
+      );
+      if (menuAvailable && pausePressed) togglePause();
       if (mode === "online") {
         if (state.phase !== "finished" && now - lastSend > 45) {
           callbacks.current.onInput?.(inputs.current[0]);
@@ -748,14 +787,18 @@ export function Game(props: Props) {
   }, []);
 
   const togglePause = () => {
-    releaseInputs();
-    pausedRef.current = !paused;
-    setPaused(!paused);
+    // Start remains available through ordinary pause/resume transitions.
+    releaseInputs(true);
+    pausedRef.current = !pausedRef.current;
+    if (!pausedRef.current)
+      gamepads.current.resume(inputs.current, mode === "local" ? 2 : 1);
+    setPaused(pausedRef.current);
   };
   const touchPress = (pointer: number, control: Control) => {
     if (
       pausedRef.current ||
       blockedRef.current ||
+      !focusedRef.current ||
       view.phase !== "playing" ||
       document.querySelector("dialog[open]")
     )
@@ -822,7 +865,17 @@ export function Game(props: Props) {
                   props.soundEnabled ? "Silenciar sonido" : "Activar sonido"
                 }
                 aria-pressed={props.soundEnabled}
-                onClick={props.onToggleSound}
+                onClick={(event) => {
+                  props.onToggleSound?.();
+                  // Pointer users return straight to play; keyboard users keep
+                  // the button focused for native Enter/Space activation.
+                  if (
+                    event.detail > 0 &&
+                    !isGameQuiet() &&
+                    introView.current.phase === "playing"
+                  )
+                    canvas.current?.focus({ preventScroll: true });
+                }}
               >
                 {props.soundEnabled ? (
                   <Volume2 size={19} />
@@ -834,10 +887,7 @@ export function Game(props: Props) {
             <button
               className="icon-button"
               aria-label="Ver controles"
-              onClick={() => {
-                releaseInputs();
-                props.onHelp();
-              }}
+              onClick={openHelp}
             >
               <CircleHelp size={19} />
             </button>
@@ -1022,10 +1072,7 @@ export function Game(props: Props) {
                 <button
                   className="secondary-button"
                   aria-label="Ver controles"
-                  onClick={() => {
-                    releaseInputs();
-                    props.onHelp();
-                  }}
+                  onClick={openHelp}
                 >
                   <CircleHelp size={18} /> Controles
                 </button>
@@ -1052,8 +1099,8 @@ export function Game(props: Props) {
             aria-live="polite"
           >
             <h2 ref={victoryTitle}>
-              <span>{winnerDef ? winnerDef.shortName : "Quedaron"} </span>
-              <strong>{winnerDef ? "ganó." : "tablas."}</strong>
+              {winnerDef && <span>{winnerDef.shortName} </span>}
+              <strong>{winnerDef ? "ganó." : "tablas"}</strong>
             </h2>
             <VenezuelaStars className="victory-announcement-stars" />
           </div>
@@ -1109,13 +1156,7 @@ export function Game(props: Props) {
                   : `mantén ${SUPER_CHARGE_SECONDS_LABEL} s`}
                 )
               </span>
-              <button
-                className="text-button"
-                onClick={() => {
-                  releaseInputs();
-                  props.onHelp();
-                }}
-              >
+              <button className="text-button" onClick={openHelp}>
                 Todos los controles <ArrowRight size={14} />
               </button>
             </div>

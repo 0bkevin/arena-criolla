@@ -74,8 +74,19 @@ export class ControlSources {
 export class GamepadControls {
   private previous = [new Set<string>(), new Set<string>()];
   private assignments = new Map<number, number>();
+  private active = true;
+  private menuActive = true;
+  private rearmOnConnect = [false, false];
   constructor(private sources?: [ControlSources, ControlSources]) {}
-  update(inputs: [Input, Input], players: number) {
+  /** Keep polling while suspended so held buttons never become fresh actions. */
+  update(
+    inputs: [Input, Input],
+    players: number,
+    {
+      gameplay = true,
+      menu = true,
+    }: { gameplay?: boolean; menu?: boolean } = {},
+  ): boolean {
     const pads = navigator.getGamepads?.() || [];
     const connected = new Map<number, Gamepad>();
     for (let slot = 0; slot < pads.length; slot++) {
@@ -84,6 +95,8 @@ export class GamepadControls {
     }
     for (const [pad, index] of this.assignments) {
       if (connected.has(pad) && index < players) continue;
+      // Keep the release requirement across any number of controller-free polls.
+      this.rearmOnConnect[index] = true;
       this.release(inputs, index);
       this.assignments.delete(pad);
     }
@@ -95,6 +108,16 @@ export class GamepadControls {
       );
       if (index !== undefined) this.assignments.set(pad, index);
     }
+    const pausePressed =
+      menu &&
+      this.menuActive &&
+      [...this.assignments].some(
+        ([pad, index]) =>
+          !this.rearmOnConnect[index] &&
+          connected.get(pad)!.buttons[9]?.pressed &&
+          !this.previous[index].has("pause"),
+      );
+    const enabled = gameplay && !pausePressed;
     for (const [padIndex, index] of this.assignments) {
       const pad = connected.get(padIndex)!;
       const input = inputs[index];
@@ -105,6 +128,7 @@ export class GamepadControls {
         } else applyControl(input, control, down);
       };
       const pressed = new Set<string>();
+      if (pad.buttons[9]?.pressed) pressed.add("pause");
       if (pad.axes[0] < -0.35 || pad.buttons[14]?.pressed) pressed.add("left");
       if (pad.axes[0] > 0.35 || pad.buttons[15]?.pressed) pressed.add("right");
       if (pad.axes[1] > 0.5 || pad.buttons[13]?.pressed) pressed.add("down");
@@ -121,7 +145,7 @@ export class GamepadControls {
         if (pad.buttons[button]?.pressed) pressed.add(control);
       });
       for (const control of ["left", "right", "down", "block"] as const) {
-        if (pressed.has(control)) apply(control, true);
+        if (enabled && pressed.has(control)) apply(control, true);
         else if (this.previous[index].has(control)) apply(control, false);
       }
       for (const control of [
@@ -132,19 +156,46 @@ export class GamepadControls {
         "dash",
         "super",
       ] as const)
-        if (pressed.has(control) && !this.previous[index].has(control))
+        if (
+          enabled &&
+          this.active &&
+          !this.rearmOnConnect[index] &&
+          pressed.has(control) &&
+          !this.previous[index].has(control)
+        )
           apply(control, true);
-        else if (!pressed.has(control) && this.previous[index].has(control))
+        else if (
+          (!enabled || !pressed.has(control)) &&
+          this.previous[index].has(control)
+        )
           apply(control, false);
       this.previous[index] = pressed;
+      this.rearmOnConnect[index] = false;
     }
+    this.active = enabled;
+    this.menuActive = menu;
+    return pausePressed;
   }
-  private release(inputs: [Input, Input], index: number) {
+  /** Snapshot held buttons at resume; presses after this boundary are fresh. */
+  resume(inputs: [Input, Input], players: number) {
+    this.update(inputs, players, { gameplay: false, menu: false });
+    this.active = true;
+    this.menuActive = true;
+  }
+  /** Also rearm when blur and focus occur between two animation frames. */
+  suspend(inputs: [Input, Input], { menu = false }: { menu?: boolean } = {}) {
+    this.active = false;
+    this.menuActive = menu && this.menuActive;
+    for (const index of this.assignments.values())
+      this.release(inputs, index, false);
+  }
+  private release(inputs: [Input, Input], index: number, forget = true) {
     for (const control of this.previous[index]) {
+      if (control === "pause") continue;
       if (this.sources) this.sources[index].release(`pad:${control}`);
       else applyControl(inputs[index], control as Control, false);
     }
-    this.previous[index].clear();
+    if (forget) this.previous[index].clear();
   }
 }
 export const makeInputs = (): [Input, Input] => [emptyInput(), emptyInput()];

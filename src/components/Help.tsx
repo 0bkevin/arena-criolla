@@ -200,7 +200,7 @@ export function Help({ onClose }: { onClose: () => void }) {
                         {device === "keyboard" ? (
                           <kbd>Esc</kbd>
                         ) : (
-                          <span className="help-input">Botón de pausa</span>
+                          <span className="help-input">Start / Menú</span>
                         )}
                       </dd>
                     </div>

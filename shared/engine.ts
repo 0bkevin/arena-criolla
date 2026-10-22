@@ -45,6 +45,8 @@ export const ACTIONS = [
 ] as const;
 export type Action = (typeof ACTIONS)[number];
 export type Attack = "light" | "heavy" | "special" | "super" | null;
+// Five active simulation ticks (83 ms at 60 Hz), shared by local and online play.
+const ATTACK_BUFFER_TICKS = 5;
 export interface Input {
   left: boolean;
   right: boolean;
@@ -101,6 +103,7 @@ export interface PlayerState {
   invincible: number;
   dash: number;
   lastActions: Record<Action, number>;
+  bufferedAttack?: { attack: Exclude<Attack, "super" | null>; ticks: number };
   history: { action: string; tick: number }[];
   combo: string;
   comboTick: number;
@@ -404,6 +407,7 @@ function hurt(
 
 function loseStock(s: MatchState, i: number) {
   const p = s.players[i];
+  delete p.bufferedAttack;
   s.projectiles = s.projectiles.filter(
     (shot) => !shot.tether || shot.owner !== i,
   );
@@ -505,8 +509,10 @@ function advanceFinale(s: MatchState, inputs: [Input, Input]) {
   scene.tick++;
   s.shake *= 0.8;
   s.effects = s.effects.filter((e) => --e.life > 0);
-  for (let i = 0; i < 2; i++)
+  for (let i = 0; i < 2; i++) {
     s.players[i].lastActions = { ...inputs[i].actions };
+    delete s.players[i].bufferedAttack;
+  }
   const definition = finaleById(scene.fighter)!;
   const beat = definition.damageBeats.indexOf(scene.tick);
   if (beat !== -1) {
@@ -562,20 +568,27 @@ function canUseSuper(s: MatchState, i: number) {
   );
 }
 
-function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
+function canBeginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
   const p = s.players[i];
   const def = fighterById(p.config.fighter);
   // One physical handheld object: it must be caught before another attack starts.
-  if (s.projectiles.some((shot) => shot.owner === i && shot.tether)) return;
+  if (s.projectiles.some((shot) => shot.owner === i && shot.tether))
+    return false;
   if (
     attack === "special" &&
     (p.config.wins < (def.specialUnlockWins ?? 0) ||
       (TECHNIQUES[def.ability].requiresGround && !p.grounded))
   )
-    return;
-  if (attack === "super" && !canUseSuper(s, i)) return;
-  if (attack === "special" && p.energy < 25) return;
-  if (attack === "super" && p.energy < SUPER_ENERGY_COST) return;
+    return false;
+  if (attack === "super" && !canUseSuper(s, i)) return false;
+  if (attack === "special" && p.energy < 25) return false;
+  return true;
+}
+
+function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
+  if (!canBeginAttack(s, i, attack)) return;
+  const p = s.players[i];
+  const def = fighterById(p.config.fighter);
   if (attack === "special") p.energy -= 25;
   if (attack === "super") {
     p.energy -= SUPER_ENERGY_COST;
@@ -1120,6 +1133,11 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     }
     const pressed = (key: Action) => input.actions[key] !== p.lastActions[key];
     if (
+      p.bufferedAttack &&
+      (--p.bufferedAttack.ticks < 0 || p.stun > 0 || input.block || p.hp <= 0)
+    )
+      delete p.bufferedAttack;
+    if (
       p.superChargeTicks > 0 &&
       (pressed("super") || p.stun > 0 || !canUseSuper(s, i))
     )
@@ -1205,17 +1223,31 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
         p.invincible = 8;
         p.cooldown = 30;
       }
-      if (charging && p.superChargeTicks >= SUPER_CHARGE_TICKS)
-        beginAttack(s, i, "super");
-      else if (
-        !charging &&
-        !pressed("super") &&
-        p.cooldown === 0 &&
-        !p.blocking
-      ) {
-        if (pressed("special")) beginAttack(s, i, "special");
-        else if (pressed("heavy")) beginAttack(s, i, "heavy");
-        else if (pressed("light")) beginAttack(s, i, "light");
+      if (charging || pressed("super")) {
+        delete p.bufferedAttack;
+        if (charging && p.superChargeTicks >= SUPER_CHARGE_TICKS)
+          beginAttack(s, i, "super");
+      } else {
+        const requested = (["special", "heavy", "light"] as const).find(
+          pressed,
+        );
+        if (requested) {
+          delete p.bufferedAttack;
+          if (p.cooldown === 0 && !p.blocking) beginAttack(s, i, requested);
+          else if (
+            !input.block &&
+            p.cooldown <= ATTACK_BUFFER_TICKS &&
+            canBeginAttack(s, i, requested)
+          )
+            p.bufferedAttack = {
+              attack: requested,
+              ticks: ATTACK_BUFFER_TICKS,
+            };
+        } else if (p.cooldown === 0 && !p.blocking && p.bufferedAttack) {
+          const { attack } = p.bufferedAttack;
+          delete p.bufferedAttack;
+          beginAttack(s, i, attack);
+        }
       }
     }
     p.lastActions = { ...input.actions };
