@@ -28,10 +28,15 @@ export async function run() {
   const originalCancel = window.cancelAnimationFrame;
   const originalNow = Object.getOwnPropertyDescriptor(performance, "now");
   const originalHidden = Object.getOwnPropertyDescriptor(document, "hidden");
+  const originalHasFocus = Object.getOwnPropertyDescriptor(
+    document,
+    "hasFocus",
+  );
   const frames = new Map<number, FrameRequestCallback>();
   let nextFrame = 0;
   let now = 0;
   let hidden = false;
+  let focused = true;
   const results: string[] = [];
   const screen = () => document.querySelector(".victory-screen");
   try {
@@ -50,6 +55,10 @@ export async function run() {
       configurable: true,
       get: () => hidden,
     });
+    Object.defineProperty(document, "hasFocus", {
+      configurable: true,
+      value: () => focused,
+    });
     const frame = async (delta: number) => {
       now += delta;
       const callbacks = [...frames.values()];
@@ -62,7 +71,13 @@ export async function run() {
         await frame(Math.min(left, interval));
     };
     for (const mode of ["local", "online", "practice"] as const) {
-      for (const scenario of ["normal", "slow", "hidden", "dialog"] as const) {
+      for (const scenario of [
+        "normal",
+        "slow",
+        "hidden",
+        "dialog",
+        "blur",
+      ] as const) {
         now = 0;
         let resultCount = 0;
         const initial = createMatch("caracas", [
@@ -121,11 +136,18 @@ export async function run() {
           `${mode}/${scenario}: the result appeared immediately`,
         );
         const interval = scenario === "normal" ? 16 : 500;
-        if (scenario === "hidden" || scenario === "dialog") {
+        if (
+          scenario === "hidden" ||
+          scenario === "dialog" ||
+          scenario === "blur"
+        ) {
           await frame(500);
           if (scenario === "hidden") {
             hidden = true;
             document.dispatchEvent(new Event("visibilitychange"));
+          } else if (scenario === "blur") {
+            focused = false;
+            window.dispatchEvent(new Event("blur"));
           } else {
             dialog = document.createElement("dialog");
             document.body.append(dialog);
@@ -136,6 +158,9 @@ export async function run() {
           if (scenario === "hidden") {
             hidden = false;
             document.dispatchEvent(new Event("visibilitychange"));
+          } else if (scenario === "blur") {
+            focused = true;
+            window.dispatchEvent(new Event("focus"));
           } else {
             dialog!.close();
             dialog!.remove();
@@ -186,6 +211,9 @@ export async function run() {
     if (originalHidden)
       Object.defineProperty(document, "hidden", originalHidden);
     else Reflect.deleteProperty(document, "hidden");
+    if (originalHasFocus)
+      Object.defineProperty(document, "hasFocus", originalHasFocus);
+    else Reflect.deleteProperty(document, "hasFocus");
     running = false;
   }
 }

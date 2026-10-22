@@ -9,7 +9,7 @@ import {
   stepMatch,
   WORLD,
   type Input,
-} from "../../shared/engine";
+} from "../helpers/charged-finale-engine";
 import {
   INTRO_TOTAL_TICKS,
   normalizedFacing,

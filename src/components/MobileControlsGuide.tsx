@@ -12,7 +12,10 @@ import {
   Swords,
   Zap,
 } from "lucide-react";
-import { SUPER_ENERGY_COST } from "../../shared/content";
+import {
+  SUPER_ENERGY_COST,
+  SUPER_CHARGE_SECONDS_LABEL,
+} from "../../shared/content";
 import { Portrait } from "./Portrait";
 
 const movement = [
@@ -30,7 +33,7 @@ const combat = [
   {
     icon: Zap,
     label: "Súper",
-    note: `${SUPER_ENERGY_COST} de energía`,
+    note: `Mantén ${SUPER_CHARGE_SECONDS_LABEL} s · ${SUPER_ENERGY_COST} de energía · Un uso por pelea`,
   },
 ];
 

@@ -15,7 +15,7 @@ import {
   WORLD,
   type Input,
   type MatchState,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 import {
   FINALES,
   FINALE_CAPTURE_TICK,

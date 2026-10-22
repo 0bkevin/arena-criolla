@@ -6,7 +6,7 @@ import {
   stepMatch,
   WORLD,
   type Input,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 import { STAGES, type FighterId, type StageId } from "../shared/content";
 import {
   ARENA_FINALES,

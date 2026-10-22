@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { ChevronDown, Gamepad2, Keyboard, Smartphone } from "lucide-react";
-import { SUPER_ENERGY_COST } from "../../shared/content";
+import {
+  SUPER_ENERGY_COST,
+  SUPER_CHARGE_SECONDS_LABEL,
+} from "../../shared/content";
 import { hasTouchInput } from "../game/mobile";
 import { Modal } from "./Modal";
 import { MobileControlsGuide } from "./MobileControlsGuide";
@@ -76,7 +79,7 @@ const controls = [
   },
   {
     action: "Súper",
-    note: `${SUPER_ENERGY_COST} de energía`,
+    note: `Mantén ${SUPER_CHARGE_SECONDS_LABEL} s · ${SUPER_ENERGY_COST} de energía · Un uso por pelea`,
     first: ["I"],
     second: ["5"],
     touch: "Súper",
@@ -197,7 +200,7 @@ export function Help({ onClose }: { onClose: () => void }) {
                         {device === "keyboard" ? (
                           <kbd>Esc</kbd>
                         ) : (
-                          <span className="help-input">Botón de pausa</span>
+                          <span className="help-input">Start / Menú</span>
                         )}
                       </dd>
                     </div>
@@ -228,9 +231,17 @@ export function Help({ onClose }: { onClose: () => void }) {
             <li>
               <strong>Energía:</strong> se recarga al golpear y recibir golpes.
               La definitiva está disponible desde el inicio y consume{" "}
-              {SUPER_ENERGY_COST} de energía. Vicente lanza una moto con su
-              especial desde el inicio; el pelotón de siete motos pertenece a su
-              definitiva.
+              {SUPER_ENERGY_COST} de energía. Cada jugador solo puede usarla una
+              vez por pelea, aunque falle o pierda una vida. Vicente lanza una
+              moto con su especial desde el inicio; el pelotón de siete motos
+              pertenece a su definitiva.
+            </li>
+            <li>
+              <strong>Carga vulnerable:</strong> mantén la definitiva durante{" "}
+              {SUPER_CHARGE_SECONDS_LABEL} segundos. Puedes moverte más
+              despacio, pero no atacar, bloquear, saltar ni esquivar. Soltar
+              cancela gratis; recibir un golpe interrumpe la carga y resta 15 de
+              energía. Conservas tu único uso hasta que comienza el ataque.
             </li>
             <li>
               <strong>Tiempo:</strong> cada pelea dura un máximo de 2 minutos.

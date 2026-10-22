@@ -7,7 +7,7 @@ import {
   stepMatch,
   type Input,
   type MatchState,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const a = { name: "George", fighter: "george" as const, wins: 3 },

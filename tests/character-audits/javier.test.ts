@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fighterById, type FighterId } from "../../shared/content";
-import { createMatch, emptyInput, stepMatch, cpuInput, WORLD, type Input, type MatchState, type Action } from "../../shared/engine";
+import { createMatch, emptyInput, stepMatch, cpuInput, WORLD, type Input, type MatchState, type Action } from "../helpers/charged-finale-engine";
 import { INTRO_TOTAL_TICKS, normalizedFacing, presentationById, samplePose, selectionProgress } from "../../shared/presentation";
 import { TECHNIQUES } from "../../shared/techniques";
 

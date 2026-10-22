@@ -322,25 +322,44 @@ export function startVictoryMusic(fighter: FighterId | "draw") {
   const started = performance.now();
   let frame = 0;
   let disposed = false;
+  let focused = document.hasFocus?.() ?? true;
   const update = () => {
     if (disposed) return;
     const elapsed = performance.now() - started;
     syncVictoryMusic(
       fighter,
       elapsed,
-      document.hidden || Boolean(document.querySelector("dialog[open]")),
+      document.hidden ||
+        !focused ||
+        Boolean(document.querySelector("dialog[open]")),
     );
     if (elapsed < VICTORY_MUSIC_MS) frame = requestAnimationFrame(update);
   };
   const hide = () => {
-    if (document.hidden) stopVictoryMusic();
+    focused = document.hasFocus?.() ?? focused;
+    if (document.hidden || !focused) stopVictoryMusic();
+  };
+  const blur = () => {
+    focused = false;
+    stopVictoryMusic();
+  };
+  const focus = () => {
+    focused = !document.hidden;
   };
   document.addEventListener("visibilitychange", hide);
+  if (typeof window !== "undefined") {
+    window.addEventListener("blur", blur);
+    window.addEventListener("focus", focus);
+  }
   update();
   return () => {
     disposed = true;
     cancelAnimationFrame(frame);
     document.removeEventListener("visibilitychange", hide);
+    if (typeof window !== "undefined") {
+      window.removeEventListener("blur", blur);
+      window.removeEventListener("focus", focus);
+    }
     stopVictoryMusic();
   };
 }

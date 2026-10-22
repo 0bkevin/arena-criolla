@@ -1,4 +1,48 @@
-# Mobile controls validation
+# Controls validation
+
+## Desktop regressions
+
+With the standalone Vite server below, open
+`http://localhost:5174/tests/browser/desktop-controls.html` and run:
+
+```js
+await desktopAudit.run(); // all eleven scenarios must pass
+desktopAudit.state();
+await desktopAudit.mount("local"); // or "online" for captured outgoing input
+desktopAudit.unmount(); // restores navigator.getGamepads
+```
+
+This mounts the production `Game` and `Help` in React StrictMode. It covers
+returning focus from help and pointer-activated sound controls, retaining sound
+button focus for keyboard activation, browser shortcuts and IME input, key
+release after focus/modifier changes, visible-window blur in online play,
+Start pause/resume, fresh action presses in the first frame after resume,
+disconnected-controller recovery, Start immediately after keyboard pause, and
+Start suppression under modal help.
+Explicit resume snapshots buttons already held at that moment, so those still
+require release while later presses work on the very next frame for either player.
+Reconnected/replacement controllers preserve their player assignment and require
+held action/Menu buttons to be released before activating them again. Movement
+holds can resume immediately. IME checks include composition boundary events
+with key code 229, even when `isComposing` is false.
+Gamepads and lifecycle events are synthesized; no physical controller or OS
+focus switching is claimed. Use native Enter after closing help or clicking
+sound to check P2's dodge; sound must stay unchanged by that dodge. Reach the
+sound button with Tab/Shift+Tab and verify native Enter/Space toggle it while
+retaining button focus. Use native Escape/Tab/Shift+Tab to check pause focus.
+
+The Node regressions in `controls.test.ts` and `attack-buffer.test.ts` cover
+controller suspension/rearming and a five-frame (83 ms at 60 Hz) attack buffer.
+The buffer accepts light, heavy and special attacks. Definitives keep their
+separate hold-to-charge and one-use-per-fight rules; a fresh definitive press
+clears a pending normal attack, and attacks cannot queue during the charge.
+The latest fresh attack replaces the pending request. Requests outside
+the window are discarded; blocking, stun, stock loss and capture finales clear
+the buffer. Energy and character restrictions are checked again on execution.
+The buffer is part of the shared deterministic simulation and serialized state,
+so local and online play use the same rules.
+
+## Mobile controls
 
 This harness exercises the production `TouchControls`, input ownership, React
 lifecycle, and styles in a real browser. It is separate from `npm test`, which
@@ -38,14 +82,14 @@ a layout regression fixture, not hardware emulation.
 
 With the same Vite server running, open
 `http://localhost:5174/tests/browser/victory-timing.html` and run
-`await victoryTiming.run()` in the console. All twelve scenarios must pass.
+`await victoryTiming.run()` in the console. All fifteen scenarios must pass.
 
 This mounts the production `Game` in React StrictMode with an actual engine
 knockout. Controlled frame timestamps verify that the result appears after two
 active seconds at normal and slow frame rates in local, online, and practice
-modes. Hidden tabs and real help dialogs suspend the clock even when no frame
-runs while blocked. The audit also checks seven stars, one result callback,
-immutable match state, and frame-loop cleanup after unmount.
+modes. Window blur, hidden tabs, and real help dialogs suspend the clock even
+when no frame runs while blocked. The audit also checks seven stars, one result
+callback, immutable match state, and frame-loop cleanup after unmount.
 
 The harness restores its browser clock and visibility overrides after each run.
 It uses a simulated remote state for online mode; it does not exercise network

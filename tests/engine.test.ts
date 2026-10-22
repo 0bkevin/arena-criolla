@@ -9,7 +9,7 @@ import {
   WORLD,
   type Input,
   type MatchState,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 
 function setup(wins = 0) {
   const state = createMatch("caracas", [

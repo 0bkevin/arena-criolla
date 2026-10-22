@@ -10,6 +10,7 @@ import { KNOCKOUT_HOLD_MS, sampleKnockout } from "../src/game/knockout";
 import { renderMatch, type Assets } from "../src/game/renderer";
 import type { SpriteAsset } from "../src/game/assets";
 import { activeRunway } from "../shared/field-finales";
+import { SUPER_CHARGE_TICKS } from "../shared/content";
 
 function lastHit(side: 0 | 1, airborne = false) {
   const state = createMatch("caracas", [
@@ -62,7 +63,26 @@ for (const side of [0, 1] as const) {
     });
     const inputs = [emptyInput(), emptyInput()] as const;
     inputs[side].actions.super++;
-    for (let tick = 0; tick < 109; tick++) stepMatch(state, [...inputs]);
+    inputs[side].superHeld = true;
+    for (
+      let tick = 0;
+      tick < SUPER_CHARGE_TICKS + 30 &&
+      !activeRunway(state, state.players[side]);
+      tick++
+    )
+      stepMatch(state, [...inputs]);
+    assert.ok(
+      activeRunway(state, state.players[side]),
+      "the charged definitive starts the runway",
+    );
+    inputs[side].superHeld = false;
+    for (
+      let tick = 0;
+      tick < 110 && activeRunway(state, state.players[side])!.tick < 100;
+      tick++
+    )
+      stepMatch(state, [...inputs]);
+    assert.equal(activeRunway(state, state.players[side])!.tick, 100);
     state.remaining = 1;
     inputs[1 - side].actions.jump++;
     stepMatch(state, [...inputs]);

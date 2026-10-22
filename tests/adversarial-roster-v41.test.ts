@@ -14,7 +14,7 @@ import {
   WORLD,
   type Input,
   type MatchState,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 
 const reviewed = [
   "javier",

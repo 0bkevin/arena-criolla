@@ -10,7 +10,7 @@ import {
   stepMatch,
   WORLD,
   type Input,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 import { finaleById } from "../shared/finales";
 import { TECHNIQUES } from "../shared/techniques";
 import geometry from "../shared/sprite-geometry.json";
