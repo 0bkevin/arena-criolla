@@ -48,7 +48,7 @@ function ActionInput({
     const Icon = { light: Swords, heavy: Flame, super: Zap }[action];
     return (
       <span className="help-rule-input is-touch" role="img" aria-label={label}>
-        <Icon size={14} aria-hidden="true" />
+        <Icon size={12} aria-hidden="true" />
       </span>
     );
   }
@@ -159,43 +159,68 @@ export function Help({ onClose }: { onClose: () => void }) {
           <div className="help-rules-grid">
             <section className="help-rule" aria-labelledby="help-combos-title">
               <h4 id="help-combos-title">Combos</h4>
-              <div className="help-rule-combo">
-                <span className="help-rule-sequence">
-                  {input("light")}
-                  <ArrowRight size={12} aria-hidden="true" />
-                  {input("heavy")}
-                </span>
-                <span>Desde el inicio</span>
+              <p className="help-rule-intro">
+                Pulsa en orden y deja terminar cada golpe.
+              </p>
+              <div className="help-rule-combos">
+                <div className="help-rule-combo">
+                  <span>Combo corto</span>
+                  <span className="help-rule-sequence">
+                    {input("light")}
+                    <ArrowRight size={11} aria-hidden="true" />
+                    {input("heavy")}
+                  </span>
+                </div>
+                <div className="help-rule-combo">
+                  <span>Combo largo</span>
+                  <span className="help-rule-sequence">
+                    {input("light")}
+                    <ArrowRight size={11} aria-hidden="true" />
+                    {input("light")}
+                    <ArrowRight size={11} aria-hidden="true" />
+                    {input("heavy")}
+                  </span>
+                </div>
               </div>
-              <div className="help-rule-combo">
-                <span className="help-rule-sequence">
-                  {input("light")}
-                  <ArrowRight size={12} aria-hidden="true" />
-                  {input("light")}
-                  <ArrowRight size={12} aria-hidden="true" />
-                  {input("heavy")}
-                </span>
-              </div>
-              <p>Espera entre golpes · Completa en 2,5 s.</p>
+              <p className="help-rule-note">Completa cada combo en 2,5 s.</p>
             </section>
             <section className="help-rule" aria-labelledby="help-super-title">
-              <h4 id="help-super-title">Definitiva {input("super")}</h4>
-              <p className="help-rule-stats">
-                Mantén {SUPER_CHARGE_SECONDS_LABEL} s · {SUPER_ENERGY_COST} de
-                energía · 1 uso por pelea
+              <h4 id="help-super-title">Definitiva</h4>
+              <p className="help-rule-intro">
+                Reúne <strong>{SUPER_ENERGY_COST} de energía</strong> al dar o
+                recibir golpes.
               </p>
-              <p>Al cargar, solo puedes moverte más lento.</p>
+              <p className="help-rule-charge">
+                Mantén {input("super")} {SUPER_CHARGE_SECONDS_LABEL} s para
+                lanzarla. <strong>Un uso por pelea.</strong>
+              </p>
+              <p className="help-rule-note">
+                Al cargar, solo puedes moverte más lento.
+              </p>
+              <dl className="help-rule-outcomes">
+                <div>
+                  <dt>Si sueltas</dt>
+                  <dd>Cancelas sin gastar el uso.</dd>
+                </div>
+                <div>
+                  <dt>Si te golpean</dt>
+                  <dd>
+                    Cancelas y pierdes {SUPER_INTERRUPT_ENERGY_COST} de energía.
+                  </dd>
+                </div>
+              </dl>
+            </section>
+            <section
+              className="help-rule help-rule-time"
+              aria-labelledby="help-time-title"
+            >
+              <h4 id="help-time-title">Si se acaban los 2 minutos</h4>
               <p>
-                Soltar cancela sin gastar el uso. Si te golpean, se cancela y
-                pierdes {SUPER_INTERRUPT_ENERGY_COST} de energía.
+                Gana quien conserve más vidas. Si tienen las mismas vidas, gana
+                quien tenga más salud en la barra. Si también empatan en salud,
+                la pelea termina en empate.
               </p>
             </section>
-            <p className="help-rule-note">
-              <strong>Energía:</strong> se recupera al dar y recibir golpes.
-            </p>
-            <p className="help-rule-note">
-              <strong>2 min por pelea.</strong> Desempate: vidas, luego salud.
-            </p>
           </div>
         </details>
       </div>

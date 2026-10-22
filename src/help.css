@@ -460,7 +460,7 @@
 .help-rules-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px 32px;
+  gap: 24px 32px;
   margin: 12px 0 0;
   color: var(--help-muted);
   font-size: 13px;
@@ -472,11 +472,7 @@
 }
 
 .help-rule h4 {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 22px;
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   color: #fff5db;
   font-size: 14px;
   font-weight: 700;
@@ -486,12 +482,22 @@
   margin: 8px 0 0;
 }
 
+.help-rule .help-rule-intro {
+  margin-top: 0;
+}
+
+.help-rule-combos {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
 .help-rule-combo {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 6px 12px;
-  margin-bottom: 10px;
+  gap: 12px;
+  color: #eef2fa;
 }
 
 .help-rule-sequence {
@@ -506,14 +512,15 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  min-width: 22px;
-  height: 22px;
-  padding: 0 5px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  vertical-align: middle;
   color: #fff5db;
   background: #1d3450;
   border: 1px solid #657c98;
   border-radius: 4px;
-  font: 700 12px/1 var(--font-body);
+  font: 700 11px/1 var(--font-body);
 }
 
 .help-modal kbd.help-rule-input {
@@ -528,13 +535,53 @@
   padding: 0;
 }
 
-.help-rule .help-rule-stats {
+.help-rule-charge {
   color: #eef2fa;
+}
+
+.help-rule-outcomes {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0 0;
+  font-size: 12px;
+}
+
+.help-rule-outcomes > div {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.help-rule-outcomes dt {
+  color: #eef2fa;
+  font-weight: 500;
+}
+
+.help-rule-outcomes dd {
+  margin: 0;
 }
 
 .help-rule-note {
   margin: 0;
   font-size: 12px;
+}
+
+.help-rule-time {
+  grid-column: 1 / -1;
+}
+
+.help-rule-time h4,
+.help-rule-time p {
+  margin: 0;
+  font-size: 12px;
+}
+
+.help-rule-time h4 {
+  margin-bottom: 4px;
+}
+
+.help-rule-time p {
+  max-width: 75ch;
 }
 
 .help-more strong {
@@ -585,24 +632,12 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
   }
-
-  .help-rule-note + .help-rule-note {
-    margin-top: -12px;
-  }
 }
 
 @media (max-width: 680px) {
   .arcade-app .modal.help-modal {
     width: calc(100vw - 24px);
     max-height: calc(100dvh - 24px);
-  }
-
-  .help-modal .modal-header {
-    padding: 10px 16px;
-  }
-
-  .arcade-app .help-modal .modal-header h2 {
-    font-size: 24px;
   }
 
   .help-content {
@@ -624,10 +659,6 @@
   .help-footer {
     padding: 10px 16px;
   }
-
-  .help-done {
-    width: 100%;
-  }
 }
 
 @media (max-width: 380px) {
@@ -644,11 +675,6 @@
 
   .arcade-app .help-modal .modal-header {
     min-height: 0;
-    padding: 8px 16px;
-  }
-
-  .arcade-app .help-modal .modal-header h2 {
-    font-size: 24px;
   }
 
   .arcade-app .help-modal .help-content {
@@ -667,11 +693,38 @@
   .arcade-app .help-modal .help-footer {
     padding: 8px 16px;
   }
+}
+
+@media (max-width: 680px), (max-height: 500px) and (orientation: landscape) {
+  .arcade-app .help-modal .modal-header {
+    padding: 2px 16px;
+  }
+
+  .arcade-app .help-modal .modal-header h2 {
+    font-size: 20px;
+  }
+
+  .arcade-app .help-modal .modal-header .icon-button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .arcade-app .help-modal .help-footer {
+    padding: 8px 16px;
+  }
 
   .help-modal .help-done {
+    position: relative;
     width: auto;
-    min-width: 128px;
-    padding-block: 8px;
-    font-size: 14px;
+    min-width: 112px;
+    min-height: 36px;
+    padding: 6px 16px;
+    font-size: 13px;
+  }
+
+  .help-modal .help-done::before {
+    content: "";
+    position: absolute;
+    inset: -4px 0;
   }
 }

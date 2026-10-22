@@ -1,7 +1,7 @@
 /* Shared mobile dialog titles, legibility and input fixes.
    The Help dialog owns its content layout and type scale. */
 @media (max-width: 680px), (max-height: 500px) and (orientation: landscape) {
-  .app-shell.arcade-app .modal .modal-header h2,
+  .app-shell.arcade-app .modal:where(:not(.help-modal)) .modal-header h2,
   .app-shell .game-page :is(.pause-card, .result-info, .orientation-card) h2 {
     font-size: 24px;
     line-height: 1.15;
