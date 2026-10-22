@@ -461,3 +461,99 @@
     font-size: 14px;
   }
 }
+
+/* Give mobile controls room for their labels and keep the layout inside notches. */
+@media (max-width: 900px), (pointer: coarse) {
+  .app-shell.in-lobby {
+    --selection-control-height: 44px;
+  }
+}
+
+@media (max-width: 900px) {
+  .app-shell.in-lobby {
+    --lobby-gutter: 14px;
+    --lobby-left: max(var(--lobby-gutter), env(safe-area-inset-left));
+    --lobby-right: max(var(--lobby-gutter), env(safe-area-inset-right));
+  }
+  .in-lobby :is(.site-header, .home-page, .site-footer) {
+    width: calc(100% - var(--lobby-left) - var(--lobby-right));
+    margin-left: var(--lobby-left);
+    margin-right: var(--lobby-right);
+  }
+  .in-lobby .site-header {
+    height: auto;
+    min-height: calc(52px + env(safe-area-inset-top));
+    padding-top: env(safe-area-inset-top);
+  }
+  .in-lobby .mobile-setup-dock {
+    left: var(--lobby-left);
+    right: var(--lobby-right);
+    bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+  .in-lobby .mobile-setup-dock strong {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .in-lobby .mobile-setup-dock button {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .app-shell.in-lobby {
+    --lobby-gutter: 10px;
+  }
+}
+
+@media (max-width: 680px) {
+  .modal:where(:not(.help-modal)) {
+    max-width: calc(
+      100% - 24px - env(safe-area-inset-left) - env(safe-area-inset-right)
+    );
+    max-height: calc(
+      100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom)
+    );
+    padding: 16px;
+  }
+  .modal:where(:not(.help-modal)) .modal-header {
+    top: -16px;
+  }
+  .fighter-detail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .detail-art {
+    height: clamp(180px, 60vw, 240px);
+  }
+  .detail-art .portrait {
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 5;
+    margin-top: 0;
+  }
+  .detail-info,
+  .special-description > div {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .special-description > svg {
+    flex-shrink: 0;
+  }
+  .combo-list > div {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+  }
+  .combo-list > div > kbd {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 380px) {
+  .in-lobby .roster-categories {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .in-lobby .roster-categories button {
+    font-size: 13px;
+  }
+}

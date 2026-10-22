@@ -109,10 +109,10 @@ layers.push({
   top: 0,
 });
 
-// The eight pixel stars are the same ornament used by VenezuelaStars in the UI.
+// The seven pixel stars are the same ornament used by VenezuelaStars in the UI.
 layers.push({
   input: svg(
-    `<g fill="${cream}" opacity=".8" transform="translate(984 30) scale(1.1)">${[15, 9, 4, 1, 1, 4, 9, 15].map((y, i) => `<path transform="translate(${4 + i * 16} ${y})" d="M4 0h2v3h4v2H8v2h1v3H6V8H4v2H1V7h1V5H0V3h4z"/>`).join("")}</g>`,
+    `<g fill="${cream}" opacity=".8" transform="translate(984 30) scale(1.1)">${[15, 7, 2, 0, 2, 7, 15].map((y, i) => `<path transform="translate(${5 + i * 18} ${y})" d="M4 0h2v3h4v2H8v2h1v3H6V8H4v2H1V7h1V5H0V3h4z"/>`).join("")}</g>`,
   ),
   left: 0,
   top: 0,

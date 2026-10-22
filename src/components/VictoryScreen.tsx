@@ -121,9 +121,7 @@ export function VictoryScreen({
           {unlocked && (
             <p className="victory-screen-unlock">
               <Zap size={16} aria-hidden="true" />
-              <span>
-                Especial desbloqueado para {fighter?.shortName}
-              </span>
+              <span>Especial desbloqueado para {fighter?.shortName}</span>
             </p>
           )}
           <div className="victory-screen-actions">
@@ -146,7 +144,7 @@ export function VictoryScreen({
           </div>
         </div>
         <div className="victory-screen-art" aria-hidden="true">
-          <VenezuelaStars className="victory-screen-stars" count={7} />
+          <VenezuelaStars className="victory-screen-stars" />
           {fighter ? (
             <div className="victory-screen-figure">
               <Portrait

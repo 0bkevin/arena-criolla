@@ -135,6 +135,24 @@ The harness restores its browser clock and visibility overrides after each run.
 It uses a simulated remote state for online mode; it does not exercise network
 transport.
 
+## Loading screen validation
+
+With the same Vite server, open
+`http://localhost:5174/tests/browser/loading-screen.html` and run
+`await loadingScreenAudit.run()` in the console. All nine scenarios must pass.
+
+This mounts the production `ArenaEntrance` in React StrictMode. It checks that
+the animation and its completion clock both wait for entrance fonts, Escape
+works from initial BODY focus after readiness, unavailable skip controls cannot
+bypass readiness, failed or delayed illustrations do not block entry, completion
+happens once, and unmount clears timers and global keyboard listeners.
+
+Timers and image load/error events are controlled. Reduced motion is explicitly
+simulated with the production media-rule declarations and matching JavaScript
+preference branch; this is not OS-level media emulation. The harness restores
+all browser overrides after each run. Real startup networking, visual animation,
+responsive layouts, and physical-device performance need separate browser review.
+
 ## Interaction contract
 
 - A contact beginning anywhere inside a control group can slide between movement,

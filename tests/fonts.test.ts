@@ -23,6 +23,9 @@ function fontBrowser() {
     ) {
       faces.push(this);
     }
+    get style() {
+      return this.descriptors.style ?? "normal";
+    }
     load() {
       this.status = "loading";
       return this.loaded;
@@ -56,39 +59,91 @@ function fontBrowser() {
   };
 }
 
-test("font selection settles before text is revealed or any faces are registered", async () => {
+function isEntranceFont(face: { source: string }) {
+  return (
+    face.source.includes("barlow-800-italic.woff2") ||
+    face.source.includes("dm-sans-400.woff2")
+  );
+}
+
+test("entrance fonts become ready without waiting for the remaining interface fonts", async () => {
   const browser = fontBrowser();
   try {
     let rendered = false;
-    const startup = loadInterfaceFonts().then(() => (rendered = true));
+    const loading = loadInterfaceFonts();
+    const startup = loading.ready.then(() => (rendered = true));
     assert.equal(browser.faces.length, 5);
-    for (const face of browser.faces.slice(0, -1)) face.finish();
+    assert.ok(browser.faces.every((face) => face.status === "loading"));
+    const critical = browser.faces.filter(isEntranceFont);
+    critical[0].finish();
     await new Promise((resolve) => setImmediate(resolve));
     assert.equal(rendered, false);
     assert.equal(browser.registered.length, 0);
 
-    browser.faces.at(-1)!.finish();
+    critical[1].finish();
+    assert.deepEqual(await loading.entranceReady, { displayReady: true });
+    assert.equal(rendered, false);
+    assert.deepEqual(browser.registered, critical);
+
+    for (const face of browser.faces.filter((face) => !isEntranceFont(face))) {
+      face.finish();
+    }
     await startup;
     assert.equal(rendered, true);
-    assert.deepEqual(browser.registered, browser.faces);
+    assert.deepEqual(browser.registered, critical);
+    loading.activateInterface();
+    loading.activateInterface();
+    assert.deepEqual(new Set(browser.registered), new Set(browser.faces));
+    assert.equal(browser.registered.length, 5);
   } finally {
     browser.restore();
   }
 });
 
-for (const failedFile of ["barlow-800.ttf", "dm-sans-700.ttf"]) {
+test("early interface activation waits for both groups and registers each face once", async () => {
+  const browser = fontBrowser();
+  try {
+    const loading = loadInterfaceFonts();
+    loading.activateInterface();
+    loading.activateInterface();
+    for (const face of browser.faces.filter((face) => !isEntranceFont(face))) {
+      face.finish();
+    }
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.equal(browser.registered.length, 0);
+
+    for (const face of browser.faces.filter(isEntranceFont)) face.finish();
+    await loading.ready;
+    loading.activateInterface();
+    assert.deepEqual(new Set(browser.registered), new Set(browser.faces));
+    assert.equal(browser.registered.length, 5);
+  } finally {
+    browser.restore();
+  }
+});
+
+for (const failedFile of [
+  "barlow-800.woff2",
+  "barlow-800-italic.woff2",
+  "dm-sans-700.woff2",
+  "dm-sans-400.woff2",
+]) {
   test(`a failed ${failedFile} preserves the other successfully loaded variants`, async () => {
     const browser = fontBrowser();
     try {
-      const startup = loadInterfaceFonts();
+      const loading = loadInterfaceFonts();
       for (const face of browser.faces) {
         if (face.source.includes(failedFile)) face.fail();
         else face.finish();
       }
-      await startup;
+      await loading.ready;
+      assert.deepEqual(await loading.entranceReady, {
+        displayReady: failedFile !== "barlow-800-italic.woff2",
+      });
+      loading.activateInterface();
       assert.deepEqual(
-        browser.registered,
-        browser.faces.filter((face) => face.status === "loaded"),
+        new Set(browser.registered),
+        new Set(browser.faces.filter((face) => face.status === "loaded")),
       );
     } finally {
       browser.restore();
@@ -100,19 +155,64 @@ test("a stalled upright face preserves loaded italic text and never swaps in lat
   t.mock.timers.enable({ apis: ["setTimeout"] });
   const browser = fontBrowser();
   try {
-    const startup = loadInterfaceFonts();
+    const loading = loadInterfaceFonts();
     const upright = browser.faces.find((face) =>
-      face.source.includes("barlow-800.ttf"),
+      face.source.includes("barlow-800.woff2"),
     )!;
     for (const face of browser.faces) {
       if (face !== upright) face.finish();
     }
+    await loading.entranceReady;
+    assert.ok(
+      browser.registered.some((face) => face.descriptors.style === "italic"),
+    );
     t.mock.timers.tick(3000);
-    await startup;
+    await loading.ready;
+    loading.activateInterface();
     const selected = browser.faces.filter((face) => face !== upright);
-    assert.deepEqual(browser.registered, selected);
+    assert.deepEqual(new Set(browser.registered), new Set(selected));
 
     upright.finish();
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.deepEqual(new Set(browser.registered), new Set(selected));
+  } finally {
+    browser.restore();
+  }
+});
+
+test("a stalled entrance face cannot delay the intro beyond 1200ms or swap in later", async (t) => {
+  t.mock.timers.enable({ apis: ["setTimeout"] });
+  const browser = fontBrowser();
+  try {
+    let entranceReady = false;
+    const loading = loadInterfaceFonts();
+    void loading.entranceReady.then(() => (entranceReady = true));
+    const stalled = browser.faces.find((face) =>
+      face.source.includes("barlow-800-italic.woff2"),
+    )!;
+    for (const face of browser.faces) {
+      if (face !== stalled) face.finish();
+    }
+    t.mock.timers.tick(1199);
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.equal(entranceReady, false);
+
+    t.mock.timers.tick(1);
+    assert.deepEqual(await loading.entranceReady, { displayReady: false });
+    await loading.ready;
+    assert.equal(entranceReady, true);
+    assert.deepEqual(
+      browser.registered,
+      browser.faces.filter((face) => isEntranceFont(face) && face !== stalled),
+    );
+    loading.activateInterface();
+    const selected = [...browser.registered];
+    assert.deepEqual(
+      new Set(selected),
+      new Set(browser.faces.filter((face) => face !== stalled)),
+    );
+
+    stalled.finish();
     await new Promise((resolve) => setImmediate(resolve));
     assert.deepEqual(browser.registered, selected);
   } finally {
@@ -120,16 +220,18 @@ test("a stalled upright face preserves loaded italic text and never swaps in lat
   }
 });
 
-test("a stalled download cannot block startup or swap fonts after the deadline", async (t) => {
+test("stalled downloads cannot block app startup beyond 3000ms or swap fonts after their deadlines", async (t) => {
   t.mock.timers.enable({ apis: ["setTimeout"] });
   const browser = fontBrowser();
   try {
-    const startup = loadInterfaceFonts();
+    const loading = loadInterfaceFonts();
     for (const face of browser.faces) {
       if (face.family === "Pixelify Sans") face.finish();
     }
     t.mock.timers.tick(3000);
-    await startup;
+    await loading.ready;
+    assert.equal(browser.registered.length, 0);
+    loading.activateInterface();
     const initialFonts = [...browser.registered];
     assert.deepEqual(
       initialFonts.map((face) => face.family),
@@ -151,7 +253,10 @@ test("browsers without the font loading API can still start", async () => {
   const browser = fontBrowser();
   try {
     Reflect.deleteProperty(globalThis, "FontFace");
-    await loadInterfaceFonts();
+    const loading = loadInterfaceFonts();
+    assert.deepEqual(await loading.entranceReady, { displayReady: false });
+    await loading.ready;
+    loading.activateInterface();
     assert.equal(browser.faces.length, 0);
   } finally {
     browser.restore();
