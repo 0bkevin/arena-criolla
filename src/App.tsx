@@ -35,6 +35,7 @@ import {
 } from "./storage";
 import {
   initAudio,
+  listenForAudioActivation,
   preloadReactions,
   setSound,
   sound,
@@ -140,6 +141,7 @@ export function App({
     setSound(audio);
     setPreference("sound", audio);
   }, [audio]);
+  useEffect(listenForAudioActivation, []);
   useEffect(() => {
     if (network.room) {
       setMode("online");

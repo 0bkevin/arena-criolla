@@ -31,9 +31,12 @@ export interface SoundOptions {
   strength?: number;
 }
 let context: AudioContext | null = null;
+let masterBus: GainNode | null = null;
 let effectsBus: GainNode | null = null;
 let reactionsBus: GainNode | null = null;
 let musicBus: GainNode | null = null;
+let pageHidden = false;
+let resumeAttempt: Promise<void> | null = null;
 const prepareScore = preparationWorker(
   () =>
     new Worker(new URL("./game/music.worker.ts", import.meta.url), {
@@ -159,7 +162,7 @@ export function setSound(value: boolean) {
     stopVictoryMusic();
     stopFinaleMusic();
   } else if (context || ambienceStage) {
-    initAudio();
+    initAudio(true);
     if (ambienceStage) startAmbience(ambienceStage);
   }
   if (context) {
@@ -180,7 +183,7 @@ export function setSound(value: boolean) {
     );
   }
 }
-export function initAudio() {
+export function initAudio(retryResume = false) {
   if (!enabled) return;
   try {
     if (!context) {
@@ -191,10 +194,10 @@ export function initAudio() {
       limiter.ratio.value = 8;
       limiter.attack.value = 0.003;
       limiter.release.value = 0.18;
-      const master = context.createGain();
-      master.gain.value = 0.85;
-      limiter.connect(master);
-      master.connect(context.destination);
+      masterBus = context.createGain();
+      masterBus.gain.value = pageHidden ? 0 : 0.85;
+      limiter.connect(masterBus);
+      masterBus.connect(context.destination);
       effectsBus = context.createGain();
       effectsBus.gain.value = 0.8;
       effectsBus.connect(limiter);
@@ -205,8 +208,65 @@ export function initAudio() {
       musicBus.gain.value = MUSIC_GAIN;
       musicBus.connect(limiter);
     }
-    if (context.state === "suspended") void context.resume().catch(() => {});
+    // Mobile browsers can leave a context interrupted after a call or app switch.
+    // A blocked autoplay resume may remain pending: a fresh gesture must retry it.
+    if (
+      !pageHidden &&
+      (context.state === "suspended" || context.state === "interrupted") &&
+      (!resumeAttempt || retryResume)
+    ) {
+      const attempt = context
+        .resume()
+        .catch(() => {})
+        .finally(() => {
+          if (resumeAttempt === attempt) resumeAttempt = null;
+        });
+      resumeAttempt = attempt;
+    }
   } catch {}
+}
+
+/** Keep activation inside native events, including touch release on mobile Chrome. */
+export function listenForAudioActivation() {
+  const activate = () => {
+    if (!document.hidden) initAudio(true);
+  };
+  const visibility = (hidden = document.hidden) => {
+    pageHidden = hidden;
+    if (context) {
+      masterBus?.gain.setTargetAtTime(
+        hidden ? 0 : 0.85,
+        context.currentTime,
+        0.02,
+      );
+      if (!hidden) initAudio(true);
+    }
+    if (hidden) {
+      stopReactions();
+      stopFinaleMusic();
+      stopVictoryMusic();
+    }
+  };
+  const updateVisibility = () => visibility();
+  const hide = () => visibility(true);
+  // Touch pointerdown is not an activation event in every browser. The release
+  // listeners also cover controls that prevent the compatibility click.
+  const gestures = ["pointerdown", "pointerup", "touchend", "click", "keydown"];
+  for (const event of gestures)
+    window.addEventListener(event, activate, { capture: true, passive: true });
+  document.addEventListener("visibilitychange", updateVisibility);
+  window.addEventListener("focus", updateVisibility);
+  window.addEventListener("pageshow", updateVisibility);
+  window.addEventListener("pagehide", hide);
+  visibility();
+  return () => {
+    for (const event of gestures)
+      window.removeEventListener(event, activate, { capture: true });
+    document.removeEventListener("visibilitychange", updateVisibility);
+    window.removeEventListener("focus", updateVisibility);
+    window.removeEventListener("pageshow", updateVisibility);
+    window.removeEventListener("pagehide", hide);
+  };
 }
 export function stopAmbience() {
   ambienceTicket++;
@@ -254,7 +314,13 @@ export function syncFinaleMusic(
     | undefined,
   paused: boolean,
 ) {
-  if (!scene || paused || !enabled || scene.tick >= scene.duration) {
+  if (
+    !scene ||
+    paused ||
+    pageHidden ||
+    !enabled ||
+    scene.tick >= scene.duration
+  ) {
     stopFinaleMusic();
     return;
   }
@@ -293,7 +359,7 @@ export function syncVictoryMusic(
   elapsedMs: number,
   paused: boolean,
 ) {
-  if (paused || !enabled || elapsedMs >= VICTORY_MUSIC_MS) {
+  if (paused || pageHidden || !enabled || elapsedMs >= VICTORY_MUSIC_MS) {
     stopVictoryMusic();
     return;
   }
@@ -447,6 +513,7 @@ export function playReaction(
 ) {
   if (
     !enabled ||
+    pageHidden ||
     reactionsPaused ||
     !context ||
     !reactionsBus ||
@@ -495,6 +562,7 @@ export function playReaction(
       !buffer ||
       ticket !== reaction.ticket ||
       !enabled ||
+      pageHidden ||
       reactionsPaused ||
       !context ||
       !reactionsBus ||
@@ -612,7 +680,7 @@ export function sound(
   fighter?: FighterId,
   options: SoundOptions = {},
 ) {
-  if (!enabled || !context || context.state !== "running") return;
+  if (!enabled || pageHidden || !context || context.state !== "running") return;
   const weight = fighter ? fighterById(fighter).damage : 1;
   let spatial: AudioNode | null = effectsBus;
   if (
