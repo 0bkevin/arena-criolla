@@ -1,7 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { MUSIC_SECONDS, writeArcadeMusic } from "../src/game/arcade-music";
-import { writeVictoryMusic } from "../src/game/victory-music";
 import { VICTORY_MUSIC_MS } from "../src/game/victory-types";
 import type { FinaleState } from "../shared/finales";
 

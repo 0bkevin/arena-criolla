@@ -38,12 +38,3 @@ test("Marcha firme catches delayed contact, hops, brakes and respects front/rear
   }
   for (const side of [0, 1] as const) { const r = setup(side); r.player.energy = 24; r.inputs[side].actions.special++; r.advance(1); assert.equal(r.player.attack, null); assert.equal(r.player.dash, 0); }
 });
-
-test("rally travel covers its active window and a distant whiff stops without ringout on both sides", () => {
-  for (const side of [0, 1] as const) for (const gap of [80, 180, 270, 278, 279, 280, 300, 345, 400, 620]) {
-    const r = setup(side, gap); r.inputs[side].actions.special++; r.advance(100);
-    assert.equal(r.player.stocks, 2); assert.equal(r.player.grounded, true); assert.ok(Math.abs(r.player.vx) < 0.001);
-    assert.equal(r.player.hits, gap <= 278 ? 1 : 0);
-    emit("range-probe", { side, gap, hp: r.rival.hp, hits: r.player.hits, finalX: r.player.x, finalVx: r.player.vx });
-  }
-});

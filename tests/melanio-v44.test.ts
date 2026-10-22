@@ -1,10 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { fighterById, platformsAtTick } from "../shared/content";
-import { TECHNIQUES } from "../shared/techniques";
+import { platformsAtTick } from "../shared/content";
+import { INTRO_TOTAL_TICKS } from "../shared/presentation";
 import { createMatch, cpuInput, emptyInput, stepMatch, type Input } from "./helpers/charged-finale-engine";
-import { INTRO_TOTAL_TICKS, normalizedFacing, presentationById, selectionProgress, samplePose } from "../shared/presentation";
-import { CHOREOGRAPHIES } from "../shared/choreography";
 function setup(
   side: 0 | 1 = 0,
   gap = 280,
@@ -33,41 +31,6 @@ function setup(
   opponent.energy = 100;
   return { state, inputs, player, opponent, advance, side };
 }
-
-test("Melanio identity, signal tuning, one-shot presentation and right-facing sprite metadata are registered", () => {
-  const f = fighterById("melanio");
-  assert.equal(f.name, "Melanio Escobar");
-  assert.equal(f.sprite, "melanio-v44");
-  assert.equal(f.ability, "signal");
-  assert.equal(f.special, "Señal libre");
-  assert.deepEqual(f.combos, [
-    "Micrófono abierto",
-    "Frecuencia punk",
-    "Red en marcha",
-  ]);
-  assert.deepEqual(TECHNIQUES.signal.projectile, {
-    speed: 7,
-    life: 58,
-    returnAfter: 24,
-    wave: { amplitude: 8, period: 30 },
-    radius: 10,
-  });
-  assert.equal(TECHNIQUES.signal.startup, 21);
-  assert.equal(
-    presentationById("melanio").introName,
-    "Se yergue y cruza los brazos",
-  );
-  assert.equal(CHOREOGRAPHIES.melanio.name, "Se yergue y cruza los brazos");
-  assert.equal(selectionProgress("melanio", 2800), 1);
-  assert.deepEqual(
-    samplePose(presentationById("melanio").selectionBeats, 1),
-    samplePose(presentationById("melanio").selectionBeats, 2),
-  );
-  for (let frame = 0; frame < 8; frame++)
-    for (const facing of [1, -1])
-      assert.equal(normalizedFacing("melanio", frame, facing), facing);
-});
-
 test("Señal libre pays energy, leaves a startup punish window, returns and expires on both sides", () => {
   for (const side of [0, 1] as const) {
     const r = setup(side, 280);
@@ -135,60 +98,6 @@ test("Señal libre pays energy, leaves a startup punish window, returns and expi
   assert.ok(lowEnergy.player.energy >= 24 && lowEnergy.player.energy < 25);
   assert.equal(lowEnergy.state.projectiles.length, 0);
 });
-
-test("a facing guard blocks the signal packet and a close heavy hit interrupts startup", () => {
-  for (const side of [0, 1] as const) {
-    const guarded = setup(side, 200);
-    guarded.inputs[1 - side].block = true;
-    guarded.inputs[side].actions.special++;
-    let sawBlock = false;
-    for (let n = 0; n < 90; n++) {
-      guarded.advance(1);
-      sawBlock ||= guarded.state.effects.some(
-        (effect) => effect.kind === "block" && effect.owner === side,
-      );
-    }
-    assert.equal(guarded.opponent.hp, 100);
-    assert.equal(guarded.player.hits, 0);
-    assert.ok(sawBlock);
-    assert.equal(guarded.state.projectiles.length, 0);
-
-    const interrupted = setup(side, 80);
-    interrupted.inputs[side].actions.special++;
-    interrupted.advance(1);
-    interrupted.inputs[1 - side].actions.heavy++;
-    interrupted.advance(18);
-    assert.equal(interrupted.player.attack, null);
-    assert.equal(interrupted.player.stun > 0, true);
-    assert.equal(interrupted.state.projectiles.length, 0);
-  }
-});
-
-test("all three named combos and the super gate follow shared engine rules", () => {
-  for (const side of [0, 1] as const) {
-    for (const [wins, actions, expected, bonus] of [
-      [0, ["light", "heavy"], "Micrófono abierto", 3],
-      [0, ["light", "light", "heavy"], "Frecuencia punk", 7],
-      [1, ["light", "light", "heavy"], "Frecuencia punk", 7],
-    ] as const) {
-      const r = setup(side, 80, wins);
-      for (const action of actions) {
-        r.inputs[side].actions[action]++;
-        r.advance(action === "light" ? 26 : 36);
-      }
-      assert.equal(r.player.combo, expected);
-      assert.equal(r.player.comboBonus, bonus);
-    }
-    for (const wins of [0, 1, 2, 3]) {
-      const superMove = setup(side, 80, wins);
-      superMove.inputs[side].actions.super++;
-      superMove.advance(1);
-      assert.equal(superMove.player.attack, "super");
-      assert.equal(superMove.player.combo, "Red en marcha");
-    }
-  }
-});
-
 test("Melanio CPU signal remains deterministic on the moving Roques stage", () => {
   assert.notDeepEqual(
     platformsAtTick("roques", 0),

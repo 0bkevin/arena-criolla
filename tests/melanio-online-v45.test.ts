@@ -12,14 +12,12 @@ import type { ServerMessage } from "../shared/protocol";
 class Peer {
   readonly messages: ServerMessage[] = [];
   readonly socket: WebSocket;
-  id = "";
 
   constructor(url: string) {
     this.socket = new WebSocket(url);
     this.socket.on("message", (raw) => {
       const message = JSON.parse(raw.toString()) as ServerMessage;
       this.messages.push(message);
-      if (message.type === "welcome") this.id = message.id;
     });
   }
 

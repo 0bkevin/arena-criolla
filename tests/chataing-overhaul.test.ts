@@ -2,8 +2,6 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { type FighterId } from "../shared/content";
 import { createMatch, emptyInput, stepMatch, type Input, type MatchState } from "./helpers/charged-finale-engine";
-import { ATTACK_ART } from "../src/game/attack-art";
-import { drawWiredMicrophone } from "../src/game/finales/chataing";
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const a = { name: "Luis", fighter: "chataing" as const, wins: 3 },
     b = { name: "Rival", fighter: rival, wins: 3 };
@@ -141,51 +139,4 @@ test("two Chataings throw two owned microphones simultaneously with symmetric da
   assert.equal(r.target.hits, 1);
   close(r.source.hp, r.target.hp);
   assert.equal(r.state.projectiles.length, 0);
-});
-
-test("neutral microphone fallback works without optional artwork metadata and default anchors stay finite", () => {
-  const sheet = ATTACK_ART.chataing,
-    frame = sheet.frames.microphone;
-  const calls: string[] = [];
-  const ctx = new Proxy(
-    { globalAlpha: 1 },
-    {
-      get(target, name) {
-        if (name === "globalAlpha") return target.globalAlpha;
-        return (...args: unknown[]) => {
-          calls.push(String(name));
-          for (const value of args)
-            if (typeof value === "number") assert.ok(Number.isFinite(value));
-        };
-      },
-      set(target, name, value) {
-        if (typeof value === "number") assert.ok(Number.isFinite(value));
-        if (name === "globalAlpha") target.globalAlpha = value;
-        return true;
-      },
-    },
-  ) as unknown as CanvasRenderingContext2D;
-  try {
-    delete sheet.frames.microphone;
-    for (const artwork of [false, true]) {
-      calls.length = 0;
-      drawWiredMicrophone(ctx, {}, { x: 35, y: 90 }, -1, 0.3, 40, artwork);
-      assert.equal(calls.filter((name) => name === "ellipse").length, 1);
-      assert.equal(calls.includes("drawImage"), false);
-    }
-    sheet.frames.microphone = { ...frame, anchorY: undefined };
-    calls.length = 0;
-    drawWiredMicrophone(
-      ctx,
-      {
-        [sheet.file]: { width: 1536, height: 1024 } as HTMLImageElement,
-      },
-      { x: 35, y: 90 },
-      1,
-    );
-    assert.equal(calls.filter((name) => name === "drawImage").length, 1);
-    assert.equal(calls.includes("ellipse"), false);
-  } finally {
-    sheet.frames.microphone = frame;
-  }
 });

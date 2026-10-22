@@ -1,80 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { readFile } from "node:fs/promises";
 import sharp from "sharp";
 import { createMatch, emptyInput, stepMatch, WORLD, type Input } from "./helpers/charged-finale-engine";
 import { fighterById, STAGES, platformsAtTick, type FighterId, type StageId } from "../shared/content";
 import { DORANGEL_BITE, DORANGEL_FINALE, DORANGEL_POT, dorangelPot, dorangelPotIsHot } from "../shared/dorangel";
 import { TECHNIQUES } from "../shared/techniques";
-import entrances from "../shared/entrance-assets.json";
-import actors from "../shared/finale-actor-assets.json";
-import dancers from "../shared/perro-mujeriego-assets.json";
-import { ATTACK_ART } from "../src/game/attack-art";
-test("Dorángel ships every native pose and prop in bounded transparent lossless atlases", async () => {
-  assert.equal(fighterById("dorangel").displayHeight, 177);
-  assert.equal(entrances.dorangel.frames.length, 6);
-  assert.equal(actors.seated.dorangel.frames.length, 4);
-  assert.equal(dancers.dancers.dorangel.frames.length, 8);
-  const art = ATTACK_ART.dorangel;
-  for (const pose of [
-    "pot",
-    "hearth",
-    "flame",
-    "steam",
-    "cook-finish",
-    "cook-carry",
-    "cook-lower",
-    "cook-place",
-    "cook-light-a",
-    "cook-light-b",
-    "cook-stir-a",
-    "cook-stir-b",
-    "bite-ready",
-    "bite-reach",
-    "bite-close",
-    "bite-release",
-  ])
-    assert.ok(art.frames[pose]);
-  const atlases = [
-    { file: fighterById("dorangel").sprite, frames: [] },
-    { file: entrances.dorangel.file, frames: entrances.dorangel.frames },
-    {
-      file: actors.seated.dorangel.file,
-      frames: actors.seated.dorangel.frames,
-    },
-    {
-      file: dancers.dancers.dorangel.file,
-      frames: dancers.dancers.dorangel.frames,
-    },
-    { file: art.file, frames: Object.values(art.frames) },
-  ];
-  assert.equal(new Set(atlases.map((a) => a.file)).size, 5);
-  for (const atlas of atlases) {
-    const bytes = await readFile(`public/assets/${atlas.file}.webp`);
-    assert.equal(bytes.toString("ascii", 12, 16), "VP8L");
-    const meta = await sharp(bytes).metadata();
-    assert.ok(meta.hasAlpha && meta.width! <= 2048 && meta.height! <= 2048);
-    for (const frame of atlas.frames) {
-      assert.ok(
-        frame.x >= 0 &&
-          frame.y >= 0 &&
-          frame.x + frame.width <= meta.width! &&
-          frame.y + frame.height <= meta.height!,
-      );
-      const alpha = await sharp(bytes)
-        .extract({
-          left: frame.x,
-          top: frame.y,
-          width: frame.width,
-          height: frame.height,
-        })
-        .extractChannel(3)
-        .stats();
-      assert.ok(alpha.channels[0].max >= 200 && alpha.channels[0].min === 0);
-    }
-  }
-});
-
 function setup(
   side: 0 | 1 = 0,
   gap = 75,

@@ -41,17 +41,3 @@ test("Abanico del cocotero emits five distinct trajectories, costs 25, hits idle
   }
   for (const side of [0, 1] as const) { const r = setup(side); r.player.energy = 24; r.inputs[side].actions.special++; r.advance(1); assert.equal(r.player.attack, null); assert.equal(r.state.projectiles.length, 0); }
 });
-
-test("fan range and airborne trajectories remain finite and expire without lingering shots", () => {
-  for (const side of [0, 1] as const) for (const gap of [80, 140, 280, 350, 420, 520]) {
-    const r = setup(side, gap); r.inputs[side].actions.special++; r.advance(140);
-    assert.ok(Number.isFinite(r.player.x) && Number.isFinite(r.rival.x)); assert.equal(r.state.projectiles.length, 0);
-    if (gap >= 420) { assert.equal(r.rival.hp, 100); assert.equal(r.player.hits, 0); }
-    emit("range-probe", { side, gap, hp: r.rival.hp, hits: r.player.hits, targetStocks: r.rival.stocks });
-  }
-  for (const side of [0, 1] as const) {
-    const r = setup(side, 140); r.inputs[1 - side].actions.jump++; r.advance(12); r.inputs[side].actions.special++; r.advance(140);
-    assert.ok(Number.isFinite(r.rival.y)); assert.equal(r.state.projectiles.length, 0);
-    emit("airborne-probe", { side, hp: r.rival.hp, hits: r.player.hits, finalY: r.rival.y });
-  }
-});

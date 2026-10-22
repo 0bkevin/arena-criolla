@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { FIGHTERS, STAGES } from "../shared/content";
+import { FIGHTERS, STAGES, fighterById } from "../shared/content";
 import { INTRO_TOTAL_TICKS } from "../shared/presentation";
 import {
   createMatch,
@@ -100,25 +100,22 @@ test("crossing the arena boundary costs a stock and the final stock ends the mat
   assert.equal(state.winner, 0);
 });
 
-test("every fighter's basic and advanced combos are available to either player regardless of wins", () => {
-  for (const fighter of FIGHTERS) {
-    for (const side of [0, 1] as const) {
-      for (const advanced of [false, true]) {
-        const { state, inputs } = setup();
-        const player = state.players[side];
-        player.config.fighter = fighter.id;
-        player.config.wins = 0;
-        const actions = advanced
-          ? (["light", "light", "heavy"] as const)
-          : (["light", "heavy"] as const);
-        for (const action of actions) {
-          inputs[side].actions[action]++;
-          advance(state, inputs, action === "light" ? 23 : 1);
-        }
-        const label = `${fighter.id}/P${side + 1}/${advanced ? "advanced" : "basic"}`;
-        assert.equal(player.combo, fighter.combos[advanced ? 1 : 0], label);
-        assert.equal(player.comboBonus, advanced ? 7 : 3, label);
+test("both combo sequences are available to either player from zero wins", () => {
+  for (const side of [0, 1] as const) {
+    for (const advanced of [false, true]) {
+      const { state, inputs } = setup();
+      const player = state.players[side];
+      const fighter = fighterById(player.config.fighter);
+      const actions = advanced
+        ? (["light", "light", "heavy"] as const)
+        : (["light", "heavy"] as const);
+      for (const action of actions) {
+        inputs[side].actions[action]++;
+        advance(state, inputs, action === "light" ? 23 : 1);
       }
+      const label = `${fighter.id}/P${side + 1}/${advanced ? "advanced" : "basic"}`;
+      assert.equal(player.combo, fighter.combos[advanced ? 1 : 0], label);
+      assert.equal(player.comboBonus, advanced ? 7 : 3, label);
     }
   }
 });

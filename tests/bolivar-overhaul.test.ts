@@ -2,8 +2,6 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { WORLD, createMatch, emptyInput, stepMatch } from "../shared/engine";
 import { TECHNIQUES } from "../shared/techniques";
-import { ATTACK_ART, hasAttackArt } from "../src/game/attack-art";
-import { BOLIVAR_POSES, bolivarSpecialPose, drawBolivarSpecial } from "../src/game/finales/bolivar";
 function setup(side: 0 | 1 = 0, distance = 80, wins = 3, energy = 100) {
   const actor = { name: "Bolívar", fighter: "bolivar" as const, wins },
     rival = { name: "Vicente", fighter: "zavarce" as const, wins: 3 };
@@ -83,42 +81,5 @@ test("Sabre respects range, facing, elevation, guard, low energy and interruptio
     interrupt.advance(85);
     assert.equal(interrupt.source.hits, 0);
     assert.ok(interrupt.source.hp < 100);
-  }
-});
-test("Four sabre phases preserve one blade and fully preflight all fourteen finale poses", () => {
-  assert.deepEqual([1, 14, 26, 38, 48].map(bolivarSpecialPose), [
-    "draw",
-    "slash",
-    "cut",
-    "thrust",
-    "draw",
-  ]);
-  assert.equal(BOLIVAR_POSES.length, 14);
-  const r = setup();
-  r.inputs[0].actions.special++;
-  r.advance(14);
-  assert.equal(
-    drawBolivarSpecial({} as CanvasRenderingContext2D, {}, r.source, 177),
-    false,
-  );
-  assert.equal(hasAttackArt({}, "bolivar", BOLIVAR_POSES), false);
-  const sheet = ATTACK_ART.bolivar,
-    images = {
-      [sheet.file]: {
-        width: Math.max(
-          ...Object.values(sheet.frames).map((f) => f.x + f.width),
-        ),
-        height: Math.max(
-          ...Object.values(sheet.frames).map((f) => f.y + f.height),
-        ),
-      } as HTMLImageElement,
-    };
-  assert.equal(hasAttackArt(images, "bolivar", BOLIVAR_POSES), true);
-  const saved = sheet.frames["llanero-6"];
-  delete sheet.frames["llanero-6"];
-  try {
-    assert.equal(hasAttackArt(images, "bolivar", BOLIVAR_POSES), false);
-  } finally {
-    sheet.frames["llanero-6"] = saved;
   }
 });

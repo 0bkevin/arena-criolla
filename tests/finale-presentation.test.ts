@@ -1,20 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { FIGHTERS } from "../shared/content";
 import { createMatch } from "../shared/engine";
 import { finaleById } from "../shared/finales";
-import perroChoreography from "../shared/perro-mujeriego-choreography.json";
-import actorAssets from "../shared/finale-actor-assets.json";
-import cafeFurniture from "../shared/finale-cafe-assets.json";
-import {
-  finaleActorLayout,
-  finaleBodyPoint,
-  finalePerformerFrame,
-  finaleDancePoint,
-  sampleFinaleDance,
-  drawFinale,
-} from "../src/game/finale-renderer";
-import { writeFinaleMusic } from "../src/game/finale-sounds";
+import { drawFinale } from "../src/game/finale-renderer";
 
 test("Nacho's visual drain follows the six-second profile beats, not the short finale clock", () => {
   const messages: string[] = [];

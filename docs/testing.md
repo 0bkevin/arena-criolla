@@ -13,18 +13,25 @@ Runtime relevance alone is not the criterion: the retained private creator and
 operator import tests protect account boundaries, stored data and paid requests.
 
 The 2026-10-22 static inspection covered all 167 original automated test files and
-the seven manual browser fixtures. It removed 352 of 1,070 test declarations and
-deleted 20 files. The remaining 718 declarations include parameterized tests;
-these are source counts, not runtime case counts. More than 10,000 lines of test
+the seven manual browser fixtures. After the requested follow-up pass, it removed
+499 of 1,070 test declarations and deleted 36 files. The remaining 571 declarations
+include parameterized tests; these are source counts, not runtime case counts.
+More than 15,000 lines of test
 code were removed. The inspection recorded each original file, its rationale,
 removed titles and retained titles separately from the repository's operational
-documentation. No tests, browser fixtures,
-builds, smoke checks or benchmarks were executed during this cleanup, and there
+documentation. No tests, browser fixtures, builds, smoke checks or benchmarks were
+executed during this cleanup, and there
 was no adversarial review round. TypeScript and workflow checks were static.
 
-The retained tests cover each fighter's distinct special mechanics. Shared engine
-tests cover ordinary movement, guards, jumping, combos, stocks and deterministic
-replay. Controls tests and browser fixtures cover input and focus/scroll behavior.
+The retained tests cover distinct special mechanics. Shared engine tests cover
+ordinary movement, guards, jumping, combos, stocks and deterministic replay.
+Shared rules use representative fixtures and both player slots; the definitive
+usage-limit test covers each attack lifecycle instead of replaying the whole
+roster. Controls tests and browser fixtures cover input and focus/scroll behavior.
+Character-specific online tests concentrate on their additional wire state rather
+than repeating generic movement and room-isolation checks. The unmounted creator
+UI's browser API and IndexedDB draft tests were removed; the private operator's
+server-side storage, ownership, billing and import/publish contracts remain.
 Artwork preparation scripts remain available, but their offline packing and
 recompression test suites were removed from the routine suite. Those tools no
 longer have dedicated automated coverage; inspect their outputs when changing

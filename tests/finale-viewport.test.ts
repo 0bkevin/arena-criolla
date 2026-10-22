@@ -5,11 +5,7 @@ import {
   finaleArtXRange,
   finaleViewportBounds,
 } from "../src/game/finale-viewport";
-import {
-  ATTACK_ART,
-  drawAttackArt,
-  type AttackArtFrame,
-} from "../src/game/attack-art";
+import type { AttackArtFrame } from "../src/game/attack-art";
 
 function context(
   width: number,

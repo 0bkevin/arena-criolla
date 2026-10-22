@@ -4,8 +4,6 @@ import { fighterById } from "../shared/content";
 import { cpuInput, createMatch, emptyInput, outgoingDamageMultiplier, stepMatch, type Input } from "./helpers/charged-finale-engine";
 import { finaleById } from "../shared/finales";
 import { TECHNIQUES } from "../shared/techniques";
-import { ATTACK_ART } from "../src/game/attack-art";
-import { drawTransformationBody, transformationPose } from "../src/game/transformation-art";
 function setup(side: 0 | 1 = 0, gap = 500, wins = 3, energy = 100) {
   const conde = { name: "Conde", fighter: "conde" as const, wins };
   const rival = { name: "Rival", fighter: "javier" as const, wins: 3 };
@@ -199,61 +197,6 @@ test("transformation state serializes and replays deterministically; hard CPU ac
   cpu.source.energy = 100;
   assert.equal(cpuInput(cpu.state, emptyInput(), "hard").actions.super, 0);
 });
-
-test("transformed render poses match contact, recoil and locomotion with safe missing-art fallback", () => {
-  const r = setup();
-  r.activate();
-  r.advance(40);
-  const p = r.source;
-  assert.equal(transformationPose(p), "ready");
-  p.blocking = true;
-  assert.equal(transformationPose(p), "guard");
-  p.blocking = false;
-  p.grounded = false;
-  assert.equal(transformationPose(p), "jump");
-  p.grounded = true;
-  p.vx = 3;
-  assert.equal(transformationPose(p), "run");
-  p.vx = 0;
-  for (const [attack, tick, pose] of [
-    ["light", 6, "punch"],
-    ["heavy", 11, "kick"],
-    ["special", 14, "whirl"],
-  ] as const) {
-    p.attack = attack;
-    p.attackTick = tick;
-    assert.equal(transformationPose(p), pose);
-  }
-  p.stun = 2;
-  assert.equal(transformationPose(p), "hurt");
-  const draws: unknown[] = [];
-  const ctx = new Proxy(
-    {
-      globalAlpha: 1,
-      drawImage(...args: unknown[]) {
-        draws.push(args);
-      },
-    },
-    { get: (o, k) => Reflect.get(o, k) ?? (() => {}) },
-  ) as unknown as CanvasRenderingContext2D;
-  assert.equal(drawTransformationBody(ctx, {}, p, p.x, p.y, 190), false);
-  assert.equal(draws.length, 0);
-  const image = { width: 2048, height: 1024 } as HTMLImageElement;
-  assert.equal(
-    drawTransformationBody(
-      ctx,
-      { [ATTACK_ART.conde.file]: image },
-      p,
-      p.x,
-      p.y,
-      190,
-    ),
-    true,
-  );
-  assert.equal(draws.length, 1);
-  assert.equal(finaleById("conde")!.damageBeats.length, 0);
-});
-
 test("shared empowerment snapshots projectile damage once, survives expiry and never compounds on reflections", () => {
   const r = setup();
   r.source.config.fighter = "vallenilla";

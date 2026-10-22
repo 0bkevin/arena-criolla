@@ -14,7 +14,6 @@ import {
   activeArenaPerformance,
   isArenaFinalist,
 } from "../shared/arena-finales";
-import { finaleById } from "../shared/finales";
 
 for (const id of reviewed) {
   test(`${id}: the finale leaves the opponent, arena clock and existing projectiles live`, () => {

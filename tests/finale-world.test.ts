@@ -16,10 +16,8 @@ import {
   type Input,
   type MatchState,
 } from "./helpers/charged-finale-engine";
-import actorAssets from "../shared/finale-actor-assets.json";
 import {
   FINALE_CAPTURE_TICK,
-  finaleAsset,
   finaleById,
 } from "../shared/finales";
 import { advanceArenaCamera, cameraBounds } from "../src/game/arena-camera";

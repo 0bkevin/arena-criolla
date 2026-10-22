@@ -8,7 +8,7 @@ import {
   type Input,
   type MatchState,
 } from "./helpers/charged-finale-engine";
-import { fighterById, type FighterId } from "../shared/content";
+import type { FighterId } from "../shared/content";
 import {
   SQUAD_COUNT,
   SQUAD_LAUNCH_TICK,

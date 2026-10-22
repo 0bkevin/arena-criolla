@@ -72,15 +72,10 @@ test("the whistle accelerates to 12, oscillates by 28, and expires at age 85 wit
   }
 });
 
-test("a timed jump evades the whistle on both sides and range probes use real collision", () => {
+test("a timed jump evades the whistle on both sides", () => {
   for (const side of [0, 1] as const) {
     const r = setup(side, 280); r.inputs[side].actions.special++; r.advance(12); r.inputs[1 - side].actions.jump++; r.advance(120);
     assert.equal(r.rival.hp, 100); assert.equal(r.player.hits, 0); assert.equal(r.state.projectiles.length, 0);
     emit("jump-evade", { side, jumpTick: 13, hp: r.rival.hp, landed: r.rival.grounded });
-  }
-  for (const gap of [25, 80, 120, 520, 620, 760, 820]) {
-    const r = setup(0, gap); r.inputs[0].actions.special++; r.advance(150);
-    assert.ok(Number.isFinite(r.player.x) && Number.isFinite(r.rival.x));
-    emit("range-probe", { gap, hp: r.rival.hp, hits: r.player.hits, stocks: r.rival.stocks });
   }
 });
