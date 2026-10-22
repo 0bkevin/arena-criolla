@@ -1,5 +1,17 @@
 # Controls validation
 
+## Dialog scroll regressions
+
+With the standalone Vite server below, open
+`http://localhost:5174/tests/browser/modal-scroll.html` and run
+`await modalScrollAudit.run()`. All three scenarios must pass.
+
+The fixture mounts the production `Modal` in React StrictMode over a tall page.
+It checks that reaching the dialog's scroll limit cannot move the background,
+that closing a stacked dialog keeps the remaining dialog locked, and that the
+final close or unmount restores the original page position and inline styles.
+The checks drive browser scroll APIs; physical touch gestures are not emulated.
+
 ## Desktop regressions
 
 With the standalone Vite server below, open
