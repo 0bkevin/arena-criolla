@@ -20,11 +20,7 @@ import {
   VolumeX,
   Zap,
 } from "lucide-react";
-import {
-  fighterById,
-  stageById,
-  SUPER_CHARGE_SECONDS_LABEL,
-} from "../../shared/content";
+import { fighterById, stageById } from "../../shared/content";
 import { INTRO_COUNTDOWN_START, introActor } from "../../shared/presentation";
 import {
   cpuInput,
@@ -62,6 +58,7 @@ import { Portrait } from "./Portrait";
 import { VictoryScreen } from "./VictoryScreen";
 import { TouchControls } from "./TouchControls";
 import { SuperMeter } from "./SuperMeter";
+import { DesktopControlsBar } from "./DesktopControls";
 import {
   enterLandscape,
   hasTouchInput,
@@ -131,13 +128,7 @@ export function Game(props: Props) {
   const [view, setView] = useState(initial);
   const [fullscreenError, setFullscreenError] = useState("");
   useLayoutEffect(() => {
-    if (
-      !device.touch &&
-      touchControlsAvailable &&
-      !paused &&
-      view.phase === "playing" &&
-      page.current
-    )
+    if (!device.touch && !paused && view.phase !== "finished" && page.current)
       return trackHybridGameChrome(page.current);
   }, [device.touch, touchControlsAvailable, paused, view.phase]);
   useEffect(() => {
@@ -1006,7 +997,8 @@ export function Game(props: Props) {
                 aria-keyshortcuts="Space"
                 onClick={skipPresentations}
               >
-                Saltar <ArrowRight size={14} aria-hidden="true" />
+                Saltar intro {!device.touch && <kbd>Espacio</kbd>}{" "}
+                <ArrowRight size={14} aria-hidden="true" />
               </button>
             </div>
           ) : (
@@ -1093,45 +1085,26 @@ export function Game(props: Props) {
           />
         )}
       </div>
-      {!intro && (
-        <>
-          {touchControlsAvailable && !paused && view.phase === "playing" && (
-            <TouchControls
-              onPress={touchPress}
-              onRelease={touchRelease}
-              reset={touchReset}
-              energy={view.players[localIndex].energy}
-              superUsed={view.players[localIndex].superUsed}
-              superChargeTicks={view.players[localIndex].superChargeTicks}
-              wins={view.players[localIndex].config.wins}
-              specialUnlockWins={specialUnlockWins}
-            />
-          )}
-          {!paused && view.phase === "playing" && (
-            <div className="game-controls-bar">
-              <span>
-                <kbd>A</kbd>
-                <kbd>D</kbd> Mover <kbd>W</kbd> Saltar
-              </span>
-              <span>
-                <kbd>J</kbd> Ligero <kbd>K</kbd> Fuerte <kbd>L</kbd> Especial
-                {view.players[localIndex].config.wins < specialUnlockWins &&
-                  ` (${specialUnlockWins} victorias)`}
-              </span>
-              <span>
-                <kbd>U</kbd> Bloquear <kbd>⇧</kbd> Esquivar <kbd>I</kbd>{" "}
-                Definitiva (
-                {view.players[localIndex].superUsed
-                  ? "usada"
-                  : `mantén ${SUPER_CHARGE_SECONDS_LABEL} s`}
-                )
-              </span>
-              <button className="text-button" onClick={openHelp}>
-                Todos los controles <ArrowRight size={14} />
-              </button>
-            </div>
-          )}
-        </>
+      {touchControlsAvailable && !paused && view.phase === "playing" && (
+        <TouchControls
+          onPress={touchPress}
+          onRelease={touchRelease}
+          reset={touchReset}
+          energy={view.players[localIndex].energy}
+          superUsed={view.players[localIndex].superUsed}
+          superChargeTicks={view.players[localIndex].superChargeTicks}
+          wins={view.players[localIndex].config.wins}
+          specialUnlockWins={specialUnlockWins}
+        />
+      )}
+      {!paused && (view.phase === "playing" || (intro && !device.touch)) && (
+        <DesktopControlsBar
+          local={mode === "local"}
+          players={
+            mode === "online" ? [view.players[localIndex]] : view.players
+          }
+          onHelp={openHelp}
+        />
       )}
       {portraitBlocked && (
         <div

@@ -2,8 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { Game } from "../src/components/Game";
-import { createMatch } from "../shared/engine";
+import { Game, type GameMode } from "../src/components/Game";
+import { createMatch, type MatchState } from "../shared/engine";
 import { finaleById } from "../shared/finales";
 import type { BuiltInFighterId } from "../shared/content";
 
@@ -12,8 +12,15 @@ function renderScreen(
   width: number,
   height: number,
   touchPoints = touch ? 1 : 0,
-  finale?: BuiltInFighterId,
-  remaining?: number,
+  options: {
+    finale?: BuiltInFighterId;
+    remaining?: number;
+    phase?: MatchState["phase"];
+    mode?: GameMode;
+    wins?: [number, number];
+    localIndex?: number;
+    superUsed?: [boolean, boolean];
+  } = {},
 ) {
   const values = {
     innerWidth: width,
@@ -38,12 +45,16 @@ function renderScreen(
     const initial = createMatch(
       "caracas",
       [
-        { name: "Pana", fighter: "zavarce", wins: 0 },
-        { name: "CPU", fighter: "javier", wins: 0 },
+        { name: "Pana", fighter: "zavarce", wins: options.wins?.[0] ?? 0 },
+        { name: "CPU", fighter: "javier", wins: options.wins?.[1] ?? 0 },
       ],
       "match-screen-test",
     );
-    initial.phase = "playing";
+    initial.phase = options.phase ?? "playing";
+    initial.players.forEach((player, index) => {
+      player.superUsed = options.superUsed?.[index] ?? false;
+    });
+    const { finale, remaining } = options;
     if (remaining !== undefined) initial.remaining = remaining;
     if (finale) {
       const profile = finaleById(finale)!;
@@ -64,7 +75,8 @@ function renderScreen(
     return renderToStaticMarkup(
       createElement(Game, {
         initial,
-        mode: "practice",
+        mode: options.mode ?? "practice",
+        localIndex: options.localIndex,
         difficulty: "normal",
         onExit() {},
         onResult() {},
@@ -100,14 +112,9 @@ test("the match clock shows minutes until 99 seconds remain", () => {
       [false, 320, 568],
       [true, 844, 390],
     ] as const) {
-      const html = renderScreen(
-        touch,
-        width,
-        height,
-        touch ? 1 : 0,
-        undefined,
+      const html = renderScreen(touch, width, height, touch ? 1 : 0, {
         remaining,
-      );
+      });
       const minutesClass =
         label === "2 min" ? ' class="match-clock-minutes"' : "";
       assert.ok(
@@ -154,7 +161,9 @@ test("landscape touch screens retain their complete control pad", () => {
 test("finales retain the normal HUD, keyboard help and touch pad layout", () => {
   for (const fighter of ["capriles", "nacho", "giuseppe"] as const) {
     for (const touch of [false, true]) {
-      const screen = renderScreen(touch, 844, 390, touch ? 1 : 0, fighter);
+      const screen = renderScreen(touch, 844, 390, touch ? 1 : 0, {
+        finale: fighter,
+      });
       assert.match(screen, /class="match-hud"/);
       assert.equal((screen.match(/class="health-track"/g) || []).length, 2);
       assert.match(screen, /class="game-controls-bar"/);
@@ -171,7 +180,9 @@ test("Nacho's finale has no embedded video or YouTube player on any game layout"
     [390, 844],
   ]) {
     for (const touch of [false, true]) {
-      const screen = renderScreen(touch, width, height, touch ? 1 : 0, "nacho");
+      const screen = renderScreen(touch, width, height, touch ? 1 : 0, {
+        finale: "nacho",
+      });
       assert.doesNotMatch(
         screen,
         /<iframe\b|<video\b|nacho-finale-clip|youtube(?:-nocookie)?\.com/i,
@@ -180,4 +191,56 @@ test("Nacho's finale has no embedded video or YouTube player on any game layout"
       assert.match(screen, /class="arena-wrap"/);
     }
   }
+});
+
+test("the intro keeps compact shortcuts and directs players to the help dialog", () => {
+  const screen = renderScreen(false, 1280, 800, 0, { phase: "intro" });
+  assert.match(screen, /class="game-controls-bar"/);
+  assert.match(screen, /Cómo jugar/);
+  assert.match(screen, />J<\/kbd>/);
+  assert.doesNotMatch(screen, /Guía rápida de teclado|Tu primer combo/);
+  assert.doesNotMatch(
+    renderScreen(true, 844, 390, 1, { phase: "intro" }),
+    /game-controls-bar|Guía rápida de teclado/,
+  );
+});
+
+test("local combat shows both layouts and the hold-to-charge definitiva from the first fight", () => {
+  const screen = renderScreen(false, 1280, 800, 0, {
+    mode: "local",
+    wins: [0, 3],
+  });
+  const first = screen.match(
+    /aria-label="Controles del jugador 1"([\s\S]*?)<\/div>/,
+  )?.[1];
+  const second = screen.match(
+    /aria-label="Controles del jugador 2"([\s\S]*?)<\/div>/,
+  )?.[1];
+  assert.ok(first);
+  assert.ok(second);
+  for (const key of ["←", "→", "↑", "1", "2", "3", "0", "Enter", "5"])
+    assert.ok(second.includes(`>${key}</kbd>`), `P2 is missing ${key}`);
+  assert.match(first, />I<\/kbd> Definitiva \(mantén 0,8 s\)/);
+  assert.doesNotMatch(first, /3 victorias/);
+  assert.doesNotMatch(second, /3 victorias/);
+});
+
+test("online players use P1 keys and their own definitiva status from the second slot", () => {
+  const screen = renderScreen(false, 1280, 800, 0, {
+    mode: "online",
+    localIndex: 1,
+    superUsed: [false, true],
+  });
+  const row = screen.match(
+    /aria-label="Controles del jugador 1"([\s\S]*?)<\/div>/,
+  )?.[1];
+  assert.ok(row);
+  assert.match(row, />J<\/kbd>/);
+  assert.match(row, />I<\/kbd> Definitiva \(usada\)/);
+  assert.doesNotMatch(row, /3 victorias/);
+  assert.doesNotMatch(screen, /Controles del jugador 2/);
+  assert.match(
+    renderScreen(false, 1280, 800, 0),
+    />I<\/kbd> Definitiva \(mantén 0,8 s\)/,
+  );
 });

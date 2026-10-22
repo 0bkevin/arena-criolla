@@ -8,6 +8,7 @@ import "./arcade-theme.css";
 import "./mobile-game.css";
 import "./ui-accessibility.css";
 import "./victory-screen.css";
+import "./desktop-controls.css";
 
 const root = createRoot(document.getElementById("root")!);
 const fontLoading = loadInterfaceFonts();
