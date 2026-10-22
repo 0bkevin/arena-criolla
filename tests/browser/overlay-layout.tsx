@@ -4,6 +4,8 @@ import { flushSync } from "react-dom";
 import { createMatch } from "../../shared/engine";
 import { Game } from "../../src/components/Game";
 import { Help } from "../../src/components/Help";
+import { FighterDetail } from "../../src/components/FighterDetail";
+import type { FighterId } from "../../shared/content";
 import { App } from "../../src/App";
 import { loadInterfaceFonts } from "../../src/fonts";
 import { setSound } from "../../src/audio";
@@ -232,4 +234,61 @@ export async function runRosterNavigation() {
   } finally {
     unmount();
   }
+}
+
+/** The live canvas must stay inside its grid row when a short viewport scrolls. */
+export async function runMovePreviewLayout(fighter: FighterId = "maite") {
+  unmount();
+  await loadInterfaceFonts();
+  root = createRoot(document.getElementById("fixture")!);
+  flushSync(() =>
+    root!.render(
+      <StrictMode>
+        <div className="app-shell arcade-app in-lobby">
+          <FighterDetail
+            fighter={fighter}
+            onClose={() => {}}
+            onSelect={() => {}}
+          />
+        </div>
+      </StrictMode>,
+    ),
+  );
+  document.querySelector<HTMLButtonElement>('[data-move="combo2"]')!.click();
+  await settle();
+  return movePreviewLayout();
+}
+
+/** Can also be called after live resizing or changing the control view. */
+export function movePreviewLayout() {
+  const dialog = document.querySelector<HTMLDialogElement>(
+    ".fighter-moves-modal",
+  )!;
+  const preview = dialog
+    .querySelector<HTMLElement>(".move-preview")!
+    .getBoundingClientRect();
+  const stage = dialog
+    .querySelector<HTMLElement>(".move-preview-stage")!
+    .getBoundingClientRect();
+  const combos = dialog
+    .querySelector<HTMLElement>(".move-combo-section")!
+    .getBoundingClientRect();
+  const stageContained =
+    stage.top >= preview.top - 1 && stage.bottom <= preview.bottom + 1;
+  const combosClear = stage.bottom <= combos.top + 1;
+  const horizontalOverflow = dialog.scrollWidth > dialog.clientWidth + 1;
+  const result = {
+    viewport: [innerWidth, innerHeight],
+    stageContained,
+    combosClear,
+    horizontalOverflow,
+    stageBottom: stage.bottom,
+    previewBottom: preview.bottom,
+    combosTop: combos.top,
+  };
+  if (!stageContained || !combosClear || horizontalOverflow)
+    throw new Error(
+      "Movement preview overlaps its controls: " + JSON.stringify(result),
+    );
+  return { pass: true, ...result };
 }

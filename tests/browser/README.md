@@ -7,6 +7,8 @@ With the standalone Vite server below, open
 
 ```js
 await overlayReview.runRosterNavigation(); // desktop: all three scenarios pass
+await overlayReview.runMovePreviewLayout(); // live combo canvas cannot overlap its controls
+overlayReview.movePreviewLayout(); // repeat after resizing the open movement dialog
 await overlayReview.mount("playing", true); // portrait: orientation gate; landscape: pause via UI
 await overlayReview.mount("victory"); // production Game result, including its focus management
 await overlayReview.mount("draw");
