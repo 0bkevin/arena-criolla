@@ -358,20 +358,22 @@
   border-bottom-width: 3px;
 }
 
-.gamepad-controls-guide .help-input {
+.gamepad-controls-guide .help-input,
+.modal.fighter-moves-modal .move-gamepad-control .help-input {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  min-width: 30px;
-  height: 30px;
+  min-width: var(--control-key-size, 30px);
+  height: var(--control-key-size, 30px);
   padding: 0 7px;
   border-radius: 4px;
-  font: 700 13px/1 var(--font-body);
+  font: 700 var(--control-key-font-size, 13px)/1 var(--font-body);
 }
 
-.gamepad-controls-guide .is-face-button {
-  width: 30px;
+.gamepad-controls-guide .is-face-button,
+.modal.fighter-moves-modal .move-gamepad-control .is-face-button {
+  width: var(--control-key-size, 30px);
   padding: 0;
   border-radius: 50%;
 }

@@ -1,10 +1,31 @@
-import { fighterById, SUPER_CHARGE_TICKS, type FighterId } from "../../shared/content";
-import { createMatch, emptyInput, stepMatch } from "../../shared/engine";
+import {
+  fighterById,
+  SUPER_CHARGE_TICKS,
+  type FighterId,
+} from "../../shared/content";
+import { createMatch, emptyInput, stepMatch, WORLD } from "../../shared/engine";
 import { finaleById } from "../../shared/finales";
 import { TECHNIQUES } from "../../shared/techniques";
+import {
+  arenaFinaleInRange,
+  isArenaFinalist,
+} from "../../shared/arena-finales";
 
 export type GuideMove =
   "light" | "heavy" | "combo1" | "combo2" | "special" | "final";
+
+export function moveDemoLabel(id: FighterId, move: GuideMove) {
+  const fighter = fighterById(id);
+  return {
+    light: "Golpe rápido",
+    heavy: "Golpe fuerte",
+    special: fighter.special,
+    final: finaleById(id)?.title ?? fighter.combos[2],
+    combo1: fighter.combos[0],
+    combo2: fighter.combos[1],
+  }[move];
+}
+
 export const demoRivalFor = (id: FighterId): FighterId =>
   TECHNIQUES[fighterById(id).ability].reflect
     ? "vallenilla"
@@ -19,7 +40,11 @@ export function simulateMoveDemo(id: FighterId, move: GuideMove) {
     rival = demoRivalFor(id),
     technique = TECHNIQUES[f.ability];
   const state = createMatch("caracas", [
-    { name: f.shortName, fighter: id, wins: 3 },
+    {
+      name: f.shortName,
+      fighter: id,
+      wins: Math.max(3, f.specialUnlockWins ?? 0),
+    },
     { name: fighterById(rival).shortName, fighter: rival, wins: 3 },
   ]);
   state.phase = "playing";
@@ -55,7 +80,7 @@ export function simulateMoveDemo(id: FighterId, move: GuideMove) {
   state.players.forEach((p, index) => {
     const origin = transform || rangedFinal ? 280 : 435;
     p.x = index ? origin + distance : origin;
-    p.y = 555;
+    p.y = WORLD.floor;
     p.vx = 0;
     p.vy = 0;
     p.facing = index ? -1 : 1;
@@ -63,6 +88,12 @@ export function simulateMoveDemo(id: FighterId, move: GuideMove) {
     p.energy = 100;
     p.grounded = true;
   });
+  if (move === "final" && isArenaFinalist(id)) {
+    const [player, target] = state.players;
+    // Stage close-range finales inside their real reach, without changing contacts.
+    while (target.x - player.x > 80 && !arenaFinaleInRange(player, target))
+      target.x -= 10;
+  }
   const input: [ReturnType<typeof emptyInput>, ReturnType<typeof emptyInput>] =
     [emptyInput(), emptyInput()];
   let duration =
@@ -76,9 +107,9 @@ export function simulateMoveDemo(id: FighterId, move: GuideMove) {
             ? 165
             : 180;
   if (move === "final") {
-    const final = finaleById(id)!;
+    const final = finaleById(id);
     // Include startup and release so grabs, knockback and temporary forms can be reviewed.
-    duration = SUPER_CHARGE_TICKS + final.duration + 100;
+    duration = SUPER_CHARGE_TICKS + (final?.duration ?? 180) + 100;
     input[0].superHeld = true;
   }
   const snapshots = [structuredClone(state)];

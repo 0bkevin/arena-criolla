@@ -407,20 +407,31 @@ export function drawSprite(
 export async function preloadAssets(
   fighterIds: readonly FighterId[] = FIGHTERS.map((fighter) => fighter.id),
   stageIds: readonly string[] = STAGES.map((stage) => stage.id),
+  options: {
+    entrance?: boolean;
+    attacks?: readonly FighterId[];
+    finales?: readonly FighterId[];
+  } = {},
 ) {
   // Snapshot the requested roster before loading: publishing can change it mid-flight.
   const fighters = [...new Set(fighterIds)];
   const stages = [...new Set(stageIds)];
+  const attacks = new Set(options.attacks ?? fighters);
+  const finales = new Set(options.finales ?? fighters);
   const hasCourier = fighters.some(
-    (id) => fighterById(id).ability === "courier",
+    (id) =>
+      (attacks.has(id) || finales.has(id)) &&
+      fighterById(id).ability === "courier",
   );
-  const hasNacho = fighters.includes("nacho");
+  const hasNacho = finales.has("nacho");
   // Coffee, the two vehicle rides and the musical duel seat both fighters.
-  const hasSeatedFinale = fighters.some((id) => seatedFinaleActors.has(id));
+  const hasSeatedFinale = fighters.some(
+    (id) => finales.has(id) && seatedFinaleActors.has(id),
+  );
   const finaleFiles = [
     ...new Set(
       fighters.flatMap((id) => {
-        const capture = finaleById(id)?.mode === "capture";
+        const capture = finales.has(id) && finaleById(id)?.mode === "capture";
         const asset = capture ? finaleAsset(id) : undefined;
         const seated = (
           finaleActors.seated as Record<string, { file: string }>
@@ -437,7 +448,7 @@ export async function preloadAssets(
           ? (perroMujeriego.dancers as Record<string, { file: string }>)[id]
           : undefined;
         return [
-          ...(ATTACK_ART[id] ? [ATTACK_ART[id].file] : []),
+          ...(attacks.has(id) && ATTACK_ART[id] ? [ATTACK_ART[id].file] : []),
           ...(asset ? [asset.file] : []),
           ...(hasSeatedFinale && seated ? [seated.file] : []),
           ...(capture && performer ? [performer.file] : []),
@@ -446,8 +457,8 @@ export async function preloadAssets(
             : hasNacho && dancer
               ? [dancer.file]
               : []),
-          ...(id === "giuseppe" ? [finaleDesk.file] : []),
-          ...(id === "capriles"
+          ...(finales.has(id) && id === "giuseppe" ? [finaleDesk.file] : []),
+          ...(finales.has(id) && id === "capriles"
             ? [finaleActors.caprilesCafe.file, cafeFurniture.file]
             : []),
         ];
@@ -456,7 +467,7 @@ export async function preloadAssets(
   ];
   const [results, courier, finaleImages] = await Promise.all([
     Promise.all([
-      ...fighters.map((id) => loadSprite(id)),
+      ...fighters.map((id) => loadSprite(id, { entrance: options.entrance })),
       ...stages.map((id) => loadImage(id)),
     ]),
     hasCourier ? loadImage(courierManifest.file) : undefined,

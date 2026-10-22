@@ -60,6 +60,7 @@ import "./ui-accessibility.css";
 import "./victory-screen.css";
 import "./desktop-controls.css";
 import "./progress.css";
+import "./fighter-moves.css";
 
 type ModalName = "help" | "fighters" | "stages" | "progress" | "rooms" | null;
 const colorStyle = (color: string): React.CSSProperties =>
@@ -603,8 +604,8 @@ export function App({
       )}
       {detail && (
         <FighterDetail
+          key={detail}
           fighter={detail}
-          wins={Number(progress.wins[detail]) || 0}
           onClose={() => setDetail(null)}
           onSelect={() => {
             selectFighter(detail);

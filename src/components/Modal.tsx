@@ -80,8 +80,13 @@ export function Modal({
     >
       <div className="modal-header">
         <h2>{title}</h2>
-        <button className="icon-button" aria-label="Cerrar" onClick={onClose}>
-          <X size={20} />
+        <button
+          type="button"
+          className="icon-button modal-close"
+          aria-label="Cerrar"
+          onClick={onClose}
+        >
+          <X size={20} aria-hidden="true" />
         </button>
       </div>
       {children}
