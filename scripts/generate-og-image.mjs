@@ -2,7 +2,7 @@ import sharp from "sharp";
 import { readFile, writeFile } from "node:fs/promises";
 
 // Reuse the lobby's current artwork, typography and palette for the social cover.
-// Run `npm run assets:og` to rebuild the lossless master and lightweight social JPEG.
+// Run `npm run assets:og` to rebuild the social JPEG from the current source art.
 const width = 1200;
 const height = 630;
 const theme = await readFile("src/arcade-theme.css", "utf8");
@@ -242,7 +242,6 @@ const cover = await sharp({
   .composite(layers)
   .png({ compressionLevel: 9 })
   .toBuffer();
-await writeFile("public/assets/og-arena-criolla.png", cover);
 // Full color resolution keeps the colored lettering and illustrated edges crisp.
 // Encode directly from the master so rebuilding never compounds JPEG loss.
 const social = await sharp(cover)
@@ -255,6 +254,4 @@ const social = await sharp(cover)
   })
   .toBuffer();
 await writeFile("public/assets/og-arena-criolla.jpg", social);
-console.log(
-  `Created OG master PNG and social JPEG (1200 × 630, JPEG ${social.length} bytes)`,
-);
+console.log(`Created social JPEG (1200 × 630, ${social.length} bytes)`);

@@ -112,7 +112,7 @@
       "rgbaSha256": "0e600c0e3ed4ca0fbfc26a53dba46856d011dce8125679f65ec158f8e56f9fa4",
       "variants": [
         {
-          "file": "assets/optimized/finales-nacho-dance-90b7e9f5ba5826b7.webp",
+          "file": "assets/optimized/perro-mujeriego-v3-nacho-90b7e9f5ba5826b7.webp",
           "sha256": "90b7e9f5ba5826b767d775405cb8c6f99001fef162dcf679407c6a76b2394744",
           "bytes": 742720,
           "contentType": "image/webp"
@@ -154,19 +154,6 @@
           "file": "assets/optimized/gomez-defiant-entrance-1717ac5a8029fbc1.webp",
           "sha256": "1717ac5a8029fbc19acc0a7fe563f3b051f04a9d3122a231c7dcc1b72d332370",
           "bytes": 426410,
-          "contentType": "image/webp"
-        }
-      ]
-    },
-    "javier-defiant-entrance.webp": {
-      "source": "assets/javier-defiant-entrance.webp",
-      "sourceSha256": "aabd9c7611d6c092fe9e8eeea4d2db95775fbed322f6b095dcfdd34929398eee",
-      "rgbaSha256": "71137bfddefc180a4d537dadf18c4a4b386efe8767a84065107d68050c8d7820",
-      "variants": [
-        {
-          "file": "assets/optimized/javier-defiant-entrance-574b458ca4069bf1.webp",
-          "sha256": "574b458ca4069bf1712a32aaf082aa7dd640287e8d606c3501c84dfb39ce21a4",
-          "bytes": 433352,
           "contentType": "image/webp"
         }
       ]
@@ -249,38 +236,6 @@
         }
       ]
     },
-    "nacho-defiant-entrance.webp": {
-      "source": "assets/nacho-defiant-entrance.webp",
-      "sourceSha256": "ff89d7b93c35791f1a5d18b616cf330be5cccc5b2527f8ae92883fd6dbe0ec00",
-      "rgbaSha256": "2d8ab3f35d54bef84e92ca0e6632695bec3e3e84099de2b6863d6ca56c36409a",
-      "variants": [
-        {
-          "file": "assets/optimized/nacho-defiant-entrance-c8b83d42cb0f33a9.webp",
-          "sha256": "c8b83d42cb0f33a991427fcd6efc8b0272ac302c7c3600e9f58f0c13be42b36b",
-          "bytes": 502490,
-          "contentType": "image/webp"
-        }
-      ]
-    },
-    "og-arena-criolla.png": {
-      "source": "assets/og-arena-criolla.png",
-      "sourceSha256": "0def2fb5da5bfe957a6385c320df000ed72ddf7e8396c82698e6bbc2c3b0e004",
-      "rgbaSha256": "d363401ccb08e05250954322c711e8bac72d0b55dd529caa53ea0a6452b95add",
-      "variants": [
-        {
-          "file": "assets/optimized/og-arena-criolla-ea8f12d8f27c5f6a.png",
-          "sha256": "ea8f12d8f27c5f6a72ed5348a1e4b2508173fbc23e21cc91e916ba1bf2bba655",
-          "bytes": 1432205,
-          "contentType": "image/png"
-        },
-        {
-          "file": "assets/optimized/og-arena-criolla-8715d6219cb59ee6.avif",
-          "sha256": "8715d6219cb59ee623d4fd591c4aff390fa5bdaacdd8cd954b6b7c76799ac1eb",
-          "bytes": 1121193,
-          "contentType": "image/avif"
-        }
-      ]
-    },
     "oscar-contrabajo-attack-v1.webp": {
       "source": "assets/oscar-contrabajo-attack-v1.webp",
       "sourceSha256": "d04f33b45c94df9b94a7253254dce323192c474eca1ae55615f5fa59133cf2d0",
@@ -290,19 +245,6 @@
           "file": "assets/optimized/oscar-contrabajo-attack-v1-47413b7f76019a79.webp",
           "sha256": "47413b7f76019a797136487b581abcfb601a67ce9c5e8aef22b849f17e7caa52",
           "bytes": 723126,
-          "contentType": "image/webp"
-        }
-      ]
-    },
-    "oscar-entrance-v24.webp": {
-      "source": "assets/oscar-entrance-v24.webp",
-      "sourceSha256": "40c44da295698feda2fc06ec96323aff9a7e7df6faffe58ab1f5aba4d9873020",
-      "rgbaSha256": "a76f1d79e31553a14e337a9170d82b992c0e228d8de0bbc026bf6adf0bc9b874",
-      "variants": [
-        {
-          "file": "assets/optimized/oscar-entrance-v24-16c0451da5654200.webp",
-          "sha256": "16c0451da5654200a6211b3070390bc80f9bdf5cd69d4bc41a3d04f3bf2b168f",
-          "bytes": 1172426,
           "contentType": "image/webp"
         }
       ]

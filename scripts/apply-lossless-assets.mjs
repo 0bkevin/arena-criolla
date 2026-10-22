@@ -8,25 +8,6 @@ import {
 } from "./audit-lossless-assets.mjs";
 
 const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
-export function imageSemantics(metadata) {
-  return Object.fromEntries([
-    ...[
-      "width",
-      "height",
-      "space",
-      "depth",
-      "orientation",
-      "pages",
-      "pageHeight",
-      "loop",
-      "delay",
-    ].map((key) => [key, metadata[key] ?? null]),
-    ...["icc", "exif", "xmp"].map((key) => [
-      key,
-      metadata[key] ? digest(metadata[key]) : null,
-    ]),
-  ]);
-}
 
 /** Recheck exact pixels/metadata before replacing a larger runtime encoding. */
 export async function applyLosslessAssets(reportFile) {
@@ -38,21 +19,9 @@ export async function applyLosslessAssets(reportFile) {
         .filter(Boolean)
         .map((line) => JSON.parse(line))
     : JSON.parse(input).assets;
-  const proofPath = "shared/asset-recompression.json";
   const variants = JSON.parse(
     await fs.readFile("shared/asset-variants.json", "utf8"),
   );
-  let proof = {
-    schema: 1,
-    policy:
-      "Same-format recompression with identical full decoded RGBA, dimensions and image metadata. No resizing or quality reduction.",
-    assets: {},
-  };
-  try {
-    proof = JSON.parse(await fs.readFile(proofPath, "utf8"));
-  } catch (error) {
-    if (error.code !== "ENOENT") throw error;
-  }
   const publicRoot = path.resolve("public");
   let applied = 0,
     savedBytes = 0;
@@ -76,11 +45,7 @@ export async function applyLosslessAssets(reportFile) {
       afterHash = digest(candidate);
     if (afterHash !== row.selectedSha256)
       throw Error(`Audit input changed: ${row.file}`);
-    if (
-      beforeHash === afterHash &&
-      proof.assets[key]?.afterSha256 === afterHash
-    )
-      continue;
+    if (beforeHash === afterHash) continue;
     if (beforeHash !== row.sourceSha256)
       throw Error(`Audit input changed: ${row.file}`);
     if (candidate.length >= original.length) continue;
@@ -98,18 +63,6 @@ export async function applyLosslessAssets(reportFile) {
     } finally {
       await fs.rm(temporary, { force: true });
     }
-    proof.assets[key] = {
-      beforeSha256: beforeHash,
-      afterSha256: afterHash,
-      beforeBytes: original.length,
-      afterBytes: candidate.length,
-      rgbaSha256: digest(before.data),
-      metadata: imageSemantics(before.metadata),
-    };
-    proof.assets = Object.fromEntries(
-      Object.entries(proof.assets).sort(([a], [b]) => a.localeCompare(b)),
-    );
-    await fs.writeFile(proofPath, JSON.stringify(proof, null, 2) + "\n");
     applied++;
     savedBytes += original.length - candidate.length;
   }

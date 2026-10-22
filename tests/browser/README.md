@@ -20,11 +20,6 @@ with audible fighter reactions. Recovery must retain one context and one music
 loop. The fixture deliberately attempts audio startup outside a gesture, like an
 online match arriving; autoplay policy depends on the browser profile.
 
-On 2026-10-22, all five scenarios passed in Chromium 154 on Linux at 915×412,
-including zero measured output while muted. These are real rendering and
-synthesized lifecycle checks. Resizing does not emulate Android/iOS activation
-policies, physical touch, device speakers, calls, or screen locking.
-
 The activation listeners follow the
 [HTML user activation model](https://html.spec.whatwg.org/multipage/interaction.html#activation-triggering-input-event)
 and [Chrome Web Audio guidance](https://developer.chrome.com/blog/web-audio-autoplay):
@@ -56,10 +51,7 @@ verify real animation advancement, layout, unchanged progress and no unused
 entrance downloads. Generate cold image budgets for all 55 fighters with
 `npx tsx scripts/audit-move-preview-assets.ts`. These dependency budgets use
 full-resolution WebP files and verified alternatives; they exclude JS/CSS/audio,
-HTTP overhead and browser caching, and do not measure hardware speed. Pixel and
-metadata fingerprints for the recompressed runtime images remain in
-`shared/asset-recompression.json` as authoring records; normal CI no longer runs
-the full pixel-fingerprint inventory.
+HTTP overhead and browser caching, and do not measure hardware speed.
 
 The roster regression mounts the production App and checks that closing fighter
 details preserves the roster, its scroll position, focus, and the page scroll lock.
@@ -266,67 +258,7 @@ recommendations, and this game's chosen slide behavior:
   native button names, Space/Enter activation, and focus. `aria-pressed` is for
   toggles, so these momentary controls use visual held feedback instead.
 
-## Recorded review results
-
-2026-10-20, Chromium 154 on Linux through the collaborative browser:
-
-- State-level regressions reproduced three original failures before the fix:
-  movement→jump did not activate jump; block→punch left block held; disabling an
-  attack deleted its contact and prevented subsequent sliding.
-- Follow-up regressions failed before the gesture-policy refinement: sliding into
-  special/super consumed an action, and a two-pixel excursion into a gap released
-  an attack and permitted accidental re-entry. Both now pass.
-- All **1,303** repository tests and the production type-check/build passed after
-  integration with current `main`. Character-asset validation passed during the
-  initial review; assets were unchanged. The build retained its large-chunk warning.
-- **18 browser scenarios** passed at each of the eight viewport sizes below,
-  including all **100 ordered button pairs** with the protected-ability policy,
-  independent contacts, shared input ownership, disabled/energy changes, gaps,
-  boundary jitter, cleanup, keyboard/accessible clicks, and compatibility-click
-  deduplication. Browser scenarios use the mobile layout; geometry checks also
-  cover the hybrid layout.
-- A native browser mouse drag from block to punch produced exactly
-  `press block → release → press light → release`. Trusted capture events
-  confirmed capture belonged to the stable control container.
-- After the refinement, a native mouse drag from heavy to special activated heavy
-  once and special zero times; a subsequent fresh press activated special once.
-- All ten controls were visible, hit-testable, and at least 48×48 CSS px at
-  **320×240, 568×320, 667×280, 740×260, 844×390, 915×412, 1024×768, and 1280×800**,
-  in both the mobile and hybrid harness layouts: **16 layout checks**.
-- The actual running game's mobile pad also passed geometry/hit-testing checks
-  at 320×240, 568×320, 667×280, 844×390, and 1024×768. Two synthetic contacts held
-  movement while sliding block→punch; pause removed the active pad. After resume,
-  stale moves did not reactivate those contacts. Portrait resizing showed the
-  orientation gate with no pressed controls, and landscape restored the pad.
-- Adversarial Astra review reproduced a chorded mouse/pen release defect: after
-  releasing primary while secondary remained held, the control stayed active and
-  could slide into attacks. A regression failed before the primary-button bit
-  check and now passes for both pointer types without releasing the other finger.
-- The review also reproduced overflow in the **full hybrid game** at 1280×800
-  (page height 874px) and 320×240 (page height 300px). The original pad-only
-  fixture missed the arena/toolbar height. The game now reserves measured chrome
-  height, and compact hybrid pads use two rows. The production-Game fixture passes
-  at all eight sizes, including live resizing, with all controls visible and the
-  arena's 1.8 aspect ratio preserved. Pause removes the measured budget; resume
-  restores it and passes geometry again.
-- Astra's focused follow-up found no remaining actionable issues. It also checked
-  650×500/651×500 breakpoint transitions, hybrid/mobile mode changes, and unmount
-  cleanup, with no observer-loop or browser error events.
-- Súper is available from zero wins and costs 90 energy. A browser regression
-  verifies that recovering energy during a contact cannot activate it; a fresh
-  direct press is still required.
-
-The browser suite dispatches synthetic DOM PointerEvents through real React
-handlers and real coordinate hit-testing. It exercises the capture-failure
-fallback; synthetic events cannot establish native active-pointer capture.
-The separate trusted mouse drag covers native capture for mouse input only.
-Viewport resizing does not emulate a mobile OS, touch hardware, or browser UI.
-
 ## Physical-device acceptance
-
-Physical-device testing was removed from this task at the user's request.
-No physical-device test is claimed; the results above cover the implementation,
-repository tests, and browser checks.
 
 Before claiming broad device validation, run the
 same pad and the full game on small/notched iPhone Safari, iPad Safari (including

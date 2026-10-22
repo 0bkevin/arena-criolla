@@ -12,17 +12,6 @@ decorative choices, or print observations without asserting the intended result.
 Runtime relevance alone is not the criterion: the retained private creator and
 operator import tests protect account boundaries, stored data and paid requests.
 
-The 2026-10-22 static inspection covered all 167 original automated test files and
-the seven manual browser fixtures. After the requested follow-up pass, it removed
-499 of 1,070 test declarations and deleted 36 files. The remaining 571 declarations
-include parameterized tests; these are source counts, not runtime case counts.
-More than 15,000 lines of test
-code were removed. The inspection recorded each original file, its rationale,
-removed titles and retained titles separately from the repository's operational
-documentation. No tests, browser fixtures, builds, smoke checks or benchmarks were
-executed during this cleanup, and there
-was no adversarial review round. TypeScript and workflow checks were static.
-
 The retained tests cover distinct special mechanics. Shared engine tests cover
 ordinary movement, guards, jumping, combos, stocks and deterministic replay.
 Shared rules use representative fixtures and both player slots; the definitive
@@ -53,11 +42,6 @@ against runtime geometry. Asset loading, delivery, fallback and retry tests rema
 - `tests/browser/README.md`: manual integration fixtures for real browser behavior.
 
 ## CI execution
-
-The [last inspected baseline run](https://github.com/0bkevin/arena-criolla/actions/runs/39721004023)
-took about four minutes, including 135 seconds for `npm test`. Recent feature
-branches ran the same workflow for both push and PR events. No new duration has
-been measured; the next CI runs must establish the actual improvement.
 
 - Run on PR events, pushes to `main`, and manual dispatch. Feature branch pushes
   receive validation through their PR; a branch without a PR can use manual
