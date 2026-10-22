@@ -186,6 +186,13 @@ export function Game(props: Props) {
     setTouchReset((value) => value + 1);
     if (mode === "online") callbacks.current.onInput?.(inputs.current[0]);
   };
+  const openHelp = () => {
+    releaseInputs();
+    // The modal returns focus here, restoring P2's Enter dodge on close.
+    if (!pausedRef.current && !blockedRef.current)
+      canvas.current?.focus({ preventScroll: true });
+    callbacks.current.onHelp();
+  };
   useEffect(() => {
     if (view.finale) releaseInputs();
   }, [view.finale?.startedTick]);
@@ -853,7 +860,17 @@ export function Game(props: Props) {
                   props.soundEnabled ? "Silenciar sonido" : "Activar sonido"
                 }
                 aria-pressed={props.soundEnabled}
-                onClick={props.onToggleSound}
+                onClick={(event) => {
+                  props.onToggleSound?.();
+                  // Pointer users return straight to play; keyboard users keep
+                  // the button focused for native Enter/Space activation.
+                  if (
+                    event.detail > 0 &&
+                    !isGameQuiet() &&
+                    introView.current.phase === "playing"
+                  )
+                    canvas.current?.focus({ preventScroll: true });
+                }}
               >
                 {props.soundEnabled ? (
                   <Volume2 size={19} />
@@ -865,10 +882,7 @@ export function Game(props: Props) {
             <button
               className="icon-button"
               aria-label="Ver controles"
-              onClick={() => {
-                releaseInputs();
-                props.onHelp();
-              }}
+              onClick={openHelp}
             >
               <CircleHelp size={19} />
             </button>
@@ -1055,10 +1069,7 @@ export function Game(props: Props) {
                 <button
                   className="secondary-button"
                   aria-label="Ver controles"
-                  onClick={() => {
-                    releaseInputs();
-                    props.onHelp();
-                  }}
+                  onClick={openHelp}
                 >
                   <CircleHelp size={18} /> Controles
                 </button>
@@ -1136,13 +1147,7 @@ export function Game(props: Props) {
                 <kbd>U</kbd> Bloquear <kbd>⇧</kbd> Esquivar <kbd>I</kbd>{" "}
                 Definitiva
               </span>
-              <button
-                className="text-button"
-                onClick={() => {
-                  releaseInputs();
-                  props.onHelp();
-                }}
-              >
+              <button className="text-button" onClick={openHelp}>
                 Todos los controles <ArrowRight size={14} />
               </button>
             </div>
