@@ -106,6 +106,7 @@ export function Game(props: Props) {
     new ControlSources(inputs.current[0]),
     new ControlSources(inputs.current[1]),
   ]);
+  const gamepads = useRef(new GamepadControls(sources.current));
   const focusedRef = useRef(true);
   const keys = useRef(new Set<string>());
   const [touchReset, setTouchReset] = useState(0);
@@ -178,7 +179,8 @@ export function Game(props: Props) {
         phase === "finished" ||
         Boolean(introView.current.finale),
     );
-  const releaseInputs = () => {
+  const releaseInputs = (menuAvailable = false) => {
+    gamepads.current.suspend(inputs.current, { menu: menuAvailable });
     sources.current.forEach((source) => source.clear());
     keys.current.clear();
     setTouchReset((value) => value + 1);
@@ -451,7 +453,6 @@ export function Game(props: Props) {
       tick: initial.tick,
       x: p.x,
     }));
-    const gamepads = new GamepadControls(sources.current);
     const positions = initial.players.map((p) => ({ x: p.x, y: p.y }));
     const animate = (now: number) => {
       const elapsed = Math.min(100, now - last);
@@ -476,8 +477,18 @@ export function Game(props: Props) {
       const quiet = isGameQuiet();
       setReactionsPaused(quiet || Boolean(state.finale));
       if (dialogOpen) sources.current.forEach((source) => source.clear());
-      if (!quiet && state.phase !== "finished")
-        gamepads.update(inputs.current, mode === "local" ? 2 : 1);
+      const menuAvailable =
+        focusedRef.current &&
+        !document.hidden &&
+        !blockedRef.current &&
+        !dialogOpen &&
+        state.phase !== "finished";
+      const pausePressed = gamepads.current.update(
+        inputs.current,
+        mode === "local" ? 2 : 1,
+        { gameplay: menuAvailable && !pausedRef.current, menu: menuAvailable },
+      );
+      if (menuAvailable && pausePressed) togglePause();
       if (mode === "online") {
         if (state.phase !== "finished" && now - lastSend > 45) {
           callbacks.current.onInput?.(inputs.current[0]);
@@ -764,8 +775,11 @@ export function Game(props: Props) {
   }, []);
 
   const togglePause = () => {
-    releaseInputs();
+    // Start remains available through ordinary pause/resume transitions.
+    releaseInputs(true);
     pausedRef.current = !pausedRef.current;
+    if (!pausedRef.current)
+      gamepads.current.resume(inputs.current, mode === "local" ? 2 : 1);
     setPaused(pausedRef.current);
   };
   const touchPress = (pointer: number, control: Control) => {
