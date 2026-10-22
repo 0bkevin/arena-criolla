@@ -5,7 +5,7 @@ import { presentationById } from "../shared/presentation";
 import { WORLD } from "../shared/arena";
 import { TECHNIQUES } from "../shared/techniques";
 import { MUSIC_SECONDS } from "./game/arcade-music";
-import { VICTORY_DURATION_MS } from "./game/victory-types";
+import { VICTORY_MUSIC_MS } from "./game/victory-types";
 import { victoryById } from "./game/victory";
 import { preparationWorker } from "./game/preparation-worker";
 import { synthesizeScore, type ScoreRequest } from "./game/music-preparation";
@@ -85,16 +85,9 @@ export async function prepareMatchAudio(fighters: FighterId[]) {
     sampleRate,
     length: Math.round(sampleRate * MUSIC_SECONDS),
   });
-  for (const fighter of new Set<FighterId | "draw">([...fighters, "draw"])) {
-    scoreBuffer({
-      kind: "victory",
-      style: fighter === "draw" ? "strings" : victoryById(fighter).music,
-      fighter,
-      sampleRate,
-      length: Math.ceil((sampleRate * VICTORY_DURATION_MS) / 1000),
-    });
-    const finale = fighter === "draw" ? undefined : finaleById(fighter);
-    if (finale && fighter !== "draw")
+  for (const fighter of new Set(fighters)) {
+    const finale = finaleById(fighter);
+    if (finale)
       scoreBuffer({
         kind: "finale",
         profile: {
@@ -107,6 +100,14 @@ export async function prepareMatchAudio(fighters: FighterId[]) {
         length: Math.ceil((sampleRate * finale.duration) / 60),
       });
   }
+  for (const fighter of new Set<FighterId | "draw">([...fighters, "draw"]))
+    scoreBuffer({
+      kind: "victory",
+      style: fighter === "draw" ? "strings" : victoryById(fighter).music,
+      fighter,
+      sampleRate,
+      length: Math.ceil((sampleRate * VICTORY_MUSIC_MS) / 1000),
+    });
   await Promise.all(pendingScores.values());
 }
 let victorySource: AudioBufferSourceNode | null = null;
@@ -292,7 +293,7 @@ export function syncVictoryMusic(
   elapsedMs: number,
   paused: boolean,
 ) {
-  if (paused || !enabled || elapsedMs >= VICTORY_DURATION_MS) {
+  if (paused || !enabled || elapsedMs >= VICTORY_MUSIC_MS) {
     stopVictoryMusic();
     return;
   }
@@ -304,16 +305,44 @@ export function syncVictoryMusic(
     style: fighter === "draw" ? "strings" : victoryById(fighter).music,
     fighter,
     sampleRate: context.sampleRate,
-    length: Math.ceil((context.sampleRate * VICTORY_DURATION_MS) / 1000),
+    length: Math.ceil((context.sampleRate * VICTORY_MUSIC_MS) / 1000),
   });
   if (!buffer) return;
   victorySource = context.createBufferSource();
   victorySource.buffer = buffer;
   victoryGain = context.createGain();
-  victoryGain.gain.value = 2.8;
+  victoryGain.gain.value = 1.9;
   victorySource.connect(victoryGain);
   victoryGain.connect(musicBus);
   victorySource.start(0, Math.max(0, elapsedMs / 1000));
+}
+
+/** Start with the winner screen, independently of the arena's stopped clock. */
+export function startVictoryMusic(fighter: FighterId | "draw") {
+  const started = performance.now();
+  let frame = 0;
+  let disposed = false;
+  const update = () => {
+    if (disposed) return;
+    const elapsed = performance.now() - started;
+    syncVictoryMusic(
+      fighter,
+      elapsed,
+      document.hidden || Boolean(document.querySelector("dialog[open]")),
+    );
+    if (elapsed < VICTORY_MUSIC_MS) frame = requestAnimationFrame(update);
+  };
+  const hide = () => {
+    if (document.hidden) stopVictoryMusic();
+  };
+  document.addEventListener("visibilitychange", hide);
+  update();
+  return () => {
+    disposed = true;
+    cancelAnimationFrame(frame);
+    document.removeEventListener("visibilitychange", hide);
+    stopVictoryMusic();
+  };
 }
 export function setAmbiencePaused(paused: boolean) {
   if (ambiencePaused === paused) return;

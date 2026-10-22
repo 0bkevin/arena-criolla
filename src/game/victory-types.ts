@@ -2,6 +2,7 @@ import type { Gesture } from "../../shared/choreography";
 
 export const VICTORY_DURATION_MS = 3500;
 export const VICTORY_TRANSITION_MS = 700;
+export const VICTORY_MUSIC_MS = 5600;
 
 export interface VictoryProfile {
   name: string;

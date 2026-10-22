@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { MUSIC_SECONDS, writeArcadeMusic } from "../src/game/arcade-music";
 import { writeVictoryMusic } from "../src/game/victory-music";
-import { VICTORY_DURATION_MS } from "../src/game/victory-types";
+import { VICTORY_MUSIC_MS } from "../src/game/victory-types";
 import type { FinaleState } from "../shared/finales";
 
 test("victory fanfares retain their closing chord and end silently", () => {
@@ -15,7 +15,7 @@ test("victory fanfares retain their closing chord and end silently", () => {
   ] as const)
     for (const rate of [22050, 48000]) {
       const left = new Float32Array(
-        Math.ceil((rate * VICTORY_DURATION_MS) / 1000),
+        Math.ceil((rate * VICTORY_MUSIC_MS) / 1000),
       );
       const right = new Float32Array(left.length);
       writeVictoryMusic(left, right, rate, fighter);
@@ -27,8 +27,7 @@ test("victory fanfares retain their closing chord and end silently", () => {
         }
         assert.ok(peak > 0.04 && peak < 0.8, `${fighter}: peak=${peak}`);
         assert.equal(channel[0], 0);
-        // The closing chord starts around 2s; strings decay naturally well
-        // before the end of the full 3.5s celebration.
+        // The final tonic is held through the latter part of the result cue.
         const closing = channel.subarray(
           Math.floor(channel.length * 0.6),
           Math.floor(channel.length * 0.95),
@@ -259,10 +258,14 @@ test("music mute, pause, stage changes and cleanup never stack background loops"
       1.3,
       "unmute never replays the opening",
     );
-    audio.syncVictoryMusic("oscar", VICTORY_DURATION_MS, false);
+    audio.syncVictoryMusic("oscar", VICTORY_MUSIC_MS, false);
     assert.equal(sources.at(-1)!.stopped, true);
-    audio.syncVictoryMusic("oscar", VICTORY_DURATION_MS + 1000, false);
-    assert.equal(sources.length, beforeVictory + 3, "results stay silent");
+    audio.syncVictoryMusic("oscar", VICTORY_MUSIC_MS + 1000, false);
+    assert.equal(
+      sources.length,
+      beforeVictory + 3,
+      "the result cue finishes without looping",
+    );
     audio.syncVictoryMusic("ali", 0, false);
     assert.equal(
       sources.at(-1)!.offset,
