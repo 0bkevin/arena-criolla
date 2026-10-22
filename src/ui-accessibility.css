@@ -44,6 +44,15 @@
   height: 44px;
   flex-shrink: 0;
 }
+.modal .modal-header .modal-close {
+  outline: none;
+  outline-offset: 0;
+  box-shadow: none;
+}
+.modal .modal-header .modal-close:is(:hover, :active, :focus-visible) {
+  color: #ff7b7b;
+  background: transparent;
+}
 .modal:where(:not(.content-modal)) :is(p, .help-note) {
   font-size: 13px;
   line-height: 1.7;

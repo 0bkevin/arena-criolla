@@ -40,12 +40,25 @@ With the standalone Vite server below, open
 
 ```js
 await overlayReview.runRosterNavigation(); // desktop: all three scenarios pass
+await overlayReview.runMovePreviewLayout(); // live combo canvas cannot overlap its controls
+await overlayReview.runMovePreviewLayout("maite", null); // idle portrait; no animation assets yet
+overlayReview.movePreviewLayout(); // repeat after resizing the open movement dialog
+await overlayReview.runMovePreviewPerformance(0, 5); // six moves per fighter; repeat batches through 55
 await overlayReview.mount("playing", true); // portrait: orientation gate; landscape: pause via UI
 await overlayReview.mount("victory"); // production Game result, including its focus management
 await overlayReview.mount("draw");
 overlayReview.state(); // rematch/exit callback counts after native button clicks
 overlayReview.unmount();
 ```
+
+Run the movement performance batches at small mobile and desktop sizes. They
+verify real animation advancement, layout, unchanged progress and no unused
+entrance downloads. Generate cold image budgets for all 55 fighters with
+`npx tsx scripts/audit-move-preview-assets.ts`. These dependency budgets use
+full-resolution WebP files and verified alternatives; they exclude JS/CSS/audio,
+HTTP overhead and browser caching, and do not measure hardware speed. Pixel and
+metadata fingerprints for the 52 losslessly recompressed runtime images are in
+`shared/asset-recompression.json` and are checked by the test suite.
 
 The roster regression mounts the production App and checks that closing fighter
 details preserves the roster, its scroll position, focus, and the page scroll lock.

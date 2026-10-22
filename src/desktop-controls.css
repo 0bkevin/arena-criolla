@@ -36,13 +36,14 @@
   color: #8ad6a7;
 }
 .desktop-controls-guide kbd,
+.modal.fighter-moves-modal .move-shortcut:not(.move-gamepad-control) kbd,
 .arcade-app .game-controls-bar kbd {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  min-width: 30px;
-  height: 30px;
+  min-width: var(--control-key-size, 30px);
+  height: var(--control-key-size, 30px);
   margin: 0;
   padding: 0 7px;
   border: 1px solid #657c98;
@@ -50,7 +51,7 @@
   border-radius: 4px;
   color: #fff5db;
   background: #1d3450;
-  font: 700 13px/1 var(--font-body);
+  font: 700 var(--control-key-font-size, 13px)/1 var(--font-body);
 }
 .desktop-controls-guide kbd.is-held {
   color: #102137;
