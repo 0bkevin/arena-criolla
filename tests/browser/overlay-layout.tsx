@@ -12,6 +12,7 @@ import "../../src/lobby.css";
 import "../../src/arcade-theme.css";
 import "../../src/mobile-game.css";
 import "../../src/ui-accessibility.css";
+import "../../src/fighter-moves.css";
 import "../../src/victory-screen.css";
 import "../../src/desktop-controls.css";
 
@@ -210,7 +211,7 @@ export async function runRosterNavigation() {
     const nextDetail = [
       ...document.querySelectorAll<HTMLDialogElement>("dialog[open]"),
     ].at(-1)!;
-    activate(nextDetail.querySelector<HTMLButtonElement>(".primary-button")!);
+    activate(nextDetail.querySelector<HTMLButtonElement>(".help-done")!);
     await settle();
     expect(
       document.querySelectorAll("dialog[open]").length === 0,

@@ -592,8 +592,8 @@ export function App({
       )}
       {detail && (
         <FighterDetail
+          key={detail}
           fighter={detail}
-          wins={Number(progress.wins[detail]) || 0}
           onClose={() => setDetail(null)}
           onSelect={() => {
             selectFighter(detail);

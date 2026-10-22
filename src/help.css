@@ -1,8 +1,11 @@
-.arcade-app .modal.help-modal {
-  --help-muted: #b5c3d8;
+.arcade-app .modal:is(.help-modal, .fighter-moves-modal) {
   width: min(1000px, calc(100vw - 48px));
   max-width: none;
   max-height: calc(100dvh - 48px);
+}
+
+.arcade-app .modal.help-modal {
+  --help-muted: #b5c3d8;
   padding: 0;
   overflow: hidden;
   color: #eef2fa;
@@ -410,20 +413,22 @@
   border-bottom-width: 3px;
 }
 
-.gamepad-controls-guide .help-input {
+.gamepad-controls-guide .help-input,
+.modal.fighter-moves-modal .move-gamepad-control .help-input {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  min-width: 30px;
-  height: 30px;
+  min-width: var(--control-key-size, 30px);
+  height: var(--control-key-size, 30px);
   padding: 0 7px;
   border-radius: 4px;
-  font: 700 13px/1 var(--font-body);
+  font: 700 var(--control-key-font-size, 13px)/1 var(--font-body);
 }
 
-.gamepad-controls-guide .is-face-button {
-  width: 30px;
+.gamepad-controls-guide .is-face-button,
+.modal.fighter-moves-modal .move-gamepad-control .is-face-button {
+  width: var(--control-key-size, 30px);
   padding: 0;
   border-radius: 50%;
 }
@@ -604,6 +609,7 @@
   border-radius: 6px;
   font-size: 16px;
   font-weight: 700;
+  line-height: 1.5;
 }
 
 .help-done:hover {
@@ -635,7 +641,7 @@
 }
 
 @media (max-width: 680px) {
-  .arcade-app .modal.help-modal {
+  .arcade-app .modal:is(.help-modal, .fighter-moves-modal) {
     width: calc(100vw - 24px);
     max-height: calc(100dvh - 24px);
   }
@@ -668,7 +674,7 @@
 }
 
 @media (max-height: 500px) and (orientation: landscape) {
-  .arcade-app .modal.help-modal {
+  .arcade-app .modal:is(.help-modal, .fighter-moves-modal) {
     width: min(880px, calc(100vw - 24px));
     max-height: calc(100dvh - 16px);
   }
@@ -713,7 +719,7 @@
     padding: 8px 16px;
   }
 
-  .help-modal .help-done {
+  :is(.help-modal, .fighter-moves-modal) .help-done {
     position: relative;
     width: auto;
     min-width: 112px;
@@ -722,7 +728,7 @@
     font-size: 13px;
   }
 
-  .help-modal .help-done::before {
+  :is(.help-modal, .fighter-moves-modal) .help-done::before {
     content: "";
     position: absolute;
     inset: -4px 0;

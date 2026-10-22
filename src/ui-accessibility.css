@@ -406,8 +406,10 @@
     gap: 12px;
   }
 
-  .arcade-app .modal.help-modal {
+  .arcade-app .modal:is(.help-modal, .fighter-moves-modal) {
     width: min(880px, calc(100vw - 64px));
+  }
+  .arcade-app .modal.help-modal {
     padding: 0;
     font-size: 14px;
   }
@@ -420,19 +422,19 @@
   .arcade-app .help-modal .help-content h3 {
     font-size: 16px;
   }
-  .help-modal .help-devices {
+  :is(.help-modal, .fighter-moves-modal) .help-devices {
     gap: 4px;
     padding: 3px;
     border-radius: 8px;
   }
-  .help-modal .help-devices button {
+  :is(.help-modal, .fighter-moves-modal) .help-devices button {
     min-height: 32px;
     padding: 5px 10px;
     gap: 6px;
     font-size: 13px;
     font-weight: 700;
   }
-  .help-modal .help-devices svg {
+  :is(.help-modal, .fighter-moves-modal) .help-devices svg {
     width: 16px;
     height: 16px;
   }
@@ -454,7 +456,7 @@
   .help-modal .help-footer {
     padding: 10px 24px;
   }
-  .help-modal .help-done {
+  :is(.help-modal, .fighter-moves-modal) .help-done {
     min-width: 128px;
     min-height: 36px;
     padding: 7px 18px;

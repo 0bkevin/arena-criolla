@@ -1,0 +1,234 @@
+.modal.fighter-moves-modal {
+  --help-muted: #b5c3d8;
+  padding: 18px;
+}
+.modal.fighter-moves-modal[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 16px;
+}
+.app-shell.arcade-app .modal.fighter-moves-modal .modal-header {
+  position: static;
+  padding-block: 0;
+  margin: 0;
+}
+.arcade-app .modal.fighter-moves-modal .fighter-detail {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  grid-template-areas: "preview controls" "combos footer";
+  gap: 16px 20px;
+  align-items: stretch;
+  min-height: 0;
+  margin: 0;
+}
+.fighter-moves-modal .detail-info {
+  grid-area: controls;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.fighter-moves-modal .detail-moves {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  padding: 3px;
+}
+.fighter-moves-modal .move-combo-section {
+  grid-area: combos;
+  min-width: 0;
+}
+.fighter-moves-modal .move-combo-section > h3 {
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+.fighter-moves-modal .fighter-detail > .help-done {
+  grid-area: footer;
+  flex-shrink: 0;
+  align-self: end;
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 0;
+}
+.fighter-moves-modal .help-devices {
+  margin-bottom: 12px;
+}
+.fighter-moves-modal .move-list-intro {
+  margin: 0 0 8px;
+  color: var(--help-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.move-preview {
+  grid-area: preview;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  scroll-margin-top: 64px;
+}
+.move-preview-stage {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #08192c;
+}
+.move-preview-stage > canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.fighter-moves-modal .move-preview-stage .detail-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.arcade-app .fighter-moves-modal .move-preview-stage .portrait {
+  width: auto;
+  height: 100%;
+  margin: 0;
+}
+.move-preview-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #08192c;
+  color: #c7d6e9;
+  font-size: 13px;
+  padding: 16px;
+  text-align: center;
+}
+.move-shortcut {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #eef2fa;
+}
+.fighter-moves-modal .controls-guide-list dt {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.fighter-moves-modal .controls-guide-list dd {
+  flex-shrink: 0;
+}
+.move-shortcut-combos {
+  --control-key-size: 20px;
+  --control-key-font-size: 11px;
+}
+.move-sequence-arrow {
+  width: 11px;
+  height: 11px;
+}
+.fighter-moves-modal .move-touch-control {
+  min-width: 48px;
+  border-color: #adc5e65c;
+  border-radius: 6px;
+  background: #10233a9e;
+}
+.move-touch-key {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.move-touch-key > span {
+  font: 700 10px/1 var(--font-body);
+}
+.move-shortcut-combos .move-touch-key svg {
+  width: 16px;
+  height: 16px;
+}
+.move-shortcut:hover {
+  background: #ffffff0d;
+}
+.move-shortcut[aria-pressed="true"] {
+  color: #ffd45a;
+  background: #ffd45a14;
+  border-color: #ffd45a80;
+}
+.modal.fighter-moves-modal
+  .fighter-detail
+  .move-shortcut[aria-pressed="true"]
+  kbd {
+  color: #102137;
+  background: #ffd45a;
+  border-color: #ffd45a;
+}
+.fighter-moves-modal .move-touch-control[aria-pressed="true"] {
+  color: #102137;
+  background: #ffd45a;
+  border-color: #ffd45a;
+}
+.fighter-moves-modal button:focus-visible {
+  outline: 2px solid #ffd45a;
+  outline-offset: 3px;
+}
+@media (min-width: 901px) and (pointer: fine) {
+  .arcade-app .modal.fighter-moves-modal {
+    padding: 20px;
+  }
+  .move-shortcut {
+    min-width: 36px;
+    min-height: 36px;
+    padding: 2px;
+  }
+  .fighter-moves-modal .move-touch-control {
+    min-width: 44px;
+  }
+  .fighter-moves-modal .move-touch-key svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+@media (max-width: 800px) {
+  .modal.fighter-moves-modal {
+    padding: 16px;
+  }
+  .modal.fighter-moves-modal[open] {
+    display: block;
+  }
+  .app-shell.arcade-app .modal.fighter-moves-modal .modal-header {
+    position: sticky;
+    top: -16px;
+    padding-block: 8px;
+    margin-bottom: 16px;
+  }
+  .arcade-app .modal.fighter-moves-modal .fighter-detail {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "preview" "controls" "combos" "footer";
+    gap: 16px;
+  }
+  .move-preview-stage {
+    flex: none;
+    min-height: 0;
+    aspect-ratio: 8 / 5;
+  }
+  .fighter-moves-modal .detail-moves {
+    overflow-y: visible;
+  }
+}
