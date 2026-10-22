@@ -109,14 +109,19 @@ body {
   background: #8ad6a7;
   box-shadow: 0 0 0 2px #8ad6a708;
 }
+.site-header .icon-button,
 .in-lobby .site-header .icon-button {
   color: #becce0;
   background: transparent;
-  border-radius: 4px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transition: color 0.16s;
 }
-.in-lobby .site-header .icon-button:hover {
+.site-header .icon-button:is(:hover, :active),
+.in-lobby .site-header .icon-button:is(:hover, :active) {
   color: var(--coin);
-  background: #ffffff08;
+  background: transparent;
 }
 .site-header .header-help {
   display: inline-flex;
@@ -125,12 +130,6 @@ body {
   gap: 8px;
   font: 500 12px var(--font-body);
   white-space: nowrap;
-}
-.site-header .icon-button.header-help,
-.site-header .icon-button.header-help:hover {
-  border: 0;
-  background: none;
-  box-shadow: none;
 }
 .site-header .header-help:focus-visible {
   outline: none;
