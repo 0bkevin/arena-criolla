@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { X } from "lucide-react";
+import { lockPageScroll } from "./scroll-lock";
 
 export function Modal({
   title,
@@ -17,10 +18,18 @@ export function Modal({
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => {
     const element = dialog.current;
+    if (!element) return;
     const previous = document.activeElement;
-    element?.showModal();
+    const releaseScroll = lockPageScroll();
+    try {
+      element.showModal();
+    } catch (error) {
+      releaseScroll();
+      throw error;
+    }
     return () => {
-      element?.close();
+      element.close();
+      releaseScroll();
       // Rotation can change the underlying overlay while this dialog is open.
       const foreground =
         document.querySelector<HTMLElement>("dialog[open]") ||
@@ -33,8 +42,21 @@ export function Modal({
             "button:not(:disabled), a[href], input:not(:disabled), [tabindex='0']",
           )
           ?.focus({ preventScroll: true });
-      else if (previous instanceof HTMLElement && previous.isConnected)
-        previous.focus({ preventScroll: true });
+      else if (previous instanceof HTMLElement && previous.isConnected) {
+        let target: HTMLElement | null = previous;
+        // A responsive breakpoint can hide the opener while the dialog is open.
+        while (target && target.getClientRects().length === 0)
+          target = target.parentElement;
+        if (target && target !== previous)
+          target =
+            [
+              ...target.querySelectorAll<HTMLElement>(
+                "button:not(:disabled), a[href], input:not(:disabled), [tabindex='0']",
+              ),
+            ].find((candidate) => candidate.getClientRects().length > 0) ??
+            null;
+        target?.focus({ preventScroll: true });
+      }
     };
   }, []);
   return (

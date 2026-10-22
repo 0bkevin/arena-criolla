@@ -563,10 +563,7 @@ export function App({
             {FIGHTERS.map((f) => (
               <button
                 key={f.id}
-                onClick={() => {
-                  setDetail(f.id);
-                  setModal(null);
-                }}
+                onClick={() => setDetail(f.id)}
                 style={colorStyle(f.color)}
               >
                 <Portrait fighter={f.id} />
@@ -601,6 +598,7 @@ export function App({
           onSelect={() => {
             selectFighter(detail);
             setDetail(null);
+            setModal(null);
           }}
         />
       )}
