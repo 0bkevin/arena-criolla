@@ -1096,8 +1096,8 @@ export function Game(props: Props) {
             aria-live="polite"
           >
             <h2 ref={victoryTitle}>
-              <span>{winnerDef ? winnerDef.shortName : "Quedaron"} </span>
-              <strong>{winnerDef ? "ganó." : "tablas."}</strong>
+              {winnerDef && <span>{winnerDef.shortName} </span>}
+              <strong>{winnerDef ? "ganó." : "tablas"}</strong>
             </h2>
             <VenezuelaStars className="victory-announcement-stars" />
           </div>

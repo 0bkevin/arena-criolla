@@ -106,9 +106,7 @@ export function VictoryScreen({
                 <span>{fighter.shortName}</span> <strong>ganó.</strong>
               </>
             ) : (
-              <>
-                <span>Quedaron</span> <strong>tablas.</strong>
-              </>
+              <strong>tablas</strong>
             )}
           </h2>
           <p id="result-description" className="victory-screen-description">
