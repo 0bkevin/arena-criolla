@@ -87,8 +87,12 @@ export function Help({ onClose }: { onClose: () => void }) {
   );
 
   return (
-    <Modal title="Cómo jugar" className="help-modal" onClose={onClose}>
-      <div className="help-content">
+    <Modal
+      title="Cómo jugar"
+      className="help-modal content-modal"
+      onClose={onClose}
+    >
+      <div className="dialog-content help-content">
         <section aria-labelledby="help-controls-title">
           <h3 id="help-controls-title" className="sr-only">
             Controles
@@ -224,8 +228,8 @@ export function Help({ onClose }: { onClose: () => void }) {
           </div>
         </details>
       </div>
-      <div className="help-footer">
-        <button type="button" className="help-done" onClick={onClose}>
+      <div className="dialog-footer">
+        <button type="button" className="dialog-done" onClick={onClose}>
           Entendido
         </button>
       </div>
