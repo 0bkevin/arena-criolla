@@ -1,4 +1,5 @@
 import { WORLD } from "./arena";
+import { DORANGEL_FINALE, DORANGEL_POT, insideDorangelPot } from "./dorangel";
 import { platformsAtTick, type FighterId } from "./content";
 import type { MatchState, PlayerState } from "./engine";
 import type { FieldFinaleState } from "./field-finales";
@@ -37,9 +38,11 @@ export const REVIEWED_FINALISTS = [
   "deyna",
   "kevin",
   "carolina",
+  "dorangel",
 ] as const satisfies readonly FighterId[];
 
 export const ARENA_FINALES = {
+  dorangel: DORANGEL_FINALE,
   carolina: { duration: 196, recovery: 36, riding: false },
   kevin: { duration: 96, recovery: 82, riding: false },
   bolivar: { duration: 220, recovery: 104, riding: true },
@@ -63,6 +66,7 @@ export const ARENA_FINALES = {
 export type ArenaFinalist = keyof typeof ARENA_FINALES;
 /** Emission/gesture cues for sound, never guaranteed damage times. */
 export const ARENA_FINALE_CUES: Record<ArenaFinalist, readonly number[]> = {
+  dorangel: DORANGEL_FINALE.cues,
   carolina: COUTURE_MODEL_CUES,
   kevin: [12, 26, 40, 54, 68],
   bolivar: [12, 23, 34, 45, 56, 67, 78],
@@ -98,7 +102,8 @@ export interface ArenaFinaleActor {
     | "handchain"
     | "curtain"
     | "model"
-    | "supporter";
+    | "supporter"
+    | "pot";
   index: number;
   x: number;
   y: number;
@@ -112,6 +117,8 @@ export interface ArenaFinaleActor {
   height: number;
   connected: boolean;
   goalX?: number;
+  /** A pot's forward placement is chosen once, before it is lowered. */
+  placementOffset?: number;
   caughtTick?: number;
   supportPlatform?: number;
 }
@@ -126,6 +133,9 @@ export interface ArenaContact {
   x: number;
   y: number;
   rootTicks?: number;
+  /** Preserve the struck surface when roots replace ordinary launch recoil. */
+  rootSupport?: number | null;
+  rootKind?: PlayerState["rootKind"];
 }
 
 /** Painted leading edges, shared with the visible fallback when an atlas fails. */
@@ -217,17 +227,19 @@ export function arenaFinaleInRange(player: PlayerState, target: PlayerState) {
   const id = player.config.fighter,
     distance = Math.abs(target.x - player.x);
   const reach =
-    id === "llorona" || id === "melanio"
-      ? 115
-      : id === "chataing"
-        ? 170
-        : id === "javier"
-          ? 210
-          : id === "george"
-            ? 250
-            : id === "vallenilla" || id === "renny" || id === "puma"
-              ? 330
-              : 620;
+    id === "dorangel"
+      ? DORANGEL_POT.offset + DORANGEL_POT.halfWidth
+      : id === "llorona" || id === "melanio"
+        ? 115
+        : id === "chataing"
+          ? 170
+          : id === "javier"
+            ? 210
+            : id === "george"
+              ? 250
+              : id === "vallenilla" || id === "renny" || id === "puma"
+                ? 330
+                : 620;
   return distance < reach;
 }
 
@@ -377,6 +389,30 @@ export function advanceArenaFinale(state: MatchState, field: FieldFinaleState) {
     p.facing = field.direction;
   }
   if (!field.cancelled) {
+    if (field.fighter === "dorangel" && tick === DORANGEL_POT.spawnTick) {
+      const pot = spawnActor(
+        state,
+        field,
+        "pot",
+        0,
+        DORANGEL_POT.height,
+        0,
+        clamp(
+          p.x + field.direction * DORANGEL_POT.offset,
+          WORLD.left + 80,
+          WORLD.right - 80,
+        ),
+        p.y,
+      );
+      // Aim once, keeping the bowl clear of its caster and within arm's reach.
+      // A fixed 105px placement left a blind spot at body-contact distance.
+      pot.placementOffset = clamp(
+        (target.x - p.x) * field.direction,
+        DORANGEL_POT.minOffset,
+        DORANGEL_POT.offset,
+      );
+      pot.life = field.duration - tick;
+    }
     if (field.fighter === "carolina") {
       const index = COUTURE_MODEL_CUES.findIndex((cue) => cue === tick);
       if (index !== -1)
@@ -496,6 +532,36 @@ export function advanceArenaFinale(state: MatchState, field: FieldFinaleState) {
     actor.previousY = actor.y;
     actor.age++;
     actor.life--;
+    if (actor.kind === "pot" && field.cancelled)
+      actor.life = Math.min(actor.life, 12);
+    if (
+      actor.kind === "pot" &&
+      !field.cancelled &&
+      tick <= DORANGEL_POT.placeTick
+    ) {
+      const progress = clamp(
+        (tick - DORANGEL_POT.spawnTick) /
+          (DORANGEL_POT.placeTick - DORANGEL_POT.spawnTick),
+        0,
+        1,
+      );
+      const lower = progress * progress * (3 - 2 * progress);
+      const offset =
+        DORANGEL_POT.carryOffset +
+        ((actor.placementOffset ?? DORANGEL_POT.offset) -
+          DORANGEL_POT.carryOffset) *
+          lower;
+      actor.x = clamp(
+        p.x + field.direction * offset,
+        WORLD.left + 80,
+        WORLD.right - 80,
+      );
+      actor.y = p.y - DORANGEL_POT.carryLift * (1 - lower);
+      actor.vx = 0;
+      actor.vy = 0;
+      delete actor.supportPlatform;
+      if (tick < DORANGEL_POT.placeTick) return actor.life > 0;
+    }
     if (actor.kind === "curtain") {
       if (tick >= 75) actor.vy = -9;
       else actor.vy = Math.min(14, actor.vy + 0.7);
@@ -601,6 +667,25 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
         rootTicks,
       });
     if (
+      field.fighter === "dorangel" &&
+      active &&
+      ARENA_FINALE_CUES.dorangel.includes(field.tick) &&
+      insideDorangelPot(field, target)
+    ) {
+      contacts.push({
+        field,
+        owner: field.owner,
+        damage: field.damage / ARENA_FINALE_CUES.dorangel.length,
+        force: 0.1,
+        direction: field.direction,
+        x: target.x,
+        y: target.y - 130,
+        rootTicks: DORANGEL_POT.snareTicks,
+        rootSupport: target.supportPlatform,
+        rootKind: "pot",
+      });
+    }
+    if (
       active &&
       mountedFinale(field) &&
       rideMoving(field) &&
@@ -628,7 +713,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
         );
     }
     for (const actor of field.actors ?? []) {
-      if (actor.kind === "supporter") continue;
+      if (actor.kind === "supporter" || actor.kind === "pot") continue;
       if (actor.kind === "mascot" || actor.kind === "dancer") {
         const beats =
             actor.kind === "mascot"
@@ -784,6 +869,14 @@ export function registerArenaContact(
   if (damaged && contact.rootTicks) {
     const target = state.players[1 - contact.owner];
     target.rootTicks = Math.max(target.rootTicks, contact.rootTicks);
+    if (contact.rootSupport !== undefined) {
+      if (contact.rootKind) target.rootKind = contact.rootKind;
+      else delete target.rootKind;
+      target.vx = target.recoilVx = target.vy = 0;
+      target.grounded = true;
+      target.supportPlatform = contact.rootSupport;
+      return;
+    }
     target.rootKind =
       field.fighter === "puma"
         ? "chain"

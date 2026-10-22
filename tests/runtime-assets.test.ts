@@ -33,6 +33,7 @@ test("every seated guest, dancer, performer and furniture frame has visible artw
     "dayana",
     "deyna",
     "kevin",
+    "dorangel",
   ].sort();
   assert.deepEqual(Object.keys(actors.seated).sort(), ids);
   assert.deepEqual(Object.keys(actors.dancers).sort(), ids);

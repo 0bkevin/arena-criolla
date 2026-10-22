@@ -8,7 +8,22 @@ export function drawImpact(ctx: CanvasRenderingContext2D, effect: Effect) {
   ctx.save();
   ctx.translate(effect.x, effect.y);
   ctx.globalAlpha = Math.min(1, effect.life / 9);
-  if (effect.kind === "hit") {
+  if (effect.kind === "hit" && effect.visual === "heat") {
+    // Small rising heat wisps leave the victim's face and the pot rim readable.
+    ctx.lineWidth = 2;
+    for (let i = 0; i < 3; i++) {
+      const x = (i - 1) * 15;
+      const rise = age * (0.7 + i * 0.15);
+      ctx.strokeStyle = i === 1 ? "#ffe7b0" : effect.color;
+      ctx.beginPath();
+      ctx.moveTo(x, 12 - rise);
+      ctx.bezierCurveTo(x - 6, 5 - rise, x + 6, -2 - rise, x, -11 - rise);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(x + 4, 17 - rise, 2 + (1 - progress) * 2, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+  } else if (effect.kind === "hit") {
     // A dark outlined, bright burst stays legible against every arena.
     const radius = Math.max(6, (28 - age * 0.8) * strength);
     ctx.rotate(direction * 0.2);

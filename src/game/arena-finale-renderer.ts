@@ -21,6 +21,13 @@ import { CHATAING_BODY_HEIGHTS } from "./finales/chataing";
 import { GEORGE_BODY_HEIGHTS, GEORGE_POSE_SCALE } from "./finales/george";
 import { WORLD } from "../../shared/arena";
 import {
+  dorangelCookingPose,
+  dorangelPoseHeight,
+  drawDorangelPickUp,
+  drawDorangelPotBack,
+  drawDorangelPotFront,
+} from "./finales/dorangel";
+import {
   carolinaInvocationPose,
   carolinaPoseHeight,
   drawCoutureRunway,
@@ -46,7 +53,10 @@ export function arenaPerformerPose(
   let pose: string | undefined,
     size = height,
     facing: number | undefined;
-  if (id === "bolivar") {
+  if (id === "dorangel") {
+    pose = dorangelCookingPose(t, reducedMotion);
+    size = dorangelPoseHeight(pose, height);
+  } else if (id === "bolivar") {
     if (t >= 92) return;
     pose =
       t < 12 || !rideMoving(field)
@@ -178,7 +188,7 @@ export function drawArenaPerformer(
   reducedMotion = false,
 ) {
   const field = activeArenaPerformance(state, player);
-  if (!field) return false;
+  if (!field) return drawDorangelPickUp(ctx, images, player, height);
   const pose = arenaPerformerPose(field, height, reducedMotion);
   return (
     !!pose &&
@@ -282,11 +292,18 @@ function drawHelper(
   reducedMotion: boolean,
 ) {
   ctx.save();
-  ctx.globalAlpha *= Math.min(
-    unit(actor.age / 5),
-    unit(actor.life / 12),
-    opacity(field),
-  );
+  ctx.globalAlpha *=
+    actor.kind === "pot"
+      ? Math.min(
+          unit(actor.life / 12),
+          unit((field.duration - field.tick) / 12),
+        )
+      : Math.min(unit(actor.age / 5), unit(actor.life / 12), opacity(field));
+  if (actor.kind === "pot") {
+    drawDorangelPotFront(ctx, images, actor);
+    ctx.restore();
+    return;
+  }
   if (actor.kind !== "curtain")
     shadow(
       ctx,
@@ -357,7 +374,16 @@ export function drawArenaFinaleLayer(
       active = activeArenaPerformance(state, p) === field;
     ctx.save();
     if (layer === "back") {
-      ctx.globalAlpha *= opacity(field);
+      ctx.globalAlpha *=
+        field.fighter === "dorangel"
+          ? unit((field.duration - field.tick) / 12)
+          : opacity(field);
+      if (field.fighter === "dorangel") {
+        for (const pot of field.actors ?? []) {
+          if (pot.kind !== "pot") continue;
+          drawDorangelPotBack(ctx, images, field, pot, p, reducedMotion);
+        }
+      }
       if (field.fighter === "carolina") drawCoutureRunway(ctx, field);
       const pose = active && mountedFinale(field) && arenaPerformerPose(field);
       if (pose && !hasAttackArt(images, field.fighter, [pose.pose]))
@@ -450,11 +476,13 @@ export function drawArenaFinaleLayer(
     ctx.restore();
     for (const actor of field.actors ?? []) {
       const depth =
-        actor.kind === "supporter" || actor.kind === "model"
-          ? "back"
-          : actor.kind === "curtain" || actor.index % 3 === 2
-            ? "front"
-            : "back";
+        actor.kind === "pot"
+          ? "front"
+          : actor.kind === "supporter" || actor.kind === "model"
+            ? "back"
+            : actor.kind === "curtain" || actor.index % 3 === 2
+              ? "front"
+              : "back";
       if (depth === layer) drawHelper(ctx, images, field, actor, reducedMotion);
     }
     if (

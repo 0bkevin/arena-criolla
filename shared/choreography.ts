@@ -99,6 +99,14 @@ function routine(
 // relative to the head centre, after normalizing the original atlas direction.
 // These are theatrical adaptations of public personas, never claimed as real rituals.
 export const CHOREOGRAPHIES: Record<FighterId, Choreography> = {
+  dorangel: routine(
+    "Se yergue y cruza los brazos",
+    [
+      [-0.1, 0.34],
+      [0.12, 0.35],
+    ],
+    [{ at: 0.45, head: -0.03, front: -0.1 }],
+  ),
   ...FOUNDER_CHOREOGRAPHIES,
   ...ICON_CHOREOGRAPHIES,
   zavarce: routine(

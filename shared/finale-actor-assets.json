@@ -572,6 +572,55 @@
           "anchorX": 163.46493063485158
         }
       ]
+    },
+    "dorangel": {
+      "file": "dorangel-cafe-reactions-v2",
+      "frame": {
+        "x": 12,
+        "y": 12,
+        "width": 321,
+        "height": 479
+      },
+      "bodyHeight": 471,
+      "anchorX": 126.57702594276545,
+      "frames": [
+        {
+          "x": 12,
+          "y": 12,
+          "width": 321,
+          "height": 479,
+          "anchorX": 126.57702594276545,
+          "anchorY": 475,
+          "bodyHeight": 471
+        },
+        {
+          "x": 345,
+          "y": 13,
+          "width": 321,
+          "height": 478,
+          "anchorX": 88.77439692982456,
+          "anchorY": 474,
+          "bodyHeight": 471
+        },
+        {
+          "x": 12,
+          "y": 513,
+          "width": 330,
+          "height": 455,
+          "anchorX": 156.6145565176691,
+          "anchorY": 451,
+          "bodyHeight": 471
+        },
+        {
+          "x": 354,
+          "y": 503,
+          "width": 362,
+          "height": 465,
+          "anchorX": 128.04673153350691,
+          "anchorY": 461,
+          "bodyHeight": 471
+        }
+      ]
     }
   },
   "caprilesCafe": {
@@ -1290,6 +1339,17 @@
       },
       "bodyHeight": 414,
       "anchorX": 215.998031496063
+    },
+    "dorangel": {
+      "file": "perro-mujeriego-dorangel-v2",
+      "frame": {
+        "x": 12,
+        "y": 20,
+        "width": 259,
+        "height": 417
+      },
+      "bodyHeight": 409,
+      "anchorX": 140.4635913750442
     }
   }
 }

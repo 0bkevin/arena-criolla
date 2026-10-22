@@ -10,6 +10,17 @@ import { VICTORY_DURATION_MS, type VictoryProfile } from "./victory-types";
 export { VICTORY_DURATION_MS } from "./victory-types";
 
 export const VICTORIES = {
+  dorangel: {
+    name: "Aparta el cucharón y se queda en guardia",
+    frame: 0,
+    paintedPose: "cook-finish",
+    movement: "plant",
+    gesture: { head: -0.03, lean: -0.02 },
+    lift: 0.015,
+    travel: 0,
+    twist: 0.01,
+    music: "percussion",
+  },
   ...CLASSIC_VICTORIES,
   ...CULTURE_VICTORIES,
   ...FOLKLORE_VICTORIES,

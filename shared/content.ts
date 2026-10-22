@@ -58,6 +58,7 @@ export type BuiltInFighterId =
   | "gabriela"
   | "amanda"
   | "lele"
+  | "dorangel"
   | "giuseppe";
 export type FighterId = BuiltInFighterId | `custom_${string}`;
 
@@ -125,6 +126,7 @@ export type Ability =
   | "football"
   | "liberator"
   | "retake"
+  | "bite"
   | "signal";
 
 export type FighterCategory = "culture" | "folklore" | "founders" | "community";

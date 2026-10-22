@@ -60,6 +60,7 @@ export const DEFAULT_ENTRANCE_FIGHTERS = [
   "bolivar",
   "edgar",
   "melanio",
+  "dorangel",
 ] as const satisfies readonly BuiltInFighterId[];
 
 export const DEFAULT_ENTRANCE_ACTION: EntranceAction = {
