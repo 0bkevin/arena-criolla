@@ -1,12 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { fighterById, type FighterId } from "../../shared/content";
 import { WORLD } from "../../shared/engine";
-import { preloadAssets } from "../game/assets";
-import {
-  demoRivalFor,
-  simulateMoveDemo,
-  type GuideMove,
-} from "../game/move-demo";
+import { preloadMovePreviewAssets } from "../game/move-preview-assets";
+import { simulateMoveDemo, type GuideMove } from "../game/move-demo";
 import { renderMatch, type Assets } from "../game/renderer";
 import { Portrait } from "./Portrait";
 
@@ -25,7 +21,10 @@ export function FighterMovePreview({
   const panel = useRef<HTMLDivElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const position = useRef(0);
-  const [assets, setAssets] = useState<Assets | null>(null);
+  const [loaded, setLoaded] = useState<{
+    scope: string;
+    assets: Assets;
+  } | null>(null);
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const [frame, setFrame] = useState(0);
@@ -33,6 +32,11 @@ export function FighterMovePreview({
   const [playing, setPlaying] = useState(false);
   const [visible, setVisible] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
+  // Basic moves share the same artwork. Do not restart their load on each key.
+  const assetMove =
+    move === "final" || move === "special" ? move : move ? "light" : null;
+  const assetScope = `${fighter}:${assetMove}`;
+  const assets = loaded?.scope === assetScope ? loaded.assets : null;
   const frames = useMemo(
     () => (move ? simulateMoveDemo(fighter, move) : null),
     [fighter, move],
@@ -52,10 +56,10 @@ export function FighterMovePreview({
   useEffect(() => {
     let active = true;
     setError(false);
-    setAssets(null);
-    void preloadAssets([fighter, demoRivalFor(fighter)], ["caracas"])
+    if (!assetMove) return;
+    void preloadMovePreviewAssets(fighter, assetMove)
       .then((value) => {
-        if (active) setAssets(value);
+        if (active) setLoaded({ scope: assetScope, assets: value });
       })
       .catch(() => {
         if (active) setError(true);
@@ -63,7 +67,7 @@ export function FighterMovePreview({
     return () => {
       active = false;
     };
-  }, [fighter, attempt]);
+  }, [fighter, assetMove, assetScope, attempt]);
 
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");

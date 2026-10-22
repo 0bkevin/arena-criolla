@@ -5,7 +5,8 @@ import { createMatch } from "../../shared/engine";
 import { Game } from "../../src/components/Game";
 import { Help } from "../../src/components/Help";
 import { FighterDetail } from "../../src/components/FighterDetail";
-import type { FighterId } from "../../shared/content";
+import { BUILT_IN_FIGHTERS, type FighterId } from "../../shared/content";
+import type { GuideMove } from "../../src/game/move-demo";
 import { App } from "../../src/App";
 import { loadInterfaceFonts } from "../../src/fonts";
 import { setSound } from "../../src/audio";
@@ -243,7 +244,10 @@ export async function runRosterNavigation() {
 }
 
 /** The live canvas must stay inside its grid row when a short viewport scrolls. */
-export async function runMovePreviewLayout(fighter: FighterId = "maite") {
+export async function runMovePreviewLayout(
+  fighter: FighterId = "maite",
+  move: GuideMove | null = "combo2",
+) {
   unmount();
   await prepareFonts();
   root = createRoot(document.getElementById("fixture")!);
@@ -260,7 +264,10 @@ export async function runMovePreviewLayout(fighter: FighterId = "maite") {
       </StrictMode>,
     ),
   );
-  document.querySelector<HTMLButtonElement>('[data-move="combo2"]')!.click();
+  if (move)
+    document
+      .querySelector<HTMLButtonElement>(`button[data-move="${move}"]`)!
+      .click();
   await settle();
   return movePreviewLayout();
 }
@@ -297,4 +304,72 @@ export function movePreviewLayout() {
       "Movement preview overlaps its controls: " + JSON.stringify(result),
     );
   return { pass: true, ...result };
+}
+
+/** Run in small batches so browser automation timeouts don't mask a failure. */
+export async function runMovePreviewPerformance(start = 0, end = start + 5) {
+  const rows = [];
+  const storageBefore = JSON.stringify(localStorage);
+  for (const fighter of BUILT_IN_FIGHTERS.slice(start, end)) {
+    const began = performance.now();
+    await runMovePreviewLayout(fighter.id, null);
+    const moves = [];
+    for (const move of [
+      "light",
+      "heavy",
+      "special",
+      "final",
+      "combo1",
+      "combo2",
+    ] as const) {
+      const requested = performance.now();
+      document
+        .querySelector<HTMLButtonElement>(`button[data-move="${move}"]`)!
+        .click();
+      for (;;) {
+        await new Promise((resolve) => setTimeout(resolve, 25));
+        const canvas = document.querySelector<HTMLCanvasElement>(
+          ".move-preview canvas",
+        );
+        if (
+          canvas?.dataset.move === move &&
+          Number(canvas.dataset.frame) > 0 &&
+          !document.querySelector(".move-preview-loading")
+        )
+          break;
+        if (performance.now() - requested > 12_000)
+          throw Error(
+            `${fighter.id}/${move}: animation did not load and advance`,
+          );
+      }
+      movePreviewLayout();
+      moves.push({
+        move,
+        firstFrameMs: Math.round(performance.now() - requested),
+      });
+    }
+    const images = performance
+      .getEntriesByType("resource")
+      .filter(
+        (entry): entry is PerformanceResourceTiming =>
+          entry instanceof PerformanceResourceTiming &&
+          entry.startTime >= began &&
+          /\/assets\/.*\.webp/.test(entry.name),
+      )
+      .map((entry) => ({
+        file: entry.name.split("/").at(-1),
+        bytes: entry.decodedBodySize,
+      }));
+    if (images.some((image) => image.file?.includes("entrance")))
+      throw Error(`${fighter.id}: unused entrance image downloaded`);
+    rows.push({
+      fighter: fighter.id,
+      viewport: [innerWidth, innerHeight],
+      moves,
+      images,
+    });
+  }
+  if (JSON.stringify(localStorage) !== storageBefore)
+    throw Error("Previews changed stored progress");
+  return { pass: true, rows };
 }
