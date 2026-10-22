@@ -179,6 +179,33 @@ async function run() {
       );
     },
   );
+  await scenario(
+    "a hidden opener returns focus to a visible control",
+    async () => {
+      const context = document.createElement("header");
+      const opener = document.createElement("button");
+      const fallback = document.createElement("button");
+      opener.textContent = "Desktop dialog opener";
+      fallback.textContent = "Visible navigation";
+      context.append(opener, fallback);
+      document.body.append(context);
+      try {
+        opener.focus();
+        render(1);
+        await settle();
+        opener.hidden = true;
+        render(0);
+        await settle();
+        expect(
+          document.activeElement === fallback,
+          "Focus was lost when the opener became hidden",
+        );
+      } finally {
+        render(0);
+        context.remove();
+      }
+    },
+  );
   document.body.style.cssText = originalBody;
   document.documentElement.style.cssText = originalRoot;
   render(0);

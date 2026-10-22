@@ -42,8 +42,21 @@ export function Modal({
             "button:not(:disabled), a[href], input:not(:disabled), [tabindex='0']",
           )
           ?.focus({ preventScroll: true });
-      else if (previous instanceof HTMLElement && previous.isConnected)
-        previous.focus({ preventScroll: true });
+      else if (previous instanceof HTMLElement && previous.isConnected) {
+        let target: HTMLElement | null = previous;
+        // A responsive breakpoint can hide the opener while the dialog is open.
+        while (target && target.getClientRects().length === 0)
+          target = target.parentElement;
+        if (target && target !== previous)
+          target =
+            [
+              ...target.querySelectorAll<HTMLElement>(
+                "button:not(:disabled), a[href], input:not(:disabled), [tabindex='0']",
+              ),
+            ].find((candidate) => candidate.getClientRects().length > 0) ??
+            null;
+        target?.focus({ preventScroll: true });
+      }
     };
   }, []);
   return (

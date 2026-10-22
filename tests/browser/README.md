@@ -1,15 +1,43 @@
 # Controls validation
 
+## Dialog and game overlay layout review
+
+With the standalone Vite server below, open
+`http://localhost:5174/tests/browser/overlay-layout.html`.
+
+```js
+await overlayReview.runRosterNavigation(); // desktop: all three scenarios pass
+await overlayReview.mount("playing", true); // portrait: orientation gate; landscape: pause via UI
+await overlayReview.mount("victory"); // production Game result, including its focus management
+await overlayReview.mount("draw");
+overlayReview.state(); // rematch/exit callback counts after native button clicks
+overlayReview.unmount();
+```
+
+The roster regression mounts the production App and checks that closing fighter
+details preserves the roster, its scroll position, focus, and the page scroll lock.
+Choosing a fighter must close both dialogs. The overlay fixture controls the
+initial match state and touch-device properties, loads the production fonts and
+styles, and restores its device overrides on unmount. It does not emulate
+physical touch gestures or test fullscreen/orientation browser permissions.
+
+Review at 320×568, 390×844, 844×390, 768×1024, 1024×768, and 1440×900. Check
+native keyboard focus and clicks, scroll each view to both ends, and resize with
+the dialog open. A result may scroll vertically on a short phone; its rematch and
+exit actions must remain reachable without horizontal overflow.
+
 ## Dialog scroll regressions
 
 With the standalone Vite server below, open
 `http://localhost:5174/tests/browser/modal-scroll.html` and run
-`await modalScrollAudit.run()`. All three scenarios must pass.
+`await modalScrollAudit.run()`. All four scenarios must pass.
 
 The fixture mounts the production `Modal` in React StrictMode over a tall page.
 It checks that reaching the dialog's scroll limit cannot move the background,
 that closing a stacked dialog keeps the remaining dialog locked, and that the
 final close or unmount restores the original page position and inline styles.
+It also checks that hiding the opener while a dialog is open returns focus to a
+visible control in the same context.
 The checks drive browser scroll APIs; physical touch gestures are not emulated.
 
 ## Desktop regressions
