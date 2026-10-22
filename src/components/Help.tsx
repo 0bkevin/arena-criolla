@@ -1,12 +1,24 @@
 import { useState } from "react";
-import { ChevronDown, Gamepad2, Keyboard, Smartphone } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronDown,
+  Flame,
+  Gamepad2,
+  Keyboard,
+  Smartphone,
+  Swords,
+  Zap,
+} from "lucide-react";
 import {
   SUPER_ENERGY_COST,
   SUPER_CHARGE_SECONDS_LABEL,
+  SUPER_INTERRUPT_ENERGY_COST,
 } from "../../shared/content";
 import { hasTouchInput } from "../game/mobile";
 import { Modal } from "./Modal";
 import { MobileControlsGuide } from "./MobileControlsGuide";
+import { DesktopControlsGuide } from "./DesktopControls";
+import { GamepadControlsGuide } from "./GamepadControlsGuide";
 import "../help.css";
 
 type Device = "keyboard" | "touch" | "gamepad";
@@ -17,111 +29,71 @@ const devices = [
   { id: "gamepad", label: "Mando", icon: Gamepad2 },
 ] as const;
 
-const controls = [
-  {
-    action: "Mover",
-    first: ["A", "D"],
-    second: ["←", "→"],
-    touch: "Flechas",
-    gamepad: "Stick / cruceta",
-  },
-  {
-    action: "Saltar",
-    note: "Puedes saltar dos veces",
-    first: ["W"],
-    second: ["↑"],
-    touch: "Saltar",
-    gamepad: "A",
-  },
-  {
-    action: "Bajar de plataforma",
-    first: ["S"],
-    second: ["↓"],
-    touch: "Bajar",
-    gamepad: "Stick ↓",
-  },
-  {
-    action: "Bloquear",
-    note: "Mantén pulsado",
-    first: ["U"],
-    second: ["0"],
-    touch: "Bloqueo",
-    gamepad: "LB",
-  },
-  {
-    action: "Esquivar",
-    first: ["Shift izq."],
-    second: ["Enter"],
-    touch: "Esquiva",
-    gamepad: "RB",
-  },
-  {
-    action: "Golpe ligero",
-    first: ["J"],
-    second: ["1"],
-    touch: "Golpe",
-    gamepad: "X",
-  },
-  {
-    action: "Golpe fuerte",
-    first: ["K"],
-    second: ["2"],
-    touch: "Fuerte",
-    gamepad: "B",
-  },
-  {
-    action: "Especial",
-    note: "25 de energía",
-    first: ["L"],
-    second: ["3"],
-    touch: "Especial",
-    gamepad: "Y",
-  },
-  {
-    action: "Súper",
-    note: `Mantén ${SUPER_CHARGE_SECONDS_LABEL} s · ${SUPER_ENERGY_COST} de energía · Un uso por pelea`,
-    first: ["I"],
-    second: ["5"],
-    touch: "Súper",
-    gamepad: "RT",
-  },
-] as const;
+function ActionInput({
+  action,
+  device,
+  player,
+}: {
+  action: "light" | "heavy" | "super";
+  device: Device;
+  player: 0 | 1;
+}) {
+  const label = {
+    light: "Golpe ligero",
+    heavy: "Golpe fuerte",
+    super: "Definitiva",
+  }[action];
+
+  if (device === "touch") {
+    const Icon = { light: Swords, heavy: Flame, super: Zap }[action];
+    return (
+      <span className="help-rule-input is-touch" role="img" aria-label={label}>
+        <Icon size={14} aria-hidden="true" />
+      </span>
+    );
+  }
+
+  const input =
+    device === "keyboard"
+      ? {
+          light: player === 0 ? "J" : "1",
+          heavy: player === 0 ? "K" : "2",
+          super: player === 0 ? "I" : "5",
+        }[action]
+      : { light: "X", heavy: "B", super: "RT" }[action];
+
+  return device === "keyboard" ? (
+    <kbd className="help-rule-input" aria-label={`${label}: ${input}`}>
+      {input}
+    </kbd>
+  ) : (
+    <span
+      className={`help-rule-input${input.length === 1 ? " is-face-button" : ""}`}
+      role="img"
+      aria-label={`${label}: ${input}`}
+    >
+      {input}
+    </span>
+  );
+}
 
 export function Help({ onClose }: { onClose: () => void }) {
   const [device, setDevice] = useState<Device>(() =>
     hasTouchInput() ? "touch" : "keyboard",
   );
   const [player, setPlayer] = useState<0 | 1>(0);
-  const light =
-    device === "keyboard"
-      ? player === 0
-        ? "J"
-        : "1"
-      : device === "touch"
-        ? "Golpe"
-        : "X";
-  const heavy =
-    device === "keyboard"
-      ? player === 0
-        ? "K"
-        : "2"
-      : device === "touch"
-        ? "Fuerte"
-        : "B";
+  const input = (action: "light" | "heavy" | "super") => (
+    <ActionInput action={action} device={device} player={player} />
+  );
 
   return (
     <Modal title="Cómo jugar" className="help-modal" onClose={onClose}>
       <div className="help-content">
-        <section className="help-goal" aria-labelledby="help-goal-title">
-          <h3 id="help-goal-title">Quita las dos vidas a tu rival.</h3>
-          <p>
-            Vacía su barra de vida o sácalo de la arena para quitarle una vida.
-          </p>
-        </section>
-
         <section aria-labelledby="help-controls-title">
-          <div className="help-controls-heading">
-            <h3 id="help-controls-title">Controles</h3>
+          <h3 id="help-controls-title" className="sr-only">
+            Controles
+          </h3>
+          <div className="help-view-switcher">
             <div
               className="help-devices"
               role="group"
@@ -162,52 +134,14 @@ export function Help({ onClose }: { onClose: () => void }) {
                 Jugador 2 · local
               </button>
             </div>
-          ) : device === "gamepad" ? (
-            <p className="help-device-note">
-              Conecta tu mando. Los botones siguen la distribución Xbox.
-            </p>
           ) : null}
 
           {device === "touch" ? (
             <MobileControlsGuide />
+          ) : device === "keyboard" ? (
+            <DesktopControlsGuide player={player} />
           ) : (
-            <div className="help-controls-grid">
-              {[controls.slice(0, 5), controls.slice(5)].map((group, index) => (
-                <dl key={index}>
-                  {group.map((control) => (
-                    <div className="help-control" key={control.action}>
-                      <dt>
-                        {control.action}
-                        {"note" in control && <span>{control.note}</span>}
-                      </dt>
-                      <dd>
-                        {device === "keyboard" ? (
-                          (player === 0 ? control.first : control.second).map(
-                            (key) => <kbd key={key}>{key}</kbd>,
-                          )
-                        ) : (
-                          <span className="help-input">{control[device]}</span>
-                        )}
-                      </dd>
-                    </div>
-                  ))}
-                  {index === 1 && (
-                    <div className="help-control">
-                      <dt>
-                        {device === "keyboard" ? "Pausa / menú" : "Pausar"}
-                      </dt>
-                      <dd>
-                        {device === "keyboard" ? (
-                          <kbd>Esc</kbd>
-                        ) : (
-                          <span className="help-input">Start / Menú</span>
-                        )}
-                      </dd>
-                    </div>
-                  )}
-                </dl>
-              ))}
-            </div>
+            <GamepadControlsGuide />
           )}
 
           {device === "keyboard" && player === 1 && (
@@ -222,33 +156,47 @@ export function Help({ onClose }: { onClose: () => void }) {
           <summary>
             Combos y reglas extra <ChevronDown size={18} aria-hidden="true" />
           </summary>
-          <ul>
-            <li>
-              <strong>Combos:</strong> {light} → {heavy} y {light} → {light} →{" "}
-              {heavy} están disponibles desde el inicio con todos los personajes.
-              Deja terminar cada golpe y completa la secuencia en 2,5 segundos.
-            </li>
-            <li>
-              <strong>Energía:</strong> se recarga al golpear y recibir golpes.
-              La definitiva está disponible desde el inicio y consume{" "}
-              {SUPER_ENERGY_COST} de energía. Cada jugador solo puede usarla una
-              vez por pelea, aunque falle o pierda una vida. Vicente lanza una
-              moto con su especial desde el inicio; el pelotón de siete motos
-              pertenece a su definitiva.
-            </li>
-            <li>
-              <strong>Carga vulnerable:</strong> mantén la definitiva durante{" "}
-              {SUPER_CHARGE_SECONDS_LABEL} segundos. Puedes moverte más
-              despacio, pero no atacar, bloquear, saltar ni esquivar. Soltar
-              cancela gratis; recibir un golpe interrumpe la carga y resta 15 de
-              energía. Conservas tu único uso hasta que comienza el ataque.
-            </li>
-            <li>
-              <strong>Tiempo:</strong> cada pelea dura un máximo de 2 minutos.
-              Si se acaba, gana quien conserve más vidas y, si empatan, más
-              salud.
-            </li>
-          </ul>
+          <div className="help-rules-grid">
+            <section className="help-rule" aria-labelledby="help-combos-title">
+              <h4 id="help-combos-title">Combos</h4>
+              <div className="help-rule-combo">
+                <span className="help-rule-sequence">
+                  {input("light")}
+                  <ArrowRight size={12} aria-hidden="true" />
+                  {input("heavy")}
+                </span>
+                <span>Desde el inicio</span>
+              </div>
+              <div className="help-rule-combo">
+                <span className="help-rule-sequence">
+                  {input("light")}
+                  <ArrowRight size={12} aria-hidden="true" />
+                  {input("light")}
+                  <ArrowRight size={12} aria-hidden="true" />
+                  {input("heavy")}
+                </span>
+              </div>
+              <p>Espera entre golpes · Completa en 2,5 s.</p>
+            </section>
+            <section className="help-rule" aria-labelledby="help-super-title">
+              <h4 id="help-super-title">Definitiva {input("super")}</h4>
+              <p className="help-rule-stats">
+                Mantén {SUPER_CHARGE_SECONDS_LABEL} s · {SUPER_ENERGY_COST} de
+                energía · 1 uso por pelea
+              </p>
+              <p>Al cargar, solo puedes moverte más lento.</p>
+              <p>
+                Soltar cancela sin gastar el uso. Si te golpean, se cancela y
+                pierdes {SUPER_INTERRUPT_ENERGY_COST} de energía.
+              </p>
+            </section>
+            <p className="help-rule-note">
+              <strong>Energía:</strong> se recupera al dar y recibir golpes.
+            </p>
+            <p className="help-rule-note">
+              <strong>2 min por pelea.</strong> Desempate: vidas, luego salud.
+            </p>
+          </div>
         </details>
       </div>
       <div className="help-footer">

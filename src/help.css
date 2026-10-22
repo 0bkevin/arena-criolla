@@ -21,13 +21,13 @@
 .help-modal .modal-header {
   flex-shrink: 0;
   margin: 0;
-  padding: 20px 32px 16px;
+  padding: 16px 24px;
   border-bottom: 1px solid #30455f;
 }
 
 .arcade-app .help-modal .modal-header h2 {
   color: #fff5db;
-  font: italic 800 40px/1.1 var(--font-display);
+  font: italic 800 28px/1.1 var(--font-display);
   letter-spacing: 0;
 }
 
@@ -45,7 +45,7 @@
 
 .help-content {
   min-height: 0;
-  padding: 20px 32px;
+  padding: 20px 24px;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-color: #5d779c #13243a;
@@ -59,44 +59,48 @@
   font-weight: 700;
 }
 
-.help-goal {
-  margin-bottom: 20px;
-}
-
-.help-goal p {
-  max-width: 70ch;
-  margin-top: 8px;
-  color: var(--help-muted);
-}
-
-.help-controls-heading {
+.help-view-switcher {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 12px;
+  justify-content: flex-start;
+  margin-bottom: 24px;
 }
 
 .help-devices {
   display: flex;
-  gap: 4px;
-  padding: 4px;
+  width: fit-content;
+  max-width: 100%;
+  gap: 2px;
+  padding: 2px;
   border: 1px solid #30455f;
-  border-radius: 8px;
+  border-radius: 6px;
   background: #0a1829;
 }
 
 .help-devices button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 8px 16px;
+  gap: 4px;
+  min-height: 30px;
+  padding: 4px 8px;
   border-radius: 4px;
   color: var(--help-muted);
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Extend the hit area without making the painted tabs taller. */
+.help-devices button::before {
+  content: "";
+  position: absolute;
+  inset: -7px 0;
+}
+
+.help-devices svg {
+  width: 14px;
+  height: 14px;
 }
 
 .help-devices button[aria-pressed="true"] {
@@ -113,7 +117,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px 24px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .help-players button {
@@ -139,23 +143,81 @@
   color: var(--help-muted);
 }
 
-.help-rotate-note {
+.help-screen-guide {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.help-touch-guide {
+  font: 400 14px/1.5 var(--font-body);
+}
+
+.help-touch-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 32px;
+}
+
+.help-touch-overview {
+  min-width: 0;
+}
+
+.help-touch-basics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.help-touch-basics h4 {
+  margin: 0 0 8px;
+  color: #fff5db;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.help-touch-basics dl {
+  margin: 0;
+}
+
+.help-touch-basics dl > div {
+  display: grid;
+  align-content: start;
+  min-height: 48px;
+  padding-block: 4px;
+}
+
+.help-touch-basics dt {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.help-touch-basics dt svg {
+  flex-shrink: 0;
   color: var(--help-muted);
 }
 
-.help-rotate-note svg {
-  flex-shrink: 0;
-  transform: rotate(90deg);
-  color: #ffd45a;
+.help-touch-basics dd {
+  margin: 0 0 0 28px;
+  color: var(--help-muted);
+  font-size: 12px;
+  line-height: 1.4;
 }
 
-.help-screen-guide {
-  max-width: 640px;
-  margin: 0 auto 20px;
+.help-touch-method {
+  max-width: 72ch;
+  margin: 16px 0 0;
+  color: var(--help-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.help-touch-method strong {
+  color: #eef2fa;
+  font-weight: 500;
 }
 
 .help-game-screen {
@@ -331,92 +393,6 @@
   color: #fff5db;
 }
 
-.help-touch-legend {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.help-touch-legend h4 {
-  margin: 0 0 4px;
-  color: #fff5db;
-  font-size: 16px;
-}
-
-.help-touch-legend dl {
-  margin: 0;
-}
-
-.help-touch-legend dl > div {
-  display: grid;
-  grid-template-columns: 20px minmax(0, 1fr);
-  gap: 2px 8px;
-  align-content: start;
-  min-height: 64px;
-  padding-block: 10px;
-  border-bottom: 1px solid #30455f;
-}
-
-.help-touch-legend svg {
-  grid-row: 1 / 3;
-  margin-top: 1px;
-  color: #ffd45a;
-}
-
-.help-touch-legend dt {
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.help-touch-legend dd {
-  grid-column: 2;
-  margin: 0;
-  color: var(--help-muted);
-  font-size: 13px;
-  line-height: 1.4;
-}
-
-.help-controls-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 40px;
-}
-
-.help-controls-grid dl {
-  min-width: 0;
-  margin: 0;
-}
-
-.help-control {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  min-height: 56px;
-  padding: 8px 0;
-  border-bottom: 1px solid #30455f;
-}
-
-.help-control dt {
-  min-width: 0;
-}
-
-.help-control dt > span {
-  display: block;
-  margin-top: 2px;
-  color: var(--help-muted);
-  font-size: 14px;
-  line-height: 1.3;
-}
-
-.help-control dd {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  gap: 6px;
-  margin: 0;
-}
-
 .help-modal kbd,
 .help-input {
   min-width: 38px;
@@ -434,6 +410,24 @@
   border-bottom-width: 3px;
 }
 
+.gamepad-controls-guide .help-input {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 7px;
+  border-radius: 4px;
+  font: 700 13px/1 var(--font-body);
+}
+
+.gamepad-controls-guide .is-face-button {
+  width: 30px;
+  padding: 0;
+  border-radius: 50%;
+}
+
 .help-more {
   margin-top: 16px;
 }
@@ -445,6 +439,7 @@
   min-height: 44px;
   width: fit-content;
   color: var(--help-muted);
+  font-size: 13px;
   cursor: pointer;
   list-style: none;
 }
@@ -462,15 +457,84 @@
   transform: rotate(180deg);
 }
 
-.help-more ul {
-  max-width: 72ch;
+.help-rules-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 32px;
   margin: 12px 0 0;
-  padding-left: 20px;
   color: var(--help-muted);
+  font-size: 13px;
+  line-height: 1.5;
 }
 
-.help-more li + li {
-  margin-top: 12px;
+.help-rule {
+  min-width: 0;
+}
+
+.help-rule h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 22px;
+  margin: 0 0 12px;
+  color: #fff5db;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.help-rule p {
+  margin: 8px 0 0;
+}
+
+.help-rule-combo {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-bottom: 10px;
+}
+
+.help-rule-sequence {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 4px;
+}
+
+.help-modal .help-rule-input {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  color: #fff5db;
+  background: #1d3450;
+  border: 1px solid #657c98;
+  border-radius: 4px;
+  font: 700 12px/1 var(--font-body);
+}
+
+.help-modal kbd.help-rule-input {
+  border-bottom-width: 2px;
+}
+
+.help-rule-input.is-face-button {
+  border-radius: 50%;
+}
+
+.help-rule-input.is-touch {
+  padding: 0;
+}
+
+.help-rule .help-rule-stats {
+  color: #eef2fa;
+}
+
+.help-rule-note {
+  margin: 0;
+  font-size: 12px;
 }
 
 .help-more strong {
@@ -481,8 +545,7 @@
   display: flex;
   flex-shrink: 0;
   justify-content: flex-end;
-  padding: 12px 32px;
-  border-top: 1px solid #30455f;
+  padding: 12px 24px;
 }
 
 .help-done {
@@ -505,6 +568,29 @@
   outline-offset: 3px;
 }
 
+@media (max-width: 900px) {
+  .help-view-switcher {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 760px) {
+  .help-touch-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .help-rules-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .help-rule-note + .help-rule-note {
+    margin-top: -12px;
+  }
+}
+
 @media (max-width: 680px) {
   .arcade-app .modal.help-modal {
     width: calc(100vw - 24px);
@@ -523,25 +609,8 @@
     padding: 16px;
   }
 
-  .help-goal {
-    margin-bottom: 20px;
-  }
-
   .help-content h3 {
     font-size: 18px;
-  }
-
-  .help-controls-heading {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .help-devices button {
-    flex: 1;
-    min-width: 0;
-    gap: 6px;
-    padding: 8px;
   }
 
   .help-players {
@@ -550,14 +619,6 @@
 
   .help-players button {
     font-size: 14px;
-  }
-
-  .help-controls-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .help-control {
-    gap: 12px;
   }
 
   .help-footer {
@@ -572,5 +633,45 @@
 @media (max-width: 380px) {
   .help-devices svg {
     display: none;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .arcade-app .modal.help-modal {
+    width: min(880px, calc(100vw - 24px));
+    max-height: calc(100dvh - 16px);
+  }
+
+  .arcade-app .help-modal .modal-header {
+    min-height: 0;
+    padding: 8px 16px;
+  }
+
+  .arcade-app .help-modal .modal-header h2 {
+    font-size: 24px;
+  }
+
+  .arcade-app .help-modal .help-content {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .help-modal .help-content h3 {
+    font-size: 16px;
+  }
+
+  .help-view-switcher {
+    margin-bottom: 20px;
+  }
+
+  .arcade-app .help-modal .help-footer {
+    padding: 8px 16px;
+  }
+
+  .help-modal .help-done {
+    width: auto;
+    min-width: 128px;
+    padding-block: 8px;
+    font-size: 14px;
   }
 }

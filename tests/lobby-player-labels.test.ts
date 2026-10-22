@@ -128,5 +128,6 @@ test("local and CPU modes keep their own player labels without name inputs", () 
       ),
     );
     assert.doesNotMatch(html, /<input\b/);
+    assert.doesNotMatch(html, /desktop-controls-guide|¿Primera pelea/);
   }
 });
