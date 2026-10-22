@@ -94,8 +94,9 @@ export function GamepadControlsGuide() {
             Definitiva <ButtonLabel input="RT" />
           </h4>
           <small>
-            Mantén {SUPER_CHARGE_SECONDS_LABEL} s · {SUPER_ENERGY_COST} de
-            energía · Un uso por pelea
+            Necesitas {SUPER_ENERGY_COST} de energía. Mantén pulsado RT durante{" "}
+            {SUPER_CHARGE_SECONDS_LABEL} s para lanzarla. Solo puedes usarla una
+            vez por pelea.
           </small>
         </div>
       </div>

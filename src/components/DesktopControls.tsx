@@ -228,8 +228,9 @@ export function DesktopControlsGuide({ player }: { player: Player }) {
         <div className="controls-guide-extra">
           <h4>Definitiva {key("super")}</h4>
           <small>
-            Mantén {SUPER_CHARGE_SECONDS_LABEL} s · {SUPER_ENERGY_COST} de
-            energía · Un uso por pelea
+            Necesitas {SUPER_ENERGY_COST} de energía. Mantén pulsada la tecla
+            durante {SUPER_CHARGE_SECONDS_LABEL} s para lanzarla. Solo puedes
+            usarla una vez por pelea.
           </small>
         </div>
       </div>

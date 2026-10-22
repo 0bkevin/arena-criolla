@@ -32,7 +32,7 @@ const combat = [
   {
     icon: Zap,
     label: "Cargar",
-    note: `Mantén ${SUPER_CHARGE_SECONDS_LABEL} s · ${SUPER_ENERGY_COST} energía · 1 uso`,
+    note: `Necesitas ${SUPER_ENERGY_COST} de energía. Mantén el botón ${SUPER_CHARGE_SECONDS_LABEL} s para lanzarla. Solo una vez por pelea.`,
   },
 ];
 
