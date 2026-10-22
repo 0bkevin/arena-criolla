@@ -20,6 +20,7 @@
 
 .modal:where(:not(.content-modal)) {
   --dialog-surface: #181c25;
+  padding: 8px 20px 20px;
   scrollbar-width: thin;
   scrollbar-color: #6682a2 var(--dialog-surface);
   scroll-padding-block: 80px 24px;
@@ -29,9 +30,10 @@
 }
 .modal:where(:not(.content-modal)) .modal-header {
   position: sticky;
-  top: -26px;
+  top: -8px;
   z-index: 3;
-  padding-block: 12px;
+  margin-bottom: 12px;
+  padding-block: 4px;
   background: var(--dialog-surface);
 }
 .modal:where(:not(.content-modal)) .modal-header h2 {
@@ -43,6 +45,14 @@
   min-width: 44px;
   height: 44px;
   flex-shrink: 0;
+}
+
+.arcade-app .modal .modal-header .icon-button {
+  color: #fff;
+}
+
+.arcade-app .modal .modal-header .icon-button:is(:hover, :active) {
+  color: #ff7b85;
 }
 .modal:where(:not(.content-modal)) :is(p, .help-note) {
   font-size: 13px;
@@ -267,7 +277,7 @@
 @media (min-width: 901px) and (pointer: fine) {
   .arcade-app .modal {
     width: min(500px, calc(100vw - 64px));
-    padding: 20px;
+    padding: 8px 20px 20px;
     font: 400 14px/1.5 var(--font-body);
     scroll-padding-block: 64px 20px;
   }
@@ -279,8 +289,8 @@
     gap: 12px;
   }
   .arcade-app .modal:where(:not(.content-modal)) .modal-header {
-    top: -20px;
-    padding-block: 8px;
+    top: -8px;
+    padding-block: 4px;
   }
   .app-shell.arcade-app .modal .modal-header h2 {
     font-size: 26px;
@@ -392,7 +402,7 @@
     font-size: 14px;
   }
   .arcade-app .content-modal .modal-header {
-    padding: 14px 24px;
+    padding: 8px 24px;
   }
   .arcade-app .content-modal .dialog-content {
     padding: 16px 24px;
@@ -493,10 +503,10 @@
     max-height: calc(
       100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom)
     );
-    padding: 16px;
+    padding: 8px 16px 16px;
   }
   .modal:where(:not(.content-modal)) .modal-header {
-    top: -16px;
+    top: -8px;
   }
   .fighter-detail {
     grid-template-columns: minmax(0, 1fr);
