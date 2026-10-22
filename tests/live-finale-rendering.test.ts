@@ -1,3 +1,12 @@
+import { DORANGEL_POT } from "../shared/dorangel";
+import {
+  dorangelCookingPose,
+  dorangelPoseHeight,
+  dorangelHeatReaction,
+  drawDorangelPotBack,
+  drawDorangelBite,
+} from "../src/game/finales/dorangel";
+import { drawImpact } from "../src/game/effects-renderer";
 import test from "node:test";
 import assert from "node:assert/strict";
 import sharp from "sharp";
@@ -147,7 +156,7 @@ test.before(async () => {
 });
 
 test("the reviewed batch contains every painted attack set and the Yummy couriers", () => {
-  assert.equal(REVIEWED_FINALISTS.length, 24);
+  assert.equal(REVIEWED_FINALISTS.length, 25);
   assert.deepEqual(
     [...Object.keys(ATTACK_ART), "zavarce"].sort(),
     [...REVIEWED_FINALISTS].sort(),
@@ -433,4 +442,216 @@ test("edge casts preserve world scale and let helpers leave through the edge, in
       }
       assert.ok(p.x >= WORLD.left && p.x <= WORLD.right, id);
     }
+});
+
+test("Dorángel opens his mouth during the approach and clamps only while the arm is held", () => {
+  assert.equal(dorangelPoseHeight("bite-ready", 177), 177);
+  for (const pose of ["bite-reach", "bite-close"])
+    assert.ok(dorangelPoseHeight(pose, 177) <= 177);
+  for (const blocked of [false, true])
+    for (const side of [0, 1] as const) {
+      const cast = { name: "Dorángel", fighter: "dorangel" as const, wins: 3 },
+        rival = { name: "Rival", fighter: "capriles" as const, wins: 3 },
+        state = createMatch("caracas", side ? [rival, cast] : [cast, rival]);
+      state.phase = "playing";
+      const p = state.players[side],
+        other = state.players[1 - side];
+      p.x = side ? 700 : 400;
+      other.x = p.x + (side ? -75 : 75);
+      for (const actor of state.players) {
+        actor.energy = 100;
+        actor.invincible = 0;
+      }
+      const input: [Input, Input] = [emptyInput(), emptyInput()];
+      input[side].actions.special++;
+      input[1 - side].block = blocked;
+      for (let i = 0; i < 3; i++) stepMatch(state, input);
+      for (const reduced of [false, true]) {
+        const open = recordingCanvas();
+        assert.ok(drawDorangelBite(open.ctx, images, p, 177, reduced, other));
+        const crop = ATTACK_ART.dorangel.frames["bite-reach"];
+        assert.deepEqual(open.images[0].args.slice(0, 4), [
+          crop.x,
+          crop.y,
+          crop.width,
+          crop.height,
+        ]);
+        assert.equal(other.hp, 100);
+        assert.equal(other.rootKind, undefined);
+      }
+      for (let i = 3; i < 16; i++) stepMatch(state, input);
+      const paint = recordingCanvas();
+      assert.ok(drawDorangelBite(paint.ctx, images, p, 177, false, other));
+      const crop =
+        ATTACK_ART.dorangel.frames[blocked ? "bite-reach" : "bite-close"];
+      assert.equal(paint.images.length, 1);
+      assert.deepEqual(paint.images[0].args.slice(0, 4), [
+        crop.x,
+        crop.y,
+        crop.width,
+        crop.height,
+      ]);
+      assert.equal(other.rootKind === "bite", !blocked);
+    }
+});
+
+test("Dorángel paints the pot preparation before fire and steam, in both motion modes", () => {
+  const cases = [
+    [2, "cook-carry"],
+    [10, "cook-lower"],
+    [24, "cook-place"],
+    [32, "cook-light-a"],
+    [38, "cook-light-b"],
+    [44, "cook-stir-a"],
+    [133, "cook-finish"],
+  ] as const;
+  for (const reduced of [false, true]) {
+    const state = createMatch("caracas", [
+      { name: "Dorángel", fighter: "dorangel", wins: 3 },
+      { name: "Rival", fighter: "capriles", wins: 3 },
+    ]);
+    state.phase = "playing";
+    for (const player of state.players) {
+      player.energy = 100;
+      player.invincible = 0;
+    }
+    const input: [Input, Input] = [emptyInput(), emptyInput()];
+    input[0].actions.super++;
+    for (let i = 0; i < 12; i++) stepMatch(state, input);
+    const field = state.fieldFinales![0],
+      pot = field.actors![0];
+    for (const [tick, expected] of cases) {
+      field.tick = tick;
+      assert.equal(dorangelCookingPose(tick, reduced), expected);
+      const paint = recordingCanvas();
+      drawDorangelPotBack(
+        paint.ctx,
+        images,
+        field,
+        pot,
+        state.players[0],
+        reduced,
+      );
+      const crops = paint.images.map((call) => call.args.slice(0, 4).join(","));
+      const crop = (key: string) => {
+        const frame = ATTACK_ART.dorangel.frames[key];
+        return [frame.x, frame.y, frame.width, frame.height].join(",");
+      };
+      assert.ok(crops.includes(crop("pot")) && crops.includes(crop("hearth")));
+      assert.equal(
+        crops.includes(crop("flame")),
+        tick >= DORANGEL_POT.fireTick && tick < DORANGEL_POT.finishTick,
+      );
+      assert.equal(
+        crops.includes(crop("steam")),
+        tick >= DORANGEL_POT.stirTick && tick < DORANGEL_POT.finishTick,
+      );
+      assert.equal(paint.stack.length, 0);
+    }
+  }
+});
+
+test("the hot pot reacts with one native defender, hides its boots and releases its drawing on a jump", () => {
+  for (const side of [0, 1] as const)
+    for (const gap of [43, DORANGEL_POT.offset]) {
+      const a = { name: "Dorángel", fighter: "dorangel" as const, wins: 3 },
+        b = { name: "Rival", fighter: "capriles" as const, wins: 3 },
+        state = createMatch("caracas", side ? [b, a] : [a, b]);
+      state.phase = "playing";
+      const source = state.players[side],
+        target = state.players[1 - side];
+      source.x = side ? 700 : 400;
+      target.x = source.x + (side ? -gap : gap);
+      for (const player of state.players) {
+        player.energy = 100;
+        player.invincible = 0;
+      }
+      const input: [Input, Input] = [emptyInput(), emptyInput()];
+      input[side].actions.super++;
+      for (let i = 0; i < 9; i++) stepMatch(state, input);
+      const field = state.fieldFinales![0],
+        pot = field.actors![0],
+        preparation = recordingCanvas(),
+        hearth = ATTACK_ART.dorangel.frames.hearth;
+      drawDorangelPotBack(preparation.ctx, images, field, pot, source);
+      const hearthCall = preparation.images.find(
+        (call) => call.args[0] === hearth.x && call.args[1] === hearth.y,
+      )!;
+      const hearthX = hearthCall.matrix[4];
+      for (let i = 0; i < 200 && !target.rootKind; i++) stepMatch(state, input);
+      assert.equal(target.rootKind, "pot");
+      assert.equal(pot.x, hearthX, "the bowl lands on its previewed hearth");
+      const reaction = dorangelHeatReaction(state, target)!;
+      assert.equal(reaction.frame, 7);
+      assert.ok(
+        reaction.lipY < target.y - 90 && reaction.lipY > target.y - 110,
+      );
+      assert.equal(dorangelHeatReaction(state, target, true)!.lift, 0);
+      const other = sprite("capriles"),
+        paint = recordingCanvas();
+      const rectangles: number[][] = [];
+      paint.ctx.rect = (...args) => {
+        rectangles.push(args);
+      };
+      const assets: Assets = {
+        sprites: { dorangel: sprite("dorangel"), capriles: other } as Record<
+          FighterId,
+          SpriteAsset
+        >,
+        stages: { caracas: bitmap(1774, 887) },
+        courier: images[courier.file],
+        finaleProps: images,
+      };
+      const before = JSON.stringify(state);
+      renderMatch(paint.ctx, state, assets, 0, true);
+      assert.equal(JSON.stringify(state), before);
+      assert.equal(
+        paint.images.filter((call) => call.image === other.image).length,
+        1,
+      );
+      assert.ok(
+        rectangles.some(
+          (rect) =>
+            rect[0] === target.x - 200 &&
+            Math.abs(rect[1] + rect[3] - reaction.lipY) < 1e-8,
+        ),
+        "the defender's lower body stays inside the front rim",
+      );
+      for (let i = 0; i < 50 && (target.stun || state.hitstop); i++)
+        stepMatch(state, input);
+      for (let i = 0; i < 30 && target.rootTicks; i++) stepMatch(state, input);
+      assert.equal(target.rootTicks, 0);
+      assert.equal(dorangelHeatReaction(state, target)!.frame, undefined);
+      assert.equal(dorangelHeatReaction(state, target)!.lipY, reaction.lipY);
+      input[1 - side].actions.jump++;
+      stepMatch(state, input);
+      assert.ok(!target.grounded);
+      assert.equal(dorangelHeatReaction(state, target), undefined);
+      assert.equal(state.finale, undefined);
+    }
+});
+
+test("hot-pot contact uses readable rising heat instead of a large explosive label", () => {
+  for (const heat of [false, true]) {
+    const paint = recordingCanvas(),
+      labels: string[] = [];
+    paint.ctx.fillText = (text) => {
+      labels.push(text);
+    };
+    drawImpact(paint.ctx, {
+      id: 1,
+      kind: "hit",
+      x: 0,
+      y: 0,
+      color: "#d39b66",
+      life: 26,
+      duration: 26,
+      impact: "super",
+      strength: 1.8,
+      ...(heat ? { visual: "heat" as const } : {}),
+    });
+    assert.equal(labels.includes("¡BOOM!"), !heat);
+    assert.ok(paint.shapes > 0);
+    assert.equal(paint.stack.length, 0);
+  }
 });

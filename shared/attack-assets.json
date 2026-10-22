@@ -1814,5 +1814,154 @@
         "bodyHeight": 600
       }
     }
+  },
+  "dorangel": {
+    "file": "dorangel-olla-attack-v3",
+    "frames": {
+      "bite-ready": {
+        "x": 328,
+        "y": 724,
+        "width": 372,
+        "height": 446,
+        "anchorX": 184.43781006378455,
+        "anchorY": 442,
+        "bodyHeight": 438
+      },
+      "bite-reach": {
+        "x": 12,
+        "y": 1183,
+        "width": 367,
+        "height": 421,
+        "anchorX": 221.79245602165088,
+        "anchorY": 417,
+        "bodyHeight": 413
+      },
+      "bite-close": {
+        "x": 391,
+        "y": 1183,
+        "width": 346,
+        "height": 419,
+        "anchorX": 217.53210696644524,
+        "anchorY": 415,
+        "bodyHeight": 411
+      },
+      "bite-release": {
+        "x": 712,
+        "y": 724,
+        "width": 317,
+        "height": 440,
+        "anchorX": 165.36737588652483,
+        "anchorY": 436,
+        "bodyHeight": 432
+      },
+      "cook-finish": {
+        "x": 1323,
+        "y": 12,
+        "width": 200,
+        "height": 472,
+        "anchorX": 95.84839986803036,
+        "anchorY": 468,
+        "bodyHeight": 464
+      },
+      "cook-carry": {
+        "x": 12,
+        "y": 724,
+        "width": 304,
+        "height": 447,
+        "anchorX": 168.74747474747474,
+        "anchorY": 443,
+        "bodyHeight": 439
+      },
+      "cook-lower": {
+        "x": 749,
+        "y": 1183,
+        "width": 300,
+        "height": 389,
+        "anchorX": 203.25420817588457,
+        "anchorY": 385,
+        "bodyHeight": 381
+      },
+      "cook-place": {
+        "x": 1061,
+        "y": 1183,
+        "width": 362,
+        "height": 341,
+        "anchorX": 238.5977011494253,
+        "anchorY": 337,
+        "bodyHeight": 333
+      },
+      "cook-light-a": {
+        "x": 12,
+        "y": 1616,
+        "width": 322,
+        "height": 325,
+        "anchorX": 160.2876795468339,
+        "anchorY": 321,
+        "bodyHeight": 317
+      },
+      "cook-light-b": {
+        "x": 346,
+        "y": 1616,
+        "width": 351,
+        "height": 322,
+        "anchorX": 161.0569894693372,
+        "anchorY": 318,
+        "bodyHeight": 314
+      },
+      "cook-stir-a": {
+        "x": 504,
+        "y": 12,
+        "width": 396,
+        "height": 475,
+        "anchorX": 173.52921907756814,
+        "anchorY": 471,
+        "bodyHeight": 467
+      },
+      "cook-stir-b": {
+        "x": 912,
+        "y": 12,
+        "width": 399,
+        "height": 475,
+        "anchorX": 168.7077005778793,
+        "anchorY": 471,
+        "bodyHeight": 467
+      },
+      "pot": {
+        "x": 1041,
+        "y": 724,
+        "width": 690,
+        "height": 432,
+        "anchorX": 345,
+        "anchorY": 428,
+        "bodyHeight": 424
+      },
+      "hearth": {
+        "x": 709,
+        "y": 1616,
+        "width": 531,
+        "height": 190,
+        "anchorX": 265.5,
+        "anchorY": 186,
+        "bodyHeight": 182
+      },
+      "flame": {
+        "x": 1435,
+        "y": 1183,
+        "width": 309,
+        "height": 333,
+        "anchorX": 154.5,
+        "anchorY": 329,
+        "bodyHeight": 325
+      },
+      "steam": {
+        "x": 12,
+        "y": 12,
+        "width": 480,
+        "height": 700,
+        "anchorX": 240,
+        "anchorY": 696,
+        "bodyHeight": 692
+      }
+    }
   }
 }

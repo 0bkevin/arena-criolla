@@ -74,6 +74,15 @@ type Entry = readonly [
 
 const entries: readonly Entry[] = [
   [
+    "dorangel",
+    "Olla al fuego",
+    "theater",
+    "Invoca una olla delante de él y remueve con un cucharón. El rival solo recibe daño si permanece a su alcance: puede bloquear, saltar para salir o interrumpir a Dorángel. La olla y ambos luchadores permanecen en el escenario.",
+    "Olla, cucharón y vapor",
+    "Definitiva",
+    "show",
+  ],
+  [
     "zavarce",
     "Pelotón Yummy",
     "transport",

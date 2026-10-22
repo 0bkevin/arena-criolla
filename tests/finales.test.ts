@@ -65,7 +65,7 @@ function close(actual: number, expected: number, message?: string) {
 }
 
 test("all built-in finales exercise their combat mode against every rival on either side", () => {
-  assert.equal(BUILT_IN_FIGHTERS.length, 54);
+  assert.equal(BUILT_IN_FIGHTERS.length, 55);
   assert.equal(Object.keys(FINALES).length, BUILT_IN_FIGHTERS.length);
   let scenes = 0;
   for (const fighter of BUILT_IN_FIGHTERS)

@@ -3868,5 +3868,82 @@
         "bodyHeight": 446
       }
     ]
+  },
+  "dorangel": {
+    "file": "dorangel-defiant-entrance-v2",
+    "cell": 509,
+    "bodyHeight": 493,
+    "baseline": 497,
+    "anchorX": 105.87067090513635,
+    "width": 1440,
+    "height": 528,
+    "frames": [
+      {
+        "x": 12,
+        "y": 12,
+        "width": 199,
+        "height": 501,
+        "anchorX": 105.87067090513635,
+        "anchorY": 497,
+        "bodyHeight": 493,
+        "slotX": 12,
+        "slotY": 12
+      },
+      {
+        "x": 223,
+        "y": 13,
+        "width": 222,
+        "height": 500,
+        "anchorX": 102.4689365822172,
+        "anchorY": 496,
+        "bodyHeight": 493,
+        "slotX": 223,
+        "slotY": 13
+      },
+      {
+        "x": 457,
+        "y": 16,
+        "width": 225,
+        "height": 497,
+        "anchorX": 86.55983975963946,
+        "anchorY": 493,
+        "bodyHeight": 493,
+        "slotX": 457,
+        "slotY": 16
+      },
+      {
+        "x": 694,
+        "y": 24,
+        "width": 233,
+        "height": 489,
+        "anchorX": 94.38370320176182,
+        "anchorY": 485,
+        "bodyHeight": 493,
+        "slotX": 694,
+        "slotY": 24
+      },
+      {
+        "x": 939,
+        "y": 22,
+        "width": 237,
+        "height": 491,
+        "anchorX": 95.88542748355833,
+        "anchorY": 487,
+        "bodyHeight": 493,
+        "slotX": 939,
+        "slotY": 22
+      },
+      {
+        "x": 1188,
+        "y": 21,
+        "width": 227,
+        "height": 492,
+        "anchorX": 77.18608788471802,
+        "anchorY": 488,
+        "bodyHeight": 493,
+        "slotX": 1188,
+        "slotY": 21
+      }
+    ]
   }
 }

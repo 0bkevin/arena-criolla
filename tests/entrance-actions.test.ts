@@ -12,10 +12,10 @@ import { presentationById, selectionProgress } from "../shared/presentation";
 import manifest from "../shared/entrance-assets.json";
 import sharp from "sharp";
 
-test("all 34 default fighters have matching profiles, actions, and dedicated artwork", () => {
+test("all default fighters have matching profiles, actions, and dedicated artwork", () => {
   const expected = [...DEFAULT_ENTRANCE_FIGHTERS].sort();
-  assert.equal(expected.length, 34);
-  assert.equal(new Set(expected).size, 34);
+  assert.equal(expected.length, 35);
+  assert.equal(new Set(expected).size, 35);
   for (const style of ["introStyle", "selectionStyle"] as const)
     assert.deepEqual(
       FIGHTERS.filter(
@@ -34,7 +34,7 @@ test("all 34 default fighters have matching profiles, actions, and dedicated art
   );
   assert.deepEqual(
     Object.entries(manifest)
-      .filter(([, asset]) => asset.file.endsWith("-defiant-entrance"))
+      .filter(([, asset]) => /-defiant-entrance(?:-v\d+)?$/.test(asset.file))
       .map(([id]) => id)
       .sort(),
     expected,

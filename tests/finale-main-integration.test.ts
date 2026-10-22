@@ -23,15 +23,15 @@ test("main's revised canonical identities remain selected and the authored batch
     deyna: "deyna-v1",
   }))
     assert.equal(fighterById(id as FighterId).sprite, sprite);
-  assert.equal(BUILT_IN_FIGHTERS.length, 54);
-  assert.equal(Object.keys(dancers.dancers).length, 49);
+  assert.equal(BUILT_IN_FIGHTERS.length, 55);
+  assert.equal(Object.keys(dancers.dancers).length, 50);
   assert.throws(
     () =>
       requireCompleteDancerRoster(
         Object.keys(dancers.dancers),
         Object.keys(dancers.dancers),
       ),
-    /all 54/,
+    /all 55/,
   );
   for (const id of CANONICAL_FINALE_FIGHTERS.filter(
     (id) => id !== "dayana" && id !== "deyna",

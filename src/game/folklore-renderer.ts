@@ -209,7 +209,7 @@ export function drawFolkloreStatus(
       ctx.quadraticCurveTo(p.x + i * 20 - 15, p.y - 17, p.x + i * 14, p.y - 36);
       ctx.stroke();
     }
-  } else {
+  } else if (p.rootKind !== "pot") {
     ctx.beginPath();
     ctx.ellipse(p.x, p.y - 4, 36, 10, 0, 0, Math.PI * 2);
     ctx.stroke();

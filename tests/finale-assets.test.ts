@@ -10,17 +10,26 @@ import {
   CANONICAL_FINALE_FIGHTERS,
   finaleAsset,
 } from "../shared/finales";
+import { ATTACK_ART } from "../src/game/attack-art";
 
 test("the 46 original prop cells and later canonical or painted arena finales cover the roster", async () => {
   const expected = new Set<string>(FINALE_ASSET_GROUPS.flat());
   const roster = BUILT_IN_FIGHTERS.map(({ id }) => id).sort();
   assert.deepEqual(Object.keys(FINALES).sort(), roster);
   assert.deepEqual(
-    [...expected, ...CANONICAL_FINALE_FIGHTERS, "kevin"].sort(),
+    [
+      ...new Set([
+        ...expected,
+        ...CANONICAL_FINALE_FIGHTERS,
+        ...Object.keys(ATTACK_ART),
+      ]),
+    ].sort(),
     roster,
   );
   assert.equal(FINALES.kevin.mode, "field");
   assert.equal(finaleAsset("kevin"), undefined);
+  assert.equal(FINALES.dorangel.mode, "field");
+  assert.equal(finaleAsset("dorangel"), undefined);
   for (const id of CANONICAL_FINALE_FIGHTERS)
     assert.equal(finaleAsset(id), undefined);
   const cells = new Set<string>();

@@ -2,6 +2,7 @@ import type { Ability } from "./content";
 import { CULTURE_TECHNIQUES } from "./culture-techniques";
 import { FOUNDER_TECHNIQUES } from "./founder-techniques";
 import { ICON_TECHNIQUES } from "./icon-techniques";
+import { DORANGEL_BITE } from "./dorangel";
 
 export interface Technique {
   startup: number;
@@ -76,6 +77,20 @@ export const TECHNIQUES: Record<Ability, Technique> = {
   ...CULTURE_TECHNIQUES,
   ...FOUNDER_TECHNIQUES,
   ...ICON_TECHNIQUES,
+  bite: {
+    startup: 16,
+    recovery: 66,
+    range: DORANGEL_BITE.range,
+    height: DORANGEL_BITE.height,
+    damage: 6.5,
+    force: 0.5,
+    pulses: [0, 16],
+    pulseRangeStep: 0,
+    requiresGround: true,
+    groundOnly: true,
+    snare: 24,
+    hitInvincibility: 6,
+  },
   courier: {
     startup: 12,
     recovery: 60,

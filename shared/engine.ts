@@ -1,4 +1,5 @@
 import { MAX_FIGHTER_SEPARATION, WORLD } from "./arena";
+import { advanceDorangelBite, releaseBrokenDorangelGrips } from "./dorangel";
 import {
   ARENA_FINALES,
   activeArenaPerformance,
@@ -99,7 +100,7 @@ export interface PlayerState {
   stun: number;
   slowTicks: number;
   rootTicks: number;
-  rootKind?: "chain" | "screen" | "spectral" | "flash";
+  rootKind?: "chain" | "screen" | "spectral" | "flash" | "bite" | "pot";
   invincible: number;
   dash: number;
   lastActions: Record<Action, number>;
@@ -167,6 +168,7 @@ export interface Effect {
   impact?: NonNullable<Attack>;
   strength?: number;
   direction?: number;
+  visual?: "heat";
 }
 export interface MatchState {
   id: string;
@@ -262,7 +264,7 @@ function effect(
   kind: Effect["kind"],
   color: string,
   details: Partial<
-    Pick<Effect, "owner" | "impact" | "strength" | "direction">
+    Pick<Effect, "owner" | "impact" | "strength" | "direction" | "visual">
   > = {},
 ) {
   const duration = kind === "ringout" ? 40 : kind === "hit" ? 26 : 18;
@@ -372,6 +374,7 @@ function hurt(
   y: number,
   impact: NonNullable<Attack>,
   hitInvincibility = 12,
+  visual?: Effect["visual"],
 ): boolean {
   const interception = interceptHit(s, attacker, direction, x, y, impact);
   if (interception) return interception === "defended";
@@ -396,6 +399,7 @@ function hurt(
     impact,
     strength,
     direction,
+    ...(visual ? { visual } : {}),
   });
   s.shake = Math.max(s.shake, Math.min(14, force * 1.15));
   s.hitstop = Math.max(
@@ -634,7 +638,9 @@ function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
   }
   if (
     attack === "special" ||
-    (attack === "super" && finaleById(p.config.fighter)?.mode !== "projectile")
+    (attack === "super" &&
+      def.id !== "dorangel" &&
+      finaleById(p.config.fighter)?.mode !== "projectile")
   )
     effect(s, p.x, p.y - 75, "special", def.color, {
       owner: i,
@@ -945,7 +951,8 @@ function updateAttack(s: MatchState, i: number) {
           other.hp < healthBefore
         ) {
           other.rootTicks = technique.snare;
-          delete other.rootKind;
+          if (def.ability === "bite") other.rootKind = "bite";
+          else delete other.rootKind;
           other.vx = 0;
           other.recoilVx = 0;
           other.vy = 0;
@@ -1079,6 +1086,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     return;
   }
   s.remaining--;
+  releaseBrokenDorangelGrips(s);
   // Tick before attacks so activation receives the full authored duration and
   // both players see the same expiry boundary regardless of update order.
   for (const player of s.players) {
@@ -1256,11 +1264,13 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
   // Prepare both guards and inputs before contact, then move both fighters after it.
   // Otherwise a P1 hit applies knockback one frame earlier than the mirrored P2 hit.
   for (const player of s.players) if (player.attack) player.attackTick++;
+  advanceDorangelBite(s);
   for (let i = 0; i < 2; i++) {
     updateAttack(s, i);
     if (s.finale) return;
   }
   advanceFieldFinales(s);
+  releaseBrokenDorangelGrips(s);
   // Both players must finish spawning shots before either reflector sees this tick's pack.
   for (let i = 0; i < 2; i++) reflectProjectiles(s, i);
   // Predict spacing from the movement that roots actually allow this frame.
@@ -1346,6 +1356,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
         contact.y,
         "super",
         5,
+        contact.rootKind === "pot" ? "heat" : undefined,
       )
     )
       registerArenaContact(s, contact, target.hp < hp);

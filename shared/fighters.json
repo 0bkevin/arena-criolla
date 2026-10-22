@@ -1404,5 +1404,32 @@
       "Envío encadenado",
       "Red sin fronteras"
     ]
+  },
+  {
+    "id": "dorangel",
+    "sprite": "dorangel-v2",
+    "category": "culture",
+    "displayHeight": 177,
+    "name": "Dorángel Vargas",
+    "shortName": "Dorángel",
+    "title": "El Comegente",
+    "role": "AGARRE",
+    "color": "#d39b66",
+    "description": "Melena rizada, barba espesa y franela blanca. Su agarre de corto alcance precede a una mordida. En su definitiva carga una olla rústica, la coloca sobre un fogón, enciende la leña y la remueve mientras el rival reacciona al calor y puede escapar saltando. Una adaptación ficticia de combate caricaturesco.",
+    "speed": 4.8,
+    "damage": 1,
+    "armor": 1,
+    "stats": [
+      3,
+      4,
+      4
+    ],
+    "ability": "bite",
+    "special": "Mordida al brazo",
+    "combos": [
+      "Cierre de agarre",
+      "Sin soltar",
+      "Olla al fuego"
+    ]
   }
 ]

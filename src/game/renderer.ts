@@ -25,6 +25,7 @@ import { drawCultureProjectile, drawCultureSpecial } from "./culture-renderer";
 import { drawImpact } from "./effects-renderer";
 import { drawFinale } from "./finale-renderer";
 import { drawAliSpecial } from "./finales/ali";
+import { drawDorangelBite, dorangelHeatReaction } from "./finales/dorangel";
 import { drawBolivarSpecial } from "./finales/bolivar";
 import {
   drawChataingSpecial,
@@ -247,7 +248,10 @@ export function renderMatch(
     ctx.restore();
     return;
   }
-  state.players.forEach((p, i) => {
+  // A held forearm belongs behind the attacker's gripping hands, on either side.
+  const bodyOrder = state.players[1].rootKind === "bite" ? [1, 0] : [0, 1];
+  bodyOrder.forEach((i) => {
+    const p = state.players[i];
     const def = fighterById(p.config.fighter);
     const bodyHeight = def.displayHeight ?? 177;
     const sprite = assets.sprites[p.config.fighter];
@@ -371,16 +375,38 @@ export function renderMatch(
               ? 6
               : sprite.battleFrame;
     }
+    const heatReaction = dorangelHeatReaction(state, p, reducedMotion);
+    if (heatReaction?.frame !== undefined) frame = heatReaction.frame;
+    if (p.rootKind === "bite" && p.rootTicks > 0) frame = 5;
+    const bodyFacing =
+      p.rootKind === "bite"
+        ? state.players[1 - i].x > p.x
+          ? 1
+          : -1
+        : p.facing;
     const idleBob =
-      !reducedMotion && !p.attack && p.grounded && !p.stun && !p.blocking
+      !reducedMotion &&
+      !heatReaction &&
+      !p.attack &&
+      p.grounded &&
+      !p.stun &&
+      !p.blocking
         ? Math.sin(time / 240 + i) * 1.5
         : 0;
     const drawBody = (x: number, feet: number) => {
       if (
         !drawTransformationBody(ctx, assets.finaleProps, p, x, feet, bodyHeight)
       )
-        drawSprite(ctx, sprite, frame, x, feet, bodyHeight, p.facing);
+        drawSprite(ctx, sprite, frame, x, feet, bodyHeight, bodyFacing);
     };
+    ctx.save();
+    if (heatReaction) {
+      // Knees and boots stay inside the bowl even in a wide canonical stance.
+      const top = p.y - bodyHeight - 40;
+      ctx.beginPath();
+      ctx.rect(p.x - 200, top, 400, heatReaction.lipY - top);
+      ctx.clip();
+    }
     if (p.dash > 0 && !reducedMotion) {
       const opacity = ctx.globalAlpha;
       ctx.globalAlpha = opacity * 0.16;
@@ -389,6 +415,14 @@ export function renderMatch(
       drawBody(p.x - p.facing * 22, p.y);
       ctx.globalAlpha = opacity;
     }
+    const paintedDorangel = drawDorangelBite(
+      ctx,
+      assets.finaleProps,
+      p,
+      bodyHeight,
+      reducedMotion,
+      state.players[1 - i],
+    );
     const paintedArena = drawArenaPerformer(
       ctx,
       assets.finaleProps,
@@ -475,9 +509,10 @@ export function renderMatch(
       !paintedFootball &&
       !paintedPageant &&
       !paintedRunway &&
-      !paintedArena
+      !paintedArena &&
+      !paintedDorangel
     ) {
-      drawBody(p.x, p.y + idleBob);
+      drawBody(p.x, p.y + idleBob + (heatReaction?.lift ?? 0));
       const tether =
         def.id === "chataing" &&
         state.projectiles.find((shot) => shot.owner === i && shot.tether);
@@ -497,6 +532,7 @@ export function renderMatch(
         ctx.restore();
       }
     }
+    ctx.restore();
     drawTransformationGauge(ctx, p);
     if (
       (p.attack === "light" || p.attack === "heavy") &&
