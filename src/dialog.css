@@ -22,7 +22,7 @@
 .content-modal .modal-header {
   flex-shrink: 0;
   margin: 0;
-  padding: 16px 24px;
+  padding: 8px 24px;
   border-bottom: 1px solid #30455f;
 }
 
@@ -35,13 +35,13 @@
 .arcade-app .content-modal .icon-button {
   width: 44px;
   height: 44px;
-  color: var(--dialog-muted);
+  color: #fff;
   border-radius: 6px;
 }
 
-.content-modal .icon-button:hover {
+.content-modal .icon-button:is(:hover, :active) {
   background: #ffffff0d;
-  color: #fff5db;
+  color: #ff7b85;
 }
 
 .dialog-content {
