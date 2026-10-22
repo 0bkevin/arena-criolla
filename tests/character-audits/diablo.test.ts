@@ -107,18 +107,18 @@ test("hellfire range probes measure projectile contact and floor blast without r
   }
 });
 
-test("Diablo recognizes base and upgraded combos, connects every strike with approach inputs, and enforces super gates on both sides", () => {
+test("Diablo recognizes both combos from zero wins, connects every strike with approach inputs, and enforces super gates on both sides", () => {
   for (const side of [0, 1] as const) {
     for (const wins of [0, 1]) {
       const r = setup(side, 140, wins);
       for (let n = 0; n < 2; n++) { r.inputs[side].actions.light++; r.advance(23); }
       r.inputs[side].actions.heavy++; r.advance(11);
-      assert.equal(r.player.combo, wins ? "Copla ardiente" : "Brasa corta"); assert.equal(r.player.comboBonus, wins ? 7 : 3);
-      close(r.rival.hp, 100 - (13 * 1.06 + (wins ? 7 : 3)) * 1.03);
+      assert.equal(r.player.combo, "Copla ardiente"); assert.equal(r.player.comboBonus, 7);
+      close(r.rival.hp, 100 - (13 * 1.06 + 7) * 1.03);
       emit("combo-gate", { side, wins, combo: r.player.combo, bonus: r.player.comboBonus, hits: r.player.hits, hp: r.rival.hp });
     }
     for (const advanced of [false, true]) {
-      const r = setup(side, 80, advanced ? 1 : 0);
+      const r = setup(side, 80, 0);
       const attacks = advanced ? ["light", "light", "heavy"] as const : ["light", "heavy"] as const;
       for (const action of attacks) {
         for (let n = 0; n < 70 && (r.player.cooldown || Math.abs(r.rival.x - r.player.x) > 80 || !r.rival.grounded); n++) {

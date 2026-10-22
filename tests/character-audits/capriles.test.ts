@@ -155,15 +155,15 @@ for (const side of [0, 1] as const) {
     assert.equal(locked.player.attack, null);
   });
 
-  test(`Capriles P${side + 1}: combo names and advanced/definitive win and energy gates`, () => {
+  test(`Capriles P${side + 1}: combo names from zero wins and definitive energy gates`, () => {
     for (const wins of [0, 1]) {
       const run = setup(side, 140, wins);
       run.inputs[side].actions.light++; run.advance(23);
       run.inputs[side].actions.light++; run.advance(23);
       run.inputs[side].actions.heavy++; run.advance(11);
-      assert.equal(run.player.combo, wins ? "Hay un camino" : "¡Qué manguangua, ah!");
-      assert.equal(run.player.comboBonus, wins ? 7 : 3);
-      close(100 - run.rival.hp, (13 * 0.88 + (wins ? 7 : 3)) * 1.03);
+      assert.equal(run.player.combo, "Hay un camino");
+      assert.equal(run.player.comboBonus, 7);
+      close(100 - run.rival.hp, (13 * 0.88 + 7) * 1.03);
       assert.equal(run.player.hits, 1);
       emit("combo-gate", { side, wins, name: run.player.combo, bonus: run.player.comboBonus, hits: run.player.hits, hp: run.rival.hp, note: "setup lights are outside range; heavy lands" });
     }
@@ -219,7 +219,7 @@ test("Sprint distance and recovery probes log actual dash crossing and post-dash
 
 test("Both named Capriles input combos can connect all strikes with actual approach inputs", () => {
   for (const side of [0, 1] as const) for (const advanced of [false, true]) {
-    const run = setup(side, 80, advanced ? 1 : 0);
+    const run = setup(side, 80, 0);
     const attacks = advanced ? ["light", "light", "heavy"] as const : ["light", "heavy"] as const;
     for (const attack of attacks) {
       for (let n = 0; n < 70 && (run.player.cooldown || Math.abs(run.rival.x - run.player.x) > 80 || !run.rival.grounded); n++) {

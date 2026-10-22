@@ -142,13 +142,13 @@ for (const side of [0, 1] as const) {
 
   test(`Vallenilla P${side + 1}: basic and upgraded movement-assisted combos connect`, () => {
     const results = [];
-    for (const [wins, actions] of [[0, ["light", "heavy"]], [1, ["light", "light", "heavy"]]] as const) {
+    for (const [wins, actions] of [[0, ["light", "heavy"]], [0, ["light", "light", "heavy"]], [1, ["light", "light", "heavy"]]] as const) {
       const { state, inputs } = setup(side, wins, 80);
       inputs[side][side === 0 ? "right" : "left"] = true;
       for (const action of actions) { waitReady(state, inputs, side); press(inputs, side, action); advance(state, inputs, 1); waitReady(state, inputs, side); }
       advance(state, inputs, 17);
-      assert.equal(state.players[side].combo, wins === 0 ? "Cuota inicial" : "Cuota atrasada");
-      assert.equal(state.players[side].comboBonus, wins === 0 ? 3 : 7);
+      assert.equal(state.players[side].combo, actions.length === 2 ? "Cuota inicial" : "Cuota atrasada");
+      assert.equal(state.players[side].comboBonus, actions.length === 2 ? 3 : 7);
       assert.ok(state.players[side].hits >= 2);
       results.push({ wins, combo: state.players[side].combo, bonus: state.players[side].comboBonus, hits: state.players[side].hits, targetHp: state.players[1 - side].hp, peakCombo: state.players[side].peakCombo });
     }

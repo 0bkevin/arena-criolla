@@ -94,18 +94,18 @@ test("rally travel covers its active window and a distant whiff stops without ri
   }
 });
 
-test("MCM recognizes whiff chains and connects chased combos, with win and energy gates on both sides", () => {
+test("MCM recognizes whiff chains and connects chased combos, with energy gates on both sides", () => {
   for (const side of [0, 1] as const) {
     for (const wins of [0, 1]) {
       const r = setup(side, 140, wins);
       for (let n = 0; n < 2; n++) { r.inputs[side].actions.light++; r.advance(23); }
       r.inputs[side].actions.heavy++; r.advance(11);
-      assert.equal(r.player.combo, wins ? "Impulso doble" : "Paso decidido"); assert.equal(r.player.comboBonus, wins ? 7 : 3);
-      close(r.rival.hp, 100 - (13 * 0.92 + (wins ? 7 : 3)) * 1.03);
+      assert.equal(r.player.combo, "Impulso doble"); assert.equal(r.player.comboBonus, 7);
+      close(r.rival.hp, 100 - (13 * 0.92 + 7) * 1.03);
       emit("combo-gate", { side, wins, combo: r.player.combo, bonus: r.player.comboBonus, hits: r.player.hits, hp: r.rival.hp });
     }
     for (const advanced of [false, true]) {
-      const r = setup(side, 80, advanced ? 1 : 0);
+      const r = setup(side, 80, 0);
       const attacks = advanced ? ["light", "light", "heavy"] as const : ["light", "heavy"] as const;
       for (const action of attacks) {
         for (let n = 0; n < 70 && (r.player.cooldown || Math.abs(r.rival.x - r.player.x) > 80 || !r.rival.grounded); n++) {

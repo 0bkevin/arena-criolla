@@ -181,7 +181,7 @@ test("motorcycles can be jumped and cannot be summoned in midair", () => {
   }
 });
 
-test("Zavarce specials, advanced combo, and definitive enforce their energy and win gates", () => {
+test("Zavarce combos are available from zero wins and abilities enforce energy gates", () => {
   const special = setup();
   special.player.energy = 24;
   special.inputs[0].actions.special++;
@@ -195,8 +195,8 @@ test("Zavarce specials, advanced combo, and definitive enforce their energy and 
     run.advance(23);
     run.inputs[0].actions.heavy++;
     run.advance(11);
-    const bonus = wins >= 1 ? 7 : 3;
-    assert.equal(run.player.combo, wins >= 1 ? "Ruta directa" : "Pedido confirmado");
+    const bonus = 7;
+    assert.equal(run.player.combo, "Ruta directa");
     assert.equal(run.player.comboBonus, bonus);
     assert.ok(Math.abs((100 - run.rival.hp) - (13 * 0.94 + bonus) * 1.03) < 1e-9);
     console.log("combo-gate", JSON.stringify({ wins, combo: run.player.combo, bonus, hp: run.rival.hp, hits: run.player.hits, note: "two setup lights are deliberately outside range; the heavy lands" }));
@@ -254,7 +254,7 @@ test("the CPU can use Vicente's motorcycle from zero wins", () => {
 
 test("both named input combos can also connect every strike on both sides with real approach inputs", () => {
   for (const side of [0, 1] as const) for (const advanced of [false, true]) {
-    const run = setup(side, 80, advanced ? 1 : 0);
+    const run = setup(side, 80, 0);
     const attacks = advanced ? ["light", "light", "heavy"] as const : ["light", "heavy"] as const;
     for (const attack of attacks) {
       for (let n = 0; n < 70 && (run.player.cooldown || Math.abs(run.rival.x - run.player.x) > 80 || !run.rival.grounded); n++) {

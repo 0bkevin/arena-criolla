@@ -181,6 +181,7 @@ test("all three named combos and the super gate follow shared engine rules", () 
   for (const side of [0, 1] as const) {
     for (const [wins, actions, expected, bonus] of [
       [0, ["light", "heavy"], "Micrófono abierto", 3],
+      [0, ["light", "light", "heavy"], "Frecuencia punk", 7],
       [1, ["light", "light", "heavy"], "Frecuencia punk", 7],
     ] as const) {
       const r = setup(side, 80, wins);

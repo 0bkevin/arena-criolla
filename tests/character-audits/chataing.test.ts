@@ -317,7 +317,7 @@ test("returning microphone stays bounded and CPU approaches before using it", ()
   });
 });
 
-test("Chataing recognizes base and upgraded combos, connects all strikes with chase inputs, and enforces super gates", () => {
+test("Chataing recognizes both combos from zero wins, connects all strikes with chase inputs, and enforces super gates", () => {
   for (const side of [0, 1] as const) {
     for (const wins of [0, 1]) {
       const r = setup(side, 140, wins);
@@ -327,9 +327,9 @@ test("Chataing recognizes base and upgraded combos, connects all strikes with ch
       }
       r.inputs[side].actions.heavy++;
       r.advance(11);
-      assert.equal(r.player.combo, wins ? "Repregunta" : "Pregunta directa");
-      assert.equal(r.player.comboBonus, wins ? 7 : 3);
-      close(r.rival.hp, 100 - (13 * 0.95 + (wins ? 7 : 3)) * 1.03);
+      assert.equal(r.player.combo, "Repregunta");
+      assert.equal(r.player.comboBonus, 7);
+      close(r.rival.hp, 100 - (13 * 0.95 + 7) * 1.03);
       emit("combo-gate", {
         side,
         wins,
@@ -340,7 +340,7 @@ test("Chataing recognizes base and upgraded combos, connects all strikes with ch
       });
     }
     for (const advanced of [false, true]) {
-      const r = setup(side, 80, advanced ? 1 : 0),
+      const r = setup(side, 80, 0),
         attacks = advanced
           ? (["light", "light", "heavy"] as const)
           : (["light", "heavy"] as const);

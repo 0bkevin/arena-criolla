@@ -145,8 +145,8 @@ for (const side of [0, 1] as const) {
       run.inputs[side].actions.light++; advance(run.state, run.inputs, 23);
       run.inputs[side].actions.light++; advance(run.state, run.inputs, 23);
       run.inputs[side].actions.heavy++; advance(run.state, run.inputs, 11);
-      const bonus = wins ? 7 : 3;
-      assert.equal(run.actor.combo, wins ? "Orden cerrada" : "Paso firme"); assert.equal(run.actor.comboBonus, bonus);
+      const bonus = 7;
+      assert.equal(run.actor.combo, "Orden cerrada"); assert.equal(run.actor.comboBonus, bonus);
       close(run.target.hp, 100 - (13 * 1.2 + bonus) * 1.03); assert.equal(run.actor.hits, 1);
       emit(`combo-p${side + 1}`, { wins, combo: run.actor.combo, bonus, hp: run.target.hp, hits: run.actor.hits, setupLightsOutsideRange: true });
     }

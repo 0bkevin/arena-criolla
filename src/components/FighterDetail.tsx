@@ -55,28 +55,23 @@ export function FighterDetail({
           </div>
           <h3>Tu libro de combos</h3>
           <div className="combo-list">
-            {f.combos.map((combo, i) => {
-              const unlocked = i !== 1 || wins >= 1;
-              return (
-                <div className={unlocked ? "unlocked" : ""} key={combo}>
-                  <span>
-                    {unlocked ? <Check size={16} /> : <LockKeyhole size={15} />}
-                  </span>
-                  <div>
-                    <strong>{i === 2 && finale ? finale.title : combo}</strong>
-                    <small>
-                      {unlocked
-                        ? i === 2
-                          ? `Disponible · ${SUPER_ENERGY_COST} de energía`
-                          : "Listo para pelear"
-                        : `Gana 1 pelea con ${f.shortName} (${wins}/1)`}
-                    </small>
-                    {i === 2 && finale && <small>{finale.description}</small>}
-                  </div>
-                  <kbd>{["J → K", "J → J → K", "I"][i]}</kbd>
+            {f.combos.map((combo, i) => (
+              <div className="unlocked" key={combo}>
+                <span>
+                  <Check size={16} />
+                </span>
+                <div>
+                  <strong>{i === 2 && finale ? finale.title : combo}</strong>
+                  <small>
+                    {i === 2
+                      ? `Disponible · ${SUPER_ENERGY_COST} de energía`
+                      : "Listo para pelear"}
+                  </small>
+                  {i === 2 && finale && <small>{finale.description}</small>}
                 </div>
-              );
-            })}
+                <kbd>{["J → K", "J → J → K", "I"][i]}</kbd>
+              </div>
+            ))}
           </div>
           <button className="primary-button" onClick={onSelect}>
             Elegir a {f.shortName} <ArrowRight size={17} />

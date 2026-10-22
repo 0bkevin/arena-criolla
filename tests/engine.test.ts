@@ -114,16 +114,29 @@ test("a special consumes energy and a projectile can hit a distant opponent", ()
   assert.equal(state.projectiles.length, 0);
 });
 
-test("one character win unlocks the advanced combo", () => {
-  const first = setup(1);
-  first.inputs[0].actions.light++;
-  advance(first.state, first.inputs, 23);
-  first.inputs[0].actions.light++;
-  advance(first.state, first.inputs, 23);
-  first.inputs[0].actions.heavy++;
-  stepMatch(first.state, first.inputs);
-  assert.equal(first.state.players[0].combo, "Ruta directa");
-  assert.equal(first.state.players[0].comboBonus, 7);
+test("every fighter's basic and advanced combos are available to either player regardless of wins", () => {
+  for (const fighter of FIGHTERS) {
+    for (const side of [0, 1] as const) {
+      for (const wins of [0, 1, 3]) {
+        for (const advanced of [false, true]) {
+          const { state, inputs } = setup();
+          const player = state.players[side];
+          player.config.fighter = fighter.id;
+          player.config.wins = wins;
+          const actions = advanced
+            ? (["light", "light", "heavy"] as const)
+            : (["light", "heavy"] as const);
+          for (const action of actions) {
+            inputs[side].actions[action]++;
+            advance(state, inputs, action === "light" ? 23 : 1);
+          }
+          const label = `${fighter.id}/P${side + 1}/${wins} wins/${advanced ? "advanced" : "basic"}`;
+          assert.equal(player.combo, fighter.combos[advanced ? 1 : 0], label);
+          assert.equal(player.comboBonus, advanced ? 7 : 3, label);
+        }
+      }
+    }
+  }
 });
 
 test("the definitive requires and consumes 90 energy for either player regardless of wins", () => {
