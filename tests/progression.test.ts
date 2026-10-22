@@ -5,7 +5,6 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { createMatch } from "../shared/engine";
 import { TouchControls } from "../src/components/TouchControls";
 import { VictoryScreen } from "../src/components/VictoryScreen";
-import { preloadAssets } from "../src/game/assets";
 
 test("touch definitive is available from zero wins and still requires 90 energy", () => {
   for (const wins of [0, 1, 2, 3]) {
@@ -44,7 +43,6 @@ test("touch definitive is available from zero wins and still requires 90 energy"
 });
 
 test("victories announce only newly unlocked combos for either local player and the online winner", async () => {
-  const assets = await preloadAssets([], []);
   for (const mode of ["local", "online"] as const) {
     for (const winner of [0, 1] as const) {
       for (const wins of [0, 1, 2, 3]) {
@@ -62,10 +60,6 @@ test("victories announce only newly unlocked combos for either local player and 
             localIndex: 0,
             active: true,
             overlayRef: createRef<HTMLDivElement>(),
-            sourceCanvas: createRef<HTMLCanvasElement>(),
-            sourceTitle: createRef<HTMLHeadingElement>(),
-            assets,
-            skipTransition: true,
             onReady() {},
             onRematch() {},
             onExit() {},

@@ -50,15 +50,12 @@ import {
   stopAmbience,
   setAmbiencePaused,
   setSoundView,
-  syncVictoryMusic,
-  stopVictoryMusic,
   syncFinaleMusic,
   stopFinaleMusic,
 } from "../audio";
-import { VICTORY_DURATION_MS } from "../game/victory";
+import { KNOCKOUT_HOLD_MS } from "../game/knockout";
 import { Portrait } from "./Portrait";
 import { VictoryScreen } from "./VictoryScreen";
-import { VenezuelaStars } from "./CriolloArt";
 import { TouchControls } from "./TouchControls";
 import {
   enterLandscape,
@@ -99,7 +96,6 @@ export function Game(props: Props) {
   const orientationGate = useRef<HTMLDivElement>(null);
   const pauseOverlay = useRef<HTMLDivElement>(null);
   const resultOverlay = useRef<HTMLDivElement>(null);
-  const victoryTitle = useRef<HTMLHeadingElement>(null);
   const wrapper = useRef<HTMLDivElement>(null);
   const inputs = useRef(makeInputs());
   const sources = useRef<[ControlSources, ControlSources]>([
@@ -114,8 +110,6 @@ export function Game(props: Props) {
   }));
   const [resultReady, setResultReady] = useState(false);
   const [resultMounted, setResultMounted] = useState(false);
-  const [victorySkipped, setVictorySkipped] = useState(false);
-  const victorySkippedRef = useRef(false);
   const finishResultTransition = useCallback(() => setResultReady(true), []);
   const touchControlsAvailable = device.touch || navigator.maxTouchPoints > 0;
   const portraitBlocked = device.touch && device.portrait && !resultMounted;
@@ -281,14 +275,6 @@ export function Game(props: Props) {
     applyControl(inputs.current[0], "dash", true);
     if (mode === "online") callbacks.current.onInput?.(inputs.current[0]);
   };
-  const skipVictory = () => {
-    if (view.phase !== "finished" || !assets || victorySkippedRef.current)
-      return;
-    victorySkippedRef.current = true;
-    stopVictoryMusic();
-    setVictorySkipped(true);
-    setResultMounted(true);
-  };
   useEffect(() => {
     let alive = true;
     void prepareMatchAudio(
@@ -405,9 +391,25 @@ export function Game(props: Props) {
     let camera: ArenaCamera | undefined;
     let cameraWidth = ctx.canvas.width;
     let cameraHeight = ctx.canvas.height;
-    let victoryElapsed = 0;
-    let victoryStarted = false;
-    let finaleComplete = false;
+    let knockoutElapsed = 0;
+    let knockoutStarted = false;
+    let knockoutLast = last;
+    let knockoutQuiet = isGameQuiet();
+    const advanceKnockoutClock = (now: number, quiet: boolean) => {
+      if (knockoutStarted && !knockoutQuiet)
+        knockoutElapsed = Math.min(
+          KNOCKOUT_HOLD_MS,
+          knockoutElapsed + Math.max(0, now - knockoutLast),
+        );
+      knockoutLast = now;
+      knockoutQuiet = quiet;
+    };
+    const syncKnockoutPause = () => {
+      const quiet = isGameQuiet();
+      if (quiet !== knockoutQuiet)
+        advanceKnockoutClock(performance.now(), quiet);
+    };
+    let resultShown = false;
     let settledFrame:
       | {
           state: MatchState;
@@ -438,9 +440,7 @@ export function Game(props: Props) {
       if (mode === "online" && remote?.current?.id === initial.id)
         state = remote.current;
       const finalStill =
-        state.phase === "finished" &&
-        victoryElapsed >= VICTORY_DURATION_MS &&
-        (motionPreference.matches || state.shake <= 0.3);
+        state.phase === "finished" && knockoutElapsed >= KNOCKOUT_HOLD_MS;
       if (
         finalStill &&
         settledFrame?.state === state &&
@@ -480,31 +480,17 @@ export function Game(props: Props) {
         quiet || state.phase === "finished",
       );
       if (state.phase === "finished") {
-        if (!victoryStarted) {
-          victoryStarted = true;
+        if (!knockoutStarted) {
+          knockoutStarted = true;
           releaseInputs();
           stopReactions();
           pausedRef.current = false;
           setPaused(false);
-        } else if (!quiet) {
-          victoryElapsed = Math.min(
-            VICTORY_DURATION_MS,
-            victoryElapsed + elapsed,
-          );
-        }
-        if (victorySkippedRef.current) {
-          victoryElapsed = VICTORY_DURATION_MS;
-        } else {
-          syncVictoryMusic(
-            typeof state.winner === "number"
-              ? state.players[state.winner].config.fighter
-              : "draw",
-            victoryElapsed,
-            quiet,
-          );
-        }
-        if (victoryElapsed >= VICTORY_DURATION_MS && !finaleComplete) {
-          finaleComplete = true;
+          knockoutLast = performance.now();
+          knockoutQuiet = isGameQuiet();
+        } else advanceKnockoutClock(performance.now(), quiet);
+        if (knockoutElapsed >= KNOCKOUT_HOLD_MS && !resultShown) {
+          resultShown = true;
           setResultMounted(true);
         }
       }
@@ -678,7 +664,7 @@ export function Game(props: Props) {
         now,
         motionPreference.matches,
         camera,
-        victoryElapsed,
+        knockoutElapsed,
       );
       settledFrame = finalStill
         ? {
@@ -709,17 +695,26 @@ export function Game(props: Props) {
     preloadReactions();
     const invalidateSettledFrame = () => {
       settledFrame = undefined;
+      syncKnockoutPause();
     };
+    // Dialogs and orientation gates can open and close between rendered frames.
+    const knockoutPauseObserver = new MutationObserver(syncKnockoutPause);
+    knockoutPauseObserver.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["open"],
+      childList: true,
+      subtree: true,
+    });
     document.addEventListener("visibilitychange", invalidateSettledFrame);
     ctx.canvas.addEventListener("contextrestored", invalidateSettledFrame);
     raf = requestAnimationFrame(animate);
     return () => {
       cancelAnimationFrame(raf);
+      knockoutPauseObserver.disconnect();
       document.removeEventListener("visibilitychange", invalidateSettledFrame);
       ctx.canvas.removeEventListener("contextrestored", invalidateSettledFrame);
       stopReactions();
       stopAmbience();
-      stopVictoryMusic();
       stopFinaleMusic();
     };
   }, [assets, initial.id, mode, difficulty, remote, localIndex]);
@@ -734,7 +729,6 @@ export function Game(props: Props) {
     const visibility = () => {
       syncAmbiencePause();
       if (document.hidden) {
-        stopVictoryMusic();
         stopFinaleMusic();
       }
     };
@@ -764,29 +758,20 @@ export function Game(props: Props) {
     if (mode === "online") callbacks.current.onInput?.(inputs.current[0]);
   };
   const stage = stageById(view.stage);
-  const winner =
-    typeof view.winner === "number" ? view.players[view.winner] : null;
-  const winnerDef = winner ? fighterById(winner.config.fighter) : null;
   const specialUnlockWins =
     fighterById(view.players[localIndex].config.fighter).specialUnlockWins ?? 0;
   const presenting = view.phase === "intro" ? introActor(view.tick) : null;
   const intro = view.phase === "intro";
   const cinematic = intro && presenting !== null;
-  const celebrating = view.phase === "finished" && !resultReady;
 
   return (
     <main
       ref={page}
-      className={`game-page page-width${intro ? " is-intro" : ""}${cinematic ? " is-cinematic" : ""}${device.touch ? " is-touch" : ""}${paused ? " is-paused" : ""}${celebrating ? " is-celebrating" : ""}${resultReady ? " is-finished" : ""}`}
+      className={`game-page page-width${intro ? " is-intro" : ""}${cinematic ? " is-cinematic" : ""}${device.touch ? " is-touch" : ""}${paused ? " is-paused" : ""}${resultReady ? " is-finished" : ""}`}
       data-phase={view.phase}
       data-result-ready={resultReady}
       data-finale={view.finale?.fighter}
     >
-      {celebrating && assets && !portraitBlocked && (
-        <button className="victory-skip" onClick={skipVictory}>
-          Saltar animación <SkipForward size={16} aria-hidden="true" />
-        </button>
-      )}
       {!intro && !resultReady && (
         <div
           className="game-topline"
@@ -1040,21 +1025,6 @@ export function Game(props: Props) {
             </div>
           </div>
         )}
-        {celebrating && (
-          <div
-            className="victory-announcement"
-            data-winner={view.winner ?? "draw"}
-            style={resultMounted ? { visibility: "hidden" } : undefined}
-            role="status"
-            aria-live="polite"
-          >
-            <h2 ref={victoryTitle}>
-              <span>{winnerDef ? winnerDef.shortName : "Quedaron"} </span>
-              <strong>{winnerDef ? "ganó." : "tablas."}</strong>
-            </h2>
-            <VenezuelaStars className="victory-announcement-stars" />
-          </div>
-        )}
         {view.phase === "finished" && resultMounted && assets && (
           <VictoryScreen
             state={view}
@@ -1062,11 +1032,7 @@ export function Game(props: Props) {
             localIndex={localIndex}
             active={activeOverlay === "result"}
             overlayRef={resultOverlay}
-            sourceCanvas={canvas}
-            sourceTitle={victoryTitle}
-            assets={assets}
             onReady={finishResultTransition}
-            skipTransition={victorySkipped}
             rematchWaiting={props.rematchWaiting}
             onRematch={props.onRematch}
             onExit={props.onExit}

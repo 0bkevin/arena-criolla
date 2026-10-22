@@ -214,17 +214,10 @@
   aspect-ratio: 4 / 5;
   filter: drop-shadow(0 16px 12px #030a1255);
 }
-.victory-screen-figure > .portrait,
-.victory-screen-carry {
+.victory-screen-figure > .portrait {
   display: block;
   width: 100%;
   height: 100%;
-}
-.victory-screen-carry {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
 }
 .victory-screen-stars {
   position: absolute;

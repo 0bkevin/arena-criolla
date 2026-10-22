@@ -5,7 +5,6 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { WebSocket } from "ws";
 import { makeArenaServer } from "../server/index";
 import { VictoryScreen } from "../src/components/VictoryScreen";
-import { preloadAssets } from "../src/game/assets";
 import type { ServerMessage } from "../shared/protocol";
 import {
   ARENA_SOCKET_PROTOCOL,
@@ -283,7 +282,6 @@ for (const winner of [0, 1] as const) {
       const resumed = await replacement.wait("start");
       assert.equal(resumed.index, winner);
       assert.deepEqual(resumed.state, finished.state);
-      const assets = await preloadAssets([], []);
       for (const state of [finished.state, resumed.state]) {
         assert.equal(state.players[winner].config.wins, wins);
         const html = renderToStaticMarkup(
@@ -293,10 +291,6 @@ for (const winner of [0, 1] as const) {
             localIndex: winner,
             active: true,
             overlayRef: createRef<HTMLDivElement>(),
-            sourceCanvas: createRef<HTMLCanvasElement>(),
-            sourceTitle: createRef<HTMLHeadingElement>(),
-            assets,
-            skipTransition: true,
             onReady() {},
             onRematch() {},
             onExit() {},
