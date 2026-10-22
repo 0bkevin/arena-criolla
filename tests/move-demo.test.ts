@@ -1,8 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { BUILT_IN_FIGHTERS } from "../shared/content";
+import { BUILT_IN_FIGHTERS, SUPER_CHARGE_TICKS } from "../shared/content";
 import type { MatchState } from "../shared/engine";
-import { simulateMoveDemo } from "./helpers/move-demo";
+import { simulateMoveDemo } from "../src/game/move-demo";
 
 function hits(states: MatchState[]) {
   const seen = new Set<number>();
@@ -17,6 +17,39 @@ function hits(states: MatchState[]) {
 }
 
 for (const fighter of BUILT_IN_FIGHTERS) {
+  test(`${fighter.id}: individual previews execute real attacks, including charged definitives and reactive specials`, () => {
+    for (const move of ["light", "heavy", "special", "final"] as const) {
+      const states = simulateMoveDemo(fighter.id, move);
+      const attack = move === "final" ? "super" : move;
+      assert.ok(
+        states.some((state) => state.players[0].attack === attack),
+        move,
+      );
+      assert.ok(
+        states.some((state) => state.players[1].hp < 100),
+        `${move} never connected`,
+      );
+      assert.ok(
+        states.at(-1)!.players[0].hits > 0,
+        `${move} had no real contacts`,
+      );
+      assert.equal(states.at(-1)!.players[0].lastActions[attack], 1);
+      if (move === "final") {
+        assert.ok(
+          states.some(
+            (state) =>
+              state.players[0].superChargeTicks === SUPER_CHARGE_TICKS - 1,
+          ),
+        );
+        assert.ok(states.some((state) => state.players[0].superUsed));
+      }
+      // Playback and scrubbing must retain independent, unmodified snapshots.
+      assert.equal(states[0].players[0].attack, null);
+      assert.equal(states[0].players[0].energy, 100);
+      assert.equal(states[0].players[1].hp, 100);
+    }
+  });
+
   test(`${fighter.id}: both combat combos connect every real hit and finish inside the combo window`, () => {
     for (const move of ["combo1", "combo2"] as const) {
       const states = simulateMoveDemo(fighter.id, move),
