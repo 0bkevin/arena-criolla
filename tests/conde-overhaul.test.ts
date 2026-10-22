@@ -8,7 +8,7 @@ import {
   outgoingDamageMultiplier,
   stepMatch,
   type Input,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 import { finaleById } from "../shared/finales";
 import { TECHNIQUES } from "../shared/techniques";
 import { ATTACK_ART } from "../src/game/attack-art";
@@ -125,7 +125,7 @@ test("all Conde damage paths get exactly20 percent; real light/heavy/special inp
       }
 });
 
-test("360 active ticks expire exactly; hitstop/capture pause time; paid refresh never stacks; stocks clear buff", () => {
+test("360 active ticks expire exactly; hitstop/capture pause time; one use prevents refresh; stocks clear buff", () => {
   const r = setup();
   r.activate();
   r.advance(359);
@@ -139,12 +139,12 @@ test("360 active ticks expire exactly; hitstop/capture pause time; paid refresh 
   refresh.advance(50);
   refresh.source.energy = 100;
   refresh.activate();
-  assert.equal(refresh.source.transformation?.ticks, 360);
+  assert.equal(refresh.source.transformation?.ticks, 301);
   assert.equal(outgoingDamageMultiplier(refresh.source), 1.2);
-  close(refresh.source.energy, 10.28);
+  close(refresh.source.energy, 100);
   refresh.state.hitstop = 5;
   refresh.advance(5);
-  assert.equal(refresh.source.transformation?.ticks, 360);
+  assert.equal(refresh.source.transformation?.ticks, 301);
   refresh.advance(40);
   refresh.target.x = refresh.source.x + 100;
   refresh.target.config.fighter = "capriles";

@@ -14,6 +14,7 @@ test("touch definitive is available from zero wins and still requires 90 energy"
         createElement(TouchControls, {
           wins,
           energy,
+          superUsed: false,
           reset: 0,
           onPress() {},
           onRelease() {},
@@ -35,7 +36,7 @@ test("touch definitive is available from zero wins and still requires 90 energy"
       } else {
         assert.ok(
           button.includes(
-            "Toca directamente para activar. No se activa al deslizar.",
+            "Mantén pulsado 0,8 segundos para cargar.",
           ),
         );
       }

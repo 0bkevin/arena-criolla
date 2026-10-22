@@ -1,4 +1,4 @@
-import { fighterById, type FighterId } from "../../shared/content";
+import { fighterById, SUPER_CHARGE_TICKS, type FighterId } from "../../shared/content";
 import { createMatch, emptyInput, stepMatch } from "../../shared/engine";
 import { finaleById } from "../../shared/finales";
 import { TECHNIQUES } from "../../shared/techniques";
@@ -78,7 +78,8 @@ export function simulateMoveDemo(id: FighterId, move: GuideMove) {
   if (move === "final") {
     const final = finaleById(id)!;
     // Include startup and release so grabs, knockback and temporary forms can be reviewed.
-    duration = final.duration + 100;
+    duration = SUPER_CHARGE_TICKS + final.duration + 100;
+    input[0].superHeld = true;
   }
   const snapshots = [structuredClone(state)];
   for (let tick = 1; tick < duration; tick++) {
@@ -92,7 +93,7 @@ export function simulateMoveDemo(id: FighterId, move: GuideMove) {
               ? "heavy"
               : "light"
       ]++;
-    if (transform && tick > 44 && followup < 2) {
+    if (transform && tick > SUPER_CHARGE_TICKS + 44 && followup < 2) {
       const player = state.players[0],
         target = state.players[1];
       const gap = target.x - player.x;

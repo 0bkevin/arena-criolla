@@ -30,7 +30,10 @@ export const KEY_MAP: Record<string, [number, Control]> = {
   Enter: [1, "dash"],
 };
 export function applyControl(input: Input, control: Control, down: boolean) {
-  if (
+  if (control === "super") {
+    if (down && !input.superHeld) input.actions.super++;
+    input.superHeld = down;
+  } else if (
     control === "left" ||
     control === "right" ||
     control === "block" ||
@@ -44,6 +47,7 @@ export function clearHeld(input: Input) {
   input.right = false;
   input.block = false;
   input.down = false;
+  input.superHeld = false;
 }
 /** A held control stays down until its last finger, key or controller releases. */
 export class ControlSources {

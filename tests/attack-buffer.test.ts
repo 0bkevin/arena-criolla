@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { SUPER_CHARGE_TICKS } from "../shared/content";
 import {
   createMatch,
   emptyInput,
@@ -91,10 +92,9 @@ test("hitstop freezes the short buffer together with attack recovery", () => {
   assert.equal(player.attack, "heavy");
 });
 
-test("a buffered grounded super is discarded if the fighter leaves the ground", () => {
+test("a buffered grounded special is discarded if the fighter leaves the ground", () => {
   const { player, inputs, advance } = setup();
-  player.config.fighter = "dayana";
-  inputs[0].actions.super++;
+  inputs[0].actions.special++;
   advance(1);
   player.grounded = false;
   player.supportPlatform = null;
@@ -116,7 +116,7 @@ test("the latest fresh attack replaces the earlier buffered attack", () => {
 
 test("buffered attacks recheck energy and are not retried after rejection", () => {
   const { player, inputs, advance } = setup();
-  inputs[0].actions.super++;
+  inputs[0].actions.special++;
   advance(1);
   player.energy = 0;
   advance(4);
@@ -124,9 +124,64 @@ test("buffered attacks recheck energy and are not retried after rejection", () =
   player.energy = 100;
   advance(3);
   assert.equal(player.attack, null);
-  inputs[0].actions.super++;
+  inputs[0].actions.special++;
   advance(1);
-  assert.equal(player.attack, "super");
+  assert.equal(player.attack, "special");
+});
+
+test("definitives pressed during recovery are never buffered or charged without a new press", () => {
+  for (const side of [0, 1] as const) {
+    const { state, inputs, advance } = setup(0);
+    const player = state.players[side];
+    player.cooldown = 5;
+    inputs[side].superHeld = true;
+    inputs[side].actions.super++;
+    advance(SUPER_CHARGE_TICKS + 5);
+    assert.equal(player.bufferedAttack, undefined);
+    assert.equal(player.superChargeTicks, 0);
+    assert.equal(player.attack, null);
+    assert.equal(player.superUsed, false);
+    assert.equal(player.energy, 100);
+    inputs[side].superHeld = false;
+    advance(1);
+    inputs[side].superHeld = true;
+    inputs[side].actions.super++;
+    advance(SUPER_CHARGE_TICKS - 1);
+    assert.equal(
+      player.attack,
+      null,
+      "a fresh definitive still needs the full charge",
+    );
+    advance(1);
+    assert.equal(player.attack, "super");
+    assert.equal(player.superUsed, true);
+  }
+});
+
+test("starting a definitive clears a pending normal attack and never queues attacks during charge", () => {
+  for (const side of [0, 1] as const) {
+    const { state, inputs, advance } = setup(0);
+    const player = state.players[side];
+    player.cooldown = 2;
+    inputs[side].actions.heavy++;
+    advance(1);
+    assert.equal(player.bufferedAttack?.attack, "heavy");
+    inputs[side].superHeld = true;
+    inputs[side].actions.super++;
+    advance(1);
+    assert.equal(player.superChargeTicks, 1);
+    assert.equal(player.bufferedAttack, undefined);
+    inputs[side].actions.special++;
+    advance(1);
+    assert.equal(player.bufferedAttack, undefined);
+    advance(SUPER_CHARGE_TICKS - 2);
+    assert.equal(player.attack, "super");
+    assert.deepEqual(
+      player.history.map((entry) => entry.action),
+      ["super"],
+    );
+    assert.equal(player.superUsed, true);
+  }
 });
 
 test("blocking, stun and stock loss cancel an already buffered attack", () => {

@@ -2083,6 +2083,46 @@ kbd {
   background: #dfff7b;
   transition: width 0.15s;
 }
+.energy-meter {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+.energy-meter .energy-track {
+  position: relative;
+}
+.energy-meter.is-charging .energy-fill {
+  opacity: 0.25;
+}
+.energy-track > .super-charge-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: #ffd267;
+  transition: width 80ms linear;
+}
+.super-charge-status {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  white-space: nowrap;
+  color: #e9edf4;
+  background: #101621ed;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 10px;
+  line-height: 1.2;
+}
+.energy-meter.is-charging .super-charge-status {
+  color: #ffd267;
+}
+.energy-meter.is-interrupted .super-charge-status {
+  color: #ffb6a5;
+}
+@media (prefers-reduced-motion: reduce) {
+  .energy-track > .super-charge-fill {
+    transition: none;
+  }
+}
 .player-1 .hud-bottom {
   flex-direction: row-reverse;
 }

@@ -7,7 +7,7 @@ import {
   cpuInput,
   type Input,
   type Projectile,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 import { fighterById, type FighterId } from "../shared/content";
 import { finaleById } from "../shared/finales";
 import {

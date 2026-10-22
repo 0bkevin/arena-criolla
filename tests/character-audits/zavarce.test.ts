@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { fighterById } from "../../shared/content";
 import { TECHNIQUES } from "../../shared/techniques";
-import { createMatch, cpuInput, emptyInput, stepMatch, WORLD, type Input } from "../../shared/engine";
+import { createMatch, cpuInput, emptyInput, stepMatch, WORLD, type Input } from "../helpers/charged-finale-engine";
 import { INTRO_TOTAL_TICKS, presentationById, selectionProgress, normalizedFacing } from "../../shared/presentation";
 
 function setup(side: 0 | 1 = 0, gap = 120, wins = 3) {

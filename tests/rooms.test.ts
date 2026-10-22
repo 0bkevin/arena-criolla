@@ -29,6 +29,12 @@ class TestClient {
   send(message: object) {
     this.socket.send(JSON.stringify(message));
   }
+  hold(matchId: string, input: Input) {
+    const send = () => this.send({ type: "input", matchId, input });
+    send();
+    const timer = setInterval(send, 100);
+    return () => clearInterval(timer);
+  }
   async wait<T extends ServerMessage["type"]>(
     type: T,
     predicate: (m: Extract<ServerMessage, { type: T }>) => boolean = () => true,
@@ -166,6 +172,7 @@ async function onlineMatch(
 for (const side of [0, 1] as const) {
   test(`rooms synchronize P${side + 1}'s cinematic capture, damage, paused clock and release over real sockets`, async () => {
     const match = await onlineMatch("canaima", ["capriles", "nacho"], [2, 2]);
+    let stopHold = () => {};
     try {
       const state = match.active.state!;
       state.players.forEach((player, index) => {
@@ -174,14 +181,12 @@ for (const side of [0, 1] as const) {
       });
       const input = emptyInput();
       input.actions.super++;
-      (side === 0 ? match.a : match.b).send({
-        type: "input",
-        matchId: state.id,
-        input,
-      });
+      input.superHeld = true;
+      stopHold = (side === 0 ? match.a : match.b).hold(state.id, input);
       const capture = await match.a.wait("state", (message) =>
         Boolean(message.state.finale),
       );
+      stopHold();
       const remoteCapture = await match.b.wait(
         "state",
         (message) =>
@@ -275,6 +280,7 @@ for (const side of [0, 1] as const) {
       );
       assert.ok(released.state.players[side].cooldown > 0);
     } finally {
+      stopHold();
       await match.close();
     }
   });
@@ -330,6 +336,94 @@ test("stalled online input releases held controls without replaying actions, the
     );
   } finally {
     await match.close();
+  }
+});
+
+test("online super charging cancels on release and on a stalled client's expired hold", async () => {
+  for (const release of [true, false]) {
+    const match = await onlineMatch();
+    try {
+      match.active.state!.players[0].energy = 100;
+      const input = emptyInput();
+      input.actions.super = 1;
+      input.superHeld = true;
+      match.a.send({ type: "input", matchId: match.active.state!.id, input });
+      const charging = await match.a.wait("state", message => message.state.players[0].superChargeTicks > 0);
+      assert.equal(charging.state.players[0].superUsed, false);
+      if (release) {
+        input.superHeld = false;
+        match.a.send({ type: "input", matchId: match.active.state!.id, input });
+      }
+      const cancelled = await match.a.wait("state", message => message.state.tick > charging.state.tick && message.state.players[0].superChargeTicks === 0);
+      assert.equal(cancelled.state.players[0].superUsed, false);
+      assert.equal(cancelled.state.players[0].energy, 100);
+      assert.equal(match.client.input.superHeld, false);
+      assert.equal(match.client.input.actions.super, 1);
+      const peer = await match.b.wait("state", message => message.state.tick === cancelled.state.tick);
+      assert.deepEqual(peer.state, cancelled.state);
+    } finally {
+      await match.close();
+    }
+  }
+});
+
+test("consecutive release and repress packets cannot reuse an online charge", async () => {
+  const match = await onlineMatch();
+  let stopHold = () => {};
+  try {
+    const state = match.active.state!;
+    state.players[0].energy = 100;
+    const input = emptyInput();
+    input.superHeld = true;
+    input.actions.super = 1;
+    stopHold = match.a.hold(state.id, input);
+    await match.a.wait("state", message => message.state.players[0].superChargeTicks >= 30);
+    input.superHeld = false;
+    match.a.send({ type: "input", matchId: state.id, input });
+    input.superHeld = true;
+    input.actions.super++;
+    match.a.send({ type: "input", matchId: state.id, input });
+    const restarted = await match.a.wait("state", message => message.state.players[0].lastActions.super === 2);
+    assert.equal(restarted.state.players[0].superUsed, false);
+    assert.ok(restarted.state.players[0].superChargeTicks > 0 && restarted.state.players[0].superChargeTicks < 10);
+    const activated = await match.a.wait("state", message => message.state.players[0].superUsed);
+    const peer = await match.b.wait("state", message => message.state.tick === activated.state.tick);
+    assert.deepEqual(peer.state, activated.state);
+  } finally {
+    stopHold();
+    await match.close();
+  }
+});
+
+test("online hits interrupt either player's charge and synchronize its penalty without consuming the use", async () => {
+  for (const side of [0, 1] as const) {
+    const match = await onlineMatch("caracas", ["capriles", "javier"]);
+    let stopHold = () => {};
+    try {
+      const state = match.active.state!;
+      state.players[0].x = 330;
+      state.players[1].x = 410;
+      state.players.forEach(player => { player.energy = 100; });
+      const input = emptyInput();
+      input.actions.super = 1;
+      input.superHeld = true;
+      stopHold = (side === 0 ? match.a : match.b).hold(state.id, input);
+      await match.a.wait("state", message => message.state.players[side].superChargeTicks >= 5);
+      const hit = emptyInput();
+      hit.actions.light = 1;
+      (side === 0 ? match.b : match.a).send({ type: "input", matchId: state.id, input: hit });
+      const interrupted = await match.a.wait("state", message => message.state.players[side].superChargeInterruptedTick !== undefined);
+      const player = interrupted.state.players[side];
+      assert.equal(player.superChargeTicks, 0);
+      assert.equal(player.superUsed, false);
+      assert.ok(player.hp < 100);
+      assert.ok(player.energy >= 85 && player.energy < 86);
+      const peer = await match.b.wait("state", message => message.state.tick === interrupted.state.tick);
+      assert.deepEqual(peer.state, interrupted.state);
+    } finally {
+      stopHold();
+      await match.close();
+    }
   }
 });
 
@@ -706,6 +800,7 @@ test("rooms allow Vicente's definitive from zero wins and enforce its energy cos
         ["zavarce", "zavarce"],
         [wins, wins],
       );
+      const stopHolds: (() => void)[] = [];
       try {
         const state = match.active.state!;
         state.players.forEach((player) => {
@@ -713,11 +808,15 @@ test("rooms allow Vicente's definitive from zero wins and enforce its energy cos
         });
         const input = emptyInput();
         input.actions.super++;
-        match.a.send({ type: "input", matchId: state.id, input });
-        match.b.send({ type: "input", matchId: state.id, input });
-        const received = await match.a.wait("state", (message) =>
+        input.superHeld = true;
+        stopHolds.push(match.a.hold(state.id, input), match.b.hold(state.id, input));
+        const preparing = await match.a.wait("state", (message) =>
           message.state.players.every((player) => player.lastActions.super === 1),
         );
+        assert.ok(preparing.state.players.every(player => player.attack === null && !player.superUsed));
+        const received = energy >= 90
+          ? await match.a.wait("state", message => message.state.players.every(player => player.superUsed))
+          : preparing;
         const remote = await match.b.wait(
           "state",
           (message) => message.state.tick === received.state.tick,
@@ -728,7 +827,7 @@ test("rooms allow Vicente's definitive from zero wins and enforce its energy cos
           assert.equal(player.config.wins, wins);
           assert.equal(player.attack, energy >= 90 ? "super" : null);
           if (energy >= 90) {
-            assert.ok(player.energy < 1);
+            assert.ok(player.energy < 3);
             assert.ok(player.cooldown > 0);
           } else {
             assert.ok(player.energy >= 89 && player.energy < 90);
@@ -736,6 +835,7 @@ test("rooms allow Vicente's definitive from zero wins and enforce its energy cos
           }
         }
       } finally {
+        stopHolds.forEach(stop => stop());
         await match.close();
       }
     }

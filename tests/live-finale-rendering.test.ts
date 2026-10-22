@@ -11,7 +11,7 @@ import {
   emptyInput,
   stepMatch,
   type Input,
-} from "../shared/engine";
+} from "./helpers/charged-finale-engine";
 import { fighterById, type FighterId } from "../shared/content";
 import geometry from "../shared/sprite-geometry.json";
 import { presentationById } from "../shared/presentation";

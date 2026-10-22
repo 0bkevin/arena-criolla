@@ -33,6 +33,9 @@ retaining button focus. Use native Escape/Tab/Shift+Tab to check pause focus.
 
 The Node regressions in `controls.test.ts` and `attack-buffer.test.ts` cover
 controller suspension/rearming and a five-frame (83 ms at 60 Hz) attack buffer.
+The buffer accepts light, heavy and special attacks. Definitives keep their
+separate hold-to-charge and one-use-per-fight rules; a fresh definitive press
+clears a pending normal attack, and attacks cannot queue during the charge.
 The latest fresh attack replaces the pending request. Requests outside
 the window are discarded; blocking, stun, stock loss and capture finales clear
 the buffer. Energy and character restrictions are checked again on execution.

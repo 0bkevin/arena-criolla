@@ -11,6 +11,8 @@ import {
 } from "./arena-finales";
 import {
   SUPER_ENERGY_COST,
+  SUPER_CHARGE_TICKS,
+  SUPER_INTERRUPT_ENERGY_COST,
   fighterById,
   platformsAtTick,
   type FighterId,
@@ -50,6 +52,7 @@ export interface Input {
   right: boolean;
   block: boolean;
   down: boolean;
+  superHeld: boolean;
   actions: Record<Action, number>;
 }
 export const emptyInput = (): Input => ({
@@ -57,6 +60,7 @@ export const emptyInput = (): Input => ({
   right: false,
   block: false,
   down: false,
+  superHeld: false,
   actions: { jump: 0, light: 0, heavy: 0, special: 0, dash: 0, super: 0 },
 });
 export interface PlayerConfig {
@@ -78,6 +82,10 @@ export interface PlayerState {
   knockoutDelay?: number;
   stocks: number;
   energy: number;
+  /** Consumed on activation and retained across lost stocks for this match. */
+  superUsed: boolean;
+  superChargeTicks: number;
+  superChargeInterruptedTick?: number;
   grounded: boolean;
   supportPlatform: number | null;
   dropThrough: number;
@@ -95,7 +103,7 @@ export interface PlayerState {
   invincible: number;
   dash: number;
   lastActions: Record<Action, number>;
-  bufferedAttack?: { attack: NonNullable<Attack>; ticks: number };
+  bufferedAttack?: { attack: Exclude<Attack, "super" | null>; ticks: number };
   history: { action: string; tick: number }[];
   combo: string;
   comboTick: number;
@@ -197,6 +205,8 @@ function makePlayer(config: PlayerConfig, index: number): PlayerState {
     hp: 100,
     stocks: 2,
     energy: 35,
+    superUsed: false,
+    superChargeTicks: 0,
     grounded: true,
     supportPlatform: -1,
     dropThrough: 0,
@@ -332,7 +342,8 @@ function interceptHit(
 function rewardHit(s: MatchState, attacker: number) {
   const target = s.players[1 - attacker];
   const source = s.players[attacker];
-  target.energy = Math.min(100, target.energy + 9);
+  if (target.superChargeInterruptedTick !== s.tick)
+    target.energy = Math.min(100, target.energy + 9);
   source.energy = Math.min(100, source.energy + 13);
   source.hits++;
   source.streak = s.tick - source.lastHitTick < 100 ? source.streak + 1 : 1;
@@ -367,6 +378,7 @@ function hurt(
   const target = s.players[1 - attacker];
   const source = s.players[attacker];
   const def = fighterById(target.config.fighter);
+  interruptSuperCharge(s, target);
   target.hp = Math.max(0, target.hp - damage * def.armor);
   launchTarget(target, force, direction);
   target.invincible = hitInvincibility;
@@ -400,6 +412,7 @@ function loseStock(s: MatchState, i: number) {
     (shot) => !shot.tether || shot.owner !== i,
   );
   p.stocks--;
+  p.superChargeTicks = 0;
   delete p.knockoutDelay;
   delete p.transformation;
   s.fieldFinales = s.fieldFinales?.filter((field) => field.owner !== i);
@@ -455,6 +468,7 @@ function beginFinale(s: MatchState, owner: 0 | 1) {
   const direction = target.x >= source.x ? 1 : -1;
   if (interceptHit(s, owner, direction, target.x, target.y - 80, "super"))
     return;
+  interruptSuperCharge(s, target);
   // Captured actors resume their held props. No suspended cable survives a
   // cinematic takeover or duplicates a microphone in a canonical capture pose.
   s.projectiles = s.projectiles.filter((shot) => !shot.tether);
@@ -535,6 +549,25 @@ function advanceFinale(s: MatchState, inputs: [Input, Input]) {
   }
 }
 
+function interruptSuperCharge(s: MatchState, player: PlayerState) {
+  if (player.superChargeTicks === 0) return;
+  player.superChargeTicks = 0;
+  player.superChargeInterruptedTick = s.tick;
+  player.energy = Math.max(0, player.energy - SUPER_INTERRUPT_ENERGY_COST);
+}
+
+function canUseSuper(s: MatchState, i: number) {
+  const p = s.players[i];
+  return (
+    !p.superUsed &&
+    p.energy >= SUPER_ENERGY_COST &&
+    !s.fieldFinales?.some((field) => field.owner === i) &&
+    !s.projectiles.some((shot) => shot.owner === i && shot.tether) &&
+    (!(p.config.fighter === "dayana" || isArenaFinalist(p.config.fighter)) ||
+      p.grounded)
+  );
+}
+
 function canBeginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
   const p = s.players[i];
   const def = fighterById(p.config.fighter);
@@ -547,15 +580,8 @@ function canBeginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
       (TECHNIQUES[def.ability].requiresGround && !p.grounded))
   )
     return false;
-  if (
-    attack === "super" &&
-    (s.fieldFinales?.some((field) => field.owner === i) ||
-      ((p.config.fighter === "dayana" || isArenaFinalist(p.config.fighter)) &&
-        !p.grounded))
-  )
-    return false;
+  if (attack === "super" && !canUseSuper(s, i)) return false;
   if (attack === "special" && p.energy < 25) return false;
-  if (attack === "super" && p.energy < SUPER_ENERGY_COST) return false;
   return true;
 }
 
@@ -564,7 +590,11 @@ function beginAttack(s: MatchState, i: number, attack: NonNullable<Attack>) {
   const p = s.players[i];
   const def = fighterById(p.config.fighter);
   if (attack === "special") p.energy -= 25;
-  if (attack === "super") p.energy -= SUPER_ENERGY_COST;
+  if (attack === "super") {
+    p.energy -= SUPER_ENERGY_COST;
+    p.superUsed = true;
+    p.superChargeTicks = 0;
+  }
   p.attack = attack;
   p.attackTick = 0;
   p.attackHit = false;
@@ -1009,6 +1039,11 @@ function limitRetreat(s: MatchState, origins: number[], carried: number[]) {
 }
 
 export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
+  for (let i = 0; i < 2; i++) {
+    const p = s.players[i];
+    if (!inputs[i].superHeld || s.phase !== "playing" || p.hp <= 0)
+      p.superChargeTicks = 0;
+  }
   if (s.phase === "finished") return;
   if (s.finale) {
     advanceFinale(s, inputs);
@@ -1102,8 +1137,14 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
       (--p.bufferedAttack.ticks < 0 || p.stun > 0 || input.block || p.hp <= 0)
     )
       delete p.bufferedAttack;
+    if (
+      p.superChargeTicks > 0 &&
+      (pressed("super") || p.stun > 0 || !canUseSuper(s, i))
+    )
+      p.superChargeTicks = 0;
     p.blocking =
       input.block &&
+      p.superChargeTicks === 0 &&
       p.hp > 0 &&
       p.stun === 0 &&
       !p.attack &&
@@ -1112,11 +1153,28 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     if (p.blocking) p.energy = Math.max(0, p.energy - 0.12);
     else p.energy = Math.min(100, p.energy + 0.035);
     if (p.stun === 0 && p.hp > 0) {
+      if (p.superChargeTicks > 0) p.superChargeTicks++;
+      else if (
+        pressed("super") &&
+        input.superHeld &&
+        p.cooldown === 0 &&
+        !p.blocking &&
+        !p.attack &&
+        !p.dash &&
+        canUseSuper(s, i)
+      ) {
+        p.superChargeTicks = 1;
+        p.invincible = 0;
+      }
+      const charging = p.superChargeTicks > 0;
       const move = Number(input.right) - Number(input.left);
       if (!p.attack && !p.dash) {
         const acceleration = p.grounded ? 0.35 : 0.08;
         p.vx +=
-          (move * def.speed * (p.blocking ? 0.3 : 1) * (p.slowTicks ? 0.6 : 1) -
+          (move *
+            def.speed *
+            (charging ? 0.45 : p.blocking ? 0.3 : 1) *
+            (p.slowTicks ? 0.6 : 1) -
             p.vx) *
           acceleration;
         p.recoilVx = (p.recoilVx ?? 0) * (1 - acceleration);
@@ -1136,7 +1194,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
         )
           p.facing = s.players[1 - i].x >= p.x ? 1 : -1;
       }
-      if (pressed("jump") && p.jumps < 2 && !p.blocking) {
+      if (!charging && pressed("jump") && p.jumps < 2 && !p.blocking) {
         cancelArenaPerformance(s, p);
         if (activeRunway(s, p)) {
           s.fieldFinales = s.fieldFinales?.filter(
@@ -1152,29 +1210,44 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
         p.grounded = false;
         p.supportPlatform = null;
       }
-      if (pressed("dash") && p.cooldown === 0 && !p.blocking && !p.rootTicks) {
+      if (
+        !charging &&
+        pressed("dash") &&
+        p.cooldown === 0 &&
+        !p.blocking &&
+        !p.rootTicks
+      ) {
         p.vx = p.facing * 14 * (p.slowTicks ? 0.6 : 1);
         p.recoilVx = 0;
         p.dash = 12;
         p.invincible = 8;
         p.cooldown = 30;
       }
-      const requested = (["super", "special", "heavy", "light"] as const).find(
-        pressed,
-      );
-      if (requested) {
+      if (charging || pressed("super")) {
         delete p.bufferedAttack;
-        if (p.cooldown === 0 && !p.blocking) beginAttack(s, i, requested);
-        else if (
-          !input.block &&
-          p.cooldown <= ATTACK_BUFFER_TICKS &&
-          canBeginAttack(s, i, requested)
-        )
-          p.bufferedAttack = { attack: requested, ticks: ATTACK_BUFFER_TICKS };
-      } else if (p.cooldown === 0 && !p.blocking && p.bufferedAttack) {
-        const { attack } = p.bufferedAttack;
-        delete p.bufferedAttack;
-        beginAttack(s, i, attack);
+        if (charging && p.superChargeTicks >= SUPER_CHARGE_TICKS)
+          beginAttack(s, i, "super");
+      } else {
+        const requested = (["special", "heavy", "light"] as const).find(
+          pressed,
+        );
+        if (requested) {
+          delete p.bufferedAttack;
+          if (p.cooldown === 0 && !p.blocking) beginAttack(s, i, requested);
+          else if (
+            !input.block &&
+            p.cooldown <= ATTACK_BUFFER_TICKS &&
+            canBeginAttack(s, i, requested)
+          )
+            p.bufferedAttack = {
+              attack: requested,
+              ticks: ATTACK_BUFFER_TICKS,
+            };
+        } else if (p.cooldown === 0 && !p.blocking && p.bufferedAttack) {
+          const { attack } = p.bufferedAttack;
+          delete p.bufferedAttack;
+          beginAttack(s, i, attack);
+        }
       }
     }
     p.lastActions = { ...input.actions };
@@ -1532,6 +1605,7 @@ export function cpuInput(
   const next: Input = { ...previous, actions: { ...previous.actions } };
   const p = s.players[1];
   const other = s.players[0];
+  next.superHeld = false;
   const dx = other.x - p.x;
   next.left = dx < -86;
   next.right = dx > 86;
@@ -1541,6 +1615,12 @@ export function cpuInput(
     p.supportPlatform >= 0 &&
     other.y > p.y + 80 &&
     Math.abs(dx) < 180;
+  if (p.superChargeTicks > 0) {
+    next.superHeld = true;
+    next.block = false;
+    next.down = false;
+    return next;
+  }
   next.block =
     difficulty !== "easy" &&
     (other.attack === "heavy" || other.attack === "special") &&
@@ -1595,6 +1675,7 @@ export function cpuInput(
     next.actions.jump++;
   if (
     difficulty === "hard" &&
+    !p.superUsed &&
     p.energy >= SUPER_ENERGY_COST &&
     (finaleById(p.config.fighter)?.mode === "field"
       ? !s.fieldFinales?.some((field) => field.owner === 1) &&
@@ -1610,7 +1691,10 @@ export function cpuInput(
             Math.abs(other.y - p.y) < 100
           : Math.abs(dx) < 210) &&
     s.tick % 90 === 0
-  )
+  ) {
     next.actions.super++;
+    next.superHeld = true;
+    next.block = false;
+  }
   return next;
 }
