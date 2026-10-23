@@ -86,6 +86,18 @@ export const ENTRANCE_ACTIONS: Partial<Record<FighterId, EntranceAction>> = {
   ...Object.fromEntries(
     DEFAULT_ENTRANCE_FIGHTERS.map((id) => [id, DEFAULT_ENTRANCE_ACTION]),
   ),
+  inaki: {
+    name: "Cruza los brazos, ajusta el reloj y se pone en guardia",
+    turns: 0,
+    frames: [
+      { at: 0, frame: 0, phase: "settle" },
+      { at: 0.12, frame: 1, phase: "fold" },
+      { at: 0.3, frame: 2, phase: "straighten" },
+      { at: 0.49, frame: 3, phase: "release" },
+      { at: 0.65, frame: 4, phase: "hold" },
+      { at: 0.82, frame: 5, phase: "hold" },
+    ],
+  },
   kevin: {
     name: "Se acomoda la manga, cruza los brazos y entra en guardia",
     turns: 0,

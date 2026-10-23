@@ -3457,6 +3457,83 @@
           "bodyHeight": 409
         }
       ]
+    },
+    "inaki": {
+      "file": "perro-mujeriego-inaki-v1",
+      "frames": [
+        {
+          "x": 12,
+          "y": 12,
+          "width": 303,
+          "height": 445,
+          "anchorX": 158.49852841294995,
+          "anchorY": 441,
+          "bodyHeight": 437
+        },
+        {
+          "x": 854,
+          "y": 12,
+          "width": 317,
+          "height": 443,
+          "anchorX": 173.8412343470483,
+          "anchorY": 439,
+          "bodyHeight": 437
+        },
+        {
+          "x": 327,
+          "y": 12,
+          "width": 276,
+          "height": 444,
+          "anchorX": 153.6657260690254,
+          "anchorY": 440,
+          "bodyHeight": 437
+        },
+        {
+          "x": 615,
+          "y": 12,
+          "width": 227,
+          "height": 444,
+          "anchorX": 127.65532928942808,
+          "anchorY": 440,
+          "bodyHeight": 437
+        },
+        {
+          "x": 1183,
+          "y": 12,
+          "width": 174,
+          "height": 434,
+          "anchorX": 104.29908675799086,
+          "anchorY": 430,
+          "bodyHeight": 437
+        },
+        {
+          "x": 694,
+          "y": 469,
+          "width": 462,
+          "height": 435,
+          "anchorX": 213.08628868308108,
+          "anchorY": 431,
+          "bodyHeight": 437
+        },
+        {
+          "x": 12,
+          "y": 469,
+          "width": 406,
+          "height": 439,
+          "anchorX": 206.9590030281854,
+          "anchorY": 435,
+          "bodyHeight": 437
+        },
+        {
+          "x": 430,
+          "y": 469,
+          "width": 252,
+          "height": 437,
+          "anchorX": 135.02786527744124,
+          "anchorY": 433,
+          "bodyHeight": 437
+        }
+      ]
     }
   }
 }

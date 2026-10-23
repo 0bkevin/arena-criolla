@@ -14,6 +14,15 @@ interface CultureSound {
 // Original short arcade cues. These contain no recordings, speech or song samples.
 export const CULTURE_SOUNDS: Partial<Record<Ability, CultureSound>> = {
   ...FOUNDER_SOUNDS,
+  banknotes: {
+    notes: [220, 440, 660, 880],
+    wave: "triangle",
+    spacing: 0.035,
+    duration: 0.09,
+    sweep: 1.3,
+    noise: 5400,
+    filter: "highpass",
+  },
   bite: {
     notes: [160, 110],
     wave: "triangle",

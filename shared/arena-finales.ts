@@ -1,5 +1,6 @@
 import { WORLD } from "./arena";
 import { DORANGEL_FINALE, DORANGEL_POT, insideDorangelPot } from "./dorangel";
+import { INAKI_FINALE, advanceInakiFinale } from "./inaki";
 import { platformsAtTick, type FighterId } from "./content";
 import type { MatchState, PlayerState } from "./engine";
 import type { FieldFinaleState } from "./field-finales";
@@ -39,9 +40,11 @@ export const REVIEWED_FINALISTS = [
   "kevin",
   "carolina",
   "dorangel",
+  "inaki",
 ] as const satisfies readonly FighterId[];
 
 export const ARENA_FINALES = {
+  inaki: INAKI_FINALE,
   dorangel: DORANGEL_FINALE,
   carolina: { duration: 196, recovery: 36, riding: false },
   kevin: { duration: 96, recovery: 82, riding: false },
@@ -66,6 +69,7 @@ export const ARENA_FINALES = {
 export type ArenaFinalist = keyof typeof ARENA_FINALES;
 /** Emission/gesture cues for sound, never guaranteed damage times. */
 export const ARENA_FINALE_CUES: Record<ArenaFinalist, readonly number[]> = {
+  inaki: INAKI_FINALE.cues,
   dorangel: DORANGEL_FINALE.cues,
   carolina: COUTURE_MODEL_CUES,
   kevin: [12, 26, 40, 54, 68],
@@ -389,6 +393,7 @@ export function advanceArenaFinale(state: MatchState, field: FieldFinaleState) {
     p.facing = field.direction;
   }
   if (!field.cancelled) {
+    advanceInakiFinale(state, field);
     if (field.fighter === "dorangel" && tick === DORANGEL_POT.spawnTick) {
       const pot = spawnActor(
         state,

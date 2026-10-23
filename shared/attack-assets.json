@@ -1963,5 +1963,136 @@
         "bodyHeight": 692
       }
     }
+  },
+  "inaki": {
+    "file": "inaki-rial-attack-v1",
+    "frames": {
+      "special-ready": {
+        "x": 12,
+        "y": 12,
+        "width": 366,
+        "height": 450,
+        "anchorX": 210.98400646203555,
+        "anchorY": 446,
+        "bodyHeight": 442
+      },
+      "special-release": {
+        "x": 390,
+        "y": 12,
+        "width": 449,
+        "height": 445,
+        "anchorX": 233.5039972193257,
+        "anchorY": 441,
+        "bodyHeight": 437
+      },
+      "charge-start": {
+        "x": 12,
+        "y": 474,
+        "width": 402,
+        "height": 433,
+        "anchorX": 215.39721586575135,
+        "anchorY": 429,
+        "bodyHeight": 425
+      },
+      "charge-cup": {
+        "x": 1154,
+        "y": 12,
+        "width": 380,
+        "height": 441,
+        "anchorX": 211.97015519299643,
+        "anchorY": 437,
+        "bodyHeight": 433
+      },
+      "blast-release": {
+        "x": 790,
+        "y": 474,
+        "width": 438,
+        "height": 412,
+        "anchorX": 267.74411541381926,
+        "anchorY": 408,
+        "bodyHeight": 404
+      },
+      "blast-sustain": {
+        "x": 12,
+        "y": 919,
+        "width": 422,
+        "height": 407,
+        "anchorX": 214.81688980432543,
+        "anchorY": 403,
+        "bodyHeight": 399
+      },
+      "recover": {
+        "x": 426,
+        "y": 474,
+        "width": 352,
+        "height": 420,
+        "anchorX": 176.21604503870515,
+        "anchorY": 416,
+        "bodyHeight": 412
+      },
+      "victory": {
+        "x": 851,
+        "y": 12,
+        "width": 291,
+        "height": 443,
+        "anchorX": 122.18504531722054,
+        "anchorY": 439,
+        "bodyHeight": 435
+      },
+      "note-flat": {
+        "x": 12,
+        "y": 1338,
+        "width": 476,
+        "height": 314,
+        "anchorX": 238,
+        "anchorY": 310,
+        "bodyHeight": 306
+      },
+      "note-curl": {
+        "x": 1015,
+        "y": 1338,
+        "width": 442,
+        "height": 300,
+        "anchorX": 221,
+        "anchorY": 296,
+        "bodyHeight": 292
+      },
+      "note-tilt": {
+        "x": 1240,
+        "y": 474,
+        "width": 307,
+        "height": 366,
+        "anchorX": 153.5,
+        "anchorY": 362,
+        "bodyHeight": 358
+      },
+      "stack-small": {
+        "x": 500,
+        "y": 1338,
+        "width": 503,
+        "height": 304,
+        "anchorX": 251.5,
+        "anchorY": 300,
+        "bodyHeight": 296
+      },
+      "bundle": {
+        "x": 933,
+        "y": 919,
+        "width": 449,
+        "height": 319,
+        "anchorX": 224.5,
+        "anchorY": 315,
+        "bodyHeight": 311
+      },
+      "bundle-burst": {
+        "x": 446,
+        "y": 919,
+        "width": 475,
+        "height": 380,
+        "anchorX": 237.5,
+        "anchorY": 376,
+        "bodyHeight": 372
+      }
+    }
   }
 }

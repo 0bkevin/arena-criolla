@@ -26,6 +26,7 @@ import { drawImpact } from "./effects-renderer";
 import { drawFinale } from "./finale-renderer";
 import { drawAliSpecial } from "./finales/ali";
 import { drawDorangelBite, dorangelHeatReaction } from "./finales/dorangel";
+import { drawInakiAction, drawInakiProjectile } from "./finales/inaki";
 import { drawBolivarSpecial } from "./finales/bolivar";
 import {
   drawChataingSpecial,
@@ -148,7 +149,10 @@ export function renderMatch(
     ctx.fillStyle = color;
     ctx.strokeStyle = "#ffffff";
     ctx.lineWidth = 2;
-    if (drawArenaFinaleProjectile(ctx, assets.finaleProps, projectile)) {
+    if (
+      drawInakiProjectile(ctx, assets.finaleProps, projectile, reducedMotion) ||
+      drawArenaFinaleProjectile(ctx, assets.finaleProps, projectile)
+    ) {
       // Original artwork is retained when a projectile changes owners.
     } else if (projectile.kind === "sonic") {
       drawSonicProjectile(ctx, projectile, reducedMotion);
@@ -415,6 +419,13 @@ export function renderMatch(
       drawBody(p.x - p.facing * 22, p.y);
       ctx.globalAlpha = opacity;
     }
+    const paintedInaki = drawInakiAction(
+      ctx,
+      assets.finaleProps,
+      p,
+      bodyHeight,
+      reducedMotion,
+    );
     const paintedDorangel = drawDorangelBite(
       ctx,
       assets.finaleProps,
@@ -510,7 +521,8 @@ export function renderMatch(
       !paintedPageant &&
       !paintedRunway &&
       !paintedArena &&
-      !paintedDorangel
+      !paintedDorangel &&
+      !paintedInaki
     ) {
       drawBody(p.x, p.y + idleBob + (heatReaction?.lift ?? 0));
       const tether =

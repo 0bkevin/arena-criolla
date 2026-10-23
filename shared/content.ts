@@ -11,7 +11,7 @@ export const SUPER_CHARGE_SECONDS_LABEL = String(SUPER_CHARGE_SECONDS).replace(
 export const SUPER_INTERRUPT_ENERGY_COST = 15;
 
 export type FounderFighterId =
-  "enrique" | "jesus" | "carlos" | "victor" | "juan" | "kevin";
+  "enrique" | "jesus" | "carlos" | "victor" | "juan" | "kevin" | "inaki";
 export type IconFighterId =
   "lorenzo" | "carolina" | "dayana" | "deyna" | "bolivar" | "edgar" | "melanio";
 
@@ -127,6 +127,7 @@ export type Ability =
   | "liberator"
   | "retake"
   | "bite"
+  | "banknotes"
   | "signal";
 
 export type FighterCategory = "culture" | "folklore" | "founders" | "community";

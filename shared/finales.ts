@@ -74,6 +74,15 @@ type Entry = readonly [
 
 const entries: readonly Entry[] = [
   [
+    "inaki",
+    "Ráfaga de billetes",
+    "technology",
+    "Reúne billetes entre las manos hasta formar un fajo y lo impulsa con ambas palmas. La ráfaga de dinero viaja por el escenario y solo daña al alcanzar al rival; se puede bloquear, saltar o interrumpir la carga.",
+    "Billetes y fajos de Rial",
+    "Definitiva",
+    "hack",
+  ],
+  [
     "dorangel",
     "Olla al fuego",
     "theater",

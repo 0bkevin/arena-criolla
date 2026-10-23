@@ -51,6 +51,14 @@ function routine(
 
 // Fictional gestures inspired by each business, not claims about personal habits.
 export const FOUNDER_CHOREOGRAPHIES = {
+  inaki: routine(
+    "Ajusta el reloj y se pone en guardia",
+    { head: -0.035, front: -0.12 },
+    [
+      [-0.1, 0.34],
+      [0.12, 0.35],
+    ],
+  ),
   kevin: routine(
     "Confirma el envío y entra en guardia",
     { head: -0.08, front: -0.26, frontX: 0.03, back: -0.09, lean: 0.02 },

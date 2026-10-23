@@ -1431,5 +1431,32 @@
       "Sin soltar",
       "Olla al fuego"
     ]
+  },
+  {
+    "id": "inaki",
+    "sprite": "inaki-v1",
+    "category": "founders",
+    "displayHeight": 177,
+    "name": "Iñaki Umérez",
+    "shortName": "Iñaki",
+    "title": "Rial en mano",
+    "role": "ALCANCE",
+    "color": "#b8e53e",
+    "description": "Cofundador de Rial. Cabello castaño, franela negra de Rial y pantalón claro. Lanza un fajo con su especial y reúne billetes entre las manos para soltar una ráfaga de dinero con la definitiva.",
+    "speed": 5.1,
+    "damage": 0.98,
+    "armor": 1,
+    "stats": [
+      3,
+      4,
+      4
+    ],
+    "ability": "banknotes",
+    "special": "Billete al vuelo",
+    "combos": [
+      "Saldo a favor",
+      "Cuenta clara",
+      "Ráfaga de billetes"
+    ]
   }
 ]
