@@ -246,7 +246,7 @@
 
 .in-lobby .site-header .icon-button,
 .in-lobby .roster-random,
-.in-lobby .roster-search-toggle,
+.in-lobby .roster-sort,
 .in-lobby .roster-pagination button,
 .in-lobby .ready-room > button {
   width: var(--selection-control-height);
@@ -548,6 +548,9 @@
   .app-shell.in-lobby {
     --selection-control-height: 36px;
   }
+  .in-lobby .roster-filter-menu {
+    gap: 8px;
+  }
   .in-lobby
     :is(.site-header, .arcade-home, .site-footer, .mobile-setup-dock)
     button:not(.fighter-card):not(.arcade-stage),
@@ -601,22 +604,6 @@
   .in-lobby .arcade-modes button > svg {
     width: 14px;
     height: 14px;
-  }
-  .in-lobby .roster-categories {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 6px;
-    overflow-x: auto;
-    padding: 4px 0;
-    margin-bottom: 6px;
-    scrollbar-width: thin;
-  }
-  .in-lobby .roster-categories button {
-    flex: 0 0 auto;
-    gap: 4px;
-    padding-inline: 8px;
-    font-size: 11px;
-    white-space: nowrap;
   }
   .in-lobby .mobile-setup-dock {
     gap: 8px;
@@ -680,8 +667,7 @@
     padding-inline: 8px;
     font-size: 11px;
   }
-  .in-lobby .roster-random > svg,
-  .in-lobby .roster-search-toggle > svg {
+  .in-lobby .roster-random > svg {
     width: 16px;
     height: 16px;
   }

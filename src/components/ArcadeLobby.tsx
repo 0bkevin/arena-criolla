@@ -1,6 +1,7 @@
 import {
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
   type KeyboardEvent,
@@ -8,6 +9,8 @@ import {
 } from "react";
 import {
   ArrowRight,
+  ArrowDownAZ,
+  ArrowDownZA,
   ChevronLeft,
   ChevronRight,
   Check,
@@ -29,6 +32,7 @@ import type { useArenaNetwork } from "../network";
 import type { GameMode } from "./Game";
 import { Portrait } from "./Portrait";
 import { PixelIcon } from "./PixelIcon";
+import { RosterFilter } from "./RosterFilter";
 
 const desktopBanner = new URL(
   "../assets/lobby-cast-banner.webp",
@@ -73,6 +77,7 @@ interface Props {
 const colorStyle = (color: string) =>
   ({ "--fighter-color": color }) as React.CSSProperties;
 const MIN_PAGE_SIZE = 10;
+const fighterNameOrder = new Intl.Collator("es", { sensitivity: "base" });
 const stageLabels: Record<StageId, string> = {
   caracas: "Altamira",
   guaira: "La Guaira",
@@ -88,20 +93,26 @@ const stageLabels: Record<StageId, string> = {
 export function ArcadeLobby(props: Props) {
   const { mode, fighter, rival, stage, network } = props;
   const [target, setTarget] = useState<"p1" | "p2">("p1");
-  const [searchOpen, setSearchOpen] = useState(false);
-  const closeSearch = () => {
-    props.onClearQuery();
-    setSearchOpen(false);
-    document.querySelector<HTMLButtonElement>(".roster-search-toggle")?.focus();
-  };
   const [category, setCategory] = useState<"all" | FighterCategory>("all");
+  const [descending, setDescending] = useState(false);
   const rosterGrid = useRef<HTMLDivElement>(null);
   const [pageSize, setPageSize] = useState(MIN_PAGE_SIZE);
   // Keep the page's fighter anchor when a rotation changes its capacity.
   const [pageStart, setPageStart] = useState(0);
-  const roster = props.fighters.filter(
-    (item) => category === "all" || (item.category ?? "culture") === category,
+  const roster = useMemo(
+    () =>
+      props.fighters
+        .filter(
+          (item) =>
+            category === "all" || (item.category ?? "culture") === category,
+        )
+        .sort(
+          (a, b) =>
+            fighterNameOrder.compare(a.name, b.name) * (descending ? -1 : 1),
+        ),
+    [props.fighters, category, descending],
   );
+  const rosterIds = roster.map((item) => item.id).join("|");
   const pageCount = Math.max(1, Math.ceil(roster.length / pageSize));
   const currentPage = Math.min(Math.floor(pageStart / pageSize), pageCount - 1);
   const visibleFighters = roster.slice(
@@ -163,10 +174,7 @@ export function ArcadeLobby(props: Props) {
   useEffect(() => {
     if (mode === "online") setTarget("p1");
   }, [mode]);
-  useEffect(() => {
-    if (searchOpen) props.searchInput.current?.focus();
-  }, [searchOpen, props.searchInput]);
-  useEffect(() => setPageStart(0), [props.query, category]);
+  useEffect(() => setPageStart(0), [rosterIds]);
   useLayoutEffect(() => {
     const grid = rosterGrid.current;
     if (!grid) return;
@@ -437,73 +445,50 @@ export function ArcadeLobby(props: Props) {
                   <PixelIcon kind="dice" size={19} />
                   <span>Sorpréndeme</span>
                 </button>
-                <button
-                  className="roster-search-toggle"
-                  aria-label={
-                    searchOpen ? "Cerrar búsqueda" : "Buscar luchador"
-                  }
-                  aria-expanded={searchOpen}
-                  onClick={() => {
-                    if (searchOpen) closeSearch();
-                    else setSearchOpen(true);
-                  }}
-                >
-                  {searchOpen ? <X size={18} /> : <Search size={18} />}
-                </button>
-              </div>
-              {searchOpen && (
                 <div className="fighter-search arcade-search">
-                  <Search size={14} />
+                  <Search size={14} aria-hidden="true" />
                   <input
                     ref={props.searchInput}
                     aria-label="Buscar luchador"
                     placeholder="Buscar luchador"
+                    autoComplete="off"
                     value={props.query}
                     onChange={(event) => props.onQuery(event.target.value)}
                     onKeyDown={(event) => {
                       if (event.key === "Escape") {
-                        closeSearch();
+                        props.onClearQuery();
                       }
                     }}
                   />
+                  {props.query && (
+                    <button
+                      className="roster-search-clear"
+                      aria-label="Limpiar búsqueda"
+                      onClick={props.onClearQuery}
+                    >
+                      <X size={14} />
+                    </button>
+                  )}
                 </div>
-              )}
-              <div
-                className="roster-categories"
-                role="group"
-                aria-label="Colección de luchadores"
-              >
-                {(
-                  [
-                    ["all", "Todos"],
-                    ["founders", "Founders"],
-                    ["culture", "Cultura"],
-                    ["folklore", "Leyendas"],
-                    ...(FIGHTERS.some((f) => f.category === "community")
-                      ? [["community", "Panas"] as const]
-                      : []),
-                  ] as const
-                ).map(([value, label]) => (
-                  <button
-                    key={value}
-                    aria-pressed={category === value}
-                    onClick={() => {
-                      setCategory(value);
-                      setPageStart(0);
-                    }}
-                  >
-                    {label}
-                    <span>
-                      {
-                        FIGHTERS.filter(
-                          (item) =>
-                            value === "all" ||
-                            (item.category ?? "culture") === value,
-                        ).length
-                      }
-                    </span>
-                  </button>
-                ))}
+                <RosterFilter value={category} onChange={setCategory} />
+                <button
+                  className="roster-sort"
+                  aria-label={
+                    descending ? "Ordenar de A a Z" : "Ordenar de Z a A"
+                  }
+                  title={
+                    descending
+                      ? "Orden Z–A. Cambiar a A–Z"
+                      : "Orden A–Z. Cambiar a Z–A"
+                  }
+                  onClick={() => setDescending((current) => !current)}
+                >
+                  {descending ? (
+                    <ArrowDownZA size={18} />
+                  ) : (
+                    <ArrowDownAZ size={18} />
+                  )}
+                </button>
               </div>
               <div
                 className="fighter-grid"
