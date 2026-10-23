@@ -2,6 +2,22 @@ import type { Technique } from "./techniques";
 
 // Fictional business-themed specials use the existing shared combat simulation.
 export const FOUNDER_TECHNIQUES = {
+  banknotes: {
+    startup: 14,
+    recovery: 44,
+    range: 630,
+    height: 130,
+    damage: 12,
+    force: 4,
+    projectile: {
+      speed: 9.5,
+      life: 70,
+      radius: 15,
+      offsetX: 60,
+      offsetY: 126,
+      hitInvincibility: 5,
+    },
+  },
   remittance: {
     startup: 16,
     recovery: 50,

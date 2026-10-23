@@ -3945,5 +3945,82 @@
         "slotY": 21
       }
     ]
+  },
+  "inaki": {
+    "file": "inaki-defiant-entrance-v4",
+    "cell": 503,
+    "bodyHeight": 479,
+    "baseline": 483,
+    "anchorX": 122.51271842512719,
+    "width": 1776,
+    "height": 528,
+    "frames": [
+      {
+        "x": 12,
+        "y": 20,
+        "width": 227,
+        "height": 487,
+        "anchorX": 122.51271842512719,
+        "anchorY": 483,
+        "bodyHeight": 479,
+        "slotX": 12,
+        "slotY": 20
+      },
+      {
+        "x": 251,
+        "y": 34,
+        "width": 261,
+        "height": 473,
+        "anchorX": 139.02025630425797,
+        "anchorY": 469,
+        "bodyHeight": 479,
+        "slotX": 251,
+        "slotY": 34
+      },
+      {
+        "x": 524,
+        "y": 20,
+        "width": 262,
+        "height": 487,
+        "anchorX": 117.66127622377623,
+        "anchorY": 483,
+        "bodyHeight": 479,
+        "slotX": 524,
+        "slotY": 20
+      },
+      {
+        "x": 798,
+        "y": 12,
+        "width": 295,
+        "height": 495,
+        "anchorX": 162.5083219111024,
+        "anchorY": 491,
+        "bodyHeight": 479,
+        "slotX": 798,
+        "slotY": 12
+      },
+      {
+        "x": 1105,
+        "y": 22,
+        "width": 297,
+        "height": 485,
+        "anchorX": 162.3409222458036,
+        "anchorY": 481,
+        "bodyHeight": 479,
+        "slotX": 1105,
+        "slotY": 22
+      },
+      {
+        "x": 1414,
+        "y": 18,
+        "width": 338,
+        "height": 489,
+        "anchorX": 172.49781919111817,
+        "anchorY": 485,
+        "bodyHeight": 479,
+        "slotX": 1414,
+        "slotY": 18
+      }
+    ]
   }
 }

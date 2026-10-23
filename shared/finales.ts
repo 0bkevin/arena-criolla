@@ -74,6 +74,15 @@ type Entry = readonly [
 
 const entries: readonly Entry[] = [
   [
+    "inaki",
+    "Ráfaga de billetes",
+    "technology",
+    "Arremolina billetes sueltos entre las manos hasta formar una bola de dinero desordenada y la impulsa con ambas palmas. El dinero gira al cruzar el escenario y solo daña al alcanzar al rival; se puede bloquear, saltar o interrumpir la carga.",
+    "Bola de billetes sueltos de Rial",
+    "Definitiva",
+    "hack",
+  ],
+  [
     "dorangel",
     "Olla al fuego",
     "theater",

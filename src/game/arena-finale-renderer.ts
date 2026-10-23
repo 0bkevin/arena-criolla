@@ -21,6 +21,11 @@ import { CHATAING_BODY_HEIGHTS } from "./finales/chataing";
 import { GEORGE_BODY_HEIGHTS, GEORGE_POSE_SCALE } from "./finales/george";
 import { WORLD } from "../../shared/arena";
 import {
+  inakiFinalePose,
+  inakiPoseHeight,
+  drawInakiFinaleHands,
+} from "./finales/inaki";
+import {
   dorangelCookingPose,
   dorangelPoseHeight,
   drawDorangelPickUp,
@@ -53,7 +58,10 @@ export function arenaPerformerPose(
   let pose: string | undefined,
     size = height,
     facing: number | undefined;
-  if (id === "dorangel") {
+  if (id === "inaki") {
+    pose = inakiFinalePose(t, reducedMotion);
+    size = inakiPoseHeight(pose, height);
+  } else if (id === "dorangel") {
     pose = dorangelCookingPose(t, reducedMotion);
     size = dorangelPoseHeight(pose, height);
   } else if (id === "bolivar") {
@@ -190,7 +198,7 @@ export function drawArenaPerformer(
   const field = activeArenaPerformance(state, player);
   if (!field) return drawDorangelPickUp(ctx, images, player, height);
   const pose = arenaPerformerPose(field, height, reducedMotion);
-  return (
+  const painted =
     !!pose &&
     drawAttackArt(
       ctx,
@@ -201,8 +209,17 @@ export function drawArenaPerformer(
       player.y,
       pose.height,
       pose.facing,
-    )
-  );
+    );
+  if (painted && field.fighter === "inaki")
+    drawInakiFinaleHands(
+      ctx,
+      images,
+      player,
+      field.tick,
+      height,
+      reducedMotion,
+    );
+  return painted;
 }
 
 function shadow(

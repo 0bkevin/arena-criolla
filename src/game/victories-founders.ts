@@ -2,6 +2,17 @@ import type { FounderFighterId } from "../../shared/content";
 import type { VictoryProfile } from "./victory-types";
 
 export const FOUNDER_VICTORIES = {
+  inaki: {
+    name: "Sonríe y da el visto bueno",
+    frame: 0,
+    paintedPose: "victory",
+    movement: "plant",
+    gesture: { head: -0.025, front: -0.08 },
+    lift: 0.01,
+    travel: 0,
+    twist: 0.01,
+    music: "percussion",
+  },
   kevin: {
     name: "Envío confirmado",
     frame: 1,

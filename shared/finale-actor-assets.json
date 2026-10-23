@@ -621,6 +621,55 @@
           "bodyHeight": 471
         }
       ]
+    },
+    "inaki": {
+      "file": "inaki-cafe-reactions-v4",
+      "frame": {
+        "x": 12,
+        "y": 12,
+        "width": 505,
+        "height": 651
+      },
+      "bodyHeight": 643,
+      "anchorX": 216.70628225079858,
+      "frames": [
+        {
+          "x": 12,
+          "y": 12,
+          "width": 505,
+          "height": 651,
+          "anchorX": 216.70628225079858,
+          "anchorY": 647,
+          "bodyHeight": 643
+        },
+        {
+          "x": 529,
+          "y": 12,
+          "width": 471,
+          "height": 650,
+          "anchorX": 165.5850389276828,
+          "anchorY": 646,
+          "bodyHeight": 643
+        },
+        {
+          "x": 609,
+          "y": 675,
+          "width": 505,
+          "height": 577,
+          "anchorX": 284.5136551957386,
+          "anchorY": 573,
+          "bodyHeight": 643
+        },
+        {
+          "x": 12,
+          "y": 675,
+          "width": 585,
+          "height": 586,
+          "anchorX": 223.9720480200681,
+          "anchorY": 582,
+          "bodyHeight": 643
+        }
+      ]
     }
   },
   "caprilesCafe": {

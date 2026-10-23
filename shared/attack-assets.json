@@ -1963,5 +1963,154 @@
         "bodyHeight": 692
       }
     }
+  },
+  "inaki": {
+    "file": "inaki-rial-attack-v4",
+    "frames": {
+      "special-ready": {
+        "x": 12,
+        "y": 659,
+        "width": 393,
+        "height": 444,
+        "anchorX": 214.29737609329447,
+        "anchorY": 440,
+        "bodyHeight": 436
+      },
+      "special-release": {
+        "x": 417,
+        "y": 659,
+        "width": 482,
+        "height": 444,
+        "anchorX": 222.61484803188839,
+        "anchorY": 440,
+        "bodyHeight": 436
+      },
+      "charge-start": {
+        "x": 911,
+        "y": 659,
+        "width": 398,
+        "height": 442,
+        "anchorX": 236.8061481605913,
+        "anchorY": 438,
+        "bodyHeight": 434
+      },
+      "charge-cup": {
+        "x": 1321,
+        "y": 659,
+        "width": 389,
+        "height": 442,
+        "anchorX": 231.23474258438458,
+        "anchorY": 438,
+        "bodyHeight": 434
+      },
+      "blast-release": {
+        "x": 1228,
+        "y": 1115,
+        "width": 425,
+        "height": 418,
+        "anchorX": 227.67014843320507,
+        "anchorY": 414,
+        "bodyHeight": 410
+      },
+      "blast-sustain": {
+        "x": 764,
+        "y": 1115,
+        "width": 452,
+        "height": 420,
+        "anchorX": 225.37070040990912,
+        "anchorY": 416,
+        "bodyHeight": 412
+      },
+      "recover": {
+        "x": 12,
+        "y": 1115,
+        "width": 383,
+        "height": 424,
+        "anchorX": 191.7729494839761,
+        "anchorY": 420,
+        "bodyHeight": 416
+      },
+      "victory": {
+        "x": 407,
+        "y": 1115,
+        "width": 345,
+        "height": 424,
+        "anchorX": 158.74985862393967,
+        "anchorY": 420,
+        "bodyHeight": 416
+      },
+      "note-flat": {
+        "x": 473,
+        "y": 1551,
+        "width": 476,
+        "height": 314,
+        "anchorX": 238,
+        "anchorY": 310,
+        "bodyHeight": 306
+      },
+      "note-curl": {
+        "x": 1476,
+        "y": 1551,
+        "width": 442,
+        "height": 300,
+        "anchorX": 221,
+        "anchorY": 296,
+        "bodyHeight": 292
+      },
+      "note-tilt": {
+        "x": 1722,
+        "y": 659,
+        "width": 307,
+        "height": 366,
+        "anchorX": 153.5,
+        "anchorY": 362,
+        "bodyHeight": 358
+      },
+      "stack-small": {
+        "x": 961,
+        "y": 1551,
+        "width": 503,
+        "height": 304,
+        "anchorX": 251.5,
+        "anchorY": 300,
+        "bodyHeight": 296
+      },
+      "bundle": {
+        "x": 12,
+        "y": 1551,
+        "width": 449,
+        "height": 319,
+        "anchorX": 224.5,
+        "anchorY": 315,
+        "bodyHeight": 311
+      },
+      "cash-cloud-small": {
+        "x": 1356,
+        "y": 12,
+        "width": 630,
+        "height": 546,
+        "anchorX": 315,
+        "anchorY": 542,
+        "bodyHeight": 538
+      },
+      "cash-orb": {
+        "x": 12,
+        "y": 12,
+        "width": 628,
+        "height": 635,
+        "anchorX": 314,
+        "anchorY": 631,
+        "bodyHeight": 627
+      },
+      "cash-orb-release": {
+        "x": 652,
+        "y": 12,
+        "width": 692,
+        "height": 587,
+        "anchorX": 346,
+        "anchorY": 583,
+        "bodyHeight": 579
+      }
+    }
   }
 }
