@@ -40,7 +40,7 @@ export function inakiPoseHeight(pose: string, height: number) {
 
 export function inakiFinalePose(tick: number, reduced = false) {
   if (tick < INAKI_FINALE.cues[0]) return "charge-cup";
-  if (tick >= 54) return "recover";
+  if (tick > INAKI_FINALE.cues.at(-1)!) return "recover";
   return reduced || tick % 6 >= 3 ? "blast-sustain" : "blast-release";
 }
 
@@ -225,21 +225,9 @@ export function drawInakiFinaleHands(
   height: number,
   reduced = false,
 ) {
+  // Once fired, the money is drawn only at its physical projectile position.
   if (tick < INAKI_FINALE.cues[0])
     drawInakiFormation(ctx, images, player, 1, "charge-cup", height, reduced);
-  else if (tick <= INAKI_FINALE.cues.at(-1)!) {
-    const hand = inakiHands(inakiFinalePose(tick, reduced), player, height);
-    tumble(
-      ctx,
-      images,
-      "cash-orb",
-      hand.x,
-      hand.y,
-      (36 * height) / 177,
-      player.facing,
-      reduced ? 0 : Math.sin(tick / 5) * 0.16,
-    );
-  }
 }
 
 /** The tumbling paper ball stays centered on its physical circle after a reflection. */

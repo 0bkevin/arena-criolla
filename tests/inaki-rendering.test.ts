@@ -7,6 +7,7 @@ import {
   type Input,
 } from "../shared/engine";
 import { ATTACK_ART } from "../src/game/attack-art";
+import { INAKI_FINALE } from "../shared/inaki";
 import { drawArenaPerformer } from "../src/game/arena-finale-renderer";
 import {
   drawInakiAction,
@@ -219,6 +220,58 @@ test("loose notes gather around a messy paper ball between the hands, mirrored w
       early.balanced();
       halfway.balanced();
       ready.balanced();
+    }
+});
+
+test("fired cash leaves Iñaki's hands empty while the real projectile travels away", () => {
+  for (const side of [0, 1] as const)
+    for (const reduced of [false, true]) {
+      const r = setup(side);
+      let checked = 0;
+      for (let n = 0; n < 180; n++) {
+        stepMatch(r.state, r.inputs);
+        const field = r.state.fieldFinales?.[0];
+        if (!field || field.tick < INAKI_FINALE.cues[0]) continue;
+        if (field.tick > INAKI_FINALE.cues.at(-1)!) break;
+        checked++;
+        const performer = canvas();
+        assert.equal(
+          drawArenaPerformer(
+            performer.ctx,
+            images,
+            r.state,
+            r.player,
+            177,
+            reduced,
+          ),
+          true,
+        );
+        assert.deepEqual(
+          performer.draws.filter(
+            (d) => !(INAKI_BODY_POSES as readonly string[]).includes(d.pose),
+          ),
+          [],
+          `empty hands after release: side ${side}, tick ${field.tick}`,
+        );
+        performer.balanced();
+        if (field.tick === INAKI_FINALE.cues[0]) {
+          const shot = r.state.projectiles.find((p) => p.owner === side)!;
+          assert.ok(shot);
+          const startX = shot.x;
+          stepMatch(r.state, r.inputs);
+          assert.ok((shot.x - startX) * shot.direction! > 0);
+          const projectile = canvas();
+          assert.equal(
+            drawInakiProjectile(projectile.ctx, images, shot, reduced),
+            true,
+          );
+          assert.ok(
+            projectile.draws.some((d) => d.pose === "cash-orb-release"),
+          );
+          projectile.balanced();
+        }
+      }
+      assert.ok(checked > 1, "release and firing frames were exercised");
     }
 });
 

@@ -223,6 +223,32 @@ test("guarding, a timed double jump, fleeing and interruption can defeat the pap
     }
 });
 
+test("Iñaki can move and punch shortly after releasing the burst while his cash keeps flying", () => {
+  for (const side of [0, 1] as const) {
+    const r = setup(side, 520);
+    r.charge();
+    r.at(INAKI_FINALE.cues.at(-1)! + 8);
+    assert.equal(r.player.attack, null, "casting pose has ended");
+    assert.equal(r.player.cooldown, 0);
+    const shot = r.state.projectiles.find((p) => p.owner === side)!;
+    assert.ok(shot, "the released attack outlives the casting pose");
+    const shotX = shot.x;
+    const playerX = r.player.x;
+    r.inputs[side][side ? "right" : "left"] = true;
+    r.advance();
+    assert.ok((r.player.x - playerX) * (side ? 1 : -1) > 0);
+    assert.ok((shot.x - shotX) * shot.direction! > 0);
+    r.inputs[side].actions.light++;
+    r.advance();
+    assert.equal(
+      r.player.attack,
+      "light",
+      "punch does not wait for the cash to disappear",
+    );
+    assert.equal(r.state.finale, undefined);
+  }
+});
+
 test("emitted cash balls use the authored physical dimensions and retain Rial artwork on reflection", () => {
   for (const side of [0, 1] as const) {
     const r = setup(side, 220, "carolina");

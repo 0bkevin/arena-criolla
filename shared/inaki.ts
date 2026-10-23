@@ -3,7 +3,7 @@ import type { FieldFinaleState } from "./field-finales";
 
 export const INAKI_FINALE = {
   duration: 118,
-  recovery: 70,
+  recovery: 48,
   riding: false,
   cues: [16, 22, 28, 34, 40],
 } as const;
