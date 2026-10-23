@@ -83,9 +83,9 @@ test("Iñaki loads only the art needed by his opponent and reuses the same lossl
       attacks: ["inaki"],
       finales: ["inaki"],
     });
-    assert.ok(normal.finaleProps["inaki-rial-attack-v3"]);
-    assert.equal(browser.count("/assets/inaki-v3.webp"), 1);
-    assert.equal(browser.count("/assets/inaki-defiant-entrance-v3.webp"), 0);
+    assert.ok(normal.finaleProps["inaki-rial-attack-v4"]);
+    assert.equal(browser.count("/assets/inaki-v4.webp"), 1);
+    assert.equal(browser.count("/assets/inaki-defiant-entrance-v4.webp"), 0);
     assert.equal(browser.count(`/assets/${seated.inaki.file}.webp`), 0);
     assert.equal(browser.count(`/assets/${recorded.inaki.file}.webp`), 0);
     const cafe = await preloadAssets(["capriles", "inaki"], ["caracas"]);
@@ -96,9 +96,9 @@ test("Iñaki loads only the art needed by his opponent and reuses the same lossl
     assert.ok(dance.finaleProps[recorded.inaki.file]);
     await preloadAssets(["nacho", "inaki"], ["caracas"]);
     for (const name of [
-      "inaki-v3",
-      "inaki-defiant-entrance-v3",
-      "inaki-rial-attack-v3",
+      "inaki-v4",
+      "inaki-defiant-entrance-v4",
+      "inaki-rial-attack-v4",
       seated.inaki.file,
       recorded.inaki.file,
     ])

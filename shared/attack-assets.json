@@ -1965,83 +1965,83 @@
     }
   },
   "inaki": {
-    "file": "inaki-rial-attack-v3",
+    "file": "inaki-rial-attack-v4",
     "frames": {
       "special-ready": {
         "x": 12,
         "y": 659,
         "width": 393,
-        "height": 458,
-        "anchorX": 220.10188159706289,
-        "anchorY": 454,
-        "bodyHeight": 450
+        "height": 444,
+        "anchorX": 214.29737609329447,
+        "anchorY": 440,
+        "bodyHeight": 436
       },
       "special-release": {
         "x": 417,
         "y": 659,
-        "width": 483,
-        "height": 457,
-        "anchorX": 238.04342039594079,
-        "anchorY": 453,
-        "bodyHeight": 449
+        "width": 482,
+        "height": 444,
+        "anchorX": 222.61484803188839,
+        "anchorY": 440,
+        "bodyHeight": 436
       },
       "charge-start": {
-        "x": 912,
+        "x": 911,
         "y": 659,
-        "width": 400,
-        "height": 452,
-        "anchorX": 235.76872791519435,
-        "anchorY": 448,
-        "bodyHeight": 444
+        "width": 398,
+        "height": 442,
+        "anchorX": 236.8061481605913,
+        "anchorY": 438,
+        "bodyHeight": 434
       },
       "charge-cup": {
-        "x": 1324,
+        "x": 1321,
         "y": 659,
-        "width": 382,
-        "height": 452,
-        "anchorX": 218.6244290306209,
-        "anchorY": 448,
-        "bodyHeight": 444
+        "width": 389,
+        "height": 442,
+        "anchorX": 231.23474258438458,
+        "anchorY": 438,
+        "bodyHeight": 434
       },
       "blast-release": {
-        "x": 756,
-        "y": 1129,
-        "width": 445,
+        "x": 1228,
+        "y": 1115,
+        "width": 425,
+        "height": 418,
+        "anchorX": 227.67014843320507,
+        "anchorY": 414,
+        "bodyHeight": 410
+      },
+      "blast-sustain": {
+        "x": 764,
+        "y": 1115,
+        "width": 452,
+        "height": 420,
+        "anchorX": 225.37070040990912,
+        "anchorY": 416,
+        "bodyHeight": 412
+      },
+      "recover": {
+        "x": 12,
+        "y": 1115,
+        "width": 383,
         "height": 424,
-        "anchorX": 247.22355641885926,
+        "anchorX": 191.7729494839761,
         "anchorY": 420,
         "bodyHeight": 416
       },
-      "blast-sustain": {
-        "x": 1213,
-        "y": 1129,
-        "width": 454,
-        "height": 423,
-        "anchorX": 221.1611132146914,
-        "anchorY": 419,
-        "bodyHeight": 415
-      },
-      "recover": {
-        "x": 366,
-        "y": 1129,
-        "width": 378,
-        "height": 428,
-        "anchorX": 197.73604766633565,
-        "anchorY": 424,
-        "bodyHeight": 420
-      },
       "victory": {
-        "x": 12,
-        "y": 1129,
-        "width": 342,
-        "height": 434,
-        "anchorX": 152.9201810327093,
-        "anchorY": 430,
-        "bodyHeight": 426
+        "x": 407,
+        "y": 1115,
+        "width": 345,
+        "height": 424,
+        "anchorX": 158.74985862393967,
+        "anchorY": 420,
+        "bodyHeight": 416
       },
       "note-flat": {
         "x": 473,
-        "y": 1575,
+        "y": 1551,
         "width": 476,
         "height": 314,
         "anchorX": 238,
@@ -2050,7 +2050,7 @@
       },
       "note-curl": {
         "x": 1476,
-        "y": 1575,
+        "y": 1551,
         "width": 442,
         "height": 300,
         "anchorX": 221,
@@ -2058,7 +2058,7 @@
         "bodyHeight": 292
       },
       "note-tilt": {
-        "x": 1718,
+        "x": 1722,
         "y": 659,
         "width": 307,
         "height": 366,
@@ -2068,7 +2068,7 @@
       },
       "stack-small": {
         "x": 961,
-        "y": 1575,
+        "y": 1551,
         "width": 503,
         "height": 304,
         "anchorX": 251.5,
@@ -2077,7 +2077,7 @@
       },
       "bundle": {
         "x": 12,
-        "y": 1575,
+        "y": 1551,
         "width": 449,
         "height": 319,
         "anchorX": 224.5,

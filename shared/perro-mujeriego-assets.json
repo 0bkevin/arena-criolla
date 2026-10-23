@@ -3459,79 +3459,79 @@
       ]
     },
     "inaki": {
-      "file": "perro-mujeriego-inaki-v3",
+      "file": "perro-mujeriego-inaki-v4",
       "frames": [
         {
           "x": 12,
           "y": 12,
-          "width": 308,
-          "height": 448,
-          "anchorX": 169.86122299523984,
-          "anchorY": 444,
-          "bodyHeight": 440
+          "width": 358,
+          "height": 469,
+          "anchorX": 195.3132112815438,
+          "anchorY": 465,
+          "bodyHeight": 461
         },
         {
-          "x": 332,
+          "x": 382,
           "y": 12,
-          "width": 322,
-          "height": 444,
-          "anchorX": 174.9511831563257,
-          "anchorY": 440,
-          "bodyHeight": 440
+          "width": 358,
+          "height": 466,
+          "anchorX": 195.34489020967476,
+          "anchorY": 462,
+          "bodyHeight": 461
         },
         {
-          "x": 666,
+          "x": 752,
           "y": 12,
-          "width": 285,
-          "height": 444,
-          "anchorX": 166.64967197750704,
-          "anchorY": 440,
-          "bodyHeight": 440
+          "width": 333,
+          "height": 466,
+          "anchorX": 200.36547048123037,
+          "anchorY": 462,
+          "bodyHeight": 461
         },
         {
-          "x": 963,
+          "x": 1097,
           "y": 12,
-          "width": 247,
-          "height": 444,
-          "anchorX": 131.69554775540365,
-          "anchorY": 440,
-          "bodyHeight": 440
+          "width": 241,
+          "height": 466,
+          "anchorX": 144.50008230452676,
+          "anchorY": 462,
+          "bodyHeight": 461
         },
         {
-          "x": 1222,
-          "y": 12,
-          "width": 191,
-          "height": 429,
-          "anchorX": 115.76270853778215,
-          "anchorY": 425,
-          "bodyHeight": 440
+          "x": 1303,
+          "y": 493,
+          "width": 201,
+          "height": 421,
+          "anchorX": 114.10857931986881,
+          "anchorY": 417,
+          "bodyHeight": 461
         },
         {
-          "x": 463,
-          "y": 472,
-          "width": 476,
-          "height": 427,
-          "anchorX": 236.6788306451613,
-          "anchorY": 423,
-          "bodyHeight": 440
+          "x": 506,
+          "y": 493,
+          "width": 449,
+          "height": 424,
+          "anchorX": 225.8256958587916,
+          "anchorY": 420,
+          "bodyHeight": 461
         },
         {
           "x": 12,
-          "y": 472,
-          "width": 439,
-          "height": 429,
-          "anchorX": 218.51731731731732,
-          "anchorY": 425,
-          "bodyHeight": 440
+          "y": 493,
+          "width": 482,
+          "height": 425,
+          "anchorX": 225.67976211930076,
+          "anchorY": 421,
+          "bodyHeight": 461
         },
         {
-          "x": 951,
-          "y": 472,
-          "width": 272,
-          "height": 426,
-          "anchorX": 144.85526044883673,
-          "anchorY": 422,
-          "bodyHeight": 440
+          "x": 967,
+          "y": 493,
+          "width": 324,
+          "height": 423,
+          "anchorX": 155.19048470756573,
+          "anchorY": 419,
+          "bodyHeight": 461
         }
       ]
     }

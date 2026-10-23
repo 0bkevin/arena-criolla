@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import sharp from "sharp";
@@ -21,6 +22,7 @@ import { TECHNIQUES } from "../shared/techniques";
 import entrances from "../shared/entrance-assets.json";
 import actors from "../shared/finale-actor-assets.json";
 import dancers from "../shared/perro-mujeriego-assets.json";
+import geometry from "../shared/sprite-geometry.json";
 import { ATTACK_ART } from "../src/game/attack-art";
 import { INAKI_BODY_POSES, INAKI_PROP_POSES } from "../src/game/finales/inaki";
 
@@ -70,7 +72,17 @@ test("Iñaki has a complete native inventory in transparent lossless atlases wit
   for (const pose of [...INAKI_BODY_POSES, ...INAKI_PROP_POSES])
     assert.ok(ATTACK_ART.inaki.frames[pose], pose);
   const atlases = [
-    { file: fighterById("inaki").sprite, frames: [] },
+    {
+      file: fighterById("inaki").sprite,
+      frames: geometry.sprites
+        .find((sprite) => sprite.id === "inaki")!
+        .files[0].components.map((bounds) => ({
+          x: bounds.minX - 4,
+          y: bounds.minY - 4,
+          width: bounds.maxX - bounds.minX + 9,
+          height: bounds.maxY - bounds.minY + 9,
+        })),
+    },
     { file: entrances.inaki.file, frames: entrances.inaki.frames },
     { file: actors.seated.inaki.file, frames: actors.seated.inaki.frames },
     { file: dancers.dancers.inaki.file, frames: dancers.dancers.inaki.frames },
@@ -97,6 +109,19 @@ test("Iñaki has a complete native inventory in transparent lossless atlases wit
         .extractChannel(3)
         .stats();
       assert.ok(alpha.channels[0].max >= 200 && alpha.channels[0].min === 0);
+      const rgba = await sharp(bytes)
+        .ensureAlpha()
+        .extract({ left: f.x, top: f.y, width: f.width, height: f.height })
+        .raw()
+        .toBuffer();
+      for (let y = 0; y < f.height; y++)
+        for (let x = 0; x < f.width; x++)
+          if (x === 0 || y === 0 || x === f.width - 1 || y === f.height - 1)
+            assert.equal(
+              rgba[(y * f.width + x) * 4 + 3],
+              0,
+              `${atlas.file}: transparent gutter at ${x},${y}`,
+            );
     }
   }
 });
@@ -231,4 +256,39 @@ test("the paper burst replays exactly across network snapshots and preserves the
   assert.equal(r.player.attack, null);
   assert.equal(r.player.energy, 100);
   assert.equal(r.player.superUsed, true);
+});
+
+// Frozen before the facial revision; includes RGB beneath transparent pixels.
+test("Iñaki's face revision preserves every authored money prop exactly", async () => {
+  const expected = {
+    "note-flat":
+      "70b32b02e7cd1acebb8be6cd0fb20709102ffbffe714eb4ece2427240cf7cf07",
+    "note-curl":
+      "87b0c15631353e4bb035598b90894ec2dadde03843fccce63c851283a6e0ae23",
+    "note-tilt":
+      "166983835c1ca1685cbf354c971936516bbab46bce0ed1b93a498780c9ad49a7",
+    "stack-small":
+      "65f3bc957d0bfe2337bf01ee5682f9a9ea6d9a6c2feec866e27478f46f502f4b",
+    bundle: "6f6258e4ceb1008b591a97c9a4c299bb5fbd57dc51173ab9e3ea67c7826980bd",
+    "cash-cloud-small":
+      "16ac795015ac38646d27f309eb85ebbf8b8f3510d2c9b86999230a394f6f94cc",
+    "cash-orb":
+      "c86114f2afeb6d8b6739ea61cc25ad64c9ffa537ebbfe5c89a80ea92eef9eea4",
+    "cash-orb-release":
+      "6c5990ccf65a0dd274fe0637ec8e368f3d1380c4fcff0284df8cd072b51c4796",
+  };
+  assert.deepEqual(Object.keys(expected).sort(), [...INAKI_PROP_POSES].sort());
+  for (const pose of INAKI_PROP_POSES) {
+    const f = ATTACK_ART.inaki.frames[pose];
+    const rgba = await sharp(`public/assets/${ATTACK_ART.inaki.file}.webp`)
+      .ensureAlpha()
+      .extract({ left: f.x, top: f.y, width: f.width, height: f.height })
+      .raw()
+      .toBuffer();
+    assert.equal(
+      createHash("sha256").update(rgba).digest("hex"),
+      expected[pose],
+      pose,
+    );
+  }
 });
