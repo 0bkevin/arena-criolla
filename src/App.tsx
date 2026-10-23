@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type KeyboardEvent,
+} from "react";
 import {
   ArrowRight,
   Check,
@@ -81,6 +87,7 @@ export function App({
   const [fighter, setFighter] = useState<FighterId>(initialMatchup[0]);
   const [rival, setRival] = useState<FighterId>(initialMatchup[1]);
   const [fighterQuery, setFighterQuery] = useState("");
+  const [debouncedFighterQuery, setDebouncedFighterQuery] = useState("");
   const [stage, setStage] = useState<StageId>("caracas");
   const [difficulty, setDifficulty] = useState<"easy" | "normal" | "hard">(
     "normal",
@@ -116,17 +123,28 @@ export function App({
   const chosenStage = stageById(network.room?.stage || stage);
   const wins = Number(progress.wins[fighter]) || 0;
   const host = network.room?.host === network.id;
-  const searchTerm = fighterQuery
+  useEffect(() => {
+    const timeout = window.setTimeout(
+      () => setDebouncedFighterQuery(fighterQuery),
+      250,
+    );
+    return () => window.clearTimeout(timeout);
+  }, [fighterQuery]);
+  const searchTerm = debouncedFighterQuery
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
     .trim();
-  const visibleFighters = FIGHTERS.filter((f) =>
-    `${f.name} ${f.shortName} ${f.role}`
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase()
-      .includes(searchTerm),
+  const visibleFighters = useMemo(
+    () =>
+      FIGHTERS.filter((f) =>
+        `${f.name} ${f.shortName} ${f.role}`
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .includes(searchTerm),
+      ),
+    [searchTerm, _communityRevision, network.communityVersion],
   );
 
   useEffect(() => {
@@ -206,6 +224,7 @@ export function App({
   };
   const clearFighterSearch = () => {
     setFighterQuery("");
+    setDebouncedFighterQuery("");
     fighterSearchInput.current?.focus();
   };
   const selectFighter = (id: FighterId) => {
