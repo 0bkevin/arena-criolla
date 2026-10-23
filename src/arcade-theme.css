@@ -562,8 +562,10 @@ body {
   margin-bottom: 8px;
   justify-content: flex-start;
   gap: 6px;
+  flex-wrap: nowrap;
 }
 .in-lobby .player-picker {
+  flex-shrink: 0;
   gap: 5px;
 }
 .in-lobby .player-picker button {
@@ -601,8 +603,8 @@ body {
 .in-lobby .picking-label.p2 {
   color: var(--coral);
 }
-.in-lobby .roster-search-toggle,
-.in-lobby .roster-random {
+.in-lobby .roster-random,
+.in-lobby .roster-sort {
   flex: 0 0 32px;
   width: 32px;
   height: 32px;
@@ -613,22 +615,20 @@ body {
   background: #08192a50;
   color: #c8d5e7;
 }
-.in-lobby .roster-random {
-  margin-left: auto;
-}
 .in-lobby .roster-random > span {
   display: none;
 }
-.in-lobby .roster-search-toggle:hover,
-.in-lobby .roster-random:hover:enabled {
+.in-lobby .roster-random:hover:enabled,
+.in-lobby .roster-sort:hover {
   color: var(--coin);
   border-color: #ffd45a66;
   background: #ffd45a0b;
 }
-.in-lobby .arcade-search {
-  width: 100%;
-  height: 36px;
-  margin: 0 0 8px;
+.in-lobby .roster-toolbar .arcade-search {
+  flex: 1;
+  min-width: 0;
+  height: var(--selection-control-height);
+  margin: 0;
   background: #071425;
   color: #b1c4dd;
   border: 1px solid #344a64;
@@ -645,40 +645,134 @@ body {
 .in-lobby .arcade-search input::placeholder {
   color: #92a5bf;
 }
-.in-lobby .roster-categories {
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 8px;
+.in-lobby .arcade-search > svg {
+  flex-shrink: 0;
 }
-.in-lobby .roster-categories button {
-  min-height: 29px;
-  height: 29px;
-  padding: 4px 7px;
-  background: #0b1a2d;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  color: #bccae0;
-  box-shadow: none;
+.in-lobby .roster-toolbar .roster-search-clear {
+  display: grid;
+  place-items: center;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  padding: 0;
+  color: #b1c4dd;
+}
+.in-lobby .roster-search-clear:hover {
+  color: var(--coin);
+}
+.in-lobby .roster-filter {
+  position: relative;
+  flex-shrink: 0;
+  color: #c8d5e7;
+}
+.in-lobby .roster-filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--selection-control-height);
+  padding: 0 10px;
+  border: 1px solid #344a64;
+  border-radius: 4px;
+  background: #071425;
+  color: inherit;
   font: 500 12px var(--font-body);
 }
-.in-lobby .roster-categories button span {
-  font: 500 10px var(--font-body);
-  color: #a2b1c6;
+.in-lobby .arcade-session .roster-filter-toggle:focus-visible,
+.in-lobby .arcade-session .roster-filter-option:focus-visible {
+  outline: none;
 }
-.in-lobby .roster-categories button[aria-pressed="true"] {
-  background: var(--selection-fill);
+.in-lobby .roster-filter-toggle:focus-visible {
+  background: #1a2e46;
+}
+.in-lobby .roster-filter[data-active="true"] {
   color: var(--coin);
-  font-weight: 700;
-  box-shadow: none;
 }
-.in-lobby .roster-categories button[aria-pressed="true"] span {
-  color: #d6e3f3;
+.in-lobby .roster-filter[data-active="true"] .roster-filter-toggle,
+.in-lobby .roster-filter-toggle[aria-expanded="true"] {
+  border-color: #ffd45a66;
+  color: var(--coin);
 }
-.in-lobby .roster-categories button:not([aria-pressed="true"]):hover {
+.in-lobby .roster-filter-toggle:hover {
+  border-color: #bac9da66;
+}
+.in-lobby .roster-filter-label {
+  white-space: nowrap;
+}
+.in-lobby .roster-filter-label > span {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.in-lobby .roster-filter-menu {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 8px);
+  right: 0;
+  display: grid;
+  gap: 2px;
+  width: 176px;
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-block: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--selection-fill) transparent;
+  padding: 4px;
+  border-radius: 6px;
+  background: #102238;
+  box-shadow: 0 10px 30px #020a14b3;
+}
+.in-lobby .roster-filter-menu[data-side="top"] {
+  top: auto;
+  bottom: calc(100% + 8px);
+}
+.in-lobby .roster-filter-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--selection-control-height);
+  padding: 0 10px;
+  border-radius: 3px;
+  color: var(--text);
+  text-align: left;
+  font: 500 12px var(--font-body);
+}
+.in-lobby .roster-filter-option > span:first-child {
+  flex: 1;
+}
+.in-lobby .roster-filter-count {
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.in-lobby .roster-filter-option > svg {
+  visibility: hidden;
+}
+.in-lobby .roster-filter-option[aria-checked="true"] {
+  color: var(--coin);
+  background: var(--selection-fill);
+}
+.in-lobby .roster-filter-option[aria-checked="true"] > svg {
+  visibility: visible;
+}
+.in-lobby .roster-filter-option:hover,
+.in-lobby .roster-filter-option:focus-visible {
   background: #20354c;
 }
-.in-lobby .roster-categories button:is(:hover, :active) {
-  transform: none;
+@media (max-width: 600px) {
+  .in-lobby .roster-toolbar .player-picker {
+    display: none;
+  }
+  .in-lobby .roster-filter-toggle {
+    width: var(--selection-control-height);
+    justify-content: center;
+    padding: 0;
+  }
+  .in-lobby .roster-filter-label,
+  .in-lobby .roster-filter-chevron {
+    display: none;
+  }
 }
 .in-lobby .fighter-grid {
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -1454,7 +1548,6 @@ body {
   .in-lobby .player-picker button span {
     font-size: 9px;
   }
-  .in-lobby .roster-search-toggle,
   .in-lobby .roster-random {
     flex-basis: 44px;
     width: 44px;
@@ -1462,20 +1555,6 @@ body {
   }
   .in-lobby .picking-label {
     display: none;
-  }
-  .in-lobby .roster-random {
-    margin-left: auto;
-  }
-  .in-lobby .arcade-search {
-    height: 44px;
-  }
-  .in-lobby .roster-categories {
-    margin-bottom: 10px;
-  }
-  .in-lobby .roster-categories button {
-    min-height: 44px;
-    height: 44px;
-    font-size: 12px;
   }
   .in-lobby .fighter-grid {
     gap: 8px;
@@ -1806,10 +1885,6 @@ body {
   }
   .in-lobby .player-picker button span {
     font-size: 8px;
-  }
-  .in-lobby .roster-categories button {
-    font-size: 11px;
-    gap: 4px;
   }
   .in-lobby .fighter-card-caption strong {
     font-size: 10px;

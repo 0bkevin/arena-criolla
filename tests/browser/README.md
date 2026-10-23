@@ -1,5 +1,22 @@
 # Controls validation
 
+## Roster toolbar validation
+
+With the standalone Vite server described below, open
+`http://localhost:5174/tests/browser/roster-controls.html` and run
+`await rosterAudit.run()`. All nine scenarios must pass. Repeat at phone,
+tablet, desktop, and short landscape sizes, especially around 600px and 900px.
+
+This mounts the production App in StrictMode. It checks pagination across an
+unchanged catalog refresh, debounce cancellation and accent-insensitive search,
+empty-state recovery, filtering and both sort directions without mutating the
+shared catalog, removal of the last community character, keyboard re-entry and
+Escape focus restoration, opening focus without page jumps, menu clipping around
+the sticky header and bottom dock, scrolling, and hit testing along option edges. Only catalog updates and
+250ms search timers are controlled; the harness restores the catalog, timers,
+and mounted UI after every run. Use native browser input to check Tab/Shift+Tab and pointer
+selection as well: synthetic key events do not perform native focus navigation.
+
 ## Mobile audio validation
 
 Run `npx tsx --test tests/audio-mobile-lifecycle.test.ts` for deterministic
