@@ -42,7 +42,7 @@ export function advanceInakiFinale(state: MatchState, field: FieldFinaleState) {
     hitInvincibility: 4,
     finaleArt: {
       fighter: "inaki",
-      pose: "bundle-burst",
+      pose: "cash-orb-release",
       height: INAKI_CASH.radius * 2,
     },
   });

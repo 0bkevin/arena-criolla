@@ -107,8 +107,8 @@ function canvas() {
 }
 const images = {
   [ATTACK_ART.inaki.file]: {
-    width: 1664,
-    height: 1664,
+    width: 2048,
+    height: 2048,
     complete: true,
   } as HTMLImageElement,
 };
@@ -160,7 +160,7 @@ test("charging, firing and recovery paint one normally sized Iñaki on either si
     }
 });
 
-test("loose notes visibly gather into one bundle between the hands, mirrored without losing alpha", () => {
+test("loose notes gather around a messy paper ball between the hands, mirrored without losing alpha", () => {
   for (const side of [0, 1] as const)
     for (const reduced of [false, true]) {
       const { player } = setup(side);
@@ -200,10 +200,22 @@ test("loose notes visibly gather into one bundle between the hands, mirrored wit
         halfway.draws.filter((d) => d.pose.startsWith("note-")).length >
           early.draws.length,
       );
-      const bundle = ready.draws.find((d) => d.pose === "bundle");
-      assert.ok(bundle);
-      assert.ok(Math.abs(bundle.x - (player.x + player.facing * 43)) < 1e-8);
-      assert.ok(Math.abs(bundle.y - (player.y - 99)) < 1e-8);
+      const orb = ready.draws.find((d) => d.pose === "cash-orb");
+      assert.ok(orb);
+      assert.ok(Math.abs(orb.x - (player.x + player.facing * 43)) < 1e-8);
+      assert.ok(Math.abs(orb.y - (player.y - 99)) < 1e-8);
+      assert.ok(
+        !ready.draws.some(
+          (d) => d.pose === "bundle" || d.pose === "stack-small",
+        ),
+      );
+      const notes = ready.draws.filter((d) => d.pose.startsWith("note-"));
+      assert.ok(notes.length >= 8);
+      assert.ok(
+        Math.max(...notes.map((d) => d.y)) -
+          Math.min(...notes.map((d) => d.y)) >
+          10,
+      );
       early.balanced();
       halfway.balanced();
       ready.balanced();
@@ -221,4 +233,44 @@ test("a failed optional sheet declines before painting the body, while real proj
   assert.equal(drawInakiProjectile(c.ctx, {}, shot), true);
   assert.ok(c.shapes >= 2, "physical packet stays visible without its image");
   c.balanced();
+});
+
+test("the ultimate uses a tumbling cash ball and scattered notes; the special keeps its compact fajo", () => {
+  const r = setup(0);
+  for (let n = 0; n < 80; n++) stepMatch(r.state, r.inputs);
+  const shot = r.state.projectiles[0];
+  assert.ok(shot);
+  assert.equal(shot.finaleArt?.pose, "cash-orb-release");
+  for (const reduced of [false, true]) {
+    const c = canvas();
+    drawInakiProjectile(c.ctx, images, shot, reduced);
+    const orb = c.draws.find((d) => d.pose === "cash-orb-release");
+    assert.ok(orb);
+    assert.ok(Math.abs(orb.x) < 1e-8 && Math.abs(orb.y) < 1e-8);
+    const crop = ATTACK_ART.inaki.frames[orb.pose];
+    const visibleHeight =
+      (orb.height * (crop.bodyHeight ?? crop.height)) / crop.height;
+    assert.ok(Math.abs(visibleHeight - (shot.radius ?? 0) * 2) < 1e-8);
+    assert.ok(
+      !c.draws.some((d) => d.pose === "bundle" || d.pose === "stack-small"),
+    );
+    const notes = c.draws.filter((d) => d.pose.startsWith("note-"));
+    assert.equal(notes.length, 4);
+    assert.ok(
+      Math.max(...notes.map((d) => d.y)) - Math.min(...notes.map((d) => d.y)) >
+        20,
+    );
+    c.balanced();
+  }
+  const special = canvas();
+  drawInakiProjectile(special.ctx, images, {
+    ...shot,
+    impact: "special",
+    radius: 15,
+  });
+  assert.deepEqual(
+    special.draws.map((d) => d.pose),
+    ["bundle"],
+  );
+  special.balanced();
 });

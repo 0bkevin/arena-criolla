@@ -150,7 +150,7 @@ test("the banknote charge needs the real held input, remains vulnerable and does
   }
 });
 
-test("Iñaki's definitive emits five physical bundles and interacts with every rival at close range from both sides", () => {
+test("Iñaki's definitive emits five physical cash balls and interacts with every rival at close range from both sides", () => {
   assert.equal(finaleById("inaki")?.mode, "field");
   for (const rival of BUILT_IN_FIGHTERS)
     for (const side of [0, 1] as const) {
@@ -198,7 +198,7 @@ test("guarding, a timed double jump, fleeing and interruption can defeat the pap
     }
 });
 
-test("emitted bundles use the authored physical dimensions and retain Rial artwork on reflection", () => {
+test("emitted cash balls use the authored physical dimensions and retain Rial artwork on reflection", () => {
   for (const side of [0, 1] as const) {
     const r = setup(side, 220, "carolina");
     r.charge();

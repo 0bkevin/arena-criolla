@@ -1965,83 +1965,83 @@
     }
   },
   "inaki": {
-    "file": "inaki-rial-attack-v1",
+    "file": "inaki-rial-attack-v2",
     "frames": {
       "special-ready": {
         "x": 12,
-        "y": 12,
-        "width": 366,
-        "height": 450,
-        "anchorX": 210.98400646203555,
-        "anchorY": 446,
-        "bodyHeight": 442
+        "y": 659,
+        "width": 372,
+        "height": 456,
+        "anchorX": 210.94742198100408,
+        "anchorY": 452,
+        "bodyHeight": 448
       },
       "special-release": {
-        "x": 390,
-        "y": 12,
-        "width": 449,
-        "height": 445,
-        "anchorX": 233.5039972193257,
-        "anchorY": 441,
-        "bodyHeight": 437
+        "x": 396,
+        "y": 659,
+        "width": 456,
+        "height": 452,
+        "anchorX": 223.2156017248138,
+        "anchorY": 448,
+        "bodyHeight": 444
       },
       "charge-start": {
-        "x": 12,
-        "y": 474,
-        "width": 402,
-        "height": 433,
-        "anchorX": 215.39721586575135,
-        "anchorY": 429,
-        "bodyHeight": 425
+        "x": 1574,
+        "y": 659,
+        "width": 404,
+        "height": 437,
+        "anchorX": 219.2874139010645,
+        "anchorY": 433,
+        "bodyHeight": 429
       },
       "charge-cup": {
-        "x": 1154,
-        "y": 12,
-        "width": 380,
-        "height": 441,
-        "anchorX": 211.97015519299643,
-        "anchorY": 437,
-        "bodyHeight": 433
+        "x": 1178,
+        "y": 659,
+        "width": 384,
+        "height": 439,
+        "anchorX": 212.82766680832978,
+        "anchorY": 435,
+        "bodyHeight": 431
       },
       "blast-release": {
-        "x": 790,
-        "y": 474,
-        "width": 438,
-        "height": 412,
-        "anchorX": 267.74411541381926,
-        "anchorY": 408,
-        "bodyHeight": 404
+        "x": 387,
+        "y": 1127,
+        "width": 446,
+        "height": 415,
+        "anchorX": 267.8458781362007,
+        "anchorY": 411,
+        "bodyHeight": 407
       },
       "blast-sustain": {
-        "x": 12,
-        "y": 919,
-        "width": 422,
-        "height": 407,
-        "anchorX": 214.81688980432543,
-        "anchorY": 403,
-        "bodyHeight": 399
+        "x": 845,
+        "y": 1127,
+        "width": 433,
+        "height": 413,
+        "anchorX": 214.135,
+        "anchorY": 409,
+        "bodyHeight": 405
       },
       "recover": {
-        "x": 426,
-        "y": 474,
-        "width": 352,
-        "height": 420,
-        "anchorX": 176.21604503870515,
-        "anchorY": 416,
-        "bodyHeight": 412
+        "x": 12,
+        "y": 1127,
+        "width": 363,
+        "height": 426,
+        "anchorX": 182.6037246581801,
+        "anchorY": 422,
+        "bodyHeight": 418
       },
       "victory": {
-        "x": 851,
-        "y": 12,
-        "width": 291,
-        "height": 443,
-        "anchorX": 122.18504531722054,
-        "anchorY": 439,
-        "bodyHeight": 435
+        "x": 864,
+        "y": 659,
+        "width": 302,
+        "height": 444,
+        "anchorX": 128.6021505376344,
+        "anchorY": 440,
+        "bodyHeight": 436
       },
       "note-flat": {
-        "x": 12,
-        "y": 1338,
+        "x": 473,
+        "y": 1565,
         "width": 476,
         "height": 314,
         "anchorX": 238,
@@ -2049,8 +2049,8 @@
         "bodyHeight": 306
       },
       "note-curl": {
-        "x": 1015,
-        "y": 1338,
+        "x": 1476,
+        "y": 1565,
         "width": 442,
         "height": 300,
         "anchorX": 221,
@@ -2058,8 +2058,8 @@
         "bodyHeight": 292
       },
       "note-tilt": {
-        "x": 1240,
-        "y": 474,
+        "x": 1290,
+        "y": 1127,
         "width": 307,
         "height": 366,
         "anchorX": 153.5,
@@ -2067,8 +2067,8 @@
         "bodyHeight": 358
       },
       "stack-small": {
-        "x": 500,
-        "y": 1338,
+        "x": 961,
+        "y": 1565,
         "width": 503,
         "height": 304,
         "anchorX": 251.5,
@@ -2076,22 +2076,40 @@
         "bodyHeight": 296
       },
       "bundle": {
-        "x": 933,
-        "y": 919,
+        "x": 12,
+        "y": 1565,
         "width": 449,
         "height": 319,
         "anchorX": 224.5,
         "anchorY": 315,
         "bodyHeight": 311
       },
-      "bundle-burst": {
-        "x": 446,
-        "y": 919,
-        "width": 475,
-        "height": 380,
-        "anchorX": 237.5,
-        "anchorY": 376,
-        "bodyHeight": 372
+      "cash-cloud-small": {
+        "x": 1356,
+        "y": 12,
+        "width": 630,
+        "height": 546,
+        "anchorX": 315,
+        "anchorY": 542,
+        "bodyHeight": 538
+      },
+      "cash-orb": {
+        "x": 12,
+        "y": 12,
+        "width": 628,
+        "height": 635,
+        "anchorX": 314,
+        "anchorY": 631,
+        "bodyHeight": 627
+      },
+      "cash-orb-release": {
+        "x": 652,
+        "y": 12,
+        "width": 692,
+        "height": 587,
+        "anchorX": 346,
+        "anchorY": 583,
+        "bodyHeight": 579
       }
     }
   }
