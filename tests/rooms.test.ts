@@ -377,7 +377,7 @@ test("consecutive release and repress packets cannot reuse an online charge", as
     input.superHeld = true;
     input.actions.super = 1;
     stopHold = match.a.hold(state.id, input);
-    await match.a.wait("state", message => message.state.players[0].superChargeTicks >= 30);
+    await match.a.wait("state", message => message.state.players[0].superChargeTicks >= 8);
     input.superHeld = false;
     match.a.send({ type: "input", matchId: state.id, input });
     input.superHeld = true;

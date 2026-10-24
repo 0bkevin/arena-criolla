@@ -62,7 +62,7 @@ interface Room {
   state: MatchState | null;
   touched: number;
 }
-const INPUT_TIMEOUT_MS = 500;
+const INPUT_TIMEOUT_MS = 250;
 const cleanName = (value: unknown) =>
   typeof value === "string"
     ? value
