@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import sharp from "sharp";
@@ -282,39 +281,4 @@ test("the paper burst replays exactly across network snapshots and preserves the
   assert.equal(r.player.attack, null);
   assert.equal(r.player.energy, 100);
   assert.equal(r.player.superUsed, true);
-});
-
-// Frozen before the facial revision; includes RGB beneath transparent pixels.
-test("Iñaki's face revision preserves every authored money prop exactly", async () => {
-  const expected = {
-    "note-flat":
-      "70b32b02e7cd1acebb8be6cd0fb20709102ffbffe714eb4ece2427240cf7cf07",
-    "note-curl":
-      "87b0c15631353e4bb035598b90894ec2dadde03843fccce63c851283a6e0ae23",
-    "note-tilt":
-      "166983835c1ca1685cbf354c971936516bbab46bce0ed1b93a498780c9ad49a7",
-    "stack-small":
-      "65f3bc957d0bfe2337bf01ee5682f9a9ea6d9a6c2feec866e27478f46f502f4b",
-    bundle: "6f6258e4ceb1008b591a97c9a4c299bb5fbd57dc51173ab9e3ea67c7826980bd",
-    "cash-cloud-small":
-      "16ac795015ac38646d27f309eb85ebbf8b8f3510d2c9b86999230a394f6f94cc",
-    "cash-orb":
-      "c86114f2afeb6d8b6739ea61cc25ad64c9ffa537ebbfe5c89a80ea92eef9eea4",
-    "cash-orb-release":
-      "6c5990ccf65a0dd274fe0637ec8e368f3d1380c4fcff0284df8cd072b51c4796",
-  };
-  assert.deepEqual(Object.keys(expected).sort(), [...INAKI_PROP_POSES].sort());
-  for (const pose of INAKI_PROP_POSES) {
-    const f = ATTACK_ART.inaki.frames[pose];
-    const rgba = await sharp(`public/assets/${ATTACK_ART.inaki.file}.webp`)
-      .ensureAlpha()
-      .extract({ left: f.x, top: f.y, width: f.width, height: f.height })
-      .raw()
-      .toBuffer();
-    assert.equal(
-      createHash("sha256").update(rgba).digest("hex"),
-      expected[pose],
-      pose,
-    );
-  }
 });

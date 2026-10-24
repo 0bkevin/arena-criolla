@@ -1965,151 +1965,151 @@
     }
   },
   "inaki": {
-    "file": "inaki-rial-attack-v4",
+    "file": "inaki-rial-attack-v5",
     "frames": {
       "special-ready": {
-        "x": 12,
-        "y": 659,
-        "width": 393,
-        "height": 444,
-        "anchorX": 214.29737609329447,
-        "anchorY": 440,
-        "bodyHeight": 436
+        "x": 67,
+        "y": 50,
+        "width": 377,
+        "height": 436,
+        "anchorX": 187.82806324110672,
+        "anchorY": 432,
+        "bodyHeight": 428
       },
       "special-release": {
-        "x": 417,
-        "y": 659,
-        "width": 482,
-        "height": 444,
-        "anchorX": 222.61484803188839,
-        "anchorY": 440,
-        "bodyHeight": 436
+        "x": 551,
+        "y": 55,
+        "width": 434,
+        "height": 431,
+        "anchorX": 172.89525691699606,
+        "anchorY": 427,
+        "bodyHeight": 423
       },
       "charge-start": {
-        "x": 911,
-        "y": 659,
-        "width": 398,
-        "height": 442,
-        "anchorX": 236.8061481605913,
-        "anchorY": 438,
-        "bodyHeight": 434
+        "x": 1094,
+        "y": 59,
+        "width": 371,
+        "height": 427,
+        "anchorX": 193.70355731225297,
+        "anchorY": 423,
+        "bodyHeight": 419
       },
       "charge-cup": {
-        "x": 1321,
-        "y": 659,
-        "width": 389,
-        "height": 442,
-        "anchorX": 231.23474258438458,
-        "anchorY": 438,
-        "bodyHeight": 434
+        "x": 1606,
+        "y": 59,
+        "width": 371,
+        "height": 427,
+        "anchorX": 192.15612648221344,
+        "anchorY": 423,
+        "bodyHeight": 419
       },
       "blast-release": {
-        "x": 1228,
-        "y": 1115,
-        "width": 425,
-        "height": 418,
-        "anchorX": 227.67014843320507,
-        "anchorY": 414,
-        "bodyHeight": 410
+        "x": 49,
+        "y": 563,
+        "width": 413,
+        "height": 435,
+        "anchorX": 181.48418972332016,
+        "anchorY": 431,
+        "bodyHeight": 427
       },
       "blast-sustain": {
-        "x": 764,
-        "y": 1115,
-        "width": 452,
-        "height": 420,
-        "anchorX": 225.37070040990912,
-        "anchorY": 416,
-        "bodyHeight": 412
+        "x": 558,
+        "y": 563,
+        "width": 420,
+        "height": 435,
+        "anchorX": 188.89426877470356,
+        "anchorY": 431,
+        "bodyHeight": 427
       },
       "recover": {
-        "x": 12,
-        "y": 1115,
-        "width": 383,
-        "height": 424,
-        "anchorX": 191.7729494839761,
-        "anchorY": 420,
-        "bodyHeight": 416
+        "x": 1083,
+        "y": 558,
+        "width": 393,
+        "height": 440,
+        "anchorX": 183.96245059288538,
+        "anchorY": 436,
+        "bodyHeight": 432
       },
       "victory": {
-        "x": 407,
-        "y": 1115,
-        "width": 345,
-        "height": 424,
-        "anchorX": 158.74985862393967,
-        "anchorY": 420,
-        "bodyHeight": 416
+        "x": 1623,
+        "y": 540,
+        "width": 338,
+        "height": 458,
+        "anchorX": 166.51185770750988,
+        "anchorY": 454,
+        "bodyHeight": 450
       },
       "note-flat": {
-        "x": 473,
-        "y": 1551,
-        "width": 476,
-        "height": 314,
-        "anchorX": 238,
-        "anchorY": 310,
-        "bodyHeight": 306
+        "x": 71,
+        "y": 1268,
+        "width": 369,
+        "height": 242,
+        "anchorX": 184.5,
+        "anchorY": 238,
+        "bodyHeight": 234
       },
       "note-curl": {
-        "x": 1476,
-        "y": 1551,
-        "width": 442,
-        "height": 300,
-        "anchorX": 221,
-        "anchorY": 296,
-        "bodyHeight": 292
+        "x": 593,
+        "y": 1279,
+        "width": 349,
+        "height": 231,
+        "anchorX": 174.5,
+        "anchorY": 227,
+        "bodyHeight": 223
       },
       "note-tilt": {
-        "x": 1722,
-        "y": 659,
-        "width": 307,
-        "height": 366,
-        "anchorX": 153.5,
-        "anchorY": 362,
-        "bodyHeight": 358
+        "x": 1116,
+        "y": 1232,
+        "width": 328,
+        "height": 278,
+        "anchorX": 164,
+        "anchorY": 274,
+        "bodyHeight": 270
       },
       "stack-small": {
-        "x": 961,
-        "y": 1551,
-        "width": 503,
-        "height": 304,
-        "anchorX": 251.5,
-        "anchorY": 300,
-        "bodyHeight": 296
+        "x": 1607,
+        "y": 1254,
+        "width": 370,
+        "height": 256,
+        "anchorX": 185,
+        "anchorY": 252,
+        "bodyHeight": 248
       },
       "bundle": {
-        "x": 12,
-        "y": 1551,
-        "width": 449,
-        "height": 319,
-        "anchorX": 224.5,
-        "anchorY": 315,
-        "bodyHeight": 311
+        "x": 64,
+        "y": 1736,
+        "width": 383,
+        "height": 286,
+        "anchorX": 191.5,
+        "anchorY": 282,
+        "bodyHeight": 278
       },
       "cash-cloud-small": {
-        "x": 1356,
-        "y": 12,
-        "width": 630,
-        "height": 546,
-        "anchorX": 315,
-        "anchorY": 542,
-        "bodyHeight": 538
+        "x": 596,
+        "y": 1702,
+        "width": 343,
+        "height": 320,
+        "anchorX": 171.5,
+        "anchorY": 316,
+        "bodyHeight": 312
       },
       "cash-orb": {
-        "x": 12,
-        "y": 12,
-        "width": 628,
-        "height": 635,
-        "anchorX": 314,
-        "anchorY": 631,
-        "bodyHeight": 627
+        "x": 1122,
+        "y": 1701,
+        "width": 316,
+        "height": 321,
+        "anchorX": 158,
+        "anchorY": 317,
+        "bodyHeight": 313
       },
       "cash-orb-release": {
-        "x": 652,
-        "y": 12,
-        "width": 692,
-        "height": 587,
-        "anchorX": 346,
-        "anchorY": 583,
-        "bodyHeight": 579
+        "x": 1612,
+        "y": 1711,
+        "width": 359,
+        "height": 311,
+        "anchorX": 179.5,
+        "anchorY": 307,
+        "bodyHeight": 303
       }
     }
   }
