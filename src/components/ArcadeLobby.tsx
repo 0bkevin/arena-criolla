@@ -31,6 +31,7 @@ import {
 import type { useArenaNetwork } from "../network";
 import type { GameMode } from "./Game";
 import { Portrait } from "./Portrait";
+import { loadSprite } from "../game/assets";
 import { PixelIcon } from "./PixelIcon";
 import { RosterFilter } from "./RosterFilter";
 
@@ -123,6 +124,19 @@ export function ArcadeLobby(props: Props) {
     currentPage * pageSize,
     currentPage * pageSize + pageSize,
   );
+  // Cards draw small busts, but selecting one animates the fighter's atlas
+  // and entrance art: start loading it when the player approaches a card.
+  const cardIntent = useRef(0);
+  const warmSelection = (id: FighterId) => {
+    window.clearTimeout(cardIntent.current);
+    void loadSprite(id, { entrance: true, priority: "high" }).catch(() => {});
+  };
+  // Sweeping the pointer across the grid should not load every card it crosses.
+  const hoverCard = (id: FighterId) => {
+    window.clearTimeout(cardIntent.current);
+    cardIntent.current = window.setTimeout(() => warmSelection(id), 120);
+  };
+  useEffect(() => () => window.clearTimeout(cardIntent.current), []);
   const chosen = fighterById(fighter);
   const rivalPlayer = network.room?.players.find(
     (player) => player.id !== network.id,
@@ -511,6 +525,14 @@ export function ArcadeLobby(props: Props) {
                       style={colorStyle(item.color)}
                       aria-label={`Elegir a ${item.name}`}
                       aria-pressed={activeFighter === item.id}
+                      onPointerEnter={(event) => {
+                        if (event.pointerType === "mouse") hoverCard(item.id);
+                      }}
+                      onPointerLeave={() =>
+                        window.clearTimeout(cardIntent.current)
+                      }
+                      onPointerDown={() => warmSelection(item.id)}
+                      onFocus={() => warmSelection(item.id)}
                       onClick={() =>
                         pickingRival
                           ? props.onRival(item.id)

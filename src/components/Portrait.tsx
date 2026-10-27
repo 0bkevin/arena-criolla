@@ -64,7 +64,11 @@ export function Portrait({
         });
     else fromAtlas();
     function fromAtlas() {
-      void loadSprite(fighter, { entrance: animated && !bust })
+      // An animated portrait is what the player just chose: fetch it first.
+      void loadSprite(fighter, {
+        entrance: animated && !bust,
+        priority: animated ? "high" : undefined,
+      })
         .then((asset) => {
           if (disposed || !canvas.current) return;
           const node = canvas.current;

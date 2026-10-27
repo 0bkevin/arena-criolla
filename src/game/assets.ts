@@ -149,11 +149,14 @@ export function loadImage(
   }
   return images.get(imageId)!;
 }
-function loadSpriteGeometry(id: FighterId): Promise<SpriteAsset> {
+function loadSpriteGeometry(
+  id: FighterId,
+  priority?: "high" | "low",
+): Promise<SpriteAsset> {
   if (!sprites.has(id)) {
     sprites.set(
       id,
-      loadImage(fighterById(id).sprite).then(async (image) => {
+      loadImage(fighterById(id).sprite, priority).then(async (image) => {
         const cellWidth = image.width / 4;
         const cellHeight = image.height / 2;
         const community = COMMUNITY_CHARACTERS.get(id);
@@ -303,9 +306,9 @@ function loadSpriteGeometry(id: FighterId): Promise<SpriteAsset> {
 
 export function loadSprite(
   id: FighterId,
-  options: { entrance?: boolean } = {},
+  options: { entrance?: boolean; priority?: "high" | "low" } = {},
 ): Promise<SpriteAsset> {
-  const geometry = loadSpriteGeometry(id);
+  const geometry = loadSpriteGeometry(id, options.priority);
   const manifest = (
     entranceManifest as Partial<
       Record<FighterId, Omit<EntranceAsset, "image"> & { file: string }>
@@ -315,7 +318,7 @@ export function loadSprite(
   if (!cinematicSprites.has(id)) {
     cinematicSprites.set(
       id,
-      Promise.all([geometry, loadImage(manifest.file)]).then(
+      Promise.all([geometry, loadImage(manifest.file, options.priority)]).then(
         ([sprite, image]) => ({
           ...sprite,
           entrance: { ...manifest, image },
