@@ -645,6 +645,9 @@ export function App({
             ARENA <span>CRIOLLA</span>
           </span>
         </span>
+        <a className="footer-acknowledgements" href="/agradecimientos">
+          Agradecimientos
+        </a>
         <p className="footer-credit">
           Hecho por{" "}
           <a
