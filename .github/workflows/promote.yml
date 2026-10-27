@@ -7,7 +7,6 @@ on:
 permissions:
   contents: read
   pull-requests: write
-  actions: write
 concurrency:
   group: arena-production-promotion
   cancel-in-progress: false
@@ -58,13 +57,9 @@ jobs:
           Failed releases resume the previous image only when the database schema is unchanged.
           Review the complete diff and any data compatibility changes before merging.
           EOF
+          # main's push already gave this commit validate and prod-source.
           if test -n "$number"; then
             gh pr edit "$number" --repo "$GITHUB_REPOSITORY" --body-file "$body"
           else
-            url=$(gh pr create --repo "$GITHUB_REPOSITORY" --base prod --head main --title 'Release main to production' --body-file "$body")
-            number=${url##*/}
+            gh pr create --repo "$GITHUB_REPOSITORY" --base prod --head main --title 'Release main to production' --body-file "$body"
           fi
-          # GITHUB_TOKEN-created PRs do not trigger pull_request workflows, so
-          # dispatch prod-source. main's green CI run already provides validate.
-          gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/promotion.yml/dispatches" \
-            -f ref=main -f "inputs[promotion-pr]=$number"
