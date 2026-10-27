@@ -70,9 +70,9 @@ tree reuses that result instead of testing again.
    (a merge of an out-of-date PR) runs the checks selected for the diff since the
    previous `main`.
 3. **Promotion PR `main` → `prod`:** opened only after `main` is green. Its head
-   is that `main` commit, so `main`'s passing run provides `validate`. The
-   **Check production promotion** workflow adds `prod-source`, which requires the
-   PR to come from this repository's `main`. Nothing is re-tested.
+   is that `main` commit, so the push to `main` already provides both required
+   checks: `validate` and `prod-source` (**Main source**, created only for
+   commits pushed to this repository's `main`). Nothing is re-tested.
 4. **Push to `prod`:** refuses to deploy unless `prod`'s tree passed CI, then
    builds, scans and smoke-tests the image and delivers that exact image (see
    [deployment.md](deployment.md)).
