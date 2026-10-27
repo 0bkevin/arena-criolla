@@ -1166,12 +1166,15 @@ body {
   background: #071527;
   border: 1px solid #879ab657;
   border-radius: 4px;
+  box-shadow: 0 2px 0 #040c17;
 }
 .in-lobby .ready-difficulty button.active {
   color: var(--ink);
-  background: var(--coin);
-  border-color: var(--coin);
-  box-shadow: none;
+  background: linear-gradient(#ffe078, #f6ca52);
+  border-color: #fff2b34d;
+  box-shadow:
+    inset 0 1px 0 #fff5db60,
+    0 2px 0 #866b2c;
 }
 .in-lobby .ready-difficulty button:not(.active):hover {
   color: var(--paper);
@@ -1189,6 +1192,29 @@ body {
     inset 0 1px 0 #fff5db80,
     0 4px 0 #927338;
   font: italic 800 29px/1 var(--display);
+  position: relative;
+  isolation: isolate;
+}
+.in-lobby .arcade-start::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+      105deg,
+      #fff5db00 40%,
+      #fff5dbb3 50%,
+      #fff5db00 60%
+    )
+    no-repeat;
+  background-size: 250% 100%;
+  background-position: 160% 0;
+  animation: start-glint 3.6s cubic-bezier(0.3, 0, 0.2, 1) 1.2s infinite;
+}
+.in-lobby .arcade-start:disabled::before {
+  content: none;
 }
 .in-lobby .arcade-start:hover:enabled {
   background: linear-gradient(#ffe99a, #ffdb77);
@@ -1384,6 +1410,15 @@ body {
   color: var(--paper);
   background: #20314a;
   border-color: #6a87aa;
+}
+@keyframes start-glint {
+  0% {
+    background-position: 160% 0;
+  }
+  30%,
+  100% {
+    background-position: -60% 0;
+  }
 }
 @keyframes cursor-blink {
   50% {
