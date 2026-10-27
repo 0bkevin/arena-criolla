@@ -2001,6 +2001,7 @@ body {
 }
 @media (min-width: 601px) and (max-width: 1100px) {
   .in-lobby .arcade-marquee {
+    width: 100%;
     height: auto;
     max-height: 124px;
     aspect-ratio: 1983 / 308;
