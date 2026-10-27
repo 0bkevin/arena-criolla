@@ -22,6 +22,7 @@ export function Portrait({
   animated = false,
   holdPose = false,
   repeat = false,
+  instantPose = false,
 }: {
   fighter: FighterId;
   className?: string;
@@ -31,6 +32,8 @@ export function Portrait({
   animated?: boolean;
   holdPose?: boolean;
   repeat?: boolean;
+  /** Show the cached battle pose until the selection animation can play. */
+  instantPose?: boolean;
 }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -68,11 +71,7 @@ export function Portrait({
         });
     else {
       const placeholder =
-        animated &&
-        !bust &&
-        className.split(/\s+/).includes("selected-portrait")
-          ? portraitBust(fighter)
-          : undefined;
+        instantPose && animated && !bust ? portraitBust(fighter) : undefined;
       let ready = false;
       if (placeholder)
         void loadImage(placeholder.file)
@@ -244,7 +243,7 @@ export function Portrait({
       document.removeEventListener("visibilitychange", onVisibility);
       reduced.removeEventListener("change", onVisibility);
     };
-  }, [fighter, facing, frame, bust, animated, holdPose, repeat, className]);
+  }, [fighter, facing, frame, bust, animated, holdPose, repeat, instantPose]);
   return (
     <canvas
       ref={canvas}

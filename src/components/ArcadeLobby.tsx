@@ -354,6 +354,7 @@ export function ArcadeLobby(props: Props) {
                     fighter={fighter}
                     className="selected-portrait"
                     animated
+                    instantPose
                   />
                   <span className="contender-shadow" />
                 </div>
@@ -399,6 +400,7 @@ export function ArcadeLobby(props: Props) {
                       facing={-1}
                       className="selected-portrait"
                       animated
+                      instantPose
                     />
                   ) : (
                     <div className="waiting-portrait">
