@@ -5,6 +5,7 @@ import { readFile } from "node:fs/promises";
 import sharp from "sharp";
 import { STAGES } from "../shared/content";
 import manifest from "../shared/stage-thumbnails.json";
+import { assetUrl } from "../src/asset-url";
 import { stageThumbnail } from "../src/stage-thumbnail";
 
 const sha256 = (data: Buffer) =>
@@ -32,7 +33,7 @@ test("stage thumbnails match the current backgrounds and generated files", async
       assert.equal(thumbnail.width, width);
       assert.equal(
         stageThumbnail(stage.id, variant),
-        `/assets/${thumbnail.file}.webp`,
+        assetUrl(`/assets/${thumbnail.file}.webp`),
       );
       const file = await readFile(`public/assets/${thumbnail.file}.webp`);
       assert.equal(sha256(file), thumbnail.sha256, stage.id);
