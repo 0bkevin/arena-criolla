@@ -1,3 +1,4 @@
+import { stageThumbnail } from "../stage-thumbnail";
 import {
   useEffect,
   useLayoutEffect,
@@ -632,7 +633,7 @@ export function ArcadeLobby(props: Props) {
               >
                 <span className="stage-thumbnail">
                   <img
-                    src={`/assets/${item.id}.webp`}
+                    src={stageThumbnail(item.id, "strip")}
                     alt=""
                     loading="lazy"
                     decoding="async"

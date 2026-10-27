@@ -22,7 +22,8 @@
     "test:creator": "tsx --test tests/accounts.test.ts tests/creator.test.ts tests/creator-sprites.test.ts tests/creator-resilience.test.ts tests/adversarial-creator-v31.test.ts tests/provider-contract.test.ts tests/creator-codex.test.ts tests/adversarial-creator-state-v38.test.ts tests/adversarial-native-import-v38.test.ts",
     "test:adversarial": "tsx --test tests/adversarial-creator-v31.test.ts tests/adversarial-game-v31.test.ts tests/creator-resilience.test.ts tests/provider-contract.test.ts tests/scheduler.test.ts tests/adversarial-creator-state-v38.test.ts tests/adversarial-native-import-v38.test.ts",
     "test:characters": "tsx --test tests/character-audits/*.test.ts",
-    "test:accounts": "tsx --test tests/accounts.test.ts"
+    "test:accounts": "tsx --test tests/accounts.test.ts",
+    "assets:stage-thumbs": "tsx scripts/generate-stage-thumbnails.ts"
   },
   "dependencies": {
     "@langchain/langgraph": "^1.5.0",
