@@ -813,6 +813,7 @@ export async function makeArenaServer(
               requestSiteOrigin(req, configuredOrigin),
               socialImagePath,
               res.locals.cspNonce,
+              req.path,
             ),
           );
       });
@@ -844,6 +845,8 @@ export async function makeArenaServer(
           template,
           requestSiteOrigin(req, configuredOrigin),
           socialImagePath,
+          undefined,
+          req.path,
         );
         res
           .type("html")

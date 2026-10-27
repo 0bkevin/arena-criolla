@@ -1308,6 +1308,20 @@ body {
   outline-offset: 4px;
   border-radius: 2px;
 }
+.footer-acknowledgements {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #a3b3cacc;
+  font: 400 13px/1.5 var(--font-body);
+  letter-spacing: 0;
+  text-decoration: none;
+  transition: color 0.18s ease-out;
+}
+.footer-acknowledgements:hover,
+.footer-acknowledgements:focus-visible {
+  color: var(--coin);
+}
 @media (min-width: 901px) {
   .app-shell .site-footer {
     flex-direction: row;
@@ -1318,9 +1332,9 @@ body {
 }
 .in-lobby .site-footer {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
-  gap: 16px;
+  gap: 16px 48px;
   margin-top: auto;
   padding: 16px 0 max(16px, env(safe-area-inset-bottom));
   border-top: 1px solid #a3b3ca26;
@@ -1335,9 +1349,10 @@ body {
 @media (max-width: 600px) {
   .in-lobby .site-footer {
     grid-template-columns: minmax(0, 1fr);
-    gap: 8px;
+    gap: 12px;
   }
   .in-lobby .footer-brand,
+  .in-lobby .footer-acknowledgements,
   .in-lobby .footer-credit {
     justify-self: center;
   }
