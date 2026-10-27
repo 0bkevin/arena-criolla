@@ -47,7 +47,7 @@ import {
   sound,
   stopReactions,
 } from "./audio";
-import { preloadAssets } from "./game/assets";
+import { preloadAssets, prefetchMatchAssets } from "./game/assets";
 import { Portrait } from "./components/Portrait";
 import { FighterDetail } from "./components/FighterDetail";
 import { StageGallery } from "./components/StageGallery";
@@ -189,6 +189,44 @@ export function App({
     network.room?.stage,
     network.room?.players.map((player) => player.fighter).join(","),
   ]);
+  const [engaged, setEngaged] = useState(false);
+  useEffect(() => {
+    // Visitors who never touch the page should not download match art.
+    if (engaged) return;
+    const engage = () => setEngaged(true);
+    const events = ["pointerdown", "keydown", "touchstart"] as const;
+    for (const type of events)
+      window.addEventListener(type, engage, { once: true, passive: true });
+    return () => {
+      for (const type of events) window.removeEventListener(type, engage);
+    };
+  }, [engaged]);
+  useEffect(() => {
+    // Offline matches start right after the player taps Jugar: fetch the attack
+    // and finale art in idle time so the start does not wait on the network.
+    if (!engaged || network.room || active) return;
+    const connection = (
+      navigator as Navigator & {
+        connection?: { saveData?: boolean; effectiveType?: string };
+      }
+    ).connection;
+    if (
+      connection?.saveData ||
+      /^(slow-)?2g$/.test(connection?.effectiveType ?? "")
+    )
+      return;
+    let idle = 0;
+    const timer = window.setTimeout(() => {
+      const warm = () => prefetchMatchAssets([fighter, rival], [stage]);
+      if ("requestIdleCallback" in window)
+        idle = window.requestIdleCallback(warm, { timeout: 4000 });
+      else warm();
+    }, 1200);
+    return () => {
+      clearTimeout(timer);
+      if (idle) window.cancelIdleCallback(idle);
+    };
+  }, [engaged, fighter, rival, stage, network.room, active]);
   useEffect(() => {
     if (network.match) {
       setModal(null);

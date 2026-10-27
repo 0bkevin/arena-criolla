@@ -404,20 +404,12 @@ export function drawSprite(
   );
   ctx.restore();
 }
-export async function preloadAssets(
-  fighterIds: readonly FighterId[] = FIGHTERS.map((fighter) => fighter.id),
-  stageIds: readonly string[] = STAGES.map((stage) => stage.id),
-  options: {
-    entrance?: boolean;
-    attacks?: readonly FighterId[];
-    finales?: readonly FighterId[];
-  } = {},
+/** Attack sheets, finale props and the courier sheet a match may draw. */
+function decorationFiles(
+  fighters: readonly FighterId[],
+  attacks: ReadonlySet<FighterId>,
+  finales: ReadonlySet<FighterId>,
 ) {
-  // Snapshot the requested roster before loading: publishing can change it mid-flight.
-  const fighters = [...new Set(fighterIds)];
-  const stages = [...new Set(stageIds)];
-  const attacks = new Set(options.attacks ?? fighters);
-  const finales = new Set(options.finales ?? fighters);
   const hasCourier = fighters.some(
     (id) =>
       (attacks.has(id) || finales.has(id)) &&
@@ -456,6 +448,28 @@ export async function preloadAssets(
       }),
     ),
   ];
+  return { hasCourier, finaleFiles };
+}
+
+export async function preloadAssets(
+  fighterIds: readonly FighterId[] = FIGHTERS.map((fighter) => fighter.id),
+  stageIds: readonly string[] = STAGES.map((stage) => stage.id),
+  options: {
+    entrance?: boolean;
+    attacks?: readonly FighterId[];
+    finales?: readonly FighterId[];
+  } = {},
+) {
+  // Snapshot the requested roster before loading: publishing can change it mid-flight.
+  const fighters = [...new Set(fighterIds)];
+  const stages = [...new Set(stageIds)];
+  const attacks = new Set(options.attacks ?? fighters);
+  const finales = new Set(options.finales ?? fighters);
+  const { hasCourier, finaleFiles } = decorationFiles(
+    fighters,
+    attacks,
+    finales,
+  );
   const [results, courier, finaleImages] = await Promise.all([
     Promise.all([
       ...fighters.map((id) => loadSprite(id, { entrance: options.entrance })),
@@ -482,4 +496,52 @@ export async function preloadAssets(
       }),
     ]) as Record<string, HTMLImageElement>,
   };
+}
+
+const prefetched = new Set<string>();
+/**
+ * Warm the HTTP cache for a match that has not started, without decoding or
+ * retaining any bitmap. Idle, low-priority image requests use the same Accept
+ * header as the real loads, so the browser reuses them for the later fight.
+ */
+export function prefetchMatchAssets(
+  fighterIds: readonly FighterId[],
+  stageIds: readonly string[],
+) {
+  const fighters = [...new Set(fighterIds)];
+  const everyone = new Set(fighters);
+  const { hasCourier, finaleFiles } = decorationFiles(
+    fighters,
+    everyone,
+    everyone,
+  );
+  const files = [
+    ...fighters.map((id) => fighterById(id).sprite),
+    ...fighters.flatMap((id) => {
+      const entrance = (
+        entranceManifest as Partial<Record<FighterId, { file: string }>>
+      )[id];
+      return entrance ? [entrance.file] : [];
+    }),
+    ...stageIds,
+    ...(hasCourier ? [courierManifest.file] : []),
+    ...finaleFiles,
+  ];
+  for (const id of new Set(files)) {
+    const url = imageSource(id);
+    if (images.has(id) || prefetched.has(url)) continue;
+    prefetched.add(url);
+    const image = new Image();
+    image.decoding = "async";
+    image.fetchPriority = "low";
+    const release = () => {
+      image.onload = image.onerror = null;
+    };
+    image.onload = release;
+    image.onerror = () => {
+      release();
+      prefetched.delete(url);
+    };
+    image.src = url;
+  }
 }

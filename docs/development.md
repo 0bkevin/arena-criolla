@@ -31,6 +31,6 @@ npm run check:assets
 npm run build
 ```
 
-Los assets publicados están incluidos en `public/`; no hace falta regenerarlos para compilar. Las variantes comprimidas conservan los píxeles y metadatos de los originales, que siguen disponibles como fallback. Los workers preparan música y recortes de sprites sin bloquear la interfaz y cuentan con recuperación local.
+Los assets publicados están incluidos en `public/`; no hace falta regenerarlos para compilar. Las recompresiones sin pérdida (`npm run assets:audit:lossless` y `node scripts/apply-lossless-assets.mjs`) sustituyen el archivo en su misma ruta y conservan píxeles y metadatos exactos; `shared/asset-variants.json` queda reservado para variantes de otro formato (por ejemplo AVIF) con el original como fallback. Los workers preparan música y recortes de sprites sin bloquear la interfaz y cuentan con recuperación local.
 
 Los módulos privados del creador conservan sus pruebas aisladas. Consulta [creator-codex.md](creator-codex.md) para ese flujo y [tests/browser/README.md](../tests/browser/README.md) para las comprobaciones de interfaz en navegador.

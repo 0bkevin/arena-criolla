@@ -36,6 +36,7 @@ import {
 import { FixedStepTicker } from "./ticker";
 import { allowedWebSocketOrigin, securityHeaders } from "./security";
 import assetVariants from "../shared/asset-variants.json";
+import { precompressedAssets } from "./precompressed";
 import {
   losslessAssetDelivery,
   type LosslessAssetManifest,
@@ -756,12 +757,13 @@ export async function makeArenaServer(
     if (options.production) {
       const dist = path.resolve("dist");
       const template = await readFile(path.join(dist, "index.html"), "utf8");
+      app.use(precompressedAssets(dist));
       app.use(
         express.static(dist, {
           index: false,
           setHeaders: (res, file) => {
             // Bundles, lobby banners and generated cutouts change URL with content.
-            const name = path.basename(file);
+            const name = path.basename(file).replace(/\.(?:br|gz)$/, "");
             if (
               /[-\w]+-[\w-]{8}\.(?:js|css)$/.test(name) ||
               /^lobby-cast-banner(?:-(?:mobile|tablet))?-[\w-]{8}\.webp$/.test(
