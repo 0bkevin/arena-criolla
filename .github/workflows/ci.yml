@@ -1,6 +1,10 @@
 name: Validate Arena Criolla
 on:
+  # PRs into prod are validated only through the promotion dispatch below.
   pull_request:
+    branches: [main]
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       promotion-pr:
@@ -10,17 +14,21 @@ on:
 permissions:
   contents: read
 concurrency:
-  # A promotion PR is validated by both its pull_request event and the dispatch; keep one.
   group: arena-ci-${{ github.event.pull_request.number || inputs.promotion-pr || github.ref }}
   cancel-in-progress: true
 jobs:
-  # A promotion only needs prod-source: every change in it already passed its PR
-  # checks, and deploying from prod builds, scans and smoke-tests the image.
+  # Each passing run records the git tree it tested. A run whose tree already
+  # passed (main after merging an up-to-date PR, a promotion of a green main)
+  # needs no checks. A promotion requires that record: main must be green.
   plan:
-    if: github.base_ref != 'prod' && !inputs.promotion-pr
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
     outputs:
+      tree: ${{ steps.tested.outputs.tree }}
+      passed: ${{ steps.tested.outputs.passed }}
       tests: ${{ steps.select.outputs.tests }}
       typecheck: ${{ steps.select.outputs.typecheck }}
       assets: ${{ steps.select.outputs.assets }}
@@ -35,11 +43,29 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
           filter: blob:none
+      - name: Look for a passing run of this exact tree
+        id: tested
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tree=$(git rev-parse 'HEAD^{tree}')
+          passed=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=tested-tree-$tree" \
+            --jq '[.artifacts[] | select((.expired | not) and .workflow_run.head_repository_id == .workflow_run.repository_id)] | length')
+          echo "tree=$tree" >> "$GITHUB_OUTPUT"
+          echo "passed=$([ "$passed" -gt 0 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+      - name: Require a green main before promotion
+        if: inputs.promotion-pr && steps.tested.outputs.passed != 'true'
+        run: |
+          echo "::error::This main commit has not passed CI. Promote once main is green."
+          exit 1
       - name: Select checks for the changed files
         id: select
+        if: steps.tested.outputs.passed != 'true'
         env:
-          # PRs compare against their base; a manual run without a base checks everything.
-          BASE: ${{ github.event.pull_request.base.sha }}
+          # A PR compares against its base, a push against the previous main.
+          # A manual run without either checks everything.
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: node scripts/select-checks.mjs $BASE
   checks:
     needs: plan
@@ -111,15 +137,23 @@ jobs:
           CHECKS: ${{ needs.checks.result }}
           IMAGE: ${{ needs.image.result }}
         run: |
-          [[ "$PLAN" =~ ^(success|skipped)$ ]]
+          test "$PLAN" = success
           [[ "$CHECKS" =~ ^(success|skipped)$ ]]
           [[ "$IMAGE" =~ ^(success|skipped)$ ]]
+      - name: Record the tested tree
+        if: needs.plan.outputs.passed != 'true'
+        env:
+          TREE: ${{ needs.plan.outputs.tree }}
+        run: echo "$TREE" > "$RUNNER_TEMP/tested-tree"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: needs.plan.outputs.passed != 'true'
+        with:
+          name: tested-tree-${{ needs.plan.outputs.tree }}
+          path: ${{ runner.temp }}/tested-tree
+          retention-days: 90
   prod-source:
-    name: ${{ (github.event_name == 'pull_request' && github.base_ref == 'prod' || github.event_name == 'workflow_dispatch' && inputs.promotion-pr != '') && 'prod-source' || 'prod-source-not-required' }}
-    if: >-
-      github.repository == '0bkevin/arena-criolla' &&
-      (github.event_name == 'pull_request' && github.base_ref == 'prod' ||
-       github.event_name == 'workflow_dispatch' && inputs.promotion-pr != '')
+    name: ${{ inputs.promotion-pr && 'prod-source' || 'prod-source-not-required' }}
+    if: github.repository == '0bkevin/arena-criolla' && inputs.promotion-pr
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
@@ -129,8 +163,8 @@ jobs:
       - name: Require promotion from this repository's main branch
         env:
           GH_TOKEN: ${{ github.token }}
-          PROMOTION_PR: ${{ github.event.pull_request.number || inputs.promotion-pr }}
-          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          PROMOTION_PR: ${{ inputs.promotion-pr }}
+          EXPECTED_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
           [[ "$PROMOTION_PR" =~ ^[1-9][0-9]*$ ]]

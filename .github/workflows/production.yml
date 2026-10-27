@@ -10,9 +10,29 @@ concurrency:
   group: arena-production-deployment
   cancel-in-progress: false
 jobs:
-  # Tests already ran on each PR and on the promotion PR; only the image is new here.
-  image:
+  # Tests are not repeated: prod must hold exactly a tree that passed CI on main.
+  green-main:
     if: github.repository == '0bkevin/arena-criolla' && github.ref == 'refs/heads/prod'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - name: Require the code that passed CI on main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tree=$(gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA" --jq .commit.tree.sha)
+          passed=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=tested-tree-$tree" \
+            --jq '[.artifacts[] | select((.expired | not) and .workflow_run.head_repository_id == .workflow_run.repository_id)] | length')
+          if [ "$passed" -eq 0 ]; then
+            echo "::error::prod's code ($tree) never passed CI. Promote only a green main."
+            exit 1
+          fi
+  image:
+    needs: green-main
     uses: ./.github/workflows/image.yml
     with:
       scan: true

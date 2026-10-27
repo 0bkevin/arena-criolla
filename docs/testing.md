@@ -54,15 +54,21 @@ measure elements, not page scroll width.
   or lockfile changes. Docs- or test-only changes skip it.
 
 `validate` is the single required check. It fails if any job that ran failed or
-was cancelled; skipped jobs were not needed.
-
-Each check runs once per change:
+was cancelled; skipped jobs were not needed. A passing run records the git tree it
+tested as a `tested-tree-<tree>` artifact (kept 90 days). Any later run on the same
+tree reuses that result instead of testing again.
 
 1. **PR → `main`:** the selected checks for the PR's diff. Keep "Require branches
-   to be up to date before merging" enabled on `main`, so what was tested is what
-   gets merged.
-2. **Promotion PR `main` → `prod`:** only `prod-source`; nothing is re-tested.
-3. **Push to `prod`:** no tests. Build the image, scan it, smoke-test it, then
-   deliver that exact image (see [deployment.md](deployment.md)).
+   to be up to date before merging" enabled on `main`. Then the merged commit has
+   the tree the PR tested, and `main` turns green without re-running anything.
+2. **Push to `main`:** reuses the PR's result. Only a tree that was never tested
+   (a merge of an out-of-date PR) runs the checks selected for the diff since the
+   previous `main`.
+3. **Promotion PR `main` → `prod`:** opened only after `main` is green. Its
+   `validate` fails unless `main`'s exact tree passed, and `prod-source` requires
+   the PR to come from this repository's `main`. Nothing is re-tested.
+4. **Push to `prod`:** refuses to deploy unless `prod`'s tree passed CI, then
+   builds, scans and smoke-tests the image and delivers that exact image (see
+   [deployment.md](deployment.md)).
 
-A manual run of **Validate Arena Criolla** runs every check.
+A manual run of **Validate Arena Criolla** runs every check, and records the tree when it passes.

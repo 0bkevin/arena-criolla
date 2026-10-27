@@ -1,6 +1,8 @@
 name: Prepare production promotion
 on:
-  push:
+  workflow_run:
+    workflows: [Validate Arena Criolla]
+    types: [completed]
     branches: [main]
 permissions:
   contents: read
@@ -11,15 +13,21 @@ concurrency:
   cancel-in-progress: false
 jobs:
   propose:
-    if: github.repository == '0bkevin/arena-criolla'
+    # Only after CI passed on a push to this repository's main.
+    if: >-
+      github.repository == '0bkevin/arena-criolla' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'main' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      # API-only: no repository source is executed here.
+      # API-only: workflow_run source and artifacts are never executed here.
       - name: Open or update the main to prod release PR
         env:
           GH_TOKEN: ${{ github.token }}
-          MAIN_SHA: ${{ github.sha }}
+          MAIN_SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
           set -euo pipefail
           current=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)
@@ -37,7 +45,7 @@ jobs:
 
           ## Evidence
 
-          Every change passed its PR checks; they are not repeated here. Deploying builds,
+          main is green at this commit; its checks are not repeated here. Deploying builds,
           scans and smoke-tests the image it delivers; the host backs up persistent data and
           verifies HTTP and WebSocket behavior.
 
@@ -57,6 +65,6 @@ jobs:
             number=${url##*/}
           fi
           # GITHUB_TOKEN-created PRs do not trigger pull_request workflows.
-          # Explicit dispatch validates this promotion PR (prod-source).
+          # Explicit dispatch validates this promotion PR (green main and prod-source).
           gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/dispatches" \
             -f ref=main -f "inputs[promotion-pr]=$number"
