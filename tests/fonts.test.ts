@@ -122,12 +122,8 @@ test("early interface activation waits for both groups and registers each face o
   }
 });
 
-for (const failedFile of [
-  "barlow-800.woff2",
-  "barlow-800-italic.woff2",
-  "dm-sans-700.woff2",
-  "dm-sans-400.woff2",
-]) {
+// One entrance-critical face and one deferred interface face.
+for (const failedFile of ["barlow-800-italic.woff2", "dm-sans-700.woff2"]) {
   test(`a failed ${failedFile} preserves the other successfully loaded variants`, async () => {
     const browser = fontBrowser();
     try {

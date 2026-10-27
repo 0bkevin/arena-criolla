@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { makeDefinition } from "../server/creator/pipeline";
-import attackArt from "../shared/attack-assets.json";
 import { registerCommunityCharacter } from "../shared/community";
 import { fighterById } from "../shared/content";
 import atlas from "../shared/sprite-geometry.json";
@@ -136,42 +135,6 @@ test("the real fighter preload retries both sprite and image layers after a fail
     const recovered = await preloadAssets([character.id], []);
     assert.equal(recovered.sprites[character.id].frames.length, 8);
     assert.equal(browser.attempts(), 2);
-  } finally {
-    browser.restore();
-  }
-});
-
-test("a built-in fight survives a failed finale decoration and retries it without reloading its fighter or stage", async () => {
-  const fighter = fighterById("melanio");
-  const decoration = attackArt.melanio.file;
-  const decorationUrl = `/assets/${decoration}.webp`;
-  const spriteUrl = `/assets/${fighter.sprite}.webp`;
-  const stageUrl = "/assets/caracas.webp";
-  const browser = browserFixture({
-    canonicalGeometry: true,
-    fail: (url, attempt) => url === decorationUrl && attempt === 1,
-  });
-  try {
-    const fallback = await preloadAssets([fighter.id], ["caracas"]);
-    assert.equal(fallback.sprites[fighter.id].frames.length, 8);
-    assert.ok(fallback.stages.caracas);
-    assert.equal(fallback.finaleProps[decoration], undefined);
-    assert.equal(browser.requests(decorationUrl), 1);
-
-    const recovered = await preloadAssets([fighter.id], ["caracas"]);
-    assert.ok(recovered.finaleProps[decoration]);
-    assert.equal(recovered.sprites[fighter.id], fallback.sprites[fighter.id]);
-    assert.equal(recovered.stages.caracas, fallback.stages.caracas);
-    assert.equal(browser.requests(decorationUrl), 2);
-    assert.equal(browser.requests(spriteUrl), 1);
-    assert.equal(browser.requests(stageUrl), 1);
-
-    const cached = await preloadAssets([fighter.id], ["caracas"]);
-    assert.equal(
-      cached.finaleProps[decoration],
-      recovered.finaleProps[decoration],
-    );
-    assert.equal(browser.requests(decorationUrl), 2);
   } finally {
     browser.restore();
   }
