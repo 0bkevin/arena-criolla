@@ -64,7 +64,7 @@ jobs:
             url=$(gh pr create --repo "$GITHUB_REPOSITORY" --base prod --head main --title 'Release main to production' --body-file "$body")
             number=${url##*/}
           fi
-          # GITHUB_TOKEN-created PRs do not trigger pull_request workflows.
-          # Explicit dispatch validates this promotion PR (green main and prod-source).
-          gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/dispatches" \
+          # GITHUB_TOKEN-created PRs do not trigger pull_request workflows, so
+          # dispatch prod-source. main's green CI run already provides validate.
+          gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/promotion.yml/dispatches" \
             -f ref=main -f "inputs[promotion-pr]=$number"

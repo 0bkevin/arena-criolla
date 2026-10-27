@@ -64,11 +64,12 @@ tree reuses that result instead of testing again.
 2. **Push to `main`:** reuses the PR's result. Only a tree that was never tested
    (a merge of an out-of-date PR) runs the checks selected for the diff since the
    previous `main`.
-3. **Promotion PR `main` → `prod`:** opened only after `main` is green. Its
-   `validate` fails unless `main`'s exact tree passed, and `prod-source` requires
-   the PR to come from this repository's `main`. Nothing is re-tested.
+3. **Promotion PR `main` → `prod`:** opened only after `main` is green. Its head
+   is that `main` commit, so `main`'s passing run provides `validate`. The
+   **Check production promotion** workflow adds `prod-source`, which requires the
+   PR to come from this repository's `main`. Nothing is re-tested.
 4. **Push to `prod`:** refuses to deploy unless `prod`'s tree passed CI, then
    builds, scans and smoke-tests the image and delivers that exact image (see
    [deployment.md](deployment.md)).
 
-A manual run of **Validate Arena Criolla** runs every check, and records the tree when it passes.
+A manual run of **Validate Arena Criolla** runs every check and records the tree when it passes.
