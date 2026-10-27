@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { fighterById, type FighterId } from "../../shared/content";
-import { drawSprite, loadSprite } from "../game/assets";
+import { drawSprite, loadImage, loadSprite } from "../game/assets";
+import { drawPortraitBust, portraitBust } from "../game/portrait-bust";
 import { presentationById, selectionProgress } from "../../shared/presentation";
 import { drawPresentation } from "../game/presentation-renderer";
 import { selectionBodyHeight } from "../game/entrance-framing";
@@ -43,139 +44,160 @@ export function Portrait({
     };
     document.addEventListener("visibilitychange", onVisibility);
     reduced.addEventListener("change", onVisibility);
-    void loadSprite(fighter, { entrance: animated && !bust })
-      .then((asset) => {
-        if (disposed || !canvas.current) return;
-        const node = canvas.current;
-        const ctx = node.getContext("2d")!;
-        const def = fighterById(fighter);
-        const profile = presentationById(fighter);
-        const poseFrame = frame ?? profile.battleFrame;
-        const height = bust
-          ? 690 * (def.portraitScale ?? 1)
-          : animated
-            ? asset.entrance
-              ? selectionBodyHeight(asset)
-              : 450
-            : 480;
-        const portraitOffset = bust
-          ? (asset.portraitCenters[poseFrame] - asset.cellWidth / 2) *
-            (height / asset.bodyHeight) *
-            facing *
-            asset.frameFacing[poseFrame]
-          : 0;
-        const started = performance.now();
-        const endProgress =
-          holdPose && asset.entrance ? entrancePoseProgress(fighter) : 1;
-        const progressAt = (now: number) =>
-          Math.min(endProgress, selectionProgress(fighter, now - started));
-        const looping = repeat && animated && !bust;
-        let elapsed = 0;
-        let previousPaint = -Infinity;
-        const paint = (now: number) => {
-          raf = 0;
-          timer = 0;
-          if (disposed) return;
-          if (lastTick && visible && !document.hidden && !reduced.matches)
-            elapsed += now - lastTick;
-          lastTick = now;
-          const playback = looping
-            ? samplePortraitLoop(elapsed, profile.durationMs, endProgress)
-            : null;
-          const progress =
-            reduced.matches && holdPose
-              ? endProgress
-              : (playback?.progress ?? progressAt(now));
-          if (
-            now - previousPaint >= 1000 / 30 ||
-            !animated ||
-            reduced.matches ||
-            (playback ? playback.waitMs > 0 : progress >= endProgress)
-          ) {
-            ctx.clearRect(0, 0, 400, 500);
-            let currentFrame = poseFrame;
-            if (animated && !bust) {
-              if (reduced.matches && holdPose && endProgress < 1) {
-                // Show the crossed-arms pose immediately without spatial motion.
-                ctx.save();
-                ctx.translate(200, 491);
-                if (
-                  !drawEntranceAction(
+    // Roster cards draw a pre-cut pose instead of downloading the whole atlas.
+    const cut =
+      bust && !animated && frame === undefined
+        ? portraitBust(fighter)
+        : undefined;
+    if (cut)
+      void loadImage(cut.file)
+        .then((image) => {
+          if (disposed || !canvas.current) return;
+          const node = canvas.current;
+          drawPortraitBust(node.getContext("2d")!, image, cut, fighter, facing);
+          node.dataset.frame = String(cut.frame);
+          node.dataset.facing = String(facing);
+          node.dataset.progress = "1";
+        })
+        .catch(() => {
+          if (!disposed) fromAtlas();
+        });
+    else fromAtlas();
+    function fromAtlas() {
+      void loadSprite(fighter, { entrance: animated && !bust })
+        .then((asset) => {
+          if (disposed || !canvas.current) return;
+          const node = canvas.current;
+          const ctx = node.getContext("2d")!;
+          const def = fighterById(fighter);
+          const profile = presentationById(fighter);
+          const poseFrame = frame ?? profile.battleFrame;
+          const height = bust
+            ? 690 * (def.portraitScale ?? 1)
+            : animated
+              ? asset.entrance
+                ? selectionBodyHeight(asset)
+                : 450
+              : 480;
+          const portraitOffset = bust
+            ? (asset.portraitCenters[poseFrame] - asset.cellWidth / 2) *
+              (height / asset.bodyHeight) *
+              facing *
+              asset.frameFacing[poseFrame]
+            : 0;
+          const started = performance.now();
+          const endProgress =
+            holdPose && asset.entrance ? entrancePoseProgress(fighter) : 1;
+          const progressAt = (now: number) =>
+            Math.min(endProgress, selectionProgress(fighter, now - started));
+          const looping = repeat && animated && !bust;
+          let elapsed = 0;
+          let previousPaint = -Infinity;
+          const paint = (now: number) => {
+            raf = 0;
+            timer = 0;
+            if (disposed) return;
+            if (lastTick && visible && !document.hidden && !reduced.matches)
+              elapsed += now - lastTick;
+            lastTick = now;
+            const playback = looping
+              ? samplePortraitLoop(elapsed, profile.durationMs, endProgress)
+              : null;
+            const progress =
+              reduced.matches && holdPose
+                ? endProgress
+                : (playback?.progress ?? progressAt(now));
+            if (
+              now - previousPaint >= 1000 / 30 ||
+              !animated ||
+              reduced.matches ||
+              (playback ? playback.waitMs > 0 : progress >= endProgress)
+            ) {
+              ctx.clearRect(0, 0, 400, 500);
+              let currentFrame = poseFrame;
+              if (animated && !bust) {
+                if (reduced.matches && holdPose && endProgress < 1) {
+                  // Show the crossed-arms pose immediately without spatial motion.
+                  ctx.save();
+                  ctx.translate(200, 491);
+                  if (
+                    !drawEntranceAction(
+                      ctx,
+                      asset,
+                      fighter,
+                      progress,
+                      height,
+                      facing,
+                    )
+                  )
+                    drawSprite(ctx, asset, poseFrame, 0, 0, height, facing);
+                  ctx.restore();
+                } else {
+                  const pose = drawPresentation(
                     ctx,
                     asset,
                     fighter,
                     progress,
+                    200,
+                    491,
                     height,
                     facing,
-                  )
-                )
-                  drawSprite(ctx, asset, poseFrame, 0, 0, height, facing);
-                ctx.restore();
-              } else {
-                const pose = drawPresentation(
+                    "selection",
+                    reduced.matches,
+                  );
+                  currentFrame = pose.frame;
+                }
+              } else
+                drawSprite(
                   ctx,
                   asset,
-                  fighter,
-                  progress,
-                  200,
-                  491,
+                  poseFrame,
+                  200 - portraitOffset,
+                  bust ? height + 30 - height * (def.portraitLift ?? 0) : 496,
                   height,
                   facing,
-                  "selection",
-                  reduced.matches,
                 );
-                currentFrame = pose.frame;
-              }
-            } else
-              drawSprite(
-                ctx,
-                asset,
-                poseFrame,
-                200 - portraitOffset,
-                bust ? height + 30 - height * (def.portraitLift ?? 0) : 496,
-                height,
-                facing,
-              );
-            node.dataset.frame = String(currentFrame);
-            node.dataset.facing = String(facing);
-            node.dataset.progress = String(progress);
-            previousPaint = now;
-          }
-          if (
-            animated &&
-            visible &&
-            !document.hidden &&
-            !reduced.matches &&
-            (looping || progressAt(now) < endProgress)
-          ) {
-            if (playback && playback.waitMs > 0)
-              timer = window.setTimeout(
-                () => paint(performance.now()),
-                playback.waitMs,
-              );
-            else raf = requestAnimationFrame(paint);
-          }
-        };
-        redraw = () => {
-          cancelAnimationFrame(raf);
-          window.clearTimeout(timer);
-          paint(performance.now());
-        };
-        if (animated) {
-          observing = new IntersectionObserver(([entry]) => {
-            visible = entry.isIntersecting;
-            lastTick = 0;
-            if (visible) redraw();
-            else {
-              cancelAnimationFrame(raf);
-              window.clearTimeout(timer);
+              node.dataset.frame = String(currentFrame);
+              node.dataset.facing = String(facing);
+              node.dataset.progress = String(progress);
+              previousPaint = now;
             }
-          });
-          observing.observe(node);
-        }
-        redraw();
-      })
-      .catch(() => {});
+            if (
+              animated &&
+              visible &&
+              !document.hidden &&
+              !reduced.matches &&
+              (looping || progressAt(now) < endProgress)
+            ) {
+              if (playback && playback.waitMs > 0)
+                timer = window.setTimeout(
+                  () => paint(performance.now()),
+                  playback.waitMs,
+                );
+              else raf = requestAnimationFrame(paint);
+            }
+          };
+          redraw = () => {
+            cancelAnimationFrame(raf);
+            window.clearTimeout(timer);
+            paint(performance.now());
+          };
+          if (animated) {
+            observing = new IntersectionObserver(([entry]) => {
+              visible = entry.isIntersecting;
+              lastTick = 0;
+              if (visible) redraw();
+              else {
+                cancelAnimationFrame(raf);
+                window.clearTimeout(timer);
+              }
+            });
+            observing.observe(node);
+          }
+          redraw();
+        })
+        .catch(() => {});
+    }
     return () => {
       disposed = true;
       cancelAnimationFrame(raf);
