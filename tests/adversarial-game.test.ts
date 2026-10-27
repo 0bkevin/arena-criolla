@@ -57,7 +57,7 @@ async function listeningServer() {
   };
 }
 
-test("adversarial v31: private invite requires its full 128-bit token", async () => {
+test("private invite requires its full 128-bit token", async () => {
   const { server, url } = await listeningServer();
   const host = new Peer(url);
   const guesser = new Peer(url);
@@ -101,7 +101,7 @@ test("adversarial v31: private invite requires its full 128-bit token", async ()
   }
 });
 
-test("adversarial v31: unknown websocket upgrade paths are rejected and closed", async () => {
+test("unknown websocket upgrade paths are rejected and closed", async () => {
   const { server } = await listeningServer();
   const address = server.http.address();
   assert.ok(address && typeof address === "object");
@@ -159,7 +159,7 @@ test("adversarial v31: unknown websocket upgrade paths are rejected and closed",
   }
 });
 
-test("adversarial v31: slow clients are disconnected instead of silently missing match start", async () => {
+test("slow clients are disconnected instead of silently missing match start", async () => {
   const { server, url } = await listeningServer();
   const host = new Peer(url);
   const guest = new Peer(url);
@@ -210,7 +210,7 @@ test("adversarial v31: slow clients are disconnected instead of silently missing
   }
 });
 
-test("adversarial v31: list flood is requester-only and rate limited", async () => {
+test("list flood is requester-only and rate limited", async () => {
   const { server, url } = await listeningServer();
   const peers = Array.from({ length: 64 }, () => new Peer(url));
   try {
@@ -233,12 +233,16 @@ test("adversarial v31: list flood is requester-only and rate limited", async () 
 
     const requester = peers[roomCount];
     const probes = 180;
-    const start = performance.now();
     for (let i = 0; i < probes; i++) requester.send({ type: "list" });
-    const replies = 5;
-    for (let i = 0; i < replies; i++) await requester.wait("rooms");
-    const elapsedMs = performance.now() - start;
+    // The list budget answers at most five requests per one-second window.
+    const accepted = 5;
+    for (let i = 0; i < accepted; i++) await requester.wait("rooms");
     await new Promise((resolve) => setTimeout(resolve, 150));
+    assert.equal(
+      requester.messages.filter((message) => message.type === "rooms").length,
+      0,
+      "requests beyond the list budget receive no reply",
+    );
     const otherPeerReplies = peers
       .filter((peer) => peer !== requester)
       .reduce(
@@ -246,30 +250,15 @@ test("adversarial v31: list flood is requester-only and rate limited", async () 
           sum + peer.messages.filter((message) => message.type === "rooms").length,
         0,
       );
-
-    // The separate room-control budget accepts 30/s and responses stay local.
-    assert.equal(probes, 180);
-    assert.equal(replies, 5);
-    assert.equal(peers.length, 64);
+    assert.equal(otherPeerReplies, 0, "list replies are requester-only");
     assert.equal(server.clients.size, 64);
-    assert.equal(otherPeerReplies, 0);
-    const payloadBytes = Buffer.byteLength(
-      JSON.stringify({
-        type: "rooms",
-        rooms: [...server.rooms.values()].map((room) => room.view),
-        online: peers.length,
-      }),
-    );
-    console.log(
-      `bounded list flood: ${probes} requests, ${replies} accepted, ${roomCount} rooms, ${peers.length} connected peers; ${otherPeerReplies} peer broadcasts; ${payloadBytes} bytes/reply; ${(payloadBytes * replies).toLocaleString()} reply bytes; ${elapsedMs.toFixed(1)} ms for requester replies`,
-    );
   } finally {
     peers.forEach((peer) => peer.socket.terminate());
     await server.close();
   }
 });
 
-test("adversarial v31: malformed frames and concurrent rooms stay isolated and responsive", async () => {
+test("malformed frames and concurrent rooms stay isolated and responsive", async () => {
   const { server, url } = await listeningServer();
   const roomCount = 24;
   const peers = Array.from({ length: roomCount * 2 }, () => new Peer(url));
@@ -345,12 +334,10 @@ test("adversarial v31: malformed frames and concurrent rooms stay isolated and r
       await new Promise((resolve) => setTimeout(resolve, 10));
     assert.equal(server.clients.size, peers.length);
 
-    const healthStart = performance.now();
     const healthUrl = new URL(url);
     healthUrl.protocol = "http:";
     healthUrl.pathname = "/api/health";
     const response = await fetch(healthUrl);
-    const healthLatencyMs = performance.now() - healthStart;
     assert.equal(response.status, 200);
     const health = (await response.json()) as {
       status: string;
@@ -371,9 +358,6 @@ test("adversarial v31: malformed frames and concurrent rooms stay isolated and r
     const rates = deltas.map((delta) => (delta * 1_000) / tickElapsedMs);
     assert.ok(rates.every((rate) => rate >= 55 && rate <= 65), `tick rates: ${rates}`);
     assert.ok(Math.max(...deltas) - Math.min(...deltas) <= 1, `tick deltas: ${deltas}`);
-    console.log(
-      `24-room fixture: ${peers.length} connected game peers; ${deltas[0]} ticks over ${tickElapsedMs.toFixed(1)}ms (${rates[0].toFixed(1)}Hz normalized); health ${healthLatencyMs.toFixed(1)}ms; oversized frame closed ${closeCode}`,
-    );
   } finally {
     peers.forEach((peer) => peer.socket.terminate());
     oversized.socket.terminate();

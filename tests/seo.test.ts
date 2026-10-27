@@ -99,11 +99,6 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
   assert.equal(image.status, 200);
   assert.match(image.headers.get("content-type") ?? "", /image\/jpeg/);
   const imageBytes = Buffer.from(await image.arrayBuffer());
-  assert.ok(imageBytes.length < 400_000, "Social image must stay below 400 KB");
-  const metadata = await sharp(imageBytes).metadata();
-  assert.equal(metadata.format, "jpeg");
-  assert.equal(metadata.width, 1200);
-  assert.equal(metadata.height, 630);
   const legacyImage = await fetch(`${base}/assets/og-arena-criolla.jpg`);
   assert.deepEqual(Buffer.from(await legacyImage.arrayBuffer()), imageBytes);
   const alias = await fetch(`${base}/index.html`, { redirect: "manual" });

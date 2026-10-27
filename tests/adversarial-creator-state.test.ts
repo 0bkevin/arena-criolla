@@ -10,7 +10,7 @@ import { makeArenaServer } from "../server/index";
 import { tokenHash } from "../server/creator/auth";
 
 async function fixture() {
-  const folder = await mkdtemp(path.join(os.tmpdir(), "creator-state-v38-"));
+  const folder = await mkdtemp(path.join(os.tmpdir(), "creator-state-"));
   let draws = 0;
   const provider = {
     design: async () => ({
