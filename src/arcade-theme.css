@@ -855,10 +855,48 @@ body {
   border-radius: 6px;
   background: #102034;
   overflow: visible;
-  box-shadow: none;
+  box-shadow: 0 6px 14px -10px #020a14;
 }
 .in-lobby .fighter-card.picking-p2 {
   --pick-color: var(--coral);
+}
+/* Arcade select cursor: corner brackets in the colour of the player picking. */
+.in-lobby .fighter-card::before {
+  --c: var(--pick-color);
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: 4;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--c), var(--c)) 0 0 / 12px 2px,
+    linear-gradient(var(--c), var(--c)) 0 0 / 2px 12px,
+    linear-gradient(var(--c), var(--c)) 100% 0 / 12px 2px,
+    linear-gradient(var(--c), var(--c)) 100% 0 / 2px 12px,
+    linear-gradient(var(--c), var(--c)) 0 100% / 12px 2px,
+    linear-gradient(var(--c), var(--c)) 0 100% / 2px 12px,
+    linear-gradient(var(--c), var(--c)) 100% 100% / 12px 2px,
+    linear-gradient(var(--c), var(--c)) 100% 100% / 2px 12px;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.06);
+  transition:
+    opacity 120ms,
+    transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.in-lobby .fighter-card.chosen::before,
+.in-lobby .fighter-card:focus-visible::before {
+  opacity: 1;
+  transform: none;
+}
+@media (hover: hover) {
+  .in-lobby .fighter-card:hover::before {
+    opacity: 1;
+    transform: none;
+  }
+  .in-lobby .fighter-card:not(.chosen):hover::before {
+    --c: color-mix(in srgb, var(--pick-color) 70%, transparent);
+  }
 }
 .in-lobby .fighter-card.chosen,
 .in-lobby .fighter-card.chosen.picking-p2,
@@ -866,14 +904,15 @@ body {
 .in-lobby .fighter-card.chosen.picking-p2:hover {
   border: 1px solid var(--pick-color);
   background: color-mix(in srgb, var(--pick-color) 10%, #102034);
-  box-shadow: none;
+  box-shadow: 0 8px 18px -10px
+    color-mix(in srgb, var(--pick-color) 55%, transparent);
   z-index: 3;
 }
 .in-lobby .fighter-card:hover {
   transform: translateY(-2px);
   background: #192c43;
   border-color: #8ba4c3;
-  box-shadow: none;
+  box-shadow: 0 10px 18px -10px #020a14;
 }
 .in-lobby .fighter-card:active {
   transform: translateY(1px);
@@ -883,8 +922,23 @@ body {
   width: 100%;
   position: relative;
   border-radius: 5px 5px 0 0;
-  background: color-mix(in srgb, var(--fighter-color) 12%, #192d42);
+  background:
+    radial-gradient(
+      ellipse 70% 95% at 50% 0,
+      color-mix(in srgb, var(--fighter-color) 24%, #2a4466),
+      transparent 75%
+    ),
+    color-mix(in srgb, var(--fighter-color) 12%, #192d42);
   overflow: hidden;
+}
+.in-lobby .fighter-card.chosen .fighter-card-art {
+  background:
+    radial-gradient(
+      ellipse 70% 95% at 50% 0,
+      color-mix(in srgb, var(--pick-color) 30%, #2a4466),
+      transparent 75%
+    ),
+    color-mix(in srgb, var(--fighter-color) 12%, #192d42);
 }
 .in-lobby .fighter-card-art::after {
   content: none;
@@ -896,7 +950,14 @@ body {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+  transform-origin: 50% 20%;
   filter: drop-shadow(1px 2px 0 #07112466);
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@media (hover: hover) {
+  .in-lobby .fighter-card:hover .fighter-card-art .portrait {
+    transform: translateX(-50%) scale(1.06);
+  }
 }
 .in-lobby .fighter-player-tags {
   top: 3px;
@@ -917,8 +978,9 @@ body {
   flex: 1;
   min-height: 31px;
   padding: 7px 4px;
-  background: transparent;
-  border-radius: 0;
+  background: linear-gradient(#0a172800, #0a1728b0);
+  border-top: 1px solid #ffffff0d;
+  border-radius: 0 0 5px 5px;
 }
 .in-lobby .fighter-card-caption strong {
   font: 700 11px/1.25 var(--font-body);
@@ -1005,8 +1067,12 @@ body {
   color: #becde0;
   border: 1px solid #7188aa3b;
   border-radius: 6px;
-  box-shadow: none;
+  box-shadow: 0 6px 14px -10px #020a14;
   overflow: hidden;
+  transition:
+    border-color 140ms,
+    transform 140ms,
+    box-shadow 140ms;
 }
 .in-lobby .arcade-stage .stage-thumbnail {
   height: 37px;
@@ -1020,10 +1086,11 @@ body {
   color: var(--coin);
   background: #28323a;
   border-color: var(--coin);
-  box-shadow: none;
+  box-shadow: 0 8px 18px -10px #ffd45a8c;
 }
 .in-lobby .arcade-stage:not(.selected):hover:enabled {
   border-color: #cfdef1;
+  transform: translateY(-2px);
 }
 .in-lobby .stage-tick {
   width: 16px;
