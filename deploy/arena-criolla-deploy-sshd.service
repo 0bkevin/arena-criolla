@@ -1,0 +1,12 @@
+[Unit]
+Description=Restricted SSH transport for Arena Criolla production releases
+After=network.target
+
+[Service]
+ExecStartPre=/usr/sbin/sshd -t -f /etc/ssh/sshd_config_arena_deploy
+ExecStart=/usr/sbin/sshd -D -e -f /etc/ssh/sshd_config_arena_deploy
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

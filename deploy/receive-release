@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Forced SSH command. This account has no general shell, forwarding or Docker access.
+set -euo pipefail
+if [[ ${SSH_ORIGINAL_COMMAND:-} == probe ]]; then
+  exec sudo -n /usr/local/sbin/arena-install-release probe
+fi
+if [[ ${SSH_ORIGINAL_COMMAND:-} =~ ^deploy\ ([a-f0-9]{40})\ ([1-9][0-9]{0,19})\ ([1-9][0-9]{0,4})\ ([a-f0-9]{64})$ ]]; then
+  exec sudo -n /usr/local/sbin/arena-install-release \
+    "${BASH_REMATCH[1]}" "${BASH_REMATCH[2]}" "${BASH_REMATCH[3]}" "${BASH_REMATCH[4]}"
+fi
+echo 'Only probe or a verified production release is accepted.' >&2
+exit 2

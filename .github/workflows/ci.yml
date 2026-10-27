@@ -4,11 +4,17 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      promotion-pr:
+        description: Promotion PR to validate (set by the promotion workflow)
+        type: string
+        required: false
+  workflow_call:
 permissions:
   contents: read
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  group: arena-ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/prod' }}
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -18,10 +24,10 @@ jobs:
       matrix:
         shard: [1, 2]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 24
           cache: npm
@@ -40,24 +46,33 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
-      - uses: docker/setup-buildx-action@v4
+      - name: Validate production delivery controls
+        run: |
+          python3 -B deploy/test_install_release.py
+          bash -n deploy/receive-release deploy/install-delivery-controls.sh
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
       - name: Build production image
-        uses: docker/build-push-action@v7
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7
         with:
           context: .
           pull: true
           load: true
-          tags: arena-criolla:ci
+          tags: |
+            arena-criolla:ci
+            arena-criolla:release-${{ github.sha }}
+          labels: |
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
           cache-from: type=gha,scope=arena-criolla-ci
           cache-to: type=gha,scope=arena-criolla-ci,mode=max
       - name: Set vulnerability cache period
         id: scanner-cache
         run: echo "period=$(( $(date +%s) / 21600 ))" >> "$GITHUB_OUTPUT"
       - name: Cache vulnerability database
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.cache/trivy
           key: ${{ runner.os }}-trivy-0.76.0-${{ steps.scanner-cache.outputs.period }}
@@ -84,6 +99,25 @@ jobs:
           curl --fail --retry 15 --retry-delay 1 --retry-all-errors --retry-max-time 30 --connect-timeout 2 --max-time 3 "$base/api/health"
           # Use the dependencies in the image instead of installing them again.
           docker exec -i "$container" node --input-type=module - http://127.0.0.1:5173 < scripts/security-smoke.mjs
+      - name: Export the verified production image
+        if: github.repository == '0bkevin/arena-criolla' && github.ref == 'refs/heads/prod'
+        env:
+          RELEASE_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          docker save "arena-criolla:release-$RELEASE_SHA" | gzip -1 > "$RUNNER_TEMP/image.tar.gz"
+          cd "$RUNNER_TEMP"
+          sha256sum image.tar.gz > image.tar.gz.sha256
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: github.repository == '0bkevin/arena-criolla' && github.ref == 'refs/heads/prod'
+        with:
+          name: production-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/image.tar.gz
+            ${{ runner.temp }}/image.tar.gz.sha256
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error
   # Keep the existing required check name and propagate either job's failure.
   validate:
     if: always()
@@ -95,3 +129,33 @@ jobs:
           TEST_RESULT: ${{ needs.tests.result }}
           PRODUCTION_RESULT: ${{ needs.production.result }}
         run: test "$TEST_RESULT" = success && test "$PRODUCTION_RESULT" = success
+  prod-source:
+    name: ${{ (github.event_name == 'pull_request' && github.base_ref == 'prod' || github.event_name == 'workflow_dispatch' && inputs.promotion-pr != '') && 'prod-source' || 'prod-source-not-required' }}
+    if: >-
+      github.repository == '0bkevin/arena-criolla' &&
+      (github.event_name == 'pull_request' && github.base_ref == 'prod' ||
+       github.event_name == 'workflow_dispatch' && inputs.promotion-pr != '')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pull-requests: read
+    steps:
+      # API-only: no source from the promotion PR is executed with this token.
+      - name: Require promotion from this repository's main branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PROMOTION_PR: ${{ github.event.pull_request.number || inputs.promotion-pr }}
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          [[ "$PROMOTION_PR" =~ ^[1-9][0-9]*$ ]]
+          gh api "repos/$GITHUB_REPOSITORY/pulls/$PROMOTION_PR" > "$RUNNER_TEMP/promotion.json"
+          python3 - "$RUNNER_TEMP/promotion.json" <<'PY'
+          import json, os, sys
+          pr = json.load(open(sys.argv[1]))
+          assert pr['state'] == 'open'
+          assert pr['base']['ref'] == 'prod'
+          assert pr['head']['ref'] == 'main'
+          assert pr['head']['repo']['full_name'] == os.environ['GITHUB_REPOSITORY']
+          assert pr['head']['sha'] == os.environ['EXPECTED_SHA']
+          PY
