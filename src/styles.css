@@ -1870,7 +1870,7 @@ kbd {
 }
 @keyframes hp-danger {
   50% {
-    filter: brightness(1.45) saturate(1.2);
+    filter: brightness(1.25) saturate(1.2);
   }
 }
 .health-track > span {
@@ -1881,7 +1881,9 @@ kbd {
   font-size: 9px;
   font-weight: 700;
   color: white;
-  text-shadow: 0 1px 3px #000a;
+  text-shadow:
+    1px 1px 0 #05090f,
+    0 0 3px #05090fcc;
 }
 .player-1 .health-track {
   transform: scaleX(-1);
