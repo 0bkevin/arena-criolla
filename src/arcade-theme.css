@@ -156,10 +156,25 @@ body {
   align-items: center;
   isolation: isolate;
   overflow: hidden;
-  border: 1px solid #6a7b9555;
+  border: 1px solid #ffd45a38;
   border-radius: 8px;
   background: #172b43;
-  box-shadow: inset 0 1px 0 #ffffff0c;
+  box-shadow:
+    inset 0 1px 0 #ffffff0c,
+    0 10px 24px -14px #000c;
+}
+/* Lit marquee glass: faint scanlines and a top sheen over the cast art. */
+.in-lobby .arcade-marquee::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    repeating-linear-gradient(0deg, #0000 0 2px, #04101f1c 2px 3px),
+    linear-gradient(#fff5db14, #0000 32% 68%, #04101f8c);
+  box-shadow: inset 0 0 0 1px #fff5db0f;
 }
 .in-lobby .arcade-eyebrow {
   color: #a9c1dd;
@@ -190,8 +205,10 @@ body {
   gap: 9px;
   border: 1px solid #8ba4c32b;
   border-radius: 4px;
-  background: #08192a50;
-  box-shadow: none;
+  background: linear-gradient(#11233a90, #08192a90);
+  box-shadow:
+    inset 0 1px 0 #ffffff0d,
+    0 2px 0 #040c17;
   color: #aebed4;
   transition:
     background 140ms,
@@ -243,6 +260,12 @@ body {
 .in-lobby .arcade-modes button:hover {
   background-color: #ffffff08;
   transform: translateY(-1px);
+}
+.in-lobby
+  .arcade-modes
+  :is(#mode-practice, #mode-local, #mode-online):not(.selected):hover {
+  color: var(--paper);
+  border-color: #8ba4c355;
 }
 .in-lobby .arcade-modes button:active {
   transform: translateY(1px);
