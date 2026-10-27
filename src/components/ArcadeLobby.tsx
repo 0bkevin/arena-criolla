@@ -605,7 +605,12 @@ export function ArcadeLobby(props: Props) {
                 onClick={() => props.onStage(item.id)}
               >
                 <span className="stage-thumbnail">
-                  <img src={`/assets/${item.id}.webp`} alt="" />
+                  <img
+                    src={`/assets/${item.id}.webp`}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
                   {item.id === stage.id && (
                     <span className="stage-tick">
                       <Check size={12} />
