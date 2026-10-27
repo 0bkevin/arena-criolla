@@ -37,13 +37,12 @@ function setup(side: 0 | 1 = 0, fighter: FighterId = "capriles", gap = 420) {
   return { state, inputs, advance, press, player: state.players[side] };
 }
 
-test("both players must hold for 0.3 seconds (18 active ticks) before spending 90 energy and their only use", () => {
-  assert.equal(SUPER_CHARGE_TICKS, 18);
+test("both players must hold for the full charge before spending 90 energy and their only use", () => {
   for (const side of [0, 1] as const) {
     const r = setup(side);
     r.press();
     r.advance(SUPER_CHARGE_TICKS - 1);
-    assert.equal(r.player.superChargeTicks, 17);
+    assert.equal(r.player.superChargeTicks, SUPER_CHARGE_TICKS - 1);
     assert.equal(r.player.attack, null);
     assert.equal(r.player.energy, 100);
     assert.equal(r.player.superUsed, false);
@@ -89,7 +88,7 @@ test("regaining enough energy during a held contact cannot arm a charge", () => 
   assert.equal(r.player.superUsed, true);
 });
 
-test("release and repress between ticks starts a fresh 18-tick charge", () => {
+test("release and repress between ticks starts a fresh full charge", () => {
   const r = setup();
   const sources = new ControlSources(r.inputs[0]);
   sources.press("key", "super");
@@ -100,7 +99,7 @@ test("release and repress between ticks starts a fresh 18-tick charge", () => {
   r.advance();
   assert.equal(r.player.superChargeTicks, 1);
   r.advance(SUPER_CHARGE_TICKS - 2);
-  assert.equal(r.player.superChargeTicks, 17);
+  assert.equal(r.player.superChargeTicks, SUPER_CHARGE_TICKS - 1);
   assert.equal(r.player.superUsed, false);
   r.advance();
   assert.equal(r.player.superUsed, true);
@@ -156,7 +155,7 @@ test("charging keeps movement available at a slower pace", () => {
   assert.ok(charging.player.x - 330 < (normal.player.x - 330) * 0.6);
 });
 
-test("a real hit interrupts either player once, debits exactly 15 and preserves the only use", () => {
+test("a real hit interrupts either player once, debits the interrupt cost and preserves the only use", () => {
   for (const side of [0, 1] as const) {
     const r = setup(side, "capriles", 80);
     r.press();
@@ -193,7 +192,7 @@ test("an incoming cinematic capture also interrupts a vulnerable charge", () => 
   assert.equal(r.state.finale?.owner, 1);
   assert.equal(r.player.superChargeTicks, 0);
   assert.equal(r.player.superUsed, false);
-  assert.equal(r.player.energy, 85);
+  assert.equal(r.player.energy, 100 - SUPER_INTERRUPT_ENERGY_COST);
 });
 
 test("hitstop pauses the charge but release cancels it immediately", () => {

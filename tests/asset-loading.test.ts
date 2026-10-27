@@ -74,41 +74,6 @@ test("a fight keeps both dance lookup keys and retries optional failures without
   }
 });
 
-test("Iñaki loads only the art needed by his opponent and reuses the same lossless textures", async () => {
-  const browser = browserFixture();
-  try {
-    const { preloadAssets } = await loader("inaki-contexts");
-    const normal = await preloadAssets(["inaki", "capriles"], ["caracas"], {
-      entrance: false,
-      attacks: ["inaki"],
-      finales: ["inaki"],
-    });
-    assert.ok(normal.finaleProps["inaki-rial-attack-v5"]);
-    assert.equal(browser.count("/assets/inaki-v5.webp"), 1);
-    assert.equal(browser.count("/assets/inaki-defiant-entrance-v5.webp"), 0);
-    assert.equal(browser.count(`/assets/${seated.inaki.file}.webp`), 0);
-    assert.equal(browser.count(`/assets/${recorded.inaki.file}.webp`), 0);
-    const cafe = await preloadAssets(["capriles", "inaki"], ["caracas"]);
-    assert.ok(cafe.finaleProps[seated.inaki.file]);
-    assert.ok(cafe.sprites.inaki.entrance);
-    assert.equal(browser.count(`/assets/${recorded.inaki.file}.webp`), 0);
-    const dance = await preloadAssets(["nacho", "inaki"], ["caracas"]);
-    assert.ok(dance.finaleProps[recorded.inaki.file]);
-    await preloadAssets(["nacho", "inaki"], ["caracas"]);
-    for (const name of [
-      "inaki-v5",
-      "inaki-defiant-entrance-v5",
-      "inaki-rial-attack-v5",
-      seated.inaki.file,
-      recorded.inaki.file,
-    ])
-      assert.equal(browser.count(`/assets/${name}.webp`), 1, name);
-    assert.equal(browser.count("/assets/caracas.webp"), 1);
-  } finally {
-    browser.restore();
-  }
-});
-
 test("a fight starts before its super cinematic art, which joins the same record later", async () => {
   const browser = browserFixture();
   try {

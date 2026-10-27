@@ -27,13 +27,13 @@ Esta comprobación valida HTTP y WebSocket y crea una partida privada temporal c
 El flujo sigue el modelo de Gotchu y entrega Arena Criolla al servidor Docker existente:
 
 1. Integra los cambios en `main` mediante un PR con `validate` aprobado.
-2. Cuando CI termina correctamente en `main`, **Prepare production promotion** abre o actualiza **Release main to production**, con base `prod` y origen `main`.
+2. Cuando `main` queda en verde, **Prepare production promotion** abre o actualiza **Release main to production**, con base `prod` y origen `main`. Su `validate` es el run en verde de ese mismo commit de `main`, y el workflow **Check production promotion** añade `prod-source`, que exige que venga de `main`. No se repiten tests: `main` queda en verde reutilizando el resultado del PR cuando el árbol de git es idéntico (ver [testing.md](testing.md)).
 3. Revisa el diff completo y fusiona ese PR. Esa fusión autoriza el despliegue a `https://arenacriolla.com`. No hay fusión automática.
-4. **Deploy production** ejecuta todo CI otra vez para el commit exacto de `prod`: tests, tipos, assets, auditoría de dependencias, escaneo de vulnerabilidades de la imagen y comprobaciones HTTP/WebSocket.
-5. CI exporta esa misma imagen Docker, con la revisión etiquetada, como un artefacto comprimido con SHA256. El job de entrega descarga el artefacto de esa ejecución y lo envía por SSH. No se reconstruye en el servidor ni se requiere un registro de imágenes.
+4. **Deploy production** no repite los tests: se niega a continuar si el árbol de `prod` no pasó CI; después construye la imagen del commit exacto de `prod`, la escanea con Trivy y comprueba HTTP/WebSocket arrancándola.
+5. Exporta esa misma imagen Docker, con la revisión etiquetada, como un artefacto comprimido con SHA256. El job de entrega descarga el artefacto de esa ejecución y lo envía por SSH. No se reconstruye en el servidor ni se requiere un registro de imágenes.
 6. El instalador verifica checksum, revisión y que `prod` siga apuntando a ese commit; crea una copia de seguridad, actualiza el contenedor y comprueba HTTP/WebSocket tanto en loopback como en el dominio público.
 
-Los PR creados con `GITHUB_TOKEN` no disparan por sí solos los workflows de `pull_request`. Por eso la promoción despacha CI explícitamente en `main`, pasando el número del PR. El check `prod-source` consulta la API y verifica que ese PR esté abierto, tenga base `prod`, venga de `main` del mismo repositorio y corresponda al SHA comprobado. Los PR normales hacia `prod` pasan por la misma validación.
+Los PR creados con `GITHUB_TOKEN` no disparan por sí solos los workflows de `pull_request`. Por eso la promoción despacha **Check production promotion** en `main`, pasando el número del PR. Los criterios de selección están en [testing.md](testing.md). El check `prod-source` consulta la API y verifica que ese PR esté abierto, tenga base `prod`, venga de `main` del mismo repositorio y corresponda al SHA comprobado. Un PR hacia `prod` que no sea la promoción no recibe checks y no se puede fusionar.
 
 `main` requiere `validate`. `prod` requiere `validate` y `prod-source`; ambas ramas requieren PR, bloquean force-push y eliminación, y aplican las reglas a administradores. El entorno GitHub **production** solo admite la rama `prod`, no etiquetas. Los workflows de promoción y entrega solo actúan en `0bkevin/arena-criolla`. Una ejecución manual de **Deploy production** debe seleccionar `prod`; otra rama no despliega.
 
@@ -73,7 +73,7 @@ Un fallo antes del cambio deja la versión actual en servicio. Si falla la nueva
 
 Ante un timeout de Actions, el resultado remoto puede ser desconocido. Comprueba el registro, la imagen real de `arena-criolla`, `release.env`, el esquema y la salud pública antes de modificar el registro. Conserva una copia del estado; solo después de reconciliar una transacción `installing` o `recovery_required`, márcala como `failed`, preservando su generación, para permitir un intento nuevo. Los detalles de la copia previa están en `/var/backups/arena-criolla`.
 
-Para reintentar un fallo terminado, usa **Re-run all jobs**, de modo que los checks, el artefacto y la entrega compartan el nuevo intento. Para revertir una versión que ya se desplegó correctamente, crea un commit de reversión en `main` y promuévelo normalmente. Revisa la compatibilidad de datos; no resetees `prod` a un commit antiguo.
+Para reintentar un fallo terminado, usa **Re-run all jobs**, de modo que la imagen, el artefacto y la entrega compartan el nuevo intento. Para revertir una versión que ya se desplegó correctamente, crea un commit de reversión en `main` y promuévelo normalmente. Revisa la compatibilidad de datos; no resetees `prod` a un commit antiguo.
 
 Las partidas en memoria y las conexiones WebSocket se interrumpen durante la sustitución del único contenedor. Los datos persistentes se conservan. Los artefactos de Actions caducan a los tres días; las imágenes locales retenidas requieren limpieza periódica, preservando siempre la imagen en ejecución y la anterior.
 

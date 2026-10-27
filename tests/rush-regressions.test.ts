@@ -49,6 +49,39 @@ test("Capriles rush connects once during travel and respects directional guards"
     assert.ok(blocked.target.energy < 100);
   }
 });
+test("Capriles rush crosses an empty gap and only damages on contact", () => {
+  for (const side of [0, 1] as const) {
+    const state = createMatch("caracas", [
+      { name: "P1", fighter: side === 0 ? "capriles" : "javier", wins: 3 },
+      { name: "P2", fighter: side === 1 ? "capriles" : "javier", wins: 3 },
+    ]);
+    state.phase = "playing";
+    state.players.forEach((p) => {
+      p.energy = 100;
+      p.invincible = 0;
+    });
+    const actor = state.players[side],
+      rival = state.players[1 - side];
+    actor.x = side ? 700 : 400;
+    actor.facing = side ? -1 : 1;
+    rival.x = actor.x + actor.facing * 214;
+    const inputs: [Input, Input] = [emptyInput(), emptyInput()];
+    inputs[side].actions.special++;
+    let impacts = 0;
+    for (let tick = 1; tick <= 65; tick++) {
+      const beforeHp = rival.hp;
+      const gap = Math.abs(actor.x - rival.x);
+      stepMatch(state, inputs);
+      if (rival.hp < beforeHp) {
+        impacts++;
+        assert.ok(gap < 125, `P${side + 1}: hit from a distance of ${gap}`);
+      }
+    }
+    assert.equal(impacts, 1, `P${side + 1}: the rush connects once`);
+    assert.equal(actor.hits, 1);
+    assert.equal(actor.attack, null);
+  }
+});
 test("forward rushes brake after their configured movement window", () => {
   for (const id of ["capriles", "conde", "mcm"] as const)
     for (const side of [0, 1] as const) {

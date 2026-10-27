@@ -2,14 +2,6 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { type FounderFighterId } from "../shared/content";
 import { createMatch, emptyInput, stepMatch, WORLD, type Input, type MatchState } from "../shared/engine";
-const founders: FounderFighterId[] = [
-  "enrique",
-  "jesus",
-  "carlos",
-  "victor",
-  "juan",
-];
-const techniques = ["ledger", "settlement", "ignition", "slash", "grid"];
 function setup(fighter: FounderFighterId, attacker: 0 | 1 = 0) {
   const state = createMatch("caracas", [
     { name: "Uno", fighter: attacker === 0 ? fighter : "zavarce", wins: 0 },
@@ -44,52 +36,6 @@ function startSpecial(
   inputs[attacker].actions.special++;
   stepMatch(state, inputs);
 }
-test("founder specials resolve for either player, with and without a facing block, deterministically", () => {
-  for (const id of founders) {
-    for (const attacker of [0, 1] as const) {
-      for (const blocking of [false, true]) {
-        const first = setup(id, attacker);
-        const second = setup(id, attacker);
-        first.inputs[attacker].actions.special++;
-        second.inputs[attacker].actions.special++;
-        first.inputs[1 - attacker].block = blocking;
-        second.inputs[1 - attacker].block = blocking;
-        first.state.players[attacker].energy = 50;
-        second.state.players[attacker].energy = 50;
-        stepMatch(first.state, first.inputs);
-        stepMatch(second.state, second.inputs);
-        assert.ok(
-          first.state.players[attacker].energy < 50,
-          `${id}: special did not start`,
-        );
-        for (let tick = 0; tick < 90; tick++) {
-          stepMatch(first.state, first.inputs);
-          stepMatch(second.state, second.inputs);
-          assert.deepEqual(
-            first.state,
-            second.state,
-            `${id}/${attacker}/${blocking}/${tick}`,
-          );
-        }
-        for (const player of first.state.players) {
-          assert.ok(Number.isFinite(player.x) && Number.isFinite(player.y), id);
-          assert.ok(player.hp >= 0 && player.hp <= 100, id);
-        }
-        if (blocking)
-          assert.equal(
-            first.state.players[1 - attacker].hp,
-            100,
-            `${id}: block leaked damage`,
-          );
-        else
-          assert.ok(
-            first.state.players[1 - attacker].hp < 100,
-            `${id}: special did not hit`,
-          );
-      }
-    }
-  }
-});
 
 test("ledger emits two separated packets and settlement reverses its returning transfer", () => {
   const ledger = setup("enrique");

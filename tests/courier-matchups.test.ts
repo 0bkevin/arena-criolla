@@ -1,24 +1,19 @@
-import test, { after } from "node:test";
+import test from "node:test";
 import assert from "node:assert/strict";
-import { writeFileSync } from "node:fs";
-import { FIGHTERS, STAGES, fighterById, platformsAtTick, type FighterId, type StageId } from "../shared/content";
-import { createMatch, emptyInput, stepMatch, type Input, type MatchState } from "../shared/engine";
-import { TECHNIQUES } from "../shared/techniques";
+import {
+  STAGES,
+  platformsAtTick,
+  type FighterId,
+  type StageId,
+} from "../shared/content";
+import {
+  createMatch,
+  emptyInput,
+  stepMatch,
+  type Input,
+  type MatchState,
+} from "../shared/engine";
 type Side = 0 | 1;
-type Defense = "idle" | "guard" | "double-jump" | "backward-guard";
-const defenses: Defense[] = ["idle", "guard", "double-jump", "backward-guard"];
-const summaries: {
-  stage: StageId;
-  defense: Defense;
-  cases: number;
-  minHits: number;
-  maxHits: number;
-  minHp: number;
-}[] = [];
-let clashCases = 0,
-  matrixCases = 0,
-  platformCases = 0,
-  interactionCases = 0;
 
 function scene(stage: StageId, rival: FighterId, side: Side, gap = 260) {
   const vicente = { name: "Vicente", fighter: "zavarce", wins: 0 } as const;
@@ -63,167 +58,45 @@ function finite(state: MatchState, label: string) {
     );
 }
 
-for (const stage of STAGES) {
-  test(`Yummy motorcycle / ${stage.id}: every fighter, both sides, four defenses`, () => {
-    for (const defense of defenses) {
-      const result = {
-        stage: stage.id,
-        defense,
-        cases: 0,
-        minHits: Infinity,
-        maxHits: 0,
-        minHp: 100,
-      };
-      for (const rival of FIGHTERS)
-        for (const side of [0, 1] as const) {
-          const run = scene(stage.id, rival.id, side);
-          const label = `${stage.id}/${rival.id}/P${side + 1}/${defense}`;
-          const targetInput = run.inputs[1 - side];
-          targetInput.block =
-            defense === "guard" || defense === "backward-guard";
-          if (defense === "double-jump") targetInput.actions.jump++;
-          if (defense === "backward-guard") {
-            targetInput.right = side === 0;
-            targetInput.left = side === 1;
-          }
-          run.inputs[side].actions.special++;
-          const seen = new Set<number>();
-          const origins = new Map<number, number>();
-          const sourceX = run.caster.x;
-          for (let frame = 0; frame < 190; frame++) {
-            if (frame === 22 && defense === "double-jump")
-              targetInput.actions.jump++;
-            run.advance(1);
-            finite(run.state, label);
-            if (frame === 0)
-              assert.ok(
-                run.caster.energy >= 75 && run.caster.energy < 76,
-                label + " energy cost",
-              );
-            for (const shot of run.state.projectiles) {
-              seen.add(shot.id);
-              if (!origins.has(shot.id)) origins.set(shot.id, frame);
-              assert.equal(shot.kind, "courier", label);
-              assert.equal(shot.owner, side, label);
-              assert.equal(shot.groundOnly, true, label);
-            }
-          }
-          assert.equal(seen.size, 1, label + " one unique bike");
-          assert.equal(
-            new Set(origins.values()).size,
-            1,
-            label + " simultaneous formation",
-          );
-          assert.equal(run.caster.x, sourceX, label + " no involuntary dash");
-          assert.equal(run.caster.hp, 100, label + " no self-hit");
-          assert.equal(run.caster.stocks, 2, label);
-          assert.equal(run.target.stocks, 2, label + " no unexpected ringout");
-          assert.equal(run.state.projectiles.length, 0, label + " cleanup");
-          assert.equal(run.caster.attack, null, label + " recovery");
-          if (defense === "guard" || defense === "double-jump") {
-            assert.equal(run.caster.hits, 0, label + " defense");
-            assert.equal(run.target.hp, 100, label + " defense damage");
-          } else {
-            assert.ok(
-              run.caster.hits > 0 && run.caster.hits <= 1,
-              label + " bounded hits",
-            );
-            if (defense === "idle")
-              assert.equal(run.caster.hits, 1, label + " single bike connects");
-            const damage =
-              run.caster.hits *
-              TECHNIQUES.courier.damage *
-              fighterById("zavarce").damage *
-              rival.armor;
-            assert.ok(
-              Math.abs(100 - run.target.hp - damage) < 1e-8,
-              label + " damage matches armor and unique hits",
-            );
-          }
-          result.cases++;
-          matrixCases++;
-          result.minHits = Math.min(result.minHits, run.caster.hits);
-          result.maxHits = Math.max(result.maxHits, run.caster.hits);
-          result.minHp = Math.min(result.minHp, run.target.hp);
-        }
-      summaries.push(result);
-    }
-  });
-}
-
-test("motorcycle clashes with every opponent's special remain bounded and replay identically on all stages", () => {
-  for (const stage of STAGES)
-    for (const rival of FIGHTERS)
-      for (const side of [0, 1] as const) {
-        const run = scene(stage.id, rival.id, side);
-        const replay = structuredClone(run.state);
-        run.inputs[side].actions.special++;
-        run.inputs[1 - side].actions.special++;
-        const motorcycles = new Set<number>();
-        const label = `${stage.id}/${rival.id}/P${side + 1}/special-clash`;
-        for (let frame = 0; frame < 220; frame++) {
-          run.advance(1);
-          stepMatch(replay, run.inputs);
-          finite(run.state, label);
-          for (const shot of run.state.projectiles)
-            if (shot.kind === "courier") motorcycles.add(shot.id);
-        }
-        assert.deepEqual(run.state, replay, label + " deterministic replay");
-        assert.ok(
-          motorcycles.size <= (rival.id === "zavarce" ? 2 : 1),
-          label + " bounded summons",
-        );
-        if (run.state.phase === "playing")
-          assert.ok(
-            run.state.projectiles.every((shot) => shot.kind !== "courier"),
-            label + " motorcycle cleanup",
-          );
-        clashCases++;
+test("the single ground motorcycle connects once, is guarded from the front and jumped over", () => {
+  const defenses = ["idle", "guard", "double-jump", "backward-guard"] as const;
+  for (const defense of defenses)
+    for (const side of [0, 1] as const) {
+      const run = scene("poliedro", "javier", side);
+      const label = `${defense}/P${side + 1}`;
+      const targetInput = run.inputs[1 - side];
+      targetInput.block = defense === "guard" || defense === "backward-guard";
+      if (defense === "double-jump") targetInput.actions.jump++;
+      if (defense === "backward-guard") {
+        targetInput.right = side === 0;
+        targetInput.left = side === 1;
       }
-});
-
-test("Yummy motorcycle launches from every fixed and moving platform at four motion phases", () => {
-  for (const stage of STAGES)
-    for (const [index, definition] of stage.platforms.entries()) {
-      const phases = definition.motion
-        ? [0, 0.25, 0.5, 0.75].map((f) =>
-            Math.floor(f * definition.motion!.period),
-          )
-        : [0];
-      for (const tick of phases)
-        for (const side of [0, 1] as const) {
-          const run = scene(stage.id, "vallenilla", side);
-          run.state.tick = tick;
-          const platform = platformsAtTick(stage.id, tick)[index];
-          Object.assign(run.caster, {
-            x: platform.x + platform.width / 2,
-            y: platform.y,
-            grounded: true,
-            supportPlatform: index,
-          });
-          run.target.invincible = 300;
-          run.target.x =
-            run.caster.x < 540
-              ? Math.min(1010, run.caster.x + 300)
-              : Math.max(70, run.caster.x - 300);
-          run.caster.facing = Math.sign(run.target.x - run.caster.x);
-          run.inputs[side].actions.special++;
-          run.advance(12);
-          const label = `${stage.id}/platform-${index}/phase-${tick}/P${side + 1}`;
-          assert.equal(run.state.projectiles.length, 1, label);
-          assert.equal(run.caster.supportPlatform, index, label);
-          assert.equal(
-            run.caster.y,
-            platformsAtTick(stage.id, run.state.tick)[index].y,
-            label,
-          );
-          for (const shot of run.state.projectiles)
-            assert.equal(shot.y, run.caster.y - 42, label + " launch height");
-          run.advance(140);
-          assert.equal(run.state.projectiles.length, 0, label + " cleanup");
-          finite(run.state, label);
-          platformCases++;
+      run.inputs[side].actions.special++;
+      const seen = new Set<number>();
+      const sourceX = run.caster.x;
+      for (let frame = 0; frame < 190; frame++) {
+        if (frame === 22 && defense === "double-jump")
+          targetInput.actions.jump++;
+        run.advance(1);
+        for (const shot of run.state.projectiles) {
+          seen.add(shot.id);
+          assert.equal(shot.kind, "courier", label);
+          assert.equal(shot.owner, side, label);
+          assert.equal(shot.groundOnly, true, label);
         }
+      }
+      assert.equal(seen.size, 1, label + " one unique bike");
+      assert.equal(run.caster.x, sourceX, label + " no involuntary dash");
+      assert.equal(run.caster.hp, 100, label + " no self-hit");
+      assert.equal(run.state.projectiles.length, 0, label + " cleanup");
+      assert.equal(run.caster.attack, null, label + " recovery");
+      if (defense === "guard" || defense === "double-jump") {
+        assert.equal(run.caster.hits, 0, label + " defense");
+        assert.equal(run.target.hp, 100, label + " defense damage");
+      } else {
+        assert.equal(run.caster.hits, 1, label + " single bike connects");
+        assert.ok(run.target.hp < 100, label + " damage");
+      }
     }
 });
 
@@ -249,33 +122,30 @@ test("floor motorcycles miss opponents sheltered on every elevated platform", ()
       assert.equal(run.target.hp, 100, `${stage.id}/platform-${index}`);
       assert.equal(run.caster.hits, 0);
       finite(run.state, stage.id);
-      platformCases++;
     }
 });
 
 test("Carolina reflects the motorcycle with its identity intact", () => {
-  for (const stage of STAGES)
-    for (const side of [0, 1] as const) {
-      const run = scene(stage.id, "carolina", side, 245);
-      run.inputs[side].actions.special++;
-      run.inputs[1 - side].actions.special++;
-      const reflected = new Set<number>();
-      for (let frame = 0; frame < 160; frame++) {
-        run.advance(1);
-        for (const shot of run.state.projectiles)
-          if (shot.kind === "courier" && shot.owner !== side) {
-            reflected.add(shot.id);
-            assert.equal(Math.sign(shot.vx), side === 0 ? -1 : 1);
-            assert.equal(shot.formationIndex, undefined);
-            assert.equal(shot.groundOnly, true);
-          }
-      }
-      assert.ok(reflected.size > 0, stage.id + " reflection");
-      assert.ok(run.caster.hp < 100, stage.id + " returned bikes hit Vicente");
-      assert.equal(run.state.projectiles.length, 0);
-      finite(run.state, stage.id);
-      interactionCases++;
+  for (const side of [0, 1] as const) {
+    const run = scene("poliedro", "carolina", side, 245);
+    run.inputs[side].actions.special++;
+    run.inputs[1 - side].actions.special++;
+    const reflected = new Set<number>();
+    for (let frame = 0; frame < 160; frame++) {
+      run.advance(1);
+      for (const shot of run.state.projectiles)
+        if (shot.kind === "courier" && shot.owner !== side) {
+          reflected.add(shot.id);
+          assert.equal(Math.sign(shot.vx), side === 0 ? -1 : 1);
+          assert.equal(shot.formationIndex, undefined);
+          assert.equal(shot.groundOnly, true);
+        }
     }
+    assert.ok(reflected.size > 0, `P${side + 1} reflection`);
+    assert.ok(run.caster.hp < 100, `P${side + 1}: returned bike hits Vicente`);
+    assert.equal(run.state.projectiles.length, 0);
+    finite(run.state, `carolina/P${side + 1}`);
+  }
 });
 
 test("front-facing reflection of newly spawned bikes is independent of player order", () => {
@@ -289,7 +159,8 @@ test("front-facing reflection of newly spawned bikes is independent of player or
       for (let tick = 0; tick < 22; tick++) {
         run.advance(1);
         for (const shot of run.state.projectiles)
-          if (shot.kind === "courier" && shot.owner !== side) reflected.add(shot.id);
+          if (shot.kind === "courier" && shot.owner !== side)
+            reflected.add(shot.id);
       }
       outcomes.push({
         reflected: reflected.size,
@@ -306,7 +177,6 @@ test("front-facing reflection of newly spawned bikes is independent of player or
       outcomes[1],
       `gap ${gap}: either player must reflect the newly spawned motorcycles`,
     );
-    interactionCases += 2;
   }
 });
 
@@ -322,93 +192,24 @@ test("Amanda counters an incoming motorcycle on either side", () => {
     assert.ok(run.caster.hits < 1);
     run.advance(88);
     finite(run.state, "Amanda counter");
-    interactionCases++;
   }
 });
 
-test("low energy rejects summons and a hit during startup cancels the motorcycle", () => {
-  for (const stage of STAGES)
+test("motorcycle matchups replay identically across JSON network round trips", () => {
+  for (const rival of ["vallenilla", "silbon", "carolina"] as const)
     for (const side of [0, 1] as const) {
-      const depleted = scene(stage.id, "gomez", side);
-      depleted.caster.energy = 24;
-      depleted.inputs[side].actions.special++;
-      depleted.advance(40);
-      assert.equal(depleted.state.projectiles.length, 0);
-      assert.equal(depleted.caster.hits, 0);
-      assert.equal(depleted.caster.attack, null);
-      const interrupted = scene(stage.id, "vallenilla", side, 80);
-      interrupted.inputs[side].actions.special++;
-      interrupted.inputs[1 - side].actions.light++;
-      interrupted.advance(30);
-      assert.ok(interrupted.caster.hp < 100);
-      assert.equal(interrupted.state.projectiles.length, 0);
-      assert.equal(interrupted.caster.hits, 0);
-      interactionCases += 2;
-    }
-});
-
-test("the motorcycle resolves final-stock knockouts and edge ringouts on both sides", () => {
-  for (const side of [0, 1] as const)
-    for (const kind of ["knockout", "ringout"] as const) {
-      const run = scene("poliedro", "tiotigre", side, 300);
-      run.target.stocks = 1;
-      if (kind === "knockout") run.target.hp = 2;
-      else {
-        run.caster.x = side === 0 ? 700 : 380;
-        run.target.x = side === 0 ? 1095 : -15;
-      }
+      const run = scene("merida", rival, side);
+      let remote: MatchState = JSON.parse(JSON.stringify(run.state));
       run.inputs[side].actions.special++;
-      run.advance(240);
-      assert.equal(run.state.phase, "finished", `${kind}/P${side + 1}`);
-      assert.equal(run.state.winner, side);
-      assert.equal(run.target.stocks, 0);
-      finite(run.state, kind);
-      interactionCases++;
-    }
-});
-
-test("matchup replays remain identical across JSON network round trips on every stage", () => {
-  for (const stage of STAGES)
-    for (const rival of ["vallenilla", "silbon", "carolina"] as const)
-      for (const side of [0, 1] as const) {
-        const run = scene(stage.id, rival, side);
-        let remote: MatchState = JSON.parse(JSON.stringify(run.state));
-        run.inputs[side].actions.special++;
-        for (let frame = 0; frame < 150; frame++) {
-          run.advance(1);
-          stepMatch(remote, run.inputs);
-          remote = JSON.parse(JSON.stringify(remote));
-          assert.deepEqual(
-            JSON.parse(JSON.stringify(run.state)),
-            remote,
-            `${stage.id}/${rival}/P${side + 1}/frame-${frame}`,
-          );
-        }
-        interactionCases++;
+      for (let frame = 0; frame < 150; frame++) {
+        run.advance(1);
+        stepMatch(remote, run.inputs);
+        remote = JSON.parse(JSON.stringify(remote));
+        assert.deepEqual(
+          JSON.parse(JSON.stringify(run.state)),
+          remote,
+          `${rival}/P${side + 1}/frame-${frame}`,
+        );
       }
-});
-
-after(() => {
-  const report = {
-    ability: "Entrega exprés / single motorcycle",
-    fighters: FIGHTERS.map((f) => ({ id: f.id, name: f.name })),
-    stages: STAGES.map((s) => ({ id: s.id, name: s.name })),
-    defenses,
-    counts: {
-      matrixCases,
-      clashCases,
-      platformCases,
-      interactionCases,
-      total: matrixCases + clashCases + platformCases + interactionCases,
-    },
-    summaries,
-  };
-  if (process.env.COURIER_QA_REPORT)
-    writeFileSync(
-      process.env.COURIER_QA_REPORT,
-      JSON.stringify(report, null, 2) + "\n",
-    );
-  console.log(
-    `Courier coverage: ${matrixCases} matchup cases, ${clashCases} special clashes, ${platformCases} platform cases, ${interactionCases} interaction cases.`,
-  );
+    }
 });

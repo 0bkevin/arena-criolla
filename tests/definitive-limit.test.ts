@@ -54,6 +54,11 @@ test("the definitive remains spent after capture, transformation, projectile and
       r.player.energy = 100;
       r.inputs[side].actions.super++;
       r.advance();
+      assert.equal(
+        r.player.superChargeTicks,
+        0,
+        `${context}: no second charge`,
+      );
       assert.equal(r.player.attack, null, `${context}: second use rejected`);
       assert.equal(r.player.energy, 100, `${context}: no second energy debit`);
     }
@@ -95,6 +100,7 @@ test("a missed definitive and losing a life still consume the fight's only use",
     restored.players[side].energy = 100;
     r.inputs[side].actions.super++;
     stepMatch(restored, r.inputs);
+    assert.equal(restored.players[side].superChargeTicks, 0);
     assert.equal(restored.players[side].attack, null);
     assert.equal(restored.players[side].energy, 100);
 
@@ -139,6 +145,7 @@ test("blocking or interrupting a definitive does not restore its use", () => {
       r.player.energy = 100;
       r.inputs[side].actions.super++;
       r.advance();
+      assert.equal(r.player.superChargeTicks, 0, "no second charge starts");
       assert.equal(r.player.attack, null);
       assert.equal(r.player.energy, 100);
     }

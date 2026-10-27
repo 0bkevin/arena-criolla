@@ -39,7 +39,7 @@ async function atlas(crossing = false) {
     .toBuffer();
 }
 async function setup(provider: CharacterProvider | null = null) {
-  const folder = await mkdtemp(path.join(os.tmpdir(), "arena-resilience-v31-"));
+  const folder = await mkdtemp(path.join(os.tmpdir(), "arena-resilience-"));
   const server = await makeArenaServer({
     workshopEnabled: true,
     serveClient: false,
@@ -148,7 +148,7 @@ test("the visitor pipeline recovers a complete silhouette crossing a grid line w
 });
 
 test("generation budget is atomic and survives deletion and database reopen", async () => {
-  const folder = await mkdtemp(path.join(os.tmpdir(), "arena-budget-v31-"));
+  const folder = await mkdtemp(path.join(os.tmpdir(), "arena-budget-"));
   const file = path.join(folder, "arena.sqlite");
   let db = new CreatorDatabase(file);
   try {

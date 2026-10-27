@@ -18,6 +18,8 @@
     "shared",
     "server",
     "tests",
+    "e2e",
+    "playwright.config.ts",
     "scripts/creator-codex.ts",
     "scripts/creator-codex",
     "scripts/creator-import.ts",
