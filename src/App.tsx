@@ -220,7 +220,7 @@ export function App({
   useEffect(() => {
     // Offline matches start right after the player taps Jugar: fetch the attack
     // and finale art in idle time so the start does not wait on the network.
-    // Each pairing is several MB, so wait until the choice has settled instead
+    // Each pairing is a few MB, so wait until the choice has settled instead
     // of warming every fighter the player merely browses past.
     if (!engaged || network.room || active || constrainedConnection()) return;
     let idle = 0;
@@ -229,7 +229,7 @@ export function App({
       if ("requestIdleCallback" in window)
         idle = window.requestIdleCallback(warm, { timeout: 4000 });
       else warm();
-    }, 4000);
+    }, 2000);
     return () => {
       clearTimeout(timer);
       if (idle) window.cancelIdleCallback(idle);
