@@ -1,4 +1,3 @@
-import { assetUrl } from "./asset-url";
 import {
   useEffect,
   useMemo,
@@ -63,6 +62,7 @@ import { Game, type GameMode } from "./components/Game";
 import { Modal } from "./components/Modal";
 import { Help } from "./components/Help";
 import { beginMobilePlay, leaveLandscape } from "./game/mobile";
+import { assetUrl } from "./asset-url";
 import "./dialog.css";
 import "./styles.css";
 import "./lobby.css";

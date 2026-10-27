@@ -1,16 +1,19 @@
-import { assetVersions } from "./shared/asset-versions";
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { brotliCompress, constants, gzip } from "node:zlib";
 import { promisify } from "node:util";
 import { defineConfig, type Plugin } from "vite";
 import entranceAssets from "./src/entrance-assets.json";
+import { assetVersions } from "./shared/asset-versions";
 
 const versions = await assetVersions("public");
-await writeFile(
-  "shared/asset-versions.json",
-  JSON.stringify(versions, null, 2) + "\n",
-);
+const versionManifest = JSON.stringify(versions, null, 2) + "\n";
+// Rewriting an unchanged tracked file would dirty the tree and trigger HMR.
+if (
+  (await readFile("shared/asset-versions.json", "utf8").catch(() => "")) !==
+  versionManifest
+)
+  await writeFile("shared/asset-versions.json", versionManifest);
 const versionUrl = (url: string) =>
   versions[url] ? `${url}?v=${versions[url]}` : url;
 

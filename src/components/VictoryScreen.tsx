@@ -1,4 +1,3 @@
-import { assetUrl } from "../asset-url";
 import {
   useEffect,
   useLayoutEffect,
@@ -11,6 +10,7 @@ import type { MatchState } from "../../shared/engine";
 import type { GameMode } from "./Game";
 import { VenezuelaStars } from "./CriolloArt";
 import { Portrait } from "./Portrait";
+import { assetUrl } from "../asset-url";
 import { playVictoryTransition } from "../game/victory-transition";
 import { startVictoryMusic } from "../audio";
 

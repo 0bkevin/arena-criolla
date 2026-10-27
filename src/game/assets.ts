@@ -1,4 +1,3 @@
-import { assetUrl } from "../asset-url";
 import { COMMUNITY_CHARACTERS } from "../../shared/community";
 import {
   FIGHTERS,
@@ -19,6 +18,7 @@ import finaleDesk from "../../shared/finale-desk-assets.json";
 import { finaleAsset, finaleById } from "../../shared/finales";
 import perroMujeriego from "../../shared/perro-mujeriego-assets.json";
 import { ATTACK_ART } from "./attack-art";
+import { assetUrl } from "../asset-url";
 
 const isolatePixels = preparationWorker(
   () =>

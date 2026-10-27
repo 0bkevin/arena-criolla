@@ -1,4 +1,5 @@
 import { assetUrl } from "./asset-url";
+
 const INTERFACE_FONTS = [
   {
     family: "Barlow Condensed",

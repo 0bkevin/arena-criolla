@@ -1,6 +1,6 @@
-import { assetVersion } from "../shared/asset-versions";
 import "dotenv/config";
 import express from "express";
+import { assetVersion } from "../shared/asset-versions";
 import { makeCreatorService, type CreatorOptions } from "./creator/router";
 import { createServer } from "node:http";
 import { createHash, randomBytes, randomUUID } from "node:crypto";
