@@ -1,0 +1,118 @@
+.acknowledgements-page {
+  --lime: #ffd45a;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 max(24px, env(safe-area-inset-left)) 0
+    max(24px, env(safe-area-inset-right));
+  color: #eef2fa;
+  background: #091524;
+}
+.acknowledgements-header,
+.acknowledgements-footer {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.acknowledgements-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding: 20px 0;
+}
+.acknowledgements-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff5db;
+  font: italic 800 24px/1 var(--font-display);
+}
+.acknowledgements-brand img {
+  flex-shrink: 0;
+}
+.acknowledgements-brand > span > span {
+  color: var(--lime);
+}
+.acknowledgements-header > a {
+  min-height: 44px;
+  align-content: center;
+}
+.acknowledgements-content {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 0;
+}
+.acknowledgements-content h1 {
+  margin-bottom: 24px;
+  color: #fff5db;
+  font: italic 800 clamp(2.25rem, 6vw, 4rem)/1.1 var(--font-display);
+  overflow-wrap: anywhere;
+}
+.acknowledgements-content p {
+  max-width: 68ch;
+  color: #a3b3ca;
+  font-size: 17px;
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+.acknowledgements-content .acknowledgements-intro {
+  color: #eef2fa;
+  font-size: 19px;
+}
+.acknowledgements-content section {
+  margin-top: 40px;
+}
+.acknowledgements-content h2 {
+  margin-bottom: 12px;
+  color: #fff5db;
+  font: 700 24px/1.3 var(--font-body);
+  text-wrap: balance;
+}
+.acknowledgements-content h2 a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.acknowledgements-content h2 svg {
+  flex-shrink: 0;
+  color: var(--lime);
+}
+.acknowledgements-page a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.16s;
+}
+.acknowledgements-page a:hover,
+.acknowledgements-page a:focus-visible {
+  color: var(--lime);
+}
+.acknowledgements-content strong {
+  color: #eef2fa;
+}
+.acknowledgements-content .acknowledgements-closing {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 40px;
+  color: var(--lime);
+  font-weight: 700;
+}
+.acknowledgements-closing svg {
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 5px;
+}
+.acknowledgements-footer {
+  margin-top: auto;
+  padding: 20px 0 max(20px, env(safe-area-inset-bottom));
+  color: #a3b3ca;
+  font-size: 13px;
+}
+@media (max-width: 600px) {
+  .acknowledgements-content {
+    padding: 40px 0;
+  }
+}
