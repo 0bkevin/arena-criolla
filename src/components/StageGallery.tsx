@@ -1,6 +1,6 @@
-import { stageThumbnail } from "../stage-thumbnail";
 import { Check } from "lucide-react";
 import { STAGES, type StageId } from "../../shared/content";
+import { stageThumbnail } from "../stage-thumbnail";
 
 export function StageGallery({
   selectedStage,

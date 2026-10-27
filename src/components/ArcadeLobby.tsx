@@ -1,4 +1,3 @@
-import { stageThumbnail } from "../stage-thumbnail";
 import {
   useEffect,
   useLayoutEffect,
@@ -32,6 +31,7 @@ import {
 import type { useArenaNetwork } from "../network";
 import type { GameMode } from "./Game";
 import { Portrait } from "./Portrait";
+import { stageThumbnail } from "../stage-thumbnail";
 import { loadSprite } from "../game/assets";
 import { PixelIcon } from "./PixelIcon";
 import { RosterFilter } from "./RosterFilter";
