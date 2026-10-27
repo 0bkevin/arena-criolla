@@ -95,6 +95,8 @@ const checks = {
     /^(public\/assets\/|shared\/(sprite-geometry|fighters)\.json$|scripts\/validate-character-assets\.mjs$)/,
   audit: /^package-lock\.json$/,
   "deploy-controls": /^deploy\//,
+  // Browser layout checks for anything that changes what the lobby or arena shows.
+  e2e: /^(src\/|index\.html|vite\.config\.ts|public\/|shared\/|e2e\/|playwright\.config\.ts$)/,
   // Anything the Docker build copies, plus the smoke test it runs.
   image:
     /^(Dockerfile|\.dockerignore|index\.html|vite\.config\.ts|src\/|shared\/|server\/|public\/|scripts\/(security-smoke\.mjs|creator-import\.ts))/,

@@ -12,9 +12,22 @@ Do not add tests that pin balance numbers, repeat a generic rule for every
 fighter, inventory metadata or artwork versions, look for prose or CSS/source
 fragments, or log evidence instead of asserting it.
 
+## Layout checks
+
+`e2e/` drives the real app in Chromium at phone, phone-landscape, tablet and
+desktop sizes. It checks what a player would notice: no control or heading is
+cut off at the screen edge, the start button is not covered, dialogs fit on
+screen and return focus on Escape, roster search works, the arena keeps its
+proportions, phones in portrait get the rotate prompt, and touch controls stay
+on screen without overlapping. Do not add pixel or screenshot comparisons; they
+break on every art change. The page clips horizontal overflow, so checks
+measure elements, not page scroll width.
+
 ## Commands
 
 - `npm test`: every automated test.
+- `npm run test:ui`: layout checks in Chromium with Playwright (`e2e/`). Starts its
+  own server; run `npx playwright install chromium` once.
 - `npm run typecheck`: TypeScript, including tests and browser fixtures.
 - `npm run check:assets`: public combat atlas transparency, complete silhouettes
   and runtime geometry.
@@ -31,6 +44,8 @@ fragments, or log evidence instead of asserting it.
   reads by repository path), changed. Changes to `package.json`, the lockfile,
   `tsconfig.json`, `tests/helpers`, `tests/fixtures`, workflows or the selector
   itself run every test.
+- **Layout (`test:ui`)** for changes to `src/`, `shared/`, `public/`, `index.html`,
+  the Vite config or `e2e/`.
 - **Type check** for TypeScript/JSON changes, **`check:assets`** for sprite and
   roster changes, **`npm audit`** for lockfile changes, and the **deploy-control
   tests** for `deploy/` changes.
