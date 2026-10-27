@@ -11,6 +11,7 @@
     "creator:codex": "tsx scripts/creator-codex.ts",
     "creator:import": "tsx scripts/creator-import.ts",
     "test": "tsx --test \"tests/**/*.test.ts\"",
+    "test:ui": "playwright test",
     "perf:engine": "tsx scripts/performance-audit.ts",
     "perf:network": "node scripts/performance-network.mjs",
     "assets:audit:lossless": "node scripts/audit-lossless-assets.mjs",
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@openai/codex-sdk": "0.162.1",
+    "@playwright/test": "^1.64.1",
     "@types/express": "^5.0.0",
     "@types/multer": "^2.3.0",
     "@types/node": "^24.0.0",
