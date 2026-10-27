@@ -404,7 +404,11 @@ export function drawSprite(
   );
   ctx.restore();
 }
-/** Attack sheets, finale props and the courier sheet a match may draw. */
+/**
+ * Attack sheets, finale props and the courier sheet a match may draw. Attack
+ * art can appear from the first exchange; finale art only during a capture
+ * super cinematic, which only finale-renderer.ts draws.
+ */
 function decorationFiles(
   fighters: readonly FighterId[],
   attacks: ReadonlySet<FighterId>,
@@ -420,6 +424,13 @@ function decorationFiles(
   const hasSeatedFinale = fighters.some(
     (id) => finales.has(id) && seatedFinaleActors.has(id),
   );
+  const attackFiles = [
+    ...new Set(
+      fighters.flatMap((id) =>
+        attacks.has(id) && ATTACK_ART[id] ? [ATTACK_ART[id].file] : [],
+      ),
+    ),
+  ];
   const finaleFiles = [
     ...new Set(
       fighters.flatMap((id) => {
@@ -435,7 +446,6 @@ function decorationFiles(
           ? (perroMujeriego.dancers as Record<string, { file: string }>)[id]
           : undefined;
         return [
-          ...(attacks.has(id) && ATTACK_ART[id] ? [ATTACK_ART[id].file] : []),
           ...(asset ? [asset.file] : []),
           ...(hasSeatedFinale && seated ? [seated.file] : []),
           ...(capture && performer ? [performer.file] : []),
@@ -447,8 +457,8 @@ function decorationFiles(
         ];
       }),
     ),
-  ];
-  return { hasCourier, finaleFiles };
+  ].filter((file) => !attackFiles.includes(file));
+  return { hasCourier, attackFiles, finaleFiles };
 }
 
 export async function preloadAssets(
@@ -458,6 +468,11 @@ export async function preloadAssets(
     entrance?: boolean;
     attacks?: readonly FighterId[];
     finales?: readonly FighterId[];
+    /**
+     * Resolve without waiting for finale art. It is added to `finaleProps`
+     * as it arrives; until then each cinematic draws its sprite fallback.
+     */
+    deferFinales?: boolean;
   } = {},
 ) {
   // Snapshot the requested roster before loading: publishing can change it mid-flight.
@@ -465,12 +480,15 @@ export async function preloadAssets(
   const stages = [...new Set(stageIds)];
   const attacks = new Set(options.attacks ?? fighters);
   const finales = new Set(options.finales ?? fighters);
-  const { hasCourier, finaleFiles } = decorationFiles(
+  const { hasCourier, attackFiles, finaleFiles } = decorationFiles(
     fighters,
     attacks,
     finales,
   );
-  const [results, courier, finaleImages] = await Promise.all([
+  const decorations = options.deferFinales
+    ? attackFiles
+    : [...attackFiles, ...finaleFiles];
+  const [results, courier, decorationImages] = await Promise.all([
     Promise.all([
       ...fighters.map((id) => loadSprite(id, { entrance: options.entrance })),
       ...stages.map((id) => loadImage(id)),
@@ -478,8 +496,23 @@ export async function preloadAssets(
     hasCourier ? loadImage(courierManifest.file) : undefined,
     // Decorations can retry next fight without blocking the mandatory fighter
     // and stage assets; each cinematic also has a geometry-based fallback.
-    Promise.allSettled(finaleFiles.map((file) => loadImage(file))),
+    Promise.allSettled(decorations.map((file) => loadImage(file))),
   ]);
+  const finaleProps = Object.fromEntries([
+    ...(courier ? [[courierManifest.file, courier]] : []),
+    ...decorations.flatMap((file, i) => {
+      const result = decorationImages[i];
+      return result.status === "fulfilled" ? [[file, result.value]] : [];
+    }),
+  ]) as Record<string, HTMLImageElement>;
+  // Renderers read this record every frame, so late images appear in place
+  // without re-rendering the game.
+  if (options.deferFinales)
+    for (const file of finaleFiles)
+      void loadImage(file).then(
+        (image) => (finaleProps[file] = image),
+        () => {},
+      );
   return {
     sprites: Object.fromEntries(
       fighters.map((id, i) => [id, results[i]]),
@@ -488,13 +521,7 @@ export async function preloadAssets(
       stages.map((id, i) => [id, results[i + fighters.length]]),
     ) as Record<string, HTMLImageElement>,
     courier,
-    finaleProps: Object.fromEntries([
-      ...(courier ? [[courierManifest.file, courier]] : []),
-      ...finaleFiles.flatMap((file, i) => {
-        const result = finaleImages[i];
-        return result.status === "fulfilled" ? [[file, result.value]] : [];
-      }),
-    ]) as Record<string, HTMLImageElement>,
+    finaleProps,
   };
 }
 
@@ -510,7 +537,8 @@ export function prefetchMatchAssets(
 ) {
   const fighters = [...new Set(fighterIds)];
   const everyone = new Set(fighters);
-  const { hasCourier, finaleFiles } = decorationFiles(
+  // Finale art is left out: Game fetches it after the match has started.
+  const { hasCourier, attackFiles } = decorationFiles(
     fighters,
     everyone,
     everyone,
@@ -525,7 +553,7 @@ export function prefetchMatchAssets(
     }),
     ...stageIds,
     ...(hasCourier ? [courierManifest.file] : []),
-    ...finaleFiles,
+    ...attackFiles,
   ];
   for (const id of new Set(files)) {
     const url = imageSource(id);

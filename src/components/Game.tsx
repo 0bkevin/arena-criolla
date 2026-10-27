@@ -290,6 +290,7 @@ export function Game(props: Props) {
     void preloadAssets(
       initial.players.map((player) => player.config.fighter),
       [initial.stage],
+      { deferFinales: true },
     )
       .then((value) => {
         if (alive) setAssets(value);
