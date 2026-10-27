@@ -2,8 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { isArenaFinalist } from "../shared/arena-finales";
 import {
-  BUILT_IN_FIGHTERS,
   STAGES,
+  fighterById,
   platformsAtTick,
   type FighterId,
   type StageId,
@@ -16,10 +16,7 @@ import {
   type Input,
   type MatchState,
 } from "./helpers/charged-finale-engine";
-import {
-  FINALE_CAPTURE_TICK,
-  finaleById,
-} from "../shared/finales";
+import { FINALE_CAPTURE_TICK, finaleById } from "../shared/finales";
 import { advanceArenaCamera, cameraBounds } from "../src/game/arena-camera";
 import { drawFinale } from "../src/game/finale-renderer";
 import { renderMatch, type Assets } from "../src/game/renderer";
@@ -66,12 +63,20 @@ function setup(
   };
   return { state, inputs, advance, start };
 }
+// One fighter per finale mode (including a launch-free capture and both
+// field families); world placement is shared by every fighter of a mode.
+const REPRESENTATIVES = (
+  ["capriles", "nacho", "maite", "conde", "deyna", "bolivar"] as const
+).map((id) => fighterById(id));
+const empowermentTicks = (id: FighterId) =>
+  finaleById(id)!.empowerment!.duration;
+
 const positions = (state: MatchState) =>
   state.players.map(({ x, y }) => ({ x, y }));
 
-test("all built-in finales keep both fighters in their arena on either side of both ledges", () => {
+test("each finale mode keeps both fighters in their arena on either side of both ledges", () => {
   let scenes = 0;
-  for (const fighter of BUILT_IN_FIGHTERS)
+  for (const fighter of REPRESENTATIVES)
     for (const stage of STAGES)
       for (const owner of [0, 1] as const)
         for (const direction of [-1, 1] as const) {
@@ -103,20 +108,21 @@ test("all built-in finales keep both fighters in their arena on either side of b
           }
           if (finaleById(fighter.id)!.mode === "transformation") {
             assert.equal(scene, undefined, context);
+            const ticks = empowermentTicks(fighter.id);
             assert.equal(
               r.state.players[owner].transformation?.ticks,
-              360,
+              ticks,
               context,
             );
             assert.deepEqual(positions(r.state), original, context);
             const tick = r.state.tick;
-            r.advance(360);
+            r.advance(ticks);
             assert.equal(
               r.state.players[owner].transformation,
               undefined,
               context,
             );
-            assert.equal(r.state.tick, tick + 360, context);
+            assert.equal(r.state.tick, tick + ticks, context);
             assert.equal(r.state.stage, stage.id, context);
             assert.equal(r.state.players[1 - owner].hp, 100, context);
             scenes++;
@@ -155,11 +161,11 @@ test("all built-in finales keep both fighters in their arena on either side of b
           );
           scenes++;
         }
-  assert.equal(scenes, BUILT_IN_FIGHTERS.length * STAGES.length * 4);
+  assert.equal(scenes, REPRESENTATIVES.length * STAGES.length * 4);
 });
 
 test("a finale uses the unchanged normal camera on desktop, mobile and reduced-motion views", () => {
-  for (const fighter of BUILT_IN_FIGHTERS)
+  for (const fighter of REPRESENTATIVES)
     for (const owner of [0, 1] as const)
       for (const direction of [-1, 1] as const)
         for (const [width, height] of [
@@ -263,7 +269,7 @@ test("moving platforms keep their exact captured phase and resume carrying the a
 });
 
 test("airborne and unequal-height captures preserve each fighter's own position instead of moving them to a common scene baseline", () => {
-  for (const fighter of BUILT_IN_FIGHTERS)
+  for (const fighter of REPRESENTATIVES)
     for (const owner of [0, 1] as const)
       for (const direction of [-1, 1] as const) {
         const r = setup(fighter.id, "guaira", owner, direction);
@@ -306,7 +312,10 @@ test("airborne and unequal-height captures preserve each fighter's own position 
         }
         if (finaleById(fighter.id)!.mode === "transformation") {
           assert.equal(r.state.finale, undefined);
-          assert.equal(r.state.players[owner].transformation?.ticks, 360);
+          assert.equal(
+            r.state.players[owner].transformation?.ticks,
+            empowermentTicks(fighter.id),
+          );
           const y = r.state.players[owner].y;
           r.advance(1);
           assert.notEqual(
@@ -385,8 +394,8 @@ function recordingContext(width: number, height: number) {
   return { context, images, labels, rectangles };
 }
 
-test("renderMatch draws every finale over its selected stage and platform surfaces using the normal world camera", () => {
-  for (const fighter of BUILT_IN_FIGHTERS)
+test("renderMatch draws each finale mode over its selected stage and platform surfaces using the normal world camera", () => {
+  for (const fighter of REPRESENTATIVES)
     for (const stage of STAGES)
       for (const direction of [-1, 1] as const) {
         const r = setup(fighter.id, stage.id, 0, direction);

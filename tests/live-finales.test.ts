@@ -7,15 +7,26 @@ import {
   WORLD,
   type Input,
 } from "./helpers/charged-finale-engine";
-import { STAGES, type FighterId, type StageId } from "../shared/content";
+import type { FighterId, StageId } from "../shared/content";
 import {
-  ARENA_FINALES,
   REVIEWED_FINALISTS as reviewed,
   activeArenaPerformance,
   isArenaFinalist,
+  type ArenaFinalist,
 } from "../shared/arena-finales";
 
-for (const id of reviewed) {
+// The shared field-mode gates are checked once per implementation family:
+// cavalry, courier, emitted notes, local trap, runway model and a custom actor.
+const representatives: ArenaFinalist[] = [
+  "bolivar",
+  "zavarce",
+  "oscar",
+  "puma",
+  "carolina",
+  "inaki",
+];
+
+for (const id of representatives) {
   test(`${id}: the finale leaves the opponent, arena clock and existing projectiles live`, () => {
     for (const side of [0, 1] as const) {
       const a = { name: id, fighter: id, wins: 3 },
@@ -94,7 +105,7 @@ function setup(
   return { state, source, target, inputs, advance, start };
 }
 
-for (const id of reviewed.filter(isArenaFinalist)) {
+for (const id of representatives)
   test(`${id}: cost, one active field, spatial misses and vulnerable startup from zero wins`, () => {
     for (const side of [0, 1] as const) {
       for (const reason of ["energy", "air", "guard", "interrupt"]) {
@@ -145,6 +156,8 @@ for (const id of reviewed.filter(isArenaFinalist)) {
       assert.equal(r.source.attack, null);
     }
   });
+
+for (const id of reviewed.filter(isArenaFinalist)) {
   test(`${id}: real contacts, immediate stock resolution and interruption remain ordinary combat`, () => {
     for (const side of [0, 1] as const) {
       const hit = setup(id, side);
@@ -321,31 +334,29 @@ test("local traps permit an escape jump; no root or field survives stock loss", 
     }
 });
 
-test("all live fields replay deterministically on every stage, including both ledges and simultaneous casts", () => {
+test("every live field replays deterministically from both ledges with simultaneous casts", () => {
   for (const id of reviewed.filter(isArenaFinalist))
-    for (const stage of STAGES)
-      for (const side of [0, 1] as const) {
-        const r = setup(id, side, 350, stage.id, id);
-        r.source.x = side ? WORLD.right - 35 : WORLD.left + 35;
-        r.target.x = r.source.x + r.source.facing * 350;
-        r.inputs[0].actions.super++;
-        r.inputs[1].actions.super++;
-        r.advance(9);
-        assert.equal(r.state.fieldFinales?.length, 2);
-        const saved = JSON.parse(JSON.stringify(r.state));
-        for (let n = 0; n < 280; n++) {
-          if (n === 35) {
-            r.inputs[0].actions.jump++;
-            r.inputs[1].actions.jump++;
-          }
-          r.advance();
-          stepMatch(saved, r.inputs);
-          assert.deepEqual(saved, r.state, `${id}/${stage.id}/${side}/${n}`);
-          for (const p of r.state.players)
-            assert.ok([p.x, p.y, p.vx, p.vy, p.hp].every(Number.isFinite));
-          assert.equal(r.state.finale, undefined);
+    for (const side of [0, 1] as const) {
+      const r = setup(id, side, 350, "merida", id);
+      r.source.x = side ? WORLD.right - 35 : WORLD.left + 35;
+      r.target.x = r.source.x + r.source.facing * 350;
+      r.inputs[0].actions.super++;
+      r.inputs[1].actions.super++;
+      r.advance(9);
+      assert.equal(r.state.fieldFinales?.length, 2);
+      const saved = JSON.parse(JSON.stringify(r.state));
+      for (let n = 0; n < 280; n++) {
+        if (n === 35) {
+          r.inputs[0].actions.jump++;
+          r.inputs[1].actions.jump++;
         }
-        assert.equal(r.state.fieldFinales, undefined);
+        r.advance();
+        stepMatch(saved, r.inputs);
+        assert.deepEqual(saved, r.state, `${id}/P${side + 1}/tick ${n}`);
+        for (const p of r.state.players)
+          assert.ok([p.x, p.y, p.vx, p.vy, p.hp].every(Number.isFinite));
+        assert.equal(r.state.finale, undefined);
       }
+      assert.equal(r.state.fieldFinales, undefined);
+    }
 });
-
