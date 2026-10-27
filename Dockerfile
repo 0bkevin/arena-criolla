@@ -3,7 +3,8 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 COPY . .
-RUN npm run build
+# CI type-checks every change; the image only needs the client bundle.
+RUN npx vite build
 
 FROM node:24-alpine3.24 AS dependencies
 WORKDIR /app
