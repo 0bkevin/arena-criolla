@@ -28,7 +28,7 @@ const input = {
 async function upstream(
   handler: (req: IncomingMessage, res: ServerResponse, body: string) => void,
 ) {
-  const folder = await mkdtemp(path.join(os.tmpdir(), "arena-provider-v31-"));
+  const folder = await mkdtemp(path.join(os.tmpdir(), "arena-provider-"));
   const photo = path.join(folder, "photo.jpg");
   await writeFile(photo, Buffer.from([0xff, 0xd8, 0xff, 0xd9]));
   const server = createServer(async (req, res) => {

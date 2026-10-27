@@ -74,35 +74,39 @@ test("a fight keeps both dance lookup keys and retries optional failures without
   }
 });
 
-test("Iñaki loads only the art needed by his opponent and reuses the same lossless textures", async () => {
+test("a fight starts before its super cinematic art, which joins the same record later", async () => {
   const browser = browserFixture();
   try {
-    const { preloadAssets } = await loader("inaki-contexts");
-    const normal = await preloadAssets(["inaki", "capriles"], ["caracas"], {
-      entrance: false,
-      attacks: ["inaki"],
-      finales: ["inaki"],
+    const { preloadAssets } = await loader("defer-finales");
+    const cafe = `/assets/${actors.caprilesCafe.file}.webp`;
+    const assets = await preloadAssets(["capriles", "giuseppe"], ["caracas"], {
+      deferFinales: true,
     });
-    assert.ok(normal.finaleProps["inaki-rial-attack-v4"]);
-    assert.equal(browser.count("/assets/inaki-v4.webp"), 1);
-    assert.equal(browser.count("/assets/inaki-defiant-entrance-v4.webp"), 0);
-    assert.equal(browser.count(`/assets/${seated.inaki.file}.webp`), 0);
-    assert.equal(browser.count(`/assets/${recorded.inaki.file}.webp`), 0);
-    const cafe = await preloadAssets(["capriles", "inaki"], ["caracas"]);
-    assert.ok(cafe.finaleProps[seated.inaki.file]);
-    assert.ok(cafe.sprites.inaki.entrance);
-    assert.equal(browser.count(`/assets/${recorded.inaki.file}.webp`), 0);
-    const dance = await preloadAssets(["nacho", "inaki"], ["caracas"]);
-    assert.ok(dance.finaleProps[recorded.inaki.file]);
-    await preloadAssets(["nacho", "inaki"], ["caracas"]);
-    for (const name of [
-      "inaki-v4",
-      "inaki-defiant-entrance-v4",
-      "inaki-rial-attack-v4",
-      seated.inaki.file,
-      recorded.inaki.file,
-    ])
-      assert.equal(browser.count(`/assets/${name}.webp`), 1, name);
+    assert.ok(assets.sprites.capriles && assets.stages.caracas);
+    assert.equal(assets.finaleProps[actors.caprilesCafe.file], undefined);
+    assert.equal(assets.finaleProps[seated.capriles.file], undefined);
+    // Requested only once the mandatory art has resolved.
+    assert.equal(browser.count(cafe), 1);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    assert.ok(assets.finaleProps[actors.caprilesCafe.file]);
+    assert.ok(assets.finaleProps[seated.capriles.file]);
+    assert.equal(browser.count(cafe), 1);
+  } finally {
+    browser.restore();
+  }
+});
+
+test("the lobby prefetch leaves super cinematic art to the started match", async () => {
+  const browser = browserFixture();
+  try {
+    const { prefetchMatchAssets } = await loader("prefetch-without-finales");
+    prefetchMatchAssets(["capriles", "giuseppe"], ["caracas"]);
+    assert.equal(browser.count(`/assets/${actors.caprilesCafe.file}.webp`), 0);
+    assert.equal(browser.count(`/assets/${seated.capriles.file}.webp`), 0);
+    assert.equal(
+      browser.count(`/assets/${fighterById("capriles").sprite}.webp`),
+      1,
+    );
     assert.equal(browser.count("/assets/caracas.webp"), 1);
   } finally {
     browser.restore();

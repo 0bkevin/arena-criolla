@@ -10,18 +10,17 @@
     "start": "NODE_ENV=production tsx server/index.ts",
     "creator:codex": "tsx scripts/creator-codex.ts",
     "creator:import": "tsx scripts/creator-import.ts",
-    "test": "tsx --test tests/*.test.ts tests/character-audits/*.test.ts",
+    "test": "tsx --test \"tests/**/*.test.ts\"",
+    "test:ui": "playwright test",
     "perf:engine": "tsx scripts/performance-audit.ts",
     "perf:network": "node scripts/performance-network.mjs",
     "assets:audit:lossless": "node scripts/audit-lossless-assets.mjs",
     "assets:audit:avif": "node scripts/audit-lossless-avif.mjs",
     "assets:og": "node scripts/generate-og-image.mjs",
     "assets:brand": "node scripts/generate-brand-assets.mjs",
-    "check:assets": "node scripts/validate-character-assets.mjs",
-    "test:creator": "tsx --test tests/accounts.test.ts tests/creator.test.ts tests/creator-sprites.test.ts tests/creator-resilience.test.ts tests/adversarial-creator-v31.test.ts tests/provider-contract.test.ts tests/creator-codex.test.ts tests/adversarial-creator-state-v38.test.ts tests/adversarial-native-import-v38.test.ts",
-    "test:adversarial": "tsx --test tests/adversarial-creator-v31.test.ts tests/adversarial-game-v31.test.ts tests/creator-resilience.test.ts tests/provider-contract.test.ts tests/scheduler.test.ts tests/adversarial-creator-state-v38.test.ts tests/adversarial-native-import-v38.test.ts",
-    "test:characters": "tsx --test tests/character-audits/*.test.ts",
-    "test:accounts": "tsx --test tests/accounts.test.ts"
+    "assets:busts": "tsx scripts/generate-portrait-busts.ts",
+    "assets:stage-thumbs": "tsx scripts/generate-stage-thumbnails.ts",
+    "check:assets": "node scripts/validate-character-assets.mjs"
   },
   "dependencies": {
     "@langchain/langgraph": "^1.5.0",
@@ -40,6 +39,7 @@
   },
   "devDependencies": {
     "@openai/codex-sdk": "0.162.1",
+    "@playwright/test": "^1.64.1",
     "@types/express": "^5.0.0",
     "@types/multer": "^2.3.0",
     "@types/node": "^24.0.0",

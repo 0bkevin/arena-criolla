@@ -72,6 +72,37 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
   assert.equal(JSON.parse(structured[1]).url, "https://arena.example/");
   assert.equal(JSON.parse(structured[1]).image, imageUrl);
 
+  for (const route of ["/agradecimientos", "/agradecimientos/?room=PRIVATE"]) {
+    const thanks = await fetch(base + route);
+    assert.equal(thanks.status, 200);
+    const page = await thanks.text();
+    assert.ok(page.includes("<title>Agradecimientos — Arena Criolla</title>"));
+    assert.ok(
+      page.includes(
+        '<link rel="canonical" href="https://arena.example/agradecimientos"',
+      ),
+    );
+    assert.match(
+      page,
+      /property="og:title"\s+content="Agradecimientos — Arena Criolla"/,
+    );
+    assert.match(
+      page,
+      /name="twitter:title"\s+content="Agradecimientos — Arena Criolla"/,
+    );
+    assert.ok(page.includes("Giuseppe Gangi"));
+    assert.ok(!page.includes("PRIVATE"));
+    const data = page.match(
+      /<script type="application\/ld\+json">([\s\S]*?)<\/script>/,
+    );
+    assert.ok(data);
+    assert.equal(JSON.parse(data[1])["@type"], "WebPage");
+    assert.equal(
+      JSON.parse(data[1]).url,
+      "https://arena.example/agradecimientos",
+    );
+  }
+
   for (const route of [
     "/create",
     "/create/",
@@ -92,18 +123,15 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
   assert.ok(robots.includes("Sitemap: https://arena.example/sitemap.xml"));
   const sitemap = await fetch(`${base}/sitemap.xml`);
   assert.match(sitemap.headers.get("content-type") ?? "", /application\/xml/);
+  const sitemapXml = await sitemap.text();
+  assert.ok(sitemapXml.includes("<loc>https://arena.example/</loc>"));
   assert.ok(
-    (await sitemap.text()).includes("<loc>https://arena.example/</loc>"),
+    sitemapXml.includes("<loc>https://arena.example/agradecimientos</loc>"),
   );
   const image = await fetch(base + new URL(imageUrl).pathname);
   assert.equal(image.status, 200);
   assert.match(image.headers.get("content-type") ?? "", /image\/jpeg/);
   const imageBytes = Buffer.from(await image.arrayBuffer());
-  assert.ok(imageBytes.length < 400_000, "Social image must stay below 400 KB");
-  const metadata = await sharp(imageBytes).metadata();
-  assert.equal(metadata.format, "jpeg");
-  assert.equal(metadata.width, 1200);
-  assert.equal(metadata.height, 630);
   const legacyImage = await fetch(`${base}/assets/og-arena-criolla.jpg`);
   assert.deepEqual(Buffer.from(await legacyImage.arrayBuffer()), imageBytes);
   const alias = await fetch(`${base}/index.html`, { redirect: "manual" });

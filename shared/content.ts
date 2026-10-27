@@ -2,7 +2,7 @@ import fighterData from "./fighters.json";
 import stageData from "./stages.json";
 
 export const SUPER_ENERGY_COST = 90;
-export const SUPER_CHARGE_SECONDS = 0.8;
+export const SUPER_CHARGE_SECONDS = 0.3;
 export const SUPER_CHARGE_TICKS = Math.round(SUPER_CHARGE_SECONDS * 60);
 export const SUPER_CHARGE_SECONDS_LABEL = String(SUPER_CHARGE_SECONDS).replace(
   ".",

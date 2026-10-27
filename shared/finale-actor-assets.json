@@ -623,51 +623,54 @@
       ]
     },
     "inaki": {
-      "file": "inaki-cafe-reactions-v4",
+      "file": "inaki-cafe-reactions-v5",
       "frame": {
-        "x": 12,
-        "y": 12,
-        "width": 505,
-        "height": 651
+        "x": 81,
+        "y": 38,
+        "width": 350,
+        "height": 448,
+        "anchorX": 157.3646907542339,
+        "anchorY": 444,
+        "bodyHeight": 440
       },
-      "bodyHeight": 643,
-      "anchorX": 216.70628225079858,
+      "bodyHeight": 440,
+      "anchorX": 157.3646907542339,
       "frames": [
         {
-          "x": 12,
-          "y": 12,
-          "width": 505,
-          "height": 651,
-          "anchorX": 216.70628225079858,
-          "anchorY": 647,
-          "bodyHeight": 643
+          "x": 81,
+          "y": 38,
+          "width": 350,
+          "height": 448,
+          "anchorX": 157.3646907542339,
+          "anchorY": 444,
+          "bodyHeight": 440
         },
         {
-          "x": 529,
-          "y": 12,
-          "width": 471,
-          "height": 650,
-          "anchorX": 165.5850389276828,
-          "anchorY": 646,
-          "bodyHeight": 643
+          "x": 604,
+          "y": 38,
+          "width": 327,
+          "height": 448,
+          "anchorX": 125.36023506847354,
+          "anchorY": 444,
+          "bodyHeight": 440
         },
         {
-          "x": 609,
-          "y": 675,
-          "width": 505,
-          "height": 577,
-          "anchorX": 284.5136551957386,
-          "anchorY": 573,
-          "bodyHeight": 643
+          "x": 55,
+          "y": 565,
+          "width": 402,
+          "height": 433,
+          "anchorX": 161.56183684094196,
+          "anchorY": 429,
+          "bodyHeight": 440
         },
         {
-          "x": 12,
-          "y": 675,
-          "width": 585,
-          "height": 586,
-          "anchorX": 223.9720480200681,
-          "anchorY": 582,
-          "bodyHeight": 643
+          "x": 585,
+          "y": 569,
+          "width": 365,
+          "height": 429,
+          "anchorX": 180.55542212582486,
+          "anchorY": 425,
+          "bodyHeight": 440
         }
       ]
     }

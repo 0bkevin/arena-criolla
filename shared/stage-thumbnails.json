@@ -1,0 +1,146 @@
+{
+  "caracas": {
+    "sourceSha256": "ba069bc7ffeabd21c3198924dde4e1c4cb851b523a77c6ace0b27d304ba12186",
+    "quality": 85,
+    "files": {
+      "strip": {
+        "file": "stage-thumb-strip-caracas",
+        "width": 360,
+        "sha256": "57676e91a4259af497e27ca4691a2554cf062596dc061e21e3517887f54d5bc6"
+      },
+      "gallery": {
+        "file": "stage-thumb-gallery-caracas",
+        "width": 1100,
+        "sha256": "82e7f770c7a8b0fd6c2efe17e476f2e21deeddca8614313577b0daeadaa090f5"
+      }
+    }
+  },
+  "guaira": {
+    "sourceSha256": "d0520da09dc5f3e22e8fcc6a079a619d2788c4e46982b150569e9e78be81a1f8",
+    "quality": 85,
+    "files": {
+      "strip": {
+        "file": "stage-thumb-strip-guaira",
+        "width": 360,
+        "sha256": "6c9bff18c4c7605f538ba833c65263e22b01f1e18829b828dd87e988fc751814"
+      },
+      "gallery": {
+        "file": "stage-thumb-gallery-guaira",
+        "width": 1100,
+        "sha256": "7ea2d113e845e302221f579bb4ce3fa44301001ab2b365bfd1c60f021050fb86"
+      }
+    }
+  },
+  "valencia": {
+    "sourceSha256": "33d768954d68ea241c5c97cc03f66f9317144b064c21b16efaa89ba38d2e0aa6",
+    "quality": 85,
+    "files": {
+      "strip": {
+        "file": "stage-thumb-strip-valencia",
+        "width": 360,
+        "sha256": "c726803a13d258f4a57e21b31a55c0d30f3e0ae5a3b6ac9e447ce5056a8d3815"
+      },
+      "gallery": {
+        "file": "stage-thumb-gallery-valencia",
+        "width": 1100,
+        "sha256": "edcaf8e9f022924f992fb6b966b15acc2b73c4db544b1ff488bf243605b2e7ac"
+      }
+    }
+  },
+  "canaima": {
+    "sourceSha256": "df6980206a761098e55f8d8318261dc7ebeb6f09204dc4b7c833e188ebe41a6e",
+    "quality": 85,
+    "files": {
+      "strip": {
+        "file": "stage-thumb-strip-canaima",
+        "width": 360,
+        "sha256": "44bafac4fcd043a13047219585ebb74c8b59deae8859e534827ec4e998c2426d"
+      },
+      "gallery": {
+        "file": "stage-thumb-gallery-canaima",
+        "width": 1100,
+        "sha256": "f7bb74bcfb9b42f00f33ed1e6a94adcf0e505a45d42a16df036e229b6cc0d42a"
+      }
+    }
+  },
+  "maracaibo": {
+    "sourceSha256": "18327f7a48b4a158396cee7487503cfc14ec9975f269c1d877a9d922f74a6582",
+    "quality": 85,
+    "files": {
+      "strip": {
+        "file": "stage-thumb-strip-maracaibo",
+        "width": 360,
+        "sha256": "70280d8bd0c68d301b6010ab506350acd5abcd1753f296d0e211b92b68600b95"
+      },
+      "gallery": {
+        "file": "stage-thumb-gallery-maracaibo",
+        "width": 1100,
+        "sha256": "73fec3be73b6834779d9bf90a15fb707a64418bd2f6286321f34aba24af44739"
+      }
+    }
+  },
+  "merida": {
+    "sourceSha256": "19813e69396d209f7fa7a60b2fc797ff7d002b7155eba177d621d419088a187d",
+    "quality": 85,
+    "files": {
+      "strip": {
+        "file": "stage-thumb-strip-merida",
+        "width": 360,
+        "sha256": "3101af4adc6fd86adda062f103332b6d8f87ff2365ae0668302306cbe5c5092d"
+      },
+      "gallery": {
+        "file": "stage-thumb-gallery-merida",
+        "width": 1100,
+        "sha256": "6ef4e44cd28ea26424aa6de9b6f0013540f833a0409c98f111a6f670dbc8afba"
+      }
+    }
+  },
+  "coro": {
+    "sourceSha256": "26865d4180ebea739beed8c5583a5efedad6d83979cfe4eb9109779c1254940e",
+    "quality": 85,
+    "files": {
+      "strip": {
+        "file": "stage-thumb-strip-coro",
+        "width": 360,
+        "sha256": "74cb09faf52f738bc46b650b859ff90671a2575d19d5a8d50533a9414e80dccf"
+      },
+      "gallery": {
+        "file": "stage-thumb-gallery-coro",
+        "width": 1100,
+        "sha256": "1a2f88729937d000ef48ff5de5eb94dceaaeca7bbec1e6af759bbc0fa10051ac"
+      }
+    }
+  },
+  "roques": {
+    "sourceSha256": "221919d420151b8282b5b378da21a58236f7bc5402d5c9cd694d666005d8314d",
+    "quality": 85,
+    "files": {
+      "strip": {
+        "file": "stage-thumb-strip-roques",
+        "width": 360,
+        "sha256": "65df80a09a3bae76e57ca837bebc55daeab16ceccde755b5465f795f0b9ee5b5"
+      },
+      "gallery": {
+        "file": "stage-thumb-gallery-roques",
+        "width": 1100,
+        "sha256": "3f8c828667020ed73794d1ebcc8742a3164295c53db48876d4535bb8356443bb"
+      }
+    }
+  },
+  "poliedro": {
+    "sourceSha256": "98851a400593f063b801492601dc8830f989fdeb0572d3aaea2a7e28cfa1585c",
+    "quality": 85,
+    "files": {
+      "strip": {
+        "file": "stage-thumb-strip-poliedro",
+        "width": 360,
+        "sha256": "238ebfd71bab9351aa528631a59564e13f9d4969a84867c86b4ee905b548c53d"
+      },
+      "gallery": {
+        "file": "stage-thumb-gallery-poliedro",
+        "width": 1100,
+        "sha256": "a7ce448b20fef75b217bb8913436f62f023ac5e3d80fb4c9a2af02a6dc6abbc8"
+      }
+    }
+  }
+}

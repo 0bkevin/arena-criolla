@@ -156,10 +156,25 @@ body {
   align-items: center;
   isolation: isolate;
   overflow: hidden;
-  border: 1px solid #6a7b9555;
+  border: 1px solid #ffd45a38;
   border-radius: 8px;
   background: #172b43;
-  box-shadow: inset 0 1px 0 #ffffff0c;
+  box-shadow:
+    inset 0 1px 0 #ffffff0c,
+    0 10px 24px -14px #000c;
+}
+/* Lit marquee glass: faint scanlines and a top sheen over the cast art. */
+.in-lobby .arcade-marquee::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    repeating-linear-gradient(0deg, #0000 0 2px, #04101f1c 2px 3px),
+    linear-gradient(#fff5db14, #0000 32% 68%, #04101f8c);
+  box-shadow: inset 0 0 0 1px #fff5db0f;
 }
 .in-lobby .arcade-eyebrow {
   color: #a9c1dd;
@@ -190,8 +205,10 @@ body {
   gap: 9px;
   border: 1px solid #8ba4c32b;
   border-radius: 4px;
-  background: #08192a50;
-  box-shadow: none;
+  background: linear-gradient(#11233a90, #08192a90);
+  box-shadow:
+    inset 0 1px 0 #ffffff0d,
+    0 2px 0 #040c17;
   color: #aebed4;
   transition:
     background 140ms,
@@ -243,6 +260,12 @@ body {
 .in-lobby .arcade-modes button:hover {
   background-color: #ffffff08;
   transform: translateY(-1px);
+}
+.in-lobby
+  .arcade-modes
+  :is(#mode-practice, #mode-local, #mode-online):not(.selected):hover {
+  color: var(--paper);
+  border-color: #8ba4c355;
 }
 .in-lobby .arcade-modes button:active {
   transform: translateY(1px);
@@ -325,6 +348,7 @@ body {
   font: italic 800 22px/1 var(--display);
   color: var(--paper);
   letter-spacing: 0.25px;
+  text-shadow: 2px 2px 0 #071124;
 }
 .in-lobby .cabinet-count {
   font: 500 8px var(--pixel);
@@ -337,17 +361,21 @@ body {
   left: 50%;
   transform: translateX(-50%) rotate(-7deg);
   color: var(--coin);
-  font: italic 800 36px/1 var(--display);
-  text-shadow: 2px 2px 0 #071124;
+  font: italic 800 40px/1 var(--display);
+  text-shadow:
+    1px 1px 0 #c8902a,
+    2px 2px 0 #c8902a,
+    3px 3px 0 #071124,
+    4px 4px 0 #071124;
 }
 .in-lobby .duel-vs::before,
 .in-lobby .duel-vs::after {
   content: "";
   position: absolute;
   top: 53%;
-  height: 1px;
-  width: 40px;
-  background: linear-gradient(90deg, transparent, #ffce3244);
+  height: 2px;
+  width: 56px;
+  background: linear-gradient(90deg, transparent, #ffce3266);
 }
 .in-lobby .duel-vs::before {
   right: calc(100% + 12px);
@@ -385,9 +413,11 @@ body {
   text-align: center;
 }
 .in-lobby .contender-p1 {
+  --slot-color: var(--coin);
   grid-column: 1;
 }
 .in-lobby .contender-p2 {
+  --slot-color: var(--coral);
   grid-column: 3;
 }
 .in-lobby .contender-player {
@@ -429,6 +459,9 @@ body {
 .in-lobby .contender-p2 .pixel-cursor {
   color: var(--coral);
 }
+.in-lobby .contender-player.editing .pixel-cursor {
+  animation: cursor-blink 0.9s steps(1, end) infinite;
+}
 .in-lobby .contender-stage {
   width: 100%;
   height: 200px;
@@ -437,6 +470,22 @@ body {
   border-radius: 0;
   background: transparent;
   overflow: visible;
+}
+.in-lobby .contender-stage::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(230px, 100%);
+  height: 92%;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 50% 100% at 50% 100%,
+    color-mix(in srgb, var(--slot-color) 20%, transparent),
+    transparent 72%
+  );
 }
 .in-lobby .contender-stage .selected-portrait {
   width: 164px;
@@ -448,14 +497,13 @@ body {
   animation: fighter-pop 180ms ease-out both;
 }
 .in-lobby .contender-shadow {
-  width: 95px;
-  height: 9px;
-  bottom: 4px;
-  background: #020b1955;
-  box-shadow: 0 0 13px #ffd45a20;
-}
-.in-lobby .contender-p2 .contender-shadow {
-  box-shadow: 0 0 13px #fa7c6d20;
+  width: 118px;
+  height: 14px;
+  bottom: 0;
+  background: radial-gradient(#020b19b0 30%, #020b1900 70%);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--slot-color) 30%, transparent),
+    0 0 16px color-mix(in srgb, var(--slot-color) 24%, transparent);
 }
 .in-lobby .contender-lives {
   top: 12px;
@@ -486,8 +534,20 @@ body {
   background: linear-gradient(120deg, #0d1b2ef0, #11213ce0);
   transform: skewX(-5deg);
 }
-.in-lobby .contender-p2 .contender-identity::before {
-  border-color: var(--coral);
+.in-lobby .contender-identity::after {
+  content: "";
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--slot-color) 20% 80%,
+    transparent
+  );
+  transform: skewX(-20deg);
 }
 .in-lobby .contender-identity > span {
   color: #bac6d6;
@@ -503,6 +563,7 @@ body {
   color: var(--paper);
   letter-spacing: -0.3px;
   overflow-wrap: anywhere;
+  text-shadow: 2px 2px 0 #071124;
 }
 .in-lobby .contender-identity p {
   min-height: 13px;
@@ -794,25 +855,65 @@ body {
   border-radius: 6px;
   background: #102034;
   overflow: visible;
-  box-shadow: none;
+  box-shadow: 0 6px 14px -10px #020a14;
 }
 .in-lobby .fighter-card.picking-p2 {
   --pick-color: var(--coral);
+}
+/* Arcade select cursor: corner brackets in the colour of the player picking. */
+.in-lobby .fighter-card::before {
+  --c: var(--pick-color);
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: 4;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--c), var(--c)) 0 0 / 12px 2px,
+    linear-gradient(var(--c), var(--c)) 0 0 / 2px 12px,
+    linear-gradient(var(--c), var(--c)) 100% 0 / 12px 2px,
+    linear-gradient(var(--c), var(--c)) 100% 0 / 2px 12px,
+    linear-gradient(var(--c), var(--c)) 0 100% / 12px 2px,
+    linear-gradient(var(--c), var(--c)) 0 100% / 2px 12px,
+    linear-gradient(var(--c), var(--c)) 100% 100% / 12px 2px,
+    linear-gradient(var(--c), var(--c)) 100% 100% / 2px 12px;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.06);
+  transition:
+    opacity 120ms,
+    transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.in-lobby .fighter-card.chosen::before,
+.in-lobby .fighter-card:focus-visible::before {
+  opacity: 1;
+  transform: none;
+}
+@media (hover: hover) {
+  .in-lobby .fighter-card:hover::before {
+    opacity: 1;
+    transform: none;
+  }
+  .in-lobby .fighter-card:not(.chosen):hover::before {
+    --c: color-mix(in srgb, var(--pick-color) 70%, transparent);
+  }
 }
 .in-lobby .fighter-card.chosen,
 .in-lobby .fighter-card.chosen.picking-p2,
 .in-lobby .fighter-card.chosen:hover,
 .in-lobby .fighter-card.chosen.picking-p2:hover {
-  border: 1px solid var(--pick-color);
+  /* The corner brackets mark the pick; a full-colour border would frame it twice. */
+  border: 1px solid color-mix(in srgb, var(--pick-color) 35%, transparent);
   background: color-mix(in srgb, var(--pick-color) 10%, #102034);
-  box-shadow: none;
+  box-shadow: 0 8px 18px -10px
+    color-mix(in srgb, var(--pick-color) 55%, transparent);
   z-index: 3;
 }
 .in-lobby .fighter-card:hover {
   transform: translateY(-2px);
   background: #192c43;
   border-color: #8ba4c3;
-  box-shadow: none;
+  box-shadow: 0 10px 18px -10px #020a14;
 }
 .in-lobby .fighter-card:active {
   transform: translateY(1px);
@@ -822,8 +923,23 @@ body {
   width: 100%;
   position: relative;
   border-radius: 5px 5px 0 0;
-  background: color-mix(in srgb, var(--fighter-color) 12%, #192d42);
+  background:
+    radial-gradient(
+      ellipse 70% 95% at 50% 0,
+      color-mix(in srgb, var(--fighter-color) 24%, #2a4466),
+      transparent 75%
+    ),
+    color-mix(in srgb, var(--fighter-color) 12%, #192d42);
   overflow: hidden;
+}
+.in-lobby .fighter-card.chosen .fighter-card-art {
+  background:
+    radial-gradient(
+      ellipse 70% 95% at 50% 0,
+      color-mix(in srgb, var(--pick-color) 30%, #2a4466),
+      transparent 75%
+    ),
+    color-mix(in srgb, var(--fighter-color) 12%, #192d42);
 }
 .in-lobby .fighter-card-art::after {
   content: none;
@@ -835,7 +951,14 @@ body {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+  transform-origin: 50% 20%;
   filter: drop-shadow(1px 2px 0 #07112466);
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@media (hover: hover) {
+  .in-lobby .fighter-card:hover .fighter-card-art .portrait {
+    transform: translateX(-50%) scale(1.06);
+  }
 }
 .in-lobby .fighter-player-tags {
   top: 3px;
@@ -856,8 +979,9 @@ body {
   flex: 1;
   min-height: 31px;
   padding: 7px 4px;
-  background: transparent;
-  border-radius: 0;
+  background: linear-gradient(#0a172800, #0a1728b0);
+  border-top: 1px solid #ffffff0d;
+  border-radius: 0 0 5px 5px;
 }
 .in-lobby .fighter-card-caption strong {
   font: 700 11px/1.25 var(--font-body);
@@ -944,8 +1068,12 @@ body {
   color: #becde0;
   border: 1px solid #7188aa3b;
   border-radius: 6px;
-  box-shadow: none;
+  box-shadow: 0 6px 14px -10px #020a14;
   overflow: hidden;
+  transition:
+    border-color 140ms,
+    transform 140ms,
+    box-shadow 140ms;
 }
 .in-lobby .arcade-stage .stage-thumbnail {
   height: 37px;
@@ -959,10 +1087,11 @@ body {
   color: var(--coin);
   background: #28323a;
   border-color: var(--coin);
-  box-shadow: none;
+  box-shadow: 0 8px 18px -10px #ffd45a8c;
 }
 .in-lobby .arcade-stage:not(.selected):hover:enabled {
   border-color: #cfdef1;
+  transform: translateY(-2px);
 }
 .in-lobby .stage-tick {
   width: 16px;
@@ -1038,12 +1167,15 @@ body {
   background: #071527;
   border: 1px solid #879ab657;
   border-radius: 4px;
+  box-shadow: 0 2px 0 #040c17;
 }
 .in-lobby .ready-difficulty button.active {
   color: var(--ink);
-  background: var(--coin);
-  border-color: var(--coin);
-  box-shadow: none;
+  background: linear-gradient(#ffe078, #f6ca52);
+  border-color: #fff2b34d;
+  box-shadow:
+    inset 0 1px 0 #fff5db60,
+    0 2px 0 #866b2c;
 }
 .in-lobby .ready-difficulty button:not(.active):hover {
   color: var(--paper);
@@ -1061,6 +1193,29 @@ body {
     inset 0 1px 0 #fff5db80,
     0 4px 0 #927338;
   font: italic 800 29px/1 var(--display);
+  position: relative;
+  isolation: isolate;
+}
+.in-lobby .arcade-start::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+      105deg,
+      #fff5db00 40%,
+      #fff5dbb3 50%,
+      #fff5db00 60%
+    )
+    no-repeat;
+  background-size: 250% 100%;
+  background-position: 160% 0;
+  animation: start-glint 4s linear 1.2s infinite;
+}
+.in-lobby .arcade-start:disabled::before {
+  content: none;
 }
 .in-lobby .arcade-start:hover:enabled {
   background: linear-gradient(#ffe99a, #ffdb77);
@@ -1153,6 +1308,20 @@ body {
   outline-offset: 4px;
   border-radius: 2px;
 }
+.footer-acknowledgements {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #a3b3cacc;
+  font: 400 13px/1.5 var(--font-body);
+  letter-spacing: 0;
+  text-decoration: none;
+  transition: color 0.18s ease-out;
+}
+.footer-acknowledgements:hover,
+.footer-acknowledgements:focus-visible {
+  color: var(--coin);
+}
 @media (min-width: 901px) {
   .app-shell .site-footer {
     flex-direction: row;
@@ -1163,9 +1332,9 @@ body {
 }
 .in-lobby .site-footer {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
-  gap: 16px;
+  gap: 16px 48px;
   margin-top: auto;
   padding: 16px 0 max(16px, env(safe-area-inset-bottom));
   border-top: 1px solid #a3b3ca26;
@@ -1180,9 +1349,10 @@ body {
 @media (max-width: 600px) {
   .in-lobby .site-footer {
     grid-template-columns: minmax(0, 1fr);
-    gap: 8px;
+    gap: 12px;
   }
   .in-lobby .footer-brand,
+  .in-lobby .footer-acknowledgements,
   .in-lobby .footer-credit {
     justify-self: center;
   }
@@ -1256,6 +1426,22 @@ body {
   color: var(--paper);
   background: #20314a;
   border-color: #6a87aa;
+}
+/* 110% → -10% keeps the band just off each edge, so most of the pass is on
+   the button rather than travelling through empty space. */
+@keyframes start-glint {
+  0% {
+    background-position: 110% 0;
+  }
+  40%,
+  100% {
+    background-position: -10% 0;
+  }
+}
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
 }
 @keyframes night-scene-in {
   from {
@@ -1833,6 +2019,7 @@ body {
 }
 @media (min-width: 601px) and (max-width: 1100px) {
   .in-lobby .arcade-marquee {
+    width: 100%;
     height: auto;
     max-height: 124px;
     aspect-ratio: 1983 / 308;

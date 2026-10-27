@@ -119,7 +119,13 @@ export function RootApp({
             .catch(() => {})
             .finally(() => {
               if (active) setCatalogReady(true);
-            });
+            })
+            // The lobby follows the entrance: fetch its first art meanwhile.
+            .then(() => loadGame())
+            .then(([module]) => {
+              if (active) module.warmLobbyArt();
+            })
+            .catch(() => {});
         });
       });
     };
@@ -141,9 +147,8 @@ export function RootApp({
       });
       paintObserver.observe({ type: "paint", buffered: true });
     } else warmGame();
-    const timer = setInterval(() => {
-      if (!document.hidden) void refresh(controller.signal).catch(() => {});
-    }, 15_000);
+    // No polling: the arena socket pushes the catalog on every (re)connect and
+    // whenever a character is published or withdrawn.
     return () => {
       active = false;
       controller.abort();
@@ -152,7 +157,6 @@ export function RootApp({
       cancelAnimationFrame(firstFrame);
       cancelAnimationFrame(secondFrame);
       window.removeEventListener("popstate", restoreGameRoute);
-      clearInterval(timer);
     };
   }, []);
   // Restore saved community selections only after their definitions are available.

@@ -90,6 +90,6 @@ Delete the temporary transferred bundle after successful import. The database an
 
 ## Checks and scope
 
-`npm run test:creator` includes the offline workflow, privacy, cancellation, stale/external image rejection, invalid atlas rejection, checksum checks, owner resolution, duplicate protection and import-to-publication service checks. These use deterministic fixtures and do not spend credits.
+`npm test` includes the offline workflow, privacy, cancellation, stale/external image rejection, invalid atlas rejection, checksum checks, owner resolution, duplicate protection and import-to-publication service checks. These use deterministic fixtures and do not spend credits.
 
 Native Codex authentication is distinct from the public Sign in with ChatGPT API preview. The public preview currently excludes image generation, and native app-server authentication is not permitted for commercial or hosted services. This tool prepares private development assets; it is not a hosted image backend. [Preview limitations](https://developers.openai.com/siwc/token-sharing-open-source/preview-limitations), [Native authentication scope](https://learn.chatgpt.com/docs/app-server#auth-endpoints)

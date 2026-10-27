@@ -1,0 +1,89 @@
+name: Production image
+on:
+  workflow_call:
+    inputs:
+      scan:
+        description: Scan the runtime image for known CVEs
+        type: boolean
+        default: false
+      export:
+        description: Upload the verified image as an artifact for deployment
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
+      - name: Build production image
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7
+        with:
+          context: .
+          pull: true
+          load: true
+          tags: |
+            arena-criolla:ci
+            arena-criolla:release-${{ github.sha }}
+          labels: |
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+          cache-from: type=gha,scope=arena-criolla-ci
+          cache-to: type=gha,scope=arena-criolla-ci,mode=max
+      - name: Set vulnerability cache period
+        if: inputs.scan
+        id: scanner-cache
+        run: echo "period=$(( $(date +%s) / 21600 ))" >> "$GITHUB_OUTPUT"
+      - name: Cache vulnerability database
+        if: inputs.scan
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/trivy
+          key: ${{ runner.os }}-trivy-0.76.0-${{ steps.scanner-cache.outputs.period }}
+          restore-keys: ${{ runner.os }}-trivy-0.76.0-
+      - name: Check the runtime image for known CVEs
+        if: inputs.scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          scanner_dir=$(mktemp -d)
+          trap 'rm -rf "$scanner_dir"' EXIT
+          curl --fail --location --retry 3 --output "$scanner_dir/trivy.tar.gz" https://github.com/aquasecurity/trivy/releases/download/v0.76.0/trivy_0.76.0_Linux-64bit.tar.gz
+          echo "e24b1c51293c1b15e4ba8d45bbc7891ba053f90278ec2698f3562c993e145fe7  $scanner_dir/trivy.tar.gz" | sha256sum --check --strict
+          tar --extract --gzip --file "$scanner_dir/trivy.tar.gz" --directory "$scanner_dir" trivy
+          "$scanner_dir/trivy" image --disable-telemetry --scanners vuln --exit-code 1 arena-criolla:ci
+      - name: Boot the image and verify HTTP and WebSocket behavior
+        shell: bash
+        run: |
+          set -euo pipefail
+          container=$(docker run --detach --read-only --tmpfs /tmp:rw,noexec,nosuid,nodev,size=128m,mode=1777 --cap-drop ALL --security-opt no-new-privileges:true --publish 127.0.0.1::5173 arena-criolla:ci)
+          trap 'docker logs "$container"; docker rm --force --volumes "$container"' EXIT
+          port=$(docker port "$container" 5173/tcp | cut -d: -f2)
+          # Docker can reset connections before the application is listening.
+          curl --fail --retry 15 --retry-delay 1 --retry-all-errors --retry-max-time 30 --connect-timeout 2 --max-time 3 "http://127.0.0.1:$port/api/health"
+          # Use the dependencies in the image instead of installing them again.
+          docker exec -i "$container" node --input-type=module - http://127.0.0.1:5173 < scripts/security-smoke.mjs
+      - name: Export the verified image
+        if: inputs.export
+        env:
+          RELEASE_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          docker save "arena-criolla:release-$RELEASE_SHA" | gzip -1 > "$RUNNER_TEMP/image.tar.gz"
+          cd "$RUNNER_TEMP"
+          sha256sum image.tar.gz > image.tar.gz.sha256
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: inputs.export
+        with:
+          name: production-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/image.tar.gz
+            ${{ runner.temp }}/image.tar.gz.sha256
+          retention-days: 3
+          compression-level: 0
+          if-no-files-found: error

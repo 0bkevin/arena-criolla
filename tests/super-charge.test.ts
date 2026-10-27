@@ -37,13 +37,12 @@ function setup(side: 0 | 1 = 0, fighter: FighterId = "capriles", gap = 420) {
   return { state, inputs, advance, press, player: state.players[side] };
 }
 
-test("both players must hold for 0.8 seconds (48 active ticks) before spending 90 energy and their only use", () => {
-  assert.equal(SUPER_CHARGE_TICKS, 48);
+test("both players must hold for the full charge before spending 90 energy and their only use", () => {
   for (const side of [0, 1] as const) {
     const r = setup(side);
     r.press();
     r.advance(SUPER_CHARGE_TICKS - 1);
-    assert.equal(r.player.superChargeTicks, 47);
+    assert.equal(r.player.superChargeTicks, SUPER_CHARGE_TICKS - 1);
     assert.equal(r.player.attack, null);
     assert.equal(r.player.energy, 100);
     assert.equal(r.player.superUsed, false);
@@ -56,7 +55,7 @@ test("both players must hold for 0.8 seconds (48 active ticks) before spending 9
 });
 
 test("a tap or early release cancels for free and requires a fresh press", () => {
-  for (const frames of [1, 27, SUPER_CHARGE_TICKS - 1]) {
+  for (const frames of [1, 9, SUPER_CHARGE_TICKS - 1]) {
     const r = setup();
     r.press();
     r.advance(frames);
@@ -89,18 +88,18 @@ test("regaining enough energy during a held contact cannot arm a charge", () => 
   assert.equal(r.player.superUsed, true);
 });
 
-test("release and repress between ticks starts a fresh 48-tick charge", () => {
+test("release and repress between ticks starts a fresh full charge", () => {
   const r = setup();
   const sources = new ControlSources(r.inputs[0]);
   sources.press("key", "super");
-  r.advance(40);
+  r.advance(15);
   sources.release("key");
   sources.press("key", "super");
   assert.equal(r.inputs[0].actions.super, 2);
   r.advance();
   assert.equal(r.player.superChargeTicks, 1);
   r.advance(SUPER_CHARGE_TICKS - 2);
-  assert.equal(r.player.superChargeTicks, 47);
+  assert.equal(r.player.superChargeTicks, SUPER_CHARGE_TICKS - 1);
   assert.equal(r.player.superUsed, false);
   r.advance();
   assert.equal(r.player.superUsed, true);
@@ -110,13 +109,13 @@ test("overlapping input sources continue one hold without restarting its charge"
   const r = setup();
   const sources = new ControlSources(r.inputs[0]);
   sources.press("key", "super");
-  r.advance(20);
+  r.advance(6);
   sources.press("touch", "super");
   assert.equal(r.inputs[0].actions.super, 1);
-  r.advance(10);
+  r.advance(4);
   sources.release("key");
   assert.equal(r.inputs[0].superHeld, true);
-  r.advance(SUPER_CHARGE_TICKS - 31);
+  r.advance(SUPER_CHARGE_TICKS - 11);
   assert.equal(r.player.superUsed, false);
   r.advance();
   assert.equal(r.player.superUsed, true);
@@ -131,7 +130,7 @@ test("charging suppresses attacks, guard, jump and invincible dodge without queu
   r.inputs[0].block = true;
   for (const action of ["light", "heavy", "special", "jump", "dash"] as const)
     r.inputs[0].actions[action]++;
-  r.advance(20);
+  r.advance(10);
   assert.equal(r.player.blocking, false);
   assert.equal(r.player.attack, null);
   assert.equal(r.player.jumps, 0);
@@ -150,17 +149,17 @@ test("charging keeps movement available at a slower pace", () => {
     charging = setup();
   normal.inputs[0].right = charging.inputs[0].right = true;
   charging.press();
-  normal.advance(20);
-  charging.advance(20);
+  normal.advance(15);
+  charging.advance(15);
   assert.ok(charging.player.x > 330);
   assert.ok(charging.player.x - 330 < (normal.player.x - 330) * 0.6);
 });
 
-test("a real hit interrupts either player once, debits exactly 15 and preserves the only use", () => {
+test("a real hit interrupts either player once, debits the interrupt cost and preserves the only use", () => {
   for (const side of [0, 1] as const) {
     const r = setup(side, "capriles", 80);
     r.press();
-    r.advance(10);
+    r.advance(4);
     r.inputs[side].block = true;
     r.inputs[1 - side].actions.light++;
     for (let frame = 0; frame < 12 && r.player.hp === 100; frame++) r.advance();
@@ -193,7 +192,7 @@ test("an incoming cinematic capture also interrupts a vulnerable charge", () => 
   assert.equal(r.state.finale?.owner, 1);
   assert.equal(r.player.superChargeTicks, 0);
   assert.equal(r.player.superUsed, false);
-  assert.equal(r.player.energy, 85);
+  assert.equal(r.player.energy, 100 - SUPER_INTERRUPT_ENERGY_COST);
 });
 
 test("hitstop pauses the charge but release cancels it immediately", () => {
@@ -212,7 +211,7 @@ test("hitstop pauses the charge but release cancels it immediately", () => {
 test("losing a stock or starting a new fight clears incomplete charge without consuming the use", () => {
   const r = setup();
   r.press();
-  r.advance(25);
+  r.advance(10);
   r.player.hp = 0;
   r.advance();
   assert.equal(r.player.stocks, 1);
@@ -232,7 +231,7 @@ test("losing a stock or starting a new fight clears incomplete charge without co
 test("charge state serializes and replays through the same activation boundary", () => {
   const r = setup();
   r.press();
-  r.advance(26);
+  r.advance(10);
   const copy: MatchState = JSON.parse(JSON.stringify(r.state));
   for (let frame = 0; frame < 40; frame++) {
     r.advance();

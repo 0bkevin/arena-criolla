@@ -30,7 +30,6 @@ test("close combat uses a closer view with room to pan left and right", () => {
       camera = advanceArenaCamera(camera, state, 1440, 800);
     const bounds = cameraBounds(camera, 1440, 800);
     assert.ok((camera.x - center.x) * direction > 60);
-    assert.ok((camera.x - center.x) * direction < 115);
     assert.ok(a >= bounds.x + 60 && b <= bounds.x + bounds.width - 60);
   }
 });

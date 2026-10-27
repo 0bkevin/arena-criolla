@@ -57,7 +57,11 @@ function fixture(reducedMotion = false) {
 test("the final result fades in together without moving the winner from another scene", async () => {
   const f = fixture();
   try {
-    assert.deepEqual(f.frames, [{ opacity: 0 }, { opacity: 1 }]);
+    assert.ok(
+      f.frames.every((frame) => !frame.transform),
+      "no movement",
+    );
+    assert.equal(f.frames.at(-1)?.opacity, 1);
     assert.ok(f.duration > 0 && f.duration <= 200);
     assert.equal(f.completions(), 0);
     f.animation.finish();

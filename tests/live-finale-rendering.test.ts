@@ -26,7 +26,9 @@ function recordingCanvas() {
   const target = {
     canvas: { width: 1200, height: 640 },
     globalAlpha: 1,
-    save() { stack.push({ matrix: [...matrix], alpha: this.globalAlpha }); },
+    save() {
+      stack.push({ matrix: [...matrix], alpha: this.globalAlpha });
+    },
     restore() {
       const saved = stack.pop();
       assert.ok(saved, "balanced canvas saves");
@@ -38,34 +40,65 @@ function recordingCanvas() {
       matrix[5] += matrix[1] * x + matrix[3] * y;
     },
     scale(x: number, y: number) {
-      matrix = [matrix[0] * x, matrix[1] * x, matrix[2] * y, matrix[3] * y, matrix[4], matrix[5]];
+      matrix = [
+        matrix[0] * x,
+        matrix[1] * x,
+        matrix[2] * y,
+        matrix[3] * y,
+        matrix[4],
+        matrix[5],
+      ];
     },
     rotate(angle: number) {
       const [a, b, c, d, e, f] = matrix;
-      const cos = Math.cos(angle), sin = Math.sin(angle);
-      matrix = [a * cos + c * sin, b * cos + d * sin, c * cos - a * sin, d * cos - b * sin, e, f];
+      const cos = Math.cos(angle),
+        sin = Math.sin(angle);
+      matrix = [
+        a * cos + c * sin,
+        b * cos + d * sin,
+        c * cos - a * sin,
+        d * cos - b * sin,
+        e,
+        f,
+      ];
     },
     getTransform() {
       const [a, b, c, d, e, f] = matrix;
       return { a, b, c, d, e, f };
     },
-    drawImage(image: HTMLImageElement) { images.push(image); },
-    createLinearGradient() { return { addColorStop() {} }; },
-    createRadialGradient() { return { addColorStop() {} }; },
-    measureText(value: string) { return { width: value.length * 8 }; },
-    fill() { shapes++; },
-    stroke() { shapes++; },
+    drawImage(image: HTMLImageElement) {
+      images.push(image);
+    },
+    createLinearGradient() {
+      return { addColorStop() {} };
+    },
+    createRadialGradient() {
+      return { addColorStop() {} };
+    },
+    measureText(value: string) {
+      return { width: value.length * 8 };
+    },
+    fill() {
+      shapes++;
+    },
+    stroke() {
+      shapes++;
+    },
   };
   return {
     ctx: new Proxy(target, {
       get: (object, key) => Reflect.get(object, key) ?? (() => {}),
     }) as unknown as CanvasRenderingContext2D,
     images,
-    get shapes() { return shapes; },
+    get shapes() {
+      return shapes;
+    },
   };
 }
 
 test("missing performer crops decline before painting; missing helper art remains physically visible", () => {
+  let performers = 0,
+    helpers = 0;
   for (const id of REVIEWED_FINALISTS.filter(isArenaFinalist)) {
     const state = createMatch("caracas", [
       { name: id, fighter: id, wins: 3 },
@@ -85,6 +118,7 @@ test("missing performer crops decline before painting; missing helper art remain
       const r = recordingCanvas();
       assert.equal(drawArenaPerformer(r.ctx, {}, state, source, 177), false);
       assert.equal(r.images.length, 0);
+      performers++;
     }
     if (state.fieldFinales?.some((f) => f.actors?.length)) {
       const r = recordingCanvas();
@@ -94,6 +128,11 @@ test("missing performer crops decline before painting; missing helper art remain
         r.shapes > 0,
         `${id}: visible fallback for live helper collision`,
       );
+      helpers++;
     }
   }
+  assert.ok(
+    performers > 0 && helpers > 0,
+    "both fallback paths were exercised",
+  );
 });

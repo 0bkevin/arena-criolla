@@ -1,0 +1,18 @@
+name: Main source
+on:
+  # Only pushes to main create this check, so a PR into prod satisfies
+  # prod-source only when its head commit was main's tip in this repository.
+  # It lives apart from ci.yml: a skipped job named prod-source would count as
+  # passing. Checks from workflow_dispatch runs do not count for PRs.
+  push:
+    branches: [main]
+permissions: {}
+jobs:
+  prod-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Record that this commit was pushed to main
+        env:
+          REPOSITORY: ${{ github.repository }}
+        run: test "$REPOSITORY" = 0bkevin/arena-criolla

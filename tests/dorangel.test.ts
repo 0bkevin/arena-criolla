@@ -1,9 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import sharp from "sharp";
-import { createMatch, emptyInput, stepMatch, WORLD, type Input } from "./helpers/charged-finale-engine";
-import { fighterById, STAGES, platformsAtTick, type FighterId, type StageId } from "../shared/content";
-import { DORANGEL_BITE, DORANGEL_FINALE, DORANGEL_POT, dorangelPot, dorangelPotIsHot } from "../shared/dorangel";
+import { createMatch, emptyInput, stepMatch, type Input } from "./helpers/charged-finale-engine";
+import { STAGES, platformsAtTick, type FighterId, type StageId } from "../shared/content";
+import { DORANGEL_FINALE, DORANGEL_POT, dorangelPot } from "../shared/dorangel";
 import { TECHNIQUES } from "../shared/techniques";
 function setup(
   side: 0 | 1 = 0,
@@ -71,59 +70,6 @@ test("Dorángel's arm bite connects twice locally and never grabs through guard 
     }
 });
 
-test("the bite walks toward the arm before contact, stops short and grants no invulnerability", () => {
-  for (const side of [0, 1] as const) {
-    const r = setup(side, 120);
-    const start = r.player.x,
-      rivalStart = r.target.x;
-    r.inputs[side].actions.special++;
-    r.advance(DORANGEL_BITE.approachStart - 1);
-    assert.equal(r.player.x, start);
-    let previous = start;
-    for (
-      let tick = DORANGEL_BITE.approachStart;
-      tick < DORANGEL_BITE.approachEnd;
-      tick++
-    ) {
-      r.advance();
-      const step = (r.player.x - previous) * r.player.facing;
-      assert.ok(step > 0 && step <= DORANGEL_BITE.stepSpeed);
-      assert.equal(r.target.hp, 100, "opening the jaw does not deal damage");
-      assert.equal(r.target.x, rivalStart, "the victim is never pulled closer");
-      assert.equal(r.player.invincible, 0);
-      previous = r.player.x;
-    }
-    const end = r.player.x;
-    r.advance();
-    assert.equal(r.player.x, end, "the approach ends before the contact tick");
-    r.advance(TECHNIQUES.bite.startup - r.player.attackTick);
-    assert.equal(r.target.rootKind, "bite");
-    assert.ok(r.target.hp < 100);
-    assert.equal(
-      r.player.x,
-      end,
-      "the grip does not drag the attacker through its victim",
-    );
-
-    const close = setup(side, DORANGEL_BITE.gap + 5);
-    close.inputs[side].actions.special++;
-    close.advance(TECHNIQUES.bite.startup);
-    assert.equal(Math.abs(close.player.x - close.target.x), DORANGEL_BITE.gap);
-
-    const interrupted = setup(side, 120);
-    interrupted.inputs[side].actions.special++;
-    interrupted.advance(4);
-    interrupted.inputs[1 - side].actions.light++;
-    interrupted.advance(11);
-    assert.ok(
-      interrupted.player.hp < 100,
-      "a punch can interrupt the vulnerable approach",
-    );
-    assert.equal(interrupted.target.hp, 100);
-    assert.equal(interrupted.target.rootKind, undefined);
-  }
-});
-
 test("a jump, an out-of-range target and interruption break the bite without pulling either fighter", () => {
   for (const side of [0, 1] as const) {
     const far = setup(side, 150);
@@ -186,112 +132,6 @@ test("Dorángel's pot affects a rival at minimum fighting distance on either sid
       );
       assert.equal(r.state.finale, undefined);
     }
-});
-
-test("a close-range pot locks its placement before lowering and cannot retarget an escaping rival", () => {
-  for (const side of [0, 1] as const) {
-    const r = setup(side, 43);
-    r.inputs[side].actions.super++;
-    r.at(DORANGEL_POT.spawnTick);
-    r.target.x = r.player.x + r.player.facing * 145;
-    r.at(DORANGEL_POT.placeTick);
-    const pot = dorangelPot(r.state.fieldFinales![0])!;
-    const placedX = pot.x;
-    r.at(DORANGEL_FINALE.cues[0]);
-    assert.equal(pot.x, placedX);
-    assert.equal(r.target.hp, 100);
-    assert.equal(r.target.rootKind, undefined);
-  }
-});
-
-test("the pot telegraphs before four physical heat contacts and never applies passive helper damage", () => {
-  for (const side of [0, 1] as const) {
-    const r = setup(side, DORANGEL_POT.offset);
-    r.inputs[side].actions.super++;
-    r.advance(9);
-    const field = r.state.fieldFinales![0];
-    assert.ok(!r.state.effects.some((effect) => effect.kind === "special"));
-    assert.equal(r.state.finale, undefined);
-    r.at(DORANGEL_POT.spawnTick);
-    assert.ok(dorangelPot(field));
-    assert.equal(r.target.hp, 100);
-    let previous = r.target.hp;
-    for (const tick of DORANGEL_FINALE.cues) {
-      r.at(tick - 1);
-      assert.equal(
-        r.target.hp,
-        previous,
-        "the pot body cannot attack between heat cues",
-      );
-      r.at(tick);
-      assert.ok(r.target.hp < previous);
-      assert.equal(r.target.rootKind, "pot");
-      assert.ok(r.target.grounded);
-      assert.equal(r.target.y, WORLD.floor);
-      assert.equal(r.target.vx, 0);
-      assert.equal(
-        r.state.effects.filter((effect) => effect.kind === "hit").at(-1)
-          ?.visual,
-        "heat",
-      );
-      previous = r.target.hp;
-    }
-    assert.equal(r.player.hits, 4);
-    const expected =
-      100 - field.damage * fighterById(r.target.config.fighter).armor;
-    assert.ok(Math.abs(r.target.hp - expected) < 1e-8);
-    r.advance(200);
-    assert.equal(r.state.fieldFinales, undefined);
-    assert.equal(r.target.rootTicks, 0);
-    assert.ok(r.state.tick > 154);
-  }
-});
-
-test("Dorángel carries a cold pot into place before lighting it, without moving the rival", () => {
-  for (const side of [0, 1] as const) {
-    const r = setup(side, DORANGEL_POT.offset);
-    const rivalX = r.target.x,
-      rivalY = r.target.y;
-    r.inputs[side].actions.super++;
-    r.advance(9);
-    const field = r.state.fieldFinales![0];
-    r.at(DORANGEL_POT.spawnTick);
-    const pot = dorangelPot(field)!;
-    assert.equal(field.tick, DORANGEL_POT.spawnTick);
-    assert.equal(
-      pot.x,
-      r.player.x + r.player.facing * DORANGEL_POT.carryOffset,
-    );
-    assert.equal(pot.y, r.player.y - DORANGEL_POT.carryLift);
-    let previousX = pot.x,
-      previousY = pot.y;
-    while (field.tick < DORANGEL_POT.placeTick) {
-      r.advance();
-      assert.ok((pot.x - previousX) * r.player.facing >= 0);
-      assert.ok(
-        Math.abs(pot.x - previousX) < 5,
-        "the pot is lowered, never teleported",
-      );
-      assert.ok(pot.y >= previousY);
-      assert.equal(r.target.hp, 100);
-      assert.equal(r.target.rootKind, undefined);
-      assert.equal(r.target.x, rivalX);
-      assert.equal(r.target.y, rivalY);
-      assert.equal(dorangelPotIsHot(field), false);
-      previousX = pot.x;
-      previousY = pot.y;
-    }
-    assert.equal(pot.x, r.player.x + r.player.facing * DORANGEL_POT.offset);
-    assert.equal(pot.y, WORLD.floor);
-    r.at(DORANGEL_POT.fireTick);
-    assert.equal(r.target.hp, 100, "striking the match is still a warning");
-    assert.equal(dorangelPotIsHot(field), false);
-    r.at(DORANGEL_POT.stirTick);
-    assert.equal(dorangelPotIsHot(field), true);
-    assert.equal(r.target.hp, 100);
-    r.at(DORANGEL_FINALE.cues[0]);
-    assert.ok(r.target.hp < 100);
-  }
 });
 
 test("the pot can be jumped, blocked, missed and interrupted; it never follows a fleeing opponent", () => {

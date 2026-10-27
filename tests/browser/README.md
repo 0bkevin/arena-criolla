@@ -1,295 +1,97 @@
-# Controls validation
+# Manual browser fixtures
 
-## Roster toolbar validation
+These fixtures cover behaviour that only a real browser can show: pointer
+capture and hit testing, native focus and scrolling, and real Web Audio output.
+They are not part of `npm test`; `npm run typecheck` still type-checks them.
+Each one mounts production components in React StrictMode and restores its
+browser overrides on unmount.
 
-With the standalone Vite server described below, open
-`http://localhost:5174/tests/browser/roster-controls.html` and run
-`await rosterAudit.run()`. All nine scenarios must pass. Repeat at phone,
-tablet, desktop, and short landscape sizes, especially around 600px and 900px.
-
-This mounts the production App in StrictMode. It checks pagination across an
-unchanged catalog refresh, debounce cancellation and accent-insensitive search,
-empty-state recovery, filtering and both sort directions without mutating the
-shared catalog, removal of the last community character, keyboard re-entry and
-Escape focus restoration, opening focus without page jumps, menu clipping around
-the sticky header and bottom dock, scrolling, and hit testing along option edges. Only catalog updates and
-250ms search timers are controlled; the harness restores the catalog, timers,
-and mounted UI after every run. Use native browser input to check Tab/Shift+Tab and pointer
-selection as well: synthetic key events do not perform native focus navigation.
-
-## Mobile audio validation
-
-Run `npx tsx --test tests/audio-mobile-lifecycle.test.ts` for deterministic
-regressions covering blocked touch-start activation, touch-release retries,
-interrupted contexts, foreground/page restoration, pending and rejected resume
-requests, unmuting, background silence, and StrictMode listener cleanup.
-
-With the standalone Vite server below, open
-`http://localhost:5174/tests/browser/audio-lifecycle.html`, click a control in the
-lobby using native browser input, then run `await audioAudit.run()` in the console.
-Reload before repeating the audit. `audioAudit.unmount()` removes the fixture.
-
-This mounts the production App in StrictMode and measures samples from the real
-Web Audio graph. Its five scenarios check music output after interaction, silent
-mute and audible unmute, hidden-page silence and foreground recovery from an
-actual suspended context, combat effects, and decoding all 18 MP3 reaction assets
-with audible fighter reactions. Recovery must retain one context and one music
-loop. The fixture deliberately attempts audio startup outside a gesture, like an
-online match arriving; autoplay policy depends on the browser profile.
-
-The activation listeners follow the
-[HTML user activation model](https://html.spec.whatwg.org/multipage/interaction.html#activation-triggering-input-event)
-and [Chrome Web Audio guidance](https://developer.chrome.com/blog/web-audio-autoplay):
-touch/pen release and touchend can grant activation; touch pointerdown alone does
-not. Resume is invoked synchronously inside capture listeners, including when a
-game control prevents a compatibility click. Fresh gestures and foreground
-restoration retry pending resumes; render frames reuse the existing request.
-
-## Dialog and game overlay layout review
-
-With the standalone Vite server below, open
-`http://localhost:5174/tests/browser/overlay-layout.html`.
-
-```js
-await overlayReview.runRosterNavigation(); // desktop: all three scenarios pass
-await overlayReview.runMovePreviewLayout(); // live combo canvas cannot overlap its controls
-await overlayReview.runMovePreviewLayout("maite", null); // idle portrait; no animation assets yet
-overlayReview.movePreviewLayout(); // repeat after resizing the open movement dialog
-await overlayReview.runMovePreviewPerformance(0, 5); // six moves per fighter; repeat batches through 55
-await overlayReview.mount("playing", true); // portrait: orientation gate; landscape: pause via UI
-await overlayReview.mount("victory"); // production Game result, including its focus management
-await overlayReview.mount("draw");
-overlayReview.state(); // rematch/exit callback counts after native button clicks
-overlayReview.unmount();
-```
-
-Run the movement performance batches at small mobile and desktop sizes. They
-verify real animation advancement, layout, unchanged progress and no unused
-entrance downloads. Generate cold image budgets for all 55 fighters with
-`npx tsx scripts/audit-move-preview-assets.ts`. These dependency budgets use
-full-resolution WebP files and verified alternatives; they exclude JS/CSS/audio,
-HTTP overhead and browser caching, and do not measure hardware speed.
-
-The roster regression mounts the production App and checks that closing fighter
-details preserves the roster, its scroll position, focus, and the page scroll lock.
-Choosing a fighter must close both dialogs. The overlay fixture controls the
-initial match state and touch-device properties, loads the production fonts and
-styles, and restores its device overrides on unmount. It does not emulate
-physical touch gestures or test fullscreen/orientation browser permissions.
-
-Review at 320×568, 390×844, 844×390, 768×1024, 1024×768, and 1440×900. Check
-native keyboard focus and clicks, scroll each view to both ends, and resize with
-the dialog open. A result may scroll vertically on a short phone; its rematch and
-exit actions must remain reachable without horizontal overflow.
-
-## Dialog scroll regressions
-
-With the standalone Vite server below, open
-`http://localhost:5174/tests/browser/modal-scroll.html` and run
-`await modalScrollAudit.run()`. All four scenarios must pass.
-
-The fixture mounts the production `Modal` in React StrictMode over a tall page.
-It checks that reaching the dialog's scroll limit cannot move the background,
-that closing a stacked dialog keeps the remaining dialog locked, and that the
-final close or unmount restores the original page position and inline styles.
-It also checks that hiding the opener while a dialog is open returns focus to a
-visible control in the same context.
-The checks drive browser scroll APIs; physical touch gestures are not emulated.
-
-## Desktop regressions
-
-With the standalone Vite server below, open
-`http://localhost:5174/tests/browser/desktop-controls.html` and run:
-
-```js
-await desktopAudit.run(); // all eleven scenarios must pass
-desktopAudit.state();
-await desktopAudit.mount("local"); // or "online" for captured outgoing input
-desktopAudit.unmount(); // restores navigator.getGamepads
-```
-
-This mounts the production `Game` and `Help` in React StrictMode. It covers
-returning focus from help and pointer-activated sound controls, retaining sound
-button focus for keyboard activation, browser shortcuts and IME input, key
-release after focus/modifier changes, visible-window blur in online play,
-Start pause/resume, fresh action presses in the first frame after resume,
-disconnected-controller recovery, Start immediately after keyboard pause, and
-Start suppression under modal help.
-Explicit resume snapshots buttons already held at that moment, so those still
-require release while later presses work on the very next frame for either player.
-Reconnected/replacement controllers preserve their player assignment and require
-held action/Menu buttons to be released before activating them again. Movement
-holds can resume immediately. IME checks include composition boundary events
-with key code 229, even when `isComposing` is false.
-Gamepads and lifecycle events are synthesized; no physical controller or OS
-focus switching is claimed. Use native Enter after closing help or clicking
-sound to check P2's dodge; sound must stay unchanged by that dodge. Reach the
-sound button with Tab/Shift+Tab and verify native Enter/Space toggle it while
-retaining button focus. Use native Escape/Tab/Shift+Tab to check pause focus.
-
-The Node regressions in `controls.test.ts` and `attack-buffer.test.ts` cover
-controller suspension/rearming and a five-frame (83 ms at 60 Hz) attack buffer.
-The buffer accepts light, heavy and special attacks. Definitives keep their
-separate hold-to-charge and one-use-per-fight rules; a fresh definitive press
-clears a pending normal attack, and attacks cannot queue during the charge.
-The latest fresh attack replaces the pending request. Requests outside
-the window are discarded; blocking, stun, stock loss and capture finales clear
-the buffer. Energy and character restrictions are checked again on execution.
-The buffer is part of the shared deterministic simulation and serialized state,
-so local and online play use the same rules.
-
-## Mobile controls
-
-This harness exercises the production `TouchControls`, input ownership, React
-lifecycle, and styles in a real browser. It is separate from `npm test`, which
-runs the state and combat-engine regressions. No browser package is required.
-
-## Run
+Start the standalone Vite server:
 
 ```sh
 npm ci
 npx vite --host 0.0.0.0 --port 5174
 ```
 
-Open `http://localhost:5174/tests/browser/touch-controls.html` in the target
-browser. In its console:
+Open the fixture's page at `http://localhost:5174/tests/browser/<name>.html` and
+call the commands below from the console. A run passes when every scenario it
+reports passes.
+
+## touch-controls
 
 ```js
 await touchAudit.run(); // all results must pass
 touchAudit.layout(); // geometry at the current viewport
 touchAudit.mount({ mobile: false }); // hybrid tablet/laptop layout
-touchAudit.layout();
 await touchAudit.mountHybridGame(); // production Game on a simulated hybrid device
-touchAudit.gameLayout(); // resize the viewport, then repeat; pass must stay true
+touchAudit.gameLayout(); // resize the viewport, then repeat
+touchAudit.update({ energy: 0 }); // deplete energy mid-gesture
+touchAudit.state(); // engine inputs, callback order and highlights
 ```
 
-`touchAudit.mount()` resets the pad and exposes it for real finger or mouse input.
-Use `touchAudit.state()` to inspect engine inputs, callback order, and highlights.
-`touchAudit.update({ energy: 0 })` tests energy depletion mid-gesture. Set energy
-back to 100 to restore available actions. The harness uses React StrictMode.
+This exercises the production `TouchControls` with real pointer events. Also
+check it by hand with real fingers or a mouse. The rules it checks:
 
-`mountHybridGame()` requires a fine primary pointer and temporarily models five
-touch points on a 1280×800 physical screen while the viewport can be resized.
-It mounts the production `Game`, including the arena, toolbar, pad, and keyboard
-hints. `unmount()` or the next `mount()` restores the device properties. This is
-a layout regression fixture, not hardware emulation.
+- A contact can slide between movement, jump, dash, block, light and heavy
+  without lifting. Special and super need a fresh press on their enabled button.
+  Sliding onto them does nothing, and getting energy back during a contact never
+  fires them again.
+- Each finger owns its own input. Releasing one finger never clears another
+  finger, key or controller that holds the same control.
+- Up, cancel, capture loss, blur, hidden visibility, pagehide, rotation, reset
+  and unmount release input. A cancelled contact cannot restart from a stray move.
+- Unavailable controls use `aria-disabled`, and pointer, keyboard and click
+  activation all respect it.
 
-## Victory timing validation
+## desktop-controls
 
-With the same Vite server running, open
-`http://localhost:5174/tests/browser/victory-timing.html` and run
-`await victoryTiming.run()` in the console. All fifteen scenarios must pass.
+```js
+await desktopAudit.run(); // all scenarios must pass
+await desktopAudit.mount("local"); // or "online" to capture outgoing input
+desktopAudit.state();
+desktopAudit.unmount(); // restores navigator.getGamepads
+```
 
-This mounts the production `Game` in React StrictMode with an actual engine
-knockout. Controlled frame timestamps verify that the result appears after two
-active seconds at normal and slow frame rates in local, online, and practice
-modes. Window blur, hidden tabs, and real help dialogs suspend the clock even
-when no frame runs while blocked. The audit also checks one result callback,
-immutable match state, and frame-loop cleanup after unmount.
+This mounts the production `Game` and `Help`. It checks focus returning from
+help and the sound controls, browser shortcuts and IME composition (key code
+229), key release after focus or modifier changes, blur during online play, and
+Start pause/resume with synthesized gamepads. Use native Tab/Shift+Tab,
+Enter/Space and Escape to check focus, because synthetic key events do not move
+focus. The Node test `controls.test.ts` covers controller suspension and rearming.
 
-The harness restores its browser clock and visibility overrides after each run.
-It uses a simulated remote state for online mode; it does not exercise network
-transport.
+## modal-scroll
 
-## Loading screen validation
+```js
+await modalScrollAudit.run(); // all scenarios must pass
+```
 
-With the same Vite server, open
-`http://localhost:5174/tests/browser/loading-screen.html` and run
-`await loadingScreenAudit.run()` in the console. All nine scenarios must pass.
+This mounts the production `Modal` over a tall page. It checks that scrolling a
+dialog to its end does not scroll the page behind it, that stacked dialogs stay
+locked, that the last close restores the page's scroll position and inline
+styles, and that hiding the button that opened the dialog moves focus to another
+visible control.
 
-This mounts the production `ArenaEntrance` in React StrictMode. It checks that
-the animation and its completion clock both wait for entrance fonts, Escape
-works from initial BODY focus after readiness, unavailable skip controls cannot
-bypass readiness, failed or delayed illustrations do not block entry, completion
-happens once, and unmount clears timers and global keyboard listeners.
+## audio-lifecycle
 
-Timers and image load/error events are controlled. Reduced motion is explicitly
-simulated with the production media-rule declarations and matching JavaScript
-preference branch; this is not OS-level media emulation. The harness restores
-all browser overrides after each run. Real startup networking, visual animation,
-responsive layouts, and physical-device performance need separate browser review.
+Click a lobby control first, using a real click, then run:
 
-## Interaction contract
+```js
+await audioAudit.run(); // reload before repeating
+audioAudit.unmount();
+```
 
-- A contact beginning anywhere inside a control group can slide between movement,
-  jump, dash, block, light, and heavy without lifting. Contacts beginning elsewhere
-  do not join the gesture.
-- Special and super require a **fresh press directly on their enabled button**.
-  Sliding across either is neutral. Leaving and re-entering an ability, or regaining
-  enough energy during a contact, never fires it again. Keyboard and accessible
-  clicks can still activate either ability normally.
-- A six-CSS-pixel tolerance retains the current button when the finger jitters
-  into a gap in the same group. Hitting another button takes priority immediately,
-  with no timer or input delay. This is an explicit product tuning value, not a
-  standard-mandated threshold. It does not enlarge initial hit targets, extend
-  outside the group, or keep input active under an overlay/on a disabled button.
-- Larger gaps and unavailable attacks release the selected control while retaining
-  the contact until release/cancel. Spending energy does not strand the finger on
-  the original attack; it can still slide to an ordinary control.
-- Every finger owns its input independently. Releasing one finger never clears
-  another finger, keyboard key, or controller holding the same control.
-- Entering an ordinary action button fires once. Movement inside it or the small
-  gap tolerance does not repeat it. Deliberately leaving and returning fires again;
-  the combat engine still decides whether the action is legal given cooldowns,
-  energy, and current animation.
-- Up, cancel, actual container capture loss, blur, hidden visibility, pagehide,
-  rotation, reset, and unmount clear the relevant inputs. A cancelled contact
-  cannot restart from a stray move event.
-- Unavailable controls use `aria-disabled` so pointer delivery survives dynamic
-  availability changes. Pointer, keyboard, and accessible-click activation all
-  explicitly enforce that state. They retain their accessible explanations.
+This samples the real Web Audio graph. It checks that music plays after a user
+gesture, mute and unmute, silence while the page is hidden and recovery from a
+suspended context, combat effects, and decoding of the reaction clips. After
+recovery there must be one context and one music loop. Autoplay rules depend on
+the browser profile. The Node test `audio-mobile-lifecycle.test.ts` covers the
+activation and resume logic.
 
-## Research basis
+## Physical devices
 
-Sources checked on 2026-10-20. These distinguish browser requirements, platform
-recommendations, and this game's chosen slide behavior:
-
-- [W3C Pointer Events](https://www.w3.org/TR/pointerevents3/): use pointer IDs,
-  explicit capture on a stable container, and `touch-action` declared before the
-  gesture. Capture retargets events, so the original `event.target` is unsuitable
-  for finding the button currently under a finger. Chorded mouse/pen button
-  releases can arrive as `pointermove`; retain ownership only while the primary
-  button's `buttons` bit remains set.
-- [CSSOM View hit-testing](https://www.w3.org/TR/cssom-view/#dom-document-elementfrompoint):
-  `elementFromPoint` uses viewport coordinates. Hit-test the current coordinates,
-  resolve SVG/text descendants to their button, and restrict results to this pad.
-- [Phaser input guidance](https://docs.phaser.io/phaser/concepts/input): a mature
-  game engine also uses independent pointers and explicit hit areas. The slide
-  policy and gap tolerance are product decisions, not universal framework rules.
-- [Apple buttons](https://developer.apple.com/design/human-interface-guidelines/buttons)
-  recommend 44×44 pt targets and visible feedback;
-  [Android accessibility](https://developer.android.com/guide/topics/ui/accessibility/views/apps-views)
-  recommends 48×48 dp targets. This web game's chosen floor is **48×48 CSS px**.
-  These units are not physical pixels or interchangeable conformance standards.
-  [WCAG 2.2 AA target size](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum)
-  specifies 24×24 CSS px with exceptions; the
-  [enhanced AAA criterion](https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced)
-  specifies 44×44 CSS px with exceptions.
-- [WebKit safe areas](https://webkit.org/blog/7929/designing-websites-for-iphone-x/):
-  combine `viewport-fit=cover`, safe-area insets, and ordinary edge spacing.
-  Preserve the existing VisualViewport tracking and short-landscape layout.
-- [Chrome page lifecycle](https://developer.chrome.com/docs/web-platform/page-lifecycle-api):
-  hidden visibility is often the last reliable mobile lifecycle signal. Do not
-  depend solely on unload or pagehide to release input.
-- [WAI button pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/): preserve
-  native button names, Space/Enter activation, and focus. `aria-pressed` is for
-  toggles, so these momentary controls use visual held feedback instead.
-
-## Physical-device acceptance
-
-Before claiming broad device validation, run the
-same pad and the full game on small/notched iPhone Safari, iPad Safari (including
-trackpad and split view), a lower-end Android Chrome device, Samsung Internet,
-and Firefox Android. Record actual OS and browser versions.
-
-Use two thumbs and a third finger; slide through every group, gaps, and disabled
-attacks; deplete energy mid-slide; lift fingers in different orders. Try rapid
-direction changes, long presses, both landscape directions, expanded/retracted
-browser bars, home/back edge swipes, app switching, screen lock, pause/resume, and
-fullscreen denial. Verify fresh gestures work after every interruption.
-
-Check VoiceOver/TalkBack names, unavailable states, and activation, plus keyboard
-play and focus on hybrid devices. Inspect safe areas on real notched hardware.
-Core Pointer Events are supported in current mainstream mobile engines, but
-neither API availability nor these automated checks certify every device,
-overall accessibility compliance, or thumb comfort and latency on hardware.
+Before claiming device support, run touch-controls and the full game on iPhone
+Safari, iPad Safari, a lower-end Android Chrome device, Samsung Internet and
+Firefox Android, and record the OS and browser versions. Use several fingers,
+use up energy mid-slide, rotate the device, switch apps, lock the screen and
+deny fullscreen, then confirm that new gestures still work after each
+interruption.
