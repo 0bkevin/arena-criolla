@@ -68,6 +68,18 @@ import "./desktop-controls.css";
 import "./progress.css";
 import "./fighter-moves.css";
 
+function constrainedConnection() {
+  const connection = (
+    navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string };
+    }
+  ).connection;
+  return Boolean(
+    connection?.saveData ||
+    /^(slow-)?2g$/.test(connection?.effectiveType ?? ""),
+  );
+}
+
 type ModalName = "help" | "fighters" | "stages" | "progress" | "rooms" | null;
 const colorStyle = (color: string): React.CSSProperties =>
   ({ "--fighter-color": color }) as React.CSSProperties;
@@ -201,27 +213,23 @@ export function App({
       for (const type of events) window.removeEventListener(type, engage);
     };
   }, [engaged]);
+  const warmMatch = () => {
+    if (network.room || active || constrainedConnection()) return;
+    prefetchMatchAssets([fighter, rival], [stage]);
+  };
   useEffect(() => {
     // Offline matches start right after the player taps Jugar: fetch the attack
     // and finale art in idle time so the start does not wait on the network.
-    if (!engaged || network.room || active) return;
-    const connection = (
-      navigator as Navigator & {
-        connection?: { saveData?: boolean; effectiveType?: string };
-      }
-    ).connection;
-    if (
-      connection?.saveData ||
-      /^(slow-)?2g$/.test(connection?.effectiveType ?? "")
-    )
-      return;
+    // Each pairing is several MB, so wait until the choice has settled instead
+    // of warming every fighter the player merely browses past.
+    if (!engaged || network.room || active || constrainedConnection()) return;
     let idle = 0;
     const timer = window.setTimeout(() => {
       const warm = () => prefetchMatchAssets([fighter, rival], [stage]);
       if ("requestIdleCallback" in window)
         idle = window.requestIdleCallback(warm, { timeout: 4000 });
       else warm();
-    }, 1200);
+    }, 4000);
     return () => {
       clearTimeout(timer);
       if (idle) window.cancelIdleCallback(idle);
@@ -582,6 +590,7 @@ export function App({
           onDetail={setDetail}
           onModal={setModal}
           onStart={mode === "online" ? openRooms : startLocal}
+          onStartIntent={warmMatch}
           onReady={(ready) => {
             clickSound();
             if (ready) beginMobilePlay();

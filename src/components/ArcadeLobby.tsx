@@ -70,6 +70,8 @@ interface Props {
   onDetail: (id: FighterId) => void;
   onModal: (modal: "help" | "stages" | "progress") => void;
   onStart: () => void;
+  /** Hover, focus or press on the start button: warm the match art. */
+  onStartIntent?: () => void;
   onReady: (ready: boolean) => void;
   onInvite: () => void;
 }
@@ -684,6 +686,9 @@ export function ArcadeLobby(props: Props) {
           <button
             className="arcade-start primary-button fight-button"
             disabled={mode === "online" && !network.connected}
+            onPointerEnter={network.room ? undefined : props.onStartIntent}
+            onPointerDown={network.room ? undefined : props.onStartIntent}
+            onFocus={network.room ? undefined : props.onStartIntent}
             onClick={
               network.room
                 ? () => props.onReady(!ownRoomPlayer?.ready)
