@@ -924,7 +924,10 @@ export function Game(props: Props) {
                     <strong>{p.config.name}</strong>
                     <span className="hud-character">{def.shortName}</span>
                   </div>
-                  <div className="health-track">
+                  <div
+                    className={`health-track${p.hp > 0 && p.hp <= 25 ? " is-low" : ""}`}
+                    style={{ "--hp": `${p.hp}%` } as React.CSSProperties}
+                  >
                     <div style={{ width: `${p.hp}%` }} />
                     <span>{Math.ceil(p.hp)}</span>
                   </div>
@@ -946,7 +949,9 @@ export function Game(props: Props) {
                 </div>
               );
             })}
-            <div className="match-clock">
+            <div
+              className={`match-clock${view.remaining <= 10 * 60 ? " is-urgent" : ""}`}
+            >
               <strong
                 className={
                   view.remaining > 99 * 60 ? "match-clock-minutes" : undefined
