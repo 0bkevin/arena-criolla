@@ -1,0 +1,68 @@
+name: Prepare production promotion
+on:
+  workflow_run:
+    workflows: [Validate Arena Criolla]
+    types: [completed]
+    branches: [main]
+permissions:
+  contents: read
+  pull-requests: write
+  actions: write
+concurrency:
+  group: arena-production-promotion
+  cancel-in-progress: false
+jobs:
+  propose:
+    if: >-
+      github.repository == '0bkevin/arena-criolla' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'main' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # API-only: workflow_run source and artifacts are never executed here.
+      - name: Open or update the main to prod release PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TESTED_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          current=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)
+          test "$current" = "$TESTED_SHA" || exit 0
+          ahead=$(gh api "repos/$GITHUB_REPOSITORY/compare/prod...main" --jq .ahead_by)
+          test "$ahead" -gt 0 || exit 0
+          number=$(gh pr list --repo "$GITHUB_REPOSITORY" --base prod --head main --state open --json number --jq '.[0].number // empty')
+          body="$RUNNER_TEMP/promotion.md"
+          cat > "$body" <<EOF
+          ## Summary
+
+          Promote main ($TESTED_SHA) to production after successful CI.
+
+          main → reviewed merge into prod → verified Docker image → arenacriolla.com
+
+          ## Evidence
+
+          Main passed CI. Production reruns all checks and delivers the exact verified image.
+          The host backs up persistent data and verifies HTTP and WebSocket behavior.
+
+          ## Merge Danger
+
+          **Door:** two-way for application changes with compatible persisted data.
+          **Blast Radius:** production
+
+          Merging this PR starts deployment to https://arenacriolla.com.
+          Failed releases resume the previous image only when the database schema is unchanged.
+          Review the complete diff and any data compatibility changes before merging.
+          EOF
+          if test -n "$number"; then
+            gh pr edit "$number" --repo "$GITHUB_REPOSITORY" --body-file "$body"
+          else
+            url=$(gh pr create --repo "$GITHUB_REPOSITORY" --base prod --head main --title 'Release main to production' --body-file "$body")
+            number=${url##*/}
+          fi
+          # GITHUB_TOKEN-created PRs do not trigger pull_request workflows.
+          # Explicit dispatch runs checks on main and validates this promotion PR.
+          gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/dispatches" \
+            -f ref=main -f "inputs[promotion-pr]=$number"
