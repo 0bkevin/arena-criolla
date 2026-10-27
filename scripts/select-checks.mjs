@@ -88,8 +88,13 @@ const tests = everything
       ),
     );
 
+// Each process-per-file shard pays a fixed setup cost, so split only large runs.
+const shards = Math.min(3, Math.ceil(tests.length / 30));
 const checks = {
   tests: tests.sort().join(" "),
+  "test-shards": JSON.stringify(
+    Array.from({ length: shards }, (_, i) => i + 1),
+  ),
   typecheck: /\.(ts|tsx|json)$/,
   assets:
     /^(public\/assets\/|shared\/(sprite-geometry|fighters)\.json$|scripts\/validate-character-assets\.mjs$)/,

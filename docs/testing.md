@@ -53,6 +53,11 @@ measure elements, not page scroll width.
   smoke test) when something it ships changes; Trivy scans it when the Dockerfile
   or lockfile changes. Docs- or test-only changes skip it.
 
+The selected checks run as parallel jobs: `unit` (split into up to three shards
+of about 30 test files, one shard for small selections), `layout`, `static`
+(type check, sprites, audit, deploy controls) and `image`. Node already runs each
+shard's files in parallel processes, and Playwright uses every core.
+
 `validate` is the single required check. It fails if any job that ran failed or
 was cancelled; skipped jobs were not needed. A passing run records the git tree it
 tested as a `tested-tree-<tree>` artifact (kept 90 days). Any later run on the same

@@ -8,6 +8,8 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
+  // The checks wait on the browser, not the CPU; use every core.
+  workers: "100%",
   reporter: process.env.CI ? [["github"], ["list"]] : "list",
   use: {
     baseURL: `http://127.0.0.1:${port}`,
