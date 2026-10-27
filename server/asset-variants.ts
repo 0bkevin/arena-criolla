@@ -100,8 +100,8 @@ export function losslessAssetDelivery(
     for (const variant of candidates) {
       if (!(await unchanged(entry, variant))) continue;
       const file = safeFile(variant.file)!;
-      // Existing URLs may change after a rebuild. Revalidate; never mark them immutable.
-      res.set("Cache-Control", "public, max-age=0, must-revalidate");
+      if (!res.hasHeader("Cache-Control"))
+        res.set("Cache-Control", "public, max-age=0, must-revalidate");
       res.sendFile(file, (error) => {
         if (!error) return;
         if (

@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import { assetVersion } from "../shared/asset-versions";
 import { makeCreatorService, type CreatorOptions } from "./creator/router";
 import { createServer } from "node:http";
 import { createHash, randomBytes, randomUUID } from "node:crypto";
@@ -711,6 +712,27 @@ export async function makeArenaServer(
     app.get(/^\/assets\/og-arena-criolla-[a-f0-9]{16}\.jpg$/i, (_req, res) => {
       res.set("Cache-Control", "no-store").redirect(302, socialImagePath);
     });
+    app.use(async (req, res, next) => {
+      if (
+        (req.method !== "GET" && req.method !== "HEAD") ||
+        !/^\/(assets|fonts|audio)\//.test(req.path)
+      )
+        return next();
+      try {
+        if (req.query.v === undefined) return next();
+        const version = await assetVersion(publicRoot, req.path);
+        if (version)
+          res.set(
+            "Cache-Control",
+            req.query.v === version
+              ? "public, max-age=31536000, immutable"
+              : "public, max-age=0, must-revalidate",
+          );
+        next();
+      } catch (error) {
+        next(error);
+      }
+    });
     app.get(
       "/assets/:file",
       losslessAssetDelivery(publicRoot, assetVariants as LosslessAssetManifest),
@@ -765,13 +787,14 @@ export async function makeArenaServer(
             // Bundles, lobby banners and generated cutouts change URL with content.
             const name = path.basename(file).replace(/\.(?:br|gz)$/, "");
             if (
-              /[-\w]+-[\w-]{8}\.(?:js|css)$/.test(name) ||
-              /^lobby-cast-banner(?:-(?:mobile|tablet))?-[\w-]{8}\.webp$/.test(
-                name,
-              ) ||
-              /^entrance-(?:renny|capriles)-[a-f0-9]{12}\.(?:avif|webp)$/.test(
-                name,
-              )
+              !res.hasHeader("Cache-Control") &&
+              (/[-\w]+-[\w-]{8}\.(?:js|css)$/.test(name) ||
+                /^lobby-cast-banner(?:-(?:mobile|tablet))?-[\w-]{8}\.webp$/.test(
+                  name,
+                ) ||
+                /^entrance-(?:renny|capriles)-[a-f0-9]{12}\.(?:avif|webp)$/.test(
+                  name,
+                ))
             )
               res.setHeader(
                 "Cache-Control",

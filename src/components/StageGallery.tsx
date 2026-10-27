@@ -1,5 +1,6 @@
 import { Check } from "lucide-react";
 import { STAGES, type StageId } from "../../shared/content";
+import { stageThumbnail } from "../stage-thumbnail";
 
 export function StageGallery({
   selectedStage,
@@ -22,7 +23,13 @@ export function StageGallery({
           onClick={() => onSelect(stage.id)}
         >
           <div className="stage-card-image">
-            <img src={`/assets/${stage.id}.webp`} alt="" loading="lazy" />
+            <img
+              src={stageThumbnail(stage.id, "gallery")}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+            />
             <span>{(index + 1).toString().padStart(2, "0")}</span>
             {selectedStage === stage.id && (
               <strong>
