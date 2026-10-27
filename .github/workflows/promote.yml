@@ -1,8 +1,6 @@
 name: Prepare production promotion
 on:
-  workflow_run:
-    workflows: [Validate Arena Criolla]
-    types: [completed]
+  push:
     branches: [main]
 permissions:
   contents: read
@@ -13,24 +11,19 @@ concurrency:
   cancel-in-progress: false
 jobs:
   propose:
-    if: >-
-      github.repository == '0bkevin/arena-criolla' &&
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.event == 'push' &&
-      github.event.workflow_run.head_branch == 'main' &&
-      github.event.workflow_run.head_repository.full_name == github.repository
+    if: github.repository == '0bkevin/arena-criolla'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      # API-only: workflow_run source and artifacts are never executed here.
+      # API-only: no repository source is executed here.
       - name: Open or update the main to prod release PR
         env:
           GH_TOKEN: ${{ github.token }}
-          TESTED_SHA: ${{ github.event.workflow_run.head_sha }}
+          MAIN_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
           current=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)
-          test "$current" = "$TESTED_SHA" || exit 0
+          test "$current" = "$MAIN_SHA" || exit 0
           ahead=$(gh api "repos/$GITHUB_REPOSITORY/compare/prod...main" --jq .ahead_by)
           test "$ahead" -gt 0 || exit 0
           number=$(gh pr list --repo "$GITHUB_REPOSITORY" --base prod --head main --state open --json number --jq '.[0].number // empty')
@@ -38,14 +31,15 @@ jobs:
           cat > "$body" <<EOF
           ## Summary
 
-          Promote main ($TESTED_SHA) to production after successful CI.
+          Promote main ($MAIN_SHA) to production.
 
           main → reviewed merge into prod → verified Docker image → arenacriolla.com
 
           ## Evidence
 
-          Main passed CI. Production reruns all checks and delivers the exact verified image.
-          The host backs up persistent data and verifies HTTP and WebSocket behavior.
+          Every change passed its PR checks. This PR reruns the tests affected by the
+          whole prod...main diff. Deploying builds, scans and smoke-tests the image it delivers;
+          the host backs up persistent data and verifies HTTP and WebSocket behavior.
 
           ## Merge Danger
 
@@ -63,6 +57,6 @@ jobs:
             number=${url##*/}
           fi
           # GITHUB_TOKEN-created PRs do not trigger pull_request workflows.
-          # Explicit dispatch runs checks on main and validates this promotion PR.
+          # Explicit dispatch validates this promotion PR (affected tests and prod-source).
           gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/dispatches" \
             -f ref=main -f "inputs[promotion-pr]=$number"

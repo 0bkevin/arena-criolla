@@ -1,74 +1,52 @@
 # Tests and CI
 
-Keep a test when its assertions detect an important behavioral failure: combat
-rules, authoritative multiplayer state, account or filesystem isolation, paid
-operator workflow correctness, input lifecycles, recovery from missing assets,
-audio activation, or rendering geometry needed to play. A regression with exact
-ticks or positions remains useful when those values reproduce a real boundary.
+Keep a test when a realistic regression would make it fail and that failure
+matters: combat rules and deterministic replay, authoritative multiplayer state,
+security and input validation, account or filesystem isolation and billing in the
+private creator, input and audio lifecycles, asset loading and recovery, server
+delivery, and deploy safety. A character-specific test earns its place only for
+a mechanic the shared engine tests do not cover, asserting behavior rather than
+tuning.
 
-Remove tests that repeat the same shared behavior for every fighter, inventory
-old artwork migrations, require specific prose or CSS/source fragments, enforce
-decorative choices, or print observations without asserting the intended result.
-Runtime relevance alone is not the criterion: the retained private creator and
-operator import tests protect account boundaries, stored data and paid requests.
-
-The retained tests cover distinct special mechanics. Shared engine tests cover
-ordinary movement, guards, jumping, combos, stocks and deterministic replay.
-Shared rules use representative fixtures and both player slots; the definitive
-usage-limit test covers each attack lifecycle instead of replaying the whole
-roster. Controls tests and browser fixtures cover input and focus/scroll behavior.
-Character-specific online tests concentrate on their additional wire state rather
-than repeating generic movement and room-isolation checks. The unmounted creator
-UI's browser API and IndexedDB draft tests were removed; the private operator's
-server-side storage, ownership, billing and import/publish contracts remain.
-Artwork preparation scripts remain available, but their offline packing and
-recompression test suites were removed from the routine suite. Those tools no
-longer have dedicated automated coverage; inspect their outputs when changing
-the authoring pipeline. `check:assets` still validates the public combat atlases
-against runtime geometry. Asset loading, delivery, fallback and retry tests remain.
+Do not add tests that pin balance numbers, repeat a generic rule for every
+fighter, inventory metadata or artwork versions, look for prose or CSS/source
+fragments, or log evidence instead of asserting it.
 
 ## Commands
 
-- `npm test`: all retained automated tests.
-- `npm run typecheck`: TypeScript only, including test and browser-fixture types.
+- `npm test`: every automated test.
+- `npm run typecheck`: TypeScript, including tests and browser fixtures.
 - `npm run check:assets`: public combat atlas transparency, complete silhouettes
   and runtime geometry.
 - `npm run build`: type checking and the Vite client build.
-- `npm run perf:engine` / `npm run perf:network`: opt-in performance investigations,
-  outside ordinary CI. Run these on comparable machines when changing performance.
-- `npm run assets:audit:lossless` / `npm run assets:audit:avif`: opt-in image
-  compression investigations. These are authoring tools that generate candidates,
-  not quick validation commands.
-- `tests/browser/README.md`: manual integration fixtures for real browser behavior.
+- `node scripts/select-checks.mjs origin/main`: what CI would run for your branch.
+- `npm run perf:engine` / `npm run perf:network`: opt-in performance probes.
+- `tests/browser/README.md`: manual fixtures for real browser behavior.
 
-## CI execution
+## CI and delivery
 
-- Run on PR events, pushes to `main`, and manual dispatch. Feature branch pushes
-  receive validation through their PR; a branch without a PR can use manual
-  dispatch. Superseded runs for the same PR/ref are cancelled.
-- Run the retained tests in two disjoint Node test-runner shards. Both receive the
-  same explicit test-file globs as `npm test`; each file runs in one shard.
-- Install dependencies with npm's download cache. Run the dependency audit and
-  type check once on shard 1, and sprite validation once on shard 2. `npm ci`
-  omits its implicit audit because the explicit audit covers the complete lockfile.
-- Build the production image in parallel using Buildx and the GitHub Actions
-  layer cache. The Docker build performs the client build; CI no longer builds
-  that client again on the host. Changes confined to tests/docs do not invalidate
-  the image's application-copy layer.
-- Keep pulling base images, scan the complete runtime image with Trivy, and reuse
-  its vulnerability database cache in six-hour buckets. Trivy's normal database
-  refresh stays enabled. The scanner download retains its checksum verification.
-- Boot the built image with the existing read-only filesystem and restricted
-  container settings. Check HTTP readiness through its published host port, then
-  run the HTTP/WebSocket smoke script inside the container using its installed
-  runtime dependencies. No extra host npm install is needed for that job.
-- Keep `validate` as the final required check. It succeeds only when both test
-  shards and production-image checks succeed; a failed, cancelled or skipped
-  dependency cannot pass the gate.
+`scripts/select-checks.mjs` reads the diff and selects only what it can affect:
 
-This repository has one GitHub Actions workflow and no separate automated deploy
-workflow. The Docker install changes also avoid implicit npm audits during deploy
-builds; production compose and operator deployment procedures are unchanged.
+- **Tests:** a test file runs when it, or any file it imports transitively (or
+  reads by repository path), changed. Changes to `package.json`, the lockfile,
+  `tsconfig.json`, `tests/helpers`, `tests/fixtures`, workflows or the selector
+  itself run every test.
+- **Type check** for TypeScript/JSON changes, **`check:assets`** for sprite and
+  roster changes, **`npm audit`** for lockfile changes, and the **deploy-control
+  tests** for `deploy/` changes.
+- **Image:** the production Docker image is built and booted (HTTP and WebSocket
+  smoke test) when something it ships changes; Trivy scans it when the Dockerfile
+  or lockfile changes. Docs- or test-only changes skip it.
 
-References: [Node test sharding](https://nodejs.org/api/test.html#runoptions),
-[Docker's GitHub Actions layer cache](https://docs.docker.com/build/ci/github-actions/cache/).
+`validate` is the single required check. It fails if planning fails or any
+selected job fails; skipped jobs were not needed.
+
+Each step runs once:
+
+1. **PR → `main`:** the selected checks for the PR's diff.
+2. **Promotion PR `main` → `prod`:** the tests affected by the whole `prod...main`
+   diff (the combined result of several PRs), plus `prod-source`. No image build.
+3. **Push to `prod`:** no tests. Build the image, scan it, smoke-test it, then
+   deliver that exact image (see [deployment.md](deployment.md)).
+
+A manual run of **Validate Arena Criolla** without inputs runs every check.

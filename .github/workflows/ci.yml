@@ -1,134 +1,103 @@
 name: Validate Arena Criolla
 on:
-  push:
-    branches: [main]
   pull_request:
   workflow_dispatch:
     inputs:
       promotion-pr:
-        description: Promotion PR to validate (set by the promotion workflow)
+        description: Promotion PR to validate (set by the promotion workflow). Leave empty to run every check.
         type: string
         required: false
-  workflow_call:
 permissions:
   contents: read
 concurrency:
-  group: arena-ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: ${{ github.ref != 'refs/heads/prod' }}
+  # A promotion PR is validated by both its pull_request event and the dispatch; keep one.
+  group: arena-ci-${{ github.event.pull_request.number || inputs.promotion-pr || github.ref }}
+  cancel-in-progress: true
 jobs:
-  tests:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      tests: ${{ steps.select.outputs.tests }}
+      typecheck: ${{ steps.select.outputs.typecheck }}
+      assets: ${{ steps.select.outputs.assets }}
+      audit: ${{ steps.select.outputs.audit }}
+      deploy-controls: ${{ steps.select.outputs.deploy-controls }}
+      image: ${{ steps.select.outputs.image }}
+      scan: ${{ steps.select.outputs.scan }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          filter: blob:none
+      - name: Select checks for the changed files
+        id: select
+        env:
+          # PRs compare against their base; a promotion compares main against prod.
+          BASE: ${{ github.event.pull_request.base.sha || (inputs.promotion-pr && 'origin/prod') || '' }}
+        run: node scripts/select-checks.mjs $BASE
+  checks:
+    needs: plan
+    if: >-
+      needs.plan.outputs.tests != '' || needs.plan.outputs.typecheck == 'true' ||
+      needs.plan.outputs.assets == 'true' || needs.plan.outputs.audit == 'true' ||
+      needs.plan.outputs.deploy-controls == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    strategy:
-      fail-fast: false
-      matrix:
-        shard: [1, 2]
+    env:
+      NODE_WORK: ${{ needs.plan.outputs.tests != '' || needs.plan.outputs.typecheck == 'true' || needs.plan.outputs.assets == 'true' || needs.plan.outputs.audit == 'true' }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        if: env.NODE_WORK == 'true'
         with:
           node-version: 24
           cache: npm
-      - run: npm ci --no-audit --no-fund
-      - name: Audit all locked dependencies
-        if: matrix.shard == 1
+      - if: env.NODE_WORK == 'true'
+        run: npm ci --no-audit --no-fund
+      - name: Audit locked dependencies
+        if: needs.plan.outputs.audit == 'true'
         run: npm audit --audit-level=low
-      - name: Run test shard ${{ matrix.shard }} of 2
-        run: node --import tsx --test --test-shard=${{ matrix.shard }}/2 tests/*.test.ts tests/character-audits/*.test.ts
-      - run: npm run check:assets
-        if: matrix.shard == 2
-      # The production job builds the client. This also checks test-only types.
-      - run: npm run typecheck
-        if: matrix.shard == 1
-  production:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          persist-credentials: false
+      - name: Run affected tests
+        if: needs.plan.outputs.tests != ''
+        env:
+          TESTS: ${{ needs.plan.outputs.tests }}
+        run: node --import tsx --test $TESTS
+      - if: needs.plan.outputs.typecheck == 'true'
+        run: npm run typecheck
+      - if: needs.plan.outputs.assets == 'true'
+        run: npm run check:assets
       - name: Validate production delivery controls
+        if: needs.plan.outputs.deploy-controls == 'true'
         run: |
           python3 -B deploy/test_install_release.py
           bash -n deploy/receive-release deploy/install-delivery-controls.sh
-      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
-      - name: Build production image
-        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7
-        with:
-          context: .
-          pull: true
-          load: true
-          tags: |
-            arena-criolla:ci
-            arena-criolla:release-${{ github.sha }}
-          labels: |
-            org.opencontainers.image.revision=${{ github.sha }}
-            org.opencontainers.image.source=https://github.com/${{ github.repository }}
-          cache-from: type=gha,scope=arena-criolla-ci
-          cache-to: type=gha,scope=arena-criolla-ci,mode=max
-      - name: Set vulnerability cache period
-        id: scanner-cache
-        run: echo "period=$(( $(date +%s) / 21600 ))" >> "$GITHUB_OUTPUT"
-      - name: Cache vulnerability database
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
-        with:
-          path: ~/.cache/trivy
-          key: ${{ runner.os }}-trivy-0.76.0-${{ steps.scanner-cache.outputs.period }}
-          restore-keys: ${{ runner.os }}-trivy-0.76.0-
-      - name: Check the complete runtime image for known CVEs
-        shell: bash
-        run: |
-          set -euo pipefail
-          scanner_dir=$(mktemp -d)
-          trap 'rm -rf "$scanner_dir"' EXIT
-          curl --fail --location --retry 3 --output "$scanner_dir/trivy.tar.gz" https://github.com/aquasecurity/trivy/releases/download/v0.76.0/trivy_0.76.0_Linux-64bit.tar.gz
-          echo "e24b1c51293c1b15e4ba8d45bbc7891ba053f90278ec2698f3562c993e145fe7  $scanner_dir/trivy.tar.gz" | sha256sum --check --strict
-          tar --extract --gzip --file "$scanner_dir/trivy.tar.gz" --directory "$scanner_dir" trivy
-          "$scanner_dir/trivy" image --disable-telemetry --scanners vuln --exit-code 1 arena-criolla:ci
-      - name: Boot production image and verify HTTP and WebSocket behavior
-        shell: bash
-        run: |
-          set -euo pipefail
-          container=$(docker run --detach --read-only --tmpfs /tmp:rw,noexec,nosuid,nodev,size=128m,mode=1777 --cap-drop ALL --security-opt no-new-privileges:true --publish 127.0.0.1::5173 arena-criolla:ci)
-          trap 'docker logs "$container"; docker rm --force --volumes "$container"' EXIT
-          port=$(docker port "$container" 5173/tcp | cut -d: -f2)
-          base="http://127.0.0.1:$port"
-          # Docker can reset connections before the application is listening.
-          curl --fail --retry 15 --retry-delay 1 --retry-all-errors --retry-max-time 30 --connect-timeout 2 --max-time 3 "$base/api/health"
-          # Use the dependencies in the image instead of installing them again.
-          docker exec -i "$container" node --input-type=module - http://127.0.0.1:5173 < scripts/security-smoke.mjs
-      - name: Export the verified production image
-        if: github.repository == '0bkevin/arena-criolla' && github.ref == 'refs/heads/prod'
-        env:
-          RELEASE_SHA: ${{ github.sha }}
-        run: |
-          set -euo pipefail
-          docker save "arena-criolla:release-$RELEASE_SHA" | gzip -1 > "$RUNNER_TEMP/image.tar.gz"
-          cd "$RUNNER_TEMP"
-          sha256sum image.tar.gz > image.tar.gz.sha256
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        if: github.repository == '0bkevin/arena-criolla' && github.ref == 'refs/heads/prod'
-        with:
-          name: production-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          path: |
-            ${{ runner.temp }}/image.tar.gz
-            ${{ runner.temp }}/image.tar.gz.sha256
-          retention-days: 3
-          compression-level: 0
-          if-no-files-found: error
-  # Keep the existing required check name and propagate either job's failure.
+  # Builds and smoke-tests the image for changes to what it ships. Promotions skip
+  # it: deploying from prod builds, scans and smoke-tests the image it delivers.
+  image:
+    needs: plan
+    if: needs.plan.outputs.image == 'true' && github.base_ref != 'prod' && !inputs.promotion-pr
+    uses: ./.github/workflows/image.yml
+    with:
+      scan: ${{ needs.plan.outputs.scan == 'true' }}
+  # The required check: fails unless planning succeeded and nothing selected failed.
   validate:
     if: always()
-    needs: [tests, production]
+    needs: [plan, checks, image]
     runs-on: ubuntu-latest
     steps:
-      - name: Require tests and production checks
+      - name: Require the selected checks
         env:
-          TEST_RESULT: ${{ needs.tests.result }}
-          PRODUCTION_RESULT: ${{ needs.production.result }}
-        run: test "$TEST_RESULT" = success && test "$PRODUCTION_RESULT" = success
+          PLAN: ${{ needs.plan.result }}
+          CHECKS: ${{ needs.checks.result }}
+          IMAGE: ${{ needs.image.result }}
+        run: |
+          test "$PLAN" = success
+          [[ "$CHECKS" =~ ^(success|skipped)$ ]]
+          [[ "$IMAGE" =~ ^(success|skipped)$ ]]
   prod-source:
     name: ${{ (github.event_name == 'pull_request' && github.base_ref == 'prod' || github.event_name == 'workflow_dispatch' && inputs.promotion-pr != '') && 'prod-source' || 'prod-source-not-required' }}
     if: >-

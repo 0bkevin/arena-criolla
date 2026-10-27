@@ -10,12 +10,16 @@ concurrency:
   group: arena-production-deployment
   cancel-in-progress: false
 jobs:
-  checks:
+  # Tests already ran on each PR and on the promotion PR; only the image is new here.
+  image:
     if: github.repository == '0bkevin/arena-criolla' && github.ref == 'refs/heads/prod'
-    uses: ./.github/workflows/ci.yml
+    uses: ./.github/workflows/image.yml
+    with:
+      scan: true
+      export: true
   deploy:
     if: github.repository == '0bkevin/arena-criolla' && github.ref == 'refs/heads/prod'
-    needs: checks
+    needs: image
     runs-on: ubuntu-latest
     timeout-minutes: 30
     environment:
