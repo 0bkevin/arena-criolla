@@ -10,6 +10,7 @@ import type { MatchState } from "../../shared/engine";
 import type { GameMode } from "./Game";
 import { VenezuelaStars } from "./CriolloArt";
 import { Portrait } from "./Portrait";
+import { assetUrl } from "../asset-url";
 import { playVictoryTransition } from "../game/victory-transition";
 import { startVictoryMusic } from "../audio";
 
@@ -63,7 +64,7 @@ export function VictoryScreen({
       data-winner={state.winner ?? "draw"}
       style={
         {
-          "--victory-stage": `url("/assets/${state.stage}.webp")`,
+          "--victory-stage": `url("${assetUrl(`/assets/${state.stage}.webp`)}")`,
         } as CSSProperties
       }
       role="dialog"
@@ -77,7 +78,12 @@ export function VictoryScreen({
       <div className="victory-screen-slash" aria-hidden="true" />
       <div className="victory-screen-layout">
         <div className="victory-screen-brand" aria-hidden="true">
-          <img src="/assets/arena-mark.svg" alt="" width={30} height={30} />
+          <img
+            src={assetUrl("/assets/arena-mark.svg")}
+            alt=""
+            width={30}
+            height={30}
+          />
           <span>
             ARENA <b>CRIOLLA</b>
           </span>

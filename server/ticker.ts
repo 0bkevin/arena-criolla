@@ -29,7 +29,8 @@ export class FixedStepTicker {
     const steps = Math.min(due, this.maxCatchUp);
     this.remainder -= steps * this.stepMs;
     if (due > this.maxCatchUp) {
-      this.remainder = ((this.remainder % this.stepMs) + this.stepMs) % this.stepMs;
+      this.remainder =
+        ((this.remainder % this.stepMs) + this.stepMs) % this.stepMs;
       if (this.remainder < 1e-7 || this.stepMs - this.remainder < 1e-7)
         this.remainder = 0;
     }

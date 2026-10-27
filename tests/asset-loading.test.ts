@@ -73,3 +73,42 @@ test("a fight keeps both dance lookup keys and retries optional failures without
     browser.restore();
   }
 });
+
+test("a fight starts before its super cinematic art, which joins the same record later", async () => {
+  const browser = browserFixture();
+  try {
+    const { preloadAssets } = await loader("defer-finales");
+    const cafe = `/assets/${actors.caprilesCafe.file}.webp`;
+    const assets = await preloadAssets(["capriles", "giuseppe"], ["caracas"], {
+      deferFinales: true,
+    });
+    assert.ok(assets.sprites.capriles && assets.stages.caracas);
+    assert.equal(assets.finaleProps[actors.caprilesCafe.file], undefined);
+    assert.equal(assets.finaleProps[seated.capriles.file], undefined);
+    // Requested only once the mandatory art has resolved.
+    assert.equal(browser.count(cafe), 1);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    assert.ok(assets.finaleProps[actors.caprilesCafe.file]);
+    assert.ok(assets.finaleProps[seated.capriles.file]);
+    assert.equal(browser.count(cafe), 1);
+  } finally {
+    browser.restore();
+  }
+});
+
+test("the lobby prefetch leaves super cinematic art to the started match", async () => {
+  const browser = browserFixture();
+  try {
+    const { prefetchMatchAssets } = await loader("prefetch-without-finales");
+    prefetchMatchAssets(["capriles", "giuseppe"], ["caracas"]);
+    assert.equal(browser.count(`/assets/${actors.caprilesCafe.file}.webp`), 0);
+    assert.equal(browser.count(`/assets/${seated.capriles.file}.webp`), 0);
+    assert.equal(
+      browser.count(`/assets/${fighterById("capriles").sprite}.webp`),
+      1,
+    );
+    assert.equal(browser.count("/assets/caracas.webp"), 1);
+  } finally {
+    browser.restore();
+  }
+});

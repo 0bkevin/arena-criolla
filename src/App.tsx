@@ -47,16 +47,22 @@ import {
   sound,
   stopReactions,
 } from "./audio";
-import { preloadAssets, prefetchMatchAssets } from "./game/assets";
+import { loadSprite, preloadAssets, prefetchMatchAssets } from "./game/assets";
+import { warmPortraitBusts } from "./game/portrait-bust";
 import { Portrait } from "./components/Portrait";
 import { FighterDetail } from "./components/FighterDetail";
 import { StageGallery } from "./components/StageGallery";
-import { ArcadeLobby } from "./components/ArcadeLobby";
+import {
+  ArcadeLobby,
+  MIN_PAGE_SIZE,
+  rosterOrder,
+} from "./components/ArcadeLobby";
 import { PixelIcon } from "./components/PixelIcon";
 import { Game, type GameMode } from "./components/Game";
 import { Modal } from "./components/Modal";
 import { Help } from "./components/Help";
 import { beginMobilePlay, leaveLandscape } from "./game/mobile";
+import { assetUrl } from "./asset-url";
 import "./dialog.css";
 import "./styles.css";
 import "./lobby.css";
@@ -68,6 +74,46 @@ import "./desktop-controls.css";
 import "./progress.css";
 import "./fighter-moves.css";
 
+function constrainedConnection() {
+  const connection = (
+    navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string };
+    }
+  ).connection;
+  return Boolean(
+    connection?.saveData ||
+    /^(slow-)?2g$/.test(connection?.effectiveType ?? ""),
+  );
+}
+
+let openingMatchup: readonly [FighterId, FighterId] | undefined;
+/** Two distinct fighters for the first lobby, picked once per page load. */
+function lobbyMatchup() {
+  if (!openingMatchup || !openingMatchup.every(isFighter)) {
+    // Pick without shuffling or copying the roster.
+    const first = Math.floor(Math.random() * FIGHTERS.length);
+    const second =
+      (first + 1 + Math.floor(Math.random() * (FIGHTERS.length - 1))) %
+      FIGHTERS.length;
+    openingMatchup = [FIGHTERS[first].id, FIGHTERS[second].id];
+  }
+  return openingMatchup;
+}
+
+/**
+ * Fetch the art the lobby shows first while the entrance is still playing:
+ * the two contenders and the busts on the roster's first page.
+ */
+export function warmLobbyArt() {
+  for (const id of lobbyMatchup())
+    void loadSprite(id, { entrance: true }).catch(() => {});
+  // A page holds at least MIN_PAGE_SIZE cards, rounded up to full rows.
+  const firstPage = [...FIGHTERS]
+    .sort((a, b) => rosterOrder(a, b))
+    .slice(0, MIN_PAGE_SIZE + 2);
+  warmPortraitBusts(firstPage.map((fighter) => fighter.id));
+}
+
 type ModalName = "help" | "fighters" | "stages" | "progress" | "rooms" | null;
 const colorStyle = (color: string): React.CSSProperties =>
   ({ "--fighter-color": color }) as React.CSSProperties;
@@ -76,14 +122,7 @@ export function App({
   communityRevision: _communityRevision,
 }: { communityRevision?: number } = {}) {
   const [mode, setMode] = useState<GameMode>("practice");
-  const [initialMatchup] = useState(() => {
-    // Pick two distinct fighters once, without shuffling or copying the roster.
-    const first = Math.floor(Math.random() * FIGHTERS.length);
-    const second =
-      (first + 1 + Math.floor(Math.random() * (FIGHTERS.length - 1))) %
-      FIGHTERS.length;
-    return [FIGHTERS[first].id, FIGHTERS[second].id] as const;
-  });
+  const [initialMatchup] = useState(lobbyMatchup);
   const [fighter, setFighter] = useState<FighterId>(initialMatchup[0]);
   const [rival, setRival] = useState<FighterId>(initialMatchup[1]);
   const [fighterQuery, setFighterQuery] = useState("");
@@ -201,27 +240,23 @@ export function App({
       for (const type of events) window.removeEventListener(type, engage);
     };
   }, [engaged]);
+  const warmMatch = () => {
+    if (network.room || active || constrainedConnection()) return;
+    prefetchMatchAssets([fighter, rival], [stage]);
+  };
   useEffect(() => {
     // Offline matches start right after the player taps Jugar: fetch the attack
     // and finale art in idle time so the start does not wait on the network.
-    if (!engaged || network.room || active) return;
-    const connection = (
-      navigator as Navigator & {
-        connection?: { saveData?: boolean; effectiveType?: string };
-      }
-    ).connection;
-    if (
-      connection?.saveData ||
-      /^(slow-)?2g$/.test(connection?.effectiveType ?? "")
-    )
-      return;
+    // Each pairing is a few MB, so wait until the choice has settled instead
+    // of warming every fighter the player merely browses past.
+    if (!engaged || network.room || active || constrainedConnection()) return;
     let idle = 0;
     const timer = window.setTimeout(() => {
       const warm = () => prefetchMatchAssets([fighter, rival], [stage]);
       if ("requestIdleCallback" in window)
         idle = window.requestIdleCallback(warm, { timeout: 4000 });
       else warm();
-    }, 1200);
+    }, 2000);
     return () => {
       clearTimeout(timer);
       if (idle) window.cancelIdleCallback(idle);
@@ -247,9 +282,10 @@ export function App({
     const timer = setTimeout(() => setNotice(""), 5000);
     return () => clearTimeout(timer);
   }, [notice]);
+  // Fighter voice clips load when a match starts (Game and startLocal), not on
+  // every lobby click.
   const clickSound = () => {
     initAudio();
-    preloadReactions();
     sound("select");
   };
   const toggleAudio = () => {
@@ -257,7 +293,7 @@ export function App({
     setSound(!audio);
     if (!audio) {
       initAudio();
-      preloadReactions();
+      if (active) preloadReactions();
     }
   };
   const clearFighterSearch = () => {
@@ -464,7 +500,12 @@ export function App({
           }}
         >
           <span className="brand-icon" aria-hidden="true">
-            <img src="/assets/arena-icon.svg" width="29" height="29" alt="" />
+            <img
+              src={assetUrl("/assets/arena-icon.svg")}
+              width="29"
+              height="29"
+              alt=""
+            />
           </span>
           <span className="brand-name">
             ARENA
@@ -581,6 +622,7 @@ export function App({
           onDetail={setDetail}
           onModal={setModal}
           onStart={mode === "online" ? openRooms : startLocal}
+          onStartIntent={warmMatch}
           onReady={(ready) => {
             clickSound();
             if (ready) beginMobilePlay();
@@ -593,7 +635,12 @@ export function App({
 
       <footer className="site-footer page-width" ref={footer}>
         <span className="footer-brand">
-          <img src="/assets/arena-icon.svg" width="26" height="26" alt="" />
+          <img
+            src={assetUrl("/assets/arena-icon.svg")}
+            width="26"
+            height="26"
+            alt=""
+          />
           <span className="footer-brand-name">
             ARENA <span>CRIOLLA</span>
           </span>
@@ -853,7 +900,7 @@ export function App({
             <div className="rooms-list">
               {network.rooms.map((room) => (
                 <div key={room.code}>
-                  <img src={`/assets/${room.stage}.webp`} alt="" />
+                  <img src={assetUrl(`/assets/${room.stage}.webp`)} alt="" />
                   <div>
                     <strong>{room.name}</strong>
                     <span>

@@ -195,8 +195,11 @@ export function CreatorStudio({
   useEffect(() => {
     let active = true;
     let sequence = 0;
+    let inFlight = false;
     const checkSession = () => {
-      if (authenticating.current) return;
+      // Focus and visibilitychange both fire when the tab comes back.
+      if (authenticating.current || inFlight) return;
+      inFlight = true;
       const request = ++sequence;
       const generation = sessionEpoch.current;
       void creatorApi
@@ -212,6 +215,7 @@ export function CreatorStudio({
             setError(e.message);
         })
         .finally(() => {
+          inFlight = false;
           if (active && request === sequence && currentSession(generation))
             setLoading(false);
         });
@@ -278,11 +282,18 @@ export function CreatorStudio({
       return;
     }
     let active = true;
+    // Focus, visibilitychange and pageshow often fire together on return.
+    let inFlight = false;
     const tick = () => {
-      if (active && !document.hidden)
-        void refresh().catch((error) => {
+      if (!active || document.hidden || inFlight) return;
+      inFlight = true;
+      void refresh()
+        .catch((error) => {
           if (active && !sessionFailure(error, user.id))
             setConnectionLost(true);
+        })
+        .finally(() => {
+          inFlight = false;
         });
     };
     tick();

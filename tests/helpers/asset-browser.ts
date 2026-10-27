@@ -31,6 +31,7 @@ export function browserFixture(
     }
     set src(url: string) {
       this.url = url;
+      url = url.split("?")[0];
       const attempt = (requests.get(url) ?? 0) + 1;
       requests.set(url, attempt);
       const checked = geometry.get(url);

@@ -31,6 +31,7 @@ export function precompressedAssets(root: string): RequestHandler {
   return async (req, res, next) => {
     if (
       (req.method !== "GET" && req.method !== "HEAD") ||
+      req.query.v !== undefined ||
       !COMPRESSIBLE.test(req.path)
     )
       return next();

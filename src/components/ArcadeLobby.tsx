@@ -31,6 +31,9 @@ import {
 import type { useArenaNetwork } from "../network";
 import type { GameMode } from "./Game";
 import { Portrait } from "./Portrait";
+import { stageThumbnail } from "../stage-thumbnail";
+import { assetUrl } from "../asset-url";
+import { loadSprite } from "../game/assets";
 import { PixelIcon } from "./PixelIcon";
 import { RosterFilter } from "./RosterFilter";
 
@@ -70,14 +73,21 @@ interface Props {
   onDetail: (id: FighterId) => void;
   onModal: (modal: "help" | "stages" | "progress") => void;
   onStart: () => void;
+  /** Hover, focus or press on the start button: warm the match art. */
+  onStartIntent?: () => void;
   onReady: (ready: boolean) => void;
   onInvite: () => void;
 }
 
 const colorStyle = (color: string) =>
   ({ "--fighter-color": color }) as React.CSSProperties;
-const MIN_PAGE_SIZE = 10;
+export const MIN_PAGE_SIZE = 10;
 const fighterNameOrder = new Intl.Collator("es", { sensitivity: "base" });
+export const rosterOrder = (
+  a: { name: string },
+  b: { name: string },
+  descending = false,
+) => fighterNameOrder.compare(a.name, b.name) * (descending ? -1 : 1);
 const stageLabels: Record<StageId, string> = {
   caracas: "Altamira",
   guaira: "La Guaira",
@@ -106,10 +116,7 @@ export function ArcadeLobby(props: Props) {
           (item) =>
             category === "all" || (item.category ?? "culture") === category,
         )
-        .sort(
-          (a, b) =>
-            fighterNameOrder.compare(a.name, b.name) * (descending ? -1 : 1),
-        ),
+        .sort((a, b) => rosterOrder(a, b, descending)),
     [props.fighters, category, descending],
   );
   const rosterIds = roster.map((item) => item.id).join("|");
@@ -119,6 +126,19 @@ export function ArcadeLobby(props: Props) {
     currentPage * pageSize,
     currentPage * pageSize + pageSize,
   );
+  // Cards draw small busts, but selecting one animates the fighter's atlas
+  // and entrance art: start loading it when the player approaches a card.
+  const cardIntent = useRef(0);
+  const warmSelection = (id: FighterId) => {
+    window.clearTimeout(cardIntent.current);
+    void loadSprite(id, { entrance: true, priority: "high" }).catch(() => {});
+  };
+  // Sweeping the pointer across the grid should not load every card it crosses.
+  const hoverCard = (id: FighterId) => {
+    window.clearTimeout(cardIntent.current);
+    cardIntent.current = window.setTimeout(() => warmSelection(id), 120);
+  };
+  useEffect(() => () => window.clearTimeout(cardIntent.current), []);
   const chosen = fighterById(fighter);
   const rivalPlayer = network.room?.players.find(
     (player) => player.id !== network.id,
@@ -297,7 +317,9 @@ export function ArcadeLobby(props: Props) {
           <div
             className="cabinet-scenery"
             key={stage.id}
-            style={{ backgroundImage: `url(/assets/${stage.id}.webp)` }}
+            style={{
+              backgroundImage: `url(${assetUrl(`/assets/${stage.id}.webp`)})`,
+            }}
             aria-hidden="true"
           />
           <div className="cabinet-heading">
@@ -336,6 +358,7 @@ export function ArcadeLobby(props: Props) {
                     fighter={fighter}
                     className="selected-portrait"
                     animated
+                    instantPose
                   />
                   <span className="contender-shadow" />
                 </div>
@@ -381,6 +404,7 @@ export function ArcadeLobby(props: Props) {
                       facing={-1}
                       className="selected-portrait"
                       animated
+                      instantPose
                     />
                   ) : (
                     <div className="waiting-portrait">
@@ -507,6 +531,14 @@ export function ArcadeLobby(props: Props) {
                       style={colorStyle(item.color)}
                       aria-label={`Elegir a ${item.name}`}
                       aria-pressed={activeFighter === item.id}
+                      onPointerEnter={(event) => {
+                        if (event.pointerType === "mouse") hoverCard(item.id);
+                      }}
+                      onPointerLeave={() =>
+                        window.clearTimeout(cardIntent.current)
+                      }
+                      onPointerDown={() => warmSelection(item.id)}
+                      onFocus={() => warmSelection(item.id)}
                       onClick={() =>
                         pickingRival
                           ? props.onRival(item.id)
@@ -603,7 +635,13 @@ export function ArcadeLobby(props: Props) {
                 onClick={() => props.onStage(item.id)}
               >
                 <span className="stage-thumbnail">
-                  <img src={`/assets/${item.id}.webp`} alt="" />
+                  <img
+                    src={stageThumbnail(item.id, "strip")}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                  />
                   {item.id === stage.id && (
                     <span className="stage-tick">
                       <Check size={12} />
@@ -684,6 +722,9 @@ export function ArcadeLobby(props: Props) {
           <button
             className="arcade-start primary-button fight-button"
             disabled={mode === "online" && !network.connected}
+            onPointerEnter={network.room ? undefined : props.onStartIntent}
+            onPointerDown={network.room ? undefined : props.onStartIntent}
+            onFocus={network.room ? undefined : props.onStartIntent}
             onClick={
               network.room
                 ? () => props.onReady(!ownRoomPlayer?.ready)

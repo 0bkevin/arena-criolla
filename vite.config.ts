@@ -4,6 +4,18 @@ import { brotliCompress, constants, gzip } from "node:zlib";
 import { promisify } from "node:util";
 import { defineConfig, type Plugin } from "vite";
 import entranceAssets from "./src/entrance-assets.json";
+import { assetVersions } from "./shared/asset-versions";
+
+const versions = await assetVersions("public");
+const versionManifest = JSON.stringify(versions, null, 2) + "\n";
+// Rewriting an unchanged tracked file would dirty the tree and trigger HMR.
+if (
+  (await readFile("shared/asset-versions.json", "utf8").catch(() => "")) !==
+  versionManifest
+)
+  await writeFile("shared/asset-versions.json", versionManifest);
+const versionUrl = (url: string) =>
+  versions[url] ? `${url}?v=${versions[url]}` : url;
 
 const brotli = promisify(brotliCompress);
 const deflate = promisify(gzip);
@@ -50,6 +62,20 @@ export default defineConfig({
   plugins: [
     precompressText(),
     {
+      name: "version-public-references",
+      enforce: "pre",
+      transform(code, id) {
+        if (!id.endsWith(".css")) return;
+        return code.replace(/\/assets\/caracas\.webp/g, versionUrl);
+      },
+      transformIndexHtml: {
+        order: "pre",
+        handler(html) {
+          return html.replace(/\/fonts\/[\w.-]+\.woff2/g, versionUrl);
+        },
+      },
+    },
+    {
       name: "preload-entrance-art",
       transformIndexHtml() {
         return [
@@ -69,7 +95,7 @@ export default defineConfig({
             attrs: {
               rel: "preload",
               as: "image",
-              href: "/assets/caracas.webp",
+              href: versionUrl("/assets/caracas.webp"),
               fetchpriority: "high",
             },
             injectTo: "head" as const,

@@ -17,6 +17,8 @@
     "assets:audit:avif": "node scripts/audit-lossless-avif.mjs",
     "assets:og": "node scripts/generate-og-image.mjs",
     "assets:brand": "node scripts/generate-brand-assets.mjs",
+    "assets:busts": "tsx scripts/generate-portrait-busts.ts",
+    "assets:stage-thumbs": "tsx scripts/generate-stage-thumbnails.ts",
     "check:assets": "node scripts/validate-character-assets.mjs"
   },
   "dependencies": {

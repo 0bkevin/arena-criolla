@@ -27,6 +27,7 @@ function browserFixture(
     onload: (() => void) | null = null;
     onerror: (() => void) | null = null;
     set src(value: string) {
+      value = value.split("?")[0];
       attempts++;
       const attempt = (requests.get(value) ?? 0) + 1;
       requests.set(value, attempt);

@@ -236,7 +236,11 @@ export function FighterDetail({
           <h3 id="move-combos-title">Combos</h3>
           {moveList(true)}
         </section>
-        <button type="button" className="dialog-done help-done" onClick={onSelect}>
+        <button
+          type="button"
+          className="dialog-done help-done"
+          onClick={onSelect}
+        >
           Elegir a {f.shortName} <ArrowRight size={16} aria-hidden="true" />
         </button>
       </div>
