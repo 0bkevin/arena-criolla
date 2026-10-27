@@ -247,9 +247,10 @@ export function App({
     const timer = setTimeout(() => setNotice(""), 5000);
     return () => clearTimeout(timer);
   }, [notice]);
+  // Fighter voice clips load when a match starts (Game and startLocal), not on
+  // every lobby click.
   const clickSound = () => {
     initAudio();
-    preloadReactions();
     sound("select");
   };
   const toggleAudio = () => {
@@ -257,7 +258,7 @@ export function App({
     setSound(!audio);
     if (!audio) {
       initAudio();
-      preloadReactions();
+      if (active) preloadReactions();
     }
   };
   const clearFighterSearch = () => {
