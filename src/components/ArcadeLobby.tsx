@@ -32,6 +32,7 @@ import type { useArenaNetwork } from "../network";
 import type { GameMode } from "./Game";
 import { Portrait } from "./Portrait";
 import { stageThumbnail } from "../stage-thumbnail";
+import { assetUrl } from "../asset-url";
 import { loadSprite } from "../game/assets";
 import { PixelIcon } from "./PixelIcon";
 import { RosterFilter } from "./RosterFilter";
@@ -316,7 +317,9 @@ export function ArcadeLobby(props: Props) {
           <div
             className="cabinet-scenery"
             key={stage.id}
-            style={{ backgroundImage: `url(/assets/${stage.id}.webp)` }}
+            style={{
+              backgroundImage: `url(${assetUrl(`/assets/${stage.id}.webp`)})`,
+            }}
             aria-hidden="true"
           />
           <div className="cabinet-heading">

@@ -1,3 +1,4 @@
+import { assetUrl } from "./asset-url";
 import {
   useEffect,
   useMemo,
@@ -499,7 +500,12 @@ export function App({
           }}
         >
           <span className="brand-icon" aria-hidden="true">
-            <img src="/assets/arena-icon.svg" width="29" height="29" alt="" />
+            <img
+              src={assetUrl("/assets/arena-icon.svg")}
+              width="29"
+              height="29"
+              alt=""
+            />
           </span>
           <span className="brand-name">
             ARENA
@@ -629,7 +635,12 @@ export function App({
 
       <footer className="site-footer page-width" ref={footer}>
         <span className="footer-brand">
-          <img src="/assets/arena-icon.svg" width="26" height="26" alt="" />
+          <img
+            src={assetUrl("/assets/arena-icon.svg")}
+            width="26"
+            height="26"
+            alt=""
+          />
           <span className="footer-brand-name">
             ARENA <span>CRIOLLA</span>
           </span>
@@ -889,7 +900,7 @@ export function App({
             <div className="rooms-list">
               {network.rooms.map((room) => (
                 <div key={room.code}>
-                  <img src={`/assets/${room.stage}.webp`} alt="" />
+                  <img src={assetUrl(`/assets/${room.stage}.webp`)} alt="" />
                   <div>
                     <strong>{room.name}</strong>
                     <span>

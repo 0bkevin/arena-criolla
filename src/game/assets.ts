@@ -1,3 +1,4 @@
+import { assetUrl } from "../asset-url";
 import { COMMUNITY_CHARACTERS } from "../../shared/community";
 import {
   FIGHTERS,
@@ -115,7 +116,7 @@ function portraitCenter(image: HTMLImageElement, frame: SpriteFrame): number {
 function imageSource(id: string): string {
   return id.startsWith("custom_")
     ? `/api/community/assets/${id}/sprite.webp`
-    : `/assets/${id}.webp`;
+    : assetUrl(`/assets/${id}.webp`);
 }
 
 export function loadImage(

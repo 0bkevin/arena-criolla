@@ -1,3 +1,4 @@
+import { assetUrl } from "./asset-url";
 import { fighterById, type FighterId, type StageId } from "../shared/content";
 import { REACTION_CLIPS, type ReactionKind } from "./game/reactions";
 import { CULTURE_SOUNDS } from "./game/culture-sounds";
@@ -486,7 +487,7 @@ function loadReaction(file: string) {
     const ctx = context;
     buffers.set(
       file,
-      fetch(file)
+      fetch(assetUrl(file))
         .then((r) => {
           if (!r.ok) throw new Error("Audio no disponible");
           return r.arrayBuffer();

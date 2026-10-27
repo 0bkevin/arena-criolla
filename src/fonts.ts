@@ -1,3 +1,4 @@
+import { assetUrl } from "./asset-url";
 const INTERFACE_FONTS = [
   {
     family: "Barlow Condensed",
@@ -80,10 +81,14 @@ export function loadInterfaceFonts(): InterfaceFontLoading {
   const faces = INTERFACE_FONTS.map(
     ({ family, file, weight, style, entrance }) => ({
       entrance,
-      face: new FontFace(family, `url("/fonts/${file}") format("woff2")`, {
-        weight,
-        style,
-      }),
+      face: new FontFace(
+        family,
+        `url("${assetUrl(`/fonts/${file}`)}") format("woff2")`,
+        {
+          weight,
+          style,
+        },
+      ),
     }),
   );
   const entranceReady = settleFonts(
