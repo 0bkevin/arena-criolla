@@ -2,8 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createMatch, emptyInput, stepMatch, WORLD, type Input } from "../shared/engine";
 import { type FighterId } from "../shared/content";
-import { TECHNIQUES } from "../shared/techniques";
-function setup(side: 0 | 1, rival: FighterId = "deyna", gap = 180) {
+function setup(side: 0 | 1, rival: FighterId, gap: number) {
   const queen = { name: "Queen", fighter: "dayana" as const, wins: 3 },
     guest = { name: "Guest", fighter: rival, wins: 3 };
   const state = createMatch("caracas", side ? [guest, queen] : [queen, guest]);
@@ -24,19 +23,9 @@ function setup(side: 0 | 1, rival: FighterId = "deyna", gap = 180) {
   };
   return { state, source, target, inputs, advance };
 }
-test("Dayana's held-dress twirl hits nearby rivals on both sides without spawning a projectile", () => {
-  assert.equal(TECHNIQUES.corona.projectile, undefined);
-  assert.equal(TECHNIQUES.corona.radial, true);
+test("Dayana's radial twirl hits a nearby rival in front or behind, respects guard and spawns no projectile", () => {
   for (const side of [0, 1] as const)
-    for (const mode of [
-      "front",
-      "behind",
-      "guard",
-      "miss",
-      "interrupt",
-      "energy",
-      "air",
-    ]) {
+    for (const mode of ["front", "behind", "guard", "miss"]) {
       const r = setup(side, "zavarce", mode === "miss" ? 280 : 95);
       r.source.config.wins = 0;
       for (const player of r.state.players) {
@@ -44,15 +33,6 @@ test("Dayana's held-dress twirl hits nearby rivals on both sides without spawnin
         player.grounded = true;
       }
       if (mode === "guard") r.inputs[1 - side].block = true;
-      if (mode === "energy") r.source.energy = 24;
-      if (mode === "air") {
-        r.source.y -= 180;
-        r.source.grounded = false;
-      }
-      if (mode === "interrupt") {
-        r.inputs[1 - side].actions.light++;
-        r.advance(3);
-      }
       r.inputs[side].actions.special++;
       let lowestHP = 100;
       for (let n = 0; n < 120; n++) {

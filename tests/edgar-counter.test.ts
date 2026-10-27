@@ -1,15 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createMatch, emptyInput, stepMatch, WORLD, type Input } from "./helpers/charged-finale-engine";
-type Side = 0 | 1;
-function setup(id: "lorenzo" | "carolina" | "deyna" | "bolivar" | "edgar", side: Side = 0, gap = 140, wins = 3) {
+function setup(id: "edgar", side: 0 | 1, gap: number, wins = 3) {
   const state = createMatch(
     "caracas",
     [
       { name: "Uno", fighter: side === 0 ? id : "zavarce", wins },
       { name: "Dos", fighter: side === 1 ? id : "zavarce", wins },
     ],
-    "roster-v39",
+    "edgar-counter",
   );
   state.phase = "playing";
   const actor = state.players[side],

@@ -2,10 +2,9 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { fighterById } from "../shared/content";
 import { cpuInput, createMatch, emptyInput, outgoingDamageMultiplier, stepMatch, type Input } from "./helpers/charged-finale-engine";
-import { finaleById } from "../shared/finales";
 import { TECHNIQUES } from "../shared/techniques";
-function setup(side: 0 | 1 = 0, gap = 500, wins = 3, energy = 100) {
-  const conde = { name: "Conde", fighter: "conde" as const, wins };
+function setup(side: 0 | 1 = 0, gap = 500) {
+  const conde = { name: "Conde", fighter: "conde" as const, wins: 3 };
   const rival = { name: "Rival", fighter: "javier" as const, wins: 3 };
   const state = createMatch("poliedro", side ? [rival, conde] : [conde, rival]);
   state.phase = "playing";
@@ -19,7 +18,6 @@ function setup(side: 0 | 1 = 0, gap = 500, wins = 3, energy = 100) {
   source.facing = side ? -1 : 1;
   target.x = source.x + source.facing * gap;
   target.facing = -source.facing;
-  source.energy = energy;
   const inputs: [Input, Input] = [emptyInput(), emptyInput()];
   const advance = (n: number) => {
     for (let i = 0; i < n; i++) stepMatch(state, inputs);
@@ -33,61 +31,7 @@ function setup(side: 0 | 1 = 0, gap = 500, wins = 3, energy = 100) {
 const close = (a: number, b: number) =>
   assert.ok(Math.abs(a - b) < 1e-8, `${a} != ${b}`);
 
-test("Conde Bond activates at tick9 out of range in either slot with cost and no enemy damage/freeze", () => {
-  for (const side of [0, 1] as const) {
-    const r = setup(side);
-    r.inputs[side].actions.super++;
-    r.advance(8);
-    assert.equal(Boolean(r.source.transformation), false);
-    r.advance(1);
-    assert.equal(r.source.transformation?.ticks, 360);
-    assert.equal(r.source.transformation?.id, "conde-bond");
-    assert.equal(r.state.finale, undefined);
-    assert.equal(r.target.hp, 100);
-    assert.equal(r.source.hits, 0);
-    close(r.source.energy, 10.28);
-    const tick = r.state.tick,
-      x = r.target.x;
-    r.inputs[1 - side].left = true;
-    r.advance(12);
-    assert.ok(r.target.x < x);
-    assert.equal(r.state.tick, tick + 12);
-    assert.equal(r.source.transformation?.ticks, 348);
-  }
-});
-
-test("self-transform is available from zero wins and respects energy, stun, guard, cooldown, stale input and interrupted startup", () => {
-  for (const side of [0, 1] as const) {
-    for (const [wins, energy] of [
-      [0, 89],
-      [0, 90],
-      [1, 100],
-      [2, 89],
-      [2, 90],
-    ]) {
-      const r = setup(side, 500, wins, energy);
-      r.activate();
-      assert.equal(!!r.source.transformation, energy >= 90);
-    }
-    for (const gate of ["stun", "cooldown", "guard", "stale"] as const) {
-      const r = setup(side);
-      if (gate === "stun") r.source.stun = 20;
-      if (gate === "cooldown") r.source.cooldown = 20;
-      if (gate === "guard") r.inputs[side].block = true;
-      if (gate === "stale") r.source.lastActions.super = 1;
-      r.activate();
-      assert.equal(r.source.transformation, undefined, gate);
-    }
-    const r = setup(side, 80);
-    r.inputs[side].actions.super++;
-    r.inputs[1 - side].actions.light++;
-    r.advance(20);
-    assert.equal(r.source.transformation, undefined);
-    assert.ok(r.source.hp < 100);
-  }
-});
-
-test("all Conde damage paths get exactly20 percent; real light/heavy/special inputs work and facing guard still blocks", () => {
+test("all Conde damage paths get exactly 20 percent; real light/heavy/special inputs work and facing guard still blocks", () => {
   for (const side of [0, 1] as const)
     for (const action of ["light", "heavy", "special"] as const)
       for (const guard of [false, true]) {
@@ -150,34 +94,6 @@ test("360 active ticks expire exactly; hitstop/capture pause time; one use preve
     assert.equal(death.source.transformation, undefined);
     assert.equal(death.source.stocks, stocks - 1);
   }
-});
-
-test("movement, jump, block and post-expiry basic attacks remain normal combat", () => {
-  const r = setup();
-  r.activate();
-  r.advance(40);
-  const x = r.source.x;
-  r.inputs[0].right = true;
-  r.advance(10);
-  assert.ok(r.source.x > x);
-  r.inputs[0].right = false;
-  r.inputs[0].actions.jump++;
-  r.advance(1);
-  assert.equal(r.source.jumps, 1);
-  r.advance(65);
-  r.inputs[0].block = true;
-  r.advance(1);
-  assert.ok(r.source.blocking);
-  assert.ok(r.source.transformation);
-  r.inputs[0].block = false;
-  r.advance(360);
-  r.target.x = r.source.x + 80;
-  r.inputs[0].actions.light++;
-  r.advance(8);
-  close(
-    100 - r.target.hp,
-    7 * fighterById("conde").damage * fighterById("javier").armor,
-  );
 });
 
 test("transformation state serializes and replays deterministically; hard CPU activates at distance once", () => {

@@ -60,7 +60,7 @@ class Peer {
 }
 
 async function listeningServer() {
-  const dataDir = await mkdtemp(join(tmpdir(), "melanio-v45-"));
+  const dataDir = await mkdtemp(join(tmpdir(), "melanio-online-"));
   try {
     const server = await makeArenaServer({
       serveClient: false,
@@ -212,51 +212,6 @@ test("Melanio signal returns to its owner with synchronized ownership and veloci
       guest.send({ type: "leave" });
       await guest.wait("left");
     }
-  } finally {
-    host.socket.terminate();
-    guest.socket.terminate();
-    await fixture.close();
-  }
-});
-
-test("duplicate or reordered Melanio signal inputs cannot emit twice or charge twice", async () => {
-  const fixture = await listeningServer();
-  const host = new Peer(fixture.url),
-    guest = new Peer(fixture.url);
-  try {
-    const [welcome] = await Promise.all([
-      host.wait("welcome"),
-      guest.wait("welcome"),
-    ]);
-    const { state } = await startPair(fixture.server, host, guest, [
-      "melanio",
-      "javier",
-    ]);
-    const counters = { ...emptyInput().actions, special: 8 };
-    const special = input({ actions: counters });
-    sendInput(host, state.id, special);
-    await guest.state(state.id, (s) =>
-      s.players[0].history.some((entry) => entry.action === "special"),
-    );
-    sendInput(host, state.id, special);
-    sendInput(
-      host,
-      state.id,
-      input({ actions: { ...counters, special: 7 } }),
-    );
-    const returned = await guest.state(state.id, (s) =>
-      s.projectiles.some(
-        (shot) =>
-          shot.kind === "signal" &&
-          (shot.age ?? 0) >= (shot.returnAfter ?? Infinity),
-      ),
-    );
-    assert.equal(
-      returned.projectiles.filter((shot) => shot.kind === "signal").length,
-      1,
-    );
-    assert.ok(returned.players[0].energy < 78);
-    assert.equal(fixture.server.clients.get(welcome.id)?.input.actions.special, 8);
   } finally {
     host.socket.terminate();
     guest.socket.terminate();

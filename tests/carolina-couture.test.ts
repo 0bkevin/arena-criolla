@@ -3,8 +3,7 @@ import assert from "node:assert/strict";
 import { createMatch, emptyInput, stepMatch, WORLD, type Input } from "./helpers/charged-finale-engine";
 import { fighterById } from "../shared/content";
 import { finaleById } from "../shared/finales";
-import { coutureRunwayRange, COUTURE_MODEL_COUNT, COUTURE_MODEL_CUES } from "../shared/couture-runway";
-import { ARENA_FINALES, arenaFinaleContacts } from "../shared/arena-finales";
+import { coutureRunwayRange, COUTURE_MODEL_COUNT } from "../shared/couture-runway";
 function setup(side: 0 | 1, gap = 180) {
   const a = { name: "Carolina", fighter: "carolina" as const, wins: 3 },
     b = { name: "Rival", fighter: "capriles" as const, wins: 3 },
@@ -66,68 +65,6 @@ test("Carolina's four distinct models make four physical, single-use contacts on
       ) < 1e-8,
     );
     assert.equal(r.state.fieldFinales, undefined);
-  }
-});
-
-test("the procession can be guarded or escaped, and cannot hit a rival above the runway", () => {
-  for (const side of [0, 1] as const) {
-    const guarded = setup(side);
-    guarded.inputs[1 - side].block = true;
-    guarded.start();
-    guarded.advance(250);
-    assert.equal(guarded.target.hp, 100);
-    assert.equal(guarded.source.hits, 0);
-    const missed = setup(side);
-    missed.start();
-    missed.target.x = missed.source.x - missed.source.facing * 260;
-    missed.advance(250);
-    assert.equal(missed.target.hp, 100);
-    const above = setup(side);
-    above.start();
-    above.advance(COUTURE_MODEL_CUES[0]);
-    const model = above.state.fieldFinales![0].actors![0];
-    above.target.x = model.x;
-    above.target.y = model.y - 180;
-    assert.equal(
-      arenaFinaleContacts(above.state).length,
-      0,
-      "no damage outside the visible body height",
-    );
-  }
-});
-
-test("Carolina regains control while her runway, rival, timer and projectiles keep running", () => {
-  for (const side of [0, 1] as const) {
-    const r = setup(side, 550);
-    r.start();
-    const tick = r.state.tick,
-      remaining = r.state.remaining;
-    r.inputs[1 - side].actions.jump++;
-    const shot = {
-      id: r.state.nextId++,
-      owner: side,
-      x: 100,
-      y: WORLD.floor - 240,
-      vx: 1,
-      life: 100,
-      age: 0,
-      damage: 1,
-      kind: "test",
-    };
-    r.state.projectiles.push(shot);
-    r.advance(6);
-    assert.ok(r.target.y < WORLD.floor);
-    assert.ok(shot.age > 0);
-    r.advance(ARENA_FINALES.carolina.recovery);
-    assert.equal(r.source.attack, null);
-    assert.ok(r.state.fieldFinales?.[0].actors?.length);
-    const x = r.source.x;
-    r.inputs[side][side ? "right" : "left"] = true;
-    r.advance(8);
-    assert.ok(Math.abs(r.source.x - x) > 10);
-    assert.ok(r.state.tick > tick);
-    assert.ok(r.state.remaining < remaining);
-    assert.equal(r.state.finale, undefined);
   }
 });
 

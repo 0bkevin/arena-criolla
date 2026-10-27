@@ -1,26 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { fighterById, type FighterId } from "../shared/content";
+import { FIGHTERS, type FighterId } from "../shared/content";
 import { createMatch, emptyInput, stepMatch, cpuInput, WORLD, type Input, type Projectile } from "../shared/engine";
 import { TECHNIQUES } from "../shared/techniques";
-const added: FighterId[] = [
-  "ali",
-  "gualberto",
-  "reynaldo",
-  "dudamel",
-  "danny",
-  "nacho",
-  "sarcos",
-  "yordano",
-  "lila",
-  "rummy",
-  "chiqui",
-  "norkys",
-  "gabriela",
-  "amanda",
-  "lele",
-  "giuseppe",
-];
 function special(fighter: FighterId, rivalX = 950) {
   const match = createMatch("guaira", [
     { name: "Uno", fighter, wins: 3 },
@@ -37,11 +19,7 @@ function special(fighter: FighterId, rivalX = 950) {
   const advance = (n: number) => {
     for (let i = 0; i < n; i++) stepMatch(match, inputs);
   };
-  const until = (predicate: () => boolean) => {
-    for (let i = 0; !predicate() && i < 230; i++) advance(1);
-    assert.ok(predicate(), "Expected combat event within 230 frames");
-  };
-  return { match, inputs, advance, until };
+  return { match, inputs, advance };
 }
 function incoming(x: number, direction = -1): Projectile {
   return {
@@ -72,10 +50,11 @@ test("defensive CPU fighters trigger their distinct specials when threatened", (
     assert.equal(input.block, false);
   }
 });
-test("all sixteen techniques remain deterministic after network serialization", () => {
-  for (const fighter of added) {
-    const s = special(fighter, 550);
-    s.advance(TECHNIQUES[fighterById(fighter).ability].startup);
+test("every fighter's special replays identically after a mid-technique network serialization", () => {
+  for (const fighter of FIGHTERS) {
+    const s = special(fighter.id, 550);
+    s.advance(TECHNIQUES[fighter.ability].startup);
+    assert.ok(s.match.players[0].energy < 60, `${fighter.id}: special started`);
     const remote = JSON.parse(JSON.stringify(s.match));
     for (let tick = 0; tick < 150; tick++) {
       stepMatch(s.match, s.inputs);
@@ -83,8 +62,19 @@ test("all sixteen techniques remain deterministic after network serialization", 
       assert.deepEqual(
         JSON.parse(JSON.stringify(s.match)),
         JSON.parse(JSON.stringify(remote)),
-        fighter,
+        fighter.id,
       );
     }
   }
+});
+test("a lost stock clears slow and root effects", () => {
+  const { match, inputs, advance } = special("momoy");
+  inputs[0].actions.special = 0;
+  match.players[1].slowTicks = 50;
+  match.players[1].rootTicks = 30;
+  match.players[1].hp = 0;
+  advance(1);
+  assert.equal(match.players[1].stocks, 1);
+  assert.equal(match.players[1].slowTicks, 0);
+  assert.equal(match.players[1].rootTicks, 0);
 });

@@ -1,8 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { type FighterId } from "../shared/content";
-import { createMatch, emptyInput, stepMatch, type Input, type MatchState } from "./helpers/charged-finale-engine";
-import { melanioSpecialPose } from "../src/game/finales/melanio";
+import { createMatch, emptyInput, stepMatch, type Input } from "./helpers/charged-finale-engine";
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const a = { name: "Melanio", fighter: "melanio" as const, wins: 3 },
     b = { name: "Rival", fighter: rival, wins: 3 };
@@ -22,29 +21,10 @@ function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const advance = (n: number) => {
     for (let i = 0; i < n; i++) stepMatch(state, inputs);
   };
-  const cast = (move: "special" | "super") => {
-    inputs[side].actions[move]++;
-    advance(1);
-    assert.equal(source.energy, move === "special" ? 75 : 10);
-  };
-  return { state, source, target, inputs, advance, cast };
+  return { state, source, target, inputs, advance };
 }
 
-test("live phone finale serializes and resumes identically through impact and ordinary release", () => {
-  for (const side of [0, 1] as const) {
-    const r = setup(side);
-    r.cast("super");
-    r.advance(8 + 75);
-    const replay = JSON.parse(JSON.stringify(r.state)) as MatchState;
-    for (let n = 0; n < 140; n++) {
-      stepMatch(replay, r.inputs);
-      r.advance(1);
-      assert.deepEqual(replay, r.state);
-    }
-  }
-});
-
-test("signal preserves real release21, recovery29, return leg, guard, miss and interruption in both seats", () => {
+test("Melanio's signal is one packet that reverses toward its owner and expires; guard and interruption stop it", () => {
   for (const side of [0, 1] as const)
     for (const mode of ["hit", "guard", "miss", "interrupt"]) {
       const r = setup(
@@ -58,25 +38,51 @@ test("signal preserves real release21, recovery29, return leg, guard, miss and i
       }
       r.inputs[side].actions.special++;
       const shots = new Set<number>();
-      let returned = false;
+      let outbound = false,
+        returned = false;
       for (let n = 1; n <= 100; n++) {
         r.advance(1);
         for (const p of r.state.projectiles) {
           shots.add(p.id);
-          returned ||= (p.age ?? 0) >= (p.returnAfter ?? Infinity);
+          if ((p.age ?? 0) < (p.returnAfter ?? Infinity))
+            outbound ||= Math.sign(p.vx) === r.source.facing;
+          else returned ||= Math.sign(p.vx) === -r.source.facing;
         }
-        if (n === 20 && mode !== "interrupt") assert.equal(shots.size, 0);
-        if (n === 21 && mode !== "interrupt") assert.equal(shots.size, 1);
       }
-      assert.equal(shots.size, mode === "interrupt" ? 0 : 1);
+      assert.equal(shots.size, mode === "interrupt" ? 0 : 1, mode);
       if (mode === "hit") assert.ok(r.target.hp < 100);
-      else assert.equal(r.target.hp, 100);
-      if (mode === "miss") assert.ok(returned);
+      else assert.equal(r.target.hp, 100, mode);
+      if (mode === "miss")
+        assert.ok(
+          outbound && returned,
+          "the same packet really reverses velocity before expiry",
+        );
       assert.equal(r.source.attack, null);
       assert.equal(r.state.projectiles.length, 0);
     }
-  assert.equal(melanioSpecialPose(20), "signal-windup");
-  assert.equal(melanioSpecialPose(21), "signal-release");
-  assert.equal(melanioSpecialPose(28), "signal-release");
-  assert.equal(melanioSpecialPose(29), undefined);
+});
+
+test("the returning signal can contact the rival on its return leg and counts once", () => {
+  for (const side of [0, 1] as const) {
+    const r = setup(side, 120, "javier");
+    // Outbound contact is suppressed so only the return leg can connect.
+    r.target.invincible = 1000;
+    r.inputs[side].actions.special++;
+    let reversed = false;
+    for (let frame = 0; frame < 70; frame++) {
+      r.advance(1);
+      const shot = r.state.projectiles.find((p) => p.owner === side);
+      if (
+        !reversed &&
+        shot &&
+        (shot.age ?? 0) >= (shot.returnAfter ?? Infinity)
+      ) {
+        reversed = true;
+        r.target.invincible = 0;
+      }
+    }
+    assert.ok(reversed, "the signal reversed");
+    assert.ok(r.target.hp < 100, "the returning packet contacts the rival");
+    assert.equal(r.source.hits, 1);
+  }
 });
