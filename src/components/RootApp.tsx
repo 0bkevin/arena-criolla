@@ -119,7 +119,13 @@ export function RootApp({
             .catch(() => {})
             .finally(() => {
               if (active) setCatalogReady(true);
-            });
+            })
+            // The lobby follows the entrance: fetch its first art meanwhile.
+            .then(() => loadGame())
+            .then(([module]) => {
+              if (active) module.warmLobbyArt();
+            })
+            .catch(() => {});
         });
       });
     };

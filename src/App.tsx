@@ -47,11 +47,16 @@ import {
   sound,
   stopReactions,
 } from "./audio";
-import { preloadAssets, prefetchMatchAssets } from "./game/assets";
+import { loadSprite, preloadAssets, prefetchMatchAssets } from "./game/assets";
+import { warmPortraitBusts } from "./game/portrait-bust";
 import { Portrait } from "./components/Portrait";
 import { FighterDetail } from "./components/FighterDetail";
 import { StageGallery } from "./components/StageGallery";
-import { ArcadeLobby } from "./components/ArcadeLobby";
+import {
+  ArcadeLobby,
+  MIN_PAGE_SIZE,
+  rosterOrder,
+} from "./components/ArcadeLobby";
 import { PixelIcon } from "./components/PixelIcon";
 import { Game, type GameMode } from "./components/Game";
 import { Modal } from "./components/Modal";
@@ -80,6 +85,34 @@ function constrainedConnection() {
   );
 }
 
+let openingMatchup: readonly [FighterId, FighterId] | undefined;
+/** Two distinct fighters for the first lobby, picked once per page load. */
+function lobbyMatchup() {
+  if (!openingMatchup || !openingMatchup.every(isFighter)) {
+    // Pick without shuffling or copying the roster.
+    const first = Math.floor(Math.random() * FIGHTERS.length);
+    const second =
+      (first + 1 + Math.floor(Math.random() * (FIGHTERS.length - 1))) %
+      FIGHTERS.length;
+    openingMatchup = [FIGHTERS[first].id, FIGHTERS[second].id];
+  }
+  return openingMatchup;
+}
+
+/**
+ * Fetch the art the lobby shows first while the entrance is still playing:
+ * the two contenders and the busts on the roster's first page.
+ */
+export function warmLobbyArt() {
+  for (const id of lobbyMatchup())
+    void loadSprite(id, { entrance: true }).catch(() => {});
+  // A page holds at least MIN_PAGE_SIZE cards, rounded up to full rows.
+  const firstPage = [...FIGHTERS]
+    .sort((a, b) => rosterOrder(a, b))
+    .slice(0, MIN_PAGE_SIZE + 2);
+  warmPortraitBusts(firstPage.map((fighter) => fighter.id));
+}
+
 type ModalName = "help" | "fighters" | "stages" | "progress" | "rooms" | null;
 const colorStyle = (color: string): React.CSSProperties =>
   ({ "--fighter-color": color }) as React.CSSProperties;
@@ -88,14 +121,7 @@ export function App({
   communityRevision: _communityRevision,
 }: { communityRevision?: number } = {}) {
   const [mode, setMode] = useState<GameMode>("practice");
-  const [initialMatchup] = useState(() => {
-    // Pick two distinct fighters once, without shuffling or copying the roster.
-    const first = Math.floor(Math.random() * FIGHTERS.length);
-    const second =
-      (first + 1 + Math.floor(Math.random() * (FIGHTERS.length - 1))) %
-      FIGHTERS.length;
-    return [FIGHTERS[first].id, FIGHTERS[second].id] as const;
-  });
+  const [initialMatchup] = useState(lobbyMatchup);
   const [fighter, setFighter] = useState<FighterId>(initialMatchup[0]);
   const [rival, setRival] = useState<FighterId>(initialMatchup[1]);
   const [fighterQuery, setFighterQuery] = useState("");

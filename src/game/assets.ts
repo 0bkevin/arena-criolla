@@ -118,13 +118,17 @@ function imageSource(id: string): string {
     : `/assets/${id}.webp`;
 }
 
-export function loadImage(id: string): Promise<HTMLImageElement> {
+export function loadImage(
+  id: string,
+  priority?: "high" | "low",
+): Promise<HTMLImageElement> {
   const imageId = id === legacyNachoDanceImage ? nachoDanceImage : id;
   if (!images.has(imageId)) {
     images.set(
       imageId,
       new Promise<HTMLImageElement>((resolve, reject) => {
         const image = new Image();
+        if (priority) image.fetchPriority = priority;
         let alternate =
           imageId === nachoDanceImage ? legacyNachoDanceImage : undefined;
         image.onload = () => resolve(image);

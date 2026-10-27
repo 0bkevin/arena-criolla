@@ -78,8 +78,13 @@ interface Props {
 
 const colorStyle = (color: string) =>
   ({ "--fighter-color": color }) as React.CSSProperties;
-const MIN_PAGE_SIZE = 10;
+export const MIN_PAGE_SIZE = 10;
 const fighterNameOrder = new Intl.Collator("es", { sensitivity: "base" });
+export const rosterOrder = (
+  a: { name: string },
+  b: { name: string },
+  descending = false,
+) => fighterNameOrder.compare(a.name, b.name) * (descending ? -1 : 1);
 const stageLabels: Record<StageId, string> = {
   caracas: "Altamira",
   guaira: "La Guaira",
@@ -108,10 +113,7 @@ export function ArcadeLobby(props: Props) {
           (item) =>
             category === "all" || (item.category ?? "culture") === category,
         )
-        .sort(
-          (a, b) =>
-            fighterNameOrder.compare(a.name, b.name) * (descending ? -1 : 1),
-        ),
+        .sort((a, b) => rosterOrder(a, b, descending)),
     [props.fighters, category, descending],
   );
   const rosterIds = roster.map((item) => item.id).join("|");
@@ -610,6 +612,7 @@ export function ArcadeLobby(props: Props) {
                     alt=""
                     loading="lazy"
                     decoding="async"
+                    fetchPriority="low"
                   />
                   {item.id === stage.id && (
                     <span className="stage-tick">
