@@ -27,7 +27,7 @@ Esta comprobación valida HTTP y WebSocket y crea una partida privada temporal c
 El flujo sigue el modelo de Gotchu y entrega Arena Criolla al servidor Docker existente:
 
 1. Integra los cambios en `main` mediante un PR con `validate` aprobado.
-2. Con cada push a `main`, **Prepare production promotion** abre o actualiza **Release main to production**, con base `prod` y origen `main`, y ejecuta los tests afectados por todo el diff `prod...main`.
+2. Con cada push a `main`, **Prepare production promotion** abre o actualiza **Release main to production**, con base `prod` y origen `main`. Ese PR solo comprueba `prod-source`: cada cambio ya pasó sus checks en su propio PR.
 3. Revisa el diff completo y fusiona ese PR. Esa fusión autoriza el despliegue a `https://arenacriolla.com`. No hay fusión automática.
 4. **Deploy production** no repite los tests: construye la imagen del commit exacto de `prod`, la escanea con Trivy y comprueba HTTP/WebSocket arrancándola.
 5. Exporta esa misma imagen Docker, con la revisión etiquetada, como un artefacto comprimido con SHA256. El job de entrega descarga el artefacto de esa ejecución y lo envía por SSH. No se reconstruye en el servidor ni se requiere un registro de imágenes.

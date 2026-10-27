@@ -38,15 +38,16 @@ fragments, or log evidence instead of asserting it.
   smoke test) when something it ships changes; Trivy scans it when the Dockerfile
   or lockfile changes. Docs- or test-only changes skip it.
 
-`validate` is the single required check. It fails if planning fails or any
-selected job fails; skipped jobs were not needed.
+`validate` is the single required check. It fails if any job that ran failed or
+was cancelled; skipped jobs were not needed.
 
-Each step runs once:
+Each check runs once per change:
 
-1. **PR → `main`:** the selected checks for the PR's diff.
-2. **Promotion PR `main` → `prod`:** the tests affected by the whole `prod...main`
-   diff (the combined result of several PRs), plus `prod-source`. No image build.
+1. **PR → `main`:** the selected checks for the PR's diff. Keep "Require branches
+   to be up to date before merging" enabled on `main`, so what was tested is what
+   gets merged.
+2. **Promotion PR `main` → `prod`:** only `prod-source`; nothing is re-tested.
 3. **Push to `prod`:** no tests. Build the image, scan it, smoke-test it, then
    deliver that exact image (see [deployment.md](deployment.md)).
 
-A manual run of **Validate Arena Criolla** without inputs runs every check.
+A manual run of **Validate Arena Criolla** runs every check.

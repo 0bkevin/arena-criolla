@@ -14,7 +14,10 @@ concurrency:
   group: arena-ci-${{ github.event.pull_request.number || inputs.promotion-pr || github.ref }}
   cancel-in-progress: true
 jobs:
+  # A promotion only needs prod-source: every change in it already passed its PR
+  # checks, and deploying from prod builds, scans and smoke-tests the image.
   plan:
+    if: github.base_ref != 'prod' && !inputs.promotion-pr
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
@@ -34,8 +37,8 @@ jobs:
       - name: Select checks for the changed files
         id: select
         env:
-          # PRs compare against their base; a promotion compares main against prod.
-          BASE: ${{ github.event.pull_request.base.sha || (inputs.promotion-pr && 'origin/prod') || '' }}
+          # PRs compare against their base; a manual run without a base checks everything.
+          BASE: ${{ github.event.pull_request.base.sha }}
         run: node scripts/select-checks.mjs $BASE
   checks:
     needs: plan
@@ -75,15 +78,14 @@ jobs:
         run: |
           python3 -B deploy/test_install_release.py
           bash -n deploy/receive-release deploy/install-delivery-controls.sh
-  # Builds and smoke-tests the image for changes to what it ships. Promotions skip
-  # it: deploying from prod builds, scans and smoke-tests the image it delivers.
+  # Builds and smoke-tests the image for changes to what it ships.
   image:
     needs: plan
-    if: needs.plan.outputs.image == 'true' && github.base_ref != 'prod' && !inputs.promotion-pr
+    if: needs.plan.outputs.image == 'true'
     uses: ./.github/workflows/image.yml
     with:
       scan: ${{ needs.plan.outputs.scan == 'true' }}
-  # The required check: fails unless planning succeeded and nothing selected failed.
+  # The required check: fails if any job that ran failed or was cancelled.
   validate:
     if: always()
     needs: [plan, checks, image]
@@ -95,7 +97,7 @@ jobs:
           CHECKS: ${{ needs.checks.result }}
           IMAGE: ${{ needs.image.result }}
         run: |
-          test "$PLAN" = success
+          [[ "$PLAN" =~ ^(success|skipped)$ ]]
           [[ "$CHECKS" =~ ^(success|skipped)$ ]]
           [[ "$IMAGE" =~ ^(success|skipped)$ ]]
   prod-source:

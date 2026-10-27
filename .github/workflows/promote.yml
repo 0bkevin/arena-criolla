@@ -37,9 +37,9 @@ jobs:
 
           ## Evidence
 
-          Every change passed its PR checks. This PR reruns the tests affected by the
-          whole prod...main diff. Deploying builds, scans and smoke-tests the image it delivers;
-          the host backs up persistent data and verifies HTTP and WebSocket behavior.
+          Every change passed its PR checks; they are not repeated here. Deploying builds,
+          scans and smoke-tests the image it delivers; the host backs up persistent data and
+          verifies HTTP and WebSocket behavior.
 
           ## Merge Danger
 
@@ -57,6 +57,6 @@ jobs:
             number=${url##*/}
           fi
           # GITHUB_TOKEN-created PRs do not trigger pull_request workflows.
-          # Explicit dispatch validates this promotion PR (affected tests and prod-source).
+          # Explicit dispatch validates this promotion PR (prod-source).
           gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/dispatches" \
             -f ref=main -f "inputs[promotion-pr]=$number"
