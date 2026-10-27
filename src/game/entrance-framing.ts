@@ -1,8 +1,11 @@
-import type { SpriteAsset } from "./assets";
+import type { EntranceAsset, SpriteAsset } from "./assets";
 
 /** One stable scale fits the entire greeting, including raised hands and its final guard. */
 export function selectionBodyHeight(
-  sprite: SpriteAsset,
+  sprite: Pick<
+    SpriteAsset,
+    "frames" | "battleFrame" | "cellWidth" | "bodyHeight" | "baseline"
+  > & { entrance?: Omit<EntranceAsset, "image"> },
   width = 400,
   maximum = 375,
 ) {

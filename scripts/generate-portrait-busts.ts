@@ -3,8 +3,8 @@
 // The lobby draws every card from the full 2048x1024 sprite sheet, so the first
 // page of the roster used to download ~8 MB before the cards appeared. This
 // writes the one pose the card shows, isolated exactly like the runtime does
-// and cropped to the rows the 400x500 portrait canvas can display, at the
-// atlas's own resolution and losslessly. The manifest records the placement
+// and retains the whole frame for selection portraits, at the atlas's own
+// resolution and losslessly. The manifest records the placement
 // so Portrait draws the same pixels without the sheet.
 //
 // Usage: npx tsx scripts/generate-portrait-busts.ts [--check]
@@ -14,12 +14,11 @@ import sharp from "sharp";
 import { FIGHTERS, type FighterId } from "../shared/content";
 import { presentationById } from "../shared/presentation";
 import atlasManifest from "../shared/sprite-geometry.json";
+import entranceManifest from "../shared/entrance-assets.json";
+import { selectionBodyHeight } from "../src/game/entrance-framing";
+import type { EntranceAsset } from "../src/game/assets";
 import { isolateFramePixels } from "../src/game/sprite-isolation";
-import {
-  bustPlacement,
-  PORTRAIT_CANVAS,
-  type PortraitBust,
-} from "../shared/portrait-busts";
+import { type PortraitBust } from "../shared/portrait-busts";
 
 const MANIFEST = "shared/portrait-busts.json";
 // Atlas pixels kept around a non-isolated pose for edge filtering.
@@ -86,18 +85,25 @@ async function bustFor(id: FighterId) {
   const geometry = {
     frame: pose,
     bodyHeight,
+    selectionHeight: Object.hasOwn(entranceManifest, id)
+      ? selectionBodyHeight({
+          entrance: (
+            entranceManifest as Record<string, Omit<EntranceAsset, "image">>
+          )[id],
+          frames,
+          battleFrame: pose,
+          cellWidth,
+          bodyHeight,
+          baseline: checked.components[0].maxY + 1,
+        })
+      : 450,
     left: frame.x - frame.slotX - cellWidth / 2,
     center: headCenter(data, info.width, frame) - frame.slotX - cellWidth / 2,
     width: frame.width,
     height: frame.height,
     mirror: presentationById(id).frameFacing[pose],
   };
-  // Only the rows the portrait canvas can show, plus a smoothing margin.
-  const { top, scale } = bustPlacement(fighter, geometry);
-  const rows = Math.min(
-    frame.height,
-    Math.ceil((PORTRAIT_CANVAS.height - top) / scale) + 2,
-  );
+  const rows = frame.height;
   const region = (x: number, y: number, width: number, height: number) => {
     const out = Buffer.alloc(width * height * 4);
     for (let row = 0; row < height; row++)

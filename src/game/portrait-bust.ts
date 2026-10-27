@@ -49,3 +49,29 @@ export function drawPortraitBust(
   );
   ctx.restore();
 }
+
+/** Draw the cached battle pose at the selection animation's scale and anchor. */
+export function drawSelectionPlaceholder(
+  ctx: CanvasRenderingContext2D,
+  image: HTMLImageElement,
+  bust: PortraitBust,
+  facing: number,
+) {
+  const scale = bust.selectionHeight / bust.bodyHeight;
+  ctx.clearRect(0, 0, PORTRAIT_CANVAS.width, PORTRAIT_CANVAS.height);
+  ctx.save();
+  ctx.translate(200, 491);
+  ctx.scale(facing * bust.mirror, 1);
+  ctx.drawImage(
+    image,
+    bust.x,
+    bust.y,
+    bust.width,
+    bust.rows,
+    bust.left * scale,
+    bust.frame === 4 ? -bust.selectionHeight : -bust.height * scale,
+    bust.width * scale,
+    bust.rows * scale,
+  );
+  ctx.restore();
+}

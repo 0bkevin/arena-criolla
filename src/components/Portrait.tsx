@@ -1,7 +1,11 @@
 import { useEffect, useRef } from "react";
 import { fighterById, type FighterId } from "../../shared/content";
 import { drawSprite, loadImage, loadSprite } from "../game/assets";
-import { drawPortraitBust, portraitBust } from "../game/portrait-bust";
+import {
+  drawPortraitBust,
+  drawSelectionPlaceholder,
+  portraitBust,
+} from "../game/portrait-bust";
 import { presentationById, selectionProgress } from "../../shared/presentation";
 import { drawPresentation } from "../game/presentation-renderer";
 import { selectionBodyHeight } from "../game/entrance-framing";
@@ -62,8 +66,36 @@ export function Portrait({
         .catch(() => {
           if (!disposed) fromAtlas();
         });
-    else fromAtlas();
-    function fromAtlas() {
+    else {
+      const placeholder =
+        animated &&
+        !bust &&
+        className.split(/\s+/).includes("selected-portrait")
+          ? portraitBust(fighter)
+          : undefined;
+      let ready = false;
+      if (placeholder)
+        void loadImage(placeholder.file)
+          .then((image) => {
+            if (disposed || ready || !canvas.current) return;
+            const node = canvas.current;
+            drawSelectionPlaceholder(
+              node.getContext("2d")!,
+              image,
+              placeholder,
+              facing,
+            );
+            node.dataset.frame = String(placeholder.frame);
+            node.dataset.facing = String(facing);
+            node.dataset.progress = "0";
+            node.dataset.phase = "placeholder";
+          })
+          .catch(() => {});
+      fromAtlas(() => {
+        ready = true;
+      });
+    }
+    function fromAtlas(onReady = () => {}) {
       // An animated portrait is what the player just chose: fetch it first.
       void loadSprite(fighter, {
         entrance: animated && !bust,
@@ -71,6 +103,7 @@ export function Portrait({
       })
         .then((asset) => {
           if (disposed || !canvas.current) return;
+          onReady();
           const node = canvas.current;
           const ctx = node.getContext("2d")!;
           const def = fighterById(fighter);
@@ -161,6 +194,7 @@ export function Portrait({
                   height,
                   facing,
                 );
+              node.dataset.phase = "animation";
               node.dataset.frame = String(currentFrame);
               node.dataset.facing = String(facing);
               node.dataset.progress = String(progress);
@@ -198,7 +232,7 @@ export function Portrait({
             });
             observing.observe(node);
           }
-          redraw();
+          paint(started);
         })
         .catch(() => {});
     }
@@ -210,7 +244,7 @@ export function Portrait({
       document.removeEventListener("visibilitychange", onVisibility);
       reduced.removeEventListener("change", onVisibility);
     };
-  }, [fighter, facing, frame, bust, animated, holdPose, repeat]);
+  }, [fighter, facing, frame, bust, animated, holdPose, repeat, className]);
   return (
     <canvas
       ref={canvas}

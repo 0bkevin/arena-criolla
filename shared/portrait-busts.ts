@@ -13,6 +13,7 @@ export interface PortraitBust {
   sha256: string;
   frame: number;
   bodyHeight: number;
+  selectionHeight: number;
   left: number;
   center: number;
   width: number;
