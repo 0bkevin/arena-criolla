@@ -1,6 +1,6 @@
 name: Validate Arena Criolla
 on:
-  # PRs into prod are checked by promotion.yml; another PR into prod gets no checks.
+  # PRs into prod reuse the checks of their head commit's push to main.
   pull_request:
     branches: [main]
   push:
@@ -68,7 +68,6 @@ jobs:
       fail-fast: false
       matrix:
         shard: ${{ fromJSON(needs.plan.outputs.test-shards) }}
-    name: unit (${{ matrix.shard }}/${{ strategy.job-total }})
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
