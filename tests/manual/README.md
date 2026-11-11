@@ -1,12 +1,12 @@
-# Fixtures manuales
+# Manual browser fixtures
 
-Comprueban en un navegador real lo que `npm test` no puede: punteros, foco, scroll y audio.
+These check what `npm test` cannot: pointer input, focus, scrolling and real audio.
 
 ```sh
 npx vite --port 5174
 ```
 
-Abre `http://localhost:5174/tests/manual/<nombre>.html` y ejecuta en la consola el comando de cada sección. Todos los escenarios deben pasar.
+Open `http://localhost:5174/tests/manual/<name>.html` and run the section's command in the console. Every scenario must pass.
 
 ## touch-controls
 
@@ -14,11 +14,11 @@ Abre `http://localhost:5174/tests/manual/<nombre>.html` y ejecuta en la consola 
 await touchAudit.run();
 ```
 
-Pruébalo también con los dedos:
+Also try it with real fingers:
 
-- Un dedo puede deslizarse entre movimiento, salto, dash, bloqueo y golpes sin levantarse. Especial y definitiva necesitan una pulsación nueva.
-- Soltar un dedo no libera otro dedo, tecla o mando que use el mismo control.
-- Cancelar, perder el foco, ocultar la página o girar la pantalla liberan la entrada.
+- One finger can slide between move, jump, dash, block and attacks without lifting. Special and super need a fresh press.
+- Releasing one finger never releases another finger, key or gamepad holding the same control.
+- Cancelling, losing focus, hiding the page or rotating the screen releases input.
 
 ## desktop-controls
 
@@ -26,7 +26,7 @@ Pruébalo también con los dedos:
 await desktopAudit.run();
 ```
 
-Revisa el foco a mano con Tab, Enter y Escape: los eventos sintéticos no lo mueven.
+Check focus by hand with Tab, Enter and Escape: synthetic key events do not move focus.
 
 ## modal-scroll
 
@@ -36,12 +36,12 @@ await modalScrollAudit.run();
 
 ## audio-lifecycle
 
-Haz un clic real en el lobby y ejecuta:
+Click a lobby control first (a real click), then:
 
 ```js
-await audioAudit.run(); // recarga antes de repetir
+await audioAudit.run(); // reload before repeating
 ```
 
-## Dispositivos físicos
+## Physical devices
 
-Antes de afirmar que un dispositivo es compatible, prueba el juego en Safari de iPhone y iPad, Chrome en un Android de gama baja, Samsung Internet y Firefox para Android. Gira el dispositivo, cambia de app y bloquea la pantalla, y comprueba que los controles siguen funcionando.
+Before claiming a device is supported, play on iPhone Safari, iPad Safari, a low-end Android with Chrome, Samsung Internet and Firefox for Android. Rotate the device, switch apps and lock the screen, then confirm the controls still work.

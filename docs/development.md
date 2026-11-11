@@ -1,46 +1,46 @@
-# Desarrollo
+# Development
 
 ```sh
 npm ci
-npm run dev     # http://localhost:5173
-npm run build   # tipos y compilación en dist/
-npm start       # sirve dist/
-npm run format
+npm run dev     # http://localhost:5173, reloads on save
+npm run build   # type check and build into dist/
+npm start       # serve dist/
+npm run format  # Prettier
 ```
 
-## Estructura
-
-El motor de combate y las salas están en `shared/` y se ejecutan igual en el navegador, en el servidor Node y en el Worker de Cloudflare.
+## Project layout
 
 ```text
-src/          Cliente React: interfaz, renderizado en Canvas, audio y controles
-shared/       Motor de combate, roster y salas en línea
-server/       Servidor Node (Express y WebSocket)
-cloudflare/   Worker y Durable Object
-public/       Imágenes, sonidos y fuentes
-scripts/      Herramientas de assets, CI y Cloudflare
-tests/        Pruebas automáticas y fixtures manuales
-e2e/          Pruebas de diseño con Playwright
+src/          React client: UI, Canvas rendering, audio and controls
+shared/       Combat engine, roster and online rooms (browser and servers)
+server/       Node server (Express and WebSocket)
+cloudflare/   Worker and Durable Object
+public/       Images, sounds and fonts
+scripts/      Asset, CI and Cloudflare tools
+tests/        Automated tests and manual browser fixtures
+e2e/          Playwright layout tests
 ```
+
+See [architecture](architecture.md) for how these fit together.
 
 ## Assets
 
-Los assets de `public/` ya están generados. Si cambias su origen, regenéralos:
+The assets in `public/` are already generated. Regenerate them only when you change their source:
 
-| Si cambias…                              | Ejecuta                       |
-| ---------------------------------------- | ----------------------------- |
-| Una hoja de sprites o su pose de combate | `npm run assets:busts`        |
-| Un fondo de escenario                    | `npm run assets:stage-thumbs` |
-| La imagen social                         | `npm run assets:og`           |
+| If you change…                    | Run                           |
+| --------------------------------- | ----------------------------- |
+| A sprite sheet or its combat pose | `npm run assets:busts`        |
+| A stage background                | `npm run assets:stage-thumbs` |
+| The social preview image          | `npm run assets:og`           |
 
-Las hojas de ataques y los actores de las definitivas se generan desde `assets/source/`, que no está en el repositorio, con `assets:attack-grid`, `assets:attack-art`, `assets:finale-actors` y `assets:perro-mujeriego`.
+Attack sheets and super-move actors are built from `assets/source/`, which is not in the repository, with `assets:attack-grid`, `assets:attack-art`, `assets:finale-actors` and `assets:perro-mujeriego`.
 
-Después, ejecuta `npm run check:assets` y `npm test`.
+Then run `npm run check:assets` and `npm test`.
 
 ## T3 Code
 
-Los hilos nuevos deben usar un worktree desde `origin/main`:
+New threads should use a worktree based on `origin/main`:
 
-- En el entorno, activa **New worktrees start from origin**.
-- En el proyecto, elige **worktree** como entorno predeterminado.
-- Ejecuta `git remote set-head origin main`.
+- In the environment settings, enable **New worktrees start from origin**.
+- In the project, set **worktree** as the default thread environment.
+- Run `git remote set-head origin main`.
