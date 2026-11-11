@@ -42,7 +42,6 @@ export function Portrait({
   useEffect(() => {
     let disposed = false;
     let raf = 0;
-    let timer = 0;
     let lastTick = 0;
     let observing: IntersectionObserver | null = null;
     let visible = true;
@@ -134,23 +133,21 @@ export function Portrait({
           let previousPaint = -Infinity;
           const paint = (now: number) => {
             raf = 0;
-            timer = 0;
             if (disposed) return;
             if (lastTick && visible && !document.hidden && !reduced.matches)
               elapsed += now - lastTick;
             lastTick = now;
-            const playback = looping
-              ? samplePortraitLoop(elapsed, profile.durationMs, endProgress)
-              : null;
             const progress =
               reduced.matches && holdPose
                 ? endProgress
-                : (playback?.progress ?? progressAt(now));
+                : looping
+                  ? samplePortraitLoop(elapsed, profile.durationMs)
+                  : progressAt(now);
             if (
               now - previousPaint >= 1000 / 30 ||
               !animated ||
               reduced.matches ||
-              (playback ? playback.waitMs > 0 : progress >= endProgress)
+              (!looping && progress >= endProgress)
             ) {
               ctx.clearRect(0, 0, 400, 500);
               let currentFrame = poseFrame;
@@ -183,6 +180,7 @@ export function Portrait({
                     facing,
                     "selection",
                     reduced.matches,
+                    looping,
                   );
                   currentFrame = pose.frame;
                 }
@@ -209,17 +207,11 @@ export function Portrait({
               !reduced.matches &&
               (looping || progressAt(now) < endProgress)
             ) {
-              if (playback && playback.waitMs > 0)
-                timer = window.setTimeout(
-                  () => paint(performance.now()),
-                  playback.waitMs,
-                );
-              else raf = requestAnimationFrame(paint);
+              raf = requestAnimationFrame(paint);
             }
           };
           redraw = () => {
             cancelAnimationFrame(raf);
-            window.clearTimeout(timer);
             paint(performance.now());
           };
           if (animated) {
@@ -229,7 +221,6 @@ export function Portrait({
               if (visible) redraw();
               else {
                 cancelAnimationFrame(raf);
-                window.clearTimeout(timer);
               }
             });
             observing.observe(node);
@@ -241,7 +232,6 @@ export function Portrait({
     return () => {
       disposed = true;
       cancelAnimationFrame(raf);
-      window.clearTimeout(timer);
       observing?.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
       reduced.removeEventListener("change", onVisibility);
