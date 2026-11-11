@@ -416,3 +416,7 @@ export async function run() {
   await mount();
   return results;
 }
+
+// Exposed for the browser console; see tests/manual/README.md.
+Object.assign(window, { desktopAudit: { mount, state, run, unmount } });
+await mount();

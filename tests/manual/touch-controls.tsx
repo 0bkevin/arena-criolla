@@ -751,3 +751,19 @@ export async function run() {
     layout: layout(),
   };
 }
+
+// Exposed for the browser console; see tests/manual/README.md.
+Object.assign(window, {
+  touchAudit: {
+    unmount,
+    mount,
+    update,
+    mountHybridGame,
+    gameLayout,
+    chargeStallRegression,
+    state,
+    layout,
+    run,
+  },
+});
+mount();

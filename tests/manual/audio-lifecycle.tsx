@@ -197,3 +197,7 @@ export function unmount() {
   audio.stopVictoryMusic();
   window.AudioContext = NativeContext;
 }
+
+// Exposed for the browser console; see tests/manual/README.md.
+Object.assign(window, { audioAudit: { mount, state, run, unmount } });
+mount();
