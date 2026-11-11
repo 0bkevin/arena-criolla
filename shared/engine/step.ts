@@ -1,5 +1,5 @@
 // One fixed simulation tick, in the order both players must observe it.
-import { INTRO_COUNTDOWN_START, INTRO_TOTAL_TICKS } from "./presentation";
+import { INTRO_COUNTDOWN_START, INTRO_TOTAL_TICKS } from "./intro";
 import { platformsAtTick } from "../roster/roster";
 import {
   advanceDorangelBite,

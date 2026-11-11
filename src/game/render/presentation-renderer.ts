@@ -3,7 +3,7 @@ import {
   presentationById,
   samplePose,
   type PresentationStyle,
-} from "../../../shared/engine/presentation";
+} from "../presentation/presentation";
 import { drawSprite, type SpriteAsset } from "../assets/assets";
 import { sampleGesture } from "../choreography/choreography";
 import { drawEntranceAction } from "./entrance-renderer";
@@ -230,10 +230,7 @@ export function drawPresentation(
   reducedMotion = false,
 ) {
   const profile = presentationById(id);
-  const pose = samplePose(
-    kind === "intro" ? profile.introBeats : profile.selectionBeats,
-    progress,
-  );
+  const pose = samplePose(profile.introBeats, progress);
   const style = kind === "intro" ? profile.introStyle : profile.selectionStyle;
   ctx.save();
   ctx.translate(

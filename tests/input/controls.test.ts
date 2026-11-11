@@ -7,7 +7,7 @@ import {
   type Control,
 } from "../../src/game/input/controls";
 import { createMatch, stepMatch } from "../../shared/engine/engine";
-import { INTRO_TOTAL_TICKS } from "../../shared/engine/presentation";
+import { INTRO_TOTAL_TICKS } from "../../shared/engine/intro";
 import { SUPER_CHARGE_TICKS } from "../../shared/roster/roster";
 
 test("releasing one finger does not release another finger or key on the same direction", () => {

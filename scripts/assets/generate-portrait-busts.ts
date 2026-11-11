@@ -12,7 +12,7 @@ import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import sharp from "sharp";
 import { FIGHTERS, type FighterId } from "../../shared/roster/roster";
-import { presentationById } from "../../shared/engine/presentation";
+import { presentationById } from "../../src/game/presentation/presentation";
 import atlasManifest from "../../src/game/assets/manifests/sprite-geometry.json";
 import entranceManifest from "../../src/game/assets/manifests/entrance-assets.json";
 import { selectionBodyHeight } from "../../src/game/viewport/entrance-framing";

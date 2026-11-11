@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { FIGHTERS, STAGES, fighterById } from "../../shared/roster/roster";
-import { INTRO_TOTAL_TICKS } from "../../shared/engine/presentation";
+import { INTRO_TOTAL_TICKS } from "../../shared/engine/intro";
 import {
   createMatch,
   emptyInput,

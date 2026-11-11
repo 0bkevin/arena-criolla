@@ -1,6 +1,6 @@
 import type { MatchState } from "../../../shared/engine/engine";
 import { finaleById } from "../../../shared/engine/finales/finales";
-import { INTRO_COUNTDOWN_START } from "../../../shared/engine/presentation";
+import { INTRO_COUNTDOWN_START } from "../../../shared/engine/intro";
 import type { ArenaCamera } from "../viewport/arena-camera";
 import { drawFinale } from "./finale-renderer";
 import { drawIntroCinematic } from "./intro-renderer";

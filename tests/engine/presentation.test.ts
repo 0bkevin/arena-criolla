@@ -4,7 +4,7 @@ import { createMatch, emptyInput, stepMatch } from "../../shared/engine/engine";
 import {
   INTRO_COUNTDOWN_START,
   INTRO_TOTAL_TICKS,
-} from "../../shared/engine/presentation";
+} from "../../shared/engine/intro";
 
 test("entrances lock physics and consume queued attacks without spending match time", () => {
   const state = createMatch("caracas", [

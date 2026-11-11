@@ -6,7 +6,7 @@ import {
   emptyInput,
   stepMatch,
 } from "../helpers/charged-finale-engine";
-import { INTRO_TOTAL_TICKS } from "../../shared/engine/presentation";
+import { INTRO_TOTAL_TICKS } from "../../shared/engine/intro";
 function setup(side: 0 | 1) {
   const actor = { name: "La Llorona", fighter: "llorona" as const, wins: 3 };
   const rival = { name: "Vicente", fighter: "zavarce" as const, wins: 3 };

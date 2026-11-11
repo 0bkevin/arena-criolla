@@ -9,10 +9,8 @@ import {
   type PlayerIndex,
   type PlayerState,
 } from "../../../../shared/engine/engine";
-import {
-  entranceProgress,
-  introActor,
-} from "../../../../shared/engine/presentation";
+import { introActor } from "../../../../shared/engine/intro";
+import { entranceProgress } from "../../presentation/presentation";
 import { drawSprite, type SpriteAsset } from "../../assets/assets";
 import { KNOCKOUT_RECOIL_MS } from "../../match/knockout";
 import { dorangelHeatReaction } from "../finales/dorangel";

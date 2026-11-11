@@ -14,7 +14,7 @@ import entranceManifest from "../../src/game/assets/manifests/entrance-assets.js
 import atlasManifest from "../../src/game/assets/manifests/sprite-geometry.json";
 import { selectionBodyHeight } from "../../src/game/viewport/entrance-framing";
 import type { EntranceAsset } from "../../src/game/assets/assets";
-import { presentationById } from "../../shared/engine/presentation";
+import { presentationById } from "../../src/game/presentation/presentation";
 
 const manifest: Record<string, PortraitBust> = busts;
 const sha256 = (data: Buffer) =>

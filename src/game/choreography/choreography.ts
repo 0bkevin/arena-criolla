@@ -1,5 +1,5 @@
 import type { FighterId } from "../../../shared/roster/roster";
-import { PRESENTATIONS } from "../../../shared/engine/presentation";
+import { PRESENTATIONS } from "../presentation/presentation";
 import { DEFAULT_ENTRANCE_FIGHTERS } from "./entrance-actions";
 import { FOUNDER_CHOREOGRAPHIES } from "./founder-choreography";
 import { ICON_CHOREOGRAPHIES } from "./icon-choreography";

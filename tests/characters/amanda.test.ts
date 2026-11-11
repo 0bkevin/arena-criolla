@@ -8,7 +8,7 @@ import {
   stepMatch,
   type Input,
 } from "../helpers/charged-finale-engine";
-import { INTRO_TOTAL_TICKS } from "../../shared/engine/presentation";
+import { INTRO_TOTAL_TICKS } from "../../shared/engine/intro";
 function setup(side: 0 | 1 = 0, gap = 80, wins = 3, opponent = "javier") {
   const configs = [
     { name: "Audit Amanda", fighter: "amanda", wins },

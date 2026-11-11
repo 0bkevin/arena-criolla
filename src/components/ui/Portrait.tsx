@@ -9,7 +9,7 @@ import {
 import {
   presentationById,
   selectionProgress,
-} from "../../../shared/engine/presentation";
+} from "../../game/presentation/presentation";
 import { drawPresentation } from "../../game/render/presentation-renderer";
 import { selectionBodyHeight } from "../../game/viewport/entrance-framing";
 import { entrancePoseProgress } from "../../game/choreography/entrance-actions";

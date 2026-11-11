@@ -1,6 +1,6 @@
-import type { FighterId } from "../roster/roster";
-import definitions from "./presentations.json";
-import type { PlayerIndex } from "./types";
+import type { FighterId } from "../../../shared/roster/roster";
+import { INTRO_PLAYER_TICKS } from "../../../shared/engine/intro";
+import { PRESENTATION_DATA } from "./presentation-data";
 
 export type PresentationStyle =
   | "defiant"
@@ -53,7 +53,6 @@ export interface PoseBeat {
 }
 export interface Presentation {
   introName: string;
-  selectionName: string;
   battleFrame: number;
   frameFacing: number[];
   introStyle: PresentationStyle;
@@ -61,10 +60,10 @@ export interface Presentation {
   prop: PresentationProp;
   color: string;
   durationMs: number;
+  /** Played at the match entrance and, once per pick, on the selection screen. */
   introBeats: PoseBeat[];
-  selectionBeats: PoseBeat[];
 }
-export const PRESENTATIONS = definitions as Record<FighterId, Presentation>;
+export const PRESENTATIONS: Record<FighterId, Presentation> = PRESENTATION_DATA;
 export const presentationById = (id: FighterId): Presentation =>
   PRESENTATIONS[id];
 
@@ -73,18 +72,6 @@ export function selectionProgress(id: FighterId, elapsedMs: number): number {
   return Math.max(0, Math.min(1, elapsedMs / presentationById(id).durationMs));
 }
 
-// Shared ticks keep both clients on the same entrance, countdown and opening pose.
-export const INTRO_PLAYER_TICKS = 180;
-export const INTRO_COUNTDOWN_START = INTRO_PLAYER_TICKS * 2;
-export const INTRO_COUNTDOWN_TICKS = 150;
-export const INTRO_TOTAL_TICKS = INTRO_COUNTDOWN_START + INTRO_COUNTDOWN_TICKS;
-export function introActor(tick: number): PlayerIndex | null {
-  return tick < INTRO_COUNTDOWN_START
-    ? tick < INTRO_PLAYER_TICKS
-      ? 0
-      : 1
-    : null;
-}
 export function entranceProgress(
   id: FighterId,
   tick: number,

@@ -4,7 +4,7 @@ import { fighterById } from "../../../shared/roster/roster";
 import {
   INTRO_COUNTDOWN_START,
   introActor,
-} from "../../../shared/engine/presentation";
+} from "../../../shared/engine/intro";
 import {
   PLAYERS,
   opponentOf,

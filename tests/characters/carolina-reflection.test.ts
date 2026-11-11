@@ -7,7 +7,7 @@ import {
   stepMatch,
   type Input,
 } from "../../shared/engine/engine";
-import { INTRO_TOTAL_TICKS } from "../../shared/engine/presentation";
+import { INTRO_TOTAL_TICKS } from "../../shared/engine/intro";
 function setup(side: 0 | 1, gap: number, rivalId: FighterId) {
   const configs = [
     { name: "Carolina", fighter: "carolina" as const, wins: 3 },

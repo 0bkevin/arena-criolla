@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { fighterById } from "../../../shared/roster/roster";
-import { INTRO_COUNTDOWN_START } from "../../../shared/engine/presentation";
+import { INTRO_COUNTDOWN_START } from "../../../shared/engine/intro";
 import type { MatchState, PlayerIndex } from "../../../shared/engine/engine";
 
 interface Props {

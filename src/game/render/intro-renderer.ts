@@ -2,12 +2,14 @@ import { fighterById, type FighterId } from "../../../shared/roster/roster";
 import { CHOREOGRAPHIES } from "../choreography/choreography";
 import { PLAYERS, type MatchState } from "../../../shared/engine/engine";
 import {
-  entranceProgress,
   introActor,
   INTRO_COUNTDOWN_START,
+} from "../../../shared/engine/intro";
+import {
+  entranceProgress,
   presentationById,
   samplePose,
-} from "../../../shared/engine/presentation";
+} from "../presentation/presentation";
 import type { SpriteAsset } from "../assets/assets";
 import { drawPresentation } from "./presentation-renderer";
 

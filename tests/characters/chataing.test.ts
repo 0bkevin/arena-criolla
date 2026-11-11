@@ -8,7 +8,7 @@ import {
   emptyInput,
   stepMatch,
 } from "../helpers/charged-finale-engine";
-import { INTRO_TOTAL_TICKS } from "../../shared/engine/presentation";
+import { INTRO_TOTAL_TICKS } from "../../shared/engine/intro";
 function setup(side: 0 | 1 = 0, gap = 180, rival: FighterId = "zavarce") {
   const a = { name: "Luis", fighter: "chataing" as const, wins: 3 },
     b = { name: "Rival", fighter: rival, wins: 3 };

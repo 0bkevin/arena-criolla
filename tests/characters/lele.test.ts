@@ -6,7 +6,7 @@ import {
   stepMatch,
   type Input,
 } from "../helpers/charged-finale-engine";
-import { INTRO_TOTAL_TICKS } from "../../shared/engine/presentation";
+import { INTRO_TOTAL_TICKS } from "../../shared/engine/intro";
 function setup(side: 0 | 1 = 0, gap = 201) {
   const configs = [
     { name: "Audit Lele", fighter: "lele" as const, wins: 3 },

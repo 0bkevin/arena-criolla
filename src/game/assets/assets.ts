@@ -5,7 +5,7 @@ import {
   type FighterId,
 } from "../../../shared/roster/roster";
 import entranceManifest from "./manifests/entrance-assets.json";
-import { presentationById } from "../../../shared/engine/presentation";
+import { presentationById } from "../presentation/presentation";
 import atlasManifest from "./manifests/sprite-geometry.json";
 import { preparationWorker } from "./preparation-worker";
 import { isolateFramePixels } from "./sprite-isolation";

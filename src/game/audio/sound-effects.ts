@@ -1,5 +1,5 @@
 import { fighterById, type FighterId } from "../../../shared/roster/roster";
-import { presentationById } from "../../../shared/engine/presentation";
+import { presentationById } from "../presentation/presentation";
 import { context, effectsBus, enabled, pageHidden } from "./audio-context";
 import { stereoPosition } from "./sound-view";
 import { noise, tone } from "./synth";
