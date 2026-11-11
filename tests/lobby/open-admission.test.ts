@@ -1,38 +1,15 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { WebSocket } from "ws";
 import { makeArenaServer } from "../../server/index";
-import type { ServerMessage } from "../../shared/lobby/protocol";
+import { SocketPeer } from "../helpers/socket-peer";
 
-class Peer {
-  readonly socket: WebSocket;
-  readonly messages: ServerMessage[] = [];
+class Peer extends SocketPeer {
   constructor(url: string) {
-    this.socket = new WebSocket(url);
-    this.socket.on("error", () => {});
-    this.socket.on("message", (raw) => {
-      const message: ServerMessage = JSON.parse(raw.toString());
-      if (message.type !== "state" && message.type !== "rooms")
-        this.messages.push(message);
+    super(url, {
+      ignore: ["state", "rooms"],
+      timeoutMs: 10_000,
+      failOnError: true,
     });
-  }
-  send(message: object) {
-    this.socket.send(JSON.stringify(message));
-  }
-  async wait<T extends ServerMessage["type"]>(type: T) {
-    const deadline = Date.now() + 10_000;
-    while (Date.now() < deadline) {
-      const index = this.messages.findIndex((message) => message.type === type);
-      if (index >= 0)
-        return this.messages.splice(index, 1)[0] as Extract<
-          ServerMessage,
-          { type: T }
-        >;
-      const error = this.messages.find((message) => message.type === "error");
-      if (error) throw new Error(error.message);
-      await new Promise((resolve) => setTimeout(resolve, 10));
-    }
-    throw new Error(`Timed out waiting for ${type}`);
   }
 }
 

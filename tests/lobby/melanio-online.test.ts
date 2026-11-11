@@ -1,6 +1,5 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { WebSocket } from "ws";
 import { makeArenaServer } from "../../server/index";
 import {
   emptyInput,
@@ -8,48 +7,9 @@ import {
   type MatchState,
 } from "../../shared/engine/engine";
 import type { FighterId } from "../../shared/roster/roster";
-import type { ServerMessage } from "../../shared/lobby/protocol";
+import { SocketPeer } from "../helpers/socket-peer";
 
-class Peer {
-  readonly messages: ServerMessage[] = [];
-  readonly socket: WebSocket;
-
-  constructor(url: string) {
-    this.socket = new WebSocket(url);
-    this.socket.on("message", (raw) => {
-      const message = JSON.parse(raw.toString()) as ServerMessage;
-      this.messages.push(message);
-    });
-  }
-
-  send(message: object) {
-    this.socket.send(JSON.stringify(message));
-  }
-
-  async wait<T extends ServerMessage["type"]>(
-    type: T,
-    predicate: (message: Extract<ServerMessage, { type: T }>) => boolean = () =>
-      true,
-  ): Promise<Extract<ServerMessage, { type: T }>> {
-    const end = Date.now() + 4_000;
-    while (Date.now() < end) {
-      const index = this.messages.findIndex(
-        (message) =>
-          message.type === type &&
-          predicate(message as Extract<ServerMessage, { type: T }>),
-      );
-      if (index >= 0)
-        return this.messages.splice(index, 1)[0] as Extract<
-          ServerMessage,
-          { type: T }
-        >;
-      await new Promise((resolve) => setTimeout(resolve, 10));
-    }
-    throw new Error(
-      `Timed out waiting for ${type}; latest state: ${JSON.stringify(this.messages.filter((message) => message.type === "state").at(-1))}`,
-    );
-  }
-
+class Peer extends SocketPeer {
   async state(matchId: string, predicate: (state: MatchState) => boolean) {
     return (
       await this.wait(
@@ -57,6 +17,10 @@ class Peer {
         (message) => message.state.id === matchId && predicate(message.state),
       )
     ).state;
+  }
+
+  protected override timeoutDetail() {
+    return `; latest state: ${JSON.stringify(this.messages.filter((message) => message.type === "state").at(-1))}`;
   }
 }
 

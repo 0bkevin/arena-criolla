@@ -1,49 +1,16 @@
 // Two real WebSocket clients against an in-process Node server.
+import { SocketPeer } from "./socket-peer";
 import assert from "node:assert/strict";
-import { WebSocket } from "ws";
 import { makeArenaServer } from "../../server/index";
 import type { Input } from "../../shared/engine/engine";
-import type { ServerMessage } from "../../shared/lobby/protocol";
 import { type FighterId, STAGES } from "../../shared/roster/roster";
 
-export class TestClient {
-  messages: ServerMessage[] = [];
-  socket: WebSocket;
-  constructor(url: string) {
-    this.socket = new WebSocket(url);
-    this.socket.on("message", (raw) => {
-      this.messages.push(JSON.parse(raw.toString()));
-    });
-  }
-  send(message: object) {
-    this.socket.send(JSON.stringify(message));
-  }
+export class TestClient extends SocketPeer {
   hold(matchId: string, input: Input) {
     const send = () => this.send({ type: "input", matchId, input });
     send();
     const timer = setInterval(send, 100);
     return () => clearInterval(timer);
-  }
-  async wait<T extends ServerMessage["type"]>(
-    type: T,
-    predicate: (m: Extract<ServerMessage, { type: T }>) => boolean = () => true,
-    timeoutMs = 4000,
-  ): Promise<Extract<ServerMessage, { type: T }>> {
-    const end = Date.now() + timeoutMs;
-    while (Date.now() < end) {
-      const index = this.messages.findIndex(
-        (m) =>
-          m.type === type &&
-          predicate(m as Extract<ServerMessage, { type: T }>),
-      );
-      if (index >= 0)
-        return this.messages.splice(index, 1)[0] as Extract<
-          ServerMessage,
-          { type: T }
-        >;
-      await new Promise((resolve) => setTimeout(resolve, 15));
-    }
-    throw new Error(`Timed out waiting for ${type}`);
   }
 }
 

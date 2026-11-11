@@ -5,34 +5,13 @@ import os from "node:os";
 import path from "node:path";
 import { WebSocket } from "ws";
 import { makeArenaServer } from "../../server/index";
-import type { ServerMessage } from "../../shared/lobby/protocol";
+import { SocketPeer } from "../helpers/socket-peer";
 
 const pause = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-class Peer {
-  readonly socket: WebSocket;
-  readonly messages: ServerMessage[] = [];
+class Peer extends SocketPeer {
   constructor(url: string) {
-    this.socket = new WebSocket(url);
-    this.socket.on("error", () => {});
-    this.socket.on("message", (raw) =>
-      this.messages.push(JSON.parse(raw.toString())),
-    );
-  }
-  send(message: object) {
-    this.socket.send(JSON.stringify(message));
-  }
-  async wait<T extends ServerMessage["type"]>(type: T) {
-    for (let i = 0; i < 200; i++) {
-      const index = this.messages.findIndex((message) => message.type === type);
-      if (index >= 0)
-        return this.messages.splice(index, 1)[0] as Extract<
-          ServerMessage,
-          { type: T }
-        >;
-      await pause(10);
-    }
-    throw new Error(`Missing ${type}`);
+    super(url, { timeoutMs: 2_000 });
   }
 }
 

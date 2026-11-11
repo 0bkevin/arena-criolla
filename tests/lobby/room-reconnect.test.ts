@@ -2,54 +2,27 @@ import test, { type TestContext } from "node:test";
 import assert from "node:assert/strict";
 import { WebSocket } from "ws";
 import { makeArenaServer } from "../../server/index";
-import type { ServerMessage } from "../../shared/lobby/protocol";
 import {
   ARENA_SOCKET_PROTOCOL,
   ROOM_RESUME_PROTOCOL_PREFIX,
 } from "../../shared/lobby/protocol";
+import { SocketPeer } from "../helpers/socket-peer";
 
 const pause = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-class Peer {
-  readonly socket: WebSocket;
-  readonly messages: ServerMessage[] = [];
+class Peer extends SocketPeer {
   constructor(url: string, token?: string | false) {
-    this.socket = new WebSocket(
-      url,
-      token === false
-        ? []
-        : [
-            ARENA_SOCKET_PROTOCOL,
-            ...(token ? [ROOM_RESUME_PROTOCOL_PREFIX + token] : []),
-          ],
-    );
-    this.socket.on("error", () => {});
-    this.socket.on("message", (raw) =>
-      this.messages.push(JSON.parse(raw.toString())),
-    );
-  }
-  send(message: object) {
-    this.socket.send(JSON.stringify(message));
-  }
-  async wait<T extends ServerMessage["type"]>(
-    type: T,
-    predicate: (message: Extract<ServerMessage, { type: T }>) => boolean = () =>
-      true,
-  ) {
-    for (let i = 0; i < 150; i++) {
-      const index = this.messages.findIndex(
-        (message) =>
-          message.type === type &&
-          predicate(message as Extract<ServerMessage, { type: T }>),
-      );
-      if (index >= 0)
-        return this.messages.splice(index, 1)[0] as Extract<
-          ServerMessage,
-          { type: T }
-        >;
-      await pause(5);
-    }
-    throw new Error(`Missing ${type}`);
+    super(url, {
+      protocols:
+        token === false
+          ? []
+          : [
+              ARENA_SOCKET_PROTOCOL,
+              ...(token ? [ROOM_RESUME_PROTOCOL_PREFIX + token] : []),
+            ],
+      timeoutMs: 750,
+      pollMs: 5,
+    });
   }
 }
 
