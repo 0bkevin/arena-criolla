@@ -24,7 +24,6 @@ import {
   applyControl,
   ControlSources,
   GamepadControls,
-  KEY_MAP,
   makeInputs,
   type Control,
 } from "../../game/input/controls";
@@ -52,6 +51,7 @@ import { IntroOverlay } from "./IntroOverlay";
 import { MatchHud } from "./MatchHud";
 import { OrientationGate } from "./OrientationGate";
 import { PauseMenu } from "./PauseMenu";
+import { useMatchKeyboard } from "./useMatchKeyboard";
 import { useOverlayFocus } from "./useOverlayFocus";
 import { TouchControls } from "./TouchControls";
 import { DesktopControlsBar } from "./DesktopControls";
@@ -269,105 +269,29 @@ export function Game(props: Props) {
       alive = false;
     };
   }, []);
-  useEffect(() => {
-    const release = releaseInputs;
-    const handler = (event: KeyboardEvent, down: boolean) => {
-      // Always release an accepted key, even if modifiers/focus changed since
-      // keydown. Browser shortcuts and editable controls only suppress presses.
-      if (!down) {
-        if (!keys.current.delete(event.code)) return;
-        const [index] = KEY_MAP[event.code];
-        sources.current[index].release(`key:${event.code}`);
-        if (mode === "online") callbacks.current.onInput?.(inputs.current[0]);
-        return;
-      }
-      if (
-        !focusedRef.current ||
-        event.ctrlKey ||
-        event.metaKey ||
-        event.altKey ||
-        event.isComposing ||
-        event.keyCode === 229
-      )
-        return;
-      if (
-        event.target instanceof HTMLElement &&
-        (event.target.matches("input, textarea, select") ||
-          event.target.isContentEditable)
-      )
-        return;
-      if (document.querySelector("dialog[open]")) return;
-      const nativeActivation =
-        (event.code === "Enter" || event.code === "Space") &&
-        event.target instanceof HTMLElement &&
-        event.target.closest("button, a[href], summary, [role='button']");
-      // Holding a gameplay key across an overlay must not activate its newly
-      // focused button. Check before the paused/finished/orientation guards.
-      if (event.repeat && nativeActivation) {
-        event.preventDefault();
-        return;
-      }
-      if (blockedRef.current) return;
-      if (introView.current.phase === "finished") return;
-      if (event.code === "Escape" && !event.repeat) {
-        togglePause();
-        return;
-      }
-      if (pausedRef.current) return;
-      if (nativeActivation) return;
-      if (
-        event.code === "Space" &&
-        !event.repeat &&
-        introView.current.phase === "intro" &&
-        introView.current.tick < INTRO_COUNTDOWN_START
-      ) {
-        event.preventDefault();
-        skipPresentations();
-        return;
-      }
-      const mapping = KEY_MAP[event.code];
-      if (!mapping || (mapping[0] === 1 && mode !== "local")) return;
-      event.preventDefault();
-      if (event.repeat || keys.current.has(event.code)) return;
-      keys.current.add(event.code);
-      const [index, control] = mapping;
-      sources.current[index].press(`key:${event.code}`, control);
-      if (mode === "online") callbacks.current.onInput?.(inputs.current[0]);
-    };
-    const keyDown = (event: KeyboardEvent) => handler(event, true);
-    const keyUp = (event: KeyboardEvent) => handler(event, false);
-    const blur = () => {
-      focusedRef.current = false;
-      release();
-      if (mode !== "online" && introView.current.phase !== "finished") {
-        pausedRef.current = true;
-        setPaused(true);
-      }
-    };
-    const focus = () => {
-      focusedRef.current = !document.hidden;
-    };
-    const hidden = () => {
-      if (document.hidden) blur();
-      else focusedRef.current = document.hasFocus();
-    };
-    focusedRef.current = document.hasFocus();
-    window.addEventListener("keydown", keyDown);
-    window.addEventListener("keyup", keyUp);
-    window.addEventListener("blur", blur);
-    window.addEventListener("focus", focus);
-    window.addEventListener("pagehide", blur);
-    document.addEventListener("visibilitychange", hidden);
-    return () => {
-      release();
-      window.removeEventListener("keydown", keyDown);
-      window.removeEventListener("keyup", keyUp);
-      window.removeEventListener("blur", blur);
-      window.removeEventListener("focus", focus);
-      window.removeEventListener("pagehide", blur);
-      document.removeEventListener("visibilitychange", hidden);
-    };
-  }, [mode]);
+  const togglePause = () => {
+    // Start remains available through ordinary pause/resume transitions.
+    releaseInputs(true);
+    pausedRef.current = !pausedRef.current;
+    if (!pausedRef.current)
+      gamepads.current.resume(inputs.current, mode === "local" ? 2 : 1);
+    setPaused(pausedRef.current);
+  };
+  useMatchKeyboard({
+    mode,
+    inputs,
+    sources,
+    keys,
+    focusedRef,
+    blockedRef,
+    pausedRef,
+    introView,
+    callbacks,
+    setPaused,
+    releaseInputs,
+    togglePause,
+    skipPresentations,
+  });
 
   useEffect(() => {
     if (!assets || !canvas.current) return;
@@ -596,14 +520,6 @@ export function Game(props: Props) {
     return () => document.removeEventListener("visibilitychange", visibility);
   }, []);
 
-  const togglePause = () => {
-    // Start remains available through ordinary pause/resume transitions.
-    releaseInputs(true);
-    pausedRef.current = !pausedRef.current;
-    if (!pausedRef.current)
-      gamepads.current.resume(inputs.current, mode === "local" ? 2 : 1);
-    setPaused(pausedRef.current);
-  };
   const touchPress = (pointer: number, control: Control) => {
     if (
       pausedRef.current ||
