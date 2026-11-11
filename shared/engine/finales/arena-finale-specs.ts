@@ -1,6 +1,6 @@
 // Arena definitives: who has one, how long it lasts, its cues, its helpers'
 // reach, and whether its caster is still performing it.
-import { launchStun } from "../combat";
+import { launchStun } from "../launch";
 import { DORANGEL_FINALE, DORANGEL_POT } from "./dorangel";
 import { INAKI_FINALE } from "./inaki";
 import type { FighterId } from "../../roster/roster";

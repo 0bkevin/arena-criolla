@@ -1,5 +1,5 @@
 // Where arena definitives touch the rival, and what a landed contact does.
-import { launchScale } from "../combat";
+import { launchScale } from "../launch";
 import { DORANGEL_POT, insideDorangelPot } from "./dorangel";
 import type { MatchState, PlayerState } from "../engine";
 import { COUTURE_MODEL_COUNT } from "./couture-runway";

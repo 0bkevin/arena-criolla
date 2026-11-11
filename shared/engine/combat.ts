@@ -1,6 +1,7 @@
 // Contact between fighters: guards, counters, damage, launch and its effects.
 import { SUPER_INTERRUPT_ENERGY_COST, fighterById } from "../roster/roster";
 import { TECHNIQUES } from "./techniques";
+import { launchScale, launchStun } from "./launch";
 import {
   opponentOf,
   type Attack,
@@ -112,15 +113,6 @@ export function rewardHit(s: MatchState, attacker: PlayerIndex) {
   source.streak = s.tick - source.lastHitTick < 100 ? source.streak + 1 : 1;
   source.lastHitTick = s.tick;
   source.peakCombo = Math.max(source.peakCombo, source.streak);
-}
-
-/** HP-dependent multiplier used for horizontal launch speed. */
-export function launchScale(hp: number) {
-  return 1 + (100 - hp) / 90;
-}
-
-export function launchStun(force: number) {
-  return Math.round(force * 2.6 + 5);
 }
 
 export function launchTarget(
