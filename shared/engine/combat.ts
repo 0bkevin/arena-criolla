@@ -114,12 +114,17 @@ export function rewardHit(s: MatchState, attacker: PlayerIndex) {
   source.peakCombo = Math.max(source.peakCombo, source.streak);
 }
 
+/** HP-dependent multiplier used for horizontal launch speed. */
+export function launchScale(hp: number) {
+  return 1 + (100 - hp) / 90;
+}
+
 export function launchTarget(
   target: PlayerState,
   force: number,
   direction: number,
 ) {
-  target.vx = direction * force * (1 + (100 - target.hp) / 90);
+  target.vx = direction * force * launchScale(target.hp);
   target.recoilVx = target.vx;
   target.vy = -force * 0.65;
   target.grounded = false;

@@ -1,3 +1,4 @@
+import { launchScale } from "../combat";
 // Where arena definitives touch the rival, and what a landed contact does.
 import { DORANGEL_POT, insideDorangelPot } from "./dorangel";
 import type { MatchState, PlayerState } from "../engine";
@@ -5,6 +6,7 @@ import { COUTURE_MODEL_COUNT } from "./couture-runway";
 import { opponentOf } from "../types";
 import {
   ARENA_FINALE_CUES,
+  arenaActorForce,
   activeArenaPerformance,
   arenaActorReach,
   isArenaFinalist,
@@ -97,7 +99,12 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
       if (front || (strike.carried && touches(strike.carried)))
         offer(
           strike.damage,
-          4.5,
+          strike.preHitSpeedLimit === undefined
+            ? strike.force
+            : Math.min(
+                strike.force,
+                strike.preHitSpeedLimit / launchScale(target.hp),
+              ),
           target.x,
           target.y - 75,
           // Under the caravan, behind its leading edge, a guard may face either way.
@@ -175,7 +182,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
               : actor.kind === "model"
                 ? 1 / COUTURE_MODEL_COUNT
                 : 1 / 3,
-          actor.kind === "handchain" ? 1 : actor.kind === "model" ? 3 : 4.5,
+          arenaActorForce(field.fighter, actor.kind),
           target.x,
           target.y - 70,
           actor.direction,

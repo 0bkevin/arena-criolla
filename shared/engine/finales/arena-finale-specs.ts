@@ -184,6 +184,11 @@ export function arenaActorReach(actor: ArenaFinaleActor) {
 interface MountStrike {
   /** Each hit's share of the definitive's damage. */
   share: number;
+  /** Force of each body strike. */
+  force: number;
+  /** Cap horizontal launch speed calculated from HP before this strike;
+   * damage from the strike increases the actual launch speed slightly. */
+  preHitSpeedLimit?: number;
   /** Hits the mount may land, guarded ones included, in one ride. */
   hits: number;
   /** Ticks between two of its hits. */
@@ -206,11 +211,46 @@ export type RiddenFinalist = {
  * keeps meeting the rival it drives along, a share of the damage at a time.
  */
 export const MOUNT_STRIKES: Record<RiddenFinalist, MountStrike> = {
-  bolivar: { share: 1 / 7, hits: 1, interval: 0 },
-  gomez: { share: 1 / 3, hits: 1, interval: 0 },
-  lorenzo: { share: 1 / 3, hits: 1, interval: 0 },
-  mcm: { share: 1 / 4, hits: 4, interval: 18, carryRear: 142 },
+  bolivar: { share: 1 / 7, force: 1.5, hits: 1, interval: 0 },
+  gomez: { share: 1 / 3, force: 1.5, hits: 1, interval: 0 },
+  lorenzo: { share: 1 / 3, force: 1.5, hits: 1, interval: 0 },
+  mcm: {
+    share: 1 / 4,
+    force: 3,
+    preHitSpeedLimit: 4,
+    hits: 4,
+    interval: 18,
+    carryRear: 142,
+  },
 };
+
+/** Force for the mounted or vehicle helpers in each driving finale. */
+const RIDE_HELPER_FORCE = {
+  bolivar: 1.5,
+  gomez: 1.5,
+  lorenzo: 1.5,
+  zavarce: 1.5,
+} as const satisfies Partial<Record<FighterId, number>>;
+
+const DEFAULT_ACTOR_FORCE = 4.5;
+
+/** Force of a finale helper, including the driving formations. */
+export function arenaActorForce(
+  fighter: FighterId,
+  kind: ArenaFinaleActor["kind"],
+) {
+  if (kind === "handchain") return 1;
+  if (kind === "model") return 3;
+  if (
+    (kind === "horse" || kind === "truck" || kind === "courier") &&
+    (fighter === "bolivar" ||
+      fighter === "gomez" ||
+      fighter === "lorenzo" ||
+      fighter === "zavarce")
+  )
+    return RIDE_HELPER_FORCE[fighter];
+  return DEFAULT_ACTOR_FORCE;
+}
 
 /**
  * The mount's next strike, or nothing while it waits or has none left. Its
@@ -233,6 +273,8 @@ export function nextMountStrike(field: FieldFinaleState) {
     rear = landed > 0 ? strike.carryRear : undefined;
   return {
     damage: strike.share,
+    force: strike.force,
+    preHitSpeedLimit: strike.preHitSpeedLimit,
     reach,
     carried:
       rear === undefined

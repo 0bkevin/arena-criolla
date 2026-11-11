@@ -79,11 +79,19 @@ María Corina's caravan now offers four strikes, each one quarter of its
 27.24 HP budget against armor 1, rather than one full hit. Its supporters do
 not deal damage, and guarded strikes count toward the four-strike limit. At
 armor 1 the full ride and formula-only light-light-heavy total 51.85 HP. No
-damage adjustment was needed. In stationary trials on Caracas and Guaira, four
-strikes landed for the same total as the former single strike, but their
-repeated launches caused ring-outs from two farther-right starting positions
-where the old hit did not. This warrants edge and recovery play-testing; the
-trials do not establish a general ring-out rate.
+damage adjustment was needed. Bolívar's cavalry, Gómez's horses, Lorenzo's
+trucks and Vicente's couriers use force 1.5 per driving strike, down from 4.5.
+María Corina's caravan uses up to 3, down from 4.5, with a cap of 4 on the
+horizontal launch speed calculated before damage. Damage slightly increases
+actual speed. Vicente's separate courier special keeps its force of 4.
+
+In stationary Caracas and Guaira trials at 100 and 30 HP, rivals starting at
+least 250 px from the forward edge stayed on stage unless damage depleted their
+HP. At full HP central rides pushed roughly 40-165 px. Trials with a hard CPU
+and immediate guard, jump or attack after the first hit did not show a loss of
+most strikes from shorter stun; guarding blocked subsequent strikes both before
+and after. These trials do not establish a general ring-out rate; human
+play-testing remains necessary.
 
 ## Measurement and limitations
 
@@ -164,7 +172,8 @@ geometry and recovery deserve separate investigation.
 - Investigate counter frequency and counterplay: Amanda and Edgar remain above
   the burst and win-rate targets against the CPU.
 - Review the hard CPU's attack cadence, which only chooses heavy attacks.
-- Investigate ring-outs, including edge recovery, jump cadence and knockback.
+- Play-test ride pushback and investigate other ring-outs, including edge
+  recovery, jump cadence and knockback.
 - Review same-tick trades: player 0 resolves first and is favored; the harness
   offsets seat timing to compensate.
 - Play-test matchups with human players.
