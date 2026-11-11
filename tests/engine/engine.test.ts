@@ -4,7 +4,8 @@ import { FIGHTERS, STAGES, fighterById } from "../../shared/roster/roster";
 import {
   LIGHT_HEAVY_BONUS,
   LIGHT_LIGHT_HEAVY_BONUS,
-  RING_OUT_DAMAGE,
+  MIN_RING_OUT_DAMAGE,
+  ringOutDamage,
 } from "../../shared/engine/damage-values";
 import { INTRO_TOTAL_TICKS } from "../../shared/engine/intro";
 import {
@@ -91,14 +92,14 @@ test("a second jump works in the air; a third is rejected; landing resets it", (
   assert.equal(state.players[0].grounded, true);
 });
 
-test("crossing the arena boundary costs a fixed amount of health once and respawns the fighter", () => {
+test("crossing the arena boundary costs health once and respawns the fighter", () => {
   const { state, inputs } = setup();
   const p = state.players[1];
   // Past both the side and the bottom limit in the same step.
   p.x = WORLD.x - 140;
   p.y = WORLD.y + WORLD.height + 180;
   stepMatch(state, inputs);
-  assert.equal(p.hp, 100 - RING_OUT_DAMAGE);
+  assert.equal(p.hp, 100 - ringOutDamage(100));
   assert.equal(p.stocks, 2);
   assert.equal(p.x, 750);
   assert.ok(p.invincible > 0);
@@ -108,20 +109,20 @@ test("crossing the arena boundary costs a fixed amount of health once and respaw
   );
   // The respawn is inside the arena: later steps add no further penalty.
   advance(state, inputs, 120);
-  assert.equal(p.hp, 100 - RING_OUT_DAMAGE);
+  assert.equal(p.hp, 100 - ringOutDamage(100));
   assert.equal(p.stocks, 2);
 });
 
-test("a fall costs the stock only when the penalty would empty the health", () => {
-  for (const hp of [RING_OUT_DAMAGE + 0.5, RING_OUT_DAMAGE, 1]) {
+test("a fall costs the stock when its capped damage empties the health", () => {
+  for (const hp of [MIN_RING_OUT_DAMAGE + 0.5, MIN_RING_OUT_DAMAGE, 1]) {
     const { state, inputs } = setup();
     const p = state.players[1];
     p.hp = hp;
     p.y = WORLD.y + WORLD.height + 180;
     stepMatch(state, inputs);
-    if (hp > RING_OUT_DAMAGE) {
+    if (ringOutDamage(hp) < hp) {
       assert.equal(p.stocks, 2, `hp=${hp}`);
-      assert.ok(Math.abs(p.hp - (hp - RING_OUT_DAMAGE)) < 1e-9, `hp=${hp}`);
+      assert.ok(Math.abs(p.hp - (hp - ringOutDamage(hp))) < 1e-9, `hp=${hp}`);
     } else {
       assert.equal(p.stocks, 1, `hp=${hp}`);
       assert.equal(p.hp, 100, `hp=${hp}`);
@@ -134,7 +135,7 @@ test("a fall on the final stock with low health ends the match", () => {
   const { state, inputs } = setup();
   const p = state.players[1];
   p.stocks = 1;
-  p.hp = RING_OUT_DAMAGE;
+  p.hp = MIN_RING_OUT_DAMAGE;
   p.x = WORLD.x - 140;
   stepMatch(state, inputs);
   assert.equal(p.stocks, 0);
@@ -164,7 +165,7 @@ test("every fighter loses the same health to a fall, regardless of armor", () =>
       const p = state.players[side];
       p.y = WORLD.y + WORLD.height + 180;
       stepMatch(state, [emptyInput(), emptyInput()]);
-      assert.equal(p.hp, 100 - RING_OUT_DAMAGE, `${fighter} side ${side}`);
+      assert.equal(p.hp, 100 - ringOutDamage(100), `${fighter} side ${side}`);
       assert.equal(p.stocks, 2, `${fighter} side ${side}`);
     }
   }
@@ -268,7 +269,7 @@ test("simultaneous final-stock knockouts and ringouts end in a draw", () => {
       player.stocks = 1;
       if (cause === "health") player.hp = 0;
       else {
-        player.hp = RING_OUT_DAMAGE;
+        player.hp = MIN_RING_OUT_DAMAGE;
         player.y = WORLD.y + WORLD.height + 180;
       }
     });

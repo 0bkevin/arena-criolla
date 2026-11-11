@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { RING_OUT_DAMAGE } from "../../shared/engine/damage-values";
+import { ringOutDamage } from "../../shared/engine/damage-values";
 import {
   createMatch,
   emptyInput,
@@ -147,10 +147,10 @@ test("Puma's edge throw charges fall damage, taking a stock only if it is lethal
           );
           if (!fell) continue;
           assert.ok(before > 0, "the throw itself leaves the rival alive");
-          if (before > RING_OUT_DAMAGE) {
+          if (ringOutDamage(before) < before) {
             assert.equal(r.target.stocks, 2);
             assert.ok(
-              Math.abs(r.target.hp - (before - RING_OUT_DAMAGE)) < 1e-9,
+              Math.abs(r.target.hp - (before - ringOutDamage(before))) < 1e-9,
             );
           } else {
             assert.equal(r.target.stocks, 1);

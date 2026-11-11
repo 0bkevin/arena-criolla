@@ -3,7 +3,7 @@ import { WORLD } from "./arena";
 import { fighterById } from "../roster/roster";
 import { runwayContacts, supportRunway } from "./finales/field-finales";
 import { effect, hurt } from "./combat";
-import { RING_OUT_DAMAGE } from "./damage-values";
+import { ringOutDamage } from "./damage-values";
 import { clearFallProtection, setInvincibility } from "./invincibility";
 import { PLAYERS, type MatchState, type PlayerIndex } from "./types";
 
@@ -94,14 +94,15 @@ function loseStock(s: MatchState, i: PlayerIndex) {
   respawn(s, i);
 }
 
-/** A ring-out costs a fixed amount of health, or the stock if that is all left. */
+/** A ring-out costs a share of current health, or the stock if all health is lost. */
 function fall(s: MatchState, i: PlayerIndex) {
   const p = s.players[i];
-  if (p.hp <= RING_OUT_DAMAGE) {
+  const damage = ringOutDamage(p.hp);
+  if (damage >= p.hp) {
     loseStock(s, i);
     return;
   }
-  p.hp -= RING_OUT_DAMAGE;
+  p.hp -= damage;
   leaveArena(s, i, true);
   respawn(s, i, true);
 }

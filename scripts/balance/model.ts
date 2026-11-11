@@ -16,7 +16,8 @@ import {
   LIGHT_HEAVY_BONUS,
   LIGHT_LIGHT_HEAVY_BONUS,
   SUPER_BONUS,
-  RING_OUT_DAMAGE,
+  MIN_RING_OUT_DAMAGE,
+  RING_OUT_DAMAGE_FRACTION,
 } from "../../shared/engine/damage-values";
 
 const HZ = 60;
@@ -33,7 +34,9 @@ type Difficulty = "easy" | "normal" | "hard";
 type Hit = {
   tick: number;
   damage: number;
+  hpBefore: number;
   attacker: PlayerIndex;
+  victim: PlayerIndex;
   source: Source;
 };
 type Stock = {
@@ -44,13 +47,25 @@ type Stock = {
   elapsedTicks: number;
   ringOutKind: "launched" | "self" | null;
 };
-/** A ring-out that cost RING_OUT_DAMAGE health but kept the stock. */
+/** A ring-out that cost health but kept the stock. */
 type Fall = {
   tick: number;
   loser: PlayerIndex;
   hp: number;
+  damage: number;
   ringOutKind: "launched" | "self";
 };
+/** Remove the exact last HP drop for a victim, representing this fall's own loss. */
+export function removeFallHpDrop(
+  hits: Hit[],
+  firstHitIndex: number,
+  victim: PlayerIndex,
+): Hit {
+  for (let index = hits.length - 1; index >= firstHitIndex; index--) {
+    if (hits[index]!.victim === victim) return hits.splice(index, 1)[0]!;
+  }
+  throw new Error(`Surviving ring-out for player ${victim} had no HP drop`);
+}
 export type Options = {
   stages: StageId[];
   difficulty: Difficulty;
@@ -143,7 +158,9 @@ export function simulate(
           hits.push({
             tick,
             damage: hp - value,
+            hpBefore: hp,
             attacker: i === 0 ? 1 : 0,
+            victim: i,
             source: "unknown",
           });
           previousHit[i] = lastHit[i]!;
@@ -205,22 +222,19 @@ export function simulate(
     const nextEffectId = state.nextId;
     const stockCounts = state.players.map((p) => p.stocks);
     stepMatch(state, inputs);
-    // A fall's health penalty is not a hit by the opponent.
+    // The fall setter is the last HP drop for that victim in this step.
+    // Remove that observed event by position, preserving any distinct same-step
+    // hit even when it happens to deal the same amount as the fall.
     for (const effect of state.effects) {
       if (effect.id < nextEffectId || effect.kind !== "ringout") continue;
       const loser = effect.owner as PlayerIndex;
       if (state.players[loser].stocks !== stockCounts[loser]) continue;
-      const index = hits.findIndex(
-        (hit, k) =>
-          k >= firstHit &&
-          hit.attacker !== loser &&
-          Math.abs(hit.damage - RING_OUT_DAMAGE) < 1e-9,
-      );
-      if (index >= 0) hits.splice(index, 1);
+      const fallDrop = removeFallHpDrop(hits, firstHit, loser);
       falls.push({
         tick,
         loser,
-        hp: state.players[loser].hp + RING_OUT_DAMAGE,
+        hp: fallDrop.hpBefore,
+        damage: fallDrop.damage,
         ringOutKind:
           tick - previousHit[loser]! <= RECENT_HIT_TICKS ? "launched" : "self",
       });
@@ -353,6 +367,7 @@ export function buildReport(options: Options) {
       stocksLostRingOuts: stocksLost.filter((s) => s.cause === "ring-out")
         .length,
       falls: falls.length,
+      fallDamage: stats(falls.map((fall) => fall.damage)),
       damagePerSecond: seconds ? damage / seconds : 0,
       secondsPer100: damage ? (100 * seconds) / damage : 0,
       hitsPer100: damage
@@ -407,6 +422,10 @@ export function buildReport(options: Options) {
     tickRate: HZ,
     burstWindowTicks: WINDOW,
     recentHitTicks: RECENT_HIT_TICKS,
+    ringOutPolicy: {
+      fraction: RING_OUT_DAMAGE_FRACTION,
+      minimum: MIN_RING_OUT_DAMAGE,
+    },
     phases: PHASES,
     staticDamage: staticDamage(),
     matches,
@@ -442,8 +461,8 @@ export function buildReport(options: Options) {
       self: allStocks.filter((s) => s.ringOutKind === "self").length,
       hpKOs: allStocks.filter((s) => s.cause === "hp").length,
       ringOuts: allStocks.filter((s) => s.cause === "ring-out").length,
-      ringOutDamage: RING_OUT_DAMAGE,
       falls: allFalls.length,
+      fallDamage: stats(allFalls.map((fall) => fall.damage)),
       fallHp: stats(allFalls.map((fall) => fall.hp)),
       fallsLaunched: allFalls.filter((fall) => fall.ringOutKind === "launched")
         .length,

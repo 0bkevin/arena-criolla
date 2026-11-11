@@ -8,7 +8,10 @@ import {
   type Input,
   type MatchState,
 } from "../../shared/engine/engine";
-import { RING_OUT_DAMAGE } from "../../shared/engine/damage-values";
+import {
+  MIN_RING_OUT_DAMAGE,
+  ringOutDamage,
+} from "../../shared/engine/damage-values";
 import {
   clearFallProtection,
   grantDashInvincibility,
@@ -90,7 +93,7 @@ test("a surviving fall preserves energy and transformation and clears stale acti
 
   fallAt(state, 1);
 
-  assert.equal(p.hp, 100 - RING_OUT_DAMAGE);
+  assert.equal(p.hp, 100 - ringOutDamage(100));
   assert.equal(p.stocks, 2);
   assert.equal(p.energy, 67);
   assert.deepEqual(p.transformation, {
@@ -230,7 +233,7 @@ test("an attack buffered during return ends protection only when the attack star
 test("stock loss keeps its 110 tick protection, energy penalty, and transformation clear", () => {
   const { state } = setup();
   const p = state.players[1];
-  p.hp = RING_OUT_DAMAGE;
+  p.hp = MIN_RING_OUT_DAMAGE;
   p.energy = 67;
   p.transformation = { id: "test", ticks: 500, damageMultiplier: 1.5 };
   fallAt(state, 1);
@@ -246,7 +249,7 @@ test("low-HP final-stock falls still end the match", () => {
   const { state } = setup();
   const p = state.players[0];
   p.stocks = 1;
-  p.hp = RING_OUT_DAMAGE;
+  p.hp = MIN_RING_OUT_DAMAGE;
   fallAt(state, 0);
   assert.equal(p.stocks, 0);
   assert.equal(state.phase, "finished");
@@ -258,7 +261,7 @@ test("a final-stock fall just above the damage threshold keeps the match playing
     const { state } = setup();
     const p = state.players[seat];
     p.stocks = 1;
-    p.hp = RING_OUT_DAMAGE + 0.125;
+    p.hp = MIN_RING_OUT_DAMAGE + 0.125;
     fallAt(state, seat);
     assert.equal(p.hp, 0.125);
     assert.equal(p.stocks, 1);
@@ -271,9 +274,9 @@ test("a lethal second fall clears return protection even on the final stock", ()
   const { state } = setup();
   const p = state.players[0];
   p.stocks = 1;
-  p.hp = RING_OUT_DAMAGE * 2;
+  p.hp = MIN_RING_OUT_DAMAGE * 2;
   fallAt(state, 0);
-  assert.equal(p.hp, RING_OUT_DAMAGE);
+  assert.equal(p.hp, MIN_RING_OUT_DAMAGE);
   fallAt(state, 0);
   assert.equal(p.stocks, 0);
   assert.equal(p.fallProtectionTicks, undefined);
@@ -291,7 +294,7 @@ test("both seats land safely before return protection expires on every stage", (
       while (!p.grounded && ticks++ < 60) stepMatch(state, inputs);
       assert.ok(p.grounded, `${stage.id} seat ${seat}`);
       assert.ok(p.invincible > 0, `${stage.id} seat ${seat}`);
-      assert.equal(p.hp, 100 - RING_OUT_DAMAGE);
+      assert.equal(p.hp, 100 - ringOutDamage(100));
       assert.equal(p.stocks, 2);
     }
   }
@@ -304,7 +307,7 @@ test("the three blast boundaries trigger falls while ordinary platform landings 
       fallAt(state, seat, side);
       assert.equal(
         state.players[seat].hp,
-        100 - RING_OUT_DAMAGE,
+        100 - ringOutDamage(100),
         `${seat} ${side}`,
       );
     }
@@ -312,7 +315,7 @@ test("the three blast boundaries trigger falls while ordinary platform landings 
     fallAt(state, seat, "bottom");
     assert.equal(
       state.players[seat].hp,
-      100 - RING_OUT_DAMAGE,
+      100 - ringOutDamage(100),
       `${seat} bottom`,
     );
   }
@@ -337,7 +340,7 @@ test("moving stages return both seats safely; consecutive falls and JSON replay 
       fallAt(state, seat, seat === 0 ? "left" : "right");
       assert.equal(
         state.players[seat].hp,
-        100 - RING_OUT_DAMAGE,
+        100 - ringOutDamage(100),
         `${stage} ${seat}`,
       );
       assert.equal(state.players[seat].x, seat === 0 ? 330 : 750);
@@ -346,9 +349,9 @@ test("moving stages return both seats safely; consecutive falls and JSON replay 
   }
   const { state } = setup("merida");
   fallAt(state, 0, "left");
-  assert.equal(state.players[0].hp, 100 - RING_OUT_DAMAGE);
+  assert.equal(state.players[0].hp, 100 - ringOutDamage(100));
   fallAt(state, 0, "right");
-  assert.equal(state.players[0].hp, 100 - RING_OUT_DAMAGE * 2);
+  assert.equal(state.players[0].hp, 36);
   assert.equal(
     state.effects.filter((effect) => effect.kind === "ringout").length,
     2,
@@ -359,4 +362,44 @@ test("moving stages return both seats safely; consecutive falls and JSON replay 
   stepMatch(state, replayInputs);
   stepMatch(restored, replayInputs);
   assert.deepEqual(restored, state);
+});
+
+test("ring-out damage follows the percentage/minimum crossover without rounding", () => {
+  const examples = [
+    [100, 60],
+    [75, 45],
+    [50, 30],
+    [25, 15],
+    [20, 10],
+    [15, 5],
+  ] as const;
+  for (const [hp, expected] of examples) {
+    const { state } = setup();
+    const p = state.players[0];
+    p.hp = hp;
+    fallAt(state, 0);
+    assert.equal(p.hp, expected, `${hp} HP`);
+    assert.equal(p.stocks, 2, `${hp} HP`);
+  }
+
+  const { state } = setup();
+  const p = state.players[0];
+  p.hp = 26.125;
+  fallAt(state, 0);
+  assert.ok(Math.abs(p.hp - 15.675) < 1e-12);
+});
+
+test("consecutive falls compound current HP until the final fall loses the stock", () => {
+  const { state } = setup();
+  const p = state.players[0];
+  const expectedHp = [60, 36, 21.6, 11.6, 1.6];
+  p.hp = 100;
+  for (const [index, expected] of expectedHp.entries()) {
+    fallAt(state, 0);
+    assert.ok(Math.abs(p.hp - expected) < 1e-10, `fall ${index + 1}`);
+    assert.equal(p.stocks, 2);
+  }
+  fallAt(state, 0);
+  assert.equal(p.stocks, 1);
+  assert.equal(p.hp, 100);
 });

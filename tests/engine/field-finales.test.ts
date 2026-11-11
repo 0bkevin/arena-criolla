@@ -9,7 +9,7 @@ import {
   type MatchState,
 } from "../helpers/charged-finale-engine";
 import type { FighterId } from "../../shared/roster/roster";
-import { RING_OUT_DAMAGE } from "../../shared/engine/damage-values";
+import { ringOutDamage } from "../../shared/engine/damage-values";
 import {
   SQUAD_COUNT,
   SQUAD_LAUNCH_TICK,
@@ -170,7 +170,7 @@ test("squad balls use real contact, facing guard, evasion, reflection and immedi
       else {
         // The distant target starts past the floor's edge: it falls once and
         // respawns protected, and no ball reaches it.
-        assert.equal(r.target.hp, 100 - RING_OUT_DAMAGE, mode);
+        assert.equal(r.target.hp, 100 - ringOutDamage(100), mode);
         assert.equal(r.target.stocks, 2, mode);
         assert.equal(r.source.hits, 0, mode);
       }
