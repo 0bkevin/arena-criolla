@@ -59,7 +59,7 @@ export const FOUNDER_TECHNIQUES = {
     recovery: 44,
     range: 175,
     height: 120,
-    damage: 17,
+    damage: 16.4,
     force: 9,
     dash: { speed: 17, ticks: 10, invincibility: 4, brake: 0.4 },
   },

@@ -226,7 +226,10 @@ export function updateAttack(s: MatchState, i: PlayerIndex) {
     if (attack === "special" && technique.projectile) {
       if (technique.requiresGround && !p.grounded) return;
       spawnTechniqueProjectiles(s, i, technique, technique.projectile);
-    } else if (strike(s, i, attack, technique, pulseIndex, movingStrike))
+    } else if (
+      !(attack === "special" && technique.counter && p.countered) &&
+      strike(s, i, attack, technique, pulseIndex, movingStrike)
+    )
       return;
   }
   if (p.attackTick >= recoveryTicks(attack, technique)) p.attack = null;
