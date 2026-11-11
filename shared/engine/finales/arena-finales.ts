@@ -19,7 +19,6 @@ export {
   isArenaFinalist,
   mountedFinale,
   rideMoving,
-  type ArenaContact,
   type ArenaFinaleActor,
   type ArenaFinalist,
 } from "./arena-finale-specs";

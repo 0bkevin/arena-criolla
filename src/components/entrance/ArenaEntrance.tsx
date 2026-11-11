@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ArrowRight } from "lucide-react";
-import { VenezuelaStars } from "../ui/CriolloArt";
+import { VenezuelaStars } from "../ui/VenezuelaStars";
 import entranceAssets from "./entrance-images.json";
 import "./arena-entrance.css";
 

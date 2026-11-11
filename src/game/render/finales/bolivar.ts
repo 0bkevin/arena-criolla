@@ -7,14 +7,6 @@ export const BOLIVAR_SPECIAL_POSES = [
   "cut",
   "thrust",
 ] as const;
-export const BOLIVAR_POSES = [
-  ...BOLIVAR_SPECIAL_POSES,
-  "ready",
-  "gallop-a",
-  "gallop-b",
-  "horse",
-  ...Array.from({ length: 6 }, (_, i) => `llanero-${i + 1}`),
-];
 // Source core heights with one shared source pixel scale per generated sheet.
 export const BOLIVAR_BODY_HEIGHTS: Record<string, number> = {
   draw: 494,

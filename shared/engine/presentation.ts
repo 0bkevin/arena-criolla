@@ -99,13 +99,6 @@ export function entranceProgress(
     ),
   );
 }
-export function normalizedFacing(
-  id: FighterId,
-  frame: number,
-  facing: number,
-): number {
-  return (facing < 0 ? -1 : 1) * (presentationById(id).frameFacing[frame] ?? 1);
-}
 export function samplePose(beats: PoseBeat[], progress: number): PoseBeat {
   const t = Math.max(0, Math.min(1, progress));
   const next = beats.findIndex((beat) => beat.at > t);

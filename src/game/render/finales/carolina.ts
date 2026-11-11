@@ -2,11 +2,6 @@ import { coutureRunwayRange } from "../../../../shared/engine/finales/couture-ru
 import type { FieldFinaleState } from "../../../../shared/engine/finales/field-finales";
 import { ATTACK_ART } from "../../assets/attack-art";
 
-export const CAROLINA_MODEL_POSES = Array.from({ length: 4 }, (_, i) => [
-  `model-${i + 1}-a`,
-  `model-${i + 1}-b`,
-]).flat();
-
 export function carolinaInvocationPose(tick: number, reducedMotion = false) {
   if (reducedMotion) return "summon";
   return tick < 8

@@ -17,7 +17,6 @@ export const MELANIO_SPECIAL_POSES = [
   "signal-release",
   "signal",
 ] as const;
-export const MELANIO_POSES = [...MELANIO_FINAL_POSES, ...MELANIO_SPECIAL_POSES];
 // Effective crown-to-sole source dimensions, calibrated to the same 424px body.
 // Separate generations receive a uniform whole-figure scale, never a head patch.
 export const MELANIO_BODY_HEIGHTS: Record<string, number> = {

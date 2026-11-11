@@ -19,13 +19,6 @@ import { drawTheaterScene } from "./capture-finale/theater-scene";
 import { drawTransportScene } from "./capture-finale/transport-scene";
 import { finaleArenaLayout } from "./finale-layout";
 
-export { finaleActorLayout } from "./capture-finale/actor-frames";
-export { finaleBodyPoint, finaleDancePoint } from "./capture-finale/body-warp";
-export {
-  finalePerformerFrame,
-  sampleFinaleDance,
-} from "./capture-finale/choreography";
-
 /** The latest damage beat reached and its fading visual pulse. */
 function damageBeat(profile: FinaleDefinition, tick: number) {
   let beat = -1,

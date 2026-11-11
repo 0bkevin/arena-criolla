@@ -16,7 +16,6 @@ export const ALI_CHOIR_POSES = [
   "choir-e",
   "choir-f",
 ] as const;
-export const ALI_POSES = [...ALI_ACTOR_POSES, ...ALI_CHOIR_POSES];
 // Crown-to-sole measurements in raw-v1. Undo each atlas cell's packing scale
 // so leaning into the final strum lowers the head without enlarging the face.
 export const ALI_BODY_HEIGHTS: Record<string, number> = {

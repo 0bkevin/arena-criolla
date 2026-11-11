@@ -12,15 +12,6 @@ export const LORENZO_SPECIAL_POSES = [
   "recover",
   "bag",
 ] as const;
-export const LORENZO_POSES = [
-  ...LORENZO_SPECIAL_POSES,
-  "ride-right",
-  "ride-left",
-  "truck-right",
-  "truck-left",
-  "front-right",
-  "front-left",
-] as const;
 export const LORENZO_BODY_HEIGHTS: Record<string, number> = {
   windup: 559,
   throw: 1068 * 0.52,

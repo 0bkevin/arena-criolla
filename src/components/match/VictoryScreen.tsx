@@ -8,7 +8,7 @@ import { ArrowRight, RotateCcw, Trophy, Zap } from "lucide-react";
 import { fighterById, stageById } from "../../../shared/roster/roster";
 import type { MatchState, PlayerIndex } from "../../../shared/engine/engine";
 import type { GameMode } from "./Game";
-import { VenezuelaStars } from "../ui/CriolloArt";
+import { VenezuelaStars } from "../ui/VenezuelaStars";
 import { Portrait } from "../ui/Portrait";
 import { assetUrl } from "../../game/assets/asset-url";
 import { playVictoryTransition } from "../../game/match/victory-transition";
