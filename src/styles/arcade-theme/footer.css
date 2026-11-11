@@ -51,6 +51,15 @@
   outline-offset: 4px;
   border-radius: 2px;
 }
+.footer-credit a.footer-github-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  margin-left: 8px;
+  text-decoration: none;
+  vertical-align: middle;
+}
 .footer-acknowledgements {
   display: inline-flex;
   align-items: center;
