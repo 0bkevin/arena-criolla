@@ -30,7 +30,7 @@ const dataDir = await mkdtemp(path.join(tmpdir(), "arena-network-perf-"));
 const childSource = `
 import { makeArenaServer } from ${JSON.stringify(pathToFileURL(path.resolve("server/index.ts")).href)};
 import { monitorEventLoopDelay, performance } from 'node:perf_hooks';
-import { FixedStepTicker } from ${JSON.stringify(pathToFileURL(path.resolve("server/ticker.ts")).href)};
+import { FixedStepTicker } from ${JSON.stringify(pathToFileURL(path.resolve("shared/lobby/ticker.ts")).href)};
 let steps=0, startSteps=0;const originalAdvance=FixedStepTicker.prototype.advance;FixedStepTicker.prototype.advance=function(now){const n=originalAdvance.call(this,now);steps+=n;return n;};
 const server = await makeArenaServer({ serveClient: false, production: true });
 const lag = monitorEventLoopDelay({resolution:10}); lag.enable();

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { FixedStepTicker } from "../server/ticker";
+import { FixedStepTicker } from "../shared/lobby/ticker";
 
 test("fixed-step ticker sustains 60 simulation steps per second independent of callback cadence", () => {
   for (const callbackMs of [8, 10, 16, 17, 33]) {
