@@ -56,43 +56,42 @@ Numbers are bases before multipliers, except Gómez's damage multiplier. Damage
 bases do not change health, stocks, energy or AI. Gómez's damage multiplier also
 feeds the sound weight in `src/game/audio/sound-effects.ts`.
 
-| Location                   | Value                   | Old → new                    | Reason                                                                                    |
-| -------------------------- | ----------------------- | ---------------------------- | ----------------------------------------------------------------------------------------- |
-| `damage-values.ts`         | light                   | 7 → 6                        | Lengthen health depletion across the cast.                                                |
-| `damage-values.ts`         | heavy                   | 13 → 10.4                    | Reduce the dominant CPU attack and normal damage.                                         |
-| `damage-values.ts`         | light-heavy bonus       | 3 → 2                        | Reduce string amplification.                                                              |
-| `damage-values.ts`         | light-light-heavy bonus | 7 → 4                        | Bring full strings near the median target.                                                |
-| `damage-values.ts`         | definitive base         | 28 → 22                      | Reduce full definitive budgets across modes.                                              |
-| `damage-values.ts`         | definitive bonus        | 12 → 7                       | Reduce definitive and string burst.                                                       |
-| `fighters.json`            | Gómez damage multiplier | 1.20 → 1.08                  | Reduce a cast-wide offense and defense advantage while retaining a power role.            |
-| `techniques.ts`            | Gómez command           | 21 → 17                      | Grounded punish remains strong without the former 25.2 HP hit.                            |
-| `techniques.ts`            | Puma roar               | 16 → 15.1                    | Reclassified as a low-risk mid-range poke.                                                |
-| `techniques.ts`            | Simón cuatro            | 9 → 7 per projectile         | Reduce the three-projectile offered total.                                                |
-| `techniques.ts`            | Conde whirl             | 20 → 15.3                    | Keep the dash and transformed damage within budget.                                       |
-| `techniques.ts`            | Emilio echo             | 10 → 9 per pulse             | Reduce two-hit and transformed totals.                                                    |
-| `techniques.ts`            | George punchline        | 10 → 8.5 per pulse           | Reduce the observed two-hit total.                                                        |
-| `techniques.ts`            | Lionza wildspirit       | 19 → 16.1                    | Cap the ranged ground projectile.                                                         |
-| `culture-techniques.ts`    | Alí strum               | 7 → 5.4 per pulse            | Cap the observed three-hit total.                                                         |
-| `culture-techniques.ts`    | Yordano fountain        | 7 → 5.6 per pulse            | Cap the observed three-hit total.                                                         |
-| `culture-techniques.ts`    | Lila cocotero           | 6 → 4.5 per projectile       | Reduce the observed three-hit total without removing the spread identity.                 |
-| `culture-techniques.ts`    | Rummy zapateo           | 5 → 4.3 per pulse            | Reclassified as low-risk given its speed and two-sided coverage.                          |
-| `culture-techniques.ts`    | Amanda curtain counter  | 17 → 14                      | Reduce frequent counter damage and burst against the CPU.                                 |
-| `culture-techniques.ts`    | Giuseppe audit          | 7 → 5.8 per pulse            | Cap the observed three-hit total.                                                         |
-| `culture-techniques.ts`    | Gualberto return        | 9 → 8.6 per projectile       | Cap the observed two-hit total.                                                           |
-| `culture-techniques.ts`    | Gabriela pulses         | 9 → 8.4 per pulse            | Cap the observed two-hit total.                                                           |
-| `founder-techniques.ts`    | Carlos dash             | 17 → 16.4                    | Cap the observed dash hit.                                                                |
-| `techniques.ts`            | Vallenilla installments | 6 → 5.5 per pulse            | Cap the observed three-hit total.                                                         |
-| `techniques.ts`            | Diablo projectile       | 17 → 15.9                    | Cap the ranged hit.                                                                       |
-| `attacks.ts`               | connected counter       | follow-up allowed → consumed | Prevent the counter and its special strike stacking in one activation.                    |
-| `arena-finale-specs.ts`    | ride helper force       | 4.5 → 1.5                    | Reduce pushback for Bolívar, Gómez, Lorenzo, Vicente and Simón while preserving old stun. |
-| `arena-finale-contacts.ts` | María Corina ride force | 4.5 → at most 3              | Reduce pushback, cap launch speed and preserve old stun.                                  |
-| `icon-techniques.ts`       | Edgar retake counter    | 18 → 14                      | Reduce repeated counter burst against the CPU.                                            |
+| Location                | Value                   | Old → new                    | Reason                                                                                    |
+| ----------------------- | ----------------------- | ---------------------------- | ----------------------------------------------------------------------------------------- |
+| `damage-values.ts`      | light                   | 7 → 6                        | Lengthen health depletion across the cast.                                                |
+| `damage-values.ts`      | heavy                   | 13 → 10.4                    | Reduce the dominant CPU attack and normal damage.                                         |
+| `damage-values.ts`      | light-heavy bonus       | 3 → 2                        | Reduce string amplification.                                                              |
+| `damage-values.ts`      | light-light-heavy bonus | 7 → 4                        | Bring full strings near the median target.                                                |
+| `damage-values.ts`      | definitive base         | 28 → 22                      | Reduce full definitive budgets across modes.                                              |
+| `damage-values.ts`      | definitive bonus        | 12 → 7                       | Reduce definitive and string burst.                                                       |
+| `fighters.json`         | Gómez damage multiplier | 1.20 → 1.08                  | Reduce a cast-wide offense and defense advantage while retaining a power role.            |
+| `techniques.ts`         | Gómez command           | 21 → 17                      | Grounded punish remains strong without the former 25.2 HP hit.                            |
+| `techniques.ts`         | Puma roar               | 16 → 15.1                    | Reclassified as a low-risk mid-range poke.                                                |
+| `techniques.ts`         | Simón cuatro            | 9 → 7 per projectile         | Reduce the three-projectile offered total.                                                |
+| `techniques.ts`         | Conde whirl             | 20 → 15.3                    | Keep the dash and transformed damage within budget.                                       |
+| `techniques.ts`         | Emilio echo             | 10 → 9 per pulse             | Reduce two-hit and transformed totals.                                                    |
+| `techniques.ts`         | George punchline        | 10 → 8.5 per pulse           | Reduce the observed two-hit total.                                                        |
+| `techniques.ts`         | Lionza wildspirit       | 19 → 16.1                    | Cap the ranged ground projectile.                                                         |
+| `culture-techniques.ts` | Alí strum               | 7 → 5.4 per pulse            | Cap the observed three-hit total.                                                         |
+| `culture-techniques.ts` | Yordano fountain        | 7 → 5.6 per pulse            | Cap the observed three-hit total.                                                         |
+| `culture-techniques.ts` | Lila cocotero           | 6 → 4.5 per projectile       | Reduce the observed three-hit total without removing the spread identity.                 |
+| `culture-techniques.ts` | Rummy zapateo           | 5 → 4.3 per pulse            | Reclassified as low-risk given its speed and two-sided coverage.                          |
+| `culture-techniques.ts` | Amanda curtain counter  | 17 → 14                      | Reduce frequent counter damage and burst against the CPU.                                 |
+| `culture-techniques.ts` | Giuseppe audit          | 7 → 5.8 per pulse            | Cap the observed three-hit total.                                                         |
+| `culture-techniques.ts` | Gualberto tremolo       | 9 → 8.6 per projectile       | Cap the observed two-hit total.                                                           |
+| `culture-techniques.ts` | Gabriela mirror         | 9 → 8.4 per pulse            | Cap the observed two-hit total.                                                           |
+| `founder-techniques.ts` | Carlos ignition         | 17 → 16.4                    | Cap the observed dash hit.                                                                |
+| `techniques.ts`         | Vallenilla installments | 6 → 5.5 per pulse            | Cap the observed three-hit total.                                                         |
+| `techniques.ts`         | Diablo hellfire         | 17 → 15.9                    | Cap the ranged hit.                                                                       |
+| `attacks.ts`            | connected counter       | follow-up allowed → consumed | Prevent the counter and its special strike stacking in one activation.                    |
+| `arena-finale-specs.ts` | ride helper force       | 4.5 → 1.5                    | Reduce pushback for Bolívar, Gómez, Lorenzo, Vicente and Simón while preserving old stun. |
+| `arena-finale-specs.ts` | María Corina ride force | 4.5 → at most 3              | Reduce pushback, cap launch speed and preserve old stun.                                  |
+| `icon-techniques.ts`    | Lorenzo polar           | 7 → 5.9 per projectile       | Cap the three-hit ranged total at 16.99 HP.                                               |
+| `icon-techniques.ts`    | Edgar retake counter    | 18 → 14                      | Reduce repeated counter burst against the CPU.                                            |
 
 Lila's five offered projectiles still nominally total 24.3 HP against armor 1;
 the audit's stationary trials observed at most three contacts, not five.
-Lorenzo (20.16), Simón (19.95) and Nacho (17.10) also offer more than 17 HP,
-but their full totals were not observed in roughly 4,900 trials each, except
-for Simón during edge ring-outs. These exceptions need wider human testing. Vicente's courier has one low-damage contact per activation: it is
+Lorenzo’s three projectiles can all connect at lower HP, dealing 16.99 HP after this change. Simón (19.95) and Nacho (17.10) offer more than 17 HP, but their full totals were not observed in roughly 4,900 trials each, except for Simón during edge ring-outs. These exceptions need wider human testing. Vicente's courier has one low-damage contact per activation: it is
 removed on hit. Norkys observed 7.60 of 15.20 offered, Melanio 8.00, and
 Amanda 8.40 plus her counter; these low-side specials were not changed in this
 pass. Lele's special did not connect in the original audit setup.
@@ -103,19 +102,19 @@ not deal damage, and guarded strikes count toward the four-strike limit. At
 armor 1 the full ride and formula-only light-light-heavy total 51.85 HP. No
 damage adjustment was needed. Bolívar's cavalry, Gómez's horses, Lorenzo's
 trucks, Vicente's couriers and Simón's wooden horses use force 1.5 per driving
-strike, down from 4.5.
+strike, down from 4.5; the mount bodies of Bolívar, Gómez and Lorenzo also use 1.5, down from 4.5.
 María Corina's caravan uses up to 3, down from 4.5, with a cap of 4 on the
 horizontal launch speed calculated before damage. Damage slightly increases
 actual speed. A counter that lands consumes the follow-up strike. A stun floor derived from
-the old 4.5 force prevents early recovery from interrupting the ride. Vicente's separate courier special keeps
+the old 4.5 force prevents early recovery from interrupting the ride. Simón’s wooden horses use a longer floor to cover their contact spacing. Vicente's separate courier special keeps
 its force of 4.
 
 In stationary Caracas and Guaira trials at 100 and 30 HP, rivals starting at
 least 250 px from the forward edge stayed on stage unless damage depleted their
-HP. At full HP central rides pushed roughly 45-183 px, including about 181 px
+HP. At full HP central rides pushed roughly 45–181 px, including about 181 px
 for María Corina; at 60 HP displacement reached about 215 px. The smaller push
 retains the old 17 ticks of stun, so a rival cannot cancel the ride by attacking
-between strikes. Ride strikes ignore dash invincibility; guarding blocks them.
+between strikes. Ride strikes ignore dash invincibility; guarding blocks them. A normal dash during the short post-hit protection window replaces that protection with exactly eight dash-only ticks and can expose the rival to rides; this is practically unreachable in ordinary play.
 These trials do not establish a general ring-out rate; human
 play-testing remains necessary.
 
@@ -152,32 +151,34 @@ and burst are the largest observed for any fighter, not cast medians.
 
 | Measure                       | Caracas before → after                                        | Guaira before → after                                     |
 | ----------------------------- | ------------------------------------------------------------- | --------------------------------------------------------- |
-| Median seconds per 100 HP     | 24.22 → 29.87 (+23.4%)                                        | 24.22 → 29.26 (+20.8%)                                    |
-| Median landed hits per 100 HP | 8.17 → 9.84                                                   | 8.16 → 9.84                                               |
+| Median seconds per 100 HP     | 24.22 → 29.98 (+23.8%)                                        | 24.22 → 29.53 (+21.9%)                                    |
+| Median landed hits per 100 HP | 8.17 → 9.84                                                   | 8.16 → 9.83                                               |
 | Largest single HP drop        | George 43.64 → George 30.54                                   | George 43.22 → George 31.15                               |
 | Largest three-second burst    | Maite 74.23 → Amanda 56.12                                    | Gómez 75.76 → Amanda 57.77                                |
-| Fighter win-rate range        | Dorángel 30.45%–Amanda 82.95% → Dorángel 36.59%–Amanda 85.23% | Dorángel 31.14%–Amanda 87.73% → Juan 33.86%–Amanda 87.95% |
-| HP KOs / ring-outs            | 4,768 / 29,912 → 2,570 / 32,184                               | 5,061 / 29,173 → 2,672 / 31,063                           |
-| Median stock duration         | 11.95 → 11.57 s (-3.2%)                                       | 11.92 → 12.00 s (+0.7%)                                   |
-| Mean stock duration           | 12.77 → 13.11 s (+2.7%)                                       | 12.83 → 13.37 s (+4.2%)                                   |
-| Mean match duration           | 25.94 → 26.87 s (+3.6%)                                       | 26.02 → 27.02 s (+3.8%)                                   |
+| Fighter win-rate range        | Dorángel 30.45%–Amanda 82.95% → Dorángel 36.14%–Amanda 85.45% | Dorángel 31.14%–Amanda 87.73% → Juan 33.41%–Amanda 88.41% |
+| HP KOs / ring-outs            | 4,768 / 29,912 → 2,524 / 32,235                               | 5,061 / 29,173 → 2,637 / 31,080                           |
+| Median stock duration         | 11.95 → 11.55 s (-3.3%)                                       | 11.92 → 11.98 s (+0.6%)                                   |
+| Mean stock duration           | 12.77 → 13.09 s (+2.5%)                                       | 12.83 → 13.36 s (+4.1%)                                   |
+| Mean match duration           | 25.94 → 26.84 s (+3.5%)                                       | 26.02 → 27.01 s (+3.8%)                                   |
 
 Fights grew by under one second on average in both stages, while the median
-Caracas stock got shorter. Ring-outs account for 92.6% of final Caracas stocks
-and 92.1% in Guaira; damage changes alone have limited effect on fight length
+Caracas stock got shorter. Ring-outs account for 92.74% of final Caracas stocks
+and 92.18% in Guaira; damage changes alone have limited effect on fight length
 against this CPU. Seconds per 100 HP grew much more than actual durations.
 
 María Corina took 478 stocks in the baseline Caracas run, 438 by ring-out;
-afterward she took 551, 529 by ring-out. These are opponent stocks she took,
-not her own losses. In the final run she lost 651 stocks, 614 by ring-out.
-Her wins changed from 37.50% to 46.36%; the combined changes and deterministic
+afterward she took 548, 526 by ring-out. These are opponent stocks she took,
+not her own losses. In the final run she lost 652 stocks, 617 by ring-out.
+Her wins changed from 37.50% to 46.14%; the combined changes and deterministic
 CPU trials do not isolate the caravan's competitive effect.
 
 The final hit count remains just below the approximate 10–11 target. Amanda's
-56.12 and 57.77 bursts exceed the 55 target; she wins 85.23% in Caracas and
-87.95% in Guaira. Edgar wins 77.05% and 68.18%, respectively. Their counter
+56.12 and 57.77 bursts exceed the 55 target; she wins 85.45% in Caracas and
+88.41% in Guaira. Edgar wins 77.05% and 67.05%, respectively. Their counter
 frequency and the CPU's predictable attacks warrant investigation; these
-figures do not isolate causation. Puma wins 67.27% in Caracas. Damage rates and
+figures do not isolate causation. Puma wins 64.55% in Caracas and 62.50% in Guaira, within the 35–65% band.
+Dayana wins 37.73% and 45.45%, and Juan wins 37.50% and 33.41%, respectively.
+Damage rates and
 win rates are proxies, not a validated competitive tier list.
 
 ## Follow-ups
