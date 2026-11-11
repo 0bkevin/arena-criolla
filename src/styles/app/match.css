@@ -258,11 +258,8 @@
     0 6px 14px #0008;
 }
 .match-clock strong {
-  /* Pixelify Sans renders 2, 3, 5 and 9 as near-copies of 8 (or a mirrored
-     S), which made the timer misreadable. Barlow keeps every digit distinct. */
-  font-family: var(--font-display);
+  font-family: var(--display);
   font-size: 40px;
-  font-weight: 800;
   line-height: 1;
   color: #fff;
   font-variant-numeric: tabular-nums;
@@ -275,6 +272,9 @@
   color: #ff9b85;
 }
 .match-clock strong.match-clock-minutes {
+  /* In bold Pixelify Sans the 2 reads as an 8; Barlow keeps "2 min" legible. */
+  font-family: var(--font-display);
+  font-weight: 800;
   font-size: 22px;
   white-space: nowrap;
 }
