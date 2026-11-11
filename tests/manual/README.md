@@ -1,97 +1,69 @@
-# Manual browser fixtures
+# Fixtures manuales de navegador
 
-These fixtures cover behaviour that only a real browser can show: pointer
-capture and hit testing, native focus and scrolling, and real Web Audio output.
-They are not part of `npm test`; `npm run typecheck` still type-checks them.
-Each one mounts production components in React StrictMode and restores its
-browser overrides on unmount.
+Estos fixtures cubren lo que solo un navegador real puede mostrar: captura de punteros, foco y scroll nativos, y salida real de Web Audio. No forman parte de `npm test`, aunque `npm run typecheck` sí los comprueba. Cada uno monta componentes de producción en React StrictMode y restaura lo que modificó al desmontarse.
 
-Start the standalone Vite server:
+Arranca Vite por separado:
 
 ```sh
 npm ci
 npx vite --host 0.0.0.0 --port 5174
 ```
 
-Open the fixture's page at `http://localhost:5174/tests/manual/<name>.html` and
-call the commands below from the console. A run passes when every scenario it
-reports passes.
+Abre `http://localhost:5174/tests/manual/<nombre>.html` y ejecuta los comandos de cada sección en la consola. La prueba pasa cuando todos los escenarios que reporta pasan.
 
 ## touch-controls
 
 ```js
-await touchAudit.run(); // all results must pass
-touchAudit.layout(); // geometry at the current viewport
-touchAudit.mount({ mobile: false }); // hybrid tablet/laptop layout
-await touchAudit.mountHybridGame(); // production Game on a simulated hybrid device
-touchAudit.gameLayout(); // resize the viewport, then repeat
-touchAudit.update({ energy: 0 }); // deplete energy mid-gesture
-touchAudit.state(); // engine inputs, callback order and highlights
+await touchAudit.run(); // todos los resultados deben pasar
+touchAudit.layout(); // geometría con el tamaño de pantalla actual
+touchAudit.mount({ mobile: false }); // diseño híbrido de tablet o portátil
+await touchAudit.mountHybridGame(); // Game de producción en un dispositivo híbrido simulado
+touchAudit.gameLayout(); // cambia el tamaño de la ventana y repite
+touchAudit.update({ energy: 0 }); // agota la energía a mitad de un gesto
+touchAudit.state(); // entradas del motor, orden de callbacks y resaltados
 ```
 
-This exercises the production `TouchControls` with real pointer events. Also
-check it by hand with real fingers or a mouse. The rules it checks:
+Usa `TouchControls` de producción con eventos de puntero reales. Pruébalo también a mano, con dedos o ratón. Debe cumplirse:
 
-- A contact can slide between movement, jump, dash, block, light and heavy
-  without lifting. Special and super need a fresh press on their enabled button.
-  Sliding onto them does nothing, and getting energy back during a contact never
-  fires them again.
-- Each finger owns its own input. Releasing one finger never clears another
-  finger, key or controller that holds the same control.
-- Up, cancel, capture loss, blur, hidden visibility, pagehide, rotation, reset
-  and unmount release input. A cancelled contact cannot restart from a stray move.
-- Unavailable controls use `aria-disabled`, and pointer, keyboard and click
-  activation all respect it.
+- Un dedo puede deslizarse entre movimiento, salto, dash, bloqueo, golpe ligero y fuerte sin levantarse. Especial y definitiva necesitan una pulsación nueva sobre su botón activo: deslizarse sobre ellos no hace nada, y recuperar energía durante el contacto no los vuelve a disparar.
+- Cada dedo controla su propia entrada. Soltar un dedo nunca libera otro dedo, tecla o mando que mantenga el mismo control.
+- Soltar, cancelar, perder la captura, perder el foco, ocultar la página, `pagehide`, girar, reiniciar y desmontar liberan la entrada. Un contacto cancelado no se reactiva con un movimiento suelto.
+- Los controles no disponibles usan `aria-disabled`, y el puntero, el teclado y el clic lo respetan.
 
 ## desktop-controls
 
 ```js
-await desktopAudit.run(); // all scenarios must pass
-await desktopAudit.mount("local"); // or "online" to capture outgoing input
+await desktopAudit.run(); // todos los escenarios deben pasar
+await desktopAudit.mount("local"); // o "online" para capturar la entrada enviada
 desktopAudit.state();
-desktopAudit.unmount(); // restores navigator.getGamepads
+desktopAudit.unmount(); // restaura navigator.getGamepads
 ```
 
-This mounts the production `Game` and `Help`. It checks focus returning from
-help and the sound controls, browser shortcuts and IME composition (key code
-229), key release after focus or modifier changes, blur during online play, and
-Start pause/resume with synthesized gamepads. Use native Tab/Shift+Tab,
-Enter/Space and Escape to check focus, because synthetic key events do not move
-focus. The Node test `controls.test.ts` covers controller suspension and rearming.
+Monta `Game` y `Help` de producción. Comprueba que el foco vuelve desde la ayuda y los controles de sonido, los atajos del navegador, la composición IME (código de tecla 229), la liberación de teclas al cambiar el foco o los modificadores, la pérdida de foco en partidas en línea, y pausar y reanudar con Start en mandos simulados.
+
+Revisa el foco a mano con Tab, Shift+Tab, Enter, Espacio y Escape: los eventos de teclado sintéticos no mueven el foco. La suspensión y reactivación del mando la cubre `controls.test.ts`.
 
 ## modal-scroll
 
 ```js
-await modalScrollAudit.run(); // all scenarios must pass
+await modalScrollAudit.run(); // todos los escenarios deben pasar
 ```
 
-This mounts the production `Modal` over a tall page. It checks that scrolling a
-dialog to its end does not scroll the page behind it, that stacked dialogs stay
-locked, that the last close restores the page's scroll position and inline
-styles, and that hiding the button that opened the dialog moves focus to another
-visible control.
+Monta `Modal` de producción sobre una página alta. Comprueba que llegar al final de un diálogo no desplaza la página de detrás, que los diálogos apilados siguen bloqueados, que el último cierre restaura el scroll y los estilos de la página, y que si se oculta el botón que abrió el diálogo, el foco pasa a otro control visible.
 
 ## audio-lifecycle
 
-Click a lobby control first, using a real click, then run:
+Haz primero un clic real en un control del lobby y luego:
 
 ```js
-await audioAudit.run(); // reload before repeating
+await audioAudit.run(); // recarga la página antes de repetir
 audioAudit.unmount();
 ```
 
-This samples the real Web Audio graph. It checks that music plays after a user
-gesture, mute and unmute, silence while the page is hidden and recovery from a
-suspended context, combat effects, and decoding of the reaction clips. After
-recovery there must be one context and one music loop. Autoplay rules depend on
-the browser profile. The Node test `audio-mobile-lifecycle.test.ts` covers the
-activation and resume logic.
+Muestrea el grafo real de Web Audio. Comprueba que la música suena tras un gesto del usuario, silenciar y reactivar, silencio con la página oculta y recuperación de un contexto suspendido, los efectos de combate y la decodificación de los clips de reacción. Tras recuperarse debe haber un solo contexto y un solo bucle de música. Las reglas de reproducción automática dependen del perfil del navegador. La lógica de activación y reanudación la cubre `audio-mobile-lifecycle.test.ts`.
 
-## Physical devices
+## Dispositivos físicos
 
-Before claiming device support, run touch-controls and the full game on iPhone
-Safari, iPad Safari, a lower-end Android Chrome device, Samsung Internet and
-Firefox Android, and record the OS and browser versions. Use several fingers,
-use up energy mid-slide, rotate the device, switch apps, lock the screen and
-deny fullscreen, then confirm that new gestures still work after each
-interruption.
+Antes de afirmar que un dispositivo es compatible, prueba touch-controls y el juego completo en Safari de iPhone, Safari de iPad, Chrome en un Android de gama baja, Samsung Internet y Firefox para Android, y anota las versiones del sistema y del navegador.
+
+Usa varios dedos, agota la energía a mitad de un deslizamiento, gira el dispositivo, cambia de app, bloquea la pantalla y rechaza la pantalla completa. Después de cada interrupción, confirma que los gestos nuevos siguen funcionando.

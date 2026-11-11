@@ -1,49 +1,88 @@
-# Desarrollo con T3 Code
+# Desarrollo
 
-Los nuevos hilos de este proyecto deben usar un **worktree** con **`origin/main` como rama base**. Así cada tarea parte de la rama principal remota.
+## Puesta en marcha
 
-La configuración se guarda en T3 Code y en los metadatos locales de Git; clonar este repositorio no aplica estas preferencias automáticamente.
-
-## Configuración
-
-- En las preferencias del entorno de T3 Code, activa **New worktrees start from origin** (`newWorktreesStartFromOrigin: true`).
-- En el proyecto Arena Criolla, selecciona **worktree** como entorno predeterminado de los nuevos hilos (`defaultThreadEnvMode: worktree`).
-- Comprueba que la rama predeterminada del remoto sea `main` y que la referencia local `origin/HEAD` apunte a `origin/main`.
-
-Para actualizar las referencias y configurar ese último punto en otro clon:
+Requiere Node.js 24 o posterior.
 
 ```sh
-git fetch origin
-git remote set-head origin main
-git symbolic-ref --short refs/remotes/origin/HEAD
-# origin/main
+npm ci
+npm run dev
 ```
 
-Antes de iniciar una tarea, revisa que el selector de rama base del nuevo hilo muestre `origin/main`. Los hilos ya creados conservan su rama y su entorno.
+`npm run dev` arranca el servidor en <http://localhost:5173> con recarga en caliente del cliente y reinicio del servidor al guardar.
 
-## Validación
+## Estructura
 
-Desde la raíz del repositorio:
+La interfaz usa React y TypeScript, la pelea se dibuja en Canvas 2D y el servidor es Node.js con Express y WebSocket. El motor de combate y la lógica de salas están en `shared/` y se ejecutan igual en el navegador, en el servidor Node y en el Worker de Cloudflare.
 
-```sh
-npm test
-npm run check:assets
-npm run build
+```text
+src/
+  app/          Shell de la aplicación, red, progreso y estado del lobby
+  components/   Interfaz: lobby, combate, ayuda y piezas comunes
+  game/         Renderizado, audio, controles, cámara, assets y coreografías
+  styles/       Hojas de estilo globales
+shared/         Código común del navegador y los servidores
+  engine/       Motor de combate y definitivas
+  roster/       Luchadores y escenarios
+  lobby/        Salas, protocolo y bucle autoritativo de partida
+server/         Servidor Node: HTTP, WebSocket y entrega de assets
+cloudflare/     Worker y Durable Object
+public/         Imágenes, sonidos y fuentes publicados
+scripts/        Herramientas de assets, CI, Cloudflare y rendimiento
+tests/          Pruebas automáticas y fixtures manuales
+e2e/            Pruebas de diseño con Playwright
+deploy/         Scripts del despliegue Docker anterior
 ```
 
-Los assets publicados están incluidos en `public/`; no hace falta regenerarlos para compilar. Las recompresiones sin pérdida (`npm run assets:audit:lossless` y `npx tsx scripts/assets/apply-lossless-assets.ts`) sustituyen el archivo en su misma ruta y conservan píxeles y metadatos exactos; `server/asset-variants.json` queda reservado para variantes de otro formato (por ejemplo AVIF) con el original como fallback. Los workers preparan música y recortes de sprites sin bloquear la interfaz y cuentan con recuperación local.
+## Comandos
 
-Las tarjetas del roster dibujan un busto recortado (`public/assets/bust-*.webp`, descrito en `src/game/assets/manifests/portrait-busts.json`) en vez de descargar la hoja completa del luchador. Si cambias una hoja de sprites o su pose de combate, regenera los bustos con `npm run assets:busts`; `tests/assets/portrait-busts.test.ts` falla mientras estén desactualizados.
+| Comando                | Qué hace                                                      |
+| ---------------------- | ------------------------------------------------------------- |
+| `npm run dev`          | Servidor de desarrollo.                                       |
+| `npm test`             | Todas las pruebas automáticas.                                |
+| `npm run test:ui`      | Pruebas de diseño en Chromium (ver [testing.md](testing.md)). |
+| `npm run typecheck`    | Comprobación de tipos.                                        |
+| `npm run format`       | Formatea con Prettier.                                        |
+| `npm run check:assets` | Valida los sprites publicados.                                |
+| `npm run build`        | Tipos y compilación del cliente en `dist/`.                   |
+| `npm start`            | Sirve la compilación de `dist/`.                              |
 
-Las hojas de ataques y de actores de las definitivas se preparan desde arte fuente local, que vive en `assets/source/` y no se publica en el repositorio:
+Antes de abrir un PR ejecuta al menos `npm test` y `npm run build`.
 
-- `npm run assets:attack-grid -- ruta/config.json` reparte en celdas exactas una hoja de ataques generada.
-- `npm run assets:attack-art -- ruta/config.json` empaqueta esas celdas en `public/assets` y actualiza `src/game/assets/manifests/attack-assets.json`.
-- `npm run assets:finale-actors [-- --only atlas]` prepara los actores sentados y de café de las definitivas y su manifiesto.
-- `npm run assets:perro-mujeriego [-- --only id]` prepara los bailarines de Perro Mujeriego y su manifiesto.
+## Assets
 
-Después, `npm run check:assets` y las pruebas de `tests/assets/` confirman que el arte publicado y sus manifiestos coinciden.
+Los assets publicados ya están en `public/`; no hace falta regenerarlos para compilar. Regenera solo lo que dependa de un archivo que cambiaste:
 
-Consulta [tests/manual/README.md](../tests/manual/README.md) para las comprobaciones de interfaz en navegador.
+| Si cambias…                              | Ejecuta                       |
+| ---------------------------------------- | ----------------------------- |
+| Una hoja de sprites o su pose de combate | `npm run assets:busts`        |
+| Un fondo de escenario                    | `npm run assets:stage-thumbs` |
+| La imagen para compartir enlaces         | `npm run assets:og`           |
 
-Las vistas previas de escenarios (`public/assets/stage-thumb-*.webp`) se generan a partir de los fondos completos con `npm run assets:stage-thumbs`; el manifiesto `src/game/assets/manifests/stage-thumbnails.json` y `tests/assets/stage-thumbnails.test.ts` detectan cambios pendientes. `npm run assets:stage-thumbs -- --check` verifica su vigencia sin escribir archivos.
+Las pruebas de `tests/assets/` fallan si los bustos o las miniaturas de escenarios están desactualizados. `npm run assets:stage-thumbs -- --check` lo comprueba sin escribir archivos.
+
+Las hojas de ataques y los actores de las definitivas se generan desde arte fuente en `assets/source/`, que no está en el repositorio:
+
+- `npm run assets:attack-grid -- ruta/config.json` recorta una hoja de ataques en celdas exactas.
+- `npm run assets:attack-art -- ruta/config.json` empaqueta esas celdas en `public/assets` y actualiza su manifiesto.
+- `npm run assets:finale-actors` y `npm run assets:perro-mujeriego` preparan los actores de las definitivas. Aceptan `-- --only <id>` para procesar uno solo.
+
+Termina siempre con `npm run check:assets` y `npm test`.
+
+Para recomprimir imágenes sin pérdida, `npm run assets:audit:lossless` informa del ahorro y `npx tsx scripts/assets/apply-lossless-assets.ts` lo aplica en la misma ruta. Las variantes en otro formato, como AVIF, se registran en `server/asset-variants.json` y conservan el original como alternativa.
+
+## Trabajar con T3 Code
+
+Cada hilo nuevo debe usar un worktree que parta de `origin/main`:
+
+- En las preferencias del entorno, activa **New worktrees start from origin**.
+- En el proyecto, elige **worktree** como entorno predeterminado de los hilos nuevos.
+- Comprueba que `origin/HEAD` apunte a `origin/main`:
+
+  ```sh
+  git fetch origin
+  git remote set-head origin main
+  git symbolic-ref --short refs/remotes/origin/HEAD   # origin/main
+  ```
+
+Estas preferencias se guardan en T3 Code y en Git local, no en el repositorio, así que hay que configurarlas en cada clon.
