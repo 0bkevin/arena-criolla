@@ -84,6 +84,12 @@ export default {
     const { pathname } = url;
     const read = request.method === "GET" || request.method === "HEAD";
 
+    // One canonical host: www.arenacriolla.com redirects to the apex domain.
+    if (url.hostname.startsWith("www.")) {
+      url.hostname = url.hostname.slice(4);
+      return redirect(url.toString(), 301, "public, max-age=86400");
+    }
+
     if (pathname === "/ws") {
       const origin = request.headers.get("Origin");
       // Native clients send no Origin; browsers must be same-origin.
