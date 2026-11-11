@@ -104,7 +104,7 @@ const checks = {
   e2e: /^(src\/|index\.html|vite\.config\.ts|public\/|shared\/|e2e\/|playwright\.config\.ts$)/,
   // The production Worker: its adapter, the shared lobby and the bundled site.
   worker:
-    /^(cloudflare\/|shared\/|src\/|public\/|index\.html|vite\.config\.ts|wrangler\.jsonc|scripts\/cloudflare\/)/,
+    /^(cloudflare\/|shared\/|src\/|public\/|index\.html|vite\.config\.ts|server\/asset-versions\.ts|wrangler\.jsonc|scripts\/cloudflare\/)/,
   // Anything the Docker build copies, plus the smoke test it runs.
   image:
     /^(Dockerfile|\.dockerignore|index\.html|vite\.config\.ts|src\/|shared\/|server\/|public\/|scripts\/ci\/security-smoke\.mjs)/,

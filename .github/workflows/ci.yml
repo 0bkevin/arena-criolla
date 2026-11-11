@@ -161,8 +161,11 @@ jobs:
         run: |
           set -euo pipefail
           npx wrangler dev --port 8799 --ip 127.0.0.1 > wrangler.log 2>&1 &
+          wrangler=$!
           for _ in $(seq 1 60); do
             curl -sf http://127.0.0.1:8799/api/health > /dev/null && break
+            # Stop waiting as soon as wrangler exits.
+            kill -0 "$wrangler" 2> /dev/null || { cat wrangler.log; exit 1; }
             sleep 1
           done
           node scripts/cloudflare/smoke.mjs http://127.0.0.1:8799 || { cat wrangler.log; exit 1; }
