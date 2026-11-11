@@ -87,7 +87,7 @@ export function ReadyPanel({
   network: ReturnType<typeof useArenaNetwork>;
   onDifficulty: (difficulty: Difficulty) => void;
   onStart: () => void;
-  onStartIntent?: () => void;
+  onStartIntent?: (() => void) | undefined;
   onReady: (ready: boolean) => void;
   onInvite: () => void;
 }) {

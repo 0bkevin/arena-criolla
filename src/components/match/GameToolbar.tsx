@@ -17,8 +17,8 @@ interface Props {
   resultMounted: boolean;
   paused: boolean;
   finished: boolean;
-  soundEnabled?: boolean;
-  onToggleSound?: (event: MouseEvent<HTMLButtonElement>) => void;
+  soundEnabled?: boolean | undefined;
+  onToggleSound?: ((event: MouseEvent<HTMLButtonElement>) => void) | undefined;
   onHelp: () => void;
   onLandscape: () => void;
   onPause: () => void;

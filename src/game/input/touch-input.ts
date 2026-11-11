@@ -9,10 +9,16 @@ export function requiresFreshPress(control: Control) {
 export class TouchInputState {
   private active = new Map<number, { control: Control | null }>();
 
+  private readonly onPress: (pointer: number, control: Control) => void;
+  private readonly onRelease: (pointer: number) => void;
+
   constructor(
-    private readonly onPress: (pointer: number, control: Control) => void,
-    private readonly onRelease: (pointer: number) => void,
-  ) {}
+    onPress: (pointer: number, control: Control) => void,
+    onRelease: (pointer: number) => void,
+  ) {
+    this.onPress = onPress;
+    this.onRelease = onRelease;
+  }
 
   press(pointer: number, control: Control | null) {
     const previous = this.active.get(pointer);

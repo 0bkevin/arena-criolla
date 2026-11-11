@@ -47,7 +47,7 @@ type SoftComponent = Pick<
 
 export interface AttackGridSoftComponentAudit {
   assignment: "contained" | "adjacent-alpha2";
-  contourDistance?: number;
+  contourDistance?: number | undefined;
   component: number;
   assignedComponent: number;
   cell: number;
@@ -296,7 +296,7 @@ export async function normalizeAttackGrid(
     component: SoftComponent;
     cell: number;
     assignment: "contained" | "adjacent-alpha2";
-    contourDistance?: number;
+    contourDistance?: number | undefined;
   }[] = [];
   for (const component of softComponents) {
     const soft = component.sourceBounds;

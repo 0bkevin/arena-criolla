@@ -43,7 +43,12 @@ export type ClientMessage =
   | { type: "rematch" }
   | { type: "leave" };
 export type ServerMessage =
-  | { type: "welcome"; id: string; resumeToken?: string; resumed?: boolean }
+  | {
+      type: "welcome";
+      id: string;
+      resumeToken?: string | undefined;
+      resumed?: boolean;
+    }
   | { type: "rooms"; rooms: RoomView[]; online: number }
   | { type: "room"; room: RoomView }
   | { type: "start"; state: MatchState; index: PlayerIndex }

@@ -21,7 +21,7 @@ interface Props {
   active: boolean;
   overlayRef: RefObject<HTMLDivElement | null>;
   onReady: () => void;
-  rematchWaiting?: boolean;
+  rematchWaiting?: boolean | undefined;
   onRematch: () => void;
   onExit: () => void;
 }

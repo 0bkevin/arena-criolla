@@ -99,38 +99,38 @@ export interface Projectile {
   y: number;
   vx: number;
   life: number;
-  vy?: number;
-  age?: number;
-  formationIndex?: number;
+  vy?: number | undefined;
+  age?: number | undefined;
+  formationIndex?: number | undefined;
   /** Preserve the original painted projectile when ownership changes on a parry. */
-  finaleArt?: { fighter: FighterId; pose: string; height: number };
-  hitInvincibility?: number;
-  returnAfter?: number;
-  tether?: { catchX: number; catchY: number; returnSpeed: number };
-  returning?: boolean;
-  connected?: boolean;
+  finaleArt?: { fighter: FighterId; pose: string; height: number } | undefined;
+  hitInvincibility?: number | undefined;
+  returnAfter?: number | undefined;
+  tether?: { catchX: number; catchY: number; returnSpeed: number } | undefined;
+  returning?: boolean | undefined;
+  connected?: boolean | undefined;
   kind: string;
   damage: number;
-  force?: number;
-  originY?: number;
-  wave?: { amplitude: number; period: number };
-  acceleration?: number;
-  maxSpeed?: number;
-  gravity?: number;
-  homing?: number;
-  pulls?: boolean;
-  groundOnly?: boolean;
-  slowTicks?: number;
-  blastRadius?: number;
-  bounces?: number;
-  radius?: number;
-  growth?: number;
-  maxRadius?: number;
-  plantAfter?: number;
-  armAfter?: number;
-  direction?: number;
+  force?: number | undefined;
+  originY?: number | undefined;
+  wave?: { amplitude: number; period: number } | undefined;
+  acceleration?: number | undefined;
+  maxSpeed?: number | undefined;
+  gravity?: number | undefined;
+  homing?: number | undefined;
+  pulls?: boolean | undefined;
+  groundOnly?: boolean | undefined;
+  slowTicks?: number | undefined;
+  blastRadius?: number | undefined;
+  bounces?: number | undefined;
+  radius?: number | undefined;
+  growth?: number | undefined;
+  maxRadius?: number | undefined;
+  plantAfter?: number | undefined;
+  armAfter?: number | undefined;
+  direction?: number | undefined;
   /** Defaults to special for existing projectiles; retained on reflection. */
-  impact?: "special" | "super";
+  impact?: "special" | "super" | undefined;
 }
 export interface Effect {
   id: number;
@@ -140,11 +140,11 @@ export interface Effect {
   kind: "hit" | "block" | "special" | "ringout";
   color: string;
   duration: number;
-  owner?: PlayerIndex;
-  impact?: NonNullable<Attack>;
-  strength?: number;
-  direction?: number;
-  visual?: "heat";
+  owner?: PlayerIndex | undefined;
+  impact?: NonNullable<Attack> | undefined;
+  strength?: number | undefined;
+  direction?: number | undefined;
+  visual?: "heat" | undefined;
 }
 export interface MatchState {
   id: string;
@@ -159,6 +159,6 @@ export interface MatchState {
   nextId: number;
   shake: number;
   hitstop: number;
-  finale?: FinaleState;
-  fieldFinales?: FieldFinaleState[];
+  finale?: FinaleState | undefined;
+  fieldFinales?: FieldFinaleState[] | undefined;
 }

@@ -16,11 +16,17 @@ function fontBrowser() {
       this.resolve = resolve;
       this.reject = reject;
     });
+    readonly family: string;
+    readonly source: string;
+    readonly descriptors: FontFaceDescriptors;
     constructor(
-      readonly family: string,
-      readonly source: string,
-      readonly descriptors: FontFaceDescriptors,
+      family: string,
+      source: string,
+      descriptors: FontFaceDescriptors,
     ) {
+      this.family = family;
+      this.source = source;
+      this.descriptors = descriptors;
       faces.push(this);
     }
     get style() {

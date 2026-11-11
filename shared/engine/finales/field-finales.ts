@@ -21,7 +21,7 @@ export interface FieldFinaleState {
   y: number;
   direction: number;
   damage: number;
-  actors?: ArenaFinaleActor[];
+  actors?: ArenaFinaleActor[] | undefined;
   cancelled?: boolean;
   connected?: boolean;
   caught?: { x: number; y: number };

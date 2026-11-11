@@ -56,7 +56,7 @@ export interface LobbyRoom<Socket> {
 
 export interface LobbyOptions {
   /** How long a disconnected player keeps their seat in a waiting room. */
-  reconnectGraceMs?: number;
+  reconnectGraceMs?: number | undefined;
 }
 
 const STEP_MS = 1000 / 60;
@@ -103,10 +103,10 @@ export class Lobby<Socket> {
   private tick = 0;
   private closed = false;
 
-  constructor(
-    private readonly transport: LobbyTransport<Socket>,
-    options: LobbyOptions = {},
-  ) {
+  private readonly transport: LobbyTransport<Socket>;
+
+  constructor(transport: LobbyTransport<Socket>, options: LobbyOptions = {}) {
+    this.transport = transport;
     this.reconnectGraceMs = options.reconnectGraceMs ?? 5 * 60_000;
   }
 

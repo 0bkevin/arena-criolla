@@ -19,7 +19,9 @@
     "noUnusedParameters": true,
     "verbatimModuleSyntax": true,
     "allowUnreachableCode": false,
-    "allowUnusedLabels": false
+    "allowUnusedLabels": false,
+    "exactOptionalPropertyTypes": true,
+    "erasableSyntaxOnly": true
   },
   "include": [
     "e2e",

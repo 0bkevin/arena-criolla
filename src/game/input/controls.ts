@@ -56,7 +56,10 @@ export function clearHeld(input: Input) {
 /** A held control stays down until its last finger, key or controller releases. */
 export class ControlSources {
   private held = new Map<string, Control>();
-  constructor(private input: Input) {}
+  private input: Input;
+  constructor(input: Input) {
+    this.input = input;
+  }
   press(source: string, control: Control) {
     if (this.held.get(source) === control) return;
     this.release(source);
@@ -81,7 +84,10 @@ export class GamepadControls {
   private active = true;
   private menuActive = true;
   private rearmOnConnect = [false, false];
-  constructor(private sources?: [ControlSources, ControlSources]) {}
+  private sources: [ControlSources, ControlSources] | undefined;
+  constructor(sources?: [ControlSources, ControlSources]) {
+    this.sources = sources;
+  }
   /** Keep polling while suspended so held buttons never become fresh actions. */
   update(
     inputs: [Input, Input],

@@ -19,7 +19,7 @@ export function ArenaEntrance({
   fontsReady: boolean;
   displayFontReady?: boolean;
   onComplete: (restoreFocus: boolean) => void;
-  onRetry?: () => void;
+  onRetry?: (() => void) | undefined;
 }) {
   const entrance = useRef<HTMLDivElement>(null);
   const [reducedMotion, setReducedMotion] = useState(

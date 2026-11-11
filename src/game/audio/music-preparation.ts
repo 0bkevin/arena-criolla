@@ -10,7 +10,9 @@ export type ScoreRequest = { sampleRate: number; length: number } & (
   | {
       kind: "finale";
       fighter: FighterId;
-      profile?: Pick<FinaleDefinition, "duration" | "sound" | "damageBeats">;
+      profile?:
+        | Pick<FinaleDefinition, "duration" | "sound" | "damageBeats">
+        | undefined;
     }
   | {
       kind: "victory";

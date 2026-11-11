@@ -124,17 +124,17 @@ export interface ArenaFinaleActor {
 
 export interface ArenaContact {
   field: FieldFinaleState;
-  actor?: ArenaFinaleActor;
+  actor?: ArenaFinaleActor | undefined;
   owner: PlayerIndex;
   damage: number;
   force: number;
   direction: number;
   x: number;
   y: number;
-  rootTicks?: number;
+  rootTicks?: number | undefined;
   /** Preserve the struck surface when roots replace ordinary launch recoil. */
-  rootSupport?: number | null;
-  rootKind?: PlayerState["rootKind"];
+  rootSupport?: number | null | undefined;
+  rootKind?: PlayerState["rootKind"] | undefined;
 }
 
 /** Painted leading edges, shared with the visible fallback when an atlas fails. */

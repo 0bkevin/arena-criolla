@@ -30,7 +30,7 @@ function setup(side: 0 | 1 = 0, gap = 280) {
   rival.energy = 100;
   return { state, inputs, player, rival, advance };
 }
-const isBlast = (e: { kind: string; strength?: number }) =>
+const isBlast = (e: { kind: string; strength?: number | undefined }) =>
   e.kind === "special" && e.strength === 1.5;
 
 test("the prize bounces off the floor exactly twice and ends in one terminal explosion without a target", () => {

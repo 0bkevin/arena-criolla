@@ -81,10 +81,10 @@ interface Props {
   onExit: () => void;
   onResult: (state: MatchState, index: PlayerIndex) => void;
   onRematch: () => void;
-  rematchWaiting?: boolean;
+  rematchWaiting?: boolean | undefined;
   onHelp: () => void;
-  soundEnabled?: boolean;
-  onToggleSound?: () => void;
+  soundEnabled?: boolean | undefined;
+  onToggleSound?: (() => void) | undefined;
 }
 
 export function Game(props: Props) {

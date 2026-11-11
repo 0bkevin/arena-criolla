@@ -3,10 +3,12 @@ export class FixedStepTicker {
   private previous: number | null = null;
   private remainder = 0;
 
-  constructor(
-    private readonly stepMs = 1000 / 60,
-    private readonly maxCatchUp = 5,
-  ) {
+  private readonly stepMs: number;
+  private readonly maxCatchUp: number;
+
+  constructor(stepMs = 1000 / 60, maxCatchUp = 5) {
+    this.stepMs = stepMs;
+    this.maxCatchUp = maxCatchUp;
     if (!Number.isFinite(stepMs) || stepMs <= 0)
       throw new RangeError("stepMs must be a positive finite number");
     if (!Number.isSafeInteger(maxCatchUp) || maxCatchUp < 1)

@@ -21,8 +21,8 @@ type SoundKind =
   | "ready";
 export interface SoundOptions {
   x?: number;
-  impact?: "light" | "heavy" | "special" | "super";
-  strength?: number;
+  impact?: "light" | "heavy" | "special" | "super" | undefined;
+  strength?: number | undefined;
 }
 
 const SPATIAL_KINDS: readonly SoundKind[] = [

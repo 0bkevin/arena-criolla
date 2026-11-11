@@ -294,7 +294,10 @@ function loadSpriteGeometry(
 
 export function loadSprite(
   id: FighterId,
-  options: { entrance?: boolean; priority?: "high" | "low" } = {},
+  options: {
+    entrance?: boolean | undefined;
+    priority?: "high" | "low" | undefined;
+  } = {},
 ): Promise<SpriteAsset> {
   const geometry = loadSpriteGeometry(id, options.priority);
   const manifest = (

@@ -36,7 +36,7 @@ interface PackedDancer {
   alphaSha256: string;
   rgbaSha256: string;
   fingerprint: string;
-  choreographySha256?: string;
+  choreographySha256?: string | undefined;
   frames: PerroFrame[];
 }
 interface PackingAudit {
@@ -64,7 +64,7 @@ async function writeChanged(file: string, bytes: Buffer | string) {
 /** Only normalizes authored poses. Frame timing belongs to the observed clip plan. */
 export async function preparePerroMujeriego(
   root = process.cwd(),
-  options: { only?: readonly string[] } = {},
+  options: { only?: readonly string[] | undefined } = {},
 ) {
   if (options.only?.length === 0)
     throw new Error("La selección de bailarines no puede estar vacía");

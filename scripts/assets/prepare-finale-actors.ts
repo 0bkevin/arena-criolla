@@ -423,7 +423,7 @@ async function writeChanged(file: string, data: Buffer | string) {
 
 export async function prepareFinaleActors(
   root = process.cwd(),
-  options: { only?: readonly string[] } = {},
+  options: { only?: readonly string[] | undefined } = {},
 ) {
   const auditPath = path.join(root, "docs/finales/actor-packing.json");
   const priorBytes = await optionalRead(auditPath);

@@ -6,8 +6,8 @@ interface Props {
   /** False while another overlay (such as the orientation gate) is on top. */
   active: boolean;
   online: boolean;
-  soundEnabled?: boolean;
-  onToggleSound?: () => void;
+  soundEnabled?: boolean | undefined;
+  onToggleSound?: (() => void) | undefined;
   onResume: () => void;
   onHelp: () => void;
   onLandscape: () => void;
