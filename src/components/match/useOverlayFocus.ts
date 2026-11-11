@@ -3,6 +3,9 @@ import { useEffect, type RefObject } from "react";
 export type GameOverlay = "orientation" | "pause" | "result";
 
 /**
+ * `overlays` must hold stable refs: the effect reruns only when the active
+ * overlay changes, not when a new `overlays` object is passed.
+ *
  * Move focus into the active overlay, keep Tab inside it, and on close return
  * focus to where it was, or to the arena so gameplay keys keep working.
  */
