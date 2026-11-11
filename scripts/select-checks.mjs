@@ -25,7 +25,7 @@ const touched = (pattern) =>
   !changed || changed.some((file) => pattern.test(file));
 
 const everything = touched(
-  /^(package(-lock)?\.json|tsconfig\.json|tests\/(helpers|fixtures)\/|scripts\/select-checks\.mjs|\.github\/workflows\/)/,
+  /^(package(-lock)?\.json|tsconfig\.json|tests\/helpers\/|scripts\/select-checks\.mjs|\.github\/workflows\/)/,
 );
 
 const testFiles = [];

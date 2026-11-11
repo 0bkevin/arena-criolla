@@ -153,7 +153,6 @@ export async function makeArenaServer(
     }
     client.socket.send(message);
   };
-  const allowedFighter = isFighter;
   const publishRoom = (room: Room) => {
     const message = JSON.stringify({ type: "room", room: room.view });
     room.clients.forEach((client) => sendEncoded(client, message, true));
@@ -226,12 +225,12 @@ export async function makeArenaServer(
       room.view.players.some((player) => player.connected === false)
     )
       return;
-    if (room.view.players.some((player) => !allowedFighter(player.fighter))) {
+    if (room.view.players.some((player) => !isFighter(player.fighter))) {
       room.view.status = "waiting";
       room.state = null;
       room.view.players.forEach((player) => {
         player.ready = false;
-        if (!allowedFighter(player.fighter)) {
+        if (!isFighter(player.fighter)) {
           player.fighter = "zavarce";
           player.wins = 0;
         }
@@ -439,7 +438,7 @@ export async function makeArenaServer(
           error(client, "Primero sal de tu sala actual.");
           return;
         }
-        if (!allowedFighter(message.fighter) || !isStage(message.stage)) {
+        if (!isFighter(message.fighter) || !isStage(message.stage)) {
           error(client, "Elige un luchador y un escenario válidos.");
           return;
         }
@@ -484,8 +483,7 @@ export async function makeArenaServer(
           error(client, "Ya estás en una sala.");
           return;
         }
-        if (!isRoomCode(message.code) || !allowedFighter(message.fighter))
-          return;
+        if (!isRoomCode(message.code) || !isFighter(message.fighter)) return;
         const room = rooms.get(normalizeRoomCode(message.code));
         if (!room) {
           error(client, "No encontramos esa sala. Revisa el código.");
@@ -515,7 +513,7 @@ export async function makeArenaServer(
       if (message.type === "select" && current.view.status === "waiting") {
         const player = current.view.players.find((p) => p.id === client.id)!;
         let changed = false;
-        if (allowedFighter(message.fighter)) {
+        if (isFighter(message.fighter)) {
           const wins = cleanWins(message.wins);
           if (player.fighter !== message.fighter || player.wins !== wins) {
             player.fighter = message.fighter;

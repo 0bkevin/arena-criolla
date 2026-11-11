@@ -63,7 +63,7 @@ const old = await fetch(base + "/create/saved", { redirect: "manual" });
 assert.equal(old.status, 302);
 assert.equal(old.headers.get("location"), "/");
 report.httpHeadersAndNonce = true;
-report.workshopRemainsDisabled = true;
+report.workshopRemoved = true;
 
 const rejected = await new Promise((resolve, reject) => {
   const socket = new WebSocket(socketUrl, {

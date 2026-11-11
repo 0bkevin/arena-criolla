@@ -33,8 +33,6 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
     if (original === undefined) delete process.env.ARENA_PUBLIC_URL;
     else process.env.ARENA_PUBLIC_URL = original;
   });
-  const folder = await mkdtemp(path.join(os.tmpdir(), "arena-seo-"));
-  t.after(() => rm(folder, { recursive: true, force: true }));
   const server = await makeArenaServer({});
   t.after(() => server.close());
   await new Promise<void>((resolve) =>
