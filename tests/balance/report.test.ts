@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { createMatch, cpuInput, emptyInput } from "../../shared/engine/engine";
 import { FIGHTERS, STAGES } from "../../shared/roster/roster";
 import { simulate } from "../../scripts/balance/model";
+import { RING_OUT_DAMAGE } from "../../shared/engine/damage-values";
 
 test("CPU default seat remains equivalent to explicit player 1", () => {
   const state = createMatch(STAGES[0]!.id, [
@@ -43,4 +44,26 @@ test("match recording is deterministic", () => {
     simulate(FIGHTERS[0]!, FIGHTERS[1]!, STAGES[0]!.id, options),
     simulate(FIGHTERS[0]!, FIGHTERS[1]!, STAGES[0]!.id, options),
   );
+});
+
+test("falls are recorded apart from hits and keep the stock", () => {
+  const options = {
+    stages: [STAGES[0]!.id],
+    difficulty: "hard" as const,
+    limit: 10000,
+  };
+  const result = simulate(FIGHTERS[0]!, FIGHTERS[1]!, STAGES[0]!.id, options);
+  assert.ok(result.falls.length > 0);
+  for (const fall of result.falls) {
+    assert.ok(fall.hp > RING_OUT_DAMAGE);
+    assert.ok(
+      !result.hits.some(
+        (hit) =>
+          hit.tick === fall.tick &&
+          hit.attacker !== fall.loser &&
+          Math.abs(hit.damage - RING_OUT_DAMAGE) < 1e-9,
+      ),
+    );
+    assert.ok(!result.stocks.some((stock) => stock.tick === fall.tick));
+  }
 });

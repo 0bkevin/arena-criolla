@@ -16,6 +16,7 @@ import {
   LIGHT_HEAVY_BONUS,
   LIGHT_LIGHT_HEAVY_BONUS,
   SUPER_BONUS,
+  RING_OUT_DAMAGE,
 } from "../../shared/engine/damage-values";
 
 const HZ = 60;
@@ -42,6 +43,13 @@ type Stock = {
   hp: number;
   elapsedTicks: number;
   ringOutKind: "launched" | "self" | null;
+};
+/** A ring-out that cost RING_OUT_DAMAGE health but kept the stock. */
+type Fall = {
+  tick: number;
+  loser: PlayerIndex;
+  hp: number;
+  ringOutKind: "launched" | "self";
 };
 export type Options = {
   stages: StageId[];
@@ -115,10 +123,13 @@ export function simulate(
   );
   const hits: Hit[] = [];
   const stocks: Stock[] = [];
+  const falls: Fall[] = [];
   let tick = 0;
   let playingStart = 0;
   const previousStock = [0, 0];
   const lastHit = [-Infinity, -Infinity];
+  // The hit before the latest one, so a fall's own HP loss is not its cause.
+  const previousHit = [-Infinity, -Infinity];
   for (const i of [0, 1] as const) {
     const p = state.players[i];
     let hp = p.hp;
@@ -135,6 +146,7 @@ export function simulate(
             attacker: i === 0 ? 1 : 0,
             source: "unknown",
           });
+          previousHit[i] = lastHit[i]!;
           lastHit[i] = tick;
         }
         hp = value;
@@ -191,7 +203,29 @@ export function simulate(
     const phase = state.phase;
     const firstHit = hits.length;
     const nextEffectId = state.nextId;
+    const stockCounts = state.players.map((p) => p.stocks);
     stepMatch(state, inputs);
+    // A fall's health penalty is not a hit by the opponent.
+    for (const effect of state.effects) {
+      if (effect.id < nextEffectId || effect.kind !== "ringout") continue;
+      const loser = effect.owner as PlayerIndex;
+      if (state.players[loser].stocks !== stockCounts[loser]) continue;
+      const index = hits.findIndex(
+        (hit, k) =>
+          k >= firstHit &&
+          hit.attacker !== loser &&
+          Math.abs(hit.damage - RING_OUT_DAMAGE) < 1e-9,
+      );
+      if (index >= 0) hits.splice(index, 1);
+      falls.push({
+        tick,
+        loser,
+        hp: state.players[loser].hp + RING_OUT_DAMAGE,
+        ringOutKind:
+          tick - previousHit[loser]! <= RECENT_HIT_TICKS ? "launched" : "self",
+      });
+      lastHit[loser] = -Infinity;
+    }
     const effects = state.effects.filter(
       (e) => e.id >= nextEffectId && e.kind === "hit",
     );
@@ -236,6 +270,7 @@ export function simulate(
     seconds: tick / HZ,
     playingTicks: tick - playingStart,
     stocks,
+    falls,
     sides,
     hits,
   };
@@ -284,6 +319,9 @@ export function buildReport(options: Options) {
     const stocksLost = games.flatMap((m) =>
       m.stocks.filter((s) => m.fighters[s.loser] === f.id),
     );
+    const falls = games.flatMap((m) =>
+      m.falls.filter((fall) => m.fighters[fall.loser] === f.id),
+    );
     const damage = games.reduce(
       (sum, m) => sum + m.sides[m.fighters.indexOf(f.id)]!.damage,
       0,
@@ -314,6 +352,7 @@ export function buildReport(options: Options) {
       stocksLost: stocksLost.length,
       stocksLostRingOuts: stocksLost.filter((s) => s.cause === "ring-out")
         .length,
+      falls: falls.length,
       damagePerSecond: seconds ? damage / seconds : 0,
       secondsPer100: damage ? (100 * seconds) / damage : 0,
       hitsPer100: damage
@@ -336,6 +375,7 @@ export function buildReport(options: Options) {
     };
   });
   const allStocks = matches.flatMap((m) => m.stocks);
+  const allFalls = matches.flatMap((m) => m.falls);
   const pairs = FIGHTERS.flatMap((a, i) =>
     FIGHTERS.slice(i + 1).map((b) => {
       const games = matches.filter(
@@ -402,6 +442,12 @@ export function buildReport(options: Options) {
       self: allStocks.filter((s) => s.ringOutKind === "self").length,
       hpKOs: allStocks.filter((s) => s.cause === "hp").length,
       ringOuts: allStocks.filter((s) => s.cause === "ring-out").length,
+      ringOutDamage: RING_OUT_DAMAGE,
+      falls: allFalls.length,
+      fallHp: stats(allFalls.map((fall) => fall.hp)),
+      fallsLaunched: allFalls.filter((fall) => fall.ringOutKind === "launched")
+        .length,
+      fallsSelf: allFalls.filter((fall) => fall.ringOutKind === "self").length,
       sideWins: [
         matches.filter((m) => m.winner === 0).length,
         matches.filter((m) => m.winner === 1).length,
