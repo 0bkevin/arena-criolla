@@ -14,7 +14,6 @@ import {
   type StageId,
 } from "../../shared/roster/roster";
 import {
-  MOUNT_STRIKES,
   REVIEWED_FINALISTS as reviewed,
   activeArenaPerformance,
   isArenaFinalist,
@@ -262,46 +261,83 @@ test("each cavalry rider, courier and truck crosses the defender once and remain
     }
 });
 
+// Issue #80: the caravan struck once, then drove through the rival for the rest
+// of its ride. Expectations are literal so that retuning the table cannot
+// quietly bring the single strike back.
 test("María Corina's caravan keeps striking the rival it drives along, at a bounded cadence", () => {
-  const strike = MOUNT_STRIKES.mcm!;
   for (const side of [0, 1] as const)
-    for (const gap of [90, 210, 400]) {
+    // Close gaps leave the rival under the truck, behind its leading edge.
+    for (const gap of [15, 30, 60, 90, 210]) {
       const r = setup("mcm", side, gap);
       r.start();
       const field = r.state.fieldFinales![0]!,
-        hits: { tick: number; damage: number; ahead: number }[] = [];
+        armor = fighterById(r.target.config.fighter).armor,
+        hits: { tick: number; damage: number }[] = [];
       let hp = r.target.hp;
-      for (let n = 0; n < 200 && r.target.stocks === 2; n++) {
+      for (let n = 0; n < 200; n++) {
         r.advance();
         if (r.target.hp < hp)
-          hits.push({
-            tick: field.tick,
-            damage: hp - r.target.hp,
-            ahead: (r.target.x - r.source.x) * r.source.facing,
-          });
+          hits.push({ tick: field.tick, damage: hp - r.target.hp });
         hp = r.target.hp;
       }
       const context = `P${side + 1}, gap ${gap}`;
-      assert.equal(hits.length, strike.hits, `${context}: one hit per beat`);
+      assert.equal(r.target.stocks, 2, `${context}: no ring-out hides a hit`);
+      assert.equal(hits.length, 4, `${context}: four strikes over the ride`);
+      assert.ok(
+        hits.every((hit, i) => !i || hit.tick - hits[i - 1]!.tick >= 18),
+        `${context}: strikes stay at least 18 ticks apart`,
+      );
       assert.ok(
         hits.every(
-          (hit, i) => !i || hit.tick - hits[i - 1]!.tick >= strike.interval,
+          (hit) => Math.abs(hit.damage - (field.damage * armor) / 4) < 1e-9,
         ),
-        `${context}: the caravan never strikes faster than its interval`,
-      );
-      const share =
-        field.damage *
-        strike.share *
-        fighterById(r.target.config.fighter).armor;
-      assert.ok(
-        hits.every((hit) => Math.abs(hit.damage - share) < 0.01),
-        `${context}: each strike deals its share of the definitive`,
+        `${context}: each strike deals a quarter of the definitive`,
       );
       assert.ok(
-        hits.every((hit) => hit.ahead > -strike.carryRear!),
-        `${context}: every strike lands on the painted caravan`,
+        Math.abs(100 - r.target.hp - field.damage * armor) < 1e-9,
+        `${context}: the ride deals what its single strike used to`,
       );
     }
+});
+
+test("under María Corina's caravan, a guard holds facing either way", () => {
+  for (const side of [0, 1] as const)
+    for (const behind of [60, 120])
+      for (const turn of [1, -1]) {
+        const r = setup("mcm", side, 90);
+        r.start();
+        const field = r.state.fieldFinales![0]!;
+        for (let n = 0; n < 60 && !field.mountHits; n++) r.advance();
+        assert.equal(field.mountHits, 1);
+        for (let n = 0; n < 30 && (r.target.stun || r.state.hitstop); n++)
+          r.advance();
+        // The rival stands on the truck bed, behind the rider, guarding.
+        Object.assign(r.target, {
+          x: r.source.x - r.source.facing * behind,
+          y: r.source.y,
+          vx: 0,
+          vy: 0,
+          recoilVx: 0,
+          grounded: true,
+          supportPlatform: null,
+          invincible: 0,
+        });
+        r.inputs[1 - side].block = true;
+        const hp = r.target.hp,
+          energy = r.target.energy;
+        for (let n = 0; n < 120 && r.state.fieldFinales; n++) {
+          r.target.facing = turn * r.source.facing;
+          r.advance();
+        }
+        const context = `P${side + 1}, ${behind}px behind, facing ${turn}`;
+        // A guarded rival is not driven along, so the truck soon leaves it behind.
+        assert.ok(field.mountHits! >= 2, `${context}: the bed still strikes`);
+        assert.equal(r.target.hp, hp, `${context}: every strike is guarded`);
+        assert.ok(
+          r.target.energy < energy,
+          `${context}: guarding costs energy`,
+        );
+      }
 });
 
 test("guard keeps its chosen direction while a mounted attacker crosses it", () => {

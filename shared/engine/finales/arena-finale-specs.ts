@@ -188,58 +188,60 @@ interface MountStrike {
   hits: number;
   /** Ticks between two of its hits. */
   interval: number;
-  force: number;
-  /** Launch of the last hit. */
-  finalForce: number;
   /** Painted length behind the rider that keeps contact once the mount has met the rival. */
   carryRear?: number;
 }
+
+/** Definitives whose caster rides a mount that strikes with its own body. */
+export type RiddenFinalist = {
+  [K in ArenaFinalist]: (typeof ARENA_FINALES)[K]["riding"] extends true
+    ? K
+    : never;
+}[ArenaFinalist];
 
 /**
  * How a mount's own body strikes while it rides. Cavalry and Lorenzo's truck
  * strike once and leave the rest of the ride to the helpers that follow.
  * María Corina's caravan has no striking helpers: like Vicente's couriers it
- * keeps meeting the rival it drives along, a share of the damage at a time,
- * and saves its full launch for the last hit.
+ * keeps meeting the rival it drives along, a share of the damage at a time.
  */
-export const MOUNT_STRIKES: Partial<Record<ArenaFinalist, MountStrike>> = {
-  bolivar: { share: 1 / 7, hits: 1, interval: 0, force: 4.5, finalForce: 4.5 },
-  gomez: { share: 1 / 3, hits: 1, interval: 0, force: 4.5, finalForce: 4.5 },
-  lorenzo: { share: 1 / 3, hits: 1, interval: 0, force: 4.5, finalForce: 4.5 },
-  mcm: {
-    share: 1 / 4,
-    hits: 4,
-    interval: 18,
-    force: 4.5,
-    finalForce: 7,
-    carryRear: 142,
-  },
+export const MOUNT_STRIKES: Record<RiddenFinalist, MountStrike> = {
+  bolivar: { share: 1 / 7, hits: 1, interval: 0 },
+  gomez: { share: 1 / 3, hits: 1, interval: 0 },
+  lorenzo: { share: 1 / 3, hits: 1, interval: 0 },
+  mcm: { share: 1 / 4, hits: 4, interval: 18, carryRear: 142 },
 };
 
-/** The mount's next strike and where it reaches, or nothing while it waits or has none left. */
+/**
+ * The mount's next strike, or nothing while it waits or has none left. Its
+ * leading edge always reaches; once the mount has met the rival, `carried`
+ * also covers the rest of the painted body the rival may now be under.
+ */
 export function nextMountStrike(field: FieldFinaleState) {
-  const strike = isArenaFinalist(field.fighter)
-      ? MOUNT_STRIKES[field.fighter]
-      : undefined,
+  if (!Object.prototype.hasOwnProperty.call(MOUNT_STRIKES, field.fighter))
+    return undefined;
+  const strike = MOUNT_STRIKES[field.fighter as RiddenFinalist],
     landed = field.mountHits ?? 0;
   if (
-    !strike ||
     landed >= strike.hits ||
     (field.mountHitTick !== undefined &&
       field.tick - field.mountHitTick < strike.interval)
   )
     return undefined;
-  const reach = arenaMountReach(field);
-  if (landed > 0 && strike.carryRear !== undefined) {
-    // Under the bed the rival is still touching the caravan, not passing through it.
-    const front = reach.offset + reach.halfWidth;
-    reach.offset = (front - strike.carryRear) / 2;
-    reach.halfWidth = (front + strike.carryRear) / 2;
-  }
+  const reach = arenaMountReach(field),
+    front = reach.offset + reach.halfWidth,
+    rear = landed > 0 ? strike.carryRear : undefined;
   return {
     damage: strike.share,
-    force: landed === strike.hits - 1 ? strike.finalForce : strike.force,
     reach,
+    carried:
+      rear === undefined
+        ? undefined
+        : {
+            ...reach,
+            offset: (front - rear) / 2,
+            halfWidth: (front + rear) / 2,
+          },
   };
 }
 

@@ -85,17 +85,26 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
         ? nextMountStrike(field)
         : undefined;
     if (strike) {
-      const reach = strike.reach;
-      if (
-        overlaps(
-          target,
-          p.x + field.direction * reach.offset,
-          p.y,
-          reach.halfWidth,
-          reach.top,
-        )
-      )
-        offer(strike.damage, strike.force, target.x, target.y - 75);
+      const touches = (reach: typeof strike.reach) =>
+          overlaps(
+            target,
+            p.x + field.direction * reach.offset,
+            p.y,
+            reach.halfWidth,
+            reach.top,
+          ),
+        front = touches(strike.reach);
+      if (front || (strike.carried && touches(strike.carried)))
+        offer(
+          strike.damage,
+          4.5,
+          target.x,
+          target.y - 75,
+          // Under the caravan, behind its leading edge, a guard may face either way.
+          !front && target.blocking && target.facing === field.direction
+            ? -field.direction
+            : field.direction,
+        );
     }
     for (const actor of field.actors ?? []) {
       if (actor.kind === "supporter" || actor.kind === "pot") continue;

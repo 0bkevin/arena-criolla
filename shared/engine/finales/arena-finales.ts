@@ -10,7 +10,6 @@ import { advanceArenaActors } from "./arena-finale-actors";
 export {
   ARENA_FINALES,
   ARENA_FINALE_CUES,
-  MOUNT_STRIKES,
   REVIEWED_FINALISTS,
   activeArenaPerformance,
   arenaActorReach,
