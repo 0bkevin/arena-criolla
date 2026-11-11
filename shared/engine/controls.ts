@@ -30,7 +30,7 @@ export function updateFighterControls(
   input: Input,
   stagePlatforms: Platform[],
   priorPlatforms: Platform[],
-  platformCarry: number[],
+  platformCarry: [number, number],
 ): number | null {
   const p = s.players[i];
   const def = fighterById(p.config.fighter);

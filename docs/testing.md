@@ -27,9 +27,11 @@ measure elements, not page scroll width.
 - `npm test`: every automated test.
 - `npm run test:ui`: layout checks in Chromium with Playwright (`e2e/`). Starts its
   own server; run `npx playwright install chromium` once.
-- `npm run typecheck`: TypeScript in two passes. The root `tsconfig.json` checks
-  the server, shared engine, scripts and tests with Node types; `src/tsconfig.json`
-  checks the client and browser fixtures with Vite types and no Node globals.
+- `npm run typecheck`: TypeScript in three passes. The root `tsconfig.json`
+  checks the server, scripts and tests with Node types; `src/tsconfig.json`
+  checks the client and browser fixtures with Vite types and no Node globals;
+  `shared/tsconfig.json` checks the engine and lobby with neither, and with
+  `noUncheckedIndexedAccess`.
 - `npm run check:assets`: public combat atlas transparency, complete silhouettes
   and runtime geometry.
 - `npm run build`: type checking and the Vite client build.

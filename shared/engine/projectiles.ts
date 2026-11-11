@@ -2,15 +2,15 @@
 import { WORLD } from "./arena";
 import { fighterById } from "../roster/roster";
 import { effect, hurt } from "./combat";
-import { opponentOf, type MatchState } from "./types";
+import { opponentOf, perPlayer, type MatchState } from "./types";
 
 /** Advance every projectile one tick and resolve the ones that land. */
 export function advanceProjectiles(s: MatchState) {
   // Snapshot interruption before any projectile lands: simultaneous wired casts
   // get the same chance to connect on either player side.
-  const tetherOwners = s.players.map((p) => ({
-    alive: p.hp > 0 && p.stocks > 0,
-    interrupted: p.attack !== "special" || p.stun > 0,
+  const tetherOwners = perPlayer((i) => ({
+    alive: s.players[i].hp > 0 && s.players[i].stocks > 0,
+    interrupted: s.players[i].attack !== "special" || s.players[i].stun > 0,
   }));
   s.projectiles = s.projectiles.filter((projectile) => {
     projectile.age = (projectile.age || 0) + 1;

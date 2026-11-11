@@ -21,7 +21,13 @@ import { updateFighterControls } from "./controls";
 import { limitRetreat, moveFighter, separateFighters } from "./movement";
 import { advanceProjectiles } from "./projectiles";
 import { resolveStocks, resolveTimeout } from "./outcome";
-import { PLAYERS, opponentOf, type Input, type MatchState } from "./types";
+import {
+  PLAYERS,
+  opponentOf,
+  perPlayer,
+  type Input,
+  type MatchState,
+} from "./types";
 
 /** Advance a match by one simulation tick. */
 export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
@@ -57,11 +63,11 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     if (player.transformation && --player.transformation.ticks <= 0)
       delete player.transformation;
   }
-  const movementOrigins = s.players.map((p) => p.x);
-  const platformCarry = [0, 0];
+  const movementOrigins = perPlayer((i) => s.players[i].x);
+  const platformCarry: [number, number] = [0, 0];
   const stagePlatforms = platformsAtTick(s.stage, s.tick);
   const priorPlatforms = platformsAtTick(s.stage, s.tick - 1);
-  const carriedPlatforms: (number | null)[] = [null, null];
+  const carriedPlatforms: [number | null, number | null] = [null, null];
   for (const i of PLAYERS)
     carriedPlatforms[i] = updateFighterControls(
       s,
@@ -114,8 +120,8 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
 function advanceIntro(s: MatchState, inputs: [Input, Input]) {
   if (
     s.tick < INTRO_COUNTDOWN_START &&
-    inputs.some(
-      (input, i) => input.actions.dash !== s.players[i].lastActions.dash,
+    PLAYERS.some(
+      (i) => inputs[i].actions.dash !== s.players[i].lastActions.dash,
     )
   )
     s.tick = INTRO_COUNTDOWN_START;

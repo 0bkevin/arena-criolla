@@ -8,6 +8,11 @@ import type { FinaleState } from "./finales/finales";
 export type PlayerIndex = 0 | 1;
 export const PLAYERS = [0, 1] as const satisfies readonly PlayerIndex[];
 export const opponentOf = (i: PlayerIndex): PlayerIndex => (i === 0 ? 1 : 0);
+/** One value per seat, computed for player 1 and then player 2. */
+export const perPlayer = <T>(value: (i: PlayerIndex) => T): [T, T] => [
+  value(0),
+  value(1),
+];
 
 export const ACTIONS = [
   "jump",

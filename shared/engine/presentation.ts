@@ -104,14 +104,19 @@ export function normalizedFacing(
   frame: number,
   facing: number,
 ): number {
-  return (facing < 0 ? -1 : 1) * presentationById(id).frameFacing[frame];
+  return (facing < 0 ? -1 : 1) * (presentationById(id).frameFacing[frame] ?? 1);
 }
 export function samplePose(beats: PoseBeat[], progress: number): PoseBeat {
   const t = Math.max(0, Math.min(1, progress));
   const next = beats.findIndex((beat) => beat.at > t);
-  if (next < 0) return { ...beats[beats.length - 1] };
   const a = beats[Math.max(0, next - 1)],
     b = beats[next];
+  // Past the last beat (or with no later one), hold the final pose.
+  if (!a || !b) {
+    const last = beats.at(-1);
+    if (!last) throw new RangeError("A pose needs at least one beat");
+    return { ...last };
+  }
   const span = b.at - a.at;
   const fraction = span > 0 ? (t - a.at) / span : 0;
   const eased = fraction * fraction * (3 - 2 * fraction);

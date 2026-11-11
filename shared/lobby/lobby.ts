@@ -3,7 +3,6 @@
 import { isFighter } from "../roster/roster";
 import {
   ACTIONS,
-  PLAYERS,
   createMatch,
   emptyInput,
   stepMatch,
@@ -397,11 +396,12 @@ export class Lobby<Socket> {
       room.view.players.forEach((p, index) => {
         p.ready = false;
         // Automatic labels follow the new slots; explicit nicknames stay.
-        p.name = room.clients[index].nickname || `Jugador ${index + 1}`;
+        p.name = room.clients[index]?.nickname || `Jugador ${index + 1}`;
       });
-      if (room.clients.length === 0) this.rooms.delete(room.view.code);
+      const host = room.clients[0];
+      if (!host) this.rooms.delete(room.view.code);
       else {
-        room.view.host = room.clients[0].id;
+        room.view.host = host.id;
         if (wasPlaying)
           room.clients.forEach((c) => this.send(c, { type: "opponent-left" }));
         this.publishRoom(room);
@@ -446,6 +446,8 @@ export class Lobby<Socket> {
       c.inputAt = performance.now();
     });
     const [first, second] = room.view.players;
+    const [firstClient, secondClient] = room.clients;
+    if (!first || !second || !firstClient || !secondClient) return;
     const state = createMatch(
       room.view.stage,
       [first, second],
@@ -454,8 +456,8 @@ export class Lobby<Socket> {
     room.state = state;
     room.view.status = "playing";
     room.touched = Date.now();
-    for (const index of PLAYERS)
-      this.send(room.clients[index], { type: "start", state, index });
+    this.send(firstClient, { type: "start", state, index: 0 });
+    this.send(secondClient, { type: "start", state, index: 1 });
     this.publishRoom(room);
     this.scheduleRoomList(room);
     this.updateTimers();
@@ -469,11 +471,8 @@ export class Lobby<Socket> {
       this.tick++;
       this.rooms.forEach((room) => {
         const state = room.state;
-        if (
-          !state ||
-          room.view.status !== "playing" ||
-          room.clients.length !== 2
-        )
+        const [first, second] = room.clients;
+        if (!state || room.view.status !== "playing" || !first || !second)
           return;
         // A stalled or suspended client must not keep walking or guarding.
         // Preserve counters so expiring a hold cannot replay an old attack.
@@ -485,7 +484,7 @@ export class Lobby<Socket> {
           client.input.down = false;
           client.input.superHeld = false;
         });
-        stepMatch(state, [room.clients[0].input, room.clients[1].input]);
+        stepMatch(state, [first.input, second.input]);
         if (this.tick % 2 === 0 || state.phase === "finished") {
           const message = JSON.stringify({ type: "state", state });
           room.clients.forEach((client) =>

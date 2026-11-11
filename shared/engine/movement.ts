@@ -4,33 +4,41 @@ import { MAX_FIGHTER_SEPARATION, WORLD } from "./arena";
 import type { Platform } from "../roster/roster";
 import { activeArenaPerformance, mountedFinale } from "./finales/arena-finales";
 import { activeRunway } from "./finales/field-finales";
-import type { Input, MatchState, PlayerIndex } from "./types";
+import {
+  PLAYERS,
+  perPlayer,
+  type Input,
+  type MatchState,
+  type PlayerIndex,
+} from "./types";
 
 export function limitRetreat(
   s: MatchState,
-  origins: number[],
-  carried: number[],
+  origins: [number, number],
+  carried: [number, number],
 ) {
   if (s.players.some((p) => p.stocks <= 0 || p.hp <= 0)) return;
   const direction = Math.sign(origins[1] - origins[0]) || 1;
-  const next = s.players.map((p) => p.x + p.vx);
+  const next = perPlayer((i) => s.players[i].x + s.players[i].vx);
   const excess =
     (next[1] - next[0]) * direction -
     Math.max(MAX_FIGHTER_SEPARATION, Math.abs(origins[1] - origins[0]));
   if (excess <= 0) return;
-  const outward = s.players.map((p, i) =>
-    p.stun > 0
+  const outward = perPlayer((i) => {
+    const p = s.players[i];
+    return p.stun > 0
       ? 0
       : Math.max(
           0,
           (next[i] - origins[i] - carried[i] - (p.recoilVx ?? 0)) *
             (i === 0 ? -direction : direction),
-        ),
-  );
+        );
+  });
   const total = outward[0] + outward[1];
   if (total <= 0) return;
   // Share the remaining retreat space fairly; damage and platform carry stay free.
-  s.players.forEach((p, i) => {
+  for (const i of PLAYERS) {
+    const p = s.players[i];
     const away = i === 0 ? -direction : direction;
     const blocked = (Math.min(excess, total) * outward[i]) / total;
     const scripted = Math.min(
@@ -39,7 +47,7 @@ export function limitRetreat(
     );
     p.x -= scripted * away;
     p.vx -= (blocked - scripted) * away;
-  });
+  }
 }
 
 /** Integrate one fighter's motion and land it on the highest surface it crossed. */
@@ -63,7 +71,9 @@ export function moveFighter(
       ...platform,
       index,
       previousY:
-        carriedPlatform === index ? platform.y : priorPlatforms[index].y,
+        carriedPlatform === index
+          ? platform.y
+          : (priorPlatforms[index]?.y ?? platform.y),
     })),
     {
       x: WORLD.left,

@@ -51,6 +51,7 @@ export const runwayWalking = (tick: number) =>
   RUNWAY_WALK_WINDOWS.some(([a, b]) => tick >= a && tick < b);
 export function squadMember(field: FieldFinaleState, index: number) {
   const offset = SQUAD_OFFSETS[index];
+  if (!offset) throw new RangeError(`No squad member ${index}`);
   const anchor =
     field.direction > 0
       ? clamp(field.x, WORLD.left + 150, WORLD.right - 137)
