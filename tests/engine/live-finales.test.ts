@@ -299,6 +299,31 @@ for (const [id, strikes] of [
   });
 }
 
+// Isolate mount and helper contacts so either source of excessive launch is visible.
+for (const id of ["bolivar", "gomez", "lorenzo"] as const) {
+  for (const contact of ["mount", "helper"] as const) {
+    test(`${id}: ${contact} contacts keep a mid-stage rival on stage`, () => {
+      const r = setup(id, 0, 180, "caracas", "chataing");
+      r.target.x = WORLD.right - 200;
+      r.source.x = r.target.x - 180;
+      const initialX = r.target.x;
+      r.start();
+      const field = r.state.fieldFinales![0]!;
+      for (let tick = 0; tick < 300 && r.state.fieldFinales; tick++) {
+        if (contact === "mount") field.actors = [];
+        else field.mountHits = 1;
+        r.advance();
+      }
+      assert.ok(r.source.hits > 0, `${contact} made contact`);
+      assert.equal(r.target.stocks, 2, `${contact} does not cause a ring-out`);
+      assert.ok(
+        r.target.x - initialX < (contact === "mount" ? 60 : 100),
+        `${contact} keeps displacement modest`,
+      );
+    });
+  }
+}
+
 // A rival repeatedly attacks at the first opportunity after being struck.
 for (const [id, strikes] of [
   ["gomez", 3],
@@ -306,17 +331,22 @@ for (const [id, strikes] of [
   ["mcm", 4],
 ] as const) {
   test(`${id}: the carried rival cannot interrupt the ride`, () => {
-    for (const side of [0, 1] as const) {
-      const r = setup(id, side, 90, "caracas", "chataing");
-      r.start();
-      let first = r.target.hp < 100;
-      for (let tick = 0; tick < 300; tick++) {
-        if (first && tick % 4 === 0) r.inputs[1 - side].actions.light++;
-        r.advance();
-        first ||= r.target.hp < 100;
+    for (const side of [0, 1] as const)
+      for (const phase of [0, 1, 2, 3]) {
+        const r = setup(id, side, 90, "caracas", "chataing");
+        r.start();
+        let first = r.target.hp < 100;
+        for (let tick = 0; tick < 300; tick++) {
+          if (first && tick % 4 === phase) r.inputs[1 - side].actions.light++;
+          r.advance();
+          first ||= r.target.hp < 100;
+        }
+        assert.equal(
+          r.source.hits,
+          strikes,
+          `P${side + 1}, phase ${phase}: all strikes land`,
+        );
       }
-      assert.equal(r.source.hits, strikes, `P${side + 1}: all strikes land`);
-    }
   });
 }
 
