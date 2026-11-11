@@ -191,3 +191,34 @@ test("a closed lobby starts no match that its stopped loop could not run", () =>
   assert.equal(a.last("start"), undefined);
   assert.equal(instance.rooms.get(code)?.view.status, "waiting");
 });
+
+test("a room held for a disconnected player leaves the public list until they return", (t) => {
+  t.mock.timers.enable({ apis: ["setTimeout", "setInterval"] });
+  const { instance } = lobby();
+  t.after(() => instance.close());
+  const hostSocket = new FakeSocket();
+  const host = instance.connect(hostSocket, [ARENA_SOCKET_PROTOCOL]);
+  const token = hostSocket.last("welcome")!.resumeToken!;
+  send(instance, host, {
+    type: "create",
+    fighter: "zavarce",
+    stage: "caracas",
+    wins: 0,
+    private: false,
+  });
+  const watcher = new FakeSocket();
+  instance.connect(watcher, [ARENA_SOCKET_PROTOCOL]);
+  t.mock.timers.tick(200);
+  assert.equal(watcher.last("rooms")?.rooms.length, 1);
+
+  instance.disconnect(host, hostSocket);
+  t.mock.timers.tick(200);
+  assert.equal(watcher.last("rooms")?.rooms.length, 0);
+
+  instance.connect(new FakeSocket(), [
+    ARENA_SOCKET_PROTOCOL,
+    ROOM_RESUME_PROTOCOL_PREFIX + token,
+  ]);
+  t.mock.timers.tick(200);
+  assert.equal(watcher.last("rooms")?.rooms.length, 1);
+});

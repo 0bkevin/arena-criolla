@@ -579,9 +579,15 @@ export class Lobby<Socket> {
   private publishList(recipient?: LobbyClient<Socket>) {
     if (!this.roomListCache) {
       const rooms = [...this.rooms.values()]
+        // A seat held for a disconnected player cannot start a match, so a
+        // stranger joining that room would wait for nobody. Its code and
+        // invite link still work.
         .filter(
           (r) =>
-            !r.private && r.view.status === "waiting" && r.clients.length < 2,
+            !r.private &&
+            r.view.status === "waiting" &&
+            r.clients.length < 2 &&
+            r.view.players.every((player) => player.connected !== false),
         )
         .map((r) => r.view);
       this.roomListCache = JSON.stringify({
