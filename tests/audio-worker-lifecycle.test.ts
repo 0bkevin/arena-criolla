@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import type { FinaleState } from "../shared/finales";
+import type { FinaleState } from "../shared/engine/finales/finales";
 import type { ScoreRequest } from "../src/game/music-preparation";
 import { VICTORY_MUSIC_MS } from "../src/game/victory-types";
 

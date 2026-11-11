@@ -1,5 +1,5 @@
-import type { PlayerState, Projectile } from "../../../shared/engine";
-import { TECHNIQUES } from "../../../shared/techniques";
+import type { PlayerState, Projectile } from "../../../shared/engine/engine";
+import { TECHNIQUES } from "../../../shared/engine/techniques";
 import { ATTACK_ART, drawAttackArt, hasAttackArt } from "../attack-art";
 
 type Images = Record<string, HTMLImageElement>;

@@ -1,14 +1,14 @@
 import { createHash } from "node:crypto";
 import { writeFileSync } from "node:fs";
 import { performance } from "node:perf_hooks";
-import { BUILT_IN_FIGHTERS, STAGES } from "../shared/content";
+import { BUILT_IN_FIGHTERS, STAGES } from "../shared/roster/roster";
 import {
   createMatch,
   cpuInput,
   emptyInput,
   stepMatch,
   type MatchState,
-} from "../shared/engine";
+} from "../shared/engine/engine";
 
 // Fixed IDs and input schedules make the replay digest a behavior guard as well
 // as a benchmark. Run before/after on the same host and Node version.

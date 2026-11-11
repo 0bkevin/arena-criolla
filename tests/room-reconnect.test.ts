@@ -2,11 +2,11 @@ import test, { type TestContext } from "node:test";
 import assert from "node:assert/strict";
 import { WebSocket } from "ws";
 import { makeArenaServer } from "../server/index";
-import type { ServerMessage } from "../shared/protocol";
+import type { ServerMessage } from "../shared/lobby/protocol";
 import {
   ARENA_SOCKET_PROTOCOL,
   ROOM_RESUME_PROTOCOL_PREFIX,
-} from "../shared/protocol";
+} from "../shared/lobby/protocol";
 
 const pause = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 

@@ -1,10 +1,10 @@
-import type { FighterId } from "../../shared/content";
+import type { FighterId } from "../../shared/roster/roster";
 import {
   ENTRANCE_ACTIONS,
   sampleEntranceAction,
   sampleEntranceBall,
   type ActionFrame,
-} from "../../shared/entrance-actions";
+} from "./choreography/entrance-actions";
 import { drawSprite, type EntranceAsset, type SpriteAsset } from "./assets";
 
 function drawFrame(

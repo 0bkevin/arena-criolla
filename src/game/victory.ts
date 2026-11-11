@@ -1,4 +1,4 @@
-import type { BuiltInFighterId, FighterId } from "../../shared/content";
+import type { BuiltInFighterId, FighterId } from "../../shared/roster/roster";
 import type { VictoryMusicStyle } from "./victory-types";
 
 /** The instrumentation of each fighter's victory fanfare. */

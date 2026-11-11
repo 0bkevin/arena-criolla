@@ -8,14 +8,14 @@ import {
   type Input,
   type MatchState,
 } from "./helpers/charged-finale-engine";
-import type { FighterId } from "../shared/content";
+import type { FighterId } from "../shared/roster/roster";
 import {
   SQUAD_COUNT,
   SQUAD_LAUNCH_TICK,
   RUNWAY_POSE_TICKS,
   squadMember,
   fieldFinaleBounds,
-} from "../shared/field-finales";
+} from "../shared/engine/finales/field-finales";
 import { drawDeynaSquad, DEYNA_POSES } from "../src/game/finales/deyna";
 import { drawDayanaRunway, DAYANA_POSES } from "../src/game/finales/dayana";
 import { ATTACK_ART } from "../src/game/attack-art";

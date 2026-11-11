@@ -24,7 +24,7 @@ import {
   SUPER_ENERGY_COST,
   SUPER_CHARGE_TICKS,
   SUPER_CHARGE_SECONDS_LABEL,
-} from "../../shared/content";
+} from "../../shared/roster/roster";
 import type { Control } from "../game/controls";
 import { TouchInputState } from "../game/touch-input";
 import { touchControlAtPoint } from "../game/touch-target";

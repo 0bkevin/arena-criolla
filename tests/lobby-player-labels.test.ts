@@ -2,8 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createElement, createRef } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { FIGHTERS, stageById } from "../shared/content";
-import type { RoomView } from "../shared/protocol";
+import { FIGHTERS, stageById } from "../shared/roster/roster";
+import type { RoomView } from "../shared/lobby/protocol";
 import { ArcadeLobby } from "../src/components/ArcadeLobby";
 import type { GameMode } from "../src/components/Game";
 

@@ -6,9 +6,9 @@ import {
   makeInputs,
   type Control,
 } from "../src/game/controls";
-import { createMatch, stepMatch } from "../shared/engine";
-import { INTRO_TOTAL_TICKS } from "../shared/presentation";
-import { SUPER_CHARGE_TICKS } from "../shared/content";
+import { createMatch, stepMatch } from "../shared/engine/engine";
+import { INTRO_TOTAL_TICKS } from "../shared/engine/presentation";
+import { SUPER_CHARGE_TICKS } from "../shared/roster/roster";
 
 test("releasing one finger does not release another finger or key on the same direction", () => {
   const [input] = makeInputs(),
@@ -172,9 +172,20 @@ test("gamepads hold the definitive between polls and release it on key-up or dis
   try {
     for (const withSources of [false, true]) {
       const inputs = makeInputs();
-      const sources: [ControlSources, ControlSources] = [new ControlSources(inputs[0]), new ControlSources(inputs[1])];
-      const pad = { index: 0, connected: true, axes: [0, 0], buttons: Array.from({ length: 16 }, () => ({ pressed: false })) };
-      Object.defineProperty(navigator, "getGamepads", { configurable: true, value: () => [pad] });
+      const sources: [ControlSources, ControlSources] = [
+        new ControlSources(inputs[0]),
+        new ControlSources(inputs[1]),
+      ];
+      const pad = {
+        index: 0,
+        connected: true,
+        axes: [0, 0],
+        buttons: Array.from({ length: 16 }, () => ({ pressed: false })),
+      };
+      Object.defineProperty(navigator, "getGamepads", {
+        configurable: true,
+        value: () => [pad],
+      });
       const controls = new GamepadControls(withSources ? sources : undefined);
       pad.buttons[7].pressed = true;
       controls.update(inputs, 1);
@@ -222,7 +233,8 @@ for (const control of [
     if (control === "super") {
       assert.equal(player.attack, null);
       assert.equal(inputs[0].superHeld, true);
-      for (let frame = 1; frame < SUPER_CHARGE_TICKS; frame++) stepMatch(match, inputs);
+      for (let frame = 1; frame < SUPER_CHARGE_TICKS; frame++)
+        stepMatch(match, inputs);
     }
     if (control === "jump") assert.ok(player.vy < 0 && player.jumps === 1);
     else if (control === "dash") assert.ok(player.dash > 0);

@@ -6,8 +6,8 @@ import {
   stepMatch,
   WORLD,
   type Input,
-} from "../shared/engine";
-import type { FighterId } from "../shared/content";
+} from "../shared/engine/engine";
+import type { FighterId } from "../shared/roster/roster";
 function setup(side: 0 | 1, rival: FighterId, gap: number) {
   const queen = { name: "Queen", fighter: "dayana" as const, wins: 3 },
     guest = { name: "Guest", fighter: rival, wins: 3 };

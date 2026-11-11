@@ -1,4 +1,4 @@
-import type { MatchState } from "./engine";
+import type { MatchState } from "../engine";
 import type { FieldFinaleState } from "./field-finales";
 
 export const INAKI_FINALE = {

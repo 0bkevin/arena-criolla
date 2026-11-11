@@ -1,11 +1,11 @@
-import type { FighterId } from "../../shared/content";
+import type { FighterId } from "../../shared/roster/roster";
 import {
   presentationById,
   samplePose,
   type PresentationStyle,
-} from "../../shared/presentation";
+} from "../../shared/engine/presentation";
 import { drawSprite, type SpriteAsset } from "./assets";
-import { sampleGesture } from "../../shared/choreography";
+import { sampleGesture } from "./choreography/choreography";
 import { drawEntranceAction } from "./entrance-renderer";
 import {
   drawArticulatedSprite,

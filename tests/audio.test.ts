@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { MUSIC_SECONDS, writeArcadeMusic } from "../src/game/arcade-music";
 import { VICTORY_MUSIC_MS } from "../src/game/victory-types";
-import type { FinaleState } from "../shared/finales";
+import type { FinaleState } from "../shared/engine/finales/finales";
 
 test("generated arcade music is finite, audible, unclipped and loops without a click", () => {
   for (const rate of [22050, 48000]) {

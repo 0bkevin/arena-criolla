@@ -1,4 +1,4 @@
-import type { Ability } from "../../shared/content";
+import type { Ability } from "../../shared/roster/roster";
 
 interface FounderSound {
   notes: number[];

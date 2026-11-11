@@ -1,5 +1,5 @@
-import type { Ability } from "../../shared/content";
-import type { PlayerState, Projectile } from "../../shared/engine";
+import type { Ability } from "../../shared/roster/roster";
+import type { PlayerState, Projectile } from "../../shared/engine/engine";
 import { drawSprite, type SpriteAsset } from "./assets";
 
 function star(

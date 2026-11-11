@@ -5,8 +5,8 @@ import { StrictMode, type ComponentProps } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { flushSync } from "react-dom";
 import { TouchControls } from "../../src/components/TouchControls";
-import { createMatch, emptyInput, stepMatch } from "../../shared/engine";
-import { SUPER_CHARGE_TICKS } from "../../shared/content";
+import { createMatch, emptyInput, stepMatch } from "../../shared/engine/engine";
+import { SUPER_CHARGE_TICKS } from "../../shared/roster/roster";
 import {
   ControlSources,
   makeInputs,
@@ -98,7 +98,7 @@ export async function mountHybridGame(options: { energy?: number } = {}) {
     throw new Error("Hybrid regression requires a fine primary pointer");
   const [{ Game }, { createMatch }] = await Promise.all([
     import("../../src/components/Game"),
-    import("../../shared/engine"),
+    import("../../shared/engine/engine"),
   ]);
   const overrides = [
     [navigator, "maxTouchPoints", 5],
@@ -175,8 +175,9 @@ export async function chargeStallRegression() {
   const waitUntil = async (ready: () => boolean, timeout: number) => {
     const deadline = Date.now() + timeout;
     while (!ready() && Date.now() < deadline)
-      await new Promise(resolve => setTimeout(resolve, 30));
-    if (!ready()) throw new Error("Production charge did not reach its expected state");
+      await new Promise((resolve) => setTimeout(resolve, 30));
+    if (!ready())
+      throw new Error("Production charge did not reach its expected state");
   };
   try {
     await mountHybridGame({ energy: 100 });
@@ -184,9 +185,15 @@ export async function chargeStallRegression() {
     button("super").click();
     window.setTimeout(() => {
       const until = performance.now() + 400;
-      while (performance.now() < until) { /* Simulate a stalled browser frame. */ }
+      while (performance.now() < until) {
+        /* Simulate a stalled browser frame. */
+      }
     }, 150);
-    await waitUntil(() => document.querySelector(".super-charge-status")?.textContent === "Usada", 3000);
+    await waitUntil(
+      () =>
+        document.querySelector(".super-charge-status")?.textContent === "Usada",
+      3000,
+    );
     return { pass: true, status: "Usada" };
   } finally {
     mount();
@@ -454,10 +461,18 @@ export async function run() {
     update({ energy: 90 });
     equal(button("super").getAttribute("aria-disabled"), null);
     pointer("pointermove", 1, "super");
-    equal(input.actions.super, 0, "energy recovery must not activate a held contact");
+    equal(
+      input.actions.super,
+      0,
+      "energy recovery must not activate a held contact",
+    );
     pointer("pointerup", 1, "super");
     pointer("pointerdown", 1, "super");
-    equal(input.actions.super, 1, "zero wins allow a fresh press with enough energy");
+    equal(
+      input.actions.super,
+      1,
+      "zero wins allow a fresh press with enough energy",
+    );
     update({ energy: 89 });
     equal(state().pressed, []);
     update({ energy: 90 });
@@ -480,9 +495,17 @@ export async function run() {
     pointer("pointerdown", 2, "super");
     pointer("pointerup", 2, "super");
     button("super").click();
-    button("super").dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
-    button("super").dispatchEvent(new KeyboardEvent("keyup", { key: "Enter", bubbles: true }));
-    equal(input.actions.super, 1, "spent super must reject fresh pointer, click and keyboard input");
+    button("super").dispatchEvent(
+      new KeyboardEvent("keydown", { key: "Enter", bubbles: true }),
+    );
+    button("super").dispatchEvent(
+      new KeyboardEvent("keyup", { key: "Enter", bubbles: true }),
+    );
+    equal(
+      input.actions.super,
+      1,
+      "spent super must reject fresh pointer, click and keyboard input",
+    );
     update({ superUsed: false, reset: 1 });
     equal(button("super").getAttribute("aria-disabled"), null);
     pointer("pointerdown", 3, "super");
@@ -498,35 +521,50 @@ export async function run() {
     const other = emptyInput();
     pointer("pointerdown", 1, "super");
     equal(input.superHeld, true);
-    for (let frame = 0; frame < SUPER_CHARGE_TICKS - 1; frame++) stepMatch(match, [input, other]);
+    for (let frame = 0; frame < SUPER_CHARGE_TICKS - 1; frame++)
+      stepMatch(match, [input, other]);
     equal(match.players[0].superUsed, false);
     update({ superChargeTicks: match.players[0].superChargeTicks });
-    equal(button("super").textContent?.includes(`${Math.floor((SUPER_CHARGE_TICKS - 1) / SUPER_CHARGE_TICKS * 100)}%`), true);
+    equal(
+      button("super").textContent?.includes(
+        `${Math.floor(((SUPER_CHARGE_TICKS - 1) / SUPER_CHARGE_TICKS) * 100)}%`,
+      ),
+      true,
+    );
     pointer("pointerup", 1, "super");
     stepMatch(match, [input, other]);
     equal(match.players[0].superChargeTicks, 0);
     equal(match.players[0].energy, 100);
     pointer("pointerdown", 2, "super");
-    for (let frame = 0; frame < SUPER_CHARGE_TICKS; frame++) stepMatch(match, [input, other]);
+    for (let frame = 0; frame < SUPER_CHARGE_TICKS; frame++)
+      stepMatch(match, [input, other]);
     equal(match.players[0].attack, "super");
-    update({ superUsed: true, superChargeTicks: 0, energy: match.players[0].energy });
+    update({
+      superUsed: true,
+      superChargeTicks: 0,
+      energy: match.players[0].energy,
+    });
     equal(input.superHeld, false);
     equal(button("super").getAttribute("aria-disabled"), "true");
   });
   await test("accessible clicks keep the super held long enough and reset cancels that hold", async () => {
     button("super").click();
     equal(input.superHeld, true);
-    await new Promise(resolve => setTimeout(resolve, 150));
-    equal(input.superHeld, true, "a super must outlive the old 100ms tap timer");
+    await new Promise((resolve) => setTimeout(resolve, 150));
+    equal(
+      input.superHeld,
+      true,
+      "a super must outlive the old 100ms tap timer",
+    );
     update({ reset: 1 });
     equal(input.superHeld, false);
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise((resolve) => setTimeout(resolve, 100));
     equal(input.superHeld, false);
   });
   await test("accessible super holds follow charge completion and can be cancelled with another click", async () => {
     button("super").click();
     update({ superChargeTicks: 1 });
-    await new Promise(resolve => setTimeout(resolve, 1200));
+    await new Promise((resolve) => setTimeout(resolve, 1200));
     equal(input.superHeld, true, "an active charge cannot expire in wall time");
     update({ superChargeTicks: 0, superUsed: true, energy: 10 });
     equal(input.superHeld, false);
@@ -539,7 +577,11 @@ export async function run() {
     button("super").click();
     update({ superChargeTicks: 1 });
     update({ superChargeTicks: 0 });
-    equal(input.superHeld, false, "ending the active charge releases its virtual input");
+    equal(
+      input.superHeld,
+      false,
+      "ending the active charge releases its virtual input",
+    );
   });
   await test("gestures can start in pad gaps; unrelated pointers cannot activate buttons", () => {
     pointer("pointermove", 50, "light");

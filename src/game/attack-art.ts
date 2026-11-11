@@ -1,5 +1,5 @@
-import manifest from "../../shared/attack-assets.json";
-import type { FighterId } from "../../shared/content";
+import manifest from "./assets/manifests/attack-assets.json";
+import type { FighterId } from "../../shared/roster/roster";
 
 export interface AttackArtFrame {
   x: number;

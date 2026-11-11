@@ -1,6 +1,6 @@
 // Online rooms and the authoritative match loop, shared by the Node server and
 // the Cloudflare Durable Object. Each host only adapts its socket type.
-import { isFighter } from "../content";
+import { isFighter } from "../roster/roster";
 import {
   ACTIONS,
   createMatch,
@@ -8,7 +8,7 @@ import {
   stepMatch,
   type Input,
   type MatchState,
-} from "../engine";
+} from "../engine/engine";
 import {
   ARENA_SOCKET_PROTOCOL,
   ROOM_RESUME_PROTOCOL_PREFIX,
@@ -16,8 +16,8 @@ import {
   type RoomPlayer,
   type RoomView,
   type ServerMessage,
-} from "../protocol";
-import { normalizeRoomCode } from "../room-code";
+} from "./protocol";
+import { normalizeRoomCode } from "./room-code";
 import { messageType, parseClientMessage } from "./client-message";
 import { FixedStepTicker } from "./ticker";
 

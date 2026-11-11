@@ -1,4 +1,4 @@
-import type { Ability } from "../../shared/content";
+import type { Ability } from "../../shared/roster/roster";
 import { FOUNDER_SOUNDS } from "./founder-sounds";
 
 interface CultureSound {

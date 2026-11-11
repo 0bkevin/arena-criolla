@@ -3,7 +3,7 @@ import type {
   MatchState,
   PlayerState,
   Projectile,
-} from "../../../shared/engine";
+} from "../../../shared/engine/engine";
 import { drawAttackArt, hasAttackArt } from "../attack-art";
 
 export const LLORONA_POSES = [

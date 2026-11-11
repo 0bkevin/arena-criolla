@@ -3,8 +3,8 @@ import {
   type Choreography,
   type Gesture,
   type Hand,
-} from "../../shared/choreography";
-import type { FighterId } from "../../shared/content";
+} from "./choreography/choreography";
+import type { FighterId } from "../../shared/roster/roster";
 import { drawSprite, spriteFrameSource, type SpriteAsset } from "./assets";
 
 export interface RigPoint {

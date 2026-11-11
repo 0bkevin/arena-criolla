@@ -1,4 +1,4 @@
-import { WORLD } from "./arena";
+import { WORLD } from "../arena";
 import {
   ARENA_FINALES,
   advanceArenaFinale,
@@ -6,7 +6,7 @@ import {
   type ArenaFinaleActor,
   type ArenaFinalist,
 } from "./arena-finales";
-import type { MatchState, PlayerState } from "./engine";
+import type { MatchState, PlayerState } from "../engine";
 
 /** Temporary arena actors run on ordinary combat ticks; they never capture a rival. */
 export interface FieldFinaleState {

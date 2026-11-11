@@ -1,6 +1,6 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { Check, ChevronDown, SlidersHorizontal } from "lucide-react";
-import { FIGHTERS, type FighterCategory } from "../../shared/content";
+import { FIGHTERS, type FighterCategory } from "../../shared/roster/roster";
 
 type Category = "all" | FighterCategory;
 

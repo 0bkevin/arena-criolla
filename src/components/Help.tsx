@@ -4,7 +4,7 @@ import {
   SUPER_ENERGY_COST,
   SUPER_CHARGE_SECONDS_LABEL,
   SUPER_INTERRUPT_ENERGY_COST,
-} from "../../shared/content";
+} from "../../shared/roster/roster";
 import { hasTouchInput } from "../game/mobile";
 import { Modal } from "./Modal";
 import { MobileControlsGuide } from "./MobileControlsGuide";

@@ -1,16 +1,16 @@
-import { fighterById, type FighterId } from "../../shared/content";
-import type { MatchState } from "../../shared/engine";
-import actorAssets from "../../shared/finale-actor-assets.json";
-import cafeFurniture from "../../shared/finale-cafe-assets.json";
-import hackerDesk from "../../shared/finale-desk-assets.json";
+import { fighterById, type FighterId } from "../../shared/roster/roster";
+import type { MatchState } from "../../shared/engine/engine";
+import actorAssets from "./assets/manifests/finale-actor-assets.json";
+import cafeFurniture from "./assets/manifests/finale-cafe-assets.json";
+import hackerDesk from "./assets/manifests/finale-desk-assets.json";
 import {
   CANONICAL_FINALE_FIGHTERS,
   finaleAsset,
   finaleById,
   type FinaleDefinition,
-} from "../../shared/finales";
-import perroAssets from "../../shared/perro-mujeriego-assets.json";
-import perroChoreography from "../../shared/perro-mujeriego-choreography.json";
+} from "../../shared/engine/finales/finales";
+import perroAssets from "./assets/manifests/perro-mujeriego-assets.json";
+import perroChoreography from "../../shared/engine/finales/perro-mujeriego-choreography.json";
 import { drawSprite, type SpriteAsset } from "./assets";
 import { finaleArenaLayout, type FinaleArenaLayout } from "./finale-layout";
 import type { FinalePose } from "./finales/types";

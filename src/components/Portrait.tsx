@@ -1,15 +1,18 @@
 import { useEffect, useRef } from "react";
-import { fighterById, type FighterId } from "../../shared/content";
+import { fighterById, type FighterId } from "../../shared/roster/roster";
 import { drawSprite, loadImage, loadSprite } from "../game/assets";
 import {
   drawPortraitBust,
   drawSelectionPlaceholder,
   portraitBust,
 } from "../game/portrait-bust";
-import { presentationById, selectionProgress } from "../../shared/presentation";
+import {
+  presentationById,
+  selectionProgress,
+} from "../../shared/engine/presentation";
 import { drawPresentation } from "../game/presentation-renderer";
 import { selectionBodyHeight } from "../game/entrance-framing";
-import { entrancePoseProgress } from "../../shared/entrance-actions";
+import { entrancePoseProgress } from "../game/choreography/entrance-actions";
 import { drawEntranceAction } from "../game/entrance-renderer";
 import { samplePortraitLoop } from "../game/portrait-motion";
 

@@ -4,7 +4,7 @@ import {
   SUPER_CHARGE_TICKS,
   SUPER_INTERRUPT_ENERGY_COST,
   type FighterId,
-} from "../shared/content";
+} from "../shared/roster/roster";
 import {
   cpuInput,
   createMatch,
@@ -12,7 +12,7 @@ import {
   stepMatch,
   type Input,
   type MatchState,
-} from "../shared/engine";
+} from "../shared/engine/engine";
 import { ControlSources } from "../src/game/controls";
 
 function setup(side: 0 | 1 = 0, fighter: FighterId = "capriles", gap = 420) {

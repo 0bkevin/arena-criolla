@@ -1,4 +1,7 @@
-import type { BuiltInFighterId, FighterId } from "./content";
+import type {
+  BuiltInFighterId,
+  FighterId,
+} from "../../../shared/roster/roster";
 
 export interface ActionFrame {
   at: number;

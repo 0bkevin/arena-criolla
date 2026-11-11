@@ -6,7 +6,7 @@ import {
   ARENA_SOCKET_PROTOCOL,
   ROOM_RESUME_PROTOCOL_PREFIX,
   type ServerMessage,
-} from "../shared/protocol";
+} from "../shared/lobby/protocol";
 
 class FakeSocket {
   readonly received: ServerMessage[] = [];

@@ -1,13 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { MAX_FIGHTER_SEPARATION, WORLD } from "../shared/arena";
-import { platformsAtTick } from "../shared/content";
+import { MAX_FIGHTER_SEPARATION, WORLD } from "../shared/engine/arena";
+import { platformsAtTick } from "../shared/roster/roster";
 import {
   createMatch,
   emptyInput,
   stepMatch,
   type Input,
-} from "../shared/engine";
+} from "../shared/engine/engine";
 
 function fight() {
   const state = createMatch("poliedro", [

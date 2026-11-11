@@ -10,7 +10,7 @@ import {
   REVIEWED_FINALISTS,
   activeArenaPerformance,
   isArenaFinalist,
-} from "../shared/arena-finales";
+} from "../shared/engine/finales/arena-finales";
 import {
   arenaPerformerPose,
   drawArenaPerformer,

@@ -1,5 +1,5 @@
 import type { Choreography, Gesture, Hand } from "./choreography";
-import type { FounderFighterId } from "./content";
+import type { FounderFighterId } from "../../../shared/roster/roster";
 
 const rest = {
   head: 0,

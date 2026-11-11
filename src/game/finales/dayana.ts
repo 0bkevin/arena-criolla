@@ -3,9 +3,9 @@ import {
   runwayRange,
   runwayWalking,
   type FieldFinaleState,
-} from "../../../shared/field-finales";
-import type { MatchState } from "../../../shared/engine";
-import type { PlayerState } from "../../../shared/engine";
+} from "../../../shared/engine/finales/field-finales";
+import type { MatchState } from "../../../shared/engine/engine";
+import type { PlayerState } from "../../../shared/engine/engine";
 import { ATTACK_ART, drawAttackArt, hasAttackArt } from "../attack-art";
 
 export const DAYANA_SPECIAL_POSES = [

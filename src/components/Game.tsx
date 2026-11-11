@@ -19,14 +19,17 @@ import {
   VolumeX,
   Zap,
 } from "lucide-react";
-import { fighterById, stageById } from "../../shared/content";
-import { INTRO_COUNTDOWN_START, introActor } from "../../shared/presentation";
+import { fighterById, stageById } from "../../shared/roster/roster";
+import {
+  INTRO_COUNTDOWN_START,
+  introActor,
+} from "../../shared/engine/presentation";
 import {
   cpuInput,
   stepMatch,
   type Input,
   type MatchState,
-} from "../../shared/engine";
+} from "../../shared/engine/engine";
 import { preloadAssets } from "../game/assets";
 import { renderMatch, type Assets } from "../game/renderer";
 import {
@@ -65,7 +68,7 @@ import {
   trackPlayViewport,
 } from "../game/mobile";
 import { arenaCanvasSize } from "../game/viewport";
-import { ARENA_VIEW } from "../../shared/arena";
+import { ARENA_VIEW } from "../../shared/engine/arena";
 import {
   advanceArenaCamera,
   cameraBounds,

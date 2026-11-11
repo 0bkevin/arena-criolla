@@ -1,12 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { SUPER_CHARGE_TICKS } from "../shared/content";
+import { SUPER_CHARGE_TICKS } from "../shared/roster/roster";
 import {
   createMatch,
   emptyInput,
   stepMatch,
   type Input,
-} from "../shared/engine";
+} from "../shared/engine/engine";
 
 function setup(cooldown = 5) {
   const state = createMatch("poliedro", [

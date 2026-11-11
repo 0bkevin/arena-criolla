@@ -3,7 +3,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
-import { BUILT_IN_FIGHTERS } from "../shared/content";
+import { BUILT_IN_FIGHTERS } from "../shared/roster/roster";
 import { normalizeGeneratedAtlas } from "../server/normalize-atlas";
 import {
   ACTOR_BASELINE,
@@ -206,7 +206,7 @@ export async function preparePerroMujeriego(
     await writeChanged(path.join(root, runtime), webp);
   }
   await writeChanged(
-    path.join(root, "shared/perro-mujeriego-assets.json"),
+    path.join(root, "src/game/assets/manifests/perro-mujeriego-assets.json"),
     JSON.stringify(manifest, null, 2) + "\n",
   );
   await writeChanged(

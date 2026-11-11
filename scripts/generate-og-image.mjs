@@ -18,9 +18,11 @@ const cream = themeColor("paper");
 const yellow = themeColor("coin");
 const red = themeColor("vz-red");
 const manifest = JSON.parse(
-  await readFile("shared/sprite-geometry.json", "utf8"),
+  await readFile("src/game/assets/manifests/sprite-geometry.json", "utf8"),
 );
-const fighters = JSON.parse(await readFile("shared/fighters.json", "utf8"));
+const fighters = JSON.parse(
+  await readFile("shared/roster/fighters.json", "utf8"),
+);
 const svg = (body) =>
   Buffer.from(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${body}</svg>`,

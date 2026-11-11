@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import {
   SUPER_CHARGE_SECONDS_LABEL,
   SUPER_ENERGY_COST,
-} from "../../shared/content";
+} from "../../shared/roster/roster";
 
 const groups = [
   {

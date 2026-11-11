@@ -1,10 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createMatch, emptyInput, stepMatch } from "../shared/engine";
+import { createMatch, emptyInput, stepMatch } from "../shared/engine/engine";
 import {
   INTRO_COUNTDOWN_START,
   INTRO_TOTAL_TICKS,
-} from "../shared/presentation";
+} from "../shared/engine/presentation";
 
 test("entrances lock physics and consume queued attacks without spending match time", () => {
   const state = createMatch("caracas", [

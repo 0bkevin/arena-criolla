@@ -3,9 +3,9 @@ import {
   SQUAD_LAUNCH_TICK,
   squadMember,
   type FieldFinaleState,
-} from "../../../shared/field-finales";
-import type { PlayerState, Projectile } from "../../../shared/engine";
-import { TECHNIQUES } from "../../../shared/techniques";
+} from "../../../shared/engine/finales/field-finales";
+import type { PlayerState, Projectile } from "../../../shared/engine/engine";
+import { TECHNIQUES } from "../../../shared/engine/techniques";
 import { ATTACK_ART, drawAttackArt, hasAttackArt } from "../attack-art";
 
 export const DEYNA_SPECIAL_POSES = [

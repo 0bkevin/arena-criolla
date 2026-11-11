@@ -1,8 +1,8 @@
-import { WORLD } from "./arena";
+import { WORLD } from "../arena";
 import { DORANGEL_FINALE, DORANGEL_POT, insideDorangelPot } from "./dorangel";
 import { INAKI_FINALE, advanceInakiFinale } from "./inaki";
-import { platformsAtTick, type FighterId } from "./content";
-import type { MatchState, PlayerState } from "./engine";
+import { platformsAtTick, type FighterId } from "../../roster/roster";
+import type { MatchState, PlayerState } from "../engine";
 import type { FieldFinaleState } from "./field-finales";
 import {
   COUTURE_MODEL_COUNT,

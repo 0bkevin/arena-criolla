@@ -1,5 +1,5 @@
-import { finaleById } from "../../../shared/finales";
-import type { PlayerState, Projectile } from "../../../shared/engine";
+import { finaleById } from "../../../shared/engine/finales/finales";
+import type { PlayerState, Projectile } from "../../../shared/engine/engine";
 import { ATTACK_ART, drawAttackArt, hasAttackArt } from "../attack-art";
 import { finaleArtXRange, finaleViewportBounds } from "../finale-viewport";
 

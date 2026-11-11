@@ -1,5 +1,5 @@
-import { fighterById, type FighterId } from "../../shared/content";
-import { TECHNIQUES } from "../../shared/techniques";
+import { fighterById, type FighterId } from "../../shared/roster/roster";
+import { TECHNIQUES } from "../../shared/engine/techniques";
 import { preloadAssets } from "./assets";
 import { demoRivalFor, type GuideMove } from "./move-demo";
 

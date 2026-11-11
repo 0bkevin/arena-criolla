@@ -2,9 +2,11 @@ import sharp from "sharp";
 import { readFile } from "node:fs/promises";
 
 const geometry = JSON.parse(
-  await readFile("shared/sprite-geometry.json", "utf8"),
+  await readFile("src/game/assets/manifests/sprite-geometry.json", "utf8"),
 );
-const roster = JSON.parse(await readFile("shared/fighters.json", "utf8"));
+const roster = JSON.parse(
+  await readFile("shared/roster/fighters.json", "utf8"),
+);
 const requested = process.argv.indexOf("--sprite");
 const fighters =
   requested < 0

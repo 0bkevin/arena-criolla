@@ -1,11 +1,11 @@
-import { SUPER_CHARGE_TICKS } from "../../shared/content";
+import { SUPER_CHARGE_TICKS } from "../../shared/roster/roster";
 import {
   stepMatch as step,
   type Input,
   type MatchState,
-} from "../../shared/engine";
+} from "../../shared/engine/engine";
 
-export * from "../../shared/engine";
+export * from "../../shared/engine/engine";
 
 /**
  * Choreography fixtures begin on the last frame of an already held charge.

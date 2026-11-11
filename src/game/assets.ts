@@ -3,19 +3,19 @@ import {
   STAGES,
   fighterById,
   type FighterId,
-} from "../../shared/content";
-import entranceManifest from "../../shared/entrance-assets.json";
-import { presentationById } from "../../shared/presentation";
-import atlasManifest from "../../shared/sprite-geometry.json";
+} from "../../shared/roster/roster";
+import entranceManifest from "./assets/manifests/entrance-assets.json";
+import { presentationById } from "../../shared/engine/presentation";
+import atlasManifest from "./assets/manifests/sprite-geometry.json";
 import { preparationWorker } from "./preparation-worker";
 import { isolateFramePixels } from "./sprite-isolation";
 
-import courierManifest from "../../shared/courier-assets.json";
-import finaleActors from "../../shared/finale-actor-assets.json";
-import cafeFurniture from "../../shared/finale-cafe-assets.json";
-import finaleDesk from "../../shared/finale-desk-assets.json";
-import { finaleAsset, finaleById } from "../../shared/finales";
-import perroMujeriego from "../../shared/perro-mujeriego-assets.json";
+import courierManifest from "./assets/manifests/courier-assets.json";
+import finaleActors from "./assets/manifests/finale-actor-assets.json";
+import cafeFurniture from "./assets/manifests/finale-cafe-assets.json";
+import finaleDesk from "./assets/manifests/finale-desk-assets.json";
+import { finaleAsset, finaleById } from "../../shared/engine/finales/finales";
+import perroMujeriego from "./assets/manifests/perro-mujeriego-assets.json";
 import { ATTACK_ART } from "./attack-art";
 import { assetUrl } from "../asset-url";
 

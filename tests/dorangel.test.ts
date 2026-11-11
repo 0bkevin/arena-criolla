@@ -1,9 +1,23 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { createMatch, emptyInput, stepMatch, type Input } from "./helpers/charged-finale-engine";
-import { STAGES, platformsAtTick, type FighterId, type StageId } from "../shared/content";
-import { DORANGEL_FINALE, DORANGEL_POT, dorangelPot } from "../shared/dorangel";
-import { TECHNIQUES } from "../shared/techniques";
+import {
+  createMatch,
+  emptyInput,
+  stepMatch,
+  type Input,
+} from "./helpers/charged-finale-engine";
+import {
+  STAGES,
+  platformsAtTick,
+  type FighterId,
+  type StageId,
+} from "../shared/roster/roster";
+import {
+  DORANGEL_FINALE,
+  DORANGEL_POT,
+  dorangelPot,
+} from "../shared/engine/finales/dorangel";
+import { TECHNIQUES } from "../shared/engine/techniques";
 function setup(
   side: 0 | 1 = 0,
   gap = 75,

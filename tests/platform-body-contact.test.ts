@@ -5,8 +5,13 @@ import {
   platformsAtTick,
   type Platform,
   type StageId,
-} from "../shared/content";
-import { createMatch, emptyInput, stepMatch, WORLD } from "../shared/engine";
+} from "../shared/roster/roster";
+import {
+  createMatch,
+  emptyInput,
+  stepMatch,
+  WORLD,
+} from "../shared/engine/engine";
 
 function pushPastEdge(
   stage: StageId,

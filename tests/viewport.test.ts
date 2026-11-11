@@ -1,12 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {
-  arenaBounds,
-  arenaCanvasSize,
-} from "../src/game/viewport";
-import { WORLD } from "../shared/engine";
-import { ARENA_VIEW } from "../shared/arena";
-import { STAGES, platformsAtTick } from "../shared/content";
+import { arenaBounds, arenaCanvasSize } from "../src/game/viewport";
+import { WORLD } from "../shared/engine/engine";
+import { ARENA_VIEW } from "../shared/engine/arena";
+import { STAGES, platformsAtTick } from "../shared/roster/roster";
 
 test("immersive landscape viewports retain the complete arena with uniform fighter scale", () => {
   for (const [width, height] of [

@@ -4,14 +4,14 @@ import {
   dorangelPot,
   dorangelPotIsHot,
   insideDorangelPot,
-} from "../../../shared/dorangel";
-import type { ArenaFinaleActor } from "../../../shared/arena-finales";
-import type { MatchState, PlayerState } from "../../../shared/engine";
-import type { FieldFinaleState } from "../../../shared/field-finales";
-import { WORLD } from "../../../shared/arena";
-import { FINALE_CAPTURE_TICK } from "../../../shared/finales";
+} from "../../../shared/engine/finales/dorangel";
+import type { ArenaFinaleActor } from "../../../shared/engine/finales/arena-finales";
+import type { MatchState, PlayerState } from "../../../shared/engine/engine";
+import type { FieldFinaleState } from "../../../shared/engine/finales/field-finales";
+import { WORLD } from "../../../shared/engine/arena";
+import { FINALE_CAPTURE_TICK } from "../../../shared/engine/finales/finales";
 import { ATTACK_ART, drawAttackArt } from "../attack-art";
-import { TECHNIQUES } from "../../../shared/techniques";
+import { TECHNIQUES } from "../../../shared/engine/techniques";
 
 type Images = Record<string, HTMLImageElement>;
 const unit = (value: number) => Math.max(0, Math.min(1, value));

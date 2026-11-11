@@ -1,4 +1,8 @@
-import { emptyInput, type Action, type Input } from "../../shared/engine";
+import {
+  emptyInput,
+  type Action,
+  type Input,
+} from "../../shared/engine/engine";
 
 export type Control = Action | "left" | "right" | "block" | "down";
 export const KEY_MAP: Record<string, [number, Control]> = {

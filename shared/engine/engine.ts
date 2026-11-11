@@ -1,5 +1,8 @@
 import { MAX_FIGHTER_SEPARATION, WORLD } from "./arena";
-import { advanceDorangelBite, releaseBrokenDorangelGrips } from "./dorangel";
+import {
+  advanceDorangelBite,
+  releaseBrokenDorangelGrips,
+} from "./finales/dorangel";
 import {
   ARENA_FINALES,
   activeArenaPerformance,
@@ -9,7 +12,7 @@ import {
   isArenaFinalist,
   mountedFinale,
   registerArenaContact,
-} from "./arena-finales";
+} from "./finales/arena-finales";
 import {
   SUPER_ENERGY_COST,
   SUPER_CHARGE_TICKS,
@@ -18,7 +21,7 @@ import {
   platformsAtTick,
   type FighterId,
   type StageId,
-} from "./content";
+} from "../roster/roster";
 import {
   activeRunway,
   advanceFieldFinales,
@@ -26,13 +29,13 @@ import {
   runwayContacts,
   supportRunway,
   type FieldFinaleState,
-} from "./field-finales";
+} from "./finales/field-finales";
 import {
   FINALE_CAPTURE_TICK,
   FINALE_RANGE,
   finaleById,
   type FinaleState,
-} from "./finales";
+} from "./finales/finales";
 import { INTRO_COUNTDOWN_START, INTRO_TOTAL_TICKS } from "./presentation";
 import { TECHNIQUES, type Technique } from "./techniques";
 export { WORLD } from "./arena";

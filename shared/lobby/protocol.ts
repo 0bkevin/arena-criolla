@@ -1,5 +1,5 @@
-import type { FighterId, StageId } from "./content";
-import type { Input, MatchState } from "./engine";
+import type { FighterId, StageId } from "../roster/roster";
+import type { Input, MatchState } from "../engine/engine";
 
 export const ARENA_SOCKET_PROTOCOL = "arena-v1";
 export const ROOM_RESUME_PROTOCOL_PREFIX = "arena-resume.";

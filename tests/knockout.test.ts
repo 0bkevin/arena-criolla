@@ -5,12 +5,12 @@ import {
   emptyInput,
   stepMatch,
   type MatchState,
-} from "../shared/engine";
+} from "../shared/engine/engine";
 import { KNOCKOUT_HOLD_MS, sampleKnockout } from "../src/game/knockout";
 import { renderMatch, type Assets } from "../src/game/renderer";
 import type { SpriteAsset } from "../src/game/assets";
-import { activeRunway } from "../shared/field-finales";
-import { SUPER_CHARGE_TICKS } from "../shared/content";
+import { activeRunway } from "../shared/engine/finales/field-finales";
+import { SUPER_CHARGE_TICKS } from "../shared/roster/roster";
 
 function lastHit(side: 0 | 1, airborne = false) {
   const state = createMatch("caracas", [

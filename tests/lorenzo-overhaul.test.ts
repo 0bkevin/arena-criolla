@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import type { FighterId } from "../shared/content";
+import type { FighterId } from "../shared/roster/roster";
 import {
   createMatch,
   emptyInput,

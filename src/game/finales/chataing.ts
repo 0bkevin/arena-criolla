@@ -2,7 +2,7 @@ import type {
   MatchState,
   PlayerState,
   Projectile,
-} from "../../../shared/engine";
+} from "../../../shared/engine/engine";
 import { ATTACK_ART, drawAttackArt, hasAttackArt } from "../attack-art";
 
 export const CHATAING_POSES = [

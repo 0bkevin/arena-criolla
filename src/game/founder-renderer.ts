@@ -1,5 +1,5 @@
-import type { Ability } from "../../shared/content";
-import type { PlayerState, Projectile } from "../../shared/engine";
+import type { Ability } from "../../shared/roster/roster";
+import type { PlayerState, Projectile } from "../../shared/engine/engine";
 
 const clamp = (value: number, min: number, max: number) =>
   Math.max(min, Math.min(max, value));

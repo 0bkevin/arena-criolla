@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { STAGES, platformsAtTick, type StageId } from "../shared/content";
+import { STAGES, platformsAtTick, type StageId } from "../shared/roster/roster";
 import {
   createMatch,
   cpuInput,
@@ -8,7 +8,7 @@ import {
   stepMatch,
   WORLD,
   type Input,
-} from "../shared/engine";
+} from "../shared/engine/engine";
 
 function scene(stage: StageId, index: number, tick = 0, playerIndex = 0) {
   const state = createMatch(stage, [

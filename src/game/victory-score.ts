@@ -1,4 +1,4 @@
-import type { FighterId } from "../../shared/content";
+import type { FighterId } from "../../shared/roster/roster";
 import { VICTORY_MUSIC_MS, type VictoryMusicStyle } from "./victory-types";
 
 const TABLE_SIZE = 2048;

@@ -5,8 +5,8 @@ import {
   type RefObject,
 } from "react";
 import { ArrowRight, RotateCcw, Trophy, Zap } from "lucide-react";
-import { fighterById, stageById } from "../../shared/content";
-import type { MatchState } from "../../shared/engine";
+import { fighterById, stageById } from "../../shared/roster/roster";
+import type { MatchState } from "../../shared/engine/engine";
 import type { GameMode } from "./Game";
 import { VenezuelaStars } from "./CriolloArt";
 import { Portrait } from "./Portrait";

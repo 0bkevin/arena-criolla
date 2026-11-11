@@ -5,14 +5,14 @@ import {
   platformsAtTick,
   type FighterId,
   type StageId,
-} from "../shared/content";
+} from "../shared/roster/roster";
 import {
   createMatch,
   emptyInput,
   stepMatch,
   type Input,
   type MatchState,
-} from "../shared/engine";
+} from "../shared/engine/engine";
 type Side = 0 | 1;
 
 function scene(stage: StageId, rival: FighterId, side: Side, gap = 260) {

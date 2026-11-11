@@ -1,7 +1,7 @@
-import { finaleById } from "../../shared/finales";
-import { fighterById } from "../../shared/content";
-import type { PlayerState } from "../../shared/engine";
-import { TECHNIQUES } from "../../shared/techniques";
+import { finaleById } from "../../shared/engine/finales/finales";
+import { fighterById } from "../../shared/roster/roster";
+import type { PlayerState } from "../../shared/engine/engine";
+import { TECHNIQUES } from "../../shared/engine/techniques";
 import { drawAttackArt, hasAttackArt } from "./attack-art";
 
 interface TransformationArt {

@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { WebSocket } from "ws";
 import { makeArenaServer } from "../server/index";
-import type { ServerMessage } from "../shared/protocol";
+import type { ServerMessage } from "../shared/lobby/protocol";
 
 class Peer {
   readonly socket: WebSocket;

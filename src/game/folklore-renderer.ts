@@ -1,5 +1,5 @@
-import type { Ability } from "../../shared/content";
-import type { PlayerState, Projectile } from "../../shared/engine";
+import type { Ability } from "../../shared/roster/roster";
+import type { PlayerState, Projectile } from "../../shared/engine/engine";
 
 // These small effects are drawn around the illustrated sprites, without loading
 // extra textures. Their movement comes from the shared simulation state.

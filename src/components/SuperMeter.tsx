@@ -2,8 +2,8 @@ import {
   SUPER_CHARGE_TICKS,
   SUPER_CHARGE_SECONDS_LABEL,
   SUPER_INTERRUPT_ENERGY_COST,
-} from "../../shared/content";
-import type { PlayerState } from "../../shared/engine";
+} from "../../shared/roster/roster";
+import type { PlayerState } from "../../shared/engine/engine";
 
 export function SuperMeter({
   player,

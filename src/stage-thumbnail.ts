@@ -1,4 +1,4 @@
-import type { StageId } from "../shared/content";
+import type { StageId } from "../shared/roster/roster";
 import { assetUrl } from "./asset-url";
 
 export function stageThumbnail(id: StageId, variant: "strip" | "gallery") {

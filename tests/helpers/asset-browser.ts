@@ -1,4 +1,4 @@
-import atlas from "../../shared/sprite-geometry.json";
+import atlas from "../../src/game/assets/manifests/sprite-geometry.json";
 
 /** Node-only image request fixture; never substitutes for device rendering tests. */
 export function browserFixture(

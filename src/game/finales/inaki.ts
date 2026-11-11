@@ -1,8 +1,8 @@
-import { SUPER_CHARGE_TICKS } from "../../../shared/content";
-import type { PlayerState, Projectile } from "../../../shared/engine";
-import { FINALE_CAPTURE_TICK } from "../../../shared/finales";
-import { INAKI_FINALE } from "../../../shared/inaki";
-import { TECHNIQUES } from "../../../shared/techniques";
+import { SUPER_CHARGE_TICKS } from "../../../shared/roster/roster";
+import type { PlayerState, Projectile } from "../../../shared/engine/engine";
+import { FINALE_CAPTURE_TICK } from "../../../shared/engine/finales/finales";
+import { INAKI_FINALE } from "../../../shared/engine/finales/inaki";
+import { TECHNIQUES } from "../../../shared/engine/techniques";
 import { ATTACK_ART, drawAttackArt, hasAttackArt } from "../attack-art";
 
 type Images = Record<string, HTMLImageElement>;

@@ -1,13 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { SUPER_CHARGE_TICKS, type FighterId } from "../shared/content";
+import { SUPER_CHARGE_TICKS, type FighterId } from "../shared/roster/roster";
 import {
   createMatch,
   emptyInput,
   stepMatch,
   type Input,
   type MatchState,
-} from "../shared/engine";
+} from "../shared/engine/engine";
 
 function setup(fighter: FighterId = "capriles", side: 0 | 1 = 0) {
   const state = createMatch("caracas", [

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { STAGES, platformsAtTick } from "../shared/content";
+import { STAGES, platformsAtTick } from "../shared/roster/roster";
 import { drawStage } from "../src/game/stage-renderer";
 
 test("every visible platform lip follows the collision surface throughout motion and reversals", () => {

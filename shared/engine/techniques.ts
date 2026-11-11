@@ -1,8 +1,8 @@
-import type { Ability } from "./content";
+import type { Ability } from "../roster/roster";
 import { CULTURE_TECHNIQUES } from "./culture-techniques";
 import { FOUNDER_TECHNIQUES } from "./founder-techniques";
 import { ICON_TECHNIQUES } from "./icon-techniques";
-import { DORANGEL_BITE } from "./dorangel";
+import { DORANGEL_BITE } from "./finales/dorangel";
 
 export interface Technique {
   startup: number;

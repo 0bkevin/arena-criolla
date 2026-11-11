@@ -1,11 +1,11 @@
-import { fighterById, type FighterId } from "../../shared/content";
+import { fighterById, type FighterId } from "../../shared/roster/roster";
 import { loadImage } from "./assets";
-import busts from "../../shared/portrait-busts.json";
+import busts from "./assets/manifests/portrait-busts.json";
 import {
   bustPlacement,
   PORTRAIT_CANVAS,
   type PortraitBust,
-} from "../../shared/portrait-busts";
+} from "./assets/portrait-bust-layout";
 
 /** Pre-cut roster-card pose for a built-in fighter, if one was generated. */
 export function portraitBust(id: FighterId): PortraitBust | undefined {

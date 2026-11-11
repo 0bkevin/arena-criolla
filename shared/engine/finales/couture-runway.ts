@@ -1,4 +1,4 @@
-import { WORLD } from "./arena";
+import { WORLD } from "../arena";
 
 export const COUTURE_MODEL_COUNT = 4;
 export const COUTURE_MODEL_HEIGHT = 177;

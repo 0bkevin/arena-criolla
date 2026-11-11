@@ -1,5 +1,5 @@
-import type { PlayerState } from "../../../shared/engine";
-import { TECHNIQUES } from "../../../shared/techniques";
+import type { PlayerState } from "../../../shared/engine/engine";
+import { TECHNIQUES } from "../../../shared/engine/techniques";
 import { drawAttackArt, hasAttackArt } from "../attack-art";
 
 export const ALI_ACTOR_POSES = [

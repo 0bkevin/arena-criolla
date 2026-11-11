@@ -1,4 +1,4 @@
-import { isFighter, type FighterId } from "../shared/content";
+import { isFighter, type FighterId } from "../shared/roster/roster";
 
 export interface Progress {
   wins: Partial<Record<FighterId, number>>;

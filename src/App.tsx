@@ -24,13 +24,13 @@ import {
   stageById,
   type FighterId,
   type StageId,
-} from "../shared/content";
-import { createMatch, type MatchState } from "../shared/engine";
+} from "../shared/roster/roster";
+import { createMatch, type MatchState } from "../shared/engine/engine";
 import {
   isRoomCode,
   normalizeRoomCode,
   ROOM_CODE_LENGTH,
-} from "../shared/room-code";
+} from "../shared/lobby/room-code";
 import { useArenaNetwork } from "./network";
 import {
   getPreference,

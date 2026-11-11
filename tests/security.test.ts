@@ -5,7 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import { WebSocket } from "ws";
 import { makeArenaServer } from "../server/index";
-import type { ServerMessage } from "../shared/protocol";
+import type { ServerMessage } from "../shared/lobby/protocol";
 
 const pause = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 

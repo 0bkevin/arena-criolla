@@ -1,8 +1,16 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { FIGHTERS, type FighterId } from "../shared/content";
-import { createMatch, emptyInput, stepMatch, cpuInput, WORLD, type Input, type Projectile } from "../shared/engine";
-import { TECHNIQUES } from "../shared/techniques";
+import { FIGHTERS, type FighterId } from "../shared/roster/roster";
+import {
+  createMatch,
+  emptyInput,
+  stepMatch,
+  cpuInput,
+  WORLD,
+  type Input,
+  type Projectile,
+} from "../shared/engine/engine";
+import { TECHNIQUES } from "../shared/engine/techniques";
 function special(fighter: FighterId, rivalX = 950) {
   const match = createMatch("guaira", [
     { name: "Uno", fighter, wins: 3 },

@@ -1,4 +1,4 @@
-import { ARENA_VIEW, WORLD } from "../../shared/arena";
+import { ARENA_VIEW, WORLD } from "../../shared/engine/arena";
 
 /** Expand the visible scene instead of cropping the arena or stretching fighters. */
 export function arenaCanvasSize(

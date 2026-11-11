@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 import { connect } from "node:net";
 import { WebSocket } from "ws";
 import { makeArenaServer } from "../server/index";
-import { emptyInput, type MatchState } from "../shared/engine";
-import type { ServerMessage } from "../shared/protocol";
+import { emptyInput, type MatchState } from "../shared/engine/engine";
+import type { ServerMessage } from "../shared/lobby/protocol";
 
 class Peer {
   readonly messages: ServerMessage[] = [];
@@ -23,8 +23,8 @@ class Peer {
 
   async wait<T extends ServerMessage["type"]>(
     type: T,
-    predicate: (message: Extract<ServerMessage, { type: T }>) => boolean =
-      () => true,
+    predicate: (message: Extract<ServerMessage, { type: T }>) => boolean = () =>
+      true,
   ): Promise<Extract<ServerMessage, { type: T }>> {
     const end = Date.now() + 4_000;
     while (Date.now() < end) {
@@ -164,7 +164,10 @@ test("slow clients are disconnected instead of silently missing match start", as
   const host = new Peer(url);
   const guest = new Peer(url);
   try {
-    const [hostWelcome] = await Promise.all([host.wait("welcome"), guest.wait("welcome")]);
+    const [hostWelcome] = await Promise.all([
+      host.wait("welcome"),
+      guest.wait("welcome"),
+    ]);
     host.send({
       type: "create",
       name: "Slow Host",
@@ -197,7 +200,10 @@ test("slow clients are disconnected instead of silently missing match start", as
     await Promise.race([
       disconnected,
       new Promise<never>((_resolve, reject) =>
-        setTimeout(() => reject(new Error("slow peer was not disconnected")), 1_000),
+        setTimeout(
+          () => reject(new Error("slow peer was not disconnected")),
+          1_000,
+        ),
       ),
     ]);
     assert.equal(server.clients.has(hostWelcome.id), false);
@@ -247,7 +253,8 @@ test("list flood is requester-only and rate limited", async () => {
       .filter((peer) => peer !== requester)
       .reduce(
         (sum, peer) =>
-          sum + peer.messages.filter((message) => message.type === "rooms").length,
+          sum +
+          peer.messages.filter((message) => message.type === "rooms").length,
         0,
       );
     assert.equal(otherPeerReplies, 0, "list replies are requester-only");
@@ -264,7 +271,9 @@ test("malformed frames and concurrent rooms stay isolated and responsive", async
   const peers = Array.from({ length: roomCount * 2 }, () => new Peer(url));
   const oversized = new Peer(url);
   try {
-    await Promise.all([...peers, oversized].map((peer) => peer.wait("welcome")));
+    await Promise.all(
+      [...peers, oversized].map((peer) => peer.wait("welcome")),
+    );
     const codes: string[] = [];
     const states: MatchState[] = [];
     for (let i = 0; i < roomCount; i++) {
@@ -356,12 +365,17 @@ test("malformed frames and concurrent rooms stay isolated and responsive", async
     const tickElapsedMs = performance.now() - tickStart;
     const deltas = states.map((state, index) => state.tick - before[index]);
     const rates = deltas.map((delta) => (delta * 1_000) / tickElapsedMs);
-    assert.ok(rates.every((rate) => rate >= 55 && rate <= 65), `tick rates: ${rates}`);
-    assert.ok(Math.max(...deltas) - Math.min(...deltas) <= 1, `tick deltas: ${deltas}`);
+    assert.ok(
+      rates.every((rate) => rate >= 55 && rate <= 65),
+      `tick rates: ${rates}`,
+    );
+    assert.ok(
+      Math.max(...deltas) - Math.min(...deltas) <= 1,
+      `tick deltas: ${deltas}`,
+    );
   } finally {
     peers.forEach((peer) => peer.socket.terminate());
     oversized.socket.terminate();
     await server.close();
   }
 });
-

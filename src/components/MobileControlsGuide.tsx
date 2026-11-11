@@ -14,7 +14,7 @@ import {
 import {
   SUPER_ENERGY_COST,
   SUPER_CHARGE_SECONDS_LABEL,
-} from "../../shared/content";
+} from "../../shared/roster/roster";
 import { Portrait } from "./Portrait";
 
 const movement = [

@@ -38,7 +38,7 @@ const testFiles = [];
 })("tests");
 
 // Relative module specifiers and repo paths read at runtime, e.g.
-// readFile("shared/asset-variants.json") or new URL("./x.worker.ts", import.meta.url).
+// readFile("server/asset-variants.json") or new URL("./x.worker.ts", import.meta.url).
 const SPECIFIER =
   /(?:from\s+|import\s*\(\s*|import\s+|new URL\(\s*)["'](\.{1,2}\/[^"']+)["']/g;
 const REPO_PATH =
@@ -97,7 +97,7 @@ const checks = {
   ),
   typecheck: /\.(ts|tsx|json)$/,
   assets:
-    /^(public\/assets\/|shared\/(sprite-geometry|fighters)\.json$|scripts\/validate-character-assets\.mjs$)/,
+    /^(public\/assets\/|src\/game\/assets\/manifests\/sprite-geometry\.json$|shared\/roster\/fighters\.json$|scripts\/validate-character-assets\.mjs$)/,
   audit: /^package-lock\.json$/,
   "deploy-controls": /^deploy\//,
   // Browser layout checks for anything that changes what the lobby or arena shows.

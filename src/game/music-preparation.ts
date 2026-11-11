@@ -1,7 +1,7 @@
-import type { FighterId } from "../../shared/content";
+import type { FighterId } from "../../shared/roster/roster";
 import { writeArcadeMusic } from "./arcade-music";
 import { writeFinaleScore } from "./finale-score";
-import type { FinaleDefinition } from "../../shared/finales";
+import type { FinaleDefinition } from "../../shared/engine/finales/finales";
 import type { VictoryMusicStyle } from "./victory-types";
 import { writeVictoryScore } from "./victory-score";
 

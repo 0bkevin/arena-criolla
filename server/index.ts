@@ -1,6 +1,6 @@
 import "dotenv/config";
 import express from "express";
-import { assetVersion } from "../shared/asset-versions";
+import { assetVersion } from "./asset-versions";
 import { createServer } from "node:http";
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
@@ -15,7 +15,7 @@ import {
 import { WebSocket, WebSocketServer, type RawData } from "ws";
 import { Lobby } from "../shared/lobby/lobby";
 import { allowedWebSocketOrigin, securityHeaders } from "./security";
-import assetVariants from "../shared/asset-variants.json";
+import assetVariants from "./asset-variants.json";
 import { precompressedAssets } from "./precompressed";
 import {
   losslessAssetDelivery,

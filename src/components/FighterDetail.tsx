@@ -7,7 +7,7 @@ import {
   type CSSProperties,
 } from "react";
 import { ArrowRight } from "lucide-react";
-import { fighterById, type FighterId } from "../../shared/content";
+import { fighterById, type FighterId } from "../../shared/roster/roster";
 import { Modal } from "./Modal";
 import { FighterMovePreview } from "./FighterMovePreview";
 import { moveDemoLabel, type GuideMove } from "../game/move-demo";

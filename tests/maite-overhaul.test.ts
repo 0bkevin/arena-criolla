@@ -1,7 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createMatch, emptyInput, stepMatch, type Input } from "./helpers/charged-finale-engine";
-import { fighterById, type FighterId } from "../shared/content";
+import {
+  createMatch,
+  emptyInput,
+  stepMatch,
+  type Input,
+} from "./helpers/charged-finale-engine";
+import { fighterById, type FighterId } from "../shared/roster/roster";
 function setup(side: 0 | 1 = 0, gap = 430, rival: FighterId = "zavarce") {
   const actor = { name: "Maite", fighter: "maite" as const, wins: 3 },
     other = { name: "Rival", fighter: rival, wins: 3 };

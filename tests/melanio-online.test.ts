@@ -2,9 +2,13 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { WebSocket } from "ws";
 import { makeArenaServer } from "../server/index";
-import { emptyInput, type Input, type MatchState } from "../shared/engine";
-import type { BuiltInFighterId } from "../shared/content";
-import type { ServerMessage } from "../shared/protocol";
+import {
+  emptyInput,
+  type Input,
+  type MatchState,
+} from "../shared/engine/engine";
+import type { BuiltInFighterId } from "../shared/roster/roster";
+import type { ServerMessage } from "../shared/lobby/protocol";
 
 class Peer {
   readonly messages: ServerMessage[] = [];
@@ -190,7 +194,9 @@ test("Melanio signal returns to its owner with synchronized ownership and veloci
         host.wait("left"),
         guest.wait(
           "room",
-          (message) => message.room.code === pair.code && message.room.players.length === 1,
+          (message) =>
+            message.room.code === pair.code &&
+            message.room.players.length === 1,
         ),
       ]);
       guest.send({ type: "leave" });

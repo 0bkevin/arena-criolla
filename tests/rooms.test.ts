@@ -7,15 +7,15 @@ import {
   stepMatch,
   type Input,
   type MatchState,
-} from "../shared/engine";
-import { finaleById } from "../shared/finales";
-import type { ClientMessage, ServerMessage } from "../shared/protocol";
+} from "../shared/engine/engine";
+import { finaleById } from "../shared/engine/finales/finales";
+import type { ClientMessage, ServerMessage } from "../shared/lobby/protocol";
 import {
   STAGES,
   SUPER_INTERRUPT_ENERGY_COST,
   platformsAtTick,
   type FighterId,
-} from "../shared/content";
+} from "../shared/roster/roster";
 
 class TestClient {
   messages: ServerMessage[] = [];
@@ -349,18 +349,29 @@ test("online super charging cancels on release and on a stalled client's expired
       input.actions.super = 1;
       input.superHeld = true;
       match.a.send({ type: "input", matchId: match.active.state!.id, input });
-      const charging = await match.a.wait("state", message => message.state.players[0].superChargeTicks > 0);
+      const charging = await match.a.wait(
+        "state",
+        (message) => message.state.players[0].superChargeTicks > 0,
+      );
       assert.equal(charging.state.players[0].superUsed, false);
       if (release) {
         input.superHeld = false;
         match.a.send({ type: "input", matchId: match.active.state!.id, input });
       }
-      const cancelled = await match.a.wait("state", message => message.state.tick > charging.state.tick && message.state.players[0].superChargeTicks === 0);
+      const cancelled = await match.a.wait(
+        "state",
+        (message) =>
+          message.state.tick > charging.state.tick &&
+          message.state.players[0].superChargeTicks === 0,
+      );
       assert.equal(cancelled.state.players[0].superUsed, false);
       assert.equal(cancelled.state.players[0].energy, 100);
       assert.equal(match.client.input.superHeld, false);
       assert.equal(match.client.input.actions.super, 1);
-      const peer = await match.b.wait("state", message => message.state.tick === cancelled.state.tick);
+      const peer = await match.b.wait(
+        "state",
+        (message) => message.state.tick === cancelled.state.tick,
+      );
       assert.deepEqual(peer.state, cancelled.state);
     } finally {
       await match.close();
@@ -378,17 +389,32 @@ test("consecutive release and repress packets cannot reuse an online charge", as
     input.superHeld = true;
     input.actions.super = 1;
     stopHold = match.a.hold(state.id, input);
-    await match.a.wait("state", message => message.state.players[0].superChargeTicks >= 8);
+    await match.a.wait(
+      "state",
+      (message) => message.state.players[0].superChargeTicks >= 8,
+    );
     input.superHeld = false;
     match.a.send({ type: "input", matchId: state.id, input });
     input.superHeld = true;
     input.actions.super++;
     match.a.send({ type: "input", matchId: state.id, input });
-    const restarted = await match.a.wait("state", message => message.state.players[0].lastActions.super === 2);
+    const restarted = await match.a.wait(
+      "state",
+      (message) => message.state.players[0].lastActions.super === 2,
+    );
     assert.equal(restarted.state.players[0].superUsed, false);
-    assert.ok(restarted.state.players[0].superChargeTicks > 0 && restarted.state.players[0].superChargeTicks < 10);
-    const activated = await match.a.wait("state", message => message.state.players[0].superUsed);
-    const peer = await match.b.wait("state", message => message.state.tick === activated.state.tick);
+    assert.ok(
+      restarted.state.players[0].superChargeTicks > 0 &&
+        restarted.state.players[0].superChargeTicks < 10,
+    );
+    const activated = await match.a.wait(
+      "state",
+      (message) => message.state.players[0].superUsed,
+    );
+    const peer = await match.b.wait(
+      "state",
+      (message) => message.state.tick === activated.state.tick,
+    );
     assert.deepEqual(peer.state, activated.state);
   } finally {
     stopHold();
@@ -405,16 +431,29 @@ test("online hits interrupt a charge and synchronize its penalty without consumi
       const state = match.active.state!;
       state.players[0].x = 330;
       state.players[1].x = 410;
-      state.players.forEach(player => { player.energy = 100; });
+      state.players.forEach((player) => {
+        player.energy = 100;
+      });
       const input = emptyInput();
       input.actions.super = 1;
       input.superHeld = true;
       stopHold = (side === 0 ? match.a : match.b).hold(state.id, input);
-      await match.a.wait("state", message => message.state.players[side].superChargeTicks >= 5);
+      await match.a.wait(
+        "state",
+        (message) => message.state.players[side].superChargeTicks >= 5,
+      );
       const hit = emptyInput();
       hit.actions.light = 1;
-      (side === 0 ? match.b : match.a).send({ type: "input", matchId: state.id, input: hit });
-      const interrupted = await match.a.wait("state", message => message.state.players[side].superChargeInterruptedTick !== undefined);
+      (side === 0 ? match.b : match.a).send({
+        type: "input",
+        matchId: state.id,
+        input: hit,
+      });
+      const interrupted = await match.a.wait(
+        "state",
+        (message) =>
+          message.state.players[side].superChargeInterruptedTick !== undefined,
+      );
       const player = interrupted.state.players[side];
       assert.equal(player.superChargeTicks, 0);
       assert.equal(player.superUsed, false);
@@ -423,7 +462,10 @@ test("online hits interrupt a charge and synchronize its penalty without consumi
         Math.abs(player.energy - (100 - SUPER_INTERRUPT_ENERGY_COST)) < 1,
         "the interruption charges its energy penalty",
       );
-      const peer = await match.b.wait("state", message => message.state.tick === interrupted.state.tick);
+      const peer = await match.b.wait(
+        "state",
+        (message) => message.state.tick === interrupted.state.tick,
+      );
       assert.deepEqual(peer.state, interrupted.state);
     } finally {
       stopHold();
@@ -544,7 +586,9 @@ test("online double knockouts synchronize a draw and award neither player a win"
 });
 
 test("online riders agree on moving-platform carry, jumping and dropping", async () => {
-  for (const stage of STAGES.filter((s) => s.platforms.some((p) => p.motion)).slice(0, 1)) {
+  for (const stage of STAGES.filter((s) =>
+    s.platforms.some((p) => p.motion),
+  ).slice(0, 1)) {
     const match = await onlineMatch(stage.id);
     try {
       const state = match.active.state!;
@@ -681,8 +725,7 @@ test("anonymous rooms synchronize two players, validate inputs, rematch, and rec
     a.send({ type: "select", stage: "guaira" });
     await a.wait(
       "room",
-      (m) =>
-        m.room.stage === "guaira" && m.room.players.every((p) => !p.ready),
+      (m) => m.room.stage === "guaira" && m.room.players.every((p) => !p.ready),
     );
     a.send({ type: "ready", ready: true });
     b.send({ type: "ready", ready: true });
@@ -790,14 +833,26 @@ test("rooms allow Vicente's definitive from zero wins and enforce its energy cos
         const input = emptyInput();
         input.actions.super++;
         input.superHeld = true;
-        stopHolds.push(match.a.hold(state.id, input), match.b.hold(state.id, input));
-        const preparing = await match.a.wait("state", (message) =>
-          message.state.players.every((player) => player.lastActions.super === 1),
+        stopHolds.push(
+          match.a.hold(state.id, input),
+          match.b.hold(state.id, input),
         );
-        assert.ok(preparing.state.players.every(player => player.attack === null && !player.superUsed));
-        const received = energy >= 90
-          ? await match.a.wait("state", message => message.state.players.every(player => player.superUsed))
-          : preparing;
+        const preparing = await match.a.wait("state", (message) =>
+          message.state.players.every(
+            (player) => player.lastActions.super === 1,
+          ),
+        );
+        assert.ok(
+          preparing.state.players.every(
+            (player) => player.attack === null && !player.superUsed,
+          ),
+        );
+        const received =
+          energy >= 90
+            ? await match.a.wait("state", (message) =>
+                message.state.players.every((player) => player.superUsed),
+              )
+            : preparing;
         const remote = await match.b.wait(
           "state",
           (message) => message.state.tick === received.state.tick,
@@ -816,7 +871,7 @@ test("rooms allow Vicente's definitive from zero wins and enforce its energy cos
           }
         }
       } finally {
-        stopHolds.forEach(stop => stop());
+        stopHolds.forEach((stop) => stop());
         await match.close();
       }
     }

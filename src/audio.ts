@@ -1,16 +1,20 @@
-import { fighterById, type FighterId, type StageId } from "../shared/content";
+import {
+  fighterById,
+  type FighterId,
+  type StageId,
+} from "../shared/roster/roster";
 import { REACTION_CLIPS, type ReactionKind } from "./game/reactions";
 import { assetUrl } from "./asset-url";
 import { CULTURE_SOUNDS } from "./game/culture-sounds";
-import { presentationById } from "../shared/presentation";
-import { WORLD } from "../shared/arena";
-import { TECHNIQUES } from "../shared/techniques";
+import { presentationById } from "../shared/engine/presentation";
+import { WORLD } from "../shared/engine/arena";
+import { TECHNIQUES } from "../shared/engine/techniques";
 import { MUSIC_SECONDS } from "./game/arcade-music";
 import { VICTORY_MUSIC_MS } from "./game/victory-types";
 import { victoryMusicStyle } from "./game/victory";
 import { preparationWorker } from "./game/preparation-worker";
 import { synthesizeScore, type ScoreRequest } from "./game/music-preparation";
-import { finaleById, type FinaleState } from "../shared/finales";
+import { finaleById, type FinaleState } from "../shared/engine/finales/finales";
 
 type SoundKind =
   | "select"

@@ -5,8 +5,8 @@ import {
   emptyInput,
   stepMatch,
   type Input,
-} from "../shared/engine";
-import type { FighterId } from "../shared/content";
+} from "../shared/engine/engine";
+import type { FighterId } from "../shared/roster/roster";
 
 function rush(id: FighterId, side: 0 | 1, gap: number, guard = false) {
   const configs = [

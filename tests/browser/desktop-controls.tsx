@@ -5,7 +5,11 @@ import { createRoot, type Root } from "react-dom/client";
 import { flushSync } from "react-dom";
 import { Game, type GameMode } from "../../src/components/Game";
 import { Help } from "../../src/components/Help";
-import { createMatch, emptyInput, type Input } from "../../shared/engine";
+import {
+  createMatch,
+  emptyInput,
+  type Input,
+} from "../../shared/engine/engine";
 import "../../src/base.css";
 import "../../src/styles.css";
 import "../../src/lobby.css";

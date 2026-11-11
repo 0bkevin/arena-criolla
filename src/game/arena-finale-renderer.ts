@@ -6,10 +6,14 @@ import {
   mountedFinale,
   rideMoving,
   type ArenaFinaleActor,
-} from "../../shared/arena-finales";
-import type { FieldFinaleState } from "../../shared/field-finales";
-import type { MatchState, PlayerState, Projectile } from "../../shared/engine";
-import courier from "../../shared/courier-assets.json";
+} from "../../shared/engine/finales/arena-finales";
+import type { FieldFinaleState } from "../../shared/engine/finales/field-finales";
+import type {
+  MatchState,
+  PlayerState,
+  Projectile,
+} from "../../shared/engine/engine";
+import courier from "./assets/manifests/courier-assets.json";
 import { ATTACK_ART, drawAttackArt, hasAttackArt } from "./attack-art";
 import { BOLIVAR_BODY_HEIGHTS } from "./finales/bolivar";
 import { aliPoseHeight } from "./finales/ali";
@@ -19,7 +23,7 @@ import { lloronaHeight } from "./finales/llorona";
 import { OSCAR_HEIGHTS } from "./finales/oscar";
 import { CHATAING_BODY_HEIGHTS } from "./finales/chataing";
 import { GEORGE_BODY_HEIGHTS, GEORGE_POSE_SCALE } from "./finales/george";
-import { WORLD } from "../../shared/arena";
+import { WORLD } from "../../shared/engine/arena";
 import {
   inakiFinalePose,
   inakiPoseHeight,

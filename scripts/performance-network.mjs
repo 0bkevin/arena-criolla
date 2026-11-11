@@ -10,8 +10,10 @@ import { performance } from "node:perf_hooks";
 const count = Number(process.env.ARENA_PERF_PLAYERS || 500);
 const seconds = Number(process.env.ARENA_PERF_SECONDS || 15);
 const mixedRoster = process.env.ARENA_PERF_ROSTER === "all";
-const fighters = JSON.parse(await readFile("shared/fighters.json", "utf8"));
-const stages = JSON.parse(await readFile("shared/stages.json", "utf8"));
+const fighters = JSON.parse(
+  await readFile("shared/roster/fighters.json", "utf8"),
+);
+const stages = JSON.parse(await readFile("shared/roster/stages.json", "utf8"));
 if (
   !Number.isSafeInteger(count) ||
   count < 2 ||

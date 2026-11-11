@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { createMatch, emptyInput, stepMatch } from "../shared/engine";
+import { createMatch, emptyInput, stepMatch } from "../shared/engine/engine";
 function setup(side: 0 | 1 = 0, distance = 80) {
   const actor = { name: "Bolívar", fighter: "bolivar" as const, wins: 3 },
     rival = { name: "Vicente", fighter: "zavarce" as const, wins: 3 };

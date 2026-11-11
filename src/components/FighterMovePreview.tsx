@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { fighterById, type FighterId } from "../../shared/content";
-import { WORLD } from "../../shared/engine";
+import { fighterById, type FighterId } from "../../shared/roster/roster";
+import { WORLD } from "../../shared/engine/engine";
 import { preloadMovePreviewAssets } from "../game/move-preview-assets";
 import { simulateMoveDemo, type GuideMove } from "../game/move-demo";
 import { renderMatch, type Assets } from "../game/renderer";

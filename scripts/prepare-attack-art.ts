@@ -238,7 +238,7 @@ export async function prepareAttackArt(config: AttackArtConfig) {
     await mkdir(dirname(path), { recursive: true });
   await writeFile(normalized, packed);
   await writeFile(destination, runtime);
-  const manifestPath = "shared/attack-assets.json";
+  const manifestPath = "src/game/assets/manifests/attack-assets.json";
   const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
   manifest[fighter] = { file, frames };
   await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + "\n");

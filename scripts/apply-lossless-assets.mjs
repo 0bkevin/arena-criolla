@@ -20,7 +20,7 @@ export async function applyLosslessAssets(reportFile) {
         .map((line) => JSON.parse(line))
     : JSON.parse(input).assets;
   const variants = JSON.parse(
-    await fs.readFile("shared/asset-variants.json", "utf8"),
+    await fs.readFile("server/asset-variants.json", "utf8"),
   );
   const publicRoot = path.resolve("public");
   let applied = 0,

@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createMatch } from "../shared/engine";
-import { finaleById } from "../shared/finales";
+import { createMatch } from "../shared/engine/engine";
+import { finaleById } from "../shared/engine/finales/finales";
 import { drawFinale } from "../src/game/finale-renderer";
 
 test("Nacho's visual drain pulses exactly on the profile's damage beats", () => {

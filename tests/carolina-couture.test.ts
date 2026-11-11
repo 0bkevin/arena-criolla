@@ -1,9 +1,18 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createMatch, emptyInput, stepMatch, WORLD, type Input } from "./helpers/charged-finale-engine";
-import { fighterById } from "../shared/content";
-import { finaleById } from "../shared/finales";
-import { coutureRunwayRange, COUTURE_MODEL_COUNT } from "../shared/couture-runway";
+import {
+  createMatch,
+  emptyInput,
+  stepMatch,
+  WORLD,
+  type Input,
+} from "./helpers/charged-finale-engine";
+import { fighterById } from "../shared/roster/roster";
+import { finaleById } from "../shared/engine/finales/finales";
+import {
+  coutureRunwayRange,
+  COUTURE_MODEL_COUNT,
+} from "../shared/engine/finales/couture-runway";
 function setup(side: 0 | 1, gap = 180) {
   const a = { name: "Carolina", fighter: "carolina" as const, wins: 3 },
     b = { name: "Rival", fighter: "capriles" as const, wins: 3 },

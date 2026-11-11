@@ -4,7 +4,7 @@ import {
   fighterById,
   platformsAtTick,
   type FighterId,
-} from "../shared/content";
+} from "../shared/roster/roster";
 import {
   ACTIONS,
   createMatch,
@@ -20,7 +20,7 @@ import {
   FINALE_DAMAGE_BEATS,
   FINALE_DURATION,
   finaleById,
-} from "../shared/finales";
+} from "../shared/engine/finales/finales";
 
 function setup(
   fighter: FighterId = "capriles",

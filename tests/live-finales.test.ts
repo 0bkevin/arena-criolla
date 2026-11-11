@@ -7,13 +7,13 @@ import {
   WORLD,
   type Input,
 } from "./helpers/charged-finale-engine";
-import type { FighterId, StageId } from "../shared/content";
+import type { FighterId, StageId } from "../shared/roster/roster";
 import {
   REVIEWED_FINALISTS as reviewed,
   activeArenaPerformance,
   isArenaFinalist,
   type ArenaFinalist,
-} from "../shared/arena-finales";
+} from "../shared/engine/finales/arena-finales";
 
 // The shared field-mode gates are checked once per implementation family:
 // cavalry, courier, emitted notes, local trap, runway model and a custom actor.

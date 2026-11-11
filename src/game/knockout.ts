@@ -1,7 +1,7 @@
-import { WORLD } from "../../shared/arena";
-import { platformsAtTick } from "../../shared/content";
-import type { MatchState } from "../../shared/engine";
-import { activeRunway } from "../../shared/field-finales";
+import { WORLD } from "../../shared/engine/arena";
+import { platformsAtTick } from "../../shared/roster/roster";
+import type { MatchState } from "../../shared/engine/engine";
+import { activeRunway } from "../../shared/engine/finales/field-finales";
 
 export const KNOCKOUT_HOLD_MS = 2000;
 export const KNOCKOUT_RECOIL_MS = 650;

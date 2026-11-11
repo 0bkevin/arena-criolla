@@ -3,18 +3,18 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import sharp from "sharp";
-import { FIGHTERS } from "../shared/content";
-import busts from "../shared/portrait-busts.json";
+import { FIGHTERS } from "../shared/roster/roster";
+import busts from "../src/game/assets/manifests/portrait-busts.json";
 import {
   bustPlacement,
   PORTRAIT_CANVAS,
   type PortraitBust,
-} from "../shared/portrait-busts";
-import entranceManifest from "../shared/entrance-assets.json";
-import atlasManifest from "../shared/sprite-geometry.json";
+} from "../src/game/assets/portrait-bust-layout";
+import entranceManifest from "../src/game/assets/manifests/entrance-assets.json";
+import atlasManifest from "../src/game/assets/manifests/sprite-geometry.json";
 import { selectionBodyHeight } from "../src/game/entrance-framing";
 import type { EntranceAsset } from "../src/game/assets";
-import { presentationById } from "../shared/presentation";
+import { presentationById } from "../shared/engine/presentation";
 
 const manifest: Record<string, PortraitBust> = busts;
 const sha256 = (data: Buffer) =>

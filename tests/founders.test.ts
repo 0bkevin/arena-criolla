@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import type { FounderFighterId } from "../shared/content";
+import type { FounderFighterId } from "../shared/roster/roster";
 import {
   createMatch,
   emptyInput,
@@ -8,7 +8,7 @@ import {
   WORLD,
   type Input,
   type MatchState,
-} from "../shared/engine";
+} from "../shared/engine/engine";
 function setup(fighter: FounderFighterId, attacker: 0 | 1 = 0) {
   const state = createMatch("caracas", [
     { name: "Uno", fighter: attacker === 0 ? fighter : "zavarce", wins: 0 },

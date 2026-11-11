@@ -1,12 +1,12 @@
-import { fighterById, stageById } from "../../shared/content";
-import type { MatchState } from "../../shared/engine";
-import { finaleById } from "../../shared/finales";
+import { fighterById, stageById } from "../../shared/roster/roster";
+import type { MatchState } from "../../shared/engine/engine";
+import { finaleById } from "../../shared/engine/finales/finales";
 import {
   INTRO_COUNTDOWN_START,
   entranceProgress,
   introActor,
-} from "../../shared/presentation";
-import { TECHNIQUES } from "../../shared/techniques";
+} from "../../shared/engine/presentation";
+import { TECHNIQUES } from "../../shared/engine/techniques";
 import {
   advanceArenaCamera,
   cameraBounds,

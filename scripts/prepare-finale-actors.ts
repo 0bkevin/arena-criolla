@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 import { normalizeGeneratedAtlas } from "../server/normalize-atlas";
-import { FINALE_ASSET_GROUPS } from "../shared/finales";
+import { FINALE_ASSET_GROUPS } from "../shared/engine/finales/finales";
 
 export const ACTOR_CELL = 512;
 export const ACTOR_BASELINE = 482;
@@ -626,7 +626,7 @@ export async function prepareFinaleActors(
     await writeChanged(path.join(root, item.runtime), item.webp);
   }
   await writeChanged(
-    path.join(root, "shared/finale-actor-assets.json"),
+    path.join(root, "src/game/assets/manifests/finale-actor-assets.json"),
     JSON.stringify(manifest, null, 2) + "\n",
   );
   await writeChanged(

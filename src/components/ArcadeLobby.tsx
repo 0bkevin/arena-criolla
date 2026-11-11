@@ -27,7 +27,7 @@ import {
   type FighterId,
   type StageDefinition,
   type StageId,
-} from "../../shared/content";
+} from "../../shared/roster/roster";
 import type { useArenaNetwork } from "../network";
 import type { GameMode } from "./Game";
 import { Portrait } from "./Portrait";

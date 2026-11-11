@@ -1,4 +1,4 @@
-import type { Effect } from "../../shared/engine";
+import type { Effect } from "../../shared/engine/engine";
 
 export function drawImpact(ctx: CanvasRenderingContext2D, effect: Effect) {
   const age = effect.duration - effect.life;

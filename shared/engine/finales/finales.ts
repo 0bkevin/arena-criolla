@@ -3,7 +3,11 @@ import {
   ARENA_FINALE_CUES,
   isArenaFinalist,
 } from "./arena-finales";
-import { fighterById, type BuiltInFighterId, type FighterId } from "./content";
+import {
+  fighterById,
+  type BuiltInFighterId,
+  type FighterId,
+} from "../../roster/roster";
 import perroMujeriego from "./perro-mujeriego-choreography.json";
 
 export type FinaleFamily =

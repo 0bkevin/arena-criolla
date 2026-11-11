@@ -3,12 +3,12 @@ import type {
   ClientMessage,
   RoomView,
   ServerMessage,
-} from "../shared/protocol";
+} from "../shared/lobby/protocol";
 import {
   ARENA_SOCKET_PROTOCOL,
   ROOM_RESUME_PROTOCOL_PREFIX,
-} from "../shared/protocol";
-import type { MatchState } from "../shared/engine";
+} from "../shared/lobby/protocol";
+import type { MatchState } from "../shared/engine/engine";
 
 const ROOM_SESSION_KEY = "arena-room-session-v1";
 function savedRoomSession() {

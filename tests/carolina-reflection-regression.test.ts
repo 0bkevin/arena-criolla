@@ -1,13 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import type { FighterId } from "../shared/content";
+import type { FighterId } from "../shared/roster/roster";
 import {
   createMatch,
   emptyInput,
   stepMatch,
   type Input,
-} from "../shared/engine";
-import { INTRO_TOTAL_TICKS } from "../shared/presentation";
+} from "../shared/engine/engine";
+import { INTRO_TOTAL_TICKS } from "../shared/engine/presentation";
 function setup(side: 0 | 1, gap: number, rivalId: FighterId) {
   const configs = [
     { name: "Carolina", fighter: "carolina" as const, wins: 3 },

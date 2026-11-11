@@ -4,7 +4,7 @@ import { brotliCompress, constants, gzip } from "node:zlib";
 import { promisify } from "node:util";
 import { defineConfig, type Plugin } from "vite";
 import entranceAssets from "./src/entrance-assets.json";
-import { assetVersions } from "./shared/asset-versions";
+import { assetVersions } from "./server/asset-versions";
 
 const versions = await assetVersions("public");
 const versionManifest = JSON.stringify(versions, null, 2) + "\n";

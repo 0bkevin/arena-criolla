@@ -1,7 +1,7 @@
-import { isFighter, isStage } from "../content";
-import { ACTIONS, emptyInput, type Input } from "../engine";
-import type { ClientMessage } from "../protocol";
-import { isRoomCode } from "../room-code";
+import { isFighter, isStage } from "../roster/roster";
+import { ACTIONS, emptyInput, type Input } from "../engine/engine";
+import type { ClientMessage } from "./protocol";
+import { isRoomCode } from "./room-code";
 
 const MAX_ACTION_COUNT = 1_000_000_000;
 

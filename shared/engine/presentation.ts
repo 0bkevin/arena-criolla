@@ -1,4 +1,4 @@
-import type { FighterId } from "./content";
+import type { FighterId } from "../roster/roster";
 import definitions from "./presentations.json";
 
 export type PresentationStyle =

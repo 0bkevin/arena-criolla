@@ -11,16 +11,16 @@
 import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import sharp from "sharp";
-import { FIGHTERS, type FighterId } from "../shared/content";
-import { presentationById } from "../shared/presentation";
-import atlasManifest from "../shared/sprite-geometry.json";
-import entranceManifest from "../shared/entrance-assets.json";
+import { FIGHTERS, type FighterId } from "../shared/roster/roster";
+import { presentationById } from "../shared/engine/presentation";
+import atlasManifest from "../src/game/assets/manifests/sprite-geometry.json";
+import entranceManifest from "../src/game/assets/manifests/entrance-assets.json";
 import { selectionBodyHeight } from "../src/game/entrance-framing";
 import type { EntranceAsset } from "../src/game/assets";
 import { isolateFramePixels } from "../src/game/sprite-isolation";
-import type { PortraitBust } from "../shared/portrait-busts";
+import type { PortraitBust } from "../src/game/assets/portrait-bust-layout";
 
-const MANIFEST = "shared/portrait-busts.json";
+const MANIFEST = "src/game/assets/manifests/portrait-busts.json";
 // Atlas pixels kept around a non-isolated pose for edge filtering.
 const EDGE = 2;
 const check = process.argv.includes("--check");

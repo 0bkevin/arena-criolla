@@ -1,7 +1,7 @@
-import { fieldFinaleBounds } from "../../shared/field-finales";
-import { WORLD } from "../../shared/arena";
-import { fighterById } from "../../shared/content";
-import type { MatchState } from "../../shared/engine";
+import { fieldFinaleBounds } from "../../shared/engine/finales/field-finales";
+import { WORLD } from "../../shared/engine/arena";
+import { fighterById } from "../../shared/roster/roster";
+import type { MatchState } from "../../shared/engine/engine";
 
 export interface ArenaCamera {
   x: number;

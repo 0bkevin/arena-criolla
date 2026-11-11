@@ -1,8 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { fighterById } from "../shared/content";
-import actors from "../shared/finale-actor-assets.json";
-import choreography from "../shared/perro-mujeriego-assets.json";
+import { fighterById } from "../shared/roster/roster";
+import actors from "../src/game/assets/manifests/finale-actor-assets.json";
+import choreography from "../src/game/assets/manifests/perro-mujeriego-assets.json";
 import { browserFixture } from "./helpers/asset-browser";
 
 const primaryDance = "perro-mujeriego-v3-nacho";

@@ -1,9 +1,9 @@
-import type { FighterId } from "../../shared/content";
+import type { FighterId } from "../../shared/roster/roster";
 import {
   RUNWAY_POSE_TICKS,
   SQUAD_LAUNCH_TICK,
-} from "../../shared/field-finales";
-import type { FinaleDefinition } from "../../shared/finales";
+} from "../../shared/engine/finales/field-finales";
+import type { FinaleDefinition } from "../../shared/engine/finales/finales";
 
 /** Original score, synthesized locally. No commercial song or sampled recording. */
 export function writeFinaleScore(

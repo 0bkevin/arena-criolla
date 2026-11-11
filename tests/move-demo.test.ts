@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { BUILT_IN_FIGHTERS } from "../shared/content";
-import type { MatchState } from "../shared/engine";
+import { BUILT_IN_FIGHTERS } from "../shared/roster/roster";
+import type { MatchState } from "../shared/engine/engine";
 import { simulateMoveDemo } from "../src/game/move-demo";
 
 /** Distinct hit effects dealt by the demonstrating fighter, in order. */

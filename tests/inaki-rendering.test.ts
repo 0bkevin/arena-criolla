@@ -5,7 +5,7 @@ import {
   emptyInput,
   stepMatch,
   type Input,
-} from "../shared/engine";
+} from "../shared/engine/engine";
 import { ATTACK_ART } from "../src/game/attack-art";
 import { drawArenaPerformer } from "../src/game/arena-finale-renderer";
 import {

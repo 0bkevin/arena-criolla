@@ -1,4 +1,4 @@
-import type { MatchState, PlayerState } from "./engine";
+import type { MatchState, PlayerState } from "../engine";
 import type { FieldFinaleState } from "./field-finales";
 
 export const DORANGEL_FINALE = {

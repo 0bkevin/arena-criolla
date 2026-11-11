@@ -1,5 +1,5 @@
-import { coutureRunwayRange } from "../../../shared/couture-runway";
-import type { FieldFinaleState } from "../../../shared/field-finales";
+import { coutureRunwayRange } from "../../../shared/engine/finales/couture-runway";
+import type { FieldFinaleState } from "../../../shared/engine/finales/field-finales";
 import { ATTACK_ART } from "../attack-art";
 
 export const CAROLINA_MODEL_POSES = Array.from({ length: 4 }, (_, i) => [

@@ -1,5 +1,5 @@
-import type { Projectile } from "../../shared/engine";
-import atlas from "../../shared/courier-assets.json";
+import type { Projectile } from "../../shared/engine/engine";
+import atlas from "./assets/manifests/courier-assets.json";
 
 /** Painted rider sprites share the fighters' art; staggered depth keeps the pack legible. */
 export function drawCourierMotorcycle(

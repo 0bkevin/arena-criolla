@@ -1,6 +1,9 @@
-import { platformsAtTick, type StageDefinition } from "../../shared/content";
-import { WORLD } from "../../shared/engine";
-import { ARENA_ART } from "../../shared/arena";
+import {
+  platformsAtTick,
+  type StageDefinition,
+} from "../../shared/roster/roster";
+import { WORLD } from "../../shared/engine/engine";
+import { ARENA_ART } from "../../shared/engine/arena";
 import { arenaBounds, sceneryCover, sceneryTiles } from "./viewport";
 
 const pixel = (

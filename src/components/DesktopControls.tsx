@@ -5,8 +5,8 @@ import {
   fighterById,
   SUPER_CHARGE_SECONDS_LABEL,
   SUPER_ENERGY_COST,
-} from "../../shared/content";
-import type { PlayerState } from "../../shared/engine";
+} from "../../shared/roster/roster";
+import type { PlayerState } from "../../shared/engine/engine";
 
 const bindings = [
   {

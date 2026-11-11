@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import sharp from "sharp";
-import { STAGES } from "../shared/content";
-import manifest from "../shared/stage-thumbnails.json";
+import { STAGES } from "../shared/roster/roster";
+import manifest from "../src/game/assets/manifests/stage-thumbnails.json";
 import { assetUrl } from "../src/asset-url";
 import { stageThumbnail } from "../src/stage-thumbnail";
 

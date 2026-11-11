@@ -1,13 +1,13 @@
-import { fighterById, type FighterId } from "../../shared/content";
-import { CHOREOGRAPHIES } from "../../shared/choreography";
-import type { MatchState } from "../../shared/engine";
+import { fighterById, type FighterId } from "../../shared/roster/roster";
+import { CHOREOGRAPHIES } from "./choreography/choreography";
+import type { MatchState } from "../../shared/engine/engine";
 import {
   entranceProgress,
   introActor,
   INTRO_COUNTDOWN_START,
   presentationById,
   samplePose,
-} from "../../shared/presentation";
+} from "../../shared/engine/presentation";
 import type { SpriteAsset } from "./assets";
 import { drawPresentation } from "./presentation-renderer";
 

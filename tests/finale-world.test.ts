@@ -1,13 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { isArenaFinalist } from "../shared/arena-finales";
+import { isArenaFinalist } from "../shared/engine/finales/arena-finales";
 import {
   STAGES,
   fighterById,
   platformsAtTick,
   type FighterId,
   type StageId,
-} from "../shared/content";
+} from "../shared/roster/roster";
 import {
   WORLD,
   createMatch,
@@ -16,7 +16,10 @@ import {
   type Input,
   type MatchState,
 } from "./helpers/charged-finale-engine";
-import { FINALE_CAPTURE_TICK, finaleById } from "../shared/finales";
+import {
+  FINALE_CAPTURE_TICK,
+  finaleById,
+} from "../shared/engine/finales/finales";
 import { advanceArenaCamera, cameraBounds } from "../src/game/arena-camera";
 import { renderMatch, type Assets } from "../src/game/renderer";
 import { drawStage } from "../src/game/stage-renderer";

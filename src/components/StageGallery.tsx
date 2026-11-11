@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { STAGES, type StageId } from "../../shared/content";
+import { STAGES, type StageId } from "../../shared/roster/roster";
 import { stageThumbnail } from "../stage-thumbnail";
 
 export function StageGallery({

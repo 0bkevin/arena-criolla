@@ -1,5 +1,5 @@
-import { fighterById } from "../../shared/content";
-import type { PlayerState } from "../../shared/engine";
+import { fighterById } from "../../shared/roster/roster";
+import type { PlayerState } from "../../shared/engine/engine";
 
 /** The category stays readable in combat; requested character lines keep their voice. */
 export function combatLabel(player: PlayerState, tick: number): string {

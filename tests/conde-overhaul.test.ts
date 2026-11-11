@@ -1,8 +1,15 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { fighterById } from "../shared/content";
-import { cpuInput, createMatch, emptyInput, outgoingDamageMultiplier, stepMatch, type Input } from "./helpers/charged-finale-engine";
-import { TECHNIQUES } from "../shared/techniques";
+import { fighterById } from "../shared/roster/roster";
+import {
+  cpuInput,
+  createMatch,
+  emptyInput,
+  outgoingDamageMultiplier,
+  stepMatch,
+  type Input,
+} from "./helpers/charged-finale-engine";
+import { TECHNIQUES } from "../shared/engine/techniques";
 function setup(side: 0 | 1 = 0, gap = 500) {
   const conde = { name: "Conde", fighter: "conde" as const, wins: 3 };
   const rival = { name: "Rival", fighter: "javier" as const, wins: 3 };

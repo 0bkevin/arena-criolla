@@ -2,14 +2,19 @@ import {
   fighterById,
   SUPER_CHARGE_TICKS,
   type FighterId,
-} from "../../shared/content";
-import { createMatch, emptyInput, stepMatch, WORLD } from "../../shared/engine";
-import { finaleById } from "../../shared/finales";
-import { TECHNIQUES } from "../../shared/techniques";
+} from "../../shared/roster/roster";
+import {
+  createMatch,
+  emptyInput,
+  stepMatch,
+  WORLD,
+} from "../../shared/engine/engine";
+import { finaleById } from "../../shared/engine/finales/finales";
+import { TECHNIQUES } from "../../shared/engine/techniques";
 import {
   arenaFinaleInRange,
   isArenaFinalist,
-} from "../../shared/arena-finales";
+} from "../../shared/engine/finales/arena-finales";
 
 export type GuideMove =
   "light" | "heavy" | "combo1" | "combo2" | "special" | "final";

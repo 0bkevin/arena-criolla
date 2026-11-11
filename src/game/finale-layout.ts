@@ -1,5 +1,5 @@
-import type { MatchState } from "../../shared/engine";
-import { finaleById } from "../../shared/finales";
+import type { MatchState } from "../../shared/engine/engine";
+import { finaleById } from "../../shared/engine/finales/finales";
 
 const SCALE = 177 / 300;
 type Anchor = readonly [x: number, feet: number];

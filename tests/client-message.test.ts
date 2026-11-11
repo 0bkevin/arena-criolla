@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { ACTIONS, emptyInput } from "../shared/engine";
+import { ACTIONS, emptyInput } from "../shared/engine/engine";
 import {
   cleanName,
   cleanWins,
