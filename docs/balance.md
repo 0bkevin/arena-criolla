@@ -202,6 +202,44 @@ respectively. Dayana wins 37.73% and 45.45%, and Juan wins 37.50% and 33.41%,
 respectively. Damage rates and win rates are proxies, not a validated
 competitive tier list.
 
+## Ring-out penalty
+
+Falling out of the arena used to cost the stock outright: the fighter lost the
+health they had left and a life, a median of 55.52 HP of unused health on the
+Caracas run above. A fall now costs a fixed amount of health and the fighter
+keeps the stock; it costs the stock only when that amount would leave them at 0
+HP or less, so a fall never costs more than 30 HP of health.
+
+| Location           | Value             | Old → new                   | Reason                                                |
+| ------------------ | ----------------- | --------------------------- | ----------------------------------------------------- |
+| `damage-values.ts` | `RING_OUT_DAMAGE` | whole stock → 30 HP or less | Falls were deciding about 93% of stocks against CPUs. |
+
+The penalty is applied once per fall, before armor or transformation, so it is
+the same for every fighter and seat. The fighter then respawns with the same
+reset as after a lost stock: spawn point, 110 ticks of protection, 20 energy
+lost, and the fighter's tethers, transformation and definitive cleared. The
+balance report no longer counts the 30 HP as damage dealt by the opponent; it
+lists falls separately.
+
+Caracas, same settings as above (12,320 hard CPU matches); the baseline is the
+final run of the previous pass:
+
+| Measure                  | Before → after                                                |
+| ------------------------ | ------------------------------------------------------------- |
+| HP KOs / ring-out stocks | 2,531 / 32,233 → 16,837 / 18,657                              |
+| Ring-outs of all stocks  | 92.72% → 52.56%                                               |
+| Falls that kept a stock  | none → 34,548 (HP before the fall median 59.28)               |
+| HP left at a ring-out    | median 55.52 → 14.67                                          |
+| Median stock duration    | 11.55 → 18.57 s (+60.8%)                                      |
+| Mean match duration      | 26.85 → 37.86 s (+41.0%)                                      |
+| Median seconds / 100 HP  | 29.98 → 31.26                                                 |
+| Fighter win-rate range   | Dorángel 36.14%–Amanda 85.45% → Chataing 29.77%–Amanda 90.00% |
+
+Health now decides about half of all stocks, and matches remain well short of
+the two-minute limit: no CPU match reached a timeout. Chataing falls below the
+35–65% band, and Amanda (90.00%) and Edgar (80.91%) rise further; these are CPU
+proxies and need human play-testing before compensating with damage.
+
 ## Follow-ups
 
 - Investigate counter frequency and counterplay: Amanda and Edgar remain above
@@ -209,6 +247,8 @@ competitive tier list.
 - Review the hard CPU's attack cadence, which only chooses heavy attacks.
 - Play-test ride pushback and investigate other ring-outs, including edge
   recovery, jump cadence and knockback.
+- Play-test the 30 HP ring-out penalty with humans, and review Chataing's
+  29.77% CPU win rate after the change.
 - Review same-tick trades: player 0 resolves first and is favored; the harness
   offsets seat timing to compensate.
 - Revisit Gómez's PODER identity after human play. His 1.08 damage multiplier is
