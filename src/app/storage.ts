@@ -1,4 +1,5 @@
 import { isFighter, type FighterId } from "../../shared/roster/roster";
+import { isRecord } from "../../shared/guards";
 
 export interface Progress {
   wins: Partial<Record<FighterId, number>>;
@@ -17,9 +18,6 @@ const defaultProgress = (): Progress => ({
   bestCombo: 0,
   recent: [],
 });
-const isRecord = (value: unknown): value is Record<string, unknown> =>
-  typeof value === "object" && value !== null && !Array.isArray(value);
-
 /** Saved progress, keeping only well-formed wins and matches. */
 export function readProgress(): Progress {
   try {

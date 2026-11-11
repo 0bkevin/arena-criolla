@@ -3,9 +3,8 @@
 import { isFighter, isStage } from "../roster/roster";
 import type { MatchState } from "../engine/engine";
 import type { RoomPlayer, RoomView, ServerMessage } from "./protocol";
+import { isRecord } from "../guards";
 
-const isRecord = (value: unknown): value is Record<string, unknown> =>
-  typeof value === "object" && value !== null && !Array.isArray(value);
 const isNumber = (value: unknown): value is number =>
   typeof value === "number" && Number.isFinite(value);
 const isSeat = (value: unknown): value is 0 | 1 => value === 0 || value === 1;

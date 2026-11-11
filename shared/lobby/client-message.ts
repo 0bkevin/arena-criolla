@@ -2,11 +2,9 @@ import { isFighter, isStage } from "../roster/roster";
 import { ACTIONS, emptyInput, type Input } from "../engine/engine";
 import type { ClientMessage } from "./protocol";
 import { isRoomCode } from "./room-code";
+import { isRecord } from "../guards";
 
 const MAX_ACTION_COUNT = 1_000_000_000;
-
-const isRecord = (value: unknown): value is Record<string, unknown> =>
-  typeof value === "object" && value !== null;
 
 /** A display name without control characters or markup, at most 20 characters. */
 export const cleanName = (value: unknown) =>

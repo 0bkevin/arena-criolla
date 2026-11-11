@@ -9,14 +9,13 @@ import {
   STAGE_THEMES,
 } from "./ids";
 import type { FighterDefinition, Platform, StageDefinition } from "./roster";
+import { isRecord } from "../guards";
 
 type Fields = Record<string, unknown>;
 
 function fail(at: string, expected: string): never {
   throw new TypeError(`${at}: expected ${expected}`);
 }
-const isRecord = (value: unknown): value is Fields =>
-  typeof value === "object" && value !== null && !Array.isArray(value);
 function record(value: unknown, at: string): Fields {
   if (!isRecord(value)) fail(at, "an object");
   return value;
