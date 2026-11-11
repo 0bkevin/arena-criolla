@@ -1,6 +1,7 @@
 // Smoke-test a deployed Arena Criolla: pages, headers, and a full online match
 // start between two WebSocket clients. Usage: node scripts/cloudflare/smoke.ts <origin>
 import { WebSocket } from "ws";
+import { ARENA_SOCKET_PROTOCOL } from "../../shared/lobby/protocol.ts";
 
 const origin = (process.argv[2] ?? "http://127.0.0.1:8799").replace(/\/$/, "");
 const fail: (message: string) => never = (message) => {
@@ -82,7 +83,7 @@ const isRoom = (m: unknown): m is RoomMessage =>
 const isStart = (m: unknown): m is StartMessage =>
   isType(m, "start") && isRecord(m.state) && typeof m.state.id === "string";
 function client(name: string) {
-  const socket = new WebSocket(`${wsOrigin}/ws`, ["arena-v1"], {
+  const socket = new WebSocket(`${wsOrigin}/ws`, [ARENA_SOCKET_PROTOCOL], {
     headers: { Origin: origin },
   });
   const messages: unknown[] = [];
@@ -127,7 +128,8 @@ try {
   const a = client("host"),
     b = client("guest");
   await Promise.all([a.opened, b.opened]);
-  if (a.socket.protocol !== "arena-v1") fail("subprotocol not negotiated");
+  if (a.socket.protocol !== ARENA_SOCKET_PROTOCOL)
+    fail("subprotocol not negotiated");
   await a.next(
     (m): m is { type: "welcome" } =>
       isType(m, "welcome") && Boolean(m.resumeToken),
