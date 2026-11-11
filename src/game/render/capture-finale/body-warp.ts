@@ -1,5 +1,5 @@
 import type { FinalePose } from "../finales/types";
-import { TAU, clamp, smooth } from "./math";
+import { TAU, clamp, smoothstep } from "../../../../shared/math";
 
 export type BodyMode = FinalePose;
 export interface Point {
@@ -13,7 +13,7 @@ export function finaleDancePoint(point: Point, phase: number): Point {
   const angle = phase * Math.PI * 2;
   const side = point.x < 0 ? -1 : 1;
   const support = Math.max(0, Math.sin(angle + (side < 0 ? Math.PI : 0)));
-  const foot = smooth((point.y - 0.78) / 0.22);
+  const foot = smoothstep((point.y - 0.78) / 0.22);
   const rotation = -side * support * 0.055 * foot;
   const pivotX = side * 0.13,
     pivotY = 0.78;
@@ -51,7 +51,7 @@ export function finaleBodyPoint(
   const left = point.x < 0 ? -1 : 1;
   if (mode === "dance" && point.y > 0.55) {
     const hip = clamp((point.y - 0.55) / 0.4);
-    const foot = smooth((point.y - 0.74) / 0.26);
+    const foot = smoothstep((point.y - 0.74) / 0.26);
     x += left * Math.sin(phase * TAU + left * 0.85) * 0.095 * hip;
     y -=
       Math.max(0, Math.sin(phase * TAU + (left < 0 ? Math.PI : 0))) *
@@ -62,7 +62,7 @@ export function finaleBodyPoint(
   // Local sleeve/wrist fields move hands without stretching the face or torso.
   if (point.y > 0.22 && point.y < 0.68) {
     const arm =
-      smooth((Math.abs(point.x) - 0.07) / 0.11) *
+      smoothstep((Math.abs(point.x) - 0.07) / 0.11) *
       Math.sin(clamp((point.y - 0.22) / 0.46) * Math.PI);
     const front = point.x > 0;
     if (mode === "sip" && front) {
@@ -86,11 +86,12 @@ export function finaleBodyPoint(
       y -= arm * Math.max(0, rhythm * left) * 0.075;
     }
   }
-  const head = 1 - smooth((point.y - 0.21) / 0.11);
+  const head = 1 - smoothstep((point.y - 0.21) / 0.11);
   if (mode === "talk" || mode === "sip" || mode === "type")
     y += head * Math.sin(phase * TAU * 2) * 0.009;
   if (mode === "dance")
-    x += Math.sin(phase * TAU) * 0.018 * (1 - smooth((point.y - 0.5) / 0.2));
+    x +=
+      Math.sin(phase * TAU) * 0.018 * (1 - smoothstep((point.y - 0.5) / 0.2));
   if (mode === "recoil") x += Math.sin(phase * Math.PI) * 0.05 * (1 - point.y);
   return { x, y };
 }

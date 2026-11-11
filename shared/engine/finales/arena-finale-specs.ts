@@ -215,8 +215,6 @@ export function cancelArenaPerformance(state: MatchState, player: PlayerState) {
   player.cooldown = Math.min(player.cooldown, 12);
 }
 
-export const clamp = (v: number, a: number, b: number) =>
-  Math.max(a, Math.min(b, v));
 export const rideSpeed = (id: FighterId) =>
   id === "bolivar" || id === "gomez" ? 7.2 : 5.8;
 export const rideMoving = (field: FieldFinaleState) =>

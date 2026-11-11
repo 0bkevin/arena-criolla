@@ -1,6 +1,6 @@
 import cafeFurniture from "../../assets/manifests/finale-cafe-assets.json";
 import { body, drawCafeActor } from "./actors";
-import { clamp, smooth } from "./math";
+import { clamp, smoothstep } from "../../../../shared/math";
 import { bubble, chair, damage, ellipse, line, mug } from "./primitives";
 import type { Scene } from "./scene";
 
@@ -53,7 +53,7 @@ export function drawCoffeeScene(scene: Scene) {
   if (!drawCafeFurniture(scene, "cup", 595, tableY + 9, 38.5, 48))
     mug(ctx, 595, tableY, 0.82);
   const lift = motion
-    ? smooth(sip ? Math.sin(clamp((tick % 48) / 48) * Math.PI) : 0)
+    ? smoothstep(sip ? Math.sin(clamp((tick % 48) / 48) * Math.PI) : 0)
     : 0.8;
   const cupX = 443 - lift * 65,
     cupY = tableY - lift * (tableY - 272);

@@ -3,9 +3,9 @@ import {
   VICTORY_MUSIC_MS,
   type VictoryMusicStyle,
 } from "../match/victory-types";
+import { TAU } from "../../../shared/math";
 
 const TABLE_SIZE = 2048;
-const TAU = Math.PI * 2;
 const pulse = new Float32Array(TABLE_SIZE);
 for (let i = 0; i < TABLE_SIZE; i++)
   for (let harmonic = 1; harmonic <= 12; harmonic++)

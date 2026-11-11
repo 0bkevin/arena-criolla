@@ -1,12 +1,6 @@
 import type { Ability } from "../../../shared/roster/roster";
 import type { PlayerState, Projectile } from "../../../shared/engine/engine";
-
-const clamp = (value: number, min: number, max: number) =>
-  Math.max(min, Math.min(max, value));
-const smooth = (value: number) => {
-  const t = clamp(value, 0, 1);
-  return t * t * (3 - 2 * t);
-};
+import { clamp, smoothstep } from "../../../shared/math";
 
 function invoice(
   ctx: CanvasRenderingContext2D,
@@ -107,8 +101,8 @@ export function drawFounderSpecial(
   ctx.save();
 
   if (ability === "ledger") {
-    const launch = smooth((t + 8) / 11);
-    ctx.globalAlpha *= 0.82 * (1 - smooth((t - 4) / 12));
+    const launch = smoothstep((t + 8) / 11);
+    ctx.globalAlpha *= 0.82 * (1 - smoothstep((t - 4) / 12));
     invoice(ctx, x + facing * (22 + launch * 19), y - 102 - launch * 8, 0.72);
     invoice(ctx, x + facing * (36 + launch * 19), y - 90 - launch * 8, 0.58);
   } else if (ability === "settlement") {
@@ -120,7 +114,7 @@ export function drawFounderSpecial(
       1,
     );
     const loopX = x + direction * (38 + phase * 58);
-    ctx.globalAlpha *= 0.72 * (1 - smooth((t - 31) / 13));
+    ctx.globalAlpha *= 0.72 * (1 - smoothstep((t - 31) / 13));
     ctx.beginPath();
     ctx.ellipse(loopX, y - 86, 22, 13, direction * 0.18, -2.7, 2.4);
     ctx.stroke();
@@ -128,7 +122,7 @@ export function drawFounderSpecial(
     ctx.arc(loopX, y - 86, 4, 0, Math.PI * 2);
     ctx.fill();
   } else if (ability === "ignition") {
-    const active = 1 - smooth((t - 11) / 6);
+    const active = 1 - smoothstep((t - 11) / 6);
     ctx.globalAlpha *= 0.78 * active;
     ctx.lineWidth = 3;
     for (let streak = 0; streak < 3; streak++) {
@@ -147,7 +141,7 @@ export function drawFounderSpecial(
       ctx.stroke();
     }
   } else if (ability === "slash") {
-    const fade = 1 - smooth((t - 8) / 12);
+    const fade = 1 - smoothstep((t - 8) / 12);
     ctx.globalAlpha *= 0.9 * fade;
     ctx.strokeStyle = "#ff874d";
     ctx.lineWidth = 7;
@@ -167,7 +161,7 @@ export function drawFounderSpecial(
   } else if (ability === "grid") {
     const reach = clamp(Math.abs(other.x - x), 0, 270);
     const tiles = clamp(Math.floor((t + 20) / 8) + 1, 1, 4);
-    ctx.globalAlpha *= 0.65 * (1 - smooth((t - 29) / 18));
+    ctx.globalAlpha *= 0.65 * (1 - smoothstep((t - 29) / 18));
     ctx.lineWidth = 2;
     ctx.setLineDash([5, 5]);
     ctx.beginPath();

@@ -1,5 +1,5 @@
 import { finaleAsset } from "../../../../shared/engine/finales/finales";
-import { TAU } from "./math";
+import { TAU } from "../../../../shared/math";
 import { sceneDirections, type Scene } from "./scene";
 
 export function prop(

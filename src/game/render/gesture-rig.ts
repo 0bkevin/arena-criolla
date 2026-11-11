@@ -10,16 +10,12 @@ import {
   spriteFrameSource,
   type SpriteAsset,
 } from "../assets/assets";
+import { clamp, smoothstep } from "../../../shared/math";
 
 export interface RigPoint {
   x: number;
   y: number;
 }
-const clamp = (n: number) => Math.max(0, Math.min(1, n));
-const smooth = (n: number) => {
-  const t = clamp(n);
-  return t * t * (3 - 2 * t);
-};
 function turn(point: RigPoint, pivot: RigPoint, angle: number): RigPoint {
   const x = point.x - pivot.x,
     y = point.y - pivot.y;
@@ -49,7 +45,7 @@ function arm(
   );
   const influence =
     Math.exp((-distance * distance) / 0.014) *
-    smooth((point.y - neck + 0.01) / 0.09) *
+    smoothstep((point.y - neck + 0.01) / 0.09) *
     (0.18 + along * 0.82);
   const rotated = turn(point, shoulder, angle);
   // A broad skinning field keeps sleeve and wrist attached without cutting the bitmap.
@@ -101,15 +97,16 @@ function rigStep(
     rig.neck,
   );
   let result = { x: point.x + back.x + front.x, y: point.y + back.y + front.y };
-  const headWeight = 1 - smooth((point.y - rig.neck + 0.02) / 0.065);
+  const headWeight = 1 - smoothstep((point.y - rig.neck + 0.02) / 0.065);
   result = turn(result, { x: 0, y: rig.neck }, gesture.head * headWeight);
   result = turn(
     result,
     { x: 0, y: 0.61 },
-    gesture.lean * (1 - smooth((point.y - 0.58) / 0.25)),
+    gesture.lean * (1 - smoothstep((point.y - 0.58) / 0.25)),
   );
   const hem =
-    smooth((point.y - 0.38) / 0.4) * (1 - smooth((point.y - 0.94) / 0.06));
+    smoothstep((point.y - 0.38) / 0.4) *
+    (1 - smoothstep((point.y - 0.94) / 0.06));
   result.x += gesture.cloth * 0.019 * hem * Math.sin(point.y * Math.PI * 3.2);
   return result;
 }
@@ -162,7 +159,10 @@ export function deformRigPoint(
         point.x - zone.from[0] - along * dx,
         point.y - zone.from[1] - along * dy,
       );
-      weight = Math.max(weight, 1 - smooth((distance - zone.radius) / 0.16));
+      weight = Math.max(
+        weight,
+        1 - smoothstep((distance - zone.radius) / 0.16),
+      );
     }
     if (weight <= 0) continue;
     const pivot = { x: part.pivot[0], y: part.pivot[1] };
@@ -198,10 +198,10 @@ export function deformRigPoint(
   const headWidth =
     faceWidth +
     ((rig.headWidth ?? faceWidth) - faceWidth) *
-      (1 - smooth((point.y - rig.neck * 0.5) / (rig.neck * 0.4)));
+      (1 - smoothstep((point.y - rig.neck * 0.5) / (rig.neck * 0.4)));
   const headWeight =
-    (1 - smooth((point.y - rig.neck) / 0.12)) *
-    (1 - smooth((Math.abs(point.x) - headWidth) / 0.09));
+    (1 - smoothstep((point.y - rig.neck) / 0.12)) *
+    (1 - smoothstep((Math.abs(point.x) - headWidth) / 0.09));
   const head = turn(
     turn(point, { x: 0, y: rig.neck }, gesture.head),
     { x: 0, y: 0.61 },

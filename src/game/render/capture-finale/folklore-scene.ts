@@ -1,5 +1,5 @@
 import { body } from "./actors";
-import { TAU } from "./math";
+import { TAU } from "../../../../shared/math";
 import { bubble, damage, ellipse, line, prop, ring } from "./primitives";
 import type { Scene } from "./scene";
 

@@ -41,10 +41,10 @@ import {
   carolinaPoseHeight,
   drawCoutureRunway,
 } from "./finales/carolina";
+import { clamp } from "../../../shared/math";
 
 type Images = Record<string, HTMLImageElement>;
 const unit = (v: number) => Math.max(0, Math.min(1, v));
-const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
 const opacity = (field: FieldFinaleState) =>
   Math.min(
     unit((field.tick + 1) / 9),

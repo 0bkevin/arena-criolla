@@ -1,6 +1,6 @@
 import type { FighterId } from "../../../../shared/roster/roster";
 import perroChoreography from "../../../../shared/engine/finales/perro-mujeriego-choreography.json";
-import { smooth } from "./math";
+import { smoothstep } from "../../../../shared/math";
 
 const DANCE_BLEND_TICKS = 6;
 export const CAPTURED_DANCE_FRAMES = [0, 0, 0, 1, 1, 4, 1, 0] as const;
@@ -27,7 +27,7 @@ export function sampleFinaleDance(tick: number, reducedMotion = false) {
   }
   const next = perroChoreography.poses[frame + 1];
   const blend = next
-    ? smooth((at - next.tick + DANCE_BLEND_TICKS) / DANCE_BLEND_TICKS)
+    ? smoothstep((at - next.tick + DANCE_BLEND_TICKS) / DANCE_BLEND_TICKS)
     : 0;
   const phase = (at % 42) / 42;
   const angle = phase * Math.PI * 2;

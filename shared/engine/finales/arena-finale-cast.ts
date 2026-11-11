@@ -15,12 +15,12 @@ import { PLAYERS } from "../types";
 import {
   ARENA_FINALES,
   ARENA_FINALE_CUES,
-  clamp,
   rideMoving,
   rideSpeed,
   type ArenaFinaleActor,
   type ArenaFinalist,
 } from "./arena-finale-specs";
+import { clamp } from "../../math";
 
 function spawnActor(
   state: MatchState,

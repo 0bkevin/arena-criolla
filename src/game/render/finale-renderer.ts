@@ -11,7 +11,7 @@ import { drawDanceScene } from "./capture-finale/dance-scene";
 import { drawFolkloreScene } from "./capture-finale/folklore-scene";
 import { drawHackScene } from "./capture-finale/hack-scene";
 import { drawIconScene } from "./capture-finale/icon-scene";
-import { clamp } from "./capture-finale/math";
+import { clamp } from "../../../shared/math";
 import { drawMusicScene } from "./capture-finale/music-scene";
 import { text } from "./capture-finale/primitives";
 import { sceneDirections, type Scene } from "./capture-finale/scene";

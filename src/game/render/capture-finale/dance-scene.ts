@@ -1,6 +1,6 @@
 import { body } from "./actors";
 import { sampleFinaleDance } from "./choreography";
-import { TAU } from "./math";
+import { TAU } from "../../../../shared/math";
 import { damage, ellipse, line, note, prop, text } from "./primitives";
 import type { Scene } from "./scene";
 

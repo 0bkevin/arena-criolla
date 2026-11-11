@@ -7,11 +7,11 @@ import type { MatchState, PlayerState } from "../engine";
 import type { FieldFinaleState } from "./field-finales";
 import { COUTURE_MODEL_SPEED, coutureModelEnd } from "./couture-runway";
 import {
-  clamp,
   rideMoving,
   rideSpeed,
   type ArenaFinaleActor,
 } from "./arena-finale-specs";
+import { clamp } from "../../math";
 
 /** Helpers use the same gravity, one-way surfaces and arena floor as fighters. */
 function moveGroundActor(

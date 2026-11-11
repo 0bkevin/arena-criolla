@@ -2,14 +2,13 @@ import { fieldFinaleBounds } from "../../../shared/engine/finales/field-finales"
 import { WORLD } from "../../../shared/engine/arena";
 import { fighterById } from "../../../shared/roster/roster";
 import type { MatchState } from "../../../shared/engine/engine";
+import { clamp } from "../../../shared/math";
 
 export interface ArenaCamera {
   x: number;
   zoom: number;
 }
 
-const clamp = (value: number, min: number, max: number) =>
-  Math.max(min, Math.min(max, value));
 const FLOOR_ANCHOR = 0.86;
 
 export function cameraBounds(

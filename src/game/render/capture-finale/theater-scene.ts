@@ -1,5 +1,5 @@
 import { body } from "./actors";
-import { clamp } from "./math";
+import { clamp } from "../../../../shared/math";
 import { bubble, chair, damage, line, prop, ring, text } from "./primitives";
 import type { Scene } from "./scene";
 

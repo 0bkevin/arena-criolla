@@ -8,6 +8,7 @@ import {
 } from "./arena-finales";
 import type { MatchState, PlayerState } from "../engine";
 import { opponentOf, type PlayerIndex } from "../types";
+import { clamp } from "../../math";
 
 /** Temporary arena actors run on ordinary combat ticks; they never capture a rival. */
 export interface FieldFinaleState {
@@ -46,7 +47,6 @@ const SQUAD_OFFSETS = [
   { x: -50, y: 3, height: 177, layer: "front" },
   { x: 40, y: 6, height: 180, layer: "front" },
 ] as const;
-const clamp = (n: number, a: number, b: number) => Math.max(a, Math.min(b, n));
 export const runwayWalking = (tick: number) =>
   RUNWAY_WALK_WINDOWS.some(([a, b]) => tick >= a && tick < b);
 export function squadMember(field: FieldFinaleState, index: number) {
