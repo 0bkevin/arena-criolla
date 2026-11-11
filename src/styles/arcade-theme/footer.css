@@ -99,13 +99,25 @@
   justify-self: end;
 }
 @media (max-width: 600px) {
-  .in-lobby .site-footer {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 12px;
+  .app-shell .site-footer {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    justify-content: center;
+    gap: 0 8px;
+    text-align: center;
   }
-  .in-lobby .footer-brand,
-  .in-lobby .footer-acknowledgements,
-  .in-lobby .footer-credit {
+  .app-shell .footer-brand {
+    grid-column: 1 / -1;
     justify-self: center;
+  }
+  .app-shell .footer-acknowledgements,
+  .app-shell .footer-credit {
+    justify-self: center;
+  }
+  .app-shell .footer-credit {
+    white-space: nowrap;
+  }
+  .in-lobby .site-footer {
+    grid-template-columns: max-content max-content;
   }
 }
