@@ -29,7 +29,7 @@ export function finaleDancePoint(point: Point, phase: number): Point {
   };
 }
 
-/** Explicit hip/knee bending preserves the rival's own bitmap, including custom fighters. */
+/** Explicit hip/knee bending preserves the rival's own bitmap. */
 export function finaleBodyPoint(
   point: Point,
   mode: BodyMode,

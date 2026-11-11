@@ -3,11 +3,7 @@ import {
   ARENA_FINALE_CUES,
   isArenaFinalist,
 } from "./arena-finales";
-import {
-  fighterById,
-  type BuiltInFighterId,
-  type FighterId,
-} from "../../roster/roster";
+import { fighterById, type FighterId } from "../../roster/roster";
 import perroMujeriego from "./perro-mujeriego-choreography.json";
 import type { PlayerIndex } from "../types";
 import { FINALE_ENTRIES } from "./finale-entries";
@@ -24,7 +20,7 @@ export type FinaleFamily =
   | "folklore";
 
 export interface FinaleDefinition {
-  id: BuiltInFighterId;
+  id: FighterId;
   title: string;
   description: string;
   family: FinaleFamily;
@@ -76,7 +72,7 @@ export const FINALE_RANGE = 245;
 export const FINALES = Object.fromEntries(
   FINALE_ENTRIES.map(
     ([id, title, family, description, prop, caption, sound]): [
-      BuiltInFighterId,
+      FighterId,
       FinaleDefinition,
     ] => [
       id,
@@ -151,10 +147,10 @@ export const FINALES = Object.fromEntries(
       },
     ],
   ),
-) as Record<BuiltInFighterId, FinaleDefinition>;
+) as Record<FighterId, FinaleDefinition>;
 
 export function finaleById(id: FighterId): FinaleDefinition | undefined {
-  return FINALES[id as BuiltInFighterId];
+  return FINALES[id as FighterId];
 }
 
 export const FINALE_ASSET_GROUPS = [
@@ -200,7 +196,7 @@ export const FINALE_ASSET_GROUPS = [
     "tiotigre",
   ],
   ["tioconejo", "enrique", "jesus", "carlos", "victor", "juan"],
-] as const satisfies readonly (readonly BuiltInFighterId[])[];
+] as const satisfies readonly (readonly FighterId[])[];
 
 // The original authored batch is immutable. Later roster additions use their
 // canonical combat sprites with arena props drawn by the renderer.
@@ -212,7 +208,7 @@ export const CANONICAL_FINALE_FIGHTERS = [
   "bolivar",
   "edgar",
   "melanio",
-] as const satisfies readonly BuiltInFighterId[];
+] as const satisfies readonly FighterId[];
 
 export function finaleAsset(id: FighterId) {
   // Capriles uses the cafe atlases. The other fighters in the first two batches

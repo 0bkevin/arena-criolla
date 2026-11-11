@@ -7,7 +7,7 @@ import {
   type PortraitBust,
 } from "./portrait-bust-layout";
 
-/** Pre-cut roster-card pose for a built-in fighter, if one was generated. */
+/** Pre-cut roster-card pose for a fighter, if one was generated. */
 export function portraitBust(id: FighterId): PortraitBust | undefined {
   return Object.hasOwn(busts, id)
     ? (busts as Record<string, PortraitBust>)[id]

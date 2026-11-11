@@ -1,7 +1,4 @@
-import type {
-  BuiltInFighterId,
-  FighterId,
-} from "../../../shared/roster/roster";
+import type { FighterId } from "../../../shared/roster/roster";
 
 export interface ActionFrame {
   at: number;
@@ -64,7 +61,7 @@ export const DEFAULT_ENTRANCE_FIGHTERS = [
   "edgar",
   "melanio",
   "dorangel",
-] as const satisfies readonly BuiltInFighterId[];
+] as const satisfies readonly FighterId[];
 
 export const DEFAULT_ENTRANCE_ACTION: EntranceAction = {
   name: "Se yergue y cruza los brazos",

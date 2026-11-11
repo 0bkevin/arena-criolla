@@ -29,9 +29,6 @@ export {
   type IconFighterId,
   type StageId,
 } from "./ids";
-/** Every fighter here ships with the game; there are no custom fighters. */
-export type BuiltInFighterId = FighterId;
-
 export interface FighterDefinition {
   id: FighterId;
   sprite: string;
@@ -55,10 +52,9 @@ export interface FighterDefinition {
   combos: [string, string, string];
 }
 
-export const BUILT_IN_FIGHTERS = readFighters(fighterData);
-export const FIGHTERS = [...BUILT_IN_FIGHTERS];
-const builtInDefinitions = new Map(
-  BUILT_IN_FIGHTERS.map((fighter) => [fighter.id, fighter]),
+export const FIGHTERS = readFighters(fighterData);
+const fighterDefinitions = new Map(
+  FIGHTERS.map((fighter) => [fighter.id, fighter]),
 );
 
 export interface Platform {
@@ -94,7 +90,7 @@ export function platformsAtTick(id: StageId, tick: number): Platform[] {
     };
   });
 }
-export const fighterById = (id: FighterId) => builtInDefinitions.get(id)!;
+export const fighterById = (id: FighterId) => fighterDefinitions.get(id)!;
 export const stageById = (id: StageId) => stageDefinitions.get(id)!;
 export const isFighter = (id: unknown): id is FighterId =>
   FIGHTERS.some((f) => f.id === id);

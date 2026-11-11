@@ -1,7 +1,4 @@
-import type {
-  BuiltInFighterId,
-  FighterId,
-} from "../../../shared/roster/roster";
+import type { FighterId } from "../../../shared/roster/roster";
 import type { VictoryMusicStyle } from "../match/victory-types";
 
 /** The instrumentation of each fighter's victory fanfare. */
@@ -62,7 +59,7 @@ const VICTORY_MUSIC = {
   bolivar: "percussion",
   edgar: "percussion",
   melanio: "strings",
-} satisfies Record<BuiltInFighterId, VictoryMusicStyle>;
+} satisfies Record<FighterId, VictoryMusicStyle>;
 
 export const victoryMusicStyle = (id: FighterId): VictoryMusicStyle =>
   VICTORY_MUSIC[id];

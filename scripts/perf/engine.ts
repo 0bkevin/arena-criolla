@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { writeFileSync } from "node:fs";
 import { performance } from "node:perf_hooks";
-import { BUILT_IN_FIGHTERS, STAGES } from "../../shared/roster/roster";
+import { FIGHTERS, STAGES } from "../../shared/roster/roster";
 import {
   createMatch,
   cpuInput,
@@ -21,10 +21,9 @@ for (let round = 0; round < rounds; round++) {
   const hash = createHash("sha256");
   let steps = 0;
   const began = performance.now();
-  for (const [index, fighter] of BUILT_IN_FIGHTERS.entries()) {
+  for (const [index, fighter] of FIGHTERS.entries()) {
     for (const stage of STAGES) {
-      const opponent =
-        BUILT_IN_FIGHTERS[(index + 13) % BUILT_IN_FIGHTERS.length];
+      const opponent = FIGHTERS[(index + 13) % FIGHTERS.length];
       const state = createMatch(
         stage.id,
         [
@@ -70,9 +69,9 @@ const serializationMs = performance.now() - serializationBegan;
 const report = {
   recordedAt: new Date().toISOString(),
   node: process.version,
-  fighters: BUILT_IN_FIGHTERS.length,
+  fighters: FIGHTERS.length,
   stages: STAGES.length,
-  scenariosPerRound: BUILT_IN_FIGHTERS.length * STAGES.length,
+  scenariosPerRound: FIGHTERS.length * STAGES.length,
   engine: runs.map((run) => ({
     ...run,
     microsecondsPerStep: (run.ms * 1000) / run.steps,

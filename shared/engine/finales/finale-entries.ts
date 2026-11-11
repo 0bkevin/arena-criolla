@@ -1,10 +1,10 @@
-// Every built-in fighter's definitive: title, family, description, the prop
+// Every fighter's definitive: title, family, description, the prop
 // it shows, its caption and its sound family, in roster order.
-import type { BuiltInFighterId } from "../../roster/roster";
+import type { FighterId } from "../../roster/roster";
 import type { FinaleDefinition, FinaleFamily } from "./finales";
 
 export type Entry = readonly [
-  BuiltInFighterId,
+  FighterId,
   string,
   FinaleFamily,
   string,

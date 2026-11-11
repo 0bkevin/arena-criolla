@@ -7,7 +7,7 @@ import {
   type Input,
   type MatchState,
 } from "../../shared/engine/engine";
-import type { BuiltInFighterId } from "../../shared/roster/roster";
+import type { FighterId } from "../../shared/roster/roster";
 import type { ServerMessage } from "../../shared/lobby/protocol";
 
 class Peer {
@@ -78,7 +78,7 @@ async function startPair(
   server: Awaited<ReturnType<typeof makeArenaServer>>,
   host: Peer,
   guest: Peer,
-  fighters: [BuiltInFighterId, BuiltInFighterId],
+  fighters: [FighterId, FighterId],
 ) {
   const roomName = `Melanio ${++roomSequence}`;
   host.send({
@@ -149,7 +149,7 @@ test("Melanio signal returns to its owner with synchronized ownership and veloci
   try {
     await Promise.all([host.wait("welcome"), guest.wait("welcome")]);
     for (const melanioSide of [0, 1] as const) {
-      const fighters: [BuiltInFighterId, BuiltInFighterId] =
+      const fighters: [FighterId, FighterId] =
         melanioSide === 0 ? ["melanio", "javier"] : ["javier", "melanio"];
       const pair = await startPair(fixture.server, host, guest, fighters);
       const actor = melanioSide === 0 ? host : guest;

@@ -301,7 +301,7 @@ try {
         probe: "active-online-load",
         players: count,
         roster: mixedRoster
-          ? "all-built-in-fighters-and-stages"
+          ? "all-fighters-and-stages"
           : "zavarce-capriles-caracas",
         durationSeconds: round(stats.elapsedMs / 1000),
         ...Object.fromEntries(

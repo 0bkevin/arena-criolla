@@ -3,7 +3,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
-import { BUILT_IN_FIGHTERS } from "../../shared/roster/roster";
+import { FIGHTERS } from "../../shared/roster/roster";
 import { normalizeGeneratedAtlas } from "./normalize-atlas";
 import {
   ACTOR_BASELINE,
@@ -13,7 +13,7 @@ import {
 } from "./prepare-finale-actors";
 
 const VERSION = 3;
-const IDS = BUILT_IN_FIGHTERS.map((fighter) => fighter.id);
+const IDS = FIGHTERS.map((fighter) => fighter.id);
 const sha = (bytes: Buffer | string) =>
   createHash("sha256").update(bytes).digest("hex");
 export interface PerroFrame {

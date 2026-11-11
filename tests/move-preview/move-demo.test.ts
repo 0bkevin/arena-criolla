@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { BUILT_IN_FIGHTERS } from "../../shared/roster/roster";
+import { FIGHTERS } from "../../shared/roster/roster";
 import type { MatchState } from "../../shared/engine/engine";
 import { simulateMoveDemo } from "../../src/game/move-preview/move-demo";
 
@@ -19,7 +19,7 @@ function contacts(states: MatchState[]) {
 
 // The fighter guide plays these scripted engine runs; a tuning change can make
 // a fighter's preview whiff silently, so every fighter's previews must connect.
-for (const fighter of BUILT_IN_FIGHTERS) {
+for (const fighter of FIGHTERS) {
   test(`${fighter.id}: every move preview runs the real engine and connects`, () => {
     for (const move of ["light", "heavy", "special", "final"] as const) {
       const states = simulateMoveDemo(fighter.id, move);

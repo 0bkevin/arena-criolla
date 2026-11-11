@@ -19,14 +19,13 @@ import { presentationById } from "../../shared/engine/presentation";
 const manifest: Record<string, PortraitBust> = busts;
 const sha256 = (data: Buffer) =>
   createHash("sha256").update(data).digest("hex");
-const builtIn = FIGHTERS;
 
 test("every built-in roster card has a bust cut from its current atlas", async () => {
   assert.deepEqual(
     Object.keys(manifest).sort(),
-    builtIn.map((fighter) => fighter.id).sort(),
+    FIGHTERS.map((fighter) => fighter.id).sort(),
   );
-  for (const fighter of builtIn) {
+  for (const fighter of FIGHTERS) {
     const bust = manifest[fighter.id];
     assert.equal(bust.source, fighter.sprite, fighter.id);
     assert.equal(
