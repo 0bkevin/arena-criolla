@@ -9,7 +9,7 @@ import {
   type MatchState,
 } from "../../shared/engine/engine";
 import {
-  MIN_RING_OUT_DAMAGE,
+  RING_OUT_STOCK_LOSS_THRESHOLD,
   ringOutDamage,
 } from "../../shared/engine/damage-values";
 import {
@@ -233,7 +233,7 @@ test("an attack buffered during return ends protection only when the attack star
 test("stock loss keeps its 110 tick protection, energy penalty, and transformation clear", () => {
   const { state } = setup();
   const p = state.players[1];
-  p.hp = MIN_RING_OUT_DAMAGE;
+  p.hp = RING_OUT_STOCK_LOSS_THRESHOLD - 0.01;
   p.energy = 67;
   p.transformation = { id: "test", ticks: 500, damageMultiplier: 1.5 };
   fallAt(state, 1);
@@ -249,34 +249,74 @@ test("low-HP final-stock falls still end the match", () => {
   const { state } = setup();
   const p = state.players[0];
   p.stocks = 1;
-  p.hp = MIN_RING_OUT_DAMAGE;
+  p.hp = RING_OUT_STOCK_LOSS_THRESHOLD - 0.01;
   fallAt(state, 0);
   assert.equal(p.stocks, 0);
   assert.equal(state.phase, "finished");
   assert.equal(state.winner, 1);
 });
 
-test("a final-stock fall just above the damage threshold keeps the match playing", () => {
+test("final-stock falls just below, at, and above the threshold use pre-fall HP", () => {
   for (const seat of [0, 1] as const) {
-    const { state } = setup();
-    const p = state.players[seat];
-    p.stocks = 1;
-    p.hp = MIN_RING_OUT_DAMAGE + 0.125;
-    fallAt(state, seat);
-    assert.equal(p.hp, 0.125);
-    assert.equal(p.stocks, 1);
-    assert.equal(state.phase, "playing");
-    assert.equal(state.winner, null);
+    for (const [hp, remaining, stocks, phase, winner] of [
+      [9.99, 0, 0, "finished", seat === 0 ? 1 : 0],
+      [10, 6, 1, "playing", null],
+      [10.01, 6.006, 1, "playing", null],
+    ] as const) {
+      const { state } = setup();
+      const p = state.players[seat];
+      p.stocks = 1;
+      p.hp = hp;
+      fallAt(state, seat);
+      assert.ok(
+        Math.abs(p.hp - remaining) < 1e-12,
+        `seat=${seat} hp=${hp}: ${p.hp}`,
+      );
+      assert.equal(p.stocks, stocks, `seat=${seat} hp=${hp}`);
+      assert.equal(state.phase, phase, `seat=${seat} hp=${hp}`);
+      assert.equal(state.winner, winner, `seat=${seat} hp=${hp}`);
+    }
   }
 });
 
-test("a lethal second fall clears return protection even on the final stock", () => {
+test("both seats use the strict pre-fall threshold and charge one fall per exit", () => {
+  for (const seat of [0, 1] as const) {
+    for (const [hp, remaining, stocks] of [
+      [9.99, 100, 1],
+      [10, 6, 2],
+      [10.01, 6.006, 2],
+    ] as const) {
+      const { state, inputs } = setup();
+      const p = state.players[seat];
+      p.hp = hp;
+      p.x = WORLD.x - 140;
+      p.y = WORLD.y + WORLD.height + 180;
+      stepMatch(state, inputs);
+      assert.ok(
+        Math.abs(p.hp - remaining) < 1e-12,
+        `seat=${seat} hp=${hp}: ${p.hp}`,
+      );
+      assert.equal(p.stocks, stocks, `seat=${seat} hp=${hp}`);
+      assert.equal(
+        state.effects.filter(
+          (effect) => effect.kind === "ringout" && effect.owner === seat,
+        ).length,
+        1,
+        `seat=${seat} hp=${hp}`,
+      );
+    }
+  }
+});
+
+test("a lethal later fall clears return protection even on the final stock", () => {
   const { state } = setup();
   const p = state.players[0];
   p.stocks = 1;
-  p.hp = MIN_RING_OUT_DAMAGE * 2;
+  p.hp = 20;
   fallAt(state, 0);
-  assert.equal(p.hp, MIN_RING_OUT_DAMAGE);
+  assert.equal(p.hp, 12);
+  fallAt(state, 0);
+  assert.ok(Math.abs(p.hp - 7.2) < 1e-12);
   fallAt(state, 0);
   assert.equal(p.stocks, 0);
   assert.equal(p.fallProtectionTicks, undefined);
@@ -364,24 +404,38 @@ test("moving stages return both seats safely; consecutive falls and JSON replay 
   assert.deepEqual(restored, state);
 });
 
-test("ring-out damage follows the percentage/minimum crossover without rounding", () => {
+test("ring-out damage is exactly 40 percent above the strict stock-loss threshold", () => {
   const examples = [
     [100, 60],
     [75, 45],
     [50, 30],
     [25, 15],
-    [20, 10],
-    [15, 5],
+    [21.6, 12.96],
+    [20, 12],
+    [15, 9],
+    [10, 6],
   ] as const;
   for (const [hp, expected] of examples) {
     const { state } = setup();
     const p = state.players[0];
     p.hp = hp;
     fallAt(state, 0);
-    assert.equal(p.hp, expected, `${hp} HP`);
+    assert.ok(Math.abs(p.hp - expected) < 1e-12, `${hp} HP: ${p.hp}`);
     assert.equal(p.stocks, 2, `${hp} HP`);
   }
 
+  for (const [hp, expected, stocks] of [
+    [9.99, 100, 1],
+    [10, 6, 2],
+    [10.01, 6.006, 2],
+  ] as const) {
+    const { state } = setup();
+    const p = state.players[0];
+    p.hp = hp;
+    fallAt(state, 0);
+    assert.ok(Math.abs(p.hp - expected) < 1e-12, `${hp} HP: ${p.hp}`);
+    assert.equal(p.stocks, stocks, `${hp} HP`);
+  }
   const { state } = setup();
   const p = state.players[0];
   p.hp = 26.125;
@@ -392,7 +446,7 @@ test("ring-out damage follows the percentage/minimum crossover without rounding"
 test("consecutive falls compound current HP until the final fall loses the stock", () => {
   const { state } = setup();
   const p = state.players[0];
-  const expectedHp = [60, 36, 21.6, 11.6, 1.6];
+  const expectedHp = [60, 36, 21.6, 12.96, 7.776];
   p.hp = 100;
   for (const [index, expected] of expectedHp.entries()) {
     fallAt(state, 0);

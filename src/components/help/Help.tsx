@@ -6,7 +6,7 @@ import {
   SUPER_INTERRUPT_ENERGY_COST,
 } from "../../../shared/roster/roster";
 import {
-  MIN_RING_OUT_DAMAGE,
+  RING_OUT_STOCK_LOSS_THRESHOLD,
   RING_OUT_DAMAGE_FRACTION,
 } from "../../../shared/engine/damage-values";
 import { hasTouchInput } from "../../game/viewport/mobile";
@@ -194,12 +194,12 @@ export function Help({ onClose }: { onClose: () => void }) {
             >
               <h4 id="help-fall-title">Si caes fuera de la arena</h4>
               <p>
-                Pierdes {RING_OUT_DAMAGE_FRACTION * 100}% de tu salud actual,
-                mínimo {MIN_RING_OUT_DAMAGE}, y vuelves a la arena. Si te quedan
-                {MIN_RING_OUT_DAMAGE} de salud o menos, pierdes una vida. Si
-                sobrevives a la caída, tienes un segundo de protección, que
-                termina si atacas, empiezas a cargar la definitiva o haces una
-                esquiva.
+                Pierdes {RING_OUT_DAMAGE_FRACTION * 100}% de tu salud actual y
+                vuelves a la arena. Si tienes menos de{" "}
+                {RING_OUT_STOCK_LOSS_THRESHOLD} de salud antes de caer, pierdes
+                una vida. Si sobrevives a la caída, tienes un segundo de
+                protección, que termina si atacas, empiezas a cargar la
+                definitiva o haces una esquiva.
               </p>
             </section>
             <section

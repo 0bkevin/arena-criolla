@@ -16,7 +16,7 @@ import {
   LIGHT_HEAVY_BONUS,
   LIGHT_LIGHT_HEAVY_BONUS,
   SUPER_BONUS,
-  MIN_RING_OUT_DAMAGE,
+  RING_OUT_STOCK_LOSS_THRESHOLD,
   RING_OUT_DAMAGE_FRACTION,
 } from "../../shared/engine/damage-values";
 
@@ -424,7 +424,7 @@ export function buildReport(options: Options) {
     recentHitTicks: RECENT_HIT_TICKS,
     ringOutPolicy: {
       fraction: RING_OUT_DAMAGE_FRACTION,
-      minimum: MIN_RING_OUT_DAMAGE,
+      stockLossThreshold: RING_OUT_STOCK_LOSS_THRESHOLD,
     },
     phases: PHASES,
     staticDamage: staticDamage(),

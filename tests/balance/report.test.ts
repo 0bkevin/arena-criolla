@@ -4,7 +4,7 @@ import { createMatch, cpuInput, emptyInput } from "../../shared/engine/engine";
 import { FIGHTERS, STAGES } from "../../shared/roster/roster";
 import { simulate } from "../../scripts/balance/model";
 import {
-  MIN_RING_OUT_DAMAGE,
+  RING_OUT_STOCK_LOSS_THRESHOLD,
   ringOutDamage,
 } from "../../shared/engine/damage-values";
 import { removeFallHpDrop } from "../../scripts/balance/model";
@@ -59,7 +59,7 @@ test("falls are recorded apart from hits and keep the stock", () => {
   const result = simulate(FIGHTERS[0]!, FIGHTERS[1]!, STAGES[0]!.id, options);
   assert.ok(result.falls.length > 0);
   for (const fall of result.falls) {
-    assert.ok(fall.hp > MIN_RING_OUT_DAMAGE);
+    assert.ok(fall.hp >= RING_OUT_STOCK_LOSS_THRESHOLD);
     assert.ok(Math.abs(fall.damage - ringOutDamage(fall.hp)) < 1e-9);
     assert.ok(
       !result.stocks.some(

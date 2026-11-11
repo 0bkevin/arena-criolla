@@ -4,7 +4,7 @@ import { FIGHTERS, STAGES, fighterById } from "../../shared/roster/roster";
 import {
   LIGHT_HEAVY_BONUS,
   LIGHT_LIGHT_HEAVY_BONUS,
-  MIN_RING_OUT_DAMAGE,
+  RING_OUT_STOCK_LOSS_THRESHOLD,
   ringOutDamage,
 } from "../../shared/engine/damage-values";
 import { INTRO_TOTAL_TICKS } from "../../shared/engine/intro";
@@ -113,14 +113,14 @@ test("crossing the arena boundary costs health once and respawns the fighter", (
   assert.equal(p.stocks, 2);
 });
 
-test("a fall costs the stock when its capped damage empties the health", () => {
-  for (const hp of [MIN_RING_OUT_DAMAGE + 0.5, MIN_RING_OUT_DAMAGE, 1]) {
+test("a fall checks pre-fall HP against the strict stock-loss threshold", () => {
+  for (const hp of [10.5, 10, 9.99]) {
     const { state, inputs } = setup();
     const p = state.players[1];
     p.hp = hp;
     p.y = WORLD.y + WORLD.height + 180;
     stepMatch(state, inputs);
-    if (ringOutDamage(hp) < hp) {
+    if (hp >= RING_OUT_STOCK_LOSS_THRESHOLD) {
       assert.equal(p.stocks, 2, `hp=${hp}`);
       assert.ok(Math.abs(p.hp - (hp - ringOutDamage(hp))) < 1e-9, `hp=${hp}`);
     } else {
@@ -135,7 +135,7 @@ test("a fall on the final stock with low health ends the match", () => {
   const { state, inputs } = setup();
   const p = state.players[1];
   p.stocks = 1;
-  p.hp = MIN_RING_OUT_DAMAGE;
+  p.hp = RING_OUT_STOCK_LOSS_THRESHOLD - 0.01;
   p.x = WORLD.x - 140;
   stepMatch(state, inputs);
   assert.equal(p.stocks, 0);
@@ -269,7 +269,7 @@ test("simultaneous final-stock knockouts and ringouts end in a draw", () => {
       player.stocks = 1;
       if (cause === "health") player.hp = 0;
       else {
-        player.hp = MIN_RING_OUT_DAMAGE;
+        player.hp = RING_OUT_STOCK_LOSS_THRESHOLD - 0.01;
         player.y = WORLD.y + WORLD.height + 180;
       }
     });

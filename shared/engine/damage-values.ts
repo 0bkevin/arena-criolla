@@ -11,15 +11,14 @@ export const LIGHT_HEAVY_BONUS = 2;
 export const LIGHT_LIGHT_HEAVY_BONUS = 4;
 /** Bonus for a combo into a definitive. */
 export const SUPER_BONUS = 7;
-/** Fraction of current HP lost for a nonlethal fall, unless the minimum is higher. */
+/** Fraction of current HP lost for a surviving fall. */
 export const RING_OUT_DAMAGE_FRACTION = 0.4;
-/** Minimum HP loss for a fall; a fighter at or below this HP loses the stock. */
-export const MIN_RING_OUT_DAMAGE = 10;
+/** A fighter loses the stock when pre-fall HP is strictly below this threshold. */
+export const RING_OUT_STOCK_LOSS_THRESHOLD = 10;
 
-/** HP removed by a fall, capped at the fighter's remaining HP. */
+/** HP removed by a fall; below the strict threshold the fall removes all remaining HP. */
 export function ringOutDamage(hp: number): number {
-  return Math.min(
-    hp,
-    Math.max(hp * RING_OUT_DAMAGE_FRACTION, MIN_RING_OUT_DAMAGE),
-  );
+  return hp < RING_OUT_STOCK_LOSS_THRESHOLD
+    ? hp
+    : hp * RING_OUT_DAMAGE_FRACTION;
 }
