@@ -41,7 +41,7 @@ Offline modes run entirely in the browser. Online matches are simulated by the s
 
 ## Author
 
-Made by **Kevin Bravo** · [kevinbravo.com](https://kevinbravo.com) · [GitHub](https://github.com/0bkevin)
+Made by [Kevin Bravo](https://kevinbravo.com).
 
 ## License
 
