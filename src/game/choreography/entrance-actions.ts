@@ -82,11 +82,11 @@ export const DEFAULT_ENTRANCE_ACTION: EntranceAction = {
 
 // Some painted sheets have malformed arms in a crossed pose (hands melting into
 // forearms, arms fused together). Those fighters show a clean neighbouring
-// frame instead; Amanda has no clean crossed pose, so she holds her clasp.
+// frame instead, so every entrance still folds and holds its arms.
 const DEFAULT_FRAME_SUBSTITUTES: Partial<
   Record<(typeof DEFAULT_ENTRANCE_FIGHTERS)[number], Record<number, number>>
 > = {
-  amanda: { 3: 2, 4: 2, 5: 2 },
+  amanda: { 4: 3, 5: 3 },
   gabriela: { 4: 3 },
   norkys: { 3: 4 },
   rummy: { 4: 3 },
