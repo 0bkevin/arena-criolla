@@ -40,7 +40,6 @@ test("production caches fingerprinted assets and negotiates one shared backgroun
     process.chdir(folder);
     server = await makeArenaServer({
       production: true,
-      creator: { dataDir: path.join(folder, "private"), provider: null },
     });
     process.chdir(previous);
     await new Promise<void>((resolve) =>
@@ -139,46 +138,5 @@ test("production caches fingerprinted assets and negotiates one shared backgroun
     process.chdir(previous);
     await server?.close();
     await rm(folder, { recursive: true, force: true });
-  }
-});
-
-test("trusted proxy clients have separate auth limits, and untrusted forwarded headers cannot bypass them", async () => {
-  for (const trusted of [true, false]) {
-    const server = await makeArenaServer({
-      serveClient: false,
-      workshopEnabled: true,
-      trustProxy: trusted ? ["loopback"] : [],
-      creator: { databasePath: ":memory:", provider: null },
-    });
-    await new Promise<void>((resolve) =>
-      server.http.listen(0, "127.0.0.1", resolve),
-    );
-    const address = server.http.address();
-    assert.ok(address && typeof address === "object");
-    const url = `http://127.0.0.1:${address.port}/api/auth/signin`;
-    const send = async (ip: string) => {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Forwarded-For": ip },
-        body: "{}",
-      });
-      await response.json();
-      return response.status;
-    };
-    try {
-      for (let i = 1; i <= 31; i++)
-        assert.equal(
-          await send(`198.51.100.${i}`),
-          trusted || i <= 30 ? 400 : 429,
-        );
-      if (trusted) {
-        for (let i = 0; i < 29; i++)
-          assert.equal(await send("203.0.113.20"), 400);
-        assert.equal(await send("203.0.113.20"), 400);
-        assert.equal(await send("203.0.113.20"), 429);
-      }
-    } finally {
-      await server.close();
-    }
   }
 });

@@ -1,11 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { makeDefinition } from "../server/creator/pipeline";
-import { registerCommunityCharacter } from "../shared/community";
 import { fighterById } from "../shared/content";
 import atlas from "../shared/sprite-geometry.json";
 import { loadImage, preloadAssets } from "../src/game/assets";
-import { deterministicCreatorProvider } from "./fixtures/creator-provider";
 
 function browserFixture(
   options: {
@@ -90,51 +87,6 @@ test("a transient image failure can be retried while successful loads remain cac
     const recovered = await loadImage("qa-transient-image");
     assert.equal(browser.attempts(), 2);
     assert.equal(await loadImage("qa-transient-image"), recovered);
-    assert.equal(browser.attempts(), 2);
-  } finally {
-    browser.restore();
-  }
-});
-
-test("the real fighter preload retries both sprite and image layers after a failed atlas load", async () => {
-  const input = {
-    name: "Recuperación QA",
-    description: "Personaje de prueba para recuperar un atlas.",
-    style: "agile" as const,
-    color: "#6084b8",
-  };
-  const design = await deterministicCreatorProvider().design(input, []);
-  const character = makeDefinition(
-    "custom_" + "e".repeat(32),
-    input,
-    design,
-    {
-      width: 8,
-      height: 4,
-      cellWidth: 2,
-      cellHeight: 2,
-      baseline: 2,
-      bodyHeight: 2,
-      frames: Array.from({ length: 8 }, (_, i) => ({
-        x: (i % 4) * 2,
-        y: Math.floor(i / 4) * 2,
-        width: 2,
-        height: 2,
-        slotX: (i % 4) * 2,
-        slotY: Math.floor(i / 4) * 2,
-      })),
-    },
-    "QA",
-  );
-  registerCommunityCharacter(character, false);
-  const browser = browserFixture();
-  try {
-    await assert.rejects(
-      preloadAssets([character.id], []),
-      /No se pudo cargar/,
-    );
-    const recovered = await preloadAssets([character.id], []);
-    assert.equal(recovered.sprites[character.id].frames.length, 8);
     assert.equal(browser.attempts(), 2);
   } finally {
     browser.restore();

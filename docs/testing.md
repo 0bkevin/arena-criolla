@@ -2,8 +2,7 @@
 
 Keep a test when a realistic regression would make it fail and that failure
 matters: combat rules and deterministic replay, authoritative multiplayer state,
-security and input validation, account or filesystem isolation and billing in the
-private creator, input and audio lifecycles, asset loading and recovery, server
+security and input validation, input and audio lifecycles, asset loading and recovery, server
 delivery, and deploy safety. A character-specific test earns its place only for
 a mechanic the shared engine tests do not cover, asserting behavior rather than
 tuning.

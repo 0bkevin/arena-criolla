@@ -2,7 +2,7 @@
 // This is a port of the WebSocket section of server/index.ts; keep the two in
 // step when the protocol or match rules change.
 import { DurableObject } from "cloudflare:workers";
-import { isFighter, isStage, type FighterId } from "../shared/content";
+import { isFighter, isStage } from "../shared/content";
 import { isRoomCode, normalizeRoomCode } from "../shared/room-code";
 import {
   ACTIONS,
@@ -63,10 +63,6 @@ const randomHex = (bytes: number) =>
   [...crypto.getRandomValues(new Uint8Array(bytes))]
     .map((byte) => byte.toString(16).padStart(2, "0"))
     .join("");
-// No community catalog is deployed on Cloudflare; custom fighters are refused.
-const allowedFighter = (id: unknown): id is FighterId =>
-  isFighter(id) && !id.startsWith("custom_");
-const COMMUNITY = JSON.stringify({ type: "community", characters: [] });
 
 export class ArenaLobby extends DurableObject {
   private clients = new Map<string, Client>();
@@ -199,12 +195,12 @@ export class ArenaLobby extends DurableObject {
       room.view.players.some((player) => player.connected === false)
     )
       return;
-    if (room.view.players.some((player) => !allowedFighter(player.fighter))) {
+    if (room.view.players.some((player) => !isFighter(player.fighter))) {
       room.view.status = "waiting";
       room.state = null;
       room.view.players.forEach((player) => {
         player.ready = false;
-        if (!allowedFighter(player.fighter)) {
+        if (!isFighter(player.fighter)) {
           player.fighter = "zavarce";
           player.wins = 0;
         }
@@ -354,7 +350,6 @@ export class ArenaLobby extends DurableObject {
       resumeToken: client.resumeToken ?? undefined,
       resumed,
     });
-    this.sendEncoded(client, COMMUNITY);
     this.publishList(client);
     if (resumed) {
       const room = this.rooms.get(client.room!)!;
@@ -448,7 +443,7 @@ export class ArenaLobby extends DurableObject {
         this.error(client, "Primero sal de tu sala actual.");
         return;
       }
-      if (!allowedFighter(message.fighter) || !isStage(message.stage)) {
+      if (!isFighter(message.fighter) || !isStage(message.stage)) {
         this.error(client, "Elige un luchador y un escenario válidos.");
         return;
       }
@@ -494,7 +489,7 @@ export class ArenaLobby extends DurableObject {
         this.error(client, "Ya estás en una sala.");
         return;
       }
-      if (!isRoomCode(message.code) || !allowedFighter(message.fighter)) return;
+      if (!isRoomCode(message.code) || !isFighter(message.fighter)) return;
       const room = this.rooms.get(normalizeRoomCode(message.code));
       if (!room) {
         this.error(client, "No encontramos esa sala. Revisa el código.");
@@ -527,7 +522,7 @@ export class ArenaLobby extends DurableObject {
     if (message.type === "select" && current.view.status === "waiting") {
       const player = current.view.players.find((p) => p.id === client.id)!;
       let changed = false;
-      if (allowedFighter(message.fighter)) {
+      if (isFighter(message.fighter)) {
         const wins = cleanWins(message.wins);
         if (player.fighter !== message.fighter || player.wins !== wins) {
           player.fighter = message.fighter;

@@ -33,11 +33,7 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
     if (original === undefined) delete process.env.ARENA_PUBLIC_URL;
     else process.env.ARENA_PUBLIC_URL = original;
   });
-  const folder = await mkdtemp(path.join(os.tmpdir(), "arena-seo-"));
-  t.after(() => rm(folder, { recursive: true, force: true }));
-  const server = await makeArenaServer({
-    creator: { dataDir: folder, databasePath: ":memory:", provider: null },
-  });
+  const server = await makeArenaServer({});
   t.after(() => server.close());
   await new Promise<void>((resolve) =>
     server.http.listen(0, "127.0.0.1", resolve),
@@ -103,22 +99,6 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
     );
   }
 
-  for (const route of [
-    "/create",
-    "/create/",
-    "/create/saved?room=PRIVATE",
-    "/CREATE?room=PRIVATE",
-  ]) {
-    const legacy = await fetch(base + route, { redirect: "manual" });
-    assert.equal(legacy.status, 302);
-    assert.equal(legacy.headers.get("location"), "/");
-    assert.equal(legacy.headers.get("cache-control"), "no-store");
-    const home = await (await fetch(base + route)).text();
-    assert.ok(
-      home.includes('<link rel="canonical" href="https://arena.example/"'),
-    );
-    assert.ok(!home.includes("arena.example/create"));
-  }
   const robots = await (await fetch(`${base}/robots.txt`)).text();
   assert.ok(robots.includes("Sitemap: https://arena.example/sitemap.xml"));
   const sitemap = await fetch(`${base}/sitemap.xml`);
@@ -175,11 +155,6 @@ test("social previews get a new image URL when the deployed JPEG changes", async
       process.chdir(folder);
       server = await makeArenaServer({
         production: true,
-        creator: {
-          dataDir: path.join(folder, "private"),
-          databasePath: ":memory:",
-          provider: null,
-        },
       });
     } finally {
       process.chdir(previous);

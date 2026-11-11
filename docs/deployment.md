@@ -16,7 +16,7 @@ npm start
 
 El servidor entrega la aplicación compilada y simula las partidas en línea. `PORT` cambia el puerto; las demás opciones están en [`.env.example`](../.env.example). En producción, configura `ARENA_PUBLIC_URL` con el origen público y `ARENA_TRUST_PROXY` según el proxy utilizado.
 
-La configuración de Docker Compose, proxy y copias de seguridad está en [`deploy/`](../deploy/). El contenedor conserva la aplicación, los assets públicos y las dependencias necesarias. Los datos privados del creador se guardan en el volumen configurado con `ARENA_DATA_DIR`; las credenciales y los archivos `.env` quedan fuera del repositorio.
+La configuración de Docker Compose, proxy y copias de seguridad está en [`deploy/`](../deploy/). El contenedor conserva la aplicación, los assets públicos y las dependencias necesarias. Las credenciales y los archivos `.env` quedan fuera del repositorio.
 
 Para comprobar una instancia desplegada:
 
@@ -63,7 +63,7 @@ Para instalar o actualizar los controles desde un checkout revisado, en el servi
 sudo bash deploy/install-delivery-controls.sh /ruta/a/deploy-key.pub
 ```
 
-El script conserva Compose, `/etc/arena-criolla/server.env`, `/etc/arena-criolla/release.env`, el proxy y el volumen `/workspace/arena-criolla-production/data`. Instala controles propiedad de root fuera de la imagen y una cuenta sin acceso general a sudo ni al grupo Docker. La clave pública queda restringida a los comandos `probe` y `deploy <sha> <run-id> <attempt> <checksum>`, sin forwarding ni terminal. La transferencia usa stdin; no habilites SCP o una shell general. Los despliegues normales no reemplazan estos controles. Los cambios a Compose, proxy, variables del servidor o al instalador requieren una actualización separada del operador.
+El script conserva Compose, `/etc/arena-criolla/server.env`, `/etc/arena-criolla/release.env`, y el proxy. Instala controles propiedad de root fuera de la imagen y una cuenta sin acceso general a sudo ni al grupo Docker. La clave pública queda restringida a los comandos `probe` y `deploy <sha> <run-id> <attempt> <checksum>`, sin forwarding ni terminal. La transferencia usa stdin; no habilites SCP o una shell general. Los despliegues normales no reemplazan estos controles. Los cambios a Compose, proxy, variables del servidor o al instalador requieren una actualización separada del operador.
 
 El transporte usa `arena-criolla-deploy-sshd.service`, con configuración independiente en TCP 2222, autenticación por clave y acceso exclusivo de `arena-deploy`. El instalador añade una regla acotada de iptables y la conserva en `/etc/iptables/rules.v4`. En OCI (`us-phoenix-1`), el NSG `arena-criolla-deployment` (`ocid1.networksecuritygroup.oc1.phx.aaaaaaaapqs73jc6tbyfwfyhwd6s3szof64zhb4tqhi2ohfo7w4g27j7m2eq`) del VNIC del servidor permite TCP 2222 desde internet para los runners de GitHub, cuyas IP cambian. El SSH del operador en TCP 22 conserva su lista de direcciones autorizadas. Al recrear el host, aplica también esa regla OCI al VNIC; instalar el servicio no modifica la red cloud.
 
@@ -73,13 +73,13 @@ Para rotar la clave, genera un par nuevo, vuelve a ejecutar el instalador con su
 
 La entrega usa `/opt/arena-criolla/.deployment.lock` y registra su estado en `/var/lib/arena-criolla-deploy/state.json`. Rechaza ejecuciones antiguas, intentos fallidos repetidos y transacciones sin reconciliar. Repetir una entrega ya completada solo comprueba la salud de la imagen instalada. El servidor conserva la imagen anterior y no elimina imágenes de otros proyectos.
 
-Un fallo antes del cambio deja la versión actual en servicio. Si falla la nueva versión, el instalador la detiene y compara el esquema SQLite con el registrado antes del cambio. Solo vuelve a la imagen anterior si el esquema permanece igual y esa imagen pasa las comprobaciones. Si cambia el esquema, falla la recuperación o se interrumpe el proceso durante el cambio, bloquea posteriores entregas para revisión del operador. Nunca restaura datos automáticamente. La igualdad del esquema no demuestra compatibilidad de los datos: revisa por separado cualquier migración de contenido antes de promoverla.
+Un fallo antes del cambio deja la versión actual en servicio. Si falla la nueva versión, el instalador la detiene y vuelve a la imagen anterior si esta pasa las comprobaciones. Si falla la recuperación o se interrumpe el proceso durante el cambio, bloquea posteriores entregas para revisión del operador.
 
-Ante un timeout de Actions, el resultado remoto puede ser desconocido. Comprueba el registro, la imagen real de `arena-criolla`, `release.env`, el esquema y la salud pública antes de modificar el registro. Conserva una copia del estado; solo después de reconciliar una transacción `installing` o `recovery_required`, márcala como `failed`, preservando su generación, para permitir un intento nuevo. Los detalles de la copia previa están en `/var/backups/arena-criolla`.
+Ante un timeout de Actions, el resultado remoto puede ser desconocido. Comprueba el registro, la imagen real de `arena-criolla`, `release.env` y la salud pública antes de modificar el registro. Conserva una copia del estado; solo después de reconciliar una transacción `installing` o `recovery_required`, márcala como `failed`, preservando su generación, para permitir un intento nuevo.
 
-Para reintentar un fallo terminado, usa **Re-run all jobs**, de modo que la imagen, el artefacto y la entrega compartan el nuevo intento. Para revertir una versión que ya se desplegó correctamente, crea un commit de reversión en `main` y promuévelo normalmente. Revisa la compatibilidad de datos; no resetees `prod` a un commit antiguo.
+Para reintentar un fallo terminado, usa **Re-run all jobs**, de modo que la imagen, el artefacto y la entrega compartan el nuevo intento. Para revertir una versión que ya se desplegó correctamente, crea un commit de reversión en `main` y promuévelo normalmente. No resetees `prod` a un commit antiguo.
 
-Las partidas en memoria y las conexiones WebSocket se interrumpen durante la sustitución del único contenedor. Los datos persistentes se conservan. Los artefactos de Actions caducan a los tres días; las imágenes locales retenidas requieren limpieza periódica, preservando siempre la imagen en ejecución y la anterior.
+Las partidas en memoria y las conexiones WebSocket se interrumpen durante la sustitución del único contenedor. La aplicación no guarda datos persistentes. Los artefactos de Actions caducan a los tres días; las imágenes locales retenidas requieren limpieza periódica, preservando siempre la imagen en ejecución y la anterior.
 
 La validación local de los controles es `python3 -B deploy/test_install_release.py`. Estas pruebas no ejecutan Docker ni modifican producción. La prueba de transporte SSH tampoco equivale a una entrega completa desde GitHub; registra el resultado de la primera promoción por separado.
 

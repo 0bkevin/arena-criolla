@@ -1,7 +1,6 @@
 import "dotenv/config";
 import express from "express";
 import { assetVersion } from "../shared/asset-versions";
-import { makeCreatorService, type CreatorOptions } from "./creator/router";
 import { createServer } from "node:http";
 import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { fileURLToPath } from "node:url";
@@ -81,9 +80,6 @@ export async function makeArenaServer(
   options: {
     serveClient?: boolean;
     production?: boolean;
-    creator?: CreatorOptions;
-    // Explicit opt-in for the retained workshop's isolated tests and tooling.
-    workshopEnabled?: boolean;
     trustProxy?: string[];
     roomReconnectGraceMs?: number;
   } = {},
@@ -105,26 +101,6 @@ export async function makeArenaServer(
     options.serveClient === false
       ? undefined
       : publicSiteOrigin(process.env.ARENA_PUBLIC_URL);
-  let notifyCommunity = () => {};
-  const workshopEnabled = options.workshopEnabled === true;
-  const creator = makeCreatorService({
-    ...(options.creator ??
-      (options.serveClient === false ? { databasePath: ":memory:" } : {})),
-    ...(!workshopEnabled ? { provider: null } : {}),
-    onCatalogChange: () => notifyCommunity(),
-  });
-  if (!workshopEnabled) {
-    app.use(["/api/creator", "/api/auth"], (_req, res) => {
-      res
-        .set("Cache-Control", "no-store")
-        .status(404)
-        .json({ error: "No encontramos esa ruta." });
-    });
-    app.get(/^\/create(?:\/.*)?$/i, (_req, res) => {
-      res.set("Cache-Control", "no-store").redirect(302, "/");
-    });
-  }
-  app.use("/api", creator.router);
   const http = createServer(
     {
       headersTimeout: 10_000,
@@ -173,25 +149,6 @@ export async function makeArenaServer(
     }
     client.socket.send(message);
   };
-  const communityMessage = () => ({
-    type: "community" as const,
-    characters: creator.db.published().map((row) => JSON.parse(row.character!)),
-  });
-  let communityCache = "";
-  const communityPayload = () => {
-    if (!communityCache) communityCache = JSON.stringify(communityMessage());
-    return communityCache;
-  };
-  notifyCommunity = () => {
-    communityCache = JSON.stringify(communityMessage());
-    clients.forEach((client) => sendEncoded(client, communityCache, true));
-  };
-  const allowedFighter = (
-    id: unknown,
-  ): id is import("../shared/content").FighterId =>
-    isFighter(id) &&
-    (!id.startsWith("custom_") ||
-      creator.db.character(id)?.status === "published");
   const publishRoom = (room: Room) => {
     const message = JSON.stringify({ type: "room", room: room.view });
     room.clients.forEach((client) => sendEncoded(client, message, true));
@@ -264,12 +221,12 @@ export async function makeArenaServer(
       room.view.players.some((player) => player.connected === false)
     )
       return;
-    if (room.view.players.some((player) => !allowedFighter(player.fighter))) {
+    if (room.view.players.some((player) => !isFighter(player.fighter))) {
       room.view.status = "waiting";
       room.state = null;
       room.view.players.forEach((player) => {
         player.ready = false;
-        if (!allowedFighter(player.fighter)) {
+        if (!isFighter(player.fighter)) {
           player.fighter = "zavarce";
           player.wins = 0;
         }
@@ -305,6 +262,12 @@ export async function makeArenaServer(
   app.get("/api/rooms", (_req, res) =>
     res.json([...rooms.values()].filter((r) => !r.private).map((r) => r.view)),
   );
+  app.use("/api", (_req, res) => {
+    res
+      .set("Cache-Control", "no-store")
+      .status(404)
+      .json({ error: "No encontramos esa ruta." });
+  });
   http.on("upgrade", (request, socket, head) => {
     if (request.url?.split("?")[0] !== "/ws") {
       const protocols = (request.headers["sec-websocket-protocol"] ?? "")
@@ -386,7 +349,6 @@ export async function makeArenaServer(
       resumeToken: client.resumeToken ?? undefined,
       resumed,
     });
-    sendEncoded(client, communityPayload(), true);
     publishList(client);
     if (resumed) {
       const room = rooms.get(client.room!)!;
@@ -472,7 +434,7 @@ export async function makeArenaServer(
           error(client, "Primero sal de tu sala actual.");
           return;
         }
-        if (!allowedFighter(message.fighter) || !isStage(message.stage)) {
+        if (!isFighter(message.fighter) || !isStage(message.stage)) {
           error(client, "Elige un luchador y un escenario válidos.");
           return;
         }
@@ -517,8 +479,7 @@ export async function makeArenaServer(
           error(client, "Ya estás en una sala.");
           return;
         }
-        if (!isRoomCode(message.code) || !allowedFighter(message.fighter))
-          return;
+        if (!isRoomCode(message.code) || !isFighter(message.fighter)) return;
         const room = rooms.get(normalizeRoomCode(message.code));
         if (!room) {
           error(client, "No encontramos esa sala. Revisa el código.");
@@ -548,7 +509,7 @@ export async function makeArenaServer(
       if (message.type === "select" && current.view.status === "waiting") {
         const player = current.view.players.find((p) => p.id === client.id)!;
         let changed = false;
-        if (allowedFighter(message.fighter)) {
+        if (isFighter(message.fighter)) {
           const wins = cleanWins(message.wins);
           if (player.fighter !== message.fighter || player.wins !== wins) {
             player.fighter = message.fighter;
@@ -831,8 +792,6 @@ export async function makeArenaServer(
               "**/.git/**",
               "**/data/**",
               "**/*.sqlite*",
-              creator.dataDir.replaceAll("\\", "/") + "/**",
-              creator.databasePath.replaceAll("\\", "/"),
             ],
           },
         },
@@ -857,16 +816,13 @@ export async function makeArenaServer(
   let closing: Promise<void> | null = null;
   return {
     http,
-    creator,
     clients,
     rooms,
     close: () =>
       (closing ??= (async () => {
         shuttingDown = true;
-        creator.stop();
         clients.forEach((c) => c.socket.terminate());
-        // Stop accepting connections first, but retain SQLite until in-flight auth,
-        // uploads and catalog writes finish. Bound keep-alive/slow-client shutdown.
+        // Stop accepting connections first. Bound keep-alive/slow-client shutdown.
         const closed = new Promise<void>((resolve) =>
           http.close(() => resolve()),
         );
@@ -877,7 +833,6 @@ export async function makeArenaServer(
         try {
           await vite?.close();
           await closed;
-          await creator.close();
         } finally {
           clearTimeout(deadline);
         }

@@ -9,20 +9,14 @@ import { VICTORY_DURATION_MS } from "../src/game/victory-types";
 
 const at = (progress: number) => progress * VICTORY_DURATION_MS;
 
-test("reduced motion keeps both actors static and community fighters use the fallback", () => {
-  for (const id of ["ali", "custom_community-test"] as const) {
-    const pose = sampleVictory(id, at(0.4), true);
-    assert.deepEqual(pose.gesture, { at: pose.progress, ...REST }, id);
-    assert.equal(pose.dx, 0, id);
-    assert.equal(pose.dy, 0, id);
-    assert.equal(pose.rotate, 0, id);
-  }
+test("reduced motion keeps both actors static", () => {
+  const pose = sampleVictory("ali", at(0.4), true);
+  assert.deepEqual(pose.gesture, { at: pose.progress, ...REST });
+  assert.equal(pose.dx, 0);
+  assert.equal(pose.dy, 0);
+  assert.equal(pose.rotate, 0);
   assert.deepEqual(sampleDefeat(at(0.4), true), { dx: 0, dy: 0, rotate: 0 });
-  assert.ok(victoryById("custom_community-test"));
-  assert.deepEqual(
-    sampleVictory("custom_community-test", at(1)),
-    sampleVictory("custom_another_id", at(1)),
-  );
+  assert.ok(victoryById("ali"));
 });
 
 function spriteAsset(): SpriteAsset {

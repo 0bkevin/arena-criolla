@@ -25,10 +25,6 @@ export function RosterFilter({
     ["founders", "Founders"],
     ["culture", "Cultura"],
     ["folklore", "Leyendas"],
-    ...(value === "community" ||
-    FIGHTERS.some((fighter) => fighter.category === "community")
-      ? ([["community", "Panas"]] as const)
-      : []),
   ];
   const options = categories.map(([id, label]) => ({
     id,

@@ -25,7 +25,7 @@ const touched = (pattern) =>
   !changed || changed.some((file) => pattern.test(file));
 
 const everything = touched(
-  /^(package(-lock)?\.json|tsconfig\.json|tests\/(helpers|fixtures)\/|scripts\/select-checks\.mjs|\.github\/workflows\/)/,
+  /^(package(-lock)?\.json|tsconfig\.json|tests\/helpers\/|scripts\/select-checks\.mjs|\.github\/workflows\/)/,
 );
 
 const testFiles = [];
@@ -104,7 +104,7 @@ const checks = {
   e2e: /^(src\/|index\.html|vite\.config\.ts|public\/|shared\/|e2e\/|playwright\.config\.ts$)/,
   // Anything the Docker build copies, plus the smoke test it runs.
   image:
-    /^(Dockerfile|\.dockerignore|index\.html|vite\.config\.ts|src\/|shared\/|server\/|public\/|scripts\/(security-smoke\.mjs|creator-import\.ts))/,
+    /^(Dockerfile|\.dockerignore|index\.html|vite\.config\.ts|src\/|shared\/|server\/|public\/|scripts\/security-smoke\.mjs)/,
   // New base layers or dependencies can bring new CVEs.
   scan: /^(Dockerfile|package-lock\.json)$/,
 };
