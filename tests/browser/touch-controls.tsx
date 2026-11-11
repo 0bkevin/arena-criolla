@@ -12,6 +12,7 @@ import {
   makeInputs,
   type Control,
 } from "../../src/game/controls";
+import "../../src/base.css";
 import "../../src/styles.css";
 import "../../src/lobby.css";
 import "../../src/arcade-theme.css";

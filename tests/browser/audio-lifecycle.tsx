@@ -7,6 +7,7 @@ import { App } from "../../src/App";
 import * as audio from "../../src/audio";
 import { setPreference } from "../../src/storage";
 import { REACTION_CLIPS } from "../../src/game/reactions";
+import "../../src/base.css";
 import "../../src/styles.css";
 import "../../src/lobby.css";
 import "../../src/arcade-theme.css";
