@@ -125,16 +125,6 @@
   box-shadow: 0 0 8px #dfff7b55;
   flex-shrink: 0;
 }
-.mode-bar {
-  margin-top: 23px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 16px;
-  margin-bottom: 23px;
-}
 .mode-tabs {
   display: flex;
   gap: 7px;
@@ -279,57 +269,11 @@
 .text-button:hover {
   color: var(--lime);
 }
-.name-field {
-  margin-top: 8px;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  border: 1px solid #383c49;
-  border-radius: 5px;
-  height: 41px;
-  background: #13161e;
-  padding: 0 11px;
-}
-.name-field:focus-within {
-  border-color: #dfff7b99;
-}
-.name-field > svg {
-  color: #747c8c;
-}
-.name-field input {
-  background: none;
-  border: 0;
-  color: var(--text);
-  width: 100%;
-  min-width: 0;
-  font-size: 10px;
-  padding: 0;
-  height: 100%;
-}
-.name-field input::placeholder {
-  color: #697182;
-}
-.name-field > span {
-  color: #6b7483;
-  font-family: monospace;
-  font-size: 9px;
-}
 .form-error {
   font-size: 10px;
   color: #ff918a;
   margin-top: 7px;
   line-height: 1.6;
-}
-.rival-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 19px;
-}
-.rival-label > span {
-  font-size: 8px;
-  color: #7a8294;
-  font-family: monospace;
 }
 .difficulty {
   display: flex;
@@ -1420,9 +1364,6 @@ kbd {
   .fighter-card-caption {
     padding: 11px 13px 14px;
   }
-  .name-field {
-    height: 45px;
-  }
   .fight-button {
     height: 51px;
     margin-top: 21px;
@@ -1519,10 +1460,6 @@ kbd {
   }
   .mode-tabs button > svg {
     width: 16px;
-  }
-  .mode-bar {
-    margin-top: 19px;
-    gap: 10px;
   }
   .match-hud {
     left: 18px;
@@ -1629,13 +1566,6 @@ kbd {
     font-size: 10px;
     letter-spacing: 1.3px;
   }
-  .mode-bar {
-    flex-wrap: wrap;
-    margin-top: 17px;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    gap: 7px;
-  }
   .mode-tabs {
     width: 100%;
     gap: 4px;
@@ -1655,16 +1585,6 @@ kbd {
   }
   .mode-tabs button > svg {
     width: 17px;
-  }
-  .name-field {
-    height: 46px;
-    margin-top: 9px;
-  }
-  .name-field input {
-    font-size: 12px;
-  }
-  .rival-label {
-    margin-top: 21px;
   }
   .difficulty {
     margin-top: 13px;
@@ -1999,14 +1919,6 @@ kbd {
     padding: 7px;
     margin-top: 7px;
   }
-  .arena-wrap:has(.result-overlay) {
-    aspect-ratio: auto;
-  }
-  .arena-wrap:has(.result-overlay) .arena-canvas,
-  .arena-wrap:has(.result-overlay) .match-hud,
-  .arena-wrap:has(.result-overlay) .arena-location {
-    display: none;
-  }
 }
 @media (max-height: 500px) and (orientation: landscape) {
   .app-shell:has(.game-page) .site-header,
@@ -2016,9 +1928,6 @@ kbd {
   .game-page {
     padding-top: 8px;
     max-width: min(1440px, calc((100dvh - 125px) * 1.8));
-  }
-  .game-page:has(.result-overlay) {
-    max-width: min(760px, calc(100vw - 32px));
   }
   .game-topline {
     margin-bottom: 5px;

@@ -2,7 +2,7 @@
    Content dialogs share their own frame and type scale. */
 @media (max-width: 680px), (max-height: 500px) and (orientation: landscape) {
   .app-shell.arcade-app .modal:where(:not(.content-modal)) .modal-header h2,
-  .app-shell .game-page :is(.pause-card, .result-info, .orientation-card) h2 {
+  .app-shell .game-page :is(.pause-card, .orientation-card) h2 {
     font-size: 24px;
     line-height: 1.15;
     letter-spacing: 0;
@@ -61,8 +61,7 @@
   font-size: 13px;
   line-height: 1.7;
 }
-.modal:where(:not(.content-modal))
-  :is(.help-section, .rules-grid h3, .detail-info > h3) {
+.modal:where(:not(.content-modal)) :is(.detail-info > h3) {
   font-size: 15px;
 }
 .modal:where(:not(.content-modal))
@@ -77,13 +76,8 @@
     .roster-grid span,
     .stage-card-body > span,
     .stage-tags span,
-    .special-description span,
-    .special-description kbd,
-    .combo-list small,
-    .combo-list kbd,
     .progress-metrics span,
     .lobby-meta,
-    .field-label,
     .checkbox-label,
     .rooms-list span,
     .rooms-list-heading > span,
@@ -96,20 +90,13 @@
   line-height: 1.5;
   letter-spacing: 0;
 }
-.modal:where(:not(.content-modal))
-  :is(
-    .combo-list strong,
-    .special-description strong,
-    .rooms-list strong,
-    .gamepad-note strong
-  ) {
+.modal:where(:not(.content-modal)) :is(.rooms-list strong) {
   font-size: 13px;
 }
 .modal:where(:not(.content-modal)) .recent-matches small {
   color: #acb9cf;
 }
-.modal:where(:not(.content-modal))
-  :is(.roster-grid span, .roster-grid strong, .special-description) {
+.modal:where(:not(.content-modal)) :is(.roster-grid span, .roster-grid strong) {
   color: color-mix(in srgb, var(--fighter-color) 65%, #ffffff);
 }
 .modal:where(:not(.content-modal))

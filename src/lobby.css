@@ -284,18 +284,6 @@ body {
   transform: translateY(2px);
   box-shadow: none;
 }
-.mode-slot {
-  position: absolute;
-  top: 7px;
-  right: 8px;
-  font: 500 9px var(--pixel);
-  opacity: 0.5;
-}
-.arcade-modes .selected .mode-slot {
-  opacity: 1;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
 .arcade-progress {
   display: flex;
   align-items: center;
@@ -1082,8 +1070,7 @@ body {
   border-color: #685777;
   font: 500 15px var(--pixel);
 }
-.arcade-app .modal .plain-input,
-.arcade-app .modal .name-field {
+.arcade-app .modal .plain-input {
   border-radius: 2px;
   border-color: #7693bd;
   background: #0d2345;
@@ -1404,7 +1391,6 @@ body {
     letter-spacing: 0.2px;
     margin-top: 4px;
   }
-  .mode-slot,
   .arcade-progress {
     display: none;
   }

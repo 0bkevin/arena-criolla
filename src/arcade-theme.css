@@ -259,9 +259,6 @@ body {
   transform: translateY(1px);
   box-shadow: none;
 }
-.in-lobby .mode-slot {
-  font-size: 9px;
-}
 .in-lobby .arcade-progress {
   color: #aebed4;
   font: 500 11px var(--font-body);
@@ -1550,7 +1547,6 @@ body {
   .in-lobby .arcade-modes small {
     font-size: 6px;
   }
-  .in-lobby .mode-slot,
   .in-lobby .arcade-progress {
     display: none;
   }
