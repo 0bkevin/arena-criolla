@@ -1673,15 +1673,6 @@
         "anchorY": 409,
         "bodyHeight": 409
       },
-      "celebrate": {
-        "x": 350,
-        "y": 486,
-        "width": 305,
-        "height": 435,
-        "anchorX": 155,
-        "anchorY": 435,
-        "bodyHeight": 388
-      },
       "token": {
         "x": 675,
         "y": 630,
