@@ -80,6 +80,12 @@ export interface PlayerState {
   rootKind?: "chain" | "screen" | "spectral" | "flash" | "bite" | "pot";
   invincible: number;
   dashOnlyInvincible: number;
+  /** Remaining safe-return immunity after a nonlethal fall. */
+  fallProtectionTicks?: number;
+  /** Other non-dash immunity that must survive cancellation of fall protection. */
+  fallProtectionBase?: number;
+  /** Other dash immunity that overlaps the fall layer and must survive it. */
+  fallProtectionDashBase?: number;
   dash: number;
   lastActions: Record<Action, number>;
   bufferedAttack?: { attack: Exclude<Attack, "super" | null>; ticks: number };

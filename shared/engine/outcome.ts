@@ -4,10 +4,15 @@ import { fighterById } from "../roster/roster";
 import { runwayContacts, supportRunway } from "./finales/field-finales";
 import { effect, hurt } from "./combat";
 import { RING_OUT_DAMAGE } from "./damage-values";
+import { clearFallProtection, setInvincibility } from "./invincibility";
 import { PLAYERS, type MatchState, type PlayerIndex } from "./types";
 
 /** Clear the fighter's ongoing actions and mark where they left the arena. */
-function leaveArena(s: MatchState, i: PlayerIndex) {
+function leaveArena(
+  s: MatchState,
+  i: PlayerIndex,
+  preserveTransformation = false,
+) {
   const p = s.players[i];
   delete p.bufferedAttack;
   delete p.bufferedSuperTicks;
@@ -16,7 +21,7 @@ function leaveArena(s: MatchState, i: PlayerIndex) {
   );
   p.superChargeTicks = 0;
   delete p.knockoutDelay;
-  delete p.transformation;
+  if (!preserveTransformation) delete p.transformation;
   s.fieldFinales = s.fieldFinales?.filter((field) => field.owner !== i);
   if (!s.fieldFinales?.length) delete s.fieldFinales;
   p.slowTicks = 0;
@@ -37,8 +42,9 @@ function leaveArena(s: MatchState, i: PlayerIndex) {
 }
 
 /** Return a fighter to their spawn point, briefly protected. */
-function respawn(s: MatchState, i: PlayerIndex) {
+function respawn(s: MatchState, i: PlayerIndex, survivingFall = false) {
   const p = s.players[i];
+  clearFallProtection(p);
   p.x = i === 0 ? 330 : 750;
   p.y = 260;
   p.vx = 0;
@@ -50,16 +56,35 @@ function respawn(s: MatchState, i: PlayerIndex) {
   p.jumps = 0;
   p.stun = 0;
   p.attack = null;
+  p.attackTick = 0;
+  p.attackHit = false;
+  p.countered = false;
+  p.counterLanded = false;
   p.cooldown = 30;
-  p.invincible = 110;
-  p.dashOnlyInvincible = 0;
-  p.energy = Math.max(0, p.energy - 20);
+  p.dash = 0;
+  p.blocking = false;
+  p.history = [];
+  p.combo = "";
+  p.comboTick = 0;
+  p.comboBonus = 0;
+  setInvincibility(p, survivingFall ? 60 : 110);
+  if (survivingFall) {
+    p.fallProtectionTicks = 60;
+    p.fallProtectionBase = 0;
+    p.fallProtectionDashBase = 0;
+  } else {
+    delete p.fallProtectionTicks;
+    delete p.fallProtectionBase;
+    delete p.fallProtectionDashBase;
+    p.energy = Math.max(0, p.energy - 20);
+  }
   p.streak = 0;
 }
 
 function loseStock(s: MatchState, i: PlayerIndex) {
   const p = s.players[i];
   p.stocks--;
+  clearFallProtection(p);
   leaveArena(s, i);
   if (p.stocks <= 0) {
     p.hp = 0;
@@ -77,8 +102,8 @@ function fall(s: MatchState, i: PlayerIndex) {
     return;
   }
   p.hp -= RING_OUT_DAMAGE;
-  leaveArena(s, i);
-  respawn(s, i);
+  leaveArena(s, i, true);
+  respawn(s, i, true);
 }
 
 function outOfArena(p: MatchState["players"][number]) {

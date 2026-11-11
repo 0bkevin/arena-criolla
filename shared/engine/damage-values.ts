@@ -16,4 +16,4 @@ export const SUPER_BONUS = 7;
  * so it is the same for every fighter. A fall that this amount would leave at
  * 0 HP or less costs the stock instead, never more than this much health.
  */
-export const RING_OUT_DAMAGE = 30;
+export const RING_OUT_DAMAGE = 10;
