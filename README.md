@@ -1,24 +1,23 @@
-[![Arena Criolla: personajes venezolanos frente a frente](public/assets/og-arena-criolla.jpg)](https://arenacriolla.com/)
+[![Arena Criolla](public/assets/og-arena-criolla.jpg)](https://arenacriolla.com/)
 
 # Arena Criolla
 
-Un juego de pelea donde los mitos, la música, el humor y las figuras de Venezuela se encuentran en la misma arena. Juega desde el navegador, sin instalar nada ni crear una cuenta.
+Juego de pelea en el navegador con personajes, mitos y escenarios de Venezuela. No hay que instalar nada ni crear una cuenta.
 
-**[Jugar ahora](https://arenacriolla.com/)** · [Desarrollo local](#desarrollo-local) · [Despliegue](docs/deployment.md) · [Licencia](LICENSE)
+**[Jugar en arenacriolla.com](https://arenacriolla.com/)**
 
-## Elige a tu pana y pelea
+## Qué incluye
 
-- **56 personajes** con especiales, combos y definitivas propios.
-- **9 escenarios** inspirados en Venezuela, de Caracas a Canaima y Los Roques.
-- **Tres formas de jugar:** contra la CPU, dos jugadores en el mismo equipo o partidas en línea en salas públicas y privadas.
-- **Combate con plataformas:** doble salto, bloqueo y ataques para encontrar tu estilo.
-- **Teclado, mando o pantalla táctil.** Los controles se explican dentro del juego.
+- 56 personajes, cada uno con especiales, combos y una definitiva.
+- 9 escenarios, de Caracas a Canaima y Los Roques.
+- Partidas contra la CPU, dos jugadores en el mismo equipo o en línea con salas públicas y privadas.
+- Teclado, mando o pantalla táctil. Los controles se explican dentro del juego.
 
-Para jugar con alguien a distancia, crea una sala y comparte su enlace de invitación. El servidor simula el combate y mantiene la partida sincronizada.
+Para jugar en línea con alguien, crea una sala privada y comparte el enlace de invitación.
 
-## Desarrollo local
+## Ejecutarlo en tu equipo
 
-Necesitas **Node.js 24 o posterior** y npm.
+Necesitas [Node.js 24](https://nodejs.org/) o posterior.
 
 ```sh
 git clone https://github.com/0bkevin/arena-criolla.git
@@ -27,50 +26,30 @@ npm ci
 npm run dev
 ```
 
-Abre [localhost:5173](http://localhost:5173). También puedes entrar desde otro dispositivo de la misma red usando la IP de tu equipo. El juego público funciona sin claves de API; las opciones del servidor están en [`.env.example`](.env.example).
+Abre <http://localhost:5173>. Otros dispositivos de tu red pueden entrar con la IP de tu equipo, por ejemplo `http://192.168.1.20:5173`, y jugar en línea entre ellos.
 
-## Cómo está construido
+## Alojarlo tú mismo
 
-React y TypeScript para la interfaz, Canvas 2D para la pelea y Node.js con Express y WebSocket para el servidor. El motor de combate es el mismo en el navegador y en los servidores, y las salas en línea son el mismo código en el servidor Node y en el Worker de Cloudflare que corre en producción.
-
-```text
-src/
-  app/          Shell de la aplicación, red, progreso y estado del lobby
-  components/   Interfaz por área: lobby, combate, ayuda, entrada y piezas comunes
-  game/         Renderizado, audio, controles, cámara, assets y coreografías
-  styles/       Hojas globales, importadas en orden de cascada
-shared/         Lo que ejecutan el navegador y los servidores
-  engine/       Motor de combate y definitivas
-  roster/       Luchadores y escenarios
-  lobby/        Salas, protocolo y bucle autoritativo de partida
-server/         Servidor Node: HTTP, WebSocket y entrega de assets
-cloudflare/     Worker y Durable Object de producción
-scripts/        Herramientas de assets, CI, Cloudflare y rendimiento
-public/         Imágenes, sonidos y fuentes
-tests/          Pruebas por área (motor, personajes, salas, render…) y fixtures manuales
-deploy/         Despliegue propio con contenedores, como referencia
-docs/           Guías de desarrollo, pruebas y despliegue
-```
-
-## Validar y compilar
+El juego es un único servidor Node que entrega la página y las partidas en línea. No necesita base de datos ni claves de API. La forma más rápida es Docker:
 
 ```sh
-npm test
-npm run check:assets
-npm run build
-npm start
+docker build -t arena-criolla .
+docker run -d -p 5173:5173 --restart unless-stopped arena-criolla
 ```
 
-Las pruebas se centran en combate, red, almacenamiento, seguridad, controles, recuperación de assets y audio. `check:assets` valida transparencia, ocho siluetas completas y geometría coincidente en los sprites públicos.
-
-La CI solo ejecuta lo que cada cambio puede afectar: los tests que importan los archivos modificados, los tipos, los sprites, la auditoría de dependencias y la imagen Docker cuando corresponde. Producción corre en Cloudflare Workers: la CI compila el Worker y juega una partida contra él antes de aceptar un cambio. Los detalles están en [testing.md](docs/testing.md). `scripts/ci/security-smoke.ts` permite comprobar una instancia local o desplegada.
-
-`npm start` sirve la aplicación compilada. Para configurar el dominio, el contenedor o las imágenes al compartir enlaces, consulta la [guía de despliegue](docs/deployment.md).
+También puedes ejecutarlo con Node o en tu propia cuenta de Cloudflare Workers. La [guía de despliegue](docs/deployment.md) explica cada opción, las variables de entorno y cómo ponerlo detrás de un dominio con HTTPS.
 
 ## Contribuir
 
-Crea una rama por tarea desde `origin/main`, mantén los cambios acotados y ejecuta las validaciones antes de abrir un PR. La configuración para nuevos hilos de T3 Code está documentada en la [guía de desarrollo](docs/development.md).
+La [guía de desarrollo](docs/development.md) describe la estructura del proyecto, los comandos y cómo se preparan los assets. Las [pruebas y la CI](docs/testing.md) explican qué se valida en cada cambio.
+
+Antes de abrir un PR:
+
+```sh
+npm test
+npm run build
+```
 
 ## Licencia
 
-Código y materiales originales bajo [GPL-3.0-only](LICENSE). Los sonidos de terceros conservan CC0 y las fuentes, SIL Open Font License. Consulta las atribuciones en [ASSET-LICENSES.txt](ASSET-LICENSES.txt).
+El código y los materiales originales se distribuyen bajo [GPL-3.0-only](LICENSE). Los sonidos de terceros son CC0 y las fuentes usan la SIL Open Font License; las atribuciones están en [ASSET-LICENSES.txt](ASSET-LICENSES.txt).
