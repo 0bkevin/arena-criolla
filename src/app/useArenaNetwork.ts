@@ -12,6 +12,10 @@ import {
 import type { MatchState, PlayerIndex } from "../../shared/engine/engine";
 
 const ROOM_SESSION_KEY = "arena-room-session-v1";
+/** Keeps the server from dropping an idle connection (it waits 30 s). */
+const PING_INTERVAL_MS = 5_000;
+/** A live match streams state many times a second; this much silence is a lost link. */
+const MATCH_SILENCE_MS = 4_000;
 function savedRoomSession() {
   try {
     const token = sessionStorage.getItem(ROOM_SESSION_KEY);
@@ -32,6 +36,7 @@ export function useArenaNetwork() {
   const resumeToken = useRef(savedRoomSession());
   const roomSession = useRef(resumeToken.current);
   const state = useRef<MatchState | null>(null);
+  const roomCode = useRef<string | null>(null);
   const [connected, setConnected] = useState(false);
   const [id, setId] = useState("");
   const [rooms, setRooms] = useState<RoomView[]>([]);
@@ -48,6 +53,25 @@ export function useArenaNetwork() {
     let reconnect: ReturnType<typeof setTimeout>;
     let attempts = 0;
     let wasHidden = false;
+    let lastMessageAt = Date.now();
+    let lastPingAt = Date.now();
+    /** Show the loss and schedule a reconnect, once per socket. */
+    const lost = (ws: WebSocket) => {
+      if (disposed || socket.current !== ws) return;
+      socket.current = null;
+      roomCode.current = null;
+      setConnected(false);
+      setRooms([]);
+      setMatch(null);
+      setOpponentLeft(false);
+      state.current = null;
+      setError(
+        roomSession.current
+          ? "Recuperando tu sala…"
+          : "Se perdió la conexión. Reconectando con la arena…",
+      );
+      reconnect = setTimeout(connect, Math.min(1000 * 2 ** attempts++, 10_000));
+    };
     const connect = () => {
       if (disposed) return;
       clearTimeout(reconnect);
@@ -61,11 +85,13 @@ export function useArenaNetwork() {
         ],
       );
       socket.current = ws;
+      lastMessageAt = Date.now();
       previous?.close();
       setConnected(false);
       ws.onerror = () => {};
       ws.onmessage = (event) => {
         if (disposed || socket.current !== ws) return;
+        lastMessageAt = Date.now();
         if (typeof event.data !== "string") return;
         let message: ServerMessage | null;
         try {
@@ -95,6 +121,9 @@ export function useArenaNetwork() {
           setOnline(message.online);
         }
         if (message.type === "room") {
+          // Arriving in a different room settles any earlier join error.
+          if (roomCode.current !== message.room.code) setError("");
+          roomCode.current = message.room.code;
           roomSession.current = resumeToken.current;
           saveRoomSession(roomSession.current);
           setRoom(message.room);
@@ -113,6 +142,7 @@ export function useArenaNetwork() {
         if (message.type === "state") state.current = message.state;
         if (message.type === "error") setError(message.message);
         if (message.type === "left") {
+          roomCode.current = null;
           roomSession.current = null;
           saveRoomSession(null);
           setRoom(null);
@@ -126,23 +156,7 @@ export function useArenaNetwork() {
           state.current = null;
         }
       };
-      ws.onclose = () => {
-        if (disposed || socket.current !== ws) return;
-        setConnected(false);
-        setRooms([]);
-        setMatch(null);
-        setOpponentLeft(false);
-        state.current = null;
-        setError(
-          roomSession.current
-            ? "Recuperando tu sala…"
-            : "Se perdió la conexión. Reconectando con la arena…",
-        );
-        reconnect = setTimeout(
-          connect,
-          Math.min(1000 * 2 ** attempts++, 10_000),
-        );
-      };
+      ws.onclose = () => lost(ws);
     };
     const wake = () => {
       if (
@@ -162,6 +176,27 @@ export function useArenaNetwork() {
     const pageshow = (event: PageTransitionEvent) => {
       if (event.persisted) wake();
     };
+    // Keep the connection alive, and notice a match whose state stopped
+    // arriving: a dropped network can leave the socket open but silent.
+    const heartbeat = setInterval(() => {
+      const ws = socket.current;
+      if (!ws || ws.readyState !== WebSocket.OPEN) return;
+      const now = Date.now();
+      if (
+        state.current &&
+        state.current.phase !== "finished" &&
+        now - lastMessageAt > MATCH_SILENCE_MS
+      ) {
+        ws.close();
+        lost(ws);
+        return;
+      }
+      if (now - lastPingAt >= PING_INTERVAL_MS) {
+        lastPingAt = now;
+        const ping: ClientMessage = { type: "ping" };
+        ws.send(JSON.stringify(ping));
+      }
+    }, 1000);
     document.addEventListener("visibilitychange", visibility);
     window.addEventListener("pageshow", pageshow);
     window.addEventListener("online", wake);
@@ -169,6 +204,7 @@ export function useArenaNetwork() {
     return () => {
       disposed = true;
       clearTimeout(reconnect);
+      clearInterval(heartbeat);
       document.removeEventListener("visibilitychange", visibility);
       window.removeEventListener("pageshow", pageshow);
       window.removeEventListener("online", wake);

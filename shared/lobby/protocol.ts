@@ -22,6 +22,8 @@ export interface RoomView {
 }
 export type ClientMessage =
   | { type: "list" }
+  /** Keeps an idle connection alive; the server answers nothing. */
+  | { type: "ping" }
   | {
       type: "create";
       name?: string;

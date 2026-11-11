@@ -222,3 +222,61 @@ test("a room held for a disconnected player leaves the public list until they re
   t.mock.timers.tick(200);
   assert.equal(watcher.last("rooms")?.rooms.length, 1);
 });
+
+test("a silent connection is dropped mid-match and its opponent is told", (t) => {
+  t.mock.timers.enable({ apis: ["setTimeout", "setInterval", "Date"] });
+  const { instance } = lobby();
+  t.after(() => instance.close());
+  const a = new FakeSocket();
+  const b = new FakeSocket();
+  const host = instance.connect(a, [ARENA_SOCKET_PROTOCOL]);
+  const guest = instance.connect(b, [ARENA_SOCKET_PROTOCOL]);
+  send(instance, host, {
+    type: "create",
+    fighter: "zavarce",
+    stage: "caracas",
+    wins: 0,
+    private: false,
+  });
+  const code = a.last("room")!.room.code;
+  send(instance, guest, { type: "join", code, fighter: "ali", wins: 0 });
+  send(instance, host, { type: "ready", ready: true });
+  send(instance, guest, { type: "ready", ready: true });
+  assert.ok(a.last("start"));
+  // The guest keeps pinging; the host's link goes dead without a close.
+  for (let s = 0; s < 40; s += 5) {
+    t.mock.timers.tick(5_000);
+    send(instance, guest, { type: "ping" });
+  }
+  assert.equal(a.replaced, true, "the silent socket is closed");
+  assert.equal(instance.clients.has(host.id), false);
+  assert.ok(b.last("opponent-left"), "the opponent is told");
+  assert.equal(instance.clients.has(guest.id), true, "pings keep a client");
+});
+
+test("a resumed client is not dropped for its silence before the reconnect", (t) => {
+  t.mock.timers.enable({ apis: ["setTimeout", "setInterval", "Date"] });
+  const { instance } = lobby();
+  t.after(() => instance.close());
+  const first = new FakeSocket();
+  const client = instance.connect(first, [ARENA_SOCKET_PROTOCOL]);
+  const token = first.last("welcome")!.resumeToken!;
+  send(instance, client, {
+    type: "create",
+    fighter: "zavarce",
+    stage: "caracas",
+    wins: 0,
+    private: true,
+  });
+  instance.disconnect(client, first);
+  t.mock.timers.tick(40_000);
+  const second = new FakeSocket();
+  instance.connect(second, [
+    ARENA_SOCKET_PROTOCOL,
+    ROOM_RESUME_PROTOCOL_PREFIX + token,
+  ]);
+  assert.equal(second.last("welcome")?.resumed, true);
+  t.mock.timers.tick(10_000);
+  assert.equal(instance.clients.has(client.id), true);
+  assert.equal(second.replaced, false);
+});

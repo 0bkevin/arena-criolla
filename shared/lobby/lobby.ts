@@ -43,6 +43,8 @@ export interface LobbyClient<Socket> {
   controls: number;
   lists: number;
   window: number;
+  /** When the server last heard anything from this client. */
+  lastSeen: number;
   resumeToken: string | null;
 }
 
@@ -63,6 +65,9 @@ const STEP_MS = 1000 / 60;
 const INPUT_TIMEOUT_MS = 250;
 const ROOM_IDLE_MS = 60 * 60 * 1000;
 const ROOM_SWEEP_MS = 15_000;
+/** Clients send a ping every 5 s; silence this long means the link is gone. */
+const CLIENT_TIMEOUT_MS = 30_000;
+const LIVENESS_SWEEP_MS = 5_000;
 const ROOM_LIST_DELAY_MS = 100;
 const MESSAGES_PER_SECOND = 180;
 const CONTROLS_PER_SECOND = 30;
@@ -99,6 +104,7 @@ export class Lobby<Socket> {
   private roomListTimer: ReturnType<typeof setTimeout> | null = null;
   private gameLoop: ReturnType<typeof setInterval> | null = null;
   private sweep: ReturnType<typeof setInterval> | null = null;
+  private liveness: ReturnType<typeof setInterval> | null = null;
   private ticker = new FixedStepTicker(STEP_MS, 5);
   private tick = 0;
   private closed = false;
@@ -140,6 +146,7 @@ export class Lobby<Socket> {
             controls: 0,
             lists: 0,
             window: Date.now(),
+            lastSeen: Date.now(),
             resumeToken: resumable ? randomHex(32) : null,
           };
     if (previousRoom) {
@@ -150,6 +157,7 @@ export class Lobby<Socket> {
       const player = previousRoom.view.players.find((p) => p.id === client.id);
       if (player) player.connected = true;
     }
+    client.lastSeen = Date.now();
     this.clients.set(client.id, client);
     if (client.resumeToken) this.sessions.set(client.resumeToken, client);
     this.send(client, {
@@ -171,6 +179,7 @@ export class Lobby<Socket> {
         });
     }
     this.scheduleRoomList();
+    this.updateTimers();
     return client;
   }
 
@@ -200,11 +209,13 @@ export class Lobby<Socket> {
       this.publishRoom(room);
     } else this.leave(client, false);
     this.scheduleRoomList();
+    this.updateTimers();
   }
 
   /** Handle one text frame from a connected client. */
   receive(client: LobbyClient<Socket>, raw: string) {
     const now = Date.now();
+    client.lastSeen = now;
     if (now - client.window >= 1000) {
       client.window = now;
       client.messages = 0;
@@ -223,6 +234,7 @@ export class Lobby<Socket> {
     if (type === null) return;
     if (CONTROL_MESSAGES.has(type) && ++client.controls > CONTROLS_PER_SECOND)
       return;
+    if (type === "ping") return;
     const message = parseClientMessage(data);
     const current = client.room ? this.rooms.get(client.room) : undefined;
     if (type === "list") {
@@ -504,6 +516,20 @@ export class Lobby<Socket> {
     this.updateTimers();
   }
 
+  /**
+   * Drop connections that have gone silent. Node also pings at the protocol
+   * level, but a Worker cannot, and a half-open socket would otherwise keep
+   * its seat, and its opponent waiting, indefinitely.
+   */
+  private dropSilentClients() {
+    const now = Date.now();
+    for (const client of [...this.clients.values()])
+      if (now - client.lastSeen > CLIENT_TIMEOUT_MS) {
+        this.transport.replace(client.socket);
+        this.disconnect(client, client.socket);
+      }
+  }
+
   /** Close rooms nobody has played in for an hour. */
   private expireRooms() {
     this.rooms.forEach((room) => {
@@ -528,6 +554,15 @@ export class Lobby<Socket> {
       clearInterval(this.gameLoop);
       this.gameLoop = null;
     }
+    if (this.clients.size && !this.liveness)
+      this.liveness = setInterval(
+        () => this.dropSilentClients(),
+        LIVENESS_SWEEP_MS,
+      );
+    else if (!this.clients.size && this.liveness) {
+      clearInterval(this.liveness);
+      this.liveness = null;
+    }
     if (this.rooms.size && !this.sweep)
       this.sweep = setInterval(() => this.expireRooms(), ROOM_SWEEP_MS);
     else if (!this.rooms.size && this.sweep) {
@@ -538,6 +573,8 @@ export class Lobby<Socket> {
 
   private stopTimers() {
     if (this.gameLoop) clearInterval(this.gameLoop);
+    if (this.liveness) clearInterval(this.liveness);
+    this.liveness = null;
     if (this.sweep) clearInterval(this.sweep);
     this.gameLoop = null;
     this.sweep = null;

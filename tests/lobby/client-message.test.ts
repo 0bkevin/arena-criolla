@@ -94,6 +94,7 @@ test("ready needs a boolean and unknown types are rejected", () => {
   });
   assert.equal(parseClientMessage({ type: "ready", ready: "yes" }), null);
   assert.equal(parseClientMessage({ type: "bogus" }), null);
+  assert.deepEqual(parseClientMessage({ type: "ping" }), { type: "ping" });
   assert.deepEqual(parseClientMessage({ type: "leave", extra: 1 }), {
     type: "leave",
   });

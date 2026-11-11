@@ -58,6 +58,7 @@ export function parseClientMessage(data: unknown): ClientMessage | null {
   if (!isRecord(data)) return null;
   switch (data.type) {
     case "list":
+    case "ping":
     case "leave":
     case "rematch":
       return { type: data.type };
