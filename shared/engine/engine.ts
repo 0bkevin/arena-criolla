@@ -5,6 +5,7 @@ export {
   PLAYERS,
   emptyInput,
   opponentOf,
+  perPlayer,
   type Action,
   type Attack,
   type Effect,

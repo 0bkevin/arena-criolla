@@ -6,19 +6,6 @@ import {
   useState,
   type MutableRefObject,
 } from "react";
-import {
-  ArrowLeft,
-  ArrowRight,
-  CircleHelp,
-  Expand,
-  Heart,
-  Pause,
-  Play,
-  Smartphone,
-  Volume2,
-  VolumeX,
-  Zap,
-} from "lucide-react";
 import { fighterById, stageById } from "../../../shared/roster/roster";
 import {
   INTRO_COUNTDOWN_START,
@@ -57,9 +44,16 @@ import {
   stopFinaleMusic,
 } from "../../game/audio/audio";
 import { KNOCKOUT_HOLD_MS } from "../../game/match/knockout";
+import { createMatchCues } from "../../game/match/match-cues";
+import { smoothRemotePlayers } from "../../game/match/remote-smoothing";
 import { VictoryScreen } from "./VictoryScreen";
+import { GameToolbar } from "./GameToolbar";
+import { IntroOverlay } from "./IntroOverlay";
+import { MatchHud } from "./MatchHud";
+import { OrientationGate } from "./OrientationGate";
+import { PauseMenu } from "./PauseMenu";
+import { useOverlayFocus } from "./useOverlayFocus";
 import { TouchControls } from "./TouchControls";
-import { SuperMeter } from "./SuperMeter";
 import { DesktopControlsBar } from "./DesktopControls";
 import {
   enterLandscape,
@@ -233,49 +227,15 @@ export function Game(props: Props) {
       : resultReady
         ? "result"
         : null;
-  useEffect(() => {
-    const overlay =
-      activeOverlay === "orientation"
-        ? orientationGate.current
-        : activeOverlay === "pause"
-          ? pauseOverlay.current
-          : activeOverlay === "result"
-            ? resultOverlay.current
-            : null;
-    if (!overlay) return;
-    const previous = document.activeElement;
-    overlay.querySelector<HTMLButtonElement>("button:not(:disabled)")?.focus();
-    const containFocus = (event: KeyboardEvent) => {
-      if (event.key !== "Tab" || document.querySelector("dialog[open]")) return;
-      const buttons = [
-        ...overlay.querySelectorAll<HTMLButtonElement>("button:not(:disabled)"),
-      ];
-      const first = buttons[0],
-        last = buttons[buttons.length - 1];
-      if (
-        !overlay.contains(document.activeElement) ||
-        (event.shiftKey && document.activeElement === first) ||
-        (!event.shiftKey && document.activeElement === last)
-      ) {
-        event.preventDefault();
-        (event.shiftKey ? last : first)?.focus();
-      }
-    };
-    window.addEventListener("keydown", containFocus, true);
-    return () => {
-      window.removeEventListener("keydown", containFocus, true);
-      // Resuming play must restore gameplay keys, including P2's Enter dodge.
-      if (activeOverlay === "pause" && canvas.current?.isConnected)
-        canvas.current.focus({ preventScroll: true });
-      else if (
-        previous instanceof HTMLElement &&
-        previous !== document.body &&
-        previous.isConnected
-      )
-        previous.focus({ preventScroll: true });
-      else canvas.current?.focus({ preventScroll: true });
-    };
-  }, [activeOverlay]);
+  useOverlayFocus(
+    activeOverlay,
+    {
+      orientation: orientationGate,
+      pause: pauseOverlay,
+      result: resultOverlay,
+    },
+    canvas,
+  );
   const skipPresentations = () => {
     if (
       introView.current.phase !== "intro" ||
@@ -418,7 +378,6 @@ export function Game(props: Props) {
     let accumulator = 0;
     let lastUI = 0;
     let lastSend = 0;
-    let lastEffect = -1;
     let camera: ArenaCamera | undefined;
     let cameraWidth = ctx.canvas.width;
     let cameraHeight = ctx.canvas.height;
@@ -449,20 +408,10 @@ export function Game(props: Props) {
           reducedMotion: boolean;
         }
       | undefined;
-    const playedIntroductions = new Set<number>();
-    let lastCountdown = -1;
     const motionPreference = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     );
-    const specialAttacks = [-1, -1];
-    const swungAttacks = [-1, -1];
-    const groundedStates = initial.players.map((p) => p.grounded);
-    const jumpCounts = initial.players.map((p) => p.jumps);
-    const dashStates = initial.players.map((p) => p.dash > 0);
-    const footsteps = initial.players.map((p) => ({
-      tick: initial.tick,
-      x: p.x,
-    }));
+    const cues = createMatchCues(initial, { sound, playReaction });
     const positions = initial.players.map((p) => ({ x: p.x, y: p.y }));
     const animate = (now: number) => {
       const elapsed = Math.min(100, now - last);
@@ -534,146 +483,13 @@ export function Game(props: Props) {
           setResultMounted(true);
         }
       }
-      if (
-        state.phase === "intro" &&
-        !pausedRef.current &&
-        !blockedRef.current &&
-        !dialogOpen
-      ) {
-        const actor = introActor(state.tick);
-        if (actor !== null && !playedIntroductions.has(actor)) {
-          playedIntroductions.add(actor);
-          sound("entrance", state.players[actor].config.fighter, {
-            x: state.players[actor].x,
-          });
-        } else if (actor === null) {
-          const beat = Math.min(
-            3,
-            Math.floor((state.tick - INTRO_COUNTDOWN_START) / 40),
-          );
-          if (beat > lastCountdown) {
-            sound("ready", undefined, { strength: beat === 3 ? 1.5 : 1 });
-            lastCountdown = beat;
-          }
-        }
-      }
-      for (const effect of state.effects) {
-        if (effect.id <= lastEffect) continue;
-        const actor =
-          effect.owner !== undefined
-            ? state.players[effect.owner]
-            : (state.players.find(
-                (p) => fighterById(p.config.fighter).color === effect.color,
-              ) ??
-              state.players.reduce((a, b) =>
-                Math.abs(a.x - effect.x) < Math.abs(b.x - effect.x) ? a : b,
-              ));
-        sound(
-          effect.kind === "ringout"
-            ? "ringout"
-            : effect.kind === "special"
-              ? "special"
-              : effect.kind === "block"
-                ? "block"
-                : "hit",
-          actor.config.fighter,
-          { x: effect.x, impact: effect.impact, strength: effect.strength },
-        );
-        if (
-          effect.owner !== undefined &&
-          (effect.kind === "hit" || effect.kind === "ringout")
-        ) {
-          // Hit effects belong to the attacker; ringout effects belong to the victim.
-          const victim = (
-            effect.kind === "ringout" ? effect.owner : 1 - effect.owner
-          ) as 0 | 1;
-          const target = state.players[victim];
-          playReaction("hurt", target.config.fighter, {
-            player: victim,
-            x: effect.x,
-            impact: effect.kind === "ringout" ? "heavy" : effect.impact,
-          });
-        }
-        lastEffect = effect.id;
-      }
-      state.players.forEach((p, i) => {
-        const dash = p.dash > 0;
-        if (!quiet && state.phase === "playing") {
-          if (dash && !dashStates[i])
-            sound("dash", p.config.fighter, { x: p.x });
-          const step = footsteps[i];
-          if (
-            p.grounded &&
-            !p.stun &&
-            !p.attack &&
-            !dash &&
-            Math.abs(p.vx) > 1 &&
-            state.tick - step.tick >= 16 &&
-            Math.abs(p.x - step.x) >= 32
-          ) {
-            sound("step", p.config.fighter, { x: p.x });
-            step.tick = state.tick;
-            step.x = p.x;
-          }
-        }
-        dashStates[i] = dash;
-        if (p.grounded && !groundedStates[i] && state.phase === "playing")
-          sound("land", p.config.fighter, { x: p.x });
-        groundedStates[i] = p.grounded;
-        if (
-          (p.attack === "light" || p.attack === "heavy") &&
-          p.attackTick < 4
-        ) {
-          const startedAt = state.tick - p.attackTick;
-          if (startedAt > swungAttacks[i]) {
-            swungAttacks[i] = startedAt;
-            sound("swing", p.config.fighter, { x: p.x, impact: p.attack });
-            playReaction("attack", p.config.fighter, {
-              player: i as 0 | 1,
-              x: p.x,
-              impact: p.attack,
-            });
-          }
-        }
-        if (p.jumps > jumpCounts[i] && p.vy < 0) {
-          sound("jump", p.config.fighter, { x: p.x });
-          playReaction("jump", p.config.fighter, {
-            player: i as 0 | 1,
-            x: p.x,
-          });
-        }
-        jumpCounts[i] = p.jumps;
-        if (
-          (p.attack === "special" || p.attack === "super") &&
-          p.attackTick < 8
-        ) {
-          const startedAt = state.tick - p.attackTick;
-          if (startedAt > specialAttacks[i]) {
-            specialAttacks[i] = startedAt;
-            playReaction("attack", p.config.fighter, {
-              player: i as 0 | 1,
-              x: p.x,
-              impact: p.attack,
-            });
-          }
-        }
+      cues.update(state, {
+        quiet,
+        introAudible: !pausedRef.current && !blockedRef.current && !dialogOpen,
       });
       const drawState =
         mode === "online"
-          ? {
-              ...state,
-              players: state.players.map((p, i) => {
-                const position = positions[i];
-                const blend =
-                  Math.abs(position.x - p.x) > 260 ||
-                  Math.abs(position.y - p.y) > 260
-                    ? 1
-                    : 1 - Math.exp(-elapsed / 24);
-                position.x += (p.x - position.x) * blend;
-                position.y += (p.y - position.y) * blend;
-                return { ...p, x: position.x, y: position.y };
-              }) as MatchState["players"],
-            }
+          ? smoothRemotePlayers(state, positions, elapsed)
           : state;
       camera =
         (quiet || Boolean(state.finale)) &&
@@ -821,79 +637,32 @@ export function Game(props: Props) {
       data-finale={view.finale?.fighter}
     >
       {!intro && !resultReady && (
-        <div
-          className="game-topline"
-          inert={resultMounted}
-          style={resultMounted ? { visibility: "hidden" } : undefined}
-        >
-          <button
-            className="text-button"
-            aria-label="Volver a la selección"
-            onClick={props.onExit}
-          >
-            <ArrowLeft size={16} />{" "}
-            {device.touch ? "Selección" : "Volver a la selección"}
-          </button>
-          <span className="game-mode">
-            <span className="live-dot" />
-            {mode === "online"
-              ? "MULTIJUGADOR EN LÍNEA"
-              : mode === "local"
-                ? "VERSUS LOCAL"
-                : "COMBATE CONTRA LA CPU"}
-          </span>
-          <div className="game-tools">
-            {props.onToggleSound && (
-              <button
-                className="icon-button"
-                aria-label={
-                  props.soundEnabled ? "Silenciar sonido" : "Activar sonido"
-                }
-                aria-pressed={props.soundEnabled}
-                onClick={(event) => {
-                  props.onToggleSound?.();
-                  // Pointer users return straight to play; keyboard users keep
-                  // the button focused for native Enter/Space activation.
-                  if (
-                    event.detail > 0 &&
-                    !isGameQuiet() &&
-                    introView.current.phase === "playing"
-                  )
-                    canvas.current?.focus({ preventScroll: true });
-                }}
-              >
-                {props.soundEnabled ? (
-                  <Volume2 size={19} />
-                ) : (
-                  <VolumeX size={19} />
-                )}
-              </button>
-            )}
-            <button
-              className="icon-button"
-              aria-label="Ver controles"
-              onClick={openHelp}
-            >
-              <CircleHelp size={19} />
-            </button>
-            <button
-              className="icon-button"
-              aria-label="Pantalla completa"
-              onClick={requestLandscape}
-            >
-              <Expand size={18} />
-            </button>
-            <button
-              className="icon-button"
-              aria-label={paused ? "Continuar pelea" : "Pausar"}
-              aria-pressed={paused}
-              disabled={view.phase === "finished"}
-              onClick={togglePause}
-            >
-              {paused ? <Play size={18} /> : <Pause size={18} />}
-            </button>
-          </div>
-        </div>
+        <GameToolbar
+          mode={mode}
+          touch={device.touch}
+          resultMounted={resultMounted}
+          paused={paused}
+          finished={view.phase === "finished"}
+          soundEnabled={props.soundEnabled}
+          onToggleSound={
+            props.onToggleSound &&
+            ((event) => {
+              props.onToggleSound?.();
+              // Pointer users return straight to play; keyboard users keep
+              // the button focused for native Enter/Space activation.
+              if (
+                event.detail > 0 &&
+                !isGameQuiet() &&
+                introView.current.phase === "playing"
+              )
+                canvas.current?.focus({ preventScroll: true });
+            })
+          }
+          onHelp={openHelp}
+          onLandscape={requestLandscape}
+          onPause={togglePause}
+          onExit={props.onExit}
+        />
       )}
       {!intro && fullscreenError && (
         <p className="inline-message" role="status">
@@ -913,66 +682,7 @@ export function Game(props: Props) {
           aria-label={`Combate entre ${view.players[0].config.name} y ${view.players[1].config.name} en ${stage.location}`}
         />
         {!cinematic && view.phase !== "finished" && (
-          <div className="match-hud">
-            {view.players.map((p, i) => {
-              const def = fighterById(p.config.fighter);
-              return (
-                <div
-                  key={i}
-                  className={`player-hud player-${i}`}
-                  style={
-                    { "--fighter-color": def.color } as React.CSSProperties
-                  }
-                >
-                  <div className="hud-label">
-                    <span className="player-number">P{i + 1}</span>
-                    <strong>{p.config.name}</strong>
-                    <span className="hud-character">{def.shortName}</span>
-                  </div>
-                  <div
-                    className={`health-track${p.hp > 0 && p.hp <= 25 ? " is-low" : ""}`}
-                    style={{ "--hp": `${p.hp}%` } as React.CSSProperties}
-                  >
-                    <div style={{ width: `${p.hp}%` }} />
-                    <span>{Math.ceil(p.hp)}</span>
-                  </div>
-                  <div className="hud-bottom">
-                    <div className="stock-hearts">
-                      {[0, 1].map((stock) => (
-                        <Heart
-                          size={13}
-                          key={stock}
-                          className={stock < p.stocks ? "alive" : ""}
-                          fill={stock < p.stocks ? "currentColor" : "none"}
-                        />
-                      ))}
-                    </div>
-                    <SuperMeter player={p} tick={view.tick} />
-                    <Zap size={12} />
-                    <span>{Math.floor(p.energy)}%</span>
-                  </div>
-                </div>
-              );
-            })}
-            <div
-              className={`match-clock${view.remaining <= 10 * 60 ? " is-urgent" : ""}`}
-            >
-              <strong
-                className={
-                  view.remaining > 99 * 60 ? "match-clock-minutes" : undefined
-                }
-              >
-                {view.remaining > 99 * 60
-                  ? "2 min"
-                  : Math.ceil(view.remaining / 60)
-                      .toString()
-                      .padStart(2, "0")}
-              </strong>
-            </div>
-          </div>
-        )}
-        {!cinematic && view.phase !== "finished" && (
-          <span className="arena-location">{stage.location}</span>
+          <MatchHud view={view} location={stage.location} />
         )}
         {!assets && (
           <div className="game-overlay loading-overlay">
@@ -985,101 +695,26 @@ export function Game(props: Props) {
             )}
           </div>
         )}
-        {assets &&
-          view.phase === "intro" &&
-          !paused &&
-          (cinematic ? (
-            <div className="cinematic-overlay">
-              {view.players.map((player, side) => {
-                const def = fighterById(player.config.fighter);
-                return (
-                  <div
-                    key={side}
-                    className={`cinematic-name cinematic-name-${side}${presenting === side ? " is-presenting" : ""}`}
-                  >
-                    <strong>{def.name}</strong>
-                  </div>
-                );
-              })}
-              <button
-                className="skip-entrances"
-                aria-label="Saltar presentaciones"
-                aria-keyshortcuts="Space"
-                onClick={skipPresentations}
-              >
-                Saltar intro {!device.touch && <kbd>Espacio</kbd>}{" "}
-                <ArrowRight size={14} aria-hidden="true" />
-              </button>
-            </div>
-          ) : (
-            <div className="countdown-overlay">
-              <strong>
-                {view.tick - INTRO_COUNTDOWN_START < 120
-                  ? Math.max(
-                      1,
-                      3 - Math.floor((view.tick - INTRO_COUNTDOWN_START) / 40),
-                    )
-                  : "¡DALE!"}
-              </strong>
-            </div>
-          ))}
+        {assets && view.phase === "intro" && !paused && (
+          <IntroOverlay
+            view={view}
+            presenting={presenting}
+            touch={device.touch}
+            onSkip={skipPresentations}
+          />
+        )}
         {paused && view.phase !== "finished" && (
-          <div
+          <PauseMenu
             ref={pauseOverlay}
-            className="game-overlay"
-            role="dialog"
-            aria-modal={activeOverlay === "pause"}
-            aria-hidden={activeOverlay !== "pause"}
-            aria-labelledby="pause-title"
-          >
-            <div className="pause-card">
-              <h2 id="pause-title">
-                {mode === "online" ? "La pelea sigue" : "Pausa"}
-              </h2>
-              {mode === "online" && (
-                <p>El combate continúa mientras estás en el menú.</p>
-              )}
-              <button className="primary-button" onClick={togglePause}>
-                <Play size={18} /> Continuar
-              </button>
-              <div className="pause-tools">
-                {props.onToggleSound && (
-                  <button
-                    className="secondary-button"
-                    aria-label={
-                      props.soundEnabled ? "Silenciar sonido" : "Activar sonido"
-                    }
-                    aria-pressed={props.soundEnabled}
-                    onClick={props.onToggleSound}
-                  >
-                    {props.soundEnabled ? (
-                      <Volume2 size={18} />
-                    ) : (
-                      <VolumeX size={18} />
-                    )}
-                    Sonido
-                  </button>
-                )}
-                <button
-                  className="secondary-button"
-                  aria-label="Ver controles"
-                  onClick={openHelp}
-                >
-                  <CircleHelp size={18} /> Controles
-                </button>
-                <button
-                  className="secondary-button"
-                  aria-label="Pantalla completa"
-                  onClick={requestLandscape}
-                >
-                  <Expand size={18} /> Pantalla completa
-                </button>
-              </div>
-              <button className="secondary-button" onClick={props.onExit}>
-                Salir del combate
-              </button>
-            </div>
-          </div>
+            active={activeOverlay === "pause"}
+            online={mode === "online"}
+            soundEnabled={props.soundEnabled}
+            onToggleSound={props.onToggleSound}
+            onResume={togglePause}
+            onHelp={openHelp}
+            onLandscape={requestLandscape}
+            onExit={props.onExit}
+          />
         )}
         {view.phase === "finished" && resultMounted && assets && (
           <VictoryScreen
@@ -1117,29 +752,12 @@ export function Game(props: Props) {
         />
       )}
       {portraitBlocked && (
-        <div
+        <OrientationGate
           ref={orientationGate}
-          className="orientation-gate"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Jugar en horizontal"
-        >
-          <div className="orientation-card">
-            <Smartphone size={48} aria-hidden="true" />
-            <h2>Gira tu teléfono</h2>
-            <p>
-              {mode === "online"
-                ? "Tu rival sigue en la arena. Gira el teléfono para volver al pique."
-                : "La arena se juega en horizontal. Tu pelea te espera."}
-            </p>
-            <button className="primary-button" onClick={requestLandscape}>
-              <Expand size={18} /> Jugar en horizontal
-            </button>
-            <button className="text-button" onClick={props.onExit}>
-              Volver a la selección
-            </button>
-          </div>
-        </div>
+          online={mode === "online"}
+          onLandscape={requestLandscape}
+          onExit={props.onExit}
+        />
       )}
     </main>
   );
