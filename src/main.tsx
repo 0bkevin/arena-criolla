@@ -1,9 +1,9 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { RootApp } from "./components/RootApp";
-import { Acknowledgements } from "./components/Acknowledgements";
-import { loadInterfaceFonts } from "./fonts";
-import "./base.css";
+import { RootApp } from "./app/RootApp";
+import { Acknowledgements } from "./components/acknowledgements/Acknowledgements";
+import { loadInterfaceFonts } from "./app/fonts";
+import "./styles/base.css";
 
 const root = createRoot(document.getElementById("root")!);
 const fontLoading = loadInterfaceFonts();

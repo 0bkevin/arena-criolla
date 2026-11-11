@@ -1,0 +1,12 @@
+/* In cascade order: later parts override earlier ones. */
+@import "./arcade-theme/shell.css";
+@import "./arcade-theme/marquee.css";
+@import "./arcade-theme/selection.css";
+@import "./arcade-theme/roster.css";
+@import "./arcade-theme/stages.css";
+@import "./arcade-theme/ready.css";
+@import "./arcade-theme/footer.css";
+@import "./arcade-theme/overlays.css";
+@import "./arcade-theme/responsive-wide.css";
+@import "./arcade-theme/responsive-tablet.css";
+@import "./arcade-theme/responsive-phone.css";

@@ -27,34 +27,44 @@ measure elements, not page scroll width.
 - `npm test`: every automated test.
 - `npm run test:ui`: layout checks in Chromium with Playwright (`e2e/`). Starts its
   own server; run `npx playwright install chromium` once.
-- `npm run typecheck`: TypeScript, including tests and browser fixtures.
+- `npm run typecheck`: TypeScript in five passes, all with `strict`,
+  `exactOptionalPropertyTypes` and `erasableSyntaxOnly`. The root
+  `tsconfig.json` checks everything with Node types; `src/tsconfig.json` checks
+  the client and browser fixtures with Vite types and no Node globals;
+  `shared/tsconfig.json` checks the engine and lobby with neither runtime's
+  types; `server/tsconfig.json` and `cloudflare/tsconfig.json` check the two
+  hosts. The shared, server and Worker passes add `noUncheckedIndexedAccess`.
 - `npm run check:assets`: public combat atlas transparency, complete silhouettes
   and runtime geometry.
 - `npm run build`: type checking and the Vite client build.
-- `node scripts/select-checks.mjs origin/main`: what CI would run for your branch.
+- `node scripts/ci/select-checks.ts origin/main`: what CI would run for your branch.
 - `npm run perf:engine` / `npm run perf:network`: opt-in performance probes.
-- `tests/browser/README.md`: manual fixtures for real browser behavior.
+- `tests/manual/README.md`: manual fixtures for real browser behavior.
 
 ## CI and delivery
 
-`scripts/select-checks.mjs` reads the diff and selects only what it can affect:
+`scripts/ci/select-checks.ts` reads the diff and selects only what it can affect:
 
 - **Tests:** a test file runs when it, or any file it imports transitively (or
   reads by repository path), changed. Changes to `package.json`, the lockfile,
-  `tsconfig.json`, `tests/helpers`, `tests/fixtures`, workflows or the selector
+  `tsconfig.json`, `tests/helpers`, workflows or the selector
   itself run every test.
 - **Layout (`test:ui`)** for changes to `src/`, `shared/`, `public/`, `index.html`,
   the Vite config or `e2e/`.
-- **Type check** for TypeScript/JSON changes, **`check:assets`** for sprite and
+- **Type check** for TypeScript/JSON changes, **`format:check`** (Prettier)
+  for source, style, data and docs changes, **`check:assets`** for sprite and
   roster changes, **`npm audit`** for lockfile changes, and the **deploy-control
   tests** for `deploy/` changes.
+- **Worker:** the Cloudflare Worker is built (`npm run cf:build`) and an online
+  match is played against it under `wrangler dev` (`scripts/cloudflare/smoke.ts`)
+  when the Worker, the shared lobby or the bundled site changes.
 - **Image:** the production Docker image is built and booted (HTTP and WebSocket
   smoke test) when something it ships changes; Trivy scans it when the Dockerfile
   or lockfile changes. Docs- or test-only changes skip it.
 
 The selected checks run as parallel jobs: `unit` (split into up to three shards
 of about 30 test files, one shard for small selections), `layout`, `static`
-(type check, sprites, audit, deploy controls) and `image`. Node already runs each
+(type check, formatting, sprites, audit, deploy controls), `worker` and `image`. Node already runs each
 shard's files in parallel processes, and Playwright uses every core.
 
 `validate` is the single required check. It fails if any job that ran failed or

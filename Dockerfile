@@ -10,6 +10,8 @@ FROM node:24-alpine3.24 AS dependencies
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev --no-audit --no-fund
+# The base image no longer ships Node's license text; fetch it for this release.
+RUN node -e "fetch('https://raw.githubusercontent.com/nodejs/node/' + process.version + '/LICENSE').then(async (response) => { if (!response.ok) throw new Error('Node LICENSE: HTTP ' + response.status); require('node:fs').writeFileSync('/usr/local/LICENSE', await response.text()); })"
 
 # Copy only Node and application dependencies. npm, npx, Yarn and their unused
 # dependency trees belong to the build stages, not the public game container.

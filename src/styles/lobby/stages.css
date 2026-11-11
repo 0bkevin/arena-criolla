@@ -1,0 +1,100 @@
+.arcade-stages {
+  position: relative;
+  padding: 12px 20px 9px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  box-shadow: 0 3px 0 #112c5840;
+}
+.arcade-stage-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 9px;
+}
+.arcade-stage-heading h2 {
+  font-size: 15px;
+}
+.arcade-stage-heading > button {
+  padding: 4px 0 4px 12px;
+  font: 500 11px var(--pixel);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--vz-blue);
+}
+.arcade-stage-heading > button:hover {
+  color: var(--ink);
+}
+.stage-strip {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 8px;
+}
+.arcade-stage {
+  min-width: 0;
+  padding: 0;
+  border: 2px solid #8eaacb;
+  border-radius: 2px;
+  background: #edf1ed;
+  text-align: center;
+  color: var(--ink);
+  scroll-margin: 10px;
+  transition:
+    transform 130ms,
+    border-color 130ms,
+    box-shadow 130ms;
+}
+.arcade-stage .stage-thumbnail {
+  display: block;
+  height: 49px;
+  position: relative;
+  overflow: hidden;
+}
+.arcade-stage img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  image-rendering: pixelated;
+  transition: transform 200ms;
+}
+.arcade-stage strong {
+  display: block;
+  padding: 5px 2px;
+  font: 500 11px/1 var(--pixel);
+  white-space: nowrap;
+}
+.stage-tick {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  width: 17px;
+  height: 17px;
+  display: grid;
+  place-items: center;
+  background: var(--coin);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+.arcade-stage.selected {
+  color: var(--paper);
+  background: var(--vz-blue);
+  border-color: var(--ink);
+  box-shadow: 0 3px 0 var(--ink);
+}
+.arcade-stage:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--ink);
+}
+.arcade-stage:hover img {
+  transform: scale(1.04);
+}
+.arcade-stage:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+.arcade-stage:disabled {
+  opacity: 0.72;
+}

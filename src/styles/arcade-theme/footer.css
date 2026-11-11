@@ -1,0 +1,102 @@
+.app-shell .site-footer {
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  color: #9eafc6;
+  border-top: 0;
+  margin: 0 auto;
+  padding: 8px 0 max(16px, env(safe-area-inset-bottom));
+  text-align: center;
+}
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-brand > img {
+  display: block;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+.footer-brand-name {
+  color: var(--paper);
+  font: italic 800 20px/1 var(--font-display);
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.footer-brand-name > span {
+  color: var(--coin);
+}
+.site-footer .footer-credit {
+  margin: 0;
+  color: #a3b3ca;
+  font: 400 12px/1.5 var(--font-body);
+  letter-spacing: 0;
+}
+.footer-credit a {
+  display: inline-block;
+  min-height: 28px;
+  align-content: center;
+  color: var(--paper);
+  font-weight: 700;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.footer-credit a:hover {
+  color: var(--coin);
+}
+.footer-credit a:focus-visible {
+  outline: 2px solid var(--coin);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.footer-acknowledgements {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #a3b3cacc;
+  font: 400 13px/1.5 var(--font-body);
+  letter-spacing: 0;
+  text-decoration: none;
+  transition: color 0.18s ease-out;
+}
+.footer-acknowledgements:hover,
+.footer-acknowledgements:focus-visible {
+  color: var(--coin);
+}
+@media (min-width: 901px) {
+  .app-shell .site-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px;
+    text-align: left;
+  }
+}
+.in-lobby .site-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 16px 48px;
+  margin-top: auto;
+  padding: 16px 0 max(16px, env(safe-area-inset-bottom));
+  border-top: 1px solid #a3b3ca26;
+  text-align: left;
+}
+.in-lobby .footer-brand {
+  justify-self: start;
+}
+.in-lobby .footer-credit {
+  justify-self: end;
+}
+@media (max-width: 600px) {
+  .in-lobby .site-footer {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .in-lobby .footer-brand,
+  .in-lobby .footer-acknowledgements,
+  .in-lobby .footer-credit {
+    justify-self: center;
+  }
+}

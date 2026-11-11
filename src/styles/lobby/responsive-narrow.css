@@ -1,0 +1,523 @@
+@media (max-width: 900px) {
+  .app-shell .site-header,
+  .app-shell .home-page,
+  .app-shell .site-footer {
+    width: calc(100% - 28px);
+  }
+  .app-shell .site-header {
+    height: 46px;
+    gap: 12px;
+  }
+  .site-header .brand-name {
+    font-size: 17px;
+  }
+  .site-header .brand-icon {
+    width: 24px;
+  }
+  .site-header .brand {
+    gap: 4px;
+  }
+  .site-header .main-nav {
+    display: none;
+  }
+  .site-header .header-right {
+    gap: 4px;
+  }
+  .site-header .header-progress {
+    display: grid;
+  }
+  .site-header .server-status {
+    font-size: 0;
+    margin: 0 4px;
+  }
+  .site-header .icon-button {
+    width: 30px;
+    height: 32px;
+  }
+  .arcade-home {
+    padding-top: 8px;
+  }
+  .arcade-marquee {
+    height: 103px;
+  }
+  .arcade-mode-row {
+    margin: 13px 0;
+    gap: 0;
+  }
+  .arcade-home .arcade-modes {
+    width: 100%;
+    gap: 6px;
+  }
+  .arcade-home .arcade-modes button {
+    justify-content: center;
+    padding: 0 6px;
+    height: 47px;
+    gap: 5px;
+  }
+  .arcade-home .arcade-modes button > svg {
+    width: 15px;
+    height: 15px;
+  }
+  .arcade-home .arcade-modes button > span:not(.mode-slot) {
+    font-size: 13px;
+  }
+  .arcade-home .arcade-modes small {
+    font-size: 6px;
+    letter-spacing: 0.2px;
+    margin-top: 4px;
+  }
+  .arcade-progress {
+    display: none;
+  }
+  .arcade-cabinet {
+    border-width: 2px;
+  }
+  .cabinet-heading {
+    padding: 10px 12px;
+    min-height: 38px;
+    gap: 6px;
+  }
+  .cabinet-heading h2 {
+    font-size: 16px;
+    letter-spacing: 0;
+  }
+  .arcade-selection {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    gap: 13px 14px;
+    align-items: start;
+    padding: 12px;
+  }
+  .contender-panel {
+    display: grid;
+    grid-template-columns: 66px minmax(0, 1fr);
+    grid-template-rows: 27px auto;
+    gap: 0 8px;
+    align-items: start;
+    padding: 0;
+    position: relative;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+  .contender-p1 {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .contender-p2 {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .contender-player {
+    width: auto;
+    border: 0;
+    height: 22px;
+    background: none;
+    box-shadow: none;
+    font: 700 9px var(--pixel);
+    gap: 5px;
+    justify-content: start;
+    grid-column: 1 / -1;
+    padding: 0;
+    color: var(--paper);
+  }
+  .contender-player > span:first-child {
+    border: 1px solid var(--ink);
+    background: var(--p1);
+    color: var(--ink);
+    font-size: 11px;
+    padding: 2px 3px;
+  }
+  .contender-p2 .contender-player {
+    background: none;
+  }
+  .contender-p2 .contender-player > span:first-child {
+    background: var(--coral);
+  }
+  .contender-player.editing {
+    outline: 0;
+  }
+  .pixel-cursor {
+    display: none;
+  }
+  .contender-stage {
+    grid-column: 1;
+    grid-row: 2;
+    height: 87px;
+    width: 66px;
+    margin: 0;
+    border-width: 1px;
+  }
+  .contender-stage .selected-portrait {
+    width: 71px;
+    height: 89px;
+    bottom: -1px;
+  }
+  .contender-lives {
+    gap: 2px;
+    left: 4px;
+    top: 4px;
+  }
+  .contender-lives svg {
+    width: 8px;
+    height: 8px;
+  }
+  .contender-p2 .contender-lives {
+    right: 4px;
+  }
+  .contender-shadow {
+    width: 40px;
+    bottom: 1px;
+    height: 4px;
+  }
+  .contender-identity {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 0;
+    text-align: left;
+    padding-inline: 0;
+  }
+  .contender-identity > span {
+    font-size: 7px;
+    letter-spacing: 0;
+    line-height: 1.1;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .contender-identity h3 {
+    font-size: 15px;
+    justify-content: start;
+    min-height: 0;
+    line-height: 1;
+    margin: 3px 0 5px;
+    overflow-wrap: break-word;
+  }
+  .contender-identity p {
+    font-size: 8px;
+    line-height: 1.3;
+    margin-top: 5px;
+  }
+  .contender-moves {
+    position: absolute;
+    left: 74px;
+    bottom: 0;
+    font-size: 9px;
+    padding: 0;
+    gap: 3px;
+  }
+  .contender-moves > svg {
+    width: 10px;
+    height: 10px;
+  }
+  .waiting-portrait > svg {
+    width: 20px;
+    height: 20px;
+  }
+  .waiting-portrait > span {
+    font-size: 25px;
+  }
+  .arcade-roster {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .roster-toolbar {
+    margin-bottom: 12px;
+    min-height: 37px;
+  }
+  .player-picker button {
+    height: 35px;
+    font-size: 14px;
+    padding: 0 10px;
+  }
+  .player-picker button span {
+    font-size: 10px;
+  }
+  .arcade-home .fighter-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .arcade-home .fighter-card-art {
+    height: 67px;
+  }
+  .arcade-home .fighter-card-art .portrait {
+    width: 114px;
+    height: 143px;
+  }
+  .arcade-home .fighter-card-caption {
+    min-height: 35px;
+    padding: 6px 4px;
+  }
+  .arcade-home .fighter-card-caption strong {
+    font-size: 11px;
+    line-height: 1.2;
+  }
+  .fighter-player-tags > span {
+    font-size: 10px;
+  }
+  .arcade-stages {
+    padding: 12px;
+  }
+  .arcade-stage-heading {
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 10px;
+  }
+  .arcade-stage-heading h2 {
+    font-size: 15px;
+  }
+  .arcade-stage-heading > button {
+    margin-left: auto;
+    font-size: 10px;
+    padding-left: 0;
+  }
+  .stage-strip {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 2px 3px 6px;
+    margin-inline: -3px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    scrollbar-color: #7693bd transparent;
+  }
+  .arcade-stage {
+    width: 98px;
+    flex: 0 0 98px;
+    scroll-snap-align: start;
+  }
+  .arcade-stage .stage-thumbnail {
+    height: 53px;
+  }
+  .arcade-stage strong {
+    font-size: 12px;
+    padding: 7px 2px;
+  }
+  .arcade-ready {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 12px;
+    padding: 15px 12px 18px;
+  }
+  .ready-intro {
+    grid-column: 1 / -1;
+    gap: 8px;
+  }
+  .ready-intro > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ready-intro > div > span {
+    font-size: 9px;
+    margin-bottom: 0;
+  }
+  .ready-intro strong {
+    font-size: 18px;
+  }
+  .ready-difficulty > span {
+    font-size: 11px;
+  }
+  .ready-difficulty button {
+    height: 41px;
+    font-size: 11px;
+    padding-inline: 5px;
+  }
+  .arcade-home .arcade-start {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 53px;
+    font-size: 26px;
+    padding-inline: 18px;
+  }
+  .ready-room,
+  .ready-online-status {
+    min-width: 0;
+  }
+  .ready-online-status {
+    font-size: 11px;
+  }
+  .ready-room-players {
+    font-size: 10px;
+    gap: 10px;
+  }
+  .app-shell .site-footer {
+    margin-bottom: 68px;
+    padding-top: 13px;
+    font-size: 8px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .mobile-setup-dock {
+    display: flex;
+    position: fixed;
+    left: 14px;
+    right: 14px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    z-index: 30;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 9px 11px;
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+    background: var(--ink);
+    color: var(--paper);
+    box-shadow:
+      0 3px 0 #100b1d,
+      0 0 0 1px #8a7383;
+  }
+  .mobile-setup-dock > span {
+    min-width: 0;
+  }
+  .mobile-setup-dock small {
+    display: block;
+    color: #c4dbfc;
+    font: 500 8px var(--pixel);
+    margin-bottom: 3px;
+  }
+  .mobile-setup-dock strong {
+    font: 700 12px/1 var(--font-body);
+    display: block;
+  }
+  .mobile-setup-dock button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 35px;
+    padding: 0 12px;
+    font: 700 20px var(--pixel);
+    color: var(--ink);
+    background: var(--coin);
+    border: 1px solid var(--ink);
+    border-radius: 2px;
+    box-shadow: 0 2px 0 var(--ink);
+    white-space: nowrap;
+  }
+  .arcade-app .modal-header h2 {
+    font-size: 23px;
+  }
+}
+@media (max-width: 370px) {
+  .app-shell .site-header,
+  .app-shell .home-page,
+  .app-shell .site-footer {
+    width: calc(100% - 20px);
+  }
+  .site-header .brand-name {
+    font-size: 15px;
+  }
+  .site-header .brand-name > span {
+    margin-left: 2px;
+    gap: 4px;
+  }
+  .site-header .brand-icon {
+    width: 20px;
+  }
+  .site-header .brand-icon svg {
+    width: 19px;
+  }
+  .site-header .header-right {
+    gap: 1px;
+  }
+  .site-header .server-status {
+    margin: 0 2px;
+  }
+  .arcade-home .arcade-modes button {
+    gap: 4px;
+    padding-inline: 3px;
+  }
+  .arcade-home .arcade-modes button > span:not(.mode-slot) {
+    font-size: 11px;
+  }
+  .arcade-home .arcade-modes button > svg {
+    width: 12px;
+  }
+  .arcade-home .arcade-modes small {
+    font-size: 5.5px;
+  }
+  .cabinet-heading h2 {
+    font-size: 14px;
+  }
+  .arcade-selection {
+    gap: 13px 9px;
+    padding-inline: 10px;
+  }
+  .contender-panel {
+    grid-template-columns: 55px minmax(0, 1fr);
+    gap: 0 6px;
+  }
+  .contender-stage {
+    width: 55px;
+    height: 78px;
+  }
+  .contender-stage .selected-portrait {
+    width: 62px;
+    height: 78px;
+  }
+  .contender-identity h3 {
+    font-size: 13px;
+  }
+  .contender-identity > span {
+    font-size: 6px;
+  }
+  .contender-identity p {
+    font-size: 7px;
+  }
+  .contender-moves {
+    left: 61px;
+    font-size: 8px;
+  }
+  .contender-moves > svg:first-child {
+    display: none;
+  }
+  .arcade-home .fighter-grid {
+    gap: 6px;
+  }
+  .arcade-home .fighter-card-art {
+    height: 61px;
+  }
+  .arcade-home .fighter-card-art .portrait {
+    width: 103px;
+    height: 129px;
+  }
+  .arcade-home .fighter-card-caption strong {
+    font-size: 10px;
+  }
+  .arcade-home .fighter-card-caption {
+    padding-inline: 3px;
+    min-height: 34px;
+  }
+  .arcade-stages {
+    padding-inline: 10px;
+  }
+  .arcade-stage-heading h2 {
+    font-size: 13px;
+  }
+  .arcade-stage-heading > button {
+    font-size: 9px;
+  }
+  .ready-difficulty button {
+    font-size: 10px;
+    padding-inline: 4px;
+  }
+  .ready-difficulty button > svg {
+    display: none;
+  }
+  .arcade-ready {
+    padding-inline: 10px;
+    gap: 12px 8px;
+  }
+  .mobile-setup-dock {
+    left: 10px;
+    right: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arcade-app *,
+  .arcade-app *::before,
+  .arcade-app *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

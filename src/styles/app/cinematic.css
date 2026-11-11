@@ -1,0 +1,105 @@
+/* Keep the entire match focused on the fighters, through the rematch. */
+.app-shell.in-match {
+  background: #070d18;
+}
+.app-shell.in-match > .site-header,
+.app-shell.in-match > .site-footer {
+  display: none;
+}
+.arcade-app .game-page.is-intro {
+  width: min(calc(100% - 32px), calc((100svh - 32px) * 1.8));
+  max-width: 1600px;
+  min-height: 100svh;
+  margin-block: 0;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+}
+.cinematic-active {
+  background: #070d18;
+}
+.cinematic-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+.cinematic-name {
+  position: absolute;
+  left: 5%;
+  bottom: 8%;
+  width: 39%;
+  color: #fff2d8;
+  opacity: 0.72;
+  transition: opacity 160ms ease-out;
+}
+.cinematic-name-1 {
+  left: auto;
+  right: 5%;
+  text-align: right;
+}
+.cinematic-name.is-presenting {
+  opacity: 1;
+}
+.cinematic-name > strong {
+  display: block;
+  font: italic 800 clamp(16px, 2.6vw, 34px)/1.08 var(--font-display);
+  text-shadow: 0 2px 10px #070d18;
+}
+.skip-entrances {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  pointer-events: auto;
+  min-height: 44px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 500 12px var(--font-body);
+  color: #c1ccdb;
+  background: #070d1866;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition:
+    color 160ms ease-out,
+    background 160ms ease-out;
+}
+.skip-entrances:hover {
+  color: #ffda68;
+  background: #070d18b8;
+}
+.skip-entrances:focus-visible {
+  outline: 2px solid #ffda68;
+  outline-offset: 2px;
+}
+@media (max-width: 700px) {
+  .arcade-app .game-mode {
+    display: none;
+  }
+  .arcade-app .game-page.is-intro {
+    width: min(calc(100% - 16px), calc((100svh - 16px) * 1.8));
+    padding: 8px 0;
+  }
+  .cinematic-name {
+    left: 4%;
+    bottom: 8%;
+    width: 40%;
+  }
+  .cinematic-name-1 {
+    left: auto;
+    right: 4%;
+  }
+  .skip-entrances {
+    top: 2px;
+    right: 4px;
+    padding: 8px;
+    font-size: 11px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-name,
+  .skip-entrances {
+    transition: none;
+  }
+}

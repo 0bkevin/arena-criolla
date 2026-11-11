@@ -1,0 +1,45 @@
+/* Collections keep the larger cast within the arcade selection cabinet. */
+.roster-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding-top: 9px;
+  color: #e4eeff;
+  font: 500 11px var(--pixel);
+}
+.roster-pagination button {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 30px;
+  border: 1px solid #93b7e8;
+  border-radius: 2px;
+  color: #e4eeff;
+  background: #173e7c;
+  transition:
+    transform 120ms ease,
+    background 120ms ease;
+}
+.roster-pagination button:hover:enabled {
+  background: #ffe48b;
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+.roster-pagination button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.roster-pagination small {
+  font-size: 8px;
+  color: #a8c9f9;
+}
+@media (max-width: 700px) {
+  .roster-pagination button {
+    width: 44px;
+    height: 44px;
+  }
+  .roster-pagination {
+    padding-top: 12px;
+  }
+}

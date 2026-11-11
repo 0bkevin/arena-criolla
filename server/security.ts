@@ -15,7 +15,7 @@ function requestOrigin(request: IncomingMessage, trustProxy: TrustProxy) {
   if (trustProxy(request.socket.remoteAddress ?? "", 0)) {
     const forwarded = request.headers["x-forwarded-proto"];
     if (typeof forwarded === "string") {
-      const value = forwarded.split(",", 1)[0].trim();
+      const value = forwarded.split(",", 1)[0]?.trim();
       if (value === "http" || value === "https") protocol = value;
     }
   }

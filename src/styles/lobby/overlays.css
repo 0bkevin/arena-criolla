@@ -1,0 +1,137 @@
+.arcade-app .modal {
+  border: 2px solid #7693bd;
+  background: #153664;
+  color: var(--paper);
+  border-radius: 4px;
+  box-shadow: 5px 5px 0 #0f0a1a;
+}
+.arcade-app .modal::backdrop {
+  background: #061932be;
+  backdrop-filter: blur(5px);
+}
+.arcade-app .modal-header {
+  border-color: #ffffff13;
+}
+.arcade-app .modal-header h2 {
+  font: 700 28px/1.1 var(--pixel);
+  letter-spacing: -0.5px;
+}
+.arcade-app .modal .primary-button {
+  border: 2px solid #110c20;
+  border-radius: 3px;
+  background: var(--coin);
+  color: var(--ink);
+  font: 700 20px var(--pixel);
+  box-shadow: 0 3px 0 #0f0a1a;
+}
+.arcade-app .modal .secondary-button {
+  border-radius: 3px;
+  border-color: #685777;
+  font: 500 15px var(--pixel);
+}
+.arcade-app .modal .plain-input {
+  border-radius: 2px;
+  border-color: #7693bd;
+  background: #0d2345;
+}
+.arcade-app .modal .roster-grid > button,
+.arcade-app .modal .stage-card {
+  border-radius: 2px;
+  border-color: #7693bd;
+}
+.arcade-app .modal .stage-card[aria-pressed="true"] {
+  border-color: var(--coin);
+}
+.arcade-app .modal .stage-card-image > strong {
+  background: var(--coin);
+}
+.arcade-app .game-page {
+  --match-chrome: 120px;
+  width: calc(100% - 32px);
+  max-width: 1600px;
+  min-height: 100dvh;
+  margin-block: 0;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.arcade-app .game-topline {
+  flex-wrap: nowrap;
+  margin-bottom: 8px;
+}
+.arcade-app .game-topline > .text-button {
+  min-height: 44px;
+}
+.arcade-app .game-tools .icon-button {
+  width: 44px;
+  height: 44px;
+}
+.arcade-app .game-controls-bar {
+  min-height: 44px;
+  padding: 0 4px;
+  border: 0;
+}
+.arcade-app .game-page:not(.is-touch) > .game-topline,
+.arcade-app .game-page:not(.is-touch) > .game-controls-bar,
+.arcade-app .game-page:not(.is-touch) > .touch-controls {
+  width: 100%;
+}
+@media (max-width: 650px), (max-height: 500px) and (orientation: landscape) {
+  .arcade-app .game-page:not(.is-touch) {
+    --match-chrome: 76px;
+  }
+  .arcade-app .game-page:not(.is-touch):has(> .touch-controls) {
+    --match-chrome: 184px;
+  }
+  .arcade-app .game-page:not(.is-touch) .arena-wrap:has(.pause-card) {
+    min-height: min(260px, calc(100dvh - var(--match-chrome)));
+  }
+}
+.arcade-app .arena-wrap {
+  width: min(100%, calc((100dvh - var(--match-chrome)) * 1.8));
+  flex: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.arcade-app .is-intro .arena-wrap {
+  width: 100%;
+}
+.arcade-app .game-page .primary-button {
+  background: var(--coin);
+  color: var(--ink);
+  font-style: normal;
+}
+.mobile-setup-dock {
+  display: none;
+}
+.arcade-session button:focus-visible,
+.arcade-session input:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+.arcade-cabinet button:focus-visible {
+  outline-color: var(--coin);
+}
+@keyframes fighter-pop {
+  from {
+    opacity: 0.4;
+    transform: translateX(-50%) translateY(7px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+@keyframes name-pop {
+  from {
+    opacity: 0.5;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

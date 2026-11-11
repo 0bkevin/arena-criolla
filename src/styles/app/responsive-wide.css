@@ -1,0 +1,148 @@
+@media (min-width: 1450px) {
+  .fighter-card-art {
+    height: 151px;
+  }
+  .fighter-card-art .portrait {
+    height: 218px;
+    width: 174px;
+  }
+  .fighter-card-caption strong {
+    font-size: 20px;
+  }
+  .fighter-card-caption {
+    padding: 11px 13px 14px;
+  }
+  .fight-button {
+    height: 51px;
+    margin-top: 21px;
+  }
+}
+@media (max-width: 1100px) {
+  .page-width {
+    width: calc(100% - 56px);
+  }
+  .header-right {
+    gap: 10px;
+  }
+  .server-status {
+    display: none;
+  }
+  .main-nav {
+    gap: 22px;
+  }
+  .fighter-card-art {
+    height: 119px;
+  }
+  .fighter-card-art .portrait {
+    height: 174px;
+    width: 139px;
+  }
+  .fighter-card-caption strong {
+    font-size: 16px;
+  }
+  .mode-tabs button {
+    padding: 9px 12px;
+  }
+  .game-controls-bar {
+    flex-wrap: wrap;
+  }
+  .game-controls-bar > span {
+    font-size: 7px;
+  }
+  .game-controls-bar > .text-button {
+    display: none;
+  }
+}
+@media (max-width: 850px) {
+  .page-width {
+    width: calc(100% - 40px);
+  }
+  .site-header {
+    height: 78px;
+  }
+  .main-nav {
+    gap: 16px;
+  }
+  .main-nav button {
+    font-size: 10px;
+  }
+  .section-label h2 {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .fighter-grid {
+    gap: 8px;
+  }
+  .fighter-card-art {
+    height: 108px;
+  }
+  .fighter-card-art .portrait {
+    height: 160px;
+    width: 128px;
+    top: 2px;
+  }
+  .fighter-card-caption {
+    padding: 7px 8px 10px;
+  }
+  .fighter-card-caption strong {
+    font-size: 15px;
+  }
+  .fighter-card-caption > span {
+    font-size: 6px;
+  }
+  .fight-button {
+    font-size: 22px;
+    margin-top: 15px;
+    height: 44px;
+  }
+  .mode-tabs button {
+    padding: 8px 10px;
+    gap: 7px;
+  }
+  .mode-tabs button > span:not(.tab-dot) {
+    font-size: 9px;
+  }
+  .mode-tabs small {
+    font-size: 6px;
+    letter-spacing: 0.7px;
+  }
+  .mode-tabs button > svg {
+    width: 16px;
+  }
+  .match-hud {
+    left: 18px;
+    right: 18px;
+    top: 18px;
+    gap: 85px;
+  }
+  .hud-label strong {
+    font-size: 11px;
+  }
+  .hud-character {
+    font-size: 8px;
+  }
+  .match-clock strong {
+    font-size: 32px;
+  }
+  .match-clock {
+    min-width: 58px;
+    padding: 5px 9px;
+  }
+  .health-track {
+    height: 13px;
+  }
+  .health-track > span {
+    font-size: 8px;
+  }
+  .arena-location {
+    font-size: 6px;
+    padding: 5px 7px;
+    bottom: 12px;
+  }
+  .game-mode {
+    font-size: 7px;
+  }
+  .game-topline > .text-button {
+    font-size: 9px;
+  }
+}

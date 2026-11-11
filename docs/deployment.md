@@ -1,6 +1,6 @@
 # Despliegue
 
-> **Producción actual: Cloudflare Workers.** `https://arenacriolla.com` se despliega desde la rama `cloudflare-prod` con el workflow **Deploy Cloudflare** (`.github/workflows/cloudflare.yml`): solo acepta un árbol que ya pasó CI en `main`, compila con `npm run cf:build`, ejecuta `wrangler deploy` y luego `scripts/cloudflare-smoke.mjs` contra `vars.CLOUDFLARE_URL`. Para publicar, empuja a `cloudflare-prod` un commit de `main` en verde.
+> **Producción actual: Cloudflare Workers.** `https://arenacriolla.com` se despliega desde la rama `cloudflare-prod` con el workflow **Deploy Cloudflare** (`.github/workflows/cloudflare.yml`): solo acepta un árbol que ya pasó CI en `main`, compila con `npm run cf:build`, ejecuta `wrangler deploy` y luego `scripts/cloudflare/smoke.ts` contra `vars.CLOUDFLARE_URL`. Para publicar, empuja a `cloudflare-prod` un commit de `main` en verde.
 >
 > **Retirado:** la rama `prod`, los workflows **Deploy production** y **Prepare production promotion** (desactivados en GitHub) y el servidor Oracle `161.153.114.230` (instancia `t3code-agents`, detenida) ya no son producción. Lo que sigue describe ese montaje anterior con Node/Docker y queda como referencia para alojar el servidor en otro sitio.
 
@@ -21,7 +21,7 @@ La configuración de Docker Compose, proxy y copias de seguridad está en [`depl
 Para comprobar una instancia desplegada:
 
 ```sh
-node scripts/security-smoke.mjs https://arenacriolla.com/
+node scripts/ci/security-smoke.ts https://arenacriolla.com/
 ```
 
 Esta comprobación valida HTTP y WebSocket y crea una partida privada temporal con dos invitados.
@@ -47,13 +47,13 @@ La rama `prod` se inicializa desde la revisión de la imagen que ya estaba sirvi
 
 En el entorno **production**, configura:
 
-| Nombre | Tipo | Contenido |
-| --- | --- | --- |
-| `DEPLOY_HOST` | Variable | Dirección del servidor existente. |
-| `DEPLOY_USER` | Variable | `arena-deploy`. |
-| `DEPLOY_PORT` | Variable | `2222`, listener exclusivo de despliegue. |
+| Nombre               | Tipo     | Contenido                                                                              |
+| -------------------- | -------- | -------------------------------------------------------------------------------------- |
+| `DEPLOY_HOST`        | Variable | Dirección del servidor existente.                                                      |
+| `DEPLOY_USER`        | Variable | `arena-deploy`.                                                                        |
+| `DEPLOY_PORT`        | Variable | `2222`, listener exclusivo de despliegue.                                              |
 | `DEPLOY_KNOWN_HOSTS` | Variable | Línea de `known_hosts` con la clave pública real del host, verificada por el operador. |
-| `DEPLOY_SSH_KEY` | Secret | Clave privada Ed25519 exclusiva para esta entrega. |
+| `DEPLOY_SSH_KEY`     | Secret   | Clave privada Ed25519 exclusiva para esta entrega.                                     |
 
 Activa **Allow GitHub Actions to create and approve pull requests** en la configuración de Actions; el workflow solo crea/actualiza el PR y no lo aprueba. No uses un token personal para la promoción.
 

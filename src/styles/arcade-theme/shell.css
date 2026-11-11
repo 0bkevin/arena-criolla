@@ -1,0 +1,141 @@
+/* Night arcade: framed controls and artwork, without enclosing section panels. */
+body {
+  background: #091524;
+}
+.app-shell.in-lobby {
+  display: flex;
+  flex-direction: column;
+  --selection-control-height: 35px;
+  --selection-fill: #31465f;
+  --ink: #17273f;
+  --paper: #fff5db;
+  --coin: #ffd45a;
+  --p1: #ffd45a;
+  --coral: #fa7c6d;
+  --vz-blue: #315caa;
+  --vz-red: #e86658;
+  --bg: #091524;
+  --line: #30455f;
+  --text: #eef2fa;
+  --muted: #a3b3ca;
+  --lime: #ffd45a;
+  --display: var(--font-display);
+  color-scheme: dark;
+  color: var(--text);
+  background: radial-gradient(
+    ellipse at 50% 32%,
+    #162a43 0,
+    #0c1b2d 54%,
+    #091524 85%
+  );
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+.in-lobby .site-header,
+.in-lobby .home-page,
+.in-lobby .site-footer {
+  width: calc(100% - 64px);
+  max-width: 1440px;
+}
+.in-lobby .site-header {
+  height: 42px;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 35;
+  background: #091524f5;
+  border-bottom: 1px solid #ffffff09;
+  backdrop-filter: blur(12px);
+}
+.in-lobby .site-header .brand {
+  gap: 10px;
+}
+.in-lobby .site-header .brand-icon {
+  width: 29px;
+  height: 29px;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+.site-header .brand-icon > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.in-lobby .site-header .brand-name {
+  font: italic 800 22px/1 var(--display);
+  letter-spacing: 0;
+  color: var(--paper);
+  white-space: nowrap;
+}
+.in-lobby .site-header .brand-name > span {
+  color: var(--coin);
+  margin-left: 4px;
+  gap: 7px;
+}
+.in-lobby .site-header .main-nav {
+  gap: 8px;
+}
+.in-lobby .site-header .main-nav button {
+  height: 30px;
+  padding: 0 11px;
+  font: 500 12px var(--font-body);
+  color: var(--muted);
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.in-lobby .site-header .main-nav button.active {
+  background: #ffd45a08;
+  color: var(--coin);
+  border-color: #ffd45a20;
+}
+.in-lobby .site-header .main-nav button:hover {
+  color: var(--paper);
+  background: #ffffff08;
+}
+.in-lobby .site-header .header-right {
+  gap: 10px;
+}
+.in-lobby .site-header .server-status {
+  color: #bac8d9;
+}
+.in-lobby .site-header .server-status.connected i {
+  background: #8ad6a7;
+  box-shadow: 0 0 0 2px #8ad6a708;
+}
+.site-header .icon-button,
+.in-lobby .site-header .icon-button {
+  color: #becce0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transition: color 0.16s;
+}
+.site-header .icon-button:is(:hover, :active),
+.in-lobby .site-header .icon-button:is(:hover, :active) {
+  color: var(--coin);
+  background: transparent;
+}
+.site-header .header-help {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font: 500 12px var(--font-body);
+  white-space: nowrap;
+}
+.site-header .header-help:focus-visible {
+  outline: none;
+}
+.site-header .header-help:focus-visible svg {
+  stroke-width: 3;
+}
+.site-header .header-help > span {
+  display: none;
+}
+@media (min-width: 901px) {
+  .site-header .header-help > span {
+    display: inline;
+  }
+}

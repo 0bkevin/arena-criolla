@@ -1,0 +1,94 @@
+.in-lobby .mobile-setup-dock {
+  display: none;
+}
+.in-lobby .arcade-session button:focus-visible,
+.in-lobby .arcade-session input:focus-visible {
+  outline: 2px solid var(--coin);
+  outline-offset: 3px;
+}
+.in-lobby .arcade-session .arcade-search input:focus-visible {
+  outline: none;
+}
+.in-lobby .modal {
+  background: #13243a;
+  color: var(--text);
+  border: 1px solid #5d779c;
+  border-radius: 8px;
+  box-shadow: 0 20px 80px #020b1999;
+}
+.in-lobby .modal-header h2 {
+  font: italic 800 28px/1.1 var(--display);
+  color: var(--paper);
+}
+.in-lobby .modal::backdrop {
+  background: #020b19b8;
+}
+.in-lobby .modal .primary-button {
+  color: var(--ink);
+  border: 1px solid #fff2b355;
+  border-radius: 4px;
+  background: var(--coin);
+}
+.in-lobby .modal .secondary-button {
+  color: #c7d6e9;
+  border-color: #6682a255;
+  background: #08192c;
+}
+.in-lobby .modal .icon-button {
+  color: #c7d6e9;
+}
+.in-lobby .modal .roster-grid > button,
+.in-lobby .modal .stage-card {
+  background: #0b1a2d;
+  color: var(--text);
+  border-color: #6682a255;
+  border-radius: 5px;
+}
+.in-lobby .modal .stage-card[aria-pressed="true"] {
+  border-color: var(--coin);
+}
+.in-lobby .modal .stage-tags span {
+  background: #213853;
+  color: #d4e3f4;
+}
+.in-lobby .modal .plain-input,
+.in-lobby .modal input {
+  color: var(--paper);
+  background: #071527;
+  border-color: #6682a288;
+}
+.in-lobby .notice-banner {
+  border: 1px solid #ffd45a55;
+  border-radius: 5px;
+  color: #e7d8ab;
+  background: #20314a;
+}
+.in-lobby .toast {
+  color: var(--paper);
+  background: #20314a;
+  border-color: #6a87aa;
+}
+/* 110% → -10% keeps the band just off each edge, so most of the pass is on
+   the button rather than travelling through empty space. */
+@keyframes start-glint {
+  0% {
+    background-position: 110% 0;
+  }
+  40%,
+  100% {
+    background-position: -10% 0;
+  }
+}
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes night-scene-in {
+  from {
+    opacity: 0.05;
+  }
+  to {
+    opacity: 0.26;
+  }
+}

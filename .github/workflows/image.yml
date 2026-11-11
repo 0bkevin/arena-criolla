@@ -67,7 +67,7 @@ jobs:
           # Docker can reset connections before the application is listening.
           curl --fail --retry 15 --retry-delay 1 --retry-all-errors --retry-max-time 30 --connect-timeout 2 --max-time 3 "http://127.0.0.1:$port/api/health"
           # Use the dependencies in the image instead of installing them again.
-          docker exec -i "$container" node --input-type=module - http://127.0.0.1:5173 < scripts/security-smoke.mjs
+          docker exec -i "$container" node --input-type=module-typescript - http://127.0.0.1:5173 < scripts/ci/security-smoke.ts
       - name: Export the verified image
         if: inputs.export
         env:

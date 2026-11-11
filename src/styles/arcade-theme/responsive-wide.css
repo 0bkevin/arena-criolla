@@ -1,0 +1,92 @@
+@media (min-width: 1440px) {
+  .in-lobby .arcade-marquee {
+    height: 124px;
+  }
+  .in-lobby .site-header {
+    height: 48px;
+  }
+  .in-lobby .arcade-modes {
+    width: 800px;
+  }
+  .in-lobby .arcade-modes button {
+    height: 42px;
+  }
+  .in-lobby .fighter-card-art {
+    height: 86px;
+  }
+  .in-lobby .fighter-card-art .portrait {
+    width: 121px;
+    height: 151px;
+  }
+  .in-lobby .fighter-card-caption {
+    min-height: 34px;
+  }
+  .in-lobby .fighter-card-caption strong {
+    font-size: 12px;
+  }
+  .in-lobby .contender-stage {
+    height: 222px;
+  }
+  .in-lobby .contender-stage .selected-portrait {
+    width: 181px;
+    height: 226px;
+  }
+  .in-lobby .arcade-stage .stage-thumbnail {
+    height: 43px;
+  }
+}
+@media (min-width: 901px) and (max-width: 1100px) {
+  .in-lobby .site-header,
+  .in-lobby .home-page,
+  .in-lobby .site-footer {
+    width: calc(100% - 40px);
+  }
+  .in-lobby .arcade-selection {
+    grid-template-columns: minmax(150px, 0.3fr) minmax(0, 1fr) minmax(
+        150px,
+        0.3fr
+      );
+    gap: 14px;
+    padding-inline: 0;
+  }
+  .in-lobby .contender-stage .selected-portrait {
+    width: 153px;
+    height: 191px;
+  }
+  .in-lobby .contender-identity h3 {
+    font-size: 22px;
+  }
+  .in-lobby .fighter-card-caption strong {
+    font-size: 10px;
+  }
+  .in-lobby .fighter-card-caption {
+    min-height: 38px;
+    padding-inline: 3px;
+  }
+  .in-lobby .arcade-ready {
+    grid-template-columns: minmax(135px, 0.8fr) minmax(180px, 1fr) minmax(
+        185px,
+        1.05fr
+      );
+    gap: 12px;
+    padding-inline: 0;
+  }
+  .in-lobby .arcade-ready.in-room {
+    grid-template-columns:
+      minmax(135px, 0.8fr) minmax(125px, 1fr) minmax(180px, 1fr)
+      minmax(185px, 1.05fr);
+  }
+  .in-lobby .ready-intro strong {
+    font-size: 20px;
+  }
+  .in-lobby .arcade-start {
+    font-size: 25px;
+    padding-inline: 12px;
+  }
+  .in-lobby .arcade-ready.online-ready .arcade-start {
+    font-size: 23px;
+  }
+  .in-lobby .stage-strip {
+    gap: 6px;
+  }
+}

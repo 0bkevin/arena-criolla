@@ -1,7 +1,7 @@
 // Cloudflare Workers entry for Arena Criolla. Files in .cloudflare/public are
 // served directly by Cloudflare; this Worker only sees requests that match no
 // file (the HTML shell, /ws, /api/*, robots, sitemap) plus the AVIF swap.
-import { renderSiteHtml, siteSitemap } from "../server/seo";
+import { renderSiteHtml, siteSitemap } from "../shared/site";
 import site from "../.cloudflare/site.json";
 
 export { ArenaLobby } from "./lobby";
@@ -97,7 +97,7 @@ export default {
         return new Response(null, { status: 403 });
       return lobby(env).fetch(request);
     }
-    if (pathname === "/api/health" || pathname === "/api/rooms")
+    if (read && (pathname === "/api/health" || pathname === "/api/rooms"))
       return withHeaders(await lobby(env).fetch(request), {
         "Cache-Control": "no-store",
       });

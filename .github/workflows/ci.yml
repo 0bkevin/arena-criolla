@@ -27,12 +27,14 @@ jobs:
       tests: ${{ steps.select.outputs.tests }}
       test-shards: ${{ steps.select.outputs.test-shards }}
       typecheck: ${{ steps.select.outputs.typecheck }}
+      format: ${{ steps.select.outputs.format }}
       assets: ${{ steps.select.outputs.assets }}
       audit: ${{ steps.select.outputs.audit }}
       deploy-controls: ${{ steps.select.outputs.deploy-controls }}
       image: ${{ steps.select.outputs.image }}
       scan: ${{ steps.select.outputs.scan }}
       e2e: ${{ steps.select.outputs.e2e }}
+      worker: ${{ steps.select.outputs.worker }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -50,6 +52,11 @@ jobs:
             --jq '[.artifacts[] | select((.expired | not) and .workflow_run.head_repository_id == .workflow_run.repository_id)] | length')
           echo "tree=$tree" >> "$GITHUB_OUTPUT"
           echo "passed=$([ "$passed" -gt 0 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+      # The selector is TypeScript that Node runs directly; no npm ci needed.
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        if: steps.tested.outputs.passed != 'true'
+        with:
+          node-version: 24
       - name: Select checks for the changed files
         id: select
         if: steps.tested.outputs.passed != 'true'
@@ -57,7 +64,7 @@ jobs:
           # A PR compares against its base, a push against the previous main.
           # A manual run without either checks everything.
           BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
-        run: node scripts/select-checks.mjs $BASE
+        run: node scripts/ci/select-checks.ts $BASE
   # The selected checks run as parallel jobs; each one is skipped when not needed.
   unit:
     needs: plan
@@ -108,12 +115,13 @@ jobs:
   static:
     needs: plan
     if: >-
-      needs.plan.outputs.typecheck == 'true' || needs.plan.outputs.assets == 'true' ||
+      needs.plan.outputs.typecheck == 'true' || needs.plan.outputs.format == 'true' ||
+      needs.plan.outputs.assets == 'true' ||
       needs.plan.outputs.audit == 'true' || needs.plan.outputs.deploy-controls == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      NODE_WORK: ${{ needs.plan.outputs.typecheck == 'true' || needs.plan.outputs.assets == 'true' || needs.plan.outputs.audit == 'true' }}
+      NODE_WORK: ${{ needs.plan.outputs.typecheck == 'true' || needs.plan.outputs.format == 'true' || needs.plan.outputs.assets == 'true' || needs.plan.outputs.audit == 'true' }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -130,6 +138,8 @@ jobs:
         run: npm audit --audit-level=low
       - if: needs.plan.outputs.typecheck == 'true'
         run: npm run typecheck
+      - if: needs.plan.outputs.format == 'true'
+        run: npm run format:check
       - if: needs.plan.outputs.assets == 'true'
         run: npm run check:assets
       - name: Validate production delivery controls
@@ -137,6 +147,37 @@ jobs:
         run: |
           python3 -B deploy/test_install_release.py
           bash -n deploy/receive-release deploy/install-delivery-controls.sh
+  # Builds the production Worker and plays an online match against it locally.
+  worker:
+    needs: plan
+    if: needs.plan.outputs.worker == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Build the Worker and its static assets
+        run: npm run cf:build
+      - name: Smoke-test the Worker under wrangler dev
+        env:
+          WRANGLER_SEND_METRICS: "false"
+        run: |
+          set -euo pipefail
+          npx wrangler dev --port 8799 --ip 127.0.0.1 > wrangler.log 2>&1 &
+          wrangler=$!
+          for _ in $(seq 1 60); do
+            curl -sf http://127.0.0.1:8799/api/health > /dev/null && break
+            # Stop waiting as soon as wrangler exits.
+            kill -0 "$wrangler" 2> /dev/null || { cat wrangler.log; exit 1; }
+            sleep 1
+          done
+          node scripts/cloudflare/smoke.ts http://127.0.0.1:8799 || { cat wrangler.log; exit 1; }
   # Builds and smoke-tests the image for changes to what it ships.
   image:
     needs: plan
@@ -147,13 +188,13 @@ jobs:
   # The required check: fails if any job that ran failed or was cancelled.
   validate:
     if: always()
-    needs: [plan, unit, layout, static, image]
+    needs: [plan, unit, layout, static, worker, image]
     runs-on: ubuntu-latest
     steps:
       - name: Require the selected checks
         env:
           PLAN: ${{ needs.plan.result }}
-          RESULTS: ${{ needs.unit.result }} ${{ needs.layout.result }} ${{ needs.static.result }} ${{ needs.image.result }}
+          RESULTS: ${{ needs.unit.result }} ${{ needs.layout.result }} ${{ needs.static.result }} ${{ needs.worker.result }} ${{ needs.image.result }}
         run: |
           test "$PLAN" = success
           for result in $RESULTS; do [[ "$result" =~ ^(success|skipped)$ ]]; done
