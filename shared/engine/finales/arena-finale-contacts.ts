@@ -7,9 +7,9 @@ import {
   ARENA_FINALE_CUES,
   activeArenaPerformance,
   arenaActorReach,
-  arenaMountReach,
   isArenaFinalist,
   mountedFinale,
+  nextMountStrike,
   rideMoving,
   type ArenaContact,
   type ArenaFinaleActor,
@@ -80,13 +80,12 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
         rootKind: "pot",
       });
     }
-    if (
-      active &&
-      mountedFinale(field) &&
-      rideMoving(field) &&
-      !field.connected
-    ) {
-      const reach = arenaMountReach(field);
+    const strike =
+      active && mountedFinale(field) && rideMoving(field)
+        ? nextMountStrike(field)
+        : undefined;
+    if (strike) {
+      const reach = strike.reach;
       if (
         overlaps(
           target,
@@ -96,16 +95,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
           reach.top,
         )
       )
-        offer(
-          field.fighter === "bolivar"
-            ? 1 / 7
-            : field.fighter === "gomez" || field.fighter === "lorenzo"
-              ? 1 / 3
-              : 1,
-          4.5,
-          target.x,
-          target.y - 75,
-        );
+        offer(strike.damage, strike.force, target.x, target.y - 75);
     }
     for (const actor of field.actors ?? []) {
       if (actor.kind === "supporter" || actor.kind === "pot") continue;
@@ -259,8 +249,11 @@ export function registerArenaContact(
       actor.caughtTick = field.tick;
       actor.vx = 0;
     }
-  } else if (!actor && (mountedFinale(field) || field.fighter === "chataing"))
-    field.connected = true;
+  } else if (!actor && mountedFinale(field)) {
+    // Guarded strikes count too, so a blocked ride cannot strike without end.
+    field.mountHits = (field.mountHits ?? 0) + 1;
+    field.mountHitTick = field.tick;
+  } else if (!actor && field.fighter === "chataing") field.connected = true;
   if (damaged && contact.rootTicks) {
     const target = state.players[opponentOf(contact.owner)];
     target.rootTicks = Math.max(target.rootTicks, contact.rootTicks);

@@ -8,8 +8,13 @@ import {
   WORLD,
   type Input,
 } from "../helpers/charged-finale-engine";
-import type { FighterId, StageId } from "../../shared/roster/roster";
 import {
+  fighterById,
+  type FighterId,
+  type StageId,
+} from "../../shared/roster/roster";
+import {
+  MOUNT_STRIKES,
   REVIEWED_FINALISTS as reviewed,
   activeArenaPerformance,
   isArenaFinalist,
@@ -253,6 +258,48 @@ test("each cavalry rider, courier and truck crosses the defender once and remain
       assert.ok(
         r.source.x >= WORLD.left && r.source.x <= WORLD.right,
         "the performer dismounts inside the arena instead of teleporting back",
+      );
+    }
+});
+
+test("María Corina's caravan keeps striking the rival it drives along, at a bounded cadence", () => {
+  const strike = MOUNT_STRIKES.mcm!;
+  for (const side of [0, 1] as const)
+    for (const gap of [90, 210, 400]) {
+      const r = setup("mcm", side, gap);
+      r.start();
+      const field = r.state.fieldFinales![0]!,
+        hits: { tick: number; damage: number; ahead: number }[] = [];
+      let hp = r.target.hp;
+      for (let n = 0; n < 200 && r.target.stocks === 2; n++) {
+        r.advance();
+        if (r.target.hp < hp)
+          hits.push({
+            tick: field.tick,
+            damage: hp - r.target.hp,
+            ahead: (r.target.x - r.source.x) * r.source.facing,
+          });
+        hp = r.target.hp;
+      }
+      const context = `P${side + 1}, gap ${gap}`;
+      assert.equal(hits.length, strike.hits, `${context}: one hit per beat`);
+      assert.ok(
+        hits.every(
+          (hit, i) => !i || hit.tick - hits[i - 1]!.tick >= strike.interval,
+        ),
+        `${context}: the caravan never strikes faster than its interval`,
+      );
+      const share =
+        field.damage *
+        strike.share *
+        fighterById(r.target.config.fighter).armor;
+      assert.ok(
+        hits.every((hit) => Math.abs(hit.damage - share) < 0.01),
+        `${context}: each strike deals its share of the definitive`,
+      );
+      assert.ok(
+        hits.every((hit) => hit.ahead > -strike.carryRear!),
+        `${context}: every strike lands on the painted caravan`,
       );
     }
 });

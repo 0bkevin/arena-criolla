@@ -181,6 +181,68 @@ export function arenaActorReach(actor: ArenaFinaleActor) {
   };
 }
 
+interface MountStrike {
+  /** Each hit's share of the definitive's damage. */
+  share: number;
+  /** Hits the mount may land, guarded ones included, in one ride. */
+  hits: number;
+  /** Ticks between two of its hits. */
+  interval: number;
+  force: number;
+  /** Launch of the last hit. */
+  finalForce: number;
+  /** Painted length behind the rider that keeps contact once the mount has met the rival. */
+  carryRear?: number;
+}
+
+/**
+ * How a mount's own body strikes while it rides. Cavalry and Lorenzo's truck
+ * strike once and leave the rest of the ride to the helpers that follow.
+ * María Corina's caravan has no striking helpers: like Vicente's couriers it
+ * keeps meeting the rival it drives along, a share of the damage at a time,
+ * and saves its full launch for the last hit.
+ */
+export const MOUNT_STRIKES: Partial<Record<ArenaFinalist, MountStrike>> = {
+  bolivar: { share: 1 / 7, hits: 1, interval: 0, force: 4.5, finalForce: 4.5 },
+  gomez: { share: 1 / 3, hits: 1, interval: 0, force: 4.5, finalForce: 4.5 },
+  lorenzo: { share: 1 / 3, hits: 1, interval: 0, force: 4.5, finalForce: 4.5 },
+  mcm: {
+    share: 1 / 4,
+    hits: 4,
+    interval: 18,
+    force: 4.5,
+    finalForce: 7,
+    carryRear: 142,
+  },
+};
+
+/** The mount's next strike and where it reaches, or nothing while it waits or has none left. */
+export function nextMountStrike(field: FieldFinaleState) {
+  const strike = isArenaFinalist(field.fighter)
+      ? MOUNT_STRIKES[field.fighter]
+      : undefined,
+    landed = field.mountHits ?? 0;
+  if (
+    !strike ||
+    landed >= strike.hits ||
+    (field.mountHitTick !== undefined &&
+      field.tick - field.mountHitTick < strike.interval)
+  )
+    return undefined;
+  const reach = arenaMountReach(field);
+  if (landed > 0 && strike.carryRear !== undefined) {
+    // Under the bed the rival is still touching the caravan, not passing through it.
+    const front = reach.offset + reach.halfWidth;
+    reach.offset = (front - strike.carryRear) / 2;
+    reach.halfWidth = (front + strike.carryRear) / 2;
+  }
+  return {
+    damage: strike.share,
+    force: landed === strike.hits - 1 ? strike.finalForce : strike.force,
+    reach,
+  };
+}
+
 export function arenaMountReach(field: FieldFinaleState) {
   const truck = field.fighter === "mcm" || field.fighter === "lorenzo";
   return {
