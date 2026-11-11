@@ -1,4 +1,8 @@
-import type { Request } from "express";
+/** The parts of an HTTP request that decide its public origin. */
+export interface OriginRequest {
+  protocol: string;
+  get(header: "host"): string | undefined;
+}
 
 /** Pin the public origin behind a reverse proxy; otherwise use the request origin. */
 export function publicSiteOrigin(
@@ -22,7 +26,7 @@ export function publicSiteOrigin(
 }
 
 export function requestSiteOrigin(
-  request: Request,
+  request: OriginRequest,
   configured?: string,
 ): string {
   return (

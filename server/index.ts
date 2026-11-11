@@ -11,7 +11,7 @@ import {
   requestSiteOrigin,
   renderSiteHtml,
   siteSitemap,
-} from "./seo";
+} from "../shared/site";
 import { WebSocket, WebSocketServer, type RawData } from "ws";
 import { Lobby } from "../shared/lobby/lobby";
 import { allowedWebSocketOrigin, securityHeaders } from "./security";

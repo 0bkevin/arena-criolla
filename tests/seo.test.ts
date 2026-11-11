@@ -5,7 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import sharp from "sharp";
 import { makeArenaServer } from "../server/index";
-import { publicSiteOrigin } from "../server/seo";
+import { publicSiteOrigin } from "../shared/site";
 
 test("public site configuration accepts only HTTP(S) origins", () => {
   assert.equal(publicSiteOrigin(undefined), undefined);
