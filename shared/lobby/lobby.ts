@@ -158,6 +158,8 @@ export class Lobby<Socket> {
       resumeToken: client.resumeToken ?? undefined,
       resumed: Boolean(previousRoom),
     });
+    // The online count changed, so the cached list is stale.
+    this.roomListCache = "";
     this.publishList(client);
     if (previousRoom) {
       this.publishRoom(previousRoom);
@@ -244,7 +246,8 @@ export class Lobby<Socket> {
       return;
     }
     if (!current || !message) return;
-    const player = current.view.players.find((p) => p.id === client.id)!;
+    const player = current.view.players.find((p) => p.id === client.id);
+    if (!player) return;
     const status = current.view.status;
     if (message.type === "select" && status === "waiting") {
       let changed = false;
@@ -409,7 +412,9 @@ export class Lobby<Socket> {
   }
 
   private start(room: LobbyRoom<Socket>) {
+    // A closed lobby runs no loop, so a match started now would never advance.
     if (
+      this.closed ||
       room.clients.length !== 2 ||
       !room.view.players.every((p) => p.ready) ||
       room.view.players.some((player) => player.connected === false)

@@ -52,7 +52,11 @@ export class ArenaLobby extends DurableObject {
     socket.addEventListener("error", close);
     socket.addEventListener("message", (event) => {
       if (client.socket !== socket || typeof event.data !== "string") return;
-      if (event.data.length > MAX_MESSAGE_BYTES) {
+      // A UTF-16 length over the limit always means more bytes than that.
+      if (
+        event.data.length > MAX_MESSAGE_BYTES ||
+        new TextEncoder().encode(event.data).byteLength > MAX_MESSAGE_BYTES
+      ) {
         try {
           socket.close(1009, "too big");
         } catch {}

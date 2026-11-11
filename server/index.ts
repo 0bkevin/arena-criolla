@@ -81,6 +81,7 @@ export async function makeArenaServer(
   );
   const { clients, rooms } = lobby;
   const unanswered = new WeakSet<WebSocket>();
+  let closing: Promise<void> | null = null;
 
   app.get("/api/health", (_req, res) =>
     res.json({ status: "ok", rooms: rooms.size, players: clients.size }),
@@ -93,6 +94,13 @@ export async function makeArenaServer(
       .json({ error: "No encontramos esa ruta." });
   });
   http.on("upgrade", (request, socket, head) => {
+    if (closing) {
+      socket.end(
+        "HTTP/1.1 503 Service Unavailable\r\nConnection: close\r\nContent-Length: 0\r\n\r\n",
+        () => socket.destroy(),
+      );
+      return;
+    }
     if (request.url?.split("?")[0] !== "/ws") {
       const protocols = (request.headers["sec-websocket-protocol"] ?? "")
         .split(",")
@@ -316,7 +324,6 @@ export async function makeArenaServer(
       });
     }
   }
-  let closing: Promise<void> | null = null;
   return {
     http,
     clients,

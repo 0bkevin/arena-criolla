@@ -155,3 +155,39 @@ test("two ready players start a match and only state snapshots are unreliable", 
   assert.equal(instance.rooms.get(code)?.view.status, "playing");
   assert.deepEqual([...new Set(unreliable)].sort(), ["rooms"]);
 });
+
+test("a client joining after a list broadcast sees itself in the online count", (t) => {
+  t.mock.timers.enable({ apis: ["setTimeout", "setInterval"] });
+  const { instance } = lobby();
+  t.after(() => instance.close());
+  const first = new FakeSocket();
+  instance.connect(first, [ARENA_SOCKET_PROTOCOL]);
+  // The debounced broadcast caches the list while one player is online.
+  t.mock.timers.tick(200);
+  assert.equal(first.last("rooms")?.online, 1);
+  const second = new FakeSocket();
+  instance.connect(second, [ARENA_SOCKET_PROTOCOL]);
+  assert.equal(second.last("rooms")?.online, 2);
+});
+
+test("a closed lobby starts no match that its stopped loop could not run", () => {
+  const { instance } = lobby();
+  const a = new FakeSocket();
+  const b = new FakeSocket();
+  const host = instance.connect(a, [ARENA_SOCKET_PROTOCOL]);
+  const guest = instance.connect(b, [ARENA_SOCKET_PROTOCOL]);
+  send(instance, host, {
+    type: "create",
+    fighter: "zavarce",
+    stage: "caracas",
+    wins: 0,
+    private: false,
+  });
+  const code = a.last("room")!.room.code;
+  send(instance, guest, { type: "join", code, fighter: "ali", wins: 0 });
+  instance.close();
+  send(instance, host, { type: "ready", ready: true });
+  send(instance, guest, { type: "ready", ready: true });
+  assert.equal(a.last("start"), undefined);
+  assert.equal(instance.rooms.get(code)?.view.status, "waiting");
+});
