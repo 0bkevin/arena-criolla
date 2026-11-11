@@ -5,6 +5,7 @@ import {
   SUPER_CHARGE_SECONDS_LABEL,
   SUPER_INTERRUPT_ENERGY_COST,
 } from "../../../shared/roster/roster";
+import { RING_OUT_DAMAGE } from "../../../shared/engine/damage-values";
 import { hasTouchInput } from "../../game/viewport/mobile";
 import { Modal } from "../ui/Modal";
 import { MobileControlsGuide } from "./MobileControlsGuide";
@@ -183,6 +184,19 @@ export function Help({ onClose }: { onClose: () => void }) {
                   </dd>
                 </div>
               </dl>
+            </section>
+            <section
+              className="help-rule help-rule-time"
+              aria-labelledby="help-fall-title"
+            >
+              <h4 id="help-fall-title">Si caes fuera de la arena</h4>
+              <p>
+                Pierdes {RING_OUT_DAMAGE} de salud y vuelves a la arena.
+                Conservas tu vida si te queda salud; si llega a cero, pierdes
+                una vida. Si sobrevives a la caída, tienes un segundo de
+                protección, que termina si atacas, empiezas a cargar la
+                definitiva o haces una esquiva.
+              </p>
             </section>
             <section
               className="help-rule help-rule-time"
