@@ -7,7 +7,7 @@ import { WORLD } from "../shared/arena";
 import { TECHNIQUES } from "../shared/techniques";
 import { MUSIC_SECONDS } from "./game/arcade-music";
 import { VICTORY_MUSIC_MS } from "./game/victory-types";
-import { victoryById } from "./game/victory";
+import { victoryMusicStyle } from "./game/victory";
 import { preparationWorker } from "./game/preparation-worker";
 import { synthesizeScore, type ScoreRequest } from "./game/music-preparation";
 import { finaleById, type FinaleState } from "../shared/finales";
@@ -107,7 +107,7 @@ export async function prepareMatchAudio(fighters: FighterId[]) {
   for (const fighter of new Set<FighterId | "draw">([...fighters, "draw"]))
     scoreBuffer({
       kind: "victory",
-      style: fighter === "draw" ? "strings" : victoryById(fighter).music,
+      style: fighter === "draw" ? "strings" : victoryMusicStyle(fighter),
       fighter,
       sampleRate,
       length: Math.ceil((sampleRate * VICTORY_MUSIC_MS) / 1000),
@@ -369,7 +369,7 @@ export function syncVictoryMusic(
   if (!context || !musicBus || context.state !== "running") return;
   const buffer = scoreBuffer({
     kind: "victory",
-    style: fighter === "draw" ? "strings" : victoryById(fighter).music,
+    style: fighter === "draw" ? "strings" : victoryMusicStyle(fighter),
     fighter,
     sampleRate: context.sampleRate,
     length: Math.ceil((context.sampleRate * VICTORY_MUSIC_MS) / 1000),

@@ -1,5 +1,5 @@
 import type { FighterId } from "../../shared/content";
-import { VICTORY_MUSIC_MS, type VictoryProfile } from "./victory-types";
+import { VICTORY_MUSIC_MS, type VictoryMusicStyle } from "./victory-types";
 
 const TABLE_SIZE = 2048;
 const TAU = Math.PI * 2;
@@ -25,7 +25,7 @@ export function writeVictoryScore(
   left: Float32Array,
   right: Float32Array,
   sampleRate: number,
-  style: VictoryProfile["music"],
+  style: VictoryMusicStyle,
   fighter: FighterId | "draw",
 ) {
   if (sampleRate <= 0) return;

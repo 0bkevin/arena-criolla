@@ -2,7 +2,7 @@ import type { FighterId } from "../../shared/content";
 import { writeArcadeMusic } from "./arcade-music";
 import { writeFinaleScore } from "./finale-score";
 import type { FinaleDefinition } from "../../shared/finales";
-import type { VictoryProfile } from "./victory-types";
+import type { VictoryMusicStyle } from "./victory-types";
 import { writeVictoryScore } from "./victory-score";
 
 export type ScoreRequest = { sampleRate: number; length: number } & (
@@ -15,7 +15,7 @@ export type ScoreRequest = { sampleRate: number; length: number } & (
   | {
       kind: "victory";
       fighter: FighterId | "draw";
-      style: VictoryProfile["music"];
+      style: VictoryMusicStyle;
     }
 );
 
