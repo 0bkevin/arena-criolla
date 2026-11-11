@@ -8,7 +8,8 @@ playwright-report/
 !.env.example
 .DS_Store
 
-# Local artwork workspace.
+# Local data and artwork workspaces.
+/data/
 /assets/*
 !/assets/icon.svg
 

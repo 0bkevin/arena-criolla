@@ -785,7 +785,14 @@ export async function makeArenaServer(
           middlewareMode: true,
           hmr: { server: http },
           fs: {
-            deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**"],
+            deny: [
+              ".env",
+              ".env.*",
+              "*.{crt,pem}",
+              "**/.git/**",
+              "**/data/**",
+              "**/*.sqlite*",
+            ],
           },
         },
         appType: "custom",
