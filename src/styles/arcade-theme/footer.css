@@ -36,6 +36,7 @@
 }
 .site-footer .footer-credit {
   margin: 0;
+  margin-inline-start: 8px;
   color: #a3b3ca;
   font: 400 12px/1.5 var(--font-body);
   letter-spacing: 0;
