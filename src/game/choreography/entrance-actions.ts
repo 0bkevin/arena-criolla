@@ -91,7 +91,6 @@ const DEFAULT_FRAME_SUBSTITUTES: Partial<
   rummy: { 4: 3 },
   lila: { 4: 3 },
   george: { 4: 3 },
-  chataing: { 5: 4 },
 };
 
 function defaultEntranceFor(id: (typeof DEFAULT_ENTRANCE_FIGHTERS)[number]) {
