@@ -272,6 +272,9 @@
   color: #ff9b85;
 }
 .match-clock strong.match-clock-minutes {
+  /* In bold Pixelify Sans the 2 reads as an 8; Barlow keeps "2 min" legible. */
+  font-family: var(--font-display);
+  font-weight: 800;
   font-size: 22px;
   white-space: nowrap;
 }

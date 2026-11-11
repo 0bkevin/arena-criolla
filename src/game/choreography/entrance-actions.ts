@@ -80,11 +80,36 @@ export const DEFAULT_ENTRANCE_ACTION: EntranceAction = {
   ],
 };
 
+// Some painted sheets have malformed arms in a crossed pose (hands melting into
+// forearms, arms fused together). Those fighters show a clean neighbouring
+// frame instead, so every entrance still folds and holds its arms.
+const DEFAULT_FRAME_SUBSTITUTES: Partial<
+  Record<(typeof DEFAULT_ENTRANCE_FIGHTERS)[number], Record<number, number>>
+> = {
+  gabriela: { 4: 3 },
+  norkys: { 3: 4 },
+  rummy: { 4: 3 },
+  lila: { 4: 3 },
+  george: { 4: 3 },
+};
+
+function defaultEntranceFor(id: (typeof DEFAULT_ENTRANCE_FIGHTERS)[number]) {
+  const substitutes = DEFAULT_FRAME_SUBSTITUTES[id];
+  if (!substitutes) return DEFAULT_ENTRANCE_ACTION;
+  return {
+    ...DEFAULT_ENTRANCE_ACTION,
+    frames: DEFAULT_ENTRANCE_ACTION.frames.map((key) => ({
+      ...key,
+      frame: substitutes[key.frame] ?? key.frame,
+    })),
+  };
+}
+
 // Authored chronology, deliberately without modulo, ping-pong, or replay.
 // Oscar's painted views keep the microphone in the same hand through the turn.
 export const ENTRANCE_ACTIONS: Partial<Record<FighterId, EntranceAction>> = {
   ...Object.fromEntries(
-    DEFAULT_ENTRANCE_FIGHTERS.map((id) => [id, DEFAULT_ENTRANCE_ACTION]),
+    DEFAULT_ENTRANCE_FIGHTERS.map((id) => [id, defaultEntranceFor(id)]),
   ),
   inaki: {
     name: "Ajusta el reloj, cruza los brazos y se pone en guardia",

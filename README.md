@@ -1,24 +1,31 @@
-[![Arena Criolla: personajes venezolanos frente a frente](public/assets/og-arena-criolla.jpg)](https://arenacriolla.com/)
+[![Arena Criolla](public/assets/og-arena-criolla.jpg)](https://arenacriolla.com/)
 
 # Arena Criolla
 
-Un juego de pelea donde los mitos, la música, el humor y las figuras de Venezuela se encuentran en la misma arena. Juega desde el navegador, sin instalar nada ni crear una cuenta.
+A browser fighting game with 56 characters and 9 stages from Venezuelan culture. Play against the CPU, with two players on one device, or online, using a keyboard, gamepad or touch screen. No install or account needed.
 
-**[Jugar ahora](https://arenacriolla.com/)** · [Desarrollo local](#desarrollo-local) · [Despliegue](docs/deployment.md) · [Balance](docs/balance.md) · [Licencia](LICENSE)
+**[Play at arenacriolla.com](https://arenacriolla.com/)**
 
-## Elige a tu pana y pelea
+## Controls
 
-- **56 personajes** con especiales, combos y definitivas propios.
-- **9 escenarios** inspirados en Venezuela, de Caracas a Canaima y Los Roques.
-- **Tres formas de jugar:** contra la CPU, dos jugadores en el mismo equipo o partidas en línea en salas públicas y privadas.
-- **Combate con plataformas:** doble salto, bloqueo y ataques para encontrar tu estilo.
-- **Teclado, mando o pantalla táctil.** Los controles se explican dentro del juego.
+| Action                             | Player 1   | Player 2 | Gamepad        |
+| ---------------------------------- | ---------- | -------- | -------------- |
+| Move                               | A / D      | ← / →    | Stick or D-pad |
+| Jump (press twice for double jump) | W          | ↑        | A              |
+| Drop through platform              | S          | ↓        | Stick ↓        |
+| Light attack                       | J          | 1        | X              |
+| Heavy attack                       | K          | 2        | B              |
+| Special                            | L          | 3        | Y              |
+| Super (hold)                       | I          | 5        | RT             |
+| Block (hold)                       | U          | 0        | LB             |
+| Dash                               | Left Shift | Enter    | RB             |
+| Pause                              | Esc        | Esc      | Start          |
 
-Para jugar con alguien a distancia, crea una sala y comparte su enlace de invitación. El servidor simula el combate y mantiene la partida sincronizada.
+Player 2 can also use the numeric keypad. On touch screens, the controls appear on screen.
 
-## Desarrollo local
+## Run it locally
 
-Necesitas **Node.js 24 o posterior** y npm.
+Requires [Node.js 24](https://nodejs.org/) or later.
 
 ```sh
 git clone https://github.com/0bkevin/arena-criolla.git
@@ -27,50 +34,33 @@ npm ci
 npm run dev
 ```
 
-Abre [localhost:5173](http://localhost:5173). También puedes entrar desde otro dispositivo de la misma red usando la IP de tu equipo. El juego público funciona sin claves de API; las opciones del servidor están en [`.env.example`](.env.example).
+Open <http://localhost:5173>. Other devices on your network can join at `http://<your-ip>:5173`.
 
-## Cómo está construido
+## Host it
 
-React y TypeScript para la interfaz, Canvas 2D para la pelea y Node.js con Express y WebSocket para el servidor. El motor de combate es el mismo en el navegador y en los servidores, y las salas en línea son el mismo código en el servidor Node y en el Worker de Cloudflare que corre en producción.
-
-```text
-src/
-  app/          Shell de la aplicación, red, progreso y estado del lobby
-  components/   Interfaz por área: lobby, combate, ayuda, entrada y piezas comunes
-  game/         Renderizado, audio, controles, cámara, assets y coreografías
-  styles/       Hojas globales, importadas en orden de cascada
-shared/         Lo que ejecutan el navegador y los servidores
-  engine/       Motor de combate y definitivas
-  roster/       Luchadores y escenarios
-  lobby/        Salas, protocolo y bucle autoritativo de partida
-server/         Servidor Node: HTTP, WebSocket y entrega de assets
-cloudflare/     Worker y Durable Object de producción
-scripts/        Herramientas de assets, CI, Cloudflare y rendimiento
-public/         Imágenes, sonidos y fuentes
-tests/          Pruebas por área (motor, personajes, salas, render…) y fixtures manuales
-deploy/         Despliegue propio con contenedores, como referencia
-docs/           Guías de desarrollo, pruebas y despliegue
-```
-
-## Validar y compilar
+The game is a single server with no database and no API keys:
 
 ```sh
-npm test
-npm run check:assets
-npm run build
-npm start
+docker build -t arena-criolla .
+docker run -d -p 5173:5173 --restart unless-stopped arena-criolla
 ```
 
-Las pruebas se centran en combate, red, almacenamiento, seguridad, controles, recuperación de assets y audio. `check:assets` valida transparencia, ocho siluetas completas y geometría coincidente en los sprites públicos.
+The [deployment guide](docs/deployment.md) covers HTTPS with your own domain, configuration, updates, monitoring and Cloudflare Workers.
 
-La CI solo ejecuta lo que cada cambio puede afectar: los tests que importan los archivos modificados, los tipos, los sprites, la auditoría de dependencias y la imagen Docker cuando corresponde. Producción corre en Cloudflare Workers: la CI compila el Worker y juega una partida contra él antes de aceptar un cambio. Los detalles están en [testing.md](docs/testing.md). `scripts/ci/security-smoke.ts` permite comprobar una instancia local o desplegada.
+## How it works
 
-`npm start` sirve la aplicación compilada. Para configurar el dominio, el contenedor o las imágenes al compartir enlaces, consulta la [guía de despliegue](docs/deployment.md).
+Offline modes run entirely in the browser. Online matches are simulated by the server, which sends the game state to both players. Rooms live in memory, and player progress is stored in the browser. See [architecture](docs/architecture.md).
 
-## Contribuir
+## Contributing
 
-Crea una rama por tarea desde `origin/main`, mantén los cambios acotados y ejecuta las validaciones antes de abrir un PR. La configuración para nuevos hilos de T3 Code está documentada en la [guía de desarrollo](docs/development.md).
+- [Development](docs/development.md)
+- [Testing and CI](docs/testing.md)
+- [Damage balance](docs/balance.md)
 
-## Licencia
+## Author
 
-Código y materiales originales bajo [GPL-3.0-only](LICENSE). Los sonidos de terceros conservan CC0 y las fuentes, SIL Open Font License. Consulta las atribuciones en [ASSET-LICENSES.txt](ASSET-LICENSES.txt).
+Made by [Kevin Bravo](https://kevinbravo.com).
+
+## License
+
+[GPL-3.0-only](LICENSE). Third-party sounds and fonts: [ASSET-LICENSES.txt](ASSET-LICENSES.txt).

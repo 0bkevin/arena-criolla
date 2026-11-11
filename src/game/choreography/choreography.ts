@@ -214,7 +214,7 @@ for (const [id, height, shift] of [
   ["emilio", 740, -60],
   ["puma", 740, -45],
   ["oscar", 720, -60],
-  ["ali", 720, -40],
+  ["ali", 720, -25],
   ["gualberto", 720, -35],
 ] as const)
   CHOREOGRAPHIES[id].camera = { height, shift };
@@ -222,7 +222,19 @@ for (const [id, height, shift] of [
 for (const [id, choreography] of Object.entries(CHOREOGRAPHIES))
   choreography.name = PRESENTATIONS[id as FighterId].introName;
 CHOREOGRAPHIES.oscar.camera = { height: 470, shift: -10 };
-CHOREOGRAPHIES.dudamel.camera = { height: 470, shift: -10 };
+CHOREOGRAPHIES.dudamel.camera = { height: 470, shift: -20 };
+// Keep reaching hands and Simón's raised hat inside their own panel. Fitted at
+// 1440x800, the narrowest intro canvas, so nothing crosses the versus division
+// or the screen edge (Alí and Dudamel are adjusted in the lists above).
+for (const [id, height, shift] of [
+  ["simon", 760, 40],
+  ["silbon", 540, -85],
+  ["llorona", 760, -35],
+  ["sayona", 760, -40],
+  ["florentino", 760, -35],
+  ["momoy", 540, -30],
+] as const)
+  CHOREOGRAPHIES[id].camera = { height, shift };
 // Leave room for the tall ears throughout Conejo's one-shot hop.
 CHOREOGRAPHIES.tioconejo.camera = { height: 620, shift: 0 };
 // The folded arms belong in the close-up, without the lateral room that the

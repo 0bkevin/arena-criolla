@@ -1,4 +1,5 @@
 import type { RefObject } from "react";
+import { Github } from "lucide-react";
 import { assetUrl } from "../game/assets/asset-url";
 
 export function SiteFooter({ ref }: { ref: RefObject<HTMLElement | null> }) {
@@ -15,19 +16,30 @@ export function SiteFooter({ ref }: { ref: RefObject<HTMLElement | null> }) {
           ARENA <span>CRIOLLA</span>
         </span>
       </span>
-      <a className="footer-acknowledgements" href="/agradecimientos">
-        Agradecimientos
-      </a>
-      <p className="footer-credit">
-        Hecho por{" "}
+      <div className="footer-links">
         <a
-          href="https://kevinbravo.com"
+          className="footer-github-link"
+          href="https://github.com/0bkevin/arena-criolla"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Repositorio de Arena Criolla en GitHub"
         >
-          Kevin Bravo
+          <Github aria-hidden="true" size={16} />
         </a>
-      </p>
+        <a className="footer-acknowledgements" href="/agradecimientos">
+          Agradecimientos
+        </a>
+        <p className="footer-credit">
+          Hecho por{" "}
+          <a
+            href="https://kevinbravo.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Kevin Bravo
+          </a>
+        </p>
+      </div>
     </footer>
   );
 }

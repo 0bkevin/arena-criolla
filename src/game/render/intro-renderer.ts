@@ -13,6 +13,9 @@ import {
 import type { SpriteAsset } from "../assets/assets";
 import { drawPresentation } from "./presentation-renderer";
 
+/** Tallest body the intro close-up draws, in 640 px art units. */
+const INTRO_MAX_BODY_HEIGHT = 560;
+
 /** Frame-aware head tracking keeps every atlas facing and pose in its shot. */
 export function introCamera(
   sprite: SpriteAsset,
@@ -26,9 +29,13 @@ export function introCamera(
   const push = reducedMotion ? 0 : Math.min(1, tick / INTRO_COUNTDOWN_START);
   const framing = id ? CHOREOGRAPHIES[id].camera : undefined;
   const fullBody = sprite.entrance?.fullBody;
+  const base = framing?.height ?? 760;
+  // Cap the close-up: the atlas poses are ~400 px, so tighter shots only
+  // magnify their softness. The head-anchored framing keeps faces in place.
+  const zoom = Math.min(1, INTRO_MAX_BODY_HEIGHT / base);
   const height = fullBody
     ? 465
-    : (framing?.height ?? 760) + push * (sprite.entrance ? 15 : 35);
+    : (base + push * (sprite.entrance ? 15 : 35)) * zoom;
   const targetX = (side === 0 ? 282 : 798) + (framing?.shift ?? 0) * facing;
   const scale = height / sprite.bodyHeight;
   const source = sprite.frames[frame];
@@ -86,7 +93,10 @@ export function drawIntroCinematic(
   const scale = height / 640;
   const active = introActor(state.tick);
   ctx.save();
-  ctx.imageSmoothingEnabled = false;
+  // The close-up enlarges ~400 px atlas poses about 2.4x; nearest-neighbour
+  // scaling made them blocky, so filter them like the rest of the match.
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
   ctx.fillStyle = "#070d18";
   ctx.fillRect(0, 0, width, height);
   for (const side of PLAYERS) {
