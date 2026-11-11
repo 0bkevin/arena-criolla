@@ -12,19 +12,11 @@
     "speed": 5.8,
     "damage": 0.94,
     "armor": 1.02,
-    "stats": [
-      3,
-      5,
-      3
-    ],
+    "stats": [3, 5, 3],
     "ability": "courier",
     "special": "Entrega exprés",
     "specialUnlockWins": 0,
-    "combos": [
-      "Pedido confirmado",
-      "Ruta directa",
-      "Pelotón Yummy"
-    ]
+    "combos": ["Pedido confirmado", "Ruta directa", "Pelotón Yummy"]
   },
   {
     "id": "vallenilla",
@@ -39,18 +31,10 @@
     "speed": 4.6,
     "damage": 1.01,
     "armor": 0.96,
-    "stats": [
-      4,
-      3,
-      4
-    ],
+    "stats": [4, 3, 4],
     "ability": "installments",
     "special": "Tres cuotas",
-    "combos": [
-      "Cuota inicial",
-      "Cuota atrasada",
-      "Límite aprobado"
-    ]
+    "combos": ["Cuota inicial", "Cuota atrasada", "Límite aprobado"]
   },
   {
     "id": "javier",
@@ -64,18 +48,10 @@
     "speed": 5.3,
     "damage": 0.97,
     "armor": 1.03,
-    "stats": [
-      3,
-      4,
-      3
-    ],
+    "stats": [3, 4, 3],
     "ability": "spin",
     "special": "Reacción maracucha",
-    "combos": [
-      "Finta de ceja",
-      "Réplica al instante",
-      "Remate de mialma"
-    ]
+    "combos": ["Finta de ceja", "Réplica al instante", "Remate de mialma"]
   },
   {
     "id": "capriles",
@@ -89,18 +65,10 @@
     "speed": 6.2,
     "damage": 0.88,
     "armor": 1.02,
-    "stats": [
-      3,
-      5,
-      3
-    ],
+    "stats": [3, 5, 3],
     "ability": "sprint",
     "special": "Sprint tricolor",
-    "combos": [
-      "¡Qué manguangua, ah!",
-      "Hay un camino",
-      "Meta tricolor"
-    ]
+    "combos": ["¡Qué manguangua, ah!", "Hay un camino", "Meta tricolor"]
   },
   {
     "id": "renny",
@@ -114,18 +82,10 @@
     "speed": 4.5,
     "damage": 1,
     "armor": 0.97,
-    "stats": [
-      3,
-      3,
-      4
-    ],
+    "stats": [3, 3, 4],
     "ability": "broadcast",
     "special": "En cadena",
-    "combos": [
-      "Doble anuncio",
-      "Buenas noches",
-      "El número uno"
-    ]
+    "combos": ["Doble anuncio", "Buenas noches", "El número uno"]
   },
   {
     "id": "gomez",
@@ -139,18 +99,10 @@
     "speed": 3.5,
     "damage": 1.2,
     "armor": 0.86,
-    "stats": [
-      5,
-      2,
-      5
-    ],
+    "stats": [5, 2, 5],
     "ability": "command",
     "special": "Paso del general",
-    "combos": [
-      "Paso firme",
-      "Orden cerrada",
-      "Golpe de mando"
-    ]
+    "combos": ["Paso firme", "Orden cerrada", "Golpe de mando"]
   },
   {
     "id": "simon",
@@ -164,18 +116,10 @@
     "speed": 4.1,
     "damage": 0.95,
     "armor": 0.97,
-    "stats": [
-      3,
-      3,
-      4
-    ],
+    "stats": [3, 3, 4],
     "ability": "cuatro",
     "special": "Acorde llanero",
-    "combos": [
-      "Primer acorde",
-      "Contrapunteo",
-      "Tonada de la arena"
-    ]
+    "combos": ["Primer acorde", "Contrapunteo", "Tonada de la arena"]
   },
   {
     "id": "conde",
@@ -189,18 +133,10 @@
     "speed": 4.2,
     "damage": 1.1,
     "armor": 0.9,
-    "stats": [
-      4,
-      3,
-      4
-    ],
+    "stats": [4, 3, 4],
     "ability": "whirl",
     "special": "Remate oriental",
-    "combos": [
-      "Chiste corto",
-      "Doble remate",
-      "La función completa"
-    ]
+    "combos": ["Chiste corto", "Doble remate", "La función completa"]
   },
   {
     "id": "emilio",
@@ -214,18 +150,10 @@
     "speed": 4.8,
     "damage": 0.99,
     "armor": 0.97,
-    "stats": [
-      3,
-      4,
-      4
-    ],
+    "stats": [3, 4, 4],
     "ability": "echo",
     "special": "Doble interpretación",
-    "combos": [
-      "Cambio de gesto",
-      "Segunda voz",
-      "Remate de mil caras"
-    ]
+    "combos": ["Cambio de gesto", "Segunda voz", "Remate de mil caras"]
   },
   {
     "id": "maite",
@@ -239,18 +167,10 @@
     "speed": 4.7,
     "damage": 0.94,
     "armor": 0.99,
-    "stats": [
-      3,
-      4,
-      4
-    ],
+    "stats": [3, 4, 4],
     "ability": "spotlight",
     "special": "Luz de escenario",
-    "combos": [
-      "Primera entrada",
-      "Cambio de cámara",
-      "Gran final"
-    ]
+    "combos": ["Primera entrada", "Cambio de cámara", "Gran final"]
   },
   {
     "id": "oscar",
@@ -264,18 +184,10 @@
     "speed": 5.1,
     "damage": 1.01,
     "armor": 0.97,
-    "stats": [
-      4,
-      4,
-      3
-    ],
+    "stats": [4, 4, 3],
     "ability": "salsa",
     "special": "Giro del sonero",
-    "combos": [
-      "Paso de salsa",
-      "Síncopa doble",
-      "Cierre del sonero"
-    ]
+    "combos": ["Paso de salsa", "Síncopa doble", "Cierre del sonero"]
   },
   {
     "id": "puma",
@@ -289,18 +201,10 @@
     "speed": 4,
     "damage": 1.12,
     "armor": 0.91,
-    "stats": [
-      4,
-      3,
-      4
-    ],
+    "stats": [4, 3, 4],
     "ability": "roar",
     "special": "Rugido del Puma",
-    "combos": [
-      "Primer rugido",
-      "Crescendo",
-      "Último aplauso"
-    ]
+    "combos": ["Primer rugido", "Crescendo", "Último aplauso"]
   },
   {
     "id": "chataing",
@@ -314,18 +218,10 @@
     "speed": 4.9,
     "damage": 0.95,
     "armor": 1,
-    "stats": [
-      3,
-      4,
-      3
-    ],
+    "stats": [3, 4, 3],
     "ability": "static",
     "special": "Micrófono de vuelta",
-    "combos": [
-      "Pregunta directa",
-      "Repregunta",
-      "Cierre al aire"
-    ]
+    "combos": ["Pregunta directa", "Repregunta", "Cierre al aire"]
   },
   {
     "id": "george",
@@ -339,18 +235,10 @@
     "speed": 4.4,
     "damage": 1.07,
     "armor": 0.95,
-    "stats": [
-      4,
-      3,
-      4
-    ],
+    "stats": [4, 3, 4],
     "ability": "punchline",
     "special": "Remate en dos tiempos",
-    "combos": [
-      "Primera fila",
-      "Otra más",
-      "Sala llena"
-    ]
+    "combos": ["Primera fila", "Otra más", "Sala llena"]
   },
   {
     "id": "mcm",
@@ -364,18 +252,10 @@
     "speed": 5.6,
     "damage": 0.92,
     "armor": 0.99,
-    "stats": [
-      3,
-      5,
-      3
-    ],
+    "stats": [3, 5, 3],
     "ability": "rally",
     "special": "Marcha firme",
-    "combos": [
-      "Paso decidido",
-      "Impulso doble",
-      "Hasta el final"
-    ]
+    "combos": ["Paso decidido", "Impulso doble", "Hasta el final"]
   },
   {
     "id": "ali",
@@ -389,19 +269,11 @@
     "speed": 4.3,
     "damage": 1.04,
     "armor": 0.96,
-    "stats": [
-      4,
-      3,
-      4
-    ],
+    "stats": [4, 3, 4],
     "ability": "strum",
     "special": "Rasgueo del pueblo",
     "description": "Guitarra naranja y camisa a rayas. Envía tres ondas rasantes a intervalos: saltar permite evitarlas.",
-    "combos": [
-      "Primer acorde",
-      "Cuerda firme",
-      "Rasgueo del pueblo"
-    ]
+    "combos": ["Primer acorde", "Cuerda firme", "Rasgueo del pueblo"]
   },
   {
     "id": "gualberto",
@@ -415,19 +287,11 @@
     "speed": 4.6,
     "damage": 0.98,
     "armor": 0.98,
-    "stats": [
-      3,
-      3,
-      5
-    ],
+    "stats": [3, 3, 5],
     "ability": "tremolo",
     "special": "Tremolo oriental",
     "description": "Sombrero de paja, polo amarillo y cuatro. Dos notas se separan y regresan; controla tanto la ida como la vuelta.",
-    "combos": [
-      "Cerecita",
-      "Galerón cruzado",
-      "Doble tremolo"
-    ]
+    "combos": ["Cerecita", "Galerón cruzado", "Doble tremolo"]
   },
   {
     "id": "reynaldo",
@@ -441,19 +305,11 @@
     "speed": 4.5,
     "damage": 1.06,
     "armor": 0.93,
-    "stats": [
-      4,
-      3,
-      4
-    ],
+    "stats": [4, 3, 4],
     "ability": "lasso",
     "special": "Lazo sabanero",
     "description": "Cabello canoso y chaqueta ocre. Su lazo de luz atrae al rival y lo ralentiza brevemente; bloquear evita ambos efectos.",
-    "combos": [
-      "Paso del llano",
-      "Vuelta sabanera",
-      "Caballo de oro"
-    ]
+    "combos": ["Paso del llano", "Vuelta sabanera", "Caballo de oro"]
   },
   {
     "id": "dudamel",
@@ -467,19 +323,11 @@
     "speed": 4.8,
     "damage": 0.97,
     "armor": 0.99,
-    "stats": [
-      3,
-      4,
-      5
-    ],
+    "stats": [3, 4, 5],
     "ability": "cadenza",
     "special": "Cadenza expansiva",
     "description": "Rizos, frac y batuta. Dirige una onda de notas que viaja hacia el rival, crece en el aire y daña al contacto.",
-    "combos": [
-      "Primer compás",
-      "Cambio de tempo",
-      "Gran cadenza"
-    ]
+    "combos": ["Primer compás", "Cambio de tempo", "Gran cadenza"]
   },
   {
     "id": "danny",
@@ -493,19 +341,11 @@
     "speed": 5.2,
     "damage": 0.96,
     "armor": 1.03,
-    "stats": [
-      3,
-      4,
-      4
-    ],
+    "stats": [3, 4, 4],
     "ability": "crescendo",
     "special": "Onda Reflexa",
     "description": "Melena despeinada y cortaviento azul. Lanza una burbuja sonora lenta que aumenta de tamaño al avanzar.",
-    "combos": [
-      "Pulso suave",
-      "Cambio de marea",
-      "Onda Reflexa"
-    ]
+    "combos": ["Pulso suave", "Cambio de marea", "Onda Reflexa"]
   },
   {
     "id": "nacho",
@@ -519,19 +359,11 @@
     "speed": 5.5,
     "damage": 0.95,
     "armor": 1.02,
-    "stats": [
-      3,
-      5,
-      3
-    ],
+    "stats": [3, 5, 3],
     "ability": "syncopate",
     "special": "Paso sincopado",
     "description": "Corte rapado, barba corta y rostro redondeado; bomber negra con detalles plateados. Avanza, retrocede y vuelve con un remate aéreo; tres tiempos para abrir la guardia.",
-    "combos": [
-      "Paso primero",
-      "Contratiempo",
-      "Remate de tarima"
-    ]
+    "combos": ["Paso primero", "Contratiempo", "Remate de tarima"]
   },
   {
     "id": "sarcos",
@@ -545,19 +377,11 @@
     "speed": 4.7,
     "damage": 1.02,
     "armor": 0.98,
-    "stats": [
-      4,
-      3,
-      4
-    ],
+    "stats": [4, 3, 4],
     "ability": "jackpot",
     "special": "Premio sensacional",
     "description": "Traje oscuro, micrófono y sonrisa de animador. Arroja un premio que rebota dos veces y estalla al terminar su recorrido.",
-    "combos": [
-      "Calienta el show",
-      "Doble sorpresa",
-      "Premio mayor"
-    ]
+    "combos": ["Calienta el show", "Doble sorpresa", "Premio mayor"]
   },
   {
     "id": "yordano",
@@ -571,19 +395,11 @@
     "speed": 4.4,
     "damage": 1,
     "armor": 0.96,
-    "stats": [
-      3,
-      3,
-      5
-    ],
+    "stats": [3, 3, 5],
     "ability": "fountain",
     "special": "Manantial en tres tiempos",
     "description": "Pelo plateado, lentes y chaqueta negra. Tres gotas salen a distinto tiempo en parábolas altas que cubren los saltos.",
-    "combos": [
-      "Agua clara",
-      "Ida y vuelta",
-      "Tres tiempos"
-    ]
+    "combos": ["Agua clara", "Ida y vuelta", "Tres tiempos"]
   },
   {
     "id": "lila",
@@ -597,19 +413,11 @@
     "speed": 4.2,
     "damage": 1.08,
     "armor": 0.93,
-    "stats": [
-      4,
-      3,
-      4
-    ],
+    "stats": [4, 3, 4],
     "ability": "cocotero",
     "special": "Abanico del cocotero",
     "description": "Flequillo, melena y detalles dorados. Abre cinco hojas de luz en abanico para cerrar las rutas del rival.",
-    "combos": [
-      "Destello zuliano",
-      "Giro dorado",
-      "Gran cocotero"
-    ]
+    "combos": ["Destello zuliano", "Giro dorado", "Gran cocotero"]
   },
   {
     "id": "rummy",
@@ -623,19 +431,11 @@
     "speed": 5.1,
     "damage": 0.97,
     "armor": 0.99,
-    "stats": [
-      3,
-      4,
-      4
-    ],
+    "stats": [3, 4, 4],
     "ability": "zapateo",
     "special": "Zapateo llanero",
     "description": "Sombrero azul y camisa estampada. Avanza con cuatro golpes de suelo; saltar evita el zapateo y su último empujón.",
-    "combos": [
-      "Paso de sabana",
-      "Flor de ritmo",
-      "Zapateo final"
-    ]
+    "combos": ["Paso de sabana", "Flor de ritmo", "Zapateo final"]
   },
   {
     "id": "chiqui",
@@ -649,19 +449,11 @@
     "speed": 5.7,
     "damage": 0.93,
     "armor": 1.04,
-    "stats": [
-      3,
-      5,
-      3
-    ],
+    "stats": [3, 5, 3],
     "ability": "runway",
     "special": "Pasarela relámpago",
     "description": "Ondas castañas, blusa blanca y pantalón azul. Un avance corto y rapidísimo empuja con fuerza y frena al acabar.",
-    "combos": [
-      "Paso elegante",
-      "Foco azul",
-      "Cierre de pasarela"
-    ]
+    "combos": ["Paso elegante", "Foco azul", "Cierre de pasarela"]
   },
   {
     "id": "norkys",
@@ -675,19 +467,11 @@
     "speed": 5.4,
     "damage": 0.95,
     "armor": 1.01,
-    "stats": [
-      3,
-      5,
-      3
-    ],
+    "stats": [3, 5, 3],
     "ability": "pivot",
     "special": "Pivote de escena",
     "description": "Cabello negro liso y blazer coral. Salta hacia atrás con dos golpes circulares para castigar a quien se acerque.",
-    "combos": [
-      "Cambio de perfil",
-      "Giro de escena",
-      "Pivote doble"
-    ]
+    "combos": ["Cambio de perfil", "Giro de escena", "Pivote doble"]
   },
   {
     "id": "gabriela",
@@ -701,19 +485,11 @@
     "speed": 4.8,
     "damage": 1,
     "armor": 0.98,
-    "stats": [
-      3,
-      4,
-      5
-    ],
+    "stats": [3, 4, 5],
     "ability": "mirror",
     "special": "Doble de novela",
     "description": "Melena miel, gargantilla y blazer plateado. Golpea al frente y después desde una silueta detrás del rival; gira tu guardia.",
-    "combos": [
-      "Primera toma",
-      "Cambio de papel",
-      "Doble de novela"
-    ]
+    "combos": ["Primera toma", "Cambio de papel", "Doble de novela"]
   },
   {
     "id": "amanda",
@@ -727,19 +503,11 @@
     "speed": 4.3,
     "damage": 1.05,
     "armor": 0.94,
-    "stats": [
-      4,
-      3,
-      5
-    ],
+    "stats": [4, 3, 5],
     "ability": "curtain",
     "special": "Telón de respuesta",
     "description": "Bob castaño y vestuario violeta. Abre una ventana de contraataque: detiene un golpe frontal y responde si el rival está cerca.",
-    "combos": [
-      "Entrada a escena",
-      "Cambio de acto",
-      "Telón final"
-    ]
+    "combos": ["Entrada a escena", "Cambio de acto", "Telón final"]
   },
   {
     "id": "lele",
@@ -753,19 +521,11 @@
     "speed": 5.6,
     "damage": 0.91,
     "armor": 1.05,
-    "stats": [
-      3,
-      5,
-      4
-    ],
+    "stats": [3, 5, 4],
     "ability": "prank",
     "special": "Broma resbalosa",
     "description": "Ondas rubias, teléfono y hoodie amarillo. Retrocede y deja una cáscara que se activa después de un instante; evítala saltando.",
-    "combos": [
-      "Cámara lista",
-      "Giro viral",
-      "Última broma"
-    ]
+    "combos": ["Cámara lista", "Giro viral", "Última broma"]
   },
   {
     "id": "giuseppe",
@@ -779,19 +539,11 @@
     "speed": 4.6,
     "damage": 0.96,
     "armor": 1.02,
-    "stats": [
-      3,
-      4,
-      4
-    ],
+    "stats": [3, 4, 4],
     "ability": "audit",
     "special": "Ráfaga de datos",
     "description": "Lentes negros y suéter ciruela, como en su estudio. Lanza tres paquetes digitales que oscilan y aceleran hasta un límite; bloquear o saltar evita la ráfaga.",
-    "combos": [
-      "Ping certero",
-      "Código limpio",
-      "Compilación final"
-    ]
+    "combos": ["Ping certero", "Código limpio", "Compilación final"]
   },
   {
     "id": "silbon",
@@ -806,18 +558,10 @@
     "speed": 4.3,
     "damage": 1.03,
     "armor": 0.99,
-    "stats": [
-      4,
-      3,
-      3
-    ],
+    "stats": [4, 3, 3],
     "ability": "whistle",
     "special": "Silbido errante",
-    "combos": [
-      "Paso perdido",
-      "Eco del camino",
-      "Noche sin regreso"
-    ],
+    "combos": ["Paso perdido", "Eco del camino", "Noche sin regreso"],
     "displayHeight": 198
   },
   {
@@ -833,18 +577,10 @@
     "speed": 4.8,
     "damage": 0.96,
     "armor": 1.02,
-    "stats": [
-      3,
-      4,
-      3
-    ],
+    "stats": [3, 4, 3],
     "ability": "undertow",
     "special": "Marea en pena",
-    "combos": [
-      "Lágrima fría",
-      "Corriente profunda",
-      "Crecida de medianoche"
-    ],
+    "combos": ["Lágrima fría", "Corriente profunda", "Crecida de medianoche"],
     "displayHeight": 176
   },
   {
@@ -860,18 +596,10 @@
     "speed": 5.8,
     "damage": 0.95,
     "armor": 1.04,
-    "stats": [
-      3,
-      5,
-      2
-    ],
+    "stats": [3, 5, 2],
     "ability": "haunt",
     "special": "Paso espectral",
-    "combos": [
-      "Sombra roja",
-      "Aparición doble",
-      "Última visita"
-    ],
+    "combos": ["Sombra roja", "Aparición doble", "Última visita"],
     "displayHeight": 180
   },
   {
@@ -887,18 +615,10 @@
     "speed": 4.1,
     "damage": 1.05,
     "armor": 0.93,
-    "stats": [
-      5,
-      2,
-      4
-    ],
+    "stats": [5, 2, 4],
     "ability": "wildspirit",
     "special": "Danta de Sorte",
-    "combos": [
-      "Hoja de jade",
-      "Selva viva",
-      "Corona de Sorte"
-    ],
+    "combos": ["Hoja de jade", "Selva viva", "Corona de Sorte"],
     "displayHeight": 180
   },
   {
@@ -914,18 +634,10 @@
     "speed": 5.1,
     "damage": 0.97,
     "armor": 1,
-    "stats": [
-      3,
-      4,
-      3
-    ],
+    "stats": [3, 4, 3],
     "ability": "verse",
     "special": "Copla certera",
-    "combos": [
-      "Verso primero",
-      "Copla enlazada",
-      "Contrapunteo final"
-    ],
+    "combos": ["Verso primero", "Copla enlazada", "Contrapunteo final"],
     "displayHeight": 177
   },
   {
@@ -941,18 +653,10 @@
     "speed": 4.6,
     "damage": 1.06,
     "armor": 1.02,
-    "stats": [
-      5,
-      3,
-      2
-    ],
+    "stats": [5, 3, 2],
     "ability": "hellfire",
     "special": "Fogonazo del llano",
-    "combos": [
-      "Brasa corta",
-      "Copla ardiente",
-      "Amanecer de fuego"
-    ],
+    "combos": ["Brasa corta", "Copla ardiente", "Amanecer de fuego"],
     "displayHeight": 187
   },
   {
@@ -968,18 +672,10 @@
     "speed": 4.2,
     "damage": 1,
     "armor": 0.96,
-    "stats": [
-      3,
-      3,
-      4
-    ],
+    "stats": [3, 3, 4],
     "ability": "elixir",
     "special": "Frasco de Galipán",
-    "combos": [
-      "Fórmula inicial",
-      "Dosis precisa",
-      "Secreto del Ávila"
-    ],
+    "combos": ["Fórmula inicial", "Dosis precisa", "Secreto del Ávila"],
     "displayHeight": 173
   },
   {
@@ -995,18 +691,10 @@
     "speed": 4.5,
     "damage": 0.97,
     "armor": 0.93,
-    "stats": [
-      3,
-      3,
-      5
-    ],
+    "stats": [3, 3, 5],
     "ability": "roots",
     "special": "Raíces del páramo",
-    "combos": [
-      "Paso de musgo",
-      "Raíz y rama",
-      "Guardián de la laguna"
-    ],
+    "combos": ["Paso de musgo", "Raíz y rama", "Guardián de la laguna"],
     "displayHeight": 140,
     "portraitScale": 0.78,
     "portraitLift": 0.07
@@ -1024,18 +712,10 @@
     "speed": 5.2,
     "damage": 1.04,
     "armor": 1.01,
-    "stats": [
-      5,
-      4,
-      2
-    ],
+    "stats": [5, 4, 2],
     "ability": "pounce",
     "special": "Salto de tigre",
-    "combos": [
-      "Zarpazo rápido",
-      "Rayas en cadena",
-      "Dueño del monte"
-    ],
+    "combos": ["Zarpazo rápido", "Rayas en cadena", "Dueño del monte"],
     "displayHeight": 183
   },
   {
@@ -1051,18 +731,10 @@
     "speed": 6.3,
     "damage": 0.88,
     "armor": 1.07,
-    "stats": [
-      2,
-      5,
-      2
-    ],
+    "stats": [2, 5, 2],
     "ability": "trickster",
     "special": "Brinco tramposo",
-    "combos": [
-      "Patas ligeras",
-      "Finta del camino",
-      "La última picardía"
-    ],
+    "combos": ["Patas ligeras", "Finta del camino", "La última picardía"],
     "displayHeight": 154,
     "portraitScale": 0.6,
     "portraitLift": 0.035
@@ -1080,18 +752,10 @@
     "speed": 4.7,
     "damage": 0.98,
     "armor": 1,
-    "stats": [
-      3,
-      3,
-      5
-    ],
+    "stats": [3, 3, 5],
     "ability": "ledger",
     "special": "Balance en cadena",
-    "combos": [
-      "Cuenta clara",
-      "Cierre de caja",
-      "Balance a favor"
-    ]
+    "combos": ["Cuenta clara", "Cierre de caja", "Balance a favor"]
   },
   {
     "id": "jesus",
@@ -1106,18 +770,10 @@
     "speed": 5.2,
     "damage": 0.95,
     "armor": 1.01,
-    "stats": [
-      3,
-      4,
-      4
-    ],
+    "stats": [3, 4, 4],
     "ability": "settlement",
     "special": "Transferencia de vuelta",
-    "combos": [
-      "Saldo disponible",
-      "Cruce de fronteras",
-      "Liquidación total"
-    ]
+    "combos": ["Saldo disponible", "Cruce de fronteras", "Liquidación total"]
   },
   {
     "id": "carlos",
@@ -1132,18 +788,10 @@
     "speed": 5.1,
     "damage": 1.03,
     "armor": 0.98,
-    "stats": [
-      4,
-      4,
-      3
-    ],
+    "stats": [4, 4, 3],
     "ability": "ignition",
     "special": "Arranque de motor",
-    "combos": [
-      "Primera marcha",
-      "Cambio de velocidad",
-      "Llegada a la meta"
-    ]
+    "combos": ["Primera marcha", "Cambio de velocidad", "Llegada a la meta"]
   },
   {
     "id": "victor",
@@ -1158,18 +806,10 @@
     "speed": 5.6,
     "damage": 0.94,
     "armor": 1.03,
-    "stats": [
-      3,
-      5,
-      3
-    ],
+    "stats": [3, 5, 3],
     "ability": "slash",
     "special": "Corte de saldo",
-    "combos": [
-      "Línea directa",
-      "Cruce diagonal",
-      "Cierre en Slash"
-    ]
+    "combos": ["Línea directa", "Cruce diagonal", "Cierre en Slash"]
   },
   {
     "id": "juan",
@@ -1184,18 +824,10 @@
     "speed": 4.7,
     "damage": 0.98,
     "armor": 0.98,
-    "stats": [
-      3,
-      3,
-      5
-    ],
+    "stats": [3, 3, 5],
     "ability": "grid",
     "special": "Red de ciudad",
-    "combos": [
-      "Primer nodo",
-      "Ruta compartida",
-      "Ciudad en movimiento"
-    ]
+    "combos": ["Primer nodo", "Ruta compartida", "Ciudad en movimiento"]
   },
   {
     "id": "lorenzo",
@@ -1208,18 +840,10 @@
     "speed": 4.8,
     "damage": 0.96,
     "armor": 0.99,
-    "stats": [
-      3,
-      3,
-      5
-    ],
+    "stats": [3, 3, 5],
     "ability": "polar",
     "special": "Reparto P.A.N.",
-    "combos": [
-      "Paso firme",
-      "Cadena de trabajo",
-      "Estrella de Venezuela"
-    ],
+    "combos": ["Paso firme", "Cadena de trabajo", "Estrella de Venezuela"],
     "sprite": "lorenzo-v39",
     "category": "founders"
   },
@@ -1234,18 +858,10 @@
     "speed": 4.5,
     "damage": 0.98,
     "armor": 0.98,
-    "stats": [
-      3,
-      3,
-      5
-    ],
+    "stats": [3, 3, 5],
     "ability": "couture",
     "special": "Corte de seda",
-    "combos": [
-      "Puntada fina",
-      "Línea de colección",
-      "Alta costura"
-    ],
+    "combos": ["Puntada fina", "Línea de colección", "Alta costura"],
     "sprite": "carolina-v39",
     "category": "culture"
   },
@@ -1260,18 +876,10 @@
     "speed": 5.6,
     "damage": 0.94,
     "armor": 1.03,
-    "stats": [
-      3,
-      5,
-      4
-    ],
+    "stats": [3, 5, 4],
     "ability": "corona",
     "special": "Giro de pasarela",
-    "combos": [
-      "Paso de gala",
-      "Vuelta de reina",
-      "Pasarela universal"
-    ],
+    "combos": ["Paso de gala", "Vuelta de reina", "Pasarela universal"],
     "sprite": "dayana-v49",
     "category": "culture"
   },
@@ -1286,18 +894,10 @@
     "speed": 5.6,
     "damage": 0.94,
     "armor": 1.03,
-    "stats": [
-      3,
-      5,
-      4
-    ],
+    "stats": [3, 5, 4],
     "ability": "football",
     "special": "Remate vinotinto",
-    "combos": [
-      "Saque inicial",
-      "Pared vinotinto",
-      "Gol de media cancha"
-    ],
+    "combos": ["Saque inicial", "Pared vinotinto", "Gol de media cancha"],
     "sprite": "deyna-v1",
     "category": "culture"
   },
@@ -1312,18 +912,10 @@
     "speed": 5.1,
     "damage": 1.04,
     "armor": 0.96,
-    "stats": [
-      5,
-      3,
-      3
-    ],
+    "stats": [5, 3, 3],
     "ability": "liberator",
     "special": "Sable libertador",
-    "combos": [
-      "Paso de honor",
-      "Marcha de campaña",
-      "Gloria tricolor"
-    ],
+    "combos": ["Paso de honor", "Marcha de campaña", "Gloria tricolor"],
     "sprite": "bolivar-v39",
     "category": "culture"
   },
@@ -1338,18 +930,10 @@
     "speed": 5.2,
     "damage": 1.02,
     "armor": 0.98,
-    "stats": [
-      4,
-      4,
-      4
-    ],
+    "stats": [4, 4, 4],
     "ability": "retake",
     "special": "Segunda toma",
-    "combos": [
-      "Primera toma",
-      "Plano secuencia",
-      "Corte final"
-    ],
+    "combos": ["Primera toma", "Plano secuencia", "Corte final"],
     "sprite": "edgar-v39",
     "category": "culture"
   },
@@ -1365,18 +949,10 @@
     "speed": 5,
     "damage": 1,
     "armor": 1,
-    "stats": [
-      4,
-      4,
-      4
-    ],
+    "stats": [4, 4, 4],
     "ability": "signal",
     "special": "Señal libre",
-    "combos": [
-      "Micrófono abierto",
-      "Frecuencia punk",
-      "Red en marcha"
-    ],
+    "combos": ["Micrófono abierto", "Frecuencia punk", "Red en marcha"],
     "category": "culture"
   },
   {
@@ -1392,18 +968,10 @@
     "speed": 5.1,
     "damage": 0.96,
     "armor": 1,
-    "stats": [
-      3,
-      4,
-      4
-    ],
+    "stats": [3, 4, 4],
     "ability": "remittance",
     "special": "Pago al toque",
-    "combos": [
-      "Saldo al día",
-      "Envío encadenado",
-      "Red sin fronteras"
-    ]
+    "combos": ["Saldo al día", "Envío encadenado", "Red sin fronteras"]
   },
   {
     "id": "dorangel",
@@ -1419,18 +987,10 @@
     "speed": 4.8,
     "damage": 1,
     "armor": 1,
-    "stats": [
-      3,
-      4,
-      4
-    ],
+    "stats": [3, 4, 4],
     "ability": "bite",
     "special": "Mordida al brazo",
-    "combos": [
-      "Cierre de agarre",
-      "Sin soltar",
-      "Olla al fuego"
-    ]
+    "combos": ["Cierre de agarre", "Sin soltar", "Olla al fuego"]
   },
   {
     "id": "inaki",
@@ -1446,17 +1006,9 @@
     "speed": 5.1,
     "damage": 0.98,
     "armor": 1,
-    "stats": [
-      3,
-      4,
-      4
-    ],
+    "stats": [3, 4, 4],
     "ability": "banknotes",
     "special": "Billete al vuelo",
-    "combos": [
-      "Saldo a favor",
-      "Cuenta clara",
-      "Ráfaga de billetes"
-    ]
+    "combos": ["Saldo a favor", "Cuenta clara", "Ráfaga de billetes"]
   }
 ]
