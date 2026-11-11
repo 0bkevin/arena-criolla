@@ -39,6 +39,10 @@ Offline modes run entirely in the browser. Online matches are simulated by the s
 - [Development](docs/development.md)
 - [Testing and CI](docs/testing.md)
 
+## Author
+
+Made by **Kevin Bravo** · [kevinbravo.com](https://kevinbravo.com) · [GitHub](https://github.com/0bkevin)
+
 ## License
 
 [GPL-3.0-only](LICENSE). Third-party sounds and fonts: [ASSET-LICENSES.txt](ASSET-LICENSES.txt).
