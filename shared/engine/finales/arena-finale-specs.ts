@@ -131,6 +131,7 @@ export interface ArenaContact {
   force: number;
   /** Minimum stun for a landed ride strike, independent of pushback. */
   stunFloor?: number | undefined;
+  ignoresDashInvincibility?: boolean | undefined;
   direction: number;
   x: number;
   y: number;

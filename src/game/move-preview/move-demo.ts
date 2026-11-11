@@ -90,6 +90,7 @@ export function simulateMoveDemo(id: FighterId, move: GuideMove) {
     p.vy = 0;
     p.facing = index ? -1 : 1;
     p.invincible = 0;
+    p.dashOnlyInvincible = 0;
     p.energy = 100;
     p.grounded = true;
   });

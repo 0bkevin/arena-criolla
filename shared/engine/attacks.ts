@@ -1,5 +1,9 @@
 // Starting, timing and landing attacks, specials and definitives.
 import {
+  grantDashInvincibility,
+  grantNonDashInvincibility,
+} from "./invincibility";
+import {
   LIGHT_DAMAGE,
   HEAVY_DAMAGE,
   SUPER_DAMAGE,
@@ -510,7 +514,7 @@ function applySpecialMovement(
         p.x + p.facing * Math.min(technique.blink.reach, distance),
       ),
     );
-    p.invincible = Math.max(p.invincible, technique.blink.invincibility);
+    grantNonDashInvincibility(p, technique.blink.invincibility);
     effect(
       s,
       startX,
@@ -524,7 +528,7 @@ function applySpecialMovement(
     p.vx = p.facing * technique.dash.speed * (p.slowTicks ? 0.6 : 1);
     p.recoilVx = 0;
     p.dash = technique.dash.ticks;
-    p.invincible = Math.max(p.invincible, technique.dash.invincibility);
+    grantDashInvincibility(p, technique.dash.invincibility);
   }
   const lift = technique.lift ?? technique.dash?.lift;
   if (lift) {

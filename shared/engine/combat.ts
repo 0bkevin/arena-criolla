@@ -51,10 +51,17 @@ export function interceptHit(
   x: number,
   y: number,
   impact: NonNullable<Attack>,
+  ignoresDashInvincibility = false,
 ): "immune" | "defended" | undefined {
   const target = s.players[opponentOf(attacker)];
   const source = s.players[attacker];
-  if (target.invincible > 0 || target.stocks <= 0 || target.hp <= 0)
+  if (
+    (target.invincible > 0 &&
+      (!ignoresDashInvincibility ||
+        target.invincible > target.dashOnlyInvincible)) ||
+    target.stocks <= 0 ||
+    target.hp <= 0
+  )
     return "immune";
   const counter =
     TECHNIQUES[fighterById(target.config.fighter).ability].counter;
@@ -144,8 +151,17 @@ export function hurt(
   impact: NonNullable<Attack>,
   hitInvincibility = 12,
   visual?: Effect["visual"],
+  ignoresDashInvincibility = false,
 ): boolean {
-  const interception = interceptHit(s, attacker, direction, x, y, impact);
+  const interception = interceptHit(
+    s,
+    attacker,
+    direction,
+    x,
+    y,
+    impact,
+    ignoresDashInvincibility,
+  );
   if (interception) return interception === "defended";
   const target = s.players[opponentOf(attacker)];
   const source = s.players[attacker];
@@ -154,6 +170,7 @@ export function hurt(
   target.hp = Math.max(0, target.hp - damage * def.armor);
   launchTarget(target, force, direction);
   target.invincible = hitInvincibility;
+  target.dashOnlyInvincible = 0;
   rewardHit(s, attacker);
   const strength =
     impact === "super"

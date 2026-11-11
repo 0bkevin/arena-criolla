@@ -37,6 +37,7 @@ function makePlayer(config: PlayerConfig, index: number): PlayerState {
     slowTicks: 0,
     rootTicks: 0,
     invincible: 90,
+    dashOnlyInvincible: 0,
     dash: 0,
     lastActions: { ...emptyInput().actions },
     history: [],

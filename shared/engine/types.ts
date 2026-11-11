@@ -79,6 +79,7 @@ export interface PlayerState {
   rootTicks: number;
   rootKind?: "chain" | "screen" | "spectral" | "flash" | "bite" | "pot";
   invincible: number;
+  dashOnlyInvincible: number;
   dash: number;
   lastActions: Record<Action, number>;
   bufferedAttack?: { attack: Exclude<Attack, "super" | null>; ticks: number };

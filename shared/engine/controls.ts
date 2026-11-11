@@ -1,5 +1,6 @@
 // One fighter's response to its input this tick: guard, movement, jumps,
 // dashes, super charge and attack requests (with short input buffers).
+import { setInvincibility, tickInvincibility } from "./invincibility";
 import {
   SUPER_CHARGE_TICKS,
   fighterById,
@@ -67,7 +68,7 @@ export function updateFighterControls(
   p.slowTicks = Math.max(0, p.slowTicks - 1);
   p.rootTicks = Math.max(0, p.rootTicks - 1);
   if (!p.rootTicks) delete p.rootKind;
-  p.invincible = Math.max(0, p.invincible - 1);
+  tickInvincibility(p);
   p.dash = Math.max(0, p.dash - 1);
   const brake = TECHNIQUES[def.ability].dash?.brake;
   if (p.attack === "special" && !p.dash && brake) {
@@ -119,7 +120,7 @@ export function updateFighterControls(
     ) {
       delete p.bufferedSuperTicks;
       p.superChargeTicks = 1;
-      p.invincible = 0;
+      setInvincibility(p, 0);
     } else if (
       pressed("super") &&
       input.superHeld &&
@@ -181,7 +182,7 @@ export function updateFighterControls(
       p.vx = p.facing * 14 * (p.slowTicks ? 0.6 : 1);
       p.recoilVx = 0;
       p.dash = 12;
-      p.invincible = 8;
+      setInvincibility(p, 8, true);
       p.cooldown = 30;
     }
     if (charging || pressed("super")) {

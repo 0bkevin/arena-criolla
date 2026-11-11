@@ -51,6 +51,7 @@ function loseStock(s: MatchState, i: PlayerIndex) {
   p.attack = null;
   p.cooldown = 30;
   p.invincible = 110;
+  p.dashOnlyInvincible = 0;
   p.energy = Math.max(0, p.energy - 20);
   p.streak = 0;
 }

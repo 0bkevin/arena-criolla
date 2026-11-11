@@ -54,6 +54,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
       actor?: ArenaFinaleActor,
       rootTicks?: number,
       stunFloor?: number,
+      ignoresDashInvincibility?: boolean,
     ) =>
       contacts.push({
         field,
@@ -66,6 +67,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
         y,
         rootTicks,
         stunFloor,
+        ignoresDashInvincibility,
       });
     if (
       field.fighter === "dorangel" &&
@@ -118,6 +120,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
           undefined,
           undefined,
           RIDE_STUN_FLOOR,
+          true,
         );
     }
     for (const actor of field.actors ?? []) {
@@ -196,6 +199,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
           actor,
           actor.kind === "handchain" ? 25 : undefined,
           isRideHelper(field.fighter, actor.kind) ? RIDE_STUN_FLOOR : undefined,
+          isRideHelper(field.fighter, actor.kind),
         );
     }
     if (!active) continue;

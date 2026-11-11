@@ -110,6 +110,7 @@ export function advanceFinale(s: MatchState, inputs: [Input, Input]) {
     if (definition.release?.knockoutDelay && target.hp <= 0)
       target.knockoutDelay = definition.release.knockoutDelay;
     target.invincible = 12;
+    target.dashOnlyInvincible = 0;
     delete s.finale;
     resolveStocks(s);
     resolveTimeout(s);
