@@ -10,6 +10,7 @@ import {
   type EntranceAsset,
   type SpriteAsset,
 } from "../assets/assets";
+import { unmirrorLettering } from "../assets/readable-text";
 
 function drawFrame(
   ctx: CanvasRenderingContext2D,
@@ -25,20 +26,35 @@ function drawFrame(
   ctx.save();
   ctx.globalAlpha *= opacity;
   ctx.scale(facing * (key.mirror ? -1 : 1), 1);
+  const destination = {
+    x:
+      (frame.anchorX !== undefined
+        ? -frame.anchorX
+        : frame.x - frame.slotX - asset.anchorX) * scale,
+    y:
+      (frame.anchorY !== undefined
+        ? -frame.anchorY
+        : frame.y - frame.slotY - asset.baseline) * scale,
+    width: frame.width * scale,
+    height: frame.height * scale,
+  };
   ctx.drawImage(
     asset.image,
     frame.x,
     frame.y,
     frame.width,
     frame.height,
-    (frame.anchorX !== undefined
-      ? -frame.anchorX
-      : frame.x - frame.slotX - asset.anchorX) * scale,
-    (frame.anchorY !== undefined
-      ? -frame.anchorY
-      : frame.y - frame.slotY - asset.baseline) * scale,
-    frame.width * scale,
-    frame.height * scale,
+    destination.x,
+    destination.y,
+    destination.width,
+    destination.height,
+  );
+  unmirrorLettering(
+    ctx,
+    asset.image,
+    frame,
+    { image: asset.image, x: frame.x, y: frame.y },
+    destination,
   );
   ctx.restore();
 }

@@ -21,6 +21,7 @@ import {
 import perroMujeriego from "./manifests/perro-mujeriego-assets.json";
 import { ATTACK_ART } from "./attack-art";
 import { assetUrl } from "./asset-url";
+import { unmirrorLettering } from "./readable-text";
 
 const isolatePixels = preparationWorker(
   () =>
@@ -387,19 +388,26 @@ export function drawSprite(
   ctx.scale(facing * sprite.frameFacing[frame], 1);
   const source = sprite.frames[frame];
   const texture = spriteFrameSource(sprite, frame);
+  const destination = {
+    x: (source.x - source.slotX - sprite.cellWidth / 2) * scale,
+    // Grounded poses have separate foot baselines in the generated atlas.
+    // Anchor their lowest opaque pixel; the jump keeps its tucked-leg height.
+    y: frame === 4 ? -height : -source.height * scale,
+    width: source.width * scale,
+    height: source.height * scale,
+  };
   ctx.drawImage(
     texture.image,
     texture.x,
     texture.y,
     source.width,
     source.height,
-    (source.x - source.slotX - sprite.cellWidth / 2) * scale,
-    // Grounded poses have separate foot baselines in the generated atlas.
-    // Anchor their lowest opaque pixel; the jump keeps its tucked-leg height.
-    frame === 4 ? -height : -source.height * scale,
-    source.width * scale,
-    source.height * scale,
+    destination.x,
+    destination.y,
+    destination.width,
+    destination.height,
   );
+  unmirrorLettering(ctx, sprite.image, source, texture, destination);
   ctx.restore();
 }
 /**
