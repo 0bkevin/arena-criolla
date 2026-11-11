@@ -16,10 +16,12 @@ win rate outside 35–65%; damage should not be used to compensate for unrelated
 AI, movement or counter behavior.
 
 The observed specials above 17 are deliberate close-range punishes: Gómez
-18.36 (grounded command), Puma 17.92 (close strike), George 18.19 (two
-close pulses), Emilio 17.82 (two close pulses), Rummy 17.46 (four close
-pulses) and Bolívar 18.72 (three close pulses). Conde and Emilio can transform
-for 1.2 times outgoing damage; their transformed values remain below 24.
+18.36 (grounded command), George 18.19 (two close pulses), Emilio 17.82 (two
+close pulses) and Bolívar 18.72 (three close pulses). Puma's mid-range roar
+and Rummy's fast, two-sided zapateo are classified as low-risk and capped at 17.
+
+Conde and Emilio can transform for 1.2 times outgoing damage; their transformed
+values remain below 24.
 These classifications are provisional pending human play.
 
 ## Calculation
@@ -64,6 +66,7 @@ feeds the sound weight in `src/game/audio/sound-effects.ts`.
 | `damage-values.ts`         | definitive bonus        | 12 → 7                       | Reduce definitive and string burst.                                                       |
 | `fighters.json`            | Gómez damage multiplier | 1.20 → 1.08                  | Reduce a cast-wide offense and defense advantage while retaining a power role.            |
 | `techniques.ts`            | Gómez command           | 21 → 17                      | Grounded punish remains strong without the former 25.2 HP hit.                            |
+| `techniques.ts`            | Puma roar               | 16 → 15.1                    | Reclassified as a low-risk mid-range poke.                                                |
 | `techniques.ts`            | Simón cuatro            | 9 → 7 per projectile         | Reduce the three-projectile offered total.                                                |
 | `techniques.ts`            | Conde whirl             | 20 → 15.3                    | Keep the dash and transformed damage within budget.                                       |
 | `techniques.ts`            | Emilio echo             | 10 → 9 per pulse             | Reduce two-hit and transformed totals.                                                    |
@@ -72,7 +75,7 @@ feeds the sound weight in `src/game/audio/sound-effects.ts`.
 | `culture-techniques.ts`    | Alí strum               | 7 → 5.4 per pulse            | Cap the observed three-hit total.                                                         |
 | `culture-techniques.ts`    | Yordano fountain        | 7 → 5.6 per pulse            | Cap the observed three-hit total.                                                         |
 | `culture-techniques.ts`    | Lila cocotero           | 6 → 4.5 per projectile       | Reduce the observed three-hit total without removing the spread identity.                 |
-| `culture-techniques.ts`    | Rummy zapateo           | 5 → 4.5 per pulse            | Reduce the four-hit total.                                                                |
+| `culture-techniques.ts`    | Rummy zapateo           | 5 → 4.3 per pulse            | Reclassified as low-risk given its speed and two-sided coverage.                          |
 | `culture-techniques.ts`    | Amanda curtain counter  | 17 → 14                      | Reduce frequent counter damage and burst against the CPU.                                 |
 | `culture-techniques.ts`    | Giuseppe audit          | 7 → 5.8 per pulse            | Cap the observed three-hit total.                                                         |
 | `culture-techniques.ts`    | Gualberto return        | 9 → 8.6 per projectile       | Cap the observed two-hit total.                                                           |

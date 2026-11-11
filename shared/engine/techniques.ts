@@ -209,7 +209,7 @@ export const TECHNIQUES: Record<Ability, Technique> = {
     recovery: 48,
     range: 260,
     height: 150,
-    damage: 16,
+    damage: 15.1,
     force: 12,
   },
   static: {

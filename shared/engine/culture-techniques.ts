@@ -124,7 +124,7 @@ export const CULTURE_TECHNIQUES = {
     recovery: 46,
     range: 135,
     height: 65,
-    damage: 4.5,
+    damage: 4.3,
     force: 2.5,
     pulses: [0, 10, 20, 30],
     pulseRangeStep: 0,
