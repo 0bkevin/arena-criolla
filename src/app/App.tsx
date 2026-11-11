@@ -167,6 +167,12 @@ export function App() {
     }
   }, [network.room]);
   useEffect(() => {
+    // Entering or resuming a room, show the fighter the server holds for this
+    // seat; after a reload the local pick would otherwise be a random one.
+    const seat = network.room?.players.find((p) => p.id === network.id);
+    if (seat) setFighter(seat.fighter);
+  }, [network.room?.code, network.id]);
+  useEffect(() => {
     // Warm the same cached assets while players choose in a room, so the
     // server's shared entrance timeline is visible immediately on both peers.
     if (network.room?.code)
