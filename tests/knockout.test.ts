@@ -6,9 +6,9 @@ import {
   stepMatch,
   type MatchState,
 } from "../shared/engine/engine";
-import { KNOCKOUT_HOLD_MS, sampleKnockout } from "../src/game/knockout";
-import { renderMatch, type Assets } from "../src/game/renderer";
-import type { SpriteAsset } from "../src/game/assets";
+import { KNOCKOUT_HOLD_MS, sampleKnockout } from "../src/game/match/knockout";
+import { renderMatch, type Assets } from "../src/game/render/renderer";
+import type { SpriteAsset } from "../src/game/assets/assets";
 import { activeRunway } from "../shared/engine/finales/field-finales";
 import { SUPER_CHARGE_TICKS } from "../shared/roster/roster";
 

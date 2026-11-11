@@ -5,7 +5,7 @@ import { readFile, writeFile } from "node:fs/promises";
 // Run `npm run assets:og` to rebuild the social JPEG from the current source art.
 const width = 1200;
 const height = 630;
-const theme = await readFile("src/arcade-theme.css", "utf8");
+const theme = await readFile("src/styles/arcade-theme.css", "utf8");
 function themeColor(token) {
   const color = theme.match(
     new RegExp(`--${token}:\\s*(#[\\da-f]{6})\\s*;`, "i"),

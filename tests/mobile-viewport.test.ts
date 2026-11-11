@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { trackPlayViewport } from "../src/game/mobile";
+import { trackPlayViewport } from "../src/game/viewport/mobile";
 
 function browser(visual = true) {
   const saved = ["window", "document"].map(

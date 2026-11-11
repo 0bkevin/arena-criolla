@@ -5,7 +5,7 @@ import {
   GamepadControls,
   makeInputs,
   type Control,
-} from "../src/game/controls";
+} from "../src/game/input/controls";
 import { createMatch, stepMatch } from "../shared/engine/engine";
 import { INTRO_TOTAL_TICKS } from "../shared/engine/presentation";
 import { SUPER_CHARGE_TICKS } from "../shared/roster/roster";

@@ -7,7 +7,7 @@ const directory = new URL("../public/assets/", import.meta.url);
 const master = await readFile(new URL("arena-mark.svg", directory), "utf8");
 // Read the live button accent so exports stay aligned with the interface.
 const theme = await readFile(
-  new URL("../src/arcade-theme.css", import.meta.url),
+  new URL("../src/styles/arcade-theme.css", import.meta.url),
   "utf8",
 );
 const buttonYellow = theme.match(/--coin:\s*(#[\da-f]{6})\s*;/i)?.[1];

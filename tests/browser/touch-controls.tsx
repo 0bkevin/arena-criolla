@@ -4,20 +4,20 @@
 import { StrictMode, type ComponentProps } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { flushSync } from "react-dom";
-import { TouchControls } from "../../src/components/TouchControls";
+import { TouchControls } from "../../src/components/match/TouchControls";
 import { createMatch, emptyInput, stepMatch } from "../../shared/engine/engine";
 import { SUPER_CHARGE_TICKS } from "../../shared/roster/roster";
 import {
   ControlSources,
   makeInputs,
   type Control,
-} from "../../src/game/controls";
-import "../../src/base.css";
-import "../../src/styles.css";
-import "../../src/lobby.css";
-import "../../src/arcade-theme.css";
-import "../../src/mobile-game.css";
-import "../../src/ui-accessibility.css";
+} from "../../src/game/input/controls";
+import "../../src/styles/base.css";
+import "../../src/styles/app.css";
+import "../../src/styles/lobby.css";
+import "../../src/styles/arcade-theme.css";
+import "../../src/styles/mobile-game.css";
+import "../../src/styles/ui-accessibility.css";
 
 const controls: Control[] = [
   "left",
@@ -97,7 +97,7 @@ export async function mountHybridGame(options: { energy?: number } = {}) {
   if (matchMedia("(pointer: coarse)").matches)
     throw new Error("Hybrid regression requires a fine primary pointer");
   const [{ Game }, { createMatch }] = await Promise.all([
-    import("../../src/components/Game"),
+    import("../../src/components/match/Game"),
     import("../../shared/engine/engine"),
   ]);
   const overrides = [

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { arenaBounds, arenaCanvasSize } from "../src/game/viewport";
+import { arenaBounds, arenaCanvasSize } from "../src/game/viewport/viewport";
 import { WORLD } from "../shared/engine/engine";
 import { ARENA_VIEW } from "../shared/engine/arena";
 import { STAGES, platformsAtTick } from "../shared/roster/roster";

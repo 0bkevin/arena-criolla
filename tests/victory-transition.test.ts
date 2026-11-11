@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { playVictoryTransition } from "../src/game/victory-transition";
+import { playVictoryTransition } from "../src/game/match/victory-transition";
 
 function fixture(reducedMotion = false) {
   const events = new EventTarget();

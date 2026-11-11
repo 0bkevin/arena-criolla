@@ -1,7 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { TouchInputState } from "../src/game/touch-input";
-import { ControlSources, makeInputs, type Control } from "../src/game/controls";
+import { TouchInputState } from "../src/game/input/touch-input";
+import {
+  ControlSources,
+  makeInputs,
+  type Control,
+} from "../src/game/input/controls";
 
 function tracker() {
   const events: string[] = [];

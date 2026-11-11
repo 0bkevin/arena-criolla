@@ -3,19 +3,19 @@
 import { StrictMode, useState } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { flushSync } from "react-dom";
-import { Game, type GameMode } from "../../src/components/Game";
-import { Help } from "../../src/components/Help";
+import { Game, type GameMode } from "../../src/components/match/Game";
+import { Help } from "../../src/components/help/Help";
 import {
   createMatch,
   emptyInput,
   type Input,
 } from "../../shared/engine/engine";
-import "../../src/base.css";
-import "../../src/styles.css";
-import "../../src/lobby.css";
-import "../../src/arcade-theme.css";
-import "../../src/mobile-game.css";
-import "../../src/ui-accessibility.css";
+import "../../src/styles/base.css";
+import "../../src/styles/app.css";
+import "../../src/styles/lobby.css";
+import "../../src/styles/arcade-theme.css";
+import "../../src/styles/mobile-game.css";
+import "../../src/styles/ui-accessibility.css";
 
 let root: Root | undefined;
 let pads: ReturnType<typeof controller>[] = [];

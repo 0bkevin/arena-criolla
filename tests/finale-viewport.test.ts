@@ -4,8 +4,8 @@ import {
   clampFinaleArtX,
   finaleArtXRange,
   finaleViewportBounds,
-} from "../src/game/finale-viewport";
-import type { AttackArtFrame } from "../src/game/attack-art";
+} from "../src/game/viewport/finale-viewport";
+import type { AttackArtFrame } from "../src/game/assets/attack-art";
 
 function context(
   width: number,

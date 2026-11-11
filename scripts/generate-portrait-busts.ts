@@ -15,9 +15,9 @@ import { FIGHTERS, type FighterId } from "../shared/roster/roster";
 import { presentationById } from "../shared/engine/presentation";
 import atlasManifest from "../src/game/assets/manifests/sprite-geometry.json";
 import entranceManifest from "../src/game/assets/manifests/entrance-assets.json";
-import { selectionBodyHeight } from "../src/game/entrance-framing";
-import type { EntranceAsset } from "../src/game/assets";
-import { isolateFramePixels } from "../src/game/sprite-isolation";
+import { selectionBodyHeight } from "../src/game/viewport/entrance-framing";
+import type { EntranceAsset } from "../src/game/assets/assets";
+import { isolateFramePixels } from "../src/game/assets/sprite-isolation";
 import type { PortraitBust } from "../src/game/assets/portrait-bust-layout";
 
 const MANIFEST = "src/game/assets/manifests/portrait-busts.json";
@@ -39,7 +39,7 @@ const overlaps = (a: Frame, b: Frame) =>
   a.y < b.y + b.height &&
   a.y + a.height > b.y;
 
-/** Same weighted head-band centroid as portraitCenter() in src/game/assets.ts. */
+/** Same weighted head-band centroid as portraitCenter() in src/game/assets/assets.ts. */
 function headCenter(pixels: Buffer, sheetWidth: number, frame: Frame): number {
   const bandHeight = Math.max(1, Math.ceil(frame.height * 0.24));
   let weightedX = 0;

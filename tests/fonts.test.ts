@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { loadInterfaceFonts } from "../src/fonts";
+import { loadInterfaceFonts } from "../src/app/fonts";
 
 function fontBrowser() {
   const originals = ["FontFace", "document"].map(

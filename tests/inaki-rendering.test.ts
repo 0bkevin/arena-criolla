@@ -6,13 +6,13 @@ import {
   stepMatch,
   type Input,
 } from "../shared/engine/engine";
-import { ATTACK_ART } from "../src/game/attack-art";
-import { drawArenaPerformer } from "../src/game/arena-finale-renderer";
+import { ATTACK_ART } from "../src/game/assets/attack-art";
+import { drawArenaPerformer } from "../src/game/render/arena-finale-renderer";
 import {
   drawInakiAction,
   drawInakiProjectile,
   INAKI_BODY_POSES,
-} from "../src/game/finales/inaki";
+} from "../src/game/render/finales/inaki";
 
 function canvas() {
   type Matrix = [number, number, number, number, number, number];

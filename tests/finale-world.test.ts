@@ -20,9 +20,12 @@ import {
   FINALE_CAPTURE_TICK,
   finaleById,
 } from "../shared/engine/finales/finales";
-import { advanceArenaCamera, cameraBounds } from "../src/game/arena-camera";
-import { renderMatch, type Assets } from "../src/game/renderer";
-import { drawStage } from "../src/game/stage-renderer";
+import {
+  advanceArenaCamera,
+  cameraBounds,
+} from "../src/game/viewport/arena-camera";
+import { renderMatch, type Assets } from "../src/game/render/renderer";
+import { drawStage } from "../src/game/render/stage-renderer";
 
 function setup(
   fighter: FighterId,

@@ -15,7 +15,7 @@ import {
   arenaPerformerPose,
   drawArenaPerformer,
   drawArenaFinaleLayer,
-} from "../src/game/arena-finale-renderer";
+} from "../src/game/render/arena-finale-renderer";
 
 type Matrix = [number, number, number, number, number, number];
 function recordingCanvas() {

@@ -1,7 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { MUSIC_SECONDS, writeArcadeMusic } from "../src/game/arcade-music";
-import { VICTORY_MUSIC_MS } from "../src/game/victory-types";
+import {
+  MUSIC_SECONDS,
+  writeArcadeMusic,
+} from "../src/game/audio/arcade-music";
+import { VICTORY_MUSIC_MS } from "../src/game/match/victory-types";
 import type { FinaleState } from "../shared/engine/finales/finales";
 
 test("generated arcade music is finite, audible, unclipped and loops without a click", () => {
@@ -114,7 +117,7 @@ test("music mute, pause, stage changes and cleanup never stack background loops"
     configurable: true,
     value: Context,
   });
-  const audio = await import("../src/audio");
+  const audio = await import("../src/game/audio/audio");
   try {
     audio.startAmbience("caracas");
     const first = sources[0];

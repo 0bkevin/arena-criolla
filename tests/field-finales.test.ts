@@ -16,10 +16,16 @@ import {
   squadMember,
   fieldFinaleBounds,
 } from "../shared/engine/finales/field-finales";
-import { drawDeynaSquad, DEYNA_POSES } from "../src/game/finales/deyna";
-import { drawDayanaRunway, DAYANA_POSES } from "../src/game/finales/dayana";
-import { ATTACK_ART } from "../src/game/attack-art";
-import { advanceArenaCamera, cameraBounds } from "../src/game/arena-camera";
+import { drawDeynaSquad, DEYNA_POSES } from "../src/game/render/finales/deyna";
+import {
+  drawDayanaRunway,
+  DAYANA_POSES,
+} from "../src/game/render/finales/dayana";
+import { ATTACK_ART } from "../src/game/assets/attack-art";
+import {
+  advanceArenaCamera,
+  cameraBounds,
+} from "../src/game/viewport/arena-camera";
 function run(
   id: "dayana" | "deyna",
   side: 0 | 1 = 0,

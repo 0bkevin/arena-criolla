@@ -1,8 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import type { FinaleState } from "../shared/engine/finales/finales";
-import type { ScoreRequest } from "../src/game/music-preparation";
-import { VICTORY_MUSIC_MS } from "../src/game/victory-types";
+import type { ScoreRequest } from "../src/game/audio/music-preparation";
+import { VICTORY_MUSIC_MS } from "../src/game/match/victory-types";
 
 test("late scores cannot resurrect stopped/muted scenes and resume at the current clock", async () => {
   class Param {
@@ -103,7 +103,7 @@ test("late scores cannot resurrect stopped/muted scenes and resume at the curren
     initialHp: 100,
   };
   try {
-    const audio = await import("../src/audio");
+    const audio = await import("../src/game/audio/audio");
     audio.startAmbience("caracas");
     audio.stopAmbience();
     worker!.finish();

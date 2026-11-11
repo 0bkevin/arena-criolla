@@ -3,16 +3,16 @@
 import { StrictMode } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { flushSync } from "react-dom";
-import { App } from "../../src/App";
-import * as audio from "../../src/audio";
-import { setPreference } from "../../src/storage";
-import { REACTION_CLIPS } from "../../src/game/reactions";
-import "../../src/base.css";
-import "../../src/styles.css";
-import "../../src/lobby.css";
-import "../../src/arcade-theme.css";
-import "../../src/mobile-game.css";
-import "../../src/ui-accessibility.css";
+import { App } from "../../src/app/App";
+import * as audio from "../../src/game/audio/audio";
+import { setPreference } from "../../src/app/storage";
+import { REACTION_CLIPS } from "../../src/game/audio/reactions";
+import "../../src/styles/base.css";
+import "../../src/styles/app.css";
+import "../../src/styles/lobby.css";
+import "../../src/styles/arcade-theme.css";
+import "../../src/styles/mobile-game.css";
+import "../../src/styles/ui-accessibility.css";
 
 const NativeContext = window.AudioContext;
 const contexts: MonitoredContext[] = [];

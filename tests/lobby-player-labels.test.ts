@@ -4,8 +4,8 @@ import { createElement, createRef } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { FIGHTERS, stageById } from "../shared/roster/roster";
 import type { RoomView } from "../shared/lobby/protocol";
-import { ArcadeLobby } from "../src/components/ArcadeLobby";
-import type { GameMode } from "../src/components/Game";
+import { ArcadeLobby } from "../src/components/lobby/ArcadeLobby";
+import type { GameMode } from "../src/components/match/Game";
 
 const room: RoomView = {
   code: "0123456789ABCDEF0123456789ABCDEF",

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { preparationWorker } from "../src/game/preparation-worker";
+import { preparationWorker } from "../src/game/assets/preparation-worker";
 
 test("worker jobs correlate out-of-order replies and recover pending jobs after failure", async () => {
   const previous = Object.getOwnPropertyDescriptor(globalThis, "Worker");

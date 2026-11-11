@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { fighterById } from "../shared/roster/roster";
 import atlas from "../src/game/assets/manifests/sprite-geometry.json";
-import { loadImage, preloadAssets } from "../src/game/assets";
+import { loadImage, preloadAssets } from "../src/game/assets/assets";
 
 function browserFixture(
   options: {

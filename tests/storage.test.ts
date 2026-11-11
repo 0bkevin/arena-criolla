@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { getPreference, setPreference } from "../src/storage";
+import { getPreference, setPreference } from "../src/app/storage";
 
 function browserStorage() {
   const previous = Object.getOwnPropertyDescriptor(globalThis, "localStorage");

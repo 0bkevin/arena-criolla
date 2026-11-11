@@ -5,8 +5,8 @@ import { readFile } from "node:fs/promises";
 import sharp from "sharp";
 import { STAGES } from "../shared/roster/roster";
 import manifest from "../src/game/assets/manifests/stage-thumbnails.json";
-import { assetUrl } from "../src/asset-url";
-import { stageThumbnail } from "../src/stage-thumbnail";
+import { assetUrl } from "../src/game/assets/asset-url";
+import { stageThumbnail } from "../src/game/assets/stage-thumbnail";
 
 const sha256 = (data: Buffer) =>
   createHash("sha256").update(data).digest("hex");

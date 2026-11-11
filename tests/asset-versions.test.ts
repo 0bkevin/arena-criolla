@@ -5,7 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import { assetVersion, assetVersions } from "../server/asset-versions";
 import manifest from "../shared/asset-versions.json";
-import { assetUrl } from "../src/asset-url";
+import { assetUrl } from "../src/game/assets/asset-url";
 import { makeArenaServer } from "../server/index";
 
 test("public asset manifest matches the contents on disk", async () => {

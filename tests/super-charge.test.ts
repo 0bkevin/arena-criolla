@@ -13,7 +13,7 @@ import {
   type Input,
   type MatchState,
 } from "../shared/engine/engine";
-import { ControlSources } from "../src/game/controls";
+import { ControlSources } from "../src/game/input/controls";
 
 function setup(side: 0 | 1 = 0, fighter: FighterId = "capriles", gap = 420) {
   const state = createMatch("caracas", [

@@ -2,7 +2,10 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createMatch, WORLD } from "../shared/engine/engine";
 import { STAGES } from "../shared/roster/roster";
-import { advanceArenaCamera, cameraBounds } from "../src/game/arena-camera";
+import {
+  advanceArenaCamera,
+  cameraBounds,
+} from "../src/game/viewport/arena-camera";
 
 function fight() {
   const state = createMatch("caracas", [

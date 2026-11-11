@@ -1,12 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { flushSync } from "react-dom";
-import { Modal } from "../../src/components/Modal";
-import "../../src/base.css";
-import "../../src/styles.css";
-import "../../src/lobby.css";
-import "../../src/arcade-theme.css";
-import "../../src/ui-accessibility.css";
+import { Modal } from "../../src/components/ui/Modal";
+import "../../src/styles/base.css";
+import "../../src/styles/app.css";
+import "../../src/styles/lobby.css";
+import "../../src/styles/arcade-theme.css";
+import "../../src/styles/ui-accessibility.css";
 
 const fixture = document.getElementById("fixture")!;
 let root = createRoot(fixture);

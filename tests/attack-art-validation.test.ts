@@ -6,7 +6,7 @@ import {
   hasAttackArt,
   type AttackArtFrame,
   type AttackArtSheet,
-} from "../src/game/attack-art";
+} from "../src/game/assets/attack-art";
 
 const frame: AttackArtFrame = {
   x: 32,

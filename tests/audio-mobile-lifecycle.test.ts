@@ -99,7 +99,7 @@ test("mobile audio activation and foreground recovery", async (t) => {
   const settle = () => new Promise((resolve) => setImmediate(resolve));
   let cleanup: (() => void) | undefined;
   try {
-    const audio = await import("../src/audio");
+    const audio = await import("../src/game/audio/audio");
     await t.test(
       "touch release retries a pending autoplay resume",
       async () => {
@@ -206,7 +206,10 @@ test("mobile audio activation and foreground recovery", async (t) => {
         page.dispatchEvent(new Event("visibilitychange"));
         await settle();
         assert.equal(instance!.state, "running");
-        assert.ok(gains[0].gain.value > 0, "foreground restores the master gain");
+        assert.ok(
+          gains[0].gain.value > 0,
+          "foreground restores the master gain",
+        );
         audio.startAmbience("caracas");
         assert.equal(
           sources.length,
@@ -232,7 +235,10 @@ test("mobile audio activation and foreground recovery", async (t) => {
           "pagehide can precede document.hidden",
         );
         win.dispatchEvent(new Event("pageshow"));
-        assert.ok(gains[0].gain.value > 0, "foreground restores the master gain");
+        assert.ok(
+          gains[0].gain.value > 0,
+          "foreground restores the master gain",
+        );
       },
     );
     await t.test(

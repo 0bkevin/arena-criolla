@@ -3,7 +3,7 @@ import test from "node:test";
 import {
   MovePreviewGamepads,
   MovePreviewInput,
-} from "../src/game/move-preview-input";
+} from "../src/game/move-preview/move-preview-input";
 
 function withGamepads(
   run: (fixture: ReturnType<typeof gamepadFixture>) => void,

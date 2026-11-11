@@ -3,7 +3,7 @@ import path from "node:path";
 import { brotliCompress, constants, gzip } from "node:zlib";
 import { promisify } from "node:util";
 import { defineConfig, type Plugin } from "vite";
-import entranceAssets from "./src/entrance-assets.json";
+import entranceAssets from "./src/components/entrance/entrance-images.json";
 import { assetVersions } from "./server/asset-versions";
 
 const versions = await assetVersions("public");

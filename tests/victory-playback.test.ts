@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { startVictoryMusic, setSound } from "../src/audio";
-import { VICTORY_MUSIC_MS } from "../src/game/victory-types";
+import { startVictoryMusic, setSound } from "../src/game/audio/audio";
+import { VICTORY_MUSIC_MS } from "../src/game/match/victory-types";
 
 test("the result cue survives a stopped arena clock, respects mute, focus and visibility, and cleans up", () => {
   const sources: { offset: number; stopped: boolean }[] = [];

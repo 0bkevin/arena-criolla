@@ -16,8 +16,8 @@ const recorded: Record<string, { file: string }> = choreography.dancers;
 // controls to the production module.
 async function loader(
   scenario: string,
-): Promise<typeof import("../src/game/assets")> {
-  const url = new URL("../src/game/assets.ts", import.meta.url);
+): Promise<typeof import("../src/game/assets/assets")> {
+  const url = new URL("../src/game/assets/assets.ts", import.meta.url);
   url.searchParams.set("asset-loading-test", scenario);
   return import(url.href);
 }

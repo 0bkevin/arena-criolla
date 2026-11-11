@@ -4,7 +4,7 @@ import {
   enterLandscape,
   hasTouchInput,
   leaveLandscape,
-} from "../src/game/mobile";
+} from "../src/game/viewport/mobile";
 
 function browser(
   options: {
