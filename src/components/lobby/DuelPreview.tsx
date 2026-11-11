@@ -7,7 +7,7 @@ import {
 import type { GameMode } from "../match/Game";
 import { PixelIcon } from "../ui/PixelIcon";
 import { Portrait } from "../ui/Portrait";
-import { colorStyle } from "./fighter-color";
+import { colorStyle } from "../ui/fighter-color";
 
 function ContenderLives() {
   return (

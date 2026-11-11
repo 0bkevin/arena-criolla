@@ -1,11 +1,8 @@
-import type { CSSProperties } from "react";
+import { colorStyle } from "../ui/fighter-color";
 import { ArrowRight } from "lucide-react";
 import { FIGHTERS, type FighterId } from "../../../shared/roster/roster";
 import { Modal } from "../ui/Modal";
 import { Portrait } from "../ui/Portrait";
-
-const colorStyle = (color: string): CSSProperties =>
-  ({ "--fighter-color": color }) as CSSProperties;
 
 interface Props {
   onDetail: (id: FighterId) => void;

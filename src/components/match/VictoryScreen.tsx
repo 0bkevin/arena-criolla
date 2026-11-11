@@ -1,9 +1,4 @@
-import {
-  useEffect,
-  useLayoutEffect,
-  type CSSProperties,
-  type RefObject,
-} from "react";
+import { useEffect, useLayoutEffect, type RefObject } from "react";
 import { ArrowRight, RotateCcw, Trophy, Zap } from "lucide-react";
 import { fighterById, stageById } from "../../../shared/roster/roster";
 import type { MatchState, PlayerIndex } from "../../../shared/engine/engine";
@@ -62,11 +57,9 @@ export function VictoryScreen({
       ref={overlayRef}
       className={`victory-screen${winner ? "" : " is-draw"}`}
       data-winner={state.winner ?? "draw"}
-      style={
-        {
-          "--victory-stage": `url("${assetUrl(`/assets/${state.stage}.webp`)}")`,
-        } as CSSProperties
-      }
+      style={{
+        "--victory-stage": `url("${assetUrl(`/assets/${state.stage}.webp`)}")`,
+      }}
       role="dialog"
       aria-modal={active}
       aria-hidden={!active}

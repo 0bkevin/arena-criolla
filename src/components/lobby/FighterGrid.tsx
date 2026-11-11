@@ -6,7 +6,7 @@ import type {
 } from "../../../shared/roster/roster";
 import { PixelIcon } from "../ui/PixelIcon";
 import { Portrait } from "../ui/Portrait";
-import { colorStyle } from "./fighter-color";
+import { colorStyle } from "../ui/fighter-color";
 import type { useFighterWarmup } from "./useFighterWarmup";
 
 interface Selection {

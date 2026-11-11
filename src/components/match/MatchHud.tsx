@@ -19,7 +19,7 @@ export function MatchHud({ view, location }: Props) {
             <div
               key={i}
               className={`player-hud player-${i}`}
-              style={{ "--fighter-color": def.color } as React.CSSProperties}
+              style={{ "--fighter-color": def.color }}
             >
               <div className="hud-label">
                 <span className="player-number">P{i + 1}</span>
@@ -28,7 +28,7 @@ export function MatchHud({ view, location }: Props) {
               </div>
               <div
                 className={`health-track${p.hp > 0 && p.hp <= 25 ? " is-low" : ""}`}
-                style={{ "--hp": `${p.hp}%` } as React.CSSProperties}
+                style={{ "--hp": `${p.hp}%` }}
               >
                 <div style={{ width: `${p.hp}%` }} />
                 <span>{Math.ceil(p.hp)}</span>

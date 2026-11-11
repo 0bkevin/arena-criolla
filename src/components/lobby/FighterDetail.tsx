@@ -1,11 +1,4 @@
-import {
-  Fragment,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-} from "react";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { fighterById, type FighterId } from "../../../shared/roster/roster";
 import { Modal } from "../ui/Modal";
@@ -193,7 +186,7 @@ export function FighterDetail({
       <div
         ref={content}
         className="fighter-detail"
-        style={{ "--fighter-color": f.color } as CSSProperties}
+        style={{ "--fighter-color": f.color }}
       >
         <FighterMovePreview
           key={fighter}

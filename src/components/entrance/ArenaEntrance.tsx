@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { VenezuelaStars } from "../ui/VenezuelaStars";
 import entranceAssets from "./entrance-images.json";
@@ -160,12 +160,10 @@ export function ArenaEntrance({
                 (angle, index) => (
                   <i
                     key={angle}
-                    style={
-                      {
-                        "--spark-angle": `${angle}deg`,
-                        "--spark-distance": `${13 + (index % 3) * 4.5}cqw`,
-                      } as CSSProperties
-                    }
+                    style={{
+                      "--spark-angle": `${angle}deg`,
+                      "--spark-distance": `${13 + (index % 3) * 4.5}cqw`,
+                    }}
                   />
                 ),
               )}
