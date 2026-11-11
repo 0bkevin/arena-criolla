@@ -11,7 +11,7 @@
     "test": "tsx --test \"tests/**/*.test.ts\"",
     "test:ui": "playwright test",
     "perf:engine": "tsx scripts/perf/engine.ts",
-    "perf:network": "node scripts/perf/network.mjs",
+    "perf:network": "tsx scripts/perf/network.ts",
     "assets:audit:lossless": "tsx scripts/assets/audit-lossless-assets.ts",
     "assets:audit:avif": "tsx scripts/assets/audit-lossless-avif.ts",
     "assets:og": "tsx scripts/assets/generate-og-image.ts",
@@ -19,7 +19,7 @@
     "assets:busts": "tsx scripts/assets/generate-portrait-busts.ts",
     "assets:stage-thumbs": "tsx scripts/assets/generate-stage-thumbnails.ts",
     "check:assets": "tsx scripts/assets/validate-character-assets.ts",
-    "cf:build": "npm run typecheck && vite build && node scripts/cloudflare/prepare.mjs && tsc -p cloudflare --noEmit",
+    "cf:build": "npm run typecheck && vite build && tsx scripts/cloudflare/prepare.ts && tsc -p cloudflare --noEmit",
     "cf:dev": "wrangler dev",
     "cf:deploy": "wrangler deploy"
   },

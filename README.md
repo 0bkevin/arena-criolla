@@ -54,7 +54,7 @@ npm start
 
 Las pruebas se centran en combate, red, almacenamiento, seguridad, controles, recuperación de assets y audio. `check:assets` valida transparencia, ocho siluetas completas y geometría coincidente en los sprites públicos.
 
-La CI solo ejecuta lo que cada cambio puede afectar: los tests que importan los archivos modificados, los tipos, los sprites, la auditoría de dependencias y la imagen Docker cuando corresponde. Producción no repite los tests; construye, escanea y prueba la imagen que entrega. Los detalles están en [testing.md](docs/testing.md). `scripts/ci/security-smoke.mjs` permite comprobar una instancia local o desplegada.
+La CI solo ejecuta lo que cada cambio puede afectar: los tests que importan los archivos modificados, los tipos, los sprites, la auditoría de dependencias y la imagen Docker cuando corresponde. Producción no repite los tests; construye, escanea y prueba la imagen que entrega. Los detalles están en [testing.md](docs/testing.md). `scripts/ci/security-smoke.ts` permite comprobar una instancia local o desplegada.
 
 `npm start` sirve la aplicación compilada. Para configurar el dominio, el contenedor o las imágenes al compartir enlaces, consulta la [guía de despliegue](docs/deployment.md).
 

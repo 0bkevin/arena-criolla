@@ -1,6 +1,6 @@
 // Decides which CI checks a diff needs. A test runs when it, or any file it
 // imports (transitively), changed. Shared tooling changes run everything.
-//   node scripts/ci/select-checks.mjs [base-ref [head-ref]]   (no base: everything)
+//   node scripts/ci/select-checks.ts [base-ref [head-ref]]   (no base: everything)
 import { execFileSync } from "node:child_process";
 import {
   appendFileSync,
@@ -21,15 +21,15 @@ const changed = base
       .split("\n")
       .filter(Boolean)
   : null;
-const touched = (pattern) =>
+const touched = (pattern: RegExp): boolean =>
   !changed || changed.some((file) => pattern.test(file));
 
 const everything = touched(
-  /^(package(-lock)?\.json|tsconfig\.json|tests\/helpers\/|scripts\/ci\/select-checks\.mjs|\.github\/workflows\/)/,
+  /^(package(-lock)?\.json|tsconfig\.json|tests\/helpers\/|scripts\/ci\/select-checks\.ts|\.github\/workflows\/)/,
 );
 
-const testFiles = [];
-(function walk(dir) {
+const testFiles: string[] = [];
+(function walk(dir: string): void {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     const file = path.posix.join(dir, entry.name);
     if (entry.isDirectory()) walk(file);
@@ -53,11 +53,12 @@ const EXTENSIONS = [
   "/index.ts",
   "/index.tsx",
 ];
-const isFile = (file) => existsSync(file) && statSync(file).isFile();
+const isFile = (file: string): boolean =>
+  existsSync(file) && statSync(file).isFile();
 
-const dependencies = new Map();
-function dependenciesOf(file) {
-  if (dependencies.has(file)) return dependencies.get(file);
+const dependencies = new Map<string, Set<string>>();
+function dependenciesOf(file: string): Set<string> {
+  if (dependencies.has(file)) return dependencies.get(file)!;
   const found = new Set([file]);
   dependencies.set(file, found);
   if (!/\.(ts|tsx|mjs|js)$/.test(file)) return found;
@@ -78,26 +79,31 @@ function dependenciesOf(file) {
   return found;
 }
 
-const affects = (dependency, file) =>
+const affects = (dependency: string, file: string): boolean =>
   file === dependency || file.startsWith(`${dependency}/`);
 const tests = everything
   ? testFiles
   : testFiles.filter((test) =>
       [...dependenciesOf(test)].some((dependency) =>
-        changed.some((file) => affects(dependency, file)),
+        // Not everything, so there is a base and a list of changed files.
+        changed!.some((file) => affects(dependency, file)),
       ),
     );
 
 // Each process-per-file shard pays a fixed setup cost, so split only large runs.
 const shards = Math.min(3, Math.ceil(tests.length / 30));
-const checks = {
+const checks: {
+  tests: string;
+  "test-shards": string;
+  [name: string]: string | RegExp | boolean;
+} = {
   tests: tests.sort().join(" "),
   "test-shards": JSON.stringify(
     Array.from({ length: shards }, (_, i) => i + 1),
   ),
   typecheck: /\.(ts|tsx|json)$/,
   assets:
-    /^(public\/assets\/|src\/game\/assets\/manifests\/sprite-geometry\.json$|shared\/roster\/fighters\.json$|scripts\/assets\/validate-character-assets\.mjs$)/,
+    /^(public\/assets\/|src\/game\/assets\/manifests\/sprite-geometry\.json$|shared\/roster\/fighters\.json$|scripts\/assets\/validate-character-assets\.ts$)/,
   audit: /^package-lock\.json$/,
   "deploy-controls": /^deploy\//,
   // Browser layout checks for anything that changes what the lobby or arena shows.
@@ -107,7 +113,7 @@ const checks = {
     /^(cloudflare\/|shared\/|src\/|public\/|index\.html|vite\.config\.ts|server\/asset-versions\.ts|wrangler\.jsonc|scripts\/cloudflare\/)/,
   // Anything the Docker build copies, plus the smoke test it runs.
   image:
-    /^(Dockerfile|\.dockerignore|index\.html|vite\.config\.ts|src\/|shared\/|server\/|public\/|scripts\/ci\/security-smoke\.mjs)/,
+    /^(Dockerfile|\.dockerignore|index\.html|vite\.config\.ts|src\/|shared\/|server\/|public\/|scripts\/ci\/security-smoke\.ts)/,
   // New base layers or dependencies can bring new CVEs.
   scan: /^(Dockerfile|package-lock\.json)$/,
 };
@@ -127,7 +133,8 @@ console.log(
     .join("\n")
     .replace(
       /^tests=(.*)$/m,
-      (_, list) => `tests=${list.split(" ").filter(Boolean).length} file(s)`,
+      (_: string, list: string) =>
+        `tests=${list.split(" ").filter(Boolean).length} file(s)`,
     ),
 );
 if (checks.tests) console.log(checks.tests.split(" ").join("\n"));

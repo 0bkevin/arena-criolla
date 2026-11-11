@@ -1,6 +1,6 @@
 # Despliegue
 
-> **Producción actual: Cloudflare Workers.** `https://arenacriolla.com` se despliega desde la rama `cloudflare-prod` con el workflow **Deploy Cloudflare** (`.github/workflows/cloudflare.yml`): solo acepta un árbol que ya pasó CI en `main`, compila con `npm run cf:build`, ejecuta `wrangler deploy` y luego `scripts/cloudflare/smoke.mjs` contra `vars.CLOUDFLARE_URL`. Para publicar, empuja a `cloudflare-prod` un commit de `main` en verde.
+> **Producción actual: Cloudflare Workers.** `https://arenacriolla.com` se despliega desde la rama `cloudflare-prod` con el workflow **Deploy Cloudflare** (`.github/workflows/cloudflare.yml`): solo acepta un árbol que ya pasó CI en `main`, compila con `npm run cf:build`, ejecuta `wrangler deploy` y luego `scripts/cloudflare/smoke.ts` contra `vars.CLOUDFLARE_URL`. Para publicar, empuja a `cloudflare-prod` un commit de `main` en verde.
 >
 > **Retirado:** la rama `prod`, los workflows **Deploy production** y **Prepare production promotion** (desactivados en GitHub) y el servidor Oracle `161.153.114.230` (instancia `t3code-agents`, detenida) ya no son producción. Lo que sigue describe ese montaje anterior con Node/Docker y queda como referencia para alojar el servidor en otro sitio.
 
@@ -21,7 +21,7 @@ La configuración de Docker Compose, proxy y copias de seguridad está en [`depl
 Para comprobar una instancia desplegada:
 
 ```sh
-node scripts/ci/security-smoke.mjs https://arenacriolla.com/
+node scripts/ci/security-smoke.ts https://arenacriolla.com/
 ```
 
 Esta comprobación valida HTTP y WebSocket y crea una partida privada temporal con dos invitados.

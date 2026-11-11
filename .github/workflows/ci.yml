@@ -51,6 +51,11 @@ jobs:
             --jq '[.artifacts[] | select((.expired | not) and .workflow_run.head_repository_id == .workflow_run.repository_id)] | length')
           echo "tree=$tree" >> "$GITHUB_OUTPUT"
           echo "passed=$([ "$passed" -gt 0 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+      # The selector is TypeScript that Node runs directly; no npm ci needed.
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        if: steps.tested.outputs.passed != 'true'
+        with:
+          node-version: 24
       - name: Select checks for the changed files
         id: select
         if: steps.tested.outputs.passed != 'true'
@@ -58,7 +63,7 @@ jobs:
           # A PR compares against its base, a push against the previous main.
           # A manual run without either checks everything.
           BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
-        run: node scripts/ci/select-checks.mjs $BASE
+        run: node scripts/ci/select-checks.ts $BASE
   # The selected checks run as parallel jobs; each one is skipped when not needed.
   unit:
     needs: plan
@@ -168,7 +173,7 @@ jobs:
             kill -0 "$wrangler" 2> /dev/null || { cat wrangler.log; exit 1; }
             sleep 1
           done
-          node scripts/cloudflare/smoke.mjs http://127.0.0.1:8799 || { cat wrangler.log; exit 1; }
+          node scripts/cloudflare/smoke.ts http://127.0.0.1:8799 || { cat wrangler.log; exit 1; }
   # Builds and smoke-tests the image for changes to what it ships.
   image:
     needs: plan

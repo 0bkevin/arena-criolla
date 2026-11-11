@@ -61,4 +61,4 @@ jobs:
         if: vars.CLOUDFLARE_URL != ''
         env:
           CLOUDFLARE_URL: ${{ vars.CLOUDFLARE_URL }}
-        run: node scripts/cloudflare/smoke.mjs "$CLOUDFLARE_URL"
+        run: node scripts/cloudflare/smoke.ts "$CLOUDFLARE_URL"

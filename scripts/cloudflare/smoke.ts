@@ -1,15 +1,15 @@
 // Smoke-test a deployed Arena Criolla: pages, headers, and a full online match
-// start between two WebSocket clients. Usage: node scripts/cloudflare/smoke.mjs <origin>
+// start between two WebSocket clients. Usage: node scripts/cloudflare/smoke.ts <origin>
 import { WebSocket } from "ws";
 
 const origin = (process.argv[2] ?? "http://127.0.0.1:8799").replace(/\/$/, "");
-const fail = (message) => {
+const fail: (message: string) => never = (message) => {
   console.error(`✘ ${message}`);
   process.exit(1);
 };
-const ok = (message) => console.log(`✓ ${message}`);
+const ok = (message: string) => console.log(`✓ ${message}`);
 
-async function get(path, init) {
+async function get(path: string, init?: RequestInit) {
   const response = await fetch(origin + path, { redirect: "manual", ...init });
   return { response, body: await response.text() };
 }
@@ -40,7 +40,7 @@ for (const [path, status] of [
   ["/api/auth/session", 404],
   ["/assets/caracas.webp", 200],
   ["/manifest.webmanifest", 200],
-]) {
+] as const) {
   const { response } = await get(path);
   if (response.status !== status)
     fail(`${path} returned ${response.status}, expected ${status}`);
@@ -56,20 +56,48 @@ ok("routes and status codes");
 }
 
 const wsOrigin = origin.replace(/^http/, "ws");
-function client(name) {
+// Server messages are untrusted input: each wait narrows them by shape.
+type ClientMessage = { type: string; [field: string]: unknown };
+interface RoomMessage {
+  type: "room";
+  room: { code: string; players: unknown[] };
+}
+interface StartMessage {
+  type: "start";
+  state: { id: string };
+}
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null;
+const isArray = (value: unknown): value is unknown[] => Array.isArray(value);
+const isType = <T extends string>(
+  value: unknown,
+  type: T,
+): value is { type: T } & Record<string, unknown> =>
+  isRecord(value) && value.type === type;
+const isRoom = (m: unknown): m is RoomMessage =>
+  isType(m, "room") &&
+  isRecord(m.room) &&
+  typeof m.room.code === "string" &&
+  isArray(m.room.players);
+const isStart = (m: unknown): m is StartMessage =>
+  isType(m, "start") && isRecord(m.state) && typeof m.state.id === "string";
+function client(name: string) {
   const socket = new WebSocket(`${wsOrigin}/ws`, ["arena-v1"], {
     headers: { Origin: origin },
   });
-  const messages = [];
-  const waiters = [];
+  const messages: unknown[] = [];
+  const waiters: ((message: unknown) => boolean)[] = [];
   socket.on("message", (raw) => {
-    const message = JSON.parse(raw.toString());
+    const message: unknown = JSON.parse(raw.toString());
     messages.push(message);
     for (const waiter of waiters.splice(0))
       if (!waiter(message)) waiters.push(waiter);
   });
-  const next = (predicate, label) =>
-    new Promise((resolve, reject) => {
+  const next = <T>(
+    predicate: (message: unknown) => message is T,
+    label: string,
+  ) =>
+    new Promise<T>((resolve, reject) => {
       const found = messages.find(predicate);
       if (found) return resolve(found);
       const timer = setTimeout(
@@ -91,7 +119,7 @@ function client(name) {
     socket,
     next,
     opened,
-    send: (message) => socket.send(JSON.stringify(message)),
+    send: (message: ClientMessage) => socket.send(JSON.stringify(message)),
   };
 }
 
@@ -100,8 +128,12 @@ try {
     b = client("guest");
   await Promise.all([a.opened, b.opened]);
   if (a.socket.protocol !== "arena-v1") fail("subprotocol not negotiated");
-  await a.next((m) => m.type === "welcome" && m.resumeToken, "welcome");
-  await b.next((m) => m.type === "welcome", "welcome");
+  await a.next(
+    (m): m is { type: "welcome" } =>
+      isType(m, "welcome") && Boolean(m.resumeToken),
+    "welcome",
+  );
+  await b.next((m) => isType(m, "welcome"), "welcome");
   a.send({
     type: "create",
     name: "Smoke A",
@@ -110,7 +142,7 @@ try {
     wins: 0,
     private: true,
   });
-  const { room } = await a.next((m) => m.type === "room", "room");
+  const { room } = await a.next(isRoom, "room");
   b.send({
     type: "join",
     code: room.code,
@@ -118,11 +150,14 @@ try {
     fighter: "zavarce",
     wins: 0,
   });
-  await b.next((m) => m.type === "room" && m.room.players.length === 2, "join");
+  await b.next(
+    (m): m is RoomMessage => isRoom(m) && m.room.players.length === 2,
+    "join",
+  );
   a.send({ type: "ready", ready: true });
   b.send({ type: "ready", ready: true });
-  const start = await a.next((m) => m.type === "start", "start");
-  await b.next((m) => m.type === "start", "start");
+  const start = await a.next(isStart, "start");
+  await b.next(isStart, "start");
   const input = {
     left: false,
     right: true,
@@ -131,10 +166,10 @@ try {
     superHeld: false,
     actions: { jump: 0, light: 0, heavy: 0, special: 0, dash: 0, super: 0 },
   };
-  const states = [];
+  const states: number[] = [];
   a.socket.on("message", (raw) => {
-    const message = JSON.parse(raw.toString());
-    if (message.type === "state") states.push(performance.now());
+    const message: unknown = JSON.parse(raw.toString());
+    if (isType(message, "state")) states.push(performance.now());
   });
   const began = performance.now();
   const pump = setInterval(
@@ -147,10 +182,10 @@ try {
   if (rate < 20) fail(`state updates too slow: ${rate.toFixed(1)}/s`);
   ok(`online match running, ${rate.toFixed(1)} state updates/s`);
   a.send({ type: "leave" });
-  await b.next((m) => m.type === "opponent-left", "opponent-left");
+  await b.next((m) => isType(m, "opponent-left"), "opponent-left");
   ok("leave notifies the opponent");
   a.socket.close();
   b.socket.close();
 } catch (error) {
-  fail(error.message);
+  fail(error instanceof Error ? error.message : String(error));
 }

@@ -27,7 +27,7 @@ chown root:root "$account_home/.ssh/authorized_keys"
 install -m 755 deploy/receive-release /usr/local/bin/arena-receive-release
 install -m 755 deploy/install-release.py /usr/local/sbin/arena-install-release
 install -d -m 755 /usr/local/lib/arena-criolla-deploy
-install -m 644 scripts/ci/security-smoke.mjs /usr/local/lib/arena-criolla-deploy/security-smoke.mjs
+install -m 644 scripts/ci/security-smoke.ts /usr/local/lib/arena-criolla-deploy/security-smoke.ts
 install -d -m 700 /var/lib/arena-criolla-deploy
 sudoers=$(mktemp)
 trap 'rm -f "$sudoers"' EXIT

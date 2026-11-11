@@ -15,7 +15,7 @@ import urllib.request
 STATE = Path('/var/lib/arena-criolla-deploy/state.json')
 RELEASE_ENV = Path('/etc/arena-criolla/release.env')
 COMPOSE = Path('/opt/arena-criolla/compose.yaml')
-SMOKE = Path('/usr/local/lib/arena-criolla-deploy/security-smoke.mjs')
+SMOKE = Path('/usr/local/lib/arena-criolla-deploy/security-smoke.ts')
 IMAGE_PREFIX = 'arena-criolla:release-'
 MAX_ARCHIVE_BYTES = 1536 * 1024**2
 
@@ -103,7 +103,7 @@ def health(expected_image=None):
             raise RuntimeError('The running container is not the requested release image.')
     for origin in ('http://127.0.0.1:5173', 'https://arenacriolla.com'):
         with SMOKE.open('rb') as script:
-            run('docker', 'exec', '-i', 'arena-criolla', 'node', '--input-type=module', '-',
+            run('docker', 'exec', '-i', 'arena-criolla', 'node', '--input-type=module-typescript', '-',
                 origin, stdin=script, timeout=90)
 
 

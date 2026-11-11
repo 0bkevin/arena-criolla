@@ -35,13 +35,13 @@ measure elements, not page scroll width.
 - `npm run check:assets`: public combat atlas transparency, complete silhouettes
   and runtime geometry.
 - `npm run build`: type checking and the Vite client build.
-- `node scripts/ci/select-checks.mjs origin/main`: what CI would run for your branch.
+- `node scripts/ci/select-checks.ts origin/main`: what CI would run for your branch.
 - `npm run perf:engine` / `npm run perf:network`: opt-in performance probes.
 - `tests/manual/README.md`: manual fixtures for real browser behavior.
 
 ## CI and delivery
 
-`scripts/ci/select-checks.mjs` reads the diff and selects only what it can affect:
+`scripts/ci/select-checks.ts` reads the diff and selects only what it can affect:
 
 - **Tests:** a test file runs when it, or any file it imports transitively (or
   reads by repository path), changed. Changes to `package.json`, the lockfile,
@@ -53,7 +53,7 @@ measure elements, not page scroll width.
   roster changes, **`npm audit`** for lockfile changes, and the **deploy-control
   tests** for `deploy/` changes.
 - **Worker:** the Cloudflare Worker is built (`npm run cf:build`) and an online
-  match is played against it under `wrangler dev` (`scripts/cloudflare/smoke.mjs`)
+  match is played against it under `wrangler dev` (`scripts/cloudflare/smoke.ts`)
   when the Worker, the shared lobby or the bundled site changes.
 - **Image:** the production Docker image is built and booted (HTTP and WebSocket
   smoke test) when something it ships changes; Trivy scans it when the Dockerfile
