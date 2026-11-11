@@ -75,6 +75,16 @@ testing. Vicente's courier has a low per-contact value but repeated contacts and
 control; Lele's special did not connect in the audit setup. Neither is evidence
 for a blanket increase.
 
+María Corina's caravan now offers four strikes, each one quarter of its
+27.24 HP budget against armor 1, rather than one full hit. Its supporters do
+not deal damage, and guarded strikes count toward the four-strike limit. At
+armor 1 the full ride and formula-only light-light-heavy total 51.85 HP. No
+damage adjustment was needed. In stationary trials on Caracas and Guaira, four
+strikes landed for the same total as the former single strike, but their
+repeated launches caused ring-outs from two farther-right starting positions
+where the old hit did not. This warrants edge and recovery play-testing; the
+trials do not establish a general ring-out rate.
+
 ## Measurement and limitations
 
 Run `npm run balance:report`; set `BALANCE_JSON=path` to save the structured
@@ -105,12 +115,21 @@ the cast medians. Baseline and final each cover 12,320 matches.
 
 | Measure                       | Before                        | After                         |
 | ----------------------------- | ----------------------------- | ----------------------------- |
-| Median seconds per 100 HP     | 24.22                         | 29.91 (+23.5%)                |
-| Median landed hits per 100 HP | 8.17                          | 9.79                          |
+| Median seconds per 100 HP     | 24.22                         | 29.94 (+23.6%)                |
+| Median landed hits per 100 HP | 8.17                          | 9.84                          |
 | Largest single HP drop        | George 43.64                  | George 30.54                  |
 | Largest three-second burst    | Maite 74.23                   | Edgar 64.37                   |
 | Fighter win-rate range        | Dorángel 30.45%–Amanda 82.95% | Dorángel 35.68%–Amanda 85.23% |
-| HP KOs / ring-outs            | 4,768 / 29,912                | 2,537 / 32,212                |
+| HP KOs / ring-outs            | 4,768 / 29,912                | 2,530 / 32,221                |
+
+After the caravan merge, María Corina's Caracas results changed from 32.32 to
+32.33 seconds and 9.65 to 9.93 hits per 100 HP, 28.34 to 14.77 largest HP
+drop, 46.38 to 40.63 maximum burst, and 43.86% to 45.23% wins. Her own stock
+losses were 519 / 538 ring-outs before and 538 / 548 after; those figures are
+not ring-outs she caused. Emilio lost three wins and Maite two; Lionza, Tío
+Tigre and Carolina changed by one win each, out of 440 games. These
+deterministic CPU results are not a causal estimate of the caravan's
+competitive effect.
 
 The hit count falls slightly short of the approximate 10–11 target. Edgar's
 64.37 burst exceeds the 55 target, though it is below the old maximum; Amanda
@@ -118,7 +137,7 @@ reaches 56.12. The harness does not distinguish counters from ordinary special
 contacts, but the counter users' special shares are 58.80% and 53.06% of
 outgoing HP loss respectively. Edgar's observed burst went from 71.07 to 64.37
 and his rate from 17.33 to 21.35 seconds per 100 HP. Their fast rates remain
-below 75% of the 29.91-second median: Amanda 19.62 and Edgar 21.35. Dayana is
+below 75% of the 29.94-second median: Amanda 19.62 and Edgar 21.35. Dayana is
 just above the 125% boundary at 37.51, with 38.18% wins. This is a measured CPU
 cadence and contact-rate exception rather than proof of excessive per-hit
 damage: Dayana's static heavy and special are 9.78 and 14.10 against armor 1.
@@ -133,7 +152,7 @@ counter frequency, counterplay, movement and edge recovery separately instead of
 compensating with more damage reductions. The rate and win-rate ranges are
 proxies, not a validated competitive tier list.
 
-A separate full Guaira run gives 29.43 seconds and 9.76 hits per 100 HP, a 31.15
+A separate full Guaira run gives 29.47 seconds and 9.82 hits per 100 HP, a 31.15
 largest drop (George), and a 59.25 burst (Diablo). The win range is Juan
 33.41%–Amanda 88.41%; Edgar is 71.36%. Amanda and Edgar remain the only fighters
 outside the 25% damage-rate band there. Juan's 31.36 seconds is within that
