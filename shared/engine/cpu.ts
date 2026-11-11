@@ -4,7 +4,7 @@ import { SUPER_ENERGY_COST, fighterById } from "../roster/roster";
 import { arenaFinaleInRange, isArenaFinalist } from "./finales/arena-finales";
 import { finaleById } from "./finales/finales";
 import { TECHNIQUES } from "./techniques";
-import type { Input, MatchState } from "./types";
+import type { Input, MatchState, PlayerState } from "./types";
 
 export function cpuInput(
   s: MatchState,
@@ -86,19 +86,7 @@ export function cpuInput(
     difficulty === "hard" &&
     !p.superUsed &&
     p.energy >= SUPER_ENERGY_COST &&
-    (finaleById(p.config.fighter)?.mode === "field"
-      ? !s.fieldFinales?.some((field) => field.owner === 1) &&
-        (isArenaFinalist(p.config.fighter)
-          ? arenaFinaleInRange(p, other)
-          : (p.config.fighter !== "dayana" || p.grounded) && Math.abs(dx) < 520)
-      : finaleById(p.config.fighter)?.mode === "transformation"
-        ? !p.transformation
-        : finaleById(p.config.fighter)?.mode === "projectile"
-          ? Math.abs(dx) <
-              finaleById(p.config.fighter)!.projectile!.speed *
-                (finaleById(p.config.fighter)!.projectile!.life - 1) &&
-            Math.abs(other.y - p.y) < 100
-          : Math.abs(dx) < 210) &&
+    definitiveInReach(s, p, other, dx) &&
     s.tick % 90 === 0
   ) {
     next.actions.super++;
@@ -106,4 +94,31 @@ export function cpuInput(
     next.block = false;
   }
   return next;
+}
+
+/** Whether the CPU's definitive would reach its rival from where it stands. */
+function definitiveInReach(
+  s: MatchState,
+  p: PlayerState,
+  other: PlayerState,
+  dx: number,
+): boolean {
+  const finale = finaleById(p.config.fighter);
+  if (finale?.mode === "field")
+    return (
+      !s.fieldFinales?.some((field) => field.owner === 1) &&
+      (isArenaFinalist(p.config.fighter)
+        ? arenaFinaleInRange(p, other)
+        : (p.config.fighter !== "dayana" || p.grounded) && Math.abs(dx) < 520)
+    );
+  if (finale?.mode === "transformation") return !p.transformation;
+  if (finale?.mode === "projectile") {
+    const shot = finale.projectile;
+    return (
+      shot !== undefined &&
+      Math.abs(dx) < shot.speed * (shot.life - 1) &&
+      Math.abs(other.y - p.y) < 100
+    );
+  }
+  return Math.abs(dx) < 210;
 }
