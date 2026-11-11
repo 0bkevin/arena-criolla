@@ -1,6 +1,6 @@
 import test from "node:test";
-import { SUPER_DAMAGE, SUPER_BONUS } from "../../shared/engine/damage-values";
 import assert from "node:assert/strict";
+import { SUPER_DAMAGE, SUPER_BONUS } from "../../shared/engine/damage-values";
 import {
   fighterById,
   platformsAtTick,
@@ -412,4 +412,14 @@ test("exact lethal thresholds resolve without floating-point survivors, while a 
         if (margin > 0) close(r.target.hp, margin);
         else assert.equal(r.state.winner, side);
       }
+});
+
+test("capture release clears earlier dash immunity", () => {
+  const r = setup();
+  r.start();
+  assert.ok(r.state.finale);
+  r.target.invincible = r.target.dashOnlyInvincible = 8;
+  while (r.state.finale) r.advance(1);
+  assert.equal(r.target.invincible, 12);
+  assert.equal(r.target.dashOnlyInvincible, 0);
 });

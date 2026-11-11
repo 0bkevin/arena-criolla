@@ -65,6 +65,48 @@ for (const id of ["mcm", "simon", "bolivar"] as const) {
   });
 }
 
+// Start a real dash while the ride is approaching; these timings put a
+// contact inside the dash immunity window for each formation.
+for (const [id, gap, delay, strikes] of [
+  ["bolivar", 120, 11, 7],
+  ["gomez", 120, 30, 3],
+  ["gomez", 120, 11, 3],
+  ["lorenzo", 120, 30, 3],
+  ["lorenzo", 120, 11, 3],
+  ["mcm", 120, 30, 4],
+  ["zavarce", 180, 4, 7],
+  ["simon", 120, 20, 3],
+] as const) {
+  test(`${id}: approaching ride contacts a dashing rival at delay ${delay}`, () => {
+    const state = match(id),
+      [source, target] = state.players;
+    target.x = WORLD.right - 300;
+    source.x = target.x - gap;
+    const inputs: [Input, Input] = [emptyInput(), emptyInput()];
+    inputs[0].actions.super++;
+    let start = -1,
+      dashed = false;
+    for (let t = 0; t < 360; t++) {
+      inputs[1].left = inputs[1].right = false;
+      if (start < 0 && state.fieldFinales?.length) start = t;
+      if (
+        !dashed &&
+        start >= 0 &&
+        t >= start + delay &&
+        !target.cooldown &&
+        !target.stun
+      ) {
+        inputs[1].left = true;
+        inputs[1].actions.dash++;
+        dashed = true;
+      }
+      stepMatch(state, inputs);
+    }
+    assert.ok(dashed);
+    assert.equal(source.hits, strikes);
+  });
+}
+
 test("dash immunity remains for ordinary hits and other protection still blocks rides", () => {
   const state = match("mcm"),
     target = state.players[1];
@@ -123,4 +165,61 @@ test("ride immunity changes only after overlapping protection expires", () => {
     tickInvincibility(target);
   }
   assert.equal(hit(), true);
+});
+
+test("a ride hit replaces dash-only immunity with post-hit protection", () => {
+  const state = match("mcm"),
+    target = state.players[1];
+  const inputs: [Input, Input] = [emptyInput(), emptyInput()];
+  inputs[0].actions.super++;
+  let hit = false;
+  for (let tick = 0; tick < 200 && !hit; tick++) {
+    // Keep the target in the dash-only window when the real ride arrives.
+    target.invincible = target.dashOnlyInvincible = 8;
+    stepMatch(state, inputs);
+    hit = target.hp < 100;
+  }
+  assert.ok(hit);
+  assert.equal(target.dashOnlyInvincible, 0);
+  assert.ok(target.invincible > 0);
+});
+
+test("stock loss clears dash-only immunity on respawn", () => {
+  const state = match("mcm"),
+    target = state.players[1];
+  target.invincible = target.dashOnlyInvincible = 8;
+  target.hp = 0;
+  stepMatch(state, [emptyInput(), emptyInput()]);
+  assert.equal(target.stocks, 1);
+  assert.equal(target.dashOnlyInvincible, 0);
+  assert.ok(target.invincible > 8);
+});
+
+test("a blink grants protection even when dash immunity overlaps it", () => {
+  const state = match("sayona"),
+    source = state.players[0];
+  const inputs: [Input, Input] = [emptyInput(), emptyInput()];
+  inputs[0].actions.special++;
+  const start = source.x;
+  for (let tick = 0; tick < 40 && source.x === start; tick++) {
+    source.invincible = source.dashOnlyInvincible = 8;
+    stepMatch(state, inputs);
+  }
+  assert.notEqual(source.x, start);
+  assert.ok(source.invincible > source.dashOnlyInvincible);
+});
+
+test("a technique dash preserves longer non-dash protection", () => {
+  const state = match("carlos"),
+    source = state.players[0];
+  const inputs: [Input, Input] = [emptyInput(), emptyInput()];
+  inputs[0].actions.special++;
+  for (let tick = 0; tick < 40 && !source.dash; tick++) {
+    source.invincible = 20;
+    source.dashOnlyInvincible = 0;
+    stepMatch(state, inputs);
+  }
+  assert.ok(source.dash > 0);
+  assert.ok(source.invincible > 8);
+  assert.equal(source.dashOnlyInvincible, 0);
 });

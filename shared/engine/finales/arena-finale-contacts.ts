@@ -7,6 +7,7 @@ import { opponentOf } from "../types";
 import {
   ARENA_FINALE_CUES,
   RIDE_STUN_FLOOR,
+  SIMON_RIDE_STUN_FLOOR,
   isRideHelper,
   arenaActorForce,
   activeArenaPerformance,
@@ -52,9 +53,11 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
       y: number,
       direction = field.direction,
       actor?: ArenaFinaleActor,
-      rootTicks?: number,
-      stunFloor?: number,
-      ignoresDashInvincibility?: boolean,
+      options: {
+        rootTicks?: number | undefined;
+        stunFloor?: number | undefined;
+        ignoresDashInvincibility?: boolean;
+      } = {},
     ) =>
       contacts.push({
         field,
@@ -65,9 +68,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
         direction,
         x,
         y,
-        rootTicks,
-        stunFloor,
-        ignoresDashInvincibility,
+        ...options,
       });
     if (
       field.fighter === "dorangel" &&
@@ -118,9 +119,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
             ? -field.direction
             : field.direction,
           undefined,
-          undefined,
-          RIDE_STUN_FLOOR,
-          true,
+          { stunFloor: RIDE_STUN_FLOOR, ignoresDashInvincibility: true },
         );
     }
     for (const actor of field.actors ?? []) {
@@ -197,9 +196,15 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
           target.y - 70,
           actor.direction,
           actor,
-          actor.kind === "handchain" ? 25 : undefined,
-          isRideHelper(field.fighter, actor.kind) ? RIDE_STUN_FLOOR : undefined,
-          isRideHelper(field.fighter, actor.kind),
+          {
+            rootTicks: actor.kind === "handchain" ? 25 : undefined,
+            stunFloor: isRideHelper(field.fighter, actor.kind)
+              ? field.fighter === "simon"
+                ? SIMON_RIDE_STUN_FLOOR
+                : RIDE_STUN_FLOOR
+              : undefined,
+            ignoresDashInvincibility: isRideHelper(field.fighter, actor.kind),
+          },
         );
     }
     if (!active) continue;
@@ -221,7 +226,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
         target.y - 90,
         field.direction,
         undefined,
-        field.tick === 20 ? 14 : undefined,
+        { rootTicks: field.tick === 20 ? 14 : undefined },
       );
     if (field.fighter === "chataing") {
       const x = field.caught?.x ?? field.x + field.direction * 105,
@@ -239,7 +244,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
           target.y - 80,
           field.direction,
           undefined,
-          field.tick < 44 ? 20 : undefined,
+          { rootTicks: field.tick < 44 ? 20 : undefined },
         );
     }
     if (
@@ -254,7 +259,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
         target.y - 75,
         field.direction,
         undefined,
-        field.tick === 18 ? 22 : undefined,
+        { rootTicks: field.tick === 18 ? 22 : undefined },
       );
   }
   return contacts;

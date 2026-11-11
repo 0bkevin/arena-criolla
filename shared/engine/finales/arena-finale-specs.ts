@@ -230,10 +230,10 @@ export const MOUNT_STRIKES: Record<RiddenFinalist, MountStrike> = {
 
 /** Force for the mounted or vehicle helpers in each driving finale. */
 const RIDE_HELPER_FORCE = {
-  bolivar: { force: 1.5, kinds: ["horse", "truck", "courier"] },
-  gomez: { force: 1.5, kinds: ["horse", "truck", "courier"] },
-  lorenzo: { force: 1.5, kinds: ["horse", "truck", "courier"] },
-  zavarce: { force: 1.5, kinds: ["horse", "truck", "courier"] },
+  bolivar: { force: 1.5, kinds: ["horse"] },
+  gomez: { force: 1.5, kinds: ["horse"] },
+  lorenzo: { force: 1.5, kinds: ["truck"] },
+  zavarce: { force: 1.5, kinds: ["courier"] },
   simon: { force: 1.5, kinds: ["woodhorse"] },
 } as const satisfies Partial<
   Record<
@@ -246,6 +246,12 @@ const DEFAULT_ACTOR_FORCE = 4.5;
 
 /** The old ride force gave 17 ticks of stun; retain it with lighter pushback. */
 export const RIDE_STUN_FLOOR = launchStun(DEFAULT_ACTOR_FORCE);
+
+/** Woodhorses meet a moving rival later than their spawn cadence. */
+export const SIMON_RIDE_STUN_FLOOR = Math.max(
+  RIDE_STUN_FLOOR,
+  ARENA_FINALE_CUES.simon[1]! - ARENA_FINALE_CUES.simon[0]! + 10,
+);
 
 export function isRideHelper(
   fighter: FighterId,

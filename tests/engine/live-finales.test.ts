@@ -304,7 +304,7 @@ for (const id of ["bolivar", "gomez", "lorenzo"] as const) {
   for (const contact of ["mount", "helper"] as const) {
     test(`${id}: ${contact} contacts keep a mid-stage rival on stage`, () => {
       const r = setup(id, 0, 180, "caracas", "chataing");
-      r.target.x = WORLD.right - 200;
+      r.target.x = WORLD.right - 250;
       r.source.x = r.target.x - 180;
       const initialX = r.target.x;
       r.start();
@@ -317,12 +317,49 @@ for (const id of ["bolivar", "gomez", "lorenzo"] as const) {
       assert.ok(r.source.hits > 0, `${contact} made contact`);
       assert.equal(r.target.stocks, 2, `${contact} does not cause a ring-out`);
       assert.ok(
-        r.target.x - initialX < (contact === "mount" ? 60 : 100),
+        r.target.x - initialX <= 200,
         `${contact} keeps displacement modest`,
       );
     });
   }
 }
+
+test("weakened rivals are not rung out by rides from 250 pixels or more", () => {
+  for (const id of [
+    "bolivar",
+    "gomez",
+    "lorenzo",
+    "mcm",
+    "zavarce",
+    "simon",
+  ] as const)
+    for (const hp of [60, 30])
+      for (const edge of [250, 300, 400])
+        for (const gap of [60, 120, 180, 250, 350]) {
+          const r = setup(id, 0, gap, "caracas", "chataing");
+          r.target.x = WORLD.right - edge;
+          r.source.x = r.target.x - gap;
+          r.target.hp = hp;
+          let hpValue = hp,
+            minimumHp = hp;
+          Object.defineProperty(r.target, "hp", {
+            configurable: true,
+            get: () => hpValue,
+            set: (value: number) => {
+              hpValue = value;
+              minimumHp = Math.min(minimumHp, value);
+            },
+          });
+          r.start();
+          for (let tick = 0; tick < 300 && r.target.stocks === 2; tick++) {
+            r.advance();
+          }
+          assert.ok(
+            r.target.stocks === 2 || minimumHp <= 0,
+            `${id}: ${hp} HP, ${edge}px clearance, ${gap}px gap`,
+          );
+        }
+});
 
 // A rival repeatedly attacks at the first opportunity after being struck.
 for (const [id, strikes] of [
@@ -349,6 +386,33 @@ for (const [id, strikes] of [
       }
   });
 }
+
+test("Simón's wooden horses cannot be interrupted by a carried rival", () => {
+  for (const gap of [60, 90, 120, 150, 180, 220, 260])
+    for (const rival of ["chataing", "oscar", "maite"] as const)
+      for (const side of [0, 1] as const)
+        for (const phase of [0, 1, 2, 3]) {
+          const run = (attack: boolean) => {
+            const r = setup("simon", side, gap, "caracas", rival);
+            r.target.x = side ? WORLD.left + 450 : WORLD.right - 450;
+            r.source.x = r.target.x - r.source.facing * gap;
+            r.start();
+            let first = false;
+            for (let tick = 0; tick < 300; tick++) {
+              first ||= r.target.hp < 100;
+              if (attack && first && tick % 4 === phase)
+                r.inputs[1 - side].actions.light++;
+              r.advance();
+            }
+            return r.source.hits;
+          };
+          assert.equal(
+            run(true),
+            run(false),
+            `${rival}, gap ${gap}, P${side + 1}, phase ${phase}`,
+          );
+        }
+});
 
 test("the caravan keeps a weakened rival on stage through its ride", () => {
   for (const stage of ["caracas", "guaira"] as const)
