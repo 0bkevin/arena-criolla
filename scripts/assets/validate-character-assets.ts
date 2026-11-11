@@ -1,10 +1,44 @@
 import sharp from "sharp";
 import { readFile } from "node:fs/promises";
 
-const geometry = JSON.parse(
+interface Bounds {
+  minX: number;
+  minY: number;
+  maxX: number;
+  maxY: number;
+}
+interface Component extends Bounds {
+  pixels: number;
+}
+interface SpriteGeometry {
+  sprites: {
+    id: string;
+    files: {
+      file: string;
+      width: number;
+      height: number;
+      components: Bounds[];
+    }[];
+  }[];
+}
+interface RosterEntry {
+  id: string;
+  sprite: string;
+}
+interface AtlasResult {
+  file: string;
+  width: number;
+  height: number;
+  transparentFraction: number;
+  components: Component[];
+  rows: number[];
+  passed: boolean;
+}
+
+const geometry: SpriteGeometry = JSON.parse(
   await readFile("src/game/assets/manifests/sprite-geometry.json", "utf8"),
 );
-const roster = JSON.parse(
+const roster: RosterEntry[] = JSON.parse(
   await readFile("shared/roster/fighters.json", "utf8"),
 );
 const requested = process.argv.indexOf("--sprite");
@@ -15,9 +49,8 @@ const fighters =
         [id, sprite].includes(process.argv[requested + 1]),
       );
 if (!fighters.length) throw new Error("Unknown fighter or sprite");
-const sprites = [];
 for (const { id, sprite } of fighters) {
-  const results = [];
+  const results: AtlasResult[] = [];
   for (const file of [`public/assets/${sprite}.webp`]) {
     const { data, info } = await sharp(file)
       .ensureAlpha()
@@ -26,7 +59,7 @@ for (const { id, sprite } of fighters) {
     const { width, height, channels } = info;
     const seen = new Uint8Array(width * height);
     const queue = new Int32Array(seen.length);
-    const components = [];
+    const components: Component[] = [];
     let transparent = 0;
     for (let pixel = 0; pixel < seen.length; pixel++) {
       if (data[pixel * channels + 3] === 0) transparent++;
@@ -78,7 +111,7 @@ for (const { id, sprite } of fighters) {
         (c) =>
           c.minX > 0 && c.minY > 0 && c.maxX < width - 1 && c.maxY < height - 1,
       );
-    const result = {
+    const result: AtlasResult = {
       file,
       width,
       height,

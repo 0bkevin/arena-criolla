@@ -2,31 +2,70 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import {
-  decodedImage,
-  assertIdenticalImage,
-} from "./audit-lossless-assets.mjs";
+import { decodedImage, assertIdenticalImage } from "./audit-lossless-assets";
 
-const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
+/** Fields an applied audit row must carry; other rows are skipped below. */
+interface ApplicableRow {
+  file: string;
+  candidateFile: string;
+  savedBytes: number;
+  selectedSha256: string;
+  sourceSha256: string;
+}
+interface AssetVariants {
+  assets: Record<string, unknown>;
+}
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null;
+// The report path is supplied on the command line, so check each row's shape.
+function applicableRow(row: unknown): ApplicableRow | null {
+  if (!isRecord(row)) throw Error("Audit rows must be objects");
+  if (
+    !row.candidateFile ||
+    !(typeof row.savedBytes === "number" && row.savedBytes > 0)
+  )
+    return null;
+  const { file, candidateFile, savedBytes, selectedSha256, sourceSha256 } = row;
+  if (
+    typeof file !== "string" ||
+    typeof candidateFile !== "string" ||
+    typeof selectedSha256 !== "string" ||
+    typeof sourceSha256 !== "string"
+  )
+    throw Error(`Malformed audit row: ${String(file)}`);
+  return { file, candidateFile, savedBytes, selectedSha256, sourceSha256 };
+}
+function reportRows(report: unknown): unknown[] {
+  if (!isRecord(report) || !Array.isArray(report.assets))
+    throw Error("Audit report must contain an assets array");
+  return report.assets;
+}
+
+const digest = (bytes: Buffer) =>
+  createHash("sha256").update(bytes).digest("hex");
 
 /** Recheck exact pixels/metadata before replacing a larger runtime encoding. */
-export async function applyLosslessAssets(reportFile) {
+export async function applyLosslessAssets(
+  reportFile: string,
+): Promise<{ applied: number; savedBytes: number }> {
   const input = await fs.readFile(reportFile, "utf8");
-  const rows = reportFile.endsWith(".jsonl")
+  const rows: unknown[] = reportFile.endsWith(".jsonl")
     ? input
         .trim()
         .split("\n")
         .filter(Boolean)
-        .map((line) => JSON.parse(line))
-    : JSON.parse(input).assets;
-  const variants = JSON.parse(
+        .map((line): unknown => JSON.parse(line))
+    : reportRows(JSON.parse(input));
+  const variants: AssetVariants = JSON.parse(
     await fs.readFile("server/asset-variants.json", "utf8"),
   );
   const publicRoot = path.resolve("public");
   let applied = 0,
     savedBytes = 0;
-  for (const row of rows) {
-    if (!row.candidateFile || !(row.savedBytes > 0)) continue;
+  for (const entry of rows) {
+    const row = applicableRow(entry);
+    if (!row) continue;
     const source = path.resolve(row.file);
     if (path.dirname(source) !== path.join(publicRoot, "assets"))
       throw Error(`Expected a top-level public asset: ${row.file}`);

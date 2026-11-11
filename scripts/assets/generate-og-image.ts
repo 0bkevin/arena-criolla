@@ -1,12 +1,39 @@
 import sharp from "sharp";
 import { readFile, writeFile } from "node:fs/promises";
 
+interface Bounds {
+  minX: number;
+  minY: number;
+  maxX: number;
+  maxY: number;
+}
+interface SpriteGeometry {
+  sprites: { id: string; files: { file: string; components: Bounds[] }[] }[];
+}
+interface RosterEntry {
+  id: string;
+  sprite: string;
+}
+interface CastEntry {
+  id: string;
+  center: number;
+  top: number;
+  height: number;
+  mirror?: boolean;
+  pose?: number;
+}
+interface Layer {
+  input: Buffer;
+  left: number;
+  top: number;
+}
+
 // Reuse the lobby's current artwork, typography and palette for the social cover.
 // Run `npm run assets:og` to rebuild the social JPEG from the current source art.
 const width = 1200;
 const height = 630;
 const theme = await readFile("src/styles/arcade-theme.css", "utf8");
-function themeColor(token) {
+function themeColor(token: string) {
   const color = theme.match(
     new RegExp(`--${token}:\\s*(#[\\da-f]{6})\\s*;`, "i"),
   )?.[1];
@@ -17,19 +44,19 @@ const navy = themeColor("bg");
 const cream = themeColor("paper");
 const yellow = themeColor("coin");
 const red = themeColor("vz-red");
-const manifest = JSON.parse(
+const manifest: SpriteGeometry = JSON.parse(
   await readFile("src/game/assets/manifests/sprite-geometry.json", "utf8"),
 );
-const fighters = JSON.parse(
+const fighters: RosterEntry[] = JSON.parse(
   await readFile("shared/roster/fighters.json", "utf8"),
 );
-const svg = (body) =>
+const svg = (body: string) =>
   Buffer.from(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${body}</svg>`,
   );
-const layers = [];
+const layers: Layer[] = [];
 
-async function textImage(value, size, color) {
+async function textImage(value: string, size: number, color: string) {
   return sharp({
     text: {
       text: `<span foreground="${color}">${value}</span>`,
@@ -43,12 +70,20 @@ async function textImage(value, size, color) {
     .toBuffer();
 }
 
-async function fighter(id, center, top, bodyHeight, mirror = false, pose = 0) {
+async function fighter(
+  id: string,
+  center: number,
+  top: number,
+  bodyHeight: number,
+  mirror = false,
+  pose = 0,
+): Promise<Layer> {
   top = Math.round(top);
-  const file = fighters.find((entry) => entry.id === id).sprite;
+  // Every id below is in fighters.json and sprite-geometry.json.
+  const file = fighters.find((entry) => entry.id === id)!.sprite;
   const bounds = manifest.sprites
-    .find((sprite) => sprite.id === id)
-    .files.find((entry) => entry.file === `public/assets/${file}.webp`)
+    .find((sprite) => sprite.id === id)!
+    .files.find((entry) => entry.file === `public/assets/${file}.webp`)!
     .components[pose];
   const frame = await sharp(`public/assets/${file}.webp`)
     .extract({
@@ -88,7 +123,7 @@ async function fighter(id, center, top, bodyHeight, mirror = false, pose = 0) {
     })
     .png()
     .toBuffer();
-  const layer = { input, left: Math.max(0, left), top };
+  const layer: Layer = { input, left: Math.max(0, left), top };
   layers.push(layer);
   return layer;
 }
@@ -123,7 +158,7 @@ layers.push({
 // That artwork had outgrown the old sixteen-fighter generator. Keep its founders,
 // entertainers and folklore cast together, and include Bolívar without Danny Ocean.
 // Resolve filenames through fighters.json so future sprite updates carry over.
-const back = [
+const back: CastEntry[] = [
   { id: "silbon", center: 38, top: 113, height: 410 },
   { id: "enrique", center: 161, top: 94, height: 425 },
   { id: "maite", center: 284, top: 86, height: 425 },
@@ -135,7 +170,7 @@ const back = [
   { id: "jesus", center: 1030, top: 93, height: 420, mirror: true },
   { id: "lionza", center: 1151, top: 103, height: 420, mirror: true },
 ];
-const front = [
+const front: CastEntry[] = [
   { id: "vallenilla", center: 46, top: 263, height: 450 },
   { id: "giuseppe", center: 189, top: 250, height: 450 },
   { id: "oscar", center: 327, top: 239, height: 450 },
@@ -146,7 +181,7 @@ const front = [
   { id: "zavarce", center: 1012, top: 254, height: 450, mirror: true },
   { id: "tiotigre", center: 1148, top: 252, height: 450, mirror: true },
 ];
-const titleOverlaps = [];
+const titleOverlaps: Layer[] = [];
 for (const entry of [...back, ...front]) {
   const layer = await fighter(
     entry.id,
@@ -212,7 +247,12 @@ const criolla = await textImage("CRIOLLA", titleSize, yellow);
 const arenaWidth = (await sharp(arena).metadata()).width;
 const criollaWidth = (await sharp(criolla).metadata()).width;
 const titleLeft = Math.round((width - arenaWidth - criollaWidth - 22) / 2);
-async function titleWord(value, input, left, edgeColor) {
+async function titleWord(
+  value: string,
+  input: Buffer,
+  left: number,
+  edgeColor: string,
+) {
   const shadow = await textImage(value, titleSize, "#030a12");
   layers.push({
     input: await sharp(shadow)

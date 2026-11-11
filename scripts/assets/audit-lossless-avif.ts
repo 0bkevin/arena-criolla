@@ -7,11 +7,124 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { pathToFileURL, fileURLToPath } from "node:url";
 import sharp from "sharp";
-import { sourceFiles } from "./audit-lossless-assets.mjs";
+import type { AvifOptions, Metadata, OutputInfo } from "sharp";
+import { sourceFiles } from "./audit-lossless-assets";
+
+interface Decoded {
+  metadata: Metadata;
+  data: Buffer;
+  info: OutputInfo;
+  ms: number;
+}
+interface ImageSemantics {
+  width: number;
+  height: number;
+  channels: number;
+  space: string;
+  depth: string;
+  bitsPerSample: number;
+  orientation: number;
+  pages: number;
+  pageHeight: number;
+  loop: number | null;
+  delay: number[] | null;
+  iccSha256: string | null;
+  exifSha256: string | null;
+  xmpSha256: string | null;
+}
+interface ImageComparison {
+  exactRgba: boolean;
+  exactSemantics: boolean;
+  accepted: boolean;
+  beforeRgbaSha256: string;
+  afterRgbaSha256: string;
+  metadataDifferences: string[];
+  beforeSemantics: ImageSemantics;
+  afterSemantics: ImageSemantics;
+  differingPixels: number;
+  differingVisiblePixels: number;
+  differingInvisiblePixels: number;
+  differingAlphaPixels: number;
+  differingChannels: number;
+  maximumChannelDifference: number;
+  rejection: string | null;
+}
+type CandidateOptions = Readonly<AvifOptions> | readonly string[];
+interface EncodedCandidate extends ImageComparison {
+  encoder?: string;
+  options: CandidateOptions;
+  bytes: number;
+  sha256: string;
+  encodeMs: number;
+  decodeMs: number;
+  smaller: boolean;
+  savingBytes: number;
+  candidateFile?: string;
+  intermediatePngRgbaExact?: boolean;
+  encoderWarnings?: string | null;
+}
+interface FailedCandidate {
+  encoder: string;
+  options: CandidateOptions;
+  accepted: false;
+  rejection: string;
+  sha256?: undefined;
+  candidateFile?: undefined;
+}
+type AvifCandidate = EncodedCandidate | FailedCandidate;
+interface AvifAuditRow {
+  file: string;
+  originalBytes: number;
+  sourceSha256: string;
+  sourceDecodeMs: number;
+  sourceSemantics: ImageSemantics;
+  candidates: AvifCandidate[];
+  decision?: string;
+  bestExactCandidate?: string | null;
+  bestExactBytes?: number | null;
+  savedBytesIfSelected?: number;
+  checkpointPolicy?: string;
+}
+interface AvifAuditOptions {
+  directory?: string;
+  output?: string;
+  candidateDirectory?: string | undefined;
+  workers?: number;
+  fallback?: string;
+  limit?: number | undefined;
+}
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null;
+const errorMessage = (error: unknown) =>
+  error instanceof Error ? error.message : String(error);
+const isErrorCode = (error: unknown, code: string) =>
+  error instanceof Error && "code" in error && error.code === code;
+const isOptionalString = (value: unknown) =>
+  value === undefined || typeof value === "string";
+// Checkpoint lines come from disk; only rows with the fields reuse depends on load.
+function isCheckpointRow(value: unknown): value is AvifAuditRow {
+  return (
+    isRecord(value) &&
+    typeof value.file === "string" &&
+    typeof value.sourceSha256 === "string" &&
+    typeof value.checkpointPolicy === "string" &&
+    typeof value.originalBytes === "number" &&
+    (value.candidates === undefined ||
+      (Array.isArray(value.candidates) &&
+        value.candidates.every(
+          (candidate: unknown) =>
+            isRecord(candidate) &&
+            isOptionalString(candidate.candidateFile) &&
+            isOptionalString(candidate.sha256),
+        )))
+  );
+}
 
 const runFile = promisify(execFile);
-const sha256 = (value) => createHash("sha256").update(value).digest("hex");
-const rounded = (value) => Math.round(value * 100) / 100;
+const sha256 = (value: Buffer) =>
+  createHash("sha256").update(value).digest("hex");
+const rounded = (value: number) => Math.round(value * 100) / 100;
 const sharpOptions = Object.freeze({
   lossless: true,
   chromaSubsampling: "4:4:4",
@@ -34,13 +147,13 @@ const avifencOptions = Object.freeze([
   "1",
 ]);
 
-async function imageFiles(directory) {
+async function imageFiles(directory: string): Promise<string[]> {
   return (await sourceFiles(directory)).filter((file) =>
     /\.(webp|png|avif)$/i.test(file),
   );
 }
 
-async function decode(bytes) {
+async function decode(bytes: Buffer): Promise<Decoded> {
   const started = performance.now();
   const metadata = await sharp(bytes).metadata();
   const { data, info } = await sharp(bytes)
@@ -52,7 +165,7 @@ async function decode(bytes) {
 
 // Metadata shape is container-dependent: one PNG/WebP can omit pages/pageHeight,
 // while an equivalent single-image HEIF reports pages:1/pageHeight:height.
-function imageSemantics(image) {
+function imageSemantics(image: Decoded): ImageSemantics {
   const m = image.metadata;
   const pages = m.pages ?? 1;
   return {
@@ -73,12 +186,16 @@ function imageSemantics(image) {
   };
 }
 
-export function compareImages(before, after) {
+export function compareImages(
+  before: Decoded,
+  after: Decoded,
+): ImageComparison {
   const a = imageSemantics(before),
     b = imageSemantics(after);
-  const metadataDifferences = Object.keys(a).filter(
-    (key) => JSON.stringify(a[key]) !== JSON.stringify(b[key]),
-  );
+  // Both objects come from imageSemantics(), so their keys are exactly these.
+  const metadataDifferences = (
+    Object.keys(a) as (keyof ImageSemantics)[]
+  ).filter((key) => JSON.stringify(a[key]) !== JSON.stringify(b[key]));
   let differingPixels = 0,
     differingVisiblePixels = 0,
     differingInvisiblePixels = 0;
@@ -144,7 +261,13 @@ export function compareImages(before, after) {
   };
 }
 
-async function candidateRecord(before, originalBytes, bytes, options, started) {
+async function candidateRecord(
+  before: Decoded,
+  originalBytes: number,
+  bytes: Buffer,
+  options: CandidateOptions,
+  started: number,
+): Promise<EncodedCandidate> {
   const encodeMs = rounded(performance.now() - started);
   const after = await decode(bytes);
   const proof = compareImages(before, after);
@@ -160,11 +283,18 @@ async function candidateRecord(before, originalBytes, bytes, options, started) {
   };
 }
 
-async function auditOne(file, { candidateDirectory, fallback, avifenc }) {
+async function auditOne(
+  file: string,
+  {
+    candidateDirectory,
+    fallback,
+    avifenc,
+  }: { candidateDirectory: string; fallback: string; avifenc: string | null },
+): Promise<AvifAuditRow> {
   const bytes = await fs.readFile(file),
     before = await decode(bytes),
     m = before.metadata;
-  const row = {
+  const row: AvifAuditRow = {
     file,
     originalBytes: bytes.length,
     sourceSha256: sha256(bytes),
@@ -193,7 +323,7 @@ async function auditOne(file, { candidateDirectory, fallback, avifenc }) {
     let pipeline = sharp(bytes);
     if (m.icc || m.exif || m.xmp) pipeline = pipeline.keepMetadata();
     const output = await pipeline.avif(sharpOptions).toBuffer();
-    const record = {
+    const record: EncodedCandidate = {
       encoder: "sharp-avif-e4",
       ...(await candidateRecord(
         before,
@@ -212,7 +342,7 @@ async function auditOne(file, { candidateDirectory, fallback, avifenc }) {
       encoder: "sharp-avif-e4",
       options: sharpOptions,
       accepted: false,
-      rejection: error.message,
+      rejection: errorMessage(error),
     });
   }
 
@@ -248,7 +378,7 @@ async function auditOne(file, { candidateDirectory, fallback, avifenc }) {
         ["icc", "--icc"],
         ["exif", "--exif"],
         ["xmp", "--xmp"],
-      ])
+      ] as const)
         if (m[key]) {
           const metadataFile = `${stem}.${key}`;
           await fs.writeFile(metadataFile, m[key]);
@@ -260,7 +390,7 @@ async function auditOne(file, { candidateDirectory, fallback, avifenc }) {
         maxBuffer: 4 * 1024 * 1024,
       });
       const output = await fs.readFile(outputFile);
-      const record = {
+      const record: EncodedCandidate = {
         encoder: "avifenc-identity-s6",
         ...(await candidateRecord(
           before,
@@ -279,14 +409,14 @@ async function auditOne(file, { candidateDirectory, fallback, avifenc }) {
         encoder: "avifenc-identity-s6",
         options: avifencOptions,
         accepted: false,
-        rejection: error.message,
+        rejection: errorMessage(error),
       });
     } finally {
       await fs.rm(inputFile, { force: true });
     }
   }
   const accepted = row.candidates
-    .filter((candidate) => candidate.accepted)
+    .filter((candidate): candidate is EncodedCandidate => candidate.accepted)
     .sort((a, b) => a.bytes - b.bytes);
   const smaller = accepted.filter((candidate) => candidate.smaller);
   row.decision = smaller.length
@@ -310,14 +440,14 @@ export async function runAvifAudit({
   workers = 1,
   fallback = "auto",
   limit,
-} = {}) {
+}: AvifAuditOptions = {}) {
   if (!["auto", "none", "all"].includes(fallback))
     throw Error("fallback must be auto, none or all");
   candidateDirectory ??= await fs.mkdtemp(
     path.join(os.tmpdir(), "arena-lossless-avif-"),
   );
-  let avifenc = null,
-    avifencVersion = null;
+  let avifenc: string | null = null,
+    avifencVersion: string | null = null;
   try {
     const v = await runFile("avifenc", ["--version"]);
     avifenc = "avifenc";
@@ -342,27 +472,27 @@ export async function runAvifAudit({
         ),
         inventoryImplementation: sha256(
           await fs.readFile(
-            new URL("./audit-lossless-assets.mjs", import.meta.url),
+            new URL("./audit-lossless-assets.ts", import.meta.url),
           ),
         ),
       }),
     ),
   );
-  const rows = new Array(files.length),
+  const rows = new Array<AvifAuditRow>(files.length),
     started = performance.now();
   let cursor = 0,
     complete = 0;
   await fs.mkdir(path.dirname(output), { recursive: true });
-  const checkpoint = new Map();
+  const checkpoint = new Map<string, AvifAuditRow>();
   try {
     for (const line of (await fs.readFile(output + ".progress.jsonl", "utf8"))
       .split("\n")
       .filter(Boolean)) {
-      const row = JSON.parse(line);
-      checkpoint.set(row.file, row);
+      const row: unknown = JSON.parse(line);
+      if (isCheckpointRow(row)) checkpoint.set(row.file, row);
     }
   } catch (error) {
-    if (error.code !== "ENOENT") throw error;
+    if (!isErrorCode(error, "ENOENT")) throw error;
   }
   await fs.writeFile(output + ".progress.jsonl", "");
   sharp.concurrency(1);
@@ -378,7 +508,7 @@ export async function runAvifAudit({
           cached.checkpointPolicy === checkpointPolicy &&
           cached.sourceSha256 === sha256(await fs.readFile(file)),
         );
-        if (reusable)
+        if (reusable && cached)
           for (const candidate of cached.candidates ?? []) {
             if (candidate.candidateFile) {
               try {
@@ -392,9 +522,10 @@ export async function runAvifAudit({
               }
             }
           }
-        rows[i] = reusable
-          ? cached
-          : await auditOne(file, { candidateDirectory, fallback, avifenc });
+        rows[i] =
+          reusable && cached
+            ? cached
+            : await auditOne(file, { candidateDirectory, fallback, avifenc });
         rows[i].checkpointPolicy = checkpointPolicy;
         await fs.appendFile(
           output + ".progress.jsonl",
@@ -408,7 +539,8 @@ export async function runAvifAudit({
     }),
   );
   const exact = rows.filter(
-    (row) => row.bestExactBytes !== null && row.bestExactBytes !== undefined,
+    (row): row is AvifAuditRow & { bestExactBytes: number } =>
+      row.bestExactBytes !== null && row.bestExactBytes !== undefined,
   );
   const report = {
     schema: 1,
@@ -448,8 +580,9 @@ export async function runAvifAudit({
       originalBytes: rows.reduce((n, r) => n + r.originalBytes, 0),
       exactAvifImages: exact.length,
       noExactAvifImages: rows.length - exact.length,
-      smallerExactAvifImages: rows.filter((row) => row.savedBytesIfSelected > 0)
-        .length,
+      smallerExactAvifImages: rows.filter(
+        (row) => (row.savedBytesIfSelected ?? 0) > 0,
+      ).length,
       exactAvifBytes: exact.reduce((n, r) => n + r.bestExactBytes, 0),
       savedBytesIfSelected: rows.reduce(
         (n, r) => n + (r.savedBytesIfSelected ?? 0),
@@ -468,7 +601,7 @@ export async function runAvifAudit({
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
   const args = Object.fromEntries(
-    process.argv.slice(2).map((arg) => {
+    process.argv.slice(2).map((arg): [string, string] => {
       const at = arg.indexOf("=");
       if (!arg.startsWith("--") || at < 0)
         throw Error("Use --name=value options");

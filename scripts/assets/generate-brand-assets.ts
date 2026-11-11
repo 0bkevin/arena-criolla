@@ -32,7 +32,7 @@ for (const [name, source, size] of [
   ["arena-icon-192.png", icon, 192],
   ["arena-icon-512.png", icon, 512],
   ["arena-icon-maskable-512.png", maskable, 512],
-]) {
+] as const) {
   await sharp(Buffer.from(source))
     .resize(size, size)
     .png()

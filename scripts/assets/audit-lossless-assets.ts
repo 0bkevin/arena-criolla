@@ -12,11 +12,97 @@ import {
 } from "node:zlib";
 import { pathToFileURL, fileURLToPath } from "node:url";
 import sharp from "sharp";
+import type {
+  AvifOptions,
+  Metadata,
+  OutputInfo,
+  PngOptions,
+  WebpOptions,
+} from "sharp";
 
-const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
+export interface DecodedImage {
+  metadata: Metadata;
+  data: Buffer;
+  info: OutputInfo;
+}
+// Every option is optional in all three formats, so one candidate list can feed
+// whichever same-format encoder its extension selects.
+type EncoderOptions = AvifOptions & WebpOptions & PngOptions;
+interface EncoderCandidate {
+  name: string;
+  options: EncoderOptions;
+}
+interface CandidateRecord {
+  name: string;
+  options: EncoderOptions;
+  bytes: number;
+  encodeMs: number;
+  exactRgbaAndMetadata: boolean;
+  smaller: boolean;
+  rejection?: string;
+}
+export interface AssetAuditRow {
+  file: string;
+  extension: string;
+  originalBytes: number;
+  sourceSha256: string;
+  gzipBytes: number;
+  brotliBytes: number;
+  transportRoundtripExact: boolean;
+  candidates: CandidateRecord[];
+  selectedBytes: number;
+  selectedSha256: string;
+  savedBytes: number;
+  decision: string;
+  width?: number;
+  height?: number;
+  decodedRgbaBytes?: number;
+  rgbaSha256?: string;
+  encoding?: string;
+  hasIcc?: boolean;
+  hasExif?: boolean;
+  hasXmp?: boolean;
+  tested?: boolean;
+  selectedEncoding?: string;
+  candidateFile?: string;
+  checkpointPolicy?: string;
+}
+export interface AuditOptions {
+  directory?: string;
+  output?: string;
+  candidateDirectory?: string | undefined;
+  workers?: number;
+}
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null;
+const isErrorCode = (error: unknown, code: string) =>
+  error instanceof Error && "code" in error && error.code === code;
+// Checkpoint lines come from disk; only rows with the fields reuse depends on load.
+function isCheckpointRow(value: unknown): value is AssetAuditRow {
+  return (
+    isRecord(value) &&
+    typeof value.file === "string" &&
+    typeof value.sourceSha256 === "string" &&
+    typeof value.selectedSha256 === "string" &&
+    typeof value.checkpointPolicy === "string" &&
+    (value.candidateFile === undefined ||
+      typeof value.candidateFile === "string") &&
+    typeof value.originalBytes === "number" &&
+    typeof value.selectedBytes === "number" &&
+    typeof value.savedBytes === "number" &&
+    typeof value.transportRoundtripExact === "boolean" &&
+    Array.isArray(value.candidates)
+  );
+}
+
+const sha = (bytes: Buffer) => createHash("sha256").update(bytes).digest("hex");
 const imageTypes = new Set([".webp", ".png", ".avif"]);
-export async function walkFiles(directory, excludedDirectories = []) {
-  const result = [];
+export async function walkFiles(
+  directory: string,
+  excludedDirectories: string[] = [],
+): Promise<string[]> {
+  const result: string[] = [];
   for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
     const file = path.join(directory, entry.name);
     if (
@@ -30,16 +116,16 @@ export async function walkFiles(directory, excludedDirectories = []) {
 }
 // Published derivatives have already been verified against these source files.
 // Auditing them as fresh sources would recursively generate derivative variants.
-export function sourceFiles(directory) {
+export function sourceFiles(directory: string): Promise<string[]> {
   return walkFiles(directory, [path.resolve(directory, "assets/optimized")]);
 }
-export function webpChunks(bytes) {
+export function webpChunks(bytes: Buffer): string[] {
   if (
     bytes.toString("ascii", 0, 4) !== "RIFF" ||
     bytes.toString("ascii", 8, 12) !== "WEBP"
   )
     return [];
-  const chunks = [];
+  const chunks: string[] = [];
   for (let at = 12; at + 8 <= bytes.length;) {
     const size = bytes.readUInt32LE(at + 4);
     chunks.push(bytes.toString("ascii", at, at + 4));
@@ -47,7 +133,7 @@ export function webpChunks(bytes) {
   }
   return chunks;
 }
-export async function decodedImage(bytes) {
+export async function decodedImage(bytes: Buffer): Promise<DecodedImage> {
   const metadata = await sharp(bytes).metadata();
   const { data, info } = await sharp(bytes)
     .ensureAlpha()
@@ -55,7 +141,10 @@ export async function decodedImage(bytes) {
     .toBuffer({ resolveWithObject: true });
   return { metadata, data, info };
 }
-export function assertIdenticalImage(before, after) {
+export function assertIdenticalImage(
+  before: DecodedImage,
+  after: DecodedImage,
+): void {
   for (const key of [
     "width",
     "height",
@@ -65,13 +154,13 @@ export function assertIdenticalImage(before, after) {
     "pages",
     "pageHeight",
     "loop",
-  ])
+  ] as const)
     if (before.metadata[key] !== after.metadata[key])
       throw Error(`Image metadata changed: ${key}`);
-  for (const key of ["icc", "exif", "xmp"]) {
+  for (const key of ["icc", "exif", "xmp"] as const) {
     const a = before.metadata[key],
       b = after.metadata[key];
-    if (Boolean(a) !== Boolean(b) || (a && !a.equals(b)))
+    if (Boolean(a) !== Boolean(b) || (a && b && !a.equals(b)))
       throw Error(`Image metadata changed: ${key}`);
   }
   if (
@@ -87,7 +176,10 @@ export function assertIdenticalImage(before, after) {
   )
     throw Error("Decoded RGBA differs");
 }
-export async function auditAsset(file, { candidateDirectory }) {
+export async function auditAsset(
+  file: string,
+  { candidateDirectory }: { candidateDirectory: string },
+): Promise<AssetAuditRow> {
   const original = await fs.readFile(file),
     extension = path.extname(file).toLowerCase();
   const gzip = gzipSync(original, { level: 9 });
@@ -99,7 +191,7 @@ export async function auditAsset(file, { candidateDirectory }) {
     !brotliDecompressSync(brotli).equals(original)
   )
     throw Error(`Transport roundtrip failed: ${file}`);
-  const row = {
+  const row: AssetAuditRow = {
     file,
     extension,
     originalBytes: original.length,
@@ -137,7 +229,7 @@ export async function auditAsset(file, { candidateDirectory }) {
       "Keep original; animation/high-bit-depth encoding requires separate proof";
     return row;
   }
-  const candidates =
+  const candidates: EncoderCandidate[] =
     extension === ".avif"
       ? [
           {
@@ -193,7 +285,7 @@ export async function auditAsset(file, { candidateDirectory }) {
               },
             },
           ];
-  let selected;
+  let selected: Buffer | undefined;
   for (const candidate of candidates) {
     const started = performance.now();
     const pipeline = sharp(original);
@@ -208,7 +300,7 @@ export async function auditAsset(file, { candidateDirectory }) {
           ? pipeline.avif(candidate.options)
           : pipeline.png(candidate.options)
     ).toBuffer();
-    const record = {
+    const record: CandidateRecord = {
       name: candidate.name,
       options: candidate.options,
       bytes: output.length,
@@ -220,7 +312,7 @@ export async function auditAsset(file, { candidateDirectory }) {
       assertIdenticalImage(before, await decodedImage(output));
       record.exactRgbaAndMetadata = true;
     } catch (error) {
-      record.rejection = error.message;
+      record.rejection = error instanceof Error ? error.message : String(error);
     }
     if (record.exactRgbaAndMetadata && output.length < row.selectedBytes) {
       row.selectedBytes = output.length;
@@ -248,12 +340,12 @@ export async function runAudit({
   output = path.join(os.tmpdir(), "arena-per-asset-audit.json"),
   candidateDirectory,
   workers = 2,
-} = {}) {
+}: AuditOptions = {}) {
   candidateDirectory ??= await fs.mkdtemp(
     path.join(os.tmpdir(), "arena-lossless-assets-"),
   );
   const files = await sourceFiles(directory),
-    rows = new Array(files.length),
+    rows = new Array<AssetAuditRow>(files.length),
     began = performance.now();
   const checkpointPolicy = sha(
     Buffer.from(
@@ -268,16 +360,16 @@ export async function runAudit({
   let cursor = 0,
     complete = 0;
   await fs.mkdir(path.dirname(output), { recursive: true });
-  const checkpoint = new Map();
+  const checkpoint = new Map<string, AssetAuditRow>();
   try {
     for (const line of (await fs.readFile(output + ".progress.jsonl", "utf8"))
       .split("\n")
       .filter(Boolean)) {
-      const row = JSON.parse(line);
-      checkpoint.set(row.file, row);
+      const row: unknown = JSON.parse(line);
+      if (isCheckpointRow(row)) checkpoint.set(row.file, row);
     }
   } catch (error) {
-    if (error.code !== "ENOENT") throw error;
+    if (!isErrorCode(error, "ENOENT")) throw error;
   }
   await fs.writeFile(output + ".progress.jsonl", "");
   sharp.concurrency(1);
@@ -293,7 +385,7 @@ export async function runAudit({
           cached.checkpointPolicy === checkpointPolicy &&
           cached.sourceSha256 === sha(await fs.readFile(file)),
         );
-        if (reusable && cached.candidateFile) {
+        if (reusable && cached?.candidateFile) {
           try {
             reusable =
               sha(await fs.readFile(cached.candidateFile)) ===
@@ -302,9 +394,10 @@ export async function runAudit({
             reusable = false;
           }
         }
-        rows[index] = reusable
-          ? cached
-          : await auditAsset(file, { candidateDirectory });
+        rows[index] =
+          reusable && cached
+            ? cached
+            : await auditAsset(file, { candidateDirectory });
         rows[index].checkpointPolicy = checkpointPolicy;
         await fs.appendFile(
           output + ".progress.jsonl",
@@ -354,7 +447,7 @@ export async function runAudit({
 }
 if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
   const args = Object.fromEntries(
-    process.argv.slice(2).map((arg) => {
+    process.argv.slice(2).map((arg): [string, string] => {
       if (!arg.startsWith("--") || !arg.includes("="))
         throw Error(
           "Use --directory=, --output=, --candidate-directory= or --workers=",
