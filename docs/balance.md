@@ -204,24 +204,40 @@ competitive tier list.
 
 ## Ring-out penalty
 
-The goal of #76 is to let a player recover from a fall with a small health
-setback and continue fighting. Falling out of the arena originally removed the
-fighter's entire remaining health and one stock. The initial implementation
-replaced that with 30 HP. The fairness review below reduces the penalty again
-and separates a surviving fall from a lost stock.
+The goal of #76 is to let a player recover from a fall and continue fighting.
+Falling out of the arena originally removed all remaining health and one stock.
+After comparing fixed 30 HP and 10 HP penalties, the selected rule is **40% of
+current health, with a 10 HP minimum**, capped at the health remaining. This
+makes a fall more costly while healthy and softens the absolute loss as health
+falls, while retaining a meaningful cost near defeat.
 
-| Location           | Value             | Original → initial proposal → revised |
-| ------------------ | ----------------- | ------------------------------------- |
-| `damage-values.ts` | `RING_OUT_DAMAGE` | whole stock → 30 HP → 10 HP or less   |
+| Location           | Value                      | Selected rule                 |
+| ------------------ | -------------------------- | ----------------------------- |
+| `damage-values.ts` | `RING_OUT_DAMAGE_FRACTION` | 0.4 of current HP             |
+| `damage-values.ts` | `MIN_RING_OUT_DAMAGE`      | 10 HP, capped at remaining HP |
 
 ### Current behavior
 
-A surviving fall removes **10 HP**, preserves the stock, energy and active
-transformation, and returns the fighter to their normal spawn. The penalty
-ignores armor and transformation multipliers: every fighter and seat pays the
-same amount. Ordinary jumps, platform landings, and recoverable trips beyond
-the floor edge do not incur damage; crossing the left, right, or bottom blast
-boundary triggers a fall. Crossing more than one boundary in a tick still
+Calculate the penalty once from health immediately before leaving the arena:
+`min(hp, max(0.4 * hp, 10))`. Fractional HP is retained, matching ordinary combat;
+the penalty is not rounded up or down at every fall.
+
+| HP before fall | HP lost | HP after fall |
+| -------------: | ------: | ------------: |
+|            100 |      40 |            60 |
+|             75 |      30 |            45 |
+|             50 |      20 |            30 |
+|             25 |      10 |            15 |
+|             20 |      10 |            10 |
+|             15 |      10 |             5 |
+|             10 |      10 |    stock lost |
+
+A surviving fall preserves the stock, energy and active transformation, and
+returns the fighter to their normal spawn. The penalty ignores armor and
+transformation multipliers: equal starting health produces the same loss for
+every fighter and seat. Ordinary jumps, platform landings, and recoverable trips
+beyond the floor edge do not incur damage; crossing the left, right, or bottom
+blast boundary triggers a fall. Crossing multiple boundaries in a tick still
 charges once. Returning inside the arena prevents repeat charges for that fall.
 
 If the fighter has 10 HP or less, the fall removes their remaining health and
@@ -252,14 +268,56 @@ Actual stock loss retains its existing 110-tick respawn protection, 20-energy
 cost and transformation cleanup. The balance report separates surviving falls
 from damage dealt by the opponent.
 
-### What the initial 30 HP proposal got wrong
+### Percentage-policy verification
 
-Keeping the stock was the right structural change, but 30 HP is 30% of a full
-health bar, roughly three ordinary heavy hits at base damage 10.4. It does not
-match a request for a little health loss as closely as 10 HP, roughly one heavy
-hit. The amount is a design judgment, not a value proven optimal by simulation.
+The selected percentage policy is implemented by commit `8586139`. It keeps
+the refined return behavior and changes the health calculation from fixed 10
+HP to 40% of current HP with a 10 HP minimum. The same full Caracas schedule
+was rerun against the fixed-10-HP results from commit `2b4c046`:
 
-The initial proposal also reused the entire stock-loss reset. An isolated
+| Full Caracas hard CPU result        |             Fixed 10 HP | 40% of current HP, minimum 10 |
+| ----------------------------------- | ----------------------: | ----------------------------: |
+| Matches                             |                  12,320 |                        12,320 |
+| Mean match duration                 |                 46.30 s |                       41.65 s |
+| Mean surviving-fall HP loss         |                      10 |                         19.91 |
+| Median surviving-fall HP loss       |                      10 |                         18.56 |
+| Falls that kept a stock             |                  58,133 |                        50,359 |
+| Stocks lost to falls                | 8,712 / 35,571 (24.49%) |       8,615 / 35,654 (24.16%) |
+| Timeouts / simulation-limit results |                   0 / 0 |                         0 / 0 |
+
+The 10 HP knockout threshold remains the same; the percentage increases the
+cost of earlier falls while the player is healthier. In these CPU matches,
+that makes the average surviving fall cost about 20 HP and shortens matches,
+while the share of stocks directly ended by falls stays similar. This does not
+establish balanced human matchups: the current CPU extremes are Amanda 88.41%
+and Dayana 29.77%.
+
+The other eight stages each ran 224 hard CPU matches, and all nine stages each
+ran 224 matches at normal and easy difficulty, using the roster-ring sample
+schedule described below. All **18,144** percentage-policy matches completed
+without a timeout or simulation-limit result. Normal/easy sample mean match
+times were 32.82/32.78 seconds. These samples exercise every fighter and both
+seats, but are not complete matchup measurements outside the full Caracas run.
+
+The recorder now observes the exact HP drop and pre-fall HP instead of assuming
+a fixed loss or reconstructing it from a constant. It removes the fall's own
+last drop for that victim from opponent damage, preserving legitimate hits in
+the same step even when they deal an equal amount. Reports publish the
+percentage/minimum policy and actual fall-damage distributions. An independent
+check verified the formula for all **50,359** surviving falls and verified that
+hit loss, surviving-fall loss and HP left account for the full health of all
+**35,654** completed stocks in the Caracas report.
+
+The full automated suite passes **552 tests**. Additional direct-engine checks
+covered **1,600** starting-health/seat combinations, including repeat resolution
+without another exit. The examples, crossover at 25 HP, fractional HP and
+100 → 60 → 36 → 21.6 → 11.6 → 1.6 → stock-loss sequence have explicit regressions.
+Build, TypeScript and formatting checks pass. All 12 browser checks also pass
+in the nonhidden source copy described in the historical verification below.
+
+### Reset problems found in the initial proposal
+
+The initial proposal reused the entire stock-loss reset. An isolated
 surviving fall from 100 HP and 70 energy produced 70 HP and 50 energy, cleared
 an active transformation, and left an old dash and guard flag set. Those were
 extra costs and stale state beyond the stated health penalty.
@@ -272,7 +330,7 @@ invulnerable attack. Shorter protection that ends on offense addresses that
 specific exploit; teleporting back to spawn still offers positional relief.
 The health cost makes that relief finite rather than free.
 
-### Damage-only sensitivity
+### Historical fixed-damage sensitivity
 
 The comparison changes only `RING_OUT_DAMAGE` in isolated copies of commit
 `66d4da7`, keeping the initial reset otherwise identical. Each candidate runs
@@ -306,9 +364,9 @@ intentional escape tactics. Character extremes also persist: in the damage-only
 is not evidence of balanced human matchups, and unrelated attack damage should
 not be changed to make this fall experiment fit a win-rate band.
 
-### Revised-policy verification
+### Historical fixed-10-HP verification
 
-The selected 10 HP policy, including energy/transformation preservation, shorter
+The intermediate fixed 10 HP policy, including energy/transformation preservation, shorter
 return protection and cancellation on offense, was then run independently with
 the same pair schedule. It is the behavior implemented by commit `2b4c046`.
 
@@ -335,7 +393,7 @@ matches were simulated. The revised full Caracas character extremes remain
 Amanda 91.59% and Chataing 29.09%; preserving a player's opportunity to continue
 is not equivalent to equalizing character matchups.
 
-The full automated suite passes **549 tests**, with 15 added fall regressions
+At that intermediate policy, the full automated suite passed **549 tests**, with 15 added fall regressions
 and an updated real Puma edge-throw scenario. Coverage includes all fighters in
 both seats, one charge for a multi-boundary exit, surviving and lethal final
 stocks, simultaneous defeats, consecutive distinct falls, ordinary landings,
@@ -367,15 +425,20 @@ using the same full Caracas configuration:
 
 ### Remaining play-test questions
 
-10 HP is the selected starting point because the stated priority is forgiving
-continued play, not preserving instant stock loss as the main edge reward.
-Human play should check whether beginners understand the return and small HP
-loss, whether landing feels safe, whether repeated knock-offs feel oppressive,
-and whether intentional escapes are too valuable. Test both close-range and
-projectile fighters, the last stock at low HP, and local and online controls.
-Keep the fixed penalty initially; distinguishing accidental and opponent-caused
+The user selected a percentage to make falls more consequential than the fixed
+10 HP proposal while preserving continued play. A pure percentage would never
+remove the last positive HP by itself; the 10 HP minimum keeps repeated escapes
+costly and allows a stock to end. Starting at 100 HP with no other damage, six
+distinct falls exhaust a stock: 100 → 60 → 36 → 21.6 → 11.6 → 1.6 → stock lost.
+The intermediate fixed 10 HP rule allowed ten falls from full health.
+
+Human play should check whether the larger loss while healthy feels fair,
+whether the shrinking cost is clear, whether landing feels safe, whether
+repeated knock-offs feel oppressive, and whether intentional escapes are too
+valuable. Test close-range and projectile fighters, the last stock at low HP,
+and local and online controls. Distinguishing accidental and opponent-caused
 falls would require a trustworthy causal rule the current timing proxy cannot
-provide. Do not infer improved player enjoyment solely from longer CPU matches.
+provide. Do not infer improved player enjoyment solely from CPU results.
 
 ## Follow-ups
 
@@ -384,7 +447,7 @@ provide. Do not infer improved player enjoyment solely from longer CPU matches.
 - Review the hard CPU's attack cadence, which only chooses heavy attacks.
 - Play-test ride pushback and investigate other ring-outs, including edge
   recovery, jump cadence and knockback.
-- Play-test the 10 HP ring-out penalty and return protection with humans; review
+- Play-test the 40%-of-current-HP penalty, 10 HP minimum and return protection; review
   intentional escapes and Chataing's CPU matchup results separately.
 - Review same-tick trades: player 0 resolves first and is favored; the harness
   offsets seat timing to compensate.
