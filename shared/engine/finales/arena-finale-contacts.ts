@@ -7,9 +7,9 @@ import {
   ARENA_FINALE_CUES,
   activeArenaPerformance,
   arenaActorReach,
-  arenaMountReach,
   isArenaFinalist,
   mountedFinale,
+  nextMountStrike,
   rideMoving,
   type ArenaContact,
   type ArenaFinaleActor,
@@ -80,31 +80,30 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
         rootKind: "pot",
       });
     }
-    if (
-      active &&
-      mountedFinale(field) &&
-      rideMoving(field) &&
-      !field.connected
-    ) {
-      const reach = arenaMountReach(field);
-      if (
-        overlaps(
-          target,
-          p.x + field.direction * reach.offset,
-          p.y,
-          reach.halfWidth,
-          reach.top,
-        )
-      )
+    const strike =
+      active && mountedFinale(field) && rideMoving(field)
+        ? nextMountStrike(field)
+        : undefined;
+    if (strike) {
+      const touches = (reach: typeof strike.reach) =>
+          overlaps(
+            target,
+            p.x + field.direction * reach.offset,
+            p.y,
+            reach.halfWidth,
+            reach.top,
+          ),
+        front = touches(strike.reach);
+      if (front || (strike.carried && touches(strike.carried)))
         offer(
-          field.fighter === "bolivar"
-            ? 1 / 7
-            : field.fighter === "gomez" || field.fighter === "lorenzo"
-              ? 1 / 3
-              : 1,
+          strike.damage,
           4.5,
           target.x,
           target.y - 75,
+          // Under the caravan, behind its leading edge, a guard may face either way.
+          !front && target.blocking && target.facing === field.direction
+            ? -field.direction
+            : field.direction,
         );
     }
     for (const actor of field.actors ?? []) {
@@ -259,8 +258,11 @@ export function registerArenaContact(
       actor.caughtTick = field.tick;
       actor.vx = 0;
     }
-  } else if (!actor && (mountedFinale(field) || field.fighter === "chataing"))
-    field.connected = true;
+  } else if (!actor && mountedFinale(field)) {
+    // Guarded strikes count too, so a blocked ride cannot strike without end.
+    field.mountHits = (field.mountHits ?? 0) + 1;
+    field.mountHitTick = field.tick;
+  } else if (!actor && field.fighter === "chataing") field.connected = true;
   if (damaged && contact.rootTicks) {
     const target = state.players[opponentOf(contact.owner)];
     target.rootTicks = Math.max(target.rootTicks, contact.rootTicks);

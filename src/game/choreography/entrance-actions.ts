@@ -255,10 +255,16 @@ export function entrancePoseProgress(id: FighterId): number {
   );
 }
 
-export function sampleEntranceAction(id: FighterId, progress: number) {
+export function sampleEntranceAction(
+  id: FighterId,
+  progress: number,
+  repeat = false,
+) {
   const action = ENTRANCE_ACTIONS[id],
     t = Math.max(0, Math.min(1, progress));
-  if (!action || t <= 0 || t >= 0.9) return null;
+  // Repeated portraits stay in the painted sequence across the loop boundary.
+  // One-shot entrances still start and finish in the combat stance.
+  if (!action || (!repeat && (t <= 0 || t >= 0.9))) return null;
   const next = action.frames.findIndex((f) => f.at > t);
   const a =
     action.frames[next < 0 ? action.frames.length - 1 : Math.max(0, next - 1)];

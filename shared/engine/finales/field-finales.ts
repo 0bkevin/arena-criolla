@@ -25,6 +25,9 @@ export interface FieldFinaleState {
   actors?: ArenaFinaleActor[] | undefined;
   cancelled?: boolean;
   connected?: boolean;
+  /** Strikes the caster's own mount has landed or had guarded, and when the last one did. */
+  mountHits?: number;
+  mountHitTick?: number;
   caught?: { x: number; y: number };
 }
 export const SQUAD_COUNT = 5;

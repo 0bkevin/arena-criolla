@@ -1,12 +1,12 @@
 .app-shell .site-footer {
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 16px;
   color: #9eafc6;
   border-top: 0;
   margin: 0 auto;
   padding: 8px 0 max(16px, env(safe-area-inset-bottom));
-  text-align: center;
+  text-align: left;
 }
 .footer-brand {
   display: inline-flex;
@@ -28,8 +28,15 @@
 .footer-brand-name > span {
   color: var(--coin);
 }
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+}
 .site-footer .footer-credit {
   margin: 0;
+  margin-inline-start: 8px;
   color: #a3b3ca;
   font: 400 12px/1.5 var(--font-body);
   letter-spacing: 0;
@@ -51,6 +58,23 @@
   outline-offset: 4px;
   border-radius: 2px;
 }
+.footer-github-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  min-height: 28px;
+  color: var(--paper);
+  text-decoration: none;
+}
+.footer-github-link:hover {
+  color: var(--coin);
+}
+.footer-github-link:focus-visible {
+  outline: 2px solid var(--coin);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
 .footer-acknowledgements {
   display: inline-flex;
   align-items: center;
@@ -65,38 +89,40 @@
 .footer-acknowledgements:focus-visible {
   color: var(--coin);
 }
-@media (min-width: 901px) {
-  .app-shell .site-footer {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 16px;
-    text-align: left;
-  }
-}
 .in-lobby .site-footer {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  display: flex;
   align-items: center;
-  gap: 16px 48px;
+  justify-content: space-between;
+  gap: 16px;
   margin-top: auto;
   padding: 16px 0 max(16px, env(safe-area-inset-bottom));
   border-top: 1px solid #a3b3ca26;
   text-align: left;
 }
-.in-lobby .footer-brand {
-  justify-self: start;
-}
-.in-lobby .footer-credit {
-  justify-self: end;
-}
 @media (max-width: 600px) {
-  .in-lobby .site-footer {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 12px;
+  .app-shell .site-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding-inline: 8px;
+    text-align: center;
   }
-  .in-lobby .footer-brand,
-  .in-lobby .footer-acknowledgements,
-  .in-lobby .footer-credit {
-    justify-self: center;
+  .app-shell .footer-links {
+    width: 100%;
+    gap: 16px;
+    margin-left: 0;
+  }
+  .app-shell .footer-github-link {
+    margin-right: auto;
+  }
+  .app-shell .footer-credit {
+    white-space: nowrap;
+  }
+}
+@media (max-width: 350px) {
+  .app-shell .footer-links {
+    gap: 8px;
   }
 }

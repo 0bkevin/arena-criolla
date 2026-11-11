@@ -72,7 +72,7 @@ export function entranceWeight(progress: number): number {
   return Math.max(0, Math.min(1, 1 - out));
 }
 
-/** Play a painted entrance once; endpoints use the actual combat atlas. */
+/** One-shot entrances use the combat atlas at their endpoints; loops keep the painted poses. */
 export function drawEntranceAction(
   ctx: CanvasRenderingContext2D,
   sprite: SpriteAsset,
@@ -80,16 +80,21 @@ export function drawEntranceAction(
   progress: number,
   height: number,
   facing: number,
+  repeat = false,
 ): boolean {
   const asset = sprite.entrance;
   if (!asset || !ENTRANCE_ACTIONS[id]) return false;
   // How much of the painted entrance shows; the rest is the combat stance.
-  const painted = entranceWeight(progress);
+  // Repeated portraits stay fully painted across the loop boundary.
+  const painted = repeat ? 1 : entranceWeight(progress);
   const action =
     painted > 0
       ? sampleEntranceAction(
           id,
-          Math.min(Math.max(progress, 1e-4), ENTRANCE_END - 1e-4),
+          repeat
+            ? progress
+            : Math.min(Math.max(progress, 1e-4), ENTRANCE_END - 1e-4),
+          repeat,
         )
       : null;
   if (action) {
