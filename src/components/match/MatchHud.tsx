@@ -1,6 +1,7 @@
 import { Heart, Zap } from "lucide-react";
 import { fighterById } from "../../../shared/roster/roster";
 import type { MatchState } from "../../../shared/engine/engine";
+import { RING_OUT_STOCK_LOSS_THRESHOLD } from "../../../shared/engine/damage-values";
 import { SuperMeter } from "./SuperMeter";
 
 interface Props {
@@ -15,6 +16,15 @@ export function MatchHud({ view, location }: Props) {
       <div className="match-hud">
         {view.players.map((p, i) => {
           const def = fighterById(p.config.fighter);
+          // Keep a value below the fall cutoff visibly below it; never show
+          // positive health as zero while the fighter can still act.
+          const healthLabel =
+            p.hp > 0 && p.hp < RING_OUT_STOCK_LOSS_THRESHOLD
+              ? Math.min(
+                  RING_OUT_STOCK_LOSS_THRESHOLD - 0.1,
+                  Math.max(0.1, Math.round(p.hp * 10) / 10),
+                )
+              : Math.ceil(p.hp);
           return (
             <div
               key={i}
@@ -31,7 +41,7 @@ export function MatchHud({ view, location }: Props) {
                 style={{ "--hp": `${p.hp}%` }}
               >
                 <div style={{ width: `${p.hp}%` }} />
-                <span>{Math.ceil(p.hp)}</span>
+                <span>{healthLabel}</span>
               </div>
               <div className="hud-bottom">
                 <div className="stock-hearts">
