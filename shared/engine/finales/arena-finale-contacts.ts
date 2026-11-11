@@ -1,11 +1,13 @@
-import { launchScale } from "../combat";
 // Where arena definitives touch the rival, and what a landed contact does.
+import { launchScale } from "../combat";
 import { DORANGEL_POT, insideDorangelPot } from "./dorangel";
 import type { MatchState, PlayerState } from "../engine";
 import { COUTURE_MODEL_COUNT } from "./couture-runway";
 import { opponentOf } from "../types";
 import {
   ARENA_FINALE_CUES,
+  RIDE_STUN_FLOOR,
+  isRideHelper,
   arenaActorForce,
   activeArenaPerformance,
   arenaActorReach,
@@ -51,6 +53,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
       direction = field.direction,
       actor?: ArenaFinaleActor,
       rootTicks?: number,
+      stunFloor?: number,
     ) =>
       contacts.push({
         field,
@@ -62,6 +65,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
         x,
         y,
         rootTicks,
+        stunFloor,
       });
     if (
       field.fighter === "dorangel" &&
@@ -111,6 +115,9 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
           !front && target.blocking && target.facing === field.direction
             ? -field.direction
             : field.direction,
+          undefined,
+          undefined,
+          RIDE_STUN_FLOOR,
         );
     }
     for (const actor of field.actors ?? []) {
@@ -188,6 +195,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
           actor.direction,
           actor,
           actor.kind === "handchain" ? 25 : undefined,
+          isRideHelper(field.fighter, actor.kind) ? RIDE_STUN_FLOOR : undefined,
         );
     }
     if (!active) continue;
@@ -255,6 +263,11 @@ export function registerArenaContact(
   damaged: boolean,
 ) {
   const { field, actor } = contact;
+  if (damaged && contact.stunFloor !== undefined) {
+    const target = state.players[opponentOf(contact.owner)];
+    target.stun = Math.max(target.stun, contact.stunFloor);
+    target.cooldown = Math.max(target.cooldown, target.stun);
+  }
   if (actor && actor.kind !== "mascot" && actor.kind !== "dancer") {
     actor.connected = true;
     if (

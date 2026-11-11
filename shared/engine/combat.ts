@@ -119,6 +119,10 @@ export function launchScale(hp: number) {
   return 1 + (100 - hp) / 90;
 }
 
+export function launchStun(force: number) {
+  return Math.round(force * 2.6 + 5);
+}
+
 export function launchTarget(
   target: PlayerState,
   force: number,
@@ -129,7 +133,7 @@ export function launchTarget(
   target.vy = -force * 0.65;
   target.grounded = false;
   target.supportPlatform = null;
-  target.stun = Math.round(force * 2.6 + 5);
+  target.stun = launchStun(force);
   target.attack = null;
   target.cooldown = Math.max(target.cooldown, target.stun);
 }

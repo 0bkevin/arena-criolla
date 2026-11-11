@@ -1,5 +1,4 @@
 import test from "node:test";
-import { MOUNT_STRIKES } from "../../shared/engine/finales/arena-finale-specs";
 import assert from "node:assert/strict";
 import {
   createMatch,
@@ -270,13 +269,22 @@ for (const [id, strikes] of [
   ["lorenzo", 3],
   ["mcm", 4],
   ["zavarce", 7],
+  ["simon", 3],
 ] as const) {
   test(`${id}: a mid-stage ride lands its strikes without a ring-out`, () => {
     for (const stage of ["caracas", "guaira"] as const)
       for (const side of [0, 1] as const) {
         const r = setup(id, side, 180, stage, "chataing");
+        r.target.x = side ? WORLD.left + 300 : WORLD.right - 300;
+        r.source.x = r.target.x - r.source.facing * 180;
+        const startX = r.target.x;
         r.start();
         r.advance(300);
+        // Limit travel to less than the 300px clearance to the forward edge.
+        assert.ok(
+          Math.abs(r.target.x - startX) <= 200,
+          `${stage} P${side + 1}: modest displacement`,
+        );
         assert.equal(
           r.target.stocks,
           2,
@@ -288,6 +296,27 @@ for (const [id, strikes] of [
           `${stage} P${side + 1}: all strikes land`,
         );
       }
+  });
+}
+
+// A rival repeatedly attacks at the first opportunity after being struck.
+for (const [id, strikes] of [
+  ["gomez", 3],
+  ["lorenzo", 3],
+  ["mcm", 4],
+] as const) {
+  test(`${id}: the carried rival cannot interrupt the ride`, () => {
+    for (const side of [0, 1] as const) {
+      const r = setup(id, side, 90, "caracas", "chataing");
+      r.start();
+      let first = r.target.hp < 100;
+      for (let tick = 0; tick < 300; tick++) {
+        if (first && tick % 4 === 0) r.inputs[1 - side].actions.light++;
+        r.advance();
+        first ||= r.target.hp < 100;
+      }
+      assert.equal(r.source.hits, strikes, `P${side + 1}: all strikes land`);
+    }
   });
 }
 
@@ -353,14 +382,8 @@ test("under María Corina's caravan, a guard holds facing either way", () => {
         const field = r.state.fieldFinales![0]!;
         for (let n = 0; n < 60 && !field.mountHits; n++) r.advance();
         assert.equal(field.mountHits, 1);
-        // Place the guard just before the next eligible strike so the fixture
-        // exercises the bed regardless of the first strike's recoil duration.
-        const nextTick = field.mountHitTick! + MOUNT_STRIKES.mcm.interval;
-        for (let n = 0; n < 60 && field.tick < nextTick - 1; n++) r.advance();
-        assert.equal(field.tick, nextTick - 1);
-        // This fixture tests guard direction at contact, not recovery from the
-        // first hit; clear recoil stun so the deliberately placed guard works.
-        r.target.stun = 0;
+        for (let n = 0; n < 30 && (r.target.stun || r.state.hitstop); n++)
+          r.advance();
         // The rival stands on the truck bed, behind the rider, guarding.
         Object.assign(r.target, {
           x: r.source.x - r.source.facing * behind,

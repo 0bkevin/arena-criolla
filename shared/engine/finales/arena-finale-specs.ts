@@ -1,5 +1,6 @@
 // Arena definitives: who has one, how long it lasts, its cues, its helpers'
 // reach, and whether its caster is still performing it.
+import { launchStun } from "../combat";
 import { DORANGEL_FINALE, DORANGEL_POT } from "./dorangel";
 import { INAKI_FINALE } from "./inaki";
 import type { FighterId } from "../../roster/roster";
@@ -128,6 +129,8 @@ export interface ArenaContact {
   owner: PlayerIndex;
   damage: number;
   force: number;
+  /** Minimum stun for a landed ride strike, independent of pushback. */
+  stunFloor?: number | undefined;
   direction: number;
   x: number;
   y: number;
@@ -226,13 +229,33 @@ export const MOUNT_STRIKES: Record<RiddenFinalist, MountStrike> = {
 
 /** Force for the mounted or vehicle helpers in each driving finale. */
 const RIDE_HELPER_FORCE = {
-  bolivar: 1.5,
-  gomez: 1.5,
-  lorenzo: 1.5,
-  zavarce: 1.5,
-} as const satisfies Partial<Record<FighterId, number>>;
+  bolivar: { force: 1.5, kinds: ["horse", "truck", "courier"] },
+  gomez: { force: 1.5, kinds: ["horse", "truck", "courier"] },
+  lorenzo: { force: 1.5, kinds: ["horse", "truck", "courier"] },
+  zavarce: { force: 1.5, kinds: ["horse", "truck", "courier"] },
+  simon: { force: 1.5, kinds: ["woodhorse"] },
+} as const satisfies Partial<
+  Record<
+    FighterId,
+    { force: number; kinds: readonly ArenaFinaleActor["kind"][] }
+  >
+>;
 
 const DEFAULT_ACTOR_FORCE = 4.5;
+
+/** The old ride force gave 17 ticks of stun; retain it with lighter pushback. */
+export const RIDE_STUN_FLOOR = launchStun(DEFAULT_ACTOR_FORCE);
+
+export function isRideHelper(
+  fighter: FighterId,
+  kind: ArenaFinaleActor["kind"],
+) {
+  const ride = RIDE_HELPER_FORCE[fighter as keyof typeof RIDE_HELPER_FORCE];
+  return (
+    ride !== undefined &&
+    (ride.kinds as readonly ArenaFinaleActor["kind"][]).includes(kind)
+  );
+}
 
 /** Force of a finale helper, including the driving formations. */
 export function arenaActorForce(
@@ -241,14 +264,8 @@ export function arenaActorForce(
 ) {
   if (kind === "handchain") return 1;
   if (kind === "model") return 3;
-  if (
-    (kind === "horse" || kind === "truck" || kind === "courier") &&
-    (fighter === "bolivar" ||
-      fighter === "gomez" ||
-      fighter === "lorenzo" ||
-      fighter === "zavarce")
-  )
-    return RIDE_HELPER_FORCE[fighter];
+  if (isRideHelper(fighter, kind))
+    return RIDE_HELPER_FORCE[fighter as keyof typeof RIDE_HELPER_FORCE].force;
   return DEFAULT_ACTOR_FORCE;
 }
 
