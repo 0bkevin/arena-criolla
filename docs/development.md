@@ -35,6 +35,15 @@ Los assets publicados están incluidos en `public/`; no hace falta regenerarlos 
 
 Las tarjetas del roster dibujan un busto recortado (`public/assets/bust-*.webp`, descrito en `src/game/assets/manifests/portrait-busts.json`) en vez de descargar la hoja completa del luchador. Si cambias una hoja de sprites o su pose de combate, regenera los bustos con `npm run assets:busts`; `tests/assets/portrait-busts.test.ts` falla mientras estén desactualizados.
 
+Las hojas de ataques y de actores de las definitivas se preparan desde arte fuente local, que vive en `assets/source/` y no se publica en el repositorio:
+
+- `npm run assets:attack-grid -- ruta/config.json` reparte en celdas exactas una hoja de ataques generada.
+- `npm run assets:attack-art -- ruta/config.json` empaqueta esas celdas en `public/assets` y actualiza `src/game/assets/manifests/attack-assets.json`.
+- `npm run assets:finale-actors [-- --only atlas]` prepara los actores sentados y de café de las definitivas y su manifiesto.
+- `npm run assets:perro-mujeriego [-- --only id]` prepara los bailarines de Perro Mujeriego y su manifiesto.
+
+Después, `npm run check:assets` y las pruebas de `tests/assets/` confirman que el arte publicado y sus manifiestos coinciden.
+
 Consulta [tests/manual/README.md](../tests/manual/README.md) para las comprobaciones de interfaz en navegador.
 
 Las vistas previas de escenarios (`public/assets/stage-thumb-*.webp`) se generan a partir de los fondos completos con `npm run assets:stage-thumbs`; el manifiesto `src/game/assets/manifests/stage-thumbnails.json` y `tests/assets/stage-thumbnails.test.ts` detectan cambios pendientes. `npm run assets:stage-thumbs -- --check` verifica su vigencia sin escribir archivos.
