@@ -35,7 +35,6 @@ for (const [path, status] of [
   ["/robots.txt", 200],
   ["/sitemap.xml", 200],
   ["/index.html", 308],
-  ["/create", 302],
   ["/api/health", 200],
   ["/api/community/characters", 404],
   ["/api/auth/session", 404],

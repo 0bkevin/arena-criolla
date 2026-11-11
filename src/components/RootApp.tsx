@@ -62,12 +62,6 @@ export function RootApp({
     let secondFrame = 0;
     let warmupScheduled = false;
     let paintObserver: PerformanceObserver | undefined;
-    const restoreGameRoute = () => {
-      if (/^\/create(?:\/|$)/i.test(location.pathname))
-        history.replaceState(null, "", "/");
-    };
-    restoreGameRoute();
-    window.addEventListener("popstate", restoreGameRoute);
     // Wait for visible entrance content before executing the larger game chunk.
     // The deadline also warms the game when fonts or images are still arriving.
     const warmGame = () => {
@@ -114,7 +108,6 @@ export function RootApp({
       clearTimeout(paintDeadline);
       cancelAnimationFrame(firstFrame);
       cancelAnimationFrame(secondFrame);
-      window.removeEventListener("popstate", restoreGameRoute);
     };
   }, []);
   if (!entranceComplete || !GameApp)

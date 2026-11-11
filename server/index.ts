@@ -101,10 +101,6 @@ export async function makeArenaServer(
     options.serveClient === false
       ? undefined
       : publicSiteOrigin(process.env.ARENA_PUBLIC_URL);
-  // The character workshop was removed; old links land on the game.
-  app.get(/^\/create(?:\/.*)?$/i, (_req, res) => {
-    res.set("Cache-Control", "no-store").redirect(302, "/");
-  });
   const http = createServer(
     {
       headersTimeout: 10_000,

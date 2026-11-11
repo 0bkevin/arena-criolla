@@ -103,8 +103,6 @@ export default {
       });
     if (pathname.startsWith("/api/"))
       return json({ error: "No encontramos esa ruta." }, 404);
-    if (/^\/create(?:\/.*)?$/i.test(pathname))
-      return redirect("/", 302, "no-store");
     if (!read) return withHeaders(new Response("Not Found", { status: 404 }));
 
     if (pathname === "/assets/caracas.webp") {
