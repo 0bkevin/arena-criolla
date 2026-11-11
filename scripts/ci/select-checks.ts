@@ -108,10 +108,11 @@ const checks: {
   audit: /^package-lock\.json$/,
   "deploy-controls": /^deploy\//,
   // Browser layout checks for anything that changes what the lobby or arena shows.
-  e2e: /^(src\/|index\.html|vite\.config\.ts|public\/|shared\/|e2e\/|playwright\.config\.ts$)/,
+  // The layout job serves the client through the Node server, so server/ counts.
+  e2e: /^(src\/|index\.html|vite\.config\.ts|public\/|shared\/|server\/|e2e\/|playwright\.config\.ts$)/,
   // The production Worker: its adapter, the shared lobby and the bundled site.
   worker:
-    /^(cloudflare\/|shared\/|src\/|public\/|index\.html|vite\.config\.ts|server\/asset-versions\.ts|wrangler\.jsonc|scripts\/cloudflare\/)/,
+    /^(cloudflare\/|shared\/|src\/|public\/|index\.html|vite\.config\.ts|server\/asset-(versions\.ts|variants\.json)|wrangler\.jsonc|scripts\/cloudflare\/)/,
   // Anything the Docker build copies, plus the smoke test it runs.
   image:
     /^(Dockerfile|\.dockerignore|index\.html|vite\.config\.ts|src\/|shared\/|server\/|public\/|scripts\/ci\/security-smoke\.ts)/,
