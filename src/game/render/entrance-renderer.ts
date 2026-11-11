@@ -43,7 +43,7 @@ function drawFrame(
   ctx.restore();
 }
 
-/** Play a painted entrance once; endpoints use the actual combat atlas. */
+/** One-shot entrances use the combat atlas at their endpoints; loops keep the painted poses. */
 export function drawEntranceAction(
   ctx: CanvasRenderingContext2D,
   sprite: SpriteAsset,
@@ -51,10 +51,11 @@ export function drawEntranceAction(
   progress: number,
   height: number,
   facing: number,
+  repeat = false,
 ): boolean {
   const asset = sprite.entrance;
   if (!asset || !ENTRANCE_ACTIONS[id]) return false;
-  const action = sampleEntranceAction(id, progress);
+  const action = sampleEntranceAction(id, progress, repeat);
   if (action) {
     const width = asset.image.naturalWidth || asset.image.width,
       bitmapHeight = asset.image.naturalHeight || asset.image.height;
