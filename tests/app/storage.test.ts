@@ -1,6 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { getPreference, setPreference } from "../../src/app/storage";
+import {
+  getPreference,
+  readProgress,
+  setPreference,
+} from "../../src/app/storage";
 
 function browserStorage() {
   const previous = Object.getOwnPropertyDescriptor(globalThis, "localStorage");
@@ -50,6 +54,39 @@ test("valid preferences round-trip including muted sound and an empty name", () 
       setPreference("sound", sound);
       assert.equal(getPreference("sound", !sound), sound);
     }
+  } finally {
+    storage.restore();
+  }
+});
+
+test("saved progress keeps only well-formed wins and matches", () => {
+  const storage = browserStorage();
+  try {
+    storage.values.set(
+      "arena-progress-v1",
+      JSON.stringify({
+        wins: { ali: 3, zavarce: "2", nadie: 9, simon: "x" },
+        played: "4",
+        bestCombo: null,
+        recent: [
+          { fighter: "ali", rival: "zavarce", won: true, date: "2026-11-01" },
+          { fighter: "ali", rival: "nadie", won: true, date: "x" },
+          { fighter: "simon", rival: "ali", won: "yes", date: 7 },
+          null,
+        ],
+      }),
+    );
+    assert.deepEqual(readProgress(), {
+      wins: { ali: 3, zavarce: 2 },
+      played: 4,
+      bestCombo: 0,
+      recent: [
+        { fighter: "ali", rival: "zavarce", won: true, date: "2026-11-01" },
+        { fighter: "simon", rival: "ali", won: false, date: "" },
+      ],
+    });
+    storage.values.set("arena-progress-v1", JSON.stringify({ wins: [] }));
+    assert.deepEqual(readProgress().wins, {});
   } finally {
     storage.restore();
   }

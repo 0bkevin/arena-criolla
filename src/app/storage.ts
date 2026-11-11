@@ -17,30 +17,39 @@ const defaultProgress = (): Progress => ({
   bestCombo: 0,
   recent: [],
 });
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null && !Array.isArray(value);
+
+/** Saved progress, keeping only well-formed wins and matches. */
 export function readProgress(): Progress {
   try {
-    const value = JSON.parse(
+    const value: unknown = JSON.parse(
       localStorage.getItem("arena-progress-v1") || "null",
     );
-    if (
-      !value ||
-      typeof value !== "object" ||
-      !value.wins ||
-      typeof value.wins !== "object"
-    )
-      return defaultProgress();
+    if (!isRecord(value) || !isRecord(value.wins)) return defaultProgress();
+    const wins: Progress["wins"] = {};
+    for (const [fighter, count] of Object.entries(value.wins))
+      if (isFighter(fighter) && Number.isFinite(Number(count)))
+        wins[fighter] = Number(count);
+    const recent: Progress["recent"] = [];
+    if (Array.isArray(value.recent))
+      for (const match of value.recent)
+        if (
+          isRecord(match) &&
+          isFighter(match.fighter) &&
+          isFighter(match.rival)
+        )
+          recent.push({
+            fighter: match.fighter,
+            rival: match.rival,
+            won: match.won === true,
+            date: typeof match.date === "string" ? match.date : "",
+          });
     return {
-      wins: value.wins,
+      wins,
       played: Number(value.played) || 0,
       bestCombo: Number(value.bestCombo) || 0,
-      recent: Array.isArray(value.recent)
-        ? value.recent
-            .filter(
-              (match: Progress["recent"][number]) =>
-                match && isFighter(match.fighter) && isFighter(match.rival),
-            )
-            .slice(0, 8)
-        : [],
+      recent: recent.slice(0, 8),
     };
   } catch {
     return defaultProgress();
@@ -51,12 +60,20 @@ export function saveProgress(progress: Progress) {
     localStorage.setItem("arena-progress-v1", JSON.stringify(progress));
   } catch {}
 }
-export function getPreference<T>(key: string, fallback: T): T {
+/** A saved preference of the fallback's type, or the fallback. */
+export function getPreference(key: string, fallback: boolean): boolean;
+export function getPreference(key: string, fallback: string): string;
+export function getPreference(
+  key: string,
+  fallback: boolean | string,
+): boolean | string {
   try {
-    const value = JSON.parse(localStorage.getItem(`arena-${key}`) || "null");
-    return value !== null && typeof value === typeof fallback
-      ? value
-      : fallback;
+    const value: unknown = JSON.parse(
+      localStorage.getItem(`arena-${key}`) || "null",
+    );
+    if (typeof fallback === "boolean")
+      return typeof value === "boolean" ? value : fallback;
+    return typeof value === "string" ? value : fallback;
   } catch {
     return fallback;
   }
