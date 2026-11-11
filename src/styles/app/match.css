@@ -258,8 +258,11 @@
     0 6px 14px #0008;
 }
 .match-clock strong {
-  font-family: var(--display);
+  /* Pixelify Sans renders 2, 3, 5 and 9 as near-copies of 8 (or a mirrored
+     S), which made the timer misreadable. Barlow keeps every digit distinct. */
+  font-family: var(--font-display);
   font-size: 40px;
+  font-weight: 800;
   line-height: 1;
   color: #fff;
   font-variant-numeric: tabular-nums;
