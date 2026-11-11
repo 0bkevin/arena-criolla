@@ -103,15 +103,11 @@
 .game-page:not(.is-touch) .game-controls-bar .text-button {
   font-size: 12px;
 }
-.game-page:not(.is-touch) .game-controls-bar > span,
-.game-page:not(.is-touch) .game-tip {
+.game-page:not(.is-touch) .game-controls-bar > span {
   color: #a8b9cf;
 }
 .game-page:not(.is-touch) .game-controls-bar .text-button {
   min-height: 44px;
-}
-.game-page:not(.is-touch) .game-tip {
-  font-size: 12px;
 }
 .game-page:not(.is-touch) .arena-location {
   font-size: 10px;
@@ -439,27 +435,9 @@ body:has(.game-page.is-touch) {
 .game-page.is-touch.is-finished .match-hud {
   display: none;
 }
-.game-page.is-touch .result-overlay {
-  position: absolute;
-}
-.game-page.is-touch .result-card {
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0;
-  max-width: 100%;
-  padding: 16px;
-}
-.game-page.is-touch .result-art {
-  display: none;
-}
-.game-page.is-touch .result-info h2 {
-  font-size: 28px;
-  margin-top: 6px;
-}
-.game-page.is-touch .result-info .primary-button,
 .game-page.is-touch .pause-card .primary-button {
   min-height: 44px;
 }
-.game-page.is-touch .result-info > .text-button,
 .game-page.is-touch .pause-card > .secondary-button {
   min-height: 44px;
 }

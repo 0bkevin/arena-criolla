@@ -70,10 +70,6 @@
   font-size: 12px;
   letter-spacing: 0;
 }
-.modal:where(:not(.content-modal)) .controls-table kbd {
-  white-space: normal;
-  overflow-wrap: anywhere;
-}
 .modal:where(:not(.content-modal))
   :is(
     .roster-grid p,
@@ -108,9 +104,6 @@
     .gamepad-note strong
   ) {
   font-size: 13px;
-}
-.modal:where(:not(.content-modal)) .combo-list small {
-  color: #acb9cf;
 }
 .modal:where(:not(.content-modal)) .recent-matches small {
   color: #acb9cf;
@@ -209,21 +202,12 @@
   }
 }
 @media (max-width: 600px) {
-  .modal:where(:not(.content-modal)) .rules-grid,
   .modal:where(:not(.content-modal)) .roster-grid {
     grid-template-columns: minmax(0, 1fr);
   }
   .modal:where(:not(.content-modal)) .progress-metrics > div {
     min-width: 0;
     padding: 12px 4px;
-  }
-  .modal:where(:not(.content-modal)) .controls-table > div {
-    grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 1fr));
-    gap: 5px;
-  }
-  .modal:where(:not(.content-modal)) .controls-table .table-heading {
-    font-size: 10px;
-    padding-inline: 3px;
   }
   .in-lobby .arcade-modes button > svg {
     display: none;
@@ -335,9 +319,6 @@
     width: 16px;
     height: 16px;
   }
-  .arcade-app .modal .modal-intro {
-    margin: 8px 0 16px;
-  }
   .arcade-app .modal .roster-grid {
     gap: 8px;
   }
@@ -367,9 +348,6 @@
   .arcade-app .modal .detail-art .portrait {
     width: 190px;
     height: 238px;
-  }
-  .arcade-app .modal .combo-list > div {
-    padding-block: 8px;
   }
   .arcade-app .modal .detail-info > h3 {
     margin-top: 16px;
@@ -524,21 +502,9 @@
     aspect-ratio: 4 / 5;
     margin-top: 0;
   }
-  .detail-info,
-  .special-description > div {
+  .detail-info {
     min-width: 0;
     overflow-wrap: anywhere;
-  }
-  .special-description > svg {
-    flex-shrink: 0;
-  }
-  .combo-list > div {
-    display: grid;
-    grid-template-columns: 18px minmax(0, 1fr);
-  }
-  .combo-list > div > kbd {
-    grid-column: 2;
-    justify-self: start;
   }
 }
 

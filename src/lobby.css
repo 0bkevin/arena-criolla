@@ -98,7 +98,6 @@ body {
   border-color: #112c5826;
   color: var(--ink);
 }
-.in-lobby .site-header .beta-badge,
 .in-lobby .site-header .server-status {
   color: #567096;
 }
@@ -139,13 +138,6 @@ body {
 }
 .site-header .header-right {
   gap: 10px;
-}
-.site-header .beta-badge {
-  font: 500 10px var(--pixel);
-  padding: 4px;
-  color: #a199b2;
-  background: none;
-  border: 0;
 }
 .site-header .server-status {
   font: 500 11px var(--pixel);
@@ -200,14 +192,6 @@ body {
   height: 100%;
   object-fit: cover;
   object-position: center bottom;
-}
-.arcade-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font: 500 10px var(--pixel);
-  letter-spacing: 1.2px;
-  color: var(--ink);
 }
 .arcade-mode-row {
   display: flex;
@@ -358,35 +342,10 @@ body {
   align-items: center;
   gap: 9px;
 }
-.cabinet-heading .arcade-step {
-  color: var(--ink);
-  background: var(--coin);
-}
-.arcade-step {
-  display: grid;
-  place-items: center;
-  width: 23px;
-  height: 21px;
-  color: var(--paper);
-  background: var(--ink);
-  font: 700 12px var(--pixel);
-}
 .cabinet-heading h2,
 .arcade-stage-heading h2 {
   font: 700 18px/1 var(--pixel);
   letter-spacing: 0.4px;
-}
-.cabinet-count {
-  margin-left: auto;
-  color: #c7d8f1;
-  font: 500 9px var(--pixel);
-  letter-spacing: 0.8px;
-}
-.cabinet-bolts {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  flex-shrink: 0;
 }
 .arcade-selection {
   display: grid;
@@ -466,12 +425,6 @@ body {
 .contender-p2 .contender-stage {
   background-position: 70% center;
   border-color: var(--coral);
-}
-.contender-horizon {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, #30243970, #30243905 50%);
-  z-index: -1;
 }
 .contender-stage .selected-portrait {
   width: 169px;
@@ -597,29 +550,6 @@ body {
   transform: translate(2px, 2px);
   box-shadow: none;
 }
-.picking-label {
-  font: 500 9px var(--pixel);
-  color: #ffe49d;
-  margin-left: auto;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-}
-.picking-label.p2 {
-  color: #ffd0be;
-}
-.roster-search-toggle {
-  display: grid;
-  place-items: center;
-  border: 1px solid #94b8eb;
-  border-radius: 2px;
-  width: 31px;
-  height: 31px;
-  color: #e2edff;
-}
-.roster-search-toggle:hover {
-  color: var(--ink);
-  background: var(--paper);
-}
 .arcade-home .arcade-search {
   border: 2px solid #b6a5ad;
   border-radius: 2px;
@@ -711,12 +641,6 @@ body {
 .arcade-home .fighter-card:hover .portrait {
   transform: translateX(-50%) translateY(-2px);
 }
-.arcade-home .fighter-index {
-  font: 500 8px var(--pixel);
-  top: 6px;
-  left: 5px;
-  color: #453447;
-}
 .fighter-player-tags {
   position: absolute;
   top: 4px;
@@ -762,34 +686,6 @@ body {
 .arcade-home .picked-p1.picked-p2 .fighter-card-caption {
   background: linear-gradient(90deg, var(--p1) 50%, var(--coral) 50%);
 }
-.roster-hint {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: 12px;
-  color: #c4dbfc;
-  font: 500 8px var(--pixel);
-  align-items: center;
-}
-.roster-hint > span {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
-.roster-hint kbd {
-  font: 500 9px var(--pixel);
-  border: 1px solid #cebdc3;
-  border-bottom-width: 2px;
-  padding: 2px 3px;
-  min-width: 15px;
-  text-align: center;
-  color: #6b5874;
-  background: #fbefd8;
-  border-radius: 2px;
-}
-.roster-hint .roster-hint-touch {
-  display: none;
-}
 .fighter-empty {
   min-height: 220px;
   display: flex;
@@ -823,12 +719,6 @@ body {
 .waiting-portrait > span {
   font: 700 60px var(--pixel);
 }
-.waiting-message {
-  display: block;
-  font: 500 10px var(--pixel);
-  padding-top: 9px;
-  color: #c4dbfc;
-}
 .arcade-stages {
   position: relative;
   padding: 12px 20px 9px;
@@ -844,16 +734,8 @@ body {
   gap: 12px;
   margin-bottom: 9px;
 }
-.arcade-stage-heading .arcade-step {
-  background: var(--vz-blue);
-}
 .arcade-stage-heading h2 {
   font-size: 15px;
-}
-.selected-stage-name {
-  font: 500 11px var(--pixel);
-  color: #567096;
-  margin-left: auto;
 }
 .arcade-stage-heading > button {
   padding: 4px 0 4px 12px;
@@ -905,14 +787,6 @@ body {
   font: 500 11px/1 var(--pixel);
   white-space: nowrap;
 }
-.stage-number {
-  position: absolute;
-  top: 4px;
-  left: 5px;
-  font: 500 8px var(--pixel);
-  color: var(--paper);
-  text-shadow: 1px 1px 0 var(--ink);
-}
 .stage-tick {
   position: absolute;
   right: 3px;
@@ -944,34 +818,6 @@ body {
 }
 .arcade-stage:disabled {
   opacity: 0.72;
-}
-.stage-strip-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 27px;
-  margin-top: 4px;
-  gap: 10px;
-  color: #567096;
-  font: 500 8px var(--pixel);
-  letter-spacing: 0.3px;
-}
-.stage-strip-footer > div {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  color: var(--vz-blue);
-  font: 500 10px var(--pixel);
-}
-.stage-strip-footer button {
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 2px;
-}
-.stage-strip-footer button:hover {
-  background: #dbe8fa;
 }
 .arcade-ready {
   display: grid;
@@ -1175,17 +1021,10 @@ body {
   font: 500 9px var(--pixel);
   color: #81758e;
 }
-.footer-criollo {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  color: #c3d1e5;
-}
 .in-lobby .site-footer {
   color: #567096;
   border-color: #112c5820;
 }
-.in-lobby .footer-criollo,
 .in-lobby .site-footer button {
   color: var(--ink);
 }
@@ -1244,8 +1083,7 @@ body {
   font: 500 15px var(--pixel);
 }
 .arcade-app .modal .plain-input,
-.arcade-app .modal .name-field,
-.arcade-app .modal .lobby-code-field {
+.arcade-app .modal .name-field {
   border-radius: 2px;
   border-color: #7693bd;
   background: #0d2345;
@@ -1305,12 +1143,6 @@ body {
     min-height: min(260px, calc(100dvh - var(--match-chrome)));
   }
 }
-.arcade-app .game-toolbar h1 {
-  font-size: 21px;
-}
-.arcade-app .match-hud .hud-name {
-  font-family: var(--font-body);
-}
 .arcade-app .arena-wrap {
   width: min(100%, calc((100dvh - var(--match-chrome)) * 1.8));
   flex: none;
@@ -1320,9 +1152,6 @@ body {
 }
 .arcade-app .is-intro .arena-wrap {
   width: 100%;
-}
-.arcade-app .game-page:not(.is-touch) .result-overlay {
-  max-height: calc(100dvh - var(--match-chrome));
 }
 .arcade-app .game-page .primary-button {
   background: var(--coin);
@@ -1406,9 +1235,6 @@ body {
   .arcade-home .fighter-card-art .portrait {
     width: 99px;
     height: 124px;
-  }
-  .picking-label {
-    display: none;
   }
   .arcade-ready {
     gap: 13px;
@@ -1498,10 +1324,6 @@ body {
   .arcade-ready.local-ready {
     grid-template-columns: 1fr 1fr 1fr;
   }
-  .cabinet-count {
-    font-size: 8px;
-    letter-spacing: 0;
-  }
   .stage-strip {
     display: flex;
     overflow-x: auto;
@@ -1512,9 +1334,6 @@ body {
     width: 90px;
     flex: 0 0 90px;
     scroll-snap-align: start;
-  }
-  .selected-stage-name {
-    font-size: 10px;
   }
 }
 @media (max-width: 900px) {
@@ -1539,9 +1358,6 @@ body {
   .site-header .main-nav {
     display: none;
   }
-  .site-header .beta-badge {
-    display: none;
-  }
   .site-header .header-right {
     gap: 4px;
   }
@@ -1561,10 +1377,6 @@ body {
   }
   .arcade-marquee {
     height: 103px;
-  }
-  .arcade-eyebrow {
-    font-size: 8px;
-    letter-spacing: 0.3px;
   }
   .arcade-mode-row {
     margin: 13px 0;
@@ -1607,18 +1419,6 @@ body {
   .cabinet-heading h2 {
     font-size: 16px;
     letter-spacing: 0;
-  }
-  .cabinet-count {
-    display: none;
-  }
-  .cabinet-bolts {
-    font-size: 14px;
-    margin-left: auto;
-  }
-  .arcade-step {
-    width: 21px;
-    height: 20px;
-    font-size: 11px;
   }
   .arcade-selection {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1755,9 +1555,6 @@ body {
   .waiting-portrait > span {
     font-size: 25px;
   }
-  .waiting-message {
-    display: none;
-  }
   .arcade-roster {
     grid-column: 1 / -1;
     grid-row: 2;
@@ -1773,15 +1570,6 @@ body {
   }
   .player-picker button span {
     font-size: 10px;
-  }
-  .picking-label {
-    display: block;
-    font-size: 8px;
-    letter-spacing: 0;
-  }
-  .roster-search-toggle {
-    width: 34px;
-    height: 35px;
   }
   .arcade-home .fighter-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1802,21 +1590,7 @@ body {
     font-size: 11px;
     line-height: 1.2;
   }
-  .arcade-home .fighter-index {
-    font-size: 8px;
-  }
   .fighter-player-tags > span {
-    font-size: 10px;
-  }
-  .roster-hint {
-    margin-top: 12px;
-    justify-content: center;
-  }
-  .roster-hint > span {
-    display: none;
-  }
-  .roster-hint .roster-hint-touch {
-    display: inline;
     font-size: 10px;
   }
   .arcade-stages {
@@ -1829,12 +1603,6 @@ body {
   }
   .arcade-stage-heading h2 {
     font-size: 15px;
-  }
-  .selected-stage-name {
-    order: 3;
-    flex-basis: 100%;
-    margin-left: 0;
-    font-size: 11px;
   }
   .arcade-stage-heading > button {
     margin-left: auto;
@@ -1862,18 +1630,6 @@ body {
   .arcade-stage strong {
     font-size: 12px;
     padding: 7px 2px;
-  }
-  .stage-strip-footer {
-    font-size: 8px;
-    line-height: 1.3;
-    margin-top: 5px;
-  }
-  .stage-strip-footer > span {
-    max-width: 235px;
-  }
-  .stage-strip-footer button {
-    width: 30px;
-    height: 30px;
   }
   .arcade-ready {
     grid-template-columns: 1fr 1fr;
@@ -1928,11 +1684,6 @@ body {
     font-size: 8px;
     gap: 8px;
     flex-wrap: wrap;
-  }
-  .site-footer .footer-note {
-    order: 3;
-    flex-basis: 100%;
-    font-size: 8px;
   }
   .mobile-setup-dock {
     display: flex;
@@ -2010,10 +1761,6 @@ body {
   .site-header .server-status {
     margin: 0 2px;
   }
-  .arcade-eyebrow {
-    font-size: 7px;
-    gap: 4px;
-  }
   .arcade-home .arcade-modes button {
     gap: 4px;
     padding-inline: 3px;
@@ -2060,9 +1807,6 @@ body {
     font-size: 8px;
   }
   .contender-moves > svg:first-child {
-    display: none;
-  }
-  .picking-label {
     display: none;
   }
   .arcade-home .fighter-grid {
@@ -2184,9 +1928,6 @@ body {
     min-height: 32px;
     margin-bottom: 8px;
   }
-  .roster-hint {
-    display: none;
-  }
   .arcade-stages {
     padding-block: 8px;
   }
@@ -2195,9 +1936,6 @@ body {
   }
   .arcade-stage .stage-thumbnail {
     height: 37px;
-  }
-  .stage-strip-footer {
-    display: none;
   }
   .arcade-ready {
     padding-block: 10px 12px;
@@ -2212,16 +1950,8 @@ body {
     bottom: -4px;
     align-items: center;
   }
-  .roster-search-toggle {
-    width: 44px;
-    height: 44px;
-  }
   .player-picker button {
     min-height: 44px;
-  }
-  .stage-strip-footer button {
-    width: 44px;
-    height: 44px;
   }
   .ready-difficulty button {
     min-height: 44px;
@@ -2233,25 +1963,6 @@ body {
 @media (max-width: 420px) {
   .ready-difficulty button > svg {
     display: none;
-  }
-  .cabinet-bolts > svg:first-child {
-    display: none;
-  }
-  .footer-criollo > svg:last-child {
-    display: none;
-  }
-}
-
-@media (max-width: 900px) {
-  .cabinet-bolts {
-    gap: 4px;
-  }
-  .cabinet-bolts > svg {
-    width: 22px;
-    height: 22px;
-  }
-  .footer-criollo {
-    gap: 5px;
   }
 }
 
@@ -2323,60 +2034,12 @@ body {
     grid-column: auto;
     font-size: 23px;
   }
-  .picking-label {
-    display: block;
-    font-size: 10px;
-  }
   .arcade-app .site-footer {
     margin-bottom: 75px;
   }
 }
 
 /* Collections keep the larger cast within the arcade selection cabinet. */
-.roster-categories {
-  display: flex;
-  gap: 5px;
-  margin: 0 0 9px;
-}
-.roster-categories button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  flex: 1;
-  min-width: 0;
-  min-height: 32px;
-  padding: 4px 7px;
-  border: 1px solid #93b7e8;
-  border-radius: 2px;
-  color: #e6f0ff;
-  background: #173e7c;
-  font: 500 12px var(--pixel);
-  transition:
-    background 120ms ease,
-    transform 120ms ease;
-}
-.roster-categories button span {
-  color: #a8c9f9;
-  font-size: 10px;
-}
-.roster-categories button[aria-pressed="true"] {
-  background: #ffe48b;
-  color: var(--ink);
-  border-color: var(--ink);
-  box-shadow: 2px 2px 0 var(--ink);
-}
-.roster-categories button[aria-pressed="true"] span {
-  color: #755119;
-}
-.roster-categories button:hover {
-  border-color: #fff6d5;
-  transform: translateY(-1px);
-}
-.roster-categories button:active {
-  transform: translate(1px, 1px);
-  box-shadow: none;
-}
 .roster-pagination {
   display: flex;
   align-items: center;
@@ -2413,25 +2076,11 @@ body {
   color: #a8c9f9;
 }
 @media (max-width: 700px) {
-  .roster-categories button {
-    min-height: 44px;
-    font-size: 13px;
-  }
   .roster-pagination button {
     width: 44px;
     height: 44px;
   }
   .roster-pagination {
     padding-top: 12px;
-  }
-}
-@media (max-width: 360px) {
-  .roster-categories button {
-    font-size: 12px;
-    padding-inline: 4px;
-    gap: 3px;
-  }
-  .roster-categories button span {
-    font-size: 9px;
   }
 }
