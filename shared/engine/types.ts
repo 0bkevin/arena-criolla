@@ -4,6 +4,11 @@ import type { FighterId, StageId } from "../roster/roster";
 import type { FieldFinaleState } from "./finales/field-finales";
 import type { FinaleState } from "./finales/finales";
 
+/** A seat in a match: 0 starts on the left (player 1), 1 on the right. */
+export type PlayerIndex = 0 | 1;
+export const PLAYERS = [0, 1] as const satisfies readonly PlayerIndex[];
+export const opponentOf = (i: PlayerIndex): PlayerIndex => (i === 0 ? 1 : 0);
+
 export const ACTIONS = [
   "jump",
   "light",
@@ -84,7 +89,7 @@ export interface PlayerState {
 }
 export interface Projectile {
   id: number;
-  owner: number;
+  owner: PlayerIndex;
   x: number;
   y: number;
   vx: number;
@@ -130,7 +135,7 @@ export interface Effect {
   kind: "hit" | "block" | "special" | "ringout";
   color: string;
   duration: number;
-  owner?: number;
+  owner?: PlayerIndex;
   impact?: NonNullable<Attack>;
   strength?: number;
   direction?: number;
@@ -142,7 +147,7 @@ export interface MatchState {
   tick: number;
   remaining: number;
   phase: "intro" | "playing" | "finished";
-  winner: number | "draw" | null;
+  winner: PlayerIndex | "draw" | null;
   players: [PlayerState, PlayerState];
   projectiles: Projectile[];
   effects: Effect[];

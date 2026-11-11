@@ -1,5 +1,6 @@
 import type { MatchState, PlayerState } from "../engine";
 import type { FieldFinaleState } from "./field-finales";
+import { opponentOf, PLAYERS } from "../types";
 
 export const DORANGEL_FINALE = {
   duration: 174,
@@ -19,7 +20,8 @@ export const DORANGEL_BITE = {
 
 /** A short, vulnerable step closes the gap before the jaw makes contact. */
 export function advanceDorangelBite(state: MatchState) {
-  for (const [index, player] of state.players.entries()) {
+  for (const index of PLAYERS) {
+    const player = state.players[index];
     if (
       player.config.fighter !== "dorangel" ||
       player.attack !== "special" ||
@@ -29,7 +31,7 @@ export function advanceDorangelBite(state: MatchState) {
       !player.grounded
     )
       continue;
-    const target = state.players[1 - index];
+    const target = state.players[opponentOf(index)];
     const gap = (target.x - player.x) * player.facing;
     const approaching =
       player.attackTick >= DORANGEL_BITE.approachStart &&
@@ -96,14 +98,17 @@ export function insideDorangelPot(
 
 /** A local grip ends as soon as either body leaves contact or its source stops. */
 export function releaseBrokenDorangelGrips(state: MatchState) {
-  for (const [index, target] of state.players.entries()) {
+  for (const index of PLAYERS) {
+    const target = state.players[index];
     if (target.rootKind !== "bite" && target.rootKind !== "pot") continue;
-    const source = state.players[1 - index];
+    const source = state.players[opponentOf(index)];
     const field =
       target.rootKind === "pot"
         ? state.fieldFinales?.find(
             (f) =>
-              f.owner === 1 - index && f.fighter === "dorangel" && !f.cancelled,
+              f.owner === opponentOf(index) &&
+              f.fighter === "dorangel" &&
+              !f.cancelled,
           )
         : undefined;
     const held =

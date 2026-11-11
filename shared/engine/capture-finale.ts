@@ -10,11 +10,17 @@ import {
   rewardHit,
 } from "./combat";
 import { resolveStocks, resolveTimeout } from "./outcome";
-import type { Input, MatchState } from "./types";
+import {
+  PLAYERS,
+  opponentOf,
+  type Input,
+  type MatchState,
+  type PlayerIndex,
+} from "./types";
 
-export function beginFinale(s: MatchState, owner: 0 | 1) {
+export function beginFinale(s: MatchState, owner: PlayerIndex) {
   const source = s.players[owner];
-  const target = s.players[1 - owner];
+  const target = s.players[opponentOf(owner)];
   const definition = finaleById(source.config.fighter);
   if (
     !definition ||
@@ -67,7 +73,7 @@ export function advanceFinale(s: MatchState, inputs: [Input, Input]) {
   scene.tick++;
   s.shake *= 0.8;
   s.effects = s.effects.filter((e) => --e.life > 0);
-  for (let i = 0; i < 2; i++) {
+  for (const i of PLAYERS) {
     s.players[i].lastActions = { ...inputs[i].actions };
     delete s.players[i].bufferedAttack;
   }

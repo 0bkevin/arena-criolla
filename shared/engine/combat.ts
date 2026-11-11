@@ -1,7 +1,14 @@
 // Contact between fighters: guards, counters, damage, launch and its effects.
 import { SUPER_INTERRUPT_ENERGY_COST, fighterById } from "../roster/roster";
 import { TECHNIQUES } from "./techniques";
-import type { Attack, Effect, MatchState, PlayerState } from "./types";
+import {
+  opponentOf,
+  type Attack,
+  type Effect,
+  type MatchState,
+  type PlayerIndex,
+  type PlayerState,
+} from "./types";
 
 /** Snapshot once for new attacks; reflected shots retain their original damage. */
 export function outgoingDamageMultiplier(player: PlayerState): number {
@@ -38,13 +45,13 @@ export function effect(
 // A defended hit consumes the attack without starting a scene or doing damage.
 export function interceptHit(
   s: MatchState,
-  attacker: number,
+  attacker: PlayerIndex,
   direction: number,
   x: number,
   y: number,
   impact: NonNullable<Attack>,
 ): "immune" | "defended" | undefined {
-  const target = s.players[1 - attacker];
+  const target = s.players[opponentOf(attacker)];
   const source = s.players[attacker];
   if (target.invincible > 0 || target.stocks <= 0 || target.hp <= 0)
     return "immune";
@@ -60,14 +67,14 @@ export function interceptHit(
   ) {
     target.countered = true;
     effect(s, target.x, target.y - 80, "block", "#e2bbff", {
-      owner: 1 - attacker,
+      owner: opponentOf(attacker),
       impact: "special",
       direction: target.facing,
     });
     if (Math.abs(source.x - target.x) < counter.range)
       hurt(
         s,
-        1 - attacker,
+        opponentOf(attacker),
         counter.damage *
           fighterById(target.config.fighter).damage *
           outgoingDamageMultiplier(target),
@@ -95,8 +102,8 @@ export function interceptHit(
   return undefined;
 }
 
-export function rewardHit(s: MatchState, attacker: number) {
-  const target = s.players[1 - attacker];
+export function rewardHit(s: MatchState, attacker: PlayerIndex) {
+  const target = s.players[opponentOf(attacker)];
   const source = s.players[attacker];
   if (target.superChargeInterruptedTick !== s.tick)
     target.energy = Math.min(100, target.energy + 9);
@@ -124,7 +131,7 @@ export function launchTarget(
 
 export function hurt(
   s: MatchState,
-  attacker: number,
+  attacker: PlayerIndex,
   damage: number,
   force: number,
   direction: number,
@@ -136,7 +143,7 @@ export function hurt(
 ): boolean {
   const interception = interceptHit(s, attacker, direction, x, y, impact);
   if (interception) return interception === "defended";
-  const target = s.players[1 - attacker];
+  const target = s.players[opponentOf(attacker)];
   const source = s.players[attacker];
   const def = fighterById(target.config.fighter);
   interruptSuperCharge(s, target);

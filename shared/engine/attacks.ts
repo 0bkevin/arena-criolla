@@ -12,9 +12,14 @@ import {
 import { TECHNIQUES, type Technique } from "./techniques";
 import { effect, hurt, outgoingDamageMultiplier } from "./combat";
 import { beginFinale } from "./capture-finale";
-import type { Attack, MatchState } from "./types";
+import {
+  opponentOf,
+  type Attack,
+  type MatchState,
+  type PlayerIndex,
+} from "./types";
 
-export function canUseSuper(s: MatchState, i: number) {
+export function canUseSuper(s: MatchState, i: PlayerIndex) {
   const p = s.players[i];
   return (
     !p.superUsed &&
@@ -28,7 +33,7 @@ export function canUseSuper(s: MatchState, i: number) {
 
 export function canBeginAttack(
   s: MatchState,
-  i: number,
+  i: PlayerIndex,
   attack: NonNullable<Attack>,
 ) {
   const p = s.players[i];
@@ -49,7 +54,7 @@ export function canBeginAttack(
 
 export function beginAttack(
   s: MatchState,
-  i: number,
+  i: PlayerIndex,
   attack: NonNullable<Attack>,
 ) {
   if (!canBeginAttack(s, i, attack)) return;
@@ -111,7 +116,7 @@ export function beginAttack(
     });
 }
 
-export function reflectProjectiles(s: MatchState, i: number) {
+export function reflectProjectiles(s: MatchState, i: PlayerIndex) {
   const p = s.players[i];
   if (p.attack !== "special") return;
   const def = fighterById(p.config.fighter);
@@ -159,7 +164,7 @@ export function reflectProjectiles(s: MatchState, i: number) {
   }
 }
 
-export function updateAttack(s: MatchState, i: number) {
+export function updateAttack(s: MatchState, i: PlayerIndex) {
   const p = s.players[i];
   if (!p.attack) return;
   const attack = p.attack;
@@ -225,7 +230,7 @@ export function updateAttack(s: MatchState, i: number) {
  */
 function advanceStandaloneDefinitive(
   s: MatchState,
-  i: number,
+  i: PlayerIndex,
   finale: FinaleDefinition,
   activeAt: number,
 ): boolean {
@@ -236,7 +241,7 @@ function advanceStandaloneDefinitive(
       p.attackHit = true;
       beginFieldFinale(
         s,
-        i as 0 | 1,
+        i,
         (28 * def.damage + p.comboBonus) * outgoingDamageMultiplier(p),
       );
     }
@@ -297,7 +302,7 @@ function advanceStandaloneDefinitive(
 /** Launch a special's projectile, or its spread or formation of them. */
 function spawnTechniqueProjectiles(
   s: MatchState,
-  i: number,
+  i: PlayerIndex,
   technique: Technique,
   projectile: NonNullable<Technique["projectile"]>,
 ) {
@@ -354,7 +359,7 @@ function spawnTechniqueProjectiles(
  */
 function strike(
   s: MatchState,
-  i: number,
+  i: PlayerIndex,
   attack: NonNullable<Attack>,
   technique: Technique,
   pulseIndex: number,
@@ -362,7 +367,7 @@ function strike(
 ): boolean {
   const p = s.players[i];
   const def = fighterById(p.config.fighter);
-  const other = s.players[1 - i];
+  const other = s.players[opponentOf(i)];
   let range = attack === "light" ? 110 : attack === "heavy" ? 155 : 165;
   if (attack === "super") range = FINALE_RANGE;
   if (attack === "special") {
@@ -409,7 +414,7 @@ function strike(
     inFront
   ) {
     if (attack === "super" && finaleById(p.config.fighter)) {
-      beginFinale(s, i as 0 | 1);
+      beginFinale(s, i);
       return true;
     }
     const damage =
@@ -472,11 +477,15 @@ function recoveryTicks(attack: NonNullable<Attack>, technique: Technique) {
         : 40;
 }
 
-function applySpecialMovement(s: MatchState, i: number, technique: Technique) {
+function applySpecialMovement(
+  s: MatchState,
+  i: PlayerIndex,
+  technique: Technique,
+) {
   const p = s.players[i];
   if (p.rootTicks > 0) return;
   if (technique.blink) {
-    const other = s.players[1 - i];
+    const other = s.players[opponentOf(i)];
     const distance = Math.max(0, Math.abs(other.x - p.x) - technique.blink.gap);
     const startX = p.x;
     p.x = Math.max(

@@ -4,7 +4,7 @@ import { MAX_FIGHTER_SEPARATION, WORLD } from "./arena";
 import type { Platform } from "../roster/roster";
 import { activeArenaPerformance, mountedFinale } from "./finales/arena-finales";
 import { activeRunway } from "./finales/field-finales";
-import type { Input, MatchState } from "./types";
+import type { Input, MatchState, PlayerIndex } from "./types";
 
 export function limitRetreat(
   s: MatchState,
@@ -45,7 +45,7 @@ export function limitRetreat(
 /** Integrate one fighter's motion and land it on the highest surface it crossed. */
 export function moveFighter(
   s: MatchState,
-  i: number,
+  i: PlayerIndex,
   input: Input,
   carriedPlatform: number | null,
   stagePlatforms: Platform[],

@@ -7,12 +7,13 @@ import {
   type ArenaFinalist,
 } from "./arena-finales";
 import type { MatchState, PlayerState } from "../engine";
+import { opponentOf, type PlayerIndex } from "../types";
 
 /** Temporary arena actors run on ordinary combat ticks; they never capture a rival. */
 export interface FieldFinaleState {
   id: number;
   fighter: "dayana" | "deyna" | ArenaFinalist;
-  owner: 0 | 1;
+  owner: PlayerIndex;
   startedTick: number;
   tick: number;
   duration: number;
@@ -95,7 +96,7 @@ export function activeRunway(state: MatchState, player: PlayerState) {
 }
 export function beginFieldFinale(
   state: MatchState,
-  owner: 0 | 1,
+  owner: PlayerIndex,
   damage: number,
 ) {
   const player = state.players[owner],
@@ -211,7 +212,7 @@ export function supportRunway(state: MatchState) {
   }
 }
 export interface RunwayHit {
-  owner: 0 | 1;
+  owner: PlayerIndex;
   damage: number;
   force: number;
   direction: number;
@@ -226,7 +227,7 @@ export function runwayContacts(state: MatchState): RunwayHit[] {
     )
       return [];
     const source = state.players[field.owner],
-      target = state.players[1 - field.owner];
+      target = state.players[opponentOf(field.owner)];
     if (
       !activeRunway(state, source) ||
       Math.abs(target.x - source.x) > 115 ||

@@ -2,13 +2,16 @@
 export { WORLD } from "./arena";
 export {
   ACTIONS,
+  PLAYERS,
   emptyInput,
+  opponentOf,
   type Action,
   type Attack,
   type Effect,
   type Input,
   type MatchState,
   type PlayerConfig,
+  type PlayerIndex,
   type PlayerState,
   type Projectile,
 } from "./types";

@@ -1,6 +1,6 @@
 import { fighterById, type FighterId } from "../../../shared/roster/roster";
 import { CHOREOGRAPHIES } from "../choreography/choreography";
-import type { MatchState } from "../../../shared/engine/engine";
+import { PLAYERS, type MatchState } from "../../../shared/engine/engine";
 import {
   entranceProgress,
   introActor,
@@ -87,8 +87,8 @@ export function drawIntroCinematic(
   ctx.imageSmoothingEnabled = false;
   ctx.fillStyle = "#070d18";
   ctx.fillRect(0, 0, width, height);
-  state.players.forEach((player, index) => {
-    const side = index as 0 | 1;
+  for (const side of PLAYERS) {
+    const player = state.players[side];
     const id = player.config.fighter;
     const profile = presentationById(id);
     const sprite = sprites[id];
@@ -141,7 +141,7 @@ export function drawIntroCinematic(
     ctx.fillStyle = lower;
     ctx.fillRect(0, 440 * scale, width, 200 * scale);
     ctx.restore();
-  });
+  }
   ctx.strokeStyle = "#ffdb68";
   ctx.lineWidth = 1;
   ctx.beginPath();

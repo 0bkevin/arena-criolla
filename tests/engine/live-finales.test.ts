@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   createMatch,
   emptyInput,
+  opponentOf,
   stepMatch,
   WORLD,
   type Input,
@@ -181,7 +182,7 @@ for (const id of reviewed.filter(isArenaFinalist)) {
       interrupted.start();
       interrupted.state.projectiles.push({
         id: interrupted.state.nextId++,
-        owner: 1 - side,
+        owner: opponentOf(side),
         x: interrupted.source.x,
         y: interrupted.source.y - 75,
         vx: 0,

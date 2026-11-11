@@ -21,11 +21,11 @@ import { updateFighterControls } from "./controls";
 import { limitRetreat, moveFighter, separateFighters } from "./movement";
 import { advanceProjectiles } from "./projectiles";
 import { resolveStocks, resolveTimeout } from "./outcome";
-import type { Input, MatchState } from "./types";
+import { PLAYERS, opponentOf, type Input, type MatchState } from "./types";
 
 /** Advance a match by one simulation tick. */
 export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
-  for (let i = 0; i < 2; i++) {
+  for (const i of PLAYERS) {
     const p = s.players[i];
     if (!inputs[i].superHeld || s.phase !== "playing" || p.hp <= 0)
       p.superChargeTicks = 0;
@@ -62,7 +62,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
   const stagePlatforms = platformsAtTick(s.stage, s.tick);
   const priorPlatforms = platformsAtTick(s.stage, s.tick - 1);
   const carriedPlatforms: (number | null)[] = [null, null];
-  for (let i = 0; i < 2; i++)
+  for (const i of PLAYERS)
     carriedPlatforms[i] = updateFighterControls(
       s,
       i,
@@ -75,14 +75,14 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
   // Otherwise a P1 hit applies knockback one frame earlier than the mirrored P2 hit.
   for (const player of s.players) if (player.attack) player.attackTick++;
   advanceDorangelBite(s);
-  for (let i = 0; i < 2; i++) {
+  for (const i of PLAYERS) {
     updateAttack(s, i);
     if (s.finale) return;
   }
   advanceFieldFinales(s);
   releaseBrokenDorangelGrips(s);
   // Both players must finish spawning shots before either reflector sees this tick's pack.
-  for (let i = 0; i < 2; i++) reflectProjectiles(s, i);
+  for (const i of PLAYERS) reflectProjectiles(s, i);
   // Predict spacing from the movement that roots actually allow this frame.
   for (const p of s.players) {
     if (p.rootTicks > 0 && p.grounded) {
@@ -91,7 +91,7 @@ export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
     }
   }
   limitRetreat(s, movementOrigins, platformCarry);
-  for (let i = 0; i < 2; i++)
+  for (const i of PLAYERS)
     moveFighter(
       s,
       i,
@@ -119,14 +119,14 @@ function advanceIntro(s: MatchState, inputs: [Input, Input]) {
     )
   )
     s.tick = INTRO_COUNTDOWN_START;
-  for (let i = 0; i < 2; i++)
-    s.players[i].lastActions = { ...inputs[i].actions };
+  for (const i of PLAYERS) s.players[i].lastActions = { ...inputs[i].actions };
   if (s.tick >= INTRO_TOTAL_TICKS) {
     s.phase = "playing";
-    s.players.forEach((p, i) => {
+    for (const i of PLAYERS) {
+      const p = s.players[i];
       p.invincible = 0;
-      p.facing = s.players[1 - i].x >= p.x ? 1 : -1;
-    });
+      p.facing = s.players[opponentOf(i)].x >= p.x ? 1 : -1;
+    }
   }
 }
 
@@ -145,7 +145,7 @@ function applyFinaleContacts(s: MatchState) {
       8,
     );
   for (const contact of arenaFinaleContacts(s)) {
-    const target = s.players[1 - contact.owner],
+    const target = s.players[opponentOf(contact.owner)],
       hp = target.hp;
     if (
       hurt(

@@ -12,6 +12,7 @@ import {
   coutureModelStart,
   coutureModelEnd,
 } from "./couture-runway";
+import { opponentOf, PLAYERS, type PlayerIndex } from "../types";
 
 /** The authored batch. The other roster finales retain their existing rules. */
 export const REVIEWED_FINALISTS = [
@@ -130,7 +131,7 @@ export interface ArenaFinaleActor {
 export interface ArenaContact {
   field: FieldFinaleState;
   actor?: ArenaFinaleActor;
-  owner: 0 | 1;
+  owner: PlayerIndex;
   damage: number;
   force: number;
   direction: number;
@@ -366,7 +367,7 @@ export function advanceArenaFinale(state: MatchState, field: FieldFinaleState) {
   if (!isArenaFinalist(field.fighter)) return;
   const spec = ARENA_FINALES[field.fighter],
     p = state.players[field.owner],
-    target = state.players[1 - field.owner],
+    target = state.players[opponentOf(field.owner)],
     tick = field.tick;
   if (tick < spec.recovery && (p.attack !== "super" || p.stun || !p.grounded)) {
     field.cancelled = true;
@@ -462,7 +463,7 @@ export function advanceArenaFinale(state: MatchState, field: FieldFinaleState) {
       tick === 0
     ) {
       const distance = clamp((target.x - field.x) * field.direction, 100, 310);
-      for (let i = 0; i < 2; i++) {
+      for (const i of PLAYERS) {
         const x = field.x - field.direction * (i * 45),
           goal = field.x + field.direction * (distance - (i ? -60 : 60));
         spawnActor(
@@ -648,7 +649,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
   const contacts: ArenaContact[] = [];
   for (const field of state.fieldFinales ?? []) {
     if (!isArenaFinalist(field.fighter)) continue;
-    const target = state.players[1 - field.owner],
+    const target = state.players[opponentOf(field.owner)],
       p = state.players[field.owner],
       active = activeArenaPerformance(state, p) === field;
     const offer = (
@@ -872,7 +873,7 @@ export function registerArenaContact(
   } else if (!actor && (mountedFinale(field) || field.fighter === "chataing"))
     field.connected = true;
   if (damaged && contact.rootTicks) {
-    const target = state.players[1 - contact.owner];
+    const target = state.players[opponentOf(contact.owner)];
     target.rootTicks = Math.max(target.rootTicks, contact.rootTicks);
     if (contact.rootSupport !== undefined) {
       if (contact.rootKind) target.rootKind = contact.rootKind;

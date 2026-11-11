@@ -2,7 +2,7 @@
 import { WORLD } from "./arena";
 import { fighterById } from "../roster/roster";
 import { effect, hurt } from "./combat";
-import type { MatchState } from "./types";
+import { opponentOf, type MatchState } from "./types";
 
 /** Advance every projectile one tick and resolve the ones that land. */
 export function advanceProjectiles(s: MatchState) {
@@ -14,7 +14,7 @@ export function advanceProjectiles(s: MatchState) {
   }));
   s.projectiles = s.projectiles.filter((projectile) => {
     projectile.age = (projectile.age || 0) + 1;
-    const target = s.players[1 - projectile.owner];
+    const target = s.players[opponentOf(projectile.owner)];
     if (projectile.tether) {
       const owner = s.players[projectile.owner];
       if (!tetherOwners[projectile.owner].alive) return false;

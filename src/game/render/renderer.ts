@@ -1,5 +1,10 @@
 import { fighterById, stageById } from "../../../shared/roster/roster";
-import type { MatchState } from "../../../shared/engine/engine";
+import {
+  PLAYERS,
+  opponentOf,
+  type MatchState,
+  type PlayerIndex,
+} from "../../../shared/engine/engine";
 import { finaleById } from "../../../shared/engine/finales/finales";
 import {
   INTRO_COUNTDOWN_START,
@@ -253,7 +258,8 @@ export function renderMatch(
     return;
   }
   // A held forearm belongs behind the attacker's gripping hands, on either side.
-  const bodyOrder = state.players[1].rootKind === "bite" ? [1, 0] : [0, 1];
+  const bodyOrder: readonly PlayerIndex[] =
+    state.players[1].rootKind === "bite" ? [1, 0] : PLAYERS;
   bodyOrder.forEach((i) => {
     const p = state.players[i];
     const def = fighterById(p.config.fighter);
@@ -384,7 +390,7 @@ export function renderMatch(
     if (p.rootKind === "bite" && p.rootTicks > 0) frame = 5;
     const bodyFacing =
       p.rootKind === "bite"
-        ? state.players[1 - i].x > p.x
+        ? state.players[opponentOf(i)].x > p.x
           ? 1
           : -1
         : p.facing;
@@ -432,7 +438,7 @@ export function renderMatch(
       p,
       bodyHeight,
       reducedMotion,
-      state.players[1 - i],
+      state.players[opponentOf(i)],
     );
     const paintedArena = drawArenaPerformer(
       ctx,
@@ -570,8 +576,20 @@ export function renderMatch(
       ctx.fillStyle = `${def.color}30`;
       ctx.lineWidth = 3;
       ctx.globalAlpha = Math.max(0, 1 - Math.abs(progress) / 18);
-      drawFolkloreSpecial(ctx, def.ability, p, state.players[1 - i], progress);
-      drawFounderSpecial(ctx, def.ability, p, state.players[1 - i], progress);
+      drawFolkloreSpecial(
+        ctx,
+        def.ability,
+        p,
+        state.players[opponentOf(i)],
+        progress,
+      );
+      drawFounderSpecial(
+        ctx,
+        def.ability,
+        p,
+        state.players[opponentOf(i)],
+        progress,
+      );
       if (
         def.id !== "lorenzo" &&
         def.id !== "bolivar" &&
@@ -582,7 +600,7 @@ export function renderMatch(
         ctx,
         def.ability,
         p,
-        state.players[1 - i],
+        state.players[opponentOf(i)],
         sprite,
         progress,
       );
@@ -600,7 +618,7 @@ export function renderMatch(
         }
         ctx.restore();
       } else if (def.ability === "spotlight") {
-        const other = state.players[1 - i];
+        const other = state.players[opponentOf(i)];
         const mark = p.x + p.facing * Math.min(250, Math.abs(other.x - p.x));
         ctx.beginPath();
         ctx.moveTo(mark - 52, p.y);

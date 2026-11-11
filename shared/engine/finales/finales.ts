@@ -9,6 +9,7 @@ import {
   type FighterId,
 } from "../../roster/roster";
 import perroMujeriego from "./perro-mujeriego-choreography.json";
+import type { PlayerIndex } from "../types";
 
 export type FinaleFamily =
   | "transport"
@@ -53,8 +54,8 @@ export interface FinaleDefinition {
 }
 
 export interface FinaleState {
-  owner: 0 | 1;
-  target: 0 | 1;
+  owner: PlayerIndex;
+  target: PlayerIndex;
   fighter: FighterId;
   startedTick: number;
   tick: number;

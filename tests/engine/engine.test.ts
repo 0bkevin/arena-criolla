@@ -221,7 +221,7 @@ test("simultaneous stock losses count both players before choosing a winner", ()
 });
 
 test("projectile knockouts resolve before timeout, including simultaneous final hits", () => {
-  for (const owners of [[0], [1], [0, 1]]) {
+  for (const owners of [[0], [1], [0, 1]] as const) {
     const { state, inputs } = setup();
     state.remaining = 1;
     state.players.forEach((player) => {

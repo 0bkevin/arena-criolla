@@ -3,6 +3,7 @@
 import { isFighter } from "../roster/roster";
 import {
   ACTIONS,
+  PLAYERS,
   createMatch,
   emptyInput,
   stepMatch,
@@ -167,7 +168,7 @@ export class Lobby<Socket> {
         this.send(client, {
           type: "start",
           state: previousRoom.state,
-          index: previousRoom.clients.indexOf(client),
+          index: previousRoom.clients.indexOf(client) === 1 ? 1 : 0,
         });
     }
     this.scheduleRoomList();
@@ -453,9 +454,8 @@ export class Lobby<Socket> {
     room.state = state;
     room.view.status = "playing";
     room.touched = Date.now();
-    room.clients.forEach((c, index) =>
-      this.send(c, { type: "start", state, index }),
-    );
+    for (const index of PLAYERS)
+      this.send(room.clients[index], { type: "start", state, index });
     this.publishRoom(room);
     this.scheduleRoomList(room);
     this.updateTimers();

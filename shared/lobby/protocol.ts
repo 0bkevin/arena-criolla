@@ -1,5 +1,5 @@
 import type { FighterId, StageId } from "../roster/roster";
-import type { Input, MatchState } from "../engine/engine";
+import type { Input, MatchState, PlayerIndex } from "../engine/engine";
 
 export const ARENA_SOCKET_PROTOCOL = "arena-v1";
 export const ROOM_RESUME_PROTOCOL_PREFIX = "arena-resume.";
@@ -46,7 +46,7 @@ export type ServerMessage =
   | { type: "welcome"; id: string; resumeToken?: string; resumed?: boolean }
   | { type: "rooms"; rooms: RoomView[]; online: number }
   | { type: "room"; room: RoomView }
-  | { type: "start"; state: MatchState; index: number }
+  | { type: "start"; state: MatchState; index: PlayerIndex }
   | { type: "state"; state: MatchState }
   | { type: "left" }
   | { type: "opponent-left" }

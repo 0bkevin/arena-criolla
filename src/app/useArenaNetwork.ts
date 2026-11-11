@@ -8,7 +8,7 @@ import {
   ARENA_SOCKET_PROTOCOL,
   ROOM_RESUME_PROTOCOL_PREFIX,
 } from "../../shared/lobby/protocol";
-import type { MatchState } from "../../shared/engine/engine";
+import type { MatchState, PlayerIndex } from "../../shared/engine/engine";
 
 const ROOM_SESSION_KEY = "arena-room-session-v1";
 function savedRoomSession() {
@@ -39,7 +39,7 @@ export function useArenaNetwork() {
   const [error, setError] = useState("");
   const [match, setMatch] = useState<{
     initial: MatchState;
-    index: number;
+    index: PlayerIndex;
   } | null>(null);
   const [opponentLeft, setOpponentLeft] = useState(false);
   useEffect(() => {

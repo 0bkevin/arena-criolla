@@ -3,9 +3,9 @@ import { WORLD } from "./arena";
 import { fighterById } from "../roster/roster";
 import { runwayContacts, supportRunway } from "./finales/field-finales";
 import { effect, hurt } from "./combat";
-import type { MatchState } from "./types";
+import { PLAYERS, type MatchState, type PlayerIndex } from "./types";
 
-function loseStock(s: MatchState, i: number) {
+function loseStock(s: MatchState, i: PlayerIndex) {
   const p = s.players[i];
   delete p.bufferedAttack;
   s.projectiles = s.projectiles.filter(
@@ -55,8 +55,9 @@ function loseStock(s: MatchState, i: number) {
 }
 
 export function resolveStocks(s: MatchState) {
-  s.players.forEach((p, i) => {
-    if (p.stocks <= 0) return;
+  for (const i of PLAYERS) {
+    const p = s.players[i];
+    if (p.stocks <= 0) continue;
     if (
       (p.hp <= 0 && !p.knockoutDelay) ||
       p.x < WORLD.x - 120 ||
@@ -64,7 +65,7 @@ export function resolveStocks(s: MatchState) {
       p.y > WORLD.y + WORLD.height + 140
     )
       loseStock(s, i);
-  });
+  }
   const [first, second] = s.players;
   if (s.players.some((p) => p.hp <= 0 && (p.knockoutDelay ?? 0) > 0)) return;
   if (first.stocks <= 0 || second.stocks <= 0) {

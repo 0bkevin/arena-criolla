@@ -9,7 +9,13 @@ import { cancelArenaPerformance, mountedFinale } from "./finales/arena-finales";
 import { activeRunway } from "./finales/field-finales";
 import { TECHNIQUES } from "./techniques";
 import { beginAttack, canBeginAttack, canUseSuper } from "./attacks";
-import type { Action, Input, MatchState } from "./types";
+import {
+  opponentOf,
+  type Action,
+  type Input,
+  type MatchState,
+  type PlayerIndex,
+} from "./types";
 
 // Five active simulation ticks (83 ms at 60 Hz), shared by local and online play.
 const ATTACK_BUFFER_TICKS = 5;
@@ -20,7 +26,7 @@ const ATTACK_BUFFER_TICKS = 5;
  */
 export function updateFighterControls(
   s: MatchState,
-  i: number,
+  i: PlayerIndex,
   input: Input,
   stagePlatforms: Platform[],
   priorPlatforms: Platform[],
@@ -126,7 +132,7 @@ export function updateFighterControls(
           )
         )
       )
-        p.facing = s.players[1 - i].x >= p.x ? 1 : -1;
+        p.facing = s.players[opponentOf(i)].x >= p.x ? 1 : -1;
     }
     if (!charging && pressed("jump") && p.jumps < 2 && !p.blocking) {
       cancelArenaPerformance(s, p);

@@ -6,7 +6,7 @@ import {
 } from "react";
 import { ArrowRight, RotateCcw, Trophy, Zap } from "lucide-react";
 import { fighterById, stageById } from "../../../shared/roster/roster";
-import type { MatchState } from "../../../shared/engine/engine";
+import type { MatchState, PlayerIndex } from "../../../shared/engine/engine";
 import type { GameMode } from "./Game";
 import { VenezuelaStars } from "../ui/CriolloArt";
 import { Portrait } from "../ui/Portrait";
@@ -17,7 +17,7 @@ import { startVictoryMusic } from "../../game/audio/audio";
 interface Props {
   state: MatchState;
   mode: GameMode;
-  localIndex: number;
+  localIndex: PlayerIndex;
   active: boolean;
   overlayRef: RefObject<HTMLDivElement | null>;
   onReady: () => void;

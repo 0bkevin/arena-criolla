@@ -29,6 +29,7 @@ import {
   stepMatch,
   type Input,
   type MatchState,
+  type PlayerIndex,
 } from "../../../shared/engine/engine";
 import { preloadAssets } from "../../game/assets/assets";
 import { renderMatch, type Assets } from "../../game/render/renderer";
@@ -81,10 +82,10 @@ interface Props {
   mode: GameMode;
   difficulty: "easy" | "normal" | "hard";
   remote?: MutableRefObject<MatchState | null>;
-  localIndex?: number;
+  localIndex?: PlayerIndex;
   onInput?: (input: Input) => void;
   onExit: () => void;
-  onResult: (state: MatchState, index: number) => void;
+  onResult: (state: MatchState, index: PlayerIndex) => void;
   onRematch: () => void;
   rematchWaiting?: boolean;
   onHelp: () => void;

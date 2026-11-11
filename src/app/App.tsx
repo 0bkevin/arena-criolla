@@ -25,7 +25,12 @@ import {
   type FighterId,
   type StageId,
 } from "../../shared/roster/roster";
-import { createMatch, type MatchState } from "../../shared/engine/engine";
+import {
+  createMatch,
+  opponentOf,
+  type MatchState,
+  type PlayerIndex,
+} from "../../shared/engine/engine";
 import {
   isRoomCode,
   normalizeRoomCode,
@@ -429,7 +434,7 @@ export function App() {
     );
     window.scrollTo({ top: 0, behavior: "instant" });
   };
-  const recordResult = (state: MatchState, index: number) => {
+  const recordResult = (state: MatchState, index: PlayerIndex) => {
     const saved = structuredClone(progressRef.current);
     const local = state.players[index];
     const won = state.winner === index;
@@ -445,7 +450,7 @@ export function App() {
     }
     saved.recent.unshift({
       fighter: local.config.fighter,
-      rival: state.players[1 - index].config.fighter,
+      rival: state.players[opponentOf(index)].config.fighter,
       won,
       date: new Date().toISOString(),
     });
@@ -579,7 +584,7 @@ export function App() {
           mode={localMatch ? mode : "online"}
           difficulty={difficulty}
           remote={network.state}
-          localIndex={network.match?.index || 0}
+          localIndex={network.match?.index ?? 0}
           onInput={(input) =>
             network.send({ type: "input", matchId: active.id, input })
           }
