@@ -45,17 +45,17 @@ jobs:
           ## Evidence
 
           main is green at this commit; its checks are not repeated here. Deploying builds,
-          scans and smoke-tests the image it delivers; the host backs up persistent data and
-          verifies HTTP and WebSocket behavior.
+          scans and smoke-tests the image it delivers; the host verifies HTTP and
+          WebSocket behavior.
 
           ## Merge Danger
 
-          **Door:** two-way for application changes with compatible persisted data.
+          **Door:** two-way for application changes.
           **Blast Radius:** production
 
           Merging this PR starts deployment to https://arenacriolla.com.
-          Failed releases resume the previous image only when the database schema is unchanged.
-          Review the complete diff and any data compatibility changes before merging.
+          Failed releases resume the previous image.
+          Review the complete diff before merging.
           EOF
           # main's push already gave this commit validate and prod-source.
           if test -n "$number"; then
