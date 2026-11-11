@@ -206,21 +206,23 @@ competitive tier list.
 
 The goal of #76 is to let a player recover from a fall and continue fighting.
 Falling out of the arena originally removed all remaining health and one stock.
-After comparing fixed 30 HP and 10 HP penalties, the selected rule is **40% of
-current health, with a 10 HP minimum**, capped at the health remaining. This
-makes a fall more costly while healthy and softens the absolute loss as health
-falls, while retaining a meaningful cost near defeat.
+The selected rule separates the health penalty from the stock-loss threshold:
+a fall with **10 HP or more removes exactly 40% of current health**. A fighter
+with **less than 10 HP before the fall loses the stock**. There is no minimum
+HP damage. This keeps the percentage consistent at 20 HP and other low-health
+values while retaining a clear end to repeated escapes near defeat.
 
-| Location           | Value                      | Selected rule                 |
-| ------------------ | -------------------------- | ----------------------------- |
-| `damage-values.ts` | `RING_OUT_DAMAGE_FRACTION` | 0.4 of current HP             |
-| `damage-values.ts` | `MIN_RING_OUT_DAMAGE`      | 10 HP, capped at remaining HP |
+| Location           | Value                           | Selected rule                                  |
+| ------------------ | ------------------------------- | ---------------------------------------------- |
+| `damage-values.ts` | `RING_OUT_DAMAGE_FRACTION`      | 0.4 of current HP for a surviving fall         |
+| `damage-values.ts` | `RING_OUT_STOCK_LOSS_THRESHOLD` | lose the stock only below 10 HP before falling |
 
 ### Current behavior
 
 Calculate the penalty once from health immediately before leaving the arena:
-`min(hp, max(0.4 * hp, 10))`. Fractional HP is retained, matching ordinary combat;
-the penalty is not rounded up or down at every fall.
+`hp < 10 ? hp : 0.4 * hp`. The stock-loss check uses health **before** the
+penalty. Fractional HP is retained, matching ordinary combat; the penalty is
+not rounded up or down at every fall.
 
 | HP before fall | HP lost | HP after fall |
 | -------------: | ------: | ------------: |
@@ -228,9 +230,10 @@ the penalty is not rounded up or down at every fall.
 |             75 |      30 |            45 |
 |             50 |      20 |            30 |
 |             25 |      10 |            15 |
-|             20 |      10 |            10 |
-|             15 |      10 |             5 |
-|             10 |      10 |    stock lost |
+|             20 |       8 |            12 |
+|             15 |       6 |             9 |
+|             10 |       4 |             6 |
+|           9.99 |    9.99 |    stock lost |
 
 A surviving fall preserves the stock, energy and active transformation, and
 returns the fighter to their normal spawn. The penalty ignores armor and
@@ -240,13 +243,15 @@ beyond the floor edge do not incur damage; crossing the left, right, or bottom
 blast boundary triggers a fall. Crossing multiple boundaries in a tick still
 charges once. Returning inside the arena prevents repeat charges for that fall.
 
-If the fighter has 10 HP or less, the fall removes their remaining health and
-one stock, as an ordinary lethal hit would. The excess penalty does not carry
-into the next stock. This deliberately keeps falls capable of ending a stock;
-clamping everyone to 1 HP would make repeated escapes at low health cost no
-further health. For example, on the final stock, 15 HP becomes 5 HP and play
-continues; 10 HP ends the stock and the match. Simultaneous lethal falls can
-still produce a draw.
+A fighter at exactly 10 HP survives a fall with 6 HP. A fighter at 15 HP
+survives with 9 HP; the next fall then loses the stock because it starts below 10. Losing a stock does not carry damage into the next stock. On the final
+stock, a fall starting below 10 HP ends the match. Simultaneous lethal falls
+can still produce a draw.
+
+The HUD rounds to tenths below the cutoff, keeping the displayed value below
+the cutoff and positive health visibly positive. This prevents an actual value such as 9.99
+HP from being rounded up to a displayed 10 HP even though the next fall would
+lose a stock. The mechanic itself uses the unrounded value.
 
 Returning fighters can move and jump immediately, with the existing 30-tick
 attack cooldown. A surviving fall grants 60 active ticks (one second) of return
@@ -268,9 +273,39 @@ Actual stock loss retains its existing 110-tick respawn protection, 20-energy
 cost and transformation cleanup. The balance report separates surviving falls
 from damage dealt by the opponent.
 
-### Percentage-policy verification
+### Current threshold-rule verification
 
-The selected percentage policy is implemented by commit `8586139`. It keeps
+Commit `3e4aa8f` removes the minimum damage and introduces the strict pre-fall
+stock-loss threshold. Commit `71a1e3b` makes the low-health HUD respect that
+visible cutoff. The same full Caracas hard CPU schedule was rerun:
+
+| Full Caracas result                 | Previous percentage + minimum | Current percentage + stock-loss threshold |
+| ----------------------------------- | ----------------------------: | ----------------------------------------: |
+| Matches                             |                        12,320 |                                    12,320 |
+| Mean match duration                 |                       41.65 s |                                   41.88 s |
+| Mean surviving-fall HP loss         |                         19.91 |                                     19.16 |
+| Falls that kept a stock             |                        50,359 |                                    50,506 |
+| Stocks lost to falls                |       8,615 / 35,654 (24.16%) |                   9,028 / 35,638 (25.33%) |
+| Timeouts / simulation-limit results |                         0 / 0 |                                     0 / 0 |
+
+The current run uses every distinct fighter pair, both seats and the four
+existing CPU timing variants. It is a mechanical proxy, not a measurement of
+human enjoyment. An independent check verified exact 40% damage for all
+**50,506** surviving falls, confirmed each fell from at least 10 HP, and
+verified health conservation across all **35,638** completed stocks. Every
+ring-out stock loss began with positive health strictly below 10 HP.
+
+All **554 automated tests** pass, including explicit 20 → 12, 15 → 9 and 10 → 6
+cases and both sides of the strict threshold on each seat and final stock.
+Additional direct-engine checks cover **3,200** health/seat/stock combinations
+and repeated resolution of the same exit. The graph matches the engine at
+nine starting-health selections, including 9, 10 and 20 HP; its old minimum
+reference line is removed. Build, TypeScript and formatting checks pass. All
+12 browser layout checks pass in the nonhidden source copy described below.
+
+### Historical percentage-plus-minimum verification
+
+The intermediate percentage-plus-minimum policy is implemented by commit `8586139`. It keeps
 the refined return behavior and changes the health calculation from fixed 10
 HP to 40% of current HP with a 10 HP minimum. The same full Caracas schedule
 was rerun against the fixed-10-HP results from commit `2b4c046`:
@@ -425,12 +460,13 @@ using the same full Caracas configuration:
 
 ### Remaining play-test questions
 
-The user selected a percentage to make falls more consequential than the fixed
-10 HP proposal while preserving continued play. A pure percentage would never
-remove the last positive HP by itself; the 10 HP minimum keeps repeated escapes
-costly and allows a stock to end. Starting at 100 HP with no other damage, six
-distinct falls exhaust a stock: 100 → 60 → 36 → 21.6 → 11.6 → 1.6 → stock lost.
-The intermediate fixed 10 HP rule allowed ten falls from full health.
+The user selected consistent percentage damage without a minimum, combined
+with a separate stock-loss threshold below 10 HP. A pure percentage without
+that threshold would keep leaving positive health. Starting at 100 HP with no
+other damage, six distinct falls exhaust a stock:
+100 → 60 → 36 → 21.6 → 12.96 → 7.776 → stock lost.
+Starting at 20 HP gives 20 → 12 → 7.2 → stock lost. These sequences preserve
+40% damage until a fall starts below the threshold.
 
 Human play should check whether the larger loss while healthy feels fair,
 whether the shrinking cost is clear, whether landing feels safe, whether
@@ -447,7 +483,7 @@ provide. Do not infer improved player enjoyment solely from CPU results.
 - Review the hard CPU's attack cadence, which only chooses heavy attacks.
 - Play-test ride pushback and investigate other ring-outs, including edge
   recovery, jump cadence and knockback.
-- Play-test the 40%-of-current-HP penalty, 10 HP minimum and return protection; review
+- Play-test the 40%-of-current-HP penalty, below-10 stock-loss threshold and return protection; review
   intentional escapes and Chataing's CPU matchup results separately.
 - Review same-tick trades: player 0 resolves first and is favored; the harness
   offsets seat timing to compensate.
