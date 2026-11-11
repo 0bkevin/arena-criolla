@@ -23,17 +23,17 @@ class MonitoredContext extends NativeContext {
     super();
     contexts.push(this);
   }
-  createGain() {
+  override createGain() {
     const node = super.createGain();
     this.gains.push(node);
     return node;
   }
-  createBufferSource() {
+  override createBufferSource() {
     const source = super.createBufferSource();
     this.sources.push(source);
     return source;
   }
-  resume() {
+  override resume() {
     this.resumeCalls++;
     return super.resume();
   }

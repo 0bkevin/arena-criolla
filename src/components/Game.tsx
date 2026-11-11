@@ -14,7 +14,6 @@ import {
   Heart,
   Pause,
   Play,
-  SkipForward,
   Smartphone,
   Volume2,
   VolumeX,
@@ -54,7 +53,6 @@ import {
   stopFinaleMusic,
 } from "../audio";
 import { KNOCKOUT_HOLD_MS } from "../game/knockout";
-import { Portrait } from "./Portrait";
 import { VictoryScreen } from "./VictoryScreen";
 import { TouchControls } from "./TouchControls";
 import { SuperMeter } from "./SuperMeter";
@@ -130,9 +128,11 @@ export function Game(props: Props) {
   useLayoutEffect(() => {
     if (!device.touch && !paused && view.phase !== "finished" && page.current)
       return trackHybridGameChrome(page.current);
+    return undefined;
   }, [device.touch, touchControlsAvailable, paused, view.phase]);
   useEffect(() => {
     if (device.touch && page.current) return trackPlayViewport(page.current);
+    return undefined;
   }, [device.touch]);
   useEffect(() => {
     const element = canvas.current,

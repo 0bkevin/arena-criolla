@@ -18,7 +18,6 @@ import {
 } from "./helpers/charged-finale-engine";
 import { FINALE_CAPTURE_TICK, finaleById } from "../shared/finales";
 import { advanceArenaCamera, cameraBounds } from "../src/game/arena-camera";
-import { drawFinale } from "../src/game/finale-renderer";
 import { renderMatch, type Assets } from "../src/game/renderer";
 import { drawStage } from "../src/game/stage-renderer";
 

@@ -11,16 +11,25 @@
     "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "types": ["node"]
+    "types": ["node", "vite/client"],
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "verbatimModuleSyntax": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noUncheckedSideEffectImports": true
   },
   "include": [
-    "src",
-    "shared",
-    "server",
-    "tests",
     "e2e",
+    "server",
+    "shared",
+    "src",
+    "tests",
     "playwright.config.ts",
-    "scripts/performance-audit.ts",
+    "scripts/**/*.ts",
     "vite.config.ts"
   ]
 }

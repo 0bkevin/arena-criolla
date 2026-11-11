@@ -339,6 +339,7 @@ function interceptHit(
     s.hitstop = Math.max(s.hitstop, 2);
     return "defended";
   }
+  return undefined;
 }
 
 function rewardHit(s: MatchState, attacker: number) {

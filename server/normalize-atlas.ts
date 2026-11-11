@@ -2,7 +2,7 @@ import sharp, { type OutputInfo } from "sharp";
 import { createHash } from "node:crypto";
 
 export class SpriteValidationError extends Error {
-  name = "SpriteValidationError";
+  override name = "SpriteValidationError";
 }
 const sha256 = (source: Buffer) =>
   createHash("sha256").update(source).digest("hex");

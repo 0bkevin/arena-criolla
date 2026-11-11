@@ -77,7 +77,7 @@ export class ArenaLobby extends DurableObject {
   private ticker = new FixedStepTicker(1000 / 60, 5);
   private tick = 0;
 
-  async fetch(request: Request): Promise<Response> {
+  override async fetch(request: Request): Promise<Response> {
     const url = new URL(request.url);
     if (url.pathname === "/api/health")
       return Response.json({

@@ -1285,8 +1285,7 @@ function hack(scene: Scene) {
 }
 function transport(scene: Scene) {
   const { ctx, actor, rival, tick, motion, pulse } = scene;
-  const progress = clamp((tick - 15) / 140),
-    travel = motion ? progress : 0.5;
+  const progress = clamp((tick - 15) / 140);
   if (actor === "zavarce") {
     body(scene, actor, 252, 508, 292, 1, "stand");
     body(scene, rival, 756, 508, 282, -1, pulse ? "recoil" : "stand");
@@ -1438,13 +1437,6 @@ function music(scene: Scene) {
       );
     }
   } else {
-    const label =
-      actor === "puma"
-        ? "UNA VOZ LLENA LA ARENA"
-        : actor === "gualberto"
-          ? "TREMOLO ORIENTAL"
-          : "TRES VOCES, UN SOLO ECO";
-
     for (let n = 0; n < 4; n++) {
       const p = (tick / 90 + n / 4) % 1;
       ctx.save();

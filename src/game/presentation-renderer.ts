@@ -45,7 +45,6 @@ function accents(
   progress: number,
   height: number,
   selection: boolean,
-  frame: number,
   hands: [RigPoint, RigPoint],
 ) {
   const profile = presentationById(id);
@@ -267,7 +266,6 @@ export function drawPresentation(
       progress,
       height,
       kind === "selection",
-      pose.frame,
       handAnchors(sprite, id, pose.frame, gesture),
     );
   }
