@@ -4,7 +4,13 @@ import { SUPER_ENERGY_COST, fighterById } from "../roster/roster";
 import { arenaFinaleInRange, isArenaFinalist } from "./finales/arena-finales";
 import { finaleById } from "./finales/finales";
 import { TECHNIQUES } from "./techniques";
-import type { Input, MatchState, PlayerState, PlayerIndex } from "./types";
+import {
+  opponentOf,
+  type Input,
+  type MatchState,
+  type PlayerState,
+  type PlayerIndex,
+} from "./types";
 
 export function cpuInput(
   s: MatchState,
@@ -14,7 +20,7 @@ export function cpuInput(
 ): Input {
   const next: Input = { ...previous, actions: { ...previous.actions } };
   const p = s.players[player];
-  const other = s.players[player === 0 ? 1 : 0];
+  const other = s.players[opponentOf(player)];
   next.superHeld = false;
   const dx = other.x - p.x;
   next.left = dx < -86;
