@@ -609,7 +609,7 @@ if (
   const configPath = process.argv[2];
   if (!configPath)
     throw Error(
-      "Usage: npx tsx scripts/normalize-attack-grid.ts path/to/config.json",
+      "Usage: npx tsx scripts/assets/normalize-attack-grid.ts path/to/config.json",
     );
   const report = await normalizeAttackGridFile(
     JSON.parse(await readFile(configPath, "utf8")),

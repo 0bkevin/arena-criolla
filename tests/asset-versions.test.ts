@@ -12,7 +12,7 @@ test("public asset manifest matches the contents on disk", async () => {
   assert.deepEqual(
     await assetVersions("public"),
     manifest,
-    "Run npx tsx scripts/generate-asset-versions.ts",
+    "Run npx tsx scripts/assets/generate-asset-versions.ts",
   );
 });
 

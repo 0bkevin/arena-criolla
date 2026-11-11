@@ -3,11 +3,11 @@ import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
 // Keep the transparent master editable; every browser/app export comes from it.
-const directory = new URL("../public/assets/", import.meta.url);
+const directory = new URL("../../public/assets/", import.meta.url);
 const master = await readFile(new URL("arena-mark.svg", directory), "utf8");
 // Read the live button accent so exports stay aligned with the interface.
 const theme = await readFile(
-  new URL("../src/styles/arcade-theme.css", import.meta.url),
+  new URL("../../src/styles/arcade-theme.css", import.meta.url),
   "utf8",
 );
 const buttonYellow = theme.match(/--coin:\s*(#[\da-f]{6})\s*;/i)?.[1];
@@ -24,7 +24,7 @@ const logo = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200"
 
 await writeFile(new URL("arena-icon.svg", directory), icon);
 // The repository/project icon uses the same approved artwork as the game.
-await writeFile(new URL("../assets/icon.svg", import.meta.url), icon);
+await writeFile(new URL("../../assets/icon.svg", import.meta.url), icon);
 await writeFile(new URL("arena-logo.svg", directory), logo);
 for (const [name, source, size] of [
   ["arena-icon-32.png", icon, 32],

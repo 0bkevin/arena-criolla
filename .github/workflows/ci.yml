@@ -58,7 +58,7 @@ jobs:
           # A PR compares against its base, a push against the previous main.
           # A manual run without either checks everything.
           BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
-        run: node scripts/select-checks.mjs $BASE
+        run: node scripts/ci/select-checks.mjs $BASE
   # The selected checks run as parallel jobs; each one is skipped when not needed.
   unit:
     needs: plan
@@ -165,7 +165,7 @@ jobs:
             curl -sf http://127.0.0.1:8799/api/health > /dev/null && break
             sleep 1
           done
-          node scripts/cloudflare-smoke.mjs http://127.0.0.1:8799 || { cat wrangler.log; exit 1; }
+          node scripts/cloudflare/smoke.mjs http://127.0.0.1:8799 || { cat wrangler.log; exit 1; }
   # Builds and smoke-tests the image for changes to what it ships.
   image:
     needs: plan

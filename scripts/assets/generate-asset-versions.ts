@@ -1,5 +1,5 @@
 import { writeFile } from "node:fs/promises";
-import { assetVersions } from "../server/asset-versions";
+import { assetVersions } from "../../server/asset-versions";
 
 await writeFile(
   "shared/asset-versions.json",

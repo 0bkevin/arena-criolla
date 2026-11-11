@@ -32,7 +32,7 @@ test("every built-in roster card has a bust cut from its current atlas", async (
     assert.equal(
       bust.sourceSha256,
       sha256(await readFile(`public/assets/${fighter.sprite}.webp`)),
-      `${fighter.id}: atlas changed; run npx tsx scripts/generate-portrait-busts.ts`,
+      `${fighter.id}: atlas changed; run npx tsx scripts/assets/generate-portrait-busts.ts`,
     );
     assert.equal(bust.frame, presentationById(fighter.id).battleFrame);
   }

@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import sharp from "sharp";
-import { STAGES } from "../shared/roster/roster";
+import { STAGES } from "../../shared/roster/roster";
 
 const manifestPath = "src/game/assets/manifests/stage-thumbnails.json";
 const variants = { strip: 360, gallery: 1100 } as const;

@@ -7,18 +7,18 @@
 // resolution and losslessly. The manifest records the placement
 // so Portrait draws the same pixels without the sheet.
 //
-// Usage: npx tsx scripts/generate-portrait-busts.ts [--check]
+// Usage: npx tsx scripts/assets/generate-portrait-busts.ts [--check]
 import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import sharp from "sharp";
-import { FIGHTERS, type FighterId } from "../shared/roster/roster";
-import { presentationById } from "../shared/engine/presentation";
-import atlasManifest from "../src/game/assets/manifests/sprite-geometry.json";
-import entranceManifest from "../src/game/assets/manifests/entrance-assets.json";
-import { selectionBodyHeight } from "../src/game/viewport/entrance-framing";
-import type { EntranceAsset } from "../src/game/assets/assets";
-import { isolateFramePixels } from "../src/game/assets/sprite-isolation";
-import type { PortraitBust } from "../src/game/assets/portrait-bust-layout";
+import { FIGHTERS, type FighterId } from "../../shared/roster/roster";
+import { presentationById } from "../../shared/engine/presentation";
+import atlasManifest from "../../src/game/assets/manifests/sprite-geometry.json";
+import entranceManifest from "../../src/game/assets/manifests/entrance-assets.json";
+import { selectionBodyHeight } from "../../src/game/viewport/entrance-framing";
+import type { EntranceAsset } from "../../src/game/assets/assets";
+import { isolateFramePixels } from "../../src/game/assets/sprite-isolation";
+import type { PortraitBust } from "../../src/game/assets/portrait-bust-layout";
 
 const MANIFEST = "src/game/assets/manifests/portrait-busts.json";
 // Atlas pixels kept around a non-isolated pose for edge filtering.
@@ -192,7 +192,7 @@ for (const fighter of FIGHTERS) {
 if (Object.keys(previous).length !== Object.keys(next).length) stale++;
 if (check) {
   if (stale) {
-    console.error("Run: npx tsx scripts/generate-portrait-busts.ts");
+    console.error("Run: npx tsx scripts/assets/generate-portrait-busts.ts");
     process.exit(1);
   }
   console.log(`${Object.keys(next).length} portrait busts are current.`);

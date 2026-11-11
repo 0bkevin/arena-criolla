@@ -31,7 +31,7 @@ npm run check:assets
 npm run build
 ```
 
-Los assets publicados están incluidos en `public/`; no hace falta regenerarlos para compilar. Las recompresiones sin pérdida (`npm run assets:audit:lossless` y `node scripts/apply-lossless-assets.mjs`) sustituyen el archivo en su misma ruta y conservan píxeles y metadatos exactos; `server/asset-variants.json` queda reservado para variantes de otro formato (por ejemplo AVIF) con el original como fallback. Los workers preparan música y recortes de sprites sin bloquear la interfaz y cuentan con recuperación local.
+Los assets publicados están incluidos en `public/`; no hace falta regenerarlos para compilar. Las recompresiones sin pérdida (`npm run assets:audit:lossless` y `node scripts/assets/apply-lossless-assets.mjs`) sustituyen el archivo en su misma ruta y conservan píxeles y metadatos exactos; `server/asset-variants.json` queda reservado para variantes de otro formato (por ejemplo AVIF) con el original como fallback. Los workers preparan música y recortes de sprites sin bloquear la interfaz y cuentan con recuperación local.
 
 Las tarjetas del roster dibujan un busto recortado (`public/assets/bust-*.webp`, descrito en `src/game/assets/manifests/portrait-busts.json`) en vez de descargar la hoja completa del luchador. Si cambias una hoja de sprites o su pose de combate, regenera los bustos con `npm run assets:busts`; `tests/portrait-busts.test.ts` falla mientras estén desactualizados.
 

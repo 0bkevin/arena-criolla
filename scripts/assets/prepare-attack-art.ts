@@ -272,7 +272,7 @@ if (
   const path = process.argv[2];
   if (!path)
     throw Error(
-      "Usage: npx tsx scripts/prepare-attack-art.ts path/to/config.json",
+      "Usage: npx tsx scripts/assets/prepare-attack-art.ts path/to/config.json",
     );
   await prepareAttackArt(JSON.parse(await readFile(path, "utf8")));
 }

@@ -2,7 +2,7 @@
 export const PORTRAIT_CANVAS = { width: 400, height: 500 } as const;
 
 /**
- * One pre-cut roster-card pose (see scripts/generate-portrait-busts.ts).
+ * One pre-cut roster-card pose (see scripts/assets/generate-portrait-busts.ts).
  * Lengths are atlas pixels; `left` and `center` are relative to the middle of
  * the pose's atlas cell, as drawSprite and Portrait measure them.
  */

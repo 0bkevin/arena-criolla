@@ -3,8 +3,8 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
-import { normalizeGeneratedAtlas } from "../server/normalize-atlas";
-import { FINALE_ASSET_GROUPS } from "../shared/engine/finales/finales";
+import { normalizeGeneratedAtlas } from "./normalize-atlas";
+import { FINALE_ASSET_GROUPS } from "../../shared/engine/finales/finales";
 
 export const ACTOR_CELL = 512;
 export const ACTOR_BASELINE = 482;
@@ -493,7 +493,7 @@ export async function prepareFinaleActors(
   const fingerprint = hash(
     Buffer.concat([
       await readFile(fileURLToPath(import.meta.url)),
-      await readFile(new URL("../server/normalize-atlas.ts", import.meta.url)),
+      await readFile(new URL("./normalize-atlas.ts", import.meta.url)),
       Buffer.from(JSON.stringify(sharp.versions)),
     ]),
   );

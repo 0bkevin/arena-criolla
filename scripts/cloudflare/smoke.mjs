@@ -1,5 +1,5 @@
 // Smoke-test a deployed Arena Criolla: pages, headers, and a full online match
-// start between two WebSocket clients. Usage: node scripts/cloudflare-smoke.mjs <origin>
+// start between two WebSocket clients. Usage: node scripts/cloudflare/smoke.mjs <origin>
 import { WebSocket } from "ws";
 
 const origin = (process.argv[2] ?? "http://127.0.0.1:8799").replace(/\/$/, "");

@@ -1,6 +1,6 @@
 // Decides which CI checks a diff needs. A test runs when it, or any file it
 // imports (transitively), changed. Shared tooling changes run everything.
-//   node scripts/select-checks.mjs [base-ref [head-ref]]   (no base: everything)
+//   node scripts/ci/select-checks.mjs [base-ref [head-ref]]   (no base: everything)
 import { execFileSync } from "node:child_process";
 import {
   appendFileSync,
@@ -25,7 +25,7 @@ const touched = (pattern) =>
   !changed || changed.some((file) => pattern.test(file));
 
 const everything = touched(
-  /^(package(-lock)?\.json|tsconfig\.json|tests\/helpers\/|scripts\/select-checks\.mjs|\.github\/workflows\/)/,
+  /^(package(-lock)?\.json|tsconfig\.json|tests\/helpers\/|scripts\/ci\/select-checks\.mjs|\.github\/workflows\/)/,
 );
 
 const testFiles = [];
@@ -97,17 +97,17 @@ const checks = {
   ),
   typecheck: /\.(ts|tsx|json)$/,
   assets:
-    /^(public\/assets\/|src\/game\/assets\/manifests\/sprite-geometry\.json$|shared\/roster\/fighters\.json$|scripts\/validate-character-assets\.mjs$)/,
+    /^(public\/assets\/|src\/game\/assets\/manifests\/sprite-geometry\.json$|shared\/roster\/fighters\.json$|scripts\/assets\/validate-character-assets\.mjs$)/,
   audit: /^package-lock\.json$/,
   "deploy-controls": /^deploy\//,
   // Browser layout checks for anything that changes what the lobby or arena shows.
   e2e: /^(src\/|index\.html|vite\.config\.ts|public\/|shared\/|e2e\/|playwright\.config\.ts$)/,
   // The production Worker: its adapter, the shared lobby and the bundled site.
   worker:
-    /^(cloudflare\/|shared\/|src\/|public\/|index\.html|vite\.config\.ts|wrangler\.jsonc|scripts\/cloudflare-(prepare|smoke)\.mjs)/,
+    /^(cloudflare\/|shared\/|src\/|public\/|index\.html|vite\.config\.ts|wrangler\.jsonc|scripts\/cloudflare\/)/,
   // Anything the Docker build copies, plus the smoke test it runs.
   image:
-    /^(Dockerfile|\.dockerignore|index\.html|vite\.config\.ts|src\/|shared\/|server\/|public\/|scripts\/security-smoke\.mjs)/,
+    /^(Dockerfile|\.dockerignore|index\.html|vite\.config\.ts|src\/|shared\/|server\/|public\/|scripts\/ci\/security-smoke\.mjs)/,
   // New base layers or dependencies can bring new CVEs.
   scan: /^(Dockerfile|package-lock\.json)$/,
 };
