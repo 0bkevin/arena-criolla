@@ -110,6 +110,34 @@ function setup(
   return { state, source, target, inputs, advance, start };
 }
 
+test("Puma's caught rival survives a mid-stage throw at full health", () => {
+  for (const stage of ["caracas", "guaira"] as const)
+    for (const side of [0, 1] as const) {
+      const r = setup("puma", side, 90, stage, "chataing");
+      r.target.x = side ? WORLD.left + 400 : WORLD.right - 400;
+      r.source.x = r.target.x - r.source.facing * 90;
+      r.start();
+      r.advance(300);
+      assert.equal(r.source.hits, 2, `${stage}/${side}: catch and throw land`);
+      assert.equal(r.target.stocks, 2, `${stage}/${side}: stays on stage`);
+      assert.ok(r.target.hp < 100, `${stage}/${side}: throw deals damage`);
+    }
+});
+
+test("Puma's throw can still ring out a weakened rival near the edge", () => {
+  for (const stage of ["caracas", "guaira"] as const)
+    for (const side of [0, 1] as const) {
+      const r = setup("puma", side, 90, stage, "chataing");
+      r.target.x = side ? WORLD.left + 150 : WORLD.right - 150;
+      r.source.x = r.target.x - r.source.facing * 90;
+      r.target.hp = 50;
+      r.start();
+      r.advance(300);
+      assert.equal(r.source.hits, 2, `${stage}/${side}: catch and throw land`);
+      assert.equal(r.target.stocks, 1, `${stage}/${side}: loses a stock`);
+    }
+});
+
 for (const id of representatives)
   test(`${id}: cost, one active field, spatial misses and vulnerable startup from zero wins`, () => {
     for (const side of [0, 1] as const) {
@@ -258,6 +286,173 @@ test("each cavalry rider, courier and truck crosses the defender once and remain
         r.source.x >= WORLD.left && r.source.x <= WORLD.right,
         "the performer dismounts inside the arena instead of teleporting back",
       );
+    }
+});
+
+// These driving finales should carry a mid-stage rival through their full ride
+// without sending them off the stage.
+for (const [id, strikes] of [
+  ["bolivar", 7],
+  ["gomez", 3],
+  ["lorenzo", 3],
+  ["mcm", 4],
+  ["zavarce", 7],
+  ["simon", 3],
+] as const) {
+  test(`${id}: a mid-stage ride lands its strikes without a ring-out`, () => {
+    for (const stage of ["caracas", "guaira"] as const)
+      for (const side of [0, 1] as const) {
+        const r = setup(id, side, 180, stage, "chataing");
+        r.target.x = side ? WORLD.left + 300 : WORLD.right - 300;
+        r.source.x = r.target.x - r.source.facing * 180;
+        const startX = r.target.x;
+        r.start();
+        r.advance(300);
+        // Limit travel to less than the 300px clearance to the forward edge.
+        assert.ok(
+          Math.abs(r.target.x - startX) <= 200,
+          `${stage} P${side + 1}: modest displacement`,
+        );
+        assert.equal(
+          r.target.stocks,
+          2,
+          `${stage} P${side + 1}: stays on stage`,
+        );
+        assert.equal(
+          r.source.hits,
+          strikes,
+          `${stage} P${side + 1}: all strikes land`,
+        );
+      }
+  });
+}
+
+// Isolate mount and helper contacts so either source of excessive launch is visible.
+for (const id of ["bolivar", "gomez", "lorenzo"] as const) {
+  for (const contact of ["mount", "helper"] as const) {
+    test(`${id}: ${contact} contacts keep a mid-stage rival on stage`, () => {
+      const r = setup(id, 0, 180, "caracas", "chataing");
+      r.target.x = WORLD.right - 250;
+      r.source.x = r.target.x - 180;
+      const initialX = r.target.x;
+      r.start();
+      const field = r.state.fieldFinales![0]!;
+      for (let tick = 0; tick < 300 && r.state.fieldFinales; tick++) {
+        if (contact === "mount") field.actors = [];
+        else field.mountHits = 1;
+        r.advance();
+      }
+      assert.ok(r.source.hits > 0, `${contact} made contact`);
+      assert.equal(r.target.stocks, 2, `${contact} does not cause a ring-out`);
+      assert.ok(
+        r.target.x - initialX <= 200,
+        `${contact} keeps displacement modest`,
+      );
+    });
+  }
+}
+
+test("weakened rivals are not rung out by rides from 250 pixels or more", () => {
+  for (const id of [
+    "bolivar",
+    "gomez",
+    "lorenzo",
+    "mcm",
+    "zavarce",
+    "simon",
+  ] as const)
+    for (const hp of [60, 30])
+      for (const edge of [250, 300, 400])
+        for (const gap of [60, 120, 180, 250, 350]) {
+          const r = setup(id, 0, gap, "caracas", "chataing");
+          r.target.x = WORLD.right - edge;
+          r.source.x = r.target.x - gap;
+          r.target.hp = hp;
+          let hpValue = hp,
+            minimumHp = hp;
+          Object.defineProperty(r.target, "hp", {
+            configurable: true,
+            get: () => hpValue,
+            set: (value: number) => {
+              hpValue = value;
+              minimumHp = Math.min(minimumHp, value);
+            },
+          });
+          r.start();
+          for (let tick = 0; tick < 300 && r.target.stocks === 2; tick++) {
+            r.advance();
+          }
+          assert.ok(
+            r.target.stocks === 2 || minimumHp <= 0,
+            `${id}: ${hp} HP, ${edge}px clearance, ${gap}px gap`,
+          );
+        }
+});
+
+// A rival repeatedly attacks at the first opportunity after being struck.
+for (const [id, strikes] of [
+  ["gomez", 3],
+  ["lorenzo", 3],
+  ["mcm", 4],
+] as const) {
+  test(`${id}: the carried rival cannot interrupt the ride`, () => {
+    for (const side of [0, 1] as const)
+      for (const phase of [0, 1, 2, 3]) {
+        const r = setup(id, side, 90, "caracas", "chataing");
+        r.start();
+        let first = r.target.hp < 100;
+        for (let tick = 0; tick < 300; tick++) {
+          if (first && tick % 4 === phase) r.inputs[1 - side].actions.light++;
+          r.advance();
+          first ||= r.target.hp < 100;
+        }
+        assert.equal(
+          r.source.hits,
+          strikes,
+          `P${side + 1}, phase ${phase}: all strikes land`,
+        );
+      }
+  });
+}
+
+test("Simón's wooden horses cannot be interrupted by a carried rival", () => {
+  for (const gap of [60, 90, 120, 150, 180, 220, 260])
+    for (const rival of ["chataing", "oscar", "maite"] as const)
+      for (const side of [0, 1] as const)
+        for (const phase of [0, 1, 2, 3]) {
+          const run = (attack: boolean) => {
+            const r = setup("simon", side, gap, "caracas", rival);
+            r.target.x = side ? WORLD.left + 450 : WORLD.right - 450;
+            r.source.x = r.target.x - r.source.facing * gap;
+            r.start();
+            let first = false;
+            for (let tick = 0; tick < 300; tick++) {
+              first ||= r.target.hp < 100;
+              if (attack && first && tick % 4 === phase)
+                r.inputs[1 - side].actions.light++;
+              r.advance();
+            }
+            return r.source.hits;
+          };
+          assert.equal(
+            run(true),
+            run(false),
+            `${rival}, gap ${gap}, P${side + 1}, phase ${phase}`,
+          );
+        }
+});
+
+test("the caravan keeps a weakened rival on stage through its ride", () => {
+  for (const stage of ["caracas", "guaira"] as const)
+    for (const side of [0, 1] as const) {
+      const r = setup("mcm", side, 400, stage, "chataing");
+      r.source.x = side ? WORLD.left + 650 : WORLD.right - 650;
+      r.target.x = r.source.x + r.source.facing * 400;
+      r.target.hp = 30;
+      r.start();
+      r.advance(300);
+      assert.equal(r.target.stocks, 2, `${stage} P${side + 1}: stays on stage`);
+      assert.equal(r.source.hits, 4, `${stage} P${side + 1}: all strikes land`);
     }
 });
 

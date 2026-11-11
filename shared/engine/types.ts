@@ -72,12 +72,14 @@ export interface PlayerState {
   attackTick: number;
   attackHit: boolean;
   countered: boolean;
+  counterLanded: boolean;
   cooldown: number;
   stun: number;
   slowTicks: number;
   rootTicks: number;
   rootKind?: "chain" | "screen" | "spectral" | "flash" | "bite" | "pot";
   invincible: number;
+  dashOnlyInvincible: number;
   dash: number;
   lastActions: Record<Action, number>;
   bufferedAttack?: { attack: Exclude<Attack, "super" | null>; ticks: number };

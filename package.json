@@ -12,6 +12,7 @@
     "start": "NODE_ENV=production tsx server/index.ts",
     "test": "tsx --test \"tests/**/*.test.ts\"",
     "test:ui": "playwright test",
+    "balance:report": "tsx scripts/balance/report.ts",
     "perf:engine": "tsx scripts/perf/engine.ts",
     "perf:network": "tsx scripts/perf/network.ts",
     "assets:audit:lossless": "tsx scripts/assets/audit-lossless-assets.ts",

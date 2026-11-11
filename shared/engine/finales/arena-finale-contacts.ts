@@ -1,10 +1,16 @@
 // Where arena definitives touch the rival, and what a landed contact does.
+import { launchScale } from "../launch";
 import { DORANGEL_POT, insideDorangelPot } from "./dorangel";
 import type { MatchState, PlayerState } from "../engine";
 import { COUTURE_MODEL_COUNT } from "./couture-runway";
 import { opponentOf } from "../types";
 import {
   ARENA_FINALE_CUES,
+  HANDCHAIN_THROW_FORCE,
+  RIDE_STUN_FLOOR,
+  SIMON_RIDE_STUN_FLOOR,
+  isRideHelper,
+  arenaActorForce,
   activeArenaPerformance,
   arenaActorReach,
   isArenaFinalist,
@@ -48,7 +54,11 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
       y: number,
       direction = field.direction,
       actor?: ArenaFinaleActor,
-      rootTicks?: number,
+      options: {
+        rootTicks?: number | undefined;
+        stunFloor?: number | undefined;
+        ignoresDashInvincibility?: boolean;
+      } = {},
     ) =>
       contacts.push({
         field,
@@ -59,7 +69,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
         direction,
         x,
         y,
-        rootTicks,
+        ...options,
       });
     if (
       field.fighter === "dorangel" &&
@@ -97,13 +107,20 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
       if (front || (strike.carried && touches(strike.carried)))
         offer(
           strike.damage,
-          4.5,
+          strike.preHitSpeedLimit === undefined
+            ? strike.force
+            : Math.min(
+                strike.force,
+                strike.preHitSpeedLimit / launchScale(target.hp),
+              ),
           target.x,
           target.y - 75,
           // Under the caravan, behind its leading edge, a guard may face either way.
           !front && target.blocking && target.facing === field.direction
             ? -field.direction
             : field.direction,
+          undefined,
+          { stunFloor: RIDE_STUN_FLOOR, ignoresDashInvincibility: true },
         );
     }
     for (const actor of field.actors ?? []) {
@@ -133,7 +150,14 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
           field.tick === actor.caughtTick + 24 &&
           overlaps(target, actor.x, actor.y, 105, 165)
         )
-          offer(0.75, 19, target.x, target.y - 70, actor.direction, actor);
+          offer(
+            0.75,
+            HANDCHAIN_THROW_FORCE,
+            target.x,
+            target.y - 70,
+            actor.direction,
+            actor,
+          );
         continue;
       }
       if (actor.connected) continue;
@@ -175,12 +199,20 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
               : actor.kind === "model"
                 ? 1 / COUTURE_MODEL_COUNT
                 : 1 / 3,
-          actor.kind === "handchain" ? 1 : actor.kind === "model" ? 3 : 4.5,
+          arenaActorForce(field.fighter, actor.kind),
           target.x,
           target.y - 70,
           actor.direction,
           actor,
-          actor.kind === "handchain" ? 25 : undefined,
+          {
+            rootTicks: actor.kind === "handchain" ? 25 : undefined,
+            stunFloor: isRideHelper(field.fighter, actor.kind)
+              ? field.fighter === "simon"
+                ? SIMON_RIDE_STUN_FLOOR
+                : RIDE_STUN_FLOOR
+              : undefined,
+            ignoresDashInvincibility: isRideHelper(field.fighter, actor.kind),
+          },
         );
     }
     if (!active) continue;
@@ -202,7 +234,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
         target.y - 90,
         field.direction,
         undefined,
-        field.tick === 20 ? 14 : undefined,
+        { rootTicks: field.tick === 20 ? 14 : undefined },
       );
     if (field.fighter === "chataing") {
       const x = field.caught?.x ?? field.x + field.direction * 105,
@@ -220,7 +252,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
           target.y - 80,
           field.direction,
           undefined,
-          field.tick < 44 ? 20 : undefined,
+          { rootTicks: field.tick < 44 ? 20 : undefined },
         );
     }
     if (
@@ -235,7 +267,7 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
         target.y - 75,
         field.direction,
         undefined,
-        field.tick === 18 ? 22 : undefined,
+        { rootTicks: field.tick === 18 ? 22 : undefined },
       );
   }
   return contacts;
@@ -248,6 +280,11 @@ export function registerArenaContact(
   damaged: boolean,
 ) {
   const { field, actor } = contact;
+  if (damaged && contact.stunFloor !== undefined) {
+    const target = state.players[opponentOf(contact.owner)];
+    target.stun = Math.max(target.stun, contact.stunFloor);
+    target.cooldown = Math.max(target.cooldown, target.stun);
+  }
   if (actor && actor.kind !== "mascot" && actor.kind !== "dancer") {
     actor.connected = true;
     if (

@@ -97,7 +97,7 @@
     "color": "#c9ae78",
     "description": "Uniforme histórico, bigote y andar pesado. Un golpe contra el suelo sacude a los rivales que permanezcan cerca.",
     "speed": 3.5,
-    "damage": 1.2,
+    "damage": 1.08,
     "armor": 0.86,
     "stats": [5, 2, 5],
     "ability": "command",

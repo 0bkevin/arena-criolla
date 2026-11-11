@@ -133,6 +133,7 @@ function advanceIntro(s: MatchState, inputs: [Input, Input]) {
     for (const i of PLAYERS) {
       const p = s.players[i];
       p.invincible = 0;
+      p.dashOnlyInvincible = 0;
       p.facing = s.players[opponentOf(i)].x >= p.x ? 1 : -1;
     }
   }
@@ -167,6 +168,7 @@ function applyFinaleContacts(s: MatchState) {
         "super",
         5,
         contact.rootKind === "pot" ? "heat" : undefined,
+        contact.ignoresDashInvincibility,
       )
     )
       registerArenaContact(s, contact, target.hp < hp);

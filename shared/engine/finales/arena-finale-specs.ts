@@ -1,5 +1,6 @@
 // Arena definitives: who has one, how long it lasts, its cues, its helpers'
 // reach, and whether its caster is still performing it.
+import { launchStun } from "../launch";
 import { DORANGEL_FINALE, DORANGEL_POT } from "./dorangel";
 import { INAKI_FINALE } from "./inaki";
 import type { FighterId } from "../../roster/roster";
@@ -128,6 +129,9 @@ export interface ArenaContact {
   owner: PlayerIndex;
   damage: number;
   force: number;
+  /** Minimum stun for a landed ride strike, independent of pushback. */
+  stunFloor?: number | undefined;
+  ignoresDashInvincibility?: boolean | undefined;
   direction: number;
   x: number;
   y: number;
@@ -184,6 +188,11 @@ export function arenaActorReach(actor: ArenaFinaleActor) {
 interface MountStrike {
   /** Each hit's share of the definitive's damage. */
   share: number;
+  /** Force of each body strike. */
+  force: number;
+  /** Cap horizontal launch speed calculated from HP before this strike;
+   * damage from the strike increases the actual launch speed slightly. */
+  preHitSpeedLimit?: number;
   /** Hits the mount may land, guarded ones included, in one ride. */
   hits: number;
   /** Ticks between two of its hits. */
@@ -206,11 +215,69 @@ export type RiddenFinalist = {
  * keeps meeting the rival it drives along, a share of the damage at a time.
  */
 export const MOUNT_STRIKES: Record<RiddenFinalist, MountStrike> = {
-  bolivar: { share: 1 / 7, hits: 1, interval: 0 },
-  gomez: { share: 1 / 3, hits: 1, interval: 0 },
-  lorenzo: { share: 1 / 3, hits: 1, interval: 0 },
-  mcm: { share: 1 / 4, hits: 4, interval: 18, carryRear: 142 },
+  bolivar: { share: 1 / 7, force: 1.5, hits: 1, interval: 0 },
+  gomez: { share: 1 / 3, force: 1.5, hits: 1, interval: 0 },
+  lorenzo: { share: 1 / 3, force: 1.5, hits: 1, interval: 0 },
+  mcm: {
+    share: 1 / 4,
+    force: 3,
+    preHitSpeedLimit: 4,
+    hits: 4,
+    interval: 18,
+    carryRear: 142,
+  },
 };
+
+/** Force for the mounted or vehicle helpers in each driving finale. */
+const RIDE_HELPER_FORCE = {
+  bolivar: { force: 1.5, kinds: ["horse"] },
+  gomez: { force: 1.5, kinds: ["horse"] },
+  lorenzo: { force: 1.5, kinds: ["truck"] },
+  zavarce: { force: 1.5, kinds: ["courier"] },
+  simon: { force: 1.5, kinds: ["woodhorse"] },
+} as const satisfies Partial<
+  Record<
+    FighterId,
+    { force: number; kinds: readonly ArenaFinaleActor["kind"][] }
+  >
+>;
+
+const DEFAULT_ACTOR_FORCE = 4.5;
+
+/** The handchain's final throw, separate from its gentle initial catch. */
+export const HANDCHAIN_THROW_FORCE = 9;
+
+/** The old ride force gave 17 ticks of stun; retain it with lighter pushback. */
+export const RIDE_STUN_FLOOR = launchStun(DEFAULT_ACTOR_FORCE);
+
+/** Woodhorses meet a moving rival later than their spawn cadence. */
+export const SIMON_RIDE_STUN_FLOOR = Math.max(
+  RIDE_STUN_FLOOR,
+  ARENA_FINALE_CUES.simon[1]! - ARENA_FINALE_CUES.simon[0]! + 10,
+);
+
+export function isRideHelper(
+  fighter: FighterId,
+  kind: ArenaFinaleActor["kind"],
+) {
+  const ride = RIDE_HELPER_FORCE[fighter as keyof typeof RIDE_HELPER_FORCE];
+  return (
+    ride !== undefined &&
+    (ride.kinds as readonly ArenaFinaleActor["kind"][]).includes(kind)
+  );
+}
+
+/** Force of a finale helper, including the driving formations. */
+export function arenaActorForce(
+  fighter: FighterId,
+  kind: ArenaFinaleActor["kind"],
+) {
+  if (kind === "handchain") return 1;
+  if (kind === "model") return 3;
+  if (isRideHelper(fighter, kind))
+    return RIDE_HELPER_FORCE[fighter as keyof typeof RIDE_HELPER_FORCE].force;
+  return DEFAULT_ACTOR_FORCE;
+}
 
 /**
  * The mount's next strike, or nothing while it waits or has none left. Its
@@ -233,6 +300,8 @@ export function nextMountStrike(field: FieldFinaleState) {
     rear = landed > 0 ? strike.carryRear : undefined;
   return {
     damage: strike.share,
+    force: strike.force,
+    preHitSpeedLimit: strike.preHitSpeedLimit,
     reach,
     carried:
       rear === undefined

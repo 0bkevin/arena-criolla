@@ -1,4 +1,5 @@
 // Capture definitives: a cinematic that holds both fighters and owns the clock.
+import { SUPER_DAMAGE } from "./damage-values";
 import { fighterById } from "../roster/roster";
 import { activeRunway } from "./finales/field-finales";
 import { finaleById } from "./finales/finales";
@@ -48,7 +49,8 @@ export function beginFinale(s: MatchState, owner: PlayerIndex) {
     direction,
     initialHp: target.hp,
     damage:
-      (28 * fighterById(source.config.fighter).damage + source.comboBonus) *
+      (SUPER_DAMAGE * fighterById(source.config.fighter).damage +
+        source.comboBonus) *
       fighterById(target.config.fighter).armor,
   };
   if (activeRunway(s, target)) {
@@ -108,6 +110,7 @@ export function advanceFinale(s: MatchState, inputs: [Input, Input]) {
     if (definition.release?.knockoutDelay && target.hp <= 0)
       target.knockoutDelay = definition.release.knockoutDelay;
     target.invincible = 12;
+    target.dashOnlyInvincible = 0;
     delete s.finale;
     resolveStocks(s);
     resolveTimeout(s);

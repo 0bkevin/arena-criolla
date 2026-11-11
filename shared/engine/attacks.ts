@@ -1,4 +1,16 @@
 // Starting, timing and landing attacks, specials and definitives.
+import {
+  grantDashInvincibility,
+  grantNonDashInvincibility,
+} from "./invincibility";
+import {
+  LIGHT_DAMAGE,
+  HEAVY_DAMAGE,
+  SUPER_DAMAGE,
+  LIGHT_HEAVY_BONUS,
+  LIGHT_LIGHT_HEAVY_BONUS,
+  SUPER_BONUS,
+} from "./damage-values";
 import { WORLD } from "./arena";
 import { ARENA_FINALES, isArenaFinalist } from "./finales/arena-finales";
 import { SUPER_ENERGY_COST, fighterById } from "../roster/roster";
@@ -70,6 +82,7 @@ export function beginAttack(
   p.attackTick = 0;
   p.attackHit = false;
   p.countered = false;
+  p.counterLanded = false;
   p.comboBonus = 0;
   p.cooldown =
     attack === "light"
@@ -91,17 +104,17 @@ export function beginAttack(
   if (sequence.endsWith("light,heavy")) {
     p.combo = def.combos[0];
     p.comboTick = s.tick;
-    p.comboBonus = 3;
+    p.comboBonus = LIGHT_HEAVY_BONUS;
   }
   if (sequence === "light,light,heavy") {
     p.combo = def.combos[1];
     p.comboTick = s.tick;
-    p.comboBonus = 7;
+    p.comboBonus = LIGHT_LIGHT_HEAVY_BONUS;
   }
   if (attack === "super") {
     p.combo = def.combos[2];
     p.comboTick = s.tick;
-    p.comboBonus = 12;
+    p.comboBonus = SUPER_BONUS;
   }
   if (
     attack === "special" ||
@@ -218,7 +231,10 @@ export function updateAttack(s: MatchState, i: PlayerIndex) {
     if (attack === "special" && technique.projectile) {
       if (technique.requiresGround && !p.grounded) return;
       spawnTechniqueProjectiles(s, i, technique, technique.projectile);
-    } else if (strike(s, i, attack, technique, pulseIndex, movingStrike))
+    } else if (
+      !(attack === "special" && technique.counter && p.counterLanded) &&
+      strike(s, i, attack, technique, pulseIndex, movingStrike)
+    )
       return;
   }
   if (p.attackTick >= recoveryTicks(attack, technique)) p.attack = null;
@@ -242,7 +258,8 @@ function advanceStandaloneDefinitive(
       beginFieldFinale(
         s,
         i,
-        (28 * def.damage + p.comboBonus) * outgoingDamageMultiplier(p),
+        (SUPER_DAMAGE * def.damage + p.comboBonus) *
+          outgoingDamageMultiplier(p),
       );
     }
     if (p.config.fighter === "deyna" && p.attackTick >= 24) {
@@ -270,7 +287,9 @@ function advanceStandaloneDefinitive(
         growth: shot.growth,
         maxRadius: shot.maxRadius,
         force: shot.force,
-        damage: (28 * def.damage + p.comboBonus) * outgoingDamageMultiplier(p),
+        damage:
+          (SUPER_DAMAGE * def.damage + p.comboBonus) *
+          outgoingDamageMultiplier(p),
       });
       effect(
         s,
@@ -419,11 +438,11 @@ function strike(
     }
     const damage =
       (attack === "light"
-        ? 7
+        ? LIGHT_DAMAGE
         : attack === "heavy"
-          ? 13
+          ? HEAVY_DAMAGE
           : attack === "super"
-            ? 28
+            ? SUPER_DAMAGE
             : technique.damage) *
         def.damage +
       p.comboBonus;
@@ -495,7 +514,7 @@ function applySpecialMovement(
         p.x + p.facing * Math.min(technique.blink.reach, distance),
       ),
     );
-    p.invincible = Math.max(p.invincible, technique.blink.invincibility);
+    grantNonDashInvincibility(p, technique.blink.invincibility);
     effect(
       s,
       startX,
@@ -509,7 +528,7 @@ function applySpecialMovement(
     p.vx = p.facing * technique.dash.speed * (p.slowTicks ? 0.6 : 1);
     p.recoilVx = 0;
     p.dash = technique.dash.ticks;
-    p.invincible = Math.max(p.invincible, technique.dash.invincibility);
+    grantDashInvincibility(p, technique.dash.invincibility);
   }
   const lift = technique.lift ?? technique.dash?.lift;
   if (lift) {

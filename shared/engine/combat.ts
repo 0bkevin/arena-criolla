@@ -1,6 +1,7 @@
 // Contact between fighters: guards, counters, damage, launch and its effects.
 import { SUPER_INTERRUPT_ENERGY_COST, fighterById } from "../roster/roster";
 import { TECHNIQUES } from "./techniques";
+import { launchScale, launchStun } from "./launch";
 import {
   opponentOf,
   type Attack,
@@ -50,10 +51,17 @@ export function interceptHit(
   x: number,
   y: number,
   impact: NonNullable<Attack>,
+  ignoresDashInvincibility = false,
 ): "immune" | "defended" | undefined {
   const target = s.players[opponentOf(attacker)];
   const source = s.players[attacker];
-  if (target.invincible > 0 || target.stocks <= 0 || target.hp <= 0)
+  if (
+    (target.invincible > 0 &&
+      (!ignoresDashInvincibility ||
+        target.invincible > target.dashOnlyInvincible)) ||
+    target.stocks <= 0 ||
+    target.hp <= 0
+  )
     return "immune";
   const counter =
     TECHNIQUES[fighterById(target.config.fighter).ability].counter;
@@ -71,7 +79,8 @@ export function interceptHit(
       impact: "special",
       direction: target.facing,
     });
-    if (Math.abs(source.x - target.x) < counter.range)
+    if (Math.abs(source.x - target.x) < counter.range) {
+      const hpBefore = source.hp;
       hurt(
         s,
         opponentOf(attacker),
@@ -84,6 +93,8 @@ export function interceptHit(
         source.y - 80,
         "special",
       );
+      target.counterLanded = source.hp < hpBefore;
+    }
     return "defended";
   }
   if (target.blocking && target.facing === -direction && target.energy > 3) {
@@ -119,12 +130,12 @@ export function launchTarget(
   force: number,
   direction: number,
 ) {
-  target.vx = direction * force * (1 + (100 - target.hp) / 90);
+  target.vx = direction * force * launchScale(target.hp);
   target.recoilVx = target.vx;
   target.vy = -force * 0.65;
   target.grounded = false;
   target.supportPlatform = null;
-  target.stun = Math.round(force * 2.6 + 5);
+  target.stun = launchStun(force);
   target.attack = null;
   target.cooldown = Math.max(target.cooldown, target.stun);
 }
@@ -140,8 +151,17 @@ export function hurt(
   impact: NonNullable<Attack>,
   hitInvincibility = 12,
   visual?: Effect["visual"],
+  ignoresDashInvincibility = false,
 ): boolean {
-  const interception = interceptHit(s, attacker, direction, x, y, impact);
+  const interception = interceptHit(
+    s,
+    attacker,
+    direction,
+    x,
+    y,
+    impact,
+    ignoresDashInvincibility,
+  );
   if (interception) return interception === "defended";
   const target = s.players[opponentOf(attacker)];
   const source = s.players[attacker];
@@ -150,6 +170,7 @@ export function hurt(
   target.hp = Math.max(0, target.hp - damage * def.armor);
   launchTarget(target, force, direction);
   target.invincible = hitInvincibility;
+  target.dashOnlyInvincible = 0;
   rewardHit(s, attacker);
   const strength =
     impact === "super"

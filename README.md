@@ -55,6 +55,7 @@ Offline modes run entirely in the browser. Online matches are simulated by the s
 
 - [Development](docs/development.md)
 - [Testing and CI](docs/testing.md)
+- [Damage balance](docs/balance.md)
 
 ## Author
 

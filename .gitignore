@@ -16,6 +16,7 @@ playwright-report/
 # Retain operational instructions, not generated reports or captures.
 /docs/*
 !/docs/architecture.md
+!/docs/balance.md
 !/docs/deployment.md
 !/docs/development.md
 !/docs/testing.md
