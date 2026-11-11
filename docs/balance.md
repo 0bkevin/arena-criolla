@@ -112,7 +112,8 @@ least 250 px from the forward edge stayed on stage unless damage depleted their
 HP. At full HP central rides pushed roughly 45-183 px, including about 181 px
 for María Corina; at 60 HP displacement reached about 215 px. The smaller push
 retains the old 17 ticks of stun, so a rival cannot cancel the ride by attacking
-between strikes; guarding can still block subsequent strikes. These trials do not establish a general ring-out rate; human
+between strikes. Ride strikes ignore dash invincibility; guarding blocks them.
+These trials do not establish a general ring-out rate; human
 play-testing remains necessary.
 
 ## Measurement and limitations
