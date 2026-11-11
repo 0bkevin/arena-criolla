@@ -1,0 +1,324 @@
+@media (max-width: 900px) {
+  .in-lobby .site-header,
+  .in-lobby .home-page,
+  .in-lobby .site-footer {
+    width: calc(100% - 28px);
+  }
+  .in-lobby .site-header {
+    height: 46px;
+    gap: 12px;
+  }
+  .in-lobby .site-header .brand {
+    gap: 7px;
+  }
+  .in-lobby .site-header .brand-name {
+    font-size: 21px;
+  }
+  .in-lobby .site-header .main-nav {
+    display: none;
+  }
+  .in-lobby .site-header .header-progress {
+    display: grid;
+  }
+  .in-lobby .site-header .icon-button {
+    width: 36px;
+    height: 36px;
+  }
+  .in-lobby .site-header .server-status {
+    font-size: 0;
+  }
+  .in-lobby .site-header .header-right {
+    gap: 4px;
+  }
+  .in-lobby .arcade-home {
+    padding-top: 8px;
+  }
+  .in-lobby .arcade-marquee {
+    height: 120px;
+  }
+  .in-lobby .arcade-mode-row {
+    margin: 10px 0;
+  }
+  .in-lobby .arcade-modes {
+    width: 100%;
+    gap: 3px;
+  }
+  .in-lobby .arcade-modes button,
+  .in-lobby .arcade-modes #mode-local,
+  .in-lobby .arcade-modes #mode-online {
+    height: 48px;
+    padding-inline: 10px;
+  }
+  .in-lobby .arcade-modes button > span:not(.mode-slot) {
+    font-size: 14px;
+  }
+  .in-lobby .arcade-modes small {
+    font-size: 6px;
+  }
+  .in-lobby .arcade-progress {
+    display: none;
+  }
+  .in-lobby .cabinet-heading {
+    min-height: 38px;
+    padding: 10px 0;
+  }
+  .in-lobby .cabinet-heading h2 {
+    font-size: 21px;
+  }
+  .in-lobby .duel-vs {
+    left: auto;
+    right: 15px;
+    top: 5px;
+    transform: rotate(-7deg);
+    font-size: 28px;
+  }
+  .in-lobby .duel-vs::before,
+  .in-lobby .duel-vs::after {
+    display: none;
+  }
+  .in-lobby .arcade-selection {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    gap: 18px 14px;
+    align-items: start;
+    padding: 14px 0 12px;
+  }
+  .in-lobby .contender-panel {
+    grid-row: 1;
+    display: block;
+    grid-template-columns: none;
+    grid-template-rows: none;
+    padding: 0;
+  }
+  .in-lobby .contender-p1 {
+    grid-column: 1;
+  }
+  .in-lobby .contender-p2 {
+    grid-column: 2;
+  }
+  .in-lobby .contender-player {
+    width: 100%;
+    height: 44px;
+    justify-content: center;
+    font-size: 8px;
+    padding-inline: 6px;
+  }
+  .in-lobby .contender-player > span:first-child {
+    background: transparent;
+    border: 0;
+    padding: 0;
+  }
+  .in-lobby .contender-stage {
+    grid-area: auto;
+    width: 100%;
+    height: 202px;
+  }
+  .in-lobby .contender-stage .selected-portrait {
+    width: 164px;
+    height: 205px;
+    bottom: -2px;
+  }
+  .in-lobby .contender-identity {
+    grid-area: auto;
+    text-align: center;
+    padding: 9px 8px;
+  }
+  .in-lobby .contender-identity > span {
+    margin-bottom: 0;
+    font-size: 6px;
+  }
+  .in-lobby .contender-identity h3 {
+    min-height: 0;
+    font-size: 24px;
+    line-height: 1;
+    margin: 4px 0;
+  }
+  .in-lobby .contender-identity p {
+    font-size: 10px;
+    margin: 0;
+  }
+  .in-lobby .contender-moves {
+    min-height: 44px;
+    font-size: 11px;
+    gap: 6px;
+  }
+  .in-lobby .contender-moves > svg {
+    width: 12px;
+    height: 12px;
+  }
+  .in-lobby .contender-lives {
+    top: 12px;
+    left: 5px;
+    gap: 5px;
+  }
+  .in-lobby .contender-lives > svg {
+    width: 12px;
+    height: 12px;
+  }
+  .in-lobby .contender-p2 .contender-lives {
+    left: auto;
+    right: 5px;
+  }
+  .in-lobby .arcade-roster {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+  }
+  .in-lobby .roster-toolbar {
+    min-height: 44px;
+    margin-bottom: 10px;
+  }
+  .in-lobby .player-picker button {
+    min-height: 44px;
+    height: 44px;
+    padding: 0 10px;
+    font-size: 13px;
+  }
+  .in-lobby .player-picker button span {
+    font-size: 9px;
+  }
+  .in-lobby .roster-random {
+    flex-basis: 44px;
+    width: 44px;
+    height: 44px;
+  }
+  .in-lobby .fighter-grid {
+    gap: 8px;
+  }
+  .in-lobby .fighter-card-art {
+    height: 86px;
+  }
+  .in-lobby .fighter-card-art .portrait {
+    width: 122px;
+    height: 153px;
+  }
+  .in-lobby .fighter-card-caption {
+    min-height: 37px;
+    padding-block: 7px;
+  }
+  .in-lobby .fighter-card-caption strong {
+    font-size: 11px;
+  }
+  .in-lobby .roster-pagination {
+    padding-top: 13px;
+  }
+  .in-lobby .roster-pagination button {
+    width: 44px;
+    height: 44px;
+  }
+  .in-lobby .arcade-stages {
+    padding: 16px 0 0;
+  }
+  .in-lobby .arcade-stage-heading {
+    margin-bottom: 9px;
+  }
+  .in-lobby .arcade-stage-heading > button {
+    min-height: 44px;
+    padding-inline: 0;
+  }
+  .in-lobby .arcade-stage-heading h2 {
+    font-size: 19px;
+  }
+  .in-lobby .arcade-stage-heading > button {
+    margin-left: auto;
+  }
+  .in-lobby .stage-strip {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 3px 2px 8px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    scrollbar-color: #49617f #091728;
+  }
+  .in-lobby .arcade-stage {
+    width: 110px;
+    flex: 0 0 110px;
+    scroll-snap-align: start;
+  }
+  .in-lobby .arcade-stage .stage-thumbnail {
+    height: 48px;
+  }
+  .in-lobby .arcade-stage strong {
+    font-size: 11px;
+    padding-block: 7px;
+  }
+  .in-lobby .arcade-ready {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    padding: 16px 0;
+  }
+  .in-lobby .ready-intro {
+    display: none;
+  }
+  .in-lobby .arcade-ready.local-ready {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .in-lobby .arcade-ready.in-room {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .in-lobby .ready-difficulty > span {
+    font-size: 10px;
+  }
+  .in-lobby .ready-difficulty button {
+    height: 38px;
+    min-height: 38px;
+  }
+  .in-lobby .arcade-start {
+    font-size: 25px;
+    padding-inline: 12px;
+    margin-top: 0;
+  }
+  .in-lobby .arcade-ready.online-ready .arcade-start {
+    font-size: 21px;
+  }
+  .in-lobby .site-footer {
+    margin-bottom: 0;
+  }
+  .in-lobby .mobile-setup-dock {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    z-index: 25;
+    padding: 10px 12px;
+    background: #12243af5;
+    border: 1px solid #ffd45a66;
+    border-radius: 7px;
+    box-shadow: 0 6px 24px #020b1966;
+    backdrop-filter: blur(10px);
+  }
+  .in-lobby .mobile-setup-dock > span {
+    min-width: 0;
+  }
+  .in-lobby .mobile-setup-dock small {
+    display: block;
+    font: 500 8px var(--pixel);
+    color: #b2c3da;
+    margin-bottom: 3px;
+  }
+  .in-lobby .mobile-setup-dock strong {
+    display: block;
+    font: italic 800 20px var(--display);
+    color: var(--paper);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .in-lobby .mobile-setup-dock button {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    padding: 0 12px;
+    background: var(--coin);
+    color: var(--ink);
+    font: 700 13px var(--pixel);
+  }
+}

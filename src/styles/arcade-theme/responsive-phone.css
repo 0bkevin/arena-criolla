@@ -1,0 +1,207 @@
+@media (max-width: 600px) {
+  .in-lobby .arcade-marquee {
+    height: 124px;
+  }
+  .in-lobby .marquee-art img {
+    object-position: center 30%;
+  }
+  .in-lobby .site-header,
+  .in-lobby .home-page,
+  .in-lobby .site-footer {
+    width: calc(100% - 20px);
+  }
+  .in-lobby .site-header .brand-name {
+    font-size: 20px;
+  }
+  .in-lobby .site-header .brand-icon {
+    width: 26px;
+    height: 26px;
+  }
+  .in-lobby .site-header .server-status {
+    margin-inline: 2px;
+  }
+  .in-lobby .arcade-modes button,
+  .in-lobby .arcade-modes #mode-local,
+  .in-lobby .arcade-modes #mode-online {
+    height: 51px;
+    padding: 0 7px;
+    gap: 6px;
+  }
+  .in-lobby .arcade-modes button > svg {
+    width: 15px;
+    height: 15px;
+  }
+  .in-lobby .arcade-modes button > span:not(.mode-slot) {
+    font-size: 12px;
+  }
+  .in-lobby .arcade-modes small {
+    font-size: 5px;
+    letter-spacing: 0.2px;
+  }
+  .in-lobby .cabinet-heading {
+    padding-inline: 0;
+  }
+  .in-lobby .cabinet-heading h2 {
+    font-size: 20px;
+  }
+  .in-lobby .arcade-selection {
+    padding-inline: 0;
+    gap: 16px 10px;
+  }
+  .in-lobby .contender-stage {
+    height: 177px;
+  }
+  .in-lobby .contender-stage .selected-portrait {
+    width: 143px;
+    height: 179px;
+  }
+  .in-lobby .contender-identity {
+    padding: 9px 7px;
+  }
+  .in-lobby .contender-identity h3 {
+    font-size: 23px;
+  }
+  .in-lobby .contender-identity p {
+    font-size: 9px;
+  }
+  .in-lobby .fighter-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .in-lobby .fighter-card-art {
+    height: 86px;
+  }
+  .in-lobby .fighter-card-art .portrait {
+    width: 123px;
+    height: 154px;
+  }
+  .in-lobby .fighter-card-caption {
+    min-height: 42px;
+    padding: 7px 4px;
+  }
+  .in-lobby .fighter-card-caption strong {
+    font-size: 11px;
+  }
+  .in-lobby .roster-pagination small {
+    margin-left: 7px;
+  }
+  .in-lobby .arcade-stage-heading {
+    gap: 7px;
+  }
+  .in-lobby .arcade-stage-heading > div {
+    gap: 4px;
+  }
+  .in-lobby .arcade-stage-heading h2 {
+    font-size: 19px;
+  }
+  .in-lobby .arcade-stages {
+    padding-inline: 0;
+  }
+  .in-lobby .arcade-ready,
+  .in-lobby .arcade-ready.local-ready,
+  .in-lobby .arcade-ready.online-ready,
+  .in-lobby .arcade-ready.in-room {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 16px 0;
+  }
+  .in-lobby .ready-difficulty button {
+    min-height: 44px;
+  }
+  .in-lobby .arcade-start,
+  .in-lobby .arcade-ready.online-ready .arcade-start {
+    grid-column: 1;
+    margin-top: 0;
+    height: var(--selection-control-height);
+    font-size: 21px;
+  }
+  .in-lobby .ready-room-players {
+    gap: 10px;
+  }
+  .in-lobby .mobile-setup-dock {
+    left: 10px;
+    right: 10px;
+  }
+}
+@media (min-width: 601px) and (max-width: 1100px) {
+  .in-lobby .arcade-marquee {
+    width: 100%;
+    height: auto;
+    max-height: 124px;
+    aspect-ratio: 1983 / 308;
+  }
+}
+@media (max-width: 380px) {
+  .in-lobby .arcade-marquee {
+    height: auto;
+    aspect-ratio: 1280 / 427;
+  }
+}
+@media (max-width: 360px) {
+  .in-lobby .site-header .brand {
+    gap: 5px;
+  }
+  .in-lobby .site-header .brand-name {
+    font-size: 18px;
+  }
+  .in-lobby .site-header .header-right {
+    gap: 0;
+  }
+  .in-lobby .arcade-modes button,
+  .in-lobby .arcade-modes #mode-local,
+  .in-lobby .arcade-modes #mode-online {
+    gap: 4px;
+    padding-inline: 4px;
+  }
+  .in-lobby .arcade-modes button > span:not(.mode-slot) {
+    font-size: 11px;
+  }
+  .in-lobby .arcade-modes button > svg {
+    width: 13px;
+  }
+  .in-lobby .arcade-modes small {
+    font-size: 4.5px;
+  }
+  .in-lobby .contender-stage {
+    height: 158px;
+  }
+  .in-lobby .contender-stage .selected-portrait {
+    width: 127px;
+    height: 159px;
+  }
+  .in-lobby .contender-identity h3 {
+    font-size: 22px;
+  }
+  .in-lobby .player-picker button {
+    font-size: 12px;
+    padding-inline: 7px;
+  }
+  .in-lobby .player-picker button span {
+    font-size: 8px;
+  }
+  .in-lobby .fighter-card-caption strong {
+    font-size: 10px;
+  }
+  .in-lobby .fighter-card-art {
+    height: 78px;
+  }
+  .in-lobby .fighter-card-art .portrait {
+    width: 111px;
+    height: 139px;
+  }
+  .in-lobby .arcade-stage-heading h2 {
+    font-size: 17px;
+  }
+  .in-lobby .arcade-stage-heading > button {
+    font-size: 9px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arcade-app *,
+  .arcade-app *::before,
+  .arcade-app *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,165 @@
+:root {
+  --pixel: var(--font-pixel);
+  --ink: #112c58;
+  --paper: #fff7e3;
+  --paper-deep: #f7e5bc;
+  --coin: #ffce52;
+  --vz-blue: #2455af;
+  --vz-red: #ed6856;
+  --p1: #ffdc71;
+  --mint: #8ce0bf;
+  --coral: #ffac96;
+  --bg: #101d36;
+  --line: #445a7d;
+  --lime: #ffce52;
+  --muted: #a7b5ce;
+  --display: var(--font-pixel);
+  background: var(--bg);
+  color: var(--paper);
+}
+body {
+  background: var(--bg);
+}
+.app-shell {
+  min-height: 100dvh;
+  background-image: radial-gradient(#f7e6cd12 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.app-shell.in-lobby {
+  color: var(--ink);
+  background-color: #fbefd4;
+  background-image:
+    radial-gradient(#bf943425 1px, transparent 1px),
+    linear-gradient(120deg, #fff6df, #f9e9c7);
+  background-size:
+    12px 12px,
+    auto;
+}
+.app-shell .site-header,
+.app-shell .home-page,
+.app-shell .site-footer {
+  width: calc(100% - 64px);
+  max-width: 1280px;
+}
+.app-shell .site-header {
+  height: 52px;
+  position: sticky;
+  top: 0;
+  z-index: 35;
+  gap: 20px;
+  background: #101d36f5;
+  border-bottom: 1px solid #ffffff0c;
+  backdrop-filter: blur(12px);
+}
+.site-header .brand {
+  gap: 9px;
+}
+.site-header .brand-icon {
+  width: 29px;
+  height: 29px;
+  border: 0;
+  border-radius: 0;
+  transform: none;
+  color: var(--coin);
+  background: none;
+}
+.site-header .brand-name {
+  display: block;
+  font: 700 19px/1 var(--pixel);
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+.in-lobby .site-header {
+  background: #fbefd4f5;
+  border-bottom-color: #112c581c;
+}
+.in-lobby .site-header .brand-icon {
+  background: var(--coin);
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.in-lobby .site-header .brand-name > span {
+  color: var(--vz-red);
+}
+.in-lobby .site-header .main-nav button,
+.in-lobby .site-header .icon-button {
+  color: var(--ink);
+}
+.in-lobby .site-header .main-nav button.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+.in-lobby .site-header .main-nav button:hover,
+.in-lobby .site-header .icon-button:hover {
+  background: #112c580c;
+  border-color: #112c5826;
+  color: var(--ink);
+}
+.in-lobby .site-header .server-status {
+  color: #567096;
+}
+.in-lobby .site-header .server-status.connected i {
+  background: #28734e;
+}
+.site-header .brand-name > span {
+  display: inline-flex;
+  gap: 6px;
+  margin: 0 0 0 4px;
+  align-items: center;
+}
+.site-header .main-nav {
+  gap: 8px;
+  height: auto;
+}
+.site-header .main-nav button {
+  height: 30px;
+  padding: 0 11px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 500 13px var(--pixel);
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: #c4bdd0;
+}
+.site-header .main-nav button.active {
+  color: var(--coin);
+}
+.site-header .main-nav button.active::after {
+  display: none;
+}
+.site-header .main-nav button:hover {
+  color: var(--paper);
+  border-color: #fff3d933;
+  background: #ffffff06;
+}
+.site-header .header-right {
+  gap: 10px;
+}
+.site-header .server-status {
+  font: 500 11px var(--pixel);
+  color: #bdb4cc;
+  gap: 6px;
+}
+.site-header .server-status i {
+  width: 5px;
+  height: 5px;
+  border-radius: 0;
+}
+.site-header .server-status.connected i {
+  background: var(--mint);
+  box-shadow: 0 0 0 3px #8ce0bf10;
+}
+.site-header .icon-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 2px;
+  color: var(--paper);
+}
+.site-header .icon-button:hover {
+  background: #fff3d910;
+}
+.site-header .header-progress {
+  display: none;
+}

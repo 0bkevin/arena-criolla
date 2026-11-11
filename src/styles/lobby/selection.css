@@ -1,0 +1,192 @@
+.arcade-cabinet {
+  position: relative;
+  color: var(--paper);
+  background: #1d4f9c;
+  border: 3px solid var(--ink);
+  border-radius: 4px;
+  box-shadow: 0 4px 0 var(--ink);
+}
+.arcade-session {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+}
+.arcade-session > section {
+  min-width: 0;
+}
+.cabinet-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 45px;
+  gap: 16px;
+  padding: 10px 20px;
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom: 1px solid #87afe250;
+}
+.cabinet-heading > div,
+.arcade-stage-heading > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.cabinet-heading h2,
+.arcade-stage-heading h2 {
+  font: 700 18px/1 var(--pixel);
+  letter-spacing: 0.4px;
+}
+.arcade-selection {
+  display: grid;
+  grid-template-columns: minmax(150px, 190px) minmax(0, 1fr) minmax(
+      150px,
+      190px
+    );
+  align-items: center;
+  gap: 20px;
+  padding: 16px 20px 12px;
+  scroll-margin-top: 70px;
+  background-image: radial-gradient(#b9d8ff16 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+.contender-panel {
+  min-width: 0;
+  text-align: center;
+  background: #153f7d;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px #a2c5ed45;
+  overflow: hidden;
+}
+.contender-player {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 32px;
+  color: var(--ink);
+  background: var(--p1);
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  font: 700 11px var(--pixel);
+  gap: 7px;
+  box-shadow: 0 3px 0 var(--ink);
+}
+.contender-player > span:first-child {
+  font-size: 15px;
+}
+.contender-p2 .contender-player {
+  background: var(--coral);
+}
+.contender-player.editing {
+  box-shadow: inset 0 -3px 0 #112c5836;
+}
+.contender-player:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.pixel-cursor {
+  opacity: 0;
+  position: absolute;
+  left: 8px;
+  font-size: 10px;
+}
+.contender-p2 .pixel-cursor {
+  left: auto;
+  right: 8px;
+}
+.editing .pixel-cursor {
+  opacity: 1;
+}
+.contender-stage {
+  position: relative;
+  height: 215px;
+  margin: 13px 7px 0;
+  overflow: hidden;
+  isolation: isolate;
+  background-size: auto 100%;
+  background-position: 30% center;
+  background-color: var(--paper-deep);
+  border: 2px solid var(--p1);
+  border-radius: 2px;
+  image-rendering: pixelated;
+}
+.contender-p2 .contender-stage {
+  background-position: 70% center;
+  border-color: var(--coral);
+}
+.contender-stage .selected-portrait {
+  width: 169px;
+  height: 211px;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  filter: drop-shadow(2px 3px 0 #26193090);
+  image-rendering: auto;
+  animation: fighter-pop 180ms ease-out both;
+}
+.contender-shadow {
+  position: absolute;
+  width: 95px;
+  height: 9px;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #21153070;
+  border-radius: 50%;
+  z-index: 1;
+}
+.contender-lives {
+  position: absolute;
+  left: 9px;
+  top: 9px;
+  display: flex;
+  gap: 5px;
+  color: var(--p1);
+  filter: drop-shadow(1px 1px 0 #29203e);
+  z-index: 3;
+}
+.contender-p2 .contender-lives {
+  left: auto;
+  right: 9px;
+  color: var(--coral);
+}
+.contender-identity {
+  animation: name-pop 150ms ease-out both;
+  margin-top: 10px;
+  padding-inline: 5px;
+}
+.contender-identity > span {
+  font: 500 9px var(--pixel);
+  color: #c4dbfc;
+  letter-spacing: 0.5px;
+}
+.contender-identity h3 {
+  font: 700 22px/1.05 var(--pixel);
+  margin: 4px 0;
+  min-height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--paper);
+}
+.contender-identity p {
+  font-size: 10px;
+  color: #c4dbfc;
+  min-height: 14px;
+}
+.contender-moves {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 500 11px var(--pixel);
+  padding: 8px 4px 3px;
+  color: #ffe1a0;
+  padding-bottom: 7px;
+}
+.contender-moves:hover {
+  color: var(--paper);
+  transform: translateX(2px);
+}

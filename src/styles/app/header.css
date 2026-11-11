@@ -1,0 +1,127 @@
+.page-width {
+  width: calc(100% - 96px);
+  max-width: 1264px;
+  margin-inline: auto;
+}
+.site-header {
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0;
+  text-align: left;
+}
+.brand-icon {
+  width: 43px;
+  height: 43px;
+  border: 1px solid #dfff7b44;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: #dfff7b0e;
+  color: var(--lime);
+  transform: rotate(-5deg);
+}
+.brand-name {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 23px;
+  line-height: 0.88;
+  letter-spacing: 0.7px;
+  display: flex;
+  flex-direction: column;
+}
+.brand-name > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 4px;
+  color: var(--lime);
+}
+.main-nav {
+  display: flex;
+  gap: 29px;
+  height: 100%;
+  align-items: center;
+}
+.main-nav button {
+  height: 100%;
+  padding: 0 2px;
+  font-size: 12px;
+  color: var(--muted);
+  position: relative;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.main-nav button:hover,
+.main-nav button.active {
+  color: var(--text);
+}
+.main-nav button.active:after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  height: 2px;
+  background: var(--lime);
+  left: 0;
+  right: 0;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+.server-status {
+  font-size: 10px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.server-status i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #757980;
+}
+.server-status.connected i {
+  background: var(--lime);
+  box-shadow: 0 0 7px #dfff7b55;
+}
+.icon-button {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  color: var(--muted);
+  border-radius: 6px;
+}
+.icon-button:hover {
+  background: #ffffff0b;
+  color: var(--text);
+}
+.home-page {
+  padding-top: 25px;
+}
+.portrait {
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+}
+.live-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 8px #dfff7b55;
+  flex-shrink: 0;
+}

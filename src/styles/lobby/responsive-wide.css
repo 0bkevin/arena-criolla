@@ -1,0 +1,147 @@
+@media (min-width: 1440px) {
+  .arcade-home .fighter-card-art {
+    height: 77px;
+  }
+  .arcade-home .fighter-card-art .portrait {
+    width: 125px;
+    height: 156px;
+  }
+  .arcade-home .fighter-card-caption strong {
+    font-size: 11px;
+  }
+  .contender-stage {
+    height: 238px;
+  }
+  .contender-stage .selected-portrait {
+    height: 234px;
+    width: 188px;
+  }
+}
+@media (max-width: 1100px) {
+  .app-shell .site-header,
+  .app-shell .home-page,
+  .app-shell .site-footer {
+    width: calc(100% - 40px);
+  }
+  .arcade-selection {
+    grid-template-columns: 155px minmax(0, 1fr) 155px;
+    gap: 13px;
+    padding: 14px 16px 10px;
+  }
+  .contender-stage {
+    height: 200px;
+  }
+  .contender-stage .selected-portrait {
+    width: 157px;
+    height: 196px;
+  }
+  .contender-identity h3 {
+    font-size: 20px;
+  }
+  .arcade-home .fighter-card-art {
+    height: 58px;
+  }
+  .arcade-home .fighter-card-art .portrait {
+    width: 99px;
+    height: 124px;
+  }
+  .arcade-ready {
+    gap: 13px;
+    grid-template-columns:
+      minmax(120px, 0.8fr) minmax(125px, 1fr) minmax(180px, 1fr)
+      minmax(170px, 1fr);
+    padding-inline: 16px;
+  }
+  .ready-intro {
+    gap: 7px;
+  }
+  .ready-intro strong {
+    font-size: 15px;
+  }
+  .ready-intro > svg {
+    width: 19px;
+  }
+  .arcade-home .arcade-start {
+    font-size: 21px;
+    padding-inline: 10px;
+    gap: 6px;
+  }
+  .arcade-stages {
+    padding-inline: 16px;
+  }
+  .stage-strip {
+    gap: 6px;
+  }
+  .arcade-stage strong {
+    font-size: 10px;
+  }
+}
+@media (max-width: 900px) and (min-width: 701px) {
+  .arcade-selection {
+    grid-template-columns: 130px minmax(0, 1fr) 130px;
+    gap: 10px;
+    padding: 14px 12px 10px;
+  }
+  .arcade-home .fighter-grid {
+    gap: 5px;
+  }
+  .arcade-home .fighter-card-caption {
+    padding-inline: 3px;
+  }
+  .arcade-home .fighter-card-caption strong {
+    font-size: 9px;
+  }
+  .contender-stage {
+    height: 184px;
+  }
+  .contender-stage .selected-portrait {
+    width: 144px;
+    height: 180px;
+  }
+  .contender-player {
+    font-size: 9px;
+    gap: 3px;
+  }
+  .contender-identity h3 {
+    font-size: 18px;
+  }
+  .roster-toolbar {
+    gap: 5px;
+  }
+  .player-picker {
+    gap: 4px;
+  }
+  .player-picker button {
+    font-size: 12px;
+    padding-inline: 6px;
+  }
+  .player-picker button span {
+    font-size: 9px;
+  }
+  .arcade-home .arcade-modes {
+    width: 100%;
+  }
+  .arcade-progress {
+    display: none;
+  }
+  .arcade-ready {
+    grid-template-columns: 1fr 1.2fr 1fr;
+  }
+  .ready-intro {
+    display: none;
+  }
+  .arcade-ready.local-ready {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .stage-strip {
+    display: flex;
+    overflow-x: auto;
+    padding: 3px 2px 6px;
+    scroll-snap-type: x proximity;
+  }
+  .arcade-stage {
+    width: 90px;
+    flex: 0 0 90px;
+    scroll-snap-align: start;
+  }
+}

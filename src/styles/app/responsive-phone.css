@@ -1,0 +1,379 @@
+@media (max-width: 650px) {
+  .page-width {
+    width: calc(100% - 32px);
+  }
+  .site-header {
+    height: 71px;
+    gap: 15px;
+  }
+  .brand-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+  }
+  .brand-icon svg {
+    width: 22px;
+  }
+  .brand-name {
+    font-size: 20px;
+  }
+  .brand {
+    gap: 9px;
+  }
+  .main-nav {
+    margin-left: auto;
+    gap: 15px;
+  }
+  .main-nav button {
+    font-size: 9px;
+  }
+  .main-nav button:first-child {
+    display: none;
+  }
+  .main-nav button > svg {
+    display: none;
+  }
+  .header-right {
+    gap: 0;
+  }
+  .header-right > .icon-button {
+    width: 25px;
+  }
+  .home-page {
+    padding-top: 16px;
+  }
+  .fighter-grid {
+    gap: 10px;
+  }
+  .fighter-card-art {
+    height: 135px;
+  }
+  .fighter-card-art .portrait {
+    height: 197px;
+    width: 158px;
+    top: 3px;
+  }
+  .fighter-card-caption {
+    padding: 10px 9px 12px;
+  }
+  .fighter-card-caption strong {
+    font-size: 19px;
+  }
+  .fighter-card-caption > span {
+    font-size: 8px;
+  }
+  .section-label h2 {
+    font-size: 10px;
+    letter-spacing: 1.3px;
+  }
+  .mode-tabs {
+    width: 100%;
+    gap: 4px;
+    justify-content: space-between;
+  }
+  .mode-tabs button {
+    padding: 10px 8px;
+    flex: 1;
+    justify-content: center;
+    gap: 7px;
+  }
+  .mode-tabs button > span:not(.tab-dot) {
+    font-size: 10px;
+  }
+  .mode-tabs small {
+    font-size: 6px;
+  }
+  .mode-tabs button > svg {
+    width: 17px;
+  }
+  .difficulty {
+    margin-top: 13px;
+  }
+  .difficulty > span {
+    font-size: 10px;
+  }
+  .difficulty button {
+    font-size: 9px;
+    padding: 5px 10px;
+  }
+  .fight-button {
+    margin-top: 18px;
+    height: 50px;
+    font-size: 27px;
+  }
+  .site-footer {
+    padding: 20px 0 24px;
+    font-size: 6px;
+  }
+  .site-footer > button {
+    font-size: 8px;
+  }
+  .site-footer > button > span {
+    font-size: 5px;
+  }
+  .modal {
+    padding: 20px;
+    max-height: calc(100dvh - 28px);
+  }
+  .modal-header h2 {
+    font-size: 28px;
+  }
+  .roster-grid {
+    gap: 9px;
+  }
+  .roster-grid > button {
+    padding: 9px;
+    gap: 3px;
+  }
+  .roster-grid .portrait {
+    width: 48px;
+    height: 60px;
+  }
+  .roster-grid h3 {
+    font-size: 15px;
+  }
+  .roster-grid p {
+    font-size: 8px;
+  }
+  .roster-grid span {
+    font-size: 5px;
+    letter-spacing: 0.7px;
+  }
+  .roster-grid strong {
+    font-size: 6px;
+    margin-top: 8px;
+    gap: 3px;
+  }
+  .roster-grid strong svg {
+    width: 9px;
+  }
+  .fighter-detail {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .detail-art {
+    height: 180px;
+  }
+  .detail-art .portrait {
+    width: 173px;
+    height: 216px;
+    margin-top: 23px;
+  }
+  .detail-art > span:last-child {
+    bottom: 12px;
+    text-align: right;
+    right: 17px;
+    font-size: 7px;
+  }
+  .progress-metrics > div {
+    padding: 12px 5px;
+  }
+  .lobby-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .create-room-panel,
+  .join-room-panel {
+    padding: 18px;
+  }
+  .lobby-grid h3 {
+    font-size: 24px;
+  }
+  .create-room-panel > svg {
+    width: 20px;
+    margin-bottom: 8px;
+  }
+  .rooms-list-heading h2 {
+    font-size: 9px;
+  }
+  .empty-rooms {
+    padding: 18px 12px;
+    gap: 11px;
+  }
+  .empty-rooms strong {
+    font-size: 10px;
+  }
+  .empty-rooms p {
+    font-size: 9px;
+  }
+  .rooms-list img {
+    width: 41px;
+    height: 37px;
+  }
+  .rooms-list strong {
+    font-size: 10px;
+  }
+  .rooms-list button {
+    font-size: 8px;
+    padding: 7px 8px;
+    gap: 5px;
+  }
+  .toast {
+    font-size: 10px;
+    padding: 12px 15px;
+  }
+  .game-topline {
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .game-topline > .text-button {
+    font-size: 8px;
+  }
+  .game-mode {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    font-size: 6px;
+    margin-top: 4px;
+  }
+  .game-tools {
+    gap: 0;
+  }
+  .game-tools .icon-button {
+    width: 27px;
+    height: 27px;
+  }
+  .game-tools svg {
+    width: 15px;
+  }
+  .arena-wrap {
+    border-radius: 6px;
+  }
+  .match-hud {
+    top: 9px;
+    left: 10px;
+    right: 10px;
+    gap: 52px;
+  }
+  .hud-label {
+    gap: 4px;
+    margin-bottom: 5px;
+  }
+  .hud-label strong {
+    font-size: 8px;
+  }
+  .player-number {
+    font-size: 5px;
+    padding: 2px 3px;
+    border-radius: 2px;
+  }
+  .hud-character {
+    display: none;
+  }
+  .health-track {
+    height: 9px;
+  }
+  .health-track > span {
+    font-size: 5px;
+    top: 0;
+  }
+  .hud-bottom {
+    gap: 4px;
+    font-size: 5px;
+    margin-top: 4px;
+  }
+  .stock-hearts {
+    gap: 2px;
+  }
+  .stock-hearts svg {
+    width: 8px;
+    height: 8px;
+  }
+  .energy-track {
+    height: 3px;
+  }
+  .hud-bottom > svg {
+    display: none;
+  }
+  .match-clock {
+    min-width: 36px;
+    padding: 4px 5px;
+    border-radius: 4px;
+  }
+  .match-clock strong {
+    font-size: 22px;
+  }
+  .match-clock strong.match-clock-minutes {
+    font-size: 16px;
+  }
+  .arena-location {
+    font-size: 4px;
+    letter-spacing: 0.7px;
+    left: 8px;
+    bottom: 7px;
+    padding: 4px;
+  }
+  .countdown-overlay > strong {
+    font-size: 60px;
+  }
+  .countdown-overlay > span {
+    font-size: 6px;
+    letter-spacing: 2px;
+  }
+  .game-controls-bar {
+    display: none;
+  }
+  .touch-controls {
+    display: flex;
+    padding-top: 16px;
+    gap: 8px;
+  }
+  .touch-directions,
+  .touch-actions {
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 49%;
+  }
+  .touch-button {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+  .touch-button svg {
+    width: 14px;
+  }
+  .game-overlay {
+    padding: 12px;
+  }
+  .loading-overlay {
+    gap: 12px;
+  }
+  .loading-overlay h2 {
+    font-size: 14px;
+  }
+}
+@media (max-width: 390px) {
+  .fighter-card-art {
+    height: 115px;
+  }
+  .fighter-card-art .portrait {
+    height: 172px;
+    width: 138px;
+  }
+  .fighter-card-caption strong {
+    font-size: 17px;
+  }
+  .fighter-card-caption > span {
+    font-size: 6px;
+  }
+  .mode-tabs button {
+    padding: 9px 5px;
+    gap: 5px;
+  }
+  .mode-tabs button > span:not(.tab-dot) {
+    font-size: 9px;
+  }
+  .mode-tabs small {
+    font-size: 5px;
+    letter-spacing: 0.5px;
+  }
+  .touch-button {
+    width: 30px;
+    height: 30px;
+  }
+  .touch-directions,
+  .touch-actions {
+    gap: 3px;
+  }
+}

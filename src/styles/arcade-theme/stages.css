@@ -1,0 +1,73 @@
+.in-lobby .arcade-stages {
+  padding: 16px 0 0;
+  border: 0;
+  border-top: 1px solid #a3b3ca26;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  color: #bfcde0;
+}
+.in-lobby .arcade-stage-heading {
+  gap: 12px;
+  margin-bottom: 8px;
+  min-height: 19px;
+}
+.in-lobby .arcade-stage-heading h2 {
+  font: italic 800 18px/1 var(--display);
+  color: var(--paper);
+  letter-spacing: 0.2px;
+}
+.in-lobby .arcade-stage-heading > button {
+  color: var(--coin);
+  font: 500 10px var(--font-body);
+  padding-block: 0;
+}
+.in-lobby .arcade-stage-heading > button:hover {
+  color: var(--paper);
+}
+.in-lobby .stage-strip {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 12px;
+}
+.in-lobby .arcade-stage {
+  background: #102034;
+  color: #becde0;
+  border: 1px solid #7188aa3b;
+  border-radius: 6px;
+  box-shadow: 0 6px 14px -10px #020a14;
+  overflow: hidden;
+  transition:
+    border-color 140ms,
+    transform 140ms,
+    box-shadow 140ms;
+}
+.in-lobby .arcade-stage .stage-thumbnail {
+  height: 37px;
+  border-radius: 0;
+}
+.in-lobby .arcade-stage strong {
+  font: 400 10px/1.1 var(--font-body);
+  padding: 6px 2px;
+}
+.in-lobby .arcade-stage.selected {
+  color: var(--coin);
+  background: #28323a;
+  border-color: var(--coin);
+  box-shadow: 0 8px 18px -10px #ffd45a8c;
+}
+.in-lobby .arcade-stage:not(.selected):hover:enabled {
+  border-color: #cfdef1;
+  transform: translateY(-2px);
+}
+.in-lobby .stage-tick {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 2px;
+}
+.in-lobby .stage-lock-note {
+  padding-top: 8px;
+  color: var(--muted);
+  font-size: 11px;
+}

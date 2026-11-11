@@ -1,0 +1,114 @@
+@media (pointer: coarse) and (min-width: 651px) {
+  .touch-controls {
+    display: flex;
+  }
+  .game-controls-bar {
+    display: none;
+  }
+}
+.fighter-card {
+  display: flex;
+  flex-direction: column;
+}
+.fighter-card-art {
+  flex-shrink: 0;
+}
+.fighter-card-caption {
+  flex: 1;
+}
+@media (max-width: 900px), (max-height: 500px) and (orientation: landscape) {
+  .arena-wrap:has(.pause-card) {
+    min-height: 260px;
+    min-width: 0;
+    width: 100%;
+  }
+  .pause-card {
+    width: 280px;
+    padding: 16px;
+  }
+  .pause-card h2 {
+    font-size: 25px;
+    margin-top: 6px;
+  }
+  .pause-card p {
+    font-size: 9px;
+    margin: 7px 0 10px;
+  }
+  .pause-card button {
+    font-size: 10px;
+    min-height: 34px;
+    padding: 7px;
+    margin-top: 7px;
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .app-shell:has(.game-page) .site-header,
+  .app-shell:has(.game-page) .site-footer {
+    display: none;
+  }
+  .game-page {
+    padding-top: 8px;
+    max-width: min(1440px, calc((100dvh - 125px) * 1.8));
+  }
+  .game-topline {
+    margin-bottom: 5px;
+  }
+  .game-mode {
+    width: auto;
+    order: 0;
+  }
+  .game-controls-bar {
+    display: none;
+  }
+  .touch-controls {
+    display: flex;
+    padding: 9px 0;
+  }
+  .touch-button {
+    height: 32px;
+    width: 32px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.fighter-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  margin: 0 0 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #17191f;
+  color: #9799a4;
+}
+.fighter-search input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: #f0f0f4;
+  font: inherit;
+  font-size: 13px;
+}
+.fighter-search:focus-within {
+  border-color: #dfff7b;
+}
+@media (max-width: 650px) {
+  .fighter-grid {
+    max-height: 550px;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    padding-right: 4px;
+    scrollbar-width: thin;
+    scrollbar-color: #58663c #17191f;
+  }
+}

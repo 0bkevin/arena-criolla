@@ -1,0 +1,409 @@
+.in-lobby .arcade-roster {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  align-self: center;
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.in-lobby .roster-toolbar {
+  position: relative;
+  min-height: 34px;
+  margin-bottom: 8px;
+  justify-content: flex-start;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+.in-lobby .player-picker {
+  flex-shrink: 0;
+  gap: 5px;
+}
+.in-lobby .player-picker button {
+  height: 29px;
+  padding: 0 8px;
+  font: 700 11px var(--pixel);
+  background: #09182c50;
+  border: 1px solid #a8c5e320;
+  border-radius: 3px;
+  color: #bdc9dc;
+  box-shadow: none;
+}
+.in-lobby .player-picker button span {
+  font-size: 8px;
+}
+.in-lobby .player-picker button.active.p1 {
+  color: var(--coin);
+  background: #ffd45a0a;
+  border-color: #ffd45a44;
+  box-shadow: inset 0 0 0 1px #ffd45a12;
+}
+.in-lobby .player-picker button.active.p2 {
+  color: var(--coral);
+  background: #fa7c6d0a;
+  border-color: #fa7c6d44;
+  box-shadow: inset 0 0 0 1px #fa7c6d12;
+}
+.in-lobby .player-picker button:hover {
+  border-color: #bac9da66;
+}
+.in-lobby .roster-random,
+.in-lobby .roster-sort {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #8ba4c32b;
+  border-radius: 4px;
+  background: #08192a50;
+  color: #c8d5e7;
+}
+.in-lobby .roster-random > span {
+  display: none;
+}
+.in-lobby .roster-random:hover:enabled,
+.in-lobby .roster-sort:hover {
+  color: var(--coin);
+  border-color: #ffd45a66;
+  background: #ffd45a0b;
+}
+.in-lobby .roster-toolbar .arcade-search {
+  flex: 1;
+  min-width: 0;
+  height: var(--selection-control-height);
+  margin: 0;
+  background: #071425;
+  color: #b1c4dd;
+  border: 1px solid #344a64;
+  border-radius: 4px;
+}
+.in-lobby .arcade-search:focus-within {
+  background: #1a2e46;
+}
+.in-lobby .arcade-search input {
+  color: var(--paper);
+  background: transparent;
+  font: 400 12px var(--font-body);
+}
+.in-lobby .arcade-search input::placeholder {
+  color: #92a5bf;
+}
+.in-lobby .arcade-search > svg {
+  flex-shrink: 0;
+}
+.in-lobby .roster-toolbar .roster-search-clear {
+  display: grid;
+  place-items: center;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  padding: 0;
+  color: #b1c4dd;
+}
+.in-lobby .roster-search-clear:hover {
+  color: var(--coin);
+}
+.in-lobby .roster-filter {
+  position: relative;
+  flex-shrink: 0;
+  color: #c8d5e7;
+}
+.in-lobby .roster-filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--selection-control-height);
+  padding: 0 10px;
+  border: 1px solid #344a64;
+  border-radius: 4px;
+  background: #071425;
+  color: inherit;
+  font: 500 12px var(--font-body);
+}
+.in-lobby .arcade-session .roster-filter-toggle:focus-visible,
+.in-lobby .arcade-session .roster-filter-option:focus-visible {
+  outline: none;
+}
+.in-lobby .roster-filter-toggle:focus-visible {
+  background: #1a2e46;
+}
+.in-lobby .roster-filter[data-active="true"] {
+  color: var(--coin);
+}
+.in-lobby .roster-filter[data-active="true"] .roster-filter-toggle,
+.in-lobby .roster-filter-toggle[aria-expanded="true"] {
+  border-color: #ffd45a66;
+  color: var(--coin);
+}
+.in-lobby .roster-filter-toggle:hover {
+  border-color: #bac9da66;
+}
+.in-lobby .roster-filter-label {
+  white-space: nowrap;
+}
+.in-lobby .roster-filter-label > span {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.in-lobby .roster-filter-menu {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 8px);
+  right: 0;
+  display: grid;
+  gap: 2px;
+  width: 176px;
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-block: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--selection-fill) transparent;
+  padding: 4px;
+  border-radius: 6px;
+  background: #102238;
+  box-shadow: 0 10px 30px #020a14b3;
+}
+.in-lobby .roster-filter-menu[data-side="top"] {
+  top: auto;
+  bottom: calc(100% + 8px);
+}
+.in-lobby .roster-filter-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--selection-control-height);
+  padding: 0 10px;
+  border-radius: 3px;
+  color: var(--text);
+  text-align: left;
+  font: 500 12px var(--font-body);
+}
+.in-lobby .roster-filter-option > span:first-child {
+  flex: 1;
+}
+.in-lobby .roster-filter-count {
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.in-lobby .roster-filter-option > svg {
+  visibility: hidden;
+}
+.in-lobby .roster-filter-option[aria-checked="true"] {
+  color: var(--coin);
+  background: var(--selection-fill);
+}
+.in-lobby .roster-filter-option[aria-checked="true"] > svg {
+  visibility: visible;
+}
+.in-lobby .roster-filter-option:hover,
+.in-lobby .roster-filter-option:focus-visible {
+  background: #20354c;
+}
+@media (max-width: 600px) {
+  .in-lobby .roster-toolbar .player-picker {
+    display: none;
+  }
+  .in-lobby .roster-filter-toggle {
+    width: var(--selection-control-height);
+    justify-content: center;
+    padding: 0;
+  }
+  .in-lobby .roster-filter-label,
+  .in-lobby .roster-filter-chevron {
+    display: none;
+  }
+}
+.in-lobby .fighter-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  max-height: none;
+  overflow: visible;
+}
+.in-lobby .fighter-grid:empty {
+  display: none;
+}
+.in-lobby .fighter-card {
+  --pick-color: var(--coin);
+  padding: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid #7188aa3b;
+  border-radius: 6px;
+  background: #102034;
+  overflow: visible;
+  box-shadow: 0 6px 14px -10px #020a14;
+}
+.in-lobby .fighter-card.picking-p2 {
+  --pick-color: var(--coral);
+}
+/* Arcade select cursor: corner brackets in the colour of the player picking. */
+.in-lobby .fighter-card::before {
+  --c: var(--pick-color);
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: 4;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--c), var(--c)) 0 0 / 12px 2px,
+    linear-gradient(var(--c), var(--c)) 0 0 / 2px 12px,
+    linear-gradient(var(--c), var(--c)) 100% 0 / 12px 2px,
+    linear-gradient(var(--c), var(--c)) 100% 0 / 2px 12px,
+    linear-gradient(var(--c), var(--c)) 0 100% / 12px 2px,
+    linear-gradient(var(--c), var(--c)) 0 100% / 2px 12px,
+    linear-gradient(var(--c), var(--c)) 100% 100% / 12px 2px,
+    linear-gradient(var(--c), var(--c)) 100% 100% / 2px 12px;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.06);
+  transition:
+    opacity 120ms,
+    transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.in-lobby .fighter-card.chosen::before,
+.in-lobby .fighter-card:focus-visible::before {
+  opacity: 1;
+  transform: none;
+}
+@media (hover: hover) {
+  .in-lobby .fighter-card:hover::before {
+    opacity: 1;
+    transform: none;
+  }
+  .in-lobby .fighter-card:not(.chosen):hover::before {
+    --c: color-mix(in srgb, var(--pick-color) 70%, transparent);
+  }
+}
+.in-lobby .fighter-card.chosen,
+.in-lobby .fighter-card.chosen.picking-p2,
+.in-lobby .fighter-card.chosen:hover,
+.in-lobby .fighter-card.chosen.picking-p2:hover {
+  /* The corner brackets mark the pick; a full-colour border would frame it twice. */
+  border: 1px solid color-mix(in srgb, var(--pick-color) 35%, transparent);
+  background: color-mix(in srgb, var(--pick-color) 10%, #102034);
+  box-shadow: 0 8px 18px -10px
+    color-mix(in srgb, var(--pick-color) 55%, transparent);
+  z-index: 3;
+}
+.in-lobby .fighter-card:hover {
+  transform: translateY(-2px);
+  background: #192c43;
+  border-color: #8ba4c3;
+  box-shadow: 0 10px 18px -10px #020a14;
+}
+.in-lobby .fighter-card:active {
+  transform: translateY(1px);
+}
+.in-lobby .fighter-card-art {
+  height: 76px;
+  width: 100%;
+  position: relative;
+  border-radius: 5px 5px 0 0;
+  background:
+    radial-gradient(
+      ellipse 70% 95% at 50% 0,
+      color-mix(in srgb, var(--fighter-color) 24%, #2a4466),
+      transparent 75%
+    ),
+    color-mix(in srgb, var(--fighter-color) 12%, #192d42);
+  overflow: hidden;
+}
+.in-lobby .fighter-card.chosen .fighter-card-art {
+  background:
+    radial-gradient(
+      ellipse 70% 95% at 50% 0,
+      color-mix(in srgb, var(--pick-color) 30%, #2a4466),
+      transparent 75%
+    ),
+    color-mix(in srgb, var(--fighter-color) 12%, #192d42);
+}
+.in-lobby .fighter-card-art::after {
+  content: none;
+}
+.in-lobby .fighter-card-art .portrait {
+  position: absolute;
+  width: 106px;
+  height: 133px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: 50% 20%;
+  filter: drop-shadow(1px 2px 0 #07112466);
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@media (hover: hover) {
+  .in-lobby .fighter-card:hover .fighter-card-art .portrait {
+    transform: translateX(-50%) scale(1.06);
+  }
+}
+.in-lobby .fighter-player-tags {
+  top: 3px;
+  right: 3px;
+}
+.in-lobby .fighter-player-tags > span {
+  padding: 3px;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 0 #071124;
+  font-size: 8px;
+  color: var(--ink);
+}
+.in-lobby .fighter-card-caption,
+.in-lobby .picked-p1 .fighter-card-caption,
+.in-lobby .picked-p2 .fighter-card-caption,
+.in-lobby .picked-p1.picked-p2 .fighter-card-caption {
+  flex: 1;
+  min-height: 31px;
+  padding: 7px 4px;
+  background: linear-gradient(#0a172800, #0a1728b0);
+  border-top: 1px solid #ffffff0d;
+  border-radius: 0 0 5px 5px;
+}
+.in-lobby .fighter-card-caption strong {
+  font: 700 11px/1.25 var(--font-body);
+  color: #ecf0f8;
+  letter-spacing: -0.15px;
+  overflow-wrap: anywhere;
+}
+.in-lobby .fighter-card.chosen .fighter-card-caption strong {
+  color: var(--pick-color);
+}
+.in-lobby .roster-pagination {
+  padding-top: 9px;
+  gap: 12px;
+  color: #c4d2e6;
+  font: 400 10px var(--font-body);
+}
+.in-lobby .roster-pagination button {
+  width: 29px;
+  height: 29px;
+  color: #afc2dd;
+  border-color: #768cac20;
+  background: #08172b66;
+  border-radius: 4px;
+}
+.in-lobby .roster-pagination button:hover:enabled {
+  color: var(--coin);
+  background: #ffd45a10;
+}
+.in-lobby .roster-pagination small {
+  font: 500 8px var(--pixel);
+  color: #c4d2e6;
+  margin-left: 10px;
+}
+.in-lobby .fighter-empty {
+  min-height: 191px;
+  color: #bbcce0;
+  font: 500 12px var(--font-body);
+}
+.in-lobby .fighter-empty button {
+  color: var(--coin);
+}

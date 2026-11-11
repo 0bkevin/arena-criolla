@@ -1,0 +1,132 @@
+.arcade-home {
+  padding-top: 15px;
+  padding-bottom: 0;
+}
+.arcade-marquee {
+  height: 120px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  background: #23395b;
+  box-shadow: 0 4px 0 var(--ink);
+}
+.marquee-art {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+.marquee-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+.arcade-mode-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 18px 0;
+}
+.arcade-home .arcade-modes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  border: 0;
+  width: 670px;
+  max-width: 100%;
+  background: none;
+  padding: 0;
+}
+.arcade-modes::before {
+  display: none;
+}
+.arcade-home .arcade-modes button {
+  position: relative;
+  min-width: 0;
+  height: 51px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  background: #ffe5a4;
+  box-shadow: 0 3px 0 #112c5840;
+  text-align: left;
+  color: var(--ink);
+}
+.arcade-home .arcade-modes button.selected {
+  background: var(--coin);
+  color: var(--ink);
+  border-color: var(--ink);
+  box-shadow: 0 3px 0 var(--ink);
+}
+.arcade-home [id="mode-local"] {
+  background: #d2e5fa;
+}
+.arcade-home [id="mode-online"] {
+  background: #ffd0bf;
+}
+.arcade-home [id="mode-local"] > svg {
+  color: var(--vz-blue);
+}
+.arcade-home [id="mode-online"] > svg {
+  color: #c84536;
+}
+.arcade-home [id="mode-local"].selected {
+  color: #fff3d9;
+  background: var(--vz-blue);
+  border-color: var(--ink);
+  box-shadow: 0 3px 0 #152e70;
+}
+.arcade-home [id="mode-online"].selected {
+  color: var(--ink);
+  background: var(--coral);
+  border-color: var(--ink);
+  box-shadow: 0 3px 0 #9b443f;
+}
+.arcade-home [id="mode-local"].selected > svg {
+  color: #fff3d9;
+}
+.arcade-home [id="mode-online"].selected > svg {
+  color: var(--ink);
+}
+.arcade-home .arcade-modes button > span:not(.mode-slot) {
+  font: 700 17px/1 var(--pixel);
+}
+.arcade-home .arcade-modes small {
+  display: block;
+  margin-top: 5px;
+  color: inherit;
+  font: 700 8px var(--font-body);
+  letter-spacing: 0.8px;
+  opacity: 0.7;
+}
+.arcade-home .arcade-modes button:hover {
+  transform: translateY(-2px);
+  border-color: var(--ink);
+  box-shadow: 0 5px 0 #112c5860;
+}
+.arcade-home .arcade-modes button:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+.arcade-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 500 13px var(--pixel);
+  color: var(--vz-blue);
+  padding: 9px 0 9px 12px;
+  white-space: nowrap;
+}
+.arcade-progress:hover {
+  color: var(--ink);
+  transform: translateX(2px);
+}
