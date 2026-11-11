@@ -69,6 +69,10 @@ const ROOM_SWEEP_MS = 15_000;
 const CLIENT_TIMEOUT_MS = 30_000;
 const LIVENESS_SWEEP_MS = 5_000;
 const ROOM_LIST_DELAY_MS = 100;
+// Bounds on what scripted connections can make every player download, and on
+// what one host keeps in memory.
+const MAX_LISTED_ROOMS = 50;
+const MAX_ROOMS = 2_000;
 const MESSAGES_PER_SECOND = 180;
 const CONTROLS_PER_SECOND = 30;
 const LISTS_PER_SECOND = 5;
@@ -120,6 +124,7 @@ export class Lobby<Socket> {
   publicRooms(): RoomView[] {
     return [...this.rooms.values()]
       .filter((r) => !r.private)
+      .slice(0, MAX_LISTED_ROOMS)
       .map((r) => r.view);
   }
 
@@ -249,6 +254,8 @@ export class Lobby<Socket> {
       if (current) this.error(client, "Primero sal de tu sala actual.");
       else if (message?.type !== "create")
         this.error(client, "Elige un luchador y un escenario válidos.");
+      else if (this.rooms.size >= MAX_ROOMS)
+        this.error(client, "La arena está llena. Intenta de nuevo en un rato.");
       else this.create(client, message, now);
       return;
     }
@@ -626,6 +633,7 @@ export class Lobby<Socket> {
             r.clients.length < 2 &&
             r.view.players.every((player) => player.connected !== false),
         )
+        .slice(0, MAX_LISTED_ROOMS)
         .map((r) => r.view);
       this.roomListCache = JSON.stringify({
         type: "rooms",

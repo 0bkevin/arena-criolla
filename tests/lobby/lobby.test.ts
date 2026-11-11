@@ -280,3 +280,29 @@ test("a resumed client is not dropped for its silence before the reconnect", (t)
   assert.equal(instance.clients.has(client.id), true);
   assert.equal(second.replaced, false);
 });
+
+test("the public list and the room count stay bounded", (t) => {
+  t.mock.timers.enable({ apis: ["setTimeout", "setInterval"] });
+  const { instance } = lobby();
+  t.after(() => instance.close());
+  const create = () => {
+    const socket = new FakeSocket();
+    const client = instance.connect(socket, [ARENA_SOCKET_PROTOCOL]);
+    send(instance, client, {
+      type: "create",
+      fighter: "zavarce",
+      stage: "caracas",
+      wins: 0,
+      private: false,
+    });
+    return socket;
+  };
+  for (let i = 0; i < 2_000; i++) create();
+  const late = create();
+  assert.match(late.last("error")?.message ?? "", /llena/);
+  assert.equal(late.last("room"), undefined);
+
+  t.mock.timers.tick(200);
+  assert.equal(late.last("rooms")?.rooms.length, 50);
+  assert.equal(instance.publicRooms().length, 50);
+});
