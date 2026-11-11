@@ -78,7 +78,7 @@ export function losslessAssetDelivery(
     )
       return next();
     const entry = manifest.assets[name];
-    if (entry.source !== `assets/${name}`) return next();
+    if (!entry || entry.source !== `assets/${name}`) return next();
     const originalType = name.endsWith(".avif")
       ? "image/avif"
       : name.endsWith(".png")

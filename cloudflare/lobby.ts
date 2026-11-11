@@ -41,7 +41,8 @@ export class ArenaLobby extends DurableObject {
     this.attach(server, protocols);
     const headers = new Headers();
     // Like `ws`, select the first offered subprotocol.
-    if (protocols.length) headers.set("Sec-WebSocket-Protocol", protocols[0]);
+    const [selected] = protocols;
+    if (selected) headers.set("Sec-WebSocket-Protocol", selected);
     return new Response(null, { status: 101, webSocket: browser, headers });
   }
 

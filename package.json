@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx watch server/index.ts",
     "build": "npm run typecheck && vite build",
-    "typecheck": "tsc --noEmit && tsc -p src --noEmit && tsc -p shared --noEmit",
+    "typecheck": "tsc --noEmit && tsc -p src --noEmit && tsc -p shared --noEmit && tsc -p server --noEmit && tsc -p cloudflare --noEmit",
     "start": "NODE_ENV=production tsx server/index.ts",
     "test": "tsx --test \"tests/**/*.test.ts\"",
     "test:ui": "playwright test",
@@ -19,7 +19,7 @@
     "assets:busts": "tsx scripts/assets/generate-portrait-busts.ts",
     "assets:stage-thumbs": "tsx scripts/assets/generate-stage-thumbnails.ts",
     "check:assets": "tsx scripts/assets/validate-character-assets.ts",
-    "cf:build": "npm run typecheck && vite build && tsx scripts/cloudflare/prepare.ts && tsc -p cloudflare --noEmit",
+    "cf:build": "npm run typecheck && vite build && tsx scripts/cloudflare/prepare.ts",
     "cf:dev": "wrangler dev",
     "cf:deploy": "wrangler deploy"
   },
