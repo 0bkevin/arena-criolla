@@ -74,7 +74,7 @@ export const ICON_TECHNIQUES = {
     height: 135,
     damage: 13,
     force: 7,
-    counter: { from: 5, to: 23, damage: 18, force: 9, range: 185 },
+    counter: { from: 5, to: 23, damage: 14, force: 9, range: 185 },
   },
   signal: {
     startup: 21,

@@ -1,6 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { FIGHTERS, STAGES, fighterById } from "../../shared/roster/roster";
+import {
+  LIGHT_HEAVY_BONUS,
+  LIGHT_LIGHT_HEAVY_BONUS,
+} from "../../shared/engine/damage-values";
 import { INTRO_TOTAL_TICKS } from "../../shared/engine/intro";
 import {
   createMatch,
@@ -115,7 +119,11 @@ test("both combo sequences are available to either player from zero wins", () =>
       }
       const label = `${fighter.id}/P${side + 1}/${advanced ? "advanced" : "basic"}`;
       assert.equal(player.combo, fighter.combos[advanced ? 1 : 0], label);
-      assert.equal(player.comboBonus, advanced ? 7 : 3, label);
+      assert.equal(
+        player.comboBonus,
+        advanced ? LIGHT_LIGHT_HEAVY_BONUS : LIGHT_HEAVY_BONUS,
+        label,
+      );
     }
   }
 });
