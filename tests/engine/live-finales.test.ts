@@ -110,6 +110,34 @@ function setup(
   return { state, source, target, inputs, advance, start };
 }
 
+test("Puma's caught rival survives a mid-stage throw at full health", () => {
+  for (const stage of ["caracas", "guaira"] as const)
+    for (const side of [0, 1] as const) {
+      const r = setup("puma", side, 90, stage, "chataing");
+      r.target.x = side ? WORLD.left + 400 : WORLD.right - 400;
+      r.source.x = r.target.x - r.source.facing * 90;
+      r.start();
+      r.advance(300);
+      assert.equal(r.source.hits, 2, `${stage}/${side}: catch and throw land`);
+      assert.equal(r.target.stocks, 2, `${stage}/${side}: stays on stage`);
+      assert.ok(r.target.hp < 100, `${stage}/${side}: throw deals damage`);
+    }
+});
+
+test("Puma's throw can still ring out a weakened rival near the edge", () => {
+  for (const stage of ["caracas", "guaira"] as const)
+    for (const side of [0, 1] as const) {
+      const r = setup("puma", side, 90, stage, "chataing");
+      r.target.x = side ? WORLD.left + 150 : WORLD.right - 150;
+      r.source.x = r.target.x - r.source.facing * 90;
+      r.target.hp = 50;
+      r.start();
+      r.advance(300);
+      assert.equal(r.source.hits, 2, `${stage}/${side}: catch and throw land`);
+      assert.equal(r.target.stocks, 1, `${stage}/${side}: loses a stock`);
+    }
+});
+
 for (const id of representatives)
   test(`${id}: cost, one active field, spatial misses and vulnerable startup from zero wins`, () => {
     for (const side of [0, 1] as const) {

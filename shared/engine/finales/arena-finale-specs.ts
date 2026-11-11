@@ -244,6 +244,9 @@ const RIDE_HELPER_FORCE = {
 
 const DEFAULT_ACTOR_FORCE = 4.5;
 
+/** The handchain's final throw, separate from its gentle initial catch. */
+export const HANDCHAIN_THROW_FORCE = 9;
+
 /** The old ride force gave 17 ticks of stun; retain it with lighter pushback. */
 export const RIDE_STUN_FLOOR = launchStun(DEFAULT_ACTOR_FORCE);
 

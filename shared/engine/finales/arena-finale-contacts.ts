@@ -6,6 +6,7 @@ import { COUTURE_MODEL_COUNT } from "./couture-runway";
 import { opponentOf } from "../types";
 import {
   ARENA_FINALE_CUES,
+  HANDCHAIN_THROW_FORCE,
   RIDE_STUN_FLOOR,
   SIMON_RIDE_STUN_FLOOR,
   isRideHelper,
@@ -149,7 +150,14 @@ export function arenaFinaleContacts(state: MatchState): ArenaContact[] {
           field.tick === actor.caughtTick + 24 &&
           overlaps(target, actor.x, actor.y, 105, 165)
         )
-          offer(0.75, 19, target.x, target.y - 70, actor.direction, actor);
+          offer(
+            0.75,
+            HANDCHAIN_THROW_FORCE,
+            target.x,
+            target.y - 70,
+            actor.direction,
+            actor,
+          );
         continue;
       }
       if (actor.connected) continue;

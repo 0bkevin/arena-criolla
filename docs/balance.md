@@ -15,14 +15,14 @@ damage rate outside 25% of the cast median warrants investigation, as does a CPU
 win rate outside 35–65%; damage should not be used to compensate for unrelated
 AI, movement or counter behavior.
 
-The observed specials above 17 are deliberate close-range punishes: Gómez
-18.36 (grounded command), George 18.19 (two close pulses), Emilio 17.82 (two
-close pulses) and Bolívar 18.72 (three close pulses). Puma's mid-range roar
-and Rummy's fast, two-sided zapateo are classified as low-risk and capped at 17.
+The observed specials above 17 are deliberate close-range punishes: Gómez 18.36
+(grounded command), George 18.19 (two close pulses), Emilio 17.82 (two close
+pulses) and Bolívar 18.72 (three close pulses). Puma's mid-range roar and
+Rummy's fast, two-sided zapateo are classified as low-risk and capped at 17.
 
 Conde and Emilio can transform for 1.2 times outgoing damage; their transformed
-values remain below 24.
-These classifications are provisional pending human play.
+values remain below 24. These classifications are provisional pending human
+play.
 
 ## Calculation
 
@@ -86,37 +86,57 @@ feeds the sound weight in `src/game/audio/sound-effects.ts`.
 | `attacks.ts`            | connected counter       | follow-up allowed → consumed | Prevent the counter and its special strike stacking in one activation.                    |
 | `arena-finale-specs.ts` | ride helper force       | 4.5 → 1.5                    | Reduce pushback for Bolívar, Gómez, Lorenzo, Vicente and Simón while preserving old stun. |
 | `arena-finale-specs.ts` | María Corina ride force | 4.5 → at most 3              | Reduce pushback, cap launch speed and preserve old stun.                                  |
+| `arena-finale-specs.ts` | Puma handchain throw    | 19 → 9                       | Keep edge throws dangerous without a full-health ring-out from mid-stage.                 |
 | `icon-techniques.ts`    | Lorenzo polar           | 7 → 5.9 per projectile       | Cap the three-hit ranged total at 16.99 HP.                                               |
 | `icon-techniques.ts`    | Edgar retake counter    | 18 → 14                      | Reduce repeated counter burst against the CPU.                                            |
 
 Lila's five offered projectiles still nominally total 24.3 HP against armor 1;
 the audit's stationary trials observed at most three contacts, not five.
-Lorenzo’s three projectiles can all connect at lower HP, dealing 16.99 HP after this change. Simón (19.95) and Nacho (17.10) offer more than 17 HP, but their full totals were not observed in roughly 4,900 trials each, except for Simón during edge ring-outs. These exceptions need wider human testing. Vicente's courier has one low-damage contact per activation: it is
-removed on hit. Norkys observed 7.60 of 15.20 offered, Melanio 8.00, and
-Amanda 8.40 plus her counter; these low-side specials were not changed in this
-pass. Lele's special did not connect in the original audit setup.
+Lorenzo's three projectiles can all connect at lower HP, dealing 16.99 HP after
+this change. Simón (19.95) and Nacho (17.10) offer more than 17 HP, but their
+full totals were not observed in roughly 4,900 trials each, except for Simón
+during edge ring-outs. These exceptions need wider human testing. Vicente's
+courier has one low-damage contact per activation: it is removed on hit. Norkys
+observed 7.60 of 15.20 offered, Melanio 8.00, and Amanda 8.40 plus her counter;
+these low-side specials were not changed in this pass. Lele's special did not
+connect in the original audit setup.
 
-María Corina's caravan now offers four strikes, each one quarter of its
-27.24 HP budget against armor 1, rather than one full hit. Its supporters do
-not deal damage, and guarded strikes count toward the four-strike limit. At
-armor 1 the full ride and formula-only light-light-heavy total 51.85 HP. No
-damage adjustment was needed. Bolívar's cavalry, Gómez's horses, Lorenzo's
-trucks, Vicente's couriers and Simón's wooden horses use force 1.5 per driving
-strike, down from 4.5; the mount bodies of Bolívar, Gómez and Lorenzo also use 1.5, down from 4.5.
-María Corina's caravan uses up to 3, down from 4.5, with a cap of 4 on the
-horizontal launch speed calculated before damage. Damage slightly increases
-actual speed. A counter that lands consumes the follow-up strike. A stun floor derived from
-the old 4.5 force prevents early recovery from interrupting the ride. Simón’s wooden horses use a longer floor to cover their contact spacing. Vicente's separate courier special keeps
-its force of 4.
+María Corina's caravan now offers four strikes, each one quarter of its 27.24 HP
+budget against armor 1, rather than one full hit. Its supporters do not deal
+damage, and guarded strikes count toward the four-strike limit. At armor 1 the
+full ride and formula-only light-light-heavy total 51.85 HP. No damage
+adjustment was needed. Bolívar's cavalry, Gómez's horses, Lorenzo's trucks,
+Vicente's couriers and Simón's wooden horses use force 1.5 per driving strike,
+down from 4.5; the mount bodies of Bolívar, Gómez and Lorenzo also use 1.5, down
+from 4.5. María Corina's caravan uses up to 3, down from 4.5, with a cap of 4 on
+the horizontal launch speed calculated before damage. Damage slightly increases
+actual speed. A counter that lands consumes the follow-up strike. A stun floor
+derived from the old 4.5 force prevents early recovery from interrupting the
+ride. Simón's wooden horses use a longer floor to cover their contact spacing.
+Vicente's separate courier special keeps its force of 4.
 
 In stationary Caracas and Guaira trials at 100 and 30 HP, rivals starting at
 least 250 px from the forward edge stayed on stage unless damage depleted their
 HP. At full HP central rides pushed roughly 45–181 px, including about 181 px
 for María Corina; at 60 HP displacement reached about 215 px. The smaller push
 retains the old 17 ticks of stun, so a rival cannot cancel the ride by attacking
-between strikes. Ride strikes ignore dash invincibility; guarding blocks them. A normal dash during the short post-hit protection window replaces that protection with exactly eight dash-only ticks and can expose the rival to rides; this is practically unreachable in ordinary play.
-These trials do not establish a general ring-out rate; human
-play-testing remains necessary.
+between strikes. Ride strikes ignore dash invincibility; guarding blocks them. A
+normal dash during the short post-hit protection window replaces that protection
+with exactly eight dash-only ticks and can expose the rival to rides; this is
+practically unreachable in ordinary play. These trials do not establish a
+general ring-out rate; human play-testing remains necessary.
+
+Puma's handchain still catches and throws on the same beats with the same
+damage. Its final throw uses force 9 instead of 19; the initial catch retains
+force 1. In stationary trials on Caracas and Guaira, both directions, against
+armor 0.86, 1 and 1.07, all catches landed both contacts. At full HP, rivals
+starting 150, 250 or 300 px from the forward edge were rung out; at 400 px or
+more they stayed on stage. At 50 HP, they were rung out at 400 px but not at 550
+px. At 70 HP, the armor 1.07 rival also rang out at 400 px. At 30 HP the armor
+0.86 rival survived the damage and was rung out from 400 px, while the other two
+lost their stock to damage. The old throw rang out every surviving target even
+at 700 px. These are stationary measurements, not a guarantee for moving rivals
+or other stages.
 
 ## Measurement and limitations
 
@@ -143,43 +163,44 @@ ring-out recovery; do not flatten damage to fix those separate mechanics.
 ## Results for this pass
 
 Each stage uses 12,320 matches at the same hard CPU settings. The baseline is
-commit `9643479`; the final includes the ride and counter fixes. The baseline
-predates the merge of main's caravan multi-strike and finale collision changes,
-so the differences also include those changes, especially for María Corina.
-Largest hit
-and burst are the largest observed for any fighter, not cast medians.
+commit `9643479`; the final includes the ride, counter and Puma throw fixes. The
+baseline predates the merge of main's caravan multi-strike and finale collision
+changes, so the differences also include those changes, especially for María
+Corina. Largest hit and burst are the largest observed for any fighter, not cast
+medians.
 
 | Measure                       | Caracas before → after                                        | Guaira before → after                                     |
 | ----------------------------- | ------------------------------------------------------------- | --------------------------------------------------------- |
-| Median seconds per 100 HP     | 24.22 → 29.98 (+23.8%)                                        | 24.22 → 29.53 (+21.9%)                                    |
+| Median seconds per 100 HP     | 24.22 → 29.98 (+23.8%)                                        | 24.22 → 29.52 (+21.9%)                                    |
 | Median landed hits per 100 HP | 8.17 → 9.84                                                   | 8.16 → 9.83                                               |
 | Largest single HP drop        | George 43.64 → George 30.54                                   | George 43.22 → George 31.15                               |
 | Largest three-second burst    | Maite 74.23 → Amanda 56.12                                    | Gómez 75.76 → Amanda 57.77                                |
 | Fighter win-rate range        | Dorángel 30.45%–Amanda 82.95% → Dorángel 36.14%–Amanda 85.45% | Dorángel 31.14%–Amanda 87.73% → Juan 33.41%–Amanda 88.41% |
-| HP KOs / ring-outs            | 4,768 / 29,912 → 2,524 / 32,235                               | 5,061 / 29,173 → 2,637 / 31,080                           |
+| HP KOs / ring-outs            | 4,768 / 29,912 → 2,531 / 32,233                               | 5,061 / 29,173 → 2,638 / 31,080                           |
 | Median stock duration         | 11.95 → 11.55 s (-3.3%)                                       | 11.92 → 11.98 s (+0.6%)                                   |
-| Mean stock duration           | 12.77 → 13.09 s (+2.5%)                                       | 12.83 → 13.36 s (+4.1%)                                   |
-| Mean match duration           | 25.94 → 26.84 s (+3.5%)                                       | 26.02 → 27.01 s (+3.8%)                                   |
+| Mean stock duration           | 12.77 → 13.10 s (+2.6%)                                       | 12.83 → 13.36 s (+4.1%)                                   |
+| Mean match duration           | 25.94 → 26.85 s (+3.5%)                                       | 26.02 → 27.01 s (+3.8%)                                   |
 
 Fights grew by under one second on average in both stages, while the median
-Caracas stock got shorter. Ring-outs account for 92.74% of final Caracas stocks
+Caracas stock got shorter. Ring-outs account for 92.72% of final Caracas stocks
 and 92.18% in Guaira; damage changes alone have limited effect on fight length
 against this CPU. Seconds per 100 HP grew much more than actual durations.
 
 María Corina took 478 stocks in the baseline Caracas run, 438 by ring-out;
-afterward she took 548, 526 by ring-out. These are opponent stocks she took,
-not her own losses. In the final run she lost 652 stocks, 617 by ring-out.
-Her wins changed from 37.50% to 46.14%; the combined changes and deterministic
-CPU trials do not isolate the caravan's competitive effect.
+afterward she took 548, 526 by ring-out. These are opponent stocks she took, not
+her own losses. In the final run she lost 652 stocks, 617 by ring-out. Her wins
+changed from 37.50% to 46.14%; the combined changes and deterministic CPU trials
+do not isolate the caravan's competitive effect.
 
 The final hit count remains just below the approximate 10–11 target. Amanda's
 56.12 and 57.77 bursts exceed the 55 target; she wins 85.45% in Caracas and
 88.41% in Guaira. Edgar wins 77.05% and 67.05%, respectively. Their counter
-frequency and the CPU's predictable attacks warrant investigation; these
-figures do not isolate causation. Puma wins 64.55% in Caracas and 62.50% in Guaira, within the 35–65% band.
-Dayana wins 37.73% and 45.45%, and Juan wins 37.50% and 33.41%, respectively.
-Damage rates and
-win rates are proxies, not a validated competitive tier list.
+frequency and the CPU's predictable attacks warrant investigation; these figures
+do not isolate causation. Puma wins 63.64% in Caracas and 61.82% in Guaira,
+within the 35–65% band; before the throw adjustment he won 64.55% and 62.50%,
+respectively. Dayana wins 37.73% and 45.45%, and Juan wins 37.50% and 33.41%,
+respectively. Damage rates and win rates are proxies, not a validated
+competitive tier list.
 
 ## Follow-ups
 
@@ -190,12 +211,9 @@ win rates are proxies, not a validated competitive tier list.
   recovery, jump cadence and knockback.
 - Review same-tick trades: player 0 resolves first and is favored; the harness
   offsets seat timing to compensate.
-- Test Puma's definitive: its handchain throws with force 19 and rang out a
-  full-HP stationary rival from every tested position up to 700 px from the
-  edge. This may contribute to his CPU win rate.
-- Revisit Gómez's PODER identity after human play. His 1.08 damage multiplier
-  is now below Puma's 1.12 and Conde's 1.10, and his CPU win rate fell from
-  about 63% to about 48%.
+- Revisit Gómez's PODER identity after human play. His 1.08 damage multiplier is
+  now below Puma's 1.12 and Conde's 1.10, and his CPU win rate fell from about
+  63% to about 48%.
 - Review transformed Conde and Emilio damage and the low-side Norkys, Melanio
   and Amanda specials after human play.
 - Play-test matchups with human players.
