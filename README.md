@@ -6,6 +6,23 @@ A browser fighting game with 56 characters and 9 stages from Venezuelan culture.
 
 **[Play at arenacriolla.com](https://arenacriolla.com/)**
 
+## Controls
+
+| Action                             | Player 1   | Player 2 | Gamepad        |
+| ---------------------------------- | ---------- | -------- | -------------- |
+| Move                               | A / D      | ← / →    | Stick or D-pad |
+| Jump (press twice for double jump) | W          | ↑        | A              |
+| Drop through platform              | S          | ↓        | Stick ↓        |
+| Light attack                       | J          | 1        | X              |
+| Heavy attack                       | K          | 2        | B              |
+| Special                            | L          | 3        | Y              |
+| Super (hold)                       | I          | 5        | RT             |
+| Block (hold)                       | U          | 0        | LB             |
+| Dash                               | Left Shift | Enter    | RB             |
+| Pause                              | Esc        | Esc      | Start          |
+
+Player 2 can also use the numeric keypad. On touch screens, the controls appear on screen.
+
 ## Run it locally
 
 Requires [Node.js 24](https://nodejs.org/) or later.
