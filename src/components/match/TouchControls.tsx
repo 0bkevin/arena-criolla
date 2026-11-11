@@ -95,13 +95,14 @@ export function TouchControls({
   const root = useRef<HTMLDivElement>(null);
   const callbacks = useRef({ onPress, onRelease });
   callbacks.current = { onPress, onRelease };
-  const input = useRef<TouchInputState | null>(null);
-  if (!input.current) {
-    input.current = new TouchInputState(
-      (pointer, control) => callbacks.current.onPress(pointer, control),
-      (pointer) => callbacks.current.onRelease(pointer),
-    );
-  }
+  // One tracker for the component's lifetime; its callbacks read the latest props.
+  const [touchInput] = useState(
+    () =>
+      new TouchInputState(
+        (pointer, control) => callbacks.current.onPress(pointer, control),
+        (pointer) => callbacks.current.onRelease(pointer),
+      ),
+  );
   const [pressed, setPressed] = useState<Set<Control>>(() => new Set());
   const keyboardPointers = useRef(new Map<string, number>());
   const tapTimers = useRef(new Map<number, number>());
@@ -112,20 +113,20 @@ export function TouchControls({
   } | null>(null);
   const nextVirtualPointer = useRef(-1);
 
-  const syncPressed = () => setPressed(input.current!.pressedControls());
+  const syncPressed = () => setPressed(touchInput.pressedControls());
 
   const releaseAccessibleSuper = () => {
     const hold = accessibleSuper.current;
     if (!hold) return false;
     accessibleSuper.current = null;
     window.cancelAnimationFrame(hold.frame);
-    return input.current!.release(hold.pointer);
+    return touchInput.release(hold.pointer);
   };
 
   const releaseAll = () => {
     releaseAccessibleSuper();
     const target = root.current;
-    for (const pointer of input.current!.pointers()) {
+    for (const pointer of touchInput.pointers()) {
       if (pointer < 0) continue;
       try {
         if (target?.hasPointerCapture(pointer))
@@ -134,7 +135,7 @@ export function TouchControls({
         // Pointer capture can already be gone after cancel, blur, or unmount.
       }
     }
-    input.current!.releaseAll();
+    touchInput.releaseAll();
     keyboardPointers.current.clear();
     for (const timer of tapTimers.current.values()) window.clearTimeout(timer);
     tapTimers.current.clear();
@@ -146,12 +147,12 @@ export function TouchControls({
       if (
         (event.type !== "lostpointercapture" ||
           event.target === root.current) &&
-        input.current!.release(event.pointerId)
+        touchInput.release(event.pointerId)
       )
         syncPressed();
     };
     const movePointer = (event: globalThis.PointerEvent) => {
-      if (!input.current!.hasPointer(event.pointerId)) return;
+      if (!touchInput.hasPointer(event.pointerId)) return;
       // Chorded mouse/pen releases arrive as moves until the last button lifts.
       // Only the primary button/contact owns this gesture.
       if (event.pointerType !== "touch" && (event.buttons & 1) === 0) {
@@ -163,10 +164,10 @@ export function TouchControls({
             root.current,
             event.clientX,
             event.clientY,
-            input.current!.controlFor(event.pointerId),
+            touchInput.controlFor(event.pointerId),
           )
         : null;
-      if (input.current!.move(event.pointerId, control)) syncPressed();
+      if (touchInput.move(event.pointerId, control)) syncPressed();
     };
     const releaseKey = (event: globalThis.KeyboardEvent) => {
       const pointer = keyboardPointers.current.get(event.code);
@@ -174,7 +175,7 @@ export function TouchControls({
       event.preventDefault();
       event.stopPropagation();
       keyboardPointers.current.delete(event.code);
-      if (input.current!.release(pointer)) syncPressed();
+      if (touchInput.release(pointer)) syncPressed();
     };
     const releaseAllInputs = () => releaseAll();
     const releaseWhenHidden = () => {
@@ -205,7 +206,7 @@ export function TouchControls({
       document.removeEventListener("visibilitychange", releaseWhenHidden);
       // Cleanup releases game inputs without scheduling React state during unmount.
       releaseAccessibleSuper();
-      for (const pointer of input.current!.pointers()) {
+      for (const pointer of touchInput.pointers()) {
         if (pointer < 0) continue;
         try {
           if (root.current?.hasPointerCapture(pointer))
@@ -214,7 +215,7 @@ export function TouchControls({
           // The browser may have implicitly released it already.
         }
       }
-      input.current!.releaseAll();
+      touchInput.releaseAll();
       keyboardPointers.current.clear();
       for (const timer of tapTimers.current.values())
         window.clearTimeout(timer);
@@ -229,9 +230,9 @@ export function TouchControls({
   useLayoutEffect(() => {
     let changed = false;
     if (wins < specialUnlockWins || energy < 25)
-      changed = input.current!.releaseControl("special") || changed;
+      changed = touchInput.releaseControl("special") || changed;
     if (superUsed || energy < SUPER_ENERGY_COST)
-      changed = input.current!.releaseControl("super") || changed;
+      changed = touchInput.releaseControl("super") || changed;
     const hold = accessibleSuper.current;
     if (hold) {
       if (superChargeTicks > 0) {
@@ -267,7 +268,7 @@ export function TouchControls({
       button?.getAttribute("aria-disabled") !== "true"
         ? ((button?.dataset.control as Control | undefined) ?? null)
         : null;
-    if (input.current!.press(event.pointerId, control)) syncPressed();
+    if (touchInput.press(event.pointerId, control)) syncPressed();
     try {
       event.currentTarget.setPointerCapture(event.pointerId);
     } catch {
@@ -291,7 +292,7 @@ export function TouchControls({
       return;
     const pointer = nextVirtualPointer.current--;
     keyboardPointers.current.set(event.code, pointer);
-    if (input.current!.press(pointer, button.dataset.control as Control))
+    if (touchInput.press(pointer, button.dataset.control as Control))
       syncPressed();
   };
 
@@ -311,7 +312,7 @@ export function TouchControls({
       return;
     }
     const pointer = nextVirtualPointer.current--;
-    input.current!.press(pointer, control);
+    touchInput.press(pointer, control);
     syncPressed();
     if (control === "super") {
       // Follow simulation progress instead of expiring a valid charge in wall time.
@@ -333,7 +334,7 @@ export function TouchControls({
     }
     const timer = window.setTimeout(() => {
       tapTimers.current.delete(pointer);
-      if (input.current!.release(pointer)) syncPressed();
+      if (touchInput.release(pointer)) syncPressed();
     }, 100);
     tapTimers.current.set(pointer, timer);
   };
