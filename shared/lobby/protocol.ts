@@ -47,7 +47,7 @@ export type ServerMessage =
       type: "welcome";
       id: string;
       resumeToken?: string | undefined;
-      resumed?: boolean;
+      resumed?: boolean | undefined;
     }
   | { type: "rooms"; rooms: RoomView[]; online: number }
   | { type: "room"; room: RoomView }

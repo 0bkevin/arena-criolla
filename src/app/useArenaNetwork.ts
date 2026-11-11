@@ -4,6 +4,7 @@ import type {
   RoomView,
   ServerMessage,
 } from "../../shared/lobby/protocol";
+import { parseServerMessage } from "../../shared/lobby/server-message";
 import {
   ARENA_SOCKET_PROTOCOL,
   ROOM_RESUME_PROTOCOL_PREFIX,
@@ -65,12 +66,14 @@ export function useArenaNetwork() {
       ws.onerror = () => {};
       ws.onmessage = (event) => {
         if (disposed || socket.current !== ws) return;
-        let message: ServerMessage;
+        if (typeof event.data !== "string") return;
+        let message: ServerMessage | null;
         try {
-          message = JSON.parse(event.data);
+          message = parseServerMessage(JSON.parse(event.data));
         } catch {
           return;
         }
+        if (!message) return;
         if (message.type === "welcome") {
           attempts = 0;
           setConnected(true);
