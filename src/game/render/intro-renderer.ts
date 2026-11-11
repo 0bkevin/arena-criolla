@@ -86,7 +86,10 @@ export function drawIntroCinematic(
   const scale = height / 640;
   const active = introActor(state.tick);
   ctx.save();
-  ctx.imageSmoothingEnabled = false;
+  // The close-up enlarges ~400 px atlas poses about 2.4x; nearest-neighbour
+  // scaling made them blocky, so filter them like the rest of the match.
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
   ctx.fillStyle = "#070d18";
   ctx.fillRect(0, 0, width, height);
   for (const side of PLAYERS) {
