@@ -28,7 +28,21 @@ export const VICTORIES = {
   ...ICON_VICTORIES,
 } satisfies Record<BuiltInFighterId, VictoryProfile>;
 
-export const victoryById = (id: FighterId): VictoryProfile => VICTORIES[id];
+const COMMUNITY_VICTORY: VictoryProfile = {
+  name: "Un saludo a la arena",
+  frame: 0,
+  movement: "plant",
+  gesture: { front: -0.28, frontY: -0.05, head: -0.06, lean: -0.03 },
+  lift: 0.02,
+  travel: 0,
+  twist: 0.02,
+  music: "brass",
+};
+
+export const victoryById = (id: FighterId): VictoryProfile =>
+  id.startsWith("custom_")
+    ? COMMUNITY_VICTORY
+    : VICTORIES[id as BuiltInFighterId];
 
 const clamp = (n: number) => Math.max(0, Math.min(1, n));
 const smooth = (n: number) => {

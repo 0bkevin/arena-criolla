@@ -1,3 +1,4 @@
+import { COMMUNITY_CHARACTERS } from "../../shared/community";
 import {
   FIGHTERS,
   STAGES,
@@ -113,7 +114,9 @@ function portraitCenter(image: HTMLImageElement, frame: SpriteFrame): number {
 }
 
 function imageSource(id: string): string {
-  return assetUrl(`/assets/${id}.webp`);
+  return id.startsWith("custom_")
+    ? `/api/community/assets/${id}/sprite.webp`
+    : assetUrl(`/assets/${id}.webp`);
 }
 
 export function loadImage(
@@ -157,6 +160,19 @@ function loadSpriteGeometry(
       loadImage(fighterById(id).sprite, priority).then(async (image) => {
         const cellWidth = image.width / 4;
         const cellHeight = image.height / 2;
+        const community = COMMUNITY_CHARACTERS.get(id);
+        if (community) {
+          const geometry = community.geometry;
+          return {
+            image,
+            ...geometry,
+            portraitCenters: geometry.frames.map(
+              (frame) => portraitCenter(image, frame) - frame.slotX,
+            ),
+            frameFacing: community.presentation.frameFacing,
+            battleFrame: community.presentation.battleFrame,
+          };
+        }
         const checked = atlasManifest.sprites
           .find((entry) => entry.id === id)
           ?.files.find(

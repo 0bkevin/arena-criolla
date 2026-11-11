@@ -10,6 +10,8 @@ public_key=$(cat -- "$1")
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 test -f /opt/arena-criolla/compose.yaml
 test -f /etc/arena-criolla/release.env
+test -f /workspace/arena-criolla-production/data/creator/arena.sqlite
+test -f /opt/arena-criolla/backup.py
 command -v python3 >/dev/null
 docker compose version
 account=arena-deploy

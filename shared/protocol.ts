@@ -1,3 +1,4 @@
+import type { CommunityCharacter } from "./creator";
 import type { FighterId, StageId } from "./content";
 import type { Input, MatchState } from "./engine";
 
@@ -43,6 +44,7 @@ export type ClientMessage =
   | { type: "rematch" }
   | { type: "leave" };
 export type ServerMessage =
+  | { type: "community"; characters: CommunityCharacter[] }
   | { type: "welcome"; id: string; resumeToken?: string; resumed?: boolean }
   | { type: "rooms"; rooms: RoomView[]; online: number }
   | { type: "room"; room: RoomView }

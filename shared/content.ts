@@ -60,7 +60,7 @@ export type BuiltInFighterId =
   | "lele"
   | "dorangel"
   | "giuseppe";
-export type FighterId = BuiltInFighterId;
+export type FighterId = BuiltInFighterId | `custom_${string}`;
 
 export type StageId =
   | "caracas"
@@ -130,7 +130,7 @@ export type Ability =
   | "banknotes"
   | "signal";
 
-export type FighterCategory = "culture" | "folklore" | "founders";
+export type FighterCategory = "culture" | "folklore" | "founders" | "community";
 
 export interface FighterDefinition {
   id: FighterId;
@@ -160,6 +160,7 @@ export const FIGHTERS = [...BUILT_IN_FIGHTERS];
 const builtInDefinitions = new Map(
   BUILT_IN_FIGHTERS.map((fighter) => [fighter.id, fighter]),
 );
+export const COMMUNITY_DEFINITIONS = new Map<FighterId, FighterDefinition>();
 
 export interface Platform {
   x: number;
@@ -194,7 +195,8 @@ export function platformsAtTick(id: StageId, tick: number): Platform[] {
     };
   });
 }
-export const fighterById = (id: FighterId) => builtInDefinitions.get(id)!;
+export const fighterById = (id: FighterId) =>
+  (builtInDefinitions.get(id) ?? COMMUNITY_DEFINITIONS.get(id))!;
 export const stageById = (id: StageId) => stageDefinitions.get(id)!;
 export const isFighter = (id: unknown): id is FighterId =>
   FIGHTERS.some((f) => f.id === id);

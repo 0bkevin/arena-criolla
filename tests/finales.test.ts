@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  COMMUNITY_DEFINITIONS,
   fighterById,
   platformsAtTick,
   type FighterId,
@@ -409,4 +410,21 @@ test("exact lethal thresholds resolve without floating-point survivors, while a 
         if (margin > 0) close(r.target.hp, margin);
         else assert.equal(r.state.winner, side);
       }
+});
+
+test("community fighters keep their generic definitive until they have a cinematic definition", () => {
+  const customId = "custom_finale-test";
+  COMMUNITY_DEFINITIONS.set(customId, {
+    ...fighterById("capriles"),
+    id: customId,
+  });
+  try {
+    const r = setup(customId);
+    r.start();
+    assert.equal(r.state.finale, undefined);
+    assert.ok(r.target.hp < 100);
+    assert.equal(r.source.hits, 1);
+  } finally {
+    COMMUNITY_DEFINITIONS.delete(customId);
+  }
 });

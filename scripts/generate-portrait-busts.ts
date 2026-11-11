@@ -168,6 +168,7 @@ const next: Record<string, PortraitBust> = {};
 let stale = 0;
 let bytes = 0;
 for (const fighter of FIGHTERS) {
+  if (fighter.category === "community") continue;
   const { entry, image } = await bustFor(fighter.id);
   bytes += image.length;
   const old = previous[fighter.id];
