@@ -10,10 +10,15 @@ const versions = await assetVersions("public");
 const versionManifest = JSON.stringify(versions, null, 2) + "\n";
 // Rewriting an unchanged tracked file would dirty the tree and trigger HMR.
 if (
-  (await readFile("shared/asset-versions.json", "utf8").catch(() => "")) !==
-  versionManifest
+  (await readFile(
+    "src/game/assets/manifests/asset-versions.json",
+    "utf8",
+  ).catch(() => "")) !== versionManifest
 )
-  await writeFile("shared/asset-versions.json", versionManifest);
+  await writeFile(
+    "src/game/assets/manifests/asset-versions.json",
+    versionManifest,
+  );
 const versionUrl = (url: string) =>
   versions[url] ? `${url}?v=${versions[url]}` : url;
 

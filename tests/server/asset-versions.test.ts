@@ -4,7 +4,7 @@ import { mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { assetVersion, assetVersions } from "../../server/asset-versions";
-import manifest from "../../shared/asset-versions.json";
+import manifest from "../../src/game/assets/manifests/asset-versions.json";
 import { assetUrl } from "../../src/game/assets/asset-url";
 import { makeArenaServer } from "../../server/index";
 
