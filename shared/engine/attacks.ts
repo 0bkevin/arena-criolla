@@ -7,6 +7,7 @@ import {
   FINALE_CAPTURE_TICK,
   FINALE_RANGE,
   finaleById,
+  type FinaleDefinition,
 } from "./finales/finales";
 import { TECHNIQUES, type Technique } from "./techniques";
 import { effect, hurt, outgoingDamageMultiplier } from "./combat";
@@ -163,7 +164,6 @@ export function updateAttack(s: MatchState, i: number) {
   if (!p.attack) return;
   const attack = p.attack;
   const def = fighterById(p.config.fighter);
-  const other = s.players[1 - i];
   const technique = TECHNIQUES[def.ability];
   const activeAt =
     attack === "light"
@@ -174,66 +174,7 @@ export function updateAttack(s: MatchState, i: number) {
           ? technique.startup
           : FINALE_CAPTURE_TICK;
   const finale = attack === "super" ? finaleById(p.config.fighter) : undefined;
-  if (finale?.mode === "field") {
-    if (p.attackTick === activeAt && !p.attackHit) {
-      p.attackHit = true;
-      beginFieldFinale(
-        s,
-        i as 0 | 1,
-        (28 * def.damage + p.comboBonus) * outgoingDamageMultiplier(p),
-      );
-    }
-    if (p.config.fighter === "deyna" && p.attackTick >= 24) {
-      p.attack = null;
-      p.cooldown = 0;
-    }
-    return;
-  }
-  if (finale?.mode === "projectile") {
-    const shot = finale.projectile;
-    if (p.attackTick === activeAt && !p.attackHit && shot) {
-      p.attackHit = true;
-      s.projectiles.push({
-        id: s.nextId++,
-        owner: i,
-        direction: p.facing,
-        x: p.x + p.facing * shot.offsetX,
-        y: p.y - shot.offsetY,
-        vx: p.facing * shot.speed,
-        life: shot.life,
-        age: 0,
-        kind: shot.kind,
-        impact: "super",
-        radius: shot.radius,
-        growth: shot.growth,
-        maxRadius: shot.maxRadius,
-        force: shot.force,
-        damage: (28 * def.damage + p.comboBonus) * outgoingDamageMultiplier(p),
-      });
-      effect(
-        s,
-        p.x + p.facing * shot.offsetX,
-        p.y - shot.offsetY,
-        "special",
-        def.color,
-        { owner: i, impact: "super", direction: p.facing, strength: 1.4 },
-      );
-    }
-    if (p.attackTick >= finale.duration) p.attack = null;
-    return;
-  }
-  if (finale?.mode === "transformation") {
-    if (p.attackTick === activeAt && !p.attackHit && finale.empowerment) {
-      p.attackHit = true;
-      p.transformation = {
-        id: finale.empowerment.id,
-        ticks: finale.empowerment.duration,
-        damageMultiplier: finale.empowerment.damageMultiplier,
-      };
-    }
-    if (p.attackTick > 36) p.attack = null;
-    return;
-  }
+  if (finale && advanceStandaloneDefinitive(s, i, finale, activeAt)) return;
   const movingStrike =
     attack === "special" &&
     Boolean(technique.dash) &&
@@ -271,169 +212,264 @@ export function updateAttack(s: MatchState, i: number) {
     }
     if (attack === "special" && technique.projectile) {
       if (technique.requiresGround && !p.grounded) return;
-      const projectile = technique.projectile;
-      const count = projectile.count || 1;
-      for (let note = 0; note < count; note++) {
-        s.projectiles.push({
-          id: s.nextId++,
-          owner: i,
-          direction: p.facing,
-          x:
-            p.x +
+      spawnTechniqueProjectiles(s, i, technique, technique.projectile);
+    } else if (strike(s, i, attack, technique, pulseIndex, movingStrike))
+      return;
+  }
+  if (p.attackTick >= recoveryTicks(attack, technique)) p.attack = null;
+}
+
+/**
+ * Field, projectile and transformation definitives run their own timeline
+ * instead of the strike below. Returns false for capture definitives.
+ */
+function advanceStandaloneDefinitive(
+  s: MatchState,
+  i: number,
+  finale: FinaleDefinition,
+  activeAt: number,
+): boolean {
+  const p = s.players[i];
+  const def = fighterById(p.config.fighter);
+  if (finale.mode === "field") {
+    if (p.attackTick === activeAt && !p.attackHit) {
+      p.attackHit = true;
+      beginFieldFinale(
+        s,
+        i as 0 | 1,
+        (28 * def.damage + p.comboBonus) * outgoingDamageMultiplier(p),
+      );
+    }
+    if (p.config.fighter === "deyna" && p.attackTick >= 24) {
+      p.attack = null;
+      p.cooldown = 0;
+    }
+    return true;
+  }
+  if (finale.mode === "projectile") {
+    const shot = finale.projectile;
+    if (p.attackTick === activeAt && !p.attackHit && shot) {
+      p.attackHit = true;
+      s.projectiles.push({
+        id: s.nextId++,
+        owner: i,
+        direction: p.facing,
+        x: p.x + p.facing * shot.offsetX,
+        y: p.y - shot.offsetY,
+        vx: p.facing * shot.speed,
+        life: shot.life,
+        age: 0,
+        kind: shot.kind,
+        impact: "super",
+        radius: shot.radius,
+        growth: shot.growth,
+        maxRadius: shot.maxRadius,
+        force: shot.force,
+        damage: (28 * def.damage + p.comboBonus) * outgoingDamageMultiplier(p),
+      });
+      effect(
+        s,
+        p.x + p.facing * shot.offsetX,
+        p.y - shot.offsetY,
+        "special",
+        def.color,
+        { owner: i, impact: "super", direction: p.facing, strength: 1.4 },
+      );
+    }
+    if (p.attackTick >= finale.duration) p.attack = null;
+    return true;
+  }
+  if (finale.mode === "transformation") {
+    if (p.attackTick === activeAt && !p.attackHit && finale.empowerment) {
+      p.attackHit = true;
+      p.transformation = {
+        id: finale.empowerment.id,
+        ticks: finale.empowerment.duration,
+        damageMultiplier: finale.empowerment.damageMultiplier,
+      };
+    }
+    if (p.attackTick > 36) p.attack = null;
+    return true;
+  }
+  return false;
+}
+
+/** Launch a special's projectile, or its spread or formation of them. */
+function spawnTechniqueProjectiles(
+  s: MatchState,
+  i: number,
+  technique: Technique,
+  projectile: NonNullable<Technique["projectile"]>,
+) {
+  const p = s.players[i];
+  const def = fighterById(p.config.fighter);
+  const count = projectile.count || 1;
+  for (let note = 0; note < count; note++) {
+    s.projectiles.push({
+      id: s.nextId++,
+      owner: i,
+      direction: p.facing,
+      x:
+        p.x +
+        p.facing *
+          ((projectile.offsetX ?? 48) +
+            (note - (count - 1) / 2) * (projectile.spacing ?? 0)),
+      y: p.y - (projectile.offsetY ?? (projectile.groundOnly ? 42 : 75)),
+      originY: p.y - 75,
+      vx: p.facing * projectile.speed,
+      vy:
+        (projectile.initialVy ?? 0) +
+        (note - (count - 1) / 2) * (projectile.spread || 0),
+      age: 0,
+      formationIndex: projectile.spacing ? note : undefined,
+      hitInvincibility: projectile.hitInvincibility,
+      returnAfter: projectile.returnAfter,
+      tether: projectile.tether ? { ...projectile.tether } : undefined,
+      life: projectile.life,
+      kind: def.ability,
+      damage: technique.damage * def.damage * outgoingDamageMultiplier(p),
+      force: technique.force,
+      wave: projectile.wave,
+      acceleration: projectile.acceleration,
+      maxSpeed: projectile.maxSpeed,
+      gravity: projectile.gravity,
+      homing: projectile.homing,
+      pulls: projectile.pulls,
+      groundOnly: projectile.groundOnly,
+      slowTicks: projectile.slowTicks,
+      blastRadius: projectile.blastRadius,
+      bounces: projectile.bounces,
+      radius: projectile.radius,
+      growth: projectile.growth,
+      maxRadius: projectile.maxRadius,
+      plantAfter: projectile.plantAfter,
+      armAfter: projectile.armAfter,
+    });
+  }
+}
+
+/**
+ * Land a melee pulse on the rival if it is in reach. Returns true when the hit
+ * opened a capture definitive, which takes over the rest of this tick.
+ */
+function strike(
+  s: MatchState,
+  i: number,
+  attack: NonNullable<Attack>,
+  technique: Technique,
+  pulseIndex: number,
+  movingStrike: boolean,
+): boolean {
+  const p = s.players[i];
+  const def = fighterById(p.config.fighter);
+  const other = s.players[1 - i];
+  let range = attack === "light" ? 110 : attack === "heavy" ? 155 : 165;
+  if (attack === "super") range = FINALE_RANGE;
+  if (attack === "special") {
+    range =
+      (movingStrike
+        ? (technique.contactRange ?? technique.range)
+        : technique.range) +
+      pulseIndex *
+        (technique.pulseRangeStep ?? (def.ability === "echo" ? 70 : 90));
+    const mirrored = technique.mirrorPulse === pulseIndex;
+    const behindRival = mirrored && Math.abs(other.x - p.x) < range;
+    effect(
+      s,
+      behindRival
+        ? other.x + p.facing * 90
+        : p.x +
             p.facing *
-              ((projectile.offsetX ?? 48) +
-                (note - (count - 1) / 2) * (projectile.spacing ?? 0)),
-          y: p.y - (projectile.offsetY ?? (projectile.groundOnly ? 42 : 75)),
-          originY: p.y - 75,
-          vx: p.facing * projectile.speed,
-          vy:
-            (projectile.initialVy ?? 0) +
-            (note - (count - 1) / 2) * (projectile.spread || 0),
-          age: 0,
-          formationIndex: projectile.spacing ? note : undefined,
-          hitInvincibility: projectile.hitInvincibility,
-          returnAfter: projectile.returnAfter,
-          tether: projectile.tether ? { ...projectile.tether } : undefined,
-          life: projectile.life,
-          kind: def.ability,
-          damage: technique.damage * def.damage * outgoingDamageMultiplier(p),
-          force: technique.force,
-          wave: projectile.wave,
-          acceleration: projectile.acceleration,
-          maxSpeed: projectile.maxSpeed,
-          gravity: projectile.gravity,
-          homing: projectile.homing,
-          pulls: projectile.pulls,
-          groundOnly: projectile.groundOnly,
-          slowTicks: projectile.slowTicks,
-          blastRadius: projectile.blastRadius,
-          bounces: projectile.bounces,
-          radius: projectile.radius,
-          growth: projectile.growth,
-          maxRadius: projectile.maxRadius,
-          plantAfter: projectile.plantAfter,
-          armAfter: projectile.armAfter,
-        });
-      }
-    } else {
-      let range = attack === "light" ? 110 : attack === "heavy" ? 155 : 165;
-      if (attack === "super") range = FINALE_RANGE;
-      if (attack === "special") {
-        range =
-          (movingStrike
-            ? (technique.contactRange ?? technique.range)
-            : technique.range) +
-          pulseIndex *
-            (technique.pulseRangeStep ?? (def.ability === "echo" ? 70 : 90));
-        const mirrored = technique.mirrorPulse === pulseIndex;
-        const behindRival = mirrored && Math.abs(other.x - p.x) < range;
-        effect(
-          s,
-          behindRival
-            ? other.x + p.facing * 90
-            : p.x +
-                p.facing *
-                  (technique.aimed
-                    ? Math.min(range - 50, Math.abs(other.x - p.x))
-                    : 35),
-          behindRival
-            ? other.y - 75
-            : technique.groundOnly
-              ? p.y - 5
-              : p.y - 75,
-          "special",
-          def.color,
-          {
-            owner: i,
-            impact: attack,
-            direction: mirrored ? -p.facing : p.facing,
-          },
-        );
-      }
-      const dx = other.x - p.x;
-      const inFront =
-        dx * p.facing > -30 ||
-        (attack === "special" &&
-          (technique.radial || technique.mirrorPulse === pulseIndex));
-      if (
-        Math.abs(dx) < range &&
-        Math.abs(p.y - other.y) <
-          (attack === "special" ? technique.height : 120) &&
-        !(
-          attack === "special" &&
-          technique.groundOnly &&
-          (!p.grounded || !other.grounded)
-        ) &&
-        inFront
-      ) {
-        if (attack === "super" && finaleById(p.config.fighter)) {
-          beginFinale(s, i as 0 | 1);
-          return;
-        }
-        const damage =
-          (attack === "light"
-            ? 7
-            : attack === "heavy"
-              ? 13
-              : attack === "super"
-                ? 28
-                : technique.damage) *
-            def.damage +
-          p.comboBonus;
-        const healthBefore = other.hp;
-        const supportBefore = other.supportPlatform;
-        const connected = hurt(
-          s,
-          i,
-          damage * outgoingDamageMultiplier(p),
-          attack === "light"
-            ? 4.5
-            : attack === "super"
-              ? 12
-              : attack === "special"
-                ? pulseIndex === (technique.pulses?.length ?? 1) - 1
-                  ? (technique.finisherForce ?? technique.force)
-                  : technique.force
-                : 8,
-          attack === "special" && technique.mirrorPulse === pulseIndex
-            ? -p.facing
-            : dx >= 0
-              ? 1
-              : -1,
-          other.x,
-          other.y - 80,
-          attack,
-          attack === "special" ? technique.hitInvincibility : undefined,
-        );
-        if (movingStrike && connected) p.attackHit = true;
-        if (
-          attack === "special" &&
-          technique.snare &&
-          other.hp < healthBefore
-        ) {
-          other.rootTicks = technique.snare;
-          if (def.ability === "bite") other.rootKind = "bite";
-          else delete other.rootKind;
-          other.vx = 0;
-          other.recoilVx = 0;
-          other.vy = 0;
-          other.grounded = true;
-          other.supportPlatform = supportBefore;
-        }
-      }
+              (technique.aimed
+                ? Math.min(range - 50, Math.abs(other.x - p.x))
+                : 35),
+      behindRival ? other.y - 75 : technique.groundOnly ? p.y - 5 : p.y - 75,
+      "special",
+      def.color,
+      {
+        owner: i,
+        impact: attack,
+        direction: mirrored ? -p.facing : p.facing,
+      },
+    );
+  }
+  const dx = other.x - p.x;
+  const inFront =
+    dx * p.facing > -30 ||
+    (attack === "special" &&
+      (technique.radial || technique.mirrorPulse === pulseIndex));
+  if (
+    Math.abs(dx) < range &&
+    Math.abs(p.y - other.y) < (attack === "special" ? technique.height : 120) &&
+    !(
+      attack === "special" &&
+      technique.groundOnly &&
+      (!p.grounded || !other.grounded)
+    ) &&
+    inFront
+  ) {
+    if (attack === "super" && finaleById(p.config.fighter)) {
+      beginFinale(s, i as 0 | 1);
+      return true;
+    }
+    const damage =
+      (attack === "light"
+        ? 7
+        : attack === "heavy"
+          ? 13
+          : attack === "super"
+            ? 28
+            : technique.damage) *
+        def.damage +
+      p.comboBonus;
+    const healthBefore = other.hp;
+    const supportBefore = other.supportPlatform;
+    const connected = hurt(
+      s,
+      i,
+      damage * outgoingDamageMultiplier(p),
+      attack === "light"
+        ? 4.5
+        : attack === "super"
+          ? 12
+          : attack === "special"
+            ? pulseIndex === (technique.pulses?.length ?? 1) - 1
+              ? (technique.finisherForce ?? technique.force)
+              : technique.force
+            : 8,
+      attack === "special" && technique.mirrorPulse === pulseIndex
+        ? -p.facing
+        : dx >= 0
+          ? 1
+          : -1,
+      other.x,
+      other.y - 80,
+      attack,
+      attack === "special" ? technique.hitInvincibility : undefined,
+    );
+    if (movingStrike && connected) p.attackHit = true;
+    if (attack === "special" && technique.snare && other.hp < healthBefore) {
+      other.rootTicks = technique.snare;
+      if (def.ability === "bite") other.rootKind = "bite";
+      else delete other.rootKind;
+      other.vx = 0;
+      other.recoilVx = 0;
+      other.vy = 0;
+      other.grounded = true;
+      other.supportPlatform = supportBefore;
     }
   }
-  if (
-    p.attackTick >=
-    (attack === "light"
-      ? 20
-      : attack === "heavy"
-        ? 32
-        : attack === "special"
-          ? technique.recovery
-          : 40)
-  )
-    p.attack = null;
+  return false;
+}
+
+function recoveryTicks(attack: NonNullable<Attack>, technique: Technique) {
+  return attack === "light"
+    ? 20
+    : attack === "heavy"
+      ? 32
+      : attack === "special"
+        ? technique.recovery
+        : 40;
 }
 
 function applySpecialMovement(s: MatchState, i: number, technique: Technique) {
