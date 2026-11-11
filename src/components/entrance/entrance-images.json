@@ -2,13 +2,25 @@
   "renny": {
     "width": 399,
     "height": 379,
-    "avif": "/assets/entrance-renny-6ecaf5776eb9.avif",
-    "webp": "/assets/entrance-renny-41ed6d2b6959.webp"
+    "avif": [
+      "/assets/entrance-renny-bddb101a21c5.avif",
+      "/assets/entrance-renny-2df6ec1bc794.avif"
+    ],
+    "webp": [
+      "/assets/entrance-renny-7946c82a4078.webp",
+      "/assets/entrance-renny-30bade347978.webp"
+    ]
   },
   "capriles": {
     "width": 446,
     "height": 410,
-    "avif": "/assets/entrance-capriles-c67118d756cd.avif",
-    "webp": "/assets/entrance-capriles-72a648a7c538.webp"
+    "avif": [
+      "/assets/entrance-capriles-83cd0782b454.avif",
+      "/assets/entrance-capriles-15ee456ff102.avif"
+    ],
+    "webp": [
+      "/assets/entrance-capriles-aeca1b6cc133.webp",
+      "/assets/entrance-capriles-3d0b1e78d7a7.webp"
+    ]
   }
 }

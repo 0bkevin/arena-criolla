@@ -3,7 +3,11 @@ import path from "node:path";
 import { brotliCompress, constants, gzip } from "node:zlib";
 import { promisify } from "node:util";
 import { defineConfig, type Plugin } from "vite";
-import entranceAssets from "./src/components/entrance/entrance-images.json";
+import {
+  ENTRANCE_ART,
+  ENTRANCE_ART_SIZES,
+  entranceSrcSet,
+} from "./src/components/entrance/entrance-art";
 import { assetVersions } from "./server/asset-versions";
 
 const versions = await assetVersions("public");
@@ -84,13 +88,15 @@ export default defineConfig({
       name: "preload-entrance-art",
       transformIndexHtml() {
         return [
-          ...Object.values(entranceAssets).map((asset) => ({
+          ...Object.values(ENTRANCE_ART).map((art) => ({
             tag: "link",
             attrs: {
               rel: "preload",
               as: "image",
               type: "image/avif",
-              href: asset.avif,
+              // Same candidates and sizes as the <picture>, so it is reused.
+              imagesrcset: entranceSrcSet(art, art.avif),
+              imagesizes: ENTRANCE_ART_SIZES,
               fetchpriority: "high",
             },
             injectTo: "head" as const,
