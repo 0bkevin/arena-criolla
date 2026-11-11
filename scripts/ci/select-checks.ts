@@ -102,6 +102,7 @@ const checks: {
     Array.from({ length: shards }, (_, i) => i + 1),
   ),
   typecheck: /\.(ts|tsx|json)$/,
+  format: /\.(ts|tsx|json|jsonc|css|md|ya?ml|html)$/,
   assets:
     /^(public\/assets\/|src\/game\/assets\/manifests\/sprite-geometry\.json$|shared\/roster\/fighters\.json$|scripts\/assets\/validate-character-assets\.ts$)/,
   audit: /^package-lock\.json$/,

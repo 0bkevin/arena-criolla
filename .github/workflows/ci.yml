@@ -27,6 +27,7 @@ jobs:
       tests: ${{ steps.select.outputs.tests }}
       test-shards: ${{ steps.select.outputs.test-shards }}
       typecheck: ${{ steps.select.outputs.typecheck }}
+      format: ${{ steps.select.outputs.format }}
       assets: ${{ steps.select.outputs.assets }}
       audit: ${{ steps.select.outputs.audit }}
       deploy-controls: ${{ steps.select.outputs.deploy-controls }}
@@ -114,12 +115,13 @@ jobs:
   static:
     needs: plan
     if: >-
-      needs.plan.outputs.typecheck == 'true' || needs.plan.outputs.assets == 'true' ||
+      needs.plan.outputs.typecheck == 'true' || needs.plan.outputs.format == 'true' ||
+      needs.plan.outputs.assets == 'true' ||
       needs.plan.outputs.audit == 'true' || needs.plan.outputs.deploy-controls == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      NODE_WORK: ${{ needs.plan.outputs.typecheck == 'true' || needs.plan.outputs.assets == 'true' || needs.plan.outputs.audit == 'true' }}
+      NODE_WORK: ${{ needs.plan.outputs.typecheck == 'true' || needs.plan.outputs.format == 'true' || needs.plan.outputs.assets == 'true' || needs.plan.outputs.audit == 'true' }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -136,6 +138,8 @@ jobs:
         run: npm audit --audit-level=low
       - if: needs.plan.outputs.typecheck == 'true'
         run: npm run typecheck
+      - if: needs.plan.outputs.format == 'true'
+        run: npm run format:check
       - if: needs.plan.outputs.assets == 'true'
         run: npm run check:assets
       - name: Validate production delivery controls
