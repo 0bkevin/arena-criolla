@@ -81,6 +81,8 @@ export interface PlayerState {
   dash: number;
   lastActions: Record<Action, number>;
   bufferedAttack?: { attack: Exclude<Attack, "super" | null>; ticks: number };
+  /** Ticks left on a held definitive press made while busy; charges once free. */
+  bufferedSuperTicks?: number;
   history: { action: string; tick: number }[];
   combo: string;
   comboTick: number;

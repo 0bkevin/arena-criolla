@@ -1,5 +1,5 @@
 // One fighter's response to its input this tick: guard, movement, jumps,
-// dashes, super charge and attack requests (with a short input buffer).
+// dashes, super charge and attack requests (with short input buffers).
 import {
   SUPER_CHARGE_TICKS,
   fighterById,
@@ -19,6 +19,9 @@ import {
 
 // Five active simulation ticks (83 ms at 60 Hz), shared by local and online play.
 const ATTACK_BUFFER_TICKS = 5;
+// A definitive held through a heavy attack (33 ticks) or a dash (30-tick
+// cooldown) still charges once free; 40 ticks (0.67 s) leaves a little slack.
+const SUPER_BUFFER_TICKS = 40;
 
 /**
  * Apply one fighter's input. Records how far a moving platform carried the
@@ -78,6 +81,17 @@ export function updateFighterControls(
   )
     delete p.bufferedAttack;
   if (
+    p.bufferedSuperTicks !== undefined &&
+    (--p.bufferedSuperTicks < 0 ||
+      !input.superHeld ||
+      p.stun > 0 ||
+      input.block ||
+      p.hp <= 0 ||
+      (["light", "heavy", "special", "jump", "dash"] as const).some(pressed) ||
+      !canUseSuper(s, i))
+  )
+    delete p.bufferedSuperTicks;
+  if (
     p.superChargeTicks > 0 &&
     (pressed("super") || p.stun > 0 || !canUseSuper(s, i))
   )
@@ -95,7 +109,7 @@ export function updateFighterControls(
   if (p.stun === 0 && p.hp > 0) {
     if (p.superChargeTicks > 0) p.superChargeTicks++;
     else if (
-      pressed("super") &&
+      (pressed("super") || p.bufferedSuperTicks !== undefined) &&
       input.superHeld &&
       p.cooldown === 0 &&
       !p.blocking &&
@@ -103,9 +117,16 @@ export function updateFighterControls(
       !p.dash &&
       canUseSuper(s, i)
     ) {
+      delete p.bufferedSuperTicks;
       p.superChargeTicks = 1;
       p.invincible = 0;
-    }
+    } else if (
+      pressed("super") &&
+      input.superHeld &&
+      !input.block &&
+      canUseSuper(s, i)
+    )
+      p.bufferedSuperTicks = SUPER_BUFFER_TICKS;
     const charging = p.superChargeTicks > 0;
     const move = Number(input.right) - Number(input.left);
     if (!p.attack && !p.dash) {

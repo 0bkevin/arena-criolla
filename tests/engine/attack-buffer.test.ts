@@ -135,29 +135,26 @@ test("buffered attacks recheck energy and are not retried after rejection", () =
   assert.equal(player.attack, "special");
 });
 
-test("definitives pressed during recovery are never buffered or charged without a new press", () => {
+test("a definitive held through recovery is never queued as an attack and charges in full once free", () => {
   for (const side of [0, 1] as const) {
     const { state, inputs, advance } = setup(0);
     const player = state.players[side];
     player.cooldown = 5;
     inputs[side].superHeld = true;
     inputs[side].actions.super++;
-    advance(SUPER_CHARGE_TICKS + 5);
+    advance(4);
     assert.equal(player.bufferedAttack, undefined);
     assert.equal(player.superChargeTicks, 0);
-    assert.equal(player.attack, null);
-    assert.equal(player.superUsed, false);
-    assert.equal(player.energy, 100);
-    inputs[side].superHeld = false;
     advance(1);
-    inputs[side].superHeld = true;
-    inputs[side].actions.super++;
-    advance(SUPER_CHARGE_TICKS - 1);
+    assert.equal(player.superChargeTicks, 1, "the charge starts when free");
+    advance(SUPER_CHARGE_TICKS - 2);
     assert.equal(
       player.attack,
       null,
-      "a fresh definitive still needs the full charge",
+      "a remembered definitive still needs the full charge",
     );
+    assert.equal(player.superUsed, false);
+    assert.equal(player.energy, 100);
     advance(1);
     assert.equal(player.attack, "super");
     assert.equal(player.superUsed, true);

@@ -251,3 +251,131 @@ test("the hard CPU holds for the complete charge and stops after its single use"
   assert.equal(r.player.superUsed, true);
   assert.equal(r.inputs[1].superHeld, false);
 });
+
+/** Starts a real attack, then presses and holds the definitive one tick later. */
+function pressDuringAttack(
+  attack: "light" | "heavy" = "light",
+  fighter: FighterId = "capriles",
+) {
+  const r = setup(0, fighter);
+  r.inputs[0].actions[attack]++;
+  r.advance();
+  assert.equal(r.player.attack, attack);
+  r.press();
+  r.advance();
+  assert.equal(r.player.superChargeTicks, 0);
+  assert.notEqual(r.player.bufferedSuperTicks, undefined);
+  return r;
+}
+
+test("a definitive held during an attack charges in full once the fighter is free", () => {
+  for (const attack of ["light", "heavy"] as const) {
+    const r = pressDuringAttack(attack);
+    r.player.invincible = 100;
+    let waited = 0;
+    while (r.player.superChargeTicks === 0 && waited < 60) {
+      r.advance();
+      waited++;
+    }
+    assert.equal(r.player.superChargeTicks, 1, attack);
+    assert.equal(r.player.attack, null);
+    assert.equal(r.player.cooldown, 0);
+    assert.equal(r.player.invincible, 0, "charging stays vulnerable");
+    assert.equal(r.player.bufferedSuperTicks, undefined);
+    r.advance(SUPER_CHARGE_TICKS - 2);
+    assert.equal(r.player.attack, null);
+    assert.equal(r.player.superUsed, false);
+    assert.equal(r.player.energy, 100);
+    r.advance();
+    assert.equal(r.player.attack, "super");
+    assert.equal(r.player.energy, 10);
+    assert.equal(r.player.superUsed, true);
+  }
+});
+
+test("releasing a definitive pressed during an attack forgets it", () => {
+  const r = pressDuringAttack();
+  r.advance(5);
+  r.inputs[0].superHeld = false;
+  r.advance();
+  assert.equal(r.player.bufferedSuperTicks, undefined);
+  r.inputs[0].superHeld = true;
+  r.advance(80);
+  assert.equal(r.player.superChargeTicks, 0);
+  assert.equal(r.player.superUsed, false);
+  assert.equal(r.player.energy, 100);
+});
+
+test("a newer action pressed after a remembered definitive wins", () => {
+  for (const action of ["light", "heavy", "special", "jump", "dash"] as const) {
+    const r = pressDuringAttack();
+    r.advance(2);
+    r.inputs[0].actions[action]++;
+    r.advance();
+    assert.equal(r.player.bufferedSuperTicks, undefined, action);
+    r.advance(80);
+    assert.equal(r.player.superChargeTicks, 0, action);
+    assert.equal(r.player.superUsed, false, action);
+  }
+});
+
+test("a definitive pressed long before the fighter is free is not charged later", () => {
+  const r = setup();
+  r.player.cooldown = 60;
+  r.press();
+  r.advance();
+  assert.notEqual(r.player.bufferedSuperTicks, undefined);
+  r.advance(80);
+  assert.equal(r.player.bufferedSuperTicks, undefined);
+  assert.equal(r.player.superChargeTicks, 0);
+  assert.equal(r.player.superUsed, false);
+});
+
+test("stun or guard forgets a remembered definitive", () => {
+  for (const interrupt of ["stun", "block"] as const) {
+    const r = pressDuringAttack();
+    if (interrupt === "stun") r.player.stun = 3;
+    else r.inputs[0].block = true;
+    r.advance();
+    assert.equal(r.player.bufferedSuperTicks, undefined, interrupt);
+    r.inputs[0].block = false;
+    r.advance(80);
+    assert.equal(r.player.superChargeTicks, 0, interrupt);
+    assert.equal(r.player.superUsed, false, interrupt);
+  }
+});
+
+test("an unavailable definitive is not remembered and losing availability forgets it", () => {
+  for (const reason of ["energy", "used", "drained"] as const) {
+    const r = setup();
+    r.inputs[0].actions.light++;
+    r.advance();
+    if (reason === "energy") r.player.energy = 89;
+    if (reason === "used") r.player.superUsed = true;
+    r.press();
+    r.advance();
+    if (reason === "drained") {
+      assert.notEqual(r.player.bufferedSuperTicks, undefined);
+      r.player.energy = 50;
+      r.advance();
+      r.player.energy = 100;
+    }
+    assert.equal(r.player.bufferedSuperTicks, undefined, reason);
+    r.advance(80);
+    assert.ok(reason !== "energy" || r.player.energy > 90, "energy regained");
+    assert.equal(r.player.superChargeTicks, 0, reason);
+    assert.equal(r.player.attack, null, reason);
+    assert.equal(r.player.superUsed, reason === "used", reason);
+  }
+});
+
+test("a remembered definitive serializes and starts on the same tick after replay", () => {
+  const r = pressDuringAttack();
+  const copy: MatchState = JSON.parse(JSON.stringify(r.state));
+  for (let frame = 0; frame < 60; frame++) {
+    r.advance();
+    stepMatch(copy, r.inputs);
+    assert.deepEqual(copy, r.state);
+  }
+  assert.equal(r.player.superUsed, true);
+});

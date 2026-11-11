@@ -76,6 +76,7 @@ export function advanceFinale(s: MatchState, inputs: [Input, Input]) {
   for (const i of PLAYERS) {
     s.players[i].lastActions = { ...inputs[i].actions };
     delete s.players[i].bufferedAttack;
+    delete s.players[i].bufferedSuperTicks;
   }
   const definition = finaleById(scene.fighter)!;
   const beat = definition.damageBeats.indexOf(scene.tick);

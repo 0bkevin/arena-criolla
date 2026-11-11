@@ -8,6 +8,7 @@ import { PLAYERS, type MatchState, type PlayerIndex } from "./types";
 function loseStock(s: MatchState, i: PlayerIndex) {
   const p = s.players[i];
   delete p.bufferedAttack;
+  delete p.bufferedSuperTicks;
   s.projectiles = s.projectiles.filter(
     (shot) => !shot.tether || shot.owner !== i,
   );

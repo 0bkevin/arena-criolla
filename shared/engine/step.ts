@@ -33,8 +33,10 @@ import {
 export function stepMatch(s: MatchState, inputs: [Input, Input]): void {
   for (const i of PLAYERS) {
     const p = s.players[i];
-    if (!inputs[i].superHeld || s.phase !== "playing" || p.hp <= 0)
+    if (!inputs[i].superHeld || s.phase !== "playing" || p.hp <= 0) {
       p.superChargeTicks = 0;
+      delete p.bufferedSuperTicks;
+    }
   }
   if (s.phase === "finished") return;
   if (s.finale) {
