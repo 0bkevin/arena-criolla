@@ -35,21 +35,18 @@ interface CafeActorFrame extends ActorBounds {
   bodyHeight: number;
   anchorX: number;
 }
-const actorManifest = actorAssets as unknown as {
+type FinaleActorFile = { file: string; frames: CafeActorFrame[] };
+const actorManifest: {
   seated: Record<
     string,
     FinaleActorFrame & { file: string; frames?: CafeActorFrame[] }
   >;
-  caprilesCafe: { file: string; frames: CafeActorFrame[] };
-  performers?: Partial<
-    Record<FighterId, { file: string; frames: CafeActorFrame[] }>
-  >;
-};
-const perroManifest = perroAssets as unknown as {
-  dancers: Partial<
-    Record<FighterId, { file: string; frames: CafeActorFrame[] }>
-  >;
-};
+  caprilesCafe: FinaleActorFile;
+  performers?: Partial<Record<FighterId, FinaleActorFile>>;
+} = actorAssets;
+const perroManifest: {
+  dancers: Partial<Record<FighterId, FinaleActorFile>>;
+} = perroAssets;
 const DANCE_BLEND_TICKS = 6;
 const DANCE_SOURCE_WIDTH = 512;
 const DANCE_SOURCE_HEIGHT = 560;

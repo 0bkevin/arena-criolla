@@ -300,12 +300,12 @@ export function TouchControls({
     control: Control,
   ) => {
     if (event.currentTarget.getAttribute("aria-disabled") === "true") return;
-    const nativeEvent =
-      event.nativeEvent as unknown as globalThis.MouseEvent & {
-        pointerType?: string;
-      };
+    // React types a pointer-originated click as a plain mouse event.
+    const { nativeEvent } = event;
+    const pointerType =
+      "pointerType" in nativeEvent ? nativeEvent.pointerType : undefined;
     // Pointer down already activated the game; detail 0 is keyboard or AT click.
-    if (event.detail !== 0 || nativeEvent.pointerType) return;
+    if (event.detail !== 0 || pointerType) return;
     if (control === "super" && accessibleSuper.current) {
       if (releaseAccessibleSuper()) syncPressed();
       return;
