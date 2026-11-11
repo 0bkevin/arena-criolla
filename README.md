@@ -4,7 +4,7 @@
 
 Un juego de pelea donde los mitos, la música, el humor y las figuras de Venezuela se encuentran en la misma arena. Juega desde el navegador, sin instalar nada ni crear una cuenta.
 
-**[Jugar ahora](https://arenacriolla.com/)** · [Desarrollo local](#desarrollo-local) · [Despliegue](docs/deployment.md) · [Licencia](LICENSE)
+**[Jugar ahora](https://arenacriolla.com/)** · [Desarrollo local](#desarrollo-local) · [Despliegue](docs/deployment.md) · [Balance](docs/balance.md) · [Licencia](LICENSE)
 
 ## Elige a tu pana y pelea
 
