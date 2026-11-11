@@ -106,6 +106,7 @@
     align-items: center;
     justify-content: center;
     gap: 4px;
+    padding-block: 24px max(24px, env(safe-area-inset-bottom));
     text-align: center;
   }
   .app-shell .footer-links {
