@@ -185,7 +185,7 @@ export const PRESENTATION_DATA = {
     ],
   },
   oscar: {
-    introName: "Saca el micrófono,  canta y da una vuelta de salsa",
+    introName: "Saca el micrófono, canta y da una vuelta de salsa",
     battleFrame: 1,
     frameFacing: [1, 1, 1, 1, 1, 1, 1, 1],
     introStyle: "dance",
