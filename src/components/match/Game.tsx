@@ -293,7 +293,9 @@ export function Game(props: Props) {
     skipPresentations,
   });
 
-  useEffect(() => {
+  // A layout effect draws the first frame before the browser paints the commit
+  // that removes the loading overlay; otherwise one empty frame flashes black.
+  useLayoutEffect(() => {
     if (!assets || !canvas.current) return;
     const ctx = canvas.current.getContext("2d")!;
     let state = structuredClone(initial);
@@ -489,7 +491,7 @@ export function Game(props: Props) {
     window.addEventListener("blur", syncKnockoutPause);
     window.addEventListener("focus", syncKnockoutPause);
     ctx.canvas.addEventListener("contextrestored", invalidateSettledFrame);
-    raf = requestAnimationFrame(animate);
+    animate(last);
     return () => {
       cancelAnimationFrame(raf);
       knockoutPauseObserver.disconnect();
