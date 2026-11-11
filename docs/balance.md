@@ -86,9 +86,10 @@ feeds the sound weight in `src/game/audio/sound-effects.ts`.
 | `icon-techniques.ts`       | Edgar retake counter    | 18 → 14                      | Reduce repeated counter burst against the CPU.                                            |
 
 Lila's five offered projectiles still nominally total 24.3 HP against armor 1;
-the audit's stationary trials observed at most three contacts, not five. This is
-a deliberate exception to the nominal special target, pending wider human play
-testing. Vicente's courier has one low-damage contact per activation: it is
+the audit's stationary trials observed at most three contacts, not five.
+Lorenzo (20.16), Simón (19.95) and Nacho (17.10) also offer more than 17 HP,
+but their full totals were not observed in roughly 4,900 trials each, except
+for Simón during edge ring-outs. These exceptions need wider human testing. Vicente's courier has one low-damage contact per activation: it is
 removed on hit. Norkys observed 7.60 of 15.20 offered, Melanio 8.00, and
 Amanda 8.40 plus her counter; these low-side specials were not changed in this
 pass. Lele's special did not connect in the original audit setup.
@@ -102,16 +103,16 @@ trucks, Vicente's couriers and Simón's wooden horses use force 1.5 per driving
 strike, down from 4.5.
 María Corina's caravan uses up to 3, down from 4.5, with a cap of 4 on the
 horizontal launch speed calculated before damage. Damage slightly increases
-actual speed. A stun floor derived from the old 4.5 force prevents early
-recovery from interrupting the ride. Vicente's separate courier special keeps
+actual speed. A counter that lands consumes the follow-up strike. A stun floor derived from
+the old 4.5 force prevents early recovery from interrupting the ride. Vicente's separate courier special keeps
 its force of 4.
 
 In stationary Caracas and Guaira trials at 100 and 30 HP, rivals starting at
 least 250 px from the forward edge stayed on stage unless damage depleted their
-HP. At full HP central rides pushed roughly 40-165 px. Trials with a hard CPU
-and immediate guard, jump or attack after the first hit did not show a loss of
-most strikes from shorter stun; guarding blocked subsequent strikes both before
-and after. These trials do not establish a general ring-out rate; human
+HP. At full HP central rides pushed roughly 45-183 px, including about 181 px
+for María Corina; at 60 HP displacement reached about 215 px. The smaller push
+retains the old 17 ticks of stun, so a rival cannot cancel the ride by attacking
+between strikes; guarding can still block subsequent strikes. These trials do not establish a general ring-out rate; human
 play-testing remains necessary.
 
 ## Measurement and limitations
@@ -139,7 +140,10 @@ ring-out recovery; do not flatten damage to fix those separate mechanics.
 ## Results for this pass
 
 Each stage uses 12,320 matches at the same hard CPU settings. The baseline is
-commit `9643479`; the final includes the ride and counter fixes. Largest hit
+commit `9643479`; the final includes the ride and counter fixes. The baseline
+predates the merge of main's caravan multi-strike and finale collision changes,
+so the differences also include those changes, especially for María Corina.
+Largest hit
 and burst are the largest observed for any fighter, not cast medians.
 
 | Measure                       | Caracas before → after                                        | Guaira before → after                                     |
@@ -149,7 +153,7 @@ and burst are the largest observed for any fighter, not cast medians.
 | Largest single HP drop        | George 43.64 → George 30.54                                   | George 43.22 → George 31.15                               |
 | Largest three-second burst    | Maite 74.23 → Amanda 56.12                                    | Gómez 75.76 → Amanda 57.77                                |
 | Fighter win-rate range        | Dorángel 30.45%–Amanda 82.95% → Dorángel 36.59%–Amanda 85.23% | Dorángel 31.14%–Amanda 87.73% → Juan 33.86%–Amanda 87.95% |
-| HP KOs / ring-outs            | 4,768 / 29,912 → 2,570 / 32,193                               | 5,061 / 29,173 → 2,672 / 31,063                           |
+| HP KOs / ring-outs            | 4,768 / 29,912 → 2,570 / 32,184                               | 5,061 / 29,173 → 2,672 / 31,063                           |
 | Median stock duration         | 11.95 → 11.57 s (-3.2%)                                       | 11.92 → 12.00 s (+0.7%)                                   |
 | Mean stock duration           | 12.77 → 13.11 s (+2.7%)                                       | 12.83 → 13.37 s (+4.2%)                                   |
 | Mean match duration           | 25.94 → 26.87 s (+3.6%)                                       | 26.02 → 27.02 s (+3.8%)                                   |
