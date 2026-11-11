@@ -1,4 +1,4 @@
-import { type PlayerState } from "../../../shared/engine";
+import type { PlayerState } from "../../../shared/engine";
 import { TECHNIQUES } from "../../../shared/techniques";
 import { drawAttackArt, hasAttackArt } from "../attack-art";
 

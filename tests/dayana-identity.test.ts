@@ -1,7 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createMatch, emptyInput, stepMatch, WORLD, type Input } from "../shared/engine";
-import { type FighterId } from "../shared/content";
+import {
+  createMatch,
+  emptyInput,
+  stepMatch,
+  WORLD,
+  type Input,
+} from "../shared/engine";
+import type { FighterId } from "../shared/content";
 function setup(side: 0 | 1, rival: FighterId, gap: number) {
   const queen = { name: "Queen", fighter: "dayana" as const, wins: 3 },
     guest = { name: "Guest", fighter: rival, wins: 3 };

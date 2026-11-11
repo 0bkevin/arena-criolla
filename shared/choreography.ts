@@ -36,7 +36,7 @@ export interface Choreography {
   beats: Gesture[];
 }
 type Key = Partial<Omit<Gesture, "at">> & { at: number };
-export const REST: Omit<Gesture, "at"> = {
+const REST: Omit<Gesture, "at"> = {
   head: 0,
   lean: 0,
   back: 0,

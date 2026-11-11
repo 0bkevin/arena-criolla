@@ -1,7 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { type FounderFighterId } from "../shared/content";
-import { createMatch, emptyInput, stepMatch, WORLD, type Input, type MatchState } from "../shared/engine";
+import type { FounderFighterId } from "../shared/content";
+import {
+  createMatch,
+  emptyInput,
+  stepMatch,
+  WORLD,
+  type Input,
+  type MatchState,
+} from "../shared/engine";
 function setup(fighter: FounderFighterId, attacker: 0 | 1 = 0) {
   const state = createMatch("caracas", [
     { name: "Uno", fighter: attacker === 0 ? fighter : "zavarce", wins: 0 },

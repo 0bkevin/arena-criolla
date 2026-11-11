@@ -4,7 +4,7 @@ import {
   squadMember,
   type FieldFinaleState,
 } from "../../../shared/field-finales";
-import { type PlayerState, type Projectile } from "../../../shared/engine";
+import type { PlayerState, Projectile } from "../../../shared/engine";
 import { TECHNIQUES } from "../../../shared/techniques";
 import { ATTACK_ART, drawAttackArt, hasAttackArt } from "../attack-art";
 

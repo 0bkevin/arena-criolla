@@ -1,4 +1,4 @@
-import { type PlayerState } from "../../../shared/engine";
+import type { PlayerState } from "../../../shared/engine";
 import { drawAttackArt, hasAttackArt } from "../attack-art";
 
 export const BOLIVAR_SPECIAL_POSES = [

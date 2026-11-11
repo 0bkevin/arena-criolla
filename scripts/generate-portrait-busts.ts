@@ -18,7 +18,7 @@ import entranceManifest from "../shared/entrance-assets.json";
 import { selectionBodyHeight } from "../src/game/entrance-framing";
 import type { EntranceAsset } from "../src/game/assets";
 import { isolateFramePixels } from "../src/game/sprite-isolation";
-import { type PortraitBust } from "../shared/portrait-busts";
+import type { PortraitBust } from "../shared/portrait-busts";
 
 const MANIFEST = "shared/portrait-busts.json";
 // Atlas pixels kept around a non-isolated pose for edge filtering.

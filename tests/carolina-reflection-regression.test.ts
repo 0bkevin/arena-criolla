@@ -1,7 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { type FighterId } from "../shared/content";
-import { createMatch, emptyInput, stepMatch, type Input } from "../shared/engine";
+import type { FighterId } from "../shared/content";
+import {
+  createMatch,
+  emptyInput,
+  stepMatch,
+  type Input,
+} from "../shared/engine";
 import { INTRO_TOTAL_TICKS } from "../shared/presentation";
 function setup(side: 0 | 1, gap: number, rivalId: FighterId) {
   const configs = [

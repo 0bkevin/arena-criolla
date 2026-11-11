@@ -1,8 +1,8 @@
-import {
-  type Effect,
-  type MatchState,
-  type PlayerState,
-  type Projectile,
+import type {
+  Effect,
+  MatchState,
+  PlayerState,
+  Projectile,
 } from "../../../shared/engine";
 import { drawAttackArt, hasAttackArt } from "../attack-art";
 
