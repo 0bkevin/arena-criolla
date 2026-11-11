@@ -4,16 +4,17 @@ import { SUPER_ENERGY_COST, fighterById } from "../roster/roster";
 import { arenaFinaleInRange, isArenaFinalist } from "./finales/arena-finales";
 import { finaleById } from "./finales/finales";
 import { TECHNIQUES } from "./techniques";
-import type { Input, MatchState, PlayerState } from "./types";
+import type { Input, MatchState, PlayerState, PlayerIndex } from "./types";
 
 export function cpuInput(
   s: MatchState,
   previous: Input,
   difficulty: "easy" | "normal" | "hard",
+  player: PlayerIndex = 1,
 ): Input {
   const next: Input = { ...previous, actions: { ...previous.actions } };
-  const p = s.players[1];
-  const other = s.players[0];
+  const p = s.players[player];
+  const other = s.players[player === 0 ? 1 : 0];
   next.superHeld = false;
   const dx = other.x - p.x;
   next.left = dx < -86;
@@ -44,7 +45,7 @@ export function cpuInput(
   const defensiveOpportunity = technique.reflect
     ? s.projectiles.some(
         (shot) =>
-          shot.owner !== 1 &&
+          shot.owner !== player &&
           Math.abs(shot.x - p.x) < 290 &&
           Math.abs(shot.y - (p.y - 75)) < 95,
       )
@@ -86,7 +87,7 @@ export function cpuInput(
     difficulty === "hard" &&
     !p.superUsed &&
     p.energy >= SUPER_ENERGY_COST &&
-    definitiveInReach(s, p, other, dx) &&
+    definitiveInReach(s, p, other, dx, player) &&
     s.tick % 90 === 0
   ) {
     next.actions.super++;
@@ -102,11 +103,12 @@ function definitiveInReach(
   p: PlayerState,
   other: PlayerState,
   dx: number,
+  player: PlayerIndex,
 ): boolean {
   const finale = finaleById(p.config.fighter);
   if (finale?.mode === "field")
     return (
-      !s.fieldFinales?.some((field) => field.owner === 1) &&
+      !s.fieldFinales?.some((field) => field.owner === player) &&
       (isArenaFinalist(p.config.fighter)
         ? arenaFinaleInRange(p, other)
         : (p.config.fighter !== "dayana" || p.grounded) && Math.abs(dx) < 520)
