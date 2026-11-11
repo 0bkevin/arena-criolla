@@ -72,6 +72,7 @@ export interface PlayerState {
   attackTick: number;
   attackHit: boolean;
   countered: boolean;
+  counterLanded: boolean;
   cooldown: number;
   stun: number;
   slowTicks: number;

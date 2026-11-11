@@ -78,6 +78,7 @@ export function beginAttack(
   p.attackTick = 0;
   p.attackHit = false;
   p.countered = false;
+  p.counterLanded = false;
   p.comboBonus = 0;
   p.cooldown =
     attack === "light"
@@ -227,7 +228,7 @@ export function updateAttack(s: MatchState, i: PlayerIndex) {
       if (technique.requiresGround && !p.grounded) return;
       spawnTechniqueProjectiles(s, i, technique, technique.projectile);
     } else if (
-      !(attack === "special" && technique.counter && p.countered) &&
+      !(attack === "special" && technique.counter && p.counterLanded) &&
       strike(s, i, attack, technique, pulseIndex, movingStrike)
     )
       return;

@@ -72,7 +72,8 @@ export function interceptHit(
       impact: "special",
       direction: target.facing,
     });
-    if (Math.abs(source.x - target.x) < counter.range)
+    if (Math.abs(source.x - target.x) < counter.range) {
+      const hpBefore = source.hp;
       hurt(
         s,
         opponentOf(attacker),
@@ -85,6 +86,8 @@ export function interceptHit(
         source.y - 80,
         "special",
       );
+      target.counterLanded = source.hp < hpBefore;
+    }
     return "defended";
   }
   if (target.blocking && target.facing === -direction && target.energy > 3) {

@@ -31,6 +31,7 @@ function makePlayer(config: PlayerConfig, index: number): PlayerState {
     attackTick: 0,
     attackHit: false,
     countered: false,
+    counterLanded: false,
     cooldown: 0,
     stun: 0,
     slowTicks: 0,
