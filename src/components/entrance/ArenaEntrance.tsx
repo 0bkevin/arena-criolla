@@ -1,11 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { VenezuelaStars } from "../ui/VenezuelaStars";
-import {
-  ENTRANCE_ART,
-  ENTRANCE_ART_SIZES,
-  entranceSrcSet,
-} from "./entrance-art";
+import entranceAssets from "./entrance-images.json";
 import "./arena-entrance.css";
 
 // Preserve the comic burst used by the entrance on main.
@@ -110,39 +106,47 @@ export function ArenaEntrance({
         </svg>
         <div className="arena-entrance-duel" aria-hidden="true">
           <div className="arena-entrance-matchup">
-            {(["renny", "capriles"] as const).map((fighter, index) => {
-              const art = ENTRANCE_ART[fighter];
-              return (
-                <div
-                  key={fighter}
-                  className={`arena-entrance-fighter arena-entrance-fighter-${index ? "right" : "left"}`}
-                >
-                  <picture>
-                    <source
-                      type="image/avif"
-                      srcSet={entranceSrcSet(art, art.avif)}
-                      sizes={ENTRANCE_ART_SIZES}
-                    />
-                    <img
-                      src={art.webp[1]}
-                      srcSet={entranceSrcSet(art, art.webp)}
-                      sizes={ENTRANCE_ART_SIZES}
-                      alt=""
-                      width={art.width}
-                      height={art.height}
-                      draggable={false}
-                      decoding="async"
-                      fetchPriority="high"
-                      onLoad={() => settleArt(fighter)}
-                      onError={(event) => {
-                        event.currentTarget.hidden = true;
-                        settleArt(fighter);
-                      }}
-                    />
-                  </picture>
-                </div>
-              );
-            })}
+            <div className="arena-entrance-fighter arena-entrance-fighter-left">
+              <picture>
+                <source type="image/avif" srcSet={entranceAssets.renny.avif} />
+                <img
+                  src={entranceAssets.renny.webp}
+                  alt=""
+                  width={entranceAssets.renny.width}
+                  height={entranceAssets.renny.height}
+                  draggable={false}
+                  decoding="async"
+                  fetchPriority="high"
+                  onLoad={() => settleArt("renny")}
+                  onError={(event) => {
+                    event.currentTarget.hidden = true;
+                    settleArt("renny");
+                  }}
+                />
+              </picture>
+            </div>
+            <div className="arena-entrance-fighter arena-entrance-fighter-right">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcSet={entranceAssets.capriles.avif}
+                />
+                <img
+                  src={entranceAssets.capriles.webp}
+                  alt=""
+                  width={entranceAssets.capriles.width}
+                  height={entranceAssets.capriles.height}
+                  draggable={false}
+                  decoding="async"
+                  fetchPriority="high"
+                  onLoad={() => settleArt("capriles")}
+                  onError={(event) => {
+                    event.currentTarget.hidden = true;
+                    settleArt("capriles");
+                  }}
+                />
+              </picture>
+            </div>
             <svg className="arena-entrance-impact" viewBox="0 0 200 200">
               <path d={IMPACT_BURST_PATH} />
               <path
