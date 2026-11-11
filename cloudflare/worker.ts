@@ -101,8 +101,6 @@ export default {
       return withHeaders(await lobby(env).fetch(request), {
         "Cache-Control": "no-store",
       });
-    if (pathname === "/api/community/characters" && read)
-      return json({ characters: [] });
     if (pathname.startsWith("/api/"))
       return json({ error: "No encontramos esa ruta." }, 404);
     if (/^\/create(?:\/.*)?$/i.test(pathname))

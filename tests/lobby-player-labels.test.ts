@@ -48,7 +48,6 @@ function renderLobby(
       query: "",
       fighters: FIGHTERS,
       network: {
-        communityVersion: 0,
         connected: true,
         id,
         rooms: [],

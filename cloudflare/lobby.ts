@@ -63,10 +63,7 @@ const randomHex = (bytes: number) =>
   [...crypto.getRandomValues(new Uint8Array(bytes))]
     .map((byte) => byte.toString(16).padStart(2, "0"))
     .join("");
-// No community catalog is deployed on Cloudflare; custom fighters are refused.
-const allowedFighter = (id: unknown): id is FighterId =>
-  isFighter(id) && !id.startsWith("custom_");
-const COMMUNITY = JSON.stringify({ type: "community", characters: [] });
+const allowedFighter = isFighter;
 
 export class ArenaLobby extends DurableObject {
   private clients = new Map<string, Client>();
@@ -354,7 +351,6 @@ export class ArenaLobby extends DurableObject {
       resumeToken: client.resumeToken ?? undefined,
       resumed,
     });
-    this.sendEncoded(client, COMMUNITY);
     this.publishList(client);
     if (resumed) {
       const room = this.rooms.get(client.room!)!;

@@ -12,7 +12,7 @@ npm start
 
 El servidor entrega la aplicación compilada y simula las partidas en línea. `PORT` cambia el puerto; las demás opciones están en [`.env.example`](../.env.example). En producción, configura `ARENA_PUBLIC_URL` con el origen público y `ARENA_TRUST_PROXY` según el proxy utilizado.
 
-La configuración de Docker Compose, proxy y copias de seguridad está en [`deploy/`](../deploy/). El contenedor conserva la aplicación, los assets públicos y las dependencias necesarias. Los datos privados del creador se guardan en el volumen configurado con `ARENA_DATA_DIR`; las credenciales y los archivos `.env` quedan fuera del repositorio.
+La configuración de Docker Compose, proxy y copias de seguridad está en [`deploy/`](../deploy/). El contenedor conserva la aplicación, los assets públicos y las dependencias necesarias. Las credenciales y los archivos `.env` quedan fuera del repositorio.
 
 Para comprobar una instancia desplegada:
 

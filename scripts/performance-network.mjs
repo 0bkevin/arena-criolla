@@ -32,7 +32,7 @@ import { makeArenaServer } from ${JSON.stringify(pathToFileURL(path.resolve("ser
 import { monitorEventLoopDelay, performance } from 'node:perf_hooks';
 import { FixedStepTicker } from ${JSON.stringify(pathToFileURL(path.resolve("server/ticker.ts")).href)};
 let steps=0, startSteps=0;const originalAdvance=FixedStepTicker.prototype.advance;FixedStepTicker.prototype.advance=function(now){const n=originalAdvance.call(this,now);steps+=n;return n;};
-const server = await makeArenaServer({ serveClient: false, production: true, creator: {dataDir: process.env.ARENA_DATA_DIR, provider:null} });
+const server = await makeArenaServer({ serveClient: false, production: true });
 const lag = monitorEventLoopDelay({resolution:10}); lag.enable();
 let cpu = process.cpuUsage(), began = performance.now(), ticks = [];
 process.on('message', m => {
@@ -51,9 +51,6 @@ const child = spawn(
     env: {
       ...process.env,
       NODE_ENV: "production",
-      ARENA_DATA_DIR: dataDir,
-      ARENA_CREATOR_ENABLED: "false",
-      OPENAI_API_KEY: "",
     },
     stdio: ["ignore", "pipe", "pipe", "ipc"],
   },
@@ -130,8 +127,7 @@ class Peer {
         const p = this.pending.splice(i, 1)[0];
         clearTimeout(p.timer);
         p.resolve(m);
-      } else if (m.type !== "rooms" && m.type !== "community")
-        this.inbox.push(m);
+      } else if (m.type !== "rooms") this.inbox.push(m);
     });
     this.socket.on("error", (e) => this.errors.push(e.message));
     this.socket.on("close", () => (this.closed = true));

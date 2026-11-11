@@ -35,9 +35,7 @@ test("crawlers receive complete metadata and public URLs without executing JavaS
   });
   const folder = await mkdtemp(path.join(os.tmpdir(), "arena-seo-"));
   t.after(() => rm(folder, { recursive: true, force: true }));
-  const server = await makeArenaServer({
-    creator: { dataDir: folder, databasePath: ":memory:", provider: null },
-  });
+  const server = await makeArenaServer({});
   t.after(() => server.close());
   await new Promise<void>((resolve) =>
     server.http.listen(0, "127.0.0.1", resolve),
@@ -175,11 +173,6 @@ test("social previews get a new image URL when the deployed JPEG changes", async
       process.chdir(folder);
       server = await makeArenaServer({
         production: true,
-        creator: {
-          dataDir: path.join(folder, "private"),
-          databasePath: ":memory:",
-          provider: null,
-        },
       });
     } finally {
       process.chdir(previous);

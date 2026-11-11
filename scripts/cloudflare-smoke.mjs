@@ -37,7 +37,7 @@ for (const [path, status] of [
   ["/index.html", 308],
   ["/create", 302],
   ["/api/health", 200],
-  ["/api/community/characters", 200],
+  ["/api/community/characters", 404],
   ["/api/auth/session", 404],
   ["/assets/caracas.webp", 200],
   ["/manifest.webmanifest", 200],

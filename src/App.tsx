@@ -118,9 +118,7 @@ type ModalName = "help" | "fighters" | "stages" | "progress" | "rooms" | null;
 const colorStyle = (color: string): React.CSSProperties =>
   ({ "--fighter-color": color }) as React.CSSProperties;
 
-export function App({
-  communityRevision: _communityRevision,
-}: { communityRevision?: number } = {}) {
+export function App() {
   const [mode, setMode] = useState<GameMode>("practice");
   const [initialMatchup] = useState(lobbyMatchup);
   const [fighter, setFighter] = useState<FighterId>(initialMatchup[0]);
@@ -155,7 +153,7 @@ export function App({
         network.send({ type: "select", fighter: "zavarce", wins: 0 });
     }
     if (!isFighter(rival)) setRival("javier");
-  }, [_communityRevision, network.communityVersion, fighter, rival]);
+  }, [fighter, rival]);
 
   const active = localMatch || network.match?.initial;
   const chosen = fighterById(fighter);
@@ -183,7 +181,7 @@ export function App({
           .toLowerCase()
           .includes(searchTerm),
       ),
-    [searchTerm, _communityRevision, network.communityVersion],
+    [searchTerm],
   );
 
   useEffect(() => {

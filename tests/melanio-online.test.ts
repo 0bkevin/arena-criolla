@@ -64,8 +64,6 @@ async function listeningServer() {
   try {
     const server = await makeArenaServer({
       serveClient: false,
-      workshopEnabled: false,
-      creator: { dataDir, databasePath: ":memory:", provider: null },
     });
     await new Promise<void>((resolve) =>
       server.http.listen(0, "127.0.0.1", resolve),

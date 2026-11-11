@@ -104,7 +104,7 @@ const checks = {
   e2e: /^(src\/|index\.html|vite\.config\.ts|public\/|shared\/|e2e\/|playwright\.config\.ts$)/,
   // Anything the Docker build copies, plus the smoke test it runs.
   image:
-    /^(Dockerfile|\.dockerignore|index\.html|vite\.config\.ts|src\/|shared\/|server\/|public\/|scripts\/(security-smoke\.mjs|creator-import\.ts))/,
+    /^(Dockerfile|\.dockerignore|index\.html|vite\.config\.ts|src\/|shared\/|server\/|public\/|scripts\/security-smoke\.mjs)/,
   // New base layers or dependencies can bring new CVEs.
   scan: /^(Dockerfile|package-lock\.json)$/,
 };

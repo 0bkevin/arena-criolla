@@ -12,11 +12,7 @@ class Peer {
     this.socket.on("error", () => {});
     this.socket.on("message", (raw) => {
       const message: ServerMessage = JSON.parse(raw.toString());
-      if (
-        message.type !== "state" &&
-        message.type !== "rooms" &&
-        message.type !== "community"
-      )
+      if (message.type !== "state" && message.type !== "rooms")
         this.messages.push(message);
     });
   }
@@ -43,7 +39,6 @@ class Peer {
 test("guests can connect and start matches beyond the former 300-connection and 100-room limits", async () => {
   const server = await makeArenaServer({
     serveClient: false,
-    creator: { databasePath: ":memory:", provider: null },
   });
   await new Promise<void>((resolve) =>
     server.http.listen(0, "127.0.0.1", resolve),

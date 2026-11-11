@@ -200,11 +200,6 @@ test("production HTML has fresh CSP nonces and browser protections without cachi
     server = await makeArenaServer({
       production: true,
       trustProxy: ["loopback"],
-      creator: {
-        dataDir: path.join(folder, "private"),
-        databasePath: ":memory:",
-        provider: null,
-      },
     });
   } finally {
     process.chdir(previous);
