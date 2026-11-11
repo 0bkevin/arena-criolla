@@ -35,6 +35,6 @@ Los assets publicados están incluidos en `public/`; no hace falta regenerarlos 
 
 Las tarjetas del roster dibujan un busto recortado (`public/assets/bust-*.webp`, descrito en `src/game/assets/manifests/portrait-busts.json`) en vez de descargar la hoja completa del luchador. Si cambias una hoja de sprites o su pose de combate, regenera los bustos con `npm run assets:busts`; `tests/portrait-busts.test.ts` falla mientras estén desactualizados.
 
-Consulta [tests/browser/README.md](../tests/browser/README.md) para las comprobaciones de interfaz en navegador.
+Consulta [tests/manual/README.md](../tests/manual/README.md) para las comprobaciones de interfaz en navegador.
 
 Las vistas previas de escenarios (`public/assets/stage-thumb-*.webp`) se generan a partir de los fondos completos con `npm run assets:stage-thumbs`; el manifiesto `src/game/assets/manifests/stage-thumbnails.json` y `tests/stage-thumbnails.test.ts` detectan cambios pendientes. `npm run assets:stage-thumbs -- --check` verifica su vigencia sin escribir archivos.

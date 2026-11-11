@@ -4,5 +4,5 @@
     "types": ["vite/client"],
     "noUncheckedSideEffectImports": true
   },
-  "include": [".", "../tests/browser"]
+  "include": [".", "../tests/manual"]
 }

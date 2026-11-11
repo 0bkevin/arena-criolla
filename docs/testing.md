@@ -35,7 +35,7 @@ measure elements, not page scroll width.
 - `npm run build`: type checking and the Vite client build.
 - `node scripts/ci/select-checks.mjs origin/main`: what CI would run for your branch.
 - `npm run perf:engine` / `npm run perf:network`: opt-in performance probes.
-- `tests/browser/README.md`: manual fixtures for real browser behavior.
+- `tests/manual/README.md`: manual fixtures for real browser behavior.
 
 ## CI and delivery
 
@@ -43,7 +43,7 @@ measure elements, not page scroll width.
 
 - **Tests:** a test file runs when it, or any file it imports transitively (or
   reads by repository path), changed. Changes to `package.json`, the lockfile,
-  `tsconfig.json`, `tests/helpers`, `tests/fixtures`, workflows or the selector
+  `tsconfig.json`, `tests/helpers`, workflows or the selector
   itself run every test.
 - **Layout (`test:ui`)** for changes to `src/`, `shared/`, `public/`, `index.html`,
   the Vite config or `e2e/`.
