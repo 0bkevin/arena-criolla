@@ -75,8 +75,14 @@ const randomHex = (bytes: number) =>
     .join("");
 
 /** Let Node exit while only a reconnect grace timer is pending. */
-function unref(timer: ReturnType<typeof setTimeout>) {
-  if (typeof timer === "object" && "unref" in timer) timer.unref();
+function unref(timer: unknown) {
+  if (
+    typeof timer === "object" &&
+    timer !== null &&
+    "unref" in timer &&
+    typeof timer.unref === "function"
+  )
+    timer.unref();
 }
 
 export class Lobby<Socket> {
@@ -554,7 +560,8 @@ export class Lobby<Socket> {
 
   private cancelResumeTimer(client: LobbyClient<Socket>) {
     if (!client.resumeToken) return;
-    clearTimeout(this.resumeTimers.get(client.resumeToken));
+    const timer = this.resumeTimers.get(client.resumeToken);
+    if (timer !== undefined) clearTimeout(timer);
     this.resumeTimers.delete(client.resumeToken);
   }
 
