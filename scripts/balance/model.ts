@@ -278,8 +278,11 @@ export function buildReport(options: Options) {
         m.winner !== "draw" &&
         m.fighters[m.winner] === f.id,
     ).length;
-    const losses = games.flatMap((m) =>
+    const stocksTaken = games.flatMap((m) =>
       m.stocks.filter((s) => m.fighters[1 - s.loser] === f.id),
+    );
+    const stocksLost = games.flatMap((m) =>
+      m.stocks.filter((s) => m.fighters[s.loser] === f.id),
     );
     const damage = games.reduce(
       (sum, m) => sum + m.sides[m.fighters.indexOf(f.id)]!.damage,
@@ -307,7 +310,10 @@ export function buildReport(options: Options) {
         .length,
       wins,
       winRate: games.length ? wins / games.length : 0,
-      stockSeconds: stats(losses.map((s) => s.elapsedTicks / HZ)),
+      stocksTakenSeconds: stats(stocksTaken.map((s) => s.elapsedTicks / HZ)),
+      stocksLost: stocksLost.length,
+      stocksLostRingOuts: stocksLost.filter((s) => s.cause === "ring-out")
+        .length,
       damagePerSecond: seconds ? damage / seconds : 0,
       secondsPer100: damage ? (100 * seconds) / damage : 0,
       hitsPer100: damage
@@ -323,8 +329,9 @@ export function buildReport(options: Options) {
         0,
         ...games.map((m) => m.sides[m.fighters.indexOf(f.id)]!.biggestHit),
       ),
-      hpKOs: losses.filter((s) => s.cause === "hp").length,
-      ringOuts: losses.filter((s) => s.cause === "ring-out").length,
+      stocksTakenHpKOs: stocksTaken.filter((s) => s.cause === "hp").length,
+      stocksTakenRingOuts: stocksTaken.filter((s) => s.cause === "ring-out")
+        .length,
       maxBurst: Math.max(0, ...bursts),
     };
   });
@@ -367,6 +374,7 @@ export function buildReport(options: Options) {
     pairs,
     overall: {
       stockSeconds: stats(allStocks.map((s) => s.elapsedTicks / HZ)),
+      matchSeconds: stats(matches.map((m) => m.seconds)),
       fighterWinRates: stats(fighters.map((f) => f.winRate)),
       fighterDps: stats(fighters.map((f) => f.damagePerSecond)),
       secondsPer100: stats(fighters.map((f) => f.secondsPer100)),

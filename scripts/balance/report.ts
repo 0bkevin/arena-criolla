@@ -48,6 +48,7 @@ HP loss is attributed to a matching new hit effect's owner and impact in the sam
 
 ## Overall
 
+- Match time: mean ${n(report.overall.matchSeconds.mean)} s.
 - Stock time: mean ${n(s.mean)} s; median ${n(s.median)} s; IQR ${n(s.q1)}–${n(s.q3)} s (n=${s.count}).
 - HP KOs: ${report.overall.hpKOs}; ring-outs: ${report.overall.ringOuts} (${pct(report.overall.ringOuts / (report.overall.hpKOs + report.overall.ringOuts || 1))}); launched ${report.overall.launched}, self ${report.overall.self}. Ring-out HP median (IQR): ${summary(report.overall.ringOutHp)}.
 - Outcomes: ${JSON.stringify(report.overall.outcomes)}.
@@ -63,8 +64,8 @@ HP loss is attributed to a matching new hit effect's owner and impact in the sam
 
 Win rate uses all matches, including draws and unfinished games. Source columns are percentages of HP removed. Flags mark values outside 1.5 × IQR from the cast quartiles; source flags are prefixed by their source name.
 
-| Fighter | Wins / games | Win % | Stock mean / median s | DPS | Sec / 100 | Hits / 100 | Light / heavy / special / definitive / unknown % | HP / ring-out KOs | Largest HP drop | Max burst | Outliers |
-|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|---|`);
+| Fighter | Wins / games | Win % | Stocks taken mean / median s | DPS | Sec / 100 | Hits / 100 | Light / heavy / special / definitive / unknown % | Stocks taken HP / ring-out KOs | Stocks lost / ring-outs | Largest HP drop | Max burst | Outliers |
+|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|---:|---|`);
 for (const f of sorted) {
   const sourceShares = shares(f);
   const flags = [
@@ -85,7 +86,7 @@ for (const f of sorted) {
       .map(([name]) => name + " share"),
   ];
   console.log(
-    `| ${f.id} | ${f.wins}/${f.games} | ${pct(f.winRate)} | ${n(f.stockSeconds.mean)} / ${n(f.stockSeconds.median)} | ${n(f.damagePerSecond)} | ${n(f.secondsPer100)} | ${n(f.hitsPer100)} | ${sourceShares.map(pct).join(" / ")} | ${f.hpKOs} / ${f.ringOuts} | ${n(f.biggestHit)} | ${n(f.maxBurst)} | ${flags.join(", ")} |`,
+    `| ${f.id} | ${f.wins}/${f.games} | ${pct(f.winRate)} | ${n(f.stocksTakenSeconds.mean)} / ${n(f.stocksTakenSeconds.median)} | ${n(f.damagePerSecond)} | ${n(f.secondsPer100)} | ${n(f.hitsPer100)} | ${sourceShares.map(pct).join(" / ")} | ${f.stocksTakenHpKOs} / ${f.stocksTakenRingOuts} | ${f.stocksLost} / ${f.stocksLostRingOuts} | ${n(f.biggestHit)} | ${n(f.maxBurst)} | ${flags.join(", ")} |`,
   );
 }
 console.log(
