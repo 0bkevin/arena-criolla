@@ -1,3 +1,5 @@
+import type { WorkerReply, WorkerRequest } from "./worker-protocol";
+
 /** A failed/blocked worker falls back to the same algorithm, never lesser quality. */
 export function preparationWorker<Input, Output>(
   create: () => Worker,
@@ -29,12 +31,12 @@ export function preparationWorker<Input, Output>(
     if (!worker) {
       try {
         worker = create();
-        worker.onmessage = ({ data }) => {
+        worker.onmessage = ({ data }: MessageEvent<WorkerReply<Output>>) => {
           const job = pending.get(data.id);
           if (!job) return;
           clearTimeout(job.timer);
           pending.delete(data.id);
-          job.resolve(data.error ? fallback(job.input) : data.result);
+          job.resolve("error" in data ? fallback(job.input) : data.result);
         };
         worker.onerror = fail;
         worker.onmessageerror = fail;
@@ -48,7 +50,9 @@ export function preparationWorker<Input, Output>(
       pending.set(id, { resolve, input, timer: setTimeout(fail, 30_000) });
       // Keep the input available for recovery. Large output buffers are transferred.
       try {
-        worker!.postMessage({ id, input });
+        if (!worker) throw new Error("The preparation worker is unavailable");
+        const request: WorkerRequest<Input> = { id, input };
+        worker.postMessage(request);
       } catch {
         fail();
       }

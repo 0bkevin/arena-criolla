@@ -21,6 +21,8 @@ export type ScoreRequest = { sampleRate: number; length: number } & (
     }
 );
 
+export type SynthesizedScore = ReturnType<typeof synthesizeScore>;
+
 export function synthesizeScore(request: ScoreRequest) {
   const left = new Float32Array(request.length);
   const right = new Float32Array(request.length);

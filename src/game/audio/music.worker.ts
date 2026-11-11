@@ -1,15 +1,20 @@
-import { synthesizeScore, type ScoreRequest } from "./music-preparation";
+import type { WorkerReply, WorkerRequest } from "../assets/worker-protocol";
+import {
+  synthesizeScore,
+  type ScoreRequest,
+  type SynthesizedScore,
+} from "./music-preparation";
 
-self.onmessage = ({
-  data,
-}: MessageEvent<{ id: number; input: ScoreRequest }>) => {
+const reply = (
+  message: WorkerReply<SynthesizedScore>,
+  transfer: ArrayBuffer[] = [],
+) => self.postMessage(message, { transfer });
+
+self.onmessage = ({ data }: MessageEvent<WorkerRequest<ScoreRequest>>) => {
   try {
     const result = synthesizeScore(data.input);
-    self.postMessage(
-      { id: data.id, result },
-      { transfer: [result.left.buffer, result.right.buffer] },
-    );
+    reply({ id: data.id, result }, [result.left.buffer, result.right.buffer]);
   } catch {
-    self.postMessage({ id: data.id, error: true });
+    reply({ id: data.id, error: true });
   }
 };
