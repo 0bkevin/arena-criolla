@@ -1,12 +1,12 @@
 .app-shell .site-footer {
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 16px;
   color: #9eafc6;
   border-top: 0;
   margin: 0 auto;
   padding: 8px 0 max(16px, env(safe-area-inset-bottom));
-  text-align: center;
+  text-align: left;
 }
 .footer-brand {
   display: inline-flex;
@@ -87,14 +87,6 @@
 .footer-acknowledgements:hover,
 .footer-acknowledgements:focus-visible {
   color: var(--coin);
-}
-@media (min-width: 901px) {
-  .app-shell .site-footer {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 16px;
-    text-align: left;
-  }
 }
 .in-lobby .site-footer {
   display: flex;
