@@ -1,31 +1,21 @@
 import type { Choreography, Gesture, Hand } from "./choreography";
+import { REST } from "./routine";
 import type { FounderFighterId } from "../../../shared/roster/roster";
 
-const rest = {
-  head: 0,
-  lean: 0,
-  back: 0,
-  front: 0,
-  backX: 0,
-  backY: 0,
-  frontX: 0,
-  frontY: 0,
-  cloth: 0,
-};
 function routine(
   name: string,
-  accent: Partial<typeof rest>,
+  accent: Partial<typeof REST>,
   hands: readonly [Hand, Hand],
 ): Choreography {
   const key = (at: number, strength: number): Gesture =>
     ({
       at,
       ...Object.fromEntries(
-        Object.entries(rest).map(([field]) => [
+        Object.entries(REST).map(([field]) => [
           field,
           strength === 0
             ? 0
-            : (accent[field as keyof typeof rest] ?? 0) * strength,
+            : (accent[field as keyof typeof REST] ?? 0) * strength,
         ]),
       ),
     }) as Gesture;

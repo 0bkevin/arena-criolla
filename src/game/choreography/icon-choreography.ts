@@ -1,27 +1,16 @@
 import type { Choreography, Gesture, Hand } from "./choreography";
+import { REST } from "./routine";
 import type { IconFighterId } from "../../../shared/roster/roster";
-
-const rest = {
-  head: 0,
-  lean: 0,
-  back: 0,
-  front: 0,
-  backX: 0,
-  backY: 0,
-  frontX: 0,
-  frontY: 0,
-  cloth: 0,
-};
 
 function greeting(
   name: string,
   hands: readonly [Hand, Hand],
-  preparation: Partial<typeof rest>,
-  accent: Partial<typeof rest>,
+  preparation: Partial<typeof REST>,
+  accent: Partial<typeof REST>,
 ): Choreography {
-  const key = (at: number, pose: Partial<typeof rest>): Gesture => ({
+  const key = (at: number, pose: Partial<typeof REST>): Gesture => ({
     at,
-    ...rest,
+    ...REST,
     ...pose,
   });
   const release = Object.fromEntries(
