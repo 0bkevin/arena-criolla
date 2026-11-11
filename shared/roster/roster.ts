@@ -1,5 +1,14 @@
 import fighterData from "./fighters.json";
 import stageData from "./stages.json";
+import type {
+  Ability,
+  FighterCategory,
+  FighterId,
+  STAGE_AMBIENCES,
+  STAGE_THEMES,
+  StageId,
+} from "./ids";
+import { readFighters, readStages } from "./roster-data";
 
 export const SUPER_ENERGY_COST = 90;
 export const SUPER_CHARGE_SECONDS = 0.3;
@@ -10,127 +19,18 @@ export const SUPER_CHARGE_SECONDS_LABEL = String(SUPER_CHARGE_SECONDS).replace(
 );
 export const SUPER_INTERRUPT_ENERGY_COST = 15;
 
-export type FounderFighterId =
-  "enrique" | "jesus" | "carlos" | "victor" | "juan" | "kevin" | "inaki";
-export type IconFighterId =
-  "lorenzo" | "carolina" | "dayana" | "deyna" | "bolivar" | "edgar" | "melanio";
-
-export type BuiltInFighterId =
-  | FounderFighterId
-  | IconFighterId
-  | "zavarce"
-  | "vallenilla"
-  | "javier"
-  | "capriles"
-  | "renny"
-  | "gomez"
-  | "simon"
-  | "conde"
-  | "emilio"
-  | "maite"
-  | "oscar"
-  | "puma"
-  | "chataing"
-  | "george"
-  | "mcm"
-  | "silbon"
-  | "llorona"
-  | "sayona"
-  | "lionza"
-  | "florentino"
-  | "diablo"
-  | "knoche"
-  | "momoy"
-  | "tiotigre"
-  | "tioconejo"
-  | "ali"
-  | "gualberto"
-  | "reynaldo"
-  | "dudamel"
-  | "danny"
-  | "nacho"
-  | "sarcos"
-  | "yordano"
-  | "lila"
-  | "rummy"
-  | "chiqui"
-  | "norkys"
-  | "gabriela"
-  | "amanda"
-  | "lele"
-  | "dorangel"
-  | "giuseppe";
-export type FighterId = BuiltInFighterId;
-
-export type StageId =
-  | "caracas"
-  | "guaira"
-  | "valencia"
-  | "canaima"
-  | "maracaibo"
-  | "merida"
-  | "coro"
-  | "roques"
-  | "poliedro";
-export type Ability =
-  | "courier"
-  | "installments"
-  | "spin"
-  | "sprint"
-  | "broadcast"
-  | "command"
-  | "cuatro"
-  | "whirl"
-  | "echo"
-  | "spotlight"
-  | "salsa"
-  | "roar"
-  | "static"
-  | "punchline"
-  | "rally"
-  | "whistle"
-  | "undertow"
-  | "haunt"
-  | "wildspirit"
-  | "verse"
-  | "hellfire"
-  | "elixir"
-  | "roots"
-  | "pounce"
-  | "trickster"
-  | "strum"
-  | "tremolo"
-  | "lasso"
-  | "cadenza"
-  | "crescendo"
-  | "syncopate"
-  | "jackpot"
-  | "fountain"
-  | "cocotero"
-  | "zapateo"
-  | "runway"
-  | "pivot"
-  | "mirror"
-  | "curtain"
-  | "prank"
-  | "audit"
-  | "ledger"
-  | "settlement"
-  | "ignition"
-  | "slash"
-  | "grid"
-  | "remittance"
-  | "polar"
-  | "couture"
-  | "corona"
-  | "football"
-  | "liberator"
-  | "retake"
-  | "bite"
-  | "banknotes"
-  | "signal";
-
-export type FighterCategory = "culture" | "folklore" | "founders";
+export {
+  FIGHTER_IDS,
+  STAGE_IDS,
+  type Ability,
+  type FighterCategory,
+  type FighterId,
+  type FounderFighterId,
+  type IconFighterId,
+  type StageId,
+} from "./ids";
+/** Every fighter here ships with the game; there are no custom fighters. */
+export type BuiltInFighterId = FighterId;
 
 export interface FighterDefinition {
   id: FighterId;
@@ -155,7 +55,7 @@ export interface FighterDefinition {
   combos: [string, string, string];
 }
 
-export const BUILT_IN_FIGHTERS = fighterData as FighterDefinition[];
+export const BUILT_IN_FIGHTERS = readFighters(fighterData);
 export const FIGHTERS = [...BUILT_IN_FIGHTERS];
 const builtInDefinitions = new Map(
   BUILT_IN_FIGHTERS.map((fighter) => [fighter.id, fighter]),
@@ -174,12 +74,12 @@ export interface StageDefinition {
   time: string;
   color: string;
   artStyle?: "pixel";
-  theme: "plaza" | "pier" | "jungle" | "bridge" | "snow" | "sand" | "concert";
-  ambience: "city" | "coast" | "forest" | "wind" | "crowd";
+  theme: (typeof STAGE_THEMES)[number];
+  ambience: (typeof STAGE_AMBIENCES)[number];
   description: string;
   platforms: Platform[];
 }
-export const STAGES = stageData as StageDefinition[];
+export const STAGES = readStages(stageData);
 const stageDefinitions = new Map(STAGES.map((stage) => [stage.id, stage]));
 // Simulation and rendering share the same positions, including in online rooms.
 // Motion is derived from the match tick rather than the browser's clock.
