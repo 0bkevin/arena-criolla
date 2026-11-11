@@ -5,18 +5,7 @@ import {
   useState,
   type KeyboardEvent,
 } from "react";
-import {
-  ArrowRight,
-  Check,
-  CircleHelp,
-  Globe2,
-  LockKeyhole,
-  Plus,
-  Radio,
-  Trophy,
-  Volume2,
-  VolumeX,
-} from "lucide-react";
+import { Check } from "lucide-react";
 import {
   FIGHTERS,
   fighterById,
@@ -27,12 +16,10 @@ import {
 } from "../../shared/roster/roster";
 import {
   createMatch,
-  opponentOf,
   type MatchState,
   type PlayerIndex,
 } from "../../shared/engine/engine";
 import {
-  isRoomCode,
   normalizeRoomCode,
   ROOM_CODE_LENGTH,
 } from "../../shared/lobby/room-code";
@@ -52,26 +39,22 @@ import {
   sound,
   stopReactions,
 } from "../game/audio/audio";
-import {
-  loadSprite,
-  preloadAssets,
-  prefetchMatchAssets,
-} from "../game/assets/assets";
-import { warmPortraitBusts } from "../game/assets/portrait-bust";
-import { Portrait } from "../components/ui/Portrait";
+import { preloadAssets, prefetchMatchAssets } from "../game/assets/assets";
 import { FighterDetail } from "../components/lobby/FighterDetail";
 import { StageGallery } from "../components/lobby/StageGallery";
-import {
-  ArcadeLobby,
-  MIN_PAGE_SIZE,
-  rosterOrder,
-} from "../components/lobby/ArcadeLobby";
+import { ArcadeLobby } from "../components/lobby/ArcadeLobby";
 import { PixelIcon } from "../components/ui/PixelIcon";
 import { Game, type GameMode } from "../components/match/Game";
 import { Modal } from "../components/ui/Modal";
 import { Help } from "../components/help/Help";
 import { beginMobilePlay, leaveLandscape } from "../game/viewport/mobile";
-import { assetUrl } from "../game/assets/asset-url";
+import { ProgressDialog } from "../components/lobby/ProgressDialog";
+import { RoomsDialog } from "../components/lobby/RoomsDialog";
+import { RosterDialog } from "../components/lobby/RosterDialog";
+import { constrainedConnection, lobbyMatchup } from "./lobby-art";
+import { recordMatch } from "./progress";
+import { SiteFooter } from "./SiteFooter";
+import { SiteHeader } from "./SiteHeader";
 import "../styles/dialog.css";
 import "../styles/app.css";
 import "../styles/lobby.css";
@@ -83,49 +66,10 @@ import "../styles/desktop-controls.css";
 import "../styles/progress.css";
 import "../styles/fighter-moves.css";
 
-function constrainedConnection() {
-  const connection = (
-    navigator as Navigator & {
-      connection?: { saveData?: boolean; effectiveType?: string };
-    }
-  ).connection;
-  return Boolean(
-    connection?.saveData ||
-    /^(slow-)?2g$/.test(connection?.effectiveType ?? ""),
-  );
-}
+export { warmLobbyArt } from "./lobby-art";
 
-let openingMatchup: readonly [FighterId, FighterId] | undefined;
-/** Two distinct fighters for the first lobby, picked once per page load. */
-function lobbyMatchup() {
-  if (!openingMatchup || !openingMatchup.every(isFighter)) {
-    // Pick without shuffling or copying the roster.
-    const first = Math.floor(Math.random() * FIGHTERS.length);
-    const second =
-      (first + 1 + Math.floor(Math.random() * (FIGHTERS.length - 1))) %
-      FIGHTERS.length;
-    openingMatchup = [FIGHTERS[first].id, FIGHTERS[second].id];
-  }
-  return openingMatchup;
-}
-
-/**
- * Fetch the art the lobby shows first while the entrance is still playing:
- * the two contenders and the busts on the roster's first page.
- */
-export function warmLobbyArt() {
-  for (const id of lobbyMatchup())
-    void loadSprite(id, { entrance: true }).catch(() => {});
-  // A page holds at least MIN_PAGE_SIZE cards, rounded up to full rows.
-  const firstPage = [...FIGHTERS]
-    .sort((a, b) => rosterOrder(a, b))
-    .slice(0, MIN_PAGE_SIZE + 2);
-  warmPortraitBusts(firstPage.map((fighter) => fighter.id));
-}
-
-type ModalName = "help" | "fighters" | "stages" | "progress" | "rooms" | null;
-const colorStyle = (color: string): React.CSSProperties =>
-  ({ "--fighter-color": color }) as React.CSSProperties;
+export type LobbyModal =
+  "help" | "fighters" | "stages" | "progress" | "rooms" | null;
 
 export function App() {
   const [mode, setMode] = useState<GameMode>("practice");
@@ -142,7 +86,7 @@ export function App() {
   const progressRef = useRef(progress);
   progressRef.current = progress;
   const [audio, setAudio] = useState(() => getPreference("sound", true));
-  const [modal, setModal] = useState<ModalName>(null);
+  const [modal, setModal] = useState<LobbyModal>(null);
   const [detail, setDetail] = useState<FighterId | null>(null);
   const [localMatch, setLocalMatch] = useState<MatchState | null>(null);
   const [notice, setNotice] = useState("");
@@ -435,26 +379,7 @@ export function App() {
     window.scrollTo({ top: 0, behavior: "instant" });
   };
   const recordResult = (state: MatchState, index: PlayerIndex) => {
-    const saved = structuredClone(progressRef.current);
-    const local = state.players[index];
-    const won = state.winner === index;
-    saved.played++;
-    saved.bestCombo = Math.max(saved.bestCombo, local.peakCombo);
-    if (won)
-      saved.wins[local.config.fighter] =
-        (Number(saved.wins[local.config.fighter]) || 0) + 1;
-    if (mode === "local" && state.winner === 1) {
-      const second = state.players[1];
-      saved.wins[second.config.fighter] =
-        (Number(saved.wins[second.config.fighter]) || 0) + 1;
-    }
-    saved.recent.unshift({
-      fighter: local.config.fighter,
-      rival: state.players[opponentOf(index)].config.fighter,
-      won,
-      date: new Date().toISOString(),
-    });
-    saved.recent = saved.recent.slice(0, 8);
+    const saved = recordMatch(progressRef.current, state, index, mode);
     progressRef.current = saved;
     setProgress(saved);
     saveProgress(saved);
@@ -482,100 +407,32 @@ export function App() {
         .catch(() => setNotice(`Código de sala: ${network.room!.code}`));
     else setNotice(`Código de sala: ${network.room.code}`);
   };
-  const totalWins = Object.values(progress.wins).reduce<number>(
-    (a, b) => a + (Number(b) || 0),
-    0,
-  );
 
   return (
     <div className={`app-shell arcade-app ${active ? "in-match" : "in-lobby"}`}>
-      <header className="site-header page-width">
-        <button
-          className="brand"
-          aria-label="Arena Criolla, inicio"
-          onClick={() => {
-            if (!active) {
-              setModal(null);
-              window.scrollTo({
-                top: 0,
-                behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
-                  .matches
-                  ? "auto"
-                  : "smooth",
-              });
-            }
-          }}
-        >
-          <span className="brand-icon" aria-hidden="true">
-            <img
-              src={assetUrl("/assets/arena-icon.svg")}
-              width="29"
-              height="29"
-              alt=""
-            />
-          </span>
-          <span className="brand-name">
-            ARENA
-            <span>CRIOLLA</span>
-          </span>
-        </button>
-        <nav className="main-nav" aria-label="Navegación principal">
-          <button
-            className={!modal ? "active" : ""}
-            onClick={() => {
-              if (!active) setModal(null);
-            }}
-          >
-            Jugar
-          </button>
-          <button
-            className={modal === "fighters" ? "active" : ""}
-            onClick={() => setModal("fighters")}
-          >
-            Luchadores
-          </button>
-        </nav>
-        <div className="header-right">
-          <button
-            className="icon-button header-help"
-            onClick={() => setModal("help")}
-            aria-label="Cómo jugar"
-            title="Cómo jugar"
-          >
-            <CircleHelp size={19} aria-hidden="true" />
-            <span>Cómo jugar</span>
-          </button>
-          {!active && (
-            <button
-              className="icon-button header-progress"
-              onClick={() => setModal("progress")}
-              aria-label="Mi progreso"
-              title="Mi progreso"
-            >
-              <PixelIcon kind="star" size={18} />
-            </button>
-          )}
-          <span
-            className={`server-status ${network.connected ? "connected" : ""}`}
-            title={
-              network.connected
-                ? "Servidor de salas conectado"
-                : "Conectando al servidor"
-            }
-          >
-            <i />
-            {network.connected ? "En línea" : "Conectando"}
-          </span>
-          <button
-            className="icon-button"
-            onClick={toggleAudio}
-            aria-label={audio ? "Silenciar sonido" : "Activar sonido"}
-            aria-pressed={audio}
-          >
-            {audio ? <Volume2 size={19} /> : <VolumeX size={19} />}
-          </button>
-        </div>
-      </header>
+      <SiteHeader
+        active={Boolean(active)}
+        modal={modal}
+        connected={network.connected}
+        audio={audio}
+        onHome={() => {
+          if (!active) {
+            setModal(null);
+            window.scrollTo({
+              top: 0,
+              behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
+                .matches
+                ? "auto"
+                : "smooth",
+            });
+          }
+        }}
+        onPlay={() => {
+          if (!active) setModal(null);
+        }}
+        onModal={setModal}
+        onToggleAudio={toggleAudio}
+      />
 
       {active ? (
         <Game
@@ -640,32 +497,7 @@ export function App() {
         />
       )}
 
-      <footer className="site-footer page-width" ref={footer}>
-        <span className="footer-brand">
-          <img
-            src={assetUrl("/assets/arena-icon.svg")}
-            width="26"
-            height="26"
-            alt=""
-          />
-          <span className="footer-brand-name">
-            ARENA <span>CRIOLLA</span>
-          </span>
-        </span>
-        <a className="footer-acknowledgements" href="/agradecimientos">
-          Agradecimientos
-        </a>
-        <p className="footer-credit">
-          Hecho por{" "}
-          <a
-            href="https://kevinbravo.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Kevin Bravo
-          </a>
-        </p>
-      </footer>
+      <SiteFooter ref={footer} />
       {!active && !modal && !detail && !setupVisible && !footerVisible && (
         <div className="mobile-setup-dock">
           <span>
@@ -684,25 +516,7 @@ export function App() {
       )}
       {modal === "help" && <Help onClose={() => setModal(null)} />}
       {modal === "fighters" && (
-        <Modal title="Luchadores" wide onClose={() => setModal(null)}>
-          <div className="roster-grid">
-            {FIGHTERS.map((f) => (
-              <button
-                key={f.id}
-                onClick={() => setDetail(f.id)}
-                style={colorStyle(f.color)}
-              >
-                <Portrait fighter={f.id} />
-                <div>
-                  <h3>{f.name}</h3>
-                  <strong>
-                    Ver movimientos <ArrowRight size={13} />
-                  </strong>
-                </div>
-              </button>
-            ))}
-          </div>
-        </Modal>
+        <RosterDialog onDetail={setDetail} onClose={() => setModal(null)} />
       )}
       {modal === "stages" && (
         <Modal title="Escenarios" wide onClose={() => setModal(null)}>
@@ -729,213 +543,20 @@ export function App() {
         />
       )}
       {modal === "progress" && (
-        <Modal
-          title="Mi progreso"
-          className="progress-modal content-modal"
-          onClose={() => setModal(null)}
-        >
-          <div className="dialog-content progress-content">
-            <div className="progress-metrics">
-              <div>
-                <strong>{progress.played}</strong>
-                <span>Peleas</span>
-              </div>
-              <div>
-                <strong>{totalWins}</strong>
-                <span>Victorias</span>
-              </div>
-              <div>
-                <strong>{progress.bestCombo}</strong>
-                <span>Mejor racha</span>
-              </div>
-            </div>
-            {progress.recent.length > 0 ? (
-              <>
-                <h3 id="progress-history-title">Historial de peleas</h3>
-                <div
-                  className="recent-matches"
-                  role="list"
-                  aria-labelledby="progress-history-title"
-                >
-                  {progress.recent.map((m, i) => (
-                    <div key={i} role="listitem">
-                      <span className={m.won ? "won" : "lost"}>
-                        {m.won ? "VICTORIA" : "PARTIDA"}
-                      </span>
-                      <span>
-                        {fighterById(m.fighter).shortName} <small>vs.</small>{" "}
-                        {fighterById(m.rival).shortName}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <div className="empty-progress">
-                <Trophy size={29} />
-                <p>
-                  Todavía no has registrado peleas.
-                  <br />
-                  Elige tu luchador y empieza a jugar.
-                </p>
-              </div>
-            )}
-          </div>
-          <div className="dialog-footer">
-            <button
-              type="button"
-              className="dialog-done"
-              onClick={() => setModal(null)}
-            >
-              Entendido
-            </button>
-          </div>
-        </Modal>
+        <ProgressDialog progress={progress} onClose={() => setModal(null)} />
       )}
       {modal === "rooms" && (
-        <Modal
-          title="Salas en línea"
-          className="rooms-modal"
-          wide
+        <RoomsDialog
+          network={network}
+          fighter={fighter}
+          stage={stage}
+          wins={wins}
+          privateRoom={privateRoom}
+          joinCode={joinCode}
+          onPrivateRoom={setPrivateRoom}
+          onJoinCode={setJoinCode}
           onClose={() => setModal(null)}
-        >
-          <div className="lobby-meta">
-            <span>
-              <i className={network.connected ? "connected-dot" : ""} />
-              {network.connected
-                ? `${network.online} ${network.online === 1 ? "pana conectado" : "panas conectados"}`
-                : "Conectando…"}
-            </span>
-            <button
-              className="text-button"
-              onClick={() => network.send({ type: "list" })}
-            >
-              <Radio size={13} /> Actualizar
-            </button>
-          </div>
-          {network.error && (
-            <p className="form-error" role="alert">
-              {network.error}
-            </p>
-          )}
-          <div className="lobby-grid">
-            <div className="create-room-panel">
-              <div className="room-panel-heading">
-                <Plus size={20} aria-hidden="true" />
-                <h3>Crear sala</h3>
-              </div>
-              <label className="checkbox-label">
-                <input
-                  type="checkbox"
-                  checked={privateRoom}
-                  onChange={(e) => setPrivateRoom(e.target.checked)}
-                />
-                <LockKeyhole size={13} />
-                Solo entrar con código
-              </label>
-              <button
-                className="primary-button"
-                disabled={!network.connected}
-                onClick={() => {
-                  network.setError("");
-                  network.send({
-                    type: "create",
-                    fighter,
-                    stage,
-                    wins,
-                    private: privateRoom,
-                  });
-                }}
-              >
-                <Plus size={16} /> Crear sala
-              </button>
-            </div>
-            <div className="join-room-panel">
-              <h3>Entrar con código</h3>
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (!isRoomCode(joinCode)) {
-                    network.setError(
-                      "El código de sala debe tener 32 caracteres hexadecimales.",
-                    );
-                    return;
-                  }
-                  network.send({
-                    type: "join",
-                    code: joinCode,
-                    fighter,
-                    wins,
-                  });
-                }}
-              >
-                <input
-                  aria-label="Código de sala"
-                  className="plain-input code-input"
-                  value={joinCode}
-                  onChange={(e) => {
-                    setJoinCode(
-                      e.target.value
-                        .toUpperCase()
-                        .replace(/[^A-F0-9]/g, "")
-                        .slice(0, ROOM_CODE_LENGTH),
-                    );
-                    network.setError("");
-                  }}
-                  maxLength={ROOM_CODE_LENGTH}
-                  placeholder="Código de sala"
-                />
-                <button
-                  className="secondary-button"
-                  disabled={!network.connected}
-                  type="submit"
-                >
-                  Entrar <ArrowRight size={15} />
-                </button>
-              </form>
-            </div>
-          </div>
-          <div className="section-label rooms-list-heading">
-            <h2>SALAS ABIERTAS</h2>
-            <span>{network.rooms.length} disponibles</span>
-          </div>
-          {network.rooms.length === 0 ? (
-            <div className="empty-rooms">
-              <Globe2 size={27} />
-              <div>
-                <p>No hay salas abiertas. Crea una e invita a tu pana.</p>
-              </div>
-            </div>
-          ) : (
-            <div className="rooms-list">
-              {network.rooms.map((room) => (
-                <div key={room.code}>
-                  <img src={assetUrl(`/assets/${room.stage}.webp`)} alt="" />
-                  <div>
-                    <strong>{room.name}</strong>
-                    <span>
-                      {stageById(room.stage).location} · {room.players.length}/2
-                      jugadores
-                    </span>
-                  </div>
-                  <button
-                    className="secondary-button"
-                    onClick={() => {
-                      network.send({
-                        type: "join",
-                        code: room.code,
-                        fighter,
-                        wins,
-                      });
-                    }}
-                  >
-                    Unirme <ArrowRight size={14} />
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-        </Modal>
+        />
       )}
     </div>
   );
