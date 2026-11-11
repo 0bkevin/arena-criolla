@@ -86,7 +86,6 @@ export const DEFAULT_ENTRANCE_ACTION: EntranceAction = {
 const DEFAULT_FRAME_SUBSTITUTES: Partial<
   Record<(typeof DEFAULT_ENTRANCE_FIGHTERS)[number], Record<number, number>>
 > = {
-  amanda: { 4: 3, 5: 3 },
   gabriela: { 4: 3 },
   norkys: { 3: 4 },
   rummy: { 4: 3 },
