@@ -140,8 +140,10 @@ export async function makeArenaServer(
     socket.on("pong", () => unanswered.delete(socket));
     socket.on("error", () => {});
     socket.on("close", () => lobby.disconnect(client, socket));
-    socket.on("message", (raw: RawData) => {
-      if (client.socket === socket) lobby.receive(client, raw.toString());
+    // The protocol is text; like the Worker, ignore binary frames.
+    socket.on("message", (raw: RawData, isBinary: boolean) => {
+      if (client.socket === socket && !isBinary)
+        lobby.receive(client, raw.toString());
     });
   });
 
