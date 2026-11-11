@@ -59,6 +59,19 @@ function drawFrame(
   ctx.restore();
 }
 
+/** Painted frames give way to the combat stance at this progress. */
+const ENTRANCE_END = 0.9;
+/** Share of the entrance spent dissolving from and back to the stance. */
+const ENTRANCE_FADE = 0.04;
+
+/** Opacity of the painted entrance over the combat stance at `progress`. */
+export function entranceWeight(progress: number): number {
+  if (progress <= 0 || progress >= ENTRANCE_END + ENTRANCE_FADE / 2) return 0;
+  if (progress < ENTRANCE_FADE) return progress / ENTRANCE_FADE;
+  const out = (progress - (ENTRANCE_END - ENTRANCE_FADE / 2)) / ENTRANCE_FADE;
+  return Math.max(0, Math.min(1, 1 - out));
+}
+
 /** Play a painted entrance once; endpoints use the actual combat atlas. */
 export function drawEntranceAction(
   ctx: CanvasRenderingContext2D,
@@ -70,7 +83,15 @@ export function drawEntranceAction(
 ): boolean {
   const asset = sprite.entrance;
   if (!asset || !ENTRANCE_ACTIONS[id]) return false;
-  const action = sampleEntranceAction(id, progress);
+  // How much of the painted entrance shows; the rest is the combat stance.
+  const painted = entranceWeight(progress);
+  const action =
+    painted > 0
+      ? sampleEntranceAction(
+          id,
+          Math.min(Math.max(progress, 1e-4), ENTRANCE_END - 1e-4),
+        )
+      : null;
   if (action) {
     const width = asset.image.naturalWidth || asset.image.width,
       bitmapHeight = asset.image.naturalHeight || asset.image.height;
@@ -101,18 +122,35 @@ export function drawEntranceAction(
     )
       return false;
   }
-  if (!action) {
+  const stance = (alpha: number) => {
+    if (alpha <= 0) return;
+    ctx.save();
+    ctx.globalAlpha *= alpha;
     drawSprite(ctx, sprite, sprite.battleFrame, 0, 0, height, facing);
+    ctx.restore();
+  };
+  if (!action) {
+    stance(1);
+    return true;
   }
-  if (action) {
-    drawFrame(ctx, asset, action.current, height, facing, 1);
+  // Dissolve between the stance and the painted entrance at both ends instead
+  // of cutting. The outgoing pose stays opaque under the incoming one until the
+  // midpoint, so the figure never turns see-through while they overlap.
+  const fadingIn = progress < ENTRANCE_FADE;
+  const incoming = fadingIn ? painted : 1 - painted;
+  const under = Math.min(1, 2 * (1 - incoming)),
+    over = Math.min(1, 2 * incoming);
+  const entranceAlpha = fadingIn ? over : under;
+  if (fadingIn) stance(under);
+  {
+    drawFrame(ctx, asset, action.current, height, facing, entranceAlpha);
     const ball = sampleEntranceBall(id, progress);
     if (ball && asset.ball) {
       const frame = asset.ball,
         diameter = height * 0.115,
         width = (diameter * frame.width) / frame.height;
       ctx.save();
-      ctx.globalAlpha *= ball.alpha;
+      ctx.globalAlpha *= ball.alpha * entranceAlpha;
       ctx.drawImage(
         asset.image,
         frame.x,
@@ -127,5 +165,6 @@ export function drawEntranceAction(
       ctx.restore();
     }
   }
+  if (!fadingIn) stance(over);
   return true;
 }
