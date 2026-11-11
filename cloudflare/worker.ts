@@ -97,7 +97,7 @@ export default {
         return new Response(null, { status: 403 });
       return lobby(env).fetch(request);
     }
-    if (pathname === "/api/health" || pathname === "/api/rooms")
+    if (read && (pathname === "/api/health" || pathname === "/api/rooms"))
       return withHeaders(await lobby(env).fetch(request), {
         "Cache-Control": "no-store",
       });
