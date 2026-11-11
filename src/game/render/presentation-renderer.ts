@@ -228,6 +228,7 @@ export function drawPresentation(
   facing: number,
   kind: "intro" | "selection",
   reducedMotion = false,
+  repeat = false,
 ) {
   const profile = presentationById(id);
   const pose = samplePose(profile.introBeats, progress);
@@ -246,7 +247,7 @@ export function drawPresentation(
   const gesture = sampleGesture(id, progress, kind === "selection");
   const dedicated =
     !reducedMotion &&
-    drawEntranceAction(ctx, sprite, id, progress, height, facing);
+    drawEntranceAction(ctx, sprite, id, progress, height, facing, repeat);
   if (dedicated) {
     // The authored pose sequence contains the entire action; extra swaying and
     // repeated musical trails would reintroduce the old looping appearance.
