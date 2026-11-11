@@ -50,13 +50,16 @@ measure elements, not page scroll width.
 - **Type check** for TypeScript/JSON changes, **`check:assets`** for sprite and
   roster changes, **`npm audit`** for lockfile changes, and the **deploy-control
   tests** for `deploy/` changes.
+- **Worker:** the Cloudflare Worker is built (`npm run cf:build`) and an online
+  match is played against it under `wrangler dev` (`scripts/cloudflare-smoke.mjs`)
+  when the Worker, the shared lobby or the bundled site changes.
 - **Image:** the production Docker image is built and booted (HTTP and WebSocket
   smoke test) when something it ships changes; Trivy scans it when the Dockerfile
   or lockfile changes. Docs- or test-only changes skip it.
 
 The selected checks run as parallel jobs: `unit` (split into up to three shards
 of about 30 test files, one shard for small selections), `layout`, `static`
-(type check, sprites, audit, deploy controls) and `image`. Node already runs each
+(type check, sprites, audit, deploy controls), `worker` and `image`. Node already runs each
 shard's files in parallel processes, and Playwright uses every core.
 
 `validate` is the single required check. It fails if any job that ran failed or

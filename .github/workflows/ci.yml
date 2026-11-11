@@ -33,6 +33,7 @@ jobs:
       image: ${{ steps.select.outputs.image }}
       scan: ${{ steps.select.outputs.scan }}
       e2e: ${{ steps.select.outputs.e2e }}
+      worker: ${{ steps.select.outputs.worker }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -137,6 +138,34 @@ jobs:
         run: |
           python3 -B deploy/test_install_release.py
           bash -n deploy/receive-release deploy/install-delivery-controls.sh
+  # Builds the production Worker and plays an online match against it locally.
+  worker:
+    needs: plan
+    if: needs.plan.outputs.worker == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Build the Worker and its static assets
+        run: npm run cf:build
+      - name: Smoke-test the Worker under wrangler dev
+        env:
+          WRANGLER_SEND_METRICS: "false"
+        run: |
+          set -euo pipefail
+          npx wrangler dev --port 8799 --ip 127.0.0.1 > wrangler.log 2>&1 &
+          for _ in $(seq 1 60); do
+            curl -sf http://127.0.0.1:8799/api/health > /dev/null && break
+            sleep 1
+          done
+          node scripts/cloudflare-smoke.mjs http://127.0.0.1:8799 || { cat wrangler.log; exit 1; }
   # Builds and smoke-tests the image for changes to what it ships.
   image:
     needs: plan
@@ -147,13 +176,13 @@ jobs:
   # The required check: fails if any job that ran failed or was cancelled.
   validate:
     if: always()
-    needs: [plan, unit, layout, static, image]
+    needs: [plan, unit, layout, static, worker, image]
     runs-on: ubuntu-latest
     steps:
       - name: Require the selected checks
         env:
           PLAN: ${{ needs.plan.result }}
-          RESULTS: ${{ needs.unit.result }} ${{ needs.layout.result }} ${{ needs.static.result }} ${{ needs.image.result }}
+          RESULTS: ${{ needs.unit.result }} ${{ needs.layout.result }} ${{ needs.static.result }} ${{ needs.worker.result }} ${{ needs.image.result }}
         run: |
           test "$PLAN" = success
           for result in $RESULTS; do [[ "$result" =~ ^(success|skipped)$ ]]; done

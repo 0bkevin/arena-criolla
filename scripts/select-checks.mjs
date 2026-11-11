@@ -102,6 +102,9 @@ const checks = {
   "deploy-controls": /^deploy\//,
   // Browser layout checks for anything that changes what the lobby or arena shows.
   e2e: /^(src\/|index\.html|vite\.config\.ts|public\/|shared\/|e2e\/|playwright\.config\.ts$)/,
+  // The production Worker: its adapter, the shared lobby and the bundled site.
+  worker:
+    /^(cloudflare\/|shared\/|src\/|public\/|index\.html|vite\.config\.ts|wrangler\.jsonc|scripts\/cloudflare-(prepare|smoke)\.mjs)/,
   // Anything the Docker build copies, plus the smoke test it runs.
   image:
     /^(Dockerfile|\.dockerignore|index\.html|vite\.config\.ts|src\/|shared\/|server\/|public\/|scripts\/security-smoke\.mjs)/,
