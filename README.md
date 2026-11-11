@@ -31,16 +31,25 @@ Abre [localhost:5173](http://localhost:5173). También puedes entrar desde otro 
 
 ## Cómo está construido
 
-React y TypeScript para la interfaz, Canvas 2D para la pelea y Node.js con Express y WebSocket para el servidor. El motor de combate se comparte entre cliente y servidor.
+React y TypeScript para la interfaz, Canvas 2D para la pelea y Node.js con Express y WebSocket para el servidor. El motor de combate es el mismo en el navegador y en los servidores, y las salas en línea son el mismo código en el servidor Node y en el Worker de Cloudflare que corre en producción.
 
 ```text
-src/       Interfaz, renderizado, controles y audio
-shared/    Motor de combate, personajes, escenarios y protocolo de red
-server/    Servidor HTTP, salas y simulación en línea
-public/    Imágenes, sonidos y fuentes
-tests/     Pruebas de combate, red, interfaz y assets
-deploy/    Contenedores, proxy y copias de seguridad
-docs/      Guías de operación y creación privada de personajes
+src/
+  app/          Shell de la aplicación, red, progreso y estado del lobby
+  components/   Interfaz por área: lobby, combate, ayuda, entrada y piezas comunes
+  game/         Renderizado, audio, controles, cámara, assets y coreografías
+  styles/       Hojas globales, importadas en orden de cascada
+shared/         Lo que ejecutan el navegador y los servidores
+  engine/       Motor de combate y definitivas
+  roster/       Luchadores y escenarios
+  lobby/        Salas, protocolo y bucle autoritativo de partida
+server/         Servidor Node: HTTP, WebSocket y entrega de assets
+cloudflare/     Worker y Durable Object de producción
+scripts/        Herramientas de assets, CI, Cloudflare y rendimiento
+public/         Imágenes, sonidos y fuentes
+tests/          Pruebas por área (motor, personajes, salas, render…) y fixtures manuales
+deploy/         Despliegue propio con contenedores, como referencia
+docs/           Guías de desarrollo, pruebas y despliegue
 ```
 
 ## Validar y compilar
