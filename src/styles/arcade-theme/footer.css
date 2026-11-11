@@ -51,14 +51,22 @@
   outline-offset: 4px;
   border-radius: 2px;
 }
-.footer-credit a.footer-github-link {
+.footer-github-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 28px;
-  margin-left: 8px;
+  min-height: 28px;
+  color: var(--paper);
   text-decoration: none;
-  vertical-align: middle;
+}
+.footer-github-link:hover {
+  color: var(--coin);
+}
+.footer-github-link:focus-visible {
+  outline: 2px solid var(--coin);
+  outline-offset: 4px;
+  border-radius: 2px;
 }
 .footer-acknowledgements {
   display: inline-flex;
@@ -84,7 +92,7 @@
 }
 .in-lobby .site-footer {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
   align-items: center;
   gap: 16px 48px;
   margin-top: auto;
@@ -101,7 +109,7 @@
 @media (max-width: 600px) {
   .app-shell .site-footer {
     display: grid;
-    grid-template-columns: max-content max-content;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     justify-content: space-between;
     gap: 0 8px;
     text-align: center;
@@ -110,14 +118,17 @@
     grid-column: 1 / -1;
     justify-self: center;
   }
-  .app-shell .footer-acknowledgements,
-  .app-shell .footer-credit {
+  .app-shell .footer-acknowledgements {
+    justify-self: start;
+  }
+  .app-shell .footer-github-link {
     justify-self: center;
   }
   .app-shell .footer-credit {
+    justify-self: end;
     white-space: nowrap;
   }
   .in-lobby .site-footer {
-    grid-template-columns: max-content max-content;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   }
 }
