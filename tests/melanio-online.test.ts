@@ -1,5 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { mkdtemp, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { WebSocket } from "ws";
 import { makeArenaServer } from "../server/index";
 import { emptyInput, type Input, type MatchState } from "../shared/engine";
@@ -57,17 +60,30 @@ class Peer {
 }
 
 async function listeningServer() {
-  const server = await makeArenaServer({ serveClient: false });
-  await new Promise<void>((resolve) =>
-    server.http.listen(0, "127.0.0.1", resolve),
-  );
-  const address = server.http.address();
-  assert.ok(address && typeof address === "object");
-  return {
-    server,
-    url: `ws://127.0.0.1:${address.port}/ws`,
-    close: () => server.close(),
-  };
+  const dataDir = await mkdtemp(join(tmpdir(), "melanio-online-"));
+  try {
+    const server = await makeArenaServer({
+      serveClient: false,
+      workshopEnabled: false,
+      creator: { dataDir, databasePath: ":memory:", provider: null },
+    });
+    await new Promise<void>((resolve) =>
+      server.http.listen(0, "127.0.0.1", resolve),
+    );
+    const address = server.http.address();
+    assert.ok(address && typeof address === "object");
+    return {
+      server,
+      url: `ws://127.0.0.1:${address.port}/ws`,
+      close: async () => {
+        await server.close();
+        await rm(dataDir, { recursive: true, force: true });
+      },
+    };
+  } catch (error) {
+    await rm(dataDir, { recursive: true, force: true });
+    throw error;
+  }
 }
 
 async function startPair(

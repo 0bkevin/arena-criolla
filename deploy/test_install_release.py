@@ -68,34 +68,43 @@ class ReleaseSafety(unittest.TestCase):
                                         capture_output=True, timeout=5)
                 self.assertEqual(result.returncode, 2)
 
-    def test_failed_deploy_resumes_the_previous_image(self):
-        with tempfile.TemporaryDirectory() as directory:
-            base = Path(directory)
-            environment = base / 'release.env'
-            environment.write_text('ARENA_IMAGE=old\n')
-            records = []
-            health_calls = []
+    def test_failed_deploy_only_resumes_old_image_with_unchanged_schema(self):
+        for changed_schema in (False, True):
+            with self.subTest(changed_schema=changed_schema), tempfile.TemporaryDirectory() as directory:
+                base = Path(directory)
+                environment = base / 'release.env'
+                environment.write_text('ARENA_IMAGE=old\n')
+                state = base / 'state.json'
+                backup = base / 'arena-criolla-backup.tar.gz'
+                backup.touch()
+                records = []
+                health_calls = []
 
-            def health(image):
-                health_calls.append(image)
-                if image != 'old':
-                    raise RuntimeError('Candidate failed readiness')
+                def health(image):
+                    health_calls.append(image)
+                    if image != 'old':
+                        raise RuntimeError('Candidate failed readiness')
 
-            with (patch.object(release, 'STATE', base / 'state.json'),
-                  patch.object(release, 'RELEASE_ENV', environment),
-                  patch.object(release, 'health', side_effect=health),
-                  patch.object(release, 'verify_prod_head'),
-                  patch.object(release, 'receive'), patch.object(release, 'run'),
-                  patch.object(release, 'output', return_value=REVISION),
-                  patch.object(release, 'compose') as compose,
-                  patch.object(release, 'record', side_effect=lambda item: records.append(dict(item)))):
-                with self.assertRaisesRegex(RuntimeError, 'Candidate failed readiness'):
-                    release.deploy(REVISION, [10, 1], CHECKSUM)
-            self.assertEqual(records[0]['status'], 'installing')
-            self.assertIn(unittest.mock.call('stop', 'app'), compose.call_args_list)
-            self.assertEqual(records[-1]['status'], 'failed')
-            self.assertEqual(health_calls[-1], 'old')
-            self.assertEqual(environment.read_text(), 'ARENA_IMAGE=old\n')
+                with (patch.object(release, 'STATE', state),
+                      patch.object(release, 'RELEASE_ENV', environment),
+                      patch.object(release, 'health', side_effect=health),
+                      patch.object(release, 'verify_prod_head'),
+                      patch.object(release, 'receive'), patch.object(release, 'run'),
+                      patch.object(release, 'output', return_value=REVISION),
+                      patch.object(release, 'compose') as compose,
+                      patch.object(release, 'schema', side_effect=[['original'], ['changed' if changed_schema else 'original']]),
+                      patch.object(release, 'record', side_effect=lambda item: records.append(dict(item))),
+                      patch.object(Path, 'glob', return_value=[backup])):
+                    with self.assertRaisesRegex(RuntimeError, 'Candidate failed readiness'):
+                        release.deploy(REVISION, [10, 1], CHECKSUM)
+                self.assertEqual(records[0]['status'], 'installing')
+                self.assertIn(unittest.mock.call('stop', 'app'), compose.call_args_list)
+                self.assertEqual(records[-1]['status'], 'recovery_required' if changed_schema else 'failed')
+                if changed_schema:
+                    self.assertEqual(health_calls, ['old', release.IMAGE_PREFIX + REVISION])
+                else:
+                    self.assertEqual(health_calls[-1], 'old')
+                    self.assertEqual(environment.read_text(), 'ARENA_IMAGE=old\n')
 
 
 if __name__ == '__main__':

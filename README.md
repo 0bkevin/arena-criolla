@@ -62,6 +62,8 @@ La CI solo ejecuta lo que cada cambio puede afectar: los tests que importan los 
 
 Crea una rama por tarea desde `origin/main`, mantén los cambios acotados y ejecuta las validaciones antes de abrir un PR. La configuración para nuevos hilos de T3 Code está documentada en la [guía de desarrollo](docs/development.md).
 
+El taller público de personajes está desactivado. El flujo privado del operador se documenta en [creación de personajes](docs/creator-codex.md) y [configuración en Oracle](docs/codex-operator-oracle.md).
+
 ## Licencia
 
 Código y materiales originales bajo [GPL-3.0-only](LICENSE). Los sonidos de terceros conservan CC0 y las fuentes, SIL Open Font License. Consulta las atribuciones en [ASSET-LICENSES.txt](ASSET-LICENSES.txt).

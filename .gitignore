@@ -8,7 +8,7 @@ playwright-report/
 !.env.example
 .DS_Store
 
-# Local data and artwork workspaces.
+# Private creator storage and local artwork workspaces.
 /data/
 /assets/*
 !/assets/icon.svg
@@ -17,6 +17,8 @@ playwright-report/
 /docs/*
 !/docs/deployment.md
 !/docs/development.md
+!/docs/creator-codex.md
+!/docs/codex-operator-oracle.md
 !/docs/testing.md
 
 .cloudflare/

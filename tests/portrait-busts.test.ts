@@ -19,7 +19,7 @@ import { presentationById } from "../shared/presentation";
 const manifest: Record<string, PortraitBust> = busts;
 const sha256 = (data: Buffer) =>
   createHash("sha256").update(data).digest("hex");
-const builtIn = FIGHTERS;
+const builtIn = FIGHTERS.filter((fighter) => fighter.category !== "community");
 
 test("every built-in roster card has a bust cut from its current atlas", async () => {
   assert.deepEqual(

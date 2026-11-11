@@ -1,3 +1,4 @@
+import { syncCommunityCatalog } from "../shared/community";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type {
   ClientMessage,
@@ -31,6 +32,7 @@ export function useArenaNetwork() {
   const resumeToken = useRef(savedRoomSession());
   const roomSession = useRef(resumeToken.current);
   const state = useRef<MatchState | null>(null);
+  const [communityVersion, setCommunityVersion] = useState(0);
   const [connected, setConnected] = useState(false);
   const [id, setId] = useState("");
   const [rooms, setRooms] = useState<RoomView[]>([]);
@@ -70,6 +72,10 @@ export function useArenaNetwork() {
           message = JSON.parse(event.data);
         } catch {
           return;
+        }
+        if (message.type === "community") {
+          syncCommunityCatalog(message.characters);
+          setCommunityVersion((value) => value + 1);
         }
         if (message.type === "welcome") {
           attempts = 0;
@@ -191,6 +197,7 @@ export function useArenaNetwork() {
     return true;
   }, []);
   return {
+    communityVersion,
     connected,
     id,
     rooms,

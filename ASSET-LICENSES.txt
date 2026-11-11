@@ -39,5 +39,6 @@ No Google Drive download or Git LFS setup is required for this publication.
 Research downloads, intermediate artwork, historical reports and captures are
 not required to build or run the game and are absent from the current tree.
 
-Local data under data/ is excluded. .env files and API credentials are also excluded;
+Private creator accounts, sessions, uploaded photos and generated user storage
+under data/ are excluded. .env files and API credentials are also excluded;
 .env.example contains configuration names without credentials.

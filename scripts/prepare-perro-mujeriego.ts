@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 import { BUILT_IN_FIGHTERS } from "../shared/content";
-import { normalizeGeneratedAtlas } from "../server/normalize-atlas";
+import { normalizeGeneratedAtlas } from "../server/creator/normalize-atlas";
 import {
   ACTOR_BASELINE,
   ACTOR_CELL,
@@ -96,7 +96,9 @@ export async function preparePerroMujeriego(
     Buffer.concat([
       await readFile(fileURLToPath(import.meta.url)),
       await readFile(new URL("./prepare-finale-actors.ts", import.meta.url)),
-      await readFile(new URL("../server/normalize-atlas.ts", import.meta.url)),
+      await readFile(
+        new URL("../server/creator/normalize-atlas.ts", import.meta.url),
+      ),
       Buffer.from(JSON.stringify(sharp.versions)),
     ]),
   );

@@ -1,11 +1,6 @@
 import sharp, { type OutputInfo } from "sharp";
-import { createHash } from "node:crypto";
-
-export class SpriteValidationError extends Error {
-  name = "SpriteValidationError";
-}
-const sha256 = (source: Buffer) =>
-  createHash("sha256").update(source).digest("hex");
+import { SpriteValidationError } from "./sprites";
+import { sha256 } from "./asset-bundle";
 
 // Image generation does not guarantee exact cell boundaries. Isolate complete
 // generated silhouettes before the strict game packer; never reconstruct pixels.

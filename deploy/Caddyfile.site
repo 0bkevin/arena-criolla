@@ -10,7 +10,10 @@ http://www.arenacriolla.com, https://www.arenacriolla.com,
 http://arena.kevinbravo.com, https://arena.kevinbravo.com,
 http://arenacriolla.161-153-114-230.sslip.io, https://arenacriolla.161-153-114-230.sslip.io {
 	@index path_regexp (?i)^/index[.]html/?$
+	@workshop path_regexp (?i)^/create(?:/.*)?$
 	route {
+		# The workshop remains temporarily unavailable, as in the application.
+		redir @workshop https://arenacriolla.com/ 302
 		# Rewrite only the path, keeping the raw invitation query unchanged.
 		rewrite @index /
 		redir https://arenacriolla.com{uri} 308

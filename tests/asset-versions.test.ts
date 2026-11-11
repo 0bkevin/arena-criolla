@@ -21,6 +21,10 @@ test("assetUrl versions known public files and leaves unknown URLs alone", () =>
     assetUrl("/fonts/dm-sans-400.woff2"),
     `/fonts/dm-sans-400.woff2?v=${manifest["/fonts/dm-sans-400.woff2"]}`,
   );
+  assert.equal(
+    assetUrl("/api/community/assets/custom_1/sprite.webp"),
+    "/api/community/assets/custom_1/sprite.webp",
+  );
   assert.equal(assetUrl("/assets/missing.webp"), "/assets/missing.webp");
 });
 
@@ -50,6 +54,11 @@ test("only current versions are immutable, including negotiated backgrounds", as
     process.chdir(folder);
     server = await makeArenaServer({
       production: true,
+      creator: {
+        dataDir: path.join(folder, "data"),
+        databasePath: ":memory:",
+        provider: null,
+      },
     });
   } finally {
     process.chdir(cwd);
