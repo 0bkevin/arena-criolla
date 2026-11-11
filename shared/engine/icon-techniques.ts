@@ -7,7 +7,7 @@ export const ICON_TECHNIQUES = {
     recovery: 53,
     range: 520,
     height: 150,
-    damage: 7,
+    damage: 5.9,
     force: 4,
     projectile: {
       speed: 8,
