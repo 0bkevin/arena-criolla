@@ -11,3 +11,9 @@ export const LIGHT_HEAVY_BONUS = 2;
 export const LIGHT_LIGHT_HEAVY_BONUS = 4;
 /** Bonus for a combo into a definitive. */
 export const SUPER_BONUS = 7;
+/**
+ * HP lost for falling out of the arena. It ignores armor and transformation,
+ * so it is the same for every fighter. A fall that this amount would leave at
+ * 0 HP or less costs the stock instead, never more than this much health.
+ */
+export const RING_OUT_DAMAGE = 30;

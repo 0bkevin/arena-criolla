@@ -1,18 +1,19 @@
-// Lost stocks and the end of a match, by knockout or by time.
+// Ring-outs, lost stocks and the end of a match, by knockout or by time.
 import { WORLD } from "./arena";
 import { fighterById } from "../roster/roster";
 import { runwayContacts, supportRunway } from "./finales/field-finales";
 import { effect, hurt } from "./combat";
+import { RING_OUT_DAMAGE } from "./damage-values";
 import { PLAYERS, type MatchState, type PlayerIndex } from "./types";
 
-function loseStock(s: MatchState, i: PlayerIndex) {
+/** Clear the fighter's ongoing actions and mark where they left the arena. */
+function leaveArena(s: MatchState, i: PlayerIndex) {
   const p = s.players[i];
   delete p.bufferedAttack;
   delete p.bufferedSuperTicks;
   s.projectiles = s.projectiles.filter(
     (shot) => !shot.tether || shot.owner !== i,
   );
-  p.stocks--;
   p.superChargeTicks = 0;
   delete p.knockoutDelay;
   delete p.transformation;
@@ -33,16 +34,16 @@ function loseStock(s: MatchState, i: PlayerIndex) {
       direction: p.x < WORLD.x + WORLD.width / 2 ? -1 : 1,
     },
   );
-  if (p.stocks <= 0) {
-    p.hp = 0;
-    return;
-  }
+}
+
+/** Return a fighter to their spawn point, briefly protected. */
+function respawn(s: MatchState, i: PlayerIndex) {
+  const p = s.players[i];
   p.x = i === 0 ? 330 : 750;
   p.y = 260;
   p.vx = 0;
   p.recoilVx = 0;
   p.vy = 0;
-  p.hp = 100;
   p.grounded = false;
   p.supportPlatform = null;
   p.dropThrough = 0;
@@ -56,17 +57,44 @@ function loseStock(s: MatchState, i: PlayerIndex) {
   p.streak = 0;
 }
 
+function loseStock(s: MatchState, i: PlayerIndex) {
+  const p = s.players[i];
+  p.stocks--;
+  leaveArena(s, i);
+  if (p.stocks <= 0) {
+    p.hp = 0;
+    return;
+  }
+  p.hp = 100;
+  respawn(s, i);
+}
+
+/** A ring-out costs a fixed amount of health, or the stock if that is all left. */
+function fall(s: MatchState, i: PlayerIndex) {
+  const p = s.players[i];
+  if (p.hp <= RING_OUT_DAMAGE) {
+    loseStock(s, i);
+    return;
+  }
+  p.hp -= RING_OUT_DAMAGE;
+  leaveArena(s, i);
+  respawn(s, i);
+}
+
+function outOfArena(p: MatchState["players"][number]) {
+  return (
+    p.x < WORLD.x - 120 ||
+    p.x > WORLD.x + WORLD.width + 120 ||
+    p.y > WORLD.y + WORLD.height + 140
+  );
+}
+
 export function resolveStocks(s: MatchState) {
   for (const i of PLAYERS) {
     const p = s.players[i];
     if (p.stocks <= 0) continue;
-    if (
-      (p.hp <= 0 && !p.knockoutDelay) ||
-      p.x < WORLD.x - 120 ||
-      p.x > WORLD.x + WORLD.width + 120 ||
-      p.y > WORLD.y + WORLD.height + 140
-    )
-      loseStock(s, i);
+    if (p.hp <= 0 && !p.knockoutDelay) loseStock(s, i);
+    else if (outOfArena(p)) fall(s, i);
   }
   const [first, second] = s.players;
   if (s.players.some((p) => p.hp <= 0 && (p.knockoutDelay ?? 0) > 0)) return;
