@@ -11,4 +11,3 @@ playwright.config.ts
 test-results
 *.log
 .env*
-data
