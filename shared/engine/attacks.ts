@@ -1,4 +1,12 @@
 // Starting, timing and landing attacks, specials and definitives.
+import {
+  LIGHT_DAMAGE,
+  HEAVY_DAMAGE,
+  SUPER_DAMAGE,
+  LIGHT_HEAVY_BONUS,
+  LIGHT_LIGHT_HEAVY_BONUS,
+  SUPER_BONUS,
+} from "./damage-values";
 import { WORLD } from "./arena";
 import { ARENA_FINALES, isArenaFinalist } from "./finales/arena-finales";
 import { SUPER_ENERGY_COST, fighterById } from "../roster/roster";
@@ -91,17 +99,17 @@ export function beginAttack(
   if (sequence.endsWith("light,heavy")) {
     p.combo = def.combos[0];
     p.comboTick = s.tick;
-    p.comboBonus = 3;
+    p.comboBonus = LIGHT_HEAVY_BONUS;
   }
   if (sequence === "light,light,heavy") {
     p.combo = def.combos[1];
     p.comboTick = s.tick;
-    p.comboBonus = 7;
+    p.comboBonus = LIGHT_LIGHT_HEAVY_BONUS;
   }
   if (attack === "super") {
     p.combo = def.combos[2];
     p.comboTick = s.tick;
-    p.comboBonus = 12;
+    p.comboBonus = SUPER_BONUS;
   }
   if (
     attack === "special" ||
@@ -242,7 +250,8 @@ function advanceStandaloneDefinitive(
       beginFieldFinale(
         s,
         i,
-        (28 * def.damage + p.comboBonus) * outgoingDamageMultiplier(p),
+        (SUPER_DAMAGE * def.damage + p.comboBonus) *
+          outgoingDamageMultiplier(p),
       );
     }
     if (p.config.fighter === "deyna" && p.attackTick >= 24) {
@@ -270,7 +279,9 @@ function advanceStandaloneDefinitive(
         growth: shot.growth,
         maxRadius: shot.maxRadius,
         force: shot.force,
-        damage: (28 * def.damage + p.comboBonus) * outgoingDamageMultiplier(p),
+        damage:
+          (SUPER_DAMAGE * def.damage + p.comboBonus) *
+          outgoingDamageMultiplier(p),
       });
       effect(
         s,
@@ -419,11 +430,11 @@ function strike(
     }
     const damage =
       (attack === "light"
-        ? 7
+        ? LIGHT_DAMAGE
         : attack === "heavy"
-          ? 13
+          ? HEAVY_DAMAGE
           : attack === "super"
-            ? 28
+            ? SUPER_DAMAGE
             : technique.damage) *
         def.damage +
       p.comboBonus;
