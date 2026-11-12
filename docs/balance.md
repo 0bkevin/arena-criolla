@@ -303,6 +303,34 @@ nine starting-health selections, including 9, 10 and 20 HP; its old minimum
 reference line is removed. Build, TypeScript and formatting checks pass. All
 12 browser layout checks pass in the nonhidden source copy described below.
 
+### Adversarial review
+
+The follow-up review found no reproducible gameplay defect. Six additional
+regressions bring the full suite to **560 passing tests**. They exercise mixed
+lethal/surviving simultaneous falls in both seat orders, an actual heavy hit
+followed by a boundary exit in the same tick, and timeout scoring after fall
+damage. Real WebSocket clients verify matching snapshots, the strict cutoff,
+energy/transformation preservation, immediate jump input, protection ending on
+attack, final-stock winners/draws, win counts and clean rematch state.
+
+A seeded mixed-input stress run (`0x1a8b6f3`) covered **118,200 simulation steps**
+in 112 runs spanning all 56 fighters and nine stages. It included captures,
+field finales, transformations, hitstop and hit-driven boundary exits. Every
+step replayed identically after a JSON round trip; health, stocks, energy and
+immunity stayed within their invariants, and no exit charged twice. An
+independent timer model also matched **327,680** seeded immunity transitions,
+including cancellation and overlapping dash/technique protection. Build,
+TypeScript, formatting and whitespace checks pass.
+
+One reporting description needed clarification: the launched/self proxy uses
+non-fall HP loss no more than 90 simulation steps earlier, including the current
+step, and resets after each return or stock loss. An independent reconstruction
+of all **59,534** fall/ring-out classifications in the existing current-policy
+Caracas report agreed with the recorder. This checks accounting and timing,
+not whether the last hit actually caused a fall. No gameplay constants changed
+in this review. These automated checks do not establish human enjoyment or
+exhaust every possible move, stage phase and network condition.
+
 ### Historical percentage-plus-minimum verification
 
 The intermediate percentage-plus-minimum policy is implemented by commit `8586139`. It keeps
