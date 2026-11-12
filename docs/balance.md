@@ -202,6 +202,308 @@ respectively. Dayana wins 37.73% and 45.45%, and Juan wins 37.50% and 33.41%,
 respectively. Damage rates and win rates are proxies, not a validated
 competitive tier list.
 
+## Ring-out penalty
+
+The goal of #76 is to let a player recover from a fall and continue fighting.
+Falling out of the arena originally removed all remaining health and one stock.
+The selected rule separates the health penalty from the stock-loss threshold:
+a fall with **10 HP or more removes exactly 40% of current health**. A fighter
+with **less than 10 HP before the fall loses the stock**. There is no minimum
+HP damage. This keeps the percentage consistent at 20 HP and other low-health
+values while retaining a clear end to repeated escapes near defeat.
+
+| Location           | Value                           | Selected rule                                  |
+| ------------------ | ------------------------------- | ---------------------------------------------- |
+| `damage-values.ts` | `RING_OUT_DAMAGE_FRACTION`      | 0.4 of current HP for a surviving fall         |
+| `damage-values.ts` | `RING_OUT_STOCK_LOSS_THRESHOLD` | lose the stock only below 10 HP before falling |
+
+### Current behavior
+
+Calculate the penalty once from health immediately before leaving the arena:
+`hp < 10 ? hp : 0.4 * hp`. The stock-loss check uses health **before** the
+penalty. Fractional HP is retained, matching ordinary combat; the penalty is
+not rounded up or down at every fall.
+
+| HP before fall | HP lost | HP after fall |
+| -------------: | ------: | ------------: |
+|            100 |      40 |            60 |
+|             75 |      30 |            45 |
+|             50 |      20 |            30 |
+|             25 |      10 |            15 |
+|             20 |       8 |            12 |
+|             15 |       6 |             9 |
+|             10 |       4 |             6 |
+|           9.99 |    9.99 |    stock lost |
+
+A surviving fall preserves the stock, energy and active transformation, and
+returns the fighter to their normal spawn. The penalty ignores armor and
+transformation multipliers: equal starting health produces the same loss for
+every fighter and seat. Ordinary jumps, platform landings, and recoverable trips
+beyond the floor edge do not incur damage; crossing the left, right, or bottom
+blast boundary triggers a fall. Crossing multiple boundaries in a tick still
+charges once. Returning inside the arena prevents repeat charges for that fall.
+
+A fighter at exactly 10 HP survives a fall with 6 HP. A fighter at 15 HP
+survives with 9 HP; the next fall then loses the stock because it starts below 10. Losing a stock does not carry damage into the next stock. On the final
+stock, a fall starting below 10 HP ends the match. Simultaneous lethal falls
+can still produce a draw.
+
+The HUD rounds to tenths below the cutoff, keeping the displayed value below
+the cutoff and positive health visibly positive. This prevents an actual value such as 9.99
+HP from being rounded up to a displayed 10 HP even though the next fall would
+lose a stock. The mechanic itself uses the unrounded value.
+
+Returning fighters can move and jump immediately, with the existing 30-tick
+attack cooldown. A surviving fall grants 60 active ticks (one second) of return
+protection; beginning an attack or charging a definitive ends that protection,
+and a normal dash replaces it with its usual eight ticks. Rejected attack
+requests do not remove protection. Separately granted technique immunity is
+retained. Idle returns land within 22–34 ticks in the tested stages and seats,
+so protection covers the descent without offering invulnerable attacks.
+
+The reset clears obsolete dash, guard, attack, buffered input and combo state.
+Input counters, match statistics and the once-per-match definitive usage flag
+remain intact. Owned tethers and active field finales end because their old
+coordinates and attached actions no longer match the returned fighter. Free-moving projectiles already launched remain live, as after a lost stock. A
+transformation keeps its remaining duration and continues ticking normally;
+it is neither renewed nor refunded. Surviving falls do not restore health or
+energy, reward an opponent with hit energy, or refund a definitive use.
+
+Actual stock loss retains its existing 110-tick respawn protection, 20-energy
+cost and transformation cleanup. The balance report separates surviving falls
+from damage dealt by the opponent.
+
+### Current threshold-rule verification
+
+Commit `3e4aa8f` removes the minimum damage and introduces the strict pre-fall
+stock-loss threshold. Commit `71a1e3b` makes the low-health HUD respect that
+visible cutoff. The same full Caracas hard CPU schedule was rerun:
+
+| Full Caracas result                 | Previous percentage + minimum | Current percentage + stock-loss threshold |
+| ----------------------------------- | ----------------------------: | ----------------------------------------: |
+| Matches                             |                        12,320 |                                    12,320 |
+| Mean match duration                 |                       41.65 s |                                   41.88 s |
+| Mean surviving-fall HP loss         |                         19.91 |                                     19.16 |
+| Falls that kept a stock             |                        50,359 |                                    50,506 |
+| Stocks lost to falls                |       8,615 / 35,654 (24.16%) |                   9,028 / 35,638 (25.33%) |
+| Timeouts / simulation-limit results |                         0 / 0 |                                     0 / 0 |
+
+The current run uses every distinct fighter pair, both seats and the four
+existing CPU timing variants. It is a mechanical proxy, not a measurement of
+human enjoyment. An independent check verified exact 40% damage for all
+**50,506** surviving falls, confirmed each fell from at least 10 HP, and
+verified health conservation across all **35,638** completed stocks. Every
+ring-out stock loss began with positive health strictly below 10 HP.
+
+All **554 automated tests** pass, including explicit 20 → 12, 15 → 9 and 10 → 6
+cases and both sides of the strict threshold on each seat and final stock.
+Additional direct-engine checks cover **3,200** health/seat/stock combinations
+and repeated resolution of the same exit. The graph matches the engine at
+nine starting-health selections, including 9, 10 and 20 HP; its old minimum
+reference line is removed. Build, TypeScript and formatting checks pass. All
+12 browser layout checks pass in the nonhidden source copy described below.
+
+### Adversarial review
+
+The follow-up review found no reproducible gameplay defect. Six additional
+regressions bring the full suite to **560 passing tests**. They exercise mixed
+lethal/surviving simultaneous falls in both seat orders, an actual heavy hit
+followed by a boundary exit in the same tick, and timeout scoring after fall
+damage. Real WebSocket clients verify matching snapshots, the strict cutoff,
+energy/transformation preservation, immediate jump input, protection ending on
+attack, final-stock winners/draws, win counts and clean rematch state.
+
+A seeded mixed-input stress run (`0x1a8b6f3`) covered **118,200 simulation steps**
+in 112 runs spanning all 56 fighters and nine stages. It included captures,
+field finales, transformations, hitstop and hit-driven boundary exits. Every
+step replayed identically after a JSON round trip; health, stocks, energy and
+immunity stayed within their invariants, and no exit charged twice. An
+independent timer model also matched **327,680** seeded immunity transitions,
+including cancellation and overlapping dash/technique protection. Build,
+TypeScript, formatting and whitespace checks pass.
+
+One reporting description needed clarification: the launched/self proxy uses
+non-fall HP loss no more than 90 simulation steps earlier, including the current
+step, and resets after each return or stock loss. An independent reconstruction
+of all **59,534** fall/ring-out classifications in the existing current-policy
+Caracas report agreed with the recorder. This checks accounting and timing,
+not whether the last hit actually caused a fall. No gameplay constants changed
+in this review. These automated checks do not establish human enjoyment or
+exhaust every possible move, stage phase and network condition.
+
+### Historical percentage-plus-minimum verification
+
+The intermediate percentage-plus-minimum policy is implemented by commit `8586139`. It keeps
+the refined return behavior and changes the health calculation from fixed 10
+HP to 40% of current HP with a 10 HP minimum. The same full Caracas schedule
+was rerun against the fixed-10-HP results from commit `2b4c046`:
+
+| Full Caracas hard CPU result        |             Fixed 10 HP | 40% of current HP, minimum 10 |
+| ----------------------------------- | ----------------------: | ----------------------------: |
+| Matches                             |                  12,320 |                        12,320 |
+| Mean match duration                 |                 46.30 s |                       41.65 s |
+| Mean surviving-fall HP loss         |                      10 |                         19.91 |
+| Median surviving-fall HP loss       |                      10 |                         18.56 |
+| Falls that kept a stock             |                  58,133 |                        50,359 |
+| Stocks lost to falls                | 8,712 / 35,571 (24.49%) |       8,615 / 35,654 (24.16%) |
+| Timeouts / simulation-limit results |                   0 / 0 |                         0 / 0 |
+
+The 10 HP knockout threshold remains the same; the percentage increases the
+cost of earlier falls while the player is healthier. In these CPU matches,
+that makes the average surviving fall cost about 20 HP and shortens matches,
+while the share of stocks directly ended by falls stays similar. This does not
+establish balanced human matchups: the current CPU extremes are Amanda 88.41%
+and Dayana 29.77%.
+
+The other eight stages each ran 224 hard CPU matches, and all nine stages each
+ran 224 matches at normal and easy difficulty, using the roster-ring sample
+schedule described below. All **18,144** percentage-policy matches completed
+without a timeout or simulation-limit result. Normal/easy sample mean match
+times were 32.82/32.78 seconds. These samples exercise every fighter and both
+seats, but are not complete matchup measurements outside the full Caracas run.
+
+The recorder now observes the exact HP drop and pre-fall HP instead of assuming
+a fixed loss or reconstructing it from a constant. It removes the fall's own
+last drop for that victim from opponent damage, preserving legitimate hits in
+the same step even when they deal an equal amount. Reports publish the
+percentage/minimum policy and actual fall-damage distributions. An independent
+check verified the formula for all **50,359** surviving falls and verified that
+hit loss, surviving-fall loss and HP left account for the full health of all
+**35,654** completed stocks in the Caracas report.
+
+The full automated suite passes **552 tests**. Additional direct-engine checks
+covered **1,600** starting-health/seat combinations, including repeat resolution
+without another exit. The examples, crossover at 25 HP, fractional HP and
+100 → 60 → 36 → 21.6 → 11.6 → 1.6 → stock-loss sequence have explicit regressions.
+Build, TypeScript and formatting checks pass. All 12 browser checks also pass
+in the nonhidden source copy described in the historical verification below.
+
+### Reset problems found in the initial proposal
+
+The initial proposal reused the entire stock-loss reset. An isolated
+surviving fall from 100 HP and 70 energy produced 70 HP and 50 energy, cleared
+an active transformation, and left an old dash and guard flag set. Those were
+extra costs and stale state beyond the stated health penalty.
+
+The original 110-tick protection outlasted the 30-tick attack cooldown. In a
+reproduction, a returned fighter began a light attack with 79 protection ticks
+remaining and an opposing hit was rejected. Making falls cheaper without
+addressing this would increase the value of deliberately escaping for an
+invulnerable attack. Shorter protection that ends on offense addresses that
+specific exploit; teleporting back to spawn still offers positional relief.
+The health cost makes that relief finite rather than free.
+
+### Historical fixed-damage sensitivity
+
+The comparison changes only `RING_OUT_DAMAGE` in isolated copies of commit
+`66d4da7`, keeping the initial reset otherwise identical. Each candidate runs
+all 1,540 distinct fighter pairs in Caracas, both seats, and all four existing
+CPU timing variants: **12,320 hard CPU matches per candidate**. Each also runs
+224 matches on every other stage: adjacent roster pairs plus last/first, both
+seats and two timing variants. This exercises every fighter on all nine stages;
+the sparse stage samples are not complete matchup balance measurements.
+
+| HP penalty | Mean Caracas match |     Stocks lost to falls | Falls that kept a stock |
+| ---------- | -----------------: | -----------------------: | ----------------------: |
+| 30         |            37.86 s | 18,657 / 35,494 (52.56%) |                  34,548 |
+| 20         |            41.76 s | 15,003 / 35,673 (42.06%) |                  45,699 |
+| 15         |            44.46 s | 12,250 / 35,708 (34.31%) |                  53,039 |
+| 10         |            47.75 s |  9,224 / 35,800 (25.77%) |                  61,679 |
+
+All **56,448** hard CPU matches completed without a timeout or simulation-limit
+result. Lower penalties let more falls preserve a stock without pushing these
+CPU matches into the two-minute limit. An additional 2,016 normal and 2,016 easy
+CPU matches using the original 30 HP reset also finished without either result.
+Generated report snapshots stay outside the repository, following its policy
+for generated reports. Reproduce a full Caracas case with
+`BALANCE_JSON=/tmp/falls.json npm run balance:report`; stage samples use
+`simulate` with the pair and timing scheme above.
+
+These numbers isolate the health amount; they are not measurements of the
+revised protection and energy behavior. Hard CPU attacks follow the documented
+heavy-only cadence and do not represent a new player's input, frustration or
+intentional escape tactics. Character extremes also persist: in the damage-only
+10 HP case, Amanda wins 90.91% and Chataing 27.95% of their Caracas matches. This
+is not evidence of balanced human matchups, and unrelated attack damage should
+not be changed to make this fall experiment fit a win-rate band.
+
+### Historical fixed-10-HP verification
+
+The intermediate fixed 10 HP policy, including energy/transformation preservation, shorter
+return protection and cancellation on offense, was then run independently with
+the same pair schedule. It is the behavior implemented by commit `2b4c046`.
+
+| Full Caracas result                 |      Initial 30 HP reset |     Revised 10 HP reset |
+| ----------------------------------- | -----------------------: | ----------------------: |
+| Hard CPU matches                    |                   12,320 |                  12,320 |
+| Mean match duration                 |                  37.86 s |                 46.30 s |
+| Stocks lost to falls                | 18,657 / 35,494 (52.56%) | 8,712 / 35,571 (24.49%) |
+| Falls that kept a stock             |                   34,548 |                  58,133 |
+| Player 0 / player 1 wins            |            6,167 / 6,153 |           6,189 / 6,131 |
+| Timeouts / simulation-limit results |                    0 / 0 |                   0 / 0 |
+
+All 14,112 revised-policy hard matches, including the eight other stage samples,
+completed without a timeout or simulation-limit result. Two further all-stage
+samples of 2,016 matches each did the same at normal and easy difficulty:
+
+| All-stage roster-ring sample | Initial 30 HP mean match | Revised 10 HP mean match |
+| ---------------------------- | -----------------------: | -----------------------: |
+| Normal CPU                   |                  30.63 s |                  36.13 s |
+| Easy CPU                     |                  30.59 s |                  34.64 s |
+
+Across all five policy cases and the two difficulty comparisons, **78,624** CPU
+matches were simulated. The revised full Caracas character extremes remain
+Amanda 91.59% and Chataing 29.09%; preserving a player's opportunity to continue
+is not equivalent to equalizing character matchups.
+
+At that intermediate policy, the full automated suite passed **549 tests**, with 15 added fall regressions
+and an updated real Puma edge-throw scenario. Coverage includes all fighters in
+both seats, one charge for a multi-boundary exit, surviving and lethal final
+stocks, simultaneous defeats, consecutive distinct falls, ordinary landings,
+safe return landings on every stage, immediate movement, energy and
+transformation preservation, stale action cleanup, buffered and rejected attacks,
+protection cancellation, unrelated immunity and JSON round-trip determinism.
+Additional seeded checks compared overlapping immunity with independent timers:
+1,000 cancellation sequences and 128 expiry/cancellation sequences (15,360 ticks)
+passed. Build, TypeScript and formatting checks also pass.
+
+All 12 Playwright browser checks pass from an identical source copy outside the
+hidden `.t3` directory. Running directly inside that directory exposes an
+existing Express `sendFile` issue: the explicit Caracas AVIF route returns 404
+because an ancestor is hidden, preventing two gameplay checks from loading.
+No asset/server changes are included in this fall adjustment.
+
+### Original whole-stock baseline
+
+For context, the original whole-stock rule versus the initial 30 HP proposal,
+using the same full Caracas configuration:
+
+| Measure                  | Whole stock → initial 30 HP proposal |
+| ------------------------ | ------------------------------------ |
+| HP KOs / ring-out stocks | 2,531 / 32,233 → 16,837 / 18,657     |
+| Ring-outs of all stocks  | 92.72% → 52.56%                      |
+| HP left at a ring-out    | median 55.52 → 14.67                 |
+| Median stock duration    | 11.55 → 18.57 s                      |
+| Mean match duration      | 26.85 → 37.86 s                      |
+
+### Remaining play-test questions
+
+The user selected consistent percentage damage without a minimum, combined
+with a separate stock-loss threshold below 10 HP. A pure percentage without
+that threshold would keep leaving positive health. Starting at 100 HP with no
+other damage, six distinct falls exhaust a stock:
+100 → 60 → 36 → 21.6 → 12.96 → 7.776 → stock lost.
+Starting at 20 HP gives 20 → 12 → 7.2 → stock lost. These sequences preserve
+40% damage until a fall starts below the threshold.
+
+Human play should check whether the larger loss while healthy feels fair,
+whether the shrinking cost is clear, whether landing feels safe, whether
+repeated knock-offs feel oppressive, and whether intentional escapes are too
+valuable. Test close-range and projectile fighters, the last stock at low HP,
+and local and online controls. Distinguishing accidental and opponent-caused
+falls would require a trustworthy causal rule the current timing proxy cannot
+provide. Do not infer improved player enjoyment solely from CPU results.
+
 ## Follow-ups
 
 - Investigate counter frequency and counterplay: Amanda and Edgar remain above
@@ -209,6 +511,8 @@ competitive tier list.
 - Review the hard CPU's attack cadence, which only chooses heavy attacks.
 - Play-test ride pushback and investigate other ring-outs, including edge
   recovery, jump cadence and knockback.
+- Play-test the 40%-of-current-HP penalty, below-10 stock-loss threshold and return protection; review
+  intentional escapes and Chataing's CPU matchup results separately.
 - Review same-tick trades: player 0 resolves first and is favored; the harness
   offsets seat timing to compensate.
 - Revisit Gómez's PODER identity after human play. His 1.08 damage multiplier is

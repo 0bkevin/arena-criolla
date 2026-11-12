@@ -1,21 +1,27 @@
-// Lost stocks and the end of a match, by knockout or by time.
+// Ring-outs, lost stocks and the end of a match, by knockout or by time.
 import { WORLD } from "./arena";
 import { fighterById } from "../roster/roster";
 import { runwayContacts, supportRunway } from "./finales/field-finales";
 import { effect, hurt } from "./combat";
+import { ringOutDamage } from "./damage-values";
+import { clearFallProtection, setInvincibility } from "./invincibility";
 import { PLAYERS, type MatchState, type PlayerIndex } from "./types";
 
-function loseStock(s: MatchState, i: PlayerIndex) {
+/** Clear the fighter's ongoing actions and mark where they left the arena. */
+function leaveArena(
+  s: MatchState,
+  i: PlayerIndex,
+  preserveTransformation = false,
+) {
   const p = s.players[i];
   delete p.bufferedAttack;
   delete p.bufferedSuperTicks;
   s.projectiles = s.projectiles.filter(
     (shot) => !shot.tether || shot.owner !== i,
   );
-  p.stocks--;
   p.superChargeTicks = 0;
   delete p.knockoutDelay;
-  delete p.transformation;
+  if (!preserveTransformation) delete p.transformation;
   s.fieldFinales = s.fieldFinales?.filter((field) => field.owner !== i);
   if (!s.fieldFinales?.length) delete s.fieldFinales;
   p.slowTicks = 0;
@@ -33,40 +39,88 @@ function loseStock(s: MatchState, i: PlayerIndex) {
       direction: p.x < WORLD.x + WORLD.width / 2 ? -1 : 1,
     },
   );
-  if (p.stocks <= 0) {
-    p.hp = 0;
-    return;
-  }
+}
+
+/** Return a fighter to their spawn point, briefly protected. */
+function respawn(s: MatchState, i: PlayerIndex, survivingFall = false) {
+  const p = s.players[i];
+  clearFallProtection(p);
   p.x = i === 0 ? 330 : 750;
   p.y = 260;
   p.vx = 0;
   p.recoilVx = 0;
   p.vy = 0;
-  p.hp = 100;
   p.grounded = false;
   p.supportPlatform = null;
   p.dropThrough = 0;
   p.jumps = 0;
   p.stun = 0;
   p.attack = null;
+  p.attackTick = 0;
+  p.attackHit = false;
+  p.countered = false;
+  p.counterLanded = false;
   p.cooldown = 30;
-  p.invincible = 110;
-  p.dashOnlyInvincible = 0;
-  p.energy = Math.max(0, p.energy - 20);
+  p.dash = 0;
+  p.blocking = false;
+  p.history = [];
+  p.combo = "";
+  p.comboTick = 0;
+  p.comboBonus = 0;
+  setInvincibility(p, survivingFall ? 60 : 110);
+  if (survivingFall) {
+    p.fallProtectionTicks = 60;
+    p.fallProtectionBase = 0;
+    p.fallProtectionDashBase = 0;
+  } else {
+    delete p.fallProtectionTicks;
+    delete p.fallProtectionBase;
+    delete p.fallProtectionDashBase;
+    p.energy = Math.max(0, p.energy - 20);
+  }
   p.streak = 0;
+}
+
+function loseStock(s: MatchState, i: PlayerIndex) {
+  const p = s.players[i];
+  p.stocks--;
+  clearFallProtection(p);
+  leaveArena(s, i);
+  if (p.stocks <= 0) {
+    p.hp = 0;
+    return;
+  }
+  p.hp = 100;
+  respawn(s, i);
+}
+
+/** A ring-out costs a share of current health, or the stock if all health is lost. */
+function fall(s: MatchState, i: PlayerIndex) {
+  const p = s.players[i];
+  const damage = ringOutDamage(p.hp);
+  if (damage >= p.hp) {
+    loseStock(s, i);
+    return;
+  }
+  p.hp -= damage;
+  leaveArena(s, i, true);
+  respawn(s, i, true);
+}
+
+function outOfArena(p: MatchState["players"][number]) {
+  return (
+    p.x < WORLD.x - 120 ||
+    p.x > WORLD.x + WORLD.width + 120 ||
+    p.y > WORLD.y + WORLD.height + 140
+  );
 }
 
 export function resolveStocks(s: MatchState) {
   for (const i of PLAYERS) {
     const p = s.players[i];
     if (p.stocks <= 0) continue;
-    if (
-      (p.hp <= 0 && !p.knockoutDelay) ||
-      p.x < WORLD.x - 120 ||
-      p.x > WORLD.x + WORLD.width + 120 ||
-      p.y > WORLD.y + WORLD.height + 140
-    )
-      loseStock(s, i);
+    if (p.hp <= 0 && !p.knockoutDelay) loseStock(s, i);
+    else if (outOfArena(p)) fall(s, i);
   }
   const [first, second] = s.players;
   if (s.players.some((p) => p.hp <= 0 && (p.knockoutDelay ?? 0) > 0)) return;

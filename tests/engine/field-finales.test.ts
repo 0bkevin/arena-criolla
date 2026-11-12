@@ -9,6 +9,7 @@ import {
   type MatchState,
 } from "../helpers/charged-finale-engine";
 import type { FighterId } from "../../shared/roster/roster";
+import { ringOutDamage } from "../../shared/engine/damage-values";
 import {
   SQUAD_COUNT,
   SQUAD_LAUNCH_TICK,
@@ -165,7 +166,14 @@ test("squad balls use real contact, facing guard, evasion, reflection and immedi
       if (mode === "hit") {
         assert.ok(r.target.hp < 100);
         assert.ok(r.source.hits > 0 && r.source.hits <= 5);
-      } else assert.equal(r.target.hp, 100, mode);
+      } else if (mode === "guard") assert.equal(r.target.hp, 100, mode);
+      else {
+        // The distant target starts past the floor's edge: it falls once and
+        // respawns protected, and no ball reaches it.
+        assert.equal(r.target.hp, 100 - ringOutDamage(100), mode);
+        assert.equal(r.target.stocks, 2, mode);
+        assert.equal(r.source.hits, 0, mode);
+      }
       assert.equal(r.state.finale, undefined);
     }
     const lethal = run("deyna", side);

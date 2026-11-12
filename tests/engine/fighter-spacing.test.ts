@@ -8,6 +8,13 @@ import {
   stepMatch,
   type Input,
 } from "../../shared/engine/engine";
+import { ringOutDamage } from "../../shared/engine/damage-values";
+import type { MatchState } from "../../shared/engine/types";
+
+const fellOut = (state: MatchState, owner: 0 | 1) =>
+  state.effects.some(
+    (effect) => effect.kind === "ringout" && effect.owner === owner,
+  );
 
 function fight() {
   const state = createMatch("poliedro", [
@@ -121,9 +128,14 @@ test("a real heavy hit can still launch the victim beyond the spacing boundary a
   state.hitstop = 0;
   stepMatch(state, inputs);
   assert.ok(attacker.x - victim.x > MAX_FIGHTER_SEPARATION);
-  for (let frame = 0; frame < 120 && victim.stocks === 2; frame++)
+  const launchedHp = victim.hp;
+  for (let frame = 0; frame < 120 && !fellOut(state, 0); frame++)
     stepMatch(state, inputs);
-  assert.equal(victim.stocks, 1);
+  assert.ok(fellOut(state, 0));
+  assert.ok(
+    Math.abs(victim.hp - (launchedHp - ringOutDamage(launchedHp))) < 1e-9,
+  );
+  assert.equal(victim.stocks, 2);
   assert.equal(attacker.stocks, 2);
 });
 
@@ -151,12 +163,14 @@ test("blocked projectiles retain their recoil and can push a neutral defender of
       assert.ok(state.effects.some((effect) => effect.kind === "block"));
       assert.equal(defender.hp, 100);
       const copy = structuredClone(state);
-      for (let frame = 0; frame < 120 && defender.stocks === 2; frame++) {
+      for (let frame = 0; frame < 120 && !fellOut(state, 1); frame++) {
         stepMatch(state, inputs);
         stepMatch(copy, inputs);
         assert.deepEqual(state, copy);
       }
-      assert.equal(defender.stocks, 1, `mirrored=${mirrored}, gap=${gap}`);
+      assert.ok(fellOut(state, 1), `mirrored=${mirrored}, gap=${gap}`);
+      assert.equal(defender.hp, 100 - ringOutDamage(100));
+      assert.equal(defender.stocks, 2);
       assert.equal(state.players[0].stocks, 2);
     }
   }

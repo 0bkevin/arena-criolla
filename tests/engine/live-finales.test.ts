@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { ringOutDamage } from "../../shared/engine/damage-values";
 import {
   createMatch,
   emptyInput,
@@ -124,18 +125,45 @@ test("Puma's caught rival survives a mid-stage throw at full health", () => {
     }
 });
 
-test("Puma's throw can still ring out a weakened rival near the edge", () => {
+test("Puma's edge throw charges fall damage, taking a stock only if it is lethal", () => {
   for (const stage of ["caracas", "guaira"] as const)
-    for (const side of [0, 1] as const) {
-      const r = setup("puma", side, 90, stage, "chataing");
-      r.target.x = side ? WORLD.left + 150 : WORLD.right - 150;
-      r.source.x = r.target.x - r.source.facing * 90;
-      r.target.hp = 50;
-      r.start();
-      r.advance(300);
-      assert.equal(r.source.hits, 2, `${stage}/${side}: catch and throw land`);
-      assert.equal(r.target.stocks, 1, `${stage}/${side}: loses a stock`);
-    }
+    for (const side of [0, 1] as const)
+      for (const hp of [50, 35]) {
+        const r = setup("puma", side, 90, stage, "chataing");
+        r.target.x = side ? WORLD.left + 150 : WORLD.right - 150;
+        r.source.x = r.target.x - r.source.facing * 90;
+        r.target.hp = hp;
+        r.start();
+        let fell = false;
+        for (let tick = 0; tick < 300 && !fell; tick++) {
+          const nextId = r.state.nextId;
+          const before = r.target.hp;
+          r.advance();
+          fell = r.state.effects.some(
+            (effect) =>
+              effect.id >= nextId &&
+              effect.kind === "ringout" &&
+              effect.owner === 1 - side,
+          );
+          if (!fell) continue;
+          assert.ok(before > 0, "the throw itself leaves the rival alive");
+          if (ringOutDamage(before) < before) {
+            assert.equal(r.target.stocks, 2);
+            assert.ok(
+              Math.abs(r.target.hp - (before - ringOutDamage(before))) < 1e-9,
+            );
+          } else {
+            assert.equal(r.target.stocks, 1);
+            assert.equal(r.target.hp, 100);
+          }
+        }
+        assert.equal(
+          r.source.hits,
+          2,
+          `${stage}/${side}: catch and throw land`,
+        );
+        assert.ok(fell, `${stage}/${side}/${hp}: throw causes a fall`);
+      }
 });
 
 for (const id of representatives)

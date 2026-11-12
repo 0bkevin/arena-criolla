@@ -16,6 +16,8 @@ import {
   LIGHT_HEAVY_BONUS,
   LIGHT_LIGHT_HEAVY_BONUS,
   SUPER_BONUS,
+  RING_OUT_STOCK_LOSS_THRESHOLD,
+  RING_OUT_DAMAGE_FRACTION,
 } from "../../shared/engine/damage-values";
 
 const HZ = 60;
@@ -32,7 +34,9 @@ type Difficulty = "easy" | "normal" | "hard";
 type Hit = {
   tick: number;
   damage: number;
+  hpBefore: number;
   attacker: PlayerIndex;
+  victim: PlayerIndex;
   source: Source;
 };
 type Stock = {
@@ -43,6 +47,25 @@ type Stock = {
   elapsedTicks: number;
   ringOutKind: "launched" | "self" | null;
 };
+/** A ring-out that cost health but kept the stock. */
+type Fall = {
+  tick: number;
+  loser: PlayerIndex;
+  hp: number;
+  damage: number;
+  ringOutKind: "launched" | "self";
+};
+/** Remove the exact last HP drop for a victim, representing this fall's own loss. */
+export function removeFallHpDrop(
+  hits: Hit[],
+  firstHitIndex: number,
+  victim: PlayerIndex,
+): Hit {
+  for (let index = hits.length - 1; index >= firstHitIndex; index--) {
+    if (hits[index]!.victim === victim) return hits.splice(index, 1)[0]!;
+  }
+  throw new Error(`Surviving ring-out for player ${victim} had no HP drop`);
+}
 export type Options = {
   stages: StageId[];
   difficulty: Difficulty;
@@ -115,10 +138,13 @@ export function simulate(
   );
   const hits: Hit[] = [];
   const stocks: Stock[] = [];
+  const falls: Fall[] = [];
   let tick = 0;
   let playingStart = 0;
   const previousStock = [0, 0];
   const lastHit = [-Infinity, -Infinity];
+  // The hit before the latest one, so a fall's own HP loss is not its cause.
+  const previousHit = [-Infinity, -Infinity];
   for (const i of [0, 1] as const) {
     const p = state.players[i];
     let hp = p.hp;
@@ -132,9 +158,12 @@ export function simulate(
           hits.push({
             tick,
             damage: hp - value,
+            hpBefore: hp,
             attacker: i === 0 ? 1 : 0,
+            victim: i,
             source: "unknown",
           });
+          previousHit[i] = lastHit[i]!;
           lastHit[i] = tick;
         }
         hp = value;
@@ -191,7 +220,26 @@ export function simulate(
     const phase = state.phase;
     const firstHit = hits.length;
     const nextEffectId = state.nextId;
+    const stockCounts = state.players.map((p) => p.stocks);
     stepMatch(state, inputs);
+    // The fall setter is the last HP drop for that victim in this step.
+    // Remove that observed event by position, preserving any distinct same-step
+    // hit even when it happens to deal the same amount as the fall.
+    for (const effect of state.effects) {
+      if (effect.id < nextEffectId || effect.kind !== "ringout") continue;
+      const loser = effect.owner as PlayerIndex;
+      if (state.players[loser].stocks !== stockCounts[loser]) continue;
+      const fallDrop = removeFallHpDrop(hits, firstHit, loser);
+      falls.push({
+        tick,
+        loser,
+        hp: fallDrop.hpBefore,
+        damage: fallDrop.damage,
+        ringOutKind:
+          tick - previousHit[loser]! <= RECENT_HIT_TICKS ? "launched" : "self",
+      });
+      lastHit[loser] = -Infinity;
+    }
     const effects = state.effects.filter(
       (e) => e.id >= nextEffectId && e.kind === "hit",
     );
@@ -236,6 +284,7 @@ export function simulate(
     seconds: tick / HZ,
     playingTicks: tick - playingStart,
     stocks,
+    falls,
     sides,
     hits,
   };
@@ -284,6 +333,9 @@ export function buildReport(options: Options) {
     const stocksLost = games.flatMap((m) =>
       m.stocks.filter((s) => m.fighters[s.loser] === f.id),
     );
+    const falls = games.flatMap((m) =>
+      m.falls.filter((fall) => m.fighters[fall.loser] === f.id),
+    );
     const damage = games.reduce(
       (sum, m) => sum + m.sides[m.fighters.indexOf(f.id)]!.damage,
       0,
@@ -314,6 +366,8 @@ export function buildReport(options: Options) {
       stocksLost: stocksLost.length,
       stocksLostRingOuts: stocksLost.filter((s) => s.cause === "ring-out")
         .length,
+      falls: falls.length,
+      fallDamage: stats(falls.map((fall) => fall.damage)),
       damagePerSecond: seconds ? damage / seconds : 0,
       secondsPer100: damage ? (100 * seconds) / damage : 0,
       hitsPer100: damage
@@ -336,6 +390,7 @@ export function buildReport(options: Options) {
     };
   });
   const allStocks = matches.flatMap((m) => m.stocks);
+  const allFalls = matches.flatMap((m) => m.falls);
   const pairs = FIGHTERS.flatMap((a, i) =>
     FIGHTERS.slice(i + 1).map((b) => {
       const games = matches.filter(
@@ -367,6 +422,10 @@ export function buildReport(options: Options) {
     tickRate: HZ,
     burstWindowTicks: WINDOW,
     recentHitTicks: RECENT_HIT_TICKS,
+    ringOutPolicy: {
+      fraction: RING_OUT_DAMAGE_FRACTION,
+      stockLossThreshold: RING_OUT_STOCK_LOSS_THRESHOLD,
+    },
     phases: PHASES,
     staticDamage: staticDamage(),
     matches,
@@ -402,6 +461,12 @@ export function buildReport(options: Options) {
       self: allStocks.filter((s) => s.ringOutKind === "self").length,
       hpKOs: allStocks.filter((s) => s.cause === "hp").length,
       ringOuts: allStocks.filter((s) => s.cause === "ring-out").length,
+      falls: allFalls.length,
+      fallDamage: stats(allFalls.map((fall) => fall.damage)),
+      fallHp: stats(allFalls.map((fall) => fall.hp)),
+      fallsLaunched: allFalls.filter((fall) => fall.ringOutKind === "launched")
+        .length,
+      fallsSelf: allFalls.filter((fall) => fall.ringOutKind === "self").length,
       sideWins: [
         matches.filter((m) => m.winner === 0).length,
         matches.filter((m) => m.winner === 1).length,

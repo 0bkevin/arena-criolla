@@ -44,13 +44,14 @@ Stages: ${report.options.stages.join(", ")}; difficulty: ${report.options.diffic
 
 Each distinct pair plays both seats in four deterministic paired timing variants ${JSON.stringify(report.phases)} per stage, offsetting only the tick seen by each CPU. Mirror matches are excluded. The default is one stage; BALANCE_STAGES accepts comma-separated stage IDs; BALANCE_DIFFICULTY and BALANCE_LIMIT override difficulty and tick limit. Time uses simulation steps at ${report.tickRate} Hz, including hitstop and cinematics. CPU play is a limited proxy for human play. On hard difficulty its 24-tick attack cadence always selects heavy because those ticks are divisible by 3, so the absence of light damage is a CPU limitation.
 
-HP loss is attributed to a matching new hit effect's owner and impact in the same step; unmatched damage is unknown. Combo bonuses remain included in their attack source: effects do not distinguish their contribution. Capture finale damage beats count individually for largest observed HP drop, while landed hits use the engine's hit counter (one for a capture). DPS uses total HP removed divided by all playing time; seconds per 100 = 100 / DPS, hits per 100 = 100 × landed hits / HP removed. Burst is the largest ${report.burstWindowTicks / report.tickRate}-second rolling sum, not a verified combo. A ring-out is classified as launched if HP was lost in the prior ${report.recentHitTicks} steps, otherwise self; this is a timing proxy, not proof of causation. Timeout winners use engine scoring; limit results have no winner. The CPU steers toward its opponent and only attempts edge jumps every 34 ticks near WORLD.left/right; ground support ends at those edges. Hits launch with base force 4.5 for light and 8 for heavy, amplified as HP falls, so knockback and late or unavailable recovery can carry fighters off the floor. The timing-based classification cannot distinguish those paths conclusively.
+HP loss is attributed to a matching new hit effect's owner and impact in the same step; unmatched damage is unknown. Combo bonuses remain included in their attack source: effects do not distinguish their contribution. Capture finale damage beats count individually for largest observed HP drop, while landed hits use the engine's hit counter (one for a capture). DPS uses total HP removed divided by all playing time; seconds per 100 = 100 / DPS, hits per 100 = 100 × landed hits / HP removed. Burst is the largest ${report.burstWindowTicks / report.tickRate}-second rolling sum, not a verified combo. A surviving fall costs ${pct(report.ringOutPolicy.fraction)} of current HP; a fall that begins with strictly less than ${report.ringOutPolicy.stockLossThreshold} HP costs a stock. That surviving HP loss is excluded from damage dealt. Observed fall damage has a median (IQR) of ${summary(report.overall.fallDamage)} HP. Falls and ring-outs are classified as launched if non-fall HP loss occurred within ${report.recentHitTicks} simulation steps, including the current step, since the previous return or stock loss; otherwise self. This is a timing proxy, not proof of causation. Timeout winners use engine scoring; limit results have no winner. The CPU steers toward its opponent and only attempts edge jumps every 34 ticks near WORLD.left/right; ground support ends at those edges. Hits launch with base force 4.5 for light and 8 for heavy, amplified as HP falls, so knockback and late or unavailable recovery can carry fighters off the floor. The timing-based classification cannot distinguish those paths conclusively.
 
 ## Overall
 
 - Match time: mean ${n(report.overall.matchSeconds.mean)} s.
 - Stock time: mean ${n(s.mean)} s; median ${n(s.median)} s; IQR ${n(s.q1)}–${n(s.q3)} s (n=${s.count}).
 - HP KOs: ${report.overall.hpKOs}; ring-outs: ${report.overall.ringOuts} (${pct(report.overall.ringOuts / (report.overall.hpKOs + report.overall.ringOuts || 1))}); launched ${report.overall.launched}, self ${report.overall.self}. Ring-out HP median (IQR): ${summary(report.overall.ringOutHp)}.
+- Falls (stock kept): ${report.overall.falls}; launched ${report.overall.fallsLaunched}, self ${report.overall.fallsSelf}. HP before fall median (IQR): ${summary(report.overall.fallHp)}; actual fall damage median (IQR): ${summary(report.overall.fallDamage)}.
 - Outcomes: ${JSON.stringify(report.overall.outcomes)}.
 - Player 0 / player 1 wins: ${wins[0]} / ${wins[1]} (${pct(wins[0]! / (wins[0]! + wins[1]! || 1))} / ${pct(wins[1]! / (wins[0]! + wins[1]! || 1))} of decided matches).
 - Cast median (IQR): win rate ${summary(report.overall.fighterWinRates)}; DPS ${summary(report.overall.fighterDps)}; seconds / 100 HP ${summary(report.overall.secondsPer100)}; hits / 100 HP ${summary(report.overall.hitsPer100)}; largest HP drop ${summary(report.overall.biggestHit)}; max burst ${summary(report.overall.maxBurst)}.
@@ -64,8 +65,8 @@ HP loss is attributed to a matching new hit effect's owner and impact in the sam
 
 Win rate uses all matches, including draws and unfinished games. Source columns are percentages of HP removed. Flags mark values outside 1.5 × IQR from the cast quartiles; source flags are prefixed by their source name.
 
-| Fighter | Wins / games | Win % | Stocks taken mean / median s | DPS | Sec / 100 | Hits / 100 | Light / heavy / special / definitive / unknown % | Stocks taken HP / ring-out KOs | Stocks lost / ring-outs | Largest HP drop | Max burst | Outliers |
-|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|---:|---|`);
+| Fighter | Wins / games | Win % | Stocks taken mean / median s | DPS | Sec / 100 | Hits / 100 | Light / heavy / special / definitive / unknown % | Stocks taken HP / ring-out KOs | Stocks lost / ring-outs | Falls | Fall damage median HP | Largest HP drop | Max burst | Outliers |
+|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|---:|---:|---:|---|`);
 for (const f of sorted) {
   const sourceShares = shares(f);
   const flags = [
@@ -86,7 +87,7 @@ for (const f of sorted) {
       .map(([name]) => name + " share"),
   ];
   console.log(
-    `| ${f.id} | ${f.wins}/${f.games} | ${pct(f.winRate)} | ${n(f.stocksTakenSeconds.mean)} / ${n(f.stocksTakenSeconds.median)} | ${n(f.damagePerSecond)} | ${n(f.secondsPer100)} | ${n(f.hitsPer100)} | ${sourceShares.map(pct).join(" / ")} | ${f.stocksTakenHpKOs} / ${f.stocksTakenRingOuts} | ${f.stocksLost} / ${f.stocksLostRingOuts} | ${n(f.biggestHit)} | ${n(f.maxBurst)} | ${flags.join(", ")} |`,
+    `| ${f.id} | ${f.wins}/${f.games} | ${pct(f.winRate)} | ${n(f.stocksTakenSeconds.mean)} / ${n(f.stocksTakenSeconds.median)} | ${n(f.damagePerSecond)} | ${n(f.secondsPer100)} | ${n(f.hitsPer100)} | ${sourceShares.map(pct).join(" / ")} | ${f.stocksTakenHpKOs} / ${f.stocksTakenRingOuts} | ${f.stocksLost} / ${f.stocksLostRingOuts} | ${f.falls} | ${n(f.fallDamage.median)} | ${n(f.biggestHit)} | ${n(f.maxBurst)} | ${flags.join(", ")} |`,
   );
 }
 console.log(

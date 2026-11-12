@@ -4,6 +4,8 @@ import { FIGHTERS, STAGES, fighterById } from "../../shared/roster/roster";
 import {
   LIGHT_HEAVY_BONUS,
   LIGHT_LIGHT_HEAVY_BONUS,
+  RING_OUT_STOCK_LOSS_THRESHOLD,
+  ringOutDamage,
 } from "../../shared/engine/damage-values";
 import { INTRO_TOTAL_TICKS } from "../../shared/engine/intro";
 import {
@@ -90,18 +92,83 @@ test("a second jump works in the air; a third is rejected; landing resets it", (
   assert.equal(state.players[0].grounded, true);
 });
 
-test("crossing the arena boundary costs a stock and the final stock ends the match", () => {
+test("crossing the arena boundary costs health once and respawns the fighter", () => {
   const { state, inputs } = setup();
-  state.players[1].x = WORLD.x - 140;
+  const p = state.players[1];
+  // Past both the side and the bottom limit in the same step.
+  p.x = WORLD.x - 140;
+  p.y = WORLD.y + WORLD.height + 180;
   stepMatch(state, inputs);
-  assert.equal(state.players[1].stocks, 1);
-  assert.equal(state.players[1].hp, 100);
-  assert.ok(state.players[1].invincible > 0);
-  state.players[1].y = WORLD.height + 180;
+  assert.equal(p.hp, 100 - ringOutDamage(100));
+  assert.equal(p.stocks, 2);
+  assert.equal(p.x, 750);
+  assert.ok(p.invincible > 0);
+  assert.equal(
+    state.effects.filter((e) => e.kind === "ringout" && e.owner === 1).length,
+    1,
+  );
+  // The respawn is inside the arena: later steps add no further penalty.
+  advance(state, inputs, 120);
+  assert.equal(p.hp, 100 - ringOutDamage(100));
+  assert.equal(p.stocks, 2);
+});
+
+test("a fall checks pre-fall HP against the strict stock-loss threshold", () => {
+  for (const hp of [10.5, 10, 9.99]) {
+    const { state, inputs } = setup();
+    const p = state.players[1];
+    p.hp = hp;
+    p.y = WORLD.y + WORLD.height + 180;
+    stepMatch(state, inputs);
+    if (hp >= RING_OUT_STOCK_LOSS_THRESHOLD) {
+      assert.equal(p.stocks, 2, `hp=${hp}`);
+      assert.ok(Math.abs(p.hp - (hp - ringOutDamage(hp))) < 1e-9, `hp=${hp}`);
+    } else {
+      assert.equal(p.stocks, 1, `hp=${hp}`);
+      assert.equal(p.hp, 100, `hp=${hp}`);
+    }
+    assert.ok(p.invincible > 0);
+  }
+});
+
+test("a fall on the final stock with low health ends the match", () => {
+  const { state, inputs } = setup();
+  const p = state.players[1];
+  p.stocks = 1;
+  p.hp = RING_OUT_STOCK_LOSS_THRESHOLD - 0.01;
+  p.x = WORLD.x - 140;
   stepMatch(state, inputs);
-  assert.equal(state.players[1].stocks, 0);
+  assert.equal(p.stocks, 0);
   assert.equal(state.phase, "finished");
   assert.equal(state.winner, 0);
+});
+
+test("every fighter loses the same health to a fall, regardless of armor", () => {
+  const fighters = FIGHTERS.map((fighter) => fighter.id);
+  for (const [index, fighter] of fighters.entries()) {
+    for (const side of [0, 1] as const) {
+      const rival = fighters[(index + 1) % fighters.length]!;
+      const state = createMatch(
+        "caracas",
+        side
+          ? [
+              { name: "A", fighter: rival, wins: 0 },
+              { name: "B", fighter, wins: 0 },
+            ]
+          : [
+              { name: "A", fighter, wins: 0 },
+              { name: "B", fighter: rival, wins: 0 },
+            ],
+      );
+      state.phase = "playing";
+      state.players.forEach((p) => (p.invincible = 0));
+      const p = state.players[side];
+      p.y = WORLD.y + WORLD.height + 180;
+      stepMatch(state, [emptyInput(), emptyInput()]);
+      assert.equal(p.hp, 100 - ringOutDamage(100), `${fighter} side ${side}`);
+      assert.equal(p.stocks, 2, `${fighter} side ${side}`);
+    }
+  }
 });
 
 test("both combo sequences are available to either player from zero wins", () => {
@@ -201,7 +268,10 @@ test("simultaneous final-stock knockouts and ringouts end in a draw", () => {
     state.players.forEach((player) => {
       player.stocks = 1;
       if (cause === "health") player.hp = 0;
-      else player.y = WORLD.y + WORLD.height + 180;
+      else {
+        player.hp = RING_OUT_STOCK_LOSS_THRESHOLD - 0.01;
+        player.y = WORLD.y + WORLD.height + 180;
+      }
     });
     stepMatch(state, inputs);
     assert.equal(state.phase, "finished", cause);

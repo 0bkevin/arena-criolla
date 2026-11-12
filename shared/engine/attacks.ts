@@ -1,5 +1,6 @@
 // Starting, timing and landing attacks, specials and definitives.
 import {
+  clearFallProtection,
   grantDashInvincibility,
   grantNonDashInvincibility,
 } from "./invincibility";
@@ -71,6 +72,7 @@ export function beginAttack(
 ) {
   if (!canBeginAttack(s, i, attack)) return;
   const p = s.players[i];
+  clearFallProtection(p);
   const def = fighterById(p.config.fighter);
   if (attack === "special") p.energy -= 25;
   if (attack === "super") {
